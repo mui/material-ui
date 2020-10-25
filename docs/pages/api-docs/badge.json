@@ -31,7 +31,7 @@
       "required": false,
       "default": "'rectangular'"
     },
-    "showZero": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "showZero": { "type": { "name": "bool" }, "required": false },
     "variant": {
       "type": {
         "name": "union",

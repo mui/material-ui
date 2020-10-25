@@ -15,7 +15,7 @@
     "disableUnderline": { "type": { "name": "bool" }, "required": false },
     "endAdornment": { "type": { "name": "node" }, "required": false },
     "error": { "type": { "name": "bool" }, "required": false },
-    "fullWidth": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "required": false },
     "id": { "type": { "name": "string" }, "required": false },
     "inputComponent": {
       "type": { "name": "elementType" },
@@ -39,7 +39,7 @@
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false
     },
-    "multiline": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "multiline": { "type": { "name": "bool" }, "required": false },
     "name": { "type": { "name": "string" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false },
     "placeholder": { "type": { "name": "string" }, "required": false },

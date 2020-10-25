@@ -9,7 +9,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "completed": { "type": { "name": "bool" }, "required": false },
     "disabled": { "type": { "name": "bool" }, "required": false },
-    "expanded": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "expanded": { "type": { "name": "bool" }, "required": false },
     "index": { "type": { "name": "number" }, "required": false },
     "last": { "type": { "name": "bool" }, "required": false }
   },

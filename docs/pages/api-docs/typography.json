@@ -31,9 +31,9 @@
       "required": false,
       "default": "'initial'"
     },
-    "gutterBottom": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "noWrap": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "paragraph": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "gutterBottom": { "type": { "name": "bool" }, "required": false },
+    "noWrap": { "type": { "name": "bool" }, "required": false },
+    "paragraph": { "type": { "name": "bool" }, "required": false },
     "variant": {
       "type": {
         "name": "union",

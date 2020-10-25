@@ -8,8 +8,8 @@
       "required": false,
       "default": "'center'"
     },
-    "autoFocus": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "button": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "autoFocus": { "type": { "name": "bool" }, "required": false },
+    "button": { "type": { "name": "bool" }, "required": false },
     "children": {
       "type": {
         "name": "custom",
@@ -27,16 +27,16 @@
       "default": "'li'"
     },
     "ContainerProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
-    "dense": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableGutters": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "divider": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "dense": { "type": { "name": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "disableGutters": { "type": { "name": "bool" }, "required": false },
+    "divider": { "type": { "name": "bool" }, "required": false },
     "focusVisibleClassName": {
       "type": { "name": "string" },
       "required": false,
       "description": "@ignore"
     },
-    "selected": { "type": { "name": "bool" }, "required": false, "default": "false" }
+    "selected": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": {

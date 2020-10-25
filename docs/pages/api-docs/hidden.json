@@ -16,10 +16,10 @@
       },
       "required": false
     },
-    "lgDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "lgUp": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "mdDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "mdUp": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "lgDown": { "type": { "name": "bool" }, "required": false },
+    "lgUp": { "type": { "name": "bool" }, "required": false },
+    "mdDown": { "type": { "name": "bool" }, "required": false },
+    "mdUp": { "type": { "name": "bool" }, "required": false },
     "only": {
       "type": {
         "name": "union",
@@ -27,12 +27,12 @@
       },
       "required": false
     },
-    "smDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "smUp": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "xlDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "xlUp": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "xsDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "xsUp": { "type": { "name": "bool" }, "required": false, "default": "false" }
+    "smDown": { "type": { "name": "bool" }, "required": false },
+    "smUp": { "type": { "name": "bool" }, "required": false },
+    "xlDown": { "type": { "name": "bool" }, "required": false },
+    "xlUp": { "type": { "name": "bool" }, "required": false },
+    "xsDown": { "type": { "name": "bool" }, "required": false },
+    "xsUp": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": { "name": null, "globalClasses": {} },

@@ -4,7 +4,7 @@
   "description": "",
   "props": {
     "activeStep": { "type": { "name": "number" }, "required": false, "default": "0" },
-    "alternativeLabel": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "alternativeLabel": { "type": { "name": "bool" }, "required": false },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
@@ -13,7 +13,7 @@
       "required": false,
       "default": "<StepConnector />"
     },
-    "nonLinear": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "nonLinear": { "type": { "name": "bool" }, "required": false },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,

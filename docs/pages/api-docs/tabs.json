@@ -7,14 +7,10 @@
       "type": { "name": "custom", "raw": "refType", "description": "ref" },
       "required": false
     },
-    "allowScrollButtonsMobile": {
-      "type": { "name": "bool" },
-      "required": false,
-      "default": "false"
-    },
+    "allowScrollButtonsMobile": { "type": { "name": "bool" }, "required": false },
     "aria-label": { "type": { "name": "string" }, "required": false },
     "aria-labelledby": { "type": { "name": "string" }, "required": false },
-    "centered": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "centered": { "type": { "name": "bool" }, "required": false },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
@@ -60,7 +56,7 @@
       "required": false,
       "default": "'standard'"
     },
-    "visibleScrollbar": { "type": { "name": "bool" }, "required": false, "default": "false" }
+    "visibleScrollbar": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": {

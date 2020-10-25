@@ -9,10 +9,10 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "disableBackdropClick": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableEscapeKeyDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "fullScreen": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "fullWidth": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableBackdropClick": { "type": { "name": "bool" }, "required": false },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "required": false },
+    "fullScreen": { "type": { "name": "bool" }, "required": false },
+    "fullWidth": { "type": { "name": "bool" }, "required": false },
     "maxWidth": {
       "type": {
         "name": "enum",

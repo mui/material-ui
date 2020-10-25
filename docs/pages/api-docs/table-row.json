@@ -7,8 +7,8 @@
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": { "type": { "name": "elementType" }, "required": false },
-    "hover": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "selected": { "type": { "name": "bool" }, "required": false, "default": "false" }
+    "hover": { "type": { "name": "bool" }, "required": false },
+    "selected": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": {

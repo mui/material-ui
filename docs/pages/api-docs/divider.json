@@ -3,13 +3,13 @@
   "filename": "/packages/material-ui/src/Divider/Divider.js",
   "description": "",
   "props": {
-    "absolute": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "absolute": { "type": { "name": "bool" }, "required": false },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": { "type": { "name": "elementType" }, "required": false },
-    "flexItem": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "light": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "flexItem": { "type": { "name": "bool" }, "required": false },
+    "light": { "type": { "name": "bool" }, "required": false },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,

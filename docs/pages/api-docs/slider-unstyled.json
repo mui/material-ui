@@ -41,10 +41,10 @@
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
       "required": false
     },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false },
     "getAriaLabel": { "type": { "name": "func" }, "required": false },
     "getAriaValueText": { "type": { "name": "func" }, "required": false },
-    "isRtl": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "isRtl": { "type": { "name": "bool" }, "required": false },
     "marks": {
       "type": {
         "name": "union",

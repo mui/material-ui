@@ -15,11 +15,11 @@
       "default": "'primary'"
     },
     "component": { "type": { "name": "elementType" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableElevation": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableFocusRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "fullWidth": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "disableElevation": { "type": { "name": "bool" }, "required": false },
+    "disableFocusRipple": { "type": { "name": "bool" }, "required": false },
+    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "fullWidth": { "type": { "name": "bool" }, "required": false },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,

@@ -7,10 +7,10 @@
       "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
       "required": false
     },
-    "autoFocus": { "type": { "name": "bool" }, "required": false, "default": "true" },
+    "autoFocus": { "type": { "name": "bool" }, "required": false },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
-    "disableAutoFocusItem": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableAutoFocusItem": { "type": { "name": "bool" }, "required": false },
     "MenuListProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
     "onClose": { "type": { "name": "func" }, "required": false },
     "open": { "type": { "name": "bool" }, "required": true },

@@ -199,7 +199,7 @@ import { ${name} } from '${source}';`}
                 <tbody>
                   {Object.entries(componentProps).map(([propName, propData]) => {
                     const typeDescription = propData.type.description || propData.type.name;
-
+                    const propDefault = propData.default || propData.type.name === 'bool' && 'false';
                     return (
                       propData.description !== '@ignore' && (
                         <tr key={propName}>
@@ -225,8 +225,8 @@ import { ${name} } from '${source}';`}
                             )}
                           </td>
                           <td align="left">
-                            {propData.default && (
-                              <span className="prop-default">{propData.default}</span>
+                            {propDefault && (
+                              <span className="prop-default">{propDefault}</span>
                             )}
                           </td>
                           <td

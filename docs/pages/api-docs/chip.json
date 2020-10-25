@@ -21,7 +21,7 @@
     },
     "component": { "type": { "name": "elementType" }, "required": false },
     "deleteIcon": { "type": { "name": "element" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false },
     "icon": { "type": { "name": "element" }, "required": false },
     "label": { "type": { "name": "node" }, "required": false },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },

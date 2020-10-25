@@ -18,7 +18,7 @@
     "elevation": { "type": { "name": "number" }, "required": false, "default": "16" },
     "ModalProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
     "onClose": { "type": { "name": "func" }, "required": false },
-    "open": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "open": { "type": { "name": "bool" }, "required": false },
     "PaperProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
     "SlideProps": { "type": { "name": "object" }, "required": false },
     "transitionDuration": {

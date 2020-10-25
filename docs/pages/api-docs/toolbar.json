@@ -7,7 +7,7 @@
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": { "type": { "name": "elementType" }, "required": false },
-    "disableGutters": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "required": false },
     "variant": {
       "type": {
         "name": "union",

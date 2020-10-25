@@ -11,7 +11,7 @@
     "id": { "type": { "name": "string" }, "required": false },
     "open": { "type": { "name": "bool" }, "required": false },
     "TooltipClasses": { "type": { "name": "object" }, "required": false },
-    "tooltipOpen": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "tooltipOpen": { "type": { "name": "bool" }, "required": false },
     "tooltipPlacement": {
       "type": {
         "name": "enum",

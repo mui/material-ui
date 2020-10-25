@@ -6,7 +6,7 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "invisible": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "invisible": { "type": { "name": "bool" }, "required": false },
     "open": { "type": { "name": "bool" }, "required": true },
     "transitionDuration": {
       "type": {

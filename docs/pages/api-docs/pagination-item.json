@@ -15,9 +15,9 @@
       "default": "'standard'"
     },
     "component": { "type": { "name": "elementType" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false },
     "page": { "type": { "name": "number" }, "required": false },
-    "selected": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "selected": { "type": { "name": "bool" }, "required": false },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
       "required": false,

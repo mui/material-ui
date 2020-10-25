@@ -18,11 +18,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "ClickAwayListenerProps": { "type": { "name": "object" }, "required": false },
     "ContentProps": { "type": { "name": "object" }, "required": false },
-    "disableWindowBlurListener": {
-      "type": { "name": "bool" },
-      "required": false,
-      "default": "false"
-    },
+    "disableWindowBlurListener": { "type": { "name": "bool" }, "required": false },
     "key": { "type": { "name": "any" }, "required": false },
     "message": { "type": { "name": "node" }, "required": false },
     "onClose": { "type": { "name": "func" }, "required": false },

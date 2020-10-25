@@ -20,7 +20,7 @@
       "required": false,
       "default": "'medium'"
     },
-    "stickyHeader": { "type": { "name": "bool" }, "required": false, "default": "false" }
+    "stickyHeader": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": {

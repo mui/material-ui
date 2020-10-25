@@ -11,7 +11,7 @@
       "type": { "name": "custom", "raw": "refType", "description": "ref" },
       "required": false
     },
-    "centerRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "centerRipple": { "type": { "name": "bool" }, "required": false },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
@@ -19,10 +19,10 @@
       "type": { "name": "custom", "raw": "elementTypeAcceptingRef", "description": "element type" },
       "required": false
     },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableTouchRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "focusRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "disableTouchRipple": { "type": { "name": "bool" }, "required": false },
+    "focusRipple": { "type": { "name": "bool" }, "required": false },
     "focusVisibleClassName": { "type": { "name": "string" }, "required": false },
     "href": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },

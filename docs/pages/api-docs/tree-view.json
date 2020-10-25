@@ -20,14 +20,14 @@
       "required": false,
       "default": "[]"
     },
-    "disabledItemsFocusable": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableSelection": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabledItemsFocusable": { "type": { "name": "bool" }, "required": false },
+    "disableSelection": { "type": { "name": "bool" }, "required": false },
     "expanded": {
       "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" },
       "required": false
     },
     "id": { "type": { "name": "string" }, "required": false },
-    "multiSelect": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "multiSelect": { "type": { "name": "bool" }, "required": false },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },

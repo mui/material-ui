@@ -22,7 +22,7 @@
       "default": "<CheckBoxOutlineBlankIcon />"
     },
     "id": { "type": { "name": "string" }, "required": false },
-    "indeterminate": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "indeterminate": { "type": { "name": "bool" }, "required": false },
     "indeterminateIcon": {
       "type": { "name": "node" },
       "required": false,

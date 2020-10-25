@@ -8,7 +8,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": { "type": { "name": "elementType" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false },
-    "showLabels": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "showLabels": { "type": { "name": "bool" }, "required": false },
     "value": { "type": { "name": "any" }, "required": false }
   },
   "spread": true,

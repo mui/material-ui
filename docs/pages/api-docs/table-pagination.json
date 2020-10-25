@@ -50,8 +50,8 @@
       "default": "[10, 25, 50, 100]"
     },
     "SelectProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
-    "showFirstButton": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "showLastButton": { "type": { "name": "bool" }, "required": false, "default": "false" }
+    "showFirstButton": { "type": { "name": "bool" }, "required": false },
+    "showLastButton": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": {

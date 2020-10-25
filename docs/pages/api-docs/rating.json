@@ -6,7 +6,7 @@
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "defaultValue": { "type": { "name": "number" }, "required": false, "default": "null" },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false },
     "emptyIcon": {
       "type": { "name": "node" },
       "required": false,
@@ -43,7 +43,7 @@
       "required": false,
       "default": "1"
     },
-    "readOnly": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "readOnly": { "type": { "name": "bool" }, "required": false },
     "size": {
       "type": {
         "name": "enum",

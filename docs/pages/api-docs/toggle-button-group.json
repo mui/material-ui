@@ -6,7 +6,7 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "exclusive": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "exclusive": { "type": { "name": "bool" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },

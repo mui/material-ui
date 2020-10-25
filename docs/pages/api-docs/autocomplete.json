@@ -3,9 +3,9 @@
   "filename": "/packages/material-ui/src/Autocomplete/Autocomplete.js",
   "description": "",
   "props": {
-    "autoComplete": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "autoHighlight": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "autoSelect": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "autoComplete": { "type": { "name": "bool" }, "required": false },
+    "autoHighlight": { "type": { "name": "bool" }, "required": false },
+    "autoSelect": { "type": { "name": "bool" }, "required": false },
     "blurOnSelect": {
       "type": {
         "name": "union",
@@ -17,8 +17,8 @@
     "ChipProps": { "type": { "name": "object" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "clearOnBlur": { "type": { "name": "bool" }, "required": false, "default": "!props.freeSolo" },
-    "clearOnEscape": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "clearOnBlur": { "type": { "name": "bool" }, "required": false },
+    "clearOnEscape": { "type": { "name": "bool" }, "required": false },
     "clearText": { "type": { "name": "string" }, "required": false, "default": "'Clear'" },
     "closeIcon": {
       "type": { "name": "node" },
@@ -26,27 +26,27 @@
       "default": "<CloseIcon fontSize=\"small\" />"
     },
     "closeText": { "type": { "name": "string" }, "required": false, "default": "'Close'" },
-    "debug": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "debug": { "type": { "name": "bool" }, "required": false },
     "defaultValue": {
       "type": { "name": "any" },
       "required": false,
       "default": "props.multiple ? [] : null"
     },
-    "disableClearable": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableCloseOnSelect": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disabledItemsFocusable": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableListWrap": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disablePortal": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableClearable": { "type": { "name": "bool" }, "required": false },
+    "disableCloseOnSelect": { "type": { "name": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "disabledItemsFocusable": { "type": { "name": "bool" }, "required": false },
+    "disableListWrap": { "type": { "name": "bool" }, "required": false },
+    "disablePortal": { "type": { "name": "bool" }, "required": false },
     "filterOptions": { "type": { "name": "func" }, "required": false },
-    "filterSelectedOptions": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "filterSelectedOptions": { "type": { "name": "bool" }, "required": false },
     "forcePopupIcon": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
       "required": false,
       "default": "'auto'"
     },
-    "freeSolo": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "fullWidth": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "freeSolo": { "type": { "name": "bool" }, "required": false },
+    "fullWidth": { "type": { "name": "bool" }, "required": false },
     "getLimitTagsText": {
       "type": { "name": "func" },
       "required": false,
@@ -60,20 +60,16 @@
     },
     "getOptionSelected": { "type": { "name": "func" }, "required": false },
     "groupBy": { "type": { "name": "func" }, "required": false },
-    "handleHomeEndKeys": {
-      "type": { "name": "bool" },
-      "required": false,
-      "default": "!props.freeSolo"
-    },
+    "handleHomeEndKeys": { "type": { "name": "bool" }, "required": false },
     "id": { "type": { "name": "string" }, "required": false },
-    "includeInputInList": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "includeInputInList": { "type": { "name": "bool" }, "required": false },
     "inputValue": { "type": { "name": "string" }, "required": false },
     "limitTags": { "type": { "name": "number" }, "required": false, "default": "-1" },
     "ListboxComponent": { "type": { "name": "elementType" }, "required": false, "default": "'ul'" },
     "ListboxProps": { "type": { "name": "object" }, "required": false },
-    "loading": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "loading": { "type": { "name": "bool" }, "required": false },
     "loadingText": { "type": { "name": "node" }, "required": false, "default": "'Loading…'" },
-    "multiple": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "multiple": { "type": { "name": "bool" }, "required": false },
     "noOptionsText": { "type": { "name": "node" }, "required": false, "default": "'No options'" },
     "onChange": { "type": { "name": "func" }, "required": false },
     "onClose": { "type": { "name": "func" }, "required": false },
@@ -81,7 +77,7 @@
     "onInputChange": { "type": { "name": "func" }, "required": false },
     "onOpen": { "type": { "name": "func" }, "required": false },
     "open": { "type": { "name": "bool" }, "required": false },
-    "openOnFocus": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "openOnFocus": { "type": { "name": "bool" }, "required": false },
     "openText": { "type": { "name": "string" }, "required": false, "default": "'Open'" },
     "options": { "type": { "name": "array" }, "required": true },
     "PaperComponent": { "type": { "name": "elementType" }, "required": false, "default": "Paper" },
@@ -99,11 +95,7 @@
     "renderInput": { "type": { "name": "func" }, "required": true },
     "renderOption": { "type": { "name": "func" }, "required": false },
     "renderTags": { "type": { "name": "func" }, "required": false },
-    "selectOnFocus": {
-      "type": { "name": "bool" },
-      "required": false,
-      "default": "!props.freeSolo"
-    },
+    "selectOnFocus": { "type": { "name": "bool" }, "required": false },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false,

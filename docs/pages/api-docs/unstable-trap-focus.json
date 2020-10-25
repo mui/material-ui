@@ -7,9 +7,9 @@
       "type": { "name": "custom", "raw": "elementAcceptingRef", "description": "element" },
       "required": false
     },
-    "disableAutoFocus": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableEnforceFocus": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableRestoreFocus": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableAutoFocus": { "type": { "name": "bool" }, "required": false },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "required": false },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "required": false },
     "getDoc": { "type": { "name": "func" }, "required": true },
     "isEnabled": { "type": { "name": "func" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true }

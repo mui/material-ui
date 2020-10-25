@@ -16,7 +16,7 @@
       "default": "'up'"
     },
     "FabProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
-    "hidden": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "hidden": { "type": { "name": "bool" }, "required": false },
     "icon": { "type": { "name": "node" }, "required": false },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onClose": { "type": { "name": "func" }, "required": false },

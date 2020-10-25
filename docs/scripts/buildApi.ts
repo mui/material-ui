@@ -486,14 +486,19 @@ async function buildDocs(options: {
 
     const typeDescription = generatePropType(propData.type);
     reactAPI.props[propName].type.description =
-      typeDescription === reactAPI.props[propName].type.name ? undefined : typeDescription;
+      typeDescription === reactAPI.props[propName].type.name  ? undefined : typeDescription;
     delete reactAPI.props[propName].type.value;
 
-    reactAPI.props[propName].default =
-      reactAPI.props[propName].jsdocDefaultValue &&
-      reactAPI.props[propName].jsdocDefaultValue.value;
+    // Don't store default for bool props (it should always be false)
+    if (reactAPI.props[propName].type.name !== 'bool') {
+      reactAPI.props[propName].default =
+        reactAPI.props[propName].jsdocDefaultValue &&
+        reactAPI.props[propName].jsdocDefaultValue.value;
+    }
     delete reactAPI.props[propName].defaultValue;
     delete reactAPI.props[propName].jsdocDefaultValue;
+
+    
 
     propDescriptions[name] = {
       ...propDescriptions[name],

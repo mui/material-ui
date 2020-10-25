@@ -6,8 +6,8 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "pending": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "pending": { "type": { "name": "bool" }, "required": false },
     "pendingIndicator": {
       "type": { "name": "node" },
       "required": false,

@@ -3,11 +3,11 @@
   "filename": "/packages/material-ui/src/StepIcon/StepIcon.js",
   "description": "",
   "props": {
-    "active": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "active": { "type": { "name": "bool" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "completed": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "error": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "completed": { "type": { "name": "bool" }, "required": false },
+    "error": { "type": { "name": "bool" }, "required": false },
     "icon": { "type": { "name": "node" }, "required": false }
   },
   "spread": true,

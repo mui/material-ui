@@ -16,10 +16,10 @@
     },
     "count": { "type": { "name": "number" }, "required": false, "default": "1" },
     "defaultPage": { "type": { "name": "number" }, "required": false, "default": "1" },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false },
     "getItemAriaLabel": { "type": { "name": "func" }, "required": false },
-    "hideNextButton": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "hidePrevButton": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "hideNextButton": { "type": { "name": "bool" }, "required": false },
+    "hidePrevButton": { "type": { "name": "bool" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false },
     "page": { "type": { "name": "number" }, "required": false },
     "renderItem": {
@@ -32,8 +32,8 @@
       "required": false,
       "default": "'circular'"
     },
-    "showFirstButton": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "showLastButton": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "showFirstButton": { "type": { "name": "bool" }, "required": false },
+    "showLastButton": { "type": { "name": "bool" }, "required": false },
     "siblingCount": { "type": { "name": "number" }, "required": false, "default": "1" },
     "size": {
       "type": {

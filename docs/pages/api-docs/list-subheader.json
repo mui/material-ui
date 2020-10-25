@@ -15,9 +15,9 @@
       "default": "'default'"
     },
     "component": { "type": { "name": "elementType" }, "required": false },
-    "disableGutters": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableSticky": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "inset": { "type": { "name": "bool" }, "required": false, "default": "false" }
+    "disableGutters": { "type": { "name": "bool" }, "required": false },
+    "disableSticky": { "type": { "name": "bool" }, "required": false },
+    "inset": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": {

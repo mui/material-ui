@@ -18,17 +18,9 @@
       "defaultValue": { "value": "'left'", "computed": false }
     },
     "children": { "type": { "name": "node" }, "required": false },
-    "disableBackdropTransition": {
-      "type": { "name": "bool" },
-      "required": false,
-      "default": "false"
-    },
-    "disableDiscovery": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableSwipeToOpen": {
-      "type": { "name": "bool" },
-      "required": false,
-      "default": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
-    },
+    "disableBackdropTransition": { "type": { "name": "bool" }, "required": false },
+    "disableDiscovery": { "type": { "name": "bool" }, "required": false },
+    "disableSwipeToOpen": { "type": { "name": "bool" }, "required": false },
     "hideBackdrop": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
     "hysteresis": { "type": { "name": "number" }, "required": false, "default": "0.52" },
     "minFlingVelocity": { "type": { "name": "number" }, "required": false, "default": "450" },

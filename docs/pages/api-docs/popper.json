@@ -19,8 +19,8 @@
       "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
       "required": false
     },
-    "disablePortal": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "keepMounted": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "required": false },
+    "keepMounted": { "type": { "name": "bool" }, "required": false },
     "modifiers": {
       "type": {
         "name": "arrayOf",
@@ -50,7 +50,7 @@
       "required": false
     },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
-    "transition": { "type": { "name": "bool" }, "required": false, "default": "false" }
+    "transition": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": { "name": null, "globalClasses": {} },

@@ -10,7 +10,7 @@
     "component": { "type": { "name": "elementType" }, "required": false },
     "dense": { "type": { "name": "bool" }, "required": false },
     "disabled": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
-    "disableGutters": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "required": false },
     "ListItemClasses": { "type": { "name": "object" }, "required": false },
     "role": {
       "type": { "name": "string" },

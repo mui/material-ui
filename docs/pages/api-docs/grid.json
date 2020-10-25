@@ -23,7 +23,7 @@
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": { "type": { "name": "elementType" }, "required": false },
-    "container": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "container": { "type": { "name": "bool" }, "required": false },
     "direction": {
       "type": {
         "name": "enum",
@@ -32,7 +32,7 @@
       "required": false,
       "default": "'row'"
     },
-    "item": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "item": { "type": { "name": "bool" }, "required": false },
     "justifyContent": {
       "type": {
         "name": "enum",
@@ -97,7 +97,7 @@
       "required": false,
       "default": "false"
     },
-    "zeroMinWidth": { "type": { "name": "bool" }, "required": false, "default": "false" }
+    "zeroMinWidth": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": {

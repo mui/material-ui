@@ -11,7 +11,7 @@
       },
       "required": false
     },
-    "disableReactTree": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableReactTree": { "type": { "name": "bool" }, "required": false },
     "mouseEvent": {
       "type": {
         "name": "enum",

@@ -21,8 +21,8 @@
       "required": false,
       "default": "'default'"
     },
-    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
-    "disableFocusRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "disableFocusRipple": { "type": { "name": "bool" }, "required": false },
     "disableRipple": { "type": { "name": "bool" }, "required": false },
     "edge": {
       "type": {
