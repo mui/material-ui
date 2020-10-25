@@ -3,9 +3,9 @@
   "filename": "/packages/material-ui-lab/src/SliderStyled/SliderStyled.js",
   "description": "",
   "props": {
-    "aria-label": { "type": { "name": "string", "description": "string" }, "required": false },
-    "aria-labelledby": { "type": { "name": "string", "description": "string" }, "required": false },
-    "aria-valuetext": { "type": { "name": "string", "description": "string" }, "required": false },
+    "aria-label": { "type": { "name": "string" }, "required": false },
+    "aria-labelledby": { "type": { "name": "string" }, "required": false },
+    "aria-valuetext": { "type": { "name": "string" }, "required": false },
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
     "color": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
@@ -20,15 +20,15 @@
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "componentsProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "componentsProps": { "type": { "name": "object" }, "required": false },
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
       "required": false
     },
-    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "getAriaLabel": { "type": { "name": "func", "description": "func" }, "required": false },
-    "getAriaValueText": { "type": { "name": "func", "description": "func" }, "required": false },
-    "isRtl": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "getAriaLabel": { "type": { "name": "func" }, "required": false },
+    "getAriaValueText": { "type": { "name": "func" }, "required": false },
+    "isRtl": { "type": { "name": "bool" }, "required": false },
     "marks": {
       "type": {
         "name": "union",
@@ -36,18 +36,18 @@
       },
       "required": false
     },
-    "max": { "type": { "name": "number", "description": "number" }, "required": false },
-    "min": { "type": { "name": "number", "description": "number" }, "required": false },
-    "name": { "type": { "name": "string", "description": "string" }, "required": false },
-    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
-    "onChangeCommitted": { "type": { "name": "func", "description": "func" }, "required": false },
+    "max": { "type": { "name": "number" }, "required": false },
+    "min": { "type": { "name": "number" }, "required": false },
+    "name": { "type": { "name": "string" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "onChangeCommitted": { "type": { "name": "func" }, "required": false },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false
     },
-    "scale": { "type": { "name": "func", "description": "func" }, "required": false },
-    "step": { "type": { "name": "number", "description": "number" }, "required": false },
-    "sx": { "type": { "name": "object", "description": "object" }, "required": false },
+    "scale": { "type": { "name": "func" }, "required": false },
+    "step": { "type": { "name": "number" }, "required": false },
+    "sx": { "type": { "name": "object" }, "required": false },
     "track": {
       "type": {
         "name": "enum",

@@ -12,11 +12,11 @@
       "jsdocDefaultValue": { "value": "'pulse'" },
       "defaultValue": { "value": "'pulse'", "computed": false }
     },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "defaultValue": { "value": "'span'", "computed": false }
     },

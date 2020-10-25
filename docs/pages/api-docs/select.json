@@ -4,60 +4,57 @@
   "description": "",
   "props": {
     "autoWidth": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
-    "defaultValue": { "type": { "name": "any", "description": "any" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "defaultValue": { "type": { "name": "any" }, "required": false },
     "displayEmpty": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "IconComponent": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "ArrowDropDownIcon" },
       "defaultValue": { "value": "ArrowDropDownIcon", "computed": true }
     },
-    "id": { "type": { "name": "string", "description": "string" }, "required": false },
-    "input": { "type": { "name": "element", "description": "element" }, "required": false },
-    "inputProps": { "type": { "name": "object", "description": "object" }, "required": false },
-    "label": { "type": { "name": "node", "description": "node" }, "required": false },
-    "labelId": { "type": { "name": "string", "description": "string" }, "required": false },
+    "id": { "type": { "name": "string" }, "required": false },
+    "input": { "type": { "name": "element" }, "required": false },
+    "inputProps": { "type": { "name": "object" }, "required": false },
+    "label": { "type": { "name": "node" }, "required": false },
+    "labelId": { "type": { "name": "string" }, "required": false },
     "labelWidth": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
       "defaultValue": { "value": "0", "computed": false }
     },
-    "MenuProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "MenuProps": { "type": { "name": "object" }, "required": false },
     "multiple": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "native": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
-    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
-    "onOpen": { "type": { "name": "func", "description": "func" }, "required": false },
-    "open": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "renderValue": { "type": { "name": "func", "description": "func" }, "required": false },
-    "SelectDisplayProps": {
-      "type": { "name": "object", "description": "object" },
-      "required": false
-    },
-    "value": { "type": { "name": "any", "description": "any" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "onOpen": { "type": { "name": "func" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": false },
+    "renderValue": { "type": { "name": "func" }, "required": false },
+    "SelectDisplayProps": { "type": { "name": "object" }, "required": false },
+    "value": { "type": { "name": "any" }, "required": false },
     "variant": {
       "type": {
         "name": "enum",

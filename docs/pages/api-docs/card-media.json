@@ -11,15 +11,15 @@
       },
       "required": false
     },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
-    "image": { "type": { "name": "string", "description": "string" }, "required": false },
-    "src": { "type": { "name": "string", "description": "string" }, "required": false },
+    "image": { "type": { "name": "string" }, "required": false },
+    "src": { "type": { "name": "string" }, "required": false },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" }
   },
   "spread": true,

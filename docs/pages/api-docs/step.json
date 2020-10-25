@@ -3,20 +3,20 @@
   "filename": "/packages/material-ui/src/Step/Step.js",
   "description": "",
   "props": {
-    "active": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "active": { "type": { "name": "bool" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "completed": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "completed": { "type": { "name": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
     "expanded": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "index": { "type": { "name": "number", "description": "number" }, "required": false },
-    "last": { "type": { "name": "bool", "description": "bool" }, "required": false }
+    "index": { "type": { "name": "number" }, "required": false },
+    "last": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": {

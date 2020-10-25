@@ -11,7 +11,7 @@
       },
       "required": false
     },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
@@ -23,18 +23,18 @@
       "defaultValue": { "value": "'default'", "computed": false }
     },
     "disabled": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableFocusRipple": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "disableRipple": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "disableRipple": { "type": { "name": "bool" }, "required": false },
     "edge": {
       "type": {
         "name": "enum",

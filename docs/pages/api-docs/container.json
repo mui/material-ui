@@ -4,21 +4,21 @@
   "description": "",
   "props": {
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
     "disableGutters": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "fixed": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

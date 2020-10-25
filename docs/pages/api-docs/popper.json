@@ -20,13 +20,13 @@
       "required": false
     },
     "disablePortal": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "keepMounted": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -38,7 +38,7 @@
       },
       "required": false
     },
-    "open": { "type": { "name": "bool", "description": "bool" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
     "placement": {
       "type": {
         "name": "enum",
@@ -63,7 +63,7 @@
     },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
     "transition": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

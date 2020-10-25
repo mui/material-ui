@@ -15,9 +15,9 @@
         "computed": false
       }
     },
-    "badgeContent": { "type": { "name": "node", "description": "node" }, "required": false },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "badgeContent": { "type": { "name": "node" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
@@ -29,13 +29,13 @@
       "defaultValue": { "value": "'default'", "computed": false }
     },
     "component": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "defaultValue": { "value": "'span'", "computed": false }
     },
-    "invisible": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "invisible": { "type": { "name": "bool" }, "required": false },
     "max": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "99" },
       "defaultValue": { "value": "99", "computed": false }
@@ -47,7 +47,7 @@
       "defaultValue": { "value": "'rectangular'", "computed": false }
     },
     "showZero": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

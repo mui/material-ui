@@ -3,8 +3,8 @@
   "filename": "/packages/material-ui/src/FormControl/FormControl.js",
   "description": "Provides context such as filled/focused/error/required for form inputs.\nRelying on the context provides high flexibility and ensures that the state always stays\nconsistent across the children of the `FormControl`.\nThis context is used by the following components:\n\n - FormLabel\n - FormHelperText\n - Input\n - InputLabel\n\nYou can find one composition example below and more going to [the demos](/components/text-fields/#components).\n\n```jsx\n<FormControl>\n  <InputLabel htmlFor=\"my-input\">Email address</InputLabel>\n  <Input id=\"my-input\" aria-describedby=\"my-helper-text\" />\n  <FormHelperText id=\"my-helper-text\">We'll never share your email.</FormHelperText>\n</FormControl>\n```\n\n⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.\nFor instance, only one input can be focused at the same time, the state shouldn't be shared.",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
@@ -13,31 +13,31 @@
       "defaultValue": { "value": "'primary'", "computed": false }
     },
     "component": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
     "disabled": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "error": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "focused": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "focused": { "type": { "name": "bool" }, "required": false },
     "fullWidth": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "hiddenLabel": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -52,7 +52,7 @@
       "defaultValue": { "value": "'none'", "computed": false }
     },
     "required": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

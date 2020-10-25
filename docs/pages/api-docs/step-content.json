@@ -3,11 +3,11 @@
   "filename": "/packages/material-ui/src/StepContent/StepContent.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "TransitionComponent": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Collapse" },
       "defaultValue": { "value": "Collapse", "computed": true }
@@ -21,7 +21,7 @@
       "jsdocDefaultValue": { "value": "'auto'" },
       "defaultValue": { "value": "'auto'", "computed": false }
     },
-    "TransitionProps": { "type": { "name": "object", "description": "object" }, "required": false }
+    "TransitionProps": { "type": { "name": "object" }, "required": false }
   },
   "spread": true,
   "styles": {

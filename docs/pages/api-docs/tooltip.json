@@ -4,7 +4,7 @@
   "description": "",
   "props": {
     "arrow": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -17,78 +17,78 @@
       },
       "required": false
     },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "describeChild": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableFocusListener": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableHoverListener": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableInteractive": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableTouchListener": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "enterDelay": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "100" },
       "defaultValue": { "value": "100", "computed": false }
     },
     "enterNextDelay": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
       "defaultValue": { "value": "0", "computed": false }
     },
     "enterTouchDelay": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "700" },
       "defaultValue": { "value": "700", "computed": false }
     },
     "followCursor": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "id": { "type": { "name": "string", "description": "string" }, "required": false },
+    "id": { "type": { "name": "string" }, "required": false },
     "leaveDelay": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
       "defaultValue": { "value": "0", "computed": false }
     },
     "leaveTouchDelay": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "1500" },
       "defaultValue": { "value": "1500", "computed": false }
     },
-    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
-    "onOpen": { "type": { "name": "func", "description": "func" }, "required": false },
-    "open": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "onOpen": { "type": { "name": "func" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": false },
     "placement": {
       "type": {
         "name": "enum",
@@ -99,20 +99,20 @@
       "defaultValue": { "value": "'bottom'", "computed": false }
     },
     "PopperComponent": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Popper" },
       "defaultValue": { "value": "Popper", "computed": true }
     },
-    "PopperProps": { "type": { "name": "object", "description": "object" }, "required": false },
-    "title": { "type": { "name": "node", "description": "node" }, "required": true },
+    "PopperProps": { "type": { "name": "object" }, "required": false },
+    "title": { "type": { "name": "node" }, "required": true },
     "TransitionComponent": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Grow" },
       "defaultValue": { "value": "Grow", "computed": true }
     },
-    "TransitionProps": { "type": { "name": "object", "description": "object" }, "required": false }
+    "TransitionProps": { "type": { "name": "object" }, "required": false }
   },
   "spread": true,
   "styles": {

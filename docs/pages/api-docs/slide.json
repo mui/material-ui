@@ -16,7 +16,7 @@
       "jsdocDefaultValue": { "value": "'down'" },
       "defaultValue": { "value": "'down'", "computed": false }
     },
-    "in": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "in": { "type": { "name": "bool" }, "required": false },
     "onEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onEntered": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onEntering": { "type": { "name": "func" }, "required": false, "description": "@ignore" },

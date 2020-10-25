@@ -3,15 +3,15 @@
   "filename": "/packages/material-ui/src/TextField/TextField.js",
   "description": "The `TextField` is a convenience wrapper for the most common cases (80%).\nIt cannot be all things to all people, otherwise the API would grow out of control.\n\n## Advanced Configuration\n\nIt's important to understand that the text field is a simple abstraction\non top of the following components:\n\n- [FormControl](/api/form-control/)\n- [InputLabel](/api/input-label/)\n- [FilledInput](/api/filled-input/)\n- [OutlinedInput](/api/outlined-input/)\n- [Input](/api/input/)\n- [FormHelperText](/api/form-helper-text/)\n\nIf you wish to alter the props applied to the `input` element, you can do so as follows:\n\n```jsx\nconst inputProps = {\n  step: 300,\n};\n\nreturn <TextField id=\"time\" type=\"time\" inputProps={inputProps} />;\n```\n\nFor advanced cases, please look at the source of TextField by clicking on the\n\"Edit this page\" button above. Consider either:\n\n- using the upper case props for passing values directly to the components\n- using the underlying components directly as shown in the demos",
   "props": {
-    "autoComplete": { "type": { "name": "string", "description": "string" }, "required": false },
+    "autoComplete": { "type": { "name": "string" }, "required": false },
     "autoFocus": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
@@ -19,39 +19,36 @@
       "jsdocDefaultValue": { "value": "'primary'" },
       "defaultValue": { "value": "'primary'", "computed": false }
     },
-    "defaultValue": { "type": { "name": "any", "description": "any" }, "required": false },
+    "defaultValue": { "type": { "name": "any" }, "required": false },
     "disabled": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "error": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "FormHelperTextProps": {
-      "type": { "name": "object", "description": "object" },
-      "required": false
-    },
+    "FormHelperTextProps": { "type": { "name": "object" }, "required": false },
     "fullWidth": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "helperText": { "type": { "name": "node", "description": "node" }, "required": false },
-    "id": { "type": { "name": "string", "description": "string" }, "required": false },
-    "InputLabelProps": { "type": { "name": "object", "description": "object" }, "required": false },
-    "inputProps": { "type": { "name": "object", "description": "object" }, "required": false },
-    "InputProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "helperText": { "type": { "name": "node" }, "required": false },
+    "id": { "type": { "name": "string" }, "required": false },
+    "InputLabelProps": { "type": { "name": "object" }, "required": false },
+    "inputProps": { "type": { "name": "object" }, "required": false },
+    "InputProps": { "type": { "name": "object" }, "required": false },
     "inputRef": {
       "type": { "name": "custom", "raw": "refType", "description": "ref" },
       "required": false
     },
-    "label": { "type": { "name": "node", "description": "node" }, "required": false },
+    "label": { "type": { "name": "node" }, "required": false },
     "margin": {
       "type": {
         "name": "enum",
@@ -68,18 +65,18 @@
       "required": false
     },
     "multiline": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "name": { "type": { "name": "string", "description": "string" }, "required": false },
+    "name": { "type": { "name": "string" }, "required": false },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
     "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "placeholder": { "type": { "name": "string", "description": "string" }, "required": false },
+    "placeholder": { "type": { "name": "string" }, "required": false },
     "required": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -89,18 +86,18 @@
       "required": false
     },
     "select": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "SelectProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "SelectProps": { "type": { "name": "object" }, "required": false },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false
     },
-    "type": { "type": { "name": "string", "description": "string" }, "required": false },
-    "value": { "type": { "name": "any", "description": "any" }, "required": false },
+    "type": { "type": { "name": "string" }, "required": false },
+    "value": { "type": { "name": "any" }, "required": false },
     "variant": {
       "type": {
         "name": "enum",

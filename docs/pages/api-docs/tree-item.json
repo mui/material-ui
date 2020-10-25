@@ -3,24 +3,24 @@
   "filename": "/packages/material-ui-lab/src/TreeItem/TreeItem.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "collapseIcon": { "type": { "name": "node", "description": "node" }, "required": false },
+    "collapseIcon": { "type": { "name": "node" }, "required": false },
     "ContentComponent": {
       "type": { "name": "custom", "raw": "elementTypeAcceptingRef", "description": "element type" },
       "required": false,
       "jsdocDefaultValue": { "value": "TreeItemContent" },
       "defaultValue": { "value": "TreeItemContent", "computed": true }
     },
-    "ContentProps": { "type": { "name": "object", "description": "object" }, "required": false },
-    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "endIcon": { "type": { "name": "node", "description": "node" }, "required": false },
-    "expandIcon": { "type": { "name": "node", "description": "node" }, "required": false },
-    "icon": { "type": { "name": "node", "description": "node" }, "required": false },
+    "ContentProps": { "type": { "name": "object" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "endIcon": { "type": { "name": "node" }, "required": false },
+    "expandIcon": { "type": { "name": "node" }, "required": false },
+    "icon": { "type": { "name": "node" }, "required": false },
     "id": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "label": { "type": { "name": "node", "description": "node" }, "required": false },
-    "nodeId": { "type": { "name": "string", "description": "string" }, "required": true },
+    "label": { "type": { "name": "node" }, "required": false },
+    "nodeId": { "type": { "name": "string" }, "required": true },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onFocus": {
       "type": { "name": "custom", "raw": "unsupportedProp", "description": "unsupportedProp" },
@@ -28,12 +28,12 @@
     },
     "onMouseDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "TransitionComponent": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Collapse" },
       "defaultValue": { "value": "Collapse", "computed": true }
     },
-    "TransitionProps": { "type": { "name": "object", "description": "object" }, "required": false }
+    "TransitionProps": { "type": { "name": "object" }, "required": false }
   },
   "spread": true,
   "styles": {

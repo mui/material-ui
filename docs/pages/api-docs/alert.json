@@ -3,12 +3,12 @@
   "filename": "/packages/material-ui/src/Alert/Alert.js",
   "description": "",
   "props": {
-    "action": { "type": { "name": "node", "description": "node" }, "required": false },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "action": { "type": { "name": "node" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "closeText": {
-      "type": { "name": "string", "description": "string" },
+      "type": { "name": "string" },
       "required": false,
       "jsdocDefaultValue": { "value": "'Close'" },
       "defaultValue": { "value": "'Close'", "computed": false }
@@ -20,7 +20,7 @@
       },
       "required": false
     },
-    "icon": { "type": { "name": "node", "description": "node" }, "required": false },
+    "icon": { "type": { "name": "node" }, "required": false },
     "iconMapping": {
       "type": {
         "name": "shape",
@@ -32,9 +32,9 @@
         "computed": false
       }
     },
-    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
+    "onClose": { "type": { "name": "func" }, "required": false },
     "role": {
-      "type": { "name": "string", "description": "string" },
+      "type": { "name": "string" },
       "required": false,
       "jsdocDefaultValue": { "value": "'alert'" },
       "defaultValue": { "value": "'alert'", "computed": false }

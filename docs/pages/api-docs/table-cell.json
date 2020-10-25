@@ -12,13 +12,10 @@
       "jsdocDefaultValue": { "value": "'inherit'" },
       "defaultValue": { "value": "'inherit'", "computed": false }
     },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType", "description": "elementType" },
-      "required": false
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "padding": {
       "type": {
         "name": "enum",
@@ -26,7 +23,7 @@
       },
       "required": false
     },
-    "scope": { "type": { "name": "string", "description": "string" }, "required": false },
+    "scope": { "type": { "name": "string" }, "required": false },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false

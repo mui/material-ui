@@ -3,16 +3,16 @@
   "filename": "/packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "exclusive": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,
@@ -28,7 +28,7 @@
       "jsdocDefaultValue": { "value": "'medium'" },
       "defaultValue": { "value": "'medium'", "computed": false }
     },
-    "value": { "type": { "name": "any", "description": "any" }, "required": false }
+    "value": { "type": { "name": "any" }, "required": false }
   },
   "spread": true,
   "styles": {

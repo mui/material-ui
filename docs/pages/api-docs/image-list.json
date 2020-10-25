@@ -3,22 +3,22 @@
   "filename": "/packages/material-ui/src/ImageList/ImageList.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": true },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": true },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "cols": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "2" },
       "defaultValue": { "value": "2", "computed": false }
     },
     "component": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "defaultValue": { "value": "'ul'", "computed": false }
     },
     "gap": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "4" },
       "defaultValue": { "value": "4", "computed": false }

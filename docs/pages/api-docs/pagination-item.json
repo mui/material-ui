@@ -4,7 +4,7 @@
   "description": "",
   "props": {
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
@@ -15,19 +15,16 @@
       "jsdocDefaultValue": { "value": "'standard'" },
       "defaultValue": { "value": "'standard'", "computed": false }
     },
-    "component": {
-      "type": { "name": "elementType", "description": "elementType" },
-      "required": false
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "disabled": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "page": { "type": { "name": "number", "description": "number" }, "required": false },
+    "page": { "type": { "name": "number" }, "required": false },
     "selected": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

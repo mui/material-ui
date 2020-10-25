@@ -3,14 +3,14 @@
   "filename": "/packages/material-ui/src/Chip/Chip.js",
   "description": "Chips represent complex entities in small blocks, such as a contact.",
   "props": {
-    "avatar": { "type": { "name": "element", "description": "element" }, "required": false },
+    "avatar": { "type": { "name": "element" }, "required": false },
     "children": {
       "type": { "name": "custom", "raw": "unsupportedProp", "description": "unsupportedProp" },
       "required": false
     },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "clickable": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "clickable": { "type": { "name": "bool" }, "required": false },
     "color": {
       "type": {
         "name": "enum",
@@ -20,21 +20,18 @@
       "jsdocDefaultValue": { "value": "'default'" },
       "defaultValue": { "value": "'default'", "computed": false }
     },
-    "component": {
-      "type": { "name": "elementType", "description": "elementType" },
-      "required": false
-    },
-    "deleteIcon": { "type": { "name": "element", "description": "element" }, "required": false },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "deleteIcon": { "type": { "name": "element" }, "required": false },
     "disabled": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "icon": { "type": { "name": "element", "description": "element" }, "required": false },
-    "label": { "type": { "name": "node", "description": "node" }, "required": false },
+    "icon": { "type": { "name": "element" }, "required": false },
+    "label": { "type": { "name": "node" }, "required": false },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "onDelete": { "type": { "name": "func", "description": "func" }, "required": false },
+    "onDelete": { "type": { "name": "func" }, "required": false },
     "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onKeyUp": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "size": {

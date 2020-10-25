@@ -4,19 +4,16 @@
   "description": "",
   "props": {
     "activeStep": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
       "defaultValue": { "value": "0", "computed": false }
     },
-    "backButton": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "backButton": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "LinearProgressProps": {
-      "type": { "name": "object", "description": "object" },
-      "required": false
-    },
-    "nextButton": { "type": { "name": "node", "description": "node" }, "required": false },
+    "LinearProgressProps": { "type": { "name": "object" }, "required": false },
+    "nextButton": { "type": { "name": "node" }, "required": false },
     "position": {
       "type": {
         "name": "enum",
@@ -26,7 +23,7 @@
       "jsdocDefaultValue": { "value": "'bottom'" },
       "defaultValue": { "value": "'bottom'", "computed": false }
     },
-    "steps": { "type": { "name": "number", "description": "number" }, "required": true },
+    "steps": { "type": { "name": "number" }, "required": true },
     "variant": {
       "type": {
         "name": "enum",

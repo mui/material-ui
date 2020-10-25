@@ -3,23 +3,23 @@
   "filename": "/packages/material-ui/src/FormLabel/FormLabel.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false
     },
     "component": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "defaultValue": { "value": "'label'", "computed": false }
     },
-    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "error": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "filled": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "focused": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "required": { "type": { "name": "bool", "description": "bool" }, "required": false }
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "error": { "type": { "name": "bool" }, "required": false },
+    "filled": { "type": { "name": "bool" }, "required": false },
+    "focused": { "type": { "name": "bool" }, "required": false },
+    "required": { "type": { "name": "bool" }, "required": false }
   },
   "spread": true,
   "styles": {

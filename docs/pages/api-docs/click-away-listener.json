@@ -12,7 +12,7 @@
       "required": false
     },
     "disableReactTree": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -26,7 +26,7 @@
       "jsdocDefaultValue": { "value": "'onClick'" },
       "defaultValue": { "value": "'onClick'", "computed": false }
     },
-    "onClickAway": { "type": { "name": "func", "description": "func" }, "required": true },
+    "onClickAway": { "type": { "name": "func" }, "required": true },
     "touchEvent": {
       "type": {
         "name": "enum",

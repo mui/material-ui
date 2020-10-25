@@ -8,34 +8,34 @@
       "required": false
     },
     "autoFocus": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "true" },
       "defaultValue": { "value": "true", "computed": false }
     },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "disableAutoFocusItem": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "MenuListProps": {
-      "type": { "name": "object", "description": "object" },
+      "type": { "name": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
-    "open": { "type": { "name": "bool", "description": "bool" }, "required": true },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": true },
     "PaperProps": {
       "type": { "name": "object" },
       "required": false,
       "description": "@ignore",
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "PopoverClasses": { "type": { "name": "object", "description": "object" }, "required": false },
+    "PopoverClasses": { "type": { "name": "object" }, "required": false },
     "transitionDuration": {
       "type": {
         "name": "union",
@@ -46,7 +46,7 @@
       "defaultValue": { "value": "'auto'", "computed": false }
     },
     "TransitionProps": {
-      "type": { "name": "object", "description": "object" },
+      "type": { "name": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }

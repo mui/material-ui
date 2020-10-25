@@ -12,8 +12,8 @@
       "jsdocDefaultValue": { "value": "'inherit'" },
       "defaultValue": { "value": "'inherit'", "computed": false }
     },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
@@ -24,10 +24,7 @@
       "jsdocDefaultValue": { "value": "'initial'" },
       "defaultValue": { "value": "'initial'", "computed": false }
     },
-    "component": {
-      "type": { "name": "elementType", "description": "elementType" },
-      "required": false
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "display": {
       "type": {
         "name": "enum",
@@ -38,19 +35,19 @@
       "defaultValue": { "value": "'initial'", "computed": false }
     },
     "gutterBottom": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "noWrap": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "paragraph": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -65,7 +62,7 @@
       "defaultValue": { "value": "'body1'", "computed": false }
     },
     "variantMapping": {
-      "type": { "name": "object", "description": "object" },
+      "type": { "name": "object" },
       "required": false,
       "jsdocDefaultValue": {
         "value": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  subtitle1: 'h6',\n  subtitle2: 'h6',\n  body1: 'p',\n  body2: 'p',\n  inherit: 'p',\n}"

@@ -3,7 +3,7 @@
   "filename": "/packages/material-ui/src/Snackbar/Snackbar.js",
   "description": "",
   "props": {
-    "action": { "type": { "name": "node", "description": "node" }, "required": false },
+    "action": { "type": { "name": "node" }, "required": false },
     "anchorOrigin": {
       "type": {
         "name": "shape",
@@ -14,37 +14,31 @@
       "defaultValue": { "value": "{ vertical: 'bottom', horizontal: 'left' }", "computed": false }
     },
     "autoHideDuration": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "null" },
       "defaultValue": { "value": "null", "computed": false }
     },
-    "children": { "type": { "name": "element", "description": "element" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "element" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "ClickAwayListenerProps": {
-      "type": { "name": "object", "description": "object" },
-      "required": false
-    },
-    "ContentProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "ClickAwayListenerProps": { "type": { "name": "object" }, "required": false },
+    "ContentProps": { "type": { "name": "object" }, "required": false },
     "disableWindowBlurListener": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "key": { "type": { "name": "any", "description": "any" }, "required": false },
-    "message": { "type": { "name": "node", "description": "node" }, "required": false },
-    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
+    "key": { "type": { "name": "any" }, "required": false },
+    "message": { "type": { "name": "node" }, "required": false },
+    "onClose": { "type": { "name": "func" }, "required": false },
     "onMouseEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onMouseLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "open": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "resumeHideDuration": {
-      "type": { "name": "number", "description": "number" },
-      "required": false
-    },
+    "open": { "type": { "name": "bool" }, "required": false },
+    "resumeHideDuration": { "type": { "name": "number" }, "required": false },
     "TransitionComponent": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Grow" },
       "defaultValue": { "value": "Grow", "computed": true }
@@ -64,7 +58,7 @@
       }
     },
     "TransitionProps": {
-      "type": { "name": "object", "description": "object" },
+      "type": { "name": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }

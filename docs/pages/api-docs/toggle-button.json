@@ -3,25 +3,25 @@
   "filename": "/packages/material-ui/src/ToggleButton/ToggleButton.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "disabled": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableFocusRipple": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "disableRipple": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "disableRipple": { "type": { "name": "bool" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "selected": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "selected": { "type": { "name": "bool" }, "required": false },
     "size": {
       "type": {
         "name": "enum",
@@ -31,7 +31,7 @@
       "jsdocDefaultValue": { "value": "'medium'" },
       "defaultValue": { "value": "'medium'", "computed": false }
     },
-    "value": { "type": { "name": "any", "description": "any" }, "required": true }
+    "value": { "type": { "name": "any" }, "required": true }
   },
   "spread": true,
   "styles": {

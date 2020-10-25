@@ -13,35 +13,35 @@
       "defaultValue": { "value": "'left'", "computed": false }
     },
     "BackdropProps": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "elevation": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "16" },
       "defaultValue": { "value": "16", "computed": false }
     },
     "ModalProps": {
-      "type": { "name": "object", "description": "object" },
+      "type": { "name": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
+    "onClose": { "type": { "name": "func" }, "required": false },
     "open": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "PaperProps": {
-      "type": { "name": "object", "description": "object" },
+      "type": { "name": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "SlideProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "SlideProps": { "type": { "name": "object" }, "required": false },
     "transitionDuration": {
       "type": {
         "name": "union",

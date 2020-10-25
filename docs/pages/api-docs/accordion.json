@@ -11,35 +11,35 @@
       },
       "required": false
     },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "defaultExpanded": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disabled": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "expanded": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
+    "expanded": { "type": { "name": "bool" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
     "square": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "TransitionComponent": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Collapse" },
       "defaultValue": { "value": "Collapse", "computed": true }
     },
-    "TransitionProps": { "type": { "name": "object", "description": "object" }, "required": false }
+    "TransitionProps": { "type": { "name": "object" }, "required": false }
   },
   "spread": true,
   "styles": {

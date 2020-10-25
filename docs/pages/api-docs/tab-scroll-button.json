@@ -3,14 +3,14 @@
   "filename": "/packages/material-ui/src/TabScrollButton/TabScrollButton.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "direction": {
       "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
       "required": true
     },
-    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": true

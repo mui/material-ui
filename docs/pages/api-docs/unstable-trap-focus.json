@@ -8,26 +8,26 @@
       "required": false
     },
     "disableAutoFocus": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableEnforceFocus": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableRestoreFocus": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "getDoc": { "type": { "name": "func", "description": "func" }, "required": true },
-    "isEnabled": { "type": { "name": "func", "description": "func" }, "required": true },
-    "open": { "type": { "name": "bool", "description": "bool" }, "required": true }
+    "getDoc": { "type": { "name": "func" }, "required": true },
+    "isEnabled": { "type": { "name": "func" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true }
   },
   "spread": false,
   "styles": { "name": null, "globalClasses": {} },

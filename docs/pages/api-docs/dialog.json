@@ -3,35 +3,32 @@
   "filename": "/packages/material-ui/src/Dialog/Dialog.js",
   "description": "Dialogs are overlaid modal paper based components with a backdrop.",
   "props": {
-    "aria-describedby": {
-      "type": { "name": "string", "description": "string" },
-      "required": false
-    },
-    "aria-labelledby": { "type": { "name": "string", "description": "string" }, "required": false },
+    "aria-describedby": { "type": { "name": "string" }, "required": false },
+    "aria-labelledby": { "type": { "name": "string" }, "required": false },
     "BackdropProps": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "disableBackdropClick": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableEscapeKeyDown": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "fullScreen": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "fullWidth": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -45,18 +42,18 @@
       "jsdocDefaultValue": { "value": "'sm'" },
       "defaultValue": { "value": "'sm'", "computed": false }
     },
-    "onBackdropClick": { "type": { "name": "func", "description": "func" }, "required": false },
-    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
-    "onEscapeKeyDown": { "type": { "name": "func", "description": "func" }, "required": false },
-    "open": { "type": { "name": "bool", "description": "bool" }, "required": true },
+    "onBackdropClick": { "type": { "name": "func" }, "required": false },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "onEscapeKeyDown": { "type": { "name": "func" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": true },
     "PaperComponent": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Paper" },
       "defaultValue": { "value": "Paper", "computed": true }
     },
     "PaperProps": {
-      "type": { "name": "object", "description": "object" },
+      "type": { "name": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
@@ -68,7 +65,7 @@
       "defaultValue": { "value": "'paper'", "computed": false }
     },
     "TransitionComponent": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Fade" },
       "defaultValue": { "value": "Fade", "computed": true }
@@ -87,7 +84,7 @@
         "computed": false
       }
     },
-    "TransitionProps": { "type": { "name": "object", "description": "object" }, "required": false }
+    "TransitionProps": { "type": { "name": "object" }, "required": false }
   },
   "spread": true,
   "styles": {

@@ -3,34 +3,34 @@
   "filename": "/packages/material-ui/src/Rating/Rating.js",
   "description": "",
   "props": {
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "defaultValue": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "null" },
       "defaultValue": { "value": "null", "computed": false }
     },
     "disabled": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "emptyIcon": {
-      "type": { "name": "node", "description": "node" },
+      "type": { "name": "node" },
       "required": false,
       "jsdocDefaultValue": { "value": "<StarBorder fontSize=\"inherit\" />" },
       "defaultValue": { "value": "<StarBorder fontSize=\"inherit\" />", "computed": false }
     },
     "emptyLabelText": {
-      "type": { "name": "node", "description": "node" },
+      "type": { "name": "node" },
       "required": false,
       "jsdocDefaultValue": { "value": "'Empty'" },
       "defaultValue": { "value": "'Empty'", "computed": false }
     },
     "getLabelText": {
-      "type": { "name": "func", "description": "func" },
+      "type": { "name": "func" },
       "required": false,
       "jsdocDefaultValue": {
         "value": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}"
@@ -41,13 +41,13 @@
       }
     },
     "icon": {
-      "type": { "name": "node", "description": "node" },
+      "type": { "name": "node" },
       "required": false,
       "jsdocDefaultValue": { "value": "<Star fontSize=\"inherit\" />" },
       "defaultValue": { "value": "<Star fontSize=\"inherit\" />", "computed": false }
     },
     "IconContainerComponent": {
-      "type": { "name": "elementType", "description": "elementType" },
+      "type": { "name": "elementType" },
       "required": false,
       "jsdocDefaultValue": {
         "value": "function IconContainer(props) {\n  const { value, ...other } = props;\n  return <span {...other} />;\n}"
@@ -58,14 +58,14 @@
       }
     },
     "max": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "5" },
       "defaultValue": { "value": "5", "computed": false }
     },
-    "name": { "type": { "name": "string", "description": "string" }, "required": false },
-    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
-    "onChangeActive": { "type": { "name": "func", "description": "func" }, "required": false },
+    "name": { "type": { "name": "string" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "onChangeActive": { "type": { "name": "func" }, "required": false },
     "onMouseLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onMouseMove": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "precision": {
@@ -79,7 +79,7 @@
       "defaultValue": { "value": "1", "computed": false }
     },
     "readOnly": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -93,7 +93,7 @@
       "jsdocDefaultValue": { "value": "'medium'" },
       "defaultValue": { "value": "'medium'", "computed": false }
     },
-    "value": { "type": { "name": "number", "description": "number" }, "required": false }
+    "value": { "type": { "name": "number" }, "required": false }
   },
   "spread": true,
   "styles": {

@@ -3,14 +3,11 @@
   "filename": "/packages/material-ui/src/AccordionSummary/AccordionSummary.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "expandIcon": { "type": { "name": "node", "description": "node" }, "required": false },
-    "focusVisibleClassName": {
-      "type": { "name": "string", "description": "string" },
-      "required": false
-    },
+    "expandIcon": { "type": { "name": "node" }, "required": false },
+    "focusVisibleClassName": { "type": { "name": "string" }, "required": false },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" }
   },
   "spread": true,

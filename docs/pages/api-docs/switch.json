@@ -3,9 +3,9 @@
   "filename": "/packages/material-ui/src/Switch/Switch.js",
   "description": "",
   "props": {
-    "checked": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "checkedIcon": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "checked": { "type": { "name": "bool" }, "required": false },
+    "checkedIcon": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
@@ -17,8 +17,8 @@
       "defaultValue": { "value": "'secondary'", "computed": false }
     },
     "defaultChecked": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
-    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "disableRipple": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "disableRipple": { "type": { "name": "bool" }, "required": false },
     "edge": {
       "type": {
         "name": "enum",
@@ -28,22 +28,22 @@
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "icon": { "type": { "name": "node", "description": "node" }, "required": false },
-    "id": { "type": { "name": "string", "description": "string" }, "required": false },
-    "inputProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "icon": { "type": { "name": "node" }, "required": false },
+    "id": { "type": { "name": "string" }, "required": false },
+    "inputProps": { "type": { "name": "object" }, "required": false },
     "inputRef": {
       "type": { "name": "custom", "raw": "refType", "description": "ref" },
       "required": false
     },
-    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
-    "required": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "required": { "type": { "name": "bool" }, "required": false },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'medium'" },
       "defaultValue": { "value": "'medium'", "computed": false }
     },
-    "value": { "type": { "name": "any", "description": "any" }, "required": false }
+    "value": { "type": { "name": "any" }, "required": false }
   },
   "spread": true,
   "styles": {

@@ -3,25 +3,25 @@
   "filename": "/packages/material-ui/src/InputLabel/InputLabel.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false
     },
     "disableAnimation": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "error": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "focused": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "error": { "type": { "name": "bool" }, "required": false },
+    "focused": { "type": { "name": "bool" }, "required": false },
     "margin": { "type": { "name": "enum", "description": "'dense'" }, "required": false },
-    "required": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "shrink": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "required": { "type": { "name": "bool" }, "required": false },
+    "shrink": { "type": { "name": "bool" }, "required": false },
     "variant": {
       "type": {
         "name": "enum",

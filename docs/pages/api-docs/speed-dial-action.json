@@ -3,26 +3,26 @@
   "filename": "/packages/material-ui/src/SpeedDialAction/SpeedDialAction.js",
   "description": "",
   "props": {
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "delay": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
       "defaultValue": { "value": "0", "computed": false }
     },
     "FabProps": {
-      "type": { "name": "object", "description": "object" },
+      "type": { "name": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "icon": { "type": { "name": "node", "description": "node" }, "required": false },
-    "id": { "type": { "name": "string", "description": "string" }, "required": false },
-    "open": { "type": { "name": "bool", "description": "bool" }, "required": false },
-    "TooltipClasses": { "type": { "name": "object", "description": "object" }, "required": false },
+    "icon": { "type": { "name": "node" }, "required": false },
+    "id": { "type": { "name": "string" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": false },
+    "TooltipClasses": { "type": { "name": "object" }, "required": false },
     "tooltipOpen": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -36,7 +36,7 @@
       "jsdocDefaultValue": { "value": "'left'" },
       "defaultValue": { "value": "'left'", "computed": false }
     },
-    "tooltipTitle": { "type": { "name": "node", "description": "node" }, "required": false }
+    "tooltipTitle": { "type": { "name": "node" }, "required": false }
   },
   "spread": true,
   "styles": {

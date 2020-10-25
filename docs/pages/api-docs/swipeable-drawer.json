@@ -17,21 +17,21 @@
       "description": "@ignore",
       "defaultValue": { "value": "'left'", "computed": false }
     },
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
     "disableBackdropTransition": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableDiscovery": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableSwipeToOpen": {
-      "type": { "name": "bool", "description": "bool" },
+      "type": { "name": "bool" },
       "required": false,
       "jsdocDefaultValue": {
         "value": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
@@ -43,13 +43,13 @@
     },
     "hideBackdrop": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
     "hysteresis": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "0.52" },
       "defaultValue": { "value": "0.52", "computed": false }
     },
     "minFlingVelocity": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "450" },
       "defaultValue": { "value": "450", "computed": false }
@@ -71,9 +71,9 @@
       "description": "@ignore",
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "onClose": { "type": { "name": "func", "description": "func" }, "required": true },
-    "onOpen": { "type": { "name": "func", "description": "func" }, "required": true },
-    "open": { "type": { "name": "bool", "description": "bool" }, "required": true },
+    "onClose": { "type": { "name": "func" }, "required": true },
+    "onOpen": { "type": { "name": "func" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
     "PaperProps": {
       "type": {
         "name": "shape",
@@ -86,9 +86,9 @@
       "description": "@ignore",
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "SwipeAreaProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "SwipeAreaProps": { "type": { "name": "object" }, "required": false },
     "swipeAreaWidth": {
-      "type": { "name": "number", "description": "number" },
+      "type": { "name": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "20" },
       "defaultValue": { "value": "20", "computed": false }

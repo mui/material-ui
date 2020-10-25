@@ -3,8 +3,8 @@
   "filename": "/packages/material-ui/src/Link/Link.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
@@ -22,10 +22,7 @@
     },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "TypographyClasses": {
-      "type": { "name": "object", "description": "object" },
-      "required": false
-    },
+    "TypographyClasses": { "type": { "name": "object" }, "required": false },
     "underline": {
       "type": {
         "name": "enum",

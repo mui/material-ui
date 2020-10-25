@@ -198,8 +198,10 @@ import { ${name} } from '${source}';`}
                 </thead>
                 <tbody>
                   {Object.entries(componentProps).map(
-                    ([propName, propData]) =>
-                      propData.description !== '@ignore' && (
+                    ([propName, propData]) => {
+                      const typeDescription = propData.type.description || propData.type.name;
+
+                      return propData.description !== '@ignore' && (
                         <tr key={propName}>
                           <td align="left">
                             <span
@@ -210,17 +212,17 @@ import { ${name} } from '${source}';`}
                             </span>
                           </td>
                           <td align="left">
-                            {propData.type.description.length > 20 ? (
+                            {typeDescription.length > 20 ? (
                               <details className="prop-type">
                                 <summary>{propData.type.name}</summary>
                                 <span
-                                  dangerouslySetInnerHTML={{ __html: propData.type.description }}
+                                  dangerouslySetInnerHTML={{ __html: typeDescription }}
                                 />
                               </details>
                             ) : (
                               <span
                                 className="prop-type"
-                                dangerouslySetInnerHTML={{ __html: propData.type.description }}
+                                dangerouslySetInnerHTML={{ __html: typeDescription }}
                               />
                             )}
                           </td>
@@ -236,7 +238,8 @@ import { ${name} } from '${source}';`}
                             }}
                           />
                         </tr>
-                      ),
+                      )
+                    }
                   )}
                 </tbody>
               </table>

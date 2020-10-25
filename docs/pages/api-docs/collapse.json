@@ -3,8 +3,8 @@
   "filename": "/packages/material-ui/src/Collapse/Collapse.js",
   "description": "The Collapse transition is used by the\n[Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
-    "children": { "type": { "name": "node", "description": "node" }, "required": false },
-    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "collapsedSize": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
@@ -17,7 +17,7 @@
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
-    "in": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "in": { "type": { "name": "bool" }, "required": false },
     "onEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onEntered": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onEntering": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
