@@ -12,28 +12,16 @@
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'standard'" },
-      "defaultValue": { "value": "'standard'", "computed": false }
+      "default": "'standard'"
     },
     "component": { "type": { "name": "elementType" }, "required": false },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "page": { "type": { "name": "number" }, "required": false },
-    "selected": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "selected": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'circular'" },
-      "defaultValue": { "value": "'circular'", "computed": false }
+      "default": "'circular'"
     },
     "size": {
       "type": {
@@ -41,8 +29,7 @@
         "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'medium'" },
-      "defaultValue": { "value": "'medium'", "computed": false }
+      "default": "'medium'"
     },
     "type": {
       "type": {
@@ -50,8 +37,7 @@
         "description": "'end-ellipsis'<br>&#124;&nbsp;'first'<br>&#124;&nbsp;'last'<br>&#124;&nbsp;'next'<br>&#124;&nbsp;'page'<br>&#124;&nbsp;'previous'<br>&#124;&nbsp;'start-ellipsis'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'page'" },
-      "defaultValue": { "value": "'page'", "computed": false }
+      "default": "'page'"
     },
     "variant": {
       "type": {
@@ -59,8 +45,7 @@
         "description": "'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'text'" },
-      "defaultValue": { "value": "'text'", "computed": false }
+      "default": "'text'"
     }
   },
   "spread": true,

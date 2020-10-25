@@ -9,11 +9,7 @@
         "description": "{ horizontal: 'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "{\n  vertical: 'top',\n  horizontal: 'right',\n}" },
-      "defaultValue": {
-        "value": "{\n  vertical: 'top',\n  horizontal: 'right',\n}",
-        "computed": false
-      }
+      "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}"
     },
     "badgeContent": { "type": { "name": "node" }, "required": false },
     "children": { "type": { "name": "node" }, "required": false },
@@ -25,41 +21,24 @@
         "description": "'default'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'default'" },
-      "defaultValue": { "value": "'default'", "computed": false }
+      "default": "'default'"
     },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'span'", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "invisible": { "type": { "name": "bool" }, "required": false },
-    "max": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "99" },
-      "defaultValue": { "value": "99", "computed": false }
-    },
+    "max": { "type": { "name": "number" }, "required": false, "default": "99" },
     "overlap": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rectangular'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'rectangular'" },
-      "defaultValue": { "value": "'rectangular'", "computed": false }
+      "default": "'rectangular'"
     },
-    "showZero": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "showZero": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "variant": {
       "type": {
         "name": "union",
         "description": "'dot'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'standard'" },
-      "defaultValue": { "value": "'standard'", "computed": false }
+      "default": "'standard'"
     }
   },
   "spread": true,

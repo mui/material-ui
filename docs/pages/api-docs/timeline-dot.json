@@ -12,8 +12,7 @@
         "description": "'grey'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'grey'" },
-      "defaultValue": { "value": "'grey'", "computed": false }
+      "default": "'grey'"
     },
     "variant": {
       "type": {
@@ -21,8 +20,7 @@
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'filled'" },
-      "defaultValue": { "value": "'filled'", "computed": false }
+      "default": "'filled'"
     }
   },
   "spread": true,

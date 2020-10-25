@@ -9,8 +9,7 @@
         "description": "'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'left'" },
-      "defaultValue": { "value": "'left'", "computed": false }
+      "default": "'left'"
     },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },

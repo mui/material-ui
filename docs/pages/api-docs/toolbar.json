@@ -6,25 +6,15 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'div'", "computed": false }
-    },
-    "disableGutters": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "disableGutters": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "variant": {
       "type": {
         "name": "union",
         "description": "'dense'<br>&#124;&nbsp;'regular'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'regular'" },
-      "defaultValue": { "value": "'regular'", "computed": false }
+      "default": "'regular'"
     }
   },
   "spread": true,

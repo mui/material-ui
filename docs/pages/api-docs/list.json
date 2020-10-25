@@ -6,23 +6,9 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'ul'", "computed": false }
-    },
-    "dense": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disablePadding": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "dense": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disablePadding": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "subheader": { "type": { "name": "node" }, "required": false }
   },
   "spread": true,

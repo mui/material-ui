@@ -6,41 +6,12 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'nav'", "computed": false }
-    },
-    "expandText": {
-      "type": { "name": "string" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "'Show path'" },
-      "defaultValue": { "value": "'Show path'", "computed": false }
-    },
-    "itemsAfterCollapse": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
-    },
-    "itemsBeforeCollapse": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
-    },
-    "maxItems": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "8" },
-      "defaultValue": { "value": "8", "computed": false }
-    },
-    "separator": {
-      "type": { "name": "node" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "'/'" },
-      "defaultValue": { "value": "'/'", "computed": false }
-    }
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "expandText": { "type": { "name": "string" }, "required": false, "default": "'Show path'" },
+    "itemsAfterCollapse": { "type": { "name": "number" }, "required": false, "default": "1" },
+    "itemsBeforeCollapse": { "type": { "name": "number" }, "required": false, "default": "1" },
+    "maxItems": { "type": { "name": "number" }, "required": false, "default": "8" },
+    "separator": { "type": { "name": "node" }, "required": false, "default": "'/'" }
   },
   "spread": true,
   "styles": {

@@ -6,23 +6,9 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "cols": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
-    },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'li'", "computed": false }
-    },
-    "rows": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
-    },
+    "cols": { "type": { "name": "number" }, "required": false, "default": "1" },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "rows": { "type": { "name": "number" }, "required": false, "default": "1" },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" }
   },
   "spread": true,

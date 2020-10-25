@@ -7,8 +7,7 @@
     "implementation": {
       "type": { "name": "enum", "description": "'css'<br>&#124;&nbsp;'js'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'js'" },
-      "defaultValue": { "value": "'js'", "computed": false }
+      "default": "'js'"
     },
     "initialWidth": {
       "type": {
@@ -17,30 +16,10 @@
       },
       "required": false
     },
-    "lgDown": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "lgUp": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "mdDown": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "mdUp": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "lgDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "lgUp": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "mdDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "mdUp": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "only": {
       "type": {
         "name": "union",
@@ -48,42 +27,12 @@
       },
       "required": false
     },
-    "smDown": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "smUp": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "xlDown": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "xlUp": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "xsDown": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "xsUp": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    }
+    "smDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "smUp": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "xlDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "xlUp": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "xsDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "xsUp": { "type": { "name": "bool" }, "required": false, "default": "false" }
   },
   "spread": true,
   "styles": { "name": null, "globalClasses": {} },

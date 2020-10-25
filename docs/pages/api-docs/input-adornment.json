@@ -6,23 +6,9 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'div'", "computed": false }
-    },
-    "disablePointerEvents": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableTypography": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "disablePointerEvents": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableTypography": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "position": {
       "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" },
       "required": false

@@ -3,37 +3,17 @@
   "filename": "/packages/material-ui/src/Divider/Divider.js",
   "description": "",
   "props": {
-    "absolute": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "absolute": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "children ? 'div' : 'hr'", "computed": false }
-    },
-    "flexItem": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "light": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "flexItem": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "light": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'horizontal'" },
-      "defaultValue": { "value": "'horizontal'", "computed": false }
+      "default": "'horizontal'"
     },
     "role": {
       "type": { "name": "string" },
@@ -47,8 +27,7 @@
         "description": "'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'center'" },
-      "defaultValue": { "value": "'center'", "computed": false }
+      "default": "'center'"
     },
     "variant": {
       "type": {
@@ -56,8 +35,7 @@
         "description": "'fullWidth'<br>&#124;&nbsp;'inset'<br>&#124;&nbsp;'middle'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'fullWidth'" },
-      "defaultValue": { "value": "'fullWidth'", "computed": false }
+      "default": "'fullWidth'"
     }
   },
   "spread": true,

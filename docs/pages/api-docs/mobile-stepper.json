@@ -3,12 +3,7 @@
   "filename": "/packages/material-ui/src/MobileStepper/MobileStepper.js",
   "description": "",
   "props": {
-    "activeStep": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "0" },
-      "defaultValue": { "value": "0", "computed": false }
-    },
+    "activeStep": { "type": { "name": "number" }, "required": false, "default": "0" },
     "backButton": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
@@ -20,8 +15,7 @@
         "description": "'bottom'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'top'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'bottom'" },
-      "defaultValue": { "value": "'bottom'", "computed": false }
+      "default": "'bottom'"
     },
     "steps": { "type": { "name": "number" }, "required": true },
     "variant": {
@@ -30,8 +24,7 @@
         "description": "'dots'<br>&#124;&nbsp;'progress'<br>&#124;&nbsp;'text'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'dots'" },
-      "defaultValue": { "value": "'dots'", "computed": false }
+      "default": "'dots'"
     }
   },
   "spread": true,

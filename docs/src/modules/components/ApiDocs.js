@@ -197,11 +197,11 @@ import { ${name} } from '${source}';`}
                   </tr>
                 </thead>
                 <tbody>
-                  {Object.entries(componentProps).map(
-                    ([propName, propData]) => {
-                      const typeDescription = propData.type.description || propData.type.name;
+                  {Object.entries(componentProps).map(([propName, propData]) => {
+                    const typeDescription = propData.type.description || propData.type.name;
 
-                      return propData.description !== '@ignore' && (
+                    return (
+                      propData.description !== '@ignore' && (
                         <tr key={propName}>
                           <td align="left">
                             <span
@@ -215,9 +215,7 @@ import { ${name} } from '${source}';`}
                             {typeDescription.length > 20 ? (
                               <details className="prop-type">
                                 <summary>{propData.type.name}</summary>
-                                <span
-                                  dangerouslySetInnerHTML={{ __html: typeDescription }}
-                                />
+                                <span dangerouslySetInnerHTML={{ __html: typeDescription }} />
                               </details>
                             ) : (
                               <span
@@ -227,9 +225,9 @@ import { ${name} } from '${source}';`}
                             )}
                           </td>
                           <td align="left">
-                            <span className="prop-default">
-                              {propData.jsdocDefaultValue && propData.jsdocDefaultValue.value}
-                            </span>
+                            {propData.default && (
+                              <span className="prop-default">{propData.default}</span>
+                            )}
                           </td>
                           <td
                             align="left"
@@ -239,8 +237,8 @@ import { ${name} } from '${source}';`}
                           />
                         </tr>
                       )
-                    }
-                  )}
+                    );
+                  })}
                 </tbody>
               </table>
               <br />

@@ -11,8 +11,7 @@
     "minRows": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
+      "default": "1"
     },
     "onChange": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "placeholder": { "type": { "name": "string" }, "required": false, "description": "@ignore" },

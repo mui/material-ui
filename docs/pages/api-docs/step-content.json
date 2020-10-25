@@ -9,8 +9,7 @@
     "TransitionComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "Collapse" },
-      "defaultValue": { "value": "Collapse", "computed": true }
+      "default": "Collapse"
     },
     "transitionDuration": {
       "type": {
@@ -18,8 +17,7 @@
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'auto'" },
-      "defaultValue": { "value": "'auto'", "computed": false }
+      "default": "'auto'"
     },
     "TransitionProps": { "type": { "name": "object" }, "required": false }
   },

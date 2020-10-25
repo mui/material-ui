@@ -6,18 +6,8 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableFocusRipple": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
@@ -28,8 +18,7 @@
         "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'medium'" },
-      "defaultValue": { "value": "'medium'", "computed": false }
+      "default": "'medium'"
     },
     "value": { "type": { "name": "any" }, "required": true }
   },

@@ -9,66 +9,33 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "disableBackdropClick": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableEscapeKeyDown": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "fullScreen": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "fullWidth": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disableBackdropClick": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "fullScreen": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "maxWidth": {
       "type": {
         "name": "enum",
         "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'sm'" },
-      "defaultValue": { "value": "'sm'", "computed": false }
+      "default": "'sm'"
     },
     "onBackdropClick": { "type": { "name": "func" }, "required": false },
     "onClose": { "type": { "name": "func" }, "required": false },
     "onEscapeKeyDown": { "type": { "name": "func" }, "required": false },
     "open": { "type": { "name": "bool" }, "required": true },
-    "PaperComponent": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "Paper" },
-      "defaultValue": { "value": "Paper", "computed": true }
-    },
-    "PaperProps": {
-      "type": { "name": "object" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
-    },
+    "PaperComponent": { "type": { "name": "elementType" }, "required": false, "default": "Paper" },
+    "PaperProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
     "scroll": {
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'paper'" },
-      "defaultValue": { "value": "'paper'", "computed": false }
+      "default": "'paper'"
     },
     "TransitionComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "Fade" },
-      "defaultValue": { "value": "Fade", "computed": true }
+      "default": "Fade"
     },
     "transitionDuration": {
       "type": {
@@ -76,13 +43,7 @@
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
-      "jsdocDefaultValue": {
-        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
-      },
-      "defaultValue": {
-        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }",
-        "computed": false
-      }
+      "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
     },
     "TransitionProps": { "type": { "name": "object" }, "required": false }
   },

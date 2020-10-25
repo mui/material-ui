@@ -13,8 +13,7 @@
         "description": "'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'down'" },
-      "defaultValue": { "value": "'down'", "computed": false }
+      "default": "'down'"
     },
     "in": { "type": { "name": "bool" }, "required": false },
     "onEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
@@ -30,13 +29,7 @@
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
-      "jsdocDefaultValue": {
-        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
-      },
-      "defaultValue": {
-        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}",
-        "computed": false
-      }
+      "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
     }
   },
   "spread": true,

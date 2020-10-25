@@ -6,11 +6,7 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'thead'", "computed": false }
-    }
+    "component": { "type": { "name": "elementType" }, "required": false }
   },
   "spread": true,
   "styles": { "name": "MuiTableHead", "globalClasses": { "root": "MuiTableHead-root" } },

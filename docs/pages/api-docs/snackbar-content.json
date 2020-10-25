@@ -7,12 +7,7 @@
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "message": { "type": { "name": "node" }, "required": false },
-    "role": {
-      "type": { "name": "string" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "'alert'" },
-      "defaultValue": { "value": "'alert'", "computed": false }
-    }
+    "role": { "type": { "name": "string" }, "required": false, "default": "'alert'" }
   },
   "spread": true,
   "styles": {

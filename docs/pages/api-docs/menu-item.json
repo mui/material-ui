@@ -7,19 +7,10 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'li'", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "dense": { "type": { "name": "bool" }, "required": false },
     "disabled": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
-    "disableGutters": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disableGutters": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "ListItemClasses": { "type": { "name": "object" }, "required": false },
     "role": {
       "type": { "name": "string" },

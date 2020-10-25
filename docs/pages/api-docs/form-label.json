@@ -10,11 +10,7 @@
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false
     },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'label'", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "disabled": { "type": { "name": "bool" }, "required": false },
     "error": { "type": { "name": "bool" }, "required": false },
     "filled": { "type": { "name": "bool" }, "required": false },

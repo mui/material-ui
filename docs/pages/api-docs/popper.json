@@ -19,18 +19,8 @@
       "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
       "required": false
     },
-    "disablePortal": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "keepMounted": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disablePortal": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "modifiers": {
       "type": {
         "name": "arrayOf",
@@ -45,8 +35,7 @@
         "description": "'auto-end'<br>&#124;&nbsp;'auto-start'<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'bottom'" },
-      "defaultValue": { "value": "'bottom'", "computed": false }
+      "default": "'bottom'"
     },
     "popperOptions": {
       "type": {
@@ -54,20 +43,14 @@
         "description": "{ modifiers?: array, onFirstUpdate?: func, placement?: 'auto-end'<br>&#124;&nbsp;'auto-start'<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top', strategy?: 'absolute'<br>&#124;&nbsp;'fixed' }"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
+      "default": "{}"
     },
     "popperRef": {
       "type": { "name": "custom", "raw": "refType", "description": "ref" },
       "required": false
     },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
-    "transition": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    }
+    "transition": { "type": { "name": "bool" }, "required": false, "default": "false" }
   },
   "spread": true,
   "styles": { "name": null, "globalClasses": {} },

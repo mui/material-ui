@@ -8,8 +8,7 @@
     "color": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'primary'" },
-      "defaultValue": { "value": "'primary'", "computed": false }
+      "default": "'primary'"
     },
     "value": { "type": { "name": "number" }, "required": false },
     "valueBuffer": { "type": { "name": "number" }, "required": false },
@@ -19,8 +18,7 @@
         "description": "'buffer'<br>&#124;&nbsp;'determinate'<br>&#124;&nbsp;'indeterminate'<br>&#124;&nbsp;'query'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'indeterminate'" },
-      "defaultValue": { "value": "'indeterminate'", "computed": false }
+      "default": "'indeterminate'"
     }
   },
   "spread": true,

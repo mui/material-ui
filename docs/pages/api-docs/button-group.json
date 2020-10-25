@@ -12,49 +12,18 @@
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'primary'" },
-      "defaultValue": { "value": "'primary'", "computed": false }
+      "default": "'primary'"
     },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'div'", "computed": false }
-    },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableElevation": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableFocusRipple": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableRipple": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "fullWidth": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableElevation": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'horizontal'" },
-      "defaultValue": { "value": "'horizontal'", "computed": false }
+      "default": "'horizontal'"
     },
     "size": {
       "type": {
@@ -62,8 +31,7 @@
         "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'medium'" },
-      "defaultValue": { "value": "'medium'", "computed": false }
+      "default": "'medium'"
     },
     "variant": {
       "type": {
@@ -71,8 +39,7 @@
         "description": "'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'outlined'" },
-      "defaultValue": { "value": "'outlined'", "computed": false }
+      "default": "'outlined'"
     }
   },
   "spread": true,

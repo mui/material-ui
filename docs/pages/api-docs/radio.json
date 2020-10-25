@@ -12,8 +12,7 @@
         "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'secondary'" },
-      "defaultValue": { "value": "'secondary'", "computed": false }
+      "default": "'secondary'"
     },
     "disabled": { "type": { "name": "bool" }, "required": false },
     "disableRipple": { "type": { "name": "bool" }, "required": false },
@@ -30,8 +29,7 @@
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'medium'" },
-      "defaultValue": { "value": "'medium'", "computed": false }
+      "default": "'medium'"
     },
     "value": { "type": { "name": "any" }, "required": false }
   },

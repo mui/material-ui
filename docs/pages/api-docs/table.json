@@ -6,32 +6,21 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'table'", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "padding": {
       "type": {
         "name": "enum",
         "description": "'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'default'" },
-      "defaultValue": { "value": "'default'", "computed": false }
+      "default": "'default'"
     },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'medium'" },
-      "defaultValue": { "value": "'medium'", "computed": false }
+      "default": "'medium'"
     },
-    "stickyHeader": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    }
+    "stickyHeader": { "type": { "name": "bool" }, "required": false, "default": "false" }
   },
   "spread": true,
   "styles": {

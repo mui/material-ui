@@ -8,17 +8,8 @@
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'div'", "computed": false }
-    },
-    "disableTypography": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "disableTypography": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "subheader": { "type": { "name": "node" }, "required": false },
     "subheaderTypographyProps": { "type": { "name": "object" }, "required": false },
     "title": { "type": { "name": "node" }, "required": false },

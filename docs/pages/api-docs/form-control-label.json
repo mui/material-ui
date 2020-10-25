@@ -19,8 +19,7 @@
         "description": "'bottom'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'top'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'end'" },
-      "defaultValue": { "value": "'end'", "computed": false }
+      "default": "'end'"
     },
     "name": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "onChange": { "type": { "name": "func" }, "required": false },

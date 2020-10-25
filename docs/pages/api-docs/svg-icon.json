@@ -12,32 +12,21 @@
         "description": "'action'<br>&#124;&nbsp;'disabled'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'inherit'" },
-      "defaultValue": { "value": "'inherit'", "computed": false }
+      "default": "'inherit'"
     },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'svg'", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "fontSize": {
       "type": {
         "name": "enum",
         "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;'small'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'default'" },
-      "defaultValue": { "value": "'default'", "computed": false }
+      "default": "'default'"
     },
     "htmlColor": { "type": { "name": "string" }, "required": false },
     "shapeRendering": { "type": { "name": "string" }, "required": false },
     "titleAccess": { "type": { "name": "string" }, "required": false },
-    "viewBox": {
-      "type": { "name": "string" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "'0 0 24 24'" },
-      "defaultValue": { "value": "'0 0 24 24'", "computed": false }
-    }
+    "viewBox": { "type": { "name": "string" }, "required": false, "default": "'0 0 24 24'" }
   },
   "spread": true,
   "styles": {

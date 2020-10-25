@@ -9,8 +9,7 @@
         "description": "'center'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'justify'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'inherit'" },
-      "defaultValue": { "value": "'inherit'", "computed": false }
+      "default": "'inherit'"
     },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },

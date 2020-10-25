@@ -6,21 +6,10 @@
     "alignItems": {
       "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'center'" },
-      "defaultValue": { "value": "'center'", "computed": false }
+      "default": "'center'"
     },
-    "autoFocus": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "button": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "autoFocus": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "button": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "children": {
       "type": {
         "name": "custom",
@@ -35,50 +24,19 @@
     "ContainerComponent": {
       "type": { "name": "custom", "raw": "elementTypeAcceptingRef", "description": "element type" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'li'" },
-      "defaultValue": { "value": "'li'", "computed": false }
+      "default": "'li'"
     },
-    "ContainerProps": {
-      "type": { "name": "object" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
-    },
-    "dense": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableGutters": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "divider": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "ContainerProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
+    "dense": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "divider": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "focusVisibleClassName": {
       "type": { "name": "string" },
       "required": false,
       "description": "@ignore"
     },
-    "selected": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    }
+    "selected": { "type": { "name": "bool" }, "required": false, "default": "false" }
   },
   "spread": true,
   "styles": {

@@ -21,13 +21,7 @@
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
-      "jsdocDefaultValue": {
-        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
-      },
-      "defaultValue": {
-        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}",
-        "computed": false
-      }
+      "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
     }
   },
   "spread": true,

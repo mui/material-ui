@@ -26,24 +26,14 @@
     "color": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'primary'" },
-      "defaultValue": { "value": "'primary'", "computed": false }
+      "default": "'primary'"
     },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'span'", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
       "required": false
     },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "getAriaLabel": { "type": { "name": "func" }, "required": false },
     "getAriaValueText": { "type": { "name": "func" }, "required": false },
     "marks": {
@@ -52,21 +42,10 @@
         "description": "Array&lt;{ label?: node, value: number }&gt;<br>&#124;&nbsp;bool"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
+      "default": "false"
     },
-    "max": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "100" },
-      "defaultValue": { "value": "100", "computed": false }
-    },
-    "min": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "0" },
-      "defaultValue": { "value": "0", "computed": false }
-    },
+    "max": { "type": { "name": "number" }, "required": false, "default": "100" },
+    "min": { "type": { "name": "number" }, "required": false, "default": "0" },
     "name": { "type": { "name": "string" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false },
     "onChangeCommitted": { "type": { "name": "func" }, "required": false },
@@ -74,35 +53,18 @@
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'horizontal'" },
-      "defaultValue": { "value": "'horizontal'", "computed": false }
+      "default": "'horizontal'"
     },
-    "scale": {
-      "type": { "name": "func" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "(x) => x" },
-      "defaultValue": { "value": "(x) => x", "computed": false }
-    },
-    "step": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
-    },
-    "ThumbComponent": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "'span'" },
-      "defaultValue": { "value": "'span'", "computed": false }
-    },
+    "scale": { "type": { "name": "func" }, "required": false, "default": "(x) => x" },
+    "step": { "type": { "name": "number" }, "required": false, "default": "1" },
+    "ThumbComponent": { "type": { "name": "elementType" }, "required": false, "default": "'span'" },
     "track": {
       "type": {
         "name": "enum",
         "description": "'inverted'<br>&#124;&nbsp;'normal'<br>&#124;&nbsp;false"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'normal'" },
-      "defaultValue": { "value": "'normal'", "computed": false }
+      "default": "'normal'"
     },
     "value": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
@@ -111,20 +73,17 @@
     "ValueLabelComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "ValueLabel" },
-      "defaultValue": { "value": "ValueLabel", "computed": true }
+      "default": "ValueLabel"
     },
     "valueLabelDisplay": {
       "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'off'" },
-      "defaultValue": { "value": "'off'", "computed": false }
+      "default": "'off'"
     },
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
       "required": false,
-      "jsdocDefaultValue": { "value": "(x) => x" },
-      "defaultValue": { "value": "(x) => x", "computed": false }
+      "default": "(x) => x"
     }
   },
   "spread": true,

@@ -9,54 +9,23 @@
     "color": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'primary'" },
-      "defaultValue": { "value": "'primary'", "computed": false }
+      "default": "'primary'"
     },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'div'", "computed": false }
-    },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "error": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "error": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "focused": { "type": { "name": "bool" }, "required": false },
-    "fullWidth": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "hiddenLabel": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "fullWidth": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "hiddenLabel": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "margin": {
       "type": {
         "name": "enum",
         "description": "'dense'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'none'" },
-      "defaultValue": { "value": "'none'", "computed": false }
+      "default": "'none'"
     },
-    "required": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "required": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false
@@ -67,8 +36,7 @@
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'standard'" },
-      "defaultValue": { "value": "'standard'", "computed": false }
+      "default": "'standard'"
     }
   },
   "spread": true,

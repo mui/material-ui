@@ -7,11 +7,7 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'div'", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "imgProps": { "type": { "name": "object" }, "required": false },
     "sizes": { "type": { "name": "string" }, "required": false },
     "src": { "type": { "name": "string" }, "required": false },
@@ -22,8 +18,7 @@
         "description": "'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'circular'" },
-      "defaultValue": { "value": "'circular'", "computed": false }
+      "default": "'circular'"
     }
   },
   "spread": true,

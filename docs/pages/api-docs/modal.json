@@ -6,8 +6,7 @@
     "BackdropComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "SimpleBackdrop" },
-      "defaultValue": { "value": "SimpleBackdrop", "computed": true }
+      "default": "SimpleBackdrop"
     },
     "BackdropProps": { "type": { "name": "object" }, "required": false },
     "children": {
@@ -18,70 +17,20 @@
       },
       "required": false
     },
-    "closeAfterTransition": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "closeAfterTransition": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "container": {
       "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
       "required": false
     },
-    "disableAutoFocus": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableBackdropClick": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableEnforceFocus": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableEscapeKeyDown": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disablePortal": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableRestoreFocus": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableScrollLock": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "hideBackdrop": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "keepMounted": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disableAutoFocus": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableBackdropClick": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableScrollLock": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "hideBackdrop": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "onBackdropClick": { "type": { "name": "func" }, "required": false },
     "onClose": { "type": { "name": "func" }, "required": false },
     "onEscapeKeyDown": { "type": { "name": "func" }, "required": false },

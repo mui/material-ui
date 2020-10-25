@@ -6,31 +6,16 @@
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'div'", "computed": false }
-    },
-    "disableGutters": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "fixed": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "disableGutters": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "fixed": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "maxWidth": {
       "type": {
         "name": "enum",
         "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'lg'" },
-      "defaultValue": { "value": "'lg'", "computed": false }
+      "default": "'lg'"
     }
   },
   "spread": true,

@@ -13,21 +13,10 @@
         "description": "'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'up'" },
-      "defaultValue": { "value": "'up'", "computed": false }
+      "default": "'up'"
     },
-    "FabProps": {
-      "type": { "name": "object" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
-    },
-    "hidden": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "FabProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
+    "hidden": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "icon": { "type": { "name": "node" }, "required": false },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onClose": { "type": { "name": "func" }, "required": false },
@@ -41,8 +30,7 @@
     "TransitionComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "Zoom" },
-      "defaultValue": { "value": "Zoom", "computed": true }
+      "default": "Zoom"
     },
     "transitionDuration": {
       "type": {
@@ -50,13 +38,7 @@
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
-      "jsdocDefaultValue": {
-        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
-      },
-      "defaultValue": {
-        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}",
-        "computed": false
-      }
+      "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
     },
     "TransitionProps": { "type": { "name": "object" }, "required": false }
   },

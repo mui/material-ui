@@ -10,12 +10,7 @@
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false
     },
-    "disableAnimation": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disableAnimation": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "disabled": { "type": { "name": "bool" }, "required": false },
     "error": { "type": { "name": "bool" }, "required": false },
     "focused": { "type": { "name": "bool" }, "required": false },

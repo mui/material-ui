@@ -10,8 +10,7 @@
     "ContentComponent": {
       "type": { "name": "custom", "raw": "elementTypeAcceptingRef", "description": "element type" },
       "required": false,
-      "jsdocDefaultValue": { "value": "TreeItemContent" },
-      "defaultValue": { "value": "TreeItemContent", "computed": true }
+      "default": "TreeItemContent"
     },
     "ContentProps": { "type": { "name": "object" }, "required": false },
     "disabled": { "type": { "name": "bool" }, "required": false },
@@ -30,8 +29,7 @@
     "TransitionComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "Collapse" },
-      "defaultValue": { "value": "Collapse", "computed": true }
+      "default": "Collapse"
     },
     "TransitionProps": { "type": { "name": "object" }, "required": false }
   },

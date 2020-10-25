@@ -11,20 +11,14 @@
       },
       "required": false
     },
-    "disableReactTree": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disableReactTree": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "mouseEvent": {
       "type": {
         "name": "enum",
         "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;false"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'onClick'" },
-      "defaultValue": { "value": "'onClick'", "computed": false }
+      "default": "'onClick'"
     },
     "onClickAway": { "type": { "name": "func" }, "required": true },
     "touchEvent": {
@@ -33,8 +27,7 @@
         "description": "'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'onTouchEnd'" },
-      "defaultValue": { "value": "'onTouchEnd'", "computed": false }
+      "default": "'onTouchEnd'"
     }
   },
   "spread": false,

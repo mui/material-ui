@@ -8,15 +8,9 @@
     "IconComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "ArrowDropDownIcon" },
-      "defaultValue": { "value": "ArrowDropDownIcon", "computed": true }
+      "default": "ArrowDropDownIcon"
     },
-    "input": {
-      "type": { "name": "element" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "<Input />" },
-      "defaultValue": { "value": "<Input />", "computed": false }
-    },
+    "input": { "type": { "name": "element" }, "required": false, "default": "<Input />" },
     "inputProps": { "type": { "name": "object" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false },
     "value": { "type": { "name": "any" }, "required": false },

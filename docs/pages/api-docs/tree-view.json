@@ -11,40 +11,23 @@
     "defaultExpanded": {
       "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" },
       "required": false,
-      "jsdocDefaultValue": { "value": "[]" },
-      "defaultValue": { "value": "[]", "computed": false }
+      "default": "[]"
     },
     "defaultExpandIcon": { "type": { "name": "node" }, "required": false },
     "defaultParentIcon": { "type": { "name": "node" }, "required": false },
     "defaultSelected": {
       "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" },
       "required": false,
-      "jsdocDefaultValue": { "value": "[]" },
-      "defaultValue": { "value": "[]", "computed": false }
+      "default": "[]"
     },
-    "disabledItemsFocusable": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableSelection": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disabledItemsFocusable": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableSelection": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "expanded": {
       "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" },
       "required": false
     },
     "id": { "type": { "name": "string" }, "required": false },
-    "multiSelect": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "multiSelect": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },

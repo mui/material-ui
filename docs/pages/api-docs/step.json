@@ -9,12 +9,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "completed": { "type": { "name": "bool" }, "required": false },
     "disabled": { "type": { "name": "bool" }, "required": false },
-    "expanded": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "expanded": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "index": { "type": { "name": "number" }, "required": false },
     "last": { "type": { "name": "bool" }, "required": false }
   },

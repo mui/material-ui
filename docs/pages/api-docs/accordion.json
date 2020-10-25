@@ -13,31 +13,15 @@
     },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "defaultExpanded": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "defaultExpanded": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "expanded": { "type": { "name": "bool" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false },
-    "square": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "square": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "TransitionComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "Collapse" },
-      "defaultValue": { "value": "Collapse", "computed": true }
+      "default": "Collapse"
     },
     "TransitionProps": { "type": { "name": "object" }, "required": false }
   },

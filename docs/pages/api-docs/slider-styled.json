@@ -17,8 +17,7 @@
         "description": "{ Mark?: elementType, MarkLabel?: elementType, Rail?: elementType, Root?: elementType, Thumb?: elementType, Track?: elementType, ValueLabel?: elementType }"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
+      "default": "{}"
     },
     "componentsProps": { "type": { "name": "object" }, "required": false },
     "defaultValue": {

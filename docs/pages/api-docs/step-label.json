@@ -6,12 +6,7 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "error": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "error": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "icon": { "type": { "name": "node" }, "required": false },
     "optional": { "type": { "name": "node" }, "required": false },
     "StepIconComponent": { "type": { "name": "elementType" }, "required": false },

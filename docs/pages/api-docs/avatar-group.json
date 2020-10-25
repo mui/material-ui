@@ -13,8 +13,7 @@
         "description": "number"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "5" },
-      "defaultValue": { "value": "5", "computed": false }
+      "default": "5"
     },
     "spacing": {
       "type": {
@@ -22,8 +21,7 @@
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;number"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'medium'" },
-      "defaultValue": { "value": "'medium'", "computed": false }
+      "default": "'medium'"
     },
     "variant": {
       "type": {
@@ -31,8 +29,7 @@
         "description": "'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'circular'" },
-      "defaultValue": { "value": "'circular'", "computed": false }
+      "default": "'circular'"
     }
   },
   "spread": true,

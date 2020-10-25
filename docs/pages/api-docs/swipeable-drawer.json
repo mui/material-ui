@@ -21,39 +21,17 @@
     "disableBackdropTransition": {
       "type": { "name": "bool" },
       "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
+      "default": "false"
     },
-    "disableDiscovery": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disableDiscovery": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "disableSwipeToOpen": {
       "type": { "name": "bool" },
       "required": false,
-      "jsdocDefaultValue": {
-        "value": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
-      },
-      "defaultValue": {
-        "value": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)",
-        "computed": false
-      }
+      "default": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
     },
     "hideBackdrop": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
-    "hysteresis": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "0.52" },
-      "defaultValue": { "value": "0.52", "computed": false }
-    },
-    "minFlingVelocity": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "450" },
-      "defaultValue": { "value": "450", "computed": false }
-    },
+    "hysteresis": { "type": { "name": "number" }, "required": false, "default": "0.52" },
+    "minFlingVelocity": { "type": { "name": "number" }, "required": false, "default": "450" },
     "ModalProps": {
       "type": {
         "name": "shape",
@@ -87,25 +65,14 @@
       "defaultValue": { "value": "{}", "computed": false }
     },
     "SwipeAreaProps": { "type": { "name": "object" }, "required": false },
-    "swipeAreaWidth": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "20" },
-      "defaultValue": { "value": "20", "computed": false }
-    },
+    "swipeAreaWidth": { "type": { "name": "number" }, "required": false, "default": "20" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
-      "jsdocDefaultValue": {
-        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
-      },
-      "defaultValue": {
-        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }",
-        "computed": false
-      }
+      "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
     },
     "variant": {
       "type": {

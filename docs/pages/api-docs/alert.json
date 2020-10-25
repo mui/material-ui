@@ -7,12 +7,7 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "closeText": {
-      "type": { "name": "string" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "'Close'" },
-      "defaultValue": { "value": "'Close'", "computed": false }
-    },
+    "closeText": { "type": { "name": "string" }, "required": false, "default": "'Close'" },
     "color": {
       "type": {
         "name": "enum",
@@ -26,27 +21,17 @@
         "name": "shape",
         "description": "{ error?: node, info?: node, success?: node, warning?: node }"
       },
-      "required": false,
-      "defaultValue": {
-        "value": "{\n  success: <SuccessOutlinedIcon fontSize=\"inherit\" />,\n  warning: <ReportProblemOutlinedIcon fontSize=\"inherit\" />,\n  error: <ErrorOutlineIcon fontSize=\"inherit\" />,\n  info: <InfoOutlinedIcon fontSize=\"inherit\" />,\n}",
-        "computed": false
-      }
+      "required": false
     },
     "onClose": { "type": { "name": "func" }, "required": false },
-    "role": {
-      "type": { "name": "string" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "'alert'" },
-      "defaultValue": { "value": "'alert'", "computed": false }
-    },
+    "role": { "type": { "name": "string" }, "required": false, "default": "'alert'" },
     "severity": {
       "type": {
         "name": "enum",
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'success'" },
-      "defaultValue": { "value": "'success'", "computed": false }
+      "default": "'success'"
     },
     "variant": {
       "type": {
@@ -54,8 +39,7 @@
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'standard'" },
-      "defaultValue": { "value": "'standard'", "computed": false }
+      "default": "'standard'"
     }
   },
   "spread": true,

@@ -6,28 +6,13 @@
     "children": { "type": { "name": "node" }, "required": true },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "cols": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "2" },
-      "defaultValue": { "value": "2", "computed": false }
-    },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'ul'", "computed": false }
-    },
-    "gap": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "4" },
-      "defaultValue": { "value": "4", "computed": false }
-    },
+    "cols": { "type": { "name": "number" }, "required": false, "default": "2" },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "gap": { "type": { "name": "number" }, "required": false, "default": "4" },
     "rowHeight": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'auto'" },
-      "defaultValue": { "value": "'auto'", "computed": false }
+      "default": "'auto'"
     },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
     "variant": {
@@ -36,8 +21,7 @@
         "description": "'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'standard'" },
-      "defaultValue": { "value": "'standard'", "computed": false }
+      "default": "'standard'"
     }
   },
   "spread": true,

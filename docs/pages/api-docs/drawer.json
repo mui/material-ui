@@ -9,38 +9,17 @@
         "description": "'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'left'" },
-      "defaultValue": { "value": "'left'", "computed": false }
+      "default": "'left'"
     },
     "BackdropProps": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "elevation": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "16" },
-      "defaultValue": { "value": "16", "computed": false }
-    },
-    "ModalProps": {
-      "type": { "name": "object" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
-    },
+    "elevation": { "type": { "name": "number" }, "required": false, "default": "16" },
+    "ModalProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
     "onClose": { "type": { "name": "func" }, "required": false },
-    "open": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "PaperProps": {
-      "type": { "name": "object" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
-    },
+    "open": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "PaperProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
     "SlideProps": { "type": { "name": "object" }, "required": false },
     "transitionDuration": {
       "type": {
@@ -48,13 +27,7 @@
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
-      "jsdocDefaultValue": {
-        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
-      },
-      "defaultValue": {
-        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }",
-        "computed": false
-      }
+      "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
     },
     "variant": {
       "type": {
@@ -62,8 +35,7 @@
         "description": "'permanent'<br>&#124;&nbsp;'persistent'<br>&#124;&nbsp;'temporary'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'temporary'" },
-      "defaultValue": { "value": "'temporary'", "computed": false }
+      "default": "'temporary'"
     }
   },
   "spread": true,

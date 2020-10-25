@@ -13,11 +13,7 @@
     },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'div'", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "image": { "type": { "name": "string" }, "required": false },
     "src": { "type": { "name": "string" }, "required": false },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" }

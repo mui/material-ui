@@ -6,31 +6,16 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'div'", "computed": false }
-    },
-    "elevation": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
-    },
-    "square": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "elevation": { "type": { "name": "number" }, "required": false, "default": "1" },
+    "square": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "variant": {
       "type": {
         "name": "union",
         "description": "'elevation'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'elevation'" },
-      "defaultValue": { "value": "'elevation'", "computed": false }
+      "default": "'elevation'"
     }
   },
   "spread": true,

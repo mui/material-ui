@@ -2,14 +2,7 @@
   "name": "CssBaseline",
   "filename": "/packages/material-ui/src/CssBaseline/CssBaseline.js",
   "description": "Kickstart an elegant, consistent, and simple baseline to build upon.",
-  "props": {
-    "children": {
-      "type": { "name": "node" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "null" },
-      "defaultValue": { "value": "null", "computed": false }
-    }
-  },
+  "props": { "children": { "type": { "name": "node" }, "required": false, "default": "null" } },
   "spread": false,
   "styles": { "name": "MuiCssBaseline", "globalClasses": {} },
   "inheritance": null,

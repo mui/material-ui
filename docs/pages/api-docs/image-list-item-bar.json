@@ -7,8 +7,7 @@
     "actionPosition": {
       "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'right'" },
-      "defaultValue": { "value": "'right'", "computed": false }
+      "default": "'right'"
     },
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
     "classes": { "type": { "name": "object" }, "required": false },
@@ -19,8 +18,7 @@
         "description": "'below'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'top'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'bottom'" },
-      "defaultValue": { "value": "'bottom'", "computed": false }
+      "default": "'bottom'"
     },
     "subtitle": { "type": { "name": "node" }, "required": false },
     "title": { "type": { "name": "node" }, "required": false }

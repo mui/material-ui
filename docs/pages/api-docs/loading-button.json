@@ -6,26 +6,12 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "pending": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "pending": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "pendingIndicator": {
       "type": { "name": "node" },
       "required": false,
-      "jsdocDefaultValue": { "value": "<CircularProgress color=\"inherit\" size={16} />" },
-      "defaultValue": {
-        "value": "<CircularProgress color=\"inherit\" size={16} />",
-        "computed": false
-      }
+      "default": "<CircularProgress color=\"inherit\" size={16} />"
     },
     "pendingPosition": {
       "type": {
@@ -34,8 +20,7 @@
         "description": "'start'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'center'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'center'" },
-      "defaultValue": { "value": "'center'", "computed": false }
+      "default": "'center'"
     }
   },
   "spread": true,

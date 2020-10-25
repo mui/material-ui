@@ -5,36 +5,20 @@
   "props": {
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "delay": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "0" },
-      "defaultValue": { "value": "0", "computed": false }
-    },
-    "FabProps": {
-      "type": { "name": "object" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
-    },
+    "delay": { "type": { "name": "number" }, "required": false, "default": "0" },
+    "FabProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
     "icon": { "type": { "name": "node" }, "required": false },
     "id": { "type": { "name": "string" }, "required": false },
     "open": { "type": { "name": "bool" }, "required": false },
     "TooltipClasses": { "type": { "name": "object" }, "required": false },
-    "tooltipOpen": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "tooltipOpen": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "tooltipPlacement": {
       "type": {
         "name": "enum",
         "description": "'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'left'" },
-      "defaultValue": { "value": "'left'", "computed": false }
+      "default": "'left'"
     },
     "tooltipTitle": { "type": { "name": "node" }, "required": false }
   },

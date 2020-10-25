@@ -8,12 +8,7 @@
       "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
       "required": false
     },
-    "disablePortal": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    }
+    "disablePortal": { "type": { "name": "bool" }, "required": false, "default": "false" }
   },
   "spread": false,
   "styles": { "name": null, "globalClasses": {} },

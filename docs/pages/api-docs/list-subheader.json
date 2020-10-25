@@ -12,32 +12,12 @@
         "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'default'" },
-      "defaultValue": { "value": "'default'", "computed": false }
+      "default": "'default'"
     },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'li'", "computed": false }
-    },
-    "disableGutters": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableSticky": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "inset": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    }
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "disableGutters": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableSticky": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "inset": { "type": { "name": "bool" }, "required": false, "default": "false" }
   },
   "spread": true,
   "styles": {

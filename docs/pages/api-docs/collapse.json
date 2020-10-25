@@ -9,13 +9,11 @@
     "collapsedSize": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'0px'" },
-      "defaultValue": { "value": "'0px'", "computed": false }
+      "default": "'0px'"
     },
     "component": {
       "type": { "name": "custom", "raw": "elementTypeAcceptingRef", "description": "element type" },
-      "required": false,
-      "defaultValue": { "value": "'div'", "computed": false }
+      "required": false
     },
     "in": { "type": { "name": "bool" }, "required": false },
     "onEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
@@ -27,8 +25,7 @@
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'vertical'" },
-      "defaultValue": { "value": "'vertical'", "computed": false }
+      "default": "'vertical'"
     },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
     "timeout": {
@@ -37,8 +34,7 @@
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "duration.standard" },
-      "defaultValue": { "value": "duration.standard", "computed": true }
+      "default": "duration.standard"
     }
   },
   "spread": true,

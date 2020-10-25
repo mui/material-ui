@@ -3,12 +3,7 @@
   "filename": "/packages/material-ui/src/Pagination/Pagination.js",
   "description": "",
   "props": {
-    "boundaryCount": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
-    },
+    "boundaryCount": { "type": { "name": "number" }, "required": false, "default": "1" },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
@@ -17,87 +12,36 @@
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'standard'" },
-      "defaultValue": { "value": "'standard'", "computed": false }
+      "default": "'standard'"
     },
-    "count": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
-    },
-    "defaultPage": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
-    },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "getItemAriaLabel": {
-      "type": { "name": "func" },
-      "required": false,
-      "defaultValue": {
-        "value": "function defaultGetAriaLabel(type, page, selected) {\n  if (type === 'page') {\n    return `${selected ? '' : 'Go to '}page ${page}`;\n  }\n  return `Go to ${type} page`;\n}",
-        "computed": false
-      }
-    },
-    "hideNextButton": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "hidePrevButton": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "count": { "type": { "name": "number" }, "required": false, "default": "1" },
+    "defaultPage": { "type": { "name": "number" }, "required": false, "default": "1" },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "getItemAriaLabel": { "type": { "name": "func" }, "required": false },
+    "hideNextButton": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "hidePrevButton": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "onChange": { "type": { "name": "func" }, "required": false },
     "page": { "type": { "name": "number" }, "required": false },
     "renderItem": {
       "type": { "name": "func" },
       "required": false,
-      "jsdocDefaultValue": { "value": "(item) => <PaginationItem {...item} />" },
-      "defaultValue": { "value": "(item) => <PaginationItem {...item} />", "computed": false }
+      "default": "(item) => <PaginationItem {...item} />"
     },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'circular'" },
-      "defaultValue": { "value": "'circular'", "computed": false }
+      "default": "'circular'"
     },
-    "showFirstButton": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "showLastButton": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "siblingCount": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1" },
-      "defaultValue": { "value": "1", "computed": false }
-    },
+    "showFirstButton": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "showLastButton": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "siblingCount": { "type": { "name": "number" }, "required": false, "default": "1" },
     "size": {
       "type": {
         "name": "enum",
         "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'medium'" },
-      "defaultValue": { "value": "'medium'", "computed": false }
+      "default": "'medium'"
     },
     "variant": {
       "type": {
@@ -105,8 +49,7 @@
         "description": "'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'text'" },
-      "defaultValue": { "value": "'text'", "computed": false }
+      "default": "'text'"
     }
   },
   "spread": true,

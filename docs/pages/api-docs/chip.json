@@ -17,17 +17,11 @@
         "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'default'" },
-      "defaultValue": { "value": "'default'", "computed": false }
+      "default": "'default'"
     },
     "component": { "type": { "name": "elementType" }, "required": false },
     "deleteIcon": { "type": { "name": "element" }, "required": false },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "icon": { "type": { "name": "element" }, "required": false },
     "label": { "type": { "name": "node" }, "required": false },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
@@ -37,8 +31,7 @@
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'medium'" },
-      "defaultValue": { "value": "'medium'", "computed": false }
+      "default": "'medium'"
     },
     "variant": {
       "type": {
@@ -46,8 +39,7 @@
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'filled'" },
-      "defaultValue": { "value": "'filled'", "computed": false }
+      "default": "'filled'"
     }
   },
   "spread": true,

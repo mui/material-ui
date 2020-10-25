@@ -487,9 +487,16 @@ async function buildDocs(options: {
     reactAPI.props[propName].type.description = generatePropType(propData.type);
     delete reactAPI.props[propName].type.value;
 
+    // Delete the prop type description if it matches the name
     if (reactAPI.props[propName].type.name == reactAPI.props[propName].type.description) {
       delete reactAPI.props[propName].type.description;
     }
+
+    reactAPI.props[propName].default =
+      reactAPI.props[propName].jsdocDefaultValue &&
+      reactAPI.props[propName].jsdocDefaultValue.value;
+    delete reactAPI.props[propName].defaultValue;
+    delete reactAPI.props[propName].jsdocDefaultValue;
 
     propDescriptions[name] = {
       ...propDescriptions[name],

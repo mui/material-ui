@@ -7,26 +7,11 @@
       "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
       "required": false
     },
-    "autoFocus": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "true" },
-      "defaultValue": { "value": "true", "computed": false }
-    },
+    "autoFocus": { "type": { "name": "bool" }, "required": false, "default": "true" },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
-    "disableAutoFocusItem": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "MenuListProps": {
-      "type": { "name": "object" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
-    },
+    "disableAutoFocusItem": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "MenuListProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
     "onClose": { "type": { "name": "func" }, "required": false },
     "open": { "type": { "name": "bool" }, "required": true },
     "PaperProps": {
@@ -42,20 +27,13 @@
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'auto'" },
-      "defaultValue": { "value": "'auto'", "computed": false }
+      "default": "'auto'"
     },
-    "TransitionProps": {
-      "type": { "name": "object" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
-    },
+    "TransitionProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
     "variant": {
       "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'selectedMenu'" },
-      "defaultValue": { "value": "'selectedMenu'", "computed": false }
+      "default": "'selectedMenu'"
     }
   },
   "spread": true,

@@ -6,46 +6,28 @@
     "ActionsComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "TablePaginationActions" },
-      "defaultValue": { "value": "TablePaginationActions", "computed": true }
+      "default": "TablePaginationActions"
     },
     "backIconButtonProps": { "type": { "name": "object" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "colSpan": { "type": { "name": "number" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "TableCell", "computed": true }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "count": { "type": { "name": "number" }, "required": true },
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "required": false,
-      "jsdocDefaultValue": {
-        "value": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}"
-      },
-      "defaultValue": {
-        "value": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}",
-        "computed": false
-      }
+      "default": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}"
     },
     "labelDisplayedRows": {
       "type": { "name": "func" },
       "required": false,
-      "jsdocDefaultValue": {
-        "value": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
-      },
-      "defaultValue": {
-        "value": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}",
-        "computed": false
-      }
+      "default": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
     },
     "labelRowsPerPage": {
       "type": { "name": "node" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'Rows per page:'" },
-      "defaultValue": { "value": "'Rows per page:'", "computed": false }
+      "default": "'Rows per page:'"
     },
     "nextIconButtonProps": { "type": { "name": "object" }, "required": false },
     "onPageChange": { "type": { "name": "func" }, "required": true },
@@ -65,27 +47,11 @@
         "description": "Array&lt;number<br>&#124;&nbsp;{ label: string, value: number }&gt;"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "[10, 25, 50, 100]" },
-      "defaultValue": { "value": "[10, 25, 50, 100]", "computed": false }
+      "default": "[10, 25, 50, 100]"
     },
-    "SelectProps": {
-      "type": { "name": "object" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "{}" },
-      "defaultValue": { "value": "{}", "computed": false }
-    },
-    "showFirstButton": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "showLastButton": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    }
+    "SelectProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
+    "showFirstButton": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "showLastButton": { "type": { "name": "bool" }, "required": false, "default": "false" }
   },
   "spread": true,
   "styles": {

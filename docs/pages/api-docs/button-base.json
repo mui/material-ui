@@ -11,44 +11,18 @@
       "type": { "name": "custom", "raw": "refType", "description": "ref" },
       "required": false
     },
-    "centerRipple": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "centerRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
       "type": { "name": "custom", "raw": "elementTypeAcceptingRef", "description": "element type" },
-      "required": false,
-      "defaultValue": { "value": "'button'", "computed": false }
+      "required": false
     },
-    "disabled": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableRipple": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableTouchRipple": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "focusRipple": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "disabled": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableTouchRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "focusRipple": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "focusVisibleClassName": { "type": { "name": "string" }, "required": false },
     "href": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
@@ -67,8 +41,7 @@
     "tabIndex": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false,
-      "jsdocDefaultValue": { "value": "0" },
-      "defaultValue": { "value": "0", "computed": false }
+      "default": "0"
     },
     "TouchRippleProps": { "type": { "name": "object" }, "required": false },
     "type": {

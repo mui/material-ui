@@ -13,8 +13,7 @@
         "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'secondary'" },
-      "defaultValue": { "value": "'secondary'", "computed": false }
+      "default": "'secondary'"
     },
     "defaultChecked": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
     "disabled": { "type": { "name": "bool" }, "required": false },
@@ -25,8 +24,7 @@
         "description": "'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;false"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
+      "default": "false"
     },
     "icon": { "type": { "name": "node" }, "required": false },
     "id": { "type": { "name": "string" }, "required": false },
@@ -40,8 +38,7 @@
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'medium'" },
-      "defaultValue": { "value": "'medium'", "computed": false }
+      "default": "'medium'"
     },
     "value": { "type": { "name": "any" }, "required": false }
   },

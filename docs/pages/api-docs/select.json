@@ -3,51 +3,25 @@
   "filename": "/packages/material-ui/src/Select/Select.js",
   "description": "",
   "props": {
-    "autoWidth": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "autoWidth": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "defaultValue": { "type": { "name": "any" }, "required": false },
-    "displayEmpty": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "displayEmpty": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "IconComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "ArrowDropDownIcon" },
-      "defaultValue": { "value": "ArrowDropDownIcon", "computed": true }
+      "default": "ArrowDropDownIcon"
     },
     "id": { "type": { "name": "string" }, "required": false },
     "input": { "type": { "name": "element" }, "required": false },
     "inputProps": { "type": { "name": "object" }, "required": false },
     "label": { "type": { "name": "node" }, "required": false },
     "labelId": { "type": { "name": "string" }, "required": false },
-    "labelWidth": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "0" },
-      "defaultValue": { "value": "0", "computed": false }
-    },
+    "labelWidth": { "type": { "name": "number" }, "required": false, "default": "0" },
     "MenuProps": { "type": { "name": "object" }, "required": false },
-    "multiple": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "native": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "multiple": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "native": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "onChange": { "type": { "name": "func" }, "required": false },
     "onClose": { "type": { "name": "func" }, "required": false },
     "onOpen": { "type": { "name": "func" }, "required": false },
@@ -61,8 +35,7 @@
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'standard'" },
-      "defaultValue": { "value": "'standard'", "computed": false }
+      "default": "'standard'"
     }
   },
   "spread": true,

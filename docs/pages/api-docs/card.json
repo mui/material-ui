@@ -6,12 +6,7 @@
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "raised": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    }
+    "raised": { "type": { "name": "bool" }, "required": false, "default": "false" }
   },
   "spread": true,
   "styles": { "name": "MuiCard", "globalClasses": { "root": "MuiCard-root" } },

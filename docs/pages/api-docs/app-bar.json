@@ -12,8 +12,7 @@
         "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'transparent'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'primary'" },
-      "defaultValue": { "value": "'primary'", "computed": false }
+      "default": "'primary'"
     },
     "position": {
       "type": {
@@ -21,8 +20,7 @@
         "description": "'absolute'<br>&#124;&nbsp;'fixed'<br>&#124;&nbsp;'relative'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'sticky'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'fixed'" },
-      "defaultValue": { "value": "'fixed'", "computed": false }
+      "default": "'fixed'"
     }
   },
   "spread": true,

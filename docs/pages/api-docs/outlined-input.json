@@ -14,18 +14,12 @@
     "disabled": { "type": { "name": "bool" }, "required": false },
     "endAdornment": { "type": { "name": "node" }, "required": false },
     "error": { "type": { "name": "bool" }, "required": false },
-    "fullWidth": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "fullWidth": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "id": { "type": { "name": "string" }, "required": false },
     "inputComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "'input'" },
-      "defaultValue": { "value": "'input'", "computed": false }
+      "default": "'input'"
     },
     "inputProps": { "type": { "name": "object" }, "required": false },
     "inputRef": {
@@ -33,12 +27,7 @@
       "required": false
     },
     "label": { "type": { "name": "node" }, "required": false },
-    "labelWidth": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "0" },
-      "defaultValue": { "value": "0", "computed": false }
-    },
+    "labelWidth": { "type": { "name": "number" }, "required": false, "default": "0" },
     "margin": {
       "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" },
       "required": false
@@ -51,12 +40,7 @@
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false
     },
-    "multiline": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "multiline": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "name": { "type": { "name": "string" }, "required": false },
     "notched": { "type": { "name": "bool" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false },
@@ -68,12 +52,7 @@
       "required": false
     },
     "startAdornment": { "type": { "name": "node" }, "required": false },
-    "type": {
-      "type": { "name": "string" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "'text'" },
-      "defaultValue": { "value": "'text'", "computed": false }
-    },
+    "type": { "type": { "name": "string" }, "required": false, "default": "'text'" },
     "value": { "type": { "name": "any" }, "required": false }
   },
   "spread": true,

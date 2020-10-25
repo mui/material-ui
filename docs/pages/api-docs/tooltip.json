@@ -3,12 +3,7 @@
   "filename": "/packages/material-ui/src/Tooltip/Tooltip.js",
   "description": "",
   "props": {
-    "arrow": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "arrow": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "children": {
       "type": {
         "name": "custom",
@@ -19,73 +14,18 @@
     },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "describeChild": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableFocusListener": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableHoverListener": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableInteractive": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "disableTouchListener": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
-    "enterDelay": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "100" },
-      "defaultValue": { "value": "100", "computed": false }
-    },
-    "enterNextDelay": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "0" },
-      "defaultValue": { "value": "0", "computed": false }
-    },
-    "enterTouchDelay": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "700" },
-      "defaultValue": { "value": "700", "computed": false }
-    },
-    "followCursor": {
-      "type": { "name": "bool" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "false" },
-      "defaultValue": { "value": "false", "computed": false }
-    },
+    "describeChild": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableFocusListener": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableHoverListener": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableInteractive": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "disableTouchListener": { "type": { "name": "bool" }, "required": false, "default": "false" },
+    "enterDelay": { "type": { "name": "number" }, "required": false, "default": "100" },
+    "enterNextDelay": { "type": { "name": "number" }, "required": false, "default": "0" },
+    "enterTouchDelay": { "type": { "name": "number" }, "required": false, "default": "700" },
+    "followCursor": { "type": { "name": "bool" }, "required": false, "default": "false" },
     "id": { "type": { "name": "string" }, "required": false },
-    "leaveDelay": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "0" },
-      "defaultValue": { "value": "0", "computed": false }
-    },
-    "leaveTouchDelay": {
-      "type": { "name": "number" },
-      "required": false,
-      "jsdocDefaultValue": { "value": "1500" },
-      "defaultValue": { "value": "1500", "computed": false }
-    },
+    "leaveDelay": { "type": { "name": "number" }, "required": false, "default": "0" },
+    "leaveTouchDelay": { "type": { "name": "number" }, "required": false, "default": "1500" },
     "onClose": { "type": { "name": "func" }, "required": false },
     "onOpen": { "type": { "name": "func" }, "required": false },
     "open": { "type": { "name": "bool" }, "required": false },
@@ -95,22 +35,19 @@
         "description": "'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'bottom'" },
-      "defaultValue": { "value": "'bottom'", "computed": false }
+      "default": "'bottom'"
     },
     "PopperComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "Popper" },
-      "defaultValue": { "value": "Popper", "computed": true }
+      "default": "Popper"
     },
     "PopperProps": { "type": { "name": "object" }, "required": false },
     "title": { "type": { "name": "node" }, "required": true },
     "TransitionComponent": {
       "type": { "name": "elementType" },
       "required": false,
-      "jsdocDefaultValue": { "value": "Grow" },
-      "defaultValue": { "value": "Grow", "computed": true }
+      "default": "Grow"
     },
     "TransitionProps": { "type": { "name": "object" }, "required": false }
   },

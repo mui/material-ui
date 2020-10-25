@@ -9,17 +9,12 @@
         "description": "'pulse'<br>&#124;&nbsp;'wave'<br>&#124;&nbsp;false"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'pulse'" },
-      "defaultValue": { "value": "'pulse'", "computed": false }
+      "default": "'pulse'"
     },
     "children": { "type": { "name": "node" }, "required": false },
     "classes": { "type": { "name": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "defaultValue": { "value": "'span'", "computed": false }
-    },
+    "component": { "type": { "name": "elementType" }, "required": false },
     "height": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false
@@ -31,8 +26,7 @@
         "description": "'circular'<br>&#124;&nbsp;'rectangular'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
       "required": false,
-      "jsdocDefaultValue": { "value": "'text'" },
-      "defaultValue": { "value": "'text'", "computed": false }
+      "default": "'text'"
     },
     "width": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
