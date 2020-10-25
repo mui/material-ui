@@ -66,6 +66,7 @@ const Icon = React.forwardRef(function Icon(props, ref) {
     <Component
       className={clsx(
         'material-icons',
+        'notranslate',
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
