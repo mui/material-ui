@@ -36,9 +36,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "gutters", "selected", "dense"],
     "name": "MuiMenuItem",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiMenuItem-root",
       "gutters": "MuiMenuItem-gutters",

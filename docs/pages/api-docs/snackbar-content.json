@@ -16,9 +16,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "message", "action"],
     "name": "MuiSnackbarContent",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiSnackbarContent-root",
       "message": "MuiSnackbarContent-message",

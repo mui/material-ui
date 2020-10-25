@@ -53,19 +53,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "edgeStart",
-      "edgeEnd",
-      "colorInherit",
-      "colorPrimary",
-      "colorSecondary",
-      "disabled",
-      "sizeSmall",
-      "label"
-    ],
     "name": "MuiIconButton",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiIconButton-root",
       "edgeStart": "MuiIconButton-edgeStart",

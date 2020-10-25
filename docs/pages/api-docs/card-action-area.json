@@ -14,9 +14,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "focusVisible", "focusHighlight"],
     "name": "MuiCardActionArea",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiCardActionArea-root",
       "focusVisible": "Mui-focusVisible",

@@ -64,26 +64,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "badge",
-      "colorPrimary",
-      "colorSecondary",
-      "colorError",
-      "dot",
-      "standard",
-      "anchorOriginTopRightRectangular",
-      "anchorOriginBottomRightRectangular",
-      "anchorOriginTopLeftRectangular",
-      "anchorOriginBottomLeftRectangular",
-      "anchorOriginTopRightCircular",
-      "anchorOriginBottomRightCircular",
-      "anchorOriginTopLeftCircular",
-      "anchorOriginBottomLeftCircular",
-      "invisible"
-    ],
     "name": "MuiBadge",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiBadge-root",
       "badge": "MuiBadge-badge",

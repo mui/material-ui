@@ -40,19 +40,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "pending",
-      "pendingIndicator",
-      "pendingIndicatorCenter",
-      "pendingIndicatorStart",
-      "pendingIndicatorEnd",
-      "endIconPendingEnd",
-      "startIconPendingStart",
-      "labelPendingCenter"
-    ],
     "name": "MuiLoadingButton",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiLoadingButton-root",
       "pending": "MuiLoadingButton-pending",

@@ -70,7 +70,7 @@
     }
   },
   "spread": true,
-  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "styles": { "name": null, "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Autocomplete](/components/autocomplete/)\n- [Menus](/components/menus/)\n- [Popper](/components/popper/)"

@@ -73,9 +73,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "marginNormal", "marginDense", "fullWidth"],
     "name": "MuiFormControl",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiFormControl-root",
       "marginNormal": "MuiFormControl-marginNormal",

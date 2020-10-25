@@ -13,12 +13,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "classes": ["root"],
-    "name": "MuiTableContainer",
-    "descriptions": {},
-    "globalClasses": { "root": "MuiTableContainer-root" }
-  },
+  "styles": { "name": "MuiTableContainer", "globalClasses": { "root": "MuiTableContainer-root" } },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Tables](/components/tables/)"

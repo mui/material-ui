@@ -68,22 +68,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "docked",
-      "paper",
-      "paperAnchorLeft",
-      "paperAnchorRight",
-      "paperAnchorTop",
-      "paperAnchorBottom",
-      "paperAnchorDockedLeft",
-      "paperAnchorDockedTop",
-      "paperAnchorDockedRight",
-      "paperAnchorDockedBottom",
-      "modal"
-    ],
     "name": "MuiDrawer",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiDrawer-root",
       "docked": "MuiDrawer-docked",

@@ -11,9 +11,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "icon", "iconOpen", "iconWithOpenIconOpen", "openIcon", "openIconOpen"],
     "name": "MuiSpeedDialIcon",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiSpeedDialIcon-root",
       "icon": "MuiSpeedDialIcon-icon",

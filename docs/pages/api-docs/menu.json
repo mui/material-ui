@@ -60,9 +60,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["paper", "list"],
     "name": "MuiMenu",
-    "descriptions": {},
     "globalClasses": { "paper": "MuiMenu-paper", "list": "MuiMenu-list" }
   },
   "forwardsRefTo": "HTMLDivElement",

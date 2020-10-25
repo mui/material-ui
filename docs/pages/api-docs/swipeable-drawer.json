@@ -122,7 +122,7 @@
     }
   },
   "spread": true,
-  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "styles": { "name": null, "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Drawer", "pathname": "/api/drawer/" },
   "demos": "- [Drawers](/components/drawers/)"

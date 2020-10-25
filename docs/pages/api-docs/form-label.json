@@ -23,18 +23,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "colorSecondary",
-      "focused",
-      "disabled",
-      "error",
-      "filled",
-      "required",
-      "asterisk"
-    ],
     "name": "MuiFormLabel",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiFormLabel-root",
       "colorSecondary": "MuiFormLabel-colorSecondary",

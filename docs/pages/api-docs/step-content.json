@@ -25,9 +25,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "last", "transition"],
     "name": "MuiStepContent",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiStepContent-root",
       "last": "MuiStepContent-last",

@@ -43,9 +43,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "horizontal", "entered", "hidden", "wrapper", "wrapperInner"],
     "name": "MuiCollapse",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiCollapse-root",
       "horizontal": "MuiCollapse-horizontal",

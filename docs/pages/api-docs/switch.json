@@ -47,22 +47,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "edgeStart",
-      "edgeEnd",
-      "switchBase",
-      "colorPrimary",
-      "colorSecondary",
-      "sizeSmall",
-      "checked",
-      "disabled",
-      "input",
-      "thumb",
-      "track"
-    ],
     "name": "MuiSwitch",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiSwitch-root",
       "edgeStart": "MuiSwitch-edgeStart",

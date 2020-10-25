@@ -9,9 +9,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "alignRight"],
     "name": "MuiTimelineOppositeContent",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTimelineOppositeContent-root",
       "alignRight": "MuiTimelineOppositeContent-alignRight"

@@ -37,17 +37,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "filled",
-      "positionStart",
-      "positionEnd",
-      "disablePointerEvents",
-      "hiddenLabel",
-      "marginDense"
-    ],
     "name": "MuiInputAdornment",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiInputAdornment-root",
       "filled": "MuiInputAdornment-filled",

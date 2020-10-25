@@ -86,7 +86,7 @@
     }
   },
   "spread": true,
-  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "styles": { "name": null, "globalClasses": {} },
   "inheritance": null,
   "demos": "- [Hidden](/components/hidden/)"
 }

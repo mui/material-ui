@@ -14,12 +14,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "classes": ["root"],
-    "name": "MuiDialogTitle",
-    "descriptions": {},
-    "globalClasses": { "root": "MuiDialogTitle-root" }
-  },
+  "styles": { "name": "MuiDialogTitle", "globalClasses": { "root": "MuiDialogTitle-root" } },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Dialogs](/components/dialogs/)"

@@ -85,21 +85,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "container",
-      "focusVisible",
-      "dense",
-      "alignItemsFlexStart",
-      "disabled",
-      "divider",
-      "gutters",
-      "button",
-      "secondaryAction",
-      "selected"
-    ],
     "name": "MuiListItem",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiListItem-root",
       "container": "MuiListItem-container",

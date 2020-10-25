@@ -35,9 +35,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "stickyHeader"],
     "name": "MuiTable",
-    "descriptions": {},
     "globalClasses": { "root": "MuiTable-root", "stickyHeader": "MuiTable-stickyHeader" }
   },
   "forwardsRefTo": "HTMLTableElement",

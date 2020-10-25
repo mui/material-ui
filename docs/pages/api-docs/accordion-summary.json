@@ -15,9 +15,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "expanded", "focusVisible", "disabled", "content", "expandIconWrapper"],
     "name": "MuiAccordionSummary",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiAccordionSummary-root",
       "expanded": "Mui-expanded",

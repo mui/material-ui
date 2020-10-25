@@ -15,9 +15,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "spacing"],
     "name": "MuiDialogActions",
-    "descriptions": {},
     "globalClasses": { "root": "MuiDialogActions-root", "spacing": "MuiDialogActions-spacing" }
   },
   "forwardsRefTo": "HTMLDivElement",

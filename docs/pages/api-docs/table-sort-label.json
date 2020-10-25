@@ -33,9 +33,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "active", "icon", "iconDirectionDesc", "iconDirectionAsc"],
     "name": "MuiTableSortLabel",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTableSortLabel-root",
       "active": "MuiTableSortLabel-active",

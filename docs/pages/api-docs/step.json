@@ -20,9 +20,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "horizontal", "vertical", "alternativeLabel", "completed"],
     "name": "MuiStep",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiStep-root",
       "horizontal": "MuiStep-horizontal",

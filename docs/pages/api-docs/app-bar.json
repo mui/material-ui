@@ -27,21 +27,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "positionFixed",
-      "positionAbsolute",
-      "positionSticky",
-      "positionStatic",
-      "positionRelative",
-      "colorDefault",
-      "colorPrimary",
-      "colorSecondary",
-      "colorInherit",
-      "colorTransparent"
-    ],
     "name": "MuiAppBar",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiAppBar-root",
       "positionFixed": "MuiAppBar-positionFixed",

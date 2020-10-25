@@ -26,9 +26,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "selected", "hover", "head", "footer"],
     "name": "MuiTableRow",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTableRow-root",
       "selected": "Mui-selected",

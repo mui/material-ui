@@ -9,9 +9,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root"],
     "name": "MuiTimelineSeparator",
-    "descriptions": {},
     "globalClasses": { "root": "MuiTimelineSeparator-root" }
   },
   "forwardsRefTo": "HTMLDivElement",

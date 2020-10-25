@@ -9,9 +9,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "disableGutters"],
     "name": "MuiListItemSecondaryAction",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiListItemSecondaryAction-root",
       "disableGutters": "MuiListItemSecondaryAction-disableGutters"

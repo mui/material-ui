@@ -32,9 +32,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "vertical", "grouped", "groupedHorizontal", "groupedVertical"],
     "name": "MuiToggleButtonGroup",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiToggleButtonGroup-root",
       "vertical": "MuiToggleButtonGroup-vertical",

@@ -37,9 +37,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "checked", "disabled", "colorPrimary", "colorSecondary"],
     "name": "MuiRadio",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiRadio-root",
       "checked": "Mui-checked",

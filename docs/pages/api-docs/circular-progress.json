@@ -52,20 +52,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "determinate",
-      "indeterminate",
-      "colorPrimary",
-      "colorSecondary",
-      "svg",
-      "circle",
-      "circleDeterminate",
-      "circleIndeterminate",
-      "circleDisableShrink"
-    ],
     "name": "MuiCircularProgress",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiCircularProgress-root",
       "determinate": "MuiCircularProgress-determinate",

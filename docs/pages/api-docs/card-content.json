@@ -13,12 +13,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "classes": ["root"],
-    "name": "MuiCardContent",
-    "descriptions": {},
-    "globalClasses": { "root": "MuiCardContent-root" }
-  },
+  "styles": { "name": "MuiCardContent", "globalClasses": { "root": "MuiCardContent-root" } },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Cards](/components/cards/)"

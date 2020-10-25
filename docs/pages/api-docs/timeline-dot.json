@@ -27,19 +27,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "filled",
-      "outlined",
-      "filledGrey",
-      "outlinedGrey",
-      "filledPrimary",
-      "outlinedPrimary",
-      "filledSecondary",
-      "outlinedSecondary"
-    ],
     "name": "MuiTimelineDot",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTimelineDot-root",
       "filled": "MuiTimelineDot-filled",

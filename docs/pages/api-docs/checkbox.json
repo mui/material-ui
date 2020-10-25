@@ -58,9 +58,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "checked", "disabled", "indeterminate", "colorPrimary", "colorSecondary"],
     "name": "MuiCheckbox",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiCheckbox-root",
       "checked": "Mui-checked",

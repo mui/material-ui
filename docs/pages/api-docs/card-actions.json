@@ -15,9 +15,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "spacing"],
     "name": "MuiCardActions",
-    "descriptions": {},
     "globalClasses": { "root": "MuiCardActions-root", "spacing": "MuiCardActions-spacing" }
   },
   "forwardsRefTo": "HTMLDivElement",

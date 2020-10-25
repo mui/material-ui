@@ -18,7 +18,7 @@
     }
   },
   "spread": false,
-  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "styles": { "name": null, "globalClasses": {} },
   "inheritance": null,
   "demos": "- [No Ssr](/components/no-ssr/)"
 }

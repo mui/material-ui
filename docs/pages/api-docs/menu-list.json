@@ -38,7 +38,7 @@
     }
   },
   "spread": true,
-  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "styles": { "name": null, "globalClasses": {} },
   "forwardsRefTo": "HTMLUListElement",
   "inheritance": { "component": "List", "pathname": "/api/list/" },
   "demos": "- [Menus](/components/menus/)"

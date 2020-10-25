@@ -18,9 +18,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "alignLeft", "alignRight", "alignAlternate"],
     "name": "MuiTimeline",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTimeline-root",
       "alignLeft": "MuiTimeline-alignLeft",

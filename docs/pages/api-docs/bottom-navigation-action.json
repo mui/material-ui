@@ -20,9 +20,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "selected", "iconOnly", "wrapper", "label"],
     "name": "MuiBottomNavigationAction",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiBottomNavigationAction-root",
       "selected": "Mui-selected",

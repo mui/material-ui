@@ -35,18 +35,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "disableGutters",
-      "fixed",
-      "maxWidthXs",
-      "maxWidthSm",
-      "maxWidthMd",
-      "maxWidthLg",
-      "maxWidthXl"
-    ],
     "name": "MuiContainer",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiContainer-root",
       "disableGutters": "MuiContainer-disableGutters",

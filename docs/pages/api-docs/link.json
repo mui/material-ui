@@ -47,16 +47,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "underlineNone",
-      "underlineHover",
-      "underlineAlways",
-      "button",
-      "focusVisible"
-    ],
     "name": "MuiLink",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiLink-root",
       "underlineNone": "MuiLink-underlineNone",

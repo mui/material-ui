@@ -72,17 +72,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "anchorOriginTopCenter",
-      "anchorOriginBottomCenter",
-      "anchorOriginTopRight",
-      "anchorOriginBottomRight",
-      "anchorOriginTopLeft",
-      "anchorOriginBottomLeft"
-    ],
     "name": "MuiSnackbar",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiSnackbar-root",
       "anchorOriginTopCenter": "MuiSnackbar-anchorOriginTopCenter",

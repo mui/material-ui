@@ -45,22 +45,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "head",
-      "body",
-      "footer",
-      "sizeSmall",
-      "paddingCheckbox",
-      "paddingNone",
-      "alignLeft",
-      "alignCenter",
-      "alignRight",
-      "alignJustify",
-      "stickyHeader"
-    ],
     "name": "MuiTableCell",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTableCell-root",
       "head": "MuiTableCell-head",

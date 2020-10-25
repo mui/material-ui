@@ -25,28 +25,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "colorPrimary",
-      "colorSecondary",
-      "determinate",
-      "indeterminate",
-      "buffer",
-      "query",
-      "dashed",
-      "dashedColorPrimary",
-      "dashedColorSecondary",
-      "bar",
-      "barColorPrimary",
-      "barColorSecondary",
-      "bar1Indeterminate",
-      "bar1Determinate",
-      "bar1Buffer",
-      "bar2Indeterminate",
-      "bar2Buffer"
-    ],
     "name": "MuiLinearProgress",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiLinearProgress-root",
       "colorPrimary": "MuiLinearProgress-colorPrimary",

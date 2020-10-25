@@ -85,7 +85,7 @@ function ApiDocs(props) {
     'import',
     componentStyles.name && 'component-name',
     'props',
-    componentStyles.classes.length && 'css',
+    componentStyles.globalClasses.length && 'css',
     'demos',
   ];
 
@@ -254,7 +254,7 @@ import { ${name} } from '${source}';`}
                     .replace(/{{componentName}}/, name),
                 ),
               ]}
-              {componentStyles.classes.length ? (
+              {componentStyles.globalClasses ? (
                 <React.Fragment>
                   {heading('css')}
                   <table>
@@ -266,31 +266,33 @@ import { ${name} } from '${source}';`}
                       </tr>
                     </thead>
                     <tbody>
-                      {componentStyles.classes.map((className, id) => (
-                        <tr key={id}>
-                          <td align="left">
-                            <span className="prop-name">{className}</span>
-                          </td>
-                          <td align="left">
-                            <span className="prop-name">
-                              {componentStyles.globalClasses[className]}
-                            </span>
-                          </td>
-                          <td
-                            align="left"
-                            dangerouslySetInnerHTML={{
-                              __html:
-                                classDescriptions[userLanguage][className] &&
-                                marked(
-                                  classDescriptions[userLanguage][className].description.replace(
-                                    /{{conditions}}/,
-                                    classDescriptions[userLanguage][className].conditions,
+                      {Object.entries(componentStyles.globalClasses).map(
+                        ([className, globalClassName]) => (
+                          <tr key={className}>
+                            <td align="left">
+                              <span className="prop-name">{className}</span>
+                            </td>
+                            <td align="left">
+                              <span className="prop-name">
+                                {componentStyles.globalClasses[className]}
+                              </span>
+                            </td>
+                            <td
+                              align="left"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  classDescriptions[userLanguage][className] &&
+                                  marked(
+                                    classDescriptions[userLanguage][className].description.replace(
+                                      /{{conditions}}/,
+                                      classDescriptions[userLanguage][className].conditions,
+                                    ),
                                   ),
-                                ),
-                            }}
-                          />
-                        </tr>
-                      ))}
+                              }}
+                            />
+                          </tr>
+                        ),
+                      )}
                     </tbody>
                   </table>
                   <br />

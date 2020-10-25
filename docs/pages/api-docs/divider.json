@@ -62,24 +62,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "absolute",
-      "inset",
-      "fullWidth",
-      "light",
-      "middle",
-      "vertical",
-      "flexItem",
-      "withChildren",
-      "withChildrenVertical",
-      "textAlignRight",
-      "textAlignLeft",
-      "wrapper",
-      "wrapperVertical"
-    ],
     "name": "MuiDivider",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiDivider-root",
       "absolute": "MuiDivider-absolute",

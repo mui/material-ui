@@ -16,7 +16,7 @@
     }
   },
   "spread": false,
-  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "styles": { "name": null, "globalClasses": {} },
   "inheritance": null,
   "demos": "- [Portal](/components/portal/)"
 }

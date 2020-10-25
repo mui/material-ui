@@ -40,20 +40,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "labelIcon",
-      "textColorInherit",
-      "textColorPrimary",
-      "textColorSecondary",
-      "selected",
-      "disabled",
-      "fullWidth",
-      "wrapped",
-      "wrapper"
-    ],
     "name": "MuiTab",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTab-root",
       "labelIcon": "MuiTab-labelIcon",

@@ -42,9 +42,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "masonry", "quilted", "standard", "woven"],
     "name": "MuiImageList",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiImageList-root",
       "masonry": "MuiImageList-masonry",

@@ -11,9 +11,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "horizontal", "vertical", "touchRipple"],
     "name": "MuiStepButton",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiStepButton-root",
       "horizontal": "MuiStepButton-horizontal",

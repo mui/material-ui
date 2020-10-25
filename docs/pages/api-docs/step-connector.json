@@ -8,20 +8,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "horizontal",
-      "vertical",
-      "alternativeLabel",
-      "active",
-      "completed",
-      "disabled",
-      "line",
-      "lineHorizontal",
-      "lineVertical"
-    ],
     "name": "MuiStepConnector",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiStepConnector-root",
       "horizontal": "MuiStepConnector-horizontal",

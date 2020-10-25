@@ -30,7 +30,7 @@
     "open": { "type": { "name": "bool", "description": "bool" }, "required": true }
   },
   "spread": false,
-  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "styles": { "name": null, "globalClasses": {} },
   "inheritance": null,
   "demos": "- [Trap Focus](/components/trap-focus/)"
 }

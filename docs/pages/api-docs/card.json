@@ -14,12 +14,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "classes": ["root"],
-    "name": "MuiCard",
-    "descriptions": {},
-    "globalClasses": { "root": "MuiCard-root" }
-  },
+  "styles": { "name": "MuiCard", "globalClasses": { "root": "MuiCard-root" } },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "- [Cards](/components/cards/)"

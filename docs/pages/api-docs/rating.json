@@ -97,26 +97,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "sizeSmall",
-      "sizeLarge",
-      "readOnly",
-      "disabled",
-      "focusVisible",
-      "visuallyHidden",
-      "label",
-      "labelEmptyValueActive",
-      "icon",
-      "iconEmpty",
-      "iconFilled",
-      "iconHover",
-      "iconFocus",
-      "iconActive",
-      "decimal"
-    ],
     "name": "MuiRating",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiRating-root",
       "sizeSmall": "MuiRating-sizeSmall",

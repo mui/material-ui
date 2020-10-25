@@ -22,9 +22,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root"],
     "name": "MuiBottomNavigation",
-    "descriptions": {},
     "globalClasses": { "root": "MuiBottomNavigation-root" }
   },
   "forwardsRefTo": "HTMLDivElement",

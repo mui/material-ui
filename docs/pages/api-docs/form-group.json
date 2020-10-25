@@ -15,9 +15,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "row"],
     "name": "MuiFormGroup",
-    "descriptions": {},
     "globalClasses": { "root": "MuiFormGroup-root", "row": "MuiFormGroup-row" }
   },
   "forwardsRefTo": "HTMLDivElement",

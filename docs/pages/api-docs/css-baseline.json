@@ -11,7 +11,7 @@
     }
   },
   "spread": false,
-  "styles": { "classes": [], "name": "MuiCssBaseline", "descriptions": {}, "globalClasses": {} },
+  "styles": { "name": "MuiCssBaseline", "globalClasses": {} },
   "inheritance": null,
   "demos": "- [Css Baseline](/components/css-baseline/)"
 }

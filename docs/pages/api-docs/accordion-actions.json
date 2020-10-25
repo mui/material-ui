@@ -15,9 +15,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "spacing"],
     "name": "MuiAccordionActions",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiAccordionActions-root",
       "spacing": "MuiAccordionActions-spacing"

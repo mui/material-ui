@@ -301,16 +301,16 @@ function extractClassConditions(classDescriptions: { [key: string]: { [key: stri
         const conditions = classDescription.match(stylesRegex);
 
         if (conditions) {
-          classConditions[componentName][className] = { description: classDescription.replace(
-            stylesRegex,
-            '$1{{conditions}}.',
-          ), conditions: conditions[2] };
+          classConditions[componentName][className] = {
+            description: classDescription.replace(stylesRegex, '$1{{conditions}}.'),
+            conditions: conditions[2],
+          };
         } else {
-          classConditions[componentName][className] = { description: classDescription }
+          classConditions[componentName][className] = { description: classDescription };
         }
       }
-    })
-  })
+    });
+  });
   return classConditions;
 }
 
@@ -497,6 +497,7 @@ async function buildDocs(options: {
   if (reactAPI.description.length) {
     componentDescriptions[reactAPI.name] = reactAPI.description;
   }
+
   classDescriptions[reactAPI.name] = reactAPI.styles.descriptions;
 
   // https://medium.com/@captaindaylight/get-a-subset-of-an-object-9896148b9c72
@@ -524,7 +525,8 @@ async function buildDocs(options: {
   // Deep clone so as not to mutate reactAPI (it's used later for th etype annotations)
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
   pageContent = JSON.parse(JSON.stringify(pageContent));
-  pageContent.styles.descriptions = {};
+  delete pageContent.styles.classes;
+  delete pageContent.styles.descriptions;
 
   // docs/pages/component-name.json
   writePrettifiedFile(

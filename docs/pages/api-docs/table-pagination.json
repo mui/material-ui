@@ -95,20 +95,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "toolbar",
-      "spacer",
-      "caption",
-      "selectRoot",
-      "select",
-      "selectIcon",
-      "input",
-      "menuItem",
-      "actions"
-    ],
     "name": "MuiTablePagination",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTablePagination-root",
       "toolbar": "MuiTablePagination-toolbar",

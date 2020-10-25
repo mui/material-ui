@@ -27,18 +27,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "error",
-      "disabled",
-      "marginDense",
-      "contained",
-      "focused",
-      "filled",
-      "required"
-    ],
     "name": "MuiFormHelperText",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiFormHelperText-root",
       "error": "Mui-error",

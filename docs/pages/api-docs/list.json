@@ -27,9 +27,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "padding", "dense", "subheader"],
     "name": "MuiList",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiList-root",
       "padding": "MuiList-padding",

@@ -16,7 +16,7 @@
     "value": { "type": { "name": "any", "description": "any" }, "required": false }
   },
   "spread": true,
-  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "styles": { "name": null, "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "FormGroup", "pathname": "/api/form-group/" },
   "demos": "- [Radio Buttons](/components/radio-buttons/)"

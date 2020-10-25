@@ -9,7 +9,7 @@
     }
   },
   "spread": true,
-  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "styles": { "name": null, "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Tabs", "pathname": "/api/tabs/" },
   "demos": "- [Tabs](/components/tabs/)"

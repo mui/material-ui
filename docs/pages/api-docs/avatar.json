@@ -28,9 +28,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "colorDefault", "circular", "rounded", "square", "img", "fallback"],
     "name": "MuiAvatar",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiAvatar-root",
       "colorDefault": "MuiAvatar-colorDefault",

@@ -40,17 +40,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "fab",
-      "fabClosed",
-      "staticTooltip",
-      "staticTooltipClosed",
-      "staticTooltipLabel",
-      "tooltipPlacementLeft",
-      "tooltipPlacementRight"
-    ],
     "name": "MuiSpeedDialAction",
-    "descriptions": {},
     "globalClasses": {
       "fab": "MuiSpeedDialAction-fab",
       "fabClosed": "MuiSpeedDialAction-fabClosed",

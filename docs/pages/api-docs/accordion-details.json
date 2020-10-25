@@ -9,9 +9,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root"],
     "name": "MuiAccordionDetails",
-    "descriptions": {},
     "globalClasses": { "root": "MuiAccordionDetails-root" }
   },
   "forwardsRefTo": "HTMLDivElement",

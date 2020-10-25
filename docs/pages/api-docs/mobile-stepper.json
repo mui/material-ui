@@ -39,18 +39,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "positionBottom",
-      "positionTop",
-      "positionStatic",
-      "dots",
-      "dot",
-      "dotActive",
-      "progress"
-    ],
     "name": "MuiMobileStepper",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiMobileStepper-root",
       "positionBottom": "MuiMobileStepper-positionBottom",

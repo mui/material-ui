@@ -27,22 +27,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "positionBottom",
-      "positionTop",
-      "positionBelow",
-      "titleWrap",
-      "titleWrapBelow",
-      "titleWrapActionPosLeft",
-      "titleWrapActionPosRight",
-      "title",
-      "subtitle",
-      "actionIcon",
-      "actionIconActionPosLeft"
-    ],
     "name": "MuiImageListItemBar",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiImageListItemBar-root",
       "positionBottom": "MuiImageListItemBar-positionBottom",

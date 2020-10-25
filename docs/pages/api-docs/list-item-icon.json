@@ -9,9 +9,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "alignItemsFlexStart"],
     "name": "MuiListItemIcon",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiListItemIcon-root",
       "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart"

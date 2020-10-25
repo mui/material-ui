@@ -9,9 +9,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root"],
     "name": "MuiScopedCssBaseline",
-    "descriptions": {},
     "globalClasses": { "root": "MuiScopedCssBaseline-root" }
   },
   "forwardsRefTo": "HTMLDivElement",

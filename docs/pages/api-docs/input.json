@@ -71,24 +71,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "formControl",
-      "focused",
-      "disabled",
-      "colorSecondary",
-      "underline",
-      "error",
-      "marginDense",
-      "multiline",
-      "fullWidth",
-      "input",
-      "inputMarginDense",
-      "inputMultiline",
-      "inputTypeSearch"
-    ],
     "name": "MuiInput",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiInput-root",
       "formControl": "MuiInput-formControl",

@@ -91,25 +91,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "scrollPaper",
-      "scrollBody",
-      "container",
-      "paper",
-      "paperScrollPaper",
-      "paperScrollBody",
-      "paperWidthFalse",
-      "paperWidthXs",
-      "paperWidthSm",
-      "paperWidthMd",
-      "paperWidthLg",
-      "paperWidthXl",
-      "paperFullWidth",
-      "paperFullScreen"
-    ],
     "name": "MuiDialog",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiDialog-root",
       "scrollPaper": "MuiDialog-scrollPaper",

@@ -32,9 +32,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "avatar", "action", "content", "title", "subheader"],
     "name": "MuiCardHeader",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiCardHeader-root",
       "avatar": "MuiCardHeader-avatar",

@@ -96,23 +96,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "vertical",
-      "flexContainer",
-      "flexContainerVertical",
-      "centered",
-      "scroller",
-      "fixed",
-      "scrollableX",
-      "scrollableY",
-      "hideScrollbar",
-      "scrollButtons",
-      "scrollButtonsHideMobile",
-      "indicator"
-    ],
     "name": "MuiTabs",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTabs-root",
       "vertical": "MuiTabs-vertical",

@@ -41,9 +41,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "colorPrimary", "colorInherit", "gutters", "inset", "sticky"],
     "name": "MuiListSubheader",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiListSubheader-root",
       "colorPrimary": "MuiListSubheader-colorPrimary",

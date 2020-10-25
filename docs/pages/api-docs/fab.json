@@ -60,21 +60,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "label",
-      "primary",
-      "secondary",
-      "extended",
-      "circular",
-      "focusVisible",
-      "disabled",
-      "colorInherit",
-      "sizeSmall",
-      "sizeMedium"
-    ],
     "name": "MuiFab",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiFab-root",
       "label": "MuiFab-label",

@@ -15,9 +15,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "dividers"],
     "name": "MuiDialogContent",
-    "descriptions": {},
     "globalClasses": { "root": "MuiDialogContent-root", "dividers": "MuiDialogContent-dividers" }
   },
   "forwardsRefTo": "HTMLDivElement",

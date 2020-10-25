@@ -78,25 +78,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "colorSecondary",
-      "focused",
-      "disabled",
-      "adornedStart",
-      "adornedEnd",
-      "error",
-      "marginDense",
-      "multiline",
-      "notchedOutline",
-      "input",
-      "inputMarginDense",
-      "inputMultiline",
-      "inputAdornedStart",
-      "inputAdornedEnd"
-    ],
     "name": "MuiOutlinedInput",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiOutlinedInput-root",
       "colorSecondary": "MuiOutlinedInput-colorSecondary",

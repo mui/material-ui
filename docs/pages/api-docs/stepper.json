@@ -39,9 +39,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "horizontal", "vertical", "alternativeLabel"],
     "name": "MuiStepper",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiStepper-root",
       "horizontal": "MuiStepper-horizontal",

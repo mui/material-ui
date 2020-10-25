@@ -112,12 +112,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "classes": ["root"],
-    "name": "MuiTextField",
-    "descriptions": {},
-    "globalClasses": { "root": "MuiTextField-root" }
-  },
+  "styles": { "name": "MuiTextField", "globalClasses": { "root": "MuiTextField-root" } },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "FormControl", "pathname": "/api/form-control/" },
   "demos": "- [Autocomplete](/components/autocomplete/)\n- [Pickers](/components/pickers/)\n- [Text Fields](/components/text-fields/)"

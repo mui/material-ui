@@ -27,9 +27,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "img", "standard", "woven"],
     "name": "MuiImageListItem",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiImageListItem-root",
       "img": "MuiImageListItem-img",

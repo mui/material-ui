@@ -62,18 +62,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "fab",
-      "directionUp",
-      "directionDown",
-      "directionLeft",
-      "directionRight",
-      "actions",
-      "actionsClosed"
-    ],
     "name": "MuiSpeedDial",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiSpeedDial-root",
       "fab": "MuiSpeedDial-fab",

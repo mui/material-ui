@@ -116,21 +116,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "popper",
-      "popperInteractive",
-      "popperArrow",
-      "tooltip",
-      "tooltipArrow",
-      "arrow",
-      "touch",
-      "tooltipPlacementLeft",
-      "tooltipPlacementRight",
-      "tooltipPlacementTop",
-      "tooltipPlacementBottom"
-    ],
     "name": "MuiTooltip",
-    "descriptions": {},
     "globalClasses": {
       "popper": "MuiTooltip-popper",
       "popperInteractive": "MuiTooltip-popperInteractive",

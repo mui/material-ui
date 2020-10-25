@@ -27,9 +27,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "text", "active", "completed", "error"],
     "name": "MuiStepIcon",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiStepIcon-root",
       "text": "MuiStepIcon-text",

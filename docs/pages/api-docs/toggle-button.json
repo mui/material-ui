@@ -35,9 +35,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "disabled", "selected", "label", "sizeSmall", "sizeLarge"],
     "name": "MuiToggleButton",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiToggleButton-root",
       "disabled": "Mui-disabled",

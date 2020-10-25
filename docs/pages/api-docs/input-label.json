@@ -32,22 +32,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "focused",
-      "disabled",
-      "error",
-      "required",
-      "asterisk",
-      "formControl",
-      "marginDense",
-      "shrink",
-      "animated",
-      "filled",
-      "outlined"
-    ],
     "name": "MuiInputLabel",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiInputLabel-root",
       "focused": "Mui-focused",

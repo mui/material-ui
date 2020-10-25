@@ -37,19 +37,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "group",
-      "content",
-      "expanded",
-      "selected",
-      "focused",
-      "disabled",
-      "iconContainer",
-      "label"
-    ],
     "name": "MuiTreeItem",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTreeItem-root",
       "group": "MuiTreeItem-group",

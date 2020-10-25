@@ -111,9 +111,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "ul", "outlined", "text"],
     "name": "MuiPagination",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiPagination-root",
       "ul": "MuiPagination-ul",

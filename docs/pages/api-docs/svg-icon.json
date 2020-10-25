@@ -41,19 +41,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "colorPrimary",
-      "colorSecondary",
-      "colorAction",
-      "colorError",
-      "colorDisabled",
-      "fontSizeInherit",
-      "fontSizeSmall",
-      "fontSizeLarge"
-    ],
     "name": "MuiSvgIcon",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiSvgIcon-root",
       "colorPrimary": "MuiSvgIcon-colorPrimary",

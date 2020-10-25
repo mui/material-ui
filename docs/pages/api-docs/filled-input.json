@@ -71,27 +71,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "colorSecondary",
-      "underline",
-      "focused",
-      "disabled",
-      "adornedStart",
-      "adornedEnd",
-      "error",
-      "marginDense",
-      "multiline",
-      "hiddenLabel",
-      "input",
-      "inputMarginDense",
-      "inputHiddenLabel",
-      "inputMultiline",
-      "inputAdornedStart",
-      "inputAdornedEnd"
-    ],
     "name": "MuiFilledInput",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiFilledInput-root",
       "colorSecondary": "MuiFilledInput-colorSecondary",

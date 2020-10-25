@@ -98,9 +98,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "disabled", "focusVisible"],
     "name": "MuiButtonBase",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiButtonBase-root",
       "disabled": "Mui-disabled",

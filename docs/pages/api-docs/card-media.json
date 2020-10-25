@@ -24,9 +24,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "media", "img"],
     "name": "MuiCardMedia",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiCardMedia-root",
       "media": "MuiCardMedia-media",

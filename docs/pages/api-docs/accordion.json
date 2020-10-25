@@ -43,9 +43,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "rounded", "expanded", "disabled", "region"],
     "name": "MuiAccordion",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiAccordion-root",
       "rounded": "MuiAccordion-rounded",

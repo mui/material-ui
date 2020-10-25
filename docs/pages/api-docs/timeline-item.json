@@ -9,17 +9,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "alignLeft",
-      "alignRight",
-      "alignAlternate",
-      "missingOppositeContent",
-      "content",
-      "oppositeContent"
-    ],
     "name": "MuiTimelineItem",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiTimelineItem-root",
       "alignLeft": "MuiTimelineItem-alignLeft",

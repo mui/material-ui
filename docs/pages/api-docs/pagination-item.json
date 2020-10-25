@@ -68,26 +68,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "page",
-      "sizeSmall",
-      "sizeLarge",
-      "text",
-      "textPrimary",
-      "textSecondary",
-      "outlined",
-      "outlinedPrimary",
-      "outlinedSecondary",
-      "rounded",
-      "ellipsis",
-      "focusVisible",
-      "disabled",
-      "selected",
-      "icon"
-    ],
     "name": "MuiPaginationItem",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiPaginationItem-root",
       "page": "MuiPaginationItem-page",

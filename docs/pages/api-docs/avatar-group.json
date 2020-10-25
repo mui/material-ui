@@ -37,9 +37,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "avatar"],
     "name": "MuiAvatarGroup",
-    "descriptions": {},
     "globalClasses": { "root": "MuiAvatarGroup-root", "avatar": "MuiAvatarGroup-avatar" }
   },
   "forwardsRefTo": "HTMLDivElement",

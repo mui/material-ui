@@ -44,9 +44,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "ol", "li", "separator"],
     "name": "MuiBreadcrumbs",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiBreadcrumbs-root",
       "ol": "MuiBreadcrumbs-ol",

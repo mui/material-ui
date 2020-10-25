@@ -41,19 +41,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "text",
-      "rectangular",
-      "circular",
-      "pulse",
-      "wave",
-      "withChildren",
-      "fitContent",
-      "heightAuto"
-    ],
     "name": "MuiSkeleton",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiSkeleton-root",
       "text": "MuiSkeleton-text",

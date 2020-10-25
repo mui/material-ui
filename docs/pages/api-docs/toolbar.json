@@ -29,9 +29,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "gutters", "regular", "dense"],
     "name": "MuiToolbar",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiToolbar-root",
       "gutters": "MuiToolbar-gutters",

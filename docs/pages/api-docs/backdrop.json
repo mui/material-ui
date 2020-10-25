@@ -23,9 +23,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root", "invisible"],
     "name": "MuiBackdrop",
-    "descriptions": {},
     "globalClasses": { "root": "MuiBackdrop-root", "invisible": "MuiBackdrop-invisible" }
   },
   "forwardsRefTo": "HTMLDivElement",

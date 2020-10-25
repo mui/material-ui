@@ -22,21 +22,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": [
-      "root",
-      "horizontal",
-      "vertical",
-      "label",
-      "active",
-      "completed",
-      "error",
-      "disabled",
-      "iconContainer",
-      "alternativeLabel",
-      "labelContainer"
-    ],
     "name": "MuiStepLabel",
-    "descriptions": {},
     "globalClasses": {
       "root": "MuiStepLabel-root",
       "horizontal": "MuiStepLabel-horizontal",

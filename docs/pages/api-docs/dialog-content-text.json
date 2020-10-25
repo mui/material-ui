@@ -8,9 +8,7 @@
   },
   "spread": true,
   "styles": {
-    "classes": ["root"],
     "name": "MuiDialogContentText",
-    "descriptions": {},
     "globalClasses": { "root": "MuiDialogContentText-root" }
   },
   "forwardsRefTo": "HTMLParagraphElement",
