@@ -31,6 +31,21 @@ const componentDescriptions: { [key: string]: string } = {};
 
 const generateClassName = createGenerateClassName();
 
+function writePrettifiedFile(filename: string, data: string, prettierConfigPath: string) {
+  const prettierConfig = prettier.resolveConfig.sync(filename, {
+    config: prettierConfigPath,
+  });
+  if (prettierConfig === null) {
+    throw new Error(
+      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
+    );
+  }
+
+  writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
+    encoding: 'utf8',
+  });
+}
+
 /**
  * Receives a component's test information and source code and return's an object
  * containing the inherited component's name and pathname
@@ -104,7 +119,7 @@ function computeApiDescription(api: ReactApi, options: { host: string }): Promis
 }
 
 /**
- * Add demos comment block to type definitions, e.g.:
+ * Add demos & API comment block to type definitions, e.g.:
  * /**
  *  * Demos:
  *  *
@@ -208,21 +223,6 @@ async function annotateComponentDefinition(context: {
     .join('\n')}\n */`;
   const typesSourceNew = typesSource.slice(0, start) + jsdoc + typesSource.slice(end);
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
-}
-
-function writePrettifiedFile(filename: string, data: string, prettierConfigPath: string) {
-  const prettierConfig = prettier.resolveConfig.sync(filename, {
-    config: prettierConfigPath,
-  });
-  if (prettierConfig === null) {
-    throw new Error(
-      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
-    );
-  }
-
-  writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
-    encoding: 'utf8',
-  });
 }
 
 /**
@@ -477,6 +477,7 @@ async function buildDocs(options: {
    */
   Object.entries(reactAPI.props).forEach(([propName, propData]) => {
     let description = propData.description;
+    const jsdocDefaultValue = propData.jsdocDefaultValue;
 
     if (description === '@ignore') {
       return;
@@ -489,28 +490,26 @@ async function buildDocs(options: {
     const typeDescription = generatePropType(propData.type);
     // Don't keep `type.description` if it matches `type.name`
     // We have the technology. We can rebuid it.
-    reactAPI.props[propName].type.description =
-      typeDescription === reactAPI.props[propName].type.name ? undefined : typeDescription;
-    delete reactAPI.props[propName].type.value;
+    propData.type.description =
+      typeDescription === propData.type.name ? undefined : typeDescription;
+    delete propData.type.value;
 
     // Don't keep `default` for bool props (it should always be false)
-    if (reactAPI.props[propName].type.name !== 'bool') {
-      reactAPI.props[propName].default =
-        reactAPI.props[propName].jsdocDefaultValue &&
-        reactAPI.props[propName].jsdocDefaultValue.value;
+    if (propData.type.name !== 'bool') {
+      propData.default = jsdocDefaultValue && jsdocDefaultValue.value;
     }
-    delete reactAPI.props[propName].defaultValue;
-    delete reactAPI.props[propName].jsdocDefaultValue;
+    delete propData.defaultValue;
+    delete propData.jsdocDefaultValue;
 
-    if (reactAPI.props[propName].required === false) {
-      delete reactAPI.props[propName].required;
+    if (propData.required === false) {
+      delete propData.required;
     }
 
     propDescriptions[name] = {
       ...propDescriptions[name],
       [propName]: description && description.replace(/\n@default.*$/, ''),
     };
-    delete reactAPI.props[propName].description;
+    delete propData.description;
   });
 
   if (reactAPI.description.length) {
@@ -519,31 +518,11 @@ async function buildDocs(options: {
 
   classDescriptions[reactAPI.name] = reactAPI.styles.descriptions;
 
-  // https://medium.com/@captaindaylight/get-a-subset-of-an-object-9896148b9c72
-  let pageContent = (({
-    name,
-    filename,
-    description,
-    props,
-    spread,
-    styles,
-    forwardsRefTo,
-    inheritance,
-  }) => ({
-    name,
-    filename: normalizePath(filename),
-    description,
-    props,
-    spread,
-    styles,
-    forwardsRefTo,
-    inheritance,
-    demos: generateMarkdownDemoList(reactAPI),
-  }))(reactAPI);
-
-  // Deep clone so as not to mutate reactAPI (it's used later for th etype annotations)
+  // Deep clone so as not to mutate reactAPI (it's used later for the type annotations)
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
-  pageContent = JSON.parse(JSON.stringify(pageContent));
+  const pageContent = JSON.parse(JSON.stringify(reactAPI));
+  pageContent.filename = normalizePath(reactAPI.filename);
+  pageContent.demos = generateMarkdownDemoList(reactAPI);
   // delete pageContent.styles.classes;
 
   Object.entries(pageContent.styles.globalClasses).forEach(([className, globalClassName]) => {
@@ -552,6 +531,15 @@ async function buildDocs(options: {
     }
   });
 
+  if (pageContent.description === '') {
+    delete pageContent.description;
+  }
+
+  delete pageContent.src;
+  delete pageContent.EOL;
+  delete pageContent.methods;
+  delete pageContent.displayName;
+  delete pageContent.pagesMarkdown;
   delete pageContent.styles.name;
   delete pageContent.styles.descriptions;
 

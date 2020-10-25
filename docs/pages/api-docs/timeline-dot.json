@@ -1,7 +1,4 @@
 {
-  "name": "TimelineDot",
-  "filename": "/packages/material-ui-lab/src/TimelineDot/TimelineDot.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -21,7 +18,7 @@
       "default": "'filled'"
     }
   },
-  "spread": true,
+  "name": "TimelineDot",
   "styles": {
     "classes": [
       "root",
@@ -36,7 +33,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui-lab/src/TimelineDot/TimelineDot.js",
   "inheritance": null,
   "demos": "- [Timeline](/components/timeline/)"
 }

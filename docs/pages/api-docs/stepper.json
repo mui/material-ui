@@ -1,7 +1,4 @@
 {
-  "name": "Stepper",
-  "filename": "/packages/material-ui/src/Stepper/Stepper.js",
-  "description": "",
   "props": {
     "activeStep": { "type": { "name": "number" }, "default": "0" },
     "alternativeLabel": { "type": { "name": "bool" } },
@@ -15,12 +12,14 @@
       "default": "'horizontal'"
     }
   },
-  "spread": true,
+  "name": "Stepper",
   "styles": {
     "classes": ["root", "horizontal", "vertical", "alternativeLabel"],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Stepper/Stepper.js",
   "inheritance": null,
   "demos": "- [Steppers](/components/steppers/)"
 }

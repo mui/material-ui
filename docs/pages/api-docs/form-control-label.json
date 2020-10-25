@@ -1,6 +1,4 @@
 {
-  "name": "FormControlLabel",
-  "filename": "/packages/material-ui/src/FormControlLabel/FormControlLabel.js",
   "description": "Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.\nUse this component if you want to display an extra label.",
   "props": {
     "checked": { "type": { "name": "bool" } },
@@ -21,7 +19,7 @@
     "onChange": { "type": { "name": "func" } },
     "value": { "type": { "name": "any" } }
   },
-  "spread": true,
+  "name": "FormControlLabel",
   "styles": {
     "classes": [
       "root",
@@ -33,7 +31,9 @@
     ],
     "globalClasses": { "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLLabelElement",
+  "filename": "/packages/material-ui/src/FormControlLabel/FormControlLabel.js",
   "inheritance": null,
   "demos": "- [Checkboxes](/components/checkboxes/)\n- [Radio Buttons](/components/radio-buttons/)\n- [Switches](/components/switches/)"
 }

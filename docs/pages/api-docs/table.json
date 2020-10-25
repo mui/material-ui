@@ -1,7 +1,4 @@
 {
-  "name": "Table",
-  "filename": "/packages/material-ui/src/Table/Table.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -20,9 +17,11 @@
     },
     "stickyHeader": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "Table",
   "styles": { "classes": ["root", "stickyHeader"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLTableElement",
+  "filename": "/packages/material-ui/src/Table/Table.js",
   "inheritance": null,
   "demos": "- [Tables](/components/tables/)"
 }

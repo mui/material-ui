@@ -1,7 +1,4 @@
 {
-  "name": "Button",
-  "filename": "/packages/material-ui/src/Button/Button.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -60,7 +57,7 @@
       "default": "'text'"
     }
   },
-  "spread": true,
+  "name": "Button",
   "styles": {
     "classes": [
       "root",
@@ -95,7 +92,9 @@
     ],
     "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/Button/Button.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "- [Button Group](/components/button-group/)\n- [Buttons](/components/buttons/)"
 }

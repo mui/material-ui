@@ -1,7 +1,4 @@
 {
-  "name": "Select",
-  "filename": "/packages/material-ui/src/Select/Select.js",
-  "description": "",
   "props": {
     "autoWidth": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
@@ -33,7 +30,7 @@
       "default": "'standard'"
     }
   },
-  "spread": true,
+  "name": "Select",
   "styles": {
     "classes": [
       "root",
@@ -50,7 +47,9 @@
     ],
     "globalClasses": { "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Select/Select.js",
   "inheritance": { "component": "Input", "pathname": "/api/input/" },
   "demos": "- [Selects](/components/selects/)"
 }

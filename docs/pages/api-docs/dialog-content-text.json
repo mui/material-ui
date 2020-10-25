@@ -1,14 +1,13 @@
 {
-  "name": "DialogContentText",
-  "filename": "/packages/material-ui/src/DialogContentText/DialogContentText.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } }
   },
-  "spread": true,
+  "name": "DialogContentText",
   "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLParagraphElement",
+  "filename": "/packages/material-ui/src/DialogContentText/DialogContentText.js",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
   "demos": "- [Dialogs](/components/dialogs/)"
 }

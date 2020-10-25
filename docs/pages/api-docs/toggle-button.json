@@ -1,7 +1,4 @@
 {
-  "name": "ToggleButton",
-  "filename": "/packages/material-ui/src/ToggleButton/ToggleButton.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -21,12 +18,14 @@
     },
     "value": { "type": { "name": "any" }, "required": true }
   },
-  "spread": true,
+  "name": "ToggleButton",
   "styles": {
     "classes": ["root", "disabled", "selected", "label", "sizeSmall", "sizeLarge"],
     "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/ToggleButton/ToggleButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "- [Toggle Button](/components/toggle-button/)"
 }

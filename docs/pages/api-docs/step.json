@@ -1,7 +1,4 @@
 {
-  "name": "Step",
-  "filename": "/packages/material-ui/src/Step/Step.js",
-  "description": "",
   "props": {
     "active": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
@@ -13,12 +10,14 @@
     "index": { "type": { "name": "number" } },
     "last": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "Step",
   "styles": {
     "classes": ["root", "horizontal", "vertical", "alternativeLabel", "completed"],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Step/Step.js",
   "inheritance": null,
   "demos": "- [Steppers](/components/steppers/)"
 }

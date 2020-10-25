@@ -1,7 +1,4 @@
 {
-  "name": "CardMedia",
-  "filename": "/packages/material-ui/src/CardMedia/CardMedia.js",
-  "description": "",
   "props": {
     "children": {
       "type": {
@@ -17,9 +14,11 @@
     "src": { "type": { "name": "string" } },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" }
   },
-  "spread": true,
+  "name": "CardMedia",
   "styles": { "classes": ["root", "media", "img"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/CardMedia/CardMedia.js",
   "inheritance": null,
   "demos": "- [Cards](/components/cards/)"
 }

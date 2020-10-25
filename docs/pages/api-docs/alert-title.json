@@ -1,15 +1,14 @@
 {
-  "name": "AlertTitle",
-  "filename": "/packages/material-ui/src/AlertTitle/AlertTitle.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
-  "spread": true,
+  "name": "AlertTitle",
   "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/AlertTitle/AlertTitle.js",
   "inheritance": null,
   "demos": "- [Alert](/components/alert/)"
 }

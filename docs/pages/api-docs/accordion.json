@@ -1,7 +1,4 @@
 {
-  "name": "Accordion",
-  "filename": "/packages/material-ui/src/Accordion/Accordion.js",
-  "description": "",
   "props": {
     "children": {
       "type": {
@@ -20,12 +17,14 @@
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
     "TransitionProps": { "type": { "name": "object" } }
   },
-  "spread": true,
+  "name": "Accordion",
   "styles": {
     "classes": ["root", "rounded", "expanded", "disabled", "region"],
     "globalClasses": { "expanded": "Mui-expanded", "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Accordion/Accordion.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "- [Accordion](/components/accordion/)"
 }

@@ -1,7 +1,4 @@
 {
-  "name": "Tab",
-  "filename": "/packages/material-ui/src/Tab/Tab.js",
-  "description": "",
   "props": {
     "children": {
       "type": { "name": "custom", "raw": "unsupportedProp", "description": "unsupportedProp" }
@@ -19,7 +16,7 @@
     "value": { "type": { "name": "any" } },
     "wrapped": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "Tab",
   "styles": {
     "classes": [
       "root",
@@ -35,7 +32,9 @@
     ],
     "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/Tab/Tab.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "- [Tabs](/components/tabs/)"
 }

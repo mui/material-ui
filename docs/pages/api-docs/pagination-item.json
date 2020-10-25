@@ -1,7 +1,4 @@
 {
-  "name": "PaginationItem",
-  "filename": "/packages/material-ui/src/PaginationItem/PaginationItem.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
     "classes": { "type": { "name": "object" } },
@@ -43,7 +40,7 @@
       "default": "'text'"
     }
   },
-  "spread": true,
+  "name": "PaginationItem",
   "styles": {
     "classes": [
       "root",
@@ -69,7 +66,9 @@
       "selected": "Mui-selected"
     }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/PaginationItem/PaginationItem.js",
   "inheritance": null,
   "demos": "- [Pagination](/components/pagination/)"
 }

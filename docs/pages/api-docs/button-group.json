@@ -1,7 +1,4 @@
 {
-  "name": "ButtonGroup",
-  "filename": "/packages/material-ui/src/ButtonGroup/ButtonGroup.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -38,7 +35,7 @@
       "default": "'outlined'"
     }
   },
-  "spread": true,
+  "name": "ButtonGroup",
   "styles": {
     "classes": [
       "root",
@@ -70,7 +67,9 @@
     ],
     "globalClasses": { "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ButtonGroup/ButtonGroup.js",
   "inheritance": null,
   "demos": "- [Button Group](/components/button-group/)"
 }

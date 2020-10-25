@@ -1,7 +1,4 @@
 {
-  "name": "MenuItem",
-  "filename": "/packages/material-ui/src/MenuItem/MenuItem.js",
-  "description": "",
   "props": {
     "button": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
     "children": { "type": { "name": "node" } },
@@ -25,12 +22,14 @@
       "description": "@ignore"
     }
   },
-  "spread": true,
+  "name": "MenuItem",
   "styles": {
     "classes": ["root", "gutters", "selected", "dense"],
     "globalClasses": { "selected": "Mui-selected" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui/src/MenuItem/MenuItem.js",
   "inheritance": { "component": "ListItem", "pathname": "/api/list-item/" },
   "demos": "- [Menus](/components/menus/)"
 }

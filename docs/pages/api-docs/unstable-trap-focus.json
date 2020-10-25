@@ -1,6 +1,4 @@
 {
-  "name": "Unstable_TrapFocus",
-  "filename": "/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js",
   "description": "Utility component that locks focus inside the component.",
   "props": {
     "children": {
@@ -13,8 +11,10 @@
     "isEnabled": { "type": { "name": "func" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true }
   },
-  "spread": false,
+  "name": "Unstable_TrapFocus",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": false,
+  "filename": "/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js",
   "inheritance": null,
   "demos": "- [Trap Focus](/components/trap-focus/)"
 }

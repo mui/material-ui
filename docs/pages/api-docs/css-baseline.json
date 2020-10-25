@@ -1,10 +1,10 @@
 {
-  "name": "CssBaseline",
-  "filename": "/packages/material-ui/src/CssBaseline/CssBaseline.js",
   "description": "Kickstart an elegant, consistent, and simple baseline to build upon.",
   "props": { "children": { "type": { "name": "node" }, "default": "null" } },
-  "spread": false,
+  "name": "CssBaseline",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": false,
+  "filename": "/packages/material-ui/src/CssBaseline/CssBaseline.js",
   "inheritance": null,
   "demos": "- [Css Baseline](/components/css-baseline/)"
 }

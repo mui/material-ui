@@ -1,15 +1,15 @@
 {
-  "name": "ListItemAvatar",
-  "filename": "/packages/material-ui/src/ListItemAvatar/ListItemAvatar.js",
   "description": "A simple wrapper to apply `List` styles to an `Avatar`.",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
-  "spread": true,
+  "name": "ListItemAvatar",
   "styles": { "classes": ["root", "alignItemsFlexStart"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ListItemAvatar/ListItemAvatar.js",
   "inheritance": null,
   "demos": "- [Lists](/components/lists/)"
 }

@@ -1,6 +1,4 @@
 {
-  "name": "Collapse",
-  "filename": "/packages/material-ui/src/Collapse/Collapse.js",
   "description": "The Collapse transition is used by the\n[Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
     "children": { "type": { "name": "node" } },
@@ -33,12 +31,14 @@
       "default": "duration.standard"
     }
   },
-  "spread": true,
+  "name": "Collapse",
   "styles": {
     "classes": ["root", "horizontal", "entered", "hidden", "wrapper", "wrapperInner"],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Collapse/Collapse.js",
   "inheritance": {
     "component": "Transition",
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"

@@ -1,7 +1,4 @@
 {
-  "name": "SliderStyled",
-  "filename": "/packages/material-ui-lab/src/SliderStyled/SliderStyled.js",
-  "description": "",
   "props": {
     "aria-label": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
@@ -54,9 +51,11 @@
     },
     "valueLabelFormat": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" } }
   },
-  "spread": true,
+  "name": "SliderStyled",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui-lab/src/SliderStyled/SliderStyled.js",
   "inheritance": null,
   "demos": "- [Slider Styled](/components/slider-styled/)"
 }

@@ -1,7 +1,4 @@
 {
-  "name": "Switch",
-  "filename": "/packages/material-ui/src/Switch/Switch.js",
-  "description": "",
   "props": {
     "checked": { "type": { "name": "bool" } },
     "checkedIcon": { "type": { "name": "node" } },
@@ -36,7 +33,7 @@
     },
     "value": { "type": { "name": "any" } }
   },
-  "spread": true,
+  "name": "Switch",
   "styles": {
     "classes": [
       "root",
@@ -54,7 +51,9 @@
     ],
     "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Switch/Switch.js",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
   "demos": "- [Switches](/components/switches/)\n- [Transfer List](/components/transfer-list/)"
 }

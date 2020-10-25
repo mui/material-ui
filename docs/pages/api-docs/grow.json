@@ -1,6 +1,4 @@
 {
-  "name": "Grow",
-  "filename": "/packages/material-ui/src/Grow/Grow.js",
   "description": "The Grow transition is used by the [Tooltip](/components/tooltips/) and\n[Popover](/components/popover/) components.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
     "children": {
@@ -22,9 +20,11 @@
       "default": "'auto'"
     }
   },
-  "spread": true,
+  "name": "Grow",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Grow/Grow.js",
   "inheritance": {
     "component": "Transition",
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"

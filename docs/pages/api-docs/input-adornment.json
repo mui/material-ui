@@ -1,7 +1,4 @@
 {
-  "name": "InputAdornment",
-  "filename": "/packages/material-ui/src/InputAdornment/InputAdornment.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -17,7 +14,7 @@
       }
     }
   },
-  "spread": true,
+  "name": "InputAdornment",
   "styles": {
     "classes": [
       "root",
@@ -30,7 +27,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/InputAdornment/InputAdornment.js",
   "inheritance": null,
   "demos": "- [Text Fields](/components/text-fields/)"
 }

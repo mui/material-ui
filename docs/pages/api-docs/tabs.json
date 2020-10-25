@@ -1,7 +1,4 @@
 {
-  "name": "Tabs",
-  "filename": "/packages/material-ui/src/Tabs/Tabs.js",
-  "description": "",
   "props": {
     "action": { "type": { "name": "custom", "raw": "refType", "description": "ref" } },
     "allowScrollButtonsMobile": { "type": { "name": "bool" } },
@@ -46,7 +43,7 @@
     },
     "visibleScrollbar": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "Tabs",
   "styles": {
     "classes": [
       "root",
@@ -65,7 +62,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Tabs/Tabs.js",
   "inheritance": null,
   "demos": "- [Tabs](/components/tabs/)"
 }

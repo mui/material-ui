@@ -1,7 +1,4 @@
 {
-  "name": "ImageListItemBar",
-  "filename": "/packages/material-ui/src/ImageListItemBar/ImageListItemBar.js",
-  "description": "",
   "props": {
     "actionIcon": { "type": { "name": "node" } },
     "actionPosition": {
@@ -21,7 +18,7 @@
     "subtitle": { "type": { "name": "node" } },
     "title": { "type": { "name": "node" } }
   },
-  "spread": true,
+  "name": "ImageListItemBar",
   "styles": {
     "classes": [
       "root",
@@ -39,7 +36,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ImageListItemBar/ImageListItemBar.js",
   "inheritance": null,
   "demos": "- [Image List](/components/image-list/)"
 }

@@ -1,6 +1,4 @@
 {
-  "name": "Zoom",
-  "filename": "/packages/material-ui/src/Zoom/Zoom.js",
   "description": "The Zoom transition can be used for the floating variant of the\n[Button](/components/buttons/#floating-action-buttons) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
     "children": {
@@ -22,9 +20,11 @@
       "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
     }
   },
-  "spread": true,
+  "name": "Zoom",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Zoom/Zoom.js",
   "inheritance": {
     "component": "Transition",
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"

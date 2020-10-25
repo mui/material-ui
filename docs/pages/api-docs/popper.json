@@ -1,6 +1,4 @@
 {
-  "name": "Popper",
-  "filename": "/packages/material-ui/src/Popper/Popper.js",
   "description": "Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.",
   "props": {
     "anchorEl": {
@@ -39,9 +37,11 @@
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
     "transition": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "Popper",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Popper/Popper.js",
   "inheritance": null,
   "demos": "- [Autocomplete](/components/autocomplete/)\n- [Menus](/components/menus/)\n- [Popper](/components/popper/)"
 }

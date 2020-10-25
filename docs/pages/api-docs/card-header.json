@@ -1,7 +1,4 @@
 {
-  "name": "CardHeader",
-  "filename": "/packages/material-ui/src/CardHeader/CardHeader.js",
-  "description": "",
   "props": {
     "action": { "type": { "name": "node" } },
     "avatar": { "type": { "name": "node" } },
@@ -15,12 +12,14 @@
     "title": { "type": { "name": "node" } },
     "titleTypographyProps": { "type": { "name": "object" } }
   },
-  "spread": true,
+  "name": "CardHeader",
   "styles": {
     "classes": ["root", "avatar", "action", "content", "title", "subheader"],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/CardHeader/CardHeader.js",
   "inheritance": null,
   "demos": "- [Cards](/components/cards/)"
 }

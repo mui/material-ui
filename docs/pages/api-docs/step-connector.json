@@ -1,12 +1,9 @@
 {
-  "name": "StepConnector",
-  "filename": "/packages/material-ui/src/StepConnector/StepConnector.js",
-  "description": "",
   "props": {
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
-  "spread": true,
+  "name": "StepConnector",
   "styles": {
     "classes": [
       "root",
@@ -22,7 +19,9 @@
     ],
     "globalClasses": { "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/StepConnector/StepConnector.js",
   "inheritance": null,
   "demos": "- [Steppers](/components/steppers/)"
 }

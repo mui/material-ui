@@ -1,6 +1,4 @@
 {
-  "name": "InputBase",
-  "filename": "/packages/material-ui/src/InputBase/InputBase.js",
   "description": "`InputBase` contains as few styles as possible.\nIt aims to be a simple building block for creating an input.\nIt contains a load of style reset and some state logic.",
   "props": {
     "aria-describedby": {
@@ -45,7 +43,7 @@
     "type": { "type": { "name": "string" }, "default": "'text'" },
     "value": { "type": { "name": "any" } }
   },
-  "spread": true,
+  "name": "InputBase",
   "styles": {
     "classes": [
       "root",
@@ -70,7 +68,9 @@
     ],
     "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/InputBase/InputBase.js",
   "inheritance": null,
   "demos": "- [Text Fields](/components/text-fields/)"
 }

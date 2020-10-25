@@ -1,16 +1,15 @@
 {
-  "name": "CardContent",
-  "filename": "/packages/material-ui/src/CardContent/CardContent.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": { "type": { "name": "elementType" } }
   },
-  "spread": true,
+  "name": "CardContent",
   "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/CardContent/CardContent.js",
   "inheritance": null,
   "demos": "- [Cards](/components/cards/)"
 }

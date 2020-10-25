@@ -1,7 +1,4 @@
 {
-  "name": "Breadcrumbs",
-  "filename": "/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -13,9 +10,11 @@
     "maxItems": { "type": { "name": "number" }, "default": "8" },
     "separator": { "type": { "name": "node" }, "default": "'/'" }
   },
-  "spread": true,
+  "name": "Breadcrumbs",
   "styles": { "classes": ["root", "ol", "li", "separator"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js",
   "inheritance": null,
   "demos": "- [Breadcrumbs](/components/breadcrumbs/)"
 }

@@ -1,7 +1,4 @@
 {
-  "name": "Backdrop",
-  "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -15,9 +12,11 @@
       }
     }
   },
-  "spread": true,
+  "name": "Backdrop",
   "styles": { "classes": ["root", "invisible"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
   "inheritance": { "component": "Fade", "pathname": "/api/fade/" },
   "demos": "- [Backdrop](/components/backdrop/)"
 }

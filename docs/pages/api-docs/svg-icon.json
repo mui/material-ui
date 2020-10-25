@@ -1,7 +1,4 @@
 {
-  "name": "SvgIcon",
-  "filename": "/packages/material-ui/src/SvgIcon/SvgIcon.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -26,7 +23,7 @@
     "titleAccess": { "type": { "name": "string" } },
     "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
   },
-  "spread": true,
+  "name": "SvgIcon",
   "styles": {
     "classes": [
       "root",
@@ -41,7 +38,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "SVGSVGElement",
+  "filename": "/packages/material-ui/src/SvgIcon/SvgIcon.js",
   "inheritance": null,
   "demos": "- [Icons](/components/icons/)\n- [Material Icons](/components/material-icons/)"
 }

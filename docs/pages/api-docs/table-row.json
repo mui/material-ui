@@ -1,6 +1,4 @@
 {
-  "name": "TableRow",
-  "filename": "/packages/material-ui/src/TableRow/TableRow.js",
   "description": "Will automatically set dynamic row height\nbased on the material table element parent (head, body, etc).",
   "props": {
     "children": { "type": { "name": "node" } },
@@ -10,12 +8,14 @@
     "hover": { "type": { "name": "bool" } },
     "selected": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "TableRow",
   "styles": {
     "classes": ["root", "selected", "hover", "head", "footer"],
     "globalClasses": { "selected": "Mui-selected" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLTableRowElement",
+  "filename": "/packages/material-ui/src/TableRow/TableRow.js",
   "inheritance": null,
   "demos": "- [Tables](/components/tables/)"
 }

@@ -1,7 +1,4 @@
 {
-  "name": "SpeedDialAction",
-  "filename": "/packages/material-ui/src/SpeedDialAction/SpeedDialAction.js",
-  "description": "",
   "props": {
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
@@ -21,7 +18,7 @@
     },
     "tooltipTitle": { "type": { "name": "node" } }
   },
-  "spread": true,
+  "name": "SpeedDialAction",
   "styles": {
     "classes": [
       "fab",
@@ -34,7 +31,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/SpeedDialAction/SpeedDialAction.js",
   "inheritance": { "component": "Tooltip", "pathname": "/api/tooltip/" },
   "demos": "- [Speed Dial](/components/speed-dial/)"
 }

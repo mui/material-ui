@@ -1,7 +1,4 @@
 {
-  "name": "SliderUnstyled",
-  "filename": "/packages/material-ui-lab/src/SliderUnstyled/SliderUnstyled.js",
-  "description": "",
   "props": {
     "aria-label": {
       "type": {
@@ -78,9 +75,11 @@
       "default": "(x) => x"
     }
   },
-  "spread": true,
+  "name": "SliderUnstyled",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui-lab/src/SliderUnstyled/SliderUnstyled.js",
   "inheritance": null,
   "demos": "- [Slider Styled](/components/slider-styled/)"
 }

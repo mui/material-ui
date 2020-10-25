@@ -1,13 +1,10 @@
 {
-  "name": "TimelineItem",
-  "filename": "/packages/material-ui-lab/src/TimelineItem/TimelineItem.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
-  "spread": true,
+  "name": "TimelineItem",
   "styles": {
     "classes": [
       "root",
@@ -20,7 +17,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui-lab/src/TimelineItem/TimelineItem.js",
   "inheritance": null,
   "demos": "- [Timeline](/components/timeline/)"
 }

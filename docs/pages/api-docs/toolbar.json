@@ -1,7 +1,4 @@
 {
-  "name": "Toolbar",
-  "filename": "/packages/material-ui/src/Toolbar/Toolbar.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -16,9 +13,11 @@
       "default": "'regular'"
     }
   },
-  "spread": true,
+  "name": "Toolbar",
   "styles": { "classes": ["root", "gutters", "regular", "dense"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Toolbar/Toolbar.js",
   "inheritance": null,
   "demos": "- [App Bar](/components/app-bar/)"
 }

@@ -1,7 +1,4 @@
 {
-  "name": "Checkbox",
-  "filename": "/packages/material-ui/src/Checkbox/Checkbox.js",
-  "description": "",
   "props": {
     "checked": { "type": { "name": "bool" } },
     "checkedIcon": { "type": { "name": "node" }, "default": "<CheckBoxIcon />" },
@@ -29,12 +26,14 @@
     },
     "value": { "type": { "name": "any" } }
   },
-  "spread": true,
+  "name": "Checkbox",
   "styles": {
     "classes": ["root", "checked", "disabled", "indeterminate", "colorPrimary", "colorSecondary"],
     "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Checkbox/Checkbox.js",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
   "demos": "- [Checkboxes](/components/checkboxes/)\n- [Transfer List](/components/transfer-list/)"
 }

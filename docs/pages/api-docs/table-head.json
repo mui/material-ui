@@ -1,16 +1,15 @@
 {
-  "name": "TableHead",
-  "filename": "/packages/material-ui/src/TableHead/TableHead.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": { "type": { "name": "elementType" } }
   },
-  "spread": true,
+  "name": "TableHead",
   "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLTableSectionElement",
+  "filename": "/packages/material-ui/src/TableHead/TableHead.js",
   "inheritance": null,
   "demos": "- [Tables](/components/tables/)"
 }

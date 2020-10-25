@@ -1,7 +1,4 @@
 {
-  "name": "SnackbarContent",
-  "filename": "/packages/material-ui/src/SnackbarContent/SnackbarContent.js",
-  "description": "",
   "props": {
     "action": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -9,9 +6,11 @@
     "message": { "type": { "name": "node" } },
     "role": { "type": { "name": "string" }, "default": "'alert'" }
   },
-  "spread": true,
+  "name": "SnackbarContent",
   "styles": { "classes": ["root", "message", "action"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/SnackbarContent/SnackbarContent.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "- [Snackbars](/components/snackbars/)"
 }

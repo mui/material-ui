@@ -1,7 +1,4 @@
 {
-  "name": "ListSubheader",
-  "filename": "/packages/material-ui/src/ListSubheader/ListSubheader.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -18,12 +15,14 @@
     "disableSticky": { "type": { "name": "bool" } },
     "inset": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "ListSubheader",
   "styles": {
     "classes": ["root", "colorPrimary", "colorInherit", "gutters", "inset", "sticky"],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui/src/ListSubheader/ListSubheader.js",
   "inheritance": null,
   "demos": "- [Lists](/components/lists/)"
 }

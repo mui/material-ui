@@ -1,6 +1,4 @@
 {
-  "name": "IconButton",
-  "filename": "/packages/material-ui/src/IconButton/IconButton.js",
   "description": "Refer to the [Icons](/components/icons/) section of the documentation\nregarding the available icon options.",
   "props": {
     "children": {
@@ -34,7 +32,7 @@
       "default": "'medium'"
     }
   },
-  "spread": true,
+  "name": "IconButton",
   "styles": {
     "classes": [
       "root",
@@ -49,7 +47,9 @@
     ],
     "globalClasses": { "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/IconButton/IconButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "- [Buttons](/components/buttons/)"
 }

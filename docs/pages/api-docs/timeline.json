@@ -1,7 +1,4 @@
 {
-  "name": "Timeline",
-  "filename": "/packages/material-ui-lab/src/Timeline/Timeline.js",
-  "description": "",
   "props": {
     "align": {
       "type": {
@@ -14,12 +11,14 @@
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
-  "spread": true,
+  "name": "Timeline",
   "styles": {
     "classes": ["root", "alignLeft", "alignRight", "alignAlternate"],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui-lab/src/Timeline/Timeline.js",
   "inheritance": null,
   "demos": "- [Timeline](/components/timeline/)"
 }

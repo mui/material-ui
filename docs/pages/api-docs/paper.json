@@ -1,7 +1,4 @@
 {
-  "name": "Paper",
-  "filename": "/packages/material-ui/src/Paper/Paper.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -17,7 +14,7 @@
       "default": "'elevation'"
     }
   },
-  "spread": true,
+  "name": "Paper",
   "styles": {
     "classes": [
       "root",
@@ -52,7 +49,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Paper/Paper.js",
   "inheritance": null,
   "demos": "- [Cards](/components/cards/)\n- [Paper](/components/paper/)"
 }

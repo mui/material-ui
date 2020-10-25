@@ -1,7 +1,4 @@
 {
-  "name": "BottomNavigation",
-  "filename": "/packages/material-ui/src/BottomNavigation/BottomNavigation.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -11,9 +8,11 @@
     "showLabels": { "type": { "name": "bool" } },
     "value": { "type": { "name": "any" } }
   },
-  "spread": true,
+  "name": "BottomNavigation",
   "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/BottomNavigation/BottomNavigation.js",
   "inheritance": null,
   "demos": "- [Bottom Navigation](/components/bottom-navigation/)"
 }

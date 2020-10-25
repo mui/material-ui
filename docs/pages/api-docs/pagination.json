@@ -1,7 +1,4 @@
 {
-  "name": "Pagination",
-  "filename": "/packages/material-ui/src/Pagination/Pagination.js",
-  "description": "",
   "props": {
     "boundaryCount": { "type": { "name": "number" }, "default": "1" },
     "classes": { "type": { "name": "object" } },
@@ -47,9 +44,11 @@
       "default": "'text'"
     }
   },
-  "spread": true,
+  "name": "Pagination",
   "styles": { "classes": ["root", "ul", "outlined", "text"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/material-ui/src/Pagination/Pagination.js",
   "inheritance": null,
   "demos": "- [Pagination](/components/pagination/)"
 }

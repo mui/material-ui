@@ -1,6 +1,4 @@
 {
-  "name": "TableCell",
-  "filename": "/packages/material-ui/src/TableCell/TableCell.js",
   "description": "The component renders a `<th>` element when the parent context is a header\nor otherwise a `<td>` element.",
   "props": {
     "align": {
@@ -32,7 +30,7 @@
       }
     }
   },
-  "spread": true,
+  "name": "TableCell",
   "styles": {
     "classes": [
       "root",
@@ -50,7 +48,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLTableCellElement",
+  "filename": "/packages/material-ui/src/TableCell/TableCell.js",
   "inheritance": null,
   "demos": "- [Tables](/components/tables/)"
 }

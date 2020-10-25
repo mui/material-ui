@@ -1,6 +1,4 @@
 {
-  "name": "Dialog",
-  "filename": "/packages/material-ui/src/Dialog/Dialog.js",
   "description": "Dialogs are overlaid modal paper based components with a backdrop.",
   "props": {
     "aria-describedby": { "type": { "name": "string" } },
@@ -40,7 +38,7 @@
     },
     "TransitionProps": { "type": { "name": "object" } }
   },
-  "spread": true,
+  "name": "Dialog",
   "styles": {
     "classes": [
       "root",
@@ -61,7 +59,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Dialog/Dialog.js",
   "inheritance": { "component": "Modal", "pathname": "/api/modal/" },
   "demos": "- [Dialogs](/components/dialogs/)"
 }

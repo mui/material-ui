@@ -1,7 +1,4 @@
 {
-  "name": "Menu",
-  "filename": "/packages/material-ui/src/Menu/Menu.js",
-  "description": "",
   "props": {
     "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "autoFocus": { "type": { "name": "bool" } },
@@ -31,9 +28,11 @@
       "default": "'selectedMenu'"
     }
   },
-  "spread": true,
+  "name": "Menu",
   "styles": { "classes": ["paper", "list"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Menu/Menu.js",
   "inheritance": { "component": "Popover", "pathname": "/api/popover/" },
   "demos": "- [App Bar](/components/app-bar/)\n- [Menus](/components/menus/)"
 }

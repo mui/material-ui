@@ -1,7 +1,4 @@
 {
-  "name": "TreeItem",
-  "filename": "/packages/material-ui-lab/src/TreeItem/TreeItem.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -27,7 +24,7 @@
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
     "TransitionProps": { "type": { "name": "object" } }
   },
-  "spread": true,
+  "name": "TreeItem",
   "styles": {
     "classes": [
       "root",
@@ -47,7 +44,9 @@
       "disabled": "Mui-disabled"
     }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui-lab/src/TreeItem/TreeItem.js",
   "inheritance": null,
   "demos": "- [Tree View](/components/tree-view/)"
 }

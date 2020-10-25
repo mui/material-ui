@@ -1,7 +1,4 @@
 {
-  "name": "Snackbar",
-  "filename": "/packages/material-ui/src/Snackbar/Snackbar.js",
-  "description": "",
   "props": {
     "action": { "type": { "name": "node" } },
     "anchorOrigin": {
@@ -35,7 +32,7 @@
     },
     "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
-  "spread": true,
+  "name": "Snackbar",
   "styles": {
     "classes": [
       "root",
@@ -48,7 +45,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Snackbar/Snackbar.js",
   "inheritance": null,
   "demos": "- [Snackbars](/components/snackbars/)"
 }

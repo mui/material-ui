@@ -1,7 +1,4 @@
 {
-  "name": "ListItemText",
-  "filename": "/packages/material-ui/src/ListItemText/ListItemText.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -13,12 +10,14 @@
     "secondary": { "type": { "name": "node" } },
     "secondaryTypographyProps": { "type": { "name": "object" } }
   },
-  "spread": true,
+  "name": "ListItemText",
   "styles": {
     "classes": ["root", "multiline", "dense", "inset", "primary", "secondary"],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ListItemText/ListItemText.js",
   "inheritance": null,
   "demos": "- [Lists](/components/lists/)"
 }

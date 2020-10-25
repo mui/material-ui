@@ -1,7 +1,4 @@
 {
-  "name": "Autocomplete",
-  "filename": "/packages/material-ui/src/Autocomplete/Autocomplete.js",
-  "description": "",
   "props": {
     "autoComplete": { "type": { "name": "bool" } },
     "autoHighlight": { "type": { "name": "bool" } },
@@ -79,7 +76,7 @@
     },
     "value": { "type": { "name": "any" } }
   },
-  "spread": true,
+  "name": "Autocomplete",
   "styles": {
     "classes": [
       "root",
@@ -109,7 +106,9 @@
     ],
     "globalClasses": { "focused": "Mui-focused" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "- [Autocomplete](/components/autocomplete/)"
 }

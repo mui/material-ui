@@ -1,7 +1,4 @@
 {
-  "name": "Divider",
-  "filename": "/packages/material-ui/src/Divider/Divider.js",
-  "description": "",
   "props": {
     "absolute": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
@@ -35,7 +32,7 @@
       "default": "'fullWidth'"
     }
   },
-  "spread": true,
+  "name": "Divider",
   "styles": {
     "classes": [
       "root",
@@ -55,7 +52,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLHRElement",
+  "filename": "/packages/material-ui/src/Divider/Divider.js",
   "inheritance": null,
   "demos": "- [Dividers](/components/dividers/)\n- [Lists](/components/lists/)"
 }

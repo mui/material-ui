@@ -1,7 +1,4 @@
 {
-  "name": "AppBar",
-  "filename": "/packages/material-ui/src/AppBar/AppBar.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -21,7 +18,7 @@
       "default": "'fixed'"
     }
   },
-  "spread": true,
+  "name": "AppBar",
   "styles": {
     "classes": [
       "root",
@@ -38,7 +35,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/material-ui/src/AppBar/AppBar.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "- [App Bar](/components/app-bar/)"
 }

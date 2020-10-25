@@ -1,7 +1,4 @@
 {
-  "name": "LoadingButton",
-  "filename": "/packages/material-ui-lab/src/LoadingButton/LoadingButton.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -21,7 +18,7 @@
       "default": "'center'"
     }
   },
-  "spread": true,
+  "name": "LoadingButton",
   "styles": {
     "classes": [
       "root",
@@ -36,7 +33,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui-lab/src/LoadingButton/LoadingButton.js",
   "inheritance": { "component": "Button", "pathname": "/api/button/" },
   "demos": "- [Buttons](/components/buttons/)"
 }

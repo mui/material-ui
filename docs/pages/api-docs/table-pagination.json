@@ -1,6 +1,4 @@
 {
-  "name": "TablePagination",
-  "filename": "/packages/material-ui/src/TablePagination/TablePagination.js",
   "description": "A `TableCell` based component for placing inside `TableFooter` for pagination.",
   "props": {
     "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
@@ -41,7 +39,7 @@
     "showFirstButton": { "type": { "name": "bool" } },
     "showLastButton": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "TablePagination",
   "styles": {
     "classes": [
       "root",
@@ -57,7 +55,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLTableCellElement",
+  "filename": "/packages/material-ui/src/TablePagination/TablePagination.js",
   "inheritance": { "component": "TableCell", "pathname": "/api/table-cell/" },
   "demos": "- [Tables](/components/tables/)"
 }

@@ -1,7 +1,4 @@
 {
-  "name": "FormHelperText",
-  "filename": "/packages/material-ui/src/FormHelperText/FormHelperText.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -20,7 +17,7 @@
       }
     }
   },
-  "spread": true,
+  "name": "FormHelperText",
   "styles": {
     "classes": [
       "root",
@@ -39,7 +36,9 @@
       "required": "Mui-required"
     }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLParagraphElement",
+  "filename": "/packages/material-ui/src/FormHelperText/FormHelperText.js",
   "inheritance": null,
   "demos": "- [Text Fields](/components/text-fields/)"
 }

@@ -1,16 +1,15 @@
 {
-  "name": "TabPanel",
-  "filename": "/packages/material-ui-lab/src/TabPanel/TabPanel.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "value": { "type": { "name": "string" }, "required": true }
   },
-  "spread": true,
+  "name": "TabPanel",
   "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/TabPanel/TabPanel.js",
   "inheritance": null,
   "demos": "- [Tabs](/components/tabs/)"
 }

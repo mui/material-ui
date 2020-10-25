@@ -1,7 +1,4 @@
 {
-  "name": "TabScrollButton",
-  "filename": "/packages/material-ui/src/TabScrollButton/TabScrollButton.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -16,12 +13,14 @@
       "required": true
     }
   },
-  "spread": true,
+  "name": "TabScrollButton",
   "styles": {
     "classes": ["root", "vertical", "disabled"],
     "globalClasses": { "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/TabScrollButton/TabScrollButton.js",
   "inheritance": null,
   "demos": "- [Tabs](/components/tabs/)"
 }

@@ -1,16 +1,15 @@
 {
-  "name": "DialogTitle",
-  "filename": "/packages/material-ui/src/DialogTitle/DialogTitle.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "disableTypography": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "DialogTitle",
   "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/DialogTitle/DialogTitle.js",
   "inheritance": null,
   "demos": "- [Dialogs](/components/dialogs/)"
 }

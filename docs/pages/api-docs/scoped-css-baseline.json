@@ -1,15 +1,14 @@
 {
-  "name": "ScopedCssBaseline",
-  "filename": "/packages/material-ui/src/ScopedCssBaseline/ScopedCssBaseline.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
-  "spread": true,
+  "name": "ScopedCssBaseline",
   "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ScopedCssBaseline/ScopedCssBaseline.js",
   "inheritance": null,
   "demos": "- [Css Baseline](/components/css-baseline/)"
 }

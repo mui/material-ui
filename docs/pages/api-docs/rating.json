@@ -1,7 +1,4 @@
 {
-  "name": "Rating",
-  "filename": "/packages/material-ui/src/Rating/Rating.js",
-  "description": "",
   "props": {
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
@@ -42,7 +39,7 @@
     },
     "value": { "type": { "name": "number" } }
   },
-  "spread": true,
+  "name": "Rating",
   "styles": {
     "classes": [
       "root",
@@ -64,7 +61,9 @@
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Rating/Rating.js",
   "inheritance": null,
   "demos": "- [Rating](/components/rating/)"
 }

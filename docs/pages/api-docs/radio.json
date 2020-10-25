@@ -1,7 +1,4 @@
 {
-  "name": "Radio",
-  "filename": "/packages/material-ui/src/Radio/Radio.js",
-  "description": "",
   "props": {
     "checked": { "type": { "name": "bool" } },
     "checkedIcon": { "type": { "name": "node" } },
@@ -28,12 +25,14 @@
     },
     "value": { "type": { "name": "any" } }
   },
-  "spread": true,
+  "name": "Radio",
   "styles": {
     "classes": ["root", "checked", "disabled", "colorPrimary", "colorSecondary"],
     "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Radio/Radio.js",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
   "demos": "- [Radio Buttons](/components/radio-buttons/)"
 }

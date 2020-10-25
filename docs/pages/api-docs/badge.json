@@ -1,7 +1,4 @@
 {
-  "name": "Badge",
-  "filename": "/packages/material-ui/src/Badge/Badge.js",
-  "description": "",
   "props": {
     "anchorOrigin": {
       "type": {
@@ -37,7 +34,7 @@
       "default": "'standard'"
     }
   },
-  "spread": true,
+  "name": "Badge",
   "styles": {
     "classes": [
       "root",
@@ -59,7 +56,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Badge/Badge.js",
   "inheritance": null,
   "demos": "- [Avatars](/components/avatars/)\n- [Badges](/components/badges/)"
 }

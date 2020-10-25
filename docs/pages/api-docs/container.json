@@ -1,7 +1,4 @@
 {
-  "name": "Container",
-  "filename": "/packages/material-ui/src/Container/Container.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
     "classes": { "type": { "name": "object" } },
@@ -17,7 +14,7 @@
       "default": "'lg'"
     }
   },
-  "spread": true,
+  "name": "Container",
   "styles": {
     "classes": [
       "root",
@@ -31,7 +28,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/material-ui/src/Container/Container.js",
   "inheritance": null,
   "demos": "- [Container](/components/container/)"
 }

@@ -1,7 +1,4 @@
 {
-  "name": "InputLabel",
-  "filename": "/packages/material-ui/src/InputLabel/InputLabel.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -21,7 +18,7 @@
       }
     }
   },
-  "spread": true,
+  "name": "InputLabel",
   "styles": {
     "classes": [
       "root",
@@ -44,7 +41,9 @@
       "required": "Mui-required"
     }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLLabelElement",
+  "filename": "/packages/material-ui/src/InputLabel/InputLabel.js",
   "inheritance": { "component": "FormLabel", "pathname": "/api/form-label/" },
   "demos": "- [Text Fields](/components/text-fields/)"
 }

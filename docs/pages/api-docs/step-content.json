@@ -1,7 +1,4 @@
 {
-  "name": "StepContent",
-  "filename": "/packages/material-ui/src/StepContent/StepContent.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -16,9 +13,11 @@
     },
     "TransitionProps": { "type": { "name": "object" } }
   },
-  "spread": true,
+  "name": "StepContent",
   "styles": { "classes": ["root", "last", "transition"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/StepContent/StepContent.js",
   "inheritance": null,
   "demos": "- [Steppers](/components/steppers/)"
 }

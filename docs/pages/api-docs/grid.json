@@ -1,7 +1,4 @@
 {
-  "name": "Grid",
-  "filename": "/packages/material-ui/src/Grid/Grid.js",
-  "description": "",
   "props": {
     "alignContent": {
       "type": {
@@ -88,7 +85,7 @@
     },
     "zeroMinWidth": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "Grid",
   "styles": {
     "classes": [
       "root",
@@ -141,7 +138,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Grid/Grid.js",
   "inheritance": null,
   "demos": "- [Grid](/components/grid/)"
 }

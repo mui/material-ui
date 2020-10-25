@@ -1,7 +1,4 @@
 {
-  "name": "Popover",
-  "filename": "/packages/material-ui/src/Popover/Popover.js",
-  "description": "",
   "props": {
     "action": { "type": { "name": "custom", "raw": "refType", "description": "ref" } },
     "anchorEl": {
@@ -58,9 +55,11 @@
     },
     "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
-  "spread": true,
+  "name": "Popover",
   "styles": { "classes": ["root", "paper"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Popover/Popover.js",
   "inheritance": { "component": "Modal", "pathname": "/api/modal/" },
   "demos": "- [Menus](/components/menus/)\n- [Popover](/components/popover/)"
 }

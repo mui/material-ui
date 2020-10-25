@@ -1,7 +1,4 @@
 {
-  "name": "ToggleButtonGroup",
-  "filename": "/packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -21,12 +18,14 @@
     },
     "value": { "type": { "name": "any" } }
   },
-  "spread": true,
+  "name": "ToggleButtonGroup",
   "styles": {
     "classes": ["root", "vertical", "grouped", "groupedHorizontal", "groupedVertical"],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js",
   "inheritance": null,
   "demos": "- [Toggle Button](/components/toggle-button/)"
 }

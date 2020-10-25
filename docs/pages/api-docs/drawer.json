@@ -1,6 +1,4 @@
 {
-  "name": "Drawer",
-  "filename": "/packages/material-ui/src/Drawer/Drawer.js",
   "description": "The props of the [Modal](/api/modal/) component are available\nwhen `variant=\"temporary\"` is set.",
   "props": {
     "anchor": {
@@ -35,7 +33,7 @@
       "default": "'temporary'"
     }
   },
-  "spread": true,
+  "name": "Drawer",
   "styles": {
     "classes": [
       "root",
@@ -53,7 +51,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Drawer/Drawer.js",
   "inheritance": null,
   "demos": "- [Drawers](/components/drawers/)"
 }

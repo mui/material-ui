@@ -1,7 +1,4 @@
 {
-  "name": "Avatar",
-  "filename": "/packages/material-ui/src/Avatar/Avatar.js",
-  "description": "",
   "props": {
     "alt": { "type": { "name": "string" } },
     "children": { "type": { "name": "node" } },
@@ -20,12 +17,14 @@
       "default": "'circular'"
     }
   },
-  "spread": true,
+  "name": "Avatar",
   "styles": {
     "classes": ["root", "colorDefault", "circular", "rounded", "square", "img", "fallback"],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Avatar/Avatar.js",
   "inheritance": null,
   "demos": "- [Avatars](/components/avatars/)"
 }

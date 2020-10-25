@@ -1,7 +1,4 @@
 {
-  "name": "Tooltip",
-  "filename": "/packages/material-ui/src/Tooltip/Tooltip.js",
-  "description": "",
   "props": {
     "arrow": { "type": { "name": "bool" } },
     "children": {
@@ -41,7 +38,7 @@
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "TransitionProps": { "type": { "name": "object" } }
   },
-  "spread": true,
+  "name": "Tooltip",
   "styles": {
     "classes": [
       "popper",
@@ -58,7 +55,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/Tooltip/Tooltip.js",
   "inheritance": null,
   "demos": "- [Tooltips](/components/tooltips/)"
 }

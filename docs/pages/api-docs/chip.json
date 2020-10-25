@@ -1,6 +1,4 @@
 {
-  "name": "Chip",
-  "filename": "/packages/material-ui/src/Chip/Chip.js",
   "description": "Chips represent complex entities in small blocks, such as a contact.",
   "props": {
     "avatar": { "type": { "name": "element" } },
@@ -38,7 +36,7 @@
       "default": "'filled'"
     }
   },
-  "spread": true,
+  "name": "Chip",
   "styles": {
     "classes": [
       "root",
@@ -76,7 +74,9 @@
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Chip/Chip.js",
   "inheritance": null,
   "demos": "- [Chips](/components/chips/)"
 }

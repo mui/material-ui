@@ -1,7 +1,4 @@
 {
-  "name": "ImageList",
-  "filename": "/packages/material-ui/src/ImageList/ImageList.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" }, "required": true },
     "classes": { "type": { "name": "object" } },
@@ -22,9 +19,11 @@
       "default": "'standard'"
     }
   },
-  "spread": true,
+  "name": "ImageList",
   "styles": { "classes": ["root", "masonry", "quilted", "standard", "woven"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui/src/ImageList/ImageList.js",
   "inheritance": null,
   "demos": "- [Image List](/components/image-list/)"
 }

@@ -1,6 +1,4 @@
 {
-  "name": "Hidden",
-  "filename": "/packages/material-ui/src/Hidden/Hidden.js",
   "description": "Responsively hides children based on the selected implementation.",
   "props": {
     "children": { "type": { "name": "node" } },
@@ -31,8 +29,10 @@
     "xsDown": { "type": { "name": "bool" } },
     "xsUp": { "type": { "name": "bool" } }
   },
-  "spread": true,
+  "name": "Hidden",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
+  "filename": "/packages/material-ui/src/Hidden/Hidden.js",
   "inheritance": null,
   "demos": "- [Hidden](/components/hidden/)"
 }

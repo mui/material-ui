@@ -1,7 +1,4 @@
 {
-  "name": "Skeleton",
-  "filename": "/packages/material-ui/src/Skeleton/Skeleton.js",
-  "description": "",
   "props": {
     "animation": {
       "type": {
@@ -25,7 +22,7 @@
     },
     "width": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
-  "spread": true,
+  "name": "Skeleton",
   "styles": {
     "classes": [
       "root",
@@ -40,7 +37,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Skeleton/Skeleton.js",
   "inheritance": null,
   "demos": "- [Skeleton](/components/skeleton/)"
 }

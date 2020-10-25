@@ -1,7 +1,4 @@
 {
-  "name": "AccordionSummary",
-  "filename": "/packages/material-ui/src/AccordionSummary/AccordionSummary.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -10,7 +7,7 @@
     "focusVisibleClassName": { "type": { "name": "string" } },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" }
   },
-  "spread": true,
+  "name": "AccordionSummary",
   "styles": {
     "classes": ["root", "expanded", "focusVisible", "disabled", "content", "expandIconWrapper"],
     "globalClasses": {
@@ -19,7 +16,9 @@
       "disabled": "Mui-disabled"
     }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/AccordionSummary/AccordionSummary.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "- [Accordion](/components/accordion/)"
 }

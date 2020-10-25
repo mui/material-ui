@@ -1,7 +1,4 @@
 {
-  "name": "SpeedDial",
-  "filename": "/packages/material-ui/src/SpeedDial/SpeedDial.js",
-  "description": "",
   "props": {
     "ariaLabel": { "type": { "name": "string" }, "required": true },
     "children": { "type": { "name": "node" } },
@@ -36,7 +33,7 @@
     },
     "TransitionProps": { "type": { "name": "object" } }
   },
-  "spread": true,
+  "name": "SpeedDial",
   "styles": {
     "classes": [
       "root",
@@ -50,7 +47,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/SpeedDial/SpeedDial.js",
   "inheritance": null,
   "demos": "- [Speed Dial](/components/speed-dial/)"
 }

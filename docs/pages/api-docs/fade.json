@@ -1,6 +1,4 @@
 {
-  "name": "Fade",
-  "filename": "/packages/material-ui/src/Fade/Fade.js",
   "description": "The Fade transition is used by the [Modal](/components/modal/) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
     "children": {
@@ -22,9 +20,11 @@
       "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
     }
   },
-  "spread": true,
+  "name": "Fade",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Fade/Fade.js",
   "inheritance": {
     "component": "Transition",
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"

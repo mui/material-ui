@@ -1,7 +1,4 @@
 {
-  "name": "Fab",
-  "filename": "/packages/material-ui/src/Fab/Fab.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -38,7 +35,7 @@
       "default": "'circular'"
     }
   },
-  "spread": true,
+  "name": "Fab",
   "styles": {
     "classes": [
       "root",
@@ -55,7 +52,9 @@
     ],
     "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/Fab/Fab.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "- [Floating Action Button](/components/floating-action-button/)"
 }

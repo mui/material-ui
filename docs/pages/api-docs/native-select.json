@@ -1,6 +1,4 @@
 {
-  "name": "NativeSelect",
-  "filename": "/packages/material-ui/src/NativeSelect/NativeSelect.js",
   "description": "An alternative to `<Select native />` with a much smaller bundle size footprint.",
   "props": {
     "children": { "type": { "name": "node" } },
@@ -17,7 +15,7 @@
       }
     }
   },
-  "spread": true,
+  "name": "NativeSelect",
   "styles": {
     "classes": [
       "root",
@@ -34,7 +32,9 @@
     ],
     "globalClasses": { "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/NativeSelect/NativeSelect.js",
   "inheritance": { "component": "Input", "pathname": "/api/input/" },
   "demos": "- [Selects](/components/selects/)"
 }

@@ -1,7 +1,4 @@
 {
-  "name": "TreeView",
-  "filename": "/packages/material-ui-lab/src/TreeView/TreeView.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -33,9 +30,11 @@
       "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" }
     }
   },
-  "spread": true,
+  "name": "TreeView",
   "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui-lab/src/TreeView/TreeView.js",
   "inheritance": null,
   "demos": "- [Tree View](/components/tree-view/)"
 }

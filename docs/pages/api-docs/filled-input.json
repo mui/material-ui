@@ -1,7 +1,4 @@
 {
-  "name": "FilledInput",
-  "filename": "/packages/material-ui/src/FilledInput/FilledInput.js",
-  "description": "",
   "props": {
     "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" } },
@@ -31,7 +28,7 @@
     "type": { "type": { "name": "string" }, "default": "'text'" },
     "value": { "type": { "name": "any" } }
   },
-  "spread": true,
+  "name": "FilledInput",
   "styles": {
     "classes": [
       "root",
@@ -54,7 +51,9 @@
     ],
     "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/FilledInput/FilledInput.js",
   "inheritance": { "component": "InputBase", "pathname": "/api/input-base/" },
   "demos": "- [Text Fields](/components/text-fields/)"
 }

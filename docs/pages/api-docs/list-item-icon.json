@@ -1,15 +1,15 @@
 {
-  "name": "ListItemIcon",
-  "filename": "/packages/material-ui/src/ListItemIcon/ListItemIcon.js",
   "description": "A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
-  "spread": true,
+  "name": "ListItemIcon",
   "styles": { "classes": ["root", "alignItemsFlexStart"], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ListItemIcon/ListItemIcon.js",
   "inheritance": null,
   "demos": "- [Lists](/components/lists/)"
 }

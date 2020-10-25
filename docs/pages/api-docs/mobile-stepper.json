@@ -1,7 +1,4 @@
 {
-  "name": "MobileStepper",
-  "filename": "/packages/material-ui/src/MobileStepper/MobileStepper.js",
-  "description": "",
   "props": {
     "activeStep": { "type": { "name": "number" }, "default": "0" },
     "backButton": { "type": { "name": "node" } },
@@ -25,7 +22,7 @@
       "default": "'dots'"
     }
   },
-  "spread": true,
+  "name": "MobileStepper",
   "styles": {
     "classes": [
       "root",
@@ -39,7 +36,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/MobileStepper/MobileStepper.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "- [Steppers](/components/steppers/)"
 }

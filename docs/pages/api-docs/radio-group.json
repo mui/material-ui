@@ -1,7 +1,4 @@
 {
-  "name": "RadioGroup",
-  "filename": "/packages/material-ui/src/RadioGroup/RadioGroup.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "defaultValue": {
@@ -14,9 +11,11 @@
     "onChange": { "type": { "name": "func" } },
     "value": { "type": { "name": "any" } }
   },
-  "spread": true,
+  "name": "RadioGroup",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/RadioGroup/RadioGroup.js",
   "inheritance": { "component": "FormGroup", "pathname": "/api/form-group/" },
   "demos": "- [Radio Buttons](/components/radio-buttons/)"
 }

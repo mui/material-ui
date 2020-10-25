@@ -1,7 +1,4 @@
 {
-  "name": "Typography",
-  "filename": "/packages/material-ui/src/Typography/Typography.js",
-  "description": "",
   "props": {
     "align": {
       "type": {
@@ -43,7 +40,7 @@
       "default": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  subtitle1: 'h6',\n  subtitle2: 'h6',\n  body1: 'p',\n  body2: 'p',\n  inherit: 'p',\n}"
     }
   },
-  "spread": true,
+  "name": "Typography",
   "styles": {
     "classes": [
       "root",
@@ -79,7 +76,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLParagraphElement",
+  "filename": "/packages/material-ui/src/Typography/Typography.js",
   "inheritance": null,
   "demos": "- [Breadcrumbs](/components/breadcrumbs/)\n- [Typography](/components/typography/)"
 }

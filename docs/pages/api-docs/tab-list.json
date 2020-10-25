@@ -1,11 +1,10 @@
 {
-  "name": "TabList",
-  "filename": "/packages/material-ui-lab/src/TabList/TabList.js",
-  "description": "",
   "props": { "children": { "type": { "name": "arrayOf", "description": "Array&lt;element&gt;" } } },
-  "spread": true,
+  "name": "TabList",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/TabList/TabList.js",
   "inheritance": { "component": "Tabs", "pathname": "/api/tabs/" },
   "demos": "- [Tabs](/components/tabs/)"
 }

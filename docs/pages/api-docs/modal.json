@@ -1,6 +1,4 @@
 {
-  "name": "Modal",
-  "filename": "/packages/material-ui/src/Modal/Modal.js",
   "description": "Modal is a lower-level construct that is leveraged by the following components:\n\n- [Dialog](/api/dialog/)\n- [Drawer](/api/drawer/)\n- [Menu](/api/menu/)\n- [Popover](/api/popover/)\n\nIf you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component\nrather than directly using Modal.\n\nThis component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).",
   "props": {
     "BackdropComponent": { "type": { "name": "elementType" }, "default": "SimpleBackdrop" },
@@ -28,9 +26,11 @@
     "onEscapeKeyDown": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" }, "required": true }
   },
-  "spread": true,
+  "name": "Modal",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Modal/Modal.js",
   "inheritance": null,
   "demos": "- [Modal](/components/modal/)"
 }

@@ -1,7 +1,4 @@
 {
-  "name": "SwipeableDrawer",
-  "filename": "/packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js",
-  "description": "",
   "props": {
     "anchor": {
       "type": {
@@ -79,9 +76,11 @@
       "defaultValue": { "value": "'temporary'", "computed": false }
     }
   },
-  "spread": true,
+  "name": "SwipeableDrawer",
   "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js",
   "inheritance": { "component": "Drawer", "pathname": "/api/drawer/" },
   "demos": "- [Drawers](/components/drawers/)"
 }

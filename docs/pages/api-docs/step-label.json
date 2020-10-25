@@ -1,7 +1,4 @@
 {
-  "name": "StepLabel",
-  "filename": "/packages/material-ui/src/StepLabel/StepLabel.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -12,7 +9,7 @@
     "StepIconComponent": { "type": { "name": "elementType" } },
     "StepIconProps": { "type": { "name": "object" } }
   },
-  "spread": true,
+  "name": "StepLabel",
   "styles": {
     "classes": [
       "root",
@@ -29,7 +26,9 @@
     ],
     "globalClasses": { "error": "Mui-error", "disabled": "Mui-disabled" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/StepLabel/StepLabel.js",
   "inheritance": null,
   "demos": "- [Steppers](/components/steppers/)"
 }

@@ -1,7 +1,4 @@
 {
-  "name": "Alert",
-  "filename": "/packages/material-ui/src/Alert/Alert.js",
-  "description": "",
   "props": {
     "action": { "type": { "name": "node" } },
     "children": { "type": { "name": "node" } },
@@ -38,7 +35,7 @@
       "default": "'standard'"
     }
   },
-  "spread": true,
+  "name": "Alert",
   "styles": {
     "classes": [
       "root",
@@ -63,7 +60,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Alert/Alert.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "- [Alert](/components/alert/)"
 }

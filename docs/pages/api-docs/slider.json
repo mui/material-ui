@@ -1,7 +1,4 @@
 {
-  "name": "Slider",
-  "filename": "/packages/material-ui/src/Slider/Slider.js",
-  "description": "",
   "props": {
     "aria-label": {
       "type": {
@@ -72,7 +69,7 @@
       "default": "(x) => x"
     }
   },
-  "spread": true,
+  "name": "Slider",
   "styles": {
     "classes": [
       "root",
@@ -98,7 +95,9 @@
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
   },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Slider/Slider.js",
   "inheritance": null,
   "demos": "- [Slider](/components/slider/)"
 }

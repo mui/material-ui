@@ -1,6 +1,4 @@
 {
-  "name": "CircularProgress",
-  "filename": "/packages/material-ui/src/CircularProgress/CircularProgress.js",
   "description": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
   "props": {
     "classes": { "type": { "name": "object" } },
@@ -32,7 +30,7 @@
       "default": "'indeterminate'"
     }
   },
-  "spread": true,
+  "name": "CircularProgress",
   "styles": {
     "classes": [
       "root",
@@ -48,7 +46,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/CircularProgress/CircularProgress.js",
   "inheritance": null,
   "demos": "- [Progress](/components/progress/)"
 }

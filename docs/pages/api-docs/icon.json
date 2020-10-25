@@ -1,7 +1,4 @@
 {
-  "name": "Icon",
-  "filename": "/packages/material-ui/src/Icon/Icon.js",
-  "description": "",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -22,7 +19,7 @@
       "default": "'default'"
     }
   },
-  "spread": true,
+  "name": "Icon",
   "styles": {
     "classes": [
       "root",
@@ -37,7 +34,9 @@
     ],
     "globalClasses": {}
   },
+  "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Icon/Icon.js",
   "inheritance": null,
   "demos": "- [Icons](/components/icons/)\n- [Material Icons](/components/material-icons/)"
 }
