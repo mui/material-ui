@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useForkRef } from '@material-ui/core/utils';
+import useForkRef from '../utils/useForkRef';
 import withStyles from '../styles/withStyles';
 import ListItem from '../ListItem';
 import MenuListContext from '../MenuList/MenuListContext';
