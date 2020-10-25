@@ -66,6 +66,7 @@ const Icon = React.forwardRef(function Icon(props, ref) {
     <Component
       className={clsx(
         'material-icons',
+        // Prevent translations of the content which breaks the CSS logic.
         'notranslate',
         classes.root,
         {
@@ -75,6 +76,7 @@ const Icon = React.forwardRef(function Icon(props, ref) {
         className,
       )}
       aria-hidden
+      translate="no"
       ref={ref}
       {...other}
     />
