@@ -287,7 +287,7 @@ async function annotateClassesDefinition(context: {
 }
 
 /**
- * Substitue CSS class description conditions with placeholder, and store in a separate opbject
+ * Substitute CSS class description conditions with placeholder
  */
 function extractClassConditions(classDescriptions: { [key: string]: { [key: string]: string } }) {
   const classConditions: any = {};
@@ -393,9 +393,7 @@ async function buildDocs(options: {
     styles.globalClasses = styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
         // @ts-expect-error
-        {
-          key,
-        },
+        { key },
         {
           options: {
             name: styles.name,
@@ -423,8 +421,9 @@ async function buildDocs(options: {
      */
     // Match the styles definition in the source
     const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*?}\){0,1};[\r\n][\r\n]/;
-
+    // Match the class name & description
     const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*'*(.*?)'*?:/g;
+
     // Extract the styles section from the source
     const stylesSrc = stylesRegexp.exec(styleSrc);
 
@@ -491,7 +490,7 @@ async function buildDocs(options: {
     // Don't keep `type.description` if it matches `type.name`
     // We have the technology. We can rebuid it.
     reactAPI.props[propName].type.description =
-      typeDescription === reactAPI.props[propName].type.name  ? undefined : typeDescription;
+      typeDescription === reactAPI.props[propName].type.name ? undefined : typeDescription;
     delete reactAPI.props[propName].type.value;
 
     // Don't keep `default` for bool props (it should always be false)
@@ -506,7 +505,6 @@ async function buildDocs(options: {
     if (reactAPI.props[propName].required === false) {
       delete reactAPI.props[propName].required;
     }
-    
 
     propDescriptions[name] = {
       ...propDescriptions[name],
@@ -552,7 +550,7 @@ async function buildDocs(options: {
     if (globalClassName === `Mui${pageContent.name}-${className}`) {
       delete pageContent.styles.globalClasses[className];
     }
-  })
+  });
 
   delete pageContent.styles.name;
   delete pageContent.styles.descriptions;

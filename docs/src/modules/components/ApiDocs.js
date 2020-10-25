@@ -199,7 +199,8 @@ import { ${name} } from '${source}';`}
                 <tbody>
                   {Object.entries(componentProps).map(([propName, propData]) => {
                     const typeDescription = propData.type.description || propData.type.name;
-                    const propDefault = propData.default || propData.type.name === 'bool' && 'false';
+                    const propDefault =
+                      propData.default || (propData.type.name === 'bool' && 'false');
                     return (
                       propData.description !== '@ignore' && (
                         <tr key={propName}>
@@ -225,9 +226,7 @@ import { ${name} } from '${source}';`}
                             )}
                           </td>
                           <td align="left">
-                            {propDefault && (
-                              <span className="prop-default">{propDefault}</span>
-                            )}
+                            {propDefault && <span className="prop-default">{propDefault}</span>}
                           </td>
                           <td
                             align="left"
@@ -267,33 +266,32 @@ import { ${name} } from '${source}';`}
                       </tr>
                     </thead>
                     <tbody>
-                    {componentStyles.classes.map(
-                        (className) => (
-                          <tr key={className}>
-                            <td align="left">
-                              <span className="prop-name">{className}</span>
-                            </td>
-                            <td align="left">
-                              <span className="prop-name">
-                                {componentStyles.globalClasses[className] || `Mui${name}-${className}`}
-                              </span>
-                            </td>
-                            <td
-                              align="left"
-                              dangerouslySetInnerHTML={{
-                                __html:
-                                  classDescriptions[userLanguage][className] &&
-                                  marked(
-                                    classDescriptions[userLanguage][className].description.replace(
-                                      /{{conditions}}/,
-                                      classDescriptions[userLanguage][className].conditions,
-                                    ),
+                      {componentStyles.classes.map((className) => (
+                        <tr key={className}>
+                          <td align="left">
+                            <span className="prop-name">{className}</span>
+                          </td>
+                          <td align="left">
+                            <span className="prop-name">
+                              {componentStyles.globalClasses[className] ||
+                                `Mui${name}-${className}`}
+                            </span>
+                          </td>
+                          <td
+                            align="left"
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                classDescriptions[userLanguage][className] &&
+                                marked(
+                                  classDescriptions[userLanguage][className].description.replace(
+                                    /{{conditions}}/,
+                                    classDescriptions[userLanguage][className].conditions,
                                   ),
-                              }}
-                            />
-                          </tr>
-                        ),
-                      )}
+                                ),
+                            }}
+                          />
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                   <br />
