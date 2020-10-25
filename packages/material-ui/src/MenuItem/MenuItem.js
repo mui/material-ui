@@ -47,9 +47,7 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
 
   const itemRef = React.useRef(null);
 
-  const {
-    registerMenuItem,
-  } = React.useContext(MenuListContext);
+  const { registerMenuItem } = React.useContext(MenuListContext);
 
   let tabIndex;
   if (!props.disabled) {

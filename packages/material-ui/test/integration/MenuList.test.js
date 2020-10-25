@@ -490,9 +490,8 @@ describe('<MenuList> integration', () => {
             <MenuItem>Menu Item 4</MenuItem>
           </div>
         </div>
-
-      )
-    }
+      );
+    };
     render(
       <MenuList autoFocus>
         <MenuItems />

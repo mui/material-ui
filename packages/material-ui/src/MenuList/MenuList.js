@@ -234,9 +234,12 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 
   const handleRef = useForkRef(listRef, ref);
 
-  const registerMenuItem = React.useCallback((item) => {
-    menuItemRefs.current.push(item);
-  }, [menuItemRefs]);
+  const registerMenuItem = React.useCallback(
+    (item) => {
+      menuItemRefs.current.push(item);
+    },
+    [menuItemRefs],
+  );
 
   /**
    * the index of the item should receive focus
@@ -291,7 +294,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   return (
     <MenuListContext.Provider
       value={{
-        registerMenuItem
+        registerMenuItem,
       }}
     >
       <List
