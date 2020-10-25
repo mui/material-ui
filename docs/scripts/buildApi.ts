@@ -289,7 +289,7 @@ async function annotateClassesDefinition(context: {
 /**
  * Substitue CSS class description conditions with placeholder, and store in a separate opbject
  */
-function getClassConditions() {
+function extractClassConditions(classDescriptions: { [key: string]: { [key: string]: string } }) {
   const classConditions: any = {};
   const stylesRegex = /(if |unless )(`.*)./;
 
@@ -301,15 +301,16 @@ function getClassConditions() {
         const conditions = classDescription.match(stylesRegex);
 
         if (conditions) {
-          classConditions[componentName][className] = conditions[2];
-          classDescriptions[componentName][className] = classDescription.replace(
+          classConditions[componentName][className] = { description: classDescription.replace(
             stylesRegex,
             '$1{{conditions}}.',
-          );
+          ), conditions: conditions[2] };
+        } else {
+          classConditions[componentName][className] = { description: classDescription }
         }
       }
-    });
-  });
+    })
+  })
   return classConditions;
 }
 
@@ -543,19 +544,16 @@ export async function getStaticProps() {
   const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
   const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
   const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
-  const req4 = require.context('docs/translations', false, /class-conditions.*.json$/);
 
   const componentDescription = mapApiTranslations(req1, '${reactAPI.name}');
   const propDescriptions = mapApiTranslations(req2, '${reactAPI.name}');
   const classDescriptions = mapApiTranslations(req3, '${reactAPI.name}');
-  const classConditions = mapApiTranslations(req4, '${reactAPI.name}');
 
   const pageContent = {
     ...jsonPageContent,
     componentDescription,
     propDescriptions,
     classDescriptions,
-    classConditions,
   };
 
   return {
@@ -673,13 +671,7 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
     writePrettifiedFile(
       path.resolve('docs/translations', 'class-descriptions.json'),
-      JSON.stringify(sortObject(classDescriptions)),
-      prettierConfigPath,
-    );
-
-    writePrettifiedFile(
-      path.resolve('docs/translations', 'class-conditions.json'),
-      JSON.stringify(sortObject(getClassConditions())),
+      JSON.stringify(sortObject(extractClassConditions(classDescriptions))),
       prettierConfigPath,
     );
 

@@ -59,7 +59,6 @@ function ApiDocs(props) {
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const {
     classDescriptions,
-    classConditions,
     componentDescription,
     demos,
     filename,
@@ -283,9 +282,9 @@ import { ${name} } from '${source}';`}
                               __html:
                                 classDescriptions[userLanguage][className] &&
                                 marked(
-                                  classDescriptions[userLanguage][className].replace(
+                                  classDescriptions[userLanguage][className].description.replace(
                                     /{{conditions}}/,
-                                    classConditions[userLanguage][className],
+                                    classDescriptions[userLanguage][className].conditions,
                                   ),
                                 ),
                             }}
