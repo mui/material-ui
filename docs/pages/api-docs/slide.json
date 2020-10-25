@@ -30,7 +30,7 @@
     }
   },
   "spread": true,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": {
     "component": "Transition",

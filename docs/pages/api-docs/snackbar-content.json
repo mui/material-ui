@@ -10,14 +10,7 @@
     "role": { "type": { "name": "string" }, "default": "'alert'" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiSnackbarContent",
-    "globalClasses": {
-      "root": "MuiSnackbarContent-root",
-      "message": "MuiSnackbarContent-message",
-      "action": "MuiSnackbarContent-action"
-    }
-  },
+  "styles": { "classes": ["root", "message", "action"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "- [Snackbars](/components/snackbars/)"

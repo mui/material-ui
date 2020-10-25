@@ -48,22 +48,22 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiTabs",
-    "globalClasses": {
-      "root": "MuiTabs-root",
-      "vertical": "MuiTabs-vertical",
-      "flexContainer": "MuiTabs-flexContainer",
-      "flexContainerVertical": "MuiTabs-flexContainerVertical",
-      "centered": "MuiTabs-centered",
-      "scroller": "MuiTabs-scroller",
-      "fixed": "MuiTabs-fixed",
-      "scrollableX": "MuiTabs-scrollableX",
-      "scrollableY": "MuiTabs-scrollableY",
-      "hideScrollbar": "MuiTabs-hideScrollbar",
-      "scrollButtons": "MuiTabs-scrollButtons",
-      "scrollButtonsHideMobile": "MuiTabs-scrollButtonsHideMobile",
-      "indicator": "MuiTabs-indicator"
-    }
+    "classes": [
+      "root",
+      "vertical",
+      "flexContainer",
+      "flexContainerVertical",
+      "centered",
+      "scroller",
+      "fixed",
+      "scrollableX",
+      "scrollableY",
+      "hideScrollbar",
+      "scrollButtons",
+      "scrollButtonsHideMobile",
+      "indicator"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

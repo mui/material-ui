@@ -34,7 +34,7 @@
     }
   },
   "spread": true,
-  "styles": { "name": "MuiTreeView", "globalClasses": { "root": "MuiTreeView-root" } },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLUListElement",
   "inheritance": null,
   "demos": "- [Tree View](/components/tree-view/)"

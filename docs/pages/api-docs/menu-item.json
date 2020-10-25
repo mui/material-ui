@@ -27,13 +27,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiMenuItem",
-    "globalClasses": {
-      "root": "MuiMenuItem-root",
-      "gutters": "MuiMenuItem-gutters",
-      "selected": "Mui-selected",
-      "dense": "MuiMenuItem-dense"
-    }
+    "classes": ["root", "gutters", "selected", "dense"],
+    "globalClasses": { "selected": "Mui-selected" }
   },
   "forwardsRefTo": "HTMLLIElement",
   "inheritance": { "component": "ListItem", "pathname": "/api/list-item/" },

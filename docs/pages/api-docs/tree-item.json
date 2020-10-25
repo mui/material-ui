@@ -29,17 +29,22 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiTreeItem",
+    "classes": [
+      "root",
+      "group",
+      "content",
+      "expanded",
+      "selected",
+      "focused",
+      "disabled",
+      "iconContainer",
+      "label"
+    ],
     "globalClasses": {
-      "root": "MuiTreeItem-root",
-      "group": "MuiTreeItem-group",
-      "content": "MuiTreeItem-content",
       "expanded": "Mui-expanded",
       "selected": "Mui-selected",
       "focused": "Mui-focused",
-      "disabled": "Mui-disabled",
-      "iconContainer": "MuiTreeItem-iconContainer",
-      "label": "MuiTreeItem-label"
+      "disabled": "Mui-disabled"
     }
   },
   "forwardsRefTo": "HTMLLIElement",

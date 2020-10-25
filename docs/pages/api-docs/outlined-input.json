@@ -35,24 +35,24 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiOutlinedInput",
-    "globalClasses": {
-      "root": "MuiOutlinedInput-root",
-      "colorSecondary": "MuiOutlinedInput-colorSecondary",
-      "focused": "Mui-focused",
-      "disabled": "Mui-disabled",
-      "adornedStart": "MuiOutlinedInput-adornedStart",
-      "adornedEnd": "MuiOutlinedInput-adornedEnd",
-      "error": "Mui-error",
-      "marginDense": "MuiOutlinedInput-marginDense",
-      "multiline": "MuiOutlinedInput-multiline",
-      "notchedOutline": "MuiOutlinedInput-notchedOutline",
-      "input": "MuiOutlinedInput-input",
-      "inputMarginDense": "MuiOutlinedInput-inputMarginDense",
-      "inputMultiline": "MuiOutlinedInput-inputMultiline",
-      "inputAdornedStart": "MuiOutlinedInput-inputAdornedStart",
-      "inputAdornedEnd": "MuiOutlinedInput-inputAdornedEnd"
-    }
+    "classes": [
+      "root",
+      "colorSecondary",
+      "focused",
+      "disabled",
+      "adornedStart",
+      "adornedEnd",
+      "error",
+      "marginDense",
+      "multiline",
+      "notchedOutline",
+      "input",
+      "inputMarginDense",
+      "inputMultiline",
+      "inputAdornedStart",
+      "inputAdornedEnd"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "InputBase", "pathname": "/api/input-base/" },

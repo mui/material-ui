@@ -18,14 +18,7 @@
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiCardMedia",
-    "globalClasses": {
-      "root": "MuiCardMedia-root",
-      "media": "MuiCardMedia-media",
-      "img": "MuiCardMedia-img"
-    }
-  },
+  "styles": { "classes": ["root", "media", "img"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Cards](/components/cards/)"

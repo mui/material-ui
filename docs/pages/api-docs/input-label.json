@@ -23,20 +23,25 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiInputLabel",
+    "classes": [
+      "root",
+      "focused",
+      "disabled",
+      "error",
+      "required",
+      "asterisk",
+      "formControl",
+      "marginDense",
+      "shrink",
+      "animated",
+      "filled",
+      "outlined"
+    ],
     "globalClasses": {
-      "root": "MuiInputLabel-root",
       "focused": "Mui-focused",
       "disabled": "Mui-disabled",
       "error": "Mui-error",
-      "required": "Mui-required",
-      "asterisk": "MuiInputLabel-asterisk",
-      "formControl": "MuiInputLabel-formControl",
-      "marginDense": "MuiInputLabel-marginDense",
-      "shrink": "MuiInputLabel-shrink",
-      "animated": "MuiInputLabel-animated",
-      "filled": "MuiInputLabel-filled",
-      "outlined": "MuiInputLabel-outlined"
+      "required": "Mui-required"
     }
   },
   "forwardsRefTo": "HTMLLabelElement",

@@ -19,16 +19,16 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiInputAdornment",
-    "globalClasses": {
-      "root": "MuiInputAdornment-root",
-      "filled": "MuiInputAdornment-filled",
-      "positionStart": "MuiInputAdornment-positionStart",
-      "positionEnd": "MuiInputAdornment-positionEnd",
-      "disablePointerEvents": "MuiInputAdornment-disablePointerEvents",
-      "hiddenLabel": "MuiInputAdornment-hiddenLabel",
-      "marginDense": "MuiInputAdornment-marginDense"
-    }
+    "classes": [
+      "root",
+      "filled",
+      "positionStart",
+      "positionEnd",
+      "disablePointerEvents",
+      "hiddenLabel",
+      "marginDense"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

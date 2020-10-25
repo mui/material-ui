@@ -38,21 +38,21 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiSwitch",
-    "globalClasses": {
-      "root": "MuiSwitch-root",
-      "edgeStart": "MuiSwitch-edgeStart",
-      "edgeEnd": "MuiSwitch-edgeEnd",
-      "switchBase": "MuiSwitch-switchBase",
-      "colorPrimary": "MuiSwitch-colorPrimary",
-      "colorSecondary": "MuiSwitch-colorSecondary",
-      "sizeSmall": "MuiSwitch-sizeSmall",
-      "checked": "Mui-checked",
-      "disabled": "Mui-disabled",
-      "input": "MuiSwitch-input",
-      "thumb": "MuiSwitch-thumb",
-      "track": "MuiSwitch-track"
-    }
+    "classes": [
+      "root",
+      "edgeStart",
+      "edgeEnd",
+      "switchBase",
+      "colorPrimary",
+      "colorSecondary",
+      "sizeSmall",
+      "checked",
+      "disabled",
+      "input",
+      "thumb",
+      "track"
+    ],
+    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLSpanElement",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },

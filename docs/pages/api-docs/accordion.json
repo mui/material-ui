@@ -22,14 +22,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiAccordion",
-    "globalClasses": {
-      "root": "MuiAccordion-root",
-      "rounded": "MuiAccordion-rounded",
-      "expanded": "Mui-expanded",
-      "disabled": "Mui-disabled",
-      "region": "MuiAccordion-region"
-    }
+    "classes": ["root", "rounded", "expanded", "disabled", "region"],
+    "globalClasses": { "expanded": "Mui-expanded", "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },

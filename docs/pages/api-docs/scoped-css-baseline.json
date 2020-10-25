@@ -8,10 +8,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiScopedCssBaseline",
-    "globalClasses": { "root": "MuiScopedCssBaseline-root" }
-  },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Css Baseline](/components/css-baseline/)"

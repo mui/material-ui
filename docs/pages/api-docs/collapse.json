@@ -35,15 +35,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiCollapse",
-    "globalClasses": {
-      "root": "MuiCollapse-root",
-      "horizontal": "MuiCollapse-horizontal",
-      "entered": "MuiCollapse-entered",
-      "hidden": "MuiCollapse-hidden",
-      "wrapper": "MuiCollapse-wrapper",
-      "wrapperInner": "MuiCollapse-wrapperInner"
-    }
+    "classes": ["root", "horizontal", "entered", "hidden", "wrapper", "wrapperInner"],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": {

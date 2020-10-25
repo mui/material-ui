@@ -40,7 +40,7 @@
     "transition": { "type": { "name": "bool" } }
   },
   "spread": true,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Autocomplete](/components/autocomplete/)\n- [Menus](/components/menus/)\n- [Popper](/components/popper/)"

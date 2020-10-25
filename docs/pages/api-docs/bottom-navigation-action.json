@@ -19,14 +19,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiBottomNavigationAction",
-    "globalClasses": {
-      "root": "MuiBottomNavigationAction-root",
-      "selected": "Mui-selected",
-      "iconOnly": "MuiBottomNavigationAction-iconOnly",
-      "wrapper": "MuiBottomNavigationAction-wrapper",
-      "label": "MuiBottomNavigationAction-label"
-    }
+    "classes": ["root", "selected", "iconOnly", "wrapper", "label"],
+    "globalClasses": { "selected": "Mui-selected" }
   },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },

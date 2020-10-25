@@ -12,14 +12,11 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiAccordionSummary",
+    "classes": ["root", "expanded", "focusVisible", "disabled", "content", "expandIconWrapper"],
     "globalClasses": {
-      "root": "MuiAccordionSummary-root",
       "expanded": "Mui-expanded",
       "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "content": "MuiAccordionSummary-content",
-      "expandIconWrapper": "MuiAccordionSummary-expandIconWrapper"
+      "disabled": "Mui-disabled"
     }
   },
   "forwardsRefTo": "HTMLDivElement",

@@ -30,14 +30,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiRadio",
-    "globalClasses": {
-      "root": "MuiRadio-root",
-      "checked": "Mui-checked",
-      "disabled": "Mui-disabled",
-      "colorPrimary": "MuiRadio-colorPrimary",
-      "colorSecondary": "MuiRadio-colorSecondary"
-    }
+    "classes": ["root", "checked", "disabled", "colorPrimary", "colorSecondary"],
+    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLSpanElement",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },

@@ -8,10 +8,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiTimelineSeparator",
-    "globalClasses": { "root": "MuiTimelineSeparator-root" }
-  },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Timeline](/components/timeline/)"

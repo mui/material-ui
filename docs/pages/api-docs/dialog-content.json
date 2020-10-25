@@ -9,10 +9,7 @@
     "dividers": { "type": { "name": "bool" } }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiDialogContent",
-    "globalClasses": { "root": "MuiDialogContent-root", "dividers": "MuiDialogContent-dividers" }
-  },
+  "styles": { "classes": ["root", "dividers"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Dialogs](/components/dialogs/)"

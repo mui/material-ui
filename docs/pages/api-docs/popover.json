@@ -59,10 +59,7 @@
     "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiPopover",
-    "globalClasses": { "root": "MuiPopover-root", "paper": "MuiPopover-paper" }
-  },
+  "styles": { "classes": ["root", "paper"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Modal", "pathname": "/api/modal/" },
   "demos": "- [Menus](/components/menus/)\n- [Popover](/components/popover/)"

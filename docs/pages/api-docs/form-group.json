@@ -9,10 +9,7 @@
     "row": { "type": { "name": "bool" } }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiFormGroup",
-    "globalClasses": { "root": "MuiFormGroup-root", "row": "MuiFormGroup-row" }
-  },
+  "styles": { "classes": ["root", "row"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Checkboxes](/components/checkboxes/)\n- [Switches](/components/switches/)"

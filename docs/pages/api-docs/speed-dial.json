@@ -38,17 +38,17 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiSpeedDial",
-    "globalClasses": {
-      "root": "MuiSpeedDial-root",
-      "fab": "MuiSpeedDial-fab",
-      "directionUp": "MuiSpeedDial-directionUp",
-      "directionDown": "MuiSpeedDial-directionDown",
-      "directionLeft": "MuiSpeedDial-directionLeft",
-      "directionRight": "MuiSpeedDial-directionRight",
-      "actions": "MuiSpeedDial-actions",
-      "actionsClosed": "MuiSpeedDial-actionsClosed"
-    }
+    "classes": [
+      "root",
+      "fab",
+      "directionUp",
+      "directionDown",
+      "directionLeft",
+      "directionRight",
+      "actions",
+      "actionsClosed"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

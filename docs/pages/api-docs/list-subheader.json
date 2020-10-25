@@ -20,15 +20,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiListSubheader",
-    "globalClasses": {
-      "root": "MuiListSubheader-root",
-      "colorPrimary": "MuiListSubheader-colorPrimary",
-      "colorInherit": "MuiListSubheader-colorInherit",
-      "gutters": "MuiListSubheader-gutters",
-      "inset": "MuiListSubheader-inset",
-      "sticky": "MuiListSubheader-sticky"
-    }
+    "classes": ["root", "colorPrimary", "colorInherit", "gutters", "inset", "sticky"],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLLIElement",
   "inheritance": null,

@@ -45,24 +45,28 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiPaginationItem",
+    "classes": [
+      "root",
+      "page",
+      "sizeSmall",
+      "sizeLarge",
+      "text",
+      "textPrimary",
+      "textSecondary",
+      "outlined",
+      "outlinedPrimary",
+      "outlinedSecondary",
+      "rounded",
+      "ellipsis",
+      "focusVisible",
+      "disabled",
+      "selected",
+      "icon"
+    ],
     "globalClasses": {
-      "root": "MuiPaginationItem-root",
-      "page": "MuiPaginationItem-page",
-      "sizeSmall": "MuiPaginationItem-sizeSmall",
-      "sizeLarge": "MuiPaginationItem-sizeLarge",
-      "text": "MuiPaginationItem-text",
-      "textPrimary": "MuiPaginationItem-textPrimary",
-      "textSecondary": "MuiPaginationItem-textSecondary",
-      "outlined": "MuiPaginationItem-outlined",
-      "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
-      "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
-      "rounded": "MuiPaginationItem-rounded",
-      "ellipsis": "MuiPaginationItem-ellipsis",
       "focusVisible": "Mui-focusVisible",
       "disabled": "Mui-disabled",
-      "selected": "Mui-selected",
-      "icon": "MuiPaginationItem-icon"
+      "selected": "Mui-selected"
     }
   },
   "forwardsRefTo": "HTMLButtonElement",

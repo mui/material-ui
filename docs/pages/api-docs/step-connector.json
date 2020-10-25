@@ -8,19 +8,19 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiStepConnector",
-    "globalClasses": {
-      "root": "MuiStepConnector-root",
-      "horizontal": "MuiStepConnector-horizontal",
-      "vertical": "MuiStepConnector-vertical",
-      "alternativeLabel": "MuiStepConnector-alternativeLabel",
-      "active": "MuiStepConnector-active",
-      "completed": "MuiStepConnector-completed",
-      "disabled": "Mui-disabled",
-      "line": "MuiStepConnector-line",
-      "lineHorizontal": "MuiStepConnector-lineHorizontal",
-      "lineVertical": "MuiStepConnector-lineVertical"
-    }
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "alternativeLabel",
+      "active",
+      "completed",
+      "disabled",
+      "line",
+      "lineHorizontal",
+      "lineVertical"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

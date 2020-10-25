@@ -37,18 +37,22 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiListItem",
+    "classes": [
+      "root",
+      "container",
+      "focusVisible",
+      "dense",
+      "alignItemsFlexStart",
+      "disabled",
+      "divider",
+      "gutters",
+      "button",
+      "secondaryAction",
+      "selected"
+    ],
     "globalClasses": {
-      "root": "MuiListItem-root",
-      "container": "MuiListItem-container",
       "focusVisible": "Mui-focusVisible",
-      "dense": "MuiListItem-dense",
-      "alignItemsFlexStart": "MuiListItem-alignItemsFlexStart",
       "disabled": "Mui-disabled",
-      "divider": "MuiListItem-divider",
-      "gutters": "MuiListItem-gutters",
-      "button": "MuiListItem-button",
-      "secondaryAction": "MuiListItem-secondaryAction",
       "selected": "Mui-selected"
     }
   },

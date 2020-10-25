@@ -14,12 +14,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiCardActionArea",
-    "globalClasses": {
-      "root": "MuiCardActionArea-root",
-      "focusVisible": "Mui-focusVisible",
-      "focusHighlight": "MuiCardActionArea-focusHighlight"
-    }
+    "classes": ["root", "focusVisible", "focusHighlight"],
+    "globalClasses": { "focusVisible": "Mui-focusVisible" }
   },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },

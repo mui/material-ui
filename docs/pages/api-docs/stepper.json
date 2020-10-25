@@ -17,13 +17,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiStepper",
-    "globalClasses": {
-      "root": "MuiStepper-root",
-      "horizontal": "MuiStepper-horizontal",
-      "vertical": "MuiStepper-vertical",
-      "alternativeLabel": "MuiStepper-alternativeLabel"
-    }
+    "classes": ["root", "horizontal", "vertical", "alternativeLabel"],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

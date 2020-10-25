@@ -16,10 +16,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiBackdrop",
-    "globalClasses": { "root": "MuiBackdrop-root", "invisible": "MuiBackdrop-invisible" }
-  },
+  "styles": { "classes": ["root", "invisible"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Fade", "pathname": "/api/fade/" },
   "demos": "- [Backdrop](/components/backdrop/)"

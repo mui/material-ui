@@ -8,7 +8,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,
-  "styles": { "name": "MuiAlertTitle", "globalClasses": { "root": "MuiAlertTitle-root" } },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Alert](/components/alert/)"

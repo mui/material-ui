@@ -28,18 +28,18 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiSvgIcon",
-    "globalClasses": {
-      "root": "MuiSvgIcon-root",
-      "colorPrimary": "MuiSvgIcon-colorPrimary",
-      "colorSecondary": "MuiSvgIcon-colorSecondary",
-      "colorAction": "MuiSvgIcon-colorAction",
-      "colorError": "MuiSvgIcon-colorError",
-      "colorDisabled": "MuiSvgIcon-colorDisabled",
-      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
-      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
-      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge"
-    }
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorSecondary",
+      "colorAction",
+      "colorError",
+      "colorDisabled",
+      "fontSizeInherit",
+      "fontSizeSmall",
+      "fontSizeLarge"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "SVGSVGElement",
   "inheritance": null,

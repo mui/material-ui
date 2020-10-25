@@ -23,20 +23,20 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiAppBar",
-    "globalClasses": {
-      "root": "MuiAppBar-root",
-      "positionFixed": "MuiAppBar-positionFixed",
-      "positionAbsolute": "MuiAppBar-positionAbsolute",
-      "positionSticky": "MuiAppBar-positionSticky",
-      "positionStatic": "MuiAppBar-positionStatic",
-      "positionRelative": "MuiAppBar-positionRelative",
-      "colorDefault": "MuiAppBar-colorDefault",
-      "colorPrimary": "MuiAppBar-colorPrimary",
-      "colorSecondary": "MuiAppBar-colorSecondary",
-      "colorInherit": "MuiAppBar-colorInherit",
-      "colorTransparent": "MuiAppBar-colorTransparent"
-    }
+    "classes": [
+      "root",
+      "positionFixed",
+      "positionAbsolute",
+      "positionSticky",
+      "positionStatic",
+      "positionRelative",
+      "colorDefault",
+      "colorPrimary",
+      "colorSecondary",
+      "colorInherit",
+      "colorTransparent"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLElement",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },

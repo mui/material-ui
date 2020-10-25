@@ -9,7 +9,7 @@
     "disableTypography": { "type": { "name": "bool" } }
   },
   "spread": true,
-  "styles": { "name": "MuiDialogTitle", "globalClasses": { "root": "MuiDialogTitle-root" } },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Dialogs](/components/dialogs/)"

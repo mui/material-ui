@@ -26,7 +26,7 @@
     }
   },
   "spread": true,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "forwardsRefTo": "HTMLTextAreaElement",
   "inheritance": null,
   "demos": "- [Textarea Autosize](/components/textarea-autosize/)"

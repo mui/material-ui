@@ -17,15 +17,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiCardHeader",
-    "globalClasses": {
-      "root": "MuiCardHeader-root",
-      "avatar": "MuiCardHeader-avatar",
-      "action": "MuiCardHeader-action",
-      "content": "MuiCardHeader-content",
-      "title": "MuiCardHeader-title",
-      "subheader": "MuiCardHeader-subheader"
-    }
+    "classes": ["root", "avatar", "action", "content", "title", "subheader"],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

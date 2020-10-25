@@ -31,15 +31,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiCheckbox",
-    "globalClasses": {
-      "root": "MuiCheckbox-root",
-      "checked": "Mui-checked",
-      "disabled": "Mui-disabled",
-      "indeterminate": "MuiCheckbox-indeterminate",
-      "colorPrimary": "MuiCheckbox-colorPrimary",
-      "colorSecondary": "MuiCheckbox-colorSecondary"
-    }
+    "classes": ["root", "checked", "disabled", "indeterminate", "colorPrimary", "colorSecondary"],
+    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLSpanElement",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },

@@ -35,13 +35,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiFormControl",
-    "globalClasses": {
-      "root": "MuiFormControl-root",
-      "marginNormal": "MuiFormControl-marginNormal",
-      "marginDense": "MuiFormControl-marginDense",
-      "fullWidth": "MuiFormControl-fullWidth"
-    }
+    "classes": ["root", "marginNormal", "marginDense", "fullWidth"],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

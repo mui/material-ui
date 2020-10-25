@@ -48,15 +48,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiPagination",
-    "globalClasses": {
-      "root": "MuiPagination-root",
-      "ul": "MuiPagination-ul",
-      "outlined": "MuiPagination-outlined",
-      "text": "MuiPagination-text"
-    }
-  },
+  "styles": { "classes": ["root", "ul", "outlined", "text"], "globalClasses": {} },
   "forwardsRefTo": "HTMLElement",
   "inheritance": null,
   "demos": "- [Pagination](/components/pagination/)"

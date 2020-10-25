@@ -32,10 +32,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiMenu",
-    "globalClasses": { "paper": "MuiMenu-paper", "list": "MuiMenu-list" }
-  },
+  "styles": { "classes": ["paper", "list"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Popover", "pathname": "/api/popover/" },
   "demos": "- [App Bar](/components/app-bar/)\n- [Menus](/components/menus/)"

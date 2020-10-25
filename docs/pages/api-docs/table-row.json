@@ -12,14 +12,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiTableRow",
-    "globalClasses": {
-      "root": "MuiTableRow-root",
-      "selected": "Mui-selected",
-      "hover": "MuiTableRow-hover",
-      "head": "MuiTableRow-head",
-      "footer": "MuiTableRow-footer"
-    }
+    "classes": ["root", "selected", "hover", "head", "footer"],
+    "globalClasses": { "selected": "Mui-selected" }
   },
   "forwardsRefTo": "HTMLTableRowElement",
   "inheritance": null,

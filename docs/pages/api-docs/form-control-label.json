@@ -23,15 +23,15 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiFormControlLabel",
-    "globalClasses": {
-      "root": "MuiFormControlLabel-root",
-      "labelPlacementStart": "MuiFormControlLabel-labelPlacementStart",
-      "labelPlacementTop": "MuiFormControlLabel-labelPlacementTop",
-      "labelPlacementBottom": "MuiFormControlLabel-labelPlacementBottom",
-      "disabled": "Mui-disabled",
-      "label": "MuiFormControlLabel-label"
-    }
+    "classes": [
+      "root",
+      "labelPlacementStart",
+      "labelPlacementTop",
+      "labelPlacementBottom",
+      "disabled",
+      "label"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLLabelElement",
   "inheritance": null,

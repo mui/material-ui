@@ -29,7 +29,7 @@
     "open": { "type": { "name": "bool" }, "required": true }
   },
   "spread": true,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Modal](/components/modal/)"

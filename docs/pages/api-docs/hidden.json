@@ -32,7 +32,7 @@
     "xsUp": { "type": { "name": "bool" } }
   },
   "spread": true,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "inheritance": null,
   "demos": "- [Hidden](/components/hidden/)"
 }

@@ -9,7 +9,7 @@
     "value": { "type": { "name": "string" }, "required": true }
   },
   "spread": true,
-  "styles": { "name": "MuiTabPanel", "globalClasses": { "root": "MuiTabPanel-root" } },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Tabs](/components/tabs/)"

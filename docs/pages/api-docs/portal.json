@@ -8,7 +8,7 @@
     "disablePortal": { "type": { "name": "bool" } }
   },
   "spread": false,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "inheritance": null,
   "demos": "- [Portal](/components/portal/)"
 }

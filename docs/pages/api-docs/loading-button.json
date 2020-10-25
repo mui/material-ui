@@ -23,18 +23,18 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiLoadingButton",
-    "globalClasses": {
-      "root": "MuiLoadingButton-root",
-      "pending": "MuiLoadingButton-pending",
-      "pendingIndicator": "MuiLoadingButton-pendingIndicator",
-      "pendingIndicatorCenter": "MuiLoadingButton-pendingIndicatorCenter",
-      "pendingIndicatorStart": "MuiLoadingButton-pendingIndicatorStart",
-      "pendingIndicatorEnd": "MuiLoadingButton-pendingIndicatorEnd",
-      "endIconPendingEnd": "MuiLoadingButton-endIconPendingEnd",
-      "startIconPendingStart": "MuiLoadingButton-startIconPendingStart",
-      "labelPendingCenter": "MuiLoadingButton-labelPendingCenter"
-    }
+    "classes": [
+      "root",
+      "pending",
+      "pendingIndicator",
+      "pendingIndicatorCenter",
+      "pendingIndicatorStart",
+      "pendingIndicatorEnd",
+      "endIconPendingEnd",
+      "startIconPendingStart",
+      "labelPendingCenter"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": { "component": "Button", "pathname": "/api/button/" },

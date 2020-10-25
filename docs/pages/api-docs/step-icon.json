@@ -12,14 +12,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiStepIcon",
-    "globalClasses": {
-      "root": "MuiStepIcon-root",
-      "text": "MuiStepIcon-text",
-      "active": "MuiStepIcon-active",
-      "completed": "MuiStepIcon-completed",
-      "error": "Mui-error"
-    }
+    "classes": ["root", "text", "active", "completed", "error"],
+    "globalClasses": { "error": "Mui-error" }
   },
   "forwardsRefTo": "SVGSVGElement",
   "inheritance": null,

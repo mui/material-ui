@@ -182,7 +182,7 @@ import { ${name} } from '${source}';`}
                 <React.Fragment>
                   {heading('component-name')}
                   {dangerousMarkdown(
-                    t('apiStyleOverrides').replace(/{{pageStyles\.name}}/, componentStyles.name),
+                    t('apiStyleOverrides').replace(/{{styles\.name}}/, `Mui${name}`),
                   )}
                 </React.Fragment>
               )}
@@ -255,7 +255,7 @@ import { ${name} } from '${source}';`}
                     .replace(/{{componentName}}/, name),
                 ),
               ]}
-              {componentStyles.globalClasses ? (
+              {componentStyles.classes ? (
                 <React.Fragment>
                   {heading('css')}
                   <table>
@@ -267,15 +267,15 @@ import { ${name} } from '${source}';`}
                       </tr>
                     </thead>
                     <tbody>
-                      {Object.entries(componentStyles.globalClasses).map(
-                        ([className, globalClassName]) => (
+                    {componentStyles.classes.map(
+                        (className) => (
                           <tr key={className}>
                             <td align="left">
                               <span className="prop-name">{className}</span>
                             </td>
                             <td align="left">
                               <span className="prop-name">
-                                {componentStyles.globalClasses[className]}
+                                {componentStyles.globalClasses[className] || `Mui${name}-${className}`}
                               </span>
                             </td>
                             <td

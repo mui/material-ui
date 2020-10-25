@@ -16,16 +16,21 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiFormLabel",
+    "classes": [
+      "root",
+      "colorSecondary",
+      "focused",
+      "disabled",
+      "error",
+      "filled",
+      "required",
+      "asterisk"
+    ],
     "globalClasses": {
-      "root": "MuiFormLabel-root",
-      "colorSecondary": "MuiFormLabel-colorSecondary",
       "focused": "Mui-focused",
       "disabled": "Mui-disabled",
       "error": "Mui-error",
-      "filled": "MuiFormLabel-filled",
-      "required": "Mui-required",
-      "asterisk": "MuiFormLabel-asterisk"
+      "required": "Mui-required"
     }
   },
   "forwardsRefTo": "HTMLLabelElement",

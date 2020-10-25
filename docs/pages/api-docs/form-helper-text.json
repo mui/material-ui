@@ -22,15 +22,20 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiFormHelperText",
+    "classes": [
+      "root",
+      "error",
+      "disabled",
+      "marginDense",
+      "contained",
+      "focused",
+      "filled",
+      "required"
+    ],
     "globalClasses": {
-      "root": "MuiFormHelperText-root",
       "error": "Mui-error",
       "disabled": "Mui-disabled",
-      "marginDense": "MuiFormHelperText-marginDense",
-      "contained": "MuiFormHelperText-contained",
       "focused": "Mui-focused",
-      "filled": "MuiFormHelperText-filled",
       "required": "Mui-required"
     }
   },

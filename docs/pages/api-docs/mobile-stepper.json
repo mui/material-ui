@@ -27,17 +27,17 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiMobileStepper",
-    "globalClasses": {
-      "root": "MuiMobileStepper-root",
-      "positionBottom": "MuiMobileStepper-positionBottom",
-      "positionTop": "MuiMobileStepper-positionTop",
-      "positionStatic": "MuiMobileStepper-positionStatic",
-      "dots": "MuiMobileStepper-dots",
-      "dot": "MuiMobileStepper-dot",
-      "dotActive": "MuiMobileStepper-dotActive",
-      "progress": "MuiMobileStepper-progress"
-    }
+    "classes": [
+      "root",
+      "positionBottom",
+      "positionTop",
+      "positionStatic",
+      "dots",
+      "dot",
+      "dotActive",
+      "progress"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },

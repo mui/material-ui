@@ -23,21 +23,21 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiImageListItemBar",
-    "globalClasses": {
-      "root": "MuiImageListItemBar-root",
-      "positionBottom": "MuiImageListItemBar-positionBottom",
-      "positionTop": "MuiImageListItemBar-positionTop",
-      "positionBelow": "MuiImageListItemBar-positionBelow",
-      "titleWrap": "MuiImageListItemBar-titleWrap",
-      "titleWrapBelow": "MuiImageListItemBar-titleWrapBelow",
-      "titleWrapActionPosLeft": "MuiImageListItemBar-titleWrapActionPosLeft",
-      "titleWrapActionPosRight": "MuiImageListItemBar-titleWrapActionPosRight",
-      "title": "MuiImageListItemBar-title",
-      "subtitle": "MuiImageListItemBar-subtitle",
-      "actionIcon": "MuiImageListItemBar-actionIcon",
-      "actionIconActionPosLeft": "MuiImageListItemBar-actionIconActionPosLeft"
-    }
+    "classes": [
+      "root",
+      "positionBottom",
+      "positionTop",
+      "positionBelow",
+      "titleWrap",
+      "titleWrapBelow",
+      "titleWrapActionPosLeft",
+      "titleWrapActionPosRight",
+      "title",
+      "subtitle",
+      "actionIcon",
+      "actionIconActionPosLeft"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

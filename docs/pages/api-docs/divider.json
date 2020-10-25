@@ -37,23 +37,23 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiDivider",
-    "globalClasses": {
-      "root": "MuiDivider-root",
-      "absolute": "MuiDivider-absolute",
-      "inset": "MuiDivider-inset",
-      "fullWidth": "MuiDivider-fullWidth",
-      "light": "MuiDivider-light",
-      "middle": "MuiDivider-middle",
-      "vertical": "MuiDivider-vertical",
-      "flexItem": "MuiDivider-flexItem",
-      "withChildren": "MuiDivider-withChildren",
-      "withChildrenVertical": "MuiDivider-withChildrenVertical",
-      "textAlignRight": "MuiDivider-textAlignRight",
-      "textAlignLeft": "MuiDivider-textAlignLeft",
-      "wrapper": "MuiDivider-wrapper",
-      "wrapperVertical": "MuiDivider-wrapperVertical"
-    }
+    "classes": [
+      "root",
+      "absolute",
+      "inset",
+      "fullWidth",
+      "light",
+      "middle",
+      "vertical",
+      "flexItem",
+      "withChildren",
+      "withChildrenVertical",
+      "textAlignRight",
+      "textAlignLeft",
+      "wrapper",
+      "wrapperVertical"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLHRElement",
   "inheritance": null,

@@ -17,15 +17,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiToolbar",
-    "globalClasses": {
-      "root": "MuiToolbar-root",
-      "gutters": "MuiToolbar-gutters",
-      "regular": "MuiToolbar-regular",
-      "dense": "MuiToolbar-dense"
-    }
-  },
+  "styles": { "classes": ["root", "gutters", "regular", "dense"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [App Bar](/components/app-bar/)"

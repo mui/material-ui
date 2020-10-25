@@ -43,19 +43,19 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiTablePagination",
-    "globalClasses": {
-      "root": "MuiTablePagination-root",
-      "toolbar": "MuiTablePagination-toolbar",
-      "spacer": "MuiTablePagination-spacer",
-      "caption": "MuiTablePagination-caption",
-      "selectRoot": "MuiTablePagination-selectRoot",
-      "select": "MuiTablePagination-select",
-      "selectIcon": "MuiTablePagination-selectIcon",
-      "input": "MuiTablePagination-input",
-      "menuItem": "MuiTablePagination-menuItem",
-      "actions": "MuiTablePagination-actions"
-    }
+    "classes": [
+      "root",
+      "toolbar",
+      "spacer",
+      "caption",
+      "selectRoot",
+      "select",
+      "selectIcon",
+      "input",
+      "menuItem",
+      "actions"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLTableCellElement",
   "inheritance": { "component": "TableCell", "pathname": "/api/table-cell/" },

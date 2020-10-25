@@ -30,10 +30,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiAvatarGroup",
-    "globalClasses": { "root": "MuiAvatarGroup-root", "avatar": "MuiAvatarGroup-avatar" }
-  },
+  "styles": { "classes": ["root", "avatar"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Avatars](/components/avatars/)"

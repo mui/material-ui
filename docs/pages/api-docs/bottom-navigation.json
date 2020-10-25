@@ -12,10 +12,7 @@
     "value": { "type": { "name": "any" } }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiBottomNavigation",
-    "globalClasses": { "root": "MuiBottomNavigation-root" }
-  },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Bottom Navigation](/components/bottom-navigation/)"

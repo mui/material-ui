@@ -24,18 +24,18 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiIcon",
-    "globalClasses": {
-      "root": "MuiIcon-root",
-      "colorPrimary": "MuiIcon-colorPrimary",
-      "colorSecondary": "MuiIcon-colorSecondary",
-      "colorAction": "MuiIcon-colorAction",
-      "colorError": "MuiIcon-colorError",
-      "colorDisabled": "MuiIcon-colorDisabled",
-      "fontSizeInherit": "MuiIcon-fontSizeInherit",
-      "fontSizeSmall": "MuiIcon-fontSizeSmall",
-      "fontSizeLarge": "MuiIcon-fontSizeLarge"
-    }
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorSecondary",
+      "colorAction",
+      "colorError",
+      "colorDisabled",
+      "fontSizeInherit",
+      "fontSizeSmall",
+      "fontSizeLarge"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLSpanElement",
   "inheritance": null,

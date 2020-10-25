@@ -79,7 +79,7 @@
     }
   },
   "spread": true,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "forwardsRefTo": "HTMLSpanElement",
   "inheritance": null,
   "demos": "- [Slider Styled](/components/slider-styled/)"

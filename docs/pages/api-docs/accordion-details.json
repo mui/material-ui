@@ -8,10 +8,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiAccordionDetails",
-    "globalClasses": { "root": "MuiAccordionDetails-root" }
-  },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Accordion](/components/accordion/)"

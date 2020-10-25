@@ -23,18 +23,18 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiTimelineDot",
-    "globalClasses": {
-      "root": "MuiTimelineDot-root",
-      "filled": "MuiTimelineDot-filled",
-      "outlined": "MuiTimelineDot-outlined",
-      "filledGrey": "MuiTimelineDot-filledGrey",
-      "outlinedGrey": "MuiTimelineDot-outlinedGrey",
-      "filledPrimary": "MuiTimelineDot-filledPrimary",
-      "outlinedPrimary": "MuiTimelineDot-outlinedPrimary",
-      "filledSecondary": "MuiTimelineDot-filledSecondary",
-      "outlinedSecondary": "MuiTimelineDot-outlinedSecondary"
-    }
+    "classes": [
+      "root",
+      "filled",
+      "outlined",
+      "filledGrey",
+      "outlinedGrey",
+      "filledPrimary",
+      "outlinedPrimary",
+      "filledSecondary",
+      "outlinedSecondary"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLSpanElement",
   "inheritance": null,

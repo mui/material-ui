@@ -12,15 +12,7 @@
     "subheader": { "type": { "name": "node" } }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiList",
-    "globalClasses": {
-      "root": "MuiList-root",
-      "padding": "MuiList-padding",
-      "dense": "MuiList-dense",
-      "subheader": "MuiList-subheader"
-    }
-  },
+  "styles": { "classes": ["root", "padding", "dense", "subheader"], "globalClasses": {} },
   "forwardsRefTo": "HTMLUListElement",
   "inheritance": null,
   "demos": "- [Lists](/components/lists/)\n- [Transfer List](/components/transfer-list/)"

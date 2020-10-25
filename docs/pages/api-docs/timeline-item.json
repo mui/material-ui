@@ -9,16 +9,16 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiTimelineItem",
-    "globalClasses": {
-      "root": "MuiTimelineItem-root",
-      "alignLeft": "MuiTimelineItem-alignLeft",
-      "alignRight": "MuiTimelineItem-alignRight",
-      "alignAlternate": "MuiTimelineItem-alignAlternate",
-      "missingOppositeContent": "MuiTimelineItem-missingOppositeContent",
-      "content": "MuiTimelineItem-content",
-      "oppositeContent": "MuiTimelineItem-oppositeContent"
-    }
+    "classes": [
+      "root",
+      "alignLeft",
+      "alignRight",
+      "alignAlternate",
+      "missingOppositeContent",
+      "content",
+      "oppositeContent"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLLIElement",
   "inheritance": null,

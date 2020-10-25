@@ -28,7 +28,7 @@
     }
   },
   "spread": false,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "inheritance": null,
   "demos": "- [Click Away Listener](/components/click-away-listener/)\n- [Menus](/components/menus/)"
 }

@@ -37,16 +37,16 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiSnackbar",
-    "globalClasses": {
-      "root": "MuiSnackbar-root",
-      "anchorOriginTopCenter": "MuiSnackbar-anchorOriginTopCenter",
-      "anchorOriginBottomCenter": "MuiSnackbar-anchorOriginBottomCenter",
-      "anchorOriginTopRight": "MuiSnackbar-anchorOriginTopRight",
-      "anchorOriginBottomRight": "MuiSnackbar-anchorOriginBottomRight",
-      "anchorOriginTopLeft": "MuiSnackbar-anchorOriginTopLeft",
-      "anchorOriginBottomLeft": "MuiSnackbar-anchorOriginBottomLeft"
-    }
+    "classes": [
+      "root",
+      "anchorOriginTopCenter",
+      "anchorOriginBottomCenter",
+      "anchorOriginTopRight",
+      "anchorOriginBottomRight",
+      "anchorOriginTopLeft",
+      "anchorOriginBottomLeft"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

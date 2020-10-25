@@ -34,19 +34,19 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiCircularProgress",
-    "globalClasses": {
-      "root": "MuiCircularProgress-root",
-      "determinate": "MuiCircularProgress-determinate",
-      "indeterminate": "MuiCircularProgress-indeterminate",
-      "colorPrimary": "MuiCircularProgress-colorPrimary",
-      "colorSecondary": "MuiCircularProgress-colorSecondary",
-      "svg": "MuiCircularProgress-svg",
-      "circle": "MuiCircularProgress-circle",
-      "circleDeterminate": "MuiCircularProgress-circleDeterminate",
-      "circleIndeterminate": "MuiCircularProgress-circleIndeterminate",
-      "circleDisableShrink": "MuiCircularProgress-circleDisableShrink"
-    }
+    "classes": [
+      "root",
+      "determinate",
+      "indeterminate",
+      "colorPrimary",
+      "colorSecondary",
+      "svg",
+      "circle",
+      "circleDeterminate",
+      "circleIndeterminate",
+      "circleDisableShrink"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

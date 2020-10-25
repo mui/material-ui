@@ -37,21 +37,21 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiDrawer",
-    "globalClasses": {
-      "root": "MuiDrawer-root",
-      "docked": "MuiDrawer-docked",
-      "paper": "MuiDrawer-paper",
-      "paperAnchorLeft": "MuiDrawer-paperAnchorLeft",
-      "paperAnchorRight": "MuiDrawer-paperAnchorRight",
-      "paperAnchorTop": "MuiDrawer-paperAnchorTop",
-      "paperAnchorBottom": "MuiDrawer-paperAnchorBottom",
-      "paperAnchorDockedLeft": "MuiDrawer-paperAnchorDockedLeft",
-      "paperAnchorDockedTop": "MuiDrawer-paperAnchorDockedTop",
-      "paperAnchorDockedRight": "MuiDrawer-paperAnchorDockedRight",
-      "paperAnchorDockedBottom": "MuiDrawer-paperAnchorDockedBottom",
-      "modal": "MuiDrawer-modal"
-    }
+    "classes": [
+      "root",
+      "docked",
+      "paper",
+      "paperAnchorLeft",
+      "paperAnchorRight",
+      "paperAnchorTop",
+      "paperAnchorBottom",
+      "paperAnchorDockedLeft",
+      "paperAnchorDockedTop",
+      "paperAnchorDockedRight",
+      "paperAnchorDockedBottom",
+      "modal"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

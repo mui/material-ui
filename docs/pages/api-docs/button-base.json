@@ -57,12 +57,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiButtonBase",
-    "globalClasses": {
-      "root": "MuiButtonBase-root",
-      "disabled": "Mui-disabled",
-      "focusVisible": "Mui-focusVisible"
-    }
+    "classes": ["root", "disabled", "focusVisible"],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
   },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": null,

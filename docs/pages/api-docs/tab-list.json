@@ -4,7 +4,7 @@
   "description": "",
   "props": { "children": { "type": { "name": "arrayOf", "description": "Array&lt;element&gt;" } } },
   "spread": true,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Tabs", "pathname": "/api/tabs/" },
   "demos": "- [Tabs](/components/tabs/)"

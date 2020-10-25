@@ -9,7 +9,7 @@
     "raised": { "type": { "name": "bool" } }
   },
   "spread": true,
-  "styles": { "name": "MuiCard", "globalClasses": { "root": "MuiCard-root" } },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "- [Cards](/components/cards/)"

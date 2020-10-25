@@ -23,16 +23,16 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiSpeedDialAction",
-    "globalClasses": {
-      "fab": "MuiSpeedDialAction-fab",
-      "fabClosed": "MuiSpeedDialAction-fabClosed",
-      "staticTooltip": "MuiSpeedDialAction-staticTooltip",
-      "staticTooltipClosed": "MuiSpeedDialAction-staticTooltipClosed",
-      "staticTooltipLabel": "MuiSpeedDialAction-staticTooltipLabel",
-      "tooltipPlacementLeft": "MuiSpeedDialAction-tooltipPlacementLeft",
-      "tooltipPlacementRight": "MuiSpeedDialAction-tooltipPlacementRight"
-    }
+    "classes": [
+      "fab",
+      "fabClosed",
+      "staticTooltip",
+      "staticTooltipClosed",
+      "staticTooltipLabel",
+      "tooltipPlacementLeft",
+      "tooltipPlacementRight"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": { "component": "Tooltip", "pathname": "/api/tooltip/" },

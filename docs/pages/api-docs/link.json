@@ -36,15 +36,15 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiLink",
-    "globalClasses": {
-      "root": "MuiLink-root",
-      "underlineNone": "MuiLink-underlineNone",
-      "underlineHover": "MuiLink-underlineHover",
-      "underlineAlways": "MuiLink-underlineAlways",
-      "button": "MuiLink-button",
-      "focusVisible": "Mui-focusVisible"
-    }
+    "classes": [
+      "root",
+      "underlineNone",
+      "underlineHover",
+      "underlineAlways",
+      "button",
+      "focusVisible"
+    ],
+    "globalClasses": { "focusVisible": "Mui-focusVisible" }
   },
   "forwardsRefTo": "HTMLAnchorElement",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },

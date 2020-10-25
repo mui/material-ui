@@ -33,23 +33,23 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiInput",
-    "globalClasses": {
-      "root": "MuiInput-root",
-      "formControl": "MuiInput-formControl",
-      "focused": "Mui-focused",
-      "disabled": "Mui-disabled",
-      "colorSecondary": "MuiInput-colorSecondary",
-      "underline": "MuiInput-underline",
-      "error": "Mui-error",
-      "marginDense": "MuiInput-marginDense",
-      "multiline": "MuiInput-multiline",
-      "fullWidth": "MuiInput-fullWidth",
-      "input": "MuiInput-input",
-      "inputMarginDense": "MuiInput-inputMarginDense",
-      "inputMultiline": "MuiInput-inputMultiline",
-      "inputTypeSearch": "MuiInput-inputTypeSearch"
-    }
+    "classes": [
+      "root",
+      "formControl",
+      "focused",
+      "disabled",
+      "colorSecondary",
+      "underline",
+      "error",
+      "marginDense",
+      "multiline",
+      "fullWidth",
+      "input",
+      "inputMarginDense",
+      "inputMultiline",
+      "inputTypeSearch"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "InputBase", "pathname": "/api/input-base/" },

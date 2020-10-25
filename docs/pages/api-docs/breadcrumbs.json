@@ -14,15 +14,7 @@
     "separator": { "type": { "name": "node" }, "default": "'/'" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiBreadcrumbs",
-    "globalClasses": {
-      "root": "MuiBreadcrumbs-root",
-      "ol": "MuiBreadcrumbs-ol",
-      "li": "MuiBreadcrumbs-li",
-      "separator": "MuiBreadcrumbs-separator"
-    }
-  },
+  "styles": { "classes": ["root", "ol", "li", "separator"], "globalClasses": {} },
   "forwardsRefTo": "HTMLElement",
   "inheritance": null,
   "demos": "- [Breadcrumbs](/components/breadcrumbs/)"

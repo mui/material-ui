@@ -23,15 +23,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiToggleButton",
-    "globalClasses": {
-      "root": "MuiToggleButton-root",
-      "disabled": "Mui-disabled",
-      "selected": "Mui-selected",
-      "label": "MuiToggleButton-label",
-      "sizeSmall": "MuiToggleButton-sizeSmall",
-      "sizeLarge": "MuiToggleButton-sizeLarge"
-    }
+    "classes": ["root", "disabled", "selected", "label", "sizeSmall", "sizeLarge"],
+    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" }
   },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },

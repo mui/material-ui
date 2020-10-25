@@ -7,7 +7,7 @@
     "value": { "type": { "name": "string" }, "required": true }
   },
   "spread": true,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "inheritance": null,
   "demos": "- [Tabs](/components/tabs/)"
 }

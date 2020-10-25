@@ -15,15 +15,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiListItemText",
-    "globalClasses": {
-      "root": "MuiListItemText-root",
-      "multiline": "MuiListItemText-multiline",
-      "dense": "MuiListItemText-dense",
-      "inset": "MuiListItemText-inset",
-      "primary": "MuiListItemText-primary",
-      "secondary": "MuiListItemText-secondary"
-    }
+    "classes": ["root", "multiline", "dense", "inset", "primary", "secondary"],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

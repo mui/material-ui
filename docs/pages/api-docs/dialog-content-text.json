@@ -7,10 +7,7 @@
     "classes": { "type": { "name": "object" } }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiDialogContentText",
-    "globalClasses": { "root": "MuiDialogContentText-root" }
-  },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLParagraphElement",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
   "demos": "- [Dialogs](/components/dialogs/)"

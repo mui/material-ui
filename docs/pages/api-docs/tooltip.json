@@ -43,20 +43,20 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiTooltip",
-    "globalClasses": {
-      "popper": "MuiTooltip-popper",
-      "popperInteractive": "MuiTooltip-popperInteractive",
-      "popperArrow": "MuiTooltip-popperArrow",
-      "tooltip": "MuiTooltip-tooltip",
-      "tooltipArrow": "MuiTooltip-tooltipArrow",
-      "arrow": "MuiTooltip-arrow",
-      "touch": "MuiTooltip-touch",
-      "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
-      "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
-      "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
-      "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom"
-    }
+    "classes": [
+      "popper",
+      "popperInteractive",
+      "popperArrow",
+      "tooltip",
+      "tooltipArrow",
+      "arrow",
+      "touch",
+      "tooltipPlacementLeft",
+      "tooltipPlacementRight",
+      "tooltipPlacementTop",
+      "tooltipPlacementBottom"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": null,

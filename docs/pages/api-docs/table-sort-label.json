@@ -16,14 +16,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiTableSortLabel",
-    "globalClasses": {
-      "root": "MuiTableSortLabel-root",
-      "active": "MuiTableSortLabel-active",
-      "icon": "MuiTableSortLabel-icon",
-      "iconDirectionDesc": "MuiTableSortLabel-iconDirectionDesc",
-      "iconDirectionAsc": "MuiTableSortLabel-iconDirectionAsc"
-    }
+    "classes": ["root", "active", "icon", "iconDirectionDesc", "iconDirectionAsc"],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLSpanElement",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },

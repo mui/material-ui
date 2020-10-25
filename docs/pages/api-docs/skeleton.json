@@ -27,18 +27,18 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiSkeleton",
-    "globalClasses": {
-      "root": "MuiSkeleton-root",
-      "text": "MuiSkeleton-text",
-      "rectangular": "MuiSkeleton-rectangular",
-      "circular": "MuiSkeleton-circular",
-      "pulse": "MuiSkeleton-pulse",
-      "wave": "MuiSkeleton-wave",
-      "withChildren": "MuiSkeleton-withChildren",
-      "fitContent": "MuiSkeleton-fitContent",
-      "heightAuto": "MuiSkeleton-heightAuto"
-    }
+    "classes": [
+      "root",
+      "text",
+      "rectangular",
+      "circular",
+      "pulse",
+      "wave",
+      "withChildren",
+      "fitContent",
+      "heightAuto"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLSpanElement",
   "inheritance": null,

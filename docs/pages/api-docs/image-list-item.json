@@ -12,15 +12,7 @@
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiImageListItem",
-    "globalClasses": {
-      "root": "MuiImageListItem-root",
-      "img": "MuiImageListItem-img",
-      "standard": "MuiImageListItem-standard",
-      "woven": "MuiImageListItem-woven"
-    }
-  },
+  "styles": { "classes": ["root", "img", "standard", "woven"], "globalClasses": {} },
   "forwardsRefTo": "HTMLLIElement",
   "inheritance": null,
   "demos": "- [Image List](/components/image-list/)"

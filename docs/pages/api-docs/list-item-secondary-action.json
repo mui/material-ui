@@ -8,13 +8,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiListItemSecondaryAction",
-    "globalClasses": {
-      "root": "MuiListItemSecondaryAction-root",
-      "disableGutters": "MuiListItemSecondaryAction-disableGutters"
-    }
-  },
+  "styles": { "classes": ["root", "disableGutters"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Lists](/components/lists/)"

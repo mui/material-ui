@@ -21,19 +21,19 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiTab",
-    "globalClasses": {
-      "root": "MuiTab-root",
-      "labelIcon": "MuiTab-labelIcon",
-      "textColorInherit": "MuiTab-textColorInherit",
-      "textColorPrimary": "MuiTab-textColorPrimary",
-      "textColorSecondary": "MuiTab-textColorSecondary",
-      "selected": "Mui-selected",
-      "disabled": "Mui-disabled",
-      "fullWidth": "MuiTab-fullWidth",
-      "wrapped": "MuiTab-wrapped",
-      "wrapper": "MuiTab-wrapper"
-    }
+    "classes": [
+      "root",
+      "labelIcon",
+      "textColorInherit",
+      "textColorPrimary",
+      "textColorSecondary",
+      "selected",
+      "disabled",
+      "fullWidth",
+      "wrapped",
+      "wrapper"
+    ],
+    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },

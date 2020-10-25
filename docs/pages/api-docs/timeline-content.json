@@ -8,13 +8,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiTimelineContent",
-    "globalClasses": {
-      "root": "MuiTimelineContent-root",
-      "alignRight": "MuiTimelineContent-alignRight"
-    }
-  },
+  "styles": { "classes": ["root", "alignRight"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
   "demos": "- [Timeline](/components/timeline/)"

@@ -8,10 +8,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiTimelineConnector",
-    "globalClasses": { "root": "MuiTimelineConnector-root" }
-  },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLSpanElement",
   "inheritance": null,
   "demos": "- [Timeline](/components/timeline/)"

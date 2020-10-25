@@ -21,10 +21,7 @@
     "stickyHeader": { "type": { "name": "bool" } }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiTable",
-    "globalClasses": { "root": "MuiTable-root", "stickyHeader": "MuiTable-stickyHeader" }
-  },
+  "styles": { "classes": ["root", "stickyHeader"], "globalClasses": {} },
   "forwardsRefTo": "HTMLTableElement",
   "inheritance": null,
   "demos": "- [Tables](/components/tables/)"

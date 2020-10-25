@@ -473,6 +473,9 @@ async function buildDocs(options: {
     throw err;
   }
 
+  /**
+   * Minimize the props data to that needed for API page
+   */
   Object.entries(reactAPI.props).forEach(([propName, propData]) => {
     let description = propData.description;
 
@@ -485,11 +488,13 @@ async function buildDocs(options: {
     }
 
     const typeDescription = generatePropType(propData.type);
+    // Don't keep `type.description` if it matches `type.name`
+    // We have the technology. We can rebuid it.
     reactAPI.props[propName].type.description =
       typeDescription === reactAPI.props[propName].type.name  ? undefined : typeDescription;
     delete reactAPI.props[propName].type.value;
 
-    // Don't store default for bool props (it should always be false)
+    // Don't keep `default` for bool props (it should always be false)
     if (reactAPI.props[propName].type.name !== 'bool') {
       reactAPI.props[propName].default =
         reactAPI.props[propName].jsdocDefaultValue &&
@@ -541,7 +546,15 @@ async function buildDocs(options: {
   // Deep clone so as not to mutate reactAPI (it's used later for th etype annotations)
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
   pageContent = JSON.parse(JSON.stringify(pageContent));
-  delete pageContent.styles.classes;
+  // delete pageContent.styles.classes;
+
+  Object.entries(pageContent.styles.globalClasses).forEach(([className, globalClassName]) => {
+    if (globalClassName === `Mui${pageContent.name}-${className}`) {
+      delete pageContent.styles.globalClasses[className];
+    }
+  })
+
+  delete pageContent.styles.name;
   delete pageContent.styles.descriptions;
 
   // docs/pages/component-name.json

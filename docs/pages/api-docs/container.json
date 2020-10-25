@@ -19,17 +19,17 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiContainer",
-    "globalClasses": {
-      "root": "MuiContainer-root",
-      "disableGutters": "MuiContainer-disableGutters",
-      "fixed": "MuiContainer-fixed",
-      "maxWidthXs": "MuiContainer-maxWidthXs",
-      "maxWidthSm": "MuiContainer-maxWidthSm",
-      "maxWidthMd": "MuiContainer-maxWidthMd",
-      "maxWidthLg": "MuiContainer-maxWidthLg",
-      "maxWidthXl": "MuiContainer-maxWidthXl"
-    }
+    "classes": [
+      "root",
+      "disableGutters",
+      "fixed",
+      "maxWidthXs",
+      "maxWidthSm",
+      "maxWidthMd",
+      "maxWidthLg",
+      "maxWidthXl"
+    ],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLElement",
   "inheritance": null,

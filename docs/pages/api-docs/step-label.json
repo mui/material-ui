@@ -14,20 +14,20 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiStepLabel",
-    "globalClasses": {
-      "root": "MuiStepLabel-root",
-      "horizontal": "MuiStepLabel-horizontal",
-      "vertical": "MuiStepLabel-vertical",
-      "label": "MuiStepLabel-label",
-      "active": "MuiStepLabel-active",
-      "completed": "MuiStepLabel-completed",
-      "error": "Mui-error",
-      "disabled": "Mui-disabled",
-      "iconContainer": "MuiStepLabel-iconContainer",
-      "alternativeLabel": "MuiStepLabel-alternativeLabel",
-      "labelContainer": "MuiStepLabel-labelContainer"
-    }
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "label",
+      "active",
+      "completed",
+      "error",
+      "disabled",
+      "iconContainer",
+      "alternativeLabel",
+      "labelContainer"
+    ],
+    "globalClasses": { "error": "Mui-error", "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLSpanElement",
   "inheritance": null,

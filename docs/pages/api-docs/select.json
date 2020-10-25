@@ -35,20 +35,20 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiSelect",
-    "globalClasses": {
-      "root": "MuiSelect-root",
-      "select": "MuiSelect-select",
-      "filled": "MuiSelect-filled",
-      "outlined": "MuiSelect-outlined",
-      "selectMenu": "MuiSelect-selectMenu",
-      "disabled": "Mui-disabled",
-      "icon": "MuiSelect-icon",
-      "iconOpen": "MuiSelect-iconOpen",
-      "iconFilled": "MuiSelect-iconFilled",
-      "iconOutlined": "MuiSelect-iconOutlined",
-      "nativeInput": "MuiSelect-nativeInput"
-    }
+    "classes": [
+      "root",
+      "select",
+      "filled",
+      "outlined",
+      "selectMenu",
+      "disabled",
+      "icon",
+      "iconOpen",
+      "iconFilled",
+      "iconOutlined",
+      "nativeInput"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": { "component": "Input", "pathname": "/api/input/" },

@@ -23,16 +23,7 @@
     }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiImageList",
-    "globalClasses": {
-      "root": "MuiImageList-root",
-      "masonry": "MuiImageList-masonry",
-      "quilted": "MuiImageList-quilted",
-      "standard": "MuiImageList-standard",
-      "woven": "MuiImageList-woven"
-    }
-  },
+  "styles": { "classes": ["root", "masonry", "quilted", "standard", "woven"], "globalClasses": {} },
   "forwardsRefTo": "HTMLUListElement",
   "inheritance": null,
   "demos": "- [Image List](/components/image-list/)"

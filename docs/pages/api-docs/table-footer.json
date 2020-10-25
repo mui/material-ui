@@ -9,7 +9,7 @@
     "component": { "type": { "name": "elementType" } }
   },
   "spread": true,
-  "styles": { "name": "MuiTableFooter", "globalClasses": { "root": "MuiTableFooter-root" } },
+  "styles": { "classes": ["root"], "globalClasses": {} },
   "forwardsRefTo": "HTMLTableSectionElement",
   "inheritance": null,
   "demos": "- [Tables](/components/tables/)"

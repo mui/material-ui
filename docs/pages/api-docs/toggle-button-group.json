@@ -23,14 +23,8 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiToggleButtonGroup",
-    "globalClasses": {
-      "root": "MuiToggleButtonGroup-root",
-      "vertical": "MuiToggleButtonGroup-vertical",
-      "grouped": "MuiToggleButtonGroup-grouped",
-      "groupedHorizontal": "MuiToggleButtonGroup-groupedHorizontal",
-      "groupedVertical": "MuiToggleButtonGroup-groupedVertical"
-    }
+    "classes": ["root", "vertical", "grouped", "groupedHorizontal", "groupedVertical"],
+    "globalClasses": {}
   },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,

@@ -36,18 +36,18 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiIconButton",
-    "globalClasses": {
-      "root": "MuiIconButton-root",
-      "edgeStart": "MuiIconButton-edgeStart",
-      "edgeEnd": "MuiIconButton-edgeEnd",
-      "colorInherit": "MuiIconButton-colorInherit",
-      "colorPrimary": "MuiIconButton-colorPrimary",
-      "colorSecondary": "MuiIconButton-colorSecondary",
-      "disabled": "Mui-disabled",
-      "sizeSmall": "MuiIconButton-sizeSmall",
-      "label": "MuiIconButton-label"
-    }
+    "classes": [
+      "root",
+      "edgeStart",
+      "edgeEnd",
+      "colorInherit",
+      "colorPrimary",
+      "colorSecondary",
+      "disabled",
+      "sizeSmall",
+      "label"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },

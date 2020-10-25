@@ -10,15 +10,7 @@
     "optional": { "type": { "name": "node" } }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiStepButton",
-    "globalClasses": {
-      "root": "MuiStepButton-root",
-      "horizontal": "MuiStepButton-horizontal",
-      "vertical": "MuiStepButton-vertical",
-      "touchRipple": "MuiStepButton-touchRipple"
-    }
-  },
+  "styles": { "classes": ["root", "horizontal", "vertical", "touchRipple"], "globalClasses": {} },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "- [Steppers](/components/steppers/)"

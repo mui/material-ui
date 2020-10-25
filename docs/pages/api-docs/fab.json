@@ -40,20 +40,20 @@
   },
   "spread": true,
   "styles": {
-    "name": "MuiFab",
-    "globalClasses": {
-      "root": "MuiFab-root",
-      "label": "MuiFab-label",
-      "primary": "MuiFab-primary",
-      "secondary": "MuiFab-secondary",
-      "extended": "MuiFab-extended",
-      "circular": "MuiFab-circular",
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled",
-      "colorInherit": "MuiFab-colorInherit",
-      "sizeSmall": "MuiFab-sizeSmall",
-      "sizeMedium": "MuiFab-sizeMedium"
-    }
+    "classes": [
+      "root",
+      "label",
+      "primary",
+      "secondary",
+      "extended",
+      "circular",
+      "focusVisible",
+      "disabled",
+      "colorInherit",
+      "sizeSmall",
+      "sizeMedium"
+    ],
+    "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" }
   },
   "forwardsRefTo": "HTMLButtonElement",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },

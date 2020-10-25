@@ -8,13 +8,7 @@
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiListItemIcon",
-    "globalClasses": {
-      "root": "MuiListItemIcon-root",
-      "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart"
-    }
-  },
+  "styles": { "classes": ["root", "alignItemsFlexStart"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Lists](/components/lists/)"

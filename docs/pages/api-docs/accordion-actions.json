@@ -9,13 +9,7 @@
     "disableSpacing": { "type": { "name": "bool" } }
   },
   "spread": true,
-  "styles": {
-    "name": "MuiAccordionActions",
-    "globalClasses": {
-      "root": "MuiAccordionActions-root",
-      "spacing": "MuiAccordionActions-spacing"
-    }
-  },
+  "styles": { "classes": ["root", "spacing"], "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
   "inheritance": null,
   "demos": "- [Accordion](/components/accordion/)"

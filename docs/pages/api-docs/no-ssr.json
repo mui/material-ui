@@ -8,7 +8,7 @@
     "fallback": { "type": { "name": "node" }, "default": "null" }
   },
   "spread": false,
-  "styles": { "name": null, "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {} },
   "inheritance": null,
   "demos": "- [No Ssr](/components/no-ssr/)"
 }
