@@ -122,6 +122,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     previousKeyMatched: true,
     lastTime: null,
   });
+
   const menuItemRefs = React.useRef([]);
 
   useEnhancedEffect(() => {
