@@ -1,1 +1,3 @@
-export default function capitalize(string: string): string;
+import { capitalize } from '@material-ui/utils';
+
+export default capitalize;

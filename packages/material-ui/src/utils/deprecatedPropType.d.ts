@@ -1,1 +1,3 @@
-export default function deprecatedPropType<T>(validator: T, reason: string): T;
+import { deprecatedPropType } from '@material-ui/utils';
+
+export default deprecatedPropType;

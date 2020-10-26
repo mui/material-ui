@@ -1,1 +1,3 @@
-export default function useEventCallback<T extends (...args: any[]) => any>(func: T): T;
+import { useEventCallback } from '@material-ui/utils';
+
+export default useEventCallback;
