@@ -62,8 +62,8 @@ describe('<TextareaAutosize />', () => {
         const { container } = render(<TextareaAutosize />);
         const input = container.querySelector('textarea[aria-hidden=null]');
         const shadow = container.querySelector('textarea[aria-hidden=true]');
-        expect(input.style).to.have.property('height', '0px');
-        expect(input.style).to.have.property('overflow', 'hidden');
+        expect(input.style).to.have.property('height', '');
+        expect(input.style).to.have.property('overflow', '');
 
         setLayout(input, shadow, {
           getComputedStyle: {
