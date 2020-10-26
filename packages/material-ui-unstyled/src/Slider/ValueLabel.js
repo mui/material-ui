@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { capitalize } from '@material-ui/core/utils';
 import clsx from 'clsx';
+import capitalize from '../utils/capitalize';
 
 const getUtilityClass = (name) => {
   return `MuiSlider-valueLabel${capitalize(name)}`;

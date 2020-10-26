@@ -10,8 +10,8 @@ import {
   useForkRef,
   capitalize,
   useControlled,
-} from '@material-ui/core/utils';
-import ValueLabelComponent from './ValueLabelUnstyled';
+} from '../utils';
+import ValueLabelComponent from './ValueLabel';
 
 function asc(a, b) {
   return a - b;
