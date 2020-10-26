@@ -14,7 +14,7 @@ export interface InputProps extends StandardProps<InputBaseProps> {
     focused?: string;
     /** Styles applied to the root element if `disabled={true}`. */
     disabled?: string;
-    /** Styles applied to the root element if `color secondary`. */
+    /** Styles applied to the root element if color secondary. */
     colorSecondary?: string;
     /** Styles applied to the root element unless `disableUnderline={true}`. */
     underline?: string;
