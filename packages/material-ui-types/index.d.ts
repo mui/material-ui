@@ -82,3 +82,84 @@ type IfEquals<T, U, Y = unknown, N = never> = (<G>() => G extends T ? 1 : 2) ext
  * @param actual
  */
 export function expectType<Expected, Actual>(actual: IfEquals<Actual, Expected, Actual>): void;
+
+export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
+
+export interface StyledComponentProps<ClassKey extends string = string> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<ClassNameMap<ClassKey>>;
+  innerRef?: React.Ref<any>;
+}
+
+/**
+ * A component whose root component can be controlled via a `component` prop.
+ *
+ * Adjusts valid props based on the type of `component`.
+ */
+export interface OverridableComponent<M extends OverridableTypeMap> {
+  <C extends React.ElementType>(
+    props: {
+      /**
+       * The component used for the root node.
+       * Either a string to use a HTML element or a component.
+       */
+      component: C;
+    } & OverrideProps<M, C>
+  ): JSX.Element;
+  (props: DefaultComponentProps<M>): JSX.Element;
+}
+
+/**
+ * Props of the component if `component={Component}` is used.
+ */
+// prettier-ignore
+export type OverrideProps<
+  M extends OverridableTypeMap,
+  C extends React.ElementType
+> = (
+  & BaseProps<M>
+  & Omit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>
+);
+
+/**
+ * Props if `component={Component}` is NOT used.
+ */
+// prettier-ignore
+export type DefaultComponentProps<M extends OverridableTypeMap> =
+  & BaseProps<M>
+  & Omit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>;
+
+/**
+ * Props defined on the component (+ common material-ui props).
+ */
+// prettier-ignore
+export type BaseProps<M extends OverridableTypeMap> =
+  & M['props']
+  & CommonProps;
+
+/**
+ * Props that are valid for material-ui components.
+ */
+// each component declares it's classes in a separate interface for proper JSDOC.
+export interface CommonProps extends StyledComponentProps<never> {
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export interface OverridableTypeMap {
+  props: {};
+  defaultComponent: React.ElementType;
+}
+
+/**
+ * @deprecated Not used in this library.
+ */
+export type Simplify<T> = T extends any ? { [K in keyof T]: T[K] } : never;
+
+/**
+ * @deprecated Not used in this library.
+ */
+// tslint:disable-next-line: deprecation
+export type SimplifiedPropsOf<C extends React.ElementType> = Simplify<React.ComponentProps<C>>;
