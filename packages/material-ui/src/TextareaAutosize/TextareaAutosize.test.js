@@ -236,22 +236,35 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', '');
     });
 
-    it('should return if container width is 0px', () => {
-      const maxRows = 3;
-      const { container, forceUpdate } = render(<TextareaAutosize maxRows={maxRows} />);
+    it('should not sync height if container width is 0px', () => {
+      const lineHeight = 15;
+      const { container, forceUpdate } = render(<TextareaAutosize />);
       const input = container.querySelector('textarea[aria-hidden=null]');
       const shadow = container.querySelector('textarea[aria-hidden=true]');
+
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        scrollHeight: lineHeight * 2,
+        lineHeight,
+      });
+      forceUpdate();
+
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
+
       setLayout(input, shadow, {
         getComputedStyle: {
           'box-sizing': 'content-box',
           width: '0px',
         },
-        scrollHeight: 100,
-        lineHeight: 15,
+        scrollHeight: lineHeight * 3,
+        lineHeight,
       });
 
       forceUpdate();
-      expect(input.style).to.have.property('height', `0px`);
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
       expect(input.style).to.have.property('overflow', 'hidden');
     });
 
