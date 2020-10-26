@@ -22,7 +22,7 @@ export interface BaseTextFieldProps
    */
   autoComplete?: string;
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    * @default false
    */
   autoFocus?: boolean;
@@ -47,12 +47,12 @@ export interface BaseTextFieldProps
    */
   defaultValue?: unknown;
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the `input` element is disabled.
    * @default false
    */
   disabled?: boolean;
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    * @default false
    */
   error?: boolean;
@@ -95,7 +95,7 @@ export interface BaseTextFieldProps
    */
   margin?: PropTypes.Margin;
   /**
-   * If `true`, a textarea element will be rendered instead of an input.
+   * If `true`, a `textarea` element is rendered.instead of an input.
    * @default false
    */
   multiline?: boolean;
@@ -110,7 +110,7 @@ export interface BaseTextFieldProps
    */
   placeholder?: string;
   /**
-   * If `true`, the label is displayed as required and the `input` element will be required.
+   * If `true`, the label is displayed as required and the `input` element is required.
    * @default false
    */
   required?: boolean;

@@ -548,7 +548,7 @@ Autocomplete.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the input's text will be cleared on blur if no value is selected.
+   * If `true`, the input's text is cleared on blur if no value is selected.
    *
    * Set to `true` if you want to help the user enter a new value.
    * Set to `false` if you want to help the user resume his search.
@@ -602,7 +602,7 @@ Autocomplete.propTypes = {
    */
   disableCloseOnSelect: PropTypes.bool,
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the input is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -855,7 +855,7 @@ Autocomplete.propTypes = {
    */
   renderTags: PropTypes.func,
   /**
-   * If `true`, the input's text will be selected on focus.
+   * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
    * @default !props.freeSolo
    */

@@ -83,7 +83,7 @@ export type ButtonTypeMap<
      */
     color?: 'inherit' | 'primary' | 'secondary';
     /**
-     * If `true`, the button will be disabled.
+     * If `true`, the button is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -93,7 +93,7 @@ export type ButtonTypeMap<
      */
     disableElevation?: boolean;
     /**
-     * If `true`, the  keyboard focus ripple will be disabled.
+     * If `true`, the  keyboard focus ripple is disabled.
      * @default false
      */
     disableFocusRipple?: boolean;

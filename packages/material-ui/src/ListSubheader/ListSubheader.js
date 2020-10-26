@@ -109,7 +109,7 @@ ListSubheader.propTypes = {
    */
   disableSticky: PropTypes.bool,
   /**
-   * If `true`, the List Subheader will be indented.
+   * If `true`, the List Subheader is indented.
    * @default false
    */
   inset: PropTypes.bool,

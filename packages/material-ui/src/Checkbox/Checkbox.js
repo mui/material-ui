@@ -130,11 +130,11 @@ Checkbox.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
-   * If `true`, the checkbox will be disabled.
+   * If `true`, the checkbox is disabled.
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -175,7 +175,7 @@ Checkbox.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
   /**

@@ -29,7 +29,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     'aria-labelledby'?: string;
     /**
-     * If `true`, the tabs will be centered.
+     * If `true`, the tabs are centered.
      * This prop is intended for large views.
      * @default false
      */
@@ -139,7 +139,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     variant?: 'standard' | 'scrollable' | 'fullWidth';
     /**
-     * If `true`, the scrollbar will be visible. It can be useful when displaying
+     * If `true`, the scrollbar is visible. It can be useful when displaying
      * a long vertical list of tabs.
      * @default false
      */

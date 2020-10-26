@@ -42,11 +42,11 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     fullWidth?: boolean;
     /**
-     * If `true`, the component will be displayed in focused state.
+     * If `true`, the component is displayed in focused state.
      */
     focused?: boolean;
     /**
-     * If `true`, the label will be hidden.
+     * If `true`, the label is hidden.
      * This is used to increase density for a `FilledInput`.
      * Be sure to add `aria-label` to the `input` element.
      * @default false

@@ -149,7 +149,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 // so that the API documentation is updated.
 SwitchBase.propTypes = {
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -174,7 +174,7 @@ SwitchBase.propTypes = {
    */
   defaultChecked: PropTypes.bool,
   /**
-   * If `true`, the switch will be disabled.
+   * If `true`, the switch is disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -218,7 +218,7 @@ SwitchBase.propTypes = {
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
   /**

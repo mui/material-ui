@@ -10,7 +10,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      */
     alignItems?: 'flex-start' | 'center';
     /**
-     * If `true`, the list item will be focused during the first mount.
+     * If `true`, the list item is focused during the first mount.
      * Focus will also be triggered if the value changes from false to true.
      * @default false
      */
@@ -58,13 +58,13 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      */
     ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
     /**
-     * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+     * If `true`, compact vertical padding designed for keyboard and mouse input is used.
      * The prop defaults to the value inherited from the parent List component.
      * @default false
      */
     dense?: boolean;
     /**
-     * If `true`, the list item will be disabled.
+     * If `true`, the list item is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -102,7 +102,7 @@ declare const ListItem: OverridableComponent<
   ListItemTypeMap<
     {
       /**
-       * If `true`, the list item will be a button (using `ButtonBase`). Props intended
+       * If `true`, the list item is a button (using `ButtonBase`). Props intended
        * for `ButtonBase` can then be applied to `ListItem`.
        * @default false
        */
@@ -115,7 +115,7 @@ declare const ListItem: OverridableComponent<
     ListItemTypeMap<
       {
         /**
-         * If `true`, the list item will be a button (using `ButtonBase`). Props intended
+         * If `true`, the list item is a button (using `ButtonBase`). Props intended
          * for `ButtonBase` can then be applied to `ListItem`.
          * @default false
          */

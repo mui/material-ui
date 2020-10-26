@@ -207,7 +207,7 @@ TextField.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    * @default false
    */
   autoFocus: PropTypes.bool,
@@ -233,12 +233,12 @@ TextField.propTypes = {
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the `input` element is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    * @default false
    */
   error: PropTypes.bool,
@@ -296,7 +296,7 @@ TextField.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a textarea element will be rendered instead of an input.
+   * If `true`, a `textarea` element is rendered.instead of an input.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -324,7 +324,7 @@ TextField.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * If `true`, the label is displayed as required and the `input` element will be required.
+   * If `true`, the label is displayed as required and the `input` element is required.
    * @default false
    */
   required: PropTypes.bool,
