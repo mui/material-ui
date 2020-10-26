@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PropInjector, ClassNameMap, StyledComponentProps } from '@material-ui/types';
+import { PropInjector } from '@material-ui/types';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
 import { DefaultTheme } from '../defaultTheme';
@@ -80,7 +80,7 @@ export interface WithStylesOptions<Theme = DefaultTheme> extends JSS.StyleSheetF
   name?: string;
 }
 
-export { ClassNameMap } from '@material-ui/types';
+export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
 /**
  * @internal
@@ -112,7 +112,13 @@ export type WithStyles<
   innerRef?: React.Ref<any>;
 } & PropsOfStyles<StylesType>;
 
-export { StyledComponentProps } from '@material-ui/types';
+export interface StyledComponentProps<ClassKey extends string = string> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<ClassNameMap<ClassKey>>;
+  innerRef?: React.Ref<any>;
+}
 
 export default function withStyles<
   StylesType extends Styles<any, any>,
