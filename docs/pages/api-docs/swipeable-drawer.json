@@ -17,7 +17,10 @@
     "children": { "type": { "name": "node" } },
     "disableBackdropTransition": { "type": { "name": "bool" } },
     "disableDiscovery": { "type": { "name": "bool" } },
-    "disableSwipeToOpen": { "type": { "name": "bool" } },
+    "disableSwipeToOpen": {
+      "type": { "name": "bool" },
+      "default": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
+    },
     "hideBackdrop": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
     "hysteresis": { "type": { "name": "number" }, "default": "0.52" },
     "minFlingVelocity": { "type": { "name": "number" }, "default": "450" },

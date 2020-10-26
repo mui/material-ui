@@ -422,7 +422,7 @@ async function buildDocs(options: {
     // Match the styles definition in the source
     const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*?}\){0,1};[\r\n][\r\n]/;
     // Match the class name & description
-    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*'*(.*?)'*?:/g;
+    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*'*(.*?)'*?[:,]/g;
 
     // Extract the styles section from the source
     const stylesSrc = stylesRegexp.exec(styleSrc);
@@ -449,7 +449,6 @@ async function buildDocs(options: {
   reactAPI.name = name;
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
-  reactAPI.src = src;
   reactAPI.spread = spread;
   reactAPI.EOL = getLineFeed(src);
 
@@ -476,8 +475,8 @@ async function buildDocs(options: {
    * Minimize the props data to that needed for API page
    */
   Object.entries(reactAPI.props).forEach(([propName, propData]) => {
-    let description = propData.description;
     const jsdocDefaultValue = propData.jsdocDefaultValue;
+    let description = propData.description;
 
     if (description === '@ignore') {
       return;
@@ -494,8 +493,8 @@ async function buildDocs(options: {
       typeDescription === propData.type.name ? undefined : typeDescription;
     delete propData.type.value;
 
-    // Don't keep `default` for bool props (it should always be false)
-    if (propData.type.name !== 'bool') {
+    // Only keep `default` for bool props if it is "true"
+    if (propData.type.name !== 'bool' || jsdocDefaultValue &&jsdocDefaultValue.value !== "false") {
       propData.default = jsdocDefaultValue && jsdocDefaultValue.value;
     }
     delete propData.defaultValue;
@@ -521,10 +520,11 @@ async function buildDocs(options: {
   // Deep clone so as not to mutate reactAPI (it's used later for the type annotations)
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
   const pageContent = JSON.parse(JSON.stringify(reactAPI));
+
   pageContent.filename = normalizePath(reactAPI.filename);
   pageContent.demos = generateMarkdownDemoList(reactAPI);
-  // delete pageContent.styles.classes;
 
+  // Only keep "non-standard" global classnames
   Object.entries(pageContent.styles.globalClasses).forEach(([className, globalClassName]) => {
     if (globalClassName === `Mui${pageContent.name}-${className}`) {
       delete pageContent.styles.globalClasses[className];

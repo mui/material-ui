@@ -1,7 +1,7 @@
 {
   "props": {
     "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "autoFocus": { "type": { "name": "bool" } },
+    "autoFocus": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "disableAutoFocusItem": { "type": { "name": "bool" } },

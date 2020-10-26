@@ -2025,6 +2025,7 @@
     "focusVisible": {
       "description": "Pseudo-class applied to the root element if keyboard focused."
     },
+    "visuallyHidden": { "description": "Visually hide an element." },
     "label": { "description": "Styles applied to the label elements." },
     "labelEmptyValueActive": {
       "description": "Styles applied to the label of the \"no value\" input when it is active."

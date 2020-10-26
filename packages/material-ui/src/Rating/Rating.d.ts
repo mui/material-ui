@@ -23,6 +23,7 @@ export interface RatingProps
     disabled?: string;
     /** Pseudo-class applied to the root element if keyboard focused. */
     focusVisible?: string;
+    /** Visually hide an element. */
     visuallyHidden?: string;
     /** Styles applied to the label elements. */
     label?: string;

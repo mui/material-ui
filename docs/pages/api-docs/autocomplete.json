@@ -13,7 +13,7 @@
     "ChipProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "clearOnBlur": { "type": { "name": "bool" } },
+    "clearOnBlur": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "clearOnEscape": { "type": { "name": "bool" } },
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeIcon": { "type": { "name": "node" }, "default": "<CloseIcon fontSize=\"small\" />" },
@@ -42,7 +42,7 @@
     },
     "getOptionSelected": { "type": { "name": "func" } },
     "groupBy": { "type": { "name": "func" } },
-    "handleHomeEndKeys": { "type": { "name": "bool" } },
+    "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "id": { "type": { "name": "string" } },
     "includeInputInList": { "type": { "name": "bool" } },
     "inputValue": { "type": { "name": "string" } },
@@ -69,7 +69,7 @@
     "renderInput": { "type": { "name": "func" }, "required": true },
     "renderOption": { "type": { "name": "func" } },
     "renderTags": { "type": { "name": "func" } },
-    "selectOnFocus": { "type": { "name": "bool" } },
+    "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "default": "'medium'"
