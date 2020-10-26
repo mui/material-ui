@@ -76,7 +76,6 @@ const Icon = React.forwardRef(function Icon(props, ref) {
         className,
       )}
       aria-hidden
-      translate="no"
       ref={ref}
       {...other}
     />
