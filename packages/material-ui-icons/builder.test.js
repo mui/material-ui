@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
-import temp from 'temp';
 import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, main, getComponentName } from './builder';
 
 const DISABLE_LOG = true;
@@ -15,11 +15,6 @@ const GAME_ICONS_ROOT = path.join(__dirname, './fixtures/game-icons/');
 const GAME_ICONS_SVG_DIR = path.join(GAME_ICONS_ROOT, 'svg/icons/');
 
 describe('builder', () => {
-  before(() => {
-    // Automatically track and cleanup files at exit
-    temp.track();
-  });
-
   describe('#getComponentName', () => {
     it('should change capitalize dashes', () => {
       expect(getComponentName('hi-world')).to.equal('HiWorld');
@@ -49,11 +44,11 @@ describe('builder', () => {
     };
 
     before(() => {
-      options.outputDir = temp.mkdirSync();
+      options.outputDir = fs.mkdtempSync(path.join(os.tmpdir(), 'material-ui-icons-builder-test'));
     });
 
     after(() => {
-      temp.cleanupSync();
+      fs.rmdirSync(options.outputDir, { recursive: true });
     });
 
     it('script outputs to directory', async () => {
@@ -74,11 +69,11 @@ describe('builder', () => {
     };
 
     before(() => {
-      options.outputDir = temp.mkdirSync();
+      options.outputDir = fs.mkdtempSync(path.join(os.tmpdir(), 'material-ui-icons-builder-test'));
     });
 
     after(() => {
-      temp.cleanupSync();
+      fs.rmdirSync(options.outputDir, { recursive: true });
     });
 
     it('script outputs to directory', async () => {
@@ -113,11 +108,11 @@ describe('builder', () => {
     };
 
     before(() => {
-      options.outputDir = temp.mkdirSync();
+      options.outputDir = fs.mkdtempSync(path.join(os.tmpdir(), 'material-ui-icons-builder-test'));
     });
 
     after(() => {
-      temp.cleanupSync();
+      fs.rmdirSync(options.outputDir, { recursive: true });
     });
 
     it('should produce the expected output', async () => {
