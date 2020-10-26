@@ -236,6 +236,29 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', '');
     });
 
+    it('should return if container width is 0px', () => {
+      const maxRows = 3;
+      const lineHeight = 15;
+      const { container, forceUpdate } = render(
+        <div style={{ width: 0 }}>
+          <TextareaAutosize maxRows={maxRows} />
+        </div>,
+      );
+      const input = container.querySelector('textarea[aria-hidden=null]');
+      const shadow = container.querySelector('textarea[aria-hidden=true]');
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        scrollHeight: 100,
+        lineHeight,
+      });
+
+      forceUpdate();
+      expect(input.style).to.have.property('height', `0px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
+    });
+
     describe('warnings', () => {
       it('warns if layout is unstable but not crash', () => {
         const { container, forceUpdate } = render(<TextareaAutosize maxRows={3} />);
