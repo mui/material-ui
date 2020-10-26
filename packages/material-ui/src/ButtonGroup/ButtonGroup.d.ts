@@ -74,7 +74,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     color?: 'inherit' | 'primary' | 'secondary';
     /**
-     * If `true`, the buttons will be disabled.
+     * If `true`, the buttons are disabled.
      * @default false
      */
     disabled?: boolean;
@@ -84,12 +84,12 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     disableElevation?: boolean;
     /**
-     * If `true`, the button keyboard focus ripple will be disabled.
+     * If `true`, the button keyboard focus ripple is disabled.
      * @default false
      */
     disableFocusRipple?: boolean;
     /**
-     * If `true`, the button ripple effect will be disabled.
+     * If `true`, the button ripple effect is disabled.
      * @default false
      */
     disableRipple?: boolean;

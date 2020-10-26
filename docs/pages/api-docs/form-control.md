@@ -55,9 +55,9 @@ The `MuiFormControl` name can be used for providing [default props](/customizati
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label, input and helper text should be displayed in a disabled state. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label should be displayed in an error state. |
-| <span class="prop-name">focused</span> | <span class="prop-type">bool</span> |  | If `true`, the component will be displayed in focused state. |
+| <span class="prop-name">focused</span> | <span class="prop-type">bool</span> |  | If `true`, the component is displayed in focused state. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will take up the full width of its container. |
-| <span class="prop-name">hiddenLabel</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label will be hidden. This is used to increase density for a `FilledInput`. Be sure to add `aria-label` to the `input` element. |
+| <span class="prop-name">hiddenLabel</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label is hidden. This is used to increase density for a `FilledInput`. Be sure to add `aria-label` to the `input` element. |
 | <span class="prop-name">margin</span> | <span class="prop-type">'dense'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'</span> | <span class="prop-default">'none'</span> | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label will indicate that the input is required. |
 | <span class="prop-name">size</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'</span> |  | The size of the text field. |

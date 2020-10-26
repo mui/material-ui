@@ -464,7 +464,7 @@ SelectInput.propTypes = {
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the select will be disabled.
+   * If `true`, the select is disabled.
    */
   disabled: PropTypes.bool,
   /**

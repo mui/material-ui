@@ -22,7 +22,7 @@ export interface SwitchBaseProps
   defaultChecked?: boolean;
   disabled?: boolean;
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple?: boolean;
   icon: React.ReactNode;
@@ -52,7 +52,7 @@ export interface SwitchBaseProps
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
   readOnly?: boolean;
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required?: boolean;
   tabIndex?: number;

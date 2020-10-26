@@ -29,7 +29,7 @@ export interface FormControlLabelProps
    */
   control: React.ReactElement<any, any>;
   /**
-   * If `true`, the control will be disabled.
+   * If `true`, the control is disabled.
    */
   disabled?: boolean;
   /**

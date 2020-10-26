@@ -315,7 +315,7 @@ PaginationItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the item will be disabled.
+   * If `true`, the item is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
