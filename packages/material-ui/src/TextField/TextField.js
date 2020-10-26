@@ -296,7 +296,7 @@ TextField.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a textarea element is rendered instead of an input.
+   * If `true`, a `textarea` element is rendered.instead of an input.
    * @default false
    */
   multiline: PropTypes.bool,

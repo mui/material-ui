@@ -21,7 +21,7 @@ export interface UsePaginationProps {
    */
   defaultPage?: number;
   /**
-   * If `true`, the pagination component is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;

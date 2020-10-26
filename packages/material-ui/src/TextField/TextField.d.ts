@@ -95,7 +95,7 @@ export interface BaseTextFieldProps
    */
   margin?: PropTypes.Margin;
   /**
-   * If `true`, a textarea element is rendered instead of an input.
+   * If `true`, a `textarea` element is rendered.instead of an input.
    * @default false
    */
   multiline?: boolean;

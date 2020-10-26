@@ -103,7 +103,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     getAriaValueText?: (value: number, index: number) => string;
     /**
      * Marks indicate predetermined values to which the user can move the slider.
-     * If `true` the marks is spaced according the value of the `step` prop.
+     * If `true` the marks are spaced according the value of the `step` prop.
      * If an array, it should contain objects with `value` and an optional `label` keys.
      * @default false
      */

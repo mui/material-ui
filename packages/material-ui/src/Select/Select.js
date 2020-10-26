@@ -175,8 +175,7 @@ Select.propTypes = {
    */
   multiple: PropTypes.bool,
   /**
-   * If `true`, the component uses
-   *  a native `select` element.
+   * If `true`, the component uses a native `select` element.
    * @default false
    */
   native: PropTypes.bool,

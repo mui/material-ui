@@ -29,7 +29,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     'aria-labelledby'?: string;
     /**
-     * If `true`, the tabs is centered.
+     * If `true`, the tabs are centered.
      * This prop is intended for large views.
      * @default false
      */
