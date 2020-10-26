@@ -3,7 +3,7 @@ import * as React from 'react';
 
 export interface TrapFocusProps {
   /**
-   * If `true`, focus will be locked.
+   * If `true`, focus is locked.
    */
   open: boolean;
   /**

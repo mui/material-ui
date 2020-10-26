@@ -578,7 +578,7 @@ Tabs.propTypes = {
    */
   'aria-labelledby': PropTypes.string,
   /**
-   * If `true`, the tabs will be centered.
+   * If `true`, the tabs are centered.
    * This prop is intended for large views.
    * @default false
    */
@@ -670,7 +670,7 @@ Tabs.propTypes = {
    */
   variant: PropTypes.oneOf(['fullWidth', 'scrollable', 'standard']),
   /**
-   * If `true`, the scrollbar will be visible. It can be useful when displaying
+   * If `true`, the scrollbar is visible. It can be useful when displaying
    * a long vertical list of tabs.
    * @default false
    */

@@ -480,7 +480,7 @@ Rating.propTypes = {
    */
   defaultValue: PropTypes.number,
   /**
-   * If `true`, the rating will be disabled.
+   * If `true`, the rating is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

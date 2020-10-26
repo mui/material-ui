@@ -223,13 +223,13 @@ ListItem.propTypes = {
    */
   alignItems: PropTypes.oneOf(['center', 'flex-start']),
   /**
-   * If `true`, the list item will be focused during the first mount.
+   * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
    */
   autoFocus: PropTypes.bool,
   /**
-   * If `true`, the list item will be a button (using `ButtonBase`). Props intended
+   * If `true`, the list item is a button (using `ButtonBase`). Props intended
    * for `ButtonBase` can then be applied to `ListItem`.
    * @default false
    */
@@ -286,13 +286,13 @@ ListItem.propTypes = {
    */
   ContainerProps: PropTypes.object,
   /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * The prop defaults to the value inherited from the parent List component.
    * @default false
    */
   dense: PropTypes.bool,
   /**
-   * If `true`, the list item will be disabled.
+   * If `true`, the list item is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

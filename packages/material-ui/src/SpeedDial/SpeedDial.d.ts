@@ -47,7 +47,7 @@ export interface SpeedDialProps
    */
   direction?: 'up' | 'down' | 'left' | 'right';
   /**
-   * If `true`, the SpeedDial will be hidden.
+   * If `true`, the SpeedDial is hidden.
    * @default false
    */
   hidden?: boolean;

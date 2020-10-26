@@ -190,7 +190,7 @@ Accordion.propTypes = {
    */
   defaultExpanded: PropTypes.bool,
   /**
-   * If `true`, the accordion will be displayed in a disabled state.
+   * If `true`, the accordion is displayed in a disabled state.
    * @default false
    */
   disabled: PropTypes.bool,

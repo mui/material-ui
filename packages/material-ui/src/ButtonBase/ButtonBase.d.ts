@@ -17,7 +17,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     buttonRef?: React.Ref<unknown>;
     /**
-     * If `true`, the ripples will be centered.
+     * If `true`, the ripples are centered.
      * They won't start at the cursor interaction position.
      * @default false
      */
@@ -38,12 +38,12 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
       focusVisible?: string;
     };
     /**
-     * If `true`, the base button will be disabled.
+     * If `true`, the base button is disabled.
      * @default false
      */
     disabled?: boolean;
     /**
-     * If `true`, the ripple effect will be disabled.
+     * If `true`, the ripple effect is disabled.
      *
      * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
      * to highlight the element by applying separate styles with the `focusVisibleClassName`.
@@ -51,7 +51,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     disableRipple?: boolean;
     /**
-     * If `true`, the touch ripple effect will be disabled.
+     * If `true`, the touch ripple effect is disabled.
      * @default false
      */
     disableTouchRipple?: boolean;
