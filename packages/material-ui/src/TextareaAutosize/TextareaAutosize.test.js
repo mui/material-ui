@@ -238,20 +238,16 @@ describe('<TextareaAutosize />', () => {
 
     it('should return if container width is 0px', () => {
       const maxRows = 3;
-      const lineHeight = 15;
-      const { container, forceUpdate } = render(
-        <div style={{ width: 0 }}>
-          <TextareaAutosize maxRows={maxRows} />
-        </div>,
-      );
+      const { container, forceUpdate } = render(<TextareaAutosize maxRows={maxRows} />);
       const input = container.querySelector('textarea[aria-hidden=null]');
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input, shadow, {
         getComputedStyle: {
           'box-sizing': 'content-box',
+          width: '0px',
         },
         scrollHeight: 100,
-        lineHeight,
+        lineHeight: 15,
       });
 
       forceUpdate();

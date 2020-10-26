@@ -41,8 +41,10 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     const containerWindow = ownerWindow(input);
     const computedStyle = containerWindow.getComputedStyle(input);
 
-    // If containerWindow's width is shrunk and it's not visible, don't sync height.
-    if (computedStyle.width === '0px') return;
+    // If input's width is shrunk and it's not visible, don't sync height.
+    if (computedStyle.width === '0px') {
+      return;
+    }
 
     const inputShallow = shadowRef.current;
     inputShallow.style.width = computedStyle.width;
