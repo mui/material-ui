@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createClientRender, screen } from 'test/utils';
 import createMuiTheme from './createMuiTheme';
 import styled from './experimentalStyled';
 import ThemeProvider from './ThemeProvider';
@@ -50,6 +50,17 @@ describe('experimentalStyled', () => {
     expect(container.firstChild).toHaveComputedStyle({
       width: '10px',
     });
+  });
+
+  it('can adapt styles to props', () => {
+    const Div = styled('div')`
+      font-size: ${(props) => props.scale * 8}px;
+      padding: ${(props) => props.scale * 2}px;
+    `;
+
+    render(<Div scale={4} data-testid="target" />);
+
+    expect(screen.getByTestId('target')).toHaveComputedStyle({ fontSize: '32px', padding: '8px' });
   });
 
   describe('muiOptions', () => {
