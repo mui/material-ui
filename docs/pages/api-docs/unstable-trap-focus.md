@@ -32,7 +32,7 @@ Utility component that locks focus inside the component.
 | <span class="prop-name">disableRestoreFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the trap focus will not restore focus to previously focused element once trap focus is hidden. |
 | <span class="prop-name required">getDoc<abbr title="required">*</abbr></span> | <span class="prop-type">func</span> |  | Return the document to consider. We use it to implement the restore focus between different browser documents. |
 | <span class="prop-name required">isEnabled<abbr title="required">*</abbr></span> | <span class="prop-type">func</span> |  | Do we still want to enforce the focus? This prop helps nesting TrapFocus elements. |
-| <span class="prop-name required">open<abbr title="required">*</abbr></span> | <span class="prop-type">bool</span> |  | If `true`, focus will be locked. |
+| <span class="prop-name required">open<abbr title="required">*</abbr></span> | <span class="prop-type">bool</span> |  | If `true`, focus is locked. |
 
 The component cannot hold a ref.
 
