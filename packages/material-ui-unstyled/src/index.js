@@ -1,2 +1,2 @@
-export { default as SliderUnstyled } from './SliderUnstyled';
-export * from './SliderUnstyled';
+export { default as Slider } from './Slider';
+export * from './Slider';
