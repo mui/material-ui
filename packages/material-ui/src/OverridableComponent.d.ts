@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Omit, OverridableTypeMap } from '@material-ui/types';
 import { StyledComponentProps } from './styles';
 
-export { Simplify, SimplifiedPropsOf } from '@material-ui/types';
+export { OverridableTypeMap, Simplify, SimplifiedPropsOf } from '@material-ui/types';
 
 /**
  * A component whose root component can be controlled via a `component` prop.
