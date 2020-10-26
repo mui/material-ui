@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface ValueLabelProps {
+export interface ValueLabelUnstyledProps {
   className?: string;
   style?: React.CSSProperties;
   /**
@@ -27,4 +27,4 @@ export interface ValueLabelProps {
   valueLabelDisplay?: 'on' | 'auto' | 'off';
 }
 
-export default function ValueLabel(props: ValueLabelProps): JSX.Element;
+export default function ValueLabel(props: ValueLabelUnstyledProps): JSX.Element;
