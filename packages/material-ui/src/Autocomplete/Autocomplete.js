@@ -16,12 +16,12 @@ export { createFilterOptions };
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    '&$focused $clearIndicatorDirty': {
+    '&$focused $clearIndicator': {
       visibility: 'visible',
     },
     /* Avoid double tap issue on iOS */
     '@media (pointer: fine)': {
-      '&:hover $clearIndicatorDirty': {
+      '&:hover $clearIndicator': {
         visibility: 'visible',
       },
     },
@@ -146,8 +146,6 @@ export const styles = (theme) => ({
     padding: 4,
     visibility: 'hidden',
   },
-  /* Styles applied to the clear indicator if the input is dirty. */
-  clearIndicatorDirty: {},
   /* Styles applied to the popup indicator. */
   popupIndicator: {
     padding: 2,
@@ -390,7 +388,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     });
   };
 
-  const hasClearIcon = !disableClearable && !disabled;
+  const hasClearIcon = !disableClearable && !disabled && dirty;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   return (
@@ -426,9 +424,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                     {...getClearProps()}
                     aria-label={clearText}
                     title={clearText}
-                    className={clsx(classes.clearIndicator, {
-                      [classes.clearIndicatorDirty]: dirty,
-                    })}
+                    className={classes.clearIndicator}
                   >
                     {closeIcon}
                   </IconButton>

@@ -108,7 +108,6 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">inputFocused</span> | <span class="prop-name">.MuiAutocomplete-inputFocused</span> | Styles applied to the input element if tag focused.
 | <span class="prop-name">endAdornment</span> | <span class="prop-name">.MuiAutocomplete-endAdornment</span> | Styles applied to the endAdornment element.
 | <span class="prop-name">clearIndicator</span> | <span class="prop-name">.MuiAutocomplete-clearIndicator</span> | Styles applied to the clear indicator.
-| <span class="prop-name">clearIndicatorDirty</span> | <span class="prop-name">.MuiAutocomplete-clearIndicatorDirty</span> | Styles applied to the clear indicator if the input is dirty.
 | <span class="prop-name">popupIndicator</span> | <span class="prop-name">.MuiAutocomplete-popupIndicator</span> | Styles applied to the popup indicator.
 | <span class="prop-name">popupIndicatorOpen</span> | <span class="prop-name">.MuiAutocomplete-popupIndicatorOpen</span> | Styles applied to the popup indicator if the popup is open.
 | <span class="prop-name">popper</span> | <span class="prop-name">.MuiAutocomplete-popper</span> | Styles applied to the popper element.
