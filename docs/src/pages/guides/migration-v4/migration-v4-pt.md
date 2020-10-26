@@ -219,7 +219,7 @@ const classes = makeStyles(theme => ({
 
 ### Alerta
 
-- Move the component from the lab to the core. The component is now stable.
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import Alert from '@material-ui/lab/Alert';
@@ -230,7 +230,7 @@ const classes = makeStyles(theme => ({
 
 ### Autocompletar
 
-- Move the component from the lab to the core. The component is now stable.
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -535,7 +535,7 @@ const classes = makeStyles(theme => ({
 
 ### Paginação
 
-- Move the component from the lab to the core. The component is now stable.
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import Pagination from '@material-ui/lab/Pagination';
@@ -609,7 +609,7 @@ const classes = makeStyles(theme => ({
 
 ### Rating
 
-- Move the component from the lab to the core. The component is now stable.
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import Rating from '@material-ui/lab/Rating';
@@ -649,7 +649,7 @@ const classes = makeStyles(theme => ({
 
 ### Skeleton
 
-- Move the component from the lab to the core. The component is now stable. 
+- Mova o componente do lab para o core. O componente agora é estável. 
   
   
 
@@ -728,7 +728,7 @@ const classes = makeStyles(theme => ({
 
 ### SpeedDial
 
-- Move the component from the lab to the core. The component is now stable. 
+- Mova o componente do lab para o core. O componente agora é estável. 
   
 
   ```diff
@@ -925,7 +925,7 @@ const classes = makeStyles(theme => ({
 
 ### ToggleButton
 
-- Move the component from the lab to the core. The component is now stable. 
+- Mova o componente do lab para o core. O componente agora é estável. 
   
 
   ```diff
