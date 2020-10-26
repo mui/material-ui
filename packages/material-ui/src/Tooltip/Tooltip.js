@@ -300,7 +300,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
-      event.persist();
       enterTimer.current = setTimeout(
         () => {
           handleOpen(event);
@@ -315,7 +314,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const handleLeave = (event) => {
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
-    event.persist();
     leaveTimer.current = setTimeout(() => {
       handleClose(event);
     }, leaveDelay);
@@ -370,7 +368,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     clearTimeout(leaveTimer.current);
     clearTimeout(closeTimer.current);
     clearTimeout(touchTimer.current);
-    event.persist();
     touchTimer.current = setTimeout(() => {
       handleEnter(event);
     }, enterTouchDelay);
@@ -383,7 +380,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
     clearTimeout(touchTimer.current);
     clearTimeout(leaveTimer.current);
-    event.persist();
     leaveTimer.current = setTimeout(() => {
       handleClose(event);
     }, leaveTouchDelay);
