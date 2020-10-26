@@ -211,11 +211,11 @@ export type ExtendSliderUnstyled<M extends OverridableTypeMap> = OverridableComp
  *
  * Demos:
  *
- * - [Slider Styled](https://material-ui.com/components/slider-styled/)
+ * - [Slider](https://material-ui.com/components/slider/)
  *
  * API:
  *
- * - [SliderUnstyled API](https://material-ui.com/api/slider-unstyled/)
+ * - [Slider API](https://material-ui.com/api/slider/)
  */
 declare const SliderUnstyled: OverridableComponent<SliderTypeMap>;
 
