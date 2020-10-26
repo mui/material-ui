@@ -24,6 +24,7 @@ const useValueLabelClasses = (props) => {
  * @ignore - internal component.
  */
 function ValueLabel(props) {
+  /* eslint-disable react/prop-types */
   const { children, className, value, valueLabelDisplay, components = {}, theme } = props;
   const classes = useValueLabelClasses(props);
 
