@@ -17,7 +17,7 @@ import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import generatePropType from 'docs/src/modules/utils/generatePropType';
+import generatePropTypeDescription from 'docs/src/modules/utils/generatePropTypeDescription';
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
 import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
@@ -471,53 +471,6 @@ async function buildDocs(options: {
     throw err;
   }
 
-  /**
-   * Minimize the props data to that needed for API page
-   */
-  Object.entries(reactAPI.props).forEach(([propName, propData]) => {
-    const jsdocDefaultValue = propData.jsdocDefaultValue;
-    let description = propData.description;
-
-    if (description === '@ignore') {
-      return;
-    }
-
-    if (propName === 'classes') {
-      description += ' See [CSS API](#css) below for more details.';
-    }
-
-    const typeDescription = generatePropType(propData.type);
-    // Don't keep `type.description` if it matches `type.name`
-    // We have the technology. We can rebuid it.
-    propData.type.description =
-      typeDescription === propData.type.name ? undefined : typeDescription;
-    delete propData.type.value;
-
-    // Only keep `default` for bool props if it is "true"
-    if (
-      propData.type.name !== 'bool' ||
-      (jsdocDefaultValue && jsdocDefaultValue.value !== 'false')
-    ) {
-      propData.default = jsdocDefaultValue && jsdocDefaultValue.value;
-    }
-    delete propData.defaultValue;
-    delete propData.jsdocDefaultValue;
-
-    if (propData.required === false) {
-      delete propData.required;
-    }
-
-    propDescriptions[name] = {
-      ...propDescriptions[name],
-      [propName]: description && description.replace(/\n@default.*$/, ''),
-    };
-    delete propData.description;
-  });
-
-  if (reactAPI.description.length) {
-    componentDescriptions[reactAPI.name] = reactAPI.description;
-  }
-
   classDescriptions[reactAPI.name] = reactAPI.styles.descriptions;
 
   // Deep clone so as not to mutate reactAPI (it's used later for the type annotations)
@@ -533,6 +486,54 @@ async function buildDocs(options: {
       delete pageContent.styles.globalClasses[className];
     }
   });
+
+  /**
+   * Minimize the props data to that needed for API page
+   */
+  Object.entries(pageContent.props).forEach(([propName, propData]: any) => {
+    const jsdocDefaultValue = propData.jsdocDefaultValue;
+    let description = propData.description;
+
+    if (description === '@ignore') {
+      return;
+    }
+
+    if (propName === 'classes') {
+      description += ' See [CSS API](#css) below for more details.';
+    }
+
+    propDescriptions[name] = {
+      ...propDescriptions[name],
+      [propName]: description && description.replace(/\n@default.*$/, ''),
+    };
+    delete propData.description;
+
+    propData.type.description = generatePropTypeDescription(propData.type);
+
+    if (propData.type.description === propData.type.name) {
+      delete propData.type.description;
+    }
+    delete propData.type.value;
+    delete propData.type.raw;
+
+    // Only keep `default` for bool props if it isn't "false"
+    if (
+      propData.type.name !== 'bool' ||
+      (jsdocDefaultValue && jsdocDefaultValue.value !== 'false')
+    ) {
+      propData.default = jsdocDefaultValue && jsdocDefaultValue.value;
+    }
+    delete propData.defaultValue;
+    delete propData.jsdocDefaultValue;
+
+    if (propData.required === false) {
+      delete propData.required;
+    }
+  });
+
+  if (reactAPI.description.length) {
+    componentDescriptions[reactAPI.name] = reactAPI.description;
+  }
 
   if (pageContent.description === '') {
     delete pageContent.description;

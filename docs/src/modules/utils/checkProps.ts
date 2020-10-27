@@ -1,12 +1,5 @@
 import * as doctrine from 'doctrine';
-import { PropDescriptor, PropTypeDescriptor, ReactDocgenApi } from 'react-docgen';
-
-interface DescribeablePropDescriptor {
-  annotation: doctrine.Annotation;
-  defaultValue: string | null;
-  required: boolean;
-  type: PropTypeDescriptor;
-}
+import { PropDescriptor, ReactDocgenApi } from 'react-docgen';
 
 export interface ReactApi extends ReactDocgenApi {
   EOL: string;
@@ -30,8 +23,8 @@ export interface ReactApi extends ReactDocgenApi {
  * @param prop
  * @param propName
  */
-function checkProp(prop: PropDescriptor, propName: string): DescribeablePropDescriptor | null {
-  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
+function checkProp(propName: string, prop: PropDescriptor) {
+  const { defaultValue, jsdocDefaultValue, description } = prop;
 
   const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
@@ -52,7 +45,7 @@ function checkProp(prop: PropDescriptor, propName: string): DescribeablePropDesc
     annotation.description.trim() === '' ||
     annotation.tags.some((tag) => tag.title === 'ignore')
   ) {
-    return null;
+    return;
   }
 
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
@@ -76,19 +69,10 @@ function checkProp(prop: PropDescriptor, propName: string): DescribeablePropDesc
       );
     }
   }
-
-  return {
-    annotation,
-    defaultValue: renderDefaultValue ? renderedDefaultValue! : null,
-    required: Boolean(required),
-    type,
-  };
 }
 
 export default function checkProps(reactAPI: ReactApi) {
-  Object.keys(reactAPI.props).forEach((propName) => {
-    const propDescriptor = reactAPI.props[propName];
-
-    checkProp(propDescriptor, propName);
+  Object.entries(reactAPI.props).forEach(([propName, propDescriptor]) => {
+    checkProp(propName, propDescriptor);
   });
 }

@@ -3,7 +3,7 @@
     "children": "The content of the accordion.",
     "classes": "Override or extend the styles applied to the component. See [CSS API](#css) below for more details.",
     "defaultExpanded": "If `true`, expands the accordion by default.",
-    "disabled": "If `true`, the accordion will be displayed in a disabled state.",
+    "disabled": "If `true`, the accordion is displayed in a disabled state.",
     "expanded": "If `true`, expands the accordion, otherwise collapse it.\nSetting this prop enables control over the accordion.",
     "onChange": "Callback fired when the expand/collapse state is changed.\n\n@param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.\n@param {boolean} expanded The `expanded` state of the accordion.",
     "square": "If `true`, rounded corners are disabled.",

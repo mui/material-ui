@@ -169,29 +169,32 @@ ClassesTable.propTypes = {
 };
 
 function DangerousMarkdown(props) {
-  const {md} = props;
+  const { md } = props;
 
   return <span dangerouslySetInnerHTML={{ __html: marked(md) }} />;
 }
 
 DangerousMarkdown.propTypes = {
   md: PropTypes.string.isRequired,
-}
+};
 
 function Heading(props) {
   const { hash, level = 2 } = props;
   const t = useSelector((state) => state.options.t);
 
-  return <DangerousMarkdown md={[
-      `<h${level}>`,
-      `<a class="anchor-link" id="${hash}"></a>`,
-      t(hash),
-      `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
-      '<svg><use xlink:href="#anchor-link-icon" /></svg>',
-      '</a>',
-      `</h${level}>`,
-    ].join('')
-  } />
+  return (
+    <DangerousMarkdown
+      md={[
+        `<h${level}>`,
+        `<a class="anchor-link" id="${hash}"></a>`,
+        t(hash),
+        `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
+        '<svg><use xlink:href="#anchor-link-icon" /></svg>',
+        '</a>',
+        `</h${level}>`,
+      ].join('')}
+    />
+  );
 }
 
 Heading.propTypes = {
@@ -224,7 +227,7 @@ function ApiDocs(props) {
       /\/packages\/material-ui(-(.+?))?\/src/,
       (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
     )
-    // convert things like `/Table/Table.js` to ``  
+    // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.js$/, '');
 
   const sections = [
@@ -304,42 +307,51 @@ import { ${componentName} } from '${source}';`}
                 language="jsx"
               />
               <DangerousMarkdown md={t('apiImportDifference')} />
-              {componentDescription[userLanguage] &&
-                <DangerousMarkdown md={componentDescription[userLanguage]} />}
+              {componentDescription[userLanguage] && (
+                <DangerousMarkdown md={componentDescription[userLanguage]} />
+              )}
               {componentStyles.name && (
                 <React.Fragment>
-                  <Heading hash='component-name' />
-                  <DangerousMarkdown md={t('apiStyleOverrides').replace(/{{styles\.name}}/, `Mui${componentName}`)} />
+                  <Heading hash="component-name" />
+                  <DangerousMarkdown
+                    md={t('apiStyleOverrides').replace(/{{styles\.name}}/, `Mui${componentName}`)}
+                  />
                 </React.Fragment>
               )}
-              <Heading hash='props' />
+              <Heading hash="props" />
               <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
               <br />
               {refHint}
               <br />
               <DangerousMarkdown md={spreadHint} />
               {inheritance && [
-                <Heading hash='inheritance' level={3} />,
-                <DangerousMarkdown md={t('inheritanceDescription')
+                <Heading hash="inheritance" level={3} />,
+                <DangerousMarkdown
+                  md={t('inheritanceDescription')
                     .replace(/{{component}}/, inheritance.component)
                     .replace(/{{pathname}}/, inheritance.pathname)
                     .replace(/{{suffix}}/, inheritanceSuffix)
-                    .replace(/{{componentName}}/, componentName)} />
+                    .replace(/{{componentName}}/, componentName)}
+                />,
               ]}
               {componentStyles.classes ? (
                 <React.Fragment>
-                  <Heading hash='css' />
+                  <Heading hash="css" />
                   <ClassesTable
                     componentName={componentName}
                     componentStyles={componentStyles}
                     classDescriptions={classDescriptions}
                   />
                   <br />
-                  <DangerousMarkdown md={
-                    t('overrideStyles').replace(/{{URL}}/, `${SOURCE_CODE_ROOT_URL}${filename}`)} />
+                  <DangerousMarkdown
+                    md={t('overrideStyles').replace(
+                      /{{URL}}/,
+                      `${SOURCE_CODE_ROOT_URL}${filename}`,
+                    )}
+                  />
                 </React.Fragment>
               ) : null}
-              <Heading hash='demos' />
+              <Heading hash="demos" />
               <DangerousMarkdown md={demos} />
               <NoSsr>
                 <MarkdownDocsFooter />

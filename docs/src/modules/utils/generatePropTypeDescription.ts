@@ -64,7 +64,7 @@ function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
   return /^elementAcceptingRef/.test(type.raw);
 }
 
-export default function generatePropType(type: PropTypeDescriptor): string | undefined {
+export default function generatePropTypeDescription(type: PropTypeDescriptor): string | undefined {
   switch (type.name) {
     case 'custom': {
       if (isElementTypeAcceptingRefProp(type)) {
@@ -82,7 +82,7 @@ export default function generatePropType(type: PropTypeDescriptor): string | und
 
       const deprecatedInfo = getDeprecatedInfo(type);
       if (deprecatedInfo !== false) {
-        return generatePropType({
+        return generatePropTypeDescription({
           // eslint-disable-next-line react/forbid-foreign-prop-types
           name: deprecatedInfo.propTypes,
         } as any);
@@ -90,7 +90,7 @@ export default function generatePropType(type: PropTypeDescriptor): string | und
 
       const chained = getChained(type);
       if (chained !== false) {
-        return generatePropType(chained.type);
+        return generatePropTypeDescription(chained.type);
       }
 
       return type.raw;
@@ -100,7 +100,9 @@ export default function generatePropType(type: PropTypeDescriptor): string | und
       return `{ ${Object.keys(type.value)
         .map((subValue) => {
           const subType = type.value[subValue];
-          return `${subValue}${subType.required ? '' : '?'}: ${generatePropType(subType)}`;
+          return `${subValue}${subType.required ? '' : '?'}: ${generatePropTypeDescription(
+            subType,
+          )}`;
         })
         .join(', ')} }`;
 
@@ -108,7 +110,7 @@ export default function generatePropType(type: PropTypeDescriptor): string | und
       return (
         type.value
           .map((type2) => {
-            return generatePropType(type2);
+            return generatePropTypeDescription(type2);
           })
           // Display one value per line as it's better for visibility.
           .join('<br>&#124;&nbsp;')
@@ -124,7 +126,7 @@ export default function generatePropType(type: PropTypeDescriptor): string | und
       );
 
     case 'arrayOf': {
-      return `Array&lt;${generatePropType(type.value)}&gt;`;
+      return `Array&lt;${generatePropTypeDescription(type.value)}&gt;`;
     }
 
     case 'instanceOf': {
