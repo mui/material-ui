@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+import fse from 'fs-extra';
 import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, main, getComponentName } from './builder';
 
 const DISABLE_LOG = true;
@@ -48,7 +49,7 @@ describe('builder', () => {
     });
 
     after(() => {
-      fs.rmdirSync(options.outputDir, { recursive: true });
+      fse.removeSync(options.outputDir);
     });
 
     it('script outputs to directory', async () => {
@@ -73,7 +74,7 @@ describe('builder', () => {
     });
 
     after(() => {
-      fs.rmdirSync(options.outputDir, { recursive: true });
+      fse.removeSync(options.outputDir);
     });
 
     it('script outputs to directory', async () => {
@@ -112,7 +113,7 @@ describe('builder', () => {
     });
 
     after(() => {
-      fs.rmdirSync(options.outputDir, { recursive: true });
+      fse.removeSync(options.outputDir);
     });
 
     it('should produce the expected output', async () => {
