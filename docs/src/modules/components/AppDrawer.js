@@ -14,6 +14,7 @@ import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 let savedScrollTop = null;
 function PersistScroll(props) {
@@ -142,7 +143,7 @@ function AppDrawer(props) {
   const { activePage, pages } = React.useContext(PageContext);
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   const navItems = React.useMemo(
     () => renderNavItems({ onClose, pages, activePage, depth: 0, t }),

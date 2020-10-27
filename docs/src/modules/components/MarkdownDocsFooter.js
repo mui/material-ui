@@ -21,6 +21,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const styles = (theme) => ({
   root: {
@@ -143,7 +144,7 @@ function getCurrentRating(pathname) {
 
 function MarkdownDocsFooter(props) {
   const { classes } = props;
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const { activePage, pages } = React.useContext(PageContext);
   const [rating, setRating] = React.useState();

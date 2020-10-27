@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const styles = (theme) => ({
   root: {
@@ -54,7 +55,7 @@ function AppFooter(props) {
   const { classes } = props;
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <div className={classes.root}>

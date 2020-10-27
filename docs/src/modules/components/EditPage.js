@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default function EditPage(props) {
   const { markdownLocation } = props;
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
   const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';

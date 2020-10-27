@@ -9,6 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import docsearch from 'docsearch.js';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -118,7 +119,7 @@ export default function AppSearch() {
   const inputRef = React.useRef(null);
   const theme = useTheme();
   const userLanguage = useSelector((state) => state.options.userLanguage);
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   useLazyCSS('https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css', '#app-search');
 

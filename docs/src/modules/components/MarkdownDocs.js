@@ -18,6 +18,7 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
 import MarkdownDocsFooter from './MarkdownDocsFooter';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
@@ -58,7 +59,7 @@ const styles = (theme) => ({
 function MarkdownDocs(props) {
   const { classes, disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
 
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
   if (description === undefined) {

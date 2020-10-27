@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -9,6 +8,7 @@ import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdReadthedocs from 'docs/src/modules/components/AdReadthedocs';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const styles = (theme) => ({
   root: {
@@ -39,7 +39,7 @@ const styles = (theme) => ({
 });
 
 function PleaseDisableAdblock(props) {
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <Paper component="span" elevation={0} {...props}>

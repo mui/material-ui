@@ -1,6 +1,5 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import Divider from '@material-ui/core/Divider';
@@ -8,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const users = [
   {
@@ -123,7 +123,7 @@ const useStyles = makeStyles(
 
 export default function Users() {
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <div className={classes.root}>
