@@ -126,10 +126,12 @@ const externs = [
 
 /**
  * @param {object} config
- * @param {string} config.pageFilename - filename relative to nextjs pages directory
  * @param {() => string} config.requireRaw - returnvalue of require.context
+ * @param {string} config.pageFilename - filename relative to nextjs pages directory
  */
-export function prepareMarkdown({ pageFilename, requireRaw }) {
+export function prepareMarkdown(config) {
+  const { pageFilename, requireRaw } = config;
+
   const demos = {};
   const docs = {};
   const headingHashes = {};
@@ -187,10 +189,11 @@ ${headers.components
         return render(content, {
           highlight: prism,
           heading: (headingHtml, level) => {
-            // Main title, no need for an anchor. It adds noise to the URL.
+            // Main title, no need for an anchor.
+            // It adds noises to the URL.
             //
             // Small title, no need for an anchor.
-            // It reduces the risk of duplicate IDs, and it's fewer elements in the DOM.
+            // It reduces the risk of duplicated id and it's fewer elements in the DOM.
             if (level === 1 || level >= 4) {
               return `<h${level}>${headingHtml}</h${level}>`;
             }

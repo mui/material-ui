@@ -53,6 +53,152 @@ const styles = (theme) => ({
   },
 });
 
+function PropsTable(props) {
+  const { componentProps, propDescriptions } = props;
+  const t = useSelector((state) => state.options.t);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th align="left">{t('name')}</th>
+          <th align="left">{t('type')}</th>
+          <th align="left">{t('default')}</th>
+          <th align="left">{t('description')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Object.entries(componentProps).map(([propName, propData]) => {
+          const typeDescription = propData.type.description || propData.type.name;
+          const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
+          return (
+            propData.description !== '@ignore' && (
+              <tr key={propName}>
+                <td align="left">
+                  <span className={clsx('prop-name', propData.required ? 'required' : null)}>
+                    {propName}
+                    {propData.required ? <sup>*</sup> : null}
+                  </span>
+                </td>
+                <td align="left">
+                  {typeDescription.length > 20 ? (
+                    <details className="prop-type">
+                      <summary>{propData.type.name}</summary>
+                      <span dangerouslySetInnerHTML={{ __html: typeDescription }} />
+                    </details>
+                  ) : (
+                    <span
+                      className="prop-type"
+                      dangerouslySetInnerHTML={{ __html: typeDescription }}
+                    />
+                  )}
+                </td>
+                <td align="left">
+                  {propDefault && <span className="prop-default">{propDefault}</span>}
+                </td>
+                <td
+                  align="left"
+                  dangerouslySetInnerHTML={{
+                    __html: marked(propDescriptions[userLanguage][propName] || ''),
+                  }}
+                />
+              </tr>
+            )
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}
+
+PropsTable.propTypes = {
+  componentProps: PropTypes.object.isRequired,
+  propDescriptions: PropTypes.object.isRequired,
+};
+
+function ClassesTable(props) {
+  const { componentName, componentStyles, classDescriptions } = props;
+  const t = useSelector((state) => state.options.t);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th align="left">{t('ruleName')}</th>
+          <th align="left">{t('globalClass')}</th>
+          <th align="left">{t('description')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {componentStyles.classes.map((className) => (
+          <tr key={className}>
+            <td align="left">
+              <span className="prop-name">{className}</span>
+            </td>
+            <td align="left">
+              <span className="prop-name">
+                {componentStyles.globalClasses[className] || `Mui${componentName}-${className}`}
+              </span>
+            </td>
+            <td
+              align="left"
+              dangerouslySetInnerHTML={{
+                __html:
+                  classDescriptions[userLanguage][className] &&
+                  marked(
+                    classDescriptions[userLanguage][className].description.replace(
+                      /{{conditions}}/,
+                      classDescriptions[userLanguage][className].conditions,
+                    ),
+                  ),
+              }}
+            />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+ClassesTable.propTypes = {
+  classDescriptions: PropTypes.object.isRequired,
+  componentName: PropTypes.string.isRequired,
+  componentStyles: PropTypes.object.isRequired,
+};
+
+function DangerousMarkdown(props) {
+  const {md} = props;
+
+  return <span dangerouslySetInnerHTML={{ __html: marked(md) }} />;
+}
+
+DangerousMarkdown.propTypes = {
+  md: PropTypes.string.isRequired,
+}
+
+function Heading(props) {
+  const { hash, level = 2 } = props;
+  const t = useSelector((state) => state.options.t);
+
+  return <DangerousMarkdown md={[
+      `<h${level}>`,
+      `<a class="anchor-link" id="${hash}"></a>`,
+      t(hash),
+      `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
+      '<svg><use xlink:href="#anchor-link-icon" /></svg>',
+      '</a>',
+      `</h${level}>`,
+    ].join('')
+  } />
+}
+
+Heading.propTypes = {
+  hash: PropTypes.string.isRequired,
+  level: PropTypes.number,
+};
+
 function ApiDocs(props) {
   const { classes, disableAd = false, disableToc = false, pageContent } = props;
   const t = useSelector((state) => state.options.t);
@@ -64,21 +210,21 @@ function ApiDocs(props) {
     filename,
     forwardsRefTo,
     inheritance,
-    name,
+    name: componentName,
     propDescriptions,
     props: componentProps,
     spread,
     styles: componentStyles,
   } = pageContent;
 
-  const description = t('apiDescription').replace(/{{name}}/, name);
+  const description = t('apiPageDescription').replace(/{{name}}/, componentName);
 
   const source = filename
     .replace(
       /\/packages\/material-ui(-(.+?))?\/src/,
       (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
     )
-    // convert things like `/Table/Table.js` to ``
+    // convert things like `/Table/Table.js` to ``  
     .replace(/\/([^/]+)\/\1\.js$/, '');
 
   const sections = [
@@ -125,28 +271,10 @@ function ApiDocs(props) {
     inheritanceSuffix = t('inheritanceSuffixTransition');
   }
 
-  function dangerousMarkdown(md) {
-    return <span dangerouslySetInnerHTML={{ __html: marked(md) }} />;
-  }
-
-  function heading(hash, level = 2) {
-    return dangerousMarkdown(
-      [
-        `<h${level}>`,
-        `<a class="anchor-link" id="${hash}"></a>`,
-        t(hash),
-        `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
-        '<svg><use xlink:href="#anchor-link-icon" /></svg>',
-        '</a>',
-        `</h${level}>`,
-      ].join(''),
-    );
-  }
-
   return (
     <AppFrame>
       <AdManager>
-        <Head title={`${name} API - Material-UI`} description={description} />
+        <Head title={`${componentName} API - Material-UI`} description={description} />
         {disableAd ? null : (
           <AdGuest>
             <Ad placement="body" />
@@ -163,145 +291,56 @@ function ApiDocs(props) {
               <div className={classes.actions}>
                 <EditPage markdownLocation={filename} />
               </div>
-              <h1>{name} API</h1>
+              <h1>{componentName} API</h1>
               <Typography variant="h5" component="div" gutterBottom>
                 {description}
               </Typography>
-              {heading('import')}
+              <Heading hash="import" />
               <HighlightedCode
                 code={`
-import ${name} from '${source}/${name}';
+import ${componentName} from '${source}/${componentName}';
 // ${t('or')}
-import { ${name} } from '${source}';`}
+import { ${componentName} } from '${source}';`}
                 language="jsx"
               />
-              {dangerousMarkdown(t('apiImportDifference'))}
+              <DangerousMarkdown md={t('apiImportDifference')} />
               {componentDescription[userLanguage] &&
-                dangerousMarkdown(componentDescription[userLanguage])}
+                <DangerousMarkdown md={componentDescription[userLanguage]} />}
               {componentStyles.name && (
                 <React.Fragment>
-                  {heading('component-name')}
-                  {dangerousMarkdown(
-                    t('apiStyleOverrides').replace(/{{styles\.name}}/, `Mui${name}`),
-                  )}
+                  <Heading hash='component-name' />
+                  <DangerousMarkdown md={t('apiStyleOverrides').replace(/{{styles\.name}}/, `Mui${componentName}`)} />
                 </React.Fragment>
               )}
-              {heading('props')}
-              <table>
-                <thead>
-                  <tr>
-                    <th align="left">{t('name')}</th>
-                    <th align="left">{t('type')}</th>
-                    <th align="left">{t('default')}</th>
-                    <th align="left">{t('description')}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.entries(componentProps).map(([propName, propData]) => {
-                    const typeDescription = propData.type.description || propData.type.name;
-                    const propDefault =
-                      propData.default || (propData.type.name === 'bool' && 'false');
-                    return (
-                      propData.description !== '@ignore' && (
-                        <tr key={propName}>
-                          <td align="left">
-                            <span
-                              className={clsx('prop-name', propData.required ? 'required' : null)}
-                            >
-                              {propName}
-                              {propData.required ? <sup>*</sup> : null}
-                            </span>
-                          </td>
-                          <td align="left">
-                            {typeDescription.length > 20 ? (
-                              <details className="prop-type">
-                                <summary>{propData.type.name}</summary>
-                                <span dangerouslySetInnerHTML={{ __html: typeDescription }} />
-                              </details>
-                            ) : (
-                              <span
-                                className="prop-type"
-                                dangerouslySetInnerHTML={{ __html: typeDescription }}
-                              />
-                            )}
-                          </td>
-                          <td align="left">
-                            {propDefault && <span className="prop-default">{propDefault}</span>}
-                          </td>
-                          <td
-                            align="left"
-                            dangerouslySetInnerHTML={{
-                              __html: marked(propDescriptions[userLanguage][propName] || ''),
-                            }}
-                          />
-                        </tr>
-                      )
-                    );
-                  })}
-                </tbody>
-              </table>
+              <Heading hash='props' />
+              <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
               <br />
               {refHint}
               <br />
-              {dangerousMarkdown(spreadHint)}
+              <DangerousMarkdown md={spreadHint} />
               {inheritance && [
-                heading('inheritance', 3),
-                dangerousMarkdown(
-                  t('inheritanceDescription')
+                <Heading hash='inheritance' level={3} />,
+                <DangerousMarkdown md={t('inheritanceDescription')
                     .replace(/{{component}}/, inheritance.component)
                     .replace(/{{pathname}}/, inheritance.pathname)
                     .replace(/{{suffix}}/, inheritanceSuffix)
-                    .replace(/{{componentName}}/, name),
-                ),
+                    .replace(/{{componentName}}/, componentName)} />
               ]}
               {componentStyles.classes ? (
                 <React.Fragment>
-                  {heading('css')}
-                  <table>
-                    <thead>
-                      <tr>
-                        <th align="left">Rule name</th>
-                        <th align="left">Global class</th>
-                        <th align="left">Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {componentStyles.classes.map((className) => (
-                        <tr key={className}>
-                          <td align="left">
-                            <span className="prop-name">{className}</span>
-                          </td>
-                          <td align="left">
-                            <span className="prop-name">
-                              {componentStyles.globalClasses[className] ||
-                                `Mui${name}-${className}`}
-                            </span>
-                          </td>
-                          <td
-                            align="left"
-                            dangerouslySetInnerHTML={{
-                              __html:
-                                classDescriptions[userLanguage][className] &&
-                                marked(
-                                  classDescriptions[userLanguage][className].description.replace(
-                                    /{{conditions}}/,
-                                    classDescriptions[userLanguage][className].conditions,
-                                  ),
-                                ),
-                            }}
-                          />
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                  <Heading hash='css' />
+                  <ClassesTable
+                    componentName={componentName}
+                    componentStyles={componentStyles}
+                    classDescriptions={classDescriptions}
+                  />
                   <br />
-                  {dangerousMarkdown(
-                    t('overrideStyles').replace(/{{URL}}/, `${SOURCE_CODE_ROOT_URL}${filename}`),
-                  )}
+                  <DangerousMarkdown md={
+                    t('overrideStyles').replace(/{{URL}}/, `${SOURCE_CODE_ROOT_URL}${filename}`)} />
                 </React.Fragment>
               ) : null}
-              {heading('demos')}
-              {dangerousMarkdown(demos)}
+              <Heading hash='demos' />
+              <DangerousMarkdown md={demos} />
               <NoSsr>
                 <MarkdownDocsFooter />
               </NoSsr>

@@ -494,7 +494,10 @@ async function buildDocs(options: {
     delete propData.type.value;
 
     // Only keep `default` for bool props if it is "true"
-    if (propData.type.name !== 'bool' || jsdocDefaultValue &&jsdocDefaultValue.value !== "false") {
+    if (
+      propData.type.name !== 'bool' ||
+      (jsdocDefaultValue && jsdocDefaultValue.value !== 'false')
+    ) {
       propData.default = jsdocDefaultValue && jsdocDefaultValue.value;
     }
     delete propData.defaultValue;
