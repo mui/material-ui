@@ -186,9 +186,9 @@ async function generateProptypes(
 
   const unstyledFile = tsFile.endsWith('Styled.d.ts')
     ? tsFile.replace(/material-ui-lab|material-ui-core|Styled/g, (matched) => {
-      if(matched === 'Styled') return 'Unstyled';
-      return 'material-ui-unstyled';
-    })
+        if (matched === 'Styled') return 'Unstyled';
+        return 'material-ui-unstyled';
+      })
     : null;
 
   const result = ttp.inject(proptypes, jsContent, {
