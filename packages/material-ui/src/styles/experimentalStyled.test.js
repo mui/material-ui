@@ -58,7 +58,7 @@ describe('experimentalStyled', () => {
 
   it('should use theme from context if available', () => {
     const Div = styled('div')`
-      width: ${(props) => props.theme.spacing(1)}
+      width: ${(props) => props.theme.spacing(1)};
     `;
 
     const theme = createMuiTheme({
@@ -106,7 +106,6 @@ describe('experimentalStyled', () => {
      * @type {ReturnType<typeof styled>}
      */
     let DivObj;
-
 
     before(() => {
       Div = styled('div')`
@@ -202,7 +201,7 @@ describe('experimentalStyled', () => {
       )({
         width: '200px',
         height: '300px',
-      })
+      });
     });
 
     it('should work with specified muiOptions', () => {
@@ -355,7 +354,6 @@ describe('experimentalStyled', () => {
       });
     });
 
-    
     it('should resolve the sx prop when styles are object', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
