@@ -71,7 +71,6 @@
     "@types/jsdom": "^16.1.0",
     "@types/lodash": "^4.14.138",
     "@types/mocha": "^8.0.0",
-    "@types/node": "^10.17.43",
     "@types/prettier": "^2.0.0",
     "@types/react": "^16.9.44",
     "@types/sinon": "^9.0.0",
@@ -174,7 +173,6 @@
     "**/@babel/preset-typescript": "^7.10.4",
     "**/@babel/runtime": "^7.10.2",
     "**/@babel/types": "^7.10.2",
-    "**/@types/node": "^10.17.43",
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
     "**/webpack": "^4.44.1"

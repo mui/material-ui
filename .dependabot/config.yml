@@ -13,10 +13,6 @@ update_configs:
           # These should be grouped. Maintainer advise: Watch https://github.com/babel/babel
           # for new releases and file a PR if you got time.
           dependency_name: '@babel/*'
-      # TODO: Update once we switch to node12.
-      - match:
-          dependency_name: '@types/node'
-          version_requirement: '> 10.0'
       - match:
           # Should be grouped with @typescript-eslint/eslint-plugin
           # They sometimes are mergable independently but create a different dependency when merged leading to a changed yarn.lock
