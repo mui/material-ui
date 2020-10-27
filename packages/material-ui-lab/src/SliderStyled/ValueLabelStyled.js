@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useThemeProps, experimentalStyled } from '@material-ui/core/styles';
-import { ValueLabel as ValueLabelUnstyled } from '@material-ui/unstyled/Slider';
+import { ValueLabelUnstyled } from '@material-ui/unstyled/SliderUnstyled';
 
 const overridesResolver = (_, styles) => {
   const componentName = 'MuiSlider-valueLabel';

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { createMount, describeConformance } from 'test/utils';
-import Slider from './Slider';
+import SliderUnstyled from './SliderUnstyled';
 
-describe('<Slider />', () => {
+describe('<SliderUnstyled />', () => {
   if (typeof Touch === 'undefined') {
     return;
   }

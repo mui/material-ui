@@ -11,7 +11,7 @@ import {
   capitalize,
   useControlled,
 } from '../utils';
-import ValueLabelComponent from './ValueLabel';
+import ValueLabelComponent from './ValueLabelUnstyled';
 
 function asc(a, b) {
   return a - b;
