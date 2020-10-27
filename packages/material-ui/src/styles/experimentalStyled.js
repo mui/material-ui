@@ -69,8 +69,11 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
       ? expressions.map((stylesArg) => {
           return typeof stylesArg === 'function'
             ? ({ theme: themeInput, ...rest }) => {
-              return stylesArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...rest });
-            }
+                return stylesArg({
+                  theme: isEmpty(themeInput) ? defaultTheme : themeInput,
+                  ...rest,
+                });
+              }
             : stylesArg;
         })
       : [];
