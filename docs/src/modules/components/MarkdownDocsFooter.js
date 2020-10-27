@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { exactProp } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -21,7 +20,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const styles = (theme) => ({
   root: {
@@ -145,7 +144,7 @@ function getCurrentRating(pathname) {
 function MarkdownDocsFooter(props) {
   const { classes } = props;
   const t = useTranslate();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
   const { activePage, pages } = React.useContext(PageContext);
   const [rating, setRating] = React.useState();
   const [comment, setComment] = React.useState('');

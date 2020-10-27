@@ -17,7 +17,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,7 +49,7 @@ export default function Notifications() {
   const anchorRef = React.useRef(null);
   const t = useTranslate();
   const dispatch = useDispatch();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
   const messages = useSelector((state) => state.notifications.messages);
   const lastSeen = useSelector((state) => state.notifications.lastSeen);
 

@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import mapTranslations from './mapTranslations';
@@ -46,4 +45,8 @@ export function useTranslate() {
       },
     [userLanguage],
   );
+}
+
+export function useUserLanguage() {
+  return useSelector((state) => state.options.userLanguage);
 }
