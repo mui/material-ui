@@ -6,7 +6,7 @@
 
 Puedes Cambiar la familia de fuente con la propiedad `theme.typography.fontFamily`.
 
-Para instanciar, este demo usa el sistema de fuente en vez de la fuente por defecto Roboto:
+Por ejemplo, en este caso se utiliza la fuente del sistema en vez de la fuente por defecto, Roboto:
 
 ```js
 const theme = createMuiTheme({
@@ -31,7 +31,7 @@ const theme = createMuiTheme({
 
 Para fuentes auto-hospedadas, descargue los archivos de fuente en `ttf`, `woff`, and/or `woff2` añada el formato e importelo dentro de su código.
 
-⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Fonts will _not_ be embedded within your bundle. Estas se podrán cargar desde su servidor en vez de servirlas desde un CDN.
+⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Las fuentes _no_ serán incrustadas dentro de tu paquete. Estas se podrán cargar desde su servidor en vez de servirlas desde un CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
