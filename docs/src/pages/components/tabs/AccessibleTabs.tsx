@@ -14,7 +14,6 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -24,7 +23,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -41,7 +40,6 @@ interface DemoTabsProps {
 
 function DemoTabs(props: DemoTabsProps) {
   const { labelId, onChange, selectionFollowsFocus, value } = props;
-
   return (
     <AppBar position="static">
       <Tabs
@@ -67,11 +65,10 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
 });
-
 export default function AccessibleTabs() {
   const classes = useStyles();
-
   const [value, setValue] = React.useState(0);
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };

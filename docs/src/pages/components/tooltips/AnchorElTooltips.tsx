@@ -40,10 +40,12 @@ export default function AnchorElTooltips() {
     >
       <Box
         ref={areaRef}
-        bgcolor="primary.main"
-        color="primary.contrastText"
         onMouseMove={handleMouseMove}
-        p={2}
+        sx={{
+          bgcolor: 'primary.main',
+          color: 'primary.contrastText',
+          p: 2,
+        }}
       >
         Hover
       </Box>

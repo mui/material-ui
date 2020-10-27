@@ -82,9 +82,9 @@ export default function App() {
 Now, you can provide a spacing multiplier value:
 
 ```jsx
-<Box p={1}>4px</Box>
-<Box p={2}>8px</Box>
-<Box p={-1}>-4px</Box>
+<Box sx={{ p: 1 }}>4px</Box>
+<Box sx={{ p: 2 }}>8px</Box>
+<Box sx={{ p: -1 }}>-4px</Box>
 ```
 
 and a primary color:
