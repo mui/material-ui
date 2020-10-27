@@ -16,8 +16,6 @@ function omit(input, fields) {
   return output;
 }
 
-let warnedOnce = false;
-
 /**
  * @ignore - do not document.
  */
@@ -25,17 +23,6 @@ const Box = React.forwardRef(function Box(props, ref) {
   const { children, clone, className, component: Component = 'div', ...other } = props;
 
   const spread = omit(other, styleFunction.filterProps);
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warnedOnce && Object.keys(spread).length !== Object.keys(other).length) {
-      warnedOnce = true;
-      console.warn(
-        'Material-UI: You are using deprecated props on the Box component.\n' +
-          'You should move the properties inside the `sx` prop. For example:\n' +
-          '<Box m={2} /> should become <Box sx={{ m: 2 }} />',
-      );
-    }
-  }
 
   if (clone) {
     return React.cloneElement(children, {
@@ -55,11 +42,28 @@ const Box = React.forwardRef(function Box(props, ref) {
   );
 });
 
+const specialProperty = 'exact-prop: \u200b';
+
 Box.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   className: PropTypes.string,
   clone: PropTypes.bool,
   component: PropTypes.elementType,
+  [specialProperty]: (props) => {
+    const unsupportedProps = Object.keys(props).filter(
+      (prop) => ['children', 'className', 'clone', 'component'].indexOf(prop) === -1,
+    );
+
+    if (unsupportedProps.length > 0) {
+      return new Error(
+        `The following props are deprecated: ${unsupportedProps
+          .map((prop) => `\`${prop}\``)
+          .join(', ')}. You should move the properties inside the \`sx\` prop. For example:\n` +
+          '<Box m={2} /> should become <Box sx={{ m: 2 }} />',
+      );
+    }
+    return null;
+  },
 };
 
 export default styled(Box, {}, { muiName: 'MuiBox' })(styleFunction);
