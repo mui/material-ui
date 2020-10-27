@@ -16,12 +16,12 @@ export { createFilterOptions };
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    '&$focused $clearIndicatorDirty': {
+    '&$focused $clearIndicator': {
       visibility: 'visible',
     },
     /* Avoid double tap issue on iOS */
     '@media (pointer: fine)': {
-      '&:hover $clearIndicatorDirty': {
+      '&:hover $clearIndicator': {
         visibility: 'visible',
       },
     },
@@ -146,8 +146,6 @@ export const styles = (theme) => ({
     padding: 4,
     visibility: 'hidden',
   },
-  /* Styles applied to the clear indicator if the input is dirty. */
-  clearIndicatorDirty: {},
   /* Styles applied to the popup indicator. */
   popupIndicator: {
     padding: 2,
@@ -390,7 +388,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     });
   };
 
-  const hasClearIcon = !disableClearable && !disabled;
+  const hasClearIcon = !disableClearable && !disabled && dirty;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   return (
@@ -426,9 +424,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                     {...getClearProps()}
                     aria-label={clearText}
                     title={clearText}
-                    className={clsx(classes.clearIndicator, {
-                      [classes.clearIndicatorDirty]: dirty,
-                    })}
+                    className={classes.clearIndicator}
                   >
                     {closeIcon}
                   </IconButton>
@@ -552,7 +548,7 @@ Autocomplete.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the input's text will be cleared on blur if no value is selected.
+   * If `true`, the input's text is cleared on blur if no value is selected.
    *
    * Set to `true` if you want to help the user enter a new value.
    * Set to `false` if you want to help the user resume his search.
@@ -606,7 +602,7 @@ Autocomplete.propTypes = {
    */
   disableCloseOnSelect: PropTypes.bool,
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the input is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -859,7 +855,7 @@ Autocomplete.propTypes = {
    */
   renderTags: PropTypes.func,
   /**
-   * If `true`, the input's text will be selected on focus.
+   * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
    * @default !props.freeSolo
    */

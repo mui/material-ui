@@ -19,7 +19,7 @@ export interface InputBaseProps
    */
   autoComplete?: string;
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus?: boolean;
   /**
@@ -75,7 +75,7 @@ export interface InputBaseProps
    */
   defaultValue?: unknown;
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the `input` element is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled?: boolean;
@@ -119,7 +119,7 @@ export interface InputBaseProps
    */
   margin?: 'dense' | 'none';
   /**
-   * If `true`, a textarea element will be rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline?: boolean;
@@ -153,7 +153,7 @@ export interface InputBaseProps
    */
   readOnly?: boolean;
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required?: boolean;

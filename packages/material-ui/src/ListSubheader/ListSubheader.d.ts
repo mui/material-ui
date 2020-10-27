@@ -40,7 +40,7 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
      */
     disableSticky?: boolean;
     /**
-     * If `true`, the List Subheader will be indented.
+     * If `true`, the List Subheader is indented.
      * @default false
      */
     inset?: boolean;

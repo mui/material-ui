@@ -3,15 +3,23 @@
   "version": "0.0.1",
   "private": "true",
   "scripts": {
-    "browser": "yarn webpack --config browser/webpack.config.js && node browser/scripts/benchmark.js"
+    "browser": "yarn webpack --config browser/webpack.config.js && node browser/scripts/benchmark.js",
+    "server:core": "cd ../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node benchmark/server/scenarios/core.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\"",
+    "server:docs": "cd ../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node benchmark/server/scenarios/docs.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\"",
+    "server:server": "cd ../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node benchmark/server/scenarios/server.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\"",
+    "server:styles": "cd ../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node benchmark/server/scenarios/styles.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\"",
+    "server:system": "cd ../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node benchmark/server/scenarios/system.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\""
   },
   "dependencies": {
+    "benchmark": "^2.1.4",
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
     "@material-ui/core": "^5.0.0-alpha.1",
     "@material-ui/styles": "^5.0.0-alpha.1",
     "@material-ui/system": "^5.0.0-alpha.1",
+    "emotion": "^10.0.27",
+    "emotion-server": "^10.0.27",
     "emotion-theming": "^10.0.27",
     "puppeteer": "^5.0.0",
     "serve-handler": "^6.1.3",
@@ -19,6 +27,8 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-is": "^16.13.1",
+    "react-jss": "^10.3.0",
+    "styled-system": "^5.1.2",
     "theme-ui": "^0.3.1",
     "webpack": "^4.41.0",
     "webpack-cli": "^4.0.0"

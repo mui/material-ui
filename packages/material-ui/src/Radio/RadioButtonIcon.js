@@ -9,7 +9,7 @@ export const styles = (theme) => ({
   root: {
     position: 'relative',
     display: 'flex',
-    '&$checked $layer': {
+    '&$checked $dot': {
       transform: 'scale(1)',
       transition: theme.transitions.create('transform', {
         easing: theme.transitions.easing.easeOut,
@@ -17,7 +17,12 @@ export const styles = (theme) => ({
       }),
     },
   },
-  layer: {
+  checked: {},
+  background: {
+    // Scale applied to prevent dot misalignment in Safari
+    transform: 'scale(1)',
+  },
+  dot: {
     left: 0,
     position: 'absolute',
     transform: 'scale(0)',
@@ -26,7 +31,6 @@ export const styles = (theme) => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-  checked: {},
 });
 
 /**
@@ -37,8 +41,8 @@ function RadioButtonIcon(props) {
 
   return (
     <div className={clsx(classes.root, { [classes.checked]: checked })}>
-      <RadioButtonUncheckedIcon fontSize={fontSize} />
-      <RadioButtonCheckedIcon fontSize={fontSize} className={classes.layer} />
+      <RadioButtonUncheckedIcon fontSize={fontSize} className={classes.background} />
+      <RadioButtonCheckedIcon fontSize={fontSize} className={classes.dot} />
     </div>
   );
 }

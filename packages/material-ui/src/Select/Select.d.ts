@@ -104,7 +104,7 @@ export interface SelectProps<T = unknown>
    */
   multiple?: boolean;
   /**
-   * If `true`, the component will be using a native `select` element.
+   * If `true`, the component uses a native `select` element.
    * @default false
    */
   native?: boolean;

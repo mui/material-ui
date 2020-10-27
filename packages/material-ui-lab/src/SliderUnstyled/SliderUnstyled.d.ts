@@ -78,7 +78,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     defaultValue?: number | number[];
     /**
-     * If `true`, the slider will be disabled.
+     * If `true`, the slider is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -104,7 +104,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     isRtl?: boolean;
     /**
      * Marks indicate predetermined values to which the user can move the slider.
-     * If `true` the marks will be spaced according the value of the `step` prop.
+     * If `true` the marks are spaced according the value of the `step` prop.
      * If an array, it should contain objects with `value` and an optional `label` keys.
      * @default false
      */

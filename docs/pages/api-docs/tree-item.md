@@ -33,7 +33,7 @@ The `MuiTreeItem` name can be used for providing [default props](/customization/
 | <span class="prop-name">collapseIcon</span> | <span class="prop-type">node</span> |  | The icon used to collapse the node. |
 | <span class="prop-name">ContentComponent</span> | <span class="prop-type">element type</span> | <span class="prop-default">TreeItemContent</span> | The component used for the content node.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">ContentProps</span> | <span class="prop-type">object</span> |  | Props applied to ContentComponent |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the node will be disabled. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the node is disabled. |
 | <span class="prop-name">endIcon</span> | <span class="prop-type">node</span> |  | The icon displayed next to a end node. |
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  | The icon used to expand the node. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display next to the tree node's label. |

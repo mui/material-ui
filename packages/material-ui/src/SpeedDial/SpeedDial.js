@@ -409,7 +409,7 @@ SpeedDial.propTypes = {
    */
   FabProps: PropTypes.object,
   /**
-   * If `true`, the SpeedDial will be hidden.
+   * If `true`, the SpeedDial is hidden.
    * @default false
    */
   hidden: PropTypes.bool,
