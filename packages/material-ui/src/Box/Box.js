@@ -21,7 +21,7 @@ let warnedOnce = false;
 /**
  * @ignore - do not document.
  */
-const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
+const Box = React.forwardRef(function Box(props, ref) {
   const { children, clone, className, component: Component = 'div', ...other } = props;
 
   const spread = omit(other, styleFunction.filterProps);
@@ -55,16 +55,11 @@ const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
   );
 });
 
-BoxRoot.propTypes = {
+Box.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   className: PropTypes.string,
   clone: PropTypes.bool,
   component: PropTypes.elementType,
 };
 
-/**
- * @ignore - do not document.
- */
-const Box = styled(BoxRoot, {}, { muiName: 'MuiBox' })(styleFunction);
-
-export default Box;
+export default styled(Box, {}, { muiName: 'MuiBox' })(styleFunction);
