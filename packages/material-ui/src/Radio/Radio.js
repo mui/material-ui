@@ -126,11 +126,11 @@ Radio.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
-   * If `true`, the radio will be disabled.
+   * If `true`, the radio is disabled.
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -162,7 +162,7 @@ Radio.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
   /**

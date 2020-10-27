@@ -36,11 +36,11 @@ export interface CheckboxProps
    */
   color?: 'primary' | 'secondary' | 'default';
   /**
-   * If `true`, the checkbox will be disabled.
+   * If `true`, the checkbox is disabled.
    */
   disabled?: SwitchBaseProps['disabled'];
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple?: SwitchBaseProps['disableRipple'];
   /**
@@ -81,7 +81,7 @@ export interface CheckboxProps
    */
   onChange?: SwitchBaseProps['onChange'];
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required?: SwitchBaseProps['required'];
   /**

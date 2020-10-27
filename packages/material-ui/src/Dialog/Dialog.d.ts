@@ -64,7 +64,7 @@ export interface DialogProps
    */
   disableEscapeKeyDown?: boolean;
   /**
-   * If `true`, the dialog will be full-screen
+   * If `true`, the dialog is full-screen.
    * @default false
    */
   fullScreen?: boolean;

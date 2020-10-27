@@ -97,19 +97,19 @@ HiddenCss.propTypes = {
    */
   implementation: PropTypes.oneOf(['js', 'css']),
   /**
-   * If `true`, screens this size and down will be hidden.
+   * If `true`, screens this size and down are hidden.
    */
   lgDown: PropTypes.bool,
   /**
-   * If `true`, screens this size and up will be hidden.
+   * If `true`, screens this size and up are hidden.
    */
   lgUp: PropTypes.bool,
   /**
-   * If `true`, screens this size and down will be hidden.
+   * If `true`, screens this size and down are hidden.
    */
   mdDown: PropTypes.bool,
   /**
-   * If `true`, screens this size and up will be hidden.
+   * If `true`, screens this size and up are hidden.
    */
   mdUp: PropTypes.bool,
   /**
@@ -120,27 +120,27 @@ HiddenCss.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
   ]),
   /**
-   * If `true`, screens this size and down will be hidden.
+   * If `true`, screens this size and down are hidden.
    */
   smDown: PropTypes.bool,
   /**
-   * If `true`, screens this size and up will be hidden.
+   * If `true`, screens this size and up are hidden.
    */
   smUp: PropTypes.bool,
   /**
-   * If `true`, screens this size and down will be hidden.
+   * If `true`, screens this size and down are hidden.
    */
   xlDown: PropTypes.bool,
   /**
-   * If `true`, screens this size and up will be hidden.
+   * If `true`, screens this size and up are hidden.
    */
   xlUp: PropTypes.bool,
   /**
-   * If `true`, screens this size and down will be hidden.
+   * If `true`, screens this size and down are hidden.
    */
   xsDown: PropTypes.bool,
   /**
-   * If `true`, screens this size and up will be hidden.
+   * If `true`, screens this size and up are hidden.
    */
   xsUp: PropTypes.bool,
 };

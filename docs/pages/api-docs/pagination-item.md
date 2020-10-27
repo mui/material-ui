@@ -31,7 +31,7 @@ The `MuiPaginationItem` name can be used for providing [default props](/customiz
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The active color. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the item will be disabled. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the item is disabled. |
 | <span class="prop-name">page</span> | <span class="prop-type">number</span> |  | The current page number. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true` the pagination item is selected. |
 | <span class="prop-name">shape</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rounded'</span> | <span class="prop-default">'circular'</span> | The shape of the pagination item. |

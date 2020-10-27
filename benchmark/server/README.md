@@ -5,7 +5,7 @@
 _Synthetic benchmark_
 
 ```sh
-yarn core
+yarn server:core
 
 ButtonBase x 40,724 ops/sec ±1.58% (189 runs sampled)
 HocButton x 166,229 ops/sec ±1.04% (191 runs sampled)
@@ -20,7 +20,7 @@ Markdown x 954 ops/sec ±1.35% (187 runs sampled)
 _Synthetic benchmark_
 
 ```sh
-yarn docs
+yarn server:docs
 
 Markdown x 946 ops/sec ±4.04% (176 runs sampled)
 MarkdownElement x 3,941 ops/sec ±5.53% (185 runs sampled)
@@ -31,7 +31,7 @@ MarkdownElement x 3,941 ops/sec ±5.53% (185 runs sampled)
 _Synthetic benchmark_
 
 ```sh
-yarn styles
+yarn server:styles
 
 Box x 3,850 ops/sec ±3.58% (178 runs sampled)
 JSS naked x 35,493 ops/sec ±2.29% (183 runs sampled)
@@ -49,7 +49,7 @@ Naked x 58,694 ops/sec ±0.86% (188 runs sampled)
 _Synthetic benchmark_
 
 ```sh
-yarn system
+yarn server:system
 
 colors @material-ui/system  x 333,431 ops/sec ±2.02% (171 runs sampled)
 colors styled-system x 304,604 ops/sec ±3.21% (179 runs sampled)
@@ -69,7 +69,7 @@ Naked styled-components x 19,036 ops/sec ±0.88% (189 runs sampled)
 ## Real-world benchmark
 
 ```sh
-yarn server
+yarn server:server
 
 bombardier \
   -c 100 \

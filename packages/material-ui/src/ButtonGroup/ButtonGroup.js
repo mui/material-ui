@@ -290,7 +290,7 @@ ButtonGroup.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the buttons will be disabled.
+   * If `true`, the buttons are disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -300,12 +300,12 @@ ButtonGroup.propTypes = {
    */
   disableElevation: PropTypes.bool,
   /**
-   * If `true`, the button keyboard focus ripple will be disabled.
+   * If `true`, the button keyboard focus ripple is disabled.
    * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
-   * If `true`, the button ripple effect will be disabled.
+   * If `true`, the button ripple effect is disabled.
    * @default false
    */
   disableRipple: PropTypes.bool,
