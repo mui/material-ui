@@ -289,7 +289,6 @@ SliderRoot.propTypes = {
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
-  /* eslint-disable react/prop-types */
   const { components = {}, ...other } = props;
   return (
     <SliderUnstyled
