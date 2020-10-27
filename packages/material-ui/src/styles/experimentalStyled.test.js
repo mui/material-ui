@@ -63,7 +63,7 @@ describe('experimentalStyled', () => {
       expect(() => {
         Div = styled('div')`
           font-size: ${(props) => props.scale * 8}px;
-          padding: ${(props) => props.scale * 2}px;
+          padding-left: ${(props) => props.scale * 2}px;
         `;
       }).toErrorDev(['You have illegal escape sequence in your template literal']);
     });
@@ -72,7 +72,7 @@ describe('experimentalStyled', () => {
       render(<Div scale={4} data-testid="target" />);
       expect(screen.getByTestId('target')).toHaveComputedStyle({
         fontSize: '32px',
-        padding: '8px',
+        paddingLeft: '8px',
       });
     });
   });
