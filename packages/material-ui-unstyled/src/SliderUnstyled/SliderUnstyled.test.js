@@ -9,7 +9,7 @@ describe('<SliderUnstyled />', () => {
 
   const mount = createMount();
 
-  describeConformance(<Slider value={0} />, () => ({
+  describeConformance(<SliderUnstyled value={0} />, () => ({
     classes: {},
     inheritComponent: 'span',
     mount,
