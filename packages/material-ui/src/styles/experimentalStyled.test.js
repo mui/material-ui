@@ -59,13 +59,10 @@ describe('experimentalStyled', () => {
     let Div;
 
     before(() => {
-      // FIXME: Should not error in DEV
-      expect(() => {
-        Div = styled('div')`
-          font-size: ${(props) => props.scale * 8}px;
-          padding-left: ${(props) => props.scale * 2}px;
-        `;
-      }).toErrorDev(['You have illegal escape sequence in your template literal']);
+      Div = styled('div')`
+        font-size: ${(props) => props.scale * 8}px;
+        padding-left: ${(props) => props.scale * 2}px;
+      `;
     });
 
     it('can adapt styles to props', () => {
@@ -122,21 +119,14 @@ describe('experimentalStyled', () => {
         ...(props.variant && styles[props.variant]),
       });
 
-      // FIXME: Should not error in DEV
-      expect(() => {
-        Test = styled(
-          'div',
-          { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-          { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
-        )`
-          width: 200px;
-          height: 300px;
-        `;
-      }).toErrorDev([
-        'You have illegal escape sequence in your template literal',
-        'You have illegal escape sequence in your template literal',
-        'You have illegal escape sequence in your template literal',
-      ]);
+      Test = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
     });
 
     it('should work with specified muiOptions', () => {
@@ -190,13 +180,9 @@ describe('experimentalStyled', () => {
     });
 
     it('styled wrapper should win over variants', () => {
-      let CustomTest;
-      // FIXME: Should not error in DEV
-      expect(() => {
-        CustomTest = styled(Test)`
-          width: 500px;
-        `;
-      }).toErrorDev(['You have illegal escape sequence in your template literal']);
+      const CustomTest = styled(Test)`
+        width: 500px;
+      `;
 
       const { container } = render(
         <ThemeProvider theme={theme}>
