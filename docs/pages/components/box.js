@@ -14,10 +14,7 @@ export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
-export async function getStaticProps() {
+Page.getInitialProps = () => {
   const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
-
-  return {
-    props: { demos, docs },
-  };
-}
+  return { demos, docs };
+};
