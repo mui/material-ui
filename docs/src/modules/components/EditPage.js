@@ -7,7 +7,7 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 export default function EditPage(props) {
   const { markdownLocation } = props;
   const t = useTranslate();
-  const userLanguage = useUserLanguage();;
+  const userLanguage = useUserLanguage();
   const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
   const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;

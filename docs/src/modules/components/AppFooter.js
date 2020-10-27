@@ -52,7 +52,7 @@ const styles = (theme) => ({
 
 function AppFooter(props) {
   const { classes } = props;
-  const userLanguage = useUserLanguage();;
+  const userLanguage = useUserLanguage();
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
   const t = useTranslate();
 
