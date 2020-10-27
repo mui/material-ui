@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen } from 'test/utils';
+import { createClientRender } from 'test/utils';
 import createMuiTheme from './createMuiTheme';
 import styled from './experimentalStyled';
 import ThemeProvider from './ThemeProvider';
@@ -13,9 +13,9 @@ describe('experimentalStyled', () => {
       width: '200px',
     });
 
-    render(<Div data-testid="component">Test</Div>);
+    const { container } = render(<Div>Test</Div>);
 
-    expect(screen.getByTestId('component')).toHaveComputedStyle({
+    expect(container.firstChild).toHaveComputedStyle({
       width: '200px',
     });
   });
@@ -25,9 +25,9 @@ describe('experimentalStyled', () => {
       width: props.theme.spacing(1),
     }));
 
-    render(<Div data-testid="component">Test</Div>);
+    const { container } = render(<Div>Test</Div>);
 
-    expect(screen.getByTestId('component')).toHaveComputedStyle({
+    expect(container.firstChild).toHaveComputedStyle({
       width: '8px',
     });
   });
@@ -41,13 +41,13 @@ describe('experimentalStyled', () => {
       spacing: 10,
     });
 
-    render(
+    const { container } = render(
       <ThemeProvider theme={theme}>
-        <Div data-testid="component">Test</Div>
+        <Div>Test</Div>
       </ThemeProvider>,
     );
 
-    expect(screen.getByTestId('component')).toHaveComputedStyle({
+    expect(container.firstChild).toHaveComputedStyle({
       width: '10px',
     });
   });
@@ -64,6 +64,11 @@ describe('experimentalStyled', () => {
 
     before(() => {
       theme = createMuiTheme({
+        palette: {
+          primary: {
+            main: 'rgb(0, 0, 255)',
+          },
+        },
         components: {
           MuiTest: {
             variants: [
@@ -92,69 +97,61 @@ describe('experimentalStyled', () => {
         ...(props.variant && styles[props.variant]),
       });
 
-      // FIXME: Should not error in DEV
-      expect(() => {
-        Test = styled(
-          'div',
-          { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' },
-          { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
-        )`
-          width: 200px;
-          height: 300px;
-        `;
-      }).toErrorDev([
-        'You have illegal escape sequence in your template literal',
-        'You have illegal escape sequence in your template literal',
-      ]);
+      Test = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
     });
 
     it('should work with specified muiOptions', () => {
-      render(<Test data-testid="component">Test</Test>);
+      const { container } = render(<Test>Test</Test>);
 
-      expect(screen.getByTestId('component')).toHaveComputedStyle({
+      expect(container.firstChild).toHaveComputedStyle({
         width: '200px',
         height: '300px',
       });
     });
 
     it('overrides should be respected', () => {
-      render(
+      const { container } = render(
         <ThemeProvider theme={theme}>
-          <Test data-testid="component">Test</Test>
+          <Test>Test</Test>
         </ThemeProvider>,
       );
 
-      expect(screen.getByTestId('component')).toHaveComputedStyle({
+      expect(container.firstChild).toHaveComputedStyle({
         width: '250px',
         height: '300px',
       });
     });
 
     it('overrides should be respected when prop is specified', () => {
-      render(
+      const { container } = render(
         <ThemeProvider theme={theme}>
-          <Test variant="rect" data-testid="component">
-            Test
-          </Test>
+          <Test variant="rect">Test</Test>
         </ThemeProvider>,
       );
 
-      expect(screen.getByTestId('component')).toHaveComputedStyle({
+      expect(container.firstChild).toHaveComputedStyle({
         width: '250px',
         height: '250px',
       });
     });
 
     it('variants should win over overrides', () => {
-      render(
+      const { container } = render(
         <ThemeProvider theme={theme}>
-          <Test data-testid="component" variant="rect" size="large">
+          <Test variant="rect" size="large">
             Test
           </Test>
         </ThemeProvider>,
       );
 
-      expect(screen.getByTestId('component')).toHaveComputedStyle({
+      expect(container.firstChild).toHaveComputedStyle({
         width: '400px',
         height: '400px',
       });
@@ -165,17 +162,29 @@ describe('experimentalStyled', () => {
         width: 500px;
       `;
 
-      render(
+      const { container } = render(
         <ThemeProvider theme={theme}>
-          <CustomTest data-testid="component" variant="rect" size="large">
+          <CustomTest variant="rect" size="large">
             Test
           </CustomTest>
         </ThemeProvider>,
       );
 
-      expect(screen.getByTestId('component')).toHaveComputedStyle({
+      expect(container.firstChild).toHaveComputedStyle({
         width: '500px',
         height: '400px',
+      });
+    });
+
+    it('should resolve the sx prop', () => {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Test sx={{ color: 'primary.main' }}>Test</Test>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        color: 'rgb(0, 0, 255)',
       });
     });
   });

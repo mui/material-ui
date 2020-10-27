@@ -15,7 +15,7 @@ export default function RangeSlider() {
   };
 
   return (
-    <Box width={300}>
+    <Box sx={{ width: 300 }}>
       <Typography id="range-slider-demo" gutterBottom>
         Temperature range
       </Typography>

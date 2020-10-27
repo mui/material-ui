@@ -31,7 +31,7 @@ The `MuiAccordion` name can be used for providing [default props](/customization
 | <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | The content of the accordion. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">defaultExpanded</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, expands the accordion by default. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the accordion will be displayed in a disabled state. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the accordion is displayed in a disabled state. |
 | <span class="prop-name">expanded</span> | <span class="prop-type">bool</span> |  | If `true`, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the expand/collapse state is changed.<br><br>**Signature:**<br>`function(event: object, expanded: boolean) => void`<br>*event:* The event source of the callback. **Warning**: This is a generic event not a change event.<br>*expanded:* The `expanded` state of the accordion. |
 | <span class="prop-name">square</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, rounded corners are disabled. |

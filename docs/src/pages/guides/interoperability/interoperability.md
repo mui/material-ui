@@ -266,7 +266,7 @@ export default function GlobalCssSliderDeep() {
 ### Change the default styled engine
 
 By default, Material-UI components come with emotion as their style engine. If,
-however, you would like to use `styled-components`, you are can configure your app by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components).
+however, you would like to use `styled-components`, you can configure your app by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components).
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
 After the style engine is configured properly, you can use the `experimentalStyled()` utility

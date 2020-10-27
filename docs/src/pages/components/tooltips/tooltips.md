@@ -18,7 +18,7 @@ When activated, Tooltips display a text label identifying an element, such as a 
 
 {{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
-## Positioned Tooltips
+## Positioned tooltips
 
 The `Tooltip` has 12 **placements** choice.
 They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
@@ -32,7 +32,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Arrow Tooltips
+## Arrow tooltips
 
 You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
 
@@ -64,13 +64,13 @@ You can define the types of events that cause a tooltip to show.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Controlled Tooltips
+## Controlled tooltips
 
 You can use the `open`, `onOpen` and `onClose` props to control the behavior of the tooltip.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Variable Width
+## Variable width
 
 The `Tooltip` wraps long text by default to make it readable.
 
@@ -84,7 +84,7 @@ You can disable this behavior (thus failing the success criterion which is requi
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## Disabled Elements
+## Disabled elements
 
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
@@ -119,11 +119,11 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
-## Faked reference object
+## Virtual element
 
 In the event you need to implement a custom placement, you can use the `anchorEl` prop:
 The value of the `anchorEl` prop can be a reference to a fake DOM element.
-You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 

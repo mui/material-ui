@@ -1,19 +1,29 @@
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
-import { SliderTypeMap } from '../SliderUnstyled';
+import { SxProps } from '@material-ui/core/Box';
+import { ExtendSliderUnstyledTypeMap, ExtendSliderUnstyled } from '../SliderUnstyled';
 
-export type SliderProps<
-  D extends React.ElementType = SliderTypeMap['defaultComponent'],
+export type SliderStyledTypeMap<
+  D extends React.ElementType = 'span',
   P = {}
-> = OverrideProps<SliderTypeMap<P, D>, D>;
+> = ExtendSliderUnstyledTypeMap<{
+  props: P & {
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+  };
+  defaultComponent: D;
+}>;
 
-type SliderRootProps = NonNullable<SliderProps['componentsProps']>['root'];
-type SliderMarkProps = NonNullable<SliderProps['componentsProps']>['mark'];
-type SliderMarkLabelProps = NonNullable<SliderProps['componentsProps']>['markLabel'];
-type SliderRailProps = NonNullable<SliderProps['componentsProps']>['rail'];
-type SliderTrackProps = NonNullable<SliderProps['componentsProps']>['track'];
-type SliderThumbProps = NonNullable<SliderProps['componentsProps']>['thumb'];
-type SliderValueLabel = NonNullable<SliderProps['componentsProps']>['valueLabel'];
+type SliderRootProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['root'];
+type SliderMarkProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['mark'];
+type SliderMarkLabelProps = NonNullable<
+  SliderStyledTypeMap['props']['componentsProps']
+>['markLabel'];
+type SliderRailProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['rail'];
+type SliderTrackProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['track'];
+type SliderThumbProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['thumb'];
+type SliderValueLabel = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['valueLabel'];
 
 export const SliderRoot: React.FC<SliderRootProps>;
 export const SliderMark: React.FC<SliderMarkProps>;
@@ -33,6 +43,6 @@ export const SliderValueLabel: React.FC<SliderValueLabel>;
  *
  * - [SliderStyled API](https://material-ui.com/api/slider-styled/)
  */
-declare const Slider: OverridableComponent<SliderTypeMap>;
+declare const Slider: ExtendSliderUnstyled<SliderStyledTypeMap>;
 
 export default Slider;

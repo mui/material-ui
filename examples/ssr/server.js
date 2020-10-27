@@ -3,8 +3,13 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import { CacheProvider } from '@emotion/core';
+import createEmotionServer from 'create-emotion-server';
 import App from './App';
 import theme from './theme';
+import cache from './cache';
+
+const { extractCritical } = createEmotionServer(cache);
 
 function renderFullPage(html, css) {
   return `
@@ -30,19 +35,24 @@ function handleRender(req, res) {
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
     sheets.collect(
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <App />
-      </ThemeProvider>,
+      <CacheProvider value={cache}>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </CacheProvider>,
     ),
   );
 
   // Grab the CSS from our sheets.
   const css = sheets.toString();
 
+  // Grab the CSS from emotion
+  const styles = extractCritical(html);
+
   // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css));
+  res.send(renderFullPage(html, `${css} ${styles.css}`));
 }
 
 const app = express();

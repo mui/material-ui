@@ -36,7 +36,13 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
   if (typeof propValue === 'object') {
     const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
     return Object.keys(propValue).reduce((acc, breakpoint) => {
-      acc[themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
+      // key is breakpoint
+      if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
+        acc[themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
+      } else {
+        const cssKey = breakpoint;
+        acc[cssKey] = propValue[cssKey];
+      }
       return acc;
     }, {});
   }

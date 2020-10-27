@@ -3,6 +3,7 @@ const lodash = require('lodash');
 const path = require('path');
 const { promisify } = require('util');
 const webpackCallbackBased = require('webpack');
+const yargs = require('yargs');
 const createWebpackConfig = require('./webpack.config');
 
 const webpack = promisify(webpackCallbackBased);
@@ -31,27 +32,38 @@ async function getRollupSize(snapshotPath) {
 /**
  * creates size snapshot for every bundle that built with webpack
  */
-async function getWebpackSizes() {
+async function getWebpackSizes(webpackEnvironment) {
   await fse.mkdirp(path.join(__dirname, 'build'));
 
-  // webpack --config $configPath --json > $statsPath
-  // will create a 300MB big json file which sometimes requires up to 1.5GB
-  // memory. This will sometimes crash node in azure pipelines with "heap out of memory"
-  const webpackStats = await webpack(await createWebpackConfig(webpack));
-  const stats = webpackStats.toJson();
-  if (stats.errors.length > 0) {
-    throw new Error(
-      `The following errors occured during bundling with webpack: \n${stats.errors.join('\n')}`,
-    );
-  }
+  const configurations = await createWebpackConfig(webpack, webpackEnvironment);
+  const webpackMultiStats = await webpack(configurations);
 
-  const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
+  const sizes = [];
+  webpackMultiStats.stats.forEach((webpackStats) => {
+    if (webpackStats.hasErrors()) {
+      const { entrypoints, errors } = webpackStats.toJson({
+        all: false,
+        entrypoints: true,
+        errors: true,
+      });
+      throw new Error(
+        `The following errors occured during bundling of ${Object.keys(
+          entrypoints,
+        )} with webpack: \n${errors.join('\n')}`,
+      );
+    }
 
-  return Object.entries(stats.assetsByChunkName).map(([chunkName, assetName]) => {
-    const parsedSize = assets.get(assetName).size;
-    const gzipSize = assets.get(`${assetName}.gz`).size;
-    return [chunkName, { parsed: parsedSize, gzip: gzipSize }];
+    const stats = webpackStats.toJson({ all: false, assets: true });
+    const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
+
+    Object.entries(stats.assetsByChunkName).forEach(([chunkName, assetName]) => {
+      const parsedSize = assets.get(assetName).size;
+      const gzipSize = assets.get(`${assetName}.gz`).size;
+      sizes.push([chunkName, { parsed: parsedSize, gzip: gzipSize }]);
+    });
   });
+
+  return sizes;
 }
 
 // waiting for String.prototype.matchAll in node 10
@@ -149,10 +161,12 @@ async function getNextPagesSize() {
   return entries;
 }
 
-async function run() {
+async function run(argv) {
+  const { analyze } = argv;
+
   const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/size-snapshot.json')];
   const bundleSizes = lodash.fromPairs([
-    ...(await getWebpackSizes()),
+    ...(await getWebpackSizes({ analyze })),
     ...lodash.flatten(await Promise.all(rollupBundles.map(getRollupSize))),
     ...(await getNextPagesSize()),
   ]);
@@ -160,7 +174,26 @@ async function run() {
   await fse.writeJSON(snapshotDestPath, bundleSizes, { spaces: 2 });
 }
 
-run().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+yargs
+  .command({
+    command: '$0',
+    description: 'Saves a size snapshot in size-snapshot.json',
+    builder: (command) => {
+      return command
+        .option('analyze', {
+          default: false,
+          describe: 'Creates a webpack-bundle-analyzer report for each bundle.',
+          type: 'boolean',
+        })
+        .option('accurateBundles', {
+          default: false,
+          describe: 'Displays used bundles accurately at the cost of accurate bundle size.',
+          type: 'boolean',
+        });
+    },
+    handler: run,
+  })
+  .help()
+  .strict(true)
+  .version(false)
+  .parse();

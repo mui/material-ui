@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styled-engine",
-  "version": "5.0.0-alpha.13",
+  "version": "5.0.0-alpha.14",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Styled - Wrapper package for emotion.",
@@ -37,7 +37,9 @@
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styles/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@babel/runtime": "^7.4.4"
+  },
   "peerDependencies": {
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27"

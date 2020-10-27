@@ -22,7 +22,7 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
    */
   direction: 'left' | 'right';
   /**
-   * If `true`, the element will be disabled.
+   * If `true`, the element is disabled.
    */
   disabled?: boolean;
   /**

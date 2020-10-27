@@ -35,12 +35,12 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
       wrapper?: string;
     };
     /**
-     * If `true`, the tab will be disabled.
+     * If `true`, the tab is disabled.
      * @default false
      */
     disabled?: boolean;
     /**
-     * If `true`, the  keyboard focus ripple will be disabled.
+     * If `true`, the  keyboard focus ripple is disabled.
      * @default false
      */
     disableFocusRipple?: boolean;

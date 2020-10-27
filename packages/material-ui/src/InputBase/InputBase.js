@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
+import { refType, elementTypeAcceptingRef } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
@@ -211,8 +211,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         console.error(
           [
             'Material-UI: You have provided a `inputComponent` to the input component',
-            'that does not correctly handle the `inputRef` prop.',
-            'Make sure the `inputRef` prop is called with a HTMLInputElement.',
+            'that does not correctly handle the `ref` prop.',
+            'Make sure the `ref` prop is called with a HTMLInputElement.',
           ].join('\n'),
         );
       }
@@ -357,23 +357,10 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   };
 
   let InputComponent = inputComponent;
-  let inputProps = {
-    ...inputPropsProp,
-    ref: handleInputRef,
-  };
+  let inputProps = inputPropsProp;
 
-  if (typeof InputComponent !== 'string') {
-    inputProps = {
-      // Rename ref to inputRef as we don't know the
-      // provided `inputComponent` structure.
-      inputRef: handleInputRef,
-      type,
-      ...inputProps,
-      ref: null,
-    };
-  } else if (multiline) {
+  if (multiline && InputComponent === 'input') {
     if (rows) {
-      InputComponent = 'textarea';
       if (process.env.NODE_ENV !== 'production') {
         if (minRows || maxRows) {
           console.warn(
@@ -381,8 +368,15 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           );
         }
       }
+      inputProps = {
+        type: undefined,
+        ...inputProps,
+      };
+
+      InputComponent = 'textarea';
     } else {
       inputProps = {
+        type: undefined,
         maxRows,
         minRows,
         ...inputProps,
@@ -390,11 +384,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
       InputComponent = TextareaAutosize;
     }
-  } else {
-    inputProps = {
-      type,
-      ...inputProps,
-    };
   }
 
   const handleAutoFill = (event) => {
@@ -450,7 +439,9 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           value={value}
           onKeyDown={onKeyDown}
           onKeyUp={onKeyUp}
+          type={type}
           {...inputProps}
+          ref={handleInputRef}
           className={clsx(
             classes.input,
             {
@@ -496,7 +487,7 @@ InputBase.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -517,7 +508,7 @@ InputBase.propTypes = {
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the `input` element is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
@@ -544,7 +535,7 @@ InputBase.propTypes = {
    * Either a string to use a HTML element or a component.
    * @default 'input'
    */
-  inputComponent: PropTypes.elementType,
+  inputComponent: elementTypeAcceptingRef,
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * @default {}
@@ -569,7 +560,7 @@ InputBase.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a textarea element will be rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -620,7 +611,7 @@ InputBase.propTypes = {
    */
   renderSuffix: PropTypes.func,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,

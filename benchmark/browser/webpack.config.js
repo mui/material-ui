@@ -1,29 +1,37 @@
 const path = require('path');
-const webpackBaseConfig = require('../../webpackBaseConfig');
+
+const workspaceRoot = path.resolve(__dirname, '../..');
 
 module.exports = {
-  ...webpackBaseConfig,
-  entry: path.resolve(__dirname, 'index.js'),
+  context: workspaceRoot,
+  entry: 'benchmark/browser/index.js',
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, '../../tmp'),
-    filename: 'benchmark.js',
+    path: path.join(__dirname, 'dist'),
+    filename: 'index.js',
   },
   module: {
-    ...webpackBaseConfig.module,
-    rules: webpackBaseConfig.module.rules.concat([
+    rules: [
+      {
+        test: /\.(js|ts|tsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: { cacheDirectory: true, cwd: workspaceRoot },
+      },
       {
         test: /\.(jpg|gif|png)$/,
         loader: 'url-loader',
       },
-    ]),
+    ],
   },
   resolve: {
-    ...webpackBaseConfig.resolve,
     alias: {
-      ...webpackBaseConfig.resolve.alias,
+      '@material-ui/core': path.join(workspaceRoot, './packages/material-ui/src'),
+      '@material-ui/styles': path.join(workspaceRoot, './packages/material-ui-styles/src'),
+      '@material-ui/system': path.join(workspaceRoot, './packages/material-ui-system/src'),
       'react-dom$': 'react-dom/profiling',
       'scheduler/tracing': 'scheduler/tracing-profiling',
     },
+    extensions: ['.js', '.ts', '.tsx'],
   },
 };

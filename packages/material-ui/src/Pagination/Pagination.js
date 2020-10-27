@@ -139,7 +139,7 @@ Pagination.propTypes = {
    */
   defaultPage: PropTypes.number,
   /**
-   * If `true`, the pagination component will be disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

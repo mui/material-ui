@@ -137,6 +137,12 @@ jobs:
           name: '`yarn docs:api` changes committed?'
           command: git diff --exit-code
       - run:
+          name: Update the navigation translations
+          command: yarn docs:i18n
+      - run:
+          name: '`yarn docs:i18n` changes committed?'
+          command: git diff --exit-code
+      - run:
           name: Generate the framer components
           command: yarn workspace framer build
       - run:

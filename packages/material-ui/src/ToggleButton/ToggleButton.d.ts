@@ -28,17 +28,17 @@ export type ToggleButtonTypeMap<
       sizeLarge?: string;
     };
     /**
-     * If `true`, the button will be disabled.
+     * If `true`, the button is disabled.
      * @default false
      */
     disabled?: boolean;
     /**
-     * If `true`, the  keyboard focus ripple will be disabled.
+     * If `true`, the  keyboard focus ripple is disabled.
      * @default false
      */
     disableFocusRipple?: boolean;
     /**
-     * If `true`, the button will be rendered in an active state.
+     * If `true`, the button is rendered in an active state.
      */
     selected?: boolean;
     /**

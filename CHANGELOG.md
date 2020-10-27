@@ -1,5 +1,176 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.14
+
+###### _Oct 23 2020_
+
+Big thanks to the 23 contributors who made this release possible.
+Here are some highlights ✨:
+
+- 💄 Introduce a new `sx` prop (#23053, #23205) @mnajdova
+  We have resumed the work on Material-UI System. This is made possible by the latest progress on the new styling solution of v5.
+  You can read the [introduction blog post](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df) that we did for the system two years ago.
+
+  The system is meant to solve the following problems:
+
+  1. Naming things is hard. How should a class name, JSS style rule, or styled component be named?
+  2. Jumping between JS and CSS in the editor wastes time. This is particularly true as the complexity (LOCs/# of elements) of a component increases. It's still true when using the `styled()` API.
+  3. Introducing a `makeStyles` for the first time in a component is daunting. For example, it's why https://github.com/vscodeshift/material-ui-codemorphs#add-usestyles-hook exists. What if we had less code to type, gaining velocity when writing styles?
+  4. Pulling values out from the theme can be cumbersome. How can we make it less painful to increase the usage of design tokens?
+
+  This new iteration of the system brings two major improvements:
+
+  - It moves from the support of a subset of CSS to the support of a superset of CSS.
+    Learning the shorthand is optional. It's no longer necessary to moving back to styled() when the system doesn't support a specific CSS property.
+  - It moves from support on Box only to any core component (starting with the slider).
+
+    ```jsx
+    import Slider from '@material-ui/lab/SliderStyled';
+
+    // Set the primary color and a vertical margin of 16px on desktop.
+    <Slider sx={{ color: 'primary.main', my: { xs: 0, md: 2 } }} />;
+    ```
+
+- ✨ Upgrade Popper.js from v1 to v2 (#21761) @joshwooding
+  The change reduces the bundle size (-1 kB gzipped) while fixing bugs at the same time.
+
+- 🐛 Fix broken nested imports with the icons package (#23157) @eps1lon
+  The revamp of the bundling strategy in #22814 has broken the nested imports.
+  Imports such as the one below should work again with this release:
+
+  ```jsx
+  import CloseIcon from '@material-ui/icons/Close';
+  ```
+
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.14`
+
+#### Breaking changes
+
+- [Popper] Upgrade to popper.js to v2 (#21761) @joshwooding
+  This third-party library has introduced a lot of changes.<br />
+  You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
+
+  - The CSS prefixes have changed:
+    ```diff
+    popper: {
+      zIndex: 1,
+    - '&[x-placement*="bottom"] $arrow': {
+    + '&[data-popper-placement*="bottom"] $arrow': {
+    ```
+  - Method names have changed.
+
+    ```diff
+    -popperRef.current.scheduleUpdate()
+    +popperRef.current.update()
+    ```
+
+    ```diff
+    -popperRef.current.update()
+    +popperRef.current.forceUpdate()
+    ```
+
+  - Modifiers' API has changed a lot. There are too many changes to be covered here.
+
+- [withMobileDialog] Remove this higher-order component (#23202) @RDIL
+  The hook API allows a simpler and more flexible solution than the HOC:
+
+  ```diff
+  -import withMobileDialog from '@material-ui/core/withMobileDialog';
+  +import { useTheme, useMediaQuery } from '@material-ui/core';
+
+  function ResponsiveDialog(props) {
+  - const { fullScreen } = props;
+  + const theme = useTheme();
+  + const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const [open, setOpen] = React.useState(false);
+
+  // ...
+
+  -export default withMobileDialog()(ResponsiveDialog);
+  +export default ResponsiveDialog;
+  ```
+
+#### Changes
+
+- [Box] Add sx prop (#23053) @mnajdova
+- [Box] Deprecate system props (#23206) @mnajdova
+- [Card] Use flex display for CardHeader.avatar (#23169) @mordechaim
+- [Container] Fix support of custom breakpoint units (#23191) @espipj
+- [Container] Revert max-width change for xs @oliviertassinari
+- [InputBase] Use ref prop instead of inputRef prop on input component (#23174) @GuilleDF
+- [l10n] Add Kazakh (kz-KZ) locale (#23195) @abdulgafur24
+- [Rating] Ensure hover and click are in sync (#23117) @redbmk
+- [Select] Fix SelectDisplayProps className concat (#23211) @reedanders
+
+### `@material-ui/styled-engine@v5.0.0-alpha.14`
+
+- [styled] Add @babel/runtime dependency (#23175) @koistya
+
+### `@material-ui/system@v5.0.0-alpha.14`
+
+- [Box] Add sx prop (#23053) @mnajdova
+- [core] Fix bundles for packages without subpackages (#23157) @eps1lon
+
+### `@material-ui/icons@v5.0.0-alpha.14`
+
+- [core] Fix bundles for packages without subpackages (#23157) @eps1lon
+
+### `@material-ui/lab@v5.0.0-alpha.14`
+
+#### Breaking changes
+
+- [AvatarGroup] Move from lab to core (#23121) @mbrookes
+  Move the component from the lab to the core. This component will become stable.
+
+  ```diff
+  -import AvatarGroup from '@material-ui/lab/AvatarGroup';
+  +import AvatarGroup from '@material-ui/core/AvatarGroup';
+  ```
+
+#### Changes
+
+- [Slider] Add sx prop in SliderStyled (#23205) @mnajdova
+
+### `@material-ui/utils@v5.0.0-alpha.14`
+
+- [utils] Fix types of chainPropTypes (#23123) @oliviertassinari
+- [core] Fix bundles for packages without subpackages (#23157) @eps1lon
+
+### `@material-ui/types@v5.2.0-alpha.14`
+
+- [types] Add LICENSE files (#23162) @lielfr
+
+### Docs
+
+- [examples] Remove reason example project (#23158) @mnajdova
+- [examples] Update cdn example to use @material-ui/core@next (#23153) @mnajdova
+- [examples] Update preact to use the @material-ui/core@next (#23154) @mnajdova
+- [examples] Update ssr example to use @material-ui/core@next (#23155) @mnajdova
+- [examples] Updated nextjs-typescript example to use @material-ui/core@next (#23119) @numToStr
+- [docs] Add Menu component example with explicit positioning prop values (#23167) @jaebradley
+- [docs] Add page feedback (#22885) @mbrookes
+- [docs] Add Performance section for Modal (#23168) @jaebradley
+- [docs] Better document CardActionArea (#23196) @el1f
+- [docs] Cleaner image of font-size equation (#23189) @CamDavidsonPilon
+- [docs] Fix casing typo (#23148) @piperchester
+- [docs] Fix typo in steppers (#23163) @AGDholo
+- [docs] Fix typo on interoperability page (#23177) @SassNinja
+- [docs] Improve migration v5 guide @oliviertassinari
+- [docs] Lazy load demo toolbar (#23108) @eps1lon
+- [docs] Remove unused style selectors `extendedIcon` (#23160) @MatejKastak
+- [docs] Use Box sx prop on all Slider examples #23217 @mnajdova
+
+### Core
+
+- [benchmark] Add theme-ui and chakra-ui Box scenarios (#23180) @mnajdova
+- [benchmark] Create separate workspace (#23209) @eps1lon
+- [benchmark] Extracted Profiler & added output in readme (#23178) @mnajdova
+- [core] Batch small changes (#23116) @oliviertassinari
+- [core] Improve bundle size comment (#23110) @eps1lon
+- [core] Prevent unstable chunks in size snapshot (#23181) @eps1lon
+
 ## 5.0.0-alpha.13
 
 ###### _Oct 17 2020_

@@ -1,16 +1,16 @@
 /* eslint-disable no-console */
 /* eslint-disable no-await-in-loop */
+const path = require('path');
 const puppeteer = require('puppeteer');
 const handler = require('serve-handler');
 const http = require('http');
 
 const PORT = 1122;
-const APP = 'benchmark/browser';
 
 function createServer(options) {
   const { port } = options;
   const server = http.createServer((request, response) => {
-    return handler(request, response);
+    return handler(request, response, { public: path.resolve(__dirname, '../') });
   });
 
   function close() {
@@ -75,7 +75,7 @@ async function runMeasures(browser, testCaseName, testCase, times) {
   const measures = [];
 
   for (let i = 0; i < times; i += 1) {
-    const url = `http://localhost:${PORT}/${APP}?${testCase}`;
+    const url = `http://localhost:${PORT}/?${testCase}`;
     const page = await browser.openPage(url);
 
     const benchmark = await page.evaluate(() => {
@@ -117,9 +117,16 @@ async function run() {
       './basic-styled-components/index.js',
       10,
     );
+    await runMeasures(browser, 'Chakra-UI box component', './box-chakra-ui/index.js', 10);
+    await runMeasures(browser, 'Theme-UI box sx prop', './sx-prop-box-theme-ui/index.js', 10);
+    await runMeasures(browser, 'Theme-UI div sx prop', './sx-prop-div-theme-ui/index.js', 10);
+    await runMeasures(browser, 'Material-UI box sx prop', './sx-prop-box-material-ui/index.js', 10);
   } finally {
     await Promise.all([browser.close(), server.close()]);
   }
 }
 
-run();
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

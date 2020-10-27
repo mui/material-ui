@@ -1,4 +1,5 @@
 const childProcess = require('child_process');
+const glob = require('glob');
 const path = require('path');
 const { promisify } = require('util');
 const yargs = require('yargs');
@@ -32,12 +33,36 @@ async function run(argv) {
   };
   const babelConfigPath = path.resolve(__dirname, '../babel.config.js');
   const srcDir = path.resolve('./src');
+  const extensions = ['.js', '.ts', '.tsx'];
+  const ignore = [
+    '**/*.test.js',
+    '**/*.test.ts',
+    '**/*.test.tsx',
+    '**/*.spec.ts',
+    '**/*.spec.tsx',
+    '**/*.d.ts',
+  ];
+
+  const topLevelNonIndexFiles = glob
+    .sync(`*{${extensions.join(',')}}`, { cwd: srcDir, ignore })
+    .filter((file) => {
+      return path.basename(file, path.extname(file)) !== 'index';
+    });
+  const topLevelPathImportsArePackages = topLevelNonIndexFiles.length === 0;
+
   const outDir = path.resolve(
     relativeOutDir,
+    // We generally support top level path imports e.g.
+    // 1. `import ArrowDownIcon from '@material-ui/icons/ArrowDown'`.
+    // 2. `import Typography from '@material-ui/core/Typography'`.
+    // The first case resolves to a file while the second case resolves to a package first i.e. a package.json
+    // This means that only in the second case the bundler can decide whether it uses ES modules or CommonJS modules.
+    // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
+    // Switch to `exports` field in v6.
     {
-      node: './node',
+      node: topLevelPathImportsArePackages ? './node' : './',
       modern: './modern',
-      stable: './',
+      stable: topLevelPathImportsArePackages ? './' : './esm',
       legacy: './legacy',
     }[bundle],
   );
@@ -47,20 +72,13 @@ async function run(argv) {
     '--config-file',
     babelConfigPath,
     '--extensions',
-    '".js,.ts,.tsx"',
+    `"${extensions.join(',')}"`,
     srcDir,
     '--out-dir',
     outDir,
     '--ignore',
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
-    `"${[
-      '**/*.test.js',
-      '**/*.test.ts',
-      '**/*.test.tsx',
-      '**/*.spec.ts',
-      '**/*.spec.tsx',
-      '**/*.d.ts',
-    ].join('","')}"`,
+    `"${ignore.join('","')}"`,
   ].join(' ');
 
   if (verbose) {

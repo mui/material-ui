@@ -257,7 +257,7 @@ Unstable_TrapFocus.propTypes = {
    */
   isEnabled: PropTypes.func.isRequired,
   /**
-   * If `true`, focus will be locked.
+   * If `true`, focus is locked.
    */
   open: PropTypes.bool.isRequired,
 };

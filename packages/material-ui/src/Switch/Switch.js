@@ -222,11 +222,11 @@ Switch.propTypes = {
    */
   defaultChecked: PropTypes.bool,
   /**
-   * If `true`, the switch will be disabled.
+   * If `true`, the switch is disabled.
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -262,7 +262,7 @@ Switch.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
   /**

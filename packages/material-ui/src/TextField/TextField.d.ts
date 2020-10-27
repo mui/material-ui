@@ -22,7 +22,7 @@ export interface BaseTextFieldProps
    */
   autoComplete?: string;
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    * @default false
    */
   autoFocus?: boolean;
@@ -47,12 +47,12 @@ export interface BaseTextFieldProps
    */
   defaultValue?: unknown;
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the `input` element is disabled.
    * @default false
    */
   disabled?: boolean;
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    * @default false
    */
   error?: boolean;
@@ -95,7 +95,7 @@ export interface BaseTextFieldProps
    */
   margin?: PropTypes.Margin;
   /**
-   * If `true`, a textarea element will be rendered instead of an input.
+   * If `true`, a `textarea` element is rendered.instead of an input.
    * @default false
    */
   multiline?: boolean;
@@ -110,7 +110,7 @@ export interface BaseTextFieldProps
    */
   placeholder?: string;
   /**
-   * If `true`, the label is displayed as required and the `input` element will be required.
+   * If `true`, the label is displayed as required and the `input` element is required.
    * @default false
    */
   required?: boolean;
@@ -229,12 +229,12 @@ export type TextFieldClassKey = keyof NonNullable<TextFieldProps['classes']>;
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
  *
- * -   [FormControl](https://material-ui.com/api/form-control/)
- * -   [InputLabel](https://material-ui.com/api/input-label/)
- * -   [FilledInput](https://material-ui.com/api/filled-input/)
- * -   [OutlinedInput](https://material-ui.com/api/outlined-input/)
- * -   [Input](https://material-ui.com/api/input/)
- * -   [FormHelperText](https://material-ui.com/api/form-helper-text/)
+ * *   [FormControl](https://material-ui.com/api/form-control/)
+ * *   [InputLabel](https://material-ui.com/api/input-label/)
+ * *   [FilledInput](https://material-ui.com/api/filled-input/)
+ * *   [OutlinedInput](https://material-ui.com/api/outlined-input/)
+ * *   [Input](https://material-ui.com/api/input/)
+ * *   [FormHelperText](https://material-ui.com/api/form-helper-text/)
  *
  * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
@@ -249,8 +249,8 @@ export type TextFieldClassKey = keyof NonNullable<TextFieldProps['classes']>;
  * For advanced cases, please look at the source of TextField by clicking on the
  * "Edit this page" button above. Consider either:
  *
- * -   using the upper case props for passing values directly to the components
- * -   using the underlying components directly as shown in the demos
+ * *   using the upper case props for passing values directly to the components
+ * *   using the underlying components directly as shown in the demos
  * Demos:
  *
  * - [Autocomplete](https://material-ui.com/components/autocomplete/)

@@ -30,6 +30,12 @@ export type BordersProps = PropsFor<typeof borders>;
 // breakpoints.js
 type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
+export function handleBreakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
+  props: Props,
+  propValue: any,
+  styleFromPropValue: (value: any) => any
+): any;
+
 /**
  * @returns An enhanced stylefunction that considers breakpoints
  */
@@ -170,9 +176,9 @@ export type SpacingProps = PropsFor<typeof spacing>;
 export function createUnarySpacing<Spacing>(theme: {
   spacing: Spacing;
 }): Spacing extends number
-  ? (abs: number) => number
+  ? (abs: number | string) => number | number
   : Spacing extends any[]
-  ? <Index extends number>(abs: Index) => Spacing[Index]
+  ? <Index extends number>(abs: Index | string) => Spacing[Index] | string
   : Spacing extends (...args: unknown[]) => unknown
   ? Spacing
   : // warns in Dev

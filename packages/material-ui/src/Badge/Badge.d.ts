@@ -76,7 +76,7 @@ export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     color?: 'primary' | 'secondary' | 'default' | 'error';
     /**
-     * If `true`, the badge will be invisible.
+     * If `true`, the badge is invisible.
      */
     invisible?: boolean;
     /**
