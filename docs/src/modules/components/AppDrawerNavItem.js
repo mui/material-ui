@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     padding: '8px 0',
     justifyContent: 'flex-start',
-    fontWeight: theme.typography.fontWeightMedium,
     transition: theme.transitions.create(['color', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
@@ -55,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
   open: {},
   link: {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
     '&.app-drawer-active': {
       color: theme.palette.primary.main,
       backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
