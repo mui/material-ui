@@ -1,5 +1,4 @@
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
-import { memoize } from '@material-ui/system';
 import mapTranslations from 'docs/src/modules/utils/mapTranslations';
 
 const req = require.context('docs/translations', false, /translations.*\.json$/);
@@ -15,7 +14,7 @@ function getPath(obj, path) {
 
 const warnOnce = {};
 
-const getT = memoize((userLanguage) => (key, options = {}) => {
+const getT = (userLanguage) => (key, options = {}) => {
   const { ignoreWarning = false } = options;
   const wordings = translations[userLanguage];
 
@@ -37,7 +36,7 @@ const getT = memoize((userLanguage) => (key, options = {}) => {
   }
 
   return translation;
-});
+};
 
 const mapping = {
   [ACTION_TYPES.OPTIONS_CHANGE]: (state, action) => {
