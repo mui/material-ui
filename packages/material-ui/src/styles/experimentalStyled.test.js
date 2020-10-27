@@ -52,15 +52,29 @@ describe('experimentalStyled', () => {
     });
   });
 
-  it('can adapt styles to props', () => {
-    const Div = styled('div')`
-      font-size: ${(props) => props.scale * 8}px;
-      padding: ${(props) => props.scale * 2}px;
-    `;
+  describe('dynamic styles', () => {
+    /**
+     * @type {ReturnType<typeof styled>}
+     */
+    let Div;
 
-    render(<Div scale={4} data-testid="target" />);
+    before(() => {
+      // FIXME: Should not error in DEV
+      expect(() => {
+        Div = styled('div')`
+          font-size: ${(props) => props.scale * 8}px;
+          padding: ${(props) => props.scale * 2}px;
+        `;
+      }).toErrorDev(['You have illegal escape sequence in your template literal']);
+    });
 
-    expect(screen.getByTestId('target')).toHaveComputedStyle({ fontSize: '32px', padding: '8px' });
+    it('can adapt styles to props', () => {
+      render(<Div scale={4} data-testid="target" />);
+      expect(screen.getByTestId('target')).toHaveComputedStyle({
+        fontSize: '32px',
+        padding: '8px',
+      });
+    });
   });
 
   describe('muiOptions', () => {
@@ -108,14 +122,21 @@ describe('experimentalStyled', () => {
         ...(props.variant && styles[props.variant]),
       });
 
-      Test = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
-      )`
-        width: 200px;
-        height: 300px;
-      `;
+      // FIXME: Should not error in DEV
+      expect(() => {
+        Test = styled(
+          'div',
+          { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+          { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+        )`
+          width: 200px;
+          height: 300px;
+        `;
+      }).toErrorDev([
+        'You have illegal escape sequence in your template literal',
+        'You have illegal escape sequence in your template literal',
+        'You have illegal escape sequence in your template literal',
+      ]);
     });
 
     it('should work with specified muiOptions', () => {
@@ -169,9 +190,13 @@ describe('experimentalStyled', () => {
     });
 
     it('styled wrapper should win over variants', () => {
-      const CustomTest = styled(Test)`
-        width: 500px;
-      `;
+      let CustomTest;
+      // FIXME: Should not error in DEV
+      expect(() => {
+        CustomTest = styled(Test)`
+          width: 500px;
+        `;
+      }).toErrorDev(['You have illegal escape sequence in your template literal']);
 
       const { container } = render(
         <ThemeProvider theme={theme}>

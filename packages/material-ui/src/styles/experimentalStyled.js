@@ -91,7 +91,7 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
       return styleFunctionSx(props.sx, theme);
     });
 
-    return defaultStyledResolver(stylesWithDefaultTheme);
+    return defaultStyledResolver(...stylesWithDefaultTheme);
   };
   return muiStyledResolver;
 };
