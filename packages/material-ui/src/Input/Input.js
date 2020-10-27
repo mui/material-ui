@@ -139,7 +139,7 @@ Input.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -156,7 +156,7 @@ Input.propTypes = {
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the `input` element is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
@@ -212,7 +212,7 @@ Input.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a textarea element will be rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -237,7 +237,7 @@ Input.propTypes = {
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,

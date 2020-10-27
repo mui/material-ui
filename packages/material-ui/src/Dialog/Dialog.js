@@ -286,7 +286,7 @@ Dialog.propTypes = {
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**
-   * If `true`, the dialog will be full-screen
+   * If `true`, the dialog is full-screen.
    * @default false
    */
   fullScreen: PropTypes.bool,

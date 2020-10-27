@@ -79,9 +79,15 @@ export function createUnarySpacing(theme) {
 
   if (typeof themeSpacing === 'number') {
     return (abs) => {
+      if (typeof abs === 'string') {
+        return abs;
+      }
+
       if (process.env.NODE_ENV !== 'production') {
         if (typeof abs !== 'number') {
-          console.error(`Material-UI: Expected spacing argument to be a number, got ${abs}.`);
+          console.error(
+            `Material-UI: Expected spacing argument to be a number or a string, got ${abs}.`,
+          );
         }
       }
       return themeSpacing * abs;
@@ -90,6 +96,10 @@ export function createUnarySpacing(theme) {
 
   if (Array.isArray(themeSpacing)) {
     return (abs) => {
+      if (typeof abs === 'string') {
+        return abs;
+      }
+
       if (process.env.NODE_ENV !== 'production') {
         if (abs > themeSpacing.length - 1) {
           console.error(

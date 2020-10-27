@@ -50,7 +50,7 @@ export interface RatingProps
    */
   defaultValue?: number;
   /**
-   * If `true`, the rating will be disabled.
+   * If `true`, the rating is disabled.
    * @default false
    */
   disabled?: boolean;

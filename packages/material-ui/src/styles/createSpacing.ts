@@ -4,6 +4,7 @@ export type SpacingOptions =
   | number
   | Spacing
   | ((abs: number) => number | string)
+  | ((abs: number | string) => number | string)
   | Array<string | number>;
 
 export type SpacingArgument = number | string;
@@ -53,9 +54,6 @@ export default function createSpacing(spacingInput: SpacingOptions = 8): Spacing
 
     return args
       .map((argument) => {
-        if (typeof argument === 'string') {
-          return argument;
-        }
         const output = transform(argument);
         return typeof output === 'number' ? `${output}px` : output;
       })

@@ -34,7 +34,7 @@ The `MuiBadge` name can be used for providing [default props](/customization/glo
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">invisible</span> | <span class="prop-type">bool</span> |  | If `true`, the badge will be invisible. |
+| <span class="prop-name">invisible</span> | <span class="prop-type">bool</span> |  | If `true`, the badge is invisible. |
 | <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">99</span> | Max count to show. |
 | <span class="prop-name">overlap</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rectangular'</span> | <span class="prop-default">'rectangular'</span> | Wrapped shape the badge should overlap. |
 | <span class="prop-name">showZero</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Controls whether the badge is hidden when `badgeContent` is zero. |

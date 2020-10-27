@@ -47,7 +47,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   disabled?: boolean;
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    */
   error?: boolean;
   /**

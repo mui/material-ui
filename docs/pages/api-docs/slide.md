@@ -27,6 +27,7 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">appear</span> | <span class="prop-type">bool</span> | <span class="prop-default">true</span> | Perform the enter transition when it first mounts if `in` is also `true`. Set this to `false` to disable this behavior. |
 | <span class="prop-name">children</span> | <span class="prop-type">element</span> |  | A single child content element.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">direction</span> | <span class="prop-type">'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'</span> | <span class="prop-default">'down'</span> | Direction the child node will enter from. |
 | <span class="prop-name">in</span> | <span class="prop-type">bool</span> |  | If `true`, show the component; triggers the enter or exit animation. |

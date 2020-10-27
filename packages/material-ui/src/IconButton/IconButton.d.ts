@@ -40,12 +40,12 @@ export type IconButtonTypeMap<
      */
     color?: PropTypes.Color;
     /**
-     * If `true`, the button will be disabled.
+     * If `true`, the button is disabled.
      * @default false
      */
     disabled?: boolean;
     /**
-     * If `true`, the  keyboard focus ripple will be disabled.
+     * If `true`, the  keyboard focus ripple is disabled.
      * @default false
      */
     disableFocusRipple?: boolean;

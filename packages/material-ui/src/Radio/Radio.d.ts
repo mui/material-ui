@@ -29,7 +29,7 @@ export interface RadioProps
    */
   color?: 'primary' | 'secondary' | 'default';
   /**
-   * If `true`, the radio will be disabled.
+   * If `true`, the radio is disabled.
    */
   disabled?: boolean;
   /**
