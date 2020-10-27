@@ -1,4 +1,3 @@
-// @ts-ignore
 import MuiError from '../macros/MuiError.macro';
 // It should to be noted that this function isn't equivalent to `text-transform: capitalize`.
 //
