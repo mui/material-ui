@@ -1,3 +1,3 @@
-import { useControlled } from '@material-ui/utils';
+import { unstable_useControlled as useControlled } from '@material-ui/utils';
 
 export default useControlled;

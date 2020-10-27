@@ -1,3 +1,3 @@
-import { createChainedFunction } from '@material-ui/utils';
+import { unstable_createChainedFunction as createChainedFunction } from '@material-ui/utils';
 
 export default createChainedFunction;

@@ -1,3 +1,3 @@
-import { useForkRef } from '@material-ui/utils';
+import { unstable_useForkRef as useForkRef } from '@material-ui/utils';
 
 export default useForkRef;
