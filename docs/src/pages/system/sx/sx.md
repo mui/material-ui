@@ -6,7 +6,7 @@
 
 Each `@material-ui/core` component supports the `sx` prop. The prop is a superset of CSS, that let's you add any CSS to the underlaying component, while mapping values to different theme keys. This should help you to keep your application look consistent.
 
-We recommend you use this prop whenever you need to add one-of style overrides on the Material-UI components. If you repetedly add the same styles on some component, than the `styled()` is better alternative, as it allows you to specify the overrides only ones and reuse them in all component instances.
+You should use this prop whenever you need to add a style override to a Material-UI component. If you repeatedly add the same styles on a component, then `styled()` is better alternative, as it allows you to specify the overrides only once, and reuse them in all component instances.
 
 {{"demo": "pages/system/sx/GettingStarted.js", "defaultCodeOpen": true}}
 
