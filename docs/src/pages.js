@@ -174,8 +174,8 @@ const pages = [
   {
     pathname: '/system',
     children: [
-      { pathname: '/system/sx' },
       { pathname: '/system/basics' },
+      { pathname: '/system/sx', title: 'sx' },
       { pathname: '/system/borders' },
       { pathname: '/system/display' },
       { pathname: '/system/flexbox' },
