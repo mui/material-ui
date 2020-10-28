@@ -170,7 +170,6 @@ ClassesTable.propTypes = {
 
 function DangerousMarkdown(props) {
   const { md } = props;
-
   return <span dangerouslySetInnerHTML={{ __html: marked(md) }} />;
 }
 
@@ -179,27 +178,25 @@ DangerousMarkdown.propTypes = {
 };
 
 function Heading(props) {
-  const { hash, level = 2 } = props;
+  const { hash, level: Level = 'h2' } = props;
   const t = useSelector((state) => state.options.t);
 
   return (
-    <DangerousMarkdown
-      md={[
-        `<h${level}>`,
-        `<a class="anchor-link" id="${hash}"></a>`,
-        t(hash),
-        `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
-        '<svg><use xlink:href="#anchor-link-icon" /></svg>',
-        '</a>',
-        `</h${level}>`,
-      ].join('')}
-    />
+    <Level>
+      <a className="anchor-link" id={hash}></a>
+      {t(hash)}
+      <a className="anchor-link-style" aria-hidden="true" aria-label="anchor" href={`#${hash}`}>
+        <svg>
+          <use xlinkHref="#anchor-link-icon" />
+        </svg>
+      </a>
+    </Level>
   );
 }
 
 Heading.propTypes = {
   hash: PropTypes.string.isRequired,
-  level: PropTypes.number,
+  level: PropTypes.string,
 };
 
 function ApiDocs(props) {
@@ -324,16 +321,18 @@ import { ${componentName} } from '${source}';`}
               {refHint}
               <br />
               <DangerousMarkdown md={spreadHint} />
-              {inheritance && [
-                <Heading hash="inheritance" level={3} />,
-                <DangerousMarkdown
-                  md={t('inheritanceDescription')
-                    .replace(/{{component}}/, inheritance.component)
-                    .replace(/{{pathname}}/, inheritance.pathname)
-                    .replace(/{{suffix}}/, inheritanceSuffix)
-                    .replace(/{{componentName}}/, componentName)}
-                />,
-              ]}
+              {inheritance && (
+                <React.Fragment>
+                  <Heading hash="inheritance" level="h3" />
+                  <DangerousMarkdown
+                    md={t('inheritanceDescription')
+                      .replace(/{{component}}/, inheritance.component)
+                      .replace(/{{pathname}}/, inheritance.pathname)
+                      .replace(/{{suffix}}/, inheritanceSuffix)
+                      .replace(/{{componentName}}/, componentName)}
+                  />
+                </React.Fragment>
+              )}
               {componentStyles.classes ? (
                 <React.Fragment>
                   <Heading hash="css" />
