@@ -3,8 +3,8 @@ import * as React from 'react';
 /**
  * Private module reserved for @material-ui packages.
  */
-export default function useId(idOverride?: string): string {
-  const [defaultId, setDefaultId] = React.useState<string | undefined>(idOverride);
+export default function useId(idOverride) {
+  const [defaultId, setDefaultId] = React.useState(idOverride);
   const id = idOverride || defaultId;
   React.useEffect(() => {
     if (defaultId == null) {
@@ -14,5 +14,5 @@ export default function useId(idOverride?: string): string {
       setDefaultId(`mui-${Math.round(Math.random() * 1e5)}`);
     }
   }, [defaultId]);
-  return id as string;
+  return id;
 }

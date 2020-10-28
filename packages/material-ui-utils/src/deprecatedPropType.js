@@ -1,9 +1,8 @@
-export default function deprecatedPropType<T>(validator: T, reason: string): T | Function {
+export default function deprecatedPropType(validator, reason) {
   if (process.env.NODE_ENV === 'production') {
     return () => null;
   }
 
-  // @ts-ignore
   return (props, propName, componentName, location, propFullName) => {
     const componentNameSafe = componentName || '<<anonymous>>';
     const propFullNameSafe = propFullName || propName;
