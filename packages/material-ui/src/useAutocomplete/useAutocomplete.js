@@ -129,6 +129,7 @@ export default function useAutocomplete(props) {
   const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
+  const [focusedIndex, setFocusedIndex] = React.useState(defaultHighlighted);
 
   const [value, setValueState] = useControlled({
     controlled: valueProp,
@@ -280,6 +281,7 @@ export default function useAutocomplete(props) {
 
   const setHighlightedIndex = useEventCallback(({ event, index, reason = 'auto' }) => {
     highlightedIndexRef.current = index;
+    setFocusedIndex(index);
 
     // does the index exist?
     if (index === -1) {
@@ -297,6 +299,7 @@ export default function useAutocomplete(props) {
     }
 
     const prev = listboxRef.current.querySelector('[data-focus]');
+
     if (prev) {
       prev.removeAttribute('data-focus');
     }
@@ -1023,6 +1026,7 @@ export default function useAutocomplete(props) {
     anchorEl,
     setAnchorEl,
     focusedTag,
+    focusedIndex,
     groupedOptions,
   };
 }

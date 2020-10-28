@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '../styles';
+import { alpha } from '../styles/colorManipulator';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
@@ -30,8 +31,6 @@ export const styles = (theme) => ({
   fullWidth: {
     width: '100%',
   },
-  /* Pseudo-class applied to the root element if focused. */
-  focused: {},
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
     margin: 3,
@@ -205,20 +204,27 @@ export const styles = (theme) => ({
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
-    '&[aria-selected="true"]': {
-      backgroundColor: theme.palette.action.selected,
-    },
-    '&[data-focus="true"]': {
+
+    '&$focused': {
       backgroundColor: theme.palette.action.hover,
     },
-    '&:active': {
+    '&$selected': {
       backgroundColor: theme.palette.action.selected,
+      '&$focused': {
+        backgroundColor: alpha(
+          theme.palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+      },
     },
-    '&[aria-disabled="true"]': {
+    '&$disabled': {
       opacity: theme.palette.action.disabledOpacity,
       pointerEvents: 'none',
     },
   },
+  focused: {},
+  disabled: {},
+  selected: {},
   /* Styles applied to the group's label elements. */
   groupLabel: {
     backgroundColor: theme.palette.background.paper,
@@ -327,6 +333,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     setAnchorEl,
     inputValue,
     groupedOptions,
+    focusedIndex,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
   let startAdornment;
@@ -381,11 +388,21 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   const renderListOption = (option, index) => {
     const optionProps = getOptionProps({ option, index });
-
-    return renderOption({ ...optionProps, className: classes.option }, option, {
-      selected: optionProps['aria-selected'],
-      inputValue,
-    });
+    return renderOption(
+      {
+        ...optionProps,
+        className: clsx(classes.option, {
+          [classes.focused]: focusedIndex === optionProps.key,
+          [classes.selected]: optionProps['aria-selected'],
+          [classes.disabled]: optionProps['aria-disabled'],
+        }),
+      },
+      option,
+      {
+        selected: optionProps['aria-selected'],
+        inputValue,
+      },
+    );
   };
 
   const hasClearIcon = !disableClearable && !disabled && dirty;
