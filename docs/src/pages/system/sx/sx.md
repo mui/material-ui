@@ -12,7 +12,7 @@ We recommend you use this prop whenever you need to add one-of style overrides o
 
 # Property to theme key mapping
 
-You can explore the [System API](system/api/) page to discover how the different css (and custom) properties are mapped to the theme keys.
+You can explore the [System API](/system/api/) page to discover how the different css (and custom) properties are mapped to the theme keys.
 
 ## Value as a function
 
