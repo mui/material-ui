@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 /**
- * TODO v5: consider to make it private
+ * TODO v5: consider making it private
  *
  * passes {value} to {ref}
  *
