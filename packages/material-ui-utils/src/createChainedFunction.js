@@ -1,5 +1,3 @@
-export type ChainedFunction = ((...args: any[]) => void) | undefined | null;
-
 /**
  * Safe chained function
  *
@@ -8,9 +6,7 @@ export type ChainedFunction = ((...args: any[]) => void) | undefined | null;
  * @param {function} functions to chain
  * @returns {function|null}
  */
-export default function createChainedFunction(
-  ...funcs: ChainedFunction[]
-): (...args: any[]) => never {
+export default function createChainedFunction(...funcs) {
   return funcs.reduce(
     (acc, func) => {
       if (func == null) {
@@ -26,12 +22,10 @@ export default function createChainedFunction(
       }
 
       return function chainedFunction(...args) {
-        // @ts-ignore
         acc.apply(this, args);
-        // @ts-ignore
         func.apply(this, args);
       };
     },
     () => {},
-  ) as (...args: any[]) => never;
+  );
 }

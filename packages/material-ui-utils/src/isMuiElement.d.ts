@@ -34,7 +34,4 @@ export interface NamedMuiElement {
   key: string | number | null;
 }
 
-export default function isMuiElement(element: any, muiNames: string[]): element is NamedMuiElement {
-  // @ts-ignore
-  return React.isValidElement(element) && muiNames.indexOf(element.type.muiName) !== -1;
-}
+export default function isMuiElement(element: any, muiNames: string[]): element is NamedMuiElement;

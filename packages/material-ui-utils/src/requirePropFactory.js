@@ -1,14 +1,14 @@
-export default function requirePropFactory(componentNameInError: string): any {
+export default function requirePropFactory(componentNameInError) {
   if (process.env.NODE_ENV === 'production') {
     return () => null;
   }
 
-  const requireProp = (requiredProp: string): any => (
-    props: { [key: string]: any },
-    propName: string,
-    componentName: string,
-    location: string,
-    propFullName: string,
+  const requireProp = (requiredProp) => (
+    props,
+    propName,
+    componentName,
+    location,
+    propFullName,
   ) => {
     const propFullNameSafe = propFullName || propName;
 

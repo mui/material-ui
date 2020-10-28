@@ -3,7 +3,7 @@ import MuiError from '../macros/MuiError.macro';
 //
 // A strict capitalization should uppercase the first letter of each word a the sentence.
 // We only handle the first word.
-export default function capitalize(string: string): string {
+export default function capitalize(string) {
   if (typeof string !== 'string') {
     throw new MuiError('Material-UI: capitalize(string) expects a string argument.');
   }
