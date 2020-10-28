@@ -110,7 +110,7 @@ function isFocusVisible(event) {
     // want to crash if focus-visible malfunctioned?
   }
 
-  // no need for validFocusTarget check. the user does that by attaching it to
+  // No need for validFocusTarget check. The user does that by attaching it to
   // focusable events only
   return hadKeyboardEvent || focusTriggersKeyboardModality(target);
 }
