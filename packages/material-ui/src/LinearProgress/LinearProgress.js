@@ -21,6 +21,7 @@ export const styles = (theme) => {
       position: 'relative',
       overflow: 'hidden',
       height: 4,
+      zIndex: 0, // Fix Safari's bug during composition of different paint.
       '@media print': {
         colorAdjust: 'exact',
       },
