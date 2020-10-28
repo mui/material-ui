@@ -38,7 +38,7 @@ The second option for defining breakpoints is to define them as an object, using
 
 ## Custom breakpoints
 
-You can also specify your own custom breakpoints and use them as keys when defining the breakpoints object. Here is an example of how to do that.
+You can also specify your own custom breakpoints, and use them as keys when defining the breakpoints object. Here is an example of how to do that.
 
 ```jsx
 import * as React from 'react';
