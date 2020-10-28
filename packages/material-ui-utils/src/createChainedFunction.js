@@ -16,7 +16,7 @@ export default function createChainedFunction(...funcs) {
       if (process.env.NODE_ENV !== 'production') {
         if (typeof func !== 'function') {
           console.error(
-            'Material-UI: Invalid Argument Type, must only provide functions, undefined, or null.',
+            'Material-UI: Invalid argument type - must only provide functions, undefined, or null.',
           );
         }
       }
