@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -23,6 +23,7 @@ import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -70,7 +71,7 @@ const useDemoToolbarStyles = makeStyles(
 
 export function DemoToolbarFallback() {
   const classes = useDemoToolbarStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <div aria-busy aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar" />
@@ -225,7 +226,7 @@ export default function DemoToolbar(props) {
   const classes = useDemoToolbarStyles();
 
   const dispatch = useDispatch();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   const hasTSVariant = demo.rawTS;
   const renderedCodeVariant = () => {

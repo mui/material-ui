@@ -104,14 +104,14 @@ function isFocusVisible(event) {
   try {
     return target.matches(':focus-visible');
   } catch (error) {
-    // browsers not implementing :focus-visible will throw a SyntaxError
-    // we use our own heuristic for those browsers
-    // rethrow might be better if it's not the expected error but do we really
+    // Browsers not implementing :focus-visible will throw a SyntaxError.
+    // We use our own heuristic for those browsers.
+    // Rethrow might be better if it's not the expected error but do we really
     // want to crash if focus-visible malfunctioned?
   }
 
-  // no need for validFocusTarget check. the user does that by attaching it to
-  // focusable events only
+  // No need for validFocusTarget check. The user does that by attaching it to
+  // focusable events only.
   return hadKeyboardEvent || focusTriggersKeyboardModality(target);
 }
 
