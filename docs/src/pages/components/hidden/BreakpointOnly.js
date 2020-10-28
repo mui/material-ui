@@ -46,7 +46,7 @@ function BreakpointOnly(props) {
 }
 
 BreakpointOnly.propTypes = {
-  width: PropTypes.oneOf(['desktop', 'laptop', 'tablet']).isRequired,
+  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
 };
 
 export default withWidth()(BreakpointOnly);

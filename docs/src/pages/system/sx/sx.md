@@ -40,4 +40,53 @@ The second option for defining breakpoints is to define them as object, using th
 
 You can also specify your own custom breakpoints and use them as keys when defining the breakpoints object. Here is an example of how to do that.
 
-{{"demo": "pages/system/sx/CustomBreakpoints.js", "defaultCodeOpen": true}}
+```jsx
+import * as React from 'react';
+import Box from '@material-ui/core/Box';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1280,
+    },
+  },
+});
+
+export default function CustomBreakpoints() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          width: {
+            tablet: 100,
+            laptop: 300,
+            desktop: 500,
+          },
+        }}
+      >
+        This box has a responsive width
+      </Box>
+    </ThemeProvider>
+  );
+}
+```
+
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+```ts
+declare module '@material-ui/core/styles/createBreakpoints' {
+  interface BreakpointOverrides {
+    xs: false; // removes the `xs` breakpoint
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // adds the `tablet` breakpoint
+    laptop: true;
+    desktop: true;
+  }
+}
+```
