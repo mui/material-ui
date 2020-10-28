@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -30,7 +30,7 @@ const useStyles = makeStyles(
 
 export default function Sponsors({ docs }) {
   const classes = useStyles();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
   const { rendered } = docs[userLanguage];
 
   return (

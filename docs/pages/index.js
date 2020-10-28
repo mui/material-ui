@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -19,6 +18,7 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
 import Head from 'docs/src/modules/components/Head';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 let dependenciesLoaded = false;
 
@@ -119,7 +119,7 @@ export default function LandingPage(props) {
   React.useEffect(() => {
     loadDependencies();
   }, []);
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const classes = useStyles();
 
   return (

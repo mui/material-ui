@@ -2,10 +2,10 @@ import * as React from 'react';
 import NextHead from 'next/head';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default function Head(props) {
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const {
     card = 'https://material-ui.com/static/logo.png',
     children,
@@ -13,7 +13,7 @@ export default function Head(props) {
     largeCard = false,
     title = t('headTitle'),
   } = props;
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
   const router = useRouter();
 
   return (

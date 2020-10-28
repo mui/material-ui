@@ -89,7 +89,7 @@ Make sure the following is true:
 - When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-lab).
 - The branch is not behind its target.
 
-Because we will only merge a Pull Request for which all tests pass. The following items need is true. We will provide assistance if not:
+Because we will only merge a Pull Request for which all tests pass. The following items need to be true. We will provide assistance if not:
 
 - If TypeScript declarations were changed, `yarn typescript` passed.
 - The code is formatted (run `yarn prettier`).
@@ -156,7 +156,7 @@ or `yarn docs:export` usually fail locally as well.
 
 This task is mostly responsible for monitoring the bundle size. It will only report
 the size if the change exceeds a certain threshold. If it fails there's usually
-something wrong with the how the packages or docs were built.
+something wrong with the way the packages or docs were built.
 
 #### codecov/project
 
@@ -178,7 +178,7 @@ is why it is disabled when tests are run locally by default. The rationale being
 that in almost all cases including or excluding elements from a query-set depending
 on their a11y-tree membership makes no difference. The queries where this does
 make a difference explicitly include this check e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
-To see if your test (`test:browser` or `test:unit`) behaves the same between CI and local environment set the environment variable `CI` to `'true'`.
+To see if your test (`test:browser` or `test:unit`) behaves the same between CI and local environment, set the environment variable `CI` to `'true'`.
 
 ### Trying the changes on the documentation site
 
@@ -257,7 +257,7 @@ Material-UI documents how to use this library with TypeScript.
 If you are familiar with this language, write the demo in TypeScript, and only, in a \*.tsx file.
 When you're done run `yarn docs:typescript:formatted` to automatically create the JavaScript version.
 
-If you are no familiar with that language, write the demo in JavaScript, a core contributor might help you to migrate it to TypeScript.
+If you are not familiar with that language, write the demo in JavaScript, a core contributor might help you to migrate it to TypeScript.
 
 #### 4. You are done 🎉!
 
