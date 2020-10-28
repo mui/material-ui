@@ -14,7 +14,7 @@ We recommend you use this prop whenever you need to add one-of style overrides o
 
 You can explore the [System API](system/api/) page to discover how the different css (and custom) properties are mapped to the theme keys.
 
-# Value as function
+## Value as a function
 
 If you wish to use the theme for some css property that is not supported by the system, you can use function as a value, where you can have access to the theme object.
 
