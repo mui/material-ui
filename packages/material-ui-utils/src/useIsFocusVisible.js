@@ -111,7 +111,7 @@ function isFocusVisible(event) {
   }
 
   // No need for validFocusTarget check. The user does that by attaching it to
-  // focusable events only
+  // focusable events only.
   return hadKeyboardEvent || focusTriggersKeyboardModality(target);
 }
 
