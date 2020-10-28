@@ -204,7 +204,6 @@ export const styles = (theme) => ({
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
-
     '&$focused': {
       backgroundColor: theme.palette.action.hover,
     },
