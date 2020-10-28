@@ -30,7 +30,7 @@ The first option is to define your breakpoints as an array, from the smallest to
 
 {{"demo": "pages/system/sx/BreakpointsAsArray.js", "defaultCodeOpen": true}}
 
-## Breakpoints as object
+## 2. Breakpoints as an object
 
 The second option for defining breakpoints is to define them as object, using the breakpoints as keys. Here is an example of how you may define the previous example by using the object syntax.
 
