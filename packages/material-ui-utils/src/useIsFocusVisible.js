@@ -106,7 +106,7 @@ function isFocusVisible(event) {
   } catch (error) {
     // Browsers not implementing :focus-visible will throw a SyntaxError.
     // We use our own heuristic for those browsers.
-    // rethrow might be better if it's not the expected error but do we really
+    // Rethrow might be better if it's not the expected error but do we really
     // want to crash if focus-visible malfunctioned?
   }
 
