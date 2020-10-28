@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
 import Card from '@material-ui/core/Card';
@@ -13,6 +12,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import NoSsr from '@material-ui/core/NoSsr';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const quotes = [
   {
@@ -228,7 +228,7 @@ for (let i = 0; i < 3; i += 1) {
 
 export default function Quotes() {
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <div className={classes.root}>

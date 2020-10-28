@@ -1,6 +1,5 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -11,6 +10,7 @@ import { FileDownload as FileDownloadIcon } from '@material-ui/docs';
 import BuildIcon from '@material-ui/icons/Build';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const InstallationLink = React.forwardRef((buttonProps, ref) => (
   <Link naked href="/getting-started/installation" ref={ref} {...buttonProps} />
@@ -84,7 +84,7 @@ const useStyles = makeStyles(
 
 function HomeSteps() {
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <Container disableGutters className={classes.root}>
