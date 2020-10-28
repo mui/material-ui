@@ -67,8 +67,12 @@ export interface AutocompleteProps<
     root?: string;
     /** Styles applied to the root element if `fullWidth={true}`. */
     fullWidth?: string;
-    /** Pseudo-class applied to the root element if focused. */
+    /** Pseudo-class applied to the root element or option component `focused` class if keyboard or mouse focused. */
     focused?: string;
+    /** Pseudo-class applied to the option component `disabled` class if option is disabled. */
+    disabled?: string;
+    /** Pseudo-class applied to the option component `selected` class if option is selected. */
+    selected?: string;
     /** Styles applied to the tag elements, e.g. the chips. */
     tag?: string;
     /** Styles applied to the tag elements, e.g. the chips if `size="small"`. */

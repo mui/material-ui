@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '../styles';
+import { alpha } from '../styles/colorManipulator';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
@@ -30,8 +31,12 @@ export const styles = (theme) => ({
   fullWidth: {
     width: '100%',
   },
-  /* Pseudo-class applied to the root element if focused. */
+  /* Pseudo-class applied to the root element or option component `focused` class if keyboard or mouse focused. */
   focused: {},
+  /* Pseudo-class applied to the option component `disabled` class if option is disabled. */
+  disabled: {},
+  /* Pseudo-class applied to the option component `selected` class if option is selected. */
+  selected: {},
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
     margin: 3,
@@ -205,16 +210,19 @@ export const styles = (theme) => ({
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
-    '&[aria-selected="true"]': {
-      backgroundColor: theme.palette.action.selected,
-    },
-    '&[data-focus="true"]': {
+    '&$focused': {
       backgroundColor: theme.palette.action.hover,
     },
-    '&:active': {
+    '&$selected': {
       backgroundColor: theme.palette.action.selected,
+      '&$focused': {
+        backgroundColor: alpha(
+          theme.palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+      },
     },
-    '&[aria-disabled="true"]': {
+    '&$disabled': {
       opacity: theme.palette.action.disabledOpacity,
       pointerEvents: 'none',
     },
@@ -327,6 +335,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     setAnchorEl,
     inputValue,
     groupedOptions,
+    highlightedOptionIndex,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
   let startAdornment;
@@ -381,12 +390,37 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   const renderListOption = (option, index) => {
     const optionProps = getOptionProps({ option, index });
-
-    return renderOption({ ...optionProps, className: classes.option }, option, {
-      selected: optionProps['aria-selected'],
-      inputValue,
-    });
+    return renderOption(
+      {
+        ...optionProps,
+        className: clsx(classes.option, {
+          [classes.focused]: highlightedOptionIndex === optionProps.key,
+          [classes.selected]: optionProps['aria-selected'],
+          [classes.disabled]: optionProps['aria-disabled'],
+        }),
+      },
+      option,
+      {
+        selected: optionProps['aria-selected'],
+        inputValue,
+      },
+    );
   };
+
+  const allGroupedOptions = React.useMemo(() => {
+    return groupedOptions.map((option, index) => {
+      if (groupBy) {
+        return renderGroup({
+          key: option.key,
+          group: option.group,
+          children: option.options.map((option2, index2) =>
+            renderListOption(option2, option.index + index2),
+          ),
+        });
+      }
+      return renderListOption(option, index);
+    });
+  }, [groupedOptions, groupBy, renderGroup, renderListOption]);
 
   const hasClearIcon = !disableClearable && !disabled && dirty;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
@@ -480,18 +514,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                 {...getListboxProps()}
                 {...ListboxProps}
               >
-                {groupedOptions.map((option, index) => {
-                  if (groupBy) {
-                    return renderGroup({
-                      key: option.key,
-                      group: option.group,
-                      children: option.options.map((option2, index2) =>
-                        renderListOption(option2, option.index + index2),
-                      ),
-                    });
-                  }
-                  return renderListOption(option, index);
-                })}
+                {allGroupedOptions}
               </ListboxComponent>
             ) : null}
           </PaperComponent>

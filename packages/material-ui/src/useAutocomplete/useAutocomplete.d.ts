@@ -317,5 +317,6 @@ export default function useAutocomplete<
   anchorEl: null | HTMLElement;
   setAnchorEl: () => void;
   focusedTag: number;
+  highlightedOptionIndex: number;
   groupedOptions: T[];
 };

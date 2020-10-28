@@ -17,9 +17,9 @@ import Autocomplete from './Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
   if (expected) {
-    expect(listbox.querySelector('li[data-focus]')).to.have.text(expected);
+    expect(listbox.querySelector('li.Mui-focused')).to.have.text(expected);
   } else {
-    expect(listbox.querySelector('li[data-focus]')).to.equal(null);
+    expect(listbox.querySelector('li.Mui-focused')).to.equal(null);
   }
 }
 
@@ -328,12 +328,12 @@ describe('<Autocomplete />', () => {
 
     it('should add new value when autoSelect & multiple on blur', () => {
       const handleChange = spy();
-      const options = ['one', 'two'];
+      const options = ['one', 'two', 'three'];
       render(
         <Autocomplete
           autoSelect
           multiple
-          value={[options[0]]}
+          defaultValue={[options[0]]}
           openOnFocus
           options={options}
           onChange={handleChange}
@@ -341,15 +341,15 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = screen.getByRole('textbox');
+      fireEvent.change(textbox, { target: { value: 't' } });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
       act(() => {
-        fireEvent.change(textbox, { target: { value: 't' } });
-        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
         textbox.blur();
       });
 
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.deep.equal(options);
+      expect(handleChange.args[0][1]).to.deep.equal(['one', 'two']);
     });
 
     it('should add new value when autoSelect & multiple & freeSolo on blur', () => {
@@ -533,6 +533,7 @@ describe('<Autocomplete />', () => {
 
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
+
     const { setProps } = render(
       <Autocomplete
         options={['one', 'two']}
@@ -544,35 +545,34 @@ describe('<Autocomplete />', () => {
         renderInput={(props2) => <TextField {...props2} autoFocus />}
       />,
     );
+
     let textbox = screen.getByRole('textbox');
 
     fireEvent.keyDown(textbox, { key: 'Enter' });
     expect(handleSubmit.callCount).to.equal(1);
 
-    fireEvent.change(textbox, { target: { value: 'o' } });
-    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-    fireEvent.keyDown(textbox, { key: 'Enter' });
-    expect(handleSubmit.callCount).to.equal(1);
-
     fireEvent.keyDown(textbox, { key: 'Enter' });
     expect(handleSubmit.callCount).to.equal(2);
 
-    setProps({ key: 'test-2', multiple: true, freeSolo: true });
-    textbox = screen.getByRole('textbox');
+    expect(() => {
+      setProps({ key: 'test-2', multiple: true, freeSolo: true });
+      textbox = screen.getByRole('textbox');
 
-    fireEvent.change(textbox, { target: { value: 'o' } });
-    fireEvent.keyDown(textbox, { key: 'Enter' });
-    expect(handleSubmit.callCount).to.equal(2);
+      fireEvent.change(textbox, { target: { value: 'o' } });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleSubmit.callCount).to.equal(2);
 
-    fireEvent.keyDown(textbox, { key: 'Enter' });
-    expect(handleSubmit.callCount).to.equal(3);
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleSubmit.callCount).to.equal(3);
+    }).not.toErrorDev();
 
-    setProps({ key: 'test-3', freeSolo: true });
-    textbox = screen.getByRole('textbox');
-
-    fireEvent.change(textbox, { target: { value: 'o' } });
-    fireEvent.keyDown(textbox, { key: 'Enter' });
-    expect(handleSubmit.callCount).to.equal(4);
+    expect(() => {
+      setProps({ key: 'test-3', freeSolo: true });
+      textbox = screen.getByRole('textbox');
+      fireEvent.change(textbox, { target: { value: 'o' } });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleSubmit.callCount).to.equal(4);
+    }).not.toErrorDev();
   });
 
   describe('prop: getOptionDisabled', () => {
@@ -1252,6 +1252,8 @@ describe('<Autocomplete />', () => {
           />,
         );
       }).toWarnDev([
+        `Material-UI: The options provided combined with the \`groupBy\` method of Autocomplete returns duplicated headers.`,
+        'You can solve the issue by sorting the options with the output of `groupBy`.',
         // strict mode renders twice
         'returns duplicated headers',
         'returns duplicated headers',
@@ -1402,17 +1404,15 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('textbox');
 
       fireEvent.change(document.activeElement, { target: { value: 'O' } });
-
       expect(document.activeElement.value).to.equal('O');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-
+      fireEvent.change(document.activeElement, { target: { value: 'one' } });
       expect(document.activeElement.value).to.equal('one');
-      expect(document.activeElement.selectionStart).to.equal(1);
+      expect(document.activeElement.selectionStart).to.equal(3);
       expect(document.activeElement.selectionEnd).to.equal(3);
 
       fireEvent.keyDown(textbox, { key: 'Enter' });
-
       expect(document.activeElement.value).to.equal('one');
       expect(document.activeElement.selectionStart).to.equal(3);
       expect(document.activeElement.selectionEnd).to.equal(3);
