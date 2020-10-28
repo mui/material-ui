@@ -142,11 +142,11 @@ module.exports = function setKarmaConfig(config) {
         BrowserStack_Safari: {
           base: 'BrowserStack',
           os: 'OS X',
-          os_version: 'Mojave',
+          os_version: 'Catalina',
           browser: 'safari',
-          // On desktop we support 13.1 but on mobile we support 12.2.
-          // Using desktop 12.1 (12.2 is not available) as an approximation for mobile 12.2.
-          browser_version: '12.1',
+          // We support 12.2 on iOS.
+          // However, 12.1 is very flaky on desktop (mobile is always flaky).
+          browser_version: '13.0',
         },
         BrowserStack_Edge: {
           base: 'BrowserStack',
