@@ -112,7 +112,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       return () => {
         label.removeEventListener('click', handler);
       };
-    } 
+    }
     return undefined;
   }, [labelId]);
 
