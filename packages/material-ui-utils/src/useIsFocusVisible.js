@@ -104,7 +104,7 @@ function isFocusVisible(event) {
   try {
     return target.matches(':focus-visible');
   } catch (error) {
-    // browsers not implementing :focus-visible will throw a SyntaxError
+    // Browsers not implementing :focus-visible will throw a SyntaxError.
     // we use our own heuristic for those browsers
     // rethrow might be better if it's not the expected error but do we really
     // want to crash if focus-visible malfunctioned?
