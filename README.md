@@ -54,7 +54,7 @@ yarn add @material-ui/core@next
   
 </details>
 
-Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
+Please note that `@next` will only point to pre-releases; to get the latest stable releases use `@latest` instead.
 
 ## Who sponsors Material-UI?
 
