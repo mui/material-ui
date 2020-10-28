@@ -16,7 +16,7 @@ You can explore the [System API](/system/api/) page to discover how the differen
 
 ## Value as a function
 
-If you wish to use the theme for some css property that is not supported by the system, you can use function as a value, where you can have access to the theme object.
+If you wish to use the theme for a CSS property that is not supported by the system, you can use a function as the value, in which you can  access the theme object.
 
 {{"demo": "pages/system/sx/ValueAsFunction.js", "defaultCodeOpen": true}}
 
