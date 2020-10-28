@@ -12,7 +12,7 @@ You should use this prop whenever you need to add a style override to a Material
 
 # Property to theme key mapping
 
-You can explore the [System API](/system/api/) page to discover how the different css (and custom) properties are mapped to the theme keys.
+You can explore the [System API](/system/api/) page to discover how the different CSS (and custom) properties are mapped to the theme keys.
 
 ## Value as a function
 
