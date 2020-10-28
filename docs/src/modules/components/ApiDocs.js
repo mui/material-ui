@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import marked from 'marked/lib/marked';
 import { withStyles } from '@material-ui/core/styles';
 import { exactProp } from '@material-ui/utils';
 import Typography from '@material-ui/core/Typography';
@@ -100,7 +99,7 @@ function PropsTable(props) {
                 <td
                   align="left"
                   dangerouslySetInnerHTML={{
-                    __html: marked(propDescriptions[userLanguage][propName] || ''),
+                    __html: propDescriptions[userLanguage][propName] || '',
                   }}
                 />
               </tr>
@@ -147,11 +146,9 @@ function ClassesTable(props) {
               dangerouslySetInnerHTML={{
                 __html:
                   classDescriptions[userLanguage][className] &&
-                  marked(
-                    classDescriptions[userLanguage][className].description.replace(
-                      /{{conditions}}/,
-                      classDescriptions[userLanguage][className].conditions,
-                    ),
+                  classDescriptions[userLanguage][className].description.replace(
+                    /{{conditions}}/,
+                    classDescriptions[userLanguage][className].conditions,
                   ),
               }}
             />

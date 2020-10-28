@@ -1,3 +1,5 @@
+import marked from 'marked/lib/marked';
+
 export default function mapApiTranslations(req, componentName) {
   const translations = {};
   req.keys().forEach((filename) => {
@@ -8,6 +10,15 @@ export default function mapApiTranslations(req, componentName) {
     } else {
       translations.en = req(filename)[componentName] || null;
     }
+  });
+  return translations;
+}
+
+export function parsePropsMarkdown(translations) {
+  Object.entries(translations).forEach(([language, props]) => {
+    Object.entries(props).forEach(([prop, description]) => {
+      translations[language][prop] = marked(description);
+    });
   });
   return translations;
 }
