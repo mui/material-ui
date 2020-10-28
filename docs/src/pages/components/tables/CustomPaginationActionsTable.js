@@ -123,9 +123,6 @@ export default function CustomPaginationActionsTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -155,17 +152,16 @@ export default function CustomPaginationActionsTable() {
               </TableCell>
             </TableRow>
           ))}
-
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
         </TableBody>
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: rows.length }]}
+              rowsPerPageOptions={[
+                5,
+                10,
+                25,
+                { label: 'All', value: rows.length },
+              ]}
               colSpan={3}
               count={rows.length}
               rowsPerPage={rowsPerPage}
