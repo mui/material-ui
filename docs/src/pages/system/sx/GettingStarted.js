@@ -14,7 +14,7 @@ export default function GettingStarted() {
         },
       }}
     >
-      How to use the sx prop
+      How to use the sx prop.
     </Box>
   );
 }
