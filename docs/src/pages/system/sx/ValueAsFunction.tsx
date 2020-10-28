@@ -11,7 +11,7 @@ export default function ValueAsFunction() {
         borderColor: (theme: Theme) => theme.palette.primary.main,
       }}
     >
-      Border color with theme value
+      Border color with theme value.
     </Box>
   );
 }
