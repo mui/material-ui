@@ -97,30 +97,13 @@ describe('experimentalStyled', () => {
   });
 
   describe('dynamic styles', () => {
-    /**
-     * @type {ReturnType<typeof styled>}
-     */
-    let Div;
-
-    /**
-     * @type {ReturnType<typeof styled>}
-     */
-    let DivObj;
-
-    before(() => {
-      Div = styled('div')`
+    it('can adapt styles to props', () => {
+      const Div = styled('div')`
         font-size: ${(props) => props.scale * 8}px;
         padding-left: ${(props) => props.scale * 2}px;
       `;
-
-      DivObj = styled('div')((props) => ({
-        fontSize: `${props.scale * 8}px`,
-        paddingLeft: `${props.scale * 2}px`,
-      }));
-    });
-
-    it('can adapt styles to props', () => {
       render(<Div scale={4} data-testid="target" />);
+
       expect(screen.getByTestId('target')).toHaveComputedStyle({
         fontSize: '32px',
         paddingLeft: '8px',
@@ -128,7 +111,12 @@ describe('experimentalStyled', () => {
     });
 
     it('can adapt styles to props when styles are object', () => {
+      const DivObj = styled('div')((props) => ({
+        fontSize: `${props.scale * 8}px`,
+        paddingLeft: `${props.scale * 2}px`,
+      }));
       render(<DivObj scale={4} data-testid="target" />);
+
       expect(screen.getByTestId('target')).toHaveComputedStyle({
         fontSize: '32px',
         paddingLeft: '8px',
