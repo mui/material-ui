@@ -83,13 +83,13 @@ const theme = createMuiTheme({
 
 The computed font size by the browser follows this mathematical equation:
 
-<img src="/static/images/font-size.png" alt="font size calculation" style="width: 458px;" />
+<img src="/static/images/font-size.png" alt="cálculo del tamaño de fuente" style="width: 458px;" />
 
 <!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### Tamaños de fuente responsivos
 
-Las propeidades tipograficas variantes mapean dierctamente hacia el CSS generado. puedes usar [media queries](/customization/breakpoints/#api) dentro de ellos:
+Las propiedades [variantes](#variants) de `theme.typography.*`  se mapean directamente al CSS generado. puedes usar [media queries](/customization/breakpoints/#api) dentro de ellos:
 
 ```js
 const theme = createMuiTheme();
@@ -111,7 +111,7 @@ Para automatizar el setup, puedes usar el ayudante [`responsiveFontSizes()`](/cu
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-Puedes ver esto en acción en ejemplo debajo. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+Puedes ver esto en acción en ejemplo debajo. Ajusta el tamaño de la ventana de tu navegador y observa como el tamaño de la fuente cambia a medida que el ancho sobrepasa los diferentes [breakpoints](/customization/breakpoints/):
 
 ```js
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -130,9 +130,9 @@ To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-> ⚠️ Changing the font size can harm accessibility ♿️. ⚠️ Changing the font size can harm accessibility ♿️. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+> ⚠️ Changing the font size can harm accessibility ♿️. La mayoría de los navegadores concuerdan en el tamaño por defecto de 16px, pero el usuario puede cambiarlo. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
 
-An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+La propiedad `theme.typography.htmlFontSize` puede ser utilizada en estos casos, le informa a Material-UI cual es el tamaño de la fuente en el elemento `<html>`. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createMuiTheme({
