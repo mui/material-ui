@@ -22,7 +22,7 @@ If you wish to use the theme for a CSS property that is not supported by the sys
 
 # Breakpoints
 
-If you would like to have responsive values for some CSS property, you may use the breakpoints shorthand syntax. We offer two ways of defining the breakpoints:
+If you would like to have responsive values for a CSS property, you can use the breakpoints shorthand syntax. There are two ways of defining the breakpoints:
 
 ## Breakpoints as array
 
