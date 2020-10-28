@@ -1,5 +1,5 @@
 /**
- * Safe chained function
+ * Safe chained function.
  *
  * Will only create a new function if needed,
  * otherwise will pass back existing functions or null.
