@@ -4,9 +4,9 @@
 
 ## Getting Started
 
-Each `@material-ui/core` component supports the `sx` prop. The prop is a superset of CSS, that let's you add any CSS to the underlaying component, while mapping values to different theme keys. This should help you in keeping your elements consistent.
+Each `@material-ui/core` component supports the `sx` prop. The prop is a superset of CSS, that let's you add any CSS to the underlaying component, while mapping values to different theme keys. This should help you to keep your application look consistent.
 
-We recommend you use this prop whenever you need to add one-of style overrides on the Material-UI components. If you repetedly add the same styles on some component, than the `styled()` is better alternative, as it allows you to specify them only one and reuse them in all component instances.
+We recommend you use this prop whenever you need to add one-of style overrides on the Material-UI components. If you repetedly add the same styles on some component, than the `styled()` is better alternative, as it allows you to specify the overrides only ones and reuse them in all component instances.
 
 {{"demo": "pages/system/sx/GettingStarted.js", "defaultCodeOpen": true}}
 
@@ -16,7 +16,7 @@ You can explore the [System API](system/api/) page to discover how the different
 
 # Value as function
 
-If you wish to use the theme for some css property that is not supported by the system, you can use function as a value, where you willl have access to the theme object.
+If you wish to use the theme for some css property that is not supported by the system, you can use function as a value, where you can have access to the theme object.
 
 {{"demo": "pages/system/sx/ValueAsFunction.js", "defaultCodeOpen": true}}
 
@@ -26,18 +26,18 @@ If you would like to have responsive values for some CSS property, you may use t
 
 ## Breakpoints as array
 
-The first option is to define your breakpoints in an array, from the smallest to the largest breakpoint.
+The first option is to define your breakpoints as an array, from the smallest to the largest breakpoint.
 
 {{"demo": "pages/system/sx/BreakpointsAsArray.js", "defaultCodeOpen": true}}
 
 ## Breakpoints as object
 
-The second option for defining breakpoints is to define them with object, having the breakpoints as keys. Here is an example of how you may define the previous example by using breakpoints as object.
+The second option for defining breakpoints is to define them as object, using the breakpoints as keys. Here is an example of how you may define the previous example by using the object syntax.
 
 {{"demo": "pages/system/sx/BreakpointsAsObject.js", "defaultCodeOpen": true}}
 
 ## Custom breakpoints
 
-You can also specify your own custom breakpoints and use them as keys when defining the breakpoint object. Here is an example of how to do that.
+You can also specify your own custom breakpoints and use them as keys when defining the breakpoints object. Here is an example of how to do that.
 
 {{"demo": "pages/system/sx/CustomBreakpoints.js", "defaultCodeOpen": true}}
