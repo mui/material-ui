@@ -48,13 +48,13 @@ function writePrettifiedFile(filename: string, data: string, prettierConfigPath:
 
 /**
  * Receives a component's test information and source code and return's an object
- * containing the inherited component's name and pathname
- * @param testInfo Information retrieved from the component's describeConformance() in its test.js file
- * @param src The component's source code
+ * containing the inherited component's name and pathname.
+ * @param testInfo Information retrieved from the component's describeConformance() in its test.js file.
+ * @param src The component's source code.
  */
 function getInheritance(
   testInfo: {
-    /** The name of the component functionality is inherited from */
+    /** The name of the component functionality is inherited from. */
     inheritComponent: string | undefined;
   },
   src: string,
@@ -315,9 +315,9 @@ function extractClassConditions(classDescriptions: { [key: string]: { [key: stri
 }
 
 /**
- * Generate markdown list of component demos
+ * Generate list of component demos
  */
-function generateMarkdownDemoList(reactAPI: ReactApi): string {
+function generateDemoList(reactAPI: ReactApi): string {
   const pagesMarkdown = reactAPI.pagesMarkdown.filter((page) => {
     return (
       !DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)
@@ -328,12 +328,14 @@ function generateMarkdownDemoList(reactAPI: ReactApi): string {
     return '';
   }
 
-  return `${pagesMarkdown.map((page) => `- [${pageToTitle(page)}](${page.pathname}/)`).join('\n')}`;
+  return `<ul>${pagesMarkdown
+    .map((page) => `<li><a href="${page.pathname}/">${pageToTitle(page)}</a></li>`)
+    .join('\n')}</ul>`;
 }
 
 /**
  * Replaces backslashes with slashes
- * TODO: Why not node's path.normalize?
+ * TODO: Why not using node's path.normalize?
  */
 function normalizePath(filepath: string): string {
   return filepath.replace(/\\/g, '/');
@@ -478,7 +480,7 @@ async function buildDocs(options: {
   const pageContent = JSON.parse(JSON.stringify(reactAPI));
 
   pageContent.filename = normalizePath(reactAPI.filename);
-  pageContent.demos = generateMarkdownDemoList(reactAPI);
+  pageContent.demos = generateDemoList(reactAPI);
 
   // Only keep "non-standard" global classnames
   Object.entries(pageContent.styles.globalClasses).forEach(([className, globalClassName]) => {
@@ -499,7 +501,7 @@ async function buildDocs(options: {
     }
 
     if (propName === 'classes') {
-      description += ' See [CSS API](#css) below for more details.';
+      description += ' See <a href="#css">CSS API</a> below for more details.';
     }
 
     propDescriptions[name] = {

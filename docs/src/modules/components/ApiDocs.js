@@ -168,15 +168,6 @@ ClassesTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
-function DangerousMarkdown(props) {
-  const { md } = props;
-  return <span dangerouslySetInnerHTML={{ __html: marked(md) }} />;
-}
-
-DangerousMarkdown.propTypes = {
-  md: PropTypes.string.isRequired,
-};
-
 function Heading(props) {
   const { hash, level: Level = 'h2' } = props;
   const t = useSelector((state) => state.options.t);
@@ -303,15 +294,20 @@ import ${componentName} from '${source}/${componentName}';
 import { ${componentName} } from '${source}';`}
                 language="jsx"
               />
-              <DangerousMarkdown md={t('apiImportDifference')} />
+              <span dangerouslySetInnerHTML={{ __html: t('apiImportDifference') }} />
               {componentDescription[userLanguage] && (
-                <DangerousMarkdown md={componentDescription[userLanguage]} />
+                <span dangerouslySetInnerHTML={{ __html: componentDescription[userLanguage] }} />
               )}
               {componentStyles.name && (
                 <React.Fragment>
                   <Heading hash="component-name" />
-                  <DangerousMarkdown
-                    md={t('apiStyleOverrides').replace(/{{styles\.name}}/, `Mui${componentName}`)}
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t('apiStyleOverrides').replace(
+                        /{{styles\.name}}/,
+                        `Mui${componentName}`,
+                      ),
+                    }}
                   />
                 </React.Fragment>
               )}
@@ -320,16 +316,18 @@ import { ${componentName} } from '${source}';`}
               <br />
               {refHint}
               <br />
-              <DangerousMarkdown md={spreadHint} />
+              <span dangerouslySetInnerHTML={{ __html: spreadHint }} />
               {inheritance && (
                 <React.Fragment>
                   <Heading hash="inheritance" level="h3" />
-                  <DangerousMarkdown
-                    md={t('inheritanceDescription')
-                      .replace(/{{component}}/, inheritance.component)
-                      .replace(/{{pathname}}/, inheritance.pathname)
-                      .replace(/{{suffix}}/, inheritanceSuffix)
-                      .replace(/{{componentName}}/, componentName)}
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t('inheritanceDescription')
+                        .replace(/{{component}}/, inheritance.component)
+                        .replace(/{{pathname}}/, inheritance.pathname)
+                        .replace(/{{suffix}}/, inheritanceSuffix)
+                        .replace(/{{componentName}}/, componentName),
+                    }}
                   />
                 </React.Fragment>
               )}
@@ -342,16 +340,18 @@ import { ${componentName} } from '${source}';`}
                     classDescriptions={classDescriptions}
                   />
                   <br />
-                  <DangerousMarkdown
-                    md={t('overrideStyles').replace(
-                      /{{URL}}/,
-                      `${SOURCE_CODE_ROOT_URL}${filename}`,
-                    )}
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t('overrideStyles').replace(
+                        /{{URL}}/,
+                        `${SOURCE_CODE_ROOT_URL}${filename}`,
+                      ),
+                    }}
                   />
                 </React.Fragment>
               ) : null}
               <Heading hash="demos" />
-              <DangerousMarkdown md={demos} />
+              <span dangerouslySetInnerHTML={{ __html: demos }} />
               <NoSsr>
                 <MarkdownDocsFooter />
               </NoSsr>

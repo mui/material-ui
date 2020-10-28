@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "custom" } },
+    "children": { "type": { "name": "custom", "description": "node" } },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "defaultExpanded": { "type": { "name": "bool" } },
@@ -20,5 +20,5 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Accordion/Accordion.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
-  "demos": "- [Accordion](/components/accordion/)"
+  "demos": "<ul><li> <a href=\"/components/accordion/\">Accordion</a></li></ul>"
 }
