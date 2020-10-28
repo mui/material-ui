@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { exactProp } from '@material-ui/utils';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
@@ -17,8 +18,8 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdowElement from 'docs/src/modules/components/MarkdownElement';
-import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 import MarkdownDocsFooter from './MarkdownDocsFooter';
+import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 
 const styles = (theme) => ({
   root: {
@@ -54,7 +55,7 @@ const styles = (theme) => ({
 
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const userLanguage = useSelector((state) => state.options.userLanguage);
 
   return (
@@ -118,7 +119,7 @@ PropsTable.propTypes = {
 
 function ClassesTable(props) {
   const { componentName, componentStyles, classDescriptions } = props;
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const userLanguage = useSelector((state) => state.options.userLanguage);
 
   return (
@@ -167,7 +168,7 @@ ClassesTable.propTypes = {
 
 function Heading(props) {
   const { hash, level: Level = 'h2' } = props;
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <Level>
@@ -189,7 +190,7 @@ Heading.propTypes = {
 
 function ApiDocs(props) {
   const { classes, disableAd = false, disableToc = false, pageContent } = props;
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const {
     classDescriptions,
