@@ -281,6 +281,8 @@ TablePagination.propTypes = {
   }),
   /**
    * The number of rows per page.
+   *
+   * Set -1 to display all the rows.
    */
   rowsPerPage: PropTypes.number.isRequired,
   /**
