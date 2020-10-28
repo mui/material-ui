@@ -1,6 +1,6 @@
 export interface UseControlledProps<T = unknown> {
   /**
-   * This prop contains the component value when it's controlled.
+   * Holds the component value when it's controlled.
    */
   controlled: T | undefined;
   /**
