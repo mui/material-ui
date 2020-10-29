@@ -26,9 +26,17 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
     ]);
   }
 
+  let originalConsoleMethod;
   mochaHooks.beforeAll.push(function registerConsoleStub() {
     // eslint-disable-next-line no-console
+    originalConsoleMethod = console[methodName];
+    // eslint-disable-next-line no-console
     console[methodName] = logUnexpectedConsoleCalls;
+  });
+
+  mochaHooks.afterAll.push(function registerConsoleStub() {
+    // eslint-disable-next-line no-console
+    console[methodName] = originalConsoleMethod;
   });
 
   mochaHooks.afterEach.push(function flushUnexpectedCalls() {
