@@ -7,7 +7,7 @@ const getUtilityClass = (name) => {
 };
 
 const useValueLabelClasses = (props) => {
-  const { open, valueLabelDisplay } = props;
+  const { open } = props;
 
   const utilityClasses = {
     offset: clsx('MuiSlider-valueLabel', getUtilityClass('offset'), {

@@ -108,8 +108,6 @@ module.exports = function getBabelConfig(api) {
             'babel-plugin-module-resolver',
             {
               alias: {
-                // TODO: Should we add this
-                ...defaultAlias,
                 modules: './modules',
               },
             },

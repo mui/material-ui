@@ -11,7 +11,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_useControlled as useControlled,
 } from '@material-ui/utils';
-import ValueLabelComponent from './ValueLabelUnstyled';
+import ValueLabelUnstyled from './ValueLabelUnstyled';
 
 function asc(a, b) {
   return a - b;
@@ -586,7 +586,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const Thumb = components.Thumb || 'span';
   const thumbProps = componentsProps.thumb || {};
 
-  const ValueLabel = components.ValueLabel || ValueLabelComponent;
+  const ValueLabel = components.ValueLabel || ValueLabelUnstyled;
   const valueLabelProps = componentsProps.valueLabel || {};
 
   const Mark = components.Mark || 'span';

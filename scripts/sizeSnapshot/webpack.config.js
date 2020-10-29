@@ -43,6 +43,18 @@ async function getWebpackEntries() {
     },
   );
 
+  const unstyledPackagePath = path.join(workspaceRoot, 'packages/material-ui-unstyled/build');
+  const unstyledComponents = (await glob(path.join(unstyledPackagePath, '[A-Z]*/index.js'))).map(
+    (componentPath) => {
+      const componentName = path.basename(path.dirname(componentPath));
+
+      return {
+        name: componentName,
+        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+      };
+    },
+  );
+
   return [
     {
       name: '@material-ui/core',
@@ -86,6 +98,7 @@ async function getWebpackEntries() {
       name: '@material-ui/utils',
       path: 'packages/material-ui-utils/build/esm/index.js',
     },
+    ...unstyledComponents,
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
     // {

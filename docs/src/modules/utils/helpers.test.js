@@ -11,6 +11,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
+import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
 import FooBar, { Qux } from '@foo-bar/bip';
 const styles = theme => ({
   container: {
@@ -26,6 +27,7 @@ const styles = theme => ({
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
+      '@material-ui/unstyled': 'next',
       'prop-types': 'latest',
       'react-dom': 'latest',
       react: 'latest',
@@ -66,6 +68,7 @@ const suggestions = [
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
+      '@material-ui/unstyled': 'next',
       'prop-types': 'latest',
       'react-dom': 'next',
       react: 'next',
@@ -100,6 +103,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
+      '@material-ui/unstyled': 'next',
       'prop-types': 'latest',
       'react-dom': 'latest',
       react: 'latest',
@@ -174,6 +178,7 @@ import { useDemoData } from '@material-ui/x-grid-data-generator';
   it('can use codesandbox deploys if a commit is given', () => {
     const source = `
 import * as Core from '@material-ui/core';
+import * as Unstyled from '@material-ui/unstyled';
 import * as Icons from '@material-ui/icons';
 import * as Lab from '@material-ui/lab';
 import * as Styles from '@material-ui/styles';
@@ -200,6 +205,8 @@ import * as Utils from '@material-ui/utils';
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/system',
       '@material-ui/utils':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/utils',
+      '@material-ui/unstyled':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/unstyled',
     });
   });
 });
