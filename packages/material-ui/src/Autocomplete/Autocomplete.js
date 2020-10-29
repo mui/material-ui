@@ -413,23 +413,20 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     );
   };
 
-  const renderGroupedOptions = React.useMemo(
-    () => (groupedOptions) => {
-      return groupedOptions.map((option, index) => {
-        if (groupBy) {
-          return renderGroup({
-            key: option.key,
-            group: option.group,
-            children: option.options.map((option2, index2) =>
-              renderListOption(option2, option.index + index2),
-            ),
-          });
-        }
-        return renderListOption(option, index);
-      });
-    },
-    [groupedOptions],
-  );
+  const allGroupedOptions = React.useMemo(() => {
+    return groupedOptions.map((option, index) => {
+      if (groupBy) {
+        return renderGroup({
+          key: option.key,
+          group: option.group,
+          children: option.options.map((option2, index2) =>
+            renderListOption(option2, option.index + index2),
+          ),
+        });
+      }
+      return renderListOption(option, index);
+    });
+  }, [groupedOptions]);
 
   const hasClearIcon = !disableClearable && !disabled && dirty;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
@@ -523,7 +520,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                 {...getListboxProps()}
                 {...ListboxProps}
               >
-                {renderGroupedOptions(groupedOptions)}
+                {allGroupedOptions}
               </ListboxComponent>
             ) : null}
           </PaperComponent>
