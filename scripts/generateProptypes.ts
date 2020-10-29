@@ -155,13 +155,15 @@ const getUnstyledFile = (tsFile: string) => {
   let unstyledFile = '';
 
   if (tsFile.endsWith('.d.ts') && tsFile.indexOf('material-ui-unstyled') === -1) {
-    const pathParts = tsFile.split('/');
+    unstyledFile = tsFile;
+
+    const pathParts = unstyledFile.split('/');
     const componentName = pathParts[pathParts.length - 1].replace('.d.ts', '');
     const directoryName = pathParts[pathParts.length - 2];
 
     const componentNameReg = new RegExp(componentName, 'g');
 
-    unstyledFile = tsFile.replace(
+    unstyledFile = unstyledFile.replace(
       /packages\/material-ui-lab|packages\/material-ui/g,
       'packages/material-ui-unstyled',
     );
