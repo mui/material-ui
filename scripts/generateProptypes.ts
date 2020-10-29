@@ -154,24 +154,27 @@ const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
 const getUnstyledFile = (tsFile: string) => {
   let unstyledFile = '';
 
-  if(tsFile.endsWith('.d.ts') && tsFile.indexOf('material-ui-unstyled') === -1) {
+  if (tsFile.endsWith('.d.ts') && tsFile.indexOf('material-ui-unstyled') === -1) {
     const pathParts = tsFile.split('/');
     const componentName = pathParts[pathParts.length - 1].replace('.d.ts', '');
     const directoryName = pathParts[pathParts.length - 2];
-    
+
     const componentNameReg = new RegExp(componentName, 'g');
 
-    unstyledFile = tsFile.replace(/packages\/material-ui-lab|packages\/material-ui/g, 'packages/material-ui-unstyled');
+    unstyledFile = tsFile.replace(
+      /packages\/material-ui-lab|packages\/material-ui/g,
+      'packages/material-ui-unstyled',
+    );
     unstyledFile = unstyledFile.replace(componentNameReg, `${componentName}Unstyled`);
 
-    if(directoryName !== componentName) {
+    if (directoryName !== componentName) {
       const directoryNameReg = new RegExp(directoryName, 'g');
       unstyledFile = unstyledFile.replace(directoryNameReg, `${directoryName}Unstyled`);
     }
   }
 
   return unstyledFile;
-}
+};
 
 async function generateProptypes(
   tsFile: string,
