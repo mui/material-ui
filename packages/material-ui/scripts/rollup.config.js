@@ -10,7 +10,6 @@ const input = './src/index.js';
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
-  '@material-ui/unstyled': 'MaterialUIUnstyled',
 };
 const babelOptions = {
   exclude: /node_modules/,
