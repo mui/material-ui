@@ -3,7 +3,7 @@ import { SxProps } from '@material-ui/core/Box';
 import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
-} from '@material-ui/unstyled/SliderUnstyled';
+} from '@material-ui/unstyled';
 import { OverrideProps } from '../OverridableComponent';
 
 export type SliderTypeMap<

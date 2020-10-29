@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ValueLabelUnstyled } from '@material-ui/unstyled/SliderUnstyled';
+import { ValueLabelUnstyled } from '@material-ui/unstyled';
 import { useThemeProps, experimentalStyled } from '../styles';
 
 const overridesResolver = (_, styles) => {
