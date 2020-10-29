@@ -16,9 +16,9 @@
 
 It's important to understand that this package exposes pure (side-effect free) style functions with this signature: `({ theme, ...style }) => style`, **that's it**.
 
-### Demo
+### Демонстрационный пример
 
-In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternatively, you can [emotion](#interoperability) or any other CSS-in-JS styling solution. The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
+Далее в руководстве _Приступая к работе_ в демонстрационных примерах мы используем **styled-components** (чтобы подчеркнуть универсальность этого пакета). Хотя вы можете использовать [emotion](#interoperability) или любое другое CSS-in-JS решение. В примерах также используется Material-UI [тема ](/customization/default-theme/) **по умолчанию**.
 
 {{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
@@ -107,7 +107,7 @@ To make the Box component more useful, we have been building a collection of sty
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using emotion internally by default):
+Если вы уже используете `@material-ui/core`, то можете использовать [компонент Box](/components/box/) (задействующий emotion по умолчанию):
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -115,7 +115,7 @@ import Box from '@material-ui/core/Box';
 
 ## Interoperability
 
-`@material-ui/system` works with most CSS-in-JS libraries, including JSS, styled-components, and emotion. Here are a few examples usages.
+`@material-ui/system` works with most CSS-in-JS libraries, including JSS, styled-components, and emotion. Вот несколько примеров использования.
 
 ### Styled components
 

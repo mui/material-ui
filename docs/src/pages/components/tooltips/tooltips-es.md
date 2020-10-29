@@ -18,7 +18,7 @@ When activated, [Tooltips](https://material.io/design/components/tooltips.html) 
 
 {{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
-## Tooltips posicionados
+## Positioned tooltips
 
 El `Tooltip` tiene 12 **posiciones** para elegir. No tienen flechas direccionales; en cambio, dependen del movimiento que emana de la fuente para transmitir la dirección.
 
@@ -30,7 +30,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Tooltip Flecha
+## Arrow tooltips
 
 Puedes usar el apoyo del prop `flecha` para dar a tu tooltip una flecha indicando a qué elemento se refiere.
 
@@ -61,13 +61,13 @@ Puede definir los tipos de eventos que causan que se muestre un tooltip.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Tooltips controlados
+## Controlled tooltips
 
 You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Ancho variable
+## Variable width
 
 El `Tooltip` envuelve texto largo por defecto para hacerlo legible.
 
@@ -79,7 +79,7 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## Elementos deshabilitados
+## Disabled elements
 
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
@@ -103,7 +103,7 @@ By default disabled elements like `<button>` do not trigger user interactions so
   </span>
 </Tooltip> { pointerEvents: 'none' } : {}}
     >
-      {'A disabled button'}
+      A disabled button
     </button>
   </span>
 </Tooltip>
@@ -121,9 +121,9 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
-## Faked reference object
+## Virtual element
 
-In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 

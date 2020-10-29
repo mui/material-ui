@@ -49,7 +49,7 @@ Los botones delineados también son una alternativa de menos énfasis que los bo
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Handling clicks
+## Controlador del click
 
 Todos los componentes aceptan un controlador `onClick` el cual se aplica al elemento raíz en el DOM.
 
@@ -111,11 +111,11 @@ Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y
 
 Un caso de uso común es emplear el botón para iniciar la navegación hacia una nueva página. Un caso de uso común es emplear el botón para iniciar la navegación hacia una nueva página. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Esto se logra adjuntando una referencia al componente y esperando que el componente reenvíe esta referencia al nodo DOM subyacente. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
-Here is an [integration example with react-router](/guides/composition/#button).
+Aquí hay un ejemplo de integración con [react-router](/guides/composition/#button).
 
 ## Limitaciones
 
-### Cursor not-allowed
+### Cursor no permitido
 
 El componente ButtonBase define `pointer-events: none;` en los botones deshabilitados, lo que previene la aparición del cursor desactivado.
 

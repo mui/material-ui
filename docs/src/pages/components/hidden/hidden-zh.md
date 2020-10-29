@@ -8,7 +8,7 @@ githubLabel: 'component: Hidden'
 
 <p class="description">您可以使用隐藏组件来实现快速并响应式地控制元素的显隐。</p>
 
-除非**明确指定是隐藏的**，所有元素都是可见的。 为了简化与 [响应式断点](/customization/breakpoints/) 的集成，此组件可用于隐藏任何内容，或者您可以将它与我们的 [`栅格（Grid）`](/components/grid/) 组件结合使用。
+除非**明确指定是隐藏的**，否则所有元素默认都是可见的。 为了简化与 [响应式断点](/customization/breakpoints/) 的集成，此组件可用于隐藏任何内容，或者您可以将它与我们的 [`栅格（Grid）`](/components/grid/) 组件结合使用。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -38,19 +38,19 @@ mdDown      |                     hide | show
 
 ## 断点之上（Breakpoint up）
 
-使用任何断点 `down` 属性的元素，给定 *子节点* 将在 *断点以及断点以下* 时被隐藏 。
+使用任何断点的 `up` 属性，所给定的_子代_将在断点处或其之上_隐藏_。
 
 {{"demo": "pages/components/hidden/BreakpointUp.js", "bg": true}}
 
 ## 断点之下（Breakpoint down）
 
-利用断点 `only` 属性，给定 *子节点* 将被隐藏 *在* 指定的断点。
+使用任何断点的 `down` 属性，所给定的_子代_将在断点_处或其之下_隐藏。
 
 {{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
 ## 仅限断点
 
-`only` 属性可以两种方式使用：
+当使用断点 `only` 属性，给定的_子元素_将在 _在_ 指定的断点（们）被隐藏。
 
 `only` 属性可以通过以下两种方式来调用：
 

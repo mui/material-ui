@@ -52,6 +52,7 @@ const theme = createMuiTheme({
 | Indonésio               | id-ID                     | `idID`             |
 | Italiano                | it-IT                     | `itIT`             |
 | Japonês                 | ja-JP                     | `jaJP`             |
+| Kazakh                  | kz-KZ                     | `kzKZ`             |
 | Coreano                 | ko-KR                     | `koKR`             |
 | Persa                   | fa-IR                     | `faIR`             |
 | Polonês                 | pl-PL                     | `plPL`             |

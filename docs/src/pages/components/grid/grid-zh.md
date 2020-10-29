@@ -9,20 +9,20 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 <p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局在不同尺寸之间的一致性。</p>
 
-[Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html)能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 的响应式 UI 是基于12列的栅格系统。
+[Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html) 能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 的响应式 UI 是基于 12 列的栅格布局。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> ⚠️ `栅格` 组件不要与承载大量数据的表格（data grid）进行混淆；这个组件更倾向于布局使用。 如果需使用承载大量数据的表格，请看这里的 [ `数据表格` 组件](/components/data-grid/)。
+> ⚠️ `栅格` 组件不要与承载大量数据的表格（data grid）进行混淆；这个组件更倾向于在布局中使用。 如果需使用承载大量数据的表格，请看这里的 [ `数据表格` 组件](/components/data-grid/)。
 
 ## 工作原理
 
 栅格系统是通过 `Grid` 组件实现的：
 
 - 为了高度的灵活性，组件使用了 [CSS 的 Flexible Box 模块](https://www.w3.org/TR/css-flexbox-1/) 。
-- 它有两种类型的布局： *containers* ， *items*。
-- 块（Item）的宽度以百分比设置，因此对于其父元素而言，它们具有流动性和尺寸可控的特点。
-- 块（items）使用内边距来保持和其他块（items）的间距。
+- 它有两种类型的布局： _containers_ ， _items_。
+- 而项目宽度以百分比设置，因此相对于其父元素，它们总是流动的和变换大小的。
+- 子项目（items）使用内边距来保持和其他块（items）的间距。
 - 其中五个断点可供使用：xs，sm，md，lg 和 xl。
 - 你可以为每个断点提供整数值，表示当视口宽度满足 [断点约束](/customization/breakpoints/#default-breakpoints) 时，12 个可用列中有多少列被组件占用。
 
@@ -30,9 +30,9 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ## Spacing 间距
 
-响应式栅格布局追求块与块之间统一的间距，而非块本身的宽度。 Material design 外边距（margins）和列（col）都遵循 **8px** 的方块形基线栅格。 你可以将 `spacing` 的属性值设置为一个在 0 到 10 之间的整数 "默认情况下，块之间的间距由该线性函数决定： `output(spacing) = spacing * 8px`，例如 `spacing={2}` 会创建一个 16px 宽的间距。"
+响应式栅格布局追求块与块之间统一的间距，而非块本身的宽度。 Material design 外边距（margins）和列（columns）都遵循了一个 **8px** 的方块形基线栅格。 你可以将 `spacing` 的属性值设置为一个在 0 到 10 之间的整数 默认情况下，两个栅格块（item）之间的间距遵循一个线性函数。`output(spacing) = spacing * 8px`，例如：`spacing={2}` 将会创建一个 16px 宽的间隙。
 
-通过[使用主题](/customization/spacing/)，可自定义该函数的输出。
+通过[使用主题](/customization/spacing/)，该变换函数的输出是可定制的。
 
 {{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
@@ -50,7 +50,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ### 有断点的栅格
 
-一些列（columns）会定义多种宽度，这会导致布局会根据事先定义的断点（breakpoint）来改变其宽度。 你可以给较大断点指定宽度值。那么它会覆盖给较小断点指定的宽度值。
+组件可能会定义多种宽度，这会导致布局会根据事先定义的断点（breakpoint）来改变其宽度。 你可以给较大断点指定宽度值。那么它会覆盖给较小断点指定的宽度值。
 
 例如，`xs={12} sm={6}` 表示当视口宽度为 [600 或更多像素](/customization/breakpoints/#default-breakpoints) 时，将组件的大小调整为占据视口宽度的一半（6列）。 对于较小的视口，该组件将填充所有 12 个可用的列。
 
@@ -64,7 +64,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ## 自适应布局
 
-自适应布局让 *项（items ）* 平均地使用空间。 这也意味着你可以显式设置一个 *项* 的宽度，而使其他项的大小自动进行调整。
+自适应布局让 _块（items）_ 平均地使用空间。 这也意味着你可以显式设置一个 _块（item）_ 的宽度，而使其他项的大小自动进行调整。
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
@@ -76,9 +76,9 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ## 嵌套栅格
 
-`容器（container）`和`项（item）`属性分别是两个独立的布尔值。 它们可以组合起来使用。
+`容器（container）` 和 `块（item）` 属性分别是两个独立的布尔值。 它们可以组合起来使用，使 Grid 组件既是一个 flex 容器，又是一个子容器。
 
-> 通过将计算过的将 `flex` 或 `inline-flex` 的显示赋予给一个元素，你可以生成一个 flex 的**容器（container ）** 。 Flex 容器（container）的流入子容器称为 flex ** 项（items**， 它们的布局基于 flex 布局模型。
+> 通过将计算过的将 `flex` 或 `inline-flex` 的显示赋予给一个元素，你可以生成一个 flex 的 **容器（container ）** 。 Flex 容器（container）的流入子容器称为 flex ** 项（items**）， 它们的布局基于 flex 布局模型。
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
@@ -88,10 +88,10 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### 负边距
 
-当我们使用负的外边距来实现块之间的间距时，会引出一个由于设计上的局限性所导致的问题。 如果负的外边距超出了 `<body>` 的范围，水平滚动条将会出现。 有3种方法可以解决这个问题：
+当我们使用负边距来实现项目之间的间距的时候，会有一个限制。 如果负边距超出`<body>`元素，则会出现水平滚动。 我们提供了 3 种解决方案：
 
-1. 不使用间距特性，或设置成 `spacing={0}`（默认设定）。
-2. 为父元素设置内边距，值至少为子元素间距值的一半：
+1. 不使用 spacing 的特性，并且在用户层面设置成`spacing={0}`。
+2. 将间距（padding）应用于父级元素，并且将至少一半的间距值赋予子级元素：
 
    ```jsx
    <body>
@@ -114,7 +114,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   <Typography noWrap>
 ```
 
-若想让子项继续在容器内展示，您需要设置 `min-width: 0`。 若想让子项继续在容器内展示，您需要设置 `min-width: 0`。
+若想让子项继续在容器内展示，您需要设置 `min-width: 0`。 在实际操作中，你可以设置 `zeroMinWidth` 属性来实现它：
 
 ```jsx
 <Grid item xs zeroMinWidth>
@@ -125,9 +125,9 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### direction: column | column-reverse
 
-`direction="column"` 和 `direction="column-reverse"`的容器**不支持** 和断点有关的 `xs`, `sm`, `md`, `lg`，以及 `xl` 这几个props。
+`direction="column"` 和 `direction="column-reverse"` 的容器**不支持**和断点有关的 `xs`, `sm`, `md`, `lg`，以及 `xl` 这几个属性。
 
-它们决定在某个断点下组件占几个格子 他们是用`flex-basis`实现，在`row`容器用来控制 **宽度** 的，但是在`column` 容器里就会改变高度。 如果使用这些属性，可能会对 `Grid` 块元素的高度产生副作用。
+它们决定在某个断点下组件占几个网格。 它们是为了在 `row` 容器中使用 `flex-basis` 来控制 **width**，但这样做会影响 `column` 容器的高度。 如果使用这些属性，可能会对 `Grid` 块元素的高度产生副作用。
 
 ## CSS 栅格布局
 

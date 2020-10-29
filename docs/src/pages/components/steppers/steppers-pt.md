@@ -68,7 +68,7 @@ Vertical steppers are designed for narrow screen sizes. They are ideal for mobil
 
 ## Assistente Mobile
 
-Este componente implementa um assistente compacto adequado para um dispositivo mobile. IT has more limited functionality than the vertical stepper. Veja [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) para essa inspiração.
+Este componente implementa um assistente compacto adequado para um dispositivo mobile. It has more limited functionality than the vertical stepper. Veja [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) para essa inspiração.
 
 The mobile stepper supports three variants to display progress through the available steps: text, dots, and progress.
 

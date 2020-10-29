@@ -5,13 +5,13 @@ githubLabel: 'component: Drawer'
 materialDesign: https://material.io/components/navigation-drawer
 ---
 
-# Drawer 抽屉
+# Drawer（抽屉）
 
 <p class="description">导航抽屉提供了一个访问您应用中的目标地址的途径。 侧边栏被固定在屏幕的左侧或右侧，而它包含了一些补充内容。</p>
 
-用户能够通过 [Navigation drawers](https://material.io/design/components/navigation-drawer.html) （或者 “sidebars”）来访问目标地址和一些应用功能，例如切换帐户。 它们既可以永久在屏幕上，也可以由一个导航菜单图标控制。
+用户能够通过 Navigation drawers（或者 “sidebars”）来访问目标地址和一些应用功能，例如切换帐户。 它们既可以永久在屏幕上，也可以由一个导航菜单图标控制。
 
-[Side sheets](https://material.io/design/components/sheets-side.html) 主要在平板和桌面上作为辅助的平面使用。
+[Side sheets](https://material.io/design/components/sheets-side.html)主要在平板和桌面上作为辅助的平面使用。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -27,7 +27,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 您可以使用 `SwipeableDrawer` 组件来实现滑动抽屉。
 
-此组件附带 2 kB gzipped 的负载开销。 一些低端移动设备无法以60 FPS 的速度跟随手指的移动。 通过 `disableBackdropTransition` 这个属性，则可以解决此问题。
+此组件附带 2 kB gzipped 的负载开销。 一些低端移动设备无法以60 FPS 的速度跟随手指的移动。 你可以通过使用 `disableBackdropTransition` 这个属性来解决此问题。
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
@@ -41,6 +41,21 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
+
+### 保持安装（mounted）
+
+你可以使用 `ModalProps` 属性来确保临时抽屉不会被卸载，就像这样：
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true,
+  }}
+/>
+```
+
+有关此部分的更多详情请查看 [模态框性能部分](/components/modal/#performance)。
 
 ## 响应式的抽屉
 
@@ -72,7 +87,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 永久抽屉始终可见并固定在左侧，与内容或背景位于同一高度。 他们无法被关闭。
 
-一个从左到右层次结构的信息消费，是应用程序需要重视的。
+推荐在**桌面环境上默认**使用永久抽屉。
 
 ### 全高导航栏
 

@@ -1,5 +1,5 @@
 ---
-components: Link
+components: React 链接组件
 githubLabel: 'component: Link'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 ---
@@ -12,27 +12,33 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## 简单的链接
 
-链接（Links）组件构建在 [版面设计（Typography）](/api/typography/) 组件之上。
+链接（Links）组件是基于 [文字铸排（Typography）](/api/typography/) 组件构建的，这意味着你也可以使用文字铸排组件的属性。
 
 {{"demo": "pages/components/links/Links.js"}}
 
-当你在使用Link组件下的 `target="_blank"`时 ，并同时在关联第三方内容的情况下， [推荐](https://developers.google.com/web/tools/lighthouse/audits/noopener) 始终配置 `rel ="noopener"` 或 `的rel ="noreferrer"` 。
+但是，链接组件与文字铸排组件相比，它们存在一些不同的默认属性：
 
 - 当链接需要突出显示时，设置 `color="primary"`。
 - 在多数的情况下，当链接需要作为文字铸排的子组件使用，则设置 `variant="inherit"`。
+
+## 下划线
+
+`underline` 属性可以用来设置下划线行为。 该属性的默认值是 `hover`。
+
+{{"demo": "pages/components/links/UnderlineLink.js"}}
 
 ## 安全性
 
 当你将 `target="_blank"`和链接组件一起使用时，若想和第三方的内容相连，我们[推荐](https://developers.google.com/web/tools/lighthouse/audits/noopener)始终配置 `rel="noopener"` 或者 `rel="noreferrer"`。
 
 - `rel="noopener"` 会阻止新页面访问 `window.opener` 属性，并确保它在单独的进程运行。 若不如此，目标页面有极大可能将你的页面重定向至一个恶意网址。
-- `rel ="noreferrer"` 具有相同的效果，但也阻止将 *Referer* 标头发送到新页面。 ⚠️ 去除 referrer header 会影响分析。
+- `rel ="noreferrer"` 具有相同的效果，但它也提供阻止将 _Referer_ 标头发送到新页面的功能。 ⚠️ 去除 referrer header 会影响分析。
 
 ## Third-party routing library（第三方路由库）
 
-一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 为解决此用例 `组件`，`Link` 组件提供了一个属性：
+一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。
 
-这有一个[与 react-router 交互的例子](/guides/composition/#link)。
+这有一个 [与 react-router 交互的例子](/guides/composition/#link)。
 
 ## 无障碍设计
 

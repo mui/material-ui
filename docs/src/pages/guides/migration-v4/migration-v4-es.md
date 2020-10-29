@@ -49,10 +49,10 @@ The default bundle now supports:
 <!-- #stable-snapshot -->
 
 - Node 10 (up from 8)
-- Chrome 83 (up from 49)
-- Edge 83 (up from 14)
-- Firefox 68 (up from 52)
-- Safari 13 (up from 10)
+- Chrome 84 (up from 49)
+- Edge 85 (up from 14)
+- Firefox 78 (up from 52)
+- Safari 13 (macOS) and 12.2 (iOS) (up from 10)
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
 
 It no longer supports IE 11. If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
@@ -250,6 +250,13 @@ const classes = makeStyles(theme => ({
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
+- Move the AvatarGroup from the lab to the core.
+
+  ```diff
+  -import AvatarGroup from '@material-ui/lab/AvatarGroup';
+  +import AvatarGroup from '@material-ui/core/AvatarGroup';
+  ```
+
 ### Badge
 
 - Renombrar `circle` a `circular` y `rectangle` a `rectangular` para consistencia. Los valores posibles deben ser adjetivos, no sustantivos:
@@ -349,6 +356,24 @@ const classes = makeStyles(theme => ({
   +    onExiting,
   +  }}
   />
+  ```
+
+- [withMobileDialog] Remove this higher-order component. The hook API allows a simpler and more flexible solution:
+
+  ```diff
+  -import withMobileDialog from '@material-ui/core/withMobileDialog';
+  +import { useTheme, useMediaQuery } from '@material-ui/core';
+
+  function ResponsiveDialog(props) {
+  - const { fullScreen } = props;
+  + const theme = useTheme();
+  + const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const [open, setOpen] = React.useState(false);
+
+  // ...
+
+  -export default withMobileDialog()(ResponsiveDialog);
+  +export default ResponsiveDialog;
   ```
 
 ### Divider
@@ -552,6 +577,31 @@ const classes = makeStyles(theme => ({
   +  }}
   />
   ```
+
+### Popper
+
+- Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2. This third-party library has introduced a lot of changes.<br /> You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
+
+  - The CSS prefixes have changed:
+    ```diff
+    popper: {
+      zIndex: 1,
+    - '&[x-placement*="bottom"] $arrow': {
+    + '&[data-popper-placement*="bottom"] $arrow': {
+    ```
+  - Method names have changed.
+
+    ```diff
+    -popperRef.current.scheduleUpdate()
+    +popperRef.current.update()
+    ```
+
+    ```diff
+    -popperRef.current.update()
+    +popperRef.current.forceUpdate()
+    ```
+
+  - Modifiers' API has changed a lot. There are too many changes to be covered here.
 
 ### Portal
 
@@ -761,6 +811,24 @@ const classes = makeStyles(theme => ({
   ```diff
   -<TextField rowsMax={6}>
   +<TextField maxRows={6}>
+  ```
+
+- Change ref forwarding expections on custom `inputComponent`. The component should forward the `ref` prop instead of the `inputRef` prop.
+
+  ```diff
+  -function NumberFormatCustom(props) {
+  -  const { inputRef, onChange, ...other } = props;
+  +const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
+  +  props,
+  +  ref,
+  +) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+  -     getInputRef={inputRef}
+  +     getInputRef={ref}
   ```
 
 ### TextareaAutosize

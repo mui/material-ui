@@ -6,7 +6,7 @@
 
 用 space 辅助工具能够将简写的 margin 和 padding 属性转换为margin 和 padding 的 CSS 声明。 而属性则使用 `{property}{sides}` 的格式命名。
 
-其中*属性*是其中之一：
+其中_属性_是其中之一：
 
 - `m` - 对于设置*margin*
 - `p` - 对于设置*padding*
@@ -54,7 +54,7 @@ const theme = {
 
 ```jsx
 const theme = {
-  spacing: value => value ** 2,
+  spacing: value => value * 2,
 }
 
 <Box m={0} /> // margin: 0px;
@@ -74,10 +74,6 @@ const theme = {
 
 ```jsx
 <Box p={1}>…
-<Box m={1}>…
-<Box p={2}>…
-<Box m={1}>…
-<Box p={2}>…
 <Box m={1}>…
 <Box p={2}>…
 ```

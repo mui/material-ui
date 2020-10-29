@@ -75,9 +75,22 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 ## Фиксированный заголовок
 
-Пример таблицы с прокручиваемыми строками и фиксированными заголовками столбцов. It leverages the `stickyHeader` prop (⚠️ no IE11 support).
+Пример таблицы с прокручиваемыми строками и фиксированными заголовками столбцов. It leverages the `stickyHeader` prop.<br /> (⚠️ no IE11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## Column grouping
+
+You can group column headers by rendering multiple table rows inside a table head:
+
+```jsx
+<TableHead>
+  <TableRow />
+  <TableRow />
+</TableHead>
+```
+
+{{"demo": "pages/components/tables/ColumnGroupingTable.js", "bg": true}}
 
 ## Collapsible table
 

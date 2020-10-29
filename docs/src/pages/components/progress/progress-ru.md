@@ -113,7 +113,7 @@ If you need to perform 30 re-renders per second or more, we recommend disabling 
 
 ### IE11
 
-The circular progress component animation on IE11 is degraded. Анимация пунктирным контуром не работает (соответсвует `disableShrink`) и круговая анимация идет рывками. Последняя проблема может быть решена:
+С анимацией компонента circular progress в IE11 возникают проблемы. Анимация пунктирным контуром не работает (соответсвует `disableShrink`) и круговая анимация идет рывками. Последняя проблема может быть решена:
 
 ```css
 .MuiCircularProgress-indeterminate {

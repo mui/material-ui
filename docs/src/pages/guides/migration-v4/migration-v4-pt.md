@@ -1,18 +1,18 @@
-# Migration from v4 to v5
+# Migrando da v4 para v5
 
-<p class="description">Yeah, v5 has been released!</p>
+<p class="description">Sim, v5 foi lançada!</p>
 
-Looking for the v4 docs? [Encontre-os aqui](https://material-ui.com/versions/).
+Procurando pelos documentos da v4? [Encontre-os aqui](https://material-ui.com/versions/).
 
 > Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md).
 
 ## Introdução
 
-This is a reference for upgrading your site from Material-UI v4 to v5. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v5!
+Esta é uma referência para atualizar seu site de Material-UI v4 para v5. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e tão sequenciais quanto possível, para que você possa rapidamente agitar na v5!
 
 ## Por que você deve migrar
 
-This documentation page covers the _how_ of migrating from v4 to v5. O *por que* é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+Esta página de documentação cobre o _como_ migrar da v4 para a v5. O *por que* é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
 ## Atualizando suas dependências
 
@@ -40,24 +40,24 @@ yarn add @material-ui/core@next
 
 ## Tratamento de alterações recentes
 
-### Supported browsers and node versions
+### Suporte de navegadores e versões de node
 
-The targets of the default bundle have changed. The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+Os indicativos de suporte do pacote padrão foram alterados. As versões exatas do suporte serão fixadas na consulta browserslist `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
 
-The default bundle now supports:
+O pacote padrão agora suporta:
 
 <!-- #stable-snapshot -->
 
-- Node 10 (up from 8)
-- Chrome 83 (up from 49)
-- Edge 83 (up from 14)
-- Firefox 68 (up from 52)
-- Safari 13 (up from 10)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+- Node 10 (antes era 8)
+- Chrome 84 (antes era 49)
+- Edge 85 (antes 14)
+- Firefox 78 (antes era 52)
+- Safari 13 (macOS) e 12.2 (iOS) (antes era 10)
+- para maiores detalhes (veja [.browserslistrc (seção `stable`)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
 
-It no longer supports IE 11. If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+Não há mais o suporte para o IE 11. Se você precisar do suporte para o IE 11, confira nosso [pacote legado](/guides/minimizing-bundle-size/#legacy-bundle).
 
-### non-ref-forwarding class components
+### Componentes de classe e non-ref-forwarding
 
 Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React. StrictMode` then you don't need to do anything. Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate. This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
@@ -219,7 +219,7 @@ const classes = makeStyles(theme => ({
 
 ### Alerta
 
-- Move the component from the lab to the core. The component is now stable.
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import Alert from '@material-ui/lab/Alert';
@@ -230,7 +230,7 @@ const classes = makeStyles(theme => ({
 
 ### Autocompletar
 
-- Move the component from the lab to the core. The component is now stable.
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -248,6 +248,13 @@ const classes = makeStyles(theme => ({
   -<Avatar classes={{ circle: 'className' }}>
   +<Avatar variant="circular">
   +<Avatar classes={{ circular: 'className' }}>
+  ```
+
+- Move the AvatarGroup from the lab to the core.
+
+  ```diff
+  -import AvatarGroup from '@material-ui/lab/AvatarGroup';
+  +import AvatarGroup from '@material-ui/core/AvatarGroup';
   ```
 
 ### Badge
@@ -349,6 +356,24 @@ const classes = makeStyles(theme => ({
   +    onExiting,
   +  }}
   />
+  ```
+
+- [withMobileDialog] Remove this higher-order component. The hook API allows a simpler and more flexible solution:
+
+  ```diff
+  -import withMobileDialog from '@material-ui/core/withMobileDialog';
+  +import { useTheme, useMediaQuery } from '@material-ui/core';
+
+  function ResponsiveDialog(props) {
+  - const { fullScreen } = props;
+  + const theme = useTheme();
+  + const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const [open, setOpen] = React.useState(false);
+
+  // ...
+
+  -export default withMobileDialog()(ResponsiveDialog);
+  +export default ResponsiveDialog;
   ```
 
 ### Divider
@@ -510,7 +535,7 @@ const classes = makeStyles(theme => ({
 
 ### Paginação
 
-- Move the component from the lab to the core. The component is now stable.
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import Pagination from '@material-ui/lab/Pagination';
@@ -553,13 +578,38 @@ const classes = makeStyles(theme => ({
   />
   ```
 
+### Popper
+
+- Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2. This third-party library has introduced a lot of changes.<br /> You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
+
+  - The CSS prefixes have changed:
+    ```diff
+    popper: {
+      zIndex: 1,
+    - '&[x-placement*="bottom"] $arrow': {
+    + '&[data-popper-placement*="bottom"] $arrow': {
+    ```
+  - Method names have changed.
+
+    ```diff
+    -popperRef.current.scheduleUpdate()
+    +popperRef.current.update()
+    ```
+
+    ```diff
+    -popperRef.current.update()
+    +popperRef.current.forceUpdate()
+    ```
+
+  - Modifiers' API has changed a lot. There are too many changes to be covered here.
+
 ### Portal
 
 - Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
 ### Rating
 
-- Move the component from the lab to the core. The component is now stable.
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import Rating from '@material-ui/lab/Rating';
@@ -599,7 +649,7 @@ const classes = makeStyles(theme => ({
 
 ### Skeleton
 
-- Move the component from the lab to the core. The component is now stable. 
+- Mova o componente do lab para o core. O componente agora é estável. 
   
   
 
@@ -678,7 +728,7 @@ const classes = makeStyles(theme => ({
 
 ### SpeedDial
 
-- Move the component from the lab to the core. The component is now stable. 
+- Mova o componente do lab para o core. O componente agora é estável. 
   
 
   ```diff
@@ -816,6 +866,27 @@ const classes = makeStyles(theme => ({
   ```
 
 
+- Change ref forwarding expections on custom `inputComponent`. The component should forward the `ref` prop instead of the `inputRef` prop. 
+  
+  
+
+  ```diff
+  -function NumberFormatCustom(props) {
+  -  const { inputRef, onChange, ...other } = props;
+  +const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
+  +  props,
+  +  ref,
+  +) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+  -     getInputRef={inputRef}
+  +     getInputRef={ref}
+  ```
+
+
 
 
 ### TextareaAutosize
@@ -854,7 +925,7 @@ const classes = makeStyles(theme => ({
 
 ### ToggleButton
 
-- Move the component from the lab to the core. The component is now stable. 
+- Mova o componente do lab para o core. O componente agora é estável. 
   
 
   ```diff

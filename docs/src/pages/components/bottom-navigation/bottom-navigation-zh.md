@@ -15,7 +15,7 @@ materialDesign: https://material.io/components/bottom-navigation
 
 ## Bottom Navigation 底部导航栏
 
-当只有 **三个** 导航项时，导航栏会始终显示图标和文本标签。
+当只有**三个**导航项时，导航栏会始终显示图标和文本标签。
 
 {{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js", "bg": true}}
 

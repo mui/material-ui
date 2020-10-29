@@ -52,6 +52,18 @@ Como alternativa, puedes usar [react-spring](https://github.com/react-spring/rea
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
+## Rendimiento
+
+The content of modal is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to change this default behavior by enabling the `keepMounted` prop:
+
+```jsx
+<Modal keepMounted />
+```
+
+{{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
+
+Como en cualquier optimización de rendimiento esto no es una bala de plata. Be sure to identify bottlenecks first and then try out these optimization strategies.
+
 ## Server-side modal
 
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:

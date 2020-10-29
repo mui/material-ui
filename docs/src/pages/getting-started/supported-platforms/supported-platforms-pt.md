@@ -8,11 +8,13 @@ O Material-UI suporta as versões mais recentes e estáveis de todos os principa
 
 <!-- #stable-snapshot -->
 
-| Edge  | Firefox | Chrome | Safari |
-|:----- |:------- |:------ |:------ |
-| >= 83 | >= 68   | >= 83  | >= 13  |
+| Edge  | Firefox | Chrome | Safari (macOS) | Safari (iOS) |
+|:----- |:------- |:------ |:-------------- |:------------ |
+| >= 85 | >= 78   | >= 84  | >= 13          | >= 12.2      |
 
-If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+<!-- #default-branch-switch -->
+
+An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/next/.browserslistrc#L12-L27) (check the `stable` entry). Se você precisar do suporte para o IE 11, confira nosso [pacote legado](/guides/minimizing-bundle-size/#legacy-bundle).
 
 Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o conteúdo da página, é essencial que o Material-UI o suporte. [O WRS atualiza regularmente o mecanismo de renderização usado por ele](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Você pode esperar que os componentes do Material-UI sejam renderizados sem grandes problemas.
 
@@ -20,7 +22,7 @@ Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o c
 
 <!-- #stable-snapshot -->
 
-We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering. Sempre que possível, as versões [ LTS que estão em manutenção ](https://github.com/nodejs/Release#lts-schedule1) são suportados.
+We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering. Sempre que possível, as versões [ LTS que estão em manutenção ](https://github.com/nodejs/Release#release-schedule) são suportados.
 
 ### Prefixos CSS
 

@@ -18,7 +18,7 @@ Quando ativada, [dicas](https://material.io/design/components/tooltips.html) exi
 
 {{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
-## Posicionamento de dicas
+## Positioned tooltips
 
 O `Tooltip` tem 12 **posicionamentos** para ser escolhido. Eles não têm setas direcionais; em vez disso, eles dependem do movimento que emana da fonte para transmitir direção.
 
@@ -30,7 +30,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Dicas com seta
+## Arrow tooltips
 
 Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a qual elemento se refere.
 
@@ -61,13 +61,13 @@ Você pode definir os tipos de eventos que fazem com que uma dica seja exibida.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Dicas Controladas
+## Controlled tooltips
 
 Você pode usas as propriedades `open`, `onOpen` e `onClose` para controlar o comportamento da dica.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Largura Variável
+## Variable width
 
 A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
@@ -79,7 +79,7 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## Elementos Desabilitados
+## Disabled elements
 
 Por padrão os elementos desabilitados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, como passar o mouse. Para acomodar elementos desabilitados, adicione um elemento encapsulador simples, como um `span`.
 
@@ -92,8 +92,9 @@ Por padrão os elementos desabilitados como `<button>` não disparam interaçõe
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'Um botão desabilitado'}
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}
+    >
+      A disabled button
     </button>
   </span>
 </Tooltip>
@@ -111,9 +112,9 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
-## Objeto de referência falsificado
+## Virtual element
 
-In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
