@@ -17,9 +17,11 @@ import Autocomplete from './Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
   if (expected) {
-    expect(listbox.querySelector('li[data-focus]')).to.have.text(expected);
+    expect(listbox.querySelector('li.MuiAutocomplete-optionFocused.Mui-focused')).to.have.text(
+      expected,
+    );
   } else {
-    expect(listbox.querySelector('li[data-focus]')).to.equal(null);
+    expect(listbox.querySelector('li.MuiAutocomplete-optionFocused.Mui-focused')).to.equal(null);
   }
 }
 

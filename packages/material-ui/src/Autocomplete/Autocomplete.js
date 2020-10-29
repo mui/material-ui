@@ -31,8 +31,12 @@ export const styles = (theme) => ({
   fullWidth: {
     width: '100%',
   },
-  /* Pseudo-class applied to the root element if focused. */
+  /* Pseudo-class applied to the root element or option component `focused` class if keyboard or mouse focused. */
   focused: {},
+  /* Pseudo-class applied to the option component `disabled` class if option is disabled. */
+  disabled: {},
+  /* Pseudo-class applied to the option component `selected` class if option is selected. */
+  selected: {},
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
     margin: 3,
@@ -398,6 +402,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           [classes.optionFocused]: focusedIndex === optionProps.key,
           [classes.optionSelected]: optionProps['aria-selected'],
           [classes.optionDisabled]: optionProps['aria-disabled'],
+          [classes.focused]: focusedIndex === optionProps.key,
+          [classes.selected]: optionProps['aria-selected'],
+          [classes.disabled]: optionProps['aria-selected'],
         }),
       },
       option,

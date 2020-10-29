@@ -298,12 +298,6 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector('[data-focus]');
-
-    if (prev) {
-      prev.removeAttribute('data-focus');
-    }
-
     const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
 
     // "No results"
@@ -321,8 +315,6 @@ export default function useAutocomplete(props) {
     if (!option) {
       return;
     }
-
-    option.setAttribute('data-focus', 'true');
 
     // Scroll active descendant into view.
     // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js

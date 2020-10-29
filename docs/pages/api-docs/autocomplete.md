@@ -98,7 +98,9 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiAutocomplete-root</span> | Styles applied to the root element.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiAutocomplete-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
-| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if focused.
+| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element or option component `focused` class if keyboard or mouse focused.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the option component `disabled` class if option is disabled.
+| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the option component `selected` class if option is selected.
 | <span class="prop-name">tag</span> | <span class="prop-name">.MuiAutocomplete-tag</span> | Styles applied to the tag elements, e.g. the chips.
 | <span class="prop-name">tagSizeSmall</span> | <span class="prop-name">.MuiAutocomplete-tagSizeSmall</span> | Styles applied to the tag elements, e.g. the chips if `size="small"`.
 | <span class="prop-name">hasPopupIcon</span> | <span class="prop-name">.MuiAutocomplete-hasPopupIcon</span> | Styles applied when the popup icon is rendered.
