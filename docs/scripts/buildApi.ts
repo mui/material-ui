@@ -25,9 +25,9 @@ import { getLineFeed } from './helpers';
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
-const propDescriptions: { [key: string]: { [key: string]: string | undefined } } = {};
 const classDescriptions: { [key: string]: { [key: string]: string } } = {};
 const componentDescriptions: { [key: string]: string } = {};
+const propDescriptions: { [key: string]: { [key: string]: string | undefined } } = {};
 
 const generateClassName = createGenerateClassName();
 

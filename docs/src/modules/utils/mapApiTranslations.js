@@ -17,7 +17,7 @@ export default function mapApiTranslations(req, componentName) {
 export function parsePropsMarkdown(translations) {
   Object.entries(translations).forEach(([language, props]) => {
     Object.entries(props).forEach(([prop, description]) => {
-      translations[language][prop] = marked(description);
+      translations[language][prop] = marked.parseInline(description);
     });
   });
   return translations;
