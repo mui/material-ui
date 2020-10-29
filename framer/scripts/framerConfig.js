@@ -265,6 +265,7 @@ export const componentSettings = {
       'ValueLabelComponent',
       'valueLabelFormat',
       'marks',
+      'sx',
     ],
     propValues: {
       width: 160,

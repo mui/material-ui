@@ -9,7 +9,6 @@ interface Props {
   min?: number;
   orientation?: 'horizontal' | 'vertical';
   step?: number;
-  sx?: object;
   track?: 'inverted' | 'normal' | false;
   valueLabelDisplay?: 'auto' | 'off' | 'on';
   width: number | string;
@@ -52,10 +51,6 @@ orientation: {
 step: {
   type: ControlType.Number,
   title: 'Step',
-},
-sx: {
-  type: ControlType.Object,
-  title: 'Sx',
 },
 track: {
   type: ControlType.Enum,
