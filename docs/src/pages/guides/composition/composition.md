@@ -135,6 +135,55 @@ The behavior is identical to the description of the prop above.
 Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router).
 It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
 
+- Layout Components
+
+  - Box
+  - Container
+  - Grid
+  - Grid List
+
+- Input Components
+
+  - Button
+  - Button Group
+  - Floating Action Button
+
+- Navigation Components
+
+  - Bottom Navigation
+  - Breadcrumbs
+  - Link
+  - Menu Item
+
+- Surfaces
+
+  - Toolbar
+  - Paper
+  - Card Content
+  - Card Header
+  - Card Media
+  - Collapse
+
+- Data Display
+  - Avatar
+  - Chip
+  - Divider
+  - Icon
+  - SvgIcon
+  - Divider
+  - List
+  - List Item
+  - List Subheader
+  - Table
+  - Table Body
+  - Table Cell
+  - Table Container
+  - Table Footer
+  - Table Head
+  - Table Pagination
+  - Table Row
+  - Typography
+
 ### Button
 
 {{"demo": "pages/guides/composition/ButtonRouter.js"}}
