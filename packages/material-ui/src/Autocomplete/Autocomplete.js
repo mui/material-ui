@@ -31,6 +31,8 @@ export const styles = (theme) => ({
   fullWidth: {
     width: '100%',
   },
+  /* Pseudo-class applied to the root element if focused. */
+  focused: {},
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
     margin: 3,
@@ -204,26 +206,28 @@ export const styles = (theme) => ({
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
+  },
+  /* Styles applied to the option if keyboard or mouse focused. */
+  optionFocused: {
+    backgroundColor: theme.palette.action.hover,
+  },
+
+  /* Styles applied to the option if option is selected. */
+  optionSelected: {
+    backgroundColor: theme.palette.action.selected,
     '&$focused': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    '&$selected': {
-      backgroundColor: theme.palette.action.selected,
-      '&$focused': {
-        backgroundColor: alpha(
-          theme.palette.action.selected,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-      },
-    },
-    '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
-      pointerEvents: 'none',
+      backgroundColor: alpha(
+        theme.palette.action.selected,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+      ),
     },
   },
-  focused: {},
-  disabled: {},
-  selected: {},
+
+  /* Styles applied to the option if option is disabled. */
+  optionDisabled: {
+    opacity: theme.palette.action.disabledOpacity,
+    pointerEvents: 'none',
+  },
   /* Styles applied to the group's label elements. */
   groupLabel: {
     backgroundColor: theme.palette.background.paper,
@@ -391,9 +395,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       {
         ...optionProps,
         className: clsx(classes.option, {
-          [classes.focused]: focusedIndex === optionProps.key,
-          [classes.selected]: optionProps['aria-selected'],
-          [classes.disabled]: optionProps['aria-disabled'],
+          [classes.optionFocused]: focusedIndex === optionProps.key,
+          [classes.optionSelected]: optionProps['aria-selected'],
+          [classes.optionDisabled]: optionProps['aria-disabled'],
         }),
       },
       option,

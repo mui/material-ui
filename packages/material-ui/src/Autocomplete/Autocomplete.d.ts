@@ -105,6 +105,12 @@ export interface AutocompleteProps<
     noOptions?: string;
     /** Styles applied to the option elements. */
     option?: string;
+    /** Styles applied to the option if keyboard or mouse focused. */
+    optionFocused?: string;
+    /** Styles applied to the option if option is selected. */
+    optionSelected?: string;
+    /** Styles applied to the option if option is disabled. */
+    optionDisabled?: string;
     /** Styles applied to the group's label elements. */
     groupLabel?: string;
     /** Styles applied to the group's ul elements. */

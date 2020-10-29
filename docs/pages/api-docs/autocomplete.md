@@ -117,6 +117,9 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">loading</span> | <span class="prop-name">.MuiAutocomplete-loading</span> | Styles applied to the loading wrapper.
 | <span class="prop-name">noOptions</span> | <span class="prop-name">.MuiAutocomplete-noOptions</span> | Styles applied to the no option wrapper.
 | <span class="prop-name">option</span> | <span class="prop-name">.MuiAutocomplete-option</span> | Styles applied to the option elements.
+| <span class="prop-name">optionFocused</span> | <span class="prop-name">.MuiAutocomplete-optionFocused</span> | Styles applied to the option if keyboard or mouse focused.
+| <span class="prop-name">optionSelected</span> | <span class="prop-name">.MuiAutocomplete-optionSelected</span> | Styles applied to the option if option is selected.
+| <span class="prop-name">optionDisabled</span> | <span class="prop-name">.MuiAutocomplete-optionDisabled</span> | Styles applied to the option if option is disabled.
 | <span class="prop-name">groupLabel</span> | <span class="prop-name">.MuiAutocomplete-groupLabel</span> | Styles applied to the group's label elements.
 | <span class="prop-name">groupUl</span> | <span class="prop-name">.MuiAutocomplete-groupUl</span> | Styles applied to the group's ul elements.
 
