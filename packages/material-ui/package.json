@@ -43,9 +43,9 @@
   "peerDependencies": {
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
-    "@types/react": "^16.8.6",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -70,7 +70,7 @@
     "clsx": "^1.0.4",
     "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.0",
+    "react-is": "^16.8.0 || ^17.0.0",
     "react-transition-group": "^4.4.0"
   },
   "devDependencies": {},
