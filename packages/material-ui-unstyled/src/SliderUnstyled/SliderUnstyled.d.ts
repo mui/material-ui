@@ -12,7 +12,7 @@ export interface ValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
 }
 
-export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
+export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**
      * The label of the slider.
@@ -51,7 +51,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     componentsProps?: {
       root?: {
-        styleProps?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
         as: React.ElementType;
       };
       track?: {
@@ -199,7 +199,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
  * Utility to create component types that inherit props from SliderUnstyled.
  */
 export interface ExtendSliderUnstyledTypeMap<M extends OverridableTypeMap> {
-  props: M['props'];
+  props: M['props'] & SliderUnstyledTypeMap['props'];
   defaultComponent: M['defaultComponent'];
 }
 
@@ -213,6 +213,6 @@ export type ExtendSliderUnstyled<M extends OverridableTypeMap> = OverridableComp
  *
  * - [SliderUnstyled API](https://material-ui.com/api/slider-unstyled/)
  */
-declare const SliderUnstyled: OverridableComponent<SliderTypeMap>;
+declare const SliderUnstyled: OverridableComponent<SliderUnstyledTypeMap>;
 
 export default SliderUnstyled;

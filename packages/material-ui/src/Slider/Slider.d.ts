@@ -21,6 +21,7 @@ export type SliderTypeMap<
 
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
 export const SliderRoot: React.FC<SliderRootProps>;
+
 /**
  *
  * Demos:
