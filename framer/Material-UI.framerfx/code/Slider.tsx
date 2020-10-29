@@ -26,40 +26,40 @@ Slider.defaultProps = {
 };
 
 addPropertyControls(Slider, {
-color: {
-  type: ControlType.Enum,
-  title: 'Color',
-  options: ['primary', 'secondary'],
-},
-disabled: {
-  type: ControlType.Boolean,
-  title: 'Disabled',
-},
-max: {
-  type: ControlType.Number,
-  title: 'Max',
-},
-min: {
-  type: ControlType.Number,
-  title: 'Min',
-},
-orientation: {
-  type: ControlType.Enum,
-  title: 'Orientation',
-  options: ['horizontal', 'vertical'],
-},
-step: {
-  type: ControlType.Number,
-  title: 'Step',
-},
-track: {
-  type: ControlType.Enum,
-  title: 'Track',
-  options: ['inverted', 'normal', false],
-},
-valueLabelDisplay: {
-  type: ControlType.Enum,
-  title: 'Value label display',
-  options: ['auto', 'off', 'on'],
-},
+  color: {
+    type: ControlType.Enum,
+    title: 'Color',
+    options: ['primary', 'secondary'],
+  },
+  disabled: {
+    type: ControlType.Boolean,
+    title: 'Disabled',
+  },
+  max: {
+    type: ControlType.Number,
+    title: 'Max',
+  },
+  min: {
+    type: ControlType.Number,
+    title: 'Min',
+  },
+  orientation: {
+    type: ControlType.Enum,
+    title: 'Orientation',
+    options: ['horizontal', 'vertical'],
+  },
+  step: {
+    type: ControlType.Number,
+    title: 'Step',
+  },
+  track: {
+    type: ControlType.Enum,
+    title: 'Track',
+    options: ['inverted', 'normal', false],
+  },
+  valueLabelDisplay: {
+    type: ControlType.Enum,
+    title: 'Value label display',
+    options: ['auto', 'off', 'on'],
+  },
 });
