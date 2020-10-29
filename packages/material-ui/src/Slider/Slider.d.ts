@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/core/Box';
-import {
-  ExtendSliderUnstyledTypeMap,
-  ExtendSliderUnstyled,
-} from '@material-ui/unstyled';
+import { ExtendSliderUnstyledTypeMap, ExtendSliderUnstyled } from '@material-ui/unstyled';
 import { OverrideProps } from '../OverridableComponent';
 
 export type SliderTypeMap<
@@ -79,6 +76,6 @@ export type SliderClassKey =
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
   P = {}
-> = OverrideProps<SliderTypeMap<P, D>, D>;
+> = OverrideProps<SliderTypeMap<D, P>, D>;
 
 export default Slider;
