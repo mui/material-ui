@@ -1,16 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
 import {
-  useIsFocusVisible,
+  chainPropTypes,
+  unstable_useIsFocusVisible as useIsFocusVisible,
   unstable_useEnhancedEffect as useEnhancedEffect,
-  ownerDocument,
-  useEventCallback,
-  useForkRef,
-  capitalize,
-  useControlled,
-} from '@material-ui/core/utils';
+  unstable_ownerDocument as ownerDocument,
+  unstable_useEventCallback as useEventCallback,
+  unstable_useForkRef as useForkRef,
+  unstable_capitalize as capitalize,
+  unstable_useControlled as useControlled,
+} from '@material-ui/utils';
 import ValueLabelComponent from './ValueLabelUnstyled';
 
 function asc(a, b) {

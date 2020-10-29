@@ -1,27 +1,26 @@
 {
-  "name": "@material-ui/lab",
+  "name": "@material-ui/unstyled",
   "version": "5.0.0-alpha.14",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI Lab - Incubator for Material-UI React components.",
+  "description": "Material-UI Unstyled - collection of unstyled React components.",
   "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
     "material-ui",
-    "material design",
-    "lab"
+    "unstyled"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui.git",
-    "directory": "packages/material-ui-lab"
+    "directory": "packages/material-ui-unstyled"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com/components/about-the-lab",
+  "homepage": "https://material-ui.com",
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern &&yarn build:node && yarn build:stable && yarn build:copy-files",
     "build:legacy": "node ../../scripts/build legacy",
@@ -35,7 +34,6 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@material-ui/core": "^5.0.0-alpha.11",
     "@types/react": "^16.8.6",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
@@ -47,8 +45,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/system": "^5.0.0-alpha.14",
-    "@material-ui/unstyled": "^5.0.0-alpha.14",
     "@material-ui/utils": "^5.0.0-alpha.14",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",

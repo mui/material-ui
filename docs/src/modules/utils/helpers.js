@@ -140,6 +140,7 @@ function getDependencies(raw, options = {}) {
     '@material-ui/styled-engine-sc': getMuiPackageVersion('styled-engine-sc', muiCommitRef),
     '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
+    '@material-ui/unstyled': getMuiPackageVersion('unstyled', muiCommitRef),
     '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
     '@material-ui/pickers': 'next',
     '@emotion/core': 'latest',

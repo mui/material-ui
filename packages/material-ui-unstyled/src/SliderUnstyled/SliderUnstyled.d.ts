@@ -1,4 +1,4 @@
-import { OverridableComponent, OverridableTypeMap } from '@material-ui/core/OverridableComponent';
+import { OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 
 export interface Mark {
   value: number;

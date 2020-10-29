@@ -185,8 +185,12 @@ async function generateProptypes(
   const jsContent = await fse.readFile(jsFile, 'utf8');
 
   const unstyledFile = tsFile.endsWith('Styled.d.ts')
-    ? tsFile.replace(/Styled/g, 'Unstyled')
+    ? tsFile.replace(/material-ui-lab|material-ui-core|Styled/g, (matched) => {
+        if (matched === 'Styled') return 'Unstyled';
+        return 'material-ui-unstyled';
+      })
     : null;
+
   const result = ttp.inject(proptypes, jsContent, {
     removeExistingPropTypes: true,
     babelOptions: {
@@ -279,6 +283,7 @@ async function run(argv: HandlerArgv) {
 
   const allFiles = await Promise.all(
     [
+      path.resolve(__dirname, '../packages/material-ui-unstyled/src'),
       path.resolve(__dirname, '../packages/material-ui/src'),
       path.resolve(__dirname, '../packages/material-ui-lab/src'),
     ].map((folderPath) =>
