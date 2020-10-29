@@ -252,9 +252,11 @@ export const componentSettings = {
   },
   Slider: {
     ignoredProps: [
+      'components',
       'defaultValue',
       'getAriaLabel',
       'getAriaValueText',
+      'isRtl',
       'onChange',
       'onChangeCommitted',
       'scale',
