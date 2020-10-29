@@ -104,7 +104,7 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 ## Unstyled slider
 
-{{"demo": "pages/components/slider-styled/UnstyledSlider.js"}}
+{{"demo": "pages/components/slider/UnstyledSlider.js"}}
 
 ## Accessibility
 

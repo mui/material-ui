@@ -34,15 +34,10 @@ describe('<Slider />', () => {
   }
 
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Slider value={0} />);
-  });
-
   describeConformance(<Slider value={0} />, () => ({
-    classes,
+    classes: {},
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
@@ -133,7 +128,7 @@ describe('<Slider />', () => {
   describe('prop: orientation', () => {
     it('should render with the vertical classes', () => {
       const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);
-      expect(container.firstChild).to.have.class(classes.vertical);
+      expect(container.firstChild).to.have.class('MuiSlider-vertical');
       expect(getByRole('slider')).to.have.attribute('aria-orientation', 'vertical');
     });
 
@@ -302,7 +297,7 @@ describe('<Slider />', () => {
   describe('prop: disabled', () => {
     it('should render the disabled classes', () => {
       const { container, getByRole } = render(<Slider disabled value={0} />);
-      expect(container.firstChild).to.have.class(classes.disabled);
+      expect(container.firstChild).to.have.class('Mui-disabled');
       expect(getByRole('slider')).to.not.have.attribute('tabIndex');
     });
 
@@ -333,7 +328,7 @@ describe('<Slider />', () => {
 
       setProps({ disabled: true });
       expect(thumb).not.toHaveFocus();
-      expect(thumb).to.not.have.class(classes.active);
+      expect(thumb).to.not.have.class('Mui-active');
 
       fireEvent.touchMove(
         container.firstChild,
@@ -357,19 +352,19 @@ describe('<Slider />', () => {
       });
       setProps({ disabled: true });
       expect(thumb).not.toHaveFocus();
-      expect(thumb).to.not.have.class(classes.focusVisible);
+      expect(thumb).to.not.have.class('Mui-focusVisible');
     });
   });
 
   describe('prop: track', () => {
     it('should render the track classes for false', () => {
       const { container } = render(<Slider track={false} value={50} />);
-      expect(container.firstChild).to.have.class(classes.trackFalse);
+      expect(container.firstChild).to.have.class('MuiSlider-trackFalse');
     });
 
     it('should render the track classes for inverted', () => {
       const { container } = render(<Slider track="inverted" value={50} />);
-      expect(container.firstChild).to.have.class(classes.trackInverted);
+      expect(container.firstChild).to.have.class('MuiSlider-trackInverted');
     });
   });
 
@@ -529,28 +524,26 @@ describe('<Slider />', () => {
 
   describe('prop: valueLabelDisplay', () => {
     it('should always display the value label according to on and off', () => {
-      const valueLabelClasses = getClasses(<ValueLabel />);
       const { getByRole, setProps } = render(<Slider valueLabelDisplay="on" value={50} />);
       const thumb = getByRole('slider');
-      expect(thumb).to.have.class(valueLabelClasses.open);
+      expect(thumb.firstChild).to.have.class('MuiSlider-valueLabelOpen');
 
       setProps({
         valueLabelDisplay: 'off',
       });
 
       const newThumb = getByRole('slider');
-      expect(newThumb).not.to.have.class(valueLabelClasses.open);
+      expect(newThumb.firstChild).to.equal(null);
     });
 
     it('should display the value label only on hover for auto', () => {
-      const valueLabelClasses = getClasses(<ValueLabel />);
       const { getByRole } = render(<Slider valueLabelDisplay="auto" value={50} />);
       const thumb = getByRole('slider');
-      expect(thumb).not.to.have.class(valueLabelClasses.open);
+      expect(thumb.firstChild).not.to.have.class('MuiSlider-valueLabelOpen');
 
       fireEvent.mouseOver(thumb);
 
-      expect(thumb).to.have.class(valueLabelClasses.open);
+      expect(thumb.firstChild).to.have.class('MuiSlider-valueLabelOpen');
     });
 
     it('should be respected when using custom value label', () => {
@@ -565,7 +558,11 @@ describe('<Slider />', () => {
       ValueLabelComponent.propTypes = { value: PropTypes.number };
 
       const screen = render(
-        <Slider ValueLabelComponent={ValueLabelComponent} valueLabelDisplay="on" value={50} />,
+        <Slider
+          components={{ ValueLabel: ValueLabelComponent }}
+          valueLabelDisplay="on"
+          value={50}
+        />,
       );
 
       expect(screen.queryByTestId('value-label')).to.have.class('open');
@@ -580,8 +577,8 @@ describe('<Slider />', () => {
 
   describe('markActive state', () => {
     function getActives(container) {
-      return Array.from(container.querySelectorAll(`.${classes.mark}`)).map((node) =>
-        node.classList.contains(classes.markActive),
+      return Array.from(container.querySelectorAll('.MuiSlider-mark')).map((node) =>
+        node.classList.contains('MuiSlider-markActive'),
       );
     }
 
@@ -674,7 +671,7 @@ describe('<Slider />', () => {
     it('should warn if aria-valuetext is provided', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          Slider.Naked.propTypes,
+          Slider.propTypes,
           { classes: {}, value: [20, 50], 'aria-valuetext': 'hot' },
           'prop',
           'MockedSlider',
@@ -685,7 +682,7 @@ describe('<Slider />', () => {
     it('should warn if aria-label is provided', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          Slider.Naked.propTypes,
+          Slider.propTypes,
           { classes: {}, value: [20, 50], 'aria-label': 'hot' },
           'prop',
           'MockedSlider',
@@ -745,10 +742,10 @@ describe('<Slider />', () => {
         defaultValue={0}
       />,
     );
-    expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(3);
-    expect(container.querySelectorAll(`.${classes.mark}`).length).to.equal(3);
-    expect(container.querySelectorAll(`.${classes.markLabel}[data-index="2"]`).length).to.equal(1);
-    expect(container.querySelectorAll(`.${classes.mark}[data-index="2"]`).length).to.equal(1);
+    expect(container.querySelectorAll('.MuiSlider-markLabel').length).to.equal(3);
+    expect(container.querySelectorAll('.MuiSlider-mark').length).to.equal(3);
+    expect(container.querySelectorAll('.MuiSlider-markLabel[data-index="2"]').length).to.equal(1);
+    expect(container.querySelectorAll('.MuiSlider-mark[data-index="2"]').length).to.equal(1);
   });
 
   it('should pass "name" and "value" as part of the event.target for onChange', () => {
@@ -783,7 +780,7 @@ describe('<Slider />', () => {
       const { getByTestId } = render(
         <Slider
           value={10}
-          ValueLabelComponent={ValueLabelComponent}
+          components={{ ValueLabel: ValueLabelComponent }}
           valueLabelDisplay="on"
           valueLabelFormat={(n) => n.toString(2)}
         />,

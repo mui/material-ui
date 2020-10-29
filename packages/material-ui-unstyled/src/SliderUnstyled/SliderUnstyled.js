@@ -173,6 +173,7 @@ const useSliderClasses = (props) => {
 };
 
 const isComponent = (element) => typeof element !== 'string';
+const Forward = ({ children }) => children;
 
 const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const {
@@ -682,8 +683,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
 
+        const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabel;
+
         return (
-          <ValueLabel
+          <ValueLabelComponent
             key={index}
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
@@ -728,7 +731,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               onMouseOver={handleMouseOver}
               onMouseLeave={handleMouseLeave}
             />
-          </ValueLabel>
+          </ValueLabelComponent>
         );
       })}
     </Root>
