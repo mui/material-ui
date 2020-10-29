@@ -11,6 +11,7 @@ import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
@@ -31,7 +32,7 @@ const useDemoToolbarFallbackStyles = makeStyles(
 );
 export function DemoToolbarFallback() {
   const classes = useDemoToolbarFallbackStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <div aria-busy aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar" />
@@ -43,7 +44,7 @@ function getDemoName(location) {
 }
 
 function useDemoData(codeVariant, demo, githubLocation) {
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
   const title = `${getDemoName(githubLocation)} Material Demo`;
   if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
     return {
@@ -164,7 +165,7 @@ const useStyles = makeStyles(
 export default function Demo(props) {
   const { demo, demoOptions, disableAd, githubLocation } = props;
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const codeVariant = useSelector((state) => state.options.codeVariant);
   const demoData = useDemoData(codeVariant, demo, githubLocation);
 

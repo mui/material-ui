@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui-lab/src/SliderUnstyled/SliderUnstyled.js
+filename: /packages/material-ui-unstyled/src/SliderUnstyled/SliderUnstyled.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -11,9 +11,9 @@ filename: /packages/material-ui-lab/src/SliderUnstyled/SliderUnstyled.js
 ## Import
 
 ```js
-import SliderUnstyled from '@material-ui/lab/SliderUnstyled';
+import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
 // or
-import { SliderUnstyled } from '@material-ui/lab';
+import { SliderUnstyled } from '@material-ui/unstyled';
 ```
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).

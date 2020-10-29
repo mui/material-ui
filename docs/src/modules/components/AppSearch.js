@@ -1,6 +1,5 @@
 import * as React from 'react';
 import url from 'url';
-import { useSelector } from 'react-redux';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { alpha, useTheme, makeStyles } from '@material-ui/core/styles';
@@ -9,6 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import docsearch from 'docsearch.js';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -117,8 +117,8 @@ export default function AppSearch() {
   const classes = useStyles();
   const inputRef = React.useRef(null);
   const theme = useTheme();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
-  const t = useSelector((state) => state.options.t);
+  const userLanguage = useUserLanguage();
+  const t = useTranslate();
 
   useLazyCSS('https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css', '#app-search');
 

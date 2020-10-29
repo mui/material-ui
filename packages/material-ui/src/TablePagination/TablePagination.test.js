@@ -402,4 +402,27 @@ describe('<TablePagination />', () => {
       expect(combobox).toHaveAccessibleName('Rows per page: 10');
     });
   });
+
+  describe('prop: rowsPerPage', () => {
+    it('should display max number of rows text when prop is -1', () => {
+      const { container } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                count={25}
+                page={0}
+                rowsPerPage={-1}
+                onPageChange={noop}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      expect(container).to.include.text('All');
+      expect(container).to.include.text('1-25 of 25');
+    });
+  });
 });

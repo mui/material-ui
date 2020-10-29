@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import url from 'url';
 import ExpandIcon from '@material-ui/icons/ExpandMore';
 import CollapseIcon from '@material-ui/icons/ChevronRight';
@@ -15,6 +14,7 @@ import {
 } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 /**
  * @param {unknown} value
@@ -273,7 +273,7 @@ function DefaultTheme(props) {
   const { classes } = props;
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const [darkTheme, setDarkTheme] = React.useState(false);
 
   React.useEffect(() => {

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import Router, { useRouter } from 'next/router';
 import { withStyles, useTheme } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
@@ -35,6 +34,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import RtlContext from 'docs/src/modules/utils/RtlContext';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import PageContext from 'docs/src/modules/components/PageContext';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
@@ -146,8 +146,8 @@ const styles = (theme) => ({
 function AppFrame(props) {
   const { children, classes, disableDrawer = false } = props;
   const theme = useTheme();
-  const t = useSelector((state) => state.options.t);
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const t = useTranslate();
+  const userLanguage = useUserLanguage();
   const { rtl, setRtl } = React.useContext(RtlContext);
 
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
