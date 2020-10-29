@@ -190,6 +190,7 @@ export default function CustomizedSlider() {
       <Separator />
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
+        valueLabelDisplay="auto"
         components={{
           ValueLabel: ValueLabelComponent,
         }}
