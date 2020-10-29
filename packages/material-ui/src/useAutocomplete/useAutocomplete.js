@@ -128,8 +128,7 @@ export default function useAutocomplete(props) {
 
   const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
-  const highlightedIndexRef = React.useRef(defaultHighlighted);
-  const [focusedIndex, setFocusedIndex] = React.useState(defaultHighlighted);
+  const [highlightedOptionIndex, setHighlightedOptionIndex] = React.useState(defaultHighlighted);
 
   const [value, setValueState] = useControlled({
     controlled: valueProp,
@@ -280,8 +279,7 @@ export default function useAutocomplete(props) {
   }
 
   const setHighlightedIndex = useEventCallback(({ event, index, reason = 'auto' }) => {
-    highlightedIndexRef.current = index;
-    setFocusedIndex(index);
+    setHighlightedOptionIndex(index);
 
     // does the index exist?
     if (index === -1) {
@@ -296,6 +294,12 @@ export default function useAutocomplete(props) {
 
     if (!listboxRef.current) {
       return;
+    }
+
+    const prev = listboxRef.current.querySelector('[data-focus]');
+
+    if (prev) {
+      prev.removeAttribute('data-focus');
     }
 
     const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
@@ -315,6 +319,8 @@ export default function useAutocomplete(props) {
     if (!option) {
       return;
     }
+
+    option.setAttribute('data-focus', 'true');
 
     // Scroll active descendant into view.
     // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
@@ -358,14 +364,14 @@ export default function useAutocomplete(props) {
           return maxIndex;
         }
 
-        const newIndex = highlightedIndexRef.current + diff;
+        const newIndex = highlightedOptionIndex + diff;
 
         if (newIndex < 0) {
           if (newIndex === -1 && includeInputInList) {
             return -1;
           }
 
-          if ((disableListWrap && highlightedIndexRef.current !== -1) || Math.abs(diff) > 1) {
+          if ((disableListWrap && highlightedOptionIndex !== -1) || Math.abs(diff) > 1) {
             return 0;
           }
 
@@ -428,7 +434,7 @@ export default function useAutocomplete(props) {
 
     // Synchronize the value with the highlighted index
     if (valueItem != null) {
-      const currentOption = filteredOptions[highlightedIndexRef.current];
+      const currentOption = filteredOptions[highlightedOptionIndex];
 
       // Keep the current highlighted index if possible
       if (
@@ -451,13 +457,13 @@ export default function useAutocomplete(props) {
     }
 
     // Prevent the highlighted index to leak outside the boundaries.
-    if (highlightedIndexRef.current >= filteredOptions.length - 1) {
+    if (highlightedOptionIndex >= filteredOptions.length - 1) {
       setHighlightedIndex({ index: filteredOptions.length - 1 });
       return;
     }
 
     // Restore the focus to the previous index.
-    setHighlightedIndex({ index: highlightedIndexRef.current });
+    setHighlightedIndex({ index: highlightedOptionIndex });
     // Ignore filteredOptions (and options, getOptionSelected, getOptionLabel) not to break the scroll position
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -712,8 +718,8 @@ export default function useAutocomplete(props) {
           handleFocusTag(event, 'next');
           break;
         case 'Enter':
-          if (highlightedIndexRef.current !== -1 && popupOpen) {
-            const option = filteredOptions[highlightedIndexRef.current];
+          if (highlightedOptionIndex !== -1 && popupOpen) {
+            const option = filteredOptions[highlightedOptionIndex];
             const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
             // We don't want to validate the form.
@@ -800,8 +806,8 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    if (autoSelect && highlightedIndexRef.current !== -1 && popupOpen) {
-      selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'blur');
+    if (autoSelect && highlightedOptionIndex !== -1 && popupOpen) {
+      selectNewValue(event, filteredOptions[highlightedOptionIndex], 'blur');
     } else if (autoSelect && freeSolo && inputValue !== '') {
       selectNewValue(event, inputValue, 'blur', 'freeSolo');
     } else if (clearOnBlur) {
@@ -1018,7 +1024,7 @@ export default function useAutocomplete(props) {
     anchorEl,
     setAnchorEl,
     focusedTag,
-    highlightedIndex: highlightedIndexRef.current,
+    highlightedOptionIndex,
     groupedOptions,
   };
 }
