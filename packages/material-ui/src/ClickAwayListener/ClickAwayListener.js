@@ -130,9 +130,12 @@ function ClickAwayListener(props) {
       const mappedMouseEvent = mapEventPropToEvent(mouseEvent);
       const doc = ownerDocument(nodeRef.current);
 
-      doc.addEventListener(mappedMouseEvent, handleClickAway);
+      const timeout = setTimeout(() => {
+        doc.addEventListener(mappedMouseEvent, handleClickAway);
+      });
 
       return () => {
+        clearTimeout(timeout);
         doc.removeEventListener(mappedMouseEvent, handleClickAway);
       };
     }
