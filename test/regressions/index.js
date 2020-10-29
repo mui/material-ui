@@ -81,6 +81,7 @@ const blacklist = [
   'docs-components-skeleton/Facebook.png', // Flaky image loading
   'docs-components-skeleton/SkeletonChildren.png', // flaky image loading
   'docs-components-skeleton/YouTube.png', // Flaky image loading
+  'docs-components-slider/UnstyledSlider.png', // Unstyled
   'docs-components-snackbars/ConsecutiveSnackbars.png', // Needs interaction
   'docs-components-snackbars/CustomizedSnackbars.png', // Redundant
   'docs-components-snackbars/DirectionSnackbar.png', // Needs interaction

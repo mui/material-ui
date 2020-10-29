@@ -25,7 +25,7 @@ Here are some highlights ✨:
   - It moves from support on Box only to any core component (starting with the slider).
 
     ```jsx
-    import Slider from '@material-ui/core/Slider';
+    import Slider from '@material-ui/lab/SliderStyled';
 
     // Set the primary color and a vertical margin of 16px on desktop.
     <Slider sx={{ color: 'primary.main', my: { xs: 0, md: 2 } }} />;
