@@ -215,7 +215,6 @@ export const styles = (theme) => ({
   optionFocused: {
     backgroundColor: theme.palette.action.hover,
   },
-
   /* Styles applied to the option if option is selected. */
   optionSelected: {
     backgroundColor: theme.palette.action.selected,
@@ -226,7 +225,6 @@ export const styles = (theme) => ({
       ),
     },
   },
-
   /* Styles applied to the option if option is disabled. */
   optionDisabled: {
     opacity: theme.palette.action.disabledOpacity,
