@@ -338,7 +338,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     setAnchorEl,
     inputValue,
     groupedOptions,
-    focusedIndex,
+    highlightedIndex,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
   let startAdornment;
@@ -397,10 +397,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       {
         ...optionProps,
         className: clsx(classes.option, {
-          [classes.optionFocused]: focusedIndex === optionProps.key,
+          [classes.optionFocused]: highlightedIndex === optionProps.key,
           [classes.optionSelected]: optionProps['aria-selected'],
           [classes.optionDisabled]: optionProps['aria-disabled'],
-          [classes.focused]: focusedIndex === optionProps.key,
+          [classes.focused]: highlightedIndex === optionProps.key,
           [classes.selected]: optionProps['aria-selected'],
           [classes.disabled]: optionProps['aria-selected'],
         }),

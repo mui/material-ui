@@ -1018,7 +1018,7 @@ export default function useAutocomplete(props) {
     anchorEl,
     setAnchorEl,
     focusedTag,
-    focusedIndex,
+    highlightedIndex: highlightedIndexRef.current,
     groupedOptions,
   };
 }
