@@ -36,7 +36,7 @@ Nothing fancy, just plain CSS.
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSlider.css';
 
 export default function PlainCssSlider() {
@@ -108,7 +108,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSliderDeep1.css';
 
 export default function PlainCssSliderDeep1() {
@@ -143,7 +143,7 @@ The above demo relies on the [default `className` values](/styles/advanced/#with
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSliderDeep2.css';
 
 export default function PlainCssSliderDeep2() {
@@ -183,7 +183,7 @@ Explicitly providing the class names to the component is too much effort?
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './GlobalCssSlider.css';
 
 export default function GlobalCssSlider() {
@@ -250,7 +250,7 @@ The following example overrides the slider's `thumb` style in addition to the cu
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './GlobalCssSliderDeep.css';
 
 export default function GlobalCssSliderDeep() {
@@ -278,7 +278,7 @@ from `@material-ui/core/styles` and have direct access to the theme.
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
@@ -306,7 +306,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
@@ -336,7 +336,7 @@ The above demo relies on the [default `className` values](/styles/advanced/#with
 ```jsx
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 const CustomizedSlider = styled((props) => (
   <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
@@ -420,7 +420,7 @@ bundling solution people are using.
 
 ```jsx
 import React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
 
@@ -495,7 +495,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 export default function CssModulesSliderDeep1() {
   return (
@@ -531,7 +531,7 @@ The above demo relies on the [default `className` values](/styles/advanced/#with
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 export default function CssModulesSliderDeep2() {
   return (
@@ -563,7 +563,7 @@ Emotion's **css()** method works seamlessly with Material-UI.
 ```jsx
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 export default function EmotionCSS() {
   return (

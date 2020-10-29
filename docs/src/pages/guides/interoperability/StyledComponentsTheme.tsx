@@ -5,7 +5,7 @@ import {
   ThemeProvider,
   darken,
 } from '@material-ui/core/styles';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
 
 const customTheme = createMuiTheme({

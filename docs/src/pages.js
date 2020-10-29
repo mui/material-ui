@@ -145,7 +145,6 @@ const pages = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
-          { pathname: '/components/slider-styled' },
           { pathname: '/components/timeline' },
           { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },

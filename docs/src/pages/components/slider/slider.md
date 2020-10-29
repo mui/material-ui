@@ -102,6 +102,10 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
+## Unstyled slider
+
+{{"demo": "pages/components/slider-styled/UnstyledSlider.js"}}
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
