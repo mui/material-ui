@@ -50,7 +50,6 @@ export const styles = (theme) => {
     /* Styles applied to the root element if `position="static"`. */
     positionStatic: {
       position: 'static',
-      zIndex: 'inherit',
     },
     /* Styles applied to the root element if `position="relative"`. */
     positionRelative: {
