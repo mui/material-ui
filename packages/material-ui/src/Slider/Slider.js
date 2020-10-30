@@ -197,7 +197,6 @@ const SliderRoot = experimentalStyled(
   '& .MuiSlider-valueLabel': {
     // IE11 centering bug, to remove from the customization demos once no longer supported
     left: 'calc(-50% - 4px)',
-
     '&.MuiSlider-valueLabelOffset': {
       '&.MuiSlider-valueLabelOpen': {
         transform: 'scale(1) translateY(-10px)',
