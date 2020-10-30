@@ -51,14 +51,6 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
-        id="disable-searchable"
-        readOnly
-        renderInput={(params) => (
-          <TextField {...params} label="readOnly" margin="normal" />
-        )}
-      />
-      <Autocomplete
-        {...defaultProps}
         id="include-input-in-list"
         includeInputInList
         renderInput={(params) => (

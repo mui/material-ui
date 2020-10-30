@@ -662,11 +662,6 @@ Autocomplete.propTypes = {
    */
   disablePortal: PropTypes.bool,
   /**
-   * If `true`, the input is  and search functionality disabled, but s still consistently styled.
-   * @default false
-   */
-  readOnly: PropTypes.bool,
-  /**
    * A filter function that determines the options that are eligible.
    *
    * @param {T[]} options The options to render.
@@ -868,6 +863,11 @@ Autocomplete.propTypes = {
    * @default <ArrowDropDownIcon />
    */
   popupIcon: PropTypes.node,
+  /**
+   * If `true`, the input is  and search functionality disabled, but s still consistently styled.
+   * @default false
+   */
+  readOnly: PropTypes.bool,
   /**
    * Render the group.
    *
