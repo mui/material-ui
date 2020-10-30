@@ -1086,4 +1086,21 @@ describe('<Select />', () => {
     fireEvent.click(container.querySelector('button[type=submit]'));
     expect(handleSubmit.callCount).to.equal(1);
   });
+
+  it('should programmatically focus the select', () => {
+    const { getByRole } = render(
+      <Select
+        value={1}
+        inputRef={(input) => {
+          if (input !== null) {
+            input.focus();
+          }
+        }}
+      >
+        <MenuItem value={1}>1</MenuItem>
+        <MenuItem value={2}>2</MenuItem>
+      </Select>,
+    );
+    expect(document.activeElement).to.equal(getByRole('button'));
+  });
 });
