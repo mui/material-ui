@@ -1,5 +1,5 @@
 ---
-title: React 栅格组件
+title: React Grid（栅格）组件
 components: Grid
 githubLabel: 'component: Grid'
 materialDesign: https://material.io/design/layout/understanding-layout.html
