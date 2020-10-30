@@ -1151,6 +1151,26 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: readOnly', () => {
+    it('should render inputDisabled class', () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          readOnly
+          onChange={handleChange}
+          options={options}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      fireEvent.click(textbox);
+      expect(handleChange.callCount).to.equal(0);
+      expect(textbox).toHaveFocus();
+      expect(textbox).to.have.class(classes.inputDisabled);
+    });
+  });
+
   describe('warnings', () => {
     it('warn if getOptionLabel do not return a string', () => {
       const handleChange = spy();

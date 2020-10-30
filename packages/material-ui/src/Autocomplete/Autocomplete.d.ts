@@ -87,6 +87,8 @@ export interface AutocompleteProps<
     input?: string;
     /** Styles applied to the input element if tag focused. */
     inputFocused?: string;
+    /** Styles applied to the input element readOnly={true} */
+    inputDisabled?: string;
     /** Styles applied to the endAdornment element. */
     endAdornment?: string;
     /** Styles applied to the clear indicator. */
@@ -143,6 +145,11 @@ export interface AutocompleteProps<
    * @default false
    */
   disablePortal?: boolean;
+  /**
+   * If `true`, the input is  and search functionality disabled, but s still consistently styled.
+   * @default false
+   */
+  readOnly?: boolean;
   /**
    * Force the visibility display of the popup icon.
    * @default 'auto'

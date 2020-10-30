@@ -74,6 +74,7 @@ export default function useAutocomplete(props) {
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
+    readOnly = false,
     disabledItemsFocusable = false,
     disableListWrap = false,
     filterOptions = defaultFilterOptions,
@@ -819,6 +820,7 @@ export default function useAutocomplete(props) {
 
   const handleInputChange = (event) => {
     const newValue = event.target.value;
+    if (readOnly) return;
 
     if (inputValue !== newValue) {
       setInputValueState(newValue);
@@ -1003,7 +1005,8 @@ export default function useAutocomplete(props) {
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
-        key: index,
+        index,
+        key: `${id}-option-${index}`,
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,

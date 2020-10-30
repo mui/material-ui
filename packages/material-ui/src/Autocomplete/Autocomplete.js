@@ -127,6 +127,9 @@ export const styles = (theme) => ({
         padding: '2.5px 4px',
       },
     },
+    '&$inputDisabled': {
+      cursor: 'pointer',
+    },
   },
   /* Styles applied to the input element. */
   input: {
@@ -137,6 +140,12 @@ export const styles = (theme) => ({
   /* Styles applied to the input element if tag focused. */
   inputFocused: {
     opacity: 1,
+  },
+  /* Styles applied to the input element readOnly={true} */
+  inputDisabled: {
+    cursor: 'pointer !important',
+    color: 'transparent', // Hide the blinking cursor
+    textShadow: `0 0 0 ${theme.palette.text.primary}`,
   },
   /* Styles applied to the endAdornment element. */
   endAdornment: {
@@ -265,6 +274,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     debug = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
+    readOnly = false,
     disableCloseOnSelect = false,
     disabled = false,
     disabledItemsFocusable = false,
@@ -386,26 +396,30 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
   const defaultRenderOption = (props2, option) => <li {...props2}>{getOptionLabel(option)}</li>;
+
   const renderOption = renderOptionProp || defaultRenderOption;
 
-  const renderListOption = (option, index) => {
-    const optionProps = getOptionProps({ option, index });
-    return renderOption(
-      {
-        ...optionProps,
-        className: clsx(classes.option, {
-          [classes.focused]: highlightedOptionIndex === optionProps.key,
-          [classes.selected]: optionProps['aria-selected'],
-          [classes.disabled]: optionProps['aria-disabled'],
-        }),
-      },
-      option,
-      {
-        selected: optionProps['aria-selected'],
-        inputValue,
-      },
-    );
-  };
+  const renderListOption = React.useCallback(
+    (option, index) => {
+      const optionProps = getOptionProps({ option, index });
+      return renderOption(
+        {
+          ...optionProps,
+          className: clsx(classes.option, {
+            [classes.focused]: highlightedOptionIndex === optionProps.index,
+            [classes.selected]: optionProps['aria-selected'],
+            [classes.disabled]: optionProps['aria-disabled'],
+          }),
+        },
+        option,
+        {
+          selected: optionProps['aria-selected'],
+          inputValue,
+        },
+      );
+    },
+    [getOptionProps, highlightedOptionIndex, inputValue, classes, renderOption],
+  );
 
   const allGroupedOptions = React.useMemo(() => {
     return groupedOptions.map((option, index) => {
@@ -449,7 +463,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           InputLabelProps: getInputLabelProps(),
           InputProps: {
             ref: setAnchorEl,
-            className: classes.inputRoot,
+            className: clsx(classes.inputRoot, {
+              [classes.inputDisabled]: readOnly,
+            }),
             startAdornment,
             endAdornment: (
               <div className={classes.endAdornment}>
@@ -483,6 +499,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           inputProps: {
             className: clsx(classes.input, {
               [classes.inputFocused]: focusedTag === -1,
+              [classes.inputDisabled]: readOnly,
             }),
             disabled,
             ...getInputProps(),
@@ -644,6 +661,11 @@ Autocomplete.propTypes = {
    * @default false
    */
   disablePortal: PropTypes.bool,
+  /**
+   * If `true`, the input is  and search functionality disabled, but s still consistently styled.
+   * @default false
+   */
+  readOnly: PropTypes.bool,
   /**
    * A filter function that determines the options that are eligible.
    *

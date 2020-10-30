@@ -45,6 +45,7 @@ The `MuiAutocomplete` name can be used for providing [default props](/customizat
 | <span class="prop-name">disableCloseOnSelect</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the popup won't close when a value is selected. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the input is disabled. |
 | <span class="prop-name">disabledItemsFocusable</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, will allow focus on disabled items. |
+| <span class="prop-name">readOnly</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the input is  and search functionality disabled, but s still consistently styled. |
 | <span class="prop-name">disableListWrap</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list box in the popup will not wrap focus. |
 | <span class="prop-name">disablePortal</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | The `Popper` content will be inside the DOM hierarchy of the parent component. |
 | <span class="prop-name">filterOptions</span> | <span class="prop-type">func</span> |  | A filter function that determines the options that are eligible.<br><br>**Signature:**<br>`function(options: T[], state: object) => T[]`<br>*options:* The options to render.<br>*state:* The state of the component. |
@@ -108,6 +109,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">inputRoot</span> | <span class="prop-name">.MuiAutocomplete-inputRoot</span> | Styles applied to the Input element.
 | <span class="prop-name">input</span> | <span class="prop-name">.MuiAutocomplete-input</span> | Styles applied to the input element.
 | <span class="prop-name">inputFocused</span> | <span class="prop-name">.MuiAutocomplete-inputFocused</span> | Styles applied to the input element if tag focused.
+| <span class="prop-name">inputDisabled</span> | <span class="prop-name">.MuiAutocomplete-inputDisabled</span> | Styles applied to the input element readOnly={true}
 | <span class="prop-name">endAdornment</span> | <span class="prop-name">.MuiAutocomplete-endAdornment</span> | Styles applied to the endAdornment element.
 | <span class="prop-name">clearIndicator</span> | <span class="prop-name">.MuiAutocomplete-clearIndicator</span> | Styles applied to the clear indicator.
 | <span class="prop-name">popupIndicator</span> | <span class="prop-name">.MuiAutocomplete-popupIndicator</span> | Styles applied to the popup indicator.
