@@ -47,8 +47,6 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
     /** Styles applied to the root element if `align="alternate"`. */
     alignAlternate?: string;
   };
-
-  ref?: React.Ref<HTMLUListElement>;
 }
 
 const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Timeline(props, ref) {
@@ -57,8 +55,13 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Time
   return (
     <TimelineContext.Provider value={{ align }}>
       <ul
-        // @ts-expect-error unsafe string concat
-        className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
+        className={clsx(
+          classes!.root,
+          // @ts-expect-error unsafe string concat
+          classes[`align${capitalize(align)}`],
+          className,
+        )}
+        // @ts-expect-error TypeScript bug, need to keep unknown for DX
         ref={ref}
         {...other}
       />

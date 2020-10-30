@@ -372,10 +372,6 @@ async function buildDocs(options: {
   // no Object.assign to visually check for collisions
   reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
 
-  // if (reactAPI.name !== 'Timeline') {
-  //   return;
-  // }
-
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
   reactAPI.inheritance = getInheritance(testInfo, src);
