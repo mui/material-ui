@@ -95,6 +95,14 @@ const quotes = [
     quote:
       'Working with Material-UI is like working with an entire UI development team, minus the overhead. The theming tooling is simple and well-done. The components are common, customizable, and practical. 🏆',
   },
+  {
+    avatar: 'https://pbs.twimg.com/profile_images/931358187793530880/C08Iv8_f',
+    name: 'Spike Brehm',
+    username: '@spikebrehm',
+    tweet: 'https://twitter.com/spikebrehm/status/1311802764079575042',
+    quote:
+      "It's my first day working with <em>@MaterialUI</em>, and let me just say that it is THE SHIT.",
+  },
 ];
 
 const useStyles = makeStyles(
