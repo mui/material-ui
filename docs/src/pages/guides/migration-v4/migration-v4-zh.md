@@ -880,7 +880,7 @@ const classes = makeStyles(theme => ({
   +<Tooltip>
   ```
 
-### 文字铸排
+### Typography
 
 - 为了避免 [System](https://material-ui.com/system/basics/) 功能重复，我们替换了 `srOnly` 属性。
 
