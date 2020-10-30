@@ -156,13 +156,12 @@ export function createClientRender(globalOptions = {}) {
   };
 }
 
+const originalFireEventKeyDown = rtlFireEvent.keyDown;
+const originalFireEventKeyUp = rtlFireEvent.keyUp;
 /**
  * @type {typeof rtlFireEvent}
  */
 const fireEvent = (...args) => rtlFireEvent(...args);
-
-const originalFireEventKeyDown = rtlFireEvent.keyDown;
-const originalFireEventKeyUp = rtlFireEvent.keyUp;
 Object.assign(fireEvent, rtlFireEvent, {
   keyDown(element, options = {}) {
     // `element` shouldn't be `document` but we catch this later anyway
