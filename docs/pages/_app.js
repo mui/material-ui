@@ -53,7 +53,7 @@ function LanguageNegotiation() {
     const preferedLanguage =
       getCookie('userLanguage') || acceptLanguage.get(navigator.language) || userLanguage;
 
-    if (userLanguage !== preferedLanguage) {
+    if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
       window.location = preferedLanguage === 'en' ? canonical : `/${preferedLanguage}${canonical}`;
     } else if (userLanguage !== userLanguageUrl) {
       dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { userLanguage: userLanguageUrl } });
