@@ -1,10 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
-import { SliderUnstyled } from '@material-ui/unstyled';
+import { SliderUnstyled, SliderValueLabelUnstyled } from '@material-ui/unstyled';
 import { useThemeProps, experimentalStyled, alpha, lighten, darken } from '../styles';
 import capitalize from '../utils/capitalize';
-import SliderValueLabel from './SliderValueLabel';
 
 const overridesResolver = (props, styles, name) => {
   const {
@@ -198,6 +197,38 @@ const SliderRoot = experimentalStyled(
   '& .MuiSlider-valueLabel': {
     // IE11 centering bug, to remove from the customization demos once no longer supported
     left: 'calc(-50% - 4px)',
+
+    '&.MuiSlider-valueLabelOffset': {
+      '&.MuiSlider-valueLabelOpen': {
+        transform: 'scale(1) translateY(-10px)',
+      },
+      zIndex: 1,
+      ...props.theme.typography.body2,
+      fontSize: props.theme.typography.pxToRem(12),
+      lineHeight: 1.2,
+      transition: props.theme.transitions.create(['transform'], {
+        duration: props.theme.transitions.duration.shortest,
+      }),
+      top: -34,
+      transformOrigin: 'bottom center',
+      transform: 'scale(0)',
+      position: 'absolute',
+    },
+  },
+  '& .MuiSlider-valueLabelCircle': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 32,
+    height: 32,
+    borderRadius: '50% 50% 50% 0',
+    backgroundColor: 'currentColor',
+    transform: 'rotate(-45deg)',
+  },
+  '& .MuiSlider-valueLabelLabel': {
+    color: props.theme.palette.primary.contrastText,
+    transform: 'rotate(45deg)',
+    textAlign: 'center',
   },
   '& .MuiSlider-mark': {
     position: 'absolute',
@@ -243,7 +274,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
       {...other}
       components={{
         Root: SliderRoot,
-        ValueLabel: SliderValueLabel,
+        ValueLabel: SliderValueLabelUnstyled,
         ...components,
       }}
       ref={ref}
