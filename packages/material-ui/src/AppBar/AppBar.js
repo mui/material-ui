@@ -54,7 +54,6 @@ export const styles = (theme) => {
     /* Styles applied to the root element if `position="relative"`. */
     positionRelative: {
       position: 'relative',
-      zIndex: theme.zIndex.appBar,
     },
     /* Styles applied to the root element if `color="default"`. */
     colorDefault: {
