@@ -1,4 +1,4 @@
-# 文字铸排
+# Typography
 
 <p class="description">主题会提供一套能够一起协调工作的类型大小，也提供了布局网格。</p>
 
