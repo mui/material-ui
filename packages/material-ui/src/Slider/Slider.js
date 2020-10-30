@@ -4,7 +4,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import { SliderUnstyled } from '@material-ui/unstyled';
 import { useThemeProps, experimentalStyled, alpha, lighten, darken } from '../styles';
 import capitalize from '../utils/capitalize';
-import ValueLabel from './ValueLabel';
+import SliderValueLabel from './SliderValueLabel';
 
 const overridesResolver = (props, styles, name) => {
   const {
@@ -243,7 +243,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
       {...other}
       components={{
         Root: SliderRoot,
-        ValueLabel,
+        ValueLabel: SliderValueLabel,
         ...components,
       }}
       ref={ref}

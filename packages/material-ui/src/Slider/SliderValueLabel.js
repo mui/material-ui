@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ValueLabelUnstyled } from '@material-ui/unstyled';
+import { SliderValueLabelUnstyled } from '@material-ui/unstyled';
 import { useThemeProps, experimentalStyled } from '../styles';
 
 const overridesResolver = (_, styles) => {
@@ -16,7 +16,7 @@ const overridesResolver = (_, styles) => {
   return styleOverrides;
 };
 
-const ValueLabelRoot = experimentalStyled(
+const SliderValueLabelRoot = experimentalStyled(
   'span',
   {},
   { muiName: 'PrivateValueLabel', overridesResolver },
@@ -57,20 +57,20 @@ const ValueLabelRoot = experimentalStyled(
 /**
  * @ignore - internal component.
  */
-const ValueLabel = React.forwardRef(function ValueLabel(inputProps, ref) {
+const SliderValueLabel = React.forwardRef(function ValueLabel(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'PrivateValueLabel' });
   /* eslint-disable react/prop-types */
   const { components = {}, ...other } = props;
 
   return (
-    <ValueLabelUnstyled
+    <SliderValueLabelUnstyled
       {...other}
       components={{
-        Root: ValueLabelRoot || components.Root,
+        Root: SliderValueLabelRoot || components.Root,
       }}
       ref={ref}
     />
   );
 });
 
-export default ValueLabel;
+export default SliderValueLabel;
