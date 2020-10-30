@@ -18,7 +18,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
-## 工具提示的定位
+## 文字提示的位置
 
 `Tooltip` 有 12 个**位置** 选项。 它们没有方向箭头，而是依靠代码指示的移动情况来移动文字提示的出现位置。
 
@@ -30,7 +30,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## 带箭头的工具提示
+## 文字提示的箭头
 
 您可以通过添加 `arrow` 属性向提示标签增加箭头指示器，从而可以凸显所指示的元素。
 
@@ -61,13 +61,13 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## 可控的工具提示
+## 受控的文字提示
 
 你可以使用 `open`， `onOpen` 和 `onClose` 属性来控制工具提示的行为。
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## 可变的宽度
+## 变量宽度
 
 为了保证可阅读性，`工具提示组件` 默认将较长的文字折行。
 
@@ -79,7 +79,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## 禁用的元素
+## 禁用元素
 
 默认情况下，被禁用的元素（如 `<Button>`）不会触发用户交互行为，因此 hover 等普通的事件不会激活`工具提示`的显示。 若想容纳已禁用的元素激活工具提示，请添加一个简单的包装元素，如 `span`。
 
@@ -96,7 +96,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
       disabled={disabled}
       style={disabled ? { pointerEvents: 'none' } : {}}
     >
-      {'A disabled button'}
+      禁用按钮
     </button>
   </span>
 </Tooltip>
@@ -114,9 +114,9 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
-## 占位的参考对象
+## 虚拟元素
 
-如果你需要实现一个自定义的布局，那么你可以使用 `anchorEl` 属性： `anchorEl` 属性的值可以是一个假（fake） DOM 元素的引用。 你需要创建一个类似于 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) 的对象。
+如果你需要实现一个自定义的布局，那么你可以使用 `anchorEl` 属性： `anchorEl` 属性的值可以是一个假（fake） DOM 元素的引用。 你需要创建一个类似 [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/) 的对象。
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 

@@ -15,39 +15,33 @@ Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-in
 
 [La palette](/system/palette/) de style fonction.
 
+## The sx prop
+
+All system properties are available via the `sx` prop. This property allows you to specify any CSS rules you may need, in addition to the ones already available as part of the system. Here is an example of how you can use it:
+
+{{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
+
 ## Remplacer les composants Material-UI
 
 Le composant Box enveloppe votre composant. It creates a new DOM element, a `<div>` by default that can be changed with the `component` property. Disons que vous voulez utiliser un `<span>` à la place :
 
-```jsx
-<Box component="span" m={1}>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxComponent.js", "defaultCodeOpen": true }}
 
 Cela fonctionne très bien quand les changements peuvent être isolés dans un nouvel élément DOM. Par exemple, vous pouvez changer la marge de cette façon.
 
-Cependant, vous devez parfois cibler l'élément DOM sous-jacent. Par exemple, vous voulez changer la couleur du texte du bouton. Le composant Bouton définit sa propre couleur. L'héritage CSS n'aide pas. Pour contourner le problème, vous avez deux options :
+Cependant, vous devez parfois cibler l'élément DOM sous-jacent. For instance, you want to change the border of the Button. The Button component defines its own styles. L'héritage CSS n'aide pas. Pour contourner le problème, vous avez deux options :
 
 1. Utilisez [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
 
 The Box component has a `clone` property to enable the usage of the clone element method of React.
 
-```jsx
-<Box color="text.primary" clone>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxClone.js", "defaultCodeOpen": true }}
 
 2. Utiliser les props de rendu
 
 Les enfants de la boîte acceptent une fonction de rendu des props. Vous pouvez retirer le `className`.
 
-```jsx
-<Box color="text.primary">
-  {props => <Button {...props} />}
-</Box>
-```
+{{"demo": "pages/components/box/BoxRenderProps.js", "defaultCodeOpen": true }}
 
 > ⚠ La spécificité CSS dépend de l'ordre d'importation. Si vous voulez la garantie que le style du composant enveloppé sera surchargé, vous devez importer le Box en dernier.
 
@@ -62,5 +56,4 @@ import Box from '@material-ui/core/Box';
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br>&nbsp;func<br></span>                                     |                                         | Fonction de rendu ou noeud de la boîte.                                                                                |
 | <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                                           | <span class="prop-default">false</span> | Si `true`, la boîte recycle son élément DOM enfant. Il utilise `React.cloneElement` en interne.                        |
 | <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | Le composant utilisé pour le noeud racine. Soit une chaîne de caractères pour utiliser un élément DOM ou un composant. |
-
-Any other properties supplied will be used by [the style functions](/system/basics/#all-inclusive) or spread to the root element.
+| <span class="prop-name">sx</span>                       | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | Accepts all system properties, as well as any valid CSS properties.                                                    |

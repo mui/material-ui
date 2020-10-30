@@ -8,9 +8,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 # Button 按钮
 
-<p class="description">只需通过轻按一下按钮，用户即可采取行动并做出选择。</p>
+<p class="description">只需轻点按钮，用户就可以触发动作或做出选择。</p>
 
-[按钮](https://material.io/design/components/buttons.html) 传达了一系列用户可以执行的操作命令。 他们通常直接放置在您的用户界面中，例如：
+按钮可以传送了用户可以采取的行动。 他们通常直接放置在您的用户界面中，例如：
 
 - Dialogs 对话框
 - Modal windows 模态窗口
@@ -22,7 +22,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 ## Contained Buttons 实心按钮
 
-[实心按钮](https://material.io/design/components/buttons.html#contained-button)表示高度的强调，你根据它们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
+[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度的强调，你根据它们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
@@ -97,13 +97,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 👑 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/button)。
 
-## Complex Buttons（复杂按钮）
+## 载入按钮（Loading buttons）
 
 加载按钮可以显示加载状态并且禁用与此交互。
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
-这有一个[与 react-router 交互的例子](/guides/composition/#button)。
+切换此切换按钮，可以查看不同状态之间的转换。
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 

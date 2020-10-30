@@ -64,34 +64,54 @@ const shouldForwardProp = (prop) => prop !== 'styleProps' && prop !== 'theme' &&
 const experimentalStyled = (tag, options, muiOptions = {}) => {
   const name = muiOptions.muiName;
   const defaultStyledResolver = styled(tag, { shouldForwardProp, label: name, ...options });
-  const muiStyledResolver = (...styles) => {
-    const stylesWithDefaultTheme = styles.map((stylesArg) => {
-      return typeof stylesArg === 'function'
-        ? ({ theme: themeInput, ...rest }) =>
-            stylesArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...rest })
-        : stylesArg;
-    });
+  const muiStyledResolver = (styleArg, ...expressions) => {
+    const expressionsWithDefaultTheme = expressions
+      ? expressions.map((stylesArg) => {
+          return typeof stylesArg === 'function'
+            ? ({ theme: themeInput, ...rest }) => {
+                return stylesArg({
+                  theme: isEmpty(themeInput) ? defaultTheme : themeInput,
+                  ...rest,
+                });
+              }
+            : stylesArg;
+        })
+      : [];
 
-    if (name && muiOptions.overridesResolver) {
-      stylesWithDefaultTheme.push((props) => {
+    let transformedStyleArg = styleArg;
+
+    if (Array.isArray(styleArg)) {
+      // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles
+      transformedStyleArg = [...styleArg, '', '', ''];
+      transformedStyleArg.raw = [...styleArg.raw, '', '', ''];
+    } else if (typeof styleArg === 'function') {
+      // If the type is function, we need to define the default theme
+      transformedStyleArg = ({ theme: themeInput, ...rest }) =>
+        styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...rest });
+    }
+
+    expressionsWithDefaultTheme.push((props) => {
+      if (name && muiOptions.overridesResolver) {
         const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
         return muiOptions.overridesResolver(props, getStyleOverrides(name, theme), name);
-      });
-    }
+      }
+      return '';
+    });
 
-    if (name) {
-      stylesWithDefaultTheme.push((props) => {
+    expressionsWithDefaultTheme.push((props) => {
+      if (name) {
         const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
         return variantsResolver(props, getVariantStyles(name, theme), theme, name);
-      });
-    }
+      }
+      return '';
+    });
 
-    stylesWithDefaultTheme.push((props) => {
+    expressionsWithDefaultTheme.push((props) => {
       const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
       return styleFunctionSx(props.sx, theme);
     });
 
-    return defaultStyledResolver(stylesWithDefaultTheme);
+    return defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
   };
   return muiStyledResolver;
 };

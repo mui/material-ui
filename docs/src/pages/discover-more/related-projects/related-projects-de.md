@@ -21,7 +21,11 @@ Dies ist eine Sammlung von Drittanbieterprojekten, die Material-UI erweitern.
 - [unDraw](https://undraw.co/): 📐 Wie Unsplash, aber für großartige Vektor-Illustrationen.
 - [Simple Icons](https://simpleicons.org/): Over 1000 Free SVG icons for popular brands.
 
-## IDE Tools
+## Application frameworks
+
+- [react-admin](https://github.com/marmelab/react-admin): A frontend Framework for building B2B applications running in the browser on top of REST/GraphQL APIs.
+
+## IDE tools
 
 - [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets) VSCode extension providing snippets.
 - [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) VSCode extension providing codemods.

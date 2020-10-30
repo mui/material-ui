@@ -15,9 +15,9 @@ Material-UI 通过以下三种方式来支持图标的使用：
 1. 或者可以将自定义的 SVG 图标通过 [SvgIcon](#svgicon) 组件来包装成一个 React 组件。
 1. 或者可以将自定义的 font 图标通过 [ Icon ](#icon-font-icons) 组件来包装成一个 React 组件。
 
-## Material Icons 图标
+## Material Icons
 
-Material Design 已经将1,100多个官方图标标准化，而每个图标都有五个不同的“主题”(见下文)。 对于每个 SVG 图标，我们从 @ material-ui/icons 包中导出相应的React组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
+Google 已经创建了 1300 多个官方的 Material icons，每个图标都有5种不同的“主题”（见下文）。 对于每个 SVG 图标，我们从 `@material-ui/icons` 包中导出相应的 React 组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
 
 ### 安装
 
@@ -31,9 +31,9 @@ npm install @material-ui/icons@next
 yarn add @material-ui/icons@next
 ```
 
-这些组件使用 Material-UI 的`SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@materialui/core` 具有对等依赖性。
+这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@materialui/core` 具有对等依赖性。
 
-如果你还没有在你的项目中使用 Material-UI，你可以用以下方法添加它：
+如果你的项目中还没有使用 Material-UI，那么你可以用以下方法添加它：
 
 ```sh
 // 用 npm 安装
@@ -90,7 +90,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 ## SvgIcon（Svg 图标）
 
-如果你需要使用自定义的 SVG 图标（在 [Material Icons](/components/material-icons/) 中不可用），那么你可以使用 `SvgIcon` 包装器来实现它。 此组件是原生 `<svg>` 元素的拓展版：
+如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/components/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
 - SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 （使用 `viewBox` 属性，您可以随意自定义）。
@@ -148,7 +148,7 @@ import { ReactComponent as StarIcon } from './star.svg';
 
 ### createSvgIcon
 
-`createSvgIcon` 工具集是用于创建 [材料图标](#material-icons) 的。 它可以用来包装一个带有 SvgIcon 组件的 SVG 路径。
+`createSvgIcon` 工具集是用于创建 [Material icons](#material-icons) 的。 它可以用来包装一个带有 SvgIcon 组件的 SVG 路径。
 
 ```jsx
 const HomeIcon = createSvgIcon(
@@ -163,7 +163,7 @@ const HomeIcon = createSvgIcon(
 
 如果你发现在使用来自 `@fortawesome/react-fontawesome` 的 FontAwesomeIcon 时存在布局问题，你可以尝试将 Font Awesome SVG 数据直接传递给 SvgIcon。
 
-如下是一个同时使用[Font Awesome](https://fontawesome.com/icons) 与 `Icon` 的示例：
+如下是一个同时将 `Font Awesome<` 和 `Icon` 一起的示例：
 
 {{"demo": "pages/components/icons/FontAwesomeSvgIconDemo.js"}}
 
@@ -185,7 +185,7 @@ FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-`Icon` 将为 Material Icons font 设置正确的类名。 `Icon`  将为 Material icon font 设置正确的 class 名字。
+`Icon` 将为 Material Icons font 设置正确的类名。 对于其他图标，你必须使用 Icon 组件的 `className` 属性来提供 class 名称。
 
 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
@@ -230,7 +230,7 @@ const theme = createMuiTheme({
 
 ## Font vs SVG。 使用哪个更好呢？
 
-这两种方法都能很好地工作，但是其中有一些微妙的差异，特别是在性能和渲染质量方面。 在环境允许的情况下，首选使用 SVG 的方式，因为它允许代码分割，能支持更多的图标，并且渲染得更快更好。
+这两种方法都能很好地工作，但是其中有一些微妙的差异，特别是在性能和渲染质量方面。 在条件允许的情况下，首选使用 SVG 的方式，因为它允许代码分割，能支持更多的图标，并且渲染得更快更好。
 
 更多详情，请查阅 [为什么 GitHub 将 font icons 迁移到 SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/)。
 
@@ -239,7 +239,7 @@ const theme = createMuiTheme({
 图标可以传达各种有意义的信息，所以确保它们的无障碍设计是很重要的。 您可能会注意到这两个用例：
 
 - **装饰性图标** 仅用于增强视觉或强调品牌。 即使将它们从页面中移除，用户仍然可以理解并能够使用整个界面。
-- **语义图标** 是用来传达其中意义的，而不只是单纯地装饰。 This includes icons without text next to them that are used as interactive controls — buttons, form elements, toggles, etc.
+- **语义图标** 是用来传达其中意义的，而不只是单纯地起装饰作用。 这包含了没有文字辅助说明的图标，这些图标一般被用作在交互式控件中 — 按钮、表单元素、切换按钮等。
 
 ### 装饰性图标
 

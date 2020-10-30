@@ -135,9 +135,9 @@ const useStyles = makeStyles({
     '& p': {
       color: 'green',
       '& span': {
-        color: 'blue'
-      }
-    }
+        color: 'blue',
+      },
+    },
   },
 });
 ```
@@ -150,23 +150,26 @@ const useStyles = makeStyles({
 
 ```jsx
 const useStyles = makeStyles({
-  // style rule
-  foo: props => ({
+  // 样式规则
+  foo: (props) => ({
     backgroundColor: props.backgroundColor,
   }),
   bar: {
     // CSS property
-    color: props => props.color,
+    color: (props) => props.color,
   },
 });
 
 function MyComponent() {
-  // 为了示例，我们模拟了这个属性
-  const props = { backgroundColor: 'black', color: 'white' };
-  // 将 props 作为 useStyles() 的第一个属性传入
+  // 为了这个示例，我们模拟了一些属性
+  const props = {
+    backgroundColor: 'black',
+    color: 'white',
+  };
+  // 将 props 作为 useStyles() 的第一个参数传入
   const classes = useStyles(props);
 
-  return <div className={`${classes.foo} ${classes.bar}`} />
+  return <div className={`${classes.foo} ${classes.bar}`} />;
 }
 ```
 

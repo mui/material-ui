@@ -42,18 +42,18 @@ yarn add @material-ui/core@next
 
 ### 支持的浏览器和 node 版本
 
-默认捆绑包的目标已更改。 The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+默认捆绑包的目标已更改。 实际支持的版本将在发布时从浏览器列表中查询 `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`。
 
 当前默认的捆绑包支持以下版本：
 
 <!-- #stable-snapshot -->
 
-- Node 10 (up from 8)
-- Chrome 83 (up from 49)
-- Edge 83 (up from 14)
-- Firefox 68 (up from 52)
-- Safari 13 (up from 10)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+- Node 10（最低兼容到 8）
+- Chrome 84（最低兼容到 49）
+- Edge 85（最低兼容到 14）
+- Firefox 78（最低兼容到 52）
+- Safari 13 (macOS) 和 12.2 (iOS)（最低兼容到 10）
+- 更多内容请（参阅 [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11)）
 
 不再对 IE 11 进行兼容支持。 如果你需要对 IE 11 进行兼容性支持，请查看我们的 [旧版本包](/guides/minimizing-bundle-size/#legacy-bundle)。
 
@@ -250,6 +250,13 @@ const classes = makeStyles(theme => ({
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
+- AvatarGroup 已从实验室包移动到核心包。
+
+  ```diff
+  -import AvatarGroup from '@material-ui/lab/AvatarGroup';
+  +import AvatarGroup from '@material-ui/core/AvatarGroup';
+  ```
+
 ### Badge
 
 - 为保持一致性，我们将 `circle` 重命名为 `circular`，`rectangle` 重命名为 `rectangular`。 可能的值应该是形容词，而不是名词。
@@ -349,6 +356,24 @@ const classes = makeStyles(theme => ({
   +    onExiting,
   +  }}
   />
+  ```
+
+- [withMobileDialog] 此高阶组件已被删除。 Hook API 提供了一个更简单且灵活的方案：
+
+  ```diff
+  -import withMobileDialog from '@material-ui/core/withMobileDialog';
+  +import { useTheme, useMediaQuery } from '@material-ui/core';
+
+  function ResponsiveDialog(props) {
+  - const { fullScreen } = props;
+  + const theme = useTheme();
+  + const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const [open, setOpen] = React.useState(false);
+
+  // ...
+
+  -export default withMobileDialog()(ResponsiveDialog);
+  +export default ResponsiveDialog;
   ```
 
 ### Divider
@@ -553,6 +578,31 @@ const classes = makeStyles(theme => ({
   />
   ```
 
+### Popper
+
+- 我们将 [Popper.js](https://github.com/popperjs/popper-core) 从 v1 升级到 v2。 这个第三方库的升级引入了很多变化。<br /> 你可以阅读 [他们的迁移指南](https://popper.js.org/docs/v2/migration-guide/) 或参考以下摘要：
+
+  - CSS 前缀已更改：
+    ```diff
+    popper: {
+      zIndex: 1,
+    - '&[x-placement*="bottom"] $arrow': {
+    + '&[data-popper-placement*="bottom"] $arrow': {
+    ```
+  - 方法名已改变。
+
+    ```diff
+    -popperRef.current.scheduleUpdate()
+    +popperRef.current.update()
+    ```
+
+    ```diff
+    -popperRef.current.update()
+    +popperRef.current.forceUpdate()
+    ```
+
+  - Modifiers' API has changed a lot. 这其中有太多的内容不能涵盖说明。
+
 ### Portal
 
 - 移除 `onRendered` 属性。 具体迁移方法根据你的使用情况而定，你可以在子元素上使用 [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs)，也可以在子组件中使用 effect 钩子。
@@ -626,7 +676,7 @@ const classes = makeStyles(theme => ({
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-### Snackbar
+### Snackbar（消息条）
 
 - 现在在大屏幕上的消息条通知会在左下角显示。 这更符合 Gmail、Google Keep、material.io 等应用的行为。 你可以用以下方法恢复到以前的行为：
 
@@ -763,6 +813,24 @@ const classes = makeStyles(theme => ({
   +<TextField maxRows={6}>
   ```
 
+- 更改自定义 `inputComponent` 中的 ref 转发期望值 该组件应该转发 `ref` 属性，而不是 `inputRef` 属性。
+
+  ```diff
+  -function NumberFormatCustom(props) {
+  -  const { inputRef, onChange, ...other } = props;
+  +const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
+  +  props,
+  +  ref,
+  +) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+  -     getInputRef={inputRef}
+  +     getInputRef={ref}
+  ```
+
 ### TextareaAutosize
 
 - 我们移除了 `rows` 属性，你需要使用 `minRows` 属性来代替它。 这一变化旨在明确该属性的行为。
@@ -812,7 +880,7 @@ const classes = makeStyles(theme => ({
   +<Tooltip>
   ```
 
-### 文字排版
+### 文字铸排
 
 - 为了避免 [System](https://material-ui.com/system/basics/) 功能重复，我们替换了 `srOnly` 属性。
 

@@ -6,15 +6,15 @@ materialDesign: https://material.io/archive/guidelines/components/expansion-pane
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
-# Accordion (панель расширения)
+# Accordion
 
-<p class="description">Панель расширения содержит потоки создания и позволяет легко редактировать элементы.</p>
+<p class="description">Аккордеоны содержат потоки создания и позволяют осуществить легковесное редактирование элемента.</p>
 
 [Accordion](https://material.io/archive/guidelines/components/expansion-panels.html) это простой контейнер, который может использоваться отдельно, либо как часть более крупного компонента, такого как Card (карточка).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
+> **На заметку:** Аккордеоны больше не задокументированы в [руководствах Material Design](https://material.io/), но Material-UI будет продолжать поддерживать их. Ранее они были известны как "expansion panels".
 
 ## Простая Accordion
 
@@ -34,13 +34,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 ## Производительность
 
-Содержимое Accordions монтируется по умолчанию, даже если панель не развернута. Это предопределенное поведение подразумевает рендеринг на стороне сервера и SEO. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+Содержимое аккордеонов монтируется по умолчанию, даже если панель не развернута. Это поведение подразумевает рендеринг на стороне сервера и SEO. Если внутри аккордеона находятся ресурсоемкие, для рендеринга, иерархии компонентов или просто на странице много аккордеонов, то возможно хорошей идеей будет изменить поведение по умолчанию включив `unmountOnExit` в `TransitionProps`:
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-Как и при любой оптимизации производительности, не стоит переоценивать её. Сначала идентифицируйте узкие места и лишь затем пытайтесь применить эти стратегии.
+Как и при любой оптимизации производительности, эта функция не панацея. Сначала идентифицируйте узкие места и лишь затем пытайтесь применить эти стратегии.
 
 ## Доступность
 

@@ -117,6 +117,10 @@ Probieren Sie die Demo aus, um zu sehen, was wir meinen:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
+## Performance
+
+Folgen Sie den [Modal Zugänglichkeit Abschnitt](/components/modal/#performance).
+
 ## Einschränkungen
 
 Follow the [Modal limitations section](/components/modal/#limitations).
