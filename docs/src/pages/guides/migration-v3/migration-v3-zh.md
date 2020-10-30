@@ -384,7 +384,7 @@ function MySelect({ children }) {
 - [Tooltip] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 - [Tooltip] 相比以前任何聚焦都会出现，现在只会在 focus-visible 聚焦的时候出现。
 
-### 文字铸排
+### Typography
 
 - [Typography] 移除了各种弃用的铸排变体。 您可以通过执行以下的替换来升级：
   - display4 => h1
