@@ -116,7 +116,7 @@ import { Link } from 'react-router-dom';
 
 ## 路由库
 
-通过 `component` 属性实现了与第三方路由库的整合。 该行为与上面的属性描述完全相同。 以下是一些 [react-router-dom](https://github.com/ReactTraining/react-router) 的示例： 它覆盖按钮（Button）、链接（Link）和列表（List）组件，对所有的组件，你应该能应用相同的策略。
+通过 `component` 属性实现了与第三方路由库的整合。 该行为与上面的属性描述完全相同。 以下是一些 [react-router-dom](https://github.com/ReactTraining/react-router) 的示例： They cover the Button, Link, and List components. You can apply the same strategy with all the components (BottomNavigation, Card, etc.).
 
 ### Button
 
