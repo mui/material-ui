@@ -81,12 +81,12 @@ export const styles = (theme) => {
 };
 
 const AppBar = React.forwardRef(function AppBar(props, ref) {
-  const { classes, className, color = 'primary', position = 'fixed', ...other } = props;
+  const { classes, className, color = 'primary', position = 'fixed', component = 'header', ...other } = props;
 
   return (
     <Paper
       square
-      component="header"
+      component={component}
       elevation={4}
       className={clsx(
         classes.root,
@@ -125,6 +125,10 @@ AppBar.propTypes = {
    * @default 'primary'
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
+  /**
+   * The component to wrap the content in
+   */
+  component: PropTypes.string,
   /**
    * The positioning type. The behavior of the different options is described
    * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
