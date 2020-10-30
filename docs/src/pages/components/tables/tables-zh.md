@@ -1,5 +1,5 @@
 ---
-title: React 表格组件
+title: React Table（表格）组件
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
