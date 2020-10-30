@@ -40,7 +40,7 @@ import { Button, TextField } from '@material-ui/core';
 
 这是我们在所有演示中记录的选项，因为它不需要配置。 我们鼓励库的创建者来扩充已有组件。 请前往带来最佳 DX 和 UX 的方法： [选项2](#option-2)。
 
-虽然以这种方式直接进行导入不会使用 [`@material-ui/core` 主文件](https://unpkg.com/@material-ui/core)中的导出模块（exports），但该文件可以方便地参考哪些模块是公共的。
+虽然以这种方式直接进行导入不会使用 [`@material-ui/core` 主文件](https://unpkg.com/@material-ui/core) 中的导出模块（exports），但该文件可以方便地参考哪些模块是可供公共使用的。
 
 请注意，我们只支持第一级和第二级的导入。 再深入的导入就是私有的，它们会造成一些问题，譬如你的打包文件会产生重复的模块。
 
@@ -207,16 +207,16 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 +import { Button, TextField } from '@material-ui/core';
 ```
 
-## Available bundles
+## 可用的捆绑包
 
 考虑到一些 [支持的平台](/getting-started/supported-platforms/)，在 npm 上发布的这个依赖包是和 [Babel](https://github.com/babel/babel) 一起被**编译**过的。
 
 ⚠️为了尽量减少用户捆绑包中的重复代码，库作者 **非常不鼓励** 从任何其他捆绑包中导入。
 
-### Modern bundle
+### 现代的捆绑包
 
 modern bundle 可以在 [`/modern` 文件夹](https://unpkg.com/@material-ui/core/modern/) 下找到。 它的目标是最新发布的常青（evergreen）浏览器版本（Chrome、Firefox、Safari、Edge）。 这样一来，针对不同的浏览器，您可以编译出不同的打包文件。
 
-### Legacy bundle
+### 旧版的捆绑包
 
 如果你需要对 IE11 进行兼容支持，那么你不能在不适用转换（transpilation）的情况下使用默认或者 modern bundle。 然而，你可以在 [`legacy` 文件夹下](https://unpkg.com/@material-ui/core/legacy/) 找到 legacy bundle。 你不需要编写额外的 polyfills 来转换它。

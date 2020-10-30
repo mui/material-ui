@@ -21,6 +21,12 @@ Quando você usa `target="_blank"` com Links, é [recomendado](https://developer
 - A propriedade `color="primary"`, pelo fato de que o link precisa se destacar.
 - A propriedade `variant="inherit"`, já que o link será na maioria das vezes usado como filho de um componente Typography.
 
+## Underline
+
+The `underline` prop can be used to set the underline behavior. The default is `hover`.
+
+{{"demo": "pages/components/links/UnderlineLink.js"}}
+
 ## Segurança
 
 Quando você usa `target="_blank"` com Links, é [recomendado](https://developers.google.com/web/tools/lighthouse/audits/noopener) sempre definir `rel="noopener"` ou `rel="noreferrer"` quando conectando a conteúdo de terceiros.

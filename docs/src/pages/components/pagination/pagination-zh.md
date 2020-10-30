@@ -1,5 +1,5 @@
 ---
-title: React 分页组件
+title: React 分页（Pagination）组件
 components: Pagination, PaginationItem
 githubLabel: 'component: Pagination'
 ---
@@ -48,7 +48,7 @@ githubLabel: 'component: Pagination'
 
 ## `usePagination`
 
-针对高级定制的用例，我们提供了一个 `usePagination()` hook。 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 分页组件内部也使用此 hook。
+对于高级自定义用例，我们暴露了一个 headless 的 `usePagination()` hook。 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 分页组件内部也使用此 hook。
 
 ```jsx
 import { usePagination } from '@material-ui/core/Pagination';
@@ -64,7 +64,7 @@ import { usePagination } from '@material-ui/core/Pagination';
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
 
-> ⚠️注意，`Pagination` 页面的属性从 1 开始，以符合在 URL 中包含当前页面参数值的要求，而 `TablePagination` 页面的属性则从 0 开始，以符合渲染大量表格数据时基于零开始的 JavaScript 数组的要求。
+> ⚠️注意，`Pagination` 页面的属性从 1 开始，以满足在 URL 中包含当前页面参数值的要求，而 `TablePagination` 页面的属性则从 0 开始，以满足渲染大量表格数据时基于零开始的 JavaScript 数组的要求。
 
 您可以在文档的 [表格部分](/components/tables/#custom-pagination-options) 中了解更多关于此用例的信息。
 

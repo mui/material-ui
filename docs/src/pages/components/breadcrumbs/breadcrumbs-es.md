@@ -15,9 +15,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Active last breadcrumb
+## Activa las últimas migas de pan
 
-Keep the last breadcrumb interactive.
+Mantenga las últimas migas de pan interactivas.
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 

@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/chips
 
 <p class="description">纸片组件是用来表示输入框、属性或操作的紧凑元素。</p>
 
-纸片允许用户输入信息、进行选择、过滤内容或触发动作。
+纸片组件允许用户输入信息、进行选择、过滤内容或触发动作。
 
 在这里，虽然我们将纸片组件归类为一个独立的组件，但更常见的作法是用在表单中作为输入框，因此本篇演示的内容并不会在上下文中显示。
 
@@ -19,7 +19,7 @@ materialDesign: https://material.io/components/chips
 
 以下是纸片组件的一个例子，它使用了图片，SVG 图标，“字母” 和（带有字符串的）头像。
 
-- 定义了 `onClick` 属性的纸片组件会在获得焦点、鼠标悬浮、单击时有外观的变化。
+- 定义了 `onClick` 属性的纸片组件会在聚焦时会有外观的变化。
 - 定义了 `onDelete` 属性的纸片组件将显示一个删除图标，并在鼠标悬浮时有外观的变化。
 
 {{"demo": "pages/components/chips/Chips.js"}}
@@ -32,7 +32,7 @@ materialDesign: https://material.io/components/chips
 
 ## 纸片阵列
 
-下面是一个通过数组呈现多个纸片的示例。 删除一个纸片元素，则会将其从纸片组的数组中删除。 请注意，由于没有定义 `onClick` 属性，所以这些纸片在被点击或触碰时可以被对焦，但不会在立体和阴影上有所变化。
+下面是一个通过数组呈现多个纸片的示例。 删除一个纸片元素，则会将其从纸片组的数组中删除。 请注意，由于没有定义 `onClick` 属性，所以这些纸片在被点击或触碰时可以被聚焦，但不会在立体和阴影上有所变化。
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
@@ -40,11 +40,11 @@ materialDesign: https://material.io/components/chips
 
 您可以借助 `size` 属性来定义一个小型纸片组件。
 
-### 默认的变体
+### 填充的变量
 
 {{"demo": "pages/components/chips/SmallChips.js"}}
 
-### 描边的变体
+### 描边的变量
 
 {{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
 

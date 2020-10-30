@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/core/Box';
-import { ExtendSliderUnstyledTypeMap, ExtendSliderUnstyled } from '../SliderUnstyled';
+import {
+  ExtendSliderUnstyledTypeMap,
+  ExtendSliderUnstyled,
+} from '@material-ui/unstyled/SliderUnstyled';
 
 export type SliderStyledTypeMap<
   D extends React.ElementType = 'span',

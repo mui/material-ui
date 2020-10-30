@@ -21,7 +21,7 @@ export default function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* 其余的应用程序 */}
+      {/*其他代码 */}
     </React.Fragment>
   );
 }
@@ -39,7 +39,7 @@ import MyApp from './MyApp';
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
-      {/* 其余的应用程序 */}
+      {/* 其他代码 */}
       <MyApp />
     </ScopedCssBaseline>
   );
@@ -61,7 +61,7 @@ export default function MyApp() {
 
 - 在 `<html>` 元素里面，我们将 `box-sizing` 全局设置为 `border-box`。 这样一来，包括 `*:: before` 和 `*:: after` 的每个元素，都会被声明来继承这个属性，这样能够确保元素的声明宽度永远不会超过 padding 或者 border。
 
-### 文字排版
+### 文字铸排
 
 - 在 `<html>` 里面不会声明基础的 font-size，但是我们假设是 16px (浏览器的默认设置)。 您可以在 [主题文档](/customization/typography/#typography-html-font-size) 页面中了解更多有关更改 `<html>` 默认字体大小的影响 。
 - 在 `theme.typography.body2` 元素上设置 `<body>` 样式。

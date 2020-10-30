@@ -147,17 +147,23 @@ const theme = createMuiTheme({
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     status: {
-      danger: React.CSSProperties['color'],
-    }
+      danger: React.CSSProperties['color'];
+    };
+  }
+  interface PaletteColor {
+    darker?: string;
+  }
+  interface SimplePaletteColorOptions {
+    darker?: string;
   }
   interface ThemeOptions {
     status: {
-      danger: React.CSSProperties['color']
-    }
+      danger: React.CSSProperties['color'];
+    };
   }
 }
 
-declare module "@material-ui/core/styles/createPalette" {
+declare module '@material-ui/core/styles/createPalette' {
   interface Palette {
     neutral: Palette['primary'];
   }

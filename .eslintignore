@@ -18,6 +18,7 @@
 /packages/material-ui-icons/legacy
 /packages/material-ui-icons/src
 /packages/material-ui-icons/templateSvgIcon.js
+/packages/material-ui-utils/macros/__fixtures__/
 # Ignore fixtures
 /packages/typescript-to-proptypes/test/*/*
 /tmp

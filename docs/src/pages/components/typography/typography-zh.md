@@ -1,6 +1,6 @@
 ---
 title: React 文字铸排组件
-components: 文字排版
+components: 文字铸排
 githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
 ---
@@ -22,7 +22,10 @@ Material-UI **不会**自动加载 *Roboto* 字体。 开发人员需要自行�
 以下是一个简单 link markup，可以用于从 CDN 加载 Roboto字体：
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>
 ```
 
 ## 通过 npm 安装
@@ -70,19 +73,21 @@ import 'fontsource-roboto';
 
 ```js
 const theme = createMuiTheme({
-  props: {
+  components: {
     MuiTypography: {
-      variantMapping: {
-        h1: 'h2',
-        h2: 'h2',
-        h3: 'h2',
-        h4: 'h2',
-        h5: 'h2',
-        h6: 'h2',
-        subtitle1: 'h2',
-        subtitle2: 'h2',
-        body1: 'span',
-        body2: 'span',
+      defaultProps: {
+        variantMapping: {
+          h1: 'h2',
+          h2: 'h2',
+          h3: 'h2',
+          h4: 'h2',
+          h5: 'h2',
+          h6: 'h2',
+          subtitle1: 'h2',
+          subtitle2: 'h2',
+          body1: 'span',
+          body2: 'span',
+        },
       },
     },
   },

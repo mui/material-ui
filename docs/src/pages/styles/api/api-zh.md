@@ -22,7 +22,10 @@
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
+import {
+  StylesProvider,
+  createGenerateClassName,
+} from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -37,11 +40,11 @@ export default function App() {
 
 ## `createStyles(styles) => styles`
 
-在运行的时候，这个函数并没有真正“做任何事”，它一个只是认证函数。 Its only purpose is to defeat **TypeScript**'s type widening when providing style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
+在运行的时候，这个函数并没有真正“做任何事”，它一个只是认证函数。 它的唯一目的是，当向 `Theme` 的 `makeStyles`/`withStyles` 功能提供样式的规则时， 可以阻止 **TypeScript** 的类型扩展。
 
 ### 参数
 
-1. `styles` (*Object*): A styles object.
+1. `styles` (_Object_): 一个样式对象。
 
 ### 返回结果
 
@@ -91,7 +94,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   root: {
     backgroundColor: 'red',
-    color: props => props.color,
+    color: (props) => props.color,
   },
 });
 
@@ -128,7 +131,7 @@ const response = `
 
 实例化接受的第一个参数是一个 options 对象。
 
-1. `options` (*Object* [optional]): The options are spread as props to the [`StylesProvider`](#stylesprovider) component.
+1. `options` (_Object_ [optional])：options 作为属性分布到 [`StylesProvider`](#stylesprovider) 组件中。
 
 ### `sheets.collect(node) => React element`
 
@@ -176,9 +179,7 @@ const MyComponent = styled('div')({
   backgroundColor: 'red',
 });
 
-const MyThemeComponent = styled('div')(({
-  theme
-}) => ({
+const MyThemeComponent = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
@@ -244,9 +245,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 const theme = {};
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>...</ThemeProvider>
-  );
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));

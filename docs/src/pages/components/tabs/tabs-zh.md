@@ -14,7 +14,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的选项卡
+## 基础选项卡
 
 A basic example with no frills.
 
@@ -26,15 +26,15 @@ A basic example with no frills.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js", "bg": true}}
 
-### 不可用的选项卡
+### 禁用选项卡
 
-选项卡的 `disabled` 属性能将其设置为不可用的状态。
+选项卡的 `disabled` 属性能将其设置为禁用状态。
 
 {{"demo": "pages/components/tabs/DisabledTabs.js", "bg": true}}
 
 ## 固定的选项卡
 
-固定的标签应与定量的选项卡一起使用，而将它们整齐放置则会有助于用户的肌肉记忆。
+固定的选项卡应与定量的选项卡一起使用，而将它们整齐放置则会有助于用户的肌肉记忆。
 
 ### 全宽
 
@@ -50,19 +50,19 @@ A basic example with no frills.
 
 ## 可滚动的选项卡
 
-### 自动滚动按钮
+### 自动显示滚动按钮
 
 左右滚动按钮将自动在桌面显示，并在移动设备上隐藏。 （基于视图宽度）
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonAuto.js", "bg": true}}
 
-### 强制滚动按钮
+### 强制显示滚动按钮
 
-通过使用 `scrollButtons={true}` `allowScrollButtonsMobile` 属性，无论当前视口宽度如何，都可以显示左右的滚动按钮（保留空间）
+通过使用 `scrollButtons={true}` `allowScrollButtonsMobile` 属性，无论当前视图宽度如何，都会显示左右的滚动按钮（保留空间）
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
-如果你想确保按钮始终可见，那么你应该自定义不透明度。
+如果你想确保按钮始终可见，那么你应该自定义不透明度：
 
 ```css
 .MuiTabs-scrollButtons.Mui-disabled {
@@ -72,9 +72,9 @@ A basic example with no frills.
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonVisible.js", "bg": true}}
 
-### 防止滚动按钮
+### 永久隐藏滚动按钮
 
-通过使用 `scrollButtons={false}` 属性，那么将永远隐藏左右的滚动按钮。 所有的滚动比如通过用户代理的滚动机制来发起（例如，左右滑动，移动鼠标滑轮等等）。
+你可以使用 `scrollButtons={false}` 属性来永远隐藏左右的滚动按钮。 所有的滚动比如通过用户代理的滚动机制来发起（例如，左右滑动，移动鼠标滑轮等等）。
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
@@ -88,11 +88,11 @@ A basic example with no frills.
 
 ## 垂直的选项卡
 
-选项卡的标签可以是所有的图标或者所有的文本。
+使用 `orientation="vertical"` 来使垂直标签代替默认的水平标签。
 
 {{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
 
-请注意，你可以使用 `visibleScrollbar` 恢复滚动条。
+请注意，你可以使用 `visibleScrollbar` 来恢复显示滚动条。
 
 ## 导航选项卡
 
@@ -121,7 +121,7 @@ A basic example with no frills.
 
 ### 键盘导航
 
-该组件使用“手动激活”的行为来实现键盘导航。 如果你想切换到“选择自动跟随焦点”（selection automatically follows focus）的行为，你必须将 `selectionFollowsFocus` 传递给 `Tabs` 组件。 WAI-ARIA 项目实践中有一个详细的指南 [如何决定什么时候选择自动跟随焦点](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus)。
+该组件使用“手动激活”的行为来实现键盘导航。 如果你想切换到“选择自动跟随焦点”（selection automatically follows focus）的行为，你必须将 `selectionFollowsFocus` 传递给 `Tabs` 组件。 WAI-ARIA 项目实践中对 [如何决定什么时候选择自动跟随焦点](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus) 进行了详细的指导。
 
 #### 演示
 

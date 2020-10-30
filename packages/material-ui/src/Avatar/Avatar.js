@@ -70,7 +70,9 @@ function useLoaded({ src, srcSet }) {
     let active = true;
     const image = new Image();
     image.src = src;
-    image.srcSet = srcSet;
+    if (srcSet) {
+      image.srcset = srcSet;
+    }
     image.onload = () => {
       if (!active) {
         return;

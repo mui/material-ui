@@ -56,7 +56,7 @@ import { Link } from 'react-router-dom';
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
-  const CustomLink = props => <Link to={to} {...props} />;
+  const CustomLink = (props) => <Link to={to} {...props} />;
 
   return (
     <li>
@@ -71,7 +71,7 @@ function ListItemLink(props) {
 
 ⚠️ 然而，由于我们使用一个内联函数来更改渲染的组件，所以每一次渲染 `ListItemLink` 时，React 都会先将它卸载。 React 不仅会不必要地更新 DOM，还会影响 `ListItem` 的涟漪效果。
 
-The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component: 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件： 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件：
+解决方案很简单： **避免内联函数，取而代之的是将一个静态组件传递给 `component` 属性**。 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件：
 
 ```jsx
 import { Link } from 'react-router-dom';

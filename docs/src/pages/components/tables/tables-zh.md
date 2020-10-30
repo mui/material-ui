@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">表格展示数据组。 它们是完全可以自定义的。</p>
 
-[表格](https://material.io/design/components/data-tables.html)以一目了然的方式显示信息，这样一来用户可以寻找规律并探索见解。 表格可以被内嵌在主要内容中，如 卡片（cards）。
+表格以一目了然的方式显示信息，这样一来用户可以寻找其中的规律并得出见解。 表格可以被内嵌在主要内容中，如 卡片（cards）。
 
 表格可以包括：
 
@@ -19,19 +19,19 @@ materialDesign: https://material.io/components/data-tables
 
 当在引入工具时，我们应将它们直接放在表格的上方或下方。
 
-## 表格的结构
+## 基础表格
 
 一个没有多余装饰的简单例子
 
 {{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
-## 简单的表格
+## 紧凑型表格
 
 这是一个简单紧凑型表格，并且没有多余的装饰。
 
 {{"demo": "pages/components/tables/DenseTable.js", "bg": true}}
 
-## 紧凑的表格
+## 排序 & 选择
 
 此示例演示了在表格内使用了 ` 选择框组件（Checkbox）` 以及单击选择行，而且这个表格带有一个自定义的 `工具条组件（Toolbar）`。 它也展示了如何使用 `TableSortLabel` 组件来给列标题添加样式。
 
@@ -39,11 +39,11 @@ materialDesign: https://material.io/components/data-tables
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## 排序 & 筛选
+## 数据表格
 
-`Table` 组件与原生 `<table>` 元素有密切的映射。 这种限制条件导致构建丰富的数据表格会变得很有挑战性。
+`Table` 组件与原生 `<table>` 元素存在密切关联。 这种限制条件导致要构建丰富的数据表格会变得很有挑战性。
 
-[`DataGrid` 组件](/components/data-grid/) 专为需要处理大量表格数据的情况而设计。 虽然它的结构相比之下不够灵活，但是有得必有失，牺牲灵活性来换取更强大的功能。
+[`DataGrid` 组件](/components/data-grid/) 专为需要处理大量表格数据的情况而设计。 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
 
 ## 自定义表格
 
@@ -53,7 +53,7 @@ materialDesign: https://material.io/components/data-tables
 
 ### 自定义的分页选项
 
-通过 `rowsPerPageOptions` 属性，也可以自定义 "Rows per page" 显示的选择项。 你应该提供以下一种数组：
+你也可以使用 `rowsPerPageOptions` 属性来自定义 "Rows per page" 显示的选择项。 你应该提供以下一种数组：
 
 - **数字（numbers）**，而每个数字用作为选择项的标签（label）和值（value）。
 
@@ -75,9 +75,22 @@ materialDesign: https://material.io/components/data-tables
 
 ## 固定表头
 
-一个具有可滚动行和固定表头的表格示例。 It leverages the `stickyHeader` prop (⚠️ no IE11 support).
+一个具有可滚动行和固定表头的表格示例。 它是利用 `stickyHeader` 属性 <br /> 实现的（不支持 IE11）。
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## 按列分组
+
+你可以在一个表头内渲染多个表行来分组列头：
+
+```jsx
+<TableHead>
+  <TableRow />
+  <TableRow />
+</TableHead>
+```
+
+{{"demo": "pages/components/tables/ColumnGroupingTable.js", "bg": true}}
 
 ## 可折叠的表格
 

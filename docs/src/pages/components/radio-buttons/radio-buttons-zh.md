@@ -50,7 +50,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 
 ## `useRadioGroup`
 
-对于需要高级定制用例的情况，它会暴露一个 `useRadioGroup()` 钩子以供被调用。 这将会返回单选框组上下文的值。 单选框组件在其内部会使用这个钩子。
+对于需要高级定制用例的情况，您可以使用一个 `useRadioGroup()` hook。 这将会返回单选框组上下文的值。 单选框组件在其内部会使用这个 hook。
 
 ### API
 
@@ -72,7 +72,7 @@ import { useRadioGroup } from '@material-ui/core/RadioGroup';
 
 ## 什么时候使用
 
-- [复选框 对比 单选按钮（Radio Buttons）](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [多选框 对比 单选按钮（Radio Buttons）](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
 ## 无障碍设计
 

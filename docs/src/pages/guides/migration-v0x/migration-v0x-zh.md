@@ -49,28 +49,28 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 
 ```jsx
 import * as React from 'react';
-  import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
-  import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
-  import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
+import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-  const theme = createMuiTheme({
-    /* theme for v1.x */
-  });
-  const themeV0 = getMuiTheme({
-    /* theme for v0.x */
-  });
+const theme = createMuiTheme({
+  /* v1.x 的主题 */
+});
+const themeV0 = getMuiTheme({
+  /* v0.x 的主题 */
+});
 
-  function App() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <V0MuiThemeProvider muiTheme={themeV0}>
-          {/*Components*/}
-        </V0MuiThemeProvider>
-      </MuiThemeProvider>
-    );
-  }
+function App() {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <V0MuiThemeProvider muiTheme={themeV0}>
+        {/*组件*/}
+      </V0MuiThemeProvider>
+    </MuiThemeProvider>
+  );
+}
 
-  export default App;
+export default App;
 ```
 
 4. 之后，您可以自由地一次迁移一个组件实例。
@@ -124,8 +124,8 @@ Material-UI 不提供用于解决此问题的高级 API。 Material-UI doesn't p
 -import Subheader from 'material-ui/Subheader';
 +import ListSubheader from '@material-ui/core/ListSubheader';
 
--<Subheader>Sub Heading</Subheader>
-+<ListSubheader>Sub Heading</ListSubheader>
+-<Subheader>副标题</Subheader>
++<ListSubheader>副标题</ListSubheader>
 ```
 
 ### Toggle（切换）
@@ -135,7 +135,6 @@ Material-UI 不提供用于解决此问题的高级 API。 Material-UI doesn't p
 +import Switch from '@material-ui/core/Switch';
 
 -<Toggle
-
 -  toggled={this.state.checkedA}
 -  onToggle={this.handleToggle}
 -/>
@@ -152,7 +151,7 @@ Material-UI 不提供用于解决此问题的高级 API。 Material-UI doesn't p
 +import MenuItem from '@material-ui/core/MenuItem';
 
 -<MenuItem primaryText="Profile" />
-+<MenuItem>Profile</MenuItem>
++<MenuItem>个人资料</MenuItem>
 ```
 
 ### Font Icon（字体图标）

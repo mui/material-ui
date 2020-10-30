@@ -21,6 +21,12 @@ However, the Link component has different default properties than the Typography
 - `color="primary"` as the link needs to stand out.
 - `variant="inherit"` as the link will, most of the time, be used as a child of a Typography component.
 
+## Underline
+
+The `underline` prop can be used to set the underline behavior. The default is `hover`.
+
+{{"demo": "pages/components/links/UnderlineLink.js"}}
+
 ## Безопасность
 
 When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
