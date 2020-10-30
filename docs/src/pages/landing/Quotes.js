@@ -114,6 +114,8 @@ const useStyles = makeStyles(
     },
     container: {
       marginBottom: theme.spacing(4),
+      paddingLeft: 12,
+      paddingRight: 12,
     },
     users: {
       padding: theme.spacing(10, 0, 0),
@@ -138,6 +140,7 @@ const useQuoteStyles = makeStyles(
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
+      borderRadius: 8,
     },
     cardAction: {
       height: '100%',
@@ -187,7 +190,7 @@ function Quote(props) {
     <Card variant="outlined" className={classes.card}>
       <CardActionArea component={QuoteLink} href={href} className={classes.cardAction}>
         <CardContent>
-          <Grid container spacing={3}>
+          <Grid container spacing={1}>
             <Grid item>
               <Avatar
                 src={`${avatar}_normal.jpg`}
@@ -212,7 +215,7 @@ function Quote(props) {
         <CardContent className={classes.quote}>
           <Typography
             color="textPrimary"
-            variant="body2"
+            variant="body1"
             dangerouslySetInnerHTML={{ __html: quote }}
           />
         </CardContent>
@@ -242,7 +245,7 @@ export default function Quotes() {
   return (
     <div className={classes.root}>
       <NoSsr defer>
-        <Container maxWidth="md" className={classes.container} disableGutters>
+        <Container maxWidth="lg" className={classes.container} disableGutters>
           <Divider />
           <div className={classes.users}>
             <Typography variant="h4" component="h2" align="center" gutterBottom>
