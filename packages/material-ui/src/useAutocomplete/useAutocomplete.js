@@ -74,7 +74,6 @@ export default function useAutocomplete(props) {
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
-    readOnly = false,
     disabledItemsFocusable = false,
     disableListWrap = false,
     filterOptions = defaultFilterOptions,
@@ -129,7 +128,7 @@ export default function useAutocomplete(props) {
 
   const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
-  const [highlightedOptionIndex, setHighlightedOptionIndex] = React.useState(defaultHighlighted);
+  const highlightedIndexRef = React.useRef(defaultHighlighted);
 
   const [value, setValueState] = useControlled({
     controlled: valueProp,
@@ -280,7 +279,7 @@ export default function useAutocomplete(props) {
   }
 
   const setHighlightedIndex = useEventCallback(({ event, index, reason = 'auto' }) => {
-    setHighlightedOptionIndex(index);
+    highlightedIndexRef.current = index;
 
     // does the index exist?
     if (index === -1) {
@@ -298,9 +297,9 @@ export default function useAutocomplete(props) {
     }
 
     const prev = listboxRef.current.querySelector('[data-focus]');
-
     if (prev) {
       prev.removeAttribute('data-focus');
+      prev.classList.remove('Mui-focusVisible');
     }
 
     const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
@@ -322,6 +321,9 @@ export default function useAutocomplete(props) {
     }
 
     option.setAttribute('data-focus', 'true');
+    if (reason === 'keyboard') {
+      option.classList.add('Mui-focusVisible');
+    }
 
     // Scroll active descendant into view.
     // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
@@ -365,14 +367,14 @@ export default function useAutocomplete(props) {
           return maxIndex;
         }
 
-        const newIndex = highlightedOptionIndex + diff;
+        const newIndex = highlightedIndexRef.current + diff;
 
         if (newIndex < 0) {
           if (newIndex === -1 && includeInputInList) {
             return -1;
           }
 
-          if ((disableListWrap && highlightedOptionIndex !== -1) || Math.abs(diff) > 1) {
+          if ((disableListWrap && highlightedIndexRef.current !== -1) || Math.abs(diff) > 1) {
             return 0;
           }
 
@@ -435,7 +437,7 @@ export default function useAutocomplete(props) {
 
     // Synchronize the value with the highlighted index
     if (valueItem != null) {
-      const currentOption = filteredOptions[highlightedOptionIndex];
+      const currentOption = filteredOptions[highlightedIndexRef.current];
 
       // Keep the current highlighted index if possible
       if (
@@ -458,13 +460,13 @@ export default function useAutocomplete(props) {
     }
 
     // Prevent the highlighted index to leak outside the boundaries.
-    if (highlightedOptionIndex >= filteredOptions.length - 1) {
+    if (highlightedIndexRef.current >= filteredOptions.length - 1) {
       setHighlightedIndex({ index: filteredOptions.length - 1 });
       return;
     }
 
     // Restore the focus to the previous index.
-    setHighlightedIndex({ index: highlightedOptionIndex });
+    setHighlightedIndex({ index: highlightedIndexRef.current });
     // Ignore filteredOptions (and options, getOptionSelected, getOptionLabel) not to break the scroll position
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -719,8 +721,8 @@ export default function useAutocomplete(props) {
           handleFocusTag(event, 'next');
           break;
         case 'Enter':
-          if (highlightedOptionIndex !== -1 && popupOpen) {
-            const option = filteredOptions[highlightedOptionIndex];
+          if (highlightedIndexRef.current !== -1 && popupOpen) {
+            const option = filteredOptions[highlightedIndexRef.current];
             const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
             // We don't want to validate the form.
@@ -807,8 +809,8 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    if (autoSelect && highlightedOptionIndex !== -1 && popupOpen) {
-      selectNewValue(event, filteredOptions[highlightedOptionIndex], 'blur');
+    if (autoSelect && highlightedIndexRef.current !== -1 && popupOpen) {
+      selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'blur');
     } else if (autoSelect && freeSolo && inputValue !== '') {
       selectNewValue(event, inputValue, 'blur', 'freeSolo');
     } else if (clearOnBlur) {
@@ -820,7 +822,6 @@ export default function useAutocomplete(props) {
 
   const handleInputChange = (event) => {
     const newValue = event.target.value;
-    if (readOnly) return;
 
     if (inputValue !== newValue) {
       setInputValueState(newValue);
@@ -1005,8 +1006,7 @@ export default function useAutocomplete(props) {
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
-        index,
-        key: `${id}-option-${index}`,
+        key: index,
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
@@ -1027,7 +1027,6 @@ export default function useAutocomplete(props) {
     anchorEl,
     setAnchorEl,
     focusedTag,
-    highlightedOptionIndex,
     groupedOptions,
   };
 }

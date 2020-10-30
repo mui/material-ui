@@ -67,12 +67,8 @@ export interface AutocompleteProps<
     root?: string;
     /** Styles applied to the root element if `fullWidth={true}`. */
     fullWidth?: string;
-    /** Pseudo-class applied to the root element or option component `focused` class if keyboard or mouse focused. */
+    /** Pseudo-class applied to the root element if focused. */
     focused?: string;
-    /** Pseudo-class applied to the option component `disabled` class if option is disabled. */
-    disabled?: string;
-    /** Pseudo-class applied to the option component `selected` class if option is selected. */
-    selected?: string;
     /** Styles applied to the tag elements, e.g. the chips. */
     tag?: string;
     /** Styles applied to the tag elements, e.g. the chips if `size="small"`. */
@@ -87,8 +83,6 @@ export interface AutocompleteProps<
     input?: string;
     /** Styles applied to the input element if tag focused. */
     inputFocused?: string;
-    /** Styles applied to the input element readOnly={true} */
-    inputDisabled?: string;
     /** Styles applied to the endAdornment element. */
     endAdornment?: string;
     /** Styles applied to the clear indicator. */
@@ -145,11 +139,6 @@ export interface AutocompleteProps<
    * @default false
    */
   disablePortal?: boolean;
-  /**
-   * If `true`, the input is  and search functionality disabled, but s still consistently styled.
-   * @default false
-   */
-  readOnly?: boolean;
   /**
    * Force the visibility display of the popup icon.
    * @default 'auto'

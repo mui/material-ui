@@ -80,7 +80,6 @@ The `MuiAutocomplete` name can be used for providing [default props](/customizat
 | <span class="prop-name">PaperComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Paper</span> | The component used to render the body of the popup. |
 | <span class="prop-name">PopperComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Popper</span> | The component used to position the popup. |
 | <span class="prop-name">popupIcon</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;ArrowDropDownIcon /></span> | The icon to display in place of the default popup icon. |
-| <span class="prop-name">readOnly</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the input is  and search functionality disabled, but s still consistently styled. |
 | <span class="prop-name">renderGroup</span> | <span class="prop-type">func</span> |  | Render the group.<br><br>**Signature:**<br>`function(option: any) => ReactNode`<br>*option:* The group to render. |
 | <span class="prop-name required">renderInput<abbr title="required">*</abbr></span> | <span class="prop-type">func</span> |  | Render the input.<br><br>**Signature:**<br>`function(params: object) => ReactNode`<br> |
 | <span class="prop-name">renderOption</span> | <span class="prop-type">func</span> |  | Render the option, use `getOptionLabel` by default.<br><br>**Signature:**<br>`function(props: object, option: T, state: object) => ReactNode`<br>*props:* The props to apply on the li element.<br>*option:* The option to render.<br>*state:* The state of the component. |
@@ -99,9 +98,7 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiAutocomplete-root</span> | Styles applied to the root element.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiAutocomplete-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
-| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element or option component `focused` class if keyboard or mouse focused.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the option component `disabled` class if option is disabled.
-| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the option component `selected` class if option is selected.
+| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if focused.
 | <span class="prop-name">tag</span> | <span class="prop-name">.MuiAutocomplete-tag</span> | Styles applied to the tag elements, e.g. the chips.
 | <span class="prop-name">tagSizeSmall</span> | <span class="prop-name">.MuiAutocomplete-tagSizeSmall</span> | Styles applied to the tag elements, e.g. the chips if `size="small"`.
 | <span class="prop-name">hasPopupIcon</span> | <span class="prop-name">.MuiAutocomplete-hasPopupIcon</span> | Styles applied when the popup icon is rendered.
@@ -109,7 +106,6 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">inputRoot</span> | <span class="prop-name">.MuiAutocomplete-inputRoot</span> | Styles applied to the Input element.
 | <span class="prop-name">input</span> | <span class="prop-name">.MuiAutocomplete-input</span> | Styles applied to the input element.
 | <span class="prop-name">inputFocused</span> | <span class="prop-name">.MuiAutocomplete-inputFocused</span> | Styles applied to the input element if tag focused.
-| <span class="prop-name">inputDisabled</span> | <span class="prop-name">.MuiAutocomplete-inputDisabled</span> | Styles applied to the input element readOnly={true}
 | <span class="prop-name">endAdornment</span> | <span class="prop-name">.MuiAutocomplete-endAdornment</span> | Styles applied to the endAdornment element.
 | <span class="prop-name">clearIndicator</span> | <span class="prop-name">.MuiAutocomplete-clearIndicator</span> | Styles applied to the clear indicator.
 | <span class="prop-name">popupIndicator</span> | <span class="prop-name">.MuiAutocomplete-popupIndicator</span> | Styles applied to the popup indicator.

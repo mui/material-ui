@@ -31,12 +31,8 @@ export const styles = (theme) => ({
   fullWidth: {
     width: '100%',
   },
-  /* Pseudo-class applied to the root element or option component `focused` class if keyboard or mouse focused. */
+  /* Pseudo-class applied to the root element if focused. */
   focused: {},
-  /* Pseudo-class applied to the option component `disabled` class if option is disabled. */
-  disabled: {},
-  /* Pseudo-class applied to the option component `selected` class if option is selected. */
-  selected: {},
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
     margin: 3,
@@ -127,9 +123,6 @@ export const styles = (theme) => ({
         padding: '2.5px 4px',
       },
     },
-    '&$inputDisabled': {
-      cursor: 'pointer',
-    },
   },
   /* Styles applied to the input element. */
   input: {
@@ -140,12 +133,6 @@ export const styles = (theme) => ({
   /* Styles applied to the input element if tag focused. */
   inputFocused: {
     opacity: 1,
-  },
-  /* Styles applied to the input element readOnly={true} */
-  inputDisabled: {
-    cursor: 'pointer !important',
-    color: 'transparent', // Hide the blinking cursor
-    textShadow: `0 0 0 ${theme.palette.text.primary}`,
   },
   /* Styles applied to the endAdornment element. */
   endAdornment: {
@@ -219,21 +206,38 @@ export const styles = (theme) => ({
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
-    '&$focused': {
+    '&[data-focus="true"]': {
       backgroundColor: theme.palette.action.hover,
-    },
-    '&$selected': {
-      backgroundColor: theme.palette.action.selected,
-      '&$focused': {
-        backgroundColor: alpha(
-          theme.palette.action.selected,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
       },
     },
-    '&$disabled': {
+    '&[aria-disabled="true"]': {
       opacity: theme.palette.action.disabledOpacity,
       pointerEvents: 'none',
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: theme.palette.action.focus,
+    },
+    '&[aria-selected="true"]': {
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&[data-focus="true"]': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.action.selected,
+        },
+      },
+      '&.Mui-focusVisible': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
+      },
     },
   },
   /* Styles applied to the group's label elements. */
@@ -274,7 +278,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     debug = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
-    readOnly = false,
     disableCloseOnSelect = false,
     disabled = false,
     disabledItemsFocusable = false,
@@ -345,7 +348,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     setAnchorEl,
     inputValue,
     groupedOptions,
-    highlightedOptionIndex,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
   let startAdornment;
@@ -396,45 +398,16 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
   const defaultRenderOption = (props2, option) => <li {...props2}>{getOptionLabel(option)}</li>;
-
   const renderOption = renderOptionProp || defaultRenderOption;
 
-  const renderListOption = React.useCallback(
-    (option, index) => {
-      const optionProps = getOptionProps({ option, index });
-      return renderOption(
-        {
-          ...optionProps,
-          className: clsx(classes.option, {
-            [classes.focused]: highlightedOptionIndex === optionProps.index,
-            [classes.selected]: optionProps['aria-selected'],
-            [classes.disabled]: optionProps['aria-disabled'],
-          }),
-        },
-        option,
-        {
-          selected: optionProps['aria-selected'],
-          inputValue,
-        },
-      );
-    },
-    [getOptionProps, highlightedOptionIndex, inputValue, classes, renderOption],
-  );
+  const renderListOption = (option, index) => {
+    const optionProps = getOptionProps({ option, index });
 
-  const allGroupedOptions = React.useMemo(() => {
-    return groupedOptions.map((option, index) => {
-      if (groupBy) {
-        return renderGroup({
-          key: option.key,
-          group: option.group,
-          children: option.options.map((option2, index2) =>
-            renderListOption(option2, option.index + index2),
-          ),
-        });
-      }
-      return renderListOption(option, index);
+    return renderOption({ ...optionProps, className: classes.option }, option, {
+      selected: optionProps['aria-selected'],
+      inputValue,
     });
-  }, [groupedOptions, groupBy, renderGroup, renderListOption]);
+  };
 
   const hasClearIcon = !disableClearable && !disabled && dirty;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
@@ -463,9 +436,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           InputLabelProps: getInputLabelProps(),
           InputProps: {
             ref: setAnchorEl,
-            className: clsx(classes.inputRoot, {
-              [classes.inputDisabled]: readOnly,
-            }),
+            className: classes.inputRoot,
             startAdornment,
             endAdornment: (
               <div className={classes.endAdornment}>
@@ -499,7 +470,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           inputProps: {
             className: clsx(classes.input, {
               [classes.inputFocused]: focusedTag === -1,
-              [classes.inputDisabled]: readOnly,
             }),
             disabled,
             ...getInputProps(),
@@ -531,7 +501,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                 {...getListboxProps()}
                 {...ListboxProps}
               >
-                {allGroupedOptions}
+                {groupedOptions.map((option, index) => {
+                  if (groupBy) {
+                    return renderGroup({
+                      key: option.key,
+                      group: option.group,
+                      children: option.options.map((option2, index2) =>
+                        renderListOption(option2, option.index + index2),
+                      ),
+                    });
+                  }
+                  return renderListOption(option, index);
+                })}
               </ListboxComponent>
             ) : null}
           </PaperComponent>
@@ -863,11 +844,6 @@ Autocomplete.propTypes = {
    * @default <ArrowDropDownIcon />
    */
   popupIcon: PropTypes.node,
-  /**
-   * If `true`, the input is  and search functionality disabled, but s still consistently styled.
-   * @default false
-   */
-  readOnly: PropTypes.bool,
   /**
    * Render the group.
    *

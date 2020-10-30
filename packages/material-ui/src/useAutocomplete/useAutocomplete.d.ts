@@ -106,11 +106,6 @@ export interface UseAutocompleteProps<
    */
   disableListWrap?: boolean;
   /**
-   * If `true`, the input is  and search functionality disabled, but s still consistently styled.
-   * @default false
-   */
-  readOnly?: boolean;
-  /**
    * A filter function that determines the options that are eligible.
    *
    * @param {T[]} options The options to render.
@@ -322,6 +317,5 @@ export default function useAutocomplete<
   anchorEl: null | HTMLElement;
   setAnchorEl: () => void;
   focusedTag: number;
-  highlightedOptionIndex: number;
   groupedOptions: T[];
 };
