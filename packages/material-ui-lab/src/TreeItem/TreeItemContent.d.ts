@@ -5,7 +5,7 @@ export interface TreeItemContentProps extends StandardProps<React.HTMLAttributes
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
+  classes: {
     /** Styles applied to the root element. */
     root: string;
     /** Pseudo-class applied to the content element when expanded. */
