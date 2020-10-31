@@ -24,7 +24,7 @@ Choosing an option should immediately ideally commit the option and close the me
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 
-## Selected menus
+## Selected menu
 
 If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element,
 and the initial focus will be placed on the selected menu item.
@@ -33,7 +33,7 @@ To use a selected menu item without impacting the initial focus or the vertical 
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## Menu positioning
+## Positioned menu
 
 Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it.
 For instance, you can display the menu below the anchor:
@@ -50,7 +50,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Customized menus
+## Customized menu
 
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/components/).
@@ -62,7 +62,7 @@ You can use the same list composition features with the `MenuItem` component:
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu).
 
-## Max height menus
+## Max height menu
 
 If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
 
