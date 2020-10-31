@@ -23,6 +23,16 @@ A simple example with no frills.
 
 {{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
+## Data table
+
+The `Table` component has a close mapping to the native `<table>` elements.
+This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data.
+While it comes with a more rigid structure, in exchange, you gain more powerful features.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
+
 ## Dense table
 
 A simple example of a dense table with no frills.
@@ -36,16 +46,6 @@ This example demonstrates the use of `Checkbox` and clickable rows for selection
 The Table has been given a fixed width to demonstrate horizontal scrolling. In order to prevent the pagination controls from scrolling, the TablePagination component is used outside of the Table. (The ['Custom Table Pagination Action' example](#custom-pagination-actions) below shows the pagination within the TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
-
-## Data table
-
-The `Table` component has a close mapping to the native `<table>` elements.
-This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data.
-While it comes with a more rigid structure, in exchange, you gain more powerful features.
-
-{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Customized tables
 
