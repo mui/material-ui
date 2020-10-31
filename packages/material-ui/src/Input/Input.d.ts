@@ -36,7 +36,7 @@ export interface InputProps extends StandardProps<InputBaseProps> {
     inputTypeSearch?: string;
   };
   /**
-   * If `true`, the input will not have an underline.
+   * If `true`, the `input` will not have an underline.
    */
   disableUnderline?: boolean;
 }

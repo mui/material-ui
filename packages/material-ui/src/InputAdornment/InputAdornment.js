@@ -121,7 +121,7 @@ InputAdornment.propTypes = {
   component: PropTypes.elementType,
   /**
    * Disable pointer events on the root.
-   * This allows for the content of the adornment to focus the input on click.
+   * This allows for the content of the adornment to focus the `input` on click.
    * @default false
    */
   disablePointerEvents: PropTypes.bool,
