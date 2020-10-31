@@ -1,13 +1,40 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy, stub, useFakeTimers } from 'sinon';
 import { act, createClientRender, fireEvent, screen } from 'test/utils';
 import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
 describe('<ClickAwayListener />', () => {
-  const render = createClientRender();
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
+  });
+
+  const clientRender = createClientRender();
+  /**
+   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
+   *
+   * @remarks
+   * This is for all intents and purposes the same as our client render method.
+   * `plainRender` is already wrapped in act().
+   * However, React has a bug that flushes effects in a portal synchronously.
+   * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
+   * React bug: https://github.com/facebook/react/issues/20074
+   */
+  function render(...args) {
+    const result = clientRender(...args);
+    clock.next();
+    return result;
+  }
 
   it('should render the children', () => {
     const children = <span />;
@@ -240,6 +267,7 @@ describe('<ClickAwayListener />', () => {
           <span />
         </ClickAwayListener>,
       );
+
       fireEvent.touchStart(document.body);
       fireEvent.touchMove(document.body);
       fireEvent.touchEnd(document.body);
