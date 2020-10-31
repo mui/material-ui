@@ -1,11 +1,11 @@
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import * as React from 'react';
 
-export interface ContentProps extends StandardProps<React.HTMLAttributes<HTMLElement>> {
+export interface TreeItemContentProps extends StandardProps<React.HTMLAttributes<HTMLElement>> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes: {
+  classes?: {
     /** Styles applied to the root element. */
     root: string;
     /** Pseudo-class applied to the content element when expanded. */
@@ -43,4 +43,4 @@ export interface ContentProps extends StandardProps<React.HTMLAttributes<HTMLEle
   displayIcon?: React.ReactNode;
 }
 
-export type ContentClassKey = keyof NonNullable<ContentProps['classes']>;
+export type TreeItemContentClassKey = keyof NonNullable<TreeItemContentProps['classes']>;
