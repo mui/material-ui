@@ -36,8 +36,8 @@ The `MuiFilledInput` name can be used for providing [default props](/customizati
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component. |
 | <span class="prop-name">disableUnderline</span> | <span class="prop-type">bool</span> |  | If `true`, the input will not have an underline. |
 | <span class="prop-name">endAdornment</span> | <span class="prop-type">node</span> |  | End `InputAdornment` for this component. |
-| <span class="prop-name">error</span> | <span class="prop-type">bool</span> |  | If `true`, the input will indicate an error. The prop defaults to the value (`false`) inherited from the parent FormControl component. |
-| <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the input will take up the full width of its container. |
+| <span class="prop-name">error</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` will indicate an error. The prop defaults to the value (`false`) inherited from the parent FormControl component. |
+| <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the `input` will take up the full width of its container. |
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | The id of the `input` element. |
 | <span class="prop-name">inputComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'input'</span> | The component used for the `input` element. Either a string to use a HTML element or a component. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. |
@@ -48,7 +48,7 @@ The `MuiFilledInput` name can be used for providing [default props](/customizati
 | <span class="prop-name">multiline</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a `textarea` element is rendered. |
 | <span class="prop-name">name</span> | <span class="prop-type">string</span> |  | Name attribute of the `input` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the value is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value` (string). |
-| <span class="prop-name">placeholder</span> | <span class="prop-type">string</span> |  | The short hint displayed in the input before the user enters a value. |
+| <span class="prop-name">placeholder</span> | <span class="prop-type">string</span> |  | The short hint displayed in the `input` before the user enters a value. |
 | <span class="prop-name">readOnly</span> | <span class="prop-type">bool</span> |  | It prevents the user from changing the value of the field (not from interacting with the field). |
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element is required. The prop defaults to the value (`false`) inherited from the parent FormControl component. |
 | <span class="prop-name">rows</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Number of rows to display when multiline option is set to true. |

@@ -178,7 +178,7 @@ NativeSelect.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The input value. The DOM API casts this to a string.
+   * The `input` value. The DOM API casts this to a string.
    */
   value: PropTypes.any,
   /**

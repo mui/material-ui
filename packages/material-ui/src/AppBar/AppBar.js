@@ -16,12 +16,12 @@ export const styles = (theme) => {
       flexDirection: 'column',
       width: '100%',
       boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
-      zIndex: theme.zIndex.appBar,
       flexShrink: 0,
     },
     /* Styles applied to the root element if `position="fixed"`. */
     positionFixed: {
       position: 'fixed',
+      zIndex: theme.zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0,
@@ -33,6 +33,7 @@ export const styles = (theme) => {
     /* Styles applied to the root element if `position="absolute"`. */
     positionAbsolute: {
       position: 'absolute',
+      zIndex: theme.zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0,
@@ -41,6 +42,7 @@ export const styles = (theme) => {
     positionSticky: {
       // ⚠️ sticky is not supported by IE11.
       position: 'sticky',
+      zIndex: theme.zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0,

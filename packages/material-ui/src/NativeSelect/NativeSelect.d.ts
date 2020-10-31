@@ -59,7 +59,7 @@ export interface NativeSelectProps
    */
   onChange?: NativeSelectInputProps['onChange'];
   /**
-   * The input value. The DOM API casts this to a string.
+   * The `input` value. The DOM API casts this to a string.
    */
   value?: unknown;
   /**
