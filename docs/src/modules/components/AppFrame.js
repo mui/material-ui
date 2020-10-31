@@ -158,7 +158,7 @@ function AppFrame(props) {
   };
   const handleLanguageMenuClose = (event) => {
     if (event.currentTarget.nodeName === 'A') {
-      document.cookie = `userLanguage=noDefault;path=/;max-age=31536000`;
+      document.cookie = `userLanguage=${event.currentTarget.lang};path=/;max-age=31536000`;
     }
     setLanguageMenu(null);
   };

@@ -51,13 +51,11 @@ function LanguageNegotiation() {
   React.useEffect(() => {
     const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(router.asPath);
     const preferedLanguage =
-      getCookie('userLanguage') !== 'noDefault' && userLanguage === 'en'
-        ? acceptLanguage.get(navigator.language)
-        : userLanguage;
+      getCookie('userLanguage') || acceptLanguage.get(navigator.language) || userLanguage;
 
-    if (preferedLanguage !== userLanguage) {
+    if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
       window.location = preferedLanguage === 'en' ? canonical : `/${preferedLanguage}${canonical}`;
-    } else if (userLanguageUrl !== userLanguage) {
+    } else if (userLanguage !== userLanguageUrl) {
       dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { userLanguage: userLanguageUrl } });
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
