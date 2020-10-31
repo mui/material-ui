@@ -2,6 +2,7 @@
 title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
+waiAria: https://www.w3.org/TR/wai-aria-practices/#table
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -9,15 +10,13 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">Tables display sets of data. They can be fully customized.</p>
 
-Tables display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
-
-Tables can include:
+Tables display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards. They can include:
 
 - A corresponding visualization
 - Navigation
 - Tools to query and manipulate data
 
-When including tools, they should be placed directly above or below the table.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic table
 
