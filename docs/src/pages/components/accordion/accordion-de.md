@@ -3,7 +3,7 @@ title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 ---
 
-# Akkordeon
+# Akkordeon (Accordion)
 
 <p class="description">Erweiterungspanels (Tafeln) enthalten Erstellungsabläufe und ermöglichen die einfache Bearbeitung eines Elements.</p>
 

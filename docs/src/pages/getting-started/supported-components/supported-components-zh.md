@@ -59,7 +59,7 @@
     - **Switch（开关）✓**
     - Reorder（重新排序）
 - **[Menus（菜单）](https://material.io/design/components/menus.html) ✓** 
-  - **[Image lists（图像列表）](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists 网格列表) 
+  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** （可被组合使用） 
     - [Cascade（级联菜单）](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus（公开的下拉菜单）](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
     - **Text field dropdown menu（文本框下拉菜单）** ✓（Select 选择框）
@@ -77,11 +77,11 @@
   - **[Continuous（连续滑块）](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete（间续滑块）](https://material.io/design/components/sliders.html#discrete-slider) ✓**
 - **[Snackbars（消息条）](https://material.io/design/components/snackbars.html) ✓** (*旧 Material v1*)
-- **[Expansion Panels（扩展面板）](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*旧的 Material v1*) 
+- **[Subheaders（副标题）](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*旧 Material v1*) 
   - **[Lists（列表副标题）](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[ Grid（网格副标题）](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
-- **[Subheaders（副标题）](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*旧 Material v1*) 
+- **[Steppers（步骤条）](https://material.io/archive/guidelines/components/steppers.html) ✓** (*旧 Material v1*) 
   - **[Horizontal（横向的步骤条）](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical（垂直的步骤条）](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Mobile steps（移动设备上的步骤条）](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**

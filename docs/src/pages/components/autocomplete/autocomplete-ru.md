@@ -1,5 +1,5 @@
 ---
-title: React Autocomplete component
+title: Компонент React Autocomplete
 components: TextField, Popper, Autocomplete
 ---
 
@@ -78,7 +78,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 
 ## `useAutocomplete`
 
-Для продвинутой кастомизации используйте `useAutocomplete()` хук. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';

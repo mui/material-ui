@@ -46,7 +46,7 @@
 - 使用 [formik-material-ui](https://github.com/stackworx/formik-material-ui) 将 Material-UI 和 [formik](https://jaredpalmer.com/formik) 结合使用。
 - 使用 [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) 将 Material-UI 和 [Redux Form](https://redux-form.com/) 结合使用。
 - 使用 [mui-rff](https://github.com/lookfirst/mui-rff) 将 Material-UI 和 [React Final Form](https://final-form.org/react) 结合使用。
-- [data-driven-forms MUI mapper](https://github.com/data-driven-forms/react-forms/tree/master/packages/mui-component-mapper) 绑定 Material-UI 与 [数据驱动表单（Data Driven Forms）](https://data-driven-forms.org/) 一起使用。
+- [data-driven-forms MUI mapper](https://github.com/data-driven-forms/react-forms/tree/master/packages/mui-component-mapper) Bindings 可以实现将 Material-UI 与 [数据驱动表单（Data Driven Forms）](https://data-driven-forms.org/) 一起使用。
 
 ### 幻灯片
 
