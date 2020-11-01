@@ -217,6 +217,10 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+### AppBar
+
+- [AppBar] Remove z-index when position static and relative
+
 ### Alert
 
 - Перемещаем компонент из lab в core. Компонент теперь стабилен.
