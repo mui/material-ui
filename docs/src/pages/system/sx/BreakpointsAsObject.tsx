@@ -14,7 +14,7 @@ export default function BreakpointsAsObject() {
         },
       }}
     >
-      This box has a responsive width
+      This box has a responsive width.
     </Box>
   );
 }

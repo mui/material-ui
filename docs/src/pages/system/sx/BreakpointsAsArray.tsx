@@ -8,7 +8,7 @@ export default function BreakpointsAsArray() {
         width: [100, 200, 300, 400, 500],
       }}
     >
-      This box has a responsive width
+      This box has a responsive width.
     </Box>
   );
 }
