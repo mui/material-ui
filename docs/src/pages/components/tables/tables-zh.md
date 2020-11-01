@@ -23,6 +23,14 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 {{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
+## 数据表格
+
+`Table` 组件与原生 `<table>` 元素存在密切关联。 这种限制条件导致要构建丰富的数据表格会变得很有挑战性。
+
+[`DataGrid` 组件](/components/data-grid/) 专为需要处理大量表格数据的情况而设计。 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。 
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
+
 ## 紧凑型表格
 
 这是一个简单紧凑型表格，并且没有多余的装饰。
@@ -36,14 +44,6 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 这个表格已被赋予一个固定的宽度，您可以查看如何实现横向滚动。 在表格外部使用 TablePagination 组件，能够防止分页控件的滚动。 (以下的['Custom Table Pagination Action' （自定义表分页操作示例）](#custom-pagination-actions)展示了 TableFooter 中的分页。)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
-
-## 数据表格
-
-`Table` 组件与原生 `<table>` 元素存在密切关联。 这种限制条件导致要构建丰富的数据表格会变得很有挑战性。
-
-[`DataGrid` 组件](/components/data-grid/) 专为需要处理大量表格数据的情况而设计。 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。 
-
-{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## 自定义表格
 
