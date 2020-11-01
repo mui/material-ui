@@ -217,6 +217,10 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+### サイド検索バー
+
+- [AppBar] Remove z-index when position static and relative
+
 ### アラート
 
 - Move the component from the lab to the core. The component is now stable.
