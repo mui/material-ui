@@ -108,9 +108,9 @@ const inHouseAds = [
       '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
   },
   {
-    name: 'builder',
+    name: 'shuffledev',
     link: 'https://mui.dev/?ref=mui',
-    img: '/static/ads-in-house/builder.jpg',
+    img: '/static/ads-in-house/shuffledev.jpg',
     description:
       '<b>Create Material-UI websites in minutes</b>. An online editor for Material-UI with a simple, intuitive drag & drop interface and ready-made React components.',
   },
