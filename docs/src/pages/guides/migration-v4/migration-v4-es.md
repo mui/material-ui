@@ -217,6 +217,10 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+### Un App Bar prominente.
+
+- [AppBar] Remove z-index when position static and relative
+
 ### Alerta
 
 - Mueve el componente del laboratorio al core. El componente ahora es estable.
