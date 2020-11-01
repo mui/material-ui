@@ -23,6 +23,14 @@ Ein einfaches Beispiel ohne Verzierungen.
 
 Eine Daten-Tabelle enthält oben eine Kopfzeile, welche die Spaltennamen auflistet, gefolgt von den Zeilen für Daten.
 
+## Sortieren & Auswahl
+
+The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
+
 ## Einfache Tabelle
 
 Jede Zeile sollte ein Optionsfeld begleiten, falls die Nutzer die Daten auswählen oder ändern müssen.
@@ -36,14 +44,6 @@ Dieses Beispiel demonstriert die Nutzung von `Optionsfeld` und klickbaren Zeilen
 Der Tabelle wurde eine feste Breite zugewiesen, um das horizontale Scrollen zu veranschaulichen. Um zu verhindern, dass die Paginierungssteuerelemente einen Bildlauf ausführen, wird die TablePagination-Komponente außerhalb der Tabelle verwendet. (Das [‚Custom Tabelle Paginierung Aktion‘ Beispiel](#custom-pagination-actions) unten zeigt die Paginierung im TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
-
-## Sortieren & Auswahl
-
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
-
-{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Benutzerdefinierte Tabellen
 
