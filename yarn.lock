@@ -2449,21 +2449,21 @@
   integrity sha512-QHbzXjflSlCvDd6vJwdwx16mSB+vUCCQMiU/wK/CgVNPibtpEiIbisyxkpZc55DyDFNUIqP91rSUsNae+ogGDQ==
 
 "@rollup/plugin-replace@^2.3.1", "@rollup/plugin-replace@^2.3.2":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-replace/-/plugin-replace-2.3.3.tgz#cd6bae39444de119f5d905322b91ebd4078562e7"
-  integrity sha512-XPmVXZ7IlaoWaJLkSCDaa0Y6uVo5XQYHhiMFzOd5qSv5rE+t/UJToPIOE56flKIxBFQI27ONsxb7dqHnwSsjKQ==
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-replace/-/plugin-replace-2.3.4.tgz#7dd84c17755d62b509577f2db37eb524d7ca88ca"
+  integrity sha512-waBhMzyAtjCL1GwZes2jaE9MjuQ/DQF2BatH3fRivUF3z0JBFrU0U6iBNC/4WR+2rLKhaAhPWDNPYp4mI6RqdQ==
   dependencies:
-    "@rollup/pluginutils" "^3.0.8"
-    magic-string "^0.25.5"
+    "@rollup/pluginutils" "^3.1.0"
+    magic-string "^0.25.7"
 
-"@rollup/pluginutils@^3.0.8":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.0.9.tgz#aa6adca2c45e5a1b950103a999e3cddfe49fd775"
-  integrity sha512-TLZavlfPAZYI7v33wQh4mTP6zojne14yok3DNSLcjoG/Hirxfkonn6icP5rrNWRn8nZsirJBFFpijVOJzkUHDg==
+"@rollup/pluginutils@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.1.0.tgz#706b4524ee6dc8b103b3c995533e5ad680c02b9b"
+  integrity sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==
   dependencies:
     "@types/estree" "0.0.39"
     estree-walker "^1.0.1"
-    micromatch "^4.0.2"
+    picomatch "^2.2.2"
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
@@ -10890,10 +10890,10 @@ magic-string@^0.22.5:
   dependencies:
     vlq "^0.2.2"
 
-magic-string@^0.25.2, magic-string@^0.25.5:
-  version "0.25.6"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.6.tgz#5586387d1242f919c6d223579cc938bf1420795e"
-  integrity sha512-3a5LOMSGoCTH5rbqobC2HuDNRtE2glHZ8J7pK+QZYppyWA36yuNpsX994rIY2nCuyP7CZYy7lQq/X2jygiZ89g==
+magic-string@^0.25.2, magic-string@^0.25.7:
+  version "0.25.7"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
+  integrity sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==
   dependencies:
     sourcemap-codec "^1.4.4"
 
@@ -12844,7 +12844,7 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1:
+picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1, picomatch@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.2.2.tgz#21f333e9b6b8eaff02468f5146ea406d345f4dad"
   integrity sha512-q0M/9eZHzmr0AulXyPwNfZjtwZ/RBZlbN3K3CErVrk50T2ASYI7Bye0EvekFY3IP1Nt2DHu0re+V2ZHIpMkuWg==
