@@ -217,6 +217,10 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+### AppBar 应用栏
+
+- [AppBar] 当 position 为 static 和 relative 时，z-index 将会被移除。
+
 ### Alert 警告提示
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
@@ -854,7 +858,7 @@ const classes = makeStyles(theme => ({
   +<TextareAutosize minRows={1}>
   ```
 
-### ToggleButton
+### ToggleButton 切换按钮
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
