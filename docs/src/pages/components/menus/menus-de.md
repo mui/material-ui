@@ -24,13 +24,13 @@ Durch die Auswahl einer Option wird die Option sofort übernommen und das Menü 
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 
-## Ausgewählte Menüs
+## Selected menu
 
 Bei der Elementauswahl versuchen einfache Menüs beim Öffnen, das aktuell ausgewählte Menüelement mit dem Ankerelement vertikal auszurichten, und der ursprüngliche Fokus wird auf das ausgewählte Menüelement gesetzt. Das aktuell ausgewählte Menüelement wird mit der Eigenschaft `selected` (von [ListItem](/api/list-item/)) festgelegt. Um ein ausgewähltes Menüelement zu verwenden, ohne den anfänglichen Fokus oder die vertikale Positionierung des Menüs zu beeinflussen, setzen Sie die Eigenschaft `variant` auf `menu`.
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## Menu positioning
+## Positioned menu
 
 Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it. For instance, you can display the menu below the anchor:
 
@@ -44,7 +44,7 @@ Die Hauptaufgabe der `MenuList` Komponente besteht darin, den Fokus festzulegen.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Menüs anpassen
+## Customized menu
 
 Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
@@ -54,7 +54,7 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 🎨 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/styles/menu) an.
 
-## Maximale-Höhe Menüs
+## Max height menu
 
 Wenn die Höhe eines Menüs die Anzeige aller Menüelemente verhindert, kann das Menü intern gescrollt werden.
 
