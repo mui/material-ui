@@ -7,7 +7,6 @@ function BooleanButtonTest() {
 
   function EditableItemFail(props: { editable: boolean }) {
     const { editable } = props;
-    // @ts-expect-error 'boolean' is not assignable to type 'true'
     return <ListItem button={editable}>Editable? {editable}</ListItem>;
   }
 
