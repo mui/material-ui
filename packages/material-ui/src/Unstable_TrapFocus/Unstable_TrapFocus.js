@@ -77,9 +77,7 @@ function Unstable_TrapFocus(props) {
     // that were committed on `open={true}`
     // WARNING: Prevents the instance from being garbage collected. Should only
     // hold a weak ref.
-
     nodeToRestore.current = getDoc().activeElement;
-
   }
 
   React.useEffect(() => {
