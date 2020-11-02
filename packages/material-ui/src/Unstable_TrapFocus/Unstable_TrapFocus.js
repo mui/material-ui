@@ -123,7 +123,6 @@ function Unstable_TrapFocus(props) {
         // in nodeToRestore.current being null.
         // Not all elements in IE11 have a focus method.
         // Once IE11 support is dropped the focus() call can be unconditional.
-
         if (nodeToRestore.current && nodeToRestore.current.focus) {
           ignoreNextEnforceFocus.current = true;
           nodeToRestore.current.focus();
