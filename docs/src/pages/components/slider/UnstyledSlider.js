@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
+import Box from '@material-ui/core/Box';
 
 const StyledSlider = styled(SliderUnstyled)`
   color: black;
@@ -59,5 +60,9 @@ const StyledSlider = styled(SliderUnstyled)`
 `;
 
 export default function UnstyledSlider() {
-  return <StyledSlider defaultValue={10} />;
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider defaultValue={10} />
+    </Box>
+  );
 }
