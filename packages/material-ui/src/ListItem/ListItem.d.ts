@@ -98,7 +98,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
  *
  * - [ListItem API](https://material-ui.com/api/list-item/)
  */
-declare const ListItem: OverridableComponent<
+declare const ListItem: ExtendButtonBase<
   ListItemTypeMap<
     {
       /**
@@ -106,12 +106,12 @@ declare const ListItem: OverridableComponent<
        * for `ButtonBase` can then be applied to `ListItem`.
        * @default false
        */
-      button?: boolean;
+      button: true;
     },
-    'li'
+    'div'
   >
 > &
-  ExtendButtonBase<
+  OverridableComponent<
     ListItemTypeMap<
       {
         /**
@@ -119,9 +119,9 @@ declare const ListItem: OverridableComponent<
          * for `ButtonBase` can then be applied to `ListItem`.
          * @default false
          */
-        button: true;
+        button?: boolean;
       },
-      'div'
+      'li'
     >
   >;
 
