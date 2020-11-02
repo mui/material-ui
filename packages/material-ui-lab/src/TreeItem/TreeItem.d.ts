@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { ContentProps } from './TreeItemContent';
+import { TreeItemContentProps } from './TreeItemContent';
 
 export interface TreeItemProps
   extends StandardProps<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {
@@ -40,7 +40,7 @@ export interface TreeItemProps
    * The component used for the content node.
    * @default TreeItemContent
    */
-  ContentComponent?: React.ComponentType<ContentProps>;
+  ContentComponent?: React.ComponentType<TreeItemContentProps>;
   /**
    * Props applied to ContentComponent
    */

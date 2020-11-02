@@ -23,7 +23,7 @@ import loadScript from 'docs/src/modules/utils/loadScript';
 import RtlContext from 'docs/src/modules/utils/RtlContext';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
 // Configure JSS
@@ -51,7 +51,9 @@ function LanguageNegotiation() {
   React.useEffect(() => {
     const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(router.asPath);
     const preferedLanguage =
-      getCookie('userLanguage') || acceptLanguage.get(navigator.language) || userLanguage;
+      LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
+      acceptLanguage.get(navigator.language) ||
+      userLanguage;
 
     if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
       window.location = preferedLanguage === 'en' ? canonical : `/${preferedLanguage}${canonical}`;

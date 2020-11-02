@@ -6,7 +6,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem, {
   TreeItemProps,
   useTreeItem,
-  ContentProps,
+  TreeItemContentProps,
 } from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 const CustomContent = React.forwardRef(function CustomContent(
-  props: ContentProps,
+  props: TreeItemContentProps,
   ref,
 ) {
   const {

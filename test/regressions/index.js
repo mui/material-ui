@@ -50,28 +50,28 @@ const blacklist = [
   'docs-components-drawers/SwipeableTemporaryDrawer.png', // Needs interaction
   'docs-components-drawers/TemporaryDrawer.png', // Needs interaction
   'docs-components-floating-action-button/FloatingActionButtonZoom.png', // Needs interaction
-  'docs-components-image-list', // Image don't load
   'docs-components-grid/InteractiveGrid.png', // Redux isolation
   'docs-components-grid/SpacingGrid.png', // Needs interaction
   'docs-components-hidden', // Need to dynamically resize to test
+  'docs-components-image-list', // Image don't load
   'docs-components-material-icons/synonyms.png', // No component
   'docs-components-menus', // Need interaction
+  'docs-components-modal/KeepMountedModal.png', // Needs interaction
   'docs-components-modal/SimpleModal.png', // Needs interaction
   'docs-components-modal/SpringModal.png', // Needs interaction
   'docs-components-modal/TransitionsModal.png', // Needs interaction
-  'docs-components-modal/KeepMountedModal.png', // Needs interaction
   'docs-components-no-ssr/FrameDeferring.png', // Needs interaction
   'docs-components-popover/AnchorPlayground.png', // Redux isolation
   'docs-components-popover/MouseOverPopover.png', // Needs interaction
   'docs-components-popover/PopoverPopupState.png', // Needs interaction
   'docs-components-popover/SimplePopover.png', // Needs interaction
-  'docs-components-popper/VirtualElementPopper.png', // Needs interaction
   'docs-components-popper/PopperPopupState.png', // Needs interaction
   'docs-components-popper/PositionedPopper.png', // Needs interaction
   'docs-components-popper/ScrollPlayground.png', // Redux isolation
   'docs-components-popper/SimplePopper.png', // Needs interaction
   'docs-components-popper/SpringPopper.png', // Needs interaction
   'docs-components-popper/TransitionsPopper.png', // Needs interaction
+  'docs-components-popper/VirtualElementPopper.png', // Needs interaction
   'docs-components-portal/SimplePortal.png', // Needs interaction
   'docs-components-progress', // Flaky
   'docs-components-selects/ControlledOpenSelect.png', // Needs interaction
@@ -94,16 +94,21 @@ const blacklist = [
   'docs-components-steppers/HorizontalNonLinearStepper.png', // Redundant
   'docs-components-steppers/SwipeableTextMobileStepper.png', // Flaky image loading
   'docs-components-steppers/TextMobileStepper.png', // Flaky image loading
+  'docs-components-tabs/AccessibleTabs.png', // Need interaction
   'docs-components-textarea-autosize', // Superseded by a dedicated regression test
   'docs-components-tooltips', // Needs interaction
   'docs-components-transitions', // Needs interaction
+  'docs-components-trap-focus', // Need interaction
   'docs-components-tree-view/ControlledTreeView.png', // Redundant
   'docs-components-tree-view/CustomizedTreeView.png', // Flaky
+  'docs-components-tree-view/IconExpansionTreeView.png', // Need interaction
+  'docs-components-tree-view/MultiSelectTreeView.png', // Need interaction
   'docs-components-use-media-query', // Need to dynamically resize to test
   'docs-customization-breakpoints', // Need to dynamically resize to test
   'docs-customization-color', // Escape viewport
   'docs-customization-default-theme', // Redux isolation
   'docs-customization-density/DensityTool.png', // Redux isolation
+  'docs-customization-transitions/TransitionHover.png', // Need interaction
   'docs-customization-typography/ResponsiveFontSizesChart.png',
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
@@ -125,6 +130,7 @@ const blacklist = [
   'docs-landing', // Mostly images, redundant
   'docs-production-error', // No components, page for DX
   'docs-styles-advanced', // Redudant
+  'docs-styles-basics/StressTest.png', // Need interaction
   'docs-system-borders', // Unit tests are enough
   'docs-system-display', // Unit tests are enough
   'docs-system-flexbox', // Unit tests are enough
