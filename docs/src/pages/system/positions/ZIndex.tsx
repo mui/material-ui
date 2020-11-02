@@ -15,26 +15,26 @@ export default function ZIndex() {
     >
       <Box
         sx={{
-          bgcolor: "grey.700",
-          color: "white",
+          bgcolor: 'grey.700',
+          color: 'white',
           p: 2,
-          position: "absolute",
+          position: 'absolute',
           top: 40,
-          left: "40%",
-          zIndex: "tooltip",
+          left: '40%',
+          zIndex: 'tooltip',
         }}
       >
         z-index tooltip
       </Box>
       <Box
         sx={{
-          bgcolor: "background.paper",
-          color: "text.primary",
+          bgcolor: 'background.paper',
+          color: 'text.primary',
           p: 2,
-          position: "absolute",
+          position: 'absolute',
           top: 0,
-          left: "43%",
-          zIndex: "modal",
+          left: '43%',
+          zIndex: 'modal',
         }}
       >
         z-index modal

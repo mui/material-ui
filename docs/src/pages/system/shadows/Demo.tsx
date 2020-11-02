@@ -8,7 +8,7 @@ export default function Height() {
       <Box
         sx={{
           boxShadow: 0,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
           m: 1,
           p: 1,
           width: '8rem',
@@ -20,7 +20,7 @@ export default function Height() {
       <Box
         sx={{
           boxShadow: 1,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
           m: 1,
           p: 1,
           width: '8rem',
@@ -32,7 +32,7 @@ export default function Height() {
       <Box
         sx={{
           boxShadow: 2,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
           m: 1,
           p: 1,
           width: '8rem',
@@ -44,12 +44,12 @@ export default function Height() {
       <Box
         sx={{
           boxShadow: 3,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
           m: 1,
           p: 1,
           width: '8rem',
           height: '5rem',
-        }}      
+        }}
       >
         boxShadow: 3
       </Box>
