@@ -212,6 +212,7 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
     filename: typesFilename,
     presets: [require.resolve('@babel/preset-typescript')],
   });
+
   if (typesAST === null) {
     throw new Error('No AST returned from babel.');
   }
@@ -220,7 +221,7 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
     const parts = component.filename.split('\\');
     const componentName = parts[parts.length - 1].replace(/\.js$/, '');
 
-    typesAST.program.body.forEach((node) => {
+    (typesAST as any).program.body.forEach((node: any) => {
       const name = node.type === 'ExportNamedDeclaration' ? node?.declaration?.id?.name : undefined;
       if (name === `${componentName}ClassKey` && node.declaration.typeAnnotation.types) {
         const classes = node.declaration.typeAnnotation.types.map(
