@@ -42,7 +42,6 @@ function Unstable_TrapFocus(props) {
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
   const activated = React.useRef(false);
- 
   const rootRef = React.useRef(null);
   const handleRef = useForkRef(children.ref, rootRef);
   const prevOpenRef = React.useRef();
