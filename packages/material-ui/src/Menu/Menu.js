@@ -143,6 +143,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
         },
       }}
       open={open}
+      disableAutoFocus={!autoFocus}
       ref={ref}
       transitionDuration={transitionDuration}
       TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
