@@ -3033,7 +3033,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-is@^16.7.1":
+"@types/react-is@^16.7.1 || ^17.0.0":
   version "16.7.1"
   resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-16.7.1.tgz#d3f1c68c358c00ce116b55ef5410cf486dd08539"
   integrity sha512-dMLFD2cCsxtDgMkTydQCM0PxDq8vwc6uN5M/jRktDfYvH3nQj6pjC9OrCXS2lKlYoYTNJorI/dI8x9dpLshexQ==
@@ -13591,7 +13591,7 @@ react-focus-lock@^2.2.1:
     use-callback-ref "^1.2.1"
     use-sidecar "^1.0.1"
 
-react-is@16.13.1, react-is@^16.12.0, react-is@^16.13.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
+react-is@16.13.1, react-is@^16.12.0, react-is@^16.13.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, "react-is@^16.8.0 || ^17.0.0", react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
