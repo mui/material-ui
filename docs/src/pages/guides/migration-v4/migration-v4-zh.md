@@ -120,13 +120,13 @@ yarn add @material-ui/core@next
 
   修改前：
 
-  ```
+  ```js
   theme.spacing(2) => 16
   ```
 
   修改后：
 
-  ```
+  ```js
   theme.spacing(2) => '16px'
   ```
 
