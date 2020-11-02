@@ -134,8 +134,8 @@ async function annotateComponentDefinition(context: {
       }
 
       const { leadingComments } = node;
-      const jsdocBlock = leadingComments != null ? leadingComments[0] : null;
-      if (leadingComments != null && leadingComments.length > 1) {
+      const jsdocBlock = leadingComments !== null ? leadingComments[0] : null;
+      if (leadingComments !== null && leadingComments.length > 1) {
         throw new Error('Should only have a single leading jsdoc block');
       }
       if (jsdocBlock != null) {
@@ -190,6 +190,71 @@ async function annotateComponentDefinition(context: {
     .join('\n')}\n */`;
   const typesSourceNew = typesSource.slice(0, start) + jsdoc + typesSource.slice(end);
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
+}
+
+function trimComment(comment: string) {
+  let i = 0;
+  for (; i < comment.length; i++) {
+    if (comment[i] !== '*' && comment[i] !== ' ') {
+      break;
+    }
+  }
+  return comment.substr(i, comment.length - 1);
+}
+
+async function updateStylesDefinition(context: { api: ReactApi; component: { filename: string } }) {
+  const { api, component } = context;
+
+  const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
+  const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
+  const typesAST = await babel.parseAsync(typesSource, {
+    configFile: false,
+    filename: typesFilename,
+    presets: [require.resolve('@babel/preset-typescript')],
+  });
+  if (typesAST === null) {
+    throw new Error('No AST returned from babel.');
+  }
+
+  if (api.styles.classes.length === 0) {
+    const parts = component.filename.split('\\');
+    const componentName = parts[parts.length - 1].replace(/\.js$/, '');
+
+    typesAST.program.body.forEach((node) => {
+      const name = node.type === 'ExportNamedDeclaration' ? node?.declaration?.id?.name : undefined;
+      if (name === `${componentName}ClassKey` && node.declaration.typeAnnotation.types) {
+        const classes = node.declaration.typeAnnotation.types.map(
+          (node: babel.types.TSLiteralType) => node.literal.value,
+        );
+
+        const nodeLeadingComments = node.declaration.typeAnnotation.leadingComments || [];
+
+        node.declaration.typeAnnotation.types.forEach(
+          (typeNode: babel.types.TSLiteralType, idx: number) => {
+            let leadingComments = typeNode.leadingComments;
+            if (idx === 0) {
+              if (leadingComments) {
+                leadingComments = leadingComments.concat(nodeLeadingComments);
+              } else {
+                leadingComments = nodeLeadingComments;
+              }
+            }
+            if (leadingComments) {
+              for (let i = 0; i < leadingComments.length; i++) {
+                if (leadingComments[i].end + 6 === typeNode.literal.start) {
+                  api.styles.descriptions[typeNode.literal.value as string] = trimComment(
+                    leadingComments[i].value,
+                  );
+                }
+              }
+            }
+            return '';
+          },
+        );
+        api.styles.classes = classes;
+      }
+    });
+  }
 }
 
 async function annotateClassesDefinition(context: {
@@ -300,12 +365,13 @@ async function buildDocs(options: {
     globalClasses: {},
   };
 
+  styles.name = component?.default?.options?.name;
+
   if (component.styles && component.default.options) {
     // Collect the customization points of the `classes` property.
     styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
       (className) => !className.match(/^(@media|@keyframes|@global)/),
     );
-    styles.name = component.default.options.name;
     styles.globalClasses = styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
         // @ts-expect-error
@@ -375,6 +441,11 @@ async function buildDocs(options: {
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
   reactAPI.inheritance = getInheritance(testInfo, src);
+
+  await updateStylesDefinition({
+    api: reactAPI,
+    component: componentObject,
+  });
 
   let markdown;
   try {
