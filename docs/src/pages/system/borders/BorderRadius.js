@@ -13,8 +13,8 @@ const commonStyles = {
 export default function BorderRadius() {
   return (
     <Box display="flex" justifyContent="center">
-      <Box sx={{ ...commonStyles, borderRadius: "50%" }} />
-      <Box sx={{ ...commonStyles, borderRadius: "borderRadius" }} />
+      <Box sx={{ ...commonStyles, borderRadius: '50%' }} />
+      <Box sx={{ ...commonStyles, borderRadius: 'borderRadius' }} />
       <Box sx={{ ...commonStyles, borderRadius: 16 }} />
     </Box>
   );
