@@ -240,13 +240,14 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
 
             if (leadingComments) {
               for (let i = 0; i < leadingComments.length; i++) {
-                if (leadingComments[i].end + 6 === typeNode.literal.start) {
+                if (leadingComments[i].end + 5 === typeNode.literal.start) {
                   api.styles.descriptions[typeNode.literal.value as string] = trimComment(
                     leadingComments[i].value,
                   );
                 }
               }
             }
+
             return '';
           },
         );
@@ -446,7 +447,7 @@ async function buildDocs(options: {
     component: componentObject,
   });
 
-  if(reactAPI.styles.classes) {
+  if (reactAPI.styles.classes) {
     reactAPI.styles.globalClasses = reactAPI.styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
         // @ts-expect-error
