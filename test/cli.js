@@ -22,8 +22,8 @@ async function run(argv) {
   if (argv.bail) {
     args.push('--bail');
   }
-  if (argv.grep !== undefined) {
-    args.push(`--grep '${argv.grep}'`);
+  if (argv.testNamePattern !== undefined) {
+    args.push(`--grep '${argv.testNamePattern}'`);
   }
   if (argv.watch) {
     args.push('--watch');
@@ -64,15 +64,15 @@ yargs
           description: 'Stop on first error.',
           type: 'boolean',
         })
-        .option('grep', {
-          alias: 'g',
-          description: 'Limit tests by their name given a pattern.',
-          type: 'string',
-        })
         .option('single', {
           alias: 's',
           description: 'Run only once i.e. not in watch mode.',
           type: 'boolean',
+        })
+        .option('testNamePattern', {
+          alias: 't',
+          description: 'Limit tests by their name given a pattern.',
+          type: 'string',
         });
     },
     handler: run,
