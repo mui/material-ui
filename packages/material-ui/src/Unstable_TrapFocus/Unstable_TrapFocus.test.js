@@ -26,7 +26,6 @@ describe('<TrapFocus />', () => {
     document.body.removeChild(initialFocus);
   });
 
-
   it('should return focus to the children', () => {
     const { getByTestId } = render(
       <TrapFocus {...defaultProps} open>
