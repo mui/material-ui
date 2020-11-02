@@ -194,7 +194,7 @@ async function annotateComponentDefinition(context: {
 
 function trimComment(comment: string) {
   let i = 0;
-  for (; i < comment.length; i+=1) {
+  for (; i < comment.length; i += 1) {
     if (comment[i] !== '*' && comment[i] !== ' ') {
       break;
     }
@@ -220,17 +220,25 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
   if (api.styles.classes.length === 0) {
     const componentName = path.basename(typesFilename).replace(/\.d\.ts$/, '');
 
-    (typesAST as any).program.body.forEach((node: any) => {
-      const name = node.type === 'ExportNamedDeclaration' ? node?.declaration?.id?.name : undefined;
-      if (name === `${componentName}ClassKey` && node.declaration.typeAnnotation.types) {
-        const classes = node.declaration.typeAnnotation.types.map(
-          (typeNode: babel.types.TSLiteralType) => typeNode.literal.value,
-        );
+    traverse(typesAST, {
+      ExportNamedDeclaration(babelPath) {
+        const { node } = babelPath;
+        const declaration = node.declaration as babel.types.TSTypeAliasDeclaration;
 
-        const nodeLeadingComments = node.declaration.typeAnnotation.leadingComments || [];
+        const name = declaration.id?.name;
 
-        node.declaration.typeAnnotation.types.forEach(
-          (typeNode: babel.types.TSLiteralType) => {
+        const typeAnnotation = declaration.typeAnnotation as babel.types.TSUnionType;
+
+        if (name === `${componentName}ClassKey` && typeAnnotation.types) {
+          const classes: string[] = [];
+
+          const nodeLeadingComments = declaration.typeAnnotation.leadingComments || [];
+
+          typeAnnotation.types.forEach((typeNode) => {
+            const value = (typeNode as babel.types.TSLiteralType).literal.value as string;
+
+            classes.push(value);
+
             let leadingComments = typeNode.leadingComments;
             if (leadingComments) {
               leadingComments = leadingComments.concat(nodeLeadingComments);
@@ -239,20 +247,22 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
             }
 
             if (leadingComments) {
-              for (let i = 0; i < leadingComments.length; i+=1) {
-                if (leadingComments[i].end + 5 === typeNode.literal.start) {
-                  api.styles.descriptions[typeNode.literal.value as string] = trimComment(
-                    leadingComments[i].value,
-                  );
+              for (let i = 0; i < leadingComments.length; i += 1) {
+                if (
+                  leadingComments[i].end + 5 ===
+                  (typeNode as babel.types.TSLiteralType).literal.start
+                ) {
+                  api.styles.descriptions[value] = trimComment(leadingComments[i].value);
                 }
               }
             }
 
             return '';
-          },
-        );
-        api.styles.classes = classes;
-      }
+          });
+
+          api.styles.classes = classes;
+        }
+      },
     });
   }
 }
