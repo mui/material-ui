@@ -105,9 +105,3 @@ function tab({ shift = false, focusTrap } = {}) {
 }
 
 export default tab;
-
-/*
-eslint
-  complexity: "off",
-  max-statements: "off",
-*/
