@@ -540,7 +540,7 @@ function generateImportStatement(reactAPI: ReactApi): string {
       (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
     )
     // convert things like `/Table/Table.js` to ``
-    .replace(/\/([^/]+)\/\1\.js$/, '');
+    .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
   return `## Import
 
 \`\`\`js
