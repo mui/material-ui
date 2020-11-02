@@ -44,8 +44,8 @@ function Unstable_TrapFocus(props) {
   const activated = React.useRef(false);
   const rootRef = React.useRef(null);
   const handleRef = useForkRef(children.ref, rootRef);
-  const prevOpenRef = React.useRef();
 
+  const prevOpenRef = React.useRef();
   React.useEffect(() => {
 
     const doc = ownerDocument(rootRef.current);
