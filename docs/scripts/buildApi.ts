@@ -232,13 +232,12 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
         node.declaration.typeAnnotation.types.forEach(
           (typeNode: babel.types.TSLiteralType, idx: number) => {
             let leadingComments = typeNode.leadingComments;
-            if (idx === 0) {
-              if (leadingComments) {
-                leadingComments = leadingComments.concat(nodeLeadingComments);
-              } else {
-                leadingComments = nodeLeadingComments;
-              }
+            if (leadingComments) {
+              leadingComments = leadingComments.concat(nodeLeadingComments);
+            } else {
+              leadingComments = nodeLeadingComments;
             }
+
             if (leadingComments) {
               for (let i = 0; i < leadingComments.length; i++) {
                 if (leadingComments[i].end + 6 === typeNode.literal.start) {
@@ -446,6 +445,24 @@ async function buildDocs(options: {
     api: reactAPI,
     component: componentObject,
   });
+
+  if(reactAPI.styles.classes) {
+    reactAPI.styles.globalClasses = reactAPI.styles.classes.reduce((acc, key) => {
+      acc[key] = generateClassName(
+        // @ts-expect-error
+        {
+          key,
+        },
+        {
+          options: {
+            name: styles.name,
+            theme: {},
+          },
+        },
+      );
+      return acc;
+    }, {} as Record<string, string>);
+  }
 
   let markdown;
   try {
