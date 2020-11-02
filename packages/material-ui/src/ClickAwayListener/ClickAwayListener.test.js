@@ -1,12 +1,40 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub, useFakeTimers } from 'sinon';
 import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
 describe('<ClickAwayListener />', () => {
-  const render = createClientRender();
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
+  });
+
+  const clientRender = createClientRender();
+  /**
+   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
+   *
+   * @remarks
+   * This is for all intents and purposes the same as our client render method.
+   * `plainRender` is already wrapped in act().
+   * However, React has a bug that flushes effects in a portal synchronously.
+   * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
+   * React bug: https://github.com/facebook/react/issues/20074
+   */
+  function render(...args) {
+    const result = clientRender(...args);
+    clock.next();
+    return result;
+  }
 
   it('should render the children', () => {
     const children = <span />;
@@ -134,6 +162,48 @@ describe('<ClickAwayListener />', () => {
       fireEvent.click(getByText('Stop inside a portal'));
       // True-negative, we don't have enough information to do otherwise.
       expect(handleClickAway.callCount).to.equal(1);
+    });
+
+    it('should not be called during the same event that mounted the ClickAwayListener', () => {
+      function Test() {
+        const [open, setOpen] = React.useState(false);
+
+        return (
+          <React.Fragment>
+            <button data-testid="trigger" onClick={() => setOpen(true)} />
+            {open &&
+              ReactDOM.createPortal(
+                <ClickAwayListener onClickAway={() => setOpen(false)}>
+                  <div data-testid="child" />
+                </ClickAwayListener>,
+                // Needs to be an element between the react root we render into and the element where CAL attaches its native listener (now: `document`).
+                document.body,
+              )}
+          </React.Fragment>
+        );
+      }
+      render(<Test />);
+
+      const consoleSpy = stub(console, 'error');
+      try {
+        // can't wrap in `act()` since that changes update semantics.
+        // We want to simulate a discrete update.
+        // `act()` currently triggers a batched update: https://github.com/facebook/react/blob/3fbd47b86285b6b7bdeab66d29c85951a84d4525/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L1061-L1064
+        screen.getByTestId('trigger').click();
+
+        const missingActWarningsEnabled = typeof jest !== 'undefined';
+        if (missingActWarningsEnabled) {
+          expect(
+            consoleSpy.alwaysCalledWithMatch('not wrapped in act(...)'),
+            consoleSpy.args,
+          ).to.equal(true);
+        } else {
+          expect(consoleSpy.callCount).to.equal(0);
+        }
+        expect(screen.getByTestId('child')).not.to.equal(null);
+      } finally {
+        consoleSpy.restore();
+      }
     });
   });
 
