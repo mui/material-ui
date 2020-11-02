@@ -22,11 +22,11 @@ async function run(argv) {
   if (argv.bail) {
     args.push('--bail');
   }
+  if (!argv.single) {
+    args.push('--watch');
+  }
   if (argv.testNamePattern !== undefined) {
     args.push(`--grep '${argv.testNamePattern}'`);
-  }
-  if (argv.watch) {
-    args.push('--watch');
   }
 
   const mochaProcess = childProcess.spawn('yarn', args, {
