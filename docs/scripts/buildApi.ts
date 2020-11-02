@@ -194,7 +194,7 @@ async function annotateComponentDefinition(context: {
 
 function trimComment(comment: string) {
   let i = 0;
-  for (; i < comment.length; i++) {
+  for (; i < comment.length; i+=1) {
     if (comment[i] !== '*' && comment[i] !== ' ') {
       break;
     }
@@ -224,13 +224,13 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
       const name = node.type === 'ExportNamedDeclaration' ? node?.declaration?.id?.name : undefined;
       if (name === `${componentName}ClassKey` && node.declaration.typeAnnotation.types) {
         const classes = node.declaration.typeAnnotation.types.map(
-          (node: babel.types.TSLiteralType) => node.literal.value,
+          (typeNode: babel.types.TSLiteralType) => typeNode.literal.value,
         );
 
         const nodeLeadingComments = node.declaration.typeAnnotation.leadingComments || [];
 
         node.declaration.typeAnnotation.types.forEach(
-          (typeNode: babel.types.TSLiteralType, idx: number) => {
+          (typeNode: babel.types.TSLiteralType) => {
             let leadingComments = typeNode.leadingComments;
             if (leadingComments) {
               leadingComments = leadingComments.concat(nodeLeadingComments);
@@ -239,7 +239,7 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
             }
 
             if (leadingComments) {
-              for (let i = 0; i < leadingComments.length; i++) {
+              for (let i = 0; i < leadingComments.length; i+=1) {
                 if (leadingComments[i].end + 5 === typeNode.literal.start) {
                   api.styles.descriptions[typeNode.literal.value as string] = trimComment(
                     leadingComments[i].value,
