@@ -219,7 +219,7 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
 
   if (api.styles.classes.length === 0) {
     const componentName = path.basename(typesFilename).replace(/\.d\.ts$/, '');
-    console.log(componentName);
+
     (typesAST as any).program.body.forEach((node: any) => {
       const name = node.type === 'ExportNamedDeclaration' ? node?.declaration?.id?.name : undefined;
       if (name === `${componentName}ClassKey` && node.declaration.typeAnnotation.types) {
