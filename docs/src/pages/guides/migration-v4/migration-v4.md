@@ -132,13 +132,13 @@ The following changes are supported by the adapter.
 
   Before:
 
-  ```
+  ```js
   theme.spacing(2) => 16
   ```
 
   After:
 
-  ```
+  ```js
   theme.spacing(2) => '16px'
   ```
 
@@ -229,6 +229,10 @@ const classes = makeStyles(theme => ({
 +  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
 }));
 ```
+
+### AppBar
+
+- [AppBar] Remove z-index when position static and relative
 
 ### Alert
 

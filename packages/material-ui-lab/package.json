@@ -29,6 +29,7 @@
     "build:node": "node ../../scripts/build node",
     "build:stable": "node ../../scripts/build stable",
     "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:types": "tsc -p tsconfig.build.json",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-lab/**/*.test.{js,ts,tsx}'",
@@ -36,9 +37,9 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^5.0.0-alpha.11",
-    "@types/react": "^16.8.6",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -51,7 +52,7 @@
     "@material-ui/utils": "^5.0.0-alpha.14",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.0"
+    "react-is": "^16.8.0 || ^17.0.0"
   },
   "devDependencies": {
     "@material-ui/types": "^5.1.0"

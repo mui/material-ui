@@ -28,7 +28,7 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
     children?: React.ReactNode;
     /**
      * Disable pointer events on the root.
-     * This allows for the content of the adornment to focus the input on click.
+     * This allows for the content of the adornment to focus the `input` on click.
      * @default false
      */
     disablePointerEvents?: boolean;

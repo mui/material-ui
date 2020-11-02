@@ -381,6 +381,7 @@ export function inject(
     plugins: [
       require.resolve('@babel/plugin-syntax-class-properties'),
       require.resolve('@babel/plugin-syntax-jsx'),
+      [require.resolve('@babel/plugin-syntax-typescript'), { isTSX: true }],
       plugin(propTypes, options, propTypesToInject),
       ...(babelPlugins || []),
     ],

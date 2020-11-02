@@ -259,7 +259,7 @@ FormControl.propTypes = {
    */
   margin: PropTypes.oneOf(['dense', 'none', 'normal']),
   /**
-   * If `true`, the label will indicate that the input is required.
+   * If `true`, the label will indicate that the `input` is required.
    * @default false
    */
   required: PropTypes.bool,

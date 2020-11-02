@@ -168,7 +168,7 @@ InputLabel.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input of this label is focused.
+   * If `true`, the `input` of this label is focused.
    */
   focused: PropTypes.bool,
   /**
@@ -177,7 +177,7 @@ InputLabel.propTypes = {
    */
   margin: PropTypes.oneOf(['dense']),
   /**
-   * if `true`, the label will indicate that the input is required.
+   * if `true`, the label will indicate that the `input` is required.
    */
   required: PropTypes.bool,
   /**

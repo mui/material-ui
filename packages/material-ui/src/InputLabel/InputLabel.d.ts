@@ -51,7 +51,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   error?: boolean;
   /**
-   * If `true`, the input of this label is focused.
+   * If `true`, the `input` of this label is focused.
    */
   focused?: boolean;
   /**
@@ -60,7 +60,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   margin?: 'dense';
   /**
-   * if `true`, the label will indicate that the input is required.
+   * if `true`, the label will indicate that the `input` is required.
    */
   required?: boolean;
   /**

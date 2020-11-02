@@ -212,15 +212,15 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
     filename: typesFilename,
     presets: [require.resolve('@babel/preset-typescript')],
   });
+
   if (typesAST === null) {
     throw new Error('No AST returned from babel.');
   }
 
   if (api.styles.classes.length === 0) {
-    const parts = component.filename.split('\\');
-    const componentName = parts[parts.length - 1].replace(/\.js$/, '');
+    const componentName = path.basename(typesFilename).replace(/\.d\.ts$/, '');
 
-    typesAST.program.body.forEach((node) => {
+    (typesAST as any).program.body.forEach((node: any) => {
       const name = node.type === 'ExportNamedDeclaration' ? node?.declaration?.id?.name : undefined;
       if (name === `${componentName}ClassKey` && node.declaration.typeAnnotation.types) {
         const classes = node.declaration.typeAnnotation.types.map(
@@ -436,10 +436,6 @@ async function buildDocs(options: {
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
   reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
-
-  // if (reactAPI.name !== 'TableCell') {
-  //   return;
-  // }
 
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
