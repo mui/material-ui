@@ -7,10 +7,10 @@ export default function Visibility() {
       <Box
         component="span"
         sx={{
-          visibility: "visible",
+          visibility: 'visible',
           p: 1,
           m: 1,
-          bgcolor: "background.paper"
+          bgcolor: 'background.paper',
         }}
       >
         Visibility Visible
@@ -18,10 +18,10 @@ export default function Visibility() {
       <Box
         component="span"
         sx={{
-          visibility: "hidden",
+          visibility: 'hidden',
           p: 1,
           m: 1,
-          bgcolor: "background.paper"
+          bgcolor: 'background.paper',
         }}
       >
         Visibility Hidden

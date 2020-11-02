@@ -7,9 +7,9 @@ export default function WhiteSpace() {
       <Box
         component="div"
         sx={{
-          whiteSpace: "nowrap",
+          whiteSpace: 'nowrap',
           my: 2,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
         }}
       >
         White Space Nowrap. White Space Nowrap.
@@ -17,9 +17,9 @@ export default function WhiteSpace() {
       <Box
         component="div"
         sx={{
-          whiteSpace: "normal",
+          whiteSpace: 'normal',
           my: 2,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
         }}
       >
         White Space Normal. White Space Normal.

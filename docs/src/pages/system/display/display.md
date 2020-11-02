@@ -26,9 +26,9 @@
 
 For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid creating entirely different versions of the same site, instead hide element responsively for each screen size.
 
-| Screen Size        | Class                                                |
-| :----------------- | :--------------------------------------------------- |
-| Hidden on all      | `sx={{ display: "none" }}`                                     |
+| Screen Size        | Class                                                       |
+| :----------------- | :---------------------------------------------------------- |
+| Hidden on all      | `sx={{ display: "none" }}`                                  |
 | Hidden only on xs  | `sx={{ display: { xs: 'none', sm: 'block' }}}`              |
 | Hidden only on sm  | `sx={{ display: { xs: 'block', sm: 'none', md: 'block' }}}` |
 | Hidden only on md  | `sx={{ display: { xs: 'block', md: 'none', lg: 'block' }}}` |
