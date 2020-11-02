@@ -154,7 +154,7 @@ export default function createPalette(palette) {
     return contrastText;
   }
 
-  const augmentColor = ({color, mainShade = 500, lightShade = 300, darkShade = 700}) => {
+  const augmentColor = ({color, name, mainShade = 500, lightShade = 300, darkShade = 700}) => {
     color = { ...color };
     if (!color.main && color[mainShade]) {
       color.main = color[mainShade];
@@ -218,6 +218,7 @@ export default function createPalette(palette) {
       // The colors used to represent secondary interface elements for a user.
       secondary: augmentColor({
         color: secondary,
+        name: 'secondary',
         mainShade: 'A400',
         lightShade: 'A200',
         darkShade: 'A700',
