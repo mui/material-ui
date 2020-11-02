@@ -2,6 +2,7 @@
 title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -9,21 +10,25 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">Tables display sets of data. それらは完全にカスタマイズできます。</p>
 
-[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Cardなどの他のプライマリーコンテンツを埋め込むことができます。
-
-Tables can include:
+[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Cardなどの他のプライマリーコンテンツを埋め込むことができます。 They can include:
 
 - 対応の可視化
 - ナビゲーション
 - データを照会および操作するためのツール
 
-ツールを含めるときは、ツールをテーブルの真上または真下に配置します。
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Structure
 
 飾り気のないシンプルな例です。
 
 Data tableの上部には、列名をリストするヘッダー行があり、その後にデータ用の行が続きます。
+
+## Sorting & Selecting
+
+The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
 ## Simple Table
 
@@ -38,12 +43,6 @@ An example of a table with expandable rows, revealing more information. It utili
 テーブルは水平スクロールを示すために固定幅が与えられています。 テーブルは水平スクロールを示すために固定幅が与えられています。 ページ付けコントロールがスクロールするのを防ぐために、TablePaginationコンポーネントはTableの外側で使用されます。 （下記の ['カスタムテーブルページネーションアクション'の例](#custom-pagination-actions) は、TableFooter内のページネーションを示しています。） テーブルは水平スクロールを示すために固定幅が与えられています。 テーブルは水平スクロールを示すために固定幅が与えられています。 ページ付けコントロールがスクロールするのを防ぐために、TablePaginationコンポーネントはTableの外側で使用されます。 （下記の ['カスタムテーブルページネーションアクション'の例](#custom-pagination-actions) は、TableFooter内のページネーションを示しています。） テーブルは水平スクロールを示すために固定幅が与えられています。 ページ付けコントロールがスクロールするのを防ぐために、TablePaginationコンポーネントはTableの外側で使用されます。 （下記の ['カスタムテーブルページネーションアクション'の例](#custom-pagination-actions) は、TableFooter内のページネーションを示しています。）
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
-
-## Sorting & Selecting
-
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
 ## Customized tables
 
