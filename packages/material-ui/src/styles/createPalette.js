@@ -154,7 +154,7 @@ export default function createPalette(palette) {
     return contrastText;
   }
 
-  const augmentColor = ({color, name, mainShade = 500, lightShade = 300, darkShade = 700}) => {
+  const augmentColor = ({ color, name, mainShade = 500, lightShade = 300, darkShade = 700 }) => {
     color = { ...color };
     if (!color.main && color[mainShade]) {
       color.main = color[mainShade];
@@ -164,7 +164,7 @@ export default function createPalette(palette) {
       throw new MuiError(
         'Material-UI: The color%s provided to augmentColor(color) is invalid.\n' +
           'The color object needs to have a `main` property or a `%s` property.',
-          name ? ` (${name})` : '',
+        name ? ` (${name})` : '',
         mainShade,
       );
     }
@@ -184,7 +184,7 @@ export default function createPalette(palette) {
           '\n' +
           'const theme2 = createMuiTheme({ palette: {\n' +
           '  primary: { main: green[500] },\n' +
-         '} });',
+          '} });',
         name ? ` (${name})` : '',
         JSON.stringify(color.main),
       );

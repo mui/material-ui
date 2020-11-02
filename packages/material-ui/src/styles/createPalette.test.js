@@ -125,7 +125,7 @@ describe('createPalette()', () => {
         color: {
           main: indigo[500],
         },
-        name: 'primary'
+        name: 'primary',
       });
       expect(color).to.deep.include({
         light: 'rgb(101, 115, 195)',
