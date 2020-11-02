@@ -120,13 +120,13 @@ El adaptador soporta los siguientes cambios.
 
   Antes:
 
-  ```
+  ```js
   theme.spacing(2) => 16
   ```
 
   Después:
 
-  ```
+  ```js
   theme.spacing(2) => '16px'
   ```
 
