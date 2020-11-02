@@ -435,7 +435,6 @@ describe('<TrapFocus />', () => {
         // the trap prevent to escape
         getByRole('textbox').focus();
         expect(screen.getByTestId('modal')).toHaveFocus();
-
       });
 
       it('should restore the focus', () => {
