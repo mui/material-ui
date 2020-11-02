@@ -220,7 +220,6 @@ describe('<TrapFocus />', () => {
       );
     }
     const { setProps } = render(<Test />);
-
     const portaledTextbox = screen.getByTestId('portal-input');
     portaledTextbox.focus();
 
