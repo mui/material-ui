@@ -17,7 +17,7 @@ githubLabel: 'component: Box'
 
 ## sx 属性
 
-所有系统属性都可以 通过 `sx` 属性来获取。 除了那些已经作为系统的一部分可用的规则之外，该属性还允许你指定任何需要的 CSS 规则。 如下是一个怎么使用的示例：
+所有系统属性都可以 通过 `sx` 属性来获取。 In addition, this prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
 
 {{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 
