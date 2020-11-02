@@ -107,7 +107,6 @@ describe('createPalette()', () => {
       });
       const color2 = palette.augmentColor({
         color: indigo,
-        name: 'primary',
         mainShade: 400,
         lightShade: 200,
         darkShade: 600,
@@ -125,7 +124,6 @@ describe('createPalette()', () => {
         color: {
           main: indigo[500],
         },
-        name: 'primary',
       });
       expect(color).to.deep.include({
         light: 'rgb(101, 115, 195)',
