@@ -218,7 +218,7 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
   }
 
   if (api.styles.classes.length === 0) {
-    const parts = component.filename.split('\\');
+    const parts = component.filename.split('\/');
     const componentName = parts[parts.length - 1].replace(/\.js$/, '');
 
     (typesAST as any).program.body.forEach((node: any) => {
