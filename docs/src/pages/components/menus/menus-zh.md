@@ -24,13 +24,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 
-## 选择菜单
+## Selected menu
 
 若用于选项的选择，当打开简单菜单的时候，它会通过一个锚元素来尝试与当前被选择的菜单的选择项垂直对齐，而初始的焦点集中于被选中的那个选项。 通过 `selected` 属性（在[ListItem](/api/list-item/)中），您能够设置当前被选中的选项。 若想要使用一个已被选的项目，且不影响初始的焦点或者菜单的垂直位置，您可以设置一下”菜单“的 `variant` 属性。
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## 菜单位置
+## Positioned menu
 
 因为 `Menu` 组件是基于 `Popover` 组件来进行定位的，所以你也可以使用与之相同的 [定位属性](/components/popover/#anchor-playground) 来对它的位置进行改变。 例如，你可以在描点的下方显示菜单：
 
@@ -44,7 +44,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## 自定义菜单
+## Customized menu
 
 以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
@@ -54,7 +54,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/menu)。
 
-## 限高菜单
+## Max height menu
 
 如果最大高度的菜单仍无法显示所有菜单项，则菜单可以在内部滚动。
 
