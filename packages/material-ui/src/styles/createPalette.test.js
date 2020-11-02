@@ -155,6 +155,9 @@ describe('createPalette()', () => {
       expect(() => createPalette({ primary: { main: { foo: 'bar' } } })).to.throw(
         '`color.main` should be a string, but `{"foo":"bar"}` was provided instead.',
       );
+      expect(() => createPalette({ primary: { main: undefined } })).to.throw(
+        '`color.main` should be a string, but `undefined` was provided instead.',
+      );
     });
 
     it('logs an error when the contrast ratio does not reach AA', () => {
