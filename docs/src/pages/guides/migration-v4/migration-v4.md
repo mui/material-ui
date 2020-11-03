@@ -76,25 +76,32 @@ This change affects almost all components where you're using the `component` pro
   The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive).
   When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
 
-```diff
--theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
-+theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
-```
+  ```diff
+  -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
+  +theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
+  ```
 
-```diff
--theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
-+theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
-```
+  ```diff
+  -theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
+  +theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
+  ```
 
-```diff
--theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
-+theme.breakpoints.up('sm') // '@media (min-width:600px)'
-```
+  ```diff
+  -theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
+  +theme.breakpoints.up('sm') // '@media (min-width:600px)'
+  ```
 
-```diff
--<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
-+<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
-```
+  ```diff
+  -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
+  +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
+  ```
+
+- The signature of `theme.palette.augmentColor` helper has changed:
+
+  ```diff
+  -theme.palette.augmentColor(red);
+  +theme.palette.augmentColor({ color: red, name: 'brand' });
+  ```
 
 #### Upgrade helper
 
