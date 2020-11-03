@@ -35,6 +35,7 @@ async function run(argv) {
 
   const mochaProcess = childProcess.spawn('yarn', args, {
     env: {
+      ...process.env,
       NODE_ENV: 'test',
     },
     shell: true,
