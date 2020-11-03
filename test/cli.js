@@ -19,7 +19,7 @@ async function run(argv) {
   });
 
   if (spec.length === 0) {
-    throw new Error(`Could not find any file test files matching '${globPattern}'`)
+    throw new Error(`Could not find any file test files matching '${globPattern}'`);
   }
 
   const args = ['mocha'].concat(spec);
