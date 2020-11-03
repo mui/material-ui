@@ -32,7 +32,7 @@ describe('<Box />', () => {
   });
 
   describe('warnings', () => {
-    afterEach(() => {
+    beforeEach(() => {
       PropTypes.resetWarningCache();
     });
 
