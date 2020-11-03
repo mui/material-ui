@@ -227,12 +227,12 @@ FilledInput.propTypes = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the input will indicate an error.
+   * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the `input` will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,
@@ -286,7 +286,7 @@ FilledInput.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**

@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '../styles';
+import { alpha } from '../styles/colorManipulator';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
@@ -205,18 +206,38 @@ export const styles = (theme) => ({
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
-    '&[aria-selected="true"]': {
-      backgroundColor: theme.palette.action.selected,
-    },
     '&[data-focus="true"]': {
       backgroundColor: theme.palette.action.hover,
-    },
-    '&:active': {
-      backgroundColor: theme.palette.action.selected,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
     '&[aria-disabled="true"]': {
       opacity: theme.palette.action.disabledOpacity,
       pointerEvents: 'none',
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: theme.palette.action.focus,
+    },
+    '&[aria-selected="true"]': {
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&[data-focus="true"]': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.action.selected,
+        },
+      },
+      '&.Mui-focusVisible': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
+      },
     },
   },
   /* Styles applied to the group's label elements. */

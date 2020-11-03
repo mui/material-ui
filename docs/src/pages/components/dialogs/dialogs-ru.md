@@ -117,6 +117,10 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
+## Производительность
+
+Перейдите в раздел [Modal performance section](/components/modal/#performance).
+
 ## Ограничения
 
 Follow the [Modal limitations section](/components/modal/#limitations).

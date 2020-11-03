@@ -1,6 +1,6 @@
 # Interoperabilidade da Biblioteca de Estilo
 
-<p class="description">Enquanto você pode usar a solução de estilo baseada em JSS fornecida pelo Material-UI para estilizar sua aplicação, você também pode usar o que você já conhece e ama (desde CSS simples a styled-components).</p>
+<p class="description">While you can use the emotion based styling solution provided by Material-UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 
 Este guia tem como objetivo documentar as alternativas mais populares, mas você deve descobrir que os princípios aplicados aqui podem ser adaptados para outras bibliotecas. Existem exemplos para as seguintes soluções de estilo:
 
@@ -16,90 +16,141 @@ Nada extravagante, apenas CSS.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
-[![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/plain-css-mtzri)
+[![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/plain-css-fdue7)
 
-**PlainCssButton.css**
+**PlainCssSlider.css**
 
 ```css
-.button {
-  background-color: #6772e5;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.slider {
+  color: #20b2aa;
 }
-.button:hover {
-  background-color: #5469d4;
+
+.slider:hover {
+  color: #2e8b57;
 }
 ```
 
-**PlainCssButton.js**
+**PlainCssSlider.js**
 
 ```jsx
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import './PlainCssButton.css';
+import Slider from '@material-ui/lab/SliderStyled';
+import './PlainCssSlider.css';
 
-export default function PlainCssButton() {
+export default function PlainCssSlider() {
   return (
     <div>
-      <Button>Default</Button>
-      <Button className="button">Customized</Button>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className="slider" />
     </div>
   );
 }
 ```
 
-### Controlando prioridade ⚠️
+### CSS injection order ⚠️
 
-**Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material-UI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import * as React from 'react';
+import { CacheProvider } from '@emotion/core';
+import createCache from '@emotion/cache';
 
-<StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
-      Agora, você pode sobrescrever os estilos do Material-UI. */}
-</StylesProvider>
+const head = document.getElementsByTagName('head')[0];
+
+const emotionContainer = head.insertBefore(
+  document.createElement('STYLE'),
+  head.firstChild,
+);
+
+const cache = createCache({
+  container: emotionContainer,
+});
+
+export default function PlainCssPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Your component tree. Now you can override Material-UI's styles. */}
+    </CacheProvider>
+  );
+}
 ```
 
 ### Elementos mais profundos
 
-Se você tentar estilizar um Drawer com variante permanente, provavelmente precisará afetar o elemento Paper, elemento filho do Drawer. No entanto, o paper não é o elemento raiz do Drawer e, portanto, a customização de styled-components como acima não funcionará. Você precisa usar a API [`classes`](/styles/advanced/#overriding-styles-classes-prop) do Material-UI.
+If you attempt to style the Slider, you will likely need to affect some of the Slider's child elements, for example the thumb. In Material-UI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
 
-O exemplo a seguir sobrescreve o estilo de `label` e `Button`, além dos estilos customizados no próprio botão.
+The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
 
-**PlainCssButtonDeep.css**
+**PlainCssSliderDeep1.css**
 
 ```css
-.button {
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.slider {
+  color: #20b2aa;
 }
-.button:hover {
-  background-color: #5469d4;
+
+.slider:hover {
+  color: #2e8b57;
 }
-.button-label {
-  color: #fff;
+
+.slider .MuiSlider-thumb {
+  border-radius: 1px;
 }
 ```
 
-**PlainCssButtonDeep.js**
+**PlainCssSliderDeep1.js**
 
 ```jsx
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import './PlainCssButtonDeep.css';
+import Slider from '@material-ui/lab/SliderStyled';
+import './PlainCssSliderDeep1.css';
 
-export default function PlainCssButtonDeep() {
+export default function PlainCssSliderDeep1() {
   return (
     <div>
-      <Button>Default</Button>
-      <Button classes={{ root: 'button', label: 'button-label' }}>
-        Customized
-      </Button>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className="slider" />
+    </div>
+  );
+}
+```
+
+The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name with the `componentsProps` API.
+
+**PlainCssSliderDeep2.css**
+
+```css
+.slider {
+  color: #20b2aa;
+}
+
+.slider:hover {
+  color: #2e8b57;
+}
+
+.slider .thumb {
+  border-radius: 1px;
+}
+```
+
+**PlainCssSliderDeep2.js**
+
+```jsx
+import * as React from 'react';
+import Slider from '@material-ui/lab/SliderStyled';
+import './PlainCssSliderDeep2.css';
+
+export default function PlainCssSliderDeep2() {
+  return (
+    <div>
+      <Slider defaultValue={30} />
+      <Slider
+        defaultValue={30}
+        className="slider"
+        componentsProps={{ thumb: { className: 'thumb' } }}
+      />
     </div>
   );
 }
@@ -109,160 +160,190 @@ export default function PlainCssButtonDeep() {
 
 Fornecer explicitamente os nomes das classes ao componente é um esforço excessivo? [Você pode segmentar os nomes de classe gerados por Material-UI](/styles/advanced/#with-material-ui-core).
 
-[![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/global-css-bir9e)
+[![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/global-classnames-dho8k)
 
-**GlobalCssButton.css**
+**GlobalCssSlider.css**
 
 ```css
-.MuiButton-root {
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.MuiSlider-root {
+  color: #20b2aa;
 }
-.MuiButton-root:hover {
-  background-color: #5469d4;
-}
-.MuiButton-label {
-  color: #fff;
+
+.MuiSlider-root:hover {
+  color: #2e8b57;
 }
 ```
 
-**GlobalCssButton.js**
+**GlobalCssSlider.js**
 
 ```jsx
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import './GlobalCssButton.css';
+import Slider from '@material-ui/lab/SliderStyled';
+import './GlobalCssSlider.css';
 
-export default function GlobalCssButton() {
-  return <Button>Customized</Button>;
+export default function GlobalCssSlider() {
+  return <Slider defaultValue={30} />;
 }
 ```
 
-### Controlando prioridade ⚠️
+### CSS injection order ⚠️
 
-**Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material-UI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import * as React from 'react';
+import { CacheProvider } from '@emotion/core';
+import createCache from '@emotion/cache';
 
-<StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
-      Agora, você pode sobrescrever os estilos do Material-UI. */}
-</StylesProvider>
+const head = document.getElementsByTagName('head')[0];
+
+const emotionContainer = head.insertBefore(
+  document.createElement('STYLE'),
+  head.firstChild,
+);
+
+const cache = createCache({
+  container: emotionContainer,
+});
+
+export default function GlobalCssPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Your component tree. Now you can override Material-UI's styles. */}
+    </CacheProvider>
+  );
+}
+```
+
+### Elementos mais profundos
+
+If you attempt to style the Slider, you will likely need to affect some of the Slider's child elements, for example the thumb. In Material-UI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
+
+The following example overrides the slider's `thumb` style in addition to the custom styles on the slider itself.
+
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
+
+**GlobalCssSliderDeep.css**
+
+```css
+.MuiSlider-root {
+  color: #20b2aa;
+}
+
+.MuiSlider-root:hover {
+  color: #2e8b57;
+}
+
+.MuiSlider-root .MuiSlider-thumb {
+  border-radius: 1px;
+}
+```
+
+**GlobalCssSliderDeep.js**
+
+```jsx
+import * as React from 'react';
+import Slider from '@material-ui/lab/SliderStyled';
+import './GlobalCssSliderDeep.css';
+
+export default function GlobalCssSliderDeep() {
+  return <Slider defaultValue={30} />;
+}
 ```
 
 ## Styled Components
 
 ![estrelas](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
-O método `styled()` funciona perfeitamente em todos os componentes.
+### Change the default styled engine
+
+By default, Material-UI components come with emotion as their style engine. If, however, you would like to use `styled-components`, you can configure your app by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components). Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
+
+After the style engine is configured properly, you can use the `experimentalStyled()` utility from `@material-ui/core/styles` and have direct access to the theme.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
-[![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-r1fsr)
+[![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-interoperability-w9z9d)
 
 ```jsx
 import * as React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import Slider from '@material-ui/lab/SliderStyled';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 
-const StyledButton = styled(Button)`
-  background-color: #6772e5;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
-  &:hover {
-    background-color: #5469d4;
+const CustomizedSlider = styled(Slider)`
+  color: #20b2aa;
+
+  :hover {
+    color: #2e8b57;
   }
 `;
 
 export default function StyledComponents() {
-  return (
-    <div>
-      <Button>Padrão</Button>
-      <StyledButton> Customizado</StyledButton>
-    </div>
-  );
+  return <CustomizedSlider defaultValue={30} />;
 }
 ```
-
-### Controlando prioridade ⚠️
-
-**Nota:** Ambos, styled-components e JSS injetam seus estilos na parte inferior do `<head>`. A melhor abordagem para garantir que os estilos do styled-components sejam carregados por último, é alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
-
-```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
-      Agora, você pode sobrescrever os estilos do Material-UI. */}
-</StylesProvider>
-```
-
-Outra abordagem é usar os caracteres `&&` em styled-components para [aumentar a especificidade](https://www.styled-components.com/docs/advanced#issues-with-specificity) repetindo o nome da classe. Evite o uso de `!important`.
 
 ### Elementos mais profundos
 
-Se você tentar estilizar um Drawer com variante permanente, provavelmente precisará afetar o elemento Paper, elemento filho do Drawer. No entanto, o paper não é o elemento raiz do Drawer e, portanto, a customização de styled-components como acima não funcionará. Você precisa usar a API [`classes`](/styles/advanced/#overriding-styles-classes-prop) do Material-UI.
+If you attempt to style the Slider, you will likely need to affect some of the Slider's child elements, for example the thumb. In Material-UI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
 
-O exemplo a seguir sobrescreve o estilo de `label` e `Button`, além dos estilos customizados no próprio botão. Também funciona como solução de contorno [para este problema com styled-components](https://github.com/styled-components/styled-components/issues/439), por "consumir" propriedades que não devem ser passadas para o componente subjacente.
+The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js"}}
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": false}}
 
 ```jsx
 import * as React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import Slider from '@material-ui/lab/SliderStyled';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 
-const StyledButton = styled(Button)`
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
-  &:hover {
-    background-color: #5469d4;
+const CustomizedSlider = styled(Slider)`
+  color: #20b2aa;
+
+  :hover {
+    color: #2e8b57;
   }
-  & . MuiButton-label {
-    color: #fff;
+
+  & .MuiSlider-thumb {
+    border-radius: 1px;
   }
 `;
 
-export default function StyledComponentsDeep() {
+export default function StyledComponentsDeep1() {
   return (
     <div>
-      <Button>Padrão</Button>
-      <StyledButton>Customizado</StyledButton>
+      <Slider defaultValue={30} />
+      <CustomizedSlider defaultValue={30} />
     </div>
   );
 }
 ```
 
-A demonstração acima depende [dos valores padrão de `classes`](/styles/advanced/#with-material-ui-core), mas você pode fornecer seu próprio nome de classe: `.label`.
+The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name with the `componentsProps` API.
 
 ```jsx
 import * as React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Slider from '@material-ui/lab/SliderStyled';
 
-const StyledButton = styled(({ color, ...other }) => (
-  <Button classes={{ label: 'label' }} {...other} />
+const CustomizedSlider = styled((props) => (
+  <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
 ))`
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
-  &:hover {
-    background-color: #5469d4;
+  color: #20b2aa;
+
+  :hover {
+    color: #2e8b57;
   }
-  & .label {
-    color: #fff;
+
+  & .thumb {
+    border-radius: 1px;
   }
 `;
 
-export default function StyledComponentsDeep() {
+export default function StyledComponentsDeep2() {
   return (
     <div>
-      <Button>Padrão</Button>
-      <StyledButton>Customizado</StyledButton>
+      <Slider defaultValue={30} />
+      <CustomizedSlider defaultValue={30} />
     </div>
   );
 }
@@ -270,57 +351,29 @@ export default function StyledComponentsDeep() {
 
 ### Tema
 
-Material-UI tem uma estrutura de tema rica, que você pode aproveitar para manipulações de cores, transições, consultas de mídia e muito mais.
+By using the Material-UI theme provider, the theme will be available in the theme context of the styled engine too (emotion or styled-components, depending on your configuration).
 
-Incentivamos a compartilhar o mesmo objeto de tema entre Material-UI e seus estilos.
+> ⚠️ If you are **already** using a custom theme with styled-components or emotion, it might not be compatible with Material-UI's theme specification. If it's not compatible, you need to render Material-UI's ThemeProvider <b>first</b>. This will ensure the theme structures are isolated. This is ideal for the progressive adoption of Material-UI's components in the codebase.
+
+You are encouraged to share the same theme object between Material-UI and the rest of your project.
 
 ```jsx
-const StyledButton = styled(Button)`
-  ${({ theme }) => `
-  background-color: ${theme.palette.primary.main};
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 4px 10px;
-  font-size: 13px;
-  &:hover {
-    background-color: ${darken(theme.palette.primary.main, 0.2)};
+const CustomizedSlider = styled(Slider)(
+  ({ theme }) => `
+  color: ${theme.palette.primary.main};
+
+  :hover {
+    color: ${darken(theme.palette.primary.main, 0.2)};
   }
-  ${theme.breakpoints.up('sm')} {
-    font-size: 14px;
-    padding: 7px 14px;
-  }
-  `}
-`;
+`,
+);
 ```
 
 {{"demo": "pages/guides/interoperability/StyledComponentsTheme.js"}}
 
 ### Portais
 
-O [Portal](/components/portal/) fornece uma maneira de elegante para renderizar filhos em um nó DOM que existe fora da hierarquia DOM do componente pai. Devido a maneira como o escopo de CSS do styled-components funciona, você pode encontrar problemas nos quais o estilo não é aplicado.
-
-Por exemplo, se você tentar estilizar o [Menu](/components/menus/) de um componente [Select](/components/selects/) usando a propriedade `MenuProps`, você precisará passar a propriedade `className` para o elemento que está sendo renderizado fora de sua hierarquia DOM. O exemplo a seguir mostra uma solução alternativa:
-
-```jsx
-import * as React from 'react';
-import styled from 'styled-components';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-
-const StyledMenu = styled(({ className, ...props }) => (
-  <Menu {...props} classes={{ paper: className }} />
-))`
-  box-shadow: none;
-  border: 1px solid #d3d4d5;
-
-  li {
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-`;
-```
-
-{{"demo": "pages/guides/interoperability/StyledComponentsPortal.js"}}
+TODO: fill this section after the portal is implemented with the new styled engine.
 
 ## Módulos CSS
 
@@ -330,90 +383,144 @@ const StyledMenu = styled(({ className, ...props }) => (
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
-[![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/css-modules-3j29h)
+[![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/css-modules-nuyg8)
 
-**CssModulesButton.css**
+**CssModulesSlider.module.css**
 
 ```css
-.button {
-  background-color: #6772e5;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.slider {
+  color: #20b2aa;
 }
-.button:hover {
-  background-color: #5469d4;
+
+.slider:hover {
+  color: #2e8b57;
 }
 ```
 
-**CssModulesButton.js**
+**CssModulesSlider.js**
 
 ```jsx
-import * as React from 'react';
-// webpack, parcel ou qualquer outro irá injetar o CSS na página
-import styles from './CssModulesButton.css';
-import Button from '@material-ui/core/Button';
+import React from 'react';
+import Slider from '@material-ui/lab/SliderStyled';
+// webpack, parcel or else will inject the CSS into the page
+import styles from './CssModulesSlider.module.css';
 
-export default function CssModulesButton() {
+export default function CssModulesSlider() {
   return (
     <div>
-      <Button>Padrão</Button>
-      <Button className={styles.button}>Customizado</Button>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className={styles.slider} />
     </div>
   );
 }
 ```
 
-### Controlando prioridade ⚠️
+### CSS injection order ⚠️
 
-**Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material-UI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import * as React from 'react';
+import { CacheProvider } from '@emotion/core';
+import createCache from '@emotion/cache';
 
-<StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
-      Agora, você pode sobrescrever os estilos do Material-UI. */}
-</StylesProvider>
+const head = document.getElementsByTagName('head')[0];
+
+const emotionContainer = head.insertBefore(
+  document.createElement('STYLE'),
+  head.firstChild,
+);
+
+const cache = createCache({
+  container: emotionContainer,
+});
+
+export default function CssModulesPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Your component tree. Now you can override Material-UI's styles. */}
+    </CacheProvider>
+  );
+}
 ```
 
 ### Elementos mais profundos
 
-Se você tentar estilizar um Drawer com variante permanente, provavelmente precisará afetar o elemento Paper, elemento filho do Drawer. No entanto, o paper não é o elemento raiz do Drawer e, portanto, a customização de styled-components como acima não funcionará. Você precisa usar a API [`classes`](/styles/advanced/#overriding-styles-classes-prop) do Material-UI.
+If you attempt to style the Slider, you will likely need to affect some of the Slider's child elements, for example the thumb. In Material-UI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
 
-O exemplo a seguir sobrescreve o estilo de `label` e `Button`, além dos estilos customizados no próprio botão.
+The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
 
-**CssModulesButtonDeep.css**
+**CssModulesSliderDeep1.module.css**
 
 ```css
-.root {
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.slider {
+  color: #20b2aa;
 }
-.root:hover {
-  background-color: #5469d4;
+
+.slider:hover {
+  color: #2e8b57;
 }
-.label {
-  color: #fff;
+
+.slider .MuiSlider-thumb {
+  border-radius: 1px;
 }
 ```
 
-**CssModulesButtonDeep.js**
+**CssModulesSliderDeep1.js**
 
 ```jsx
-import * as React from 'react';
-// webpack, parcel ou qualquer outro irá injetar o CSS na página
-import styles from './CssModulesButtonDeep.css';
-import Button from '@material-ui/core/Button';
+import React from 'react';
+// webpack, parcel or else will inject the CSS into the page
+import styles from './CssModulesSliderDeep1.module.css';
+import Slider from '@material-ui/lab/SliderStyled';
 
-export default function CssModulesButtonDeep() {
+export default function CssModulesSliderDeep1() {
   return (
     <div>
-      <Button>Padrão</Button>
-      <Button classes={styles}>Customizado</Button>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className={styles.slider} />
+    </div>
+  );
+}
+```
+
+The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name with the `componentsProps` API.
+
+**CssModulesSliderDeep2.module.css**
+
+```css
+.slider {
+  color: #20b2aa;
+}
+
+.slider:hover {
+  color: #2e8b57;
+}
+
+.slider .thumb {
+  border-radius: 1px;
+}
+```
+
+**CssModulesSliderDeep2.js**
+
+```jsx
+import React from 'react';
+// webpack, parcel or else will inject the CSS into the page
+import styles from './CssModulesSliderDeep2.module.css';
+import Slider from '@material-ui/lab/SliderStyled';
+
+export default function CssModulesSliderDeep2() {
+  return (
+    <div>
+      <Slider defaultValue={30} />
+      <Slider
+        defaultValue={30}
+        className={styles.slider}
+        componentsProps={{ thumb: { className: styles.thumb } }}
+      />
     </div>
   );
 }
@@ -429,76 +536,35 @@ O método **css()** do Emotion funciona perfeitamente com Material-UI.
 
 {{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideToolbar": true}}
 
-[![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-bgfxj)
+[![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-interoperability-idymy)
 
 ```jsx
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import Button from '@material-ui/core/Button';
+import Slider from '@material-ui/lab/SliderStyled';
 
 export default function EmotionCSS() {
   return (
     <div>
-      <Button>Padrão</Button>
-      <Button
+      <Slider defaultValue={30} />
+      <Slider
+        defaultValue={30}
         css={css`
-          background-color: #6772e5;
-          color: #fff;
-          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-          padding: 7px 14px;
-          &:hover {
-            background-color: #5469d4;
+          color: #20b2aa;
+
+          :hover {
+            color: #2e8b57;
           }
         `}
-      >
-        Customizado
-      </Button>
+      />
     </div>
   );
 }
 ```
 
-### Controlando prioridade ⚠️
-
-**Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
-
-```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
-      Agora, você pode sobrescrever os estilos do Material-UI. */}
-</StylesProvider>
-```
-
 ### Tema
 
-Material-UI tem uma estrutura de tema rica, que você pode aproveitar para manipulações de cores, transições, consultas de mídia e muito mais.
-
-Incentivamos a compartilhar o mesmo objeto de tema entre Material-UI e seus estilos.
-
-```jsx
-<Button
-  css={theme => css`
-    background-color: ${theme.palette.primary.main};
-    color: #fff;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    padding: 4px 10px;
-    font-size: 13px;
-    &:hover {
-      background-color: ${darken(theme.palette.primary.main, 0.2)};
-    }
-    ${theme.breakpoints.up('sm')} {
-      font-size: 14px;
-      padding: 7px 14px;
-    }
-  `}
->
-  Customizado
-</Button>
-```
-
-{{"demo": "pages/guides/interoperability/EmotionTheme.js"}}
+Funciona exatamente como styled components. Você pode [usar o mesmo guia](/guides/interoperability/#styled-components).
 
 ### A API `styled()`
 

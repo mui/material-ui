@@ -87,21 +87,56 @@ const app = express();
 
 サーバーサイドレンダリングにおいて最も重要なステップは、最初に描画されるHTMLをクライアントに**渡す前**に描画しきることです。 サーバーサイドレンダリングにおいて最も重要なステップは、最初に描画されるHTMLをクライアントに**渡す前**に描画しきることです。 これを実現するために [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html)を使用します。
 
-その後、対象のCSS を`sheets` インスタンスから`sheets.toString()`を用いて文字列として取得します。 ここで、先ほどの`renderFullPage`関数の中で、これらの値がどの様に受け渡されるを見ていきます。 ここで、先ほどの`renderFullPage`関数の中で、これらの値がどの様に受け渡されるを見ていきます。
+その後、対象のCSS を`sheets` インスタンスから`sheets.toString()`を用いて文字列として取得します。 ここで、先ほどの`renderFullPage`関数の中で、これらの値がどの様に受け渡されるを見ていきます。 As we are also using emotion as our default styled engine, we need to extract the styles from the emotion instance as well. For this we need to share the same cache definition for both the client and server:
+
+`cache.js`
+
+```js
+import createCache from '@emotion/cache';
+
+const cache = createCache();
+
+export default cache;
+```
+
+With this we are creating new Emotion server instance and using this to extract the critical styles for the html as well.
+
+ここで、先ほどの`renderFullPage`関数の中で、これらの値がどの様に受け渡されるを見ていきます。
 
 ```jsx
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import createEmotionServer from 'create-emotion-server';
 import App from './App';
 import theme from './theme';
+import cache from './cache';
+
+const { extractCritical } = createEmotionServer(cache);
 
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
-  res.send(renderFullPage(html, css));
+  const html = ReactDOMServer.renderToString(
+    sheets.collect(
+      <CacheProvider value={cache}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </CacheProvider>,
+    ),
+  );
+
+  // Grab the CSS from the sheets.
+  const css = sheets.toString();
+
+  // Grab the CSS from emotion
+  const styles = extractCritical(html);
+
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, `${css} ${styles.css}`));
 }
 
 const app = express();
@@ -109,26 +144,6 @@ const app = express();
 app.use('/build', express.static('build'));
 
 // This is fired every time the server-side receives a request.
-  const html = ReactDOMServer.renderToString(
-    sheets.collect(
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>,
-    ),
-  );
-
-  // Grab the CSS from the sheets.
-  import express from 'express';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
-import App from './App';
-import theme from './theme';
-
-function handleRender(req, res) {
-  const sheets = new ServerStyleSheets();
-
-  // Render the component to a string.
 */
 }
 
@@ -168,8 +183,10 @@ function renderFullPage(html, css) {
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { CacheProvider } from '@emotion/core';
 import App from './App';
 import theme from './theme';
+import cache from './cache';
 
 function Main() {
   React.useEffect(() => {
@@ -180,9 +197,11 @@ function Main() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 

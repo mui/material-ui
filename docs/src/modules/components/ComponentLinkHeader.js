@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import Chip from '@material-ui/core/Chip';
 import Tooltip from '@material-ui/core/Tooltip';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
@@ -10,6 +9,7 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +32,7 @@ export default function ComponentLinkHeader(props) {
     options,
   } = props;
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   if (headers.materialDesign && options.design === false) {
     throw new Error('missing design assets');

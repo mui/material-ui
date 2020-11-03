@@ -18,7 +18,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
-## Positioned Tooltips
+## Positioned tooltips
 
 `ツールチップ` は、12 **配置** 選択肢があります。 矢印はありません。その代わりに、方向を伝達するためにソースから発生するモーションに依存します。
 
@@ -30,7 +30,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Arrow Tooltips
+## Arrow tooltips
 
 You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
 
@@ -61,13 +61,13 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Controlled Tooltips
+## Controlled tooltips
 
 `open`, `onOpen` and `onClose` の各プロパティを使用して、ツールチップの動作を制御できます。
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Variable Width
+## Variable width
 
 既定では、`Tooltip`は長いテキストを折り返して読みやすくします。
 
@@ -79,7 +79,7 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## 無効な要素
+## Disabled elements
 
 デフォルトでは無効になっている要素`<button>`はユーザーの操作をトリガーしないため、 `Tooltip`は、ホバーなどの通常のイベントでアクティブになりません。 To accommodate disabled elements, add a simple wrapper element, such as a `span`. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
@@ -92,8 +92,9 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 ```jsx
 <Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'A disabled button'}
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}
+    >
+      A disabled button
     </button>
   </span>
 </Tooltip>
@@ -111,9 +112,9 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
-## 偽の参照オブジェクト
+## Virtual element
 
-In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 

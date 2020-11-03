@@ -7,10 +7,10 @@ export default function TextOverflow() {
       <Box
         component="div"
         sx={{
-          textOverflow: "clip",
+          textOverflow: 'clip',
           my: 2,
-          overflow: "hidden",
-          bgcolor: "background.paper",
+          overflow: 'hidden',
+          bgcolor: 'background.paper',
         }}
       >
         Text Overflow Clip. Text Overflow Clip.
@@ -18,10 +18,10 @@ export default function TextOverflow() {
       <Box
         component="div"
         sx={{
-          textOverflow: "ellipsis",
+          textOverflow: 'ellipsis',
           my: 2,
-          overflow: "hidden",
-          bgcolor: "background.paper",
+          overflow: 'hidden',
+          bgcolor: 'background.paper',
         }}
       >
         Text Overflow Ellipsis. Text Overflow Ellipsis

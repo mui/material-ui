@@ -14,7 +14,6 @@
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - [朴素的服务端渲染](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
 - [使用 styled-components 来作为样式渲染引擎](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
-- [Reason React](https://github.com/mui-org/material-ui/tree/next/examples/reason)
 
 Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
 

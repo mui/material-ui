@@ -1,5 +1,5 @@
 ---
-title: React 列表组件
+title: React 列表（List）组件
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 githubLabel: 'component: List'
 materialDesign: https://material.io/components/lists
@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/lists
 
 <p class="description">列表是对文本或图像的连续、垂直的索引。</p>
 
-[列表](https://material.io/design/components/lists.html) 能够承载一组连续的文本或图像。 它们由包含主要和补充操作的项子集组成，而这些操作由图标和文本表示。
+列表能够承载一组连续的文本或图像。 它们由包含主要和补充操作的项子集组成，而这些操作由图标和文本表示。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -53,7 +53,7 @@ function ListItemLink(props) {
 
 ## 对齐列表项
 
-若想显示3行或者更多行时，您应该设置列表项的对齐属性为 `alignItems="flex-start"`。
+若想显示 3 行或者更多行时，你应该改变列表项的对齐方式，将 `alignItems` 属性值设置为 "flex-start"。
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
@@ -91,7 +91,7 @@ function ListItemLink(props) {
 
 ## 没有边距的列表
 
-当在一个定义了边距（gutters）的组件中渲染一个列表时，`ListItem` 的边距可以通过 `disableGutters` 来禁用。
+当在一个定义了边距（gutters）的组件中渲染列表时，可以通过 `disableGutters` 来禁用 `ListItem` 的边距。
 
 {{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 

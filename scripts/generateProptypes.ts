@@ -152,9 +152,9 @@ const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
 });
 
 async function generateProptypes(
-  tsFile: string,
-  jsFile: string,
   program: ttp.ts.Program,
+  sourceFile: string,
+  tsFile: string = sourceFile,
 ): Promise<GenerateResult> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
@@ -182,20 +182,28 @@ async function generateProptypes(
     });
   });
 
-  const jsContent = await fse.readFile(jsFile, 'utf8');
+  const sourceContent = await fse.readFile(sourceFile, 'utf8');
+
+  const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
   const unstyledFile = tsFile.endsWith('Styled.d.ts')
-    ? tsFile.replace(/Styled/g, 'Unstyled')
+    ? tsFile.replace(/material-ui-lab|material-ui-core|Styled/g, (matched) => {
+        if (matched === 'Styled') return 'Unstyled';
+        return 'material-ui-unstyled';
+      })
     : null;
-  const result = ttp.inject(proptypes, jsContent, {
+
+  const result = ttp.inject(proptypes, sourceContent, {
     removeExistingPropTypes: true,
     babelOptions: {
-      filename: jsFile,
+      filename: sourceFile,
     },
     comment: [
       '----------------------------- Warning --------------------------------',
       '| These PropTypes are generated from the TypeScript type definitions |',
-      '|     To update them edit the d.ts file and run "yarn proptypes"     |',
+      isTsFile
+        ? '|     To update them edit TypeScript types and run "yarn proptypes"  |'
+        : '|     To update them edit the d.ts file and run "yarn proptypes"     |',
       '----------------------------------------------------------------------',
     ].join('\n'),
     getSortLiteralUnions,
@@ -254,11 +262,11 @@ async function generateProptypes(
     return GenerateResult.Failed;
   }
 
-  const prettified = prettier.format(result, { ...prettierConfig, filepath: jsFile });
+  const prettified = prettier.format(result, { ...prettierConfig, filepath: sourceFile });
   const formatted = fixBabelGeneratorIssues(prettified);
-  const correctedLineEndings = fixLineEndings(jsContent, formatted);
+  const correctedLineEndings = fixLineEndings(sourceContent, formatted);
 
-  await fse.writeFile(jsFile, correctedLineEndings);
+  await fse.writeFile(sourceFile, correctedLineEndings);
   return GenerateResult.Success;
 }
 
@@ -279,10 +287,11 @@ async function run(argv: HandlerArgv) {
 
   const allFiles = await Promise.all(
     [
+      path.resolve(__dirname, '../packages/material-ui-unstyled/src'),
       path.resolve(__dirname, '../packages/material-ui/src'),
       path.resolve(__dirname, '../packages/material-ui-lab/src'),
     ].map((folderPath) =>
-      glob('+([A-Z])*/+([A-Z])*.d.ts', {
+      glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
         absolute: true,
         cwd: folderPath,
       }),
@@ -294,7 +303,7 @@ async function run(argv: HandlerArgv) {
     // Example: Modal/ModalManager.d.ts
     .filter((filePath) => {
       const folderName = path.basename(path.dirname(filePath));
-      const fileName = path.basename(filePath, '.d.ts');
+      const fileName = path.basename(filePath).replace(/(\.d\.ts|\.tsx|\.ts)/g, '');
 
       return fileName === folderName;
     })
@@ -310,7 +319,8 @@ async function run(argv: HandlerArgv) {
       return GenerateResult.TODO;
     }
 
-    return generateProptypes(tsFile, jsFile, program);
+    const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
+    return generateProptypes(program, sourceFile, tsFile);
   });
 
   const results = await Promise.all(promises);

@@ -24,7 +24,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 
 {{"demo": "pages/components/autocomplete/ComboBox.js"}}
 
-### 练习
+### 选项结构
 
 默认情况下，该组件接受和以下结构相同的选项：
 
@@ -36,7 +36,7 @@ interface AutocompleteOption {
 type AutocompleteOption = string;
 ```
 
-从248个国家中选择一个。
+例如：
 
 ```js
 const options = [
@@ -109,7 +109,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 ## `useAutocomplete`
 
-作为一种高级定制方式，我们提供了一个 `useAutocomplete()` hook。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 Autocomplete 组件内部也是使用的此 hook。
+对于高级定制用例，我们暴露了一个无头（headless）的 `useAutocomplete()` hook。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 Autocomplete 组件内部也是使用的此 hook。
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
@@ -123,7 +123,7 @@ import useAutocomplete from '@material-ui/core/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-前往 [自定义](#customization) 部分，查看使用 `自动完成` 组件代替钩子的示例。
+请前往 [自定义](#customization) 部分，查看使用 `自动完成` 组件代替 hook 的示例。
 
 ## 异步请求
 
@@ -220,14 +220,14 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 #### 参数
 
-1. `config` (*Object* [optional]):
+1. `config` (_Object_ [optional]):
 
-- `config.ignoreAccents` (*Boolean* [optional]): 默认值为`true`。 移除字母的变音符号。
-- `config.ignoreCase` (*Boolean* [optional]): 默认值为`true`。 所有字母都小写。
-- `config.limit` (*Number* [optional]): 默认值为 null。 显示限定数量的建议选项。 例如，如果 `config.limit` 是 `100`,，那么只显示前 `100 个` 匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
-- `config.matchFrom` (*'any' | 'start'* [optional]): 默认值为 `'any'`。
-- `config.stringify` (*Func* [optional]): 控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
-- `config.trim` (*Boolean* [optional]): 默认值为`false`。 删除尾随空格。
+- `config.ignoreAccents` (_Boolean_ [optional])：默认值为 `true`。 移除字母的变音符号。
+- `config.ignoreCase` (_Boolean_ [optional]): 默认值为 `true`。 所有字母都小写。
+- `config.limit` (_Number_ [optional]): 默认值为 null。 显示限定数量的建议选项。 例如，如果 `config.limit` 是 `100`,，那么只显示前 `100 个` 匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
+- `config.matchFrom` (_'any' | 'start'_ [optional]): 默认值为 `'any'`。
+- `config.stringify` (_Func_ [optional]): 控制如何将一个选项转换成一个字符串，这样选项就能够和输入文本的片段相匹配。
+- `config.trim` (_Boolean_ [optional]): 默认值为 `false`。 删除尾随空格。
 
 #### 返回结果
 
@@ -271,12 +271,12 @@ const filterOptions = (options, { inputValue }) =>
 
 浏览器会有启发性的帮助用户填写表格。 然而，这样的功能会削弱的组件用户体验。
 
-默认情况下，组件通过 `autoComplete="off"` 这个属性来禁用 **autocomplete** 功能（请注意用户可能在之前已经在给定域输入内容）。
+默认情况下，组件将会使用 `autoComplete="off"` 属性来禁用 **autocomplete** 功能（记住用户在之前的会话中为某个字段输入的内容）。 Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 要解决这个问题，可以采用的变通方法是删除 `id`，让组件自行随机生成。
 
-然而，除了记住过去已经输入的值，浏览器可能也会给出 **自动填充（autofill）** 的建议（譬如有保存的登录信息，地址，或者支付方式等）。 若您不需要自动填充，您可以尝试以下的方式：
+除了记住过去输入的值，浏览器还可能发出 **自动填写（autofill）**建议（保存的登录名、地址或支付详情）。 若您不需要自动填充，您可以尝试以下的方式：
 
 - 给输入框一个不同的名字，这样不会给浏览器泄露任何可以滥用的信息。 例如：`id="field1"` 而不是 `id="country"`。 若你不填写 id 的话，该组件则会使用一个随机的 id。
-- 设置为 `autoComplete="new-password"`：
+- 设置 `autoComplete="new-password"`（当设置此属性时，有些浏览器会建议输入高复杂度的密码）。
 
   ```jsx
   <TextField
@@ -287,6 +287,8 @@ const filterOptions = (options, { inputValue }) =>
     }}
   />
   ```
+
+请阅读 [这篇 MDN 指南](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) 来寻求更多解决方案。
 
 ### iOS VoiceOver 辅助功能
 

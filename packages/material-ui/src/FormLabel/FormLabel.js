@@ -144,7 +144,7 @@ FormLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * If `true`, the label will indicate that the input is required.
+   * If `true`, the label will indicate that the `input` is required.
    */
   required: PropTypes.bool,
 };

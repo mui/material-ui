@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { alpha, useTheme, withStyles, useThemeVariants } from '../styles';
+import { useTheme, withStyles, useThemeVariants } from '../styles';
+import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
@@ -34,6 +35,9 @@ export const styles = (theme) => ({
         backgroundColor: 'transparent',
       },
     },
+    '&$disabled': {
+      opacity: theme.palette.action.disabledOpacity,
+    },
     '&$focusVisible': {
       backgroundColor: theme.palette.action.focus,
     },
@@ -60,9 +64,6 @@ export const styles = (theme) => ({
         color: theme.palette.action.disabled,
         backgroundColor: theme.palette.action.selected,
       },
-    },
-    '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
     },
   },
   /* Styles applied applied to the root element if `size="small"`. */

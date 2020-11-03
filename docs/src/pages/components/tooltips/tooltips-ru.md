@@ -18,7 +18,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
-## Позиционированные подсказки
+## Positioned tooltips
 
 The `Tooltip` has 12 **placements** choice. They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
@@ -30,7 +30,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Arrow Tooltips
+## Arrow tooltips
 
 You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
 
@@ -61,13 +61,13 @@ You can define the types of events that cause a tooltip to show.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Контролируемые подсказки
+## Controlled tooltips
 
 Вы можете использовать `open`, `onOpen` and `onClose` свойства, чтобы контролировать поведение всплывающей подсказки.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Вариативная ширина
+## Variable width
 
 The `Tooltip` wraps long text by default to make it readable.
 
@@ -79,7 +79,7 @@ The `Tooltip` wraps long text by default to make it readable.
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## Неактивные элементы
+## Disabled elements
 
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
@@ -92,8 +92,9 @@ By default disabled elements like `<button>` do not trigger user interactions so
 ```jsx
 <Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'A disabled button'}
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}
+    >
+      A disabled button
     </button>
   </span>
 </Tooltip>
@@ -111,9 +112,9 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
-## Имитированный якорь
+## Virtual element
 
-Если вам нужно указать собственное положение подсказки, вы можете воспользоваться параметром `anchorEl`. Значение `anchorEl` может быть ссылкой на имитированный DOM-элемент. Вам нужно создать объект с подобной [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) структурой.
+Если вам нужно указать собственное положение подсказки, вы можете воспользоваться параметром `anchorEl`. Значение `anchorEl` может быть ссылкой на имитированный DOM-элемент. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 

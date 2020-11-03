@@ -6,17 +6,17 @@ materialDesign: https://material.io/components/menus
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
-# Menús
+# Menu
 
 <p class="description">Los menús despliegan una lista de opciones en superficies temporales.</p>
 
-A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
+A menu displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Menú Simple
+## Basic menu
 
-Los menús simples se abren sobre el elemento ancla por defecto (esta opción puede ser cambiada en las propiedades). Cuando están cercanos a un borde de la pantalla, los menús simples se re alinean verticalmente para asegurarse de que todos los ítems del menú están completamente visibles.
+A basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
 
 Elegir una opción debiera inmediatamente confirmar la opción y cerrar el menú.
 
@@ -29,6 +29,12 @@ Elegir una opción debiera inmediatamente confirmar la opción y cerrar el menú
 If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element, and the initial focus will be placed on the selected menu item. El elemento de menú actualmente seleccionado se establece usando la propiedad `selected` (de [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus or the vertical positioning of the menu, set the `variant` property to `menu`.
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
+
+## Menu positioning
+
+Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it. For instance, you can display the menu below the anchor:
+
+{{"demo": "pages/components/menus/PositionedMenu.js"}}
 
 ## Composición de MenuList
 

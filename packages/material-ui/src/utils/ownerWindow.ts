@@ -1,6 +1,3 @@
-import ownerDocument from './ownerDocument';
+import { unstable_ownerWindow as ownerWindow } from '@material-ui/utils';
 
-export default function ownerWindow(node: Node | undefined): Window {
-  const doc = ownerDocument(node);
-  return doc.defaultView || window;
-}
+export default ownerWindow;

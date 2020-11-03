@@ -75,9 +75,22 @@ A propriedade `Action` do componente `TablePagination` permite a implementação
 
 ## Cabeçalho fixo
 
-Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. It leverages the `stickyHeader` prop (⚠️ no IE11 support).
+Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. It leverages the `stickyHeader` prop.<br /> (⚠️ no IE11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## Column grouping
+
+You can group column headers by rendering multiple table rows inside a table head:
+
+```jsx
+<TableHead>
+  <TableRow />
+  <TableRow />
+</TableHead>
+```
+
+{{"demo": "pages/components/tables/ColumnGroupingTable.js", "bg": true}}
 
 ## Tabela minimizável
 

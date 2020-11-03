@@ -7,10 +7,10 @@ export default function Inline() {
       <Box
         component="div"
         sx={{
-          display: "inline",
+          display: 'inline',
           p: 1,
           m: 1,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
         }}
       >
         inline
@@ -18,10 +18,10 @@ export default function Inline() {
       <Box
         component="div"
         sx={{
-          display: "inline",
+          display: 'inline',
           p: 1,
           m: 1,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
         }}
       >
         inline

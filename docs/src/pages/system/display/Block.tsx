@@ -7,10 +7,10 @@ export default function Block() {
       <Box
         component="span"
         sx={{
-          display: "block",
+          display: 'block',
           p: 1,
           m: 1,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
         }}
       >
         block
@@ -18,10 +18,10 @@ export default function Block() {
       <Box
         component="span"
         sx={{
-          display: "block",
+          display: 'block',
           p: 1,
           m: 1,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
         }}
       >
         block

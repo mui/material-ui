@@ -933,7 +933,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        fireEvent.keyDown(document.querySelector('input'), {
+        fireEvent.keyDown(screen.getByRole('textbox'), {
           key: 'Enter',
         });
 
@@ -950,7 +950,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        fireEvent.keyUp(document.querySelector('input'), {
+        fireEvent.keyUp(screen.getByRole('textbox'), {
           key: ' ',
         });
 

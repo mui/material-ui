@@ -42,6 +42,21 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
+### Keep mounted
+
+To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true,
+  }}
+/>
+```
+
+More details in the [Modal performance section](/components/modal/#performance).
+
 ## レスポンシブなドロワー
 
 `Hidden`対応ヘルパーコンポーネントを使用すると、画面の幅に応じてさまざまな種類のドロワーを表示できます。 小さな画面では `temporary` ドロワーが表示され、大きな画面では `permanent` ドロワーが表示されます。

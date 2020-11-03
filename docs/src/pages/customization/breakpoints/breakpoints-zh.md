@@ -276,17 +276,17 @@ const theme = createMuiTheme({
 #### 例子
 
 ```jsx
-const theme = createMuiTheme({
-  components: {
-    // withWidth component ⚛️
-    MuiWithWidth: {
-      defaultProps: {
-        // Initial width prop
-        initialWidth: 'lg', // 断点的全局设置 🌎!
-      },
-    },
-  },
-});
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+
+function MyComponent(props) {
+  if (isWidthUp('sm', props.width)) {
+    return <span />;
+  }
+
+  return <div />;
+}
+
+export default withWidth()(MyComponent);
 ```
 
 ## 默认值

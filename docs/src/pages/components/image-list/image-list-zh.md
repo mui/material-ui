@@ -1,5 +1,5 @@
 ---
-title: React Grid List 图像列表组件
+title: React 图像列表组件
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://material.io/components/image-lists
 githubLabel: 'component: ImageList'
@@ -7,21 +7,21 @@ githubLabel: 'component: ImageList'
 
 # Image list 图像列表
 
-<p class="description">图像列表在一个系统的网格中展示了一系列的图像。</p>
+<p class="description">图像列表在一个系统的栅格中展示了一系列的图像。</p>
 
-图像列表展示了一个在重复的模式中的子集。 它们有助于提高对所持内容的视觉理解。
+图像列表表示重复模式的项目集合。 它们有助于提高对所持内容的视觉理解。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 标准图像列表
+## 标准的图像列表
 
-标准的图像列表最适合于同等重要的项目。 它们具有统一的容器尺寸、比例和间距。
+标准的图像列表最适合用于同等重要的项目。 它们具有统一的容器尺寸、比例和间距。
 
 {{"demo": "pages/components/image-list/StandardImageList.js"}}
 
-## 带有标题栏的图像列表
+## 拼接图像列表
 
-拼接图像列表强调集合中的某些项目而不是之外的其他项目。 它们使用不同的容器尺寸和比例创建层次结构。
+拼接图像列表强调集合中的某些项目而不是之外的其他项目。 它们使用不同的容器尺寸和比例来创建层次结构。
 
 {{"demo": "pages/components/image-list/QuiltedImageList.js"}}
 
@@ -39,22 +39,22 @@ githubLabel: 'component: ImageList'
 
 ## 带标题栏的图像列表
 
-此示例演示如何使用 `ImageListItemBar` 为每个 `ImageListItem` 添加一个叠加层。 叠加层可以容纳 `title`， `subtitle` 和辅助操作—在本例中为 `IconButton`。
+此示例演示如何使用 `ImageListItemBar` 来为每个子块添加一个叠加层。 叠加层可以容纳 `title`， `subtitle` 和辅助操作—在本例中为 `IconButton`。
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js"}}
 
-### 图像下方的标题栏（标准）
+### 位于图像下方的标题栏（标准）
 
 标题栏可以放置在图像下方。
 
 {{"demo": "pages/components/image-list/TitlebarBelowImageList.js"}}
 
-### 图像下方的标题栏（堆砌）
+### 位于图像下方的标题栏（堆砌）
 
 {{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js"}}
 
 ## 自定义图像列表
 
-在这个例子中，每个项目都有一个自定义的位于顶部的标题栏，并带有自定义渐变的 `titleBackground`。 而辅助操作的 `IconButton` 则位于左侧。 `gap` 属性用于调整项目之间的间隙。
+在这个例子中，项目有一个自定义的标题栏，位于顶部，并有一个自定义渐变的 `titleBackground`。 而辅助操作的 `IconButton` 则位于左侧。 `gap` 属性用于调整项目之间的间隙。
 
 {{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}

@@ -58,7 +58,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     margin?: PropTypes.Margin;
     /**
-     * If `true`, the label will indicate that the input is required.
+     * If `true`, the label will indicate that the `input` is required.
      * @default false
      */
     required?: boolean;

@@ -42,6 +42,21 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
+### Keep mounted
+
+To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true,
+  }}
+/>
+```
+
+More details in the [Modal performance section](/components/modal/#performance).
+
 ## Responsive Navigationsleiste
 
 Die `Hidden` Responsive-Hilfskomponente ermöglicht die Anzeige verschiedener Leistentypen in Abhängigkeit von der Bildschirmbreite. Eine `temporäre` Leiste wird für kleine Bildschirme angezeigt, während eine `permanente` Leiste für breitere Bildschirme angezeigt wird.

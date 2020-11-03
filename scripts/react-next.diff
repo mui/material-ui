@@ -1,8 +1,8 @@
 diff --git a/babel.config.js b/babel.config.js
-index ac044fb372..4d59b97096 100644
+index b5b77d8501..d6ea102689 100644
 --- a/babel.config.js
 +++ b/babel.config.js
-@@ -41,7 +41,13 @@ module.exports = function getBabelConfig(api) {
+@@ -42,7 +42,13 @@ module.exports = function getBabelConfig(api) {
          shippedProposals: api.env('modern'),
        },
      ],
@@ -16,7 +16,7 @@ index ac044fb372..4d59b97096 100644
 +    ],
      '@babel/preset-typescript',
    ];
-
+ 
 diff --git a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
 index 197b2f77a3..f1ead08079 100644
 --- a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
@@ -64,10 +64,10 @@ index 2ab151c6c8..6db6326d77 100644
          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
 diff --git a/packages/material-ui/src/Autocomplete/Autocomplete.test.js b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
-index 07345638e7..acfecbdf3e 100644
+index 92a2ce6ebf..742df9b951 100644
 --- a/packages/material-ui/src/Autocomplete/Autocomplete.test.js
 +++ b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
-@@ -1176,8 +1176,6 @@ describe('<Autocomplete />', () => {
+@@ -1169,8 +1169,6 @@ describe('<Autocomplete />', () => {
          fireEvent.change(textbox, { target: { value: 'a' } });
          fireEvent.keyDown(textbox, { key: 'Enter' });
        }).toErrorDev([
@@ -76,7 +76,7 @@ index 07345638e7..acfecbdf3e 100644
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-@@ -1232,9 +1230,6 @@ describe('<Autocomplete />', () => {
+@@ -1223,9 +1221,6 @@ describe('<Autocomplete />', () => {
            />,
          );
        }).toWarnDev([
@@ -86,7 +86,7 @@ index 07345638e7..acfecbdf3e 100644
          'None of the options match with `"not a good value"`',
          'None of the options match with `"not a good value"`',
        ]);
-@@ -1260,11 +1255,7 @@ describe('<Autocomplete />', () => {
+@@ -1251,11 +1246,7 @@ describe('<Autocomplete />', () => {
              groupBy={(option) => option.group}
            />,
          );
@@ -112,10 +112,10 @@ index d5c5735ecf..86a4ebdece 100644
      expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
      expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');
 diff --git a/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js b/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
-index d78203151f..72ac37571b 100644
+index 4e4895ed53..eee7a05f0b 100644
 --- a/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
 +++ b/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
-@@ -132,8 +132,7 @@ describe('<ClickAwayListener />', () => {
+@@ -133,8 +133,7 @@ describe('<ClickAwayListener />', () => {
        expect(handleClickAway.callCount).to.equal(0);
  
        fireEvent.click(getByText('Stop inside a portal'));
@@ -123,8 +123,8 @@ index d78203151f..72ac37571b 100644
 -      expect(handleClickAway.callCount).to.equal(1);
 +      expect(handleClickAway.callCount).to.equal(0);
      });
-   });
  
+     it('should not be called during the same event that mounted the ClickAwayListener', () => {
 diff --git a/packages/material-ui/src/Tabs/Tabs.test.js b/packages/material-ui/src/Tabs/Tabs.test.js
 index d629210cde..f53f50970f 100644
 --- a/packages/material-ui/src/Tabs/Tabs.test.js
@@ -140,10 +140,10 @@ index d629210cde..f53f50970f 100644
          'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
        ]);
 diff --git a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
-index 9cd267a0c0..7323483c87 100644
+index 73c99e5367..8097806a24 100644
 --- a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
 +++ b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
-@@ -255,12 +255,7 @@ describe('<TextareaAutosize />', () => {
+@@ -287,12 +287,7 @@ describe('<TextareaAutosize />', () => {
  
          expect(() => {
            forceUpdate();

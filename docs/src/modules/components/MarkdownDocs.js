@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import { exactProp } from '@material-ui/utils';
@@ -17,6 +16,7 @@ import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import MarkdownDocsFooter from './MarkdownDocsFooter';
 
 const markdownComponents = {
@@ -58,8 +58,8 @@ const styles = (theme) => ({
 function MarkdownDocs(props) {
   const { classes, disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
 
-  const t = useSelector((state) => state.options.t);
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const t = useTranslate();
+  const userLanguage = useUserLanguage();
   const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
   if (description === undefined) {
     throw new Error('Missing description in the page');

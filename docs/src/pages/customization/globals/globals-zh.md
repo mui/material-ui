@@ -63,18 +63,12 @@ return (
 
 ```js
 const theme = createMuiTheme({
-  props: {
-    // 组件的名称 ⚛️
+  components: {
+    // 组件名 ⚛️
     MuiButtonBase: {
-      // 需要修改的默认属性
-      disableRipple: true, // 在整个程序中没有更多的ripple 💣!
-    },
-  },
-});
-      },
-    },
-  },
-});
+      defaultProps: {
+        // The default props to change
+        disableRipple: true, // 全局禁用波纹动画 💣!
       },
     },
   },

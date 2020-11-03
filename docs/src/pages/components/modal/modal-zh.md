@@ -1,5 +1,5 @@
 ---
-title: React 模态框组件
+title: React 模态框（Modal）组件
 components: Modal
 githubLabel: 'component: Modal'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
@@ -25,7 +25,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 当你创建一个模态对话框时，使用[对话框（Dialog）](/components/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
 - [Dialog](/components/dialogs/)
-- [Drawer 抽屉](/components/drawers/)
+- [Drawer（抽屉）](/components/drawers/)
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
@@ -52,6 +52,18 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
+## 性能
+
+模态的内容在关闭时是不被加载的。 如果你需要将内容提供给搜索引擎或在你的模态框中渲染昂贵的组件树，同时还要优化交互响应能力，那么你可以启用 `keepMounted` 属性来改变这一默认行为：
+
+```jsx
+<Modal keepMounted />
+```
+
+{{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
+
+不过对所有情况下的性能优化，这并不是灵丹妙药。 请您务必先确定性能的瓶颈所在，再考虑这些优化策略。
+
 ## 服务端渲染的模态框
 
 React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染的 [`createPortal()`](https://reactjs.org/docs/portals.html) API。 若您想显示模态框，则需要通过 `disablePortal`  这个属性来禁用 protal 功能：
@@ -77,18 +89,11 @@ React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染
 - 记得用 `aria-labelledby="id..."` 属性来指向 `Modal` 的标题。 此外，您可以使用 `aria-describedby="id..."` 属性来为 `Modal` 组件添加一段描述。
 
   ```jsx
-  <Modal
-    aria-labelledby="modal-title"
-    aria-describedby="modal-description"
-    >
-    <h2 id="modal-title">
-      My Title
-    </h2>
-    <p id="modal-description">
-      My Description
-    </p>
-    </Modal>
+  <Modal aria-labelledby="modal-title" aria-describedby="modal-description">
+    <h2 id="modal-title">我的标题</h2>
+    <p id="modal-description">我的描述</p>
+  </Modal>
   ```
 
 - 这篇 [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) 里的方法可以根据你的模态窗口里的内容, 为最合适的元素设置初始焦点.
-- 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 也就是说，用户不能与当前处于活跃状态下的模态框之外的内容进行交互。 因为这可能会造成[冲突行为](#focus-trap)。
+- 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 一个模态框下的窗口都是 **（惰性的）inert** 。 也就是说，用户不能与当前处于活跃状态下的模态框之外的内容进行交互。 因为这可能会造成[冲突行为](#focus-trap)。

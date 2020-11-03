@@ -134,8 +134,8 @@ async function annotateComponentDefinition(context: {
       }
 
       const { leadingComments } = node;
-      const jsdocBlock = leadingComments !== null ? leadingComments[0] : null;
-      if (leadingComments !== null && leadingComments.length > 1) {
+      const jsdocBlock = leadingComments != null ? leadingComments[0] : null;
+      if (leadingComments != null && leadingComments.length > 1) {
         throw new Error('Should only have a single leading jsdoc block');
       }
       if (jsdocBlock != null) {
@@ -371,10 +371,6 @@ async function buildDocs(options: {
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
   reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
-
-  // if (reactAPI.name !== 'TableCell') {
-  //   return;
-  // }
 
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');

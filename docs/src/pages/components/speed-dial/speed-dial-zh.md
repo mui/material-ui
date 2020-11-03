@@ -34,7 +34,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 ## 恒定不变的操作的工具提示
 
-SpeedDialActions 提示组件可以持续显示，这样一来用户不用长按就能在触摸设备上看到提示内容了。
+SpeedDialActions 工具提示组件可以持续显示，这样一来用户不用长按就能在触摸设备上看到提示内容了。
 
 为了演示的目的，该示例为所有设备都启用了该功能，但在生产环境中，它可以使用 `isTouch` 逻辑来有条件地设置属性。
 
