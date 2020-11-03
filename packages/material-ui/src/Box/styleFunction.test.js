@@ -213,5 +213,27 @@ describe('styleFunction', () => {
         '@media (min-width:960px)': { padding: '70px', margin: '30px' },
       });
     });
+
+    it('writes breakpoints in correct order', () => {
+      const result = styleFunction({
+        theme,
+        m: { md: 1, lg: 2 },
+        sx: { p: { xs: 0, sm: 1, md: 2 } },
+      });
+
+      expect(Object.keys(result)).to.deep.equal([
+        '@media (min-width:0px)',
+        '@media (min-width:600px)',
+        '@media (min-width:960px)',
+        '@media (min-width:1280px',
+      ]);
+
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': { padding: '0px' },
+        '@media (min-width:600px)': { padding: '10px' },
+        '@media (min-width:960px)': { padding: '20px', margin: '10px' },
+        '@media (min-width:1280px)': { margin: '20px' },
+      });
+    });
   });
 });
