@@ -32,45 +32,45 @@ export const SliderRoot: React.FC<SliderRootProps>;
 declare const Slider: ExtendSliderUnstyled<SliderTypeMap>;
 
 export type SliderClassKey =
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   | 'root'
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   | 'colorPrimary'
-  /** Styles applied to the root element if `color="secondary"`. */
+  /** Class name applied to the root element if `color="secondary"`. */
   | 'colorSecondary'
-  /** Styles applied to the root element if `marks` is provided with at least one label. */
+  /** Class name applied to the root element if `marks` is provided with at least one label. */
   | 'marked'
-  /** Pseudo-class applied to the root element if `orientation="vertical"`. */
+  /** Class name applied to the root element if `orientation="vertical"`. */
   | 'vertical'
   /** Pseudo-class applied to the root and thumb element if `disabled={true}`. */
   | 'disabled'
-  /** Styles applied to the rail element. */
+  /** Class name applied to the rail element. */
   | 'rail'
-  /** Styles applied to the track element. */
+  /** Class name applied to the track element. */
   | 'track'
-  /** Styles applied to the track element if `track={false}`. */
+  /** Class name applied to the track element if `track={false}`. */
   | 'trackFalse'
-  /** Styles applied to the track element if `track="inverted"`. */
+  /** Class name applied to the track element if `track="inverted"`. */
   | 'trackInverted'
-  /** Styles applied to the thumb element. */
+  /** Class name applied to the thumb element. */
   | 'thumb'
-  /** Styles applied to the thumb element if `color="primary"`. */
+  /** Class name applied to the thumb element if `color="primary"`. */
   | 'thumbColorPrimary'
-  /** Styles applied to the thumb element if `color="secondary"`. */
+  /** Class name applied to the thumb element if `color="secondary"`. */
   | 'thumbColorSecondary'
   /** Pseudo-class applied to the thumb element if it's active. */
   | 'active'
   /** Pseudo-class applied to the thumb element if keyboard focused. */
   | 'focusVisible'
-  /** Styles applied to the thumb label element. */
+  /** Class name applied to the thumb label element. */
   | 'valueLabel'
-  /** Styles applied to the mark element. */
+  /** Class name applied to the mark element. */
   | 'mark'
-  /** Styles applied to the mark element if active (depending on the value). */
+  /** Class name applied to the mark element if active (depending on the value). */
   | 'markActive'
-  /** Styles applied to the mark label element. */
+  /** Class name applied to the mark label element. */
   | 'markLabel'
-  /** Styles applied to the mark label element if active (depending on the value). */
+  /** Class name applied to the mark label element if active (depending on the value). */
   | 'markLabelActive';
 
 export type SliderProps<

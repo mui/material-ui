@@ -134,8 +134,8 @@ async function annotateComponentDefinition(context: {
       }
 
       const { leadingComments } = node;
-      const jsdocBlock = leadingComments !== null ? leadingComments[0] : null;
-      if (leadingComments !== null && leadingComments.length > 1) {
+      const jsdocBlock = leadingComments != null ? leadingComments[0] : null;
+      if (leadingComments != null && leadingComments.length > 1) {
         throw new Error('Should only have a single leading jsdoc block');
       }
       if (jsdocBlock != null) {
@@ -194,7 +194,7 @@ async function annotateComponentDefinition(context: {
 
 function trimComment(comment: string) {
   let i = 0;
-  for (; i < comment.length; i++) {
+  for (; i < comment.length; i += 1) {
     if (comment[i] !== '*' && comment[i] !== ' ') {
       break;
     }
@@ -220,39 +220,49 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
   if (api.styles.classes.length === 0) {
     const componentName = path.basename(typesFilename).replace(/\.d\.ts$/, '');
 
-    (typesAST as any).program.body.forEach((node: any) => {
-      const name = node.type === 'ExportNamedDeclaration' ? node?.declaration?.id?.name : undefined;
-      if (name === `${componentName}ClassKey` && node.declaration.typeAnnotation.types) {
-        const classes = node.declaration.typeAnnotation.types.map(
-          (node: babel.types.TSLiteralType) => node.literal.value,
-        );
+    traverse(typesAST, {
+      ExportNamedDeclaration(babelPath) {
+        const { node } = babelPath;
+        const declaration = node.declaration as babel.types.TSTypeAliasDeclaration;
 
-        const nodeLeadingComments = node.declaration.typeAnnotation.leadingComments || [];
+        const name = declaration.id?.name;
 
-        node.declaration.typeAnnotation.types.forEach(
-          (typeNode: babel.types.TSLiteralType, idx: number) => {
+        const typeAnnotation = declaration.typeAnnotation as babel.types.TSUnionType;
+
+        if (name === `${componentName}ClassKey` && typeAnnotation.types) {
+          const classes: string[] = [];
+
+          const nodeLeadingComments = declaration.typeAnnotation.leadingComments || [];
+
+          typeAnnotation.types.forEach((typeNode) => {
+            const value = (typeNode as babel.types.TSLiteralType).literal.value as string;
+
+            classes.push(value);
+
             let leadingComments = typeNode.leadingComments;
-            if (idx === 0) {
-              if (leadingComments) {
-                leadingComments = leadingComments.concat(nodeLeadingComments);
-              } else {
-                leadingComments = nodeLeadingComments;
-              }
-            }
             if (leadingComments) {
-              for (let i = 0; i < leadingComments.length; i++) {
-                if (leadingComments[i].end + 6 === typeNode.literal.start) {
-                  api.styles.descriptions[typeNode.literal.value as string] = trimComment(
-                    leadingComments[i].value,
-                  );
+              leadingComments = leadingComments.concat(nodeLeadingComments);
+            } else {
+              leadingComments = nodeLeadingComments;
+            }
+
+            if (leadingComments) {
+              for (let i = 0; i < leadingComments.length; i += 1) {
+                if (
+                  leadingComments[i].end + 5 ===
+                  (typeNode as babel.types.TSLiteralType).literal.start
+                ) {
+                  api.styles.descriptions[value] = trimComment(leadingComments[i].value);
                 }
               }
             }
+
             return '';
-          },
-        );
-        api.styles.classes = classes;
-      }
+          });
+
+          api.styles.classes = classes;
+        }
+      },
     });
   }
 }
@@ -445,6 +455,24 @@ async function buildDocs(options: {
     api: reactAPI,
     component: componentObject,
   });
+
+  if (reactAPI.styles.classes) {
+    reactAPI.styles.globalClasses = reactAPI.styles.classes.reduce((acc, key) => {
+      acc[key] = generateClassName(
+        // @ts-expect-error
+        {
+          key,
+        },
+        {
+          options: {
+            name: styles.name,
+            theme: {},
+          },
+        },
+      );
+      return acc;
+    }, {} as Record<string, string>);
+  }
 
   let markdown;
   try {
