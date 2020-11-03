@@ -225,7 +225,7 @@ describe('styleFunction', () => {
         '@media (min-width:0px)',
         '@media (min-width:600px)',
         '@media (min-width:960px)',
-        '@media (min-width:1280px',
+        '@media (min-width:1280px)',
       ]);
 
       expect(result).to.deep.equal({

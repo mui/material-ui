@@ -89,7 +89,7 @@ export const styleFunctionSx = (styles, theme) => {
   Object.keys(styles).forEach((styleKey) => {
     if (typeof styles[styleKey] === 'object') {
       if (filterProps.indexOf(styleKey) !== -1) {
-        css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
+        css = mergeBreakpointsInOrder(theme.breakpoints, css, getThemeValue(styleKey, styles[styleKey], theme));
       } else {
         const breakpointsValues = handleBreakpoints({ theme }, styles[styleKey], (x) => ({
           [styleKey]: x,
@@ -99,29 +99,61 @@ export const styleFunctionSx = (styles, theme) => {
           const transformedValue = styleFunctionSx(styles[styleKey], theme);
           css[styleKey] = transformedValue;
         } else {
-          css = deepmerge(css, breakpointsValues);
+          css = mergeBreakpointsInOrder(theme.breakpoints, css, breakpointsValues);
         }
       }
     } else if (typeof styles[styleKey] === 'function') {
-      css = deepmerge(css, { [styleKey]: styles[styleKey](theme) });
+      css = mergeBreakpointsInOrder(theme.breakpoints, css, { [styleKey]: styles[styleKey](theme) });
     } else {
-      css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
+      css = mergeBreakpointsInOrder(theme.breakpoints, css, getThemeValue(styleKey, styles[styleKey], theme));
     }
   });
   return css;
+};
+
+function createEmptyBreakpointObject(breakpoints) {
+  const breakpointsInOrder = breakpoints.keys.reduce((acc, key) => {
+    const breakpointStyleKey = breakpoints.up(key);
+    return {
+      ...acc,
+      [breakpointStyleKey]: {},
+    };
+  }, {});
+  return breakpointsInOrder;
+}
+
+function removeUnusedBreakpoints(breakpointKeys, output) {
+  return breakpointKeys.reduce(
+    (acc, key) => {
+      const breakpointOutput = acc[key];
+      const isBreakpointUnused =
+        Object.keys(breakpointOutput).length === 0 && breakpointOutput.constructor === Object;
+      if (isBreakpointUnused) {
+        delete acc[key];
+      }
+      return acc;
+    },
+    { ...output },
+  );
+}
+
+const mergeBreakpointsInOrder = (breakpoints, ...output) => {
+  const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
+  const mergedOutput = [emptyBreakpoints, ...output].reduce((prev, next) => deepmerge(prev, next), {});
+  return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
 };
 
 const styleFunction = (props) => {
   let result = {};
   Object.keys(props).forEach((prop) => {
     if (filterProps.indexOf(prop) !== -1 && prop !== 'sx') {
-      result = deepmerge(result, getThemeValue(prop, props[prop], props.theme));
+      result = mergeBreakpointsInOrder(props.theme.breakpoints, result, getThemeValue(prop, props[prop], props.theme));
     }
   });
 
   const sxValue = styleFunctionSx(props.sx, props.theme);
 
-  return deepmerge(result, sxValue);
+  return mergeBreakpointsInOrder(props.theme.breakpoints, result, sxValue);
 };
 
 styleFunction.filterProps = filterProps;
