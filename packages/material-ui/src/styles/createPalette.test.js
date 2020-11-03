@@ -150,13 +150,22 @@ describe('createPalette()', () => {
 
     it('throws an exception when a wrong color is provided', () => {
       expect(() => createPalette({ primary: '#fff' })).to.throw(
-        'The color object needs to have a `main` property or a `500` property.',
+        [
+          'Material-UI: The color (primary) provided to augmentColor(color) is invalid.',
+          'The color object needs to have a `main` property or a `500` property.',
+        ].join('\n'),
       );
       expect(() => createPalette({ primary: { main: { foo: 'bar' } } })).to.throw(
-        '`color.main` should be a string, but `{"foo":"bar"}` was provided instead.',
+        [
+          'Material-UI: The color (primary) provided to augmentColor(color) is invalid.',
+          '`color.main` should be a string, but `{"foo":"bar"}` was provided instead.',
+        ].join('\n'),
       );
       expect(() => createPalette({ primary: { main: undefined } })).to.throw(
-        '`color.main` should be a string, but `undefined` was provided instead.',
+        [
+          'Material-UI: The color (primary) provided to augmentColor(color) is invalid.',
+          '`color.main` should be a string, but `undefined` was provided instead.',
+        ].join('\n'),
       );
     });
 
