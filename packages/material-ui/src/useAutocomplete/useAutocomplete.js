@@ -70,7 +70,6 @@ export default function useAutocomplete(props) {
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
-    debug = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -805,7 +804,7 @@ export default function useAutocomplete(props) {
     firstFocus.current = true;
     ignoreFocus.current = false;
 
-    if (debug && inputValue !== '') {
+    if (inputValue !== '') {
       return;
     }
 
