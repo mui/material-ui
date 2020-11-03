@@ -54,20 +54,6 @@ function convertMouseButtons(event, init, property, mapping) {
   return property !== 'button' && isMousePressEvent(event) ? 1 : 0;
 }
 
-function getMouseEventOptions(event, init, clickCount = 0) {
-  init = init || {};
-  return {
-    ...init,
-    // https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail
-    detail:
-      event === 'mousedown' || event === 'mouseup' || event === 'click'
-        ? 1 + clickCount
-        : clickCount,
-    buttons: convertMouseButtons(event, init, 'buttons', NAMES_TO_BUTTONS),
-    button: convertMouseButtons(event, init, 'button', NAMES_TO_BUTTON),
-  };
-}
-
 // Absolutely NO events fire on label elements that contain their control
 // if that control is disabled. NUTS!
 // no joke. There are NO events for: <label><input disabled /><label>
@@ -138,73 +124,6 @@ function isValidDateValue(element, value) {
   return clone.value === value;
 }
 
-function calculateNewValue(newEntry, element) {
-  const { selectionStart, selectionEnd } = getSelectionRange(element);
-  const value = getValue(element);
-
-  // can't use .maxLength property because of a jsdom bug:
-  // https://github.com/jsdom/jsdom/issues/2927
-  const maxLength = Number(element.getAttribute('maxlength') ?? -1);
-  let newValue;
-  let newSelectionStart;
-
-  if (selectionStart === null) {
-    // at the end of an input type that does not support selection ranges
-    // https://github.com/testing-library/user-event/issues/316#issuecomment-639744793
-    newValue = value + newEntry;
-  } else if (selectionStart === selectionEnd) {
-    if (selectionStart === 0) {
-      // at the beginning of the input
-      newValue = newEntry + value;
-    } else if (selectionStart === value.length) {
-      // at the end of the input
-      newValue = value + newEntry;
-    } else {
-      // in the middle of the input
-      newValue = value.slice(0, selectionStart) + newEntry + value.slice(selectionEnd);
-    }
-    newSelectionStart = selectionStart + newEntry.length;
-  } else {
-    // we have something selected
-    const firstPart = value.slice(0, selectionStart) + newEntry;
-    newValue = firstPart + value.slice(selectionEnd);
-    newSelectionStart = firstPart.length;
-  }
-
-  if (element.type === 'date' && !isValidDateValue(element, newValue)) {
-    newValue = value;
-  }
-
-  if (!supportsMaxLength(element) || maxLength < 0) {
-    return { newValue, newSelectionStart };
-  }
-  return {
-    newValue: newValue.slice(0, maxLength),
-    newSelectionStart: newSelectionStart > maxLength ? maxLength : newSelectionStart,
-  };
-}
-
-function setSelectionRangeIfNecessary(element, newSelectionStart, newSelectionEnd) {
-  const { selectionStart, selectionEnd } = getSelectionRange(element);
-
-  if (!isContentEditable(element) && (!element.setSelectionRange || selectionStart === null)) {
-    // cannot set selection
-    return;
-  }
-  if (selectionStart !== newSelectionStart || selectionEnd !== newSelectionStart) {
-    if (isContentEditable(element)) {
-      const range = document.createRange();
-      range.selectNodeContents(element);
-      range.setStart(element.firstChild, newSelectionStart);
-      range.setEnd(element.firstChild, newSelectionEnd);
-      document.getSelection().removeAllRanges();
-      document.getSelection().addRange(range);
-    } else {
-      element.setSelectionRange(newSelectionStart, newSelectionEnd);
-    }
-  }
-}
-
 const FOCUSABLE_SELECTOR = [
   'input:not([disabled])',
   'button:not([disabled])',
@@ -241,11 +160,8 @@ export {
   FOCUSABLE_SELECTOR,
   isFocusable,
   isClickable,
-  getMouseEventOptions,
   isLabelWithInternallyDisabledControl,
   getActiveElement,
-  calculateNewValue,
-  setSelectionRangeIfNecessary,
   eventWrapper,
   isValidDateValue,
   getValue,
