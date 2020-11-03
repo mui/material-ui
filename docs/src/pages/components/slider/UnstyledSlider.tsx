@@ -60,5 +60,9 @@ const StyledSlider = styled(SliderUnstyled)`
 `;
 
 export default function UnstyledSlider() {
-  return <Box sx={{ width: 300 }}><StyledSlider defaultValue={10} /></Box>;
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider defaultValue={10} />
+    </Box>
+  );
 }

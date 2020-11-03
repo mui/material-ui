@@ -114,6 +114,18 @@ module.exports = function getBabelConfig(api) {
           ],
         ],
       },
+      stable: {
+        plugins: [
+          [
+            'babel-plugin-module-resolver',
+            {
+              alias: {
+                '@material-ui/unstyled': '../../packages/material-ui-unstyled/src',
+              },
+            },
+          ],
+        ],
+      },
       legacy: {
         plugins: [
           // IE11 support
