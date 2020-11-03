@@ -35,7 +35,7 @@ You can explore the [System API](/system/api/) page to discover how the differen
 
 ## Value as a function
 
-If you wish to use the theme for a CSS property that is not supported by the system, you can use a function as the value, in which you can  access the theme object.
+If you wish to use the theme for a CSS property that is not supported by the system, you can use a function as the value, in which you can access the theme object.
 
 {{"demo": "pages/system/sx/ValueAsFunction.js", "defaultCodeOpen": true}}
 
@@ -51,7 +51,7 @@ The first option is to define your breakpoints as an array, from the smallest to
 
 ## 2. Breakpoints as an object
 
-The second option for defining breakpoints is to define them as an object, using the breakpoints as keys. Here is  the previous example again, using the object syntax.
+The second option for defining breakpoints is to define them as an object, using the breakpoints as keys. Here is the previous example again, using the object syntax.
 
 {{"demo": "pages/system/sx/BreakpointsAsObject.js", "defaultCodeOpen": true}}
 
