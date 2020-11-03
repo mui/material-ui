@@ -57,7 +57,7 @@ export type SliderStyledClassKey =
   | 'colorSecondary'
   /** Class name applied to the root element if `marks` is provided with at least one label. */
   | 'marked'
-  /** Pseudo-class applied to the root element if `orientation="vertical"`. */
+  /** Class name applied to the root element if `orientation="vertical"`. */
   | 'vertical'
   /** Pseudo-class applied to the root and thumb element if `disabled={true}`. */
   | 'disabled'
