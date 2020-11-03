@@ -45,9 +45,9 @@ export interface TrapFocusProps {
    */
   disableRestoreFocus?: boolean;
   /**
-   * Array of selectors to add to the components focusable elements.
+   * Accepts a function which returns an array of selectors to add to the component focusable elements.
    */
-  focusSelectors?: string[];
+  focusSelectors?: () => string[];
 }
 
 /**

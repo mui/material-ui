@@ -30,7 +30,7 @@ function Unstable_TrapFocus(props) {
     disableRestoreFocus = false,
     getDoc,
     isEnabled,
-    focusSelectors = [],
+    focusSelectors = () => [],
     open,
   } = props;
   const ignoreNextEnforceFocus = React.useRef();
@@ -191,7 +191,7 @@ function Unstable_TrapFocus(props) {
       return true;
     }
 
-    const selectors = [...focusSelectorsRoot, ...focusSelectors].filter(Boolean);
+    const selectors = [...focusSelectorsRoot, ...focusSelectors()].filter(Boolean);
     const isShiftTab = Boolean(lastEvent.current?.shiftKey && lastEvent.current?.key === 'Tab');
     const regularTabNodes = [];
     const orderedTabNodes = [];
@@ -388,9 +388,11 @@ Unstable_TrapFocus.propTypes = {
    */
   disableRestoreFocus: PropTypes.bool,
   /**
-   * Array of selectors to add to the components focusable elements
+   * Accepts a function which returns an array of selectors 
+   * to add to the component focusable elements.
+   * 
    */
-  focusSelectors: PropTypes.arrayOf(PropTypes.string),
+  focusSelectors: PropTypes.func,
   /**
    * Return the document to consider.
    * We use it to implement the restore focus between different browser documents.
