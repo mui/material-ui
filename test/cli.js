@@ -18,6 +18,10 @@ async function run(argv) {
     ignore,
   });
 
+  if (spec.length === 0) {
+    throw new Error(`Could not find any file test files matching '${globPattern}'`)
+  }
+
   const args = ['mocha'].concat(spec);
   if (argv.bail) {
     args.push('--bail');
