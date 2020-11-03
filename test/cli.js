@@ -22,6 +22,9 @@ async function run(argv) {
   if (argv.bail) {
     args.push('--bail');
   }
+  if (argv.inspectBrk) {
+    args.push('--inspect-brk');
+  }
   if (!argv.single) {
     args.push('--watch');
   }
@@ -60,6 +63,11 @@ yargs
           type: 'string',
         })
         .option('bail', {
+          alias: 'b',
+          description: 'Stop on first error.',
+          type: 'boolean',
+        })
+        .option('inspect-brk', {
           alias: 'b',
           description: 'Stop on first error.',
           type: 'boolean',
