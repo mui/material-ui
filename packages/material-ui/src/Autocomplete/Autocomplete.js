@@ -254,12 +254,6 @@ export const styles = (theme) => ({
   },
 });
 
-function DisablePortal(props) {
-  // eslint-disable-next-line react/prop-types
-  const { anchorEl, open, ...other } = props;
-  return <div {...other} />;
-}
-
 const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
@@ -314,7 +308,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     openText = 'Open',
     options,
     PaperComponent = Paper,
-    PopperComponent: PopperComponentProp = Popper,
+    PopperComponent = Popper,
     popupIcon = <ArrowDropDownIcon />,
     renderGroup: renderGroupProp,
     renderInput,
@@ -326,8 +320,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     ...other
   } = props;
   /* eslint-enable @typescript-eslint/no-unused-vars */
-
-  const PopperComponent = disablePortal ? DisablePortal : PopperComponentProp;
 
   const {
     getRootProps,
@@ -481,6 +473,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           className={clsx(classes.popper, {
             [classes.popperDisablePortal]: disablePortal,
           })}
+          disablePortal={disablePortal}
           style={{
             width: anchorEl ? anchorEl.clientWidth : null,
           }}
