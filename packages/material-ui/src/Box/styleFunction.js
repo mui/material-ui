@@ -89,7 +89,11 @@ export const styleFunctionSx = (styles, theme) => {
   Object.keys(styles).forEach((styleKey) => {
     if (typeof styles[styleKey] === 'object') {
       if (filterProps.indexOf(styleKey) !== -1) {
-        css = mergeBreakpointsInOrder(theme.breakpoints, css, getThemeValue(styleKey, styles[styleKey], theme));
+        css = mergeBreakpointsInOrder(
+          theme.breakpoints,
+          css,
+          getThemeValue(styleKey, styles[styleKey], theme),
+        );
       } else {
         const breakpointsValues = handleBreakpoints({ theme }, styles[styleKey], (x) => ({
           [styleKey]: x,
@@ -103,9 +107,15 @@ export const styleFunctionSx = (styles, theme) => {
         }
       }
     } else if (typeof styles[styleKey] === 'function') {
-      css = mergeBreakpointsInOrder(theme.breakpoints, css, { [styleKey]: styles[styleKey](theme) });
+      css = mergeBreakpointsInOrder(theme.breakpoints, css, {
+        [styleKey]: styles[styleKey](theme),
+      });
     } else {
-      css = mergeBreakpointsInOrder(theme.breakpoints, css, getThemeValue(styleKey, styles[styleKey], theme));
+      css = mergeBreakpointsInOrder(
+        theme.breakpoints,
+        css,
+        getThemeValue(styleKey, styles[styleKey], theme),
+      );
     }
   });
   return css;
@@ -139,7 +149,10 @@ function removeUnusedBreakpoints(breakpointKeys, output) {
 
 const mergeBreakpointsInOrder = (breakpoints, ...output) => {
   const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
-  const mergedOutput = [emptyBreakpoints, ...output].reduce((prev, next) => deepmerge(prev, next), {});
+  const mergedOutput = [emptyBreakpoints, ...output].reduce(
+    (prev, next) => deepmerge(prev, next),
+    {},
+  );
   return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
 };
 
@@ -147,7 +160,11 @@ const styleFunction = (props) => {
   let result = {};
   Object.keys(props).forEach((prop) => {
     if (filterProps.indexOf(prop) !== -1 && prop !== 'sx') {
-      result = mergeBreakpointsInOrder(props.theme.breakpoints, result, getThemeValue(prop, props[prop], props.theme));
+      result = mergeBreakpointsInOrder(
+        props.theme.breakpoints,
+        result,
+        getThemeValue(prop, props[prop], props.theme),
+      );
     }
   });
 
