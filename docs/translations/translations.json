@@ -214,6 +214,7 @@
     "/api-docs": "Component API",
     "/system": "System",
     "/system/basics": "Basics",
+    "/system/sx": "sx",
     "/system/borders": "Borders",
     "/system/display": "Display",
     "/system/flexbox": "Flexbox",
