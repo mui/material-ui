@@ -42,14 +42,43 @@ const Box = React.forwardRef(function Box(props, ref) {
   );
 });
 
-const specialProperty = 'exact-prop: \u200b';
-
 Box.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
+  /**
+   * @ignore
+   */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
   clone: PropTypes.bool,
+  /**
+   * @ignore
+   */
   component: PropTypes.elementType,
-  [specialProperty]: (props) => {
+  /**
+   * @ignore
+   */
+  css: PropTypes.object,
+  /**
+   * @ignore
+   */
+  sx: PropTypes.object,
+};
+
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line react/forbid-foreign-prop-types -- this branch is DCE'd as well in production.
+  Box.propTypes.deprecatedSystemProps = (props) => {
     const unsupportedProps = Object.keys(props).filter(
       (prop) => ['children', 'className', 'clone', 'component'].indexOf(prop) === -1,
     );
@@ -63,7 +92,7 @@ Box.propTypes = {
       );
     }
     return null;
-  },
-};
+  };
+}
 
 export default styled(Box, {}, { muiName: 'MuiBox' })(styleFunction);
