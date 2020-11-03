@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/core",
-  "version": "5.0.0-alpha.14",
+  "version": "5.0.0-alpha.15",
   "private": false,
   "author": "Material-UI Team",
   "main": "./src/index.ts",
@@ -61,10 +61,10 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@material-ui/styled-engine": "^5.0.0-alpha.14",
-    "@material-ui/styles": "^5.0.0-alpha.14",
-    "@material-ui/system": "^5.0.0-alpha.14",
+    "@material-ui/styles": "^5.0.0-alpha.15",
+    "@material-ui/system": "^5.0.0-alpha.15",
     "@material-ui/types": "^5.1.0",
-    "@material-ui/utils": "^5.0.0-alpha.14",
+    "@material-ui/utils": "^5.0.0-alpha.15",
     "@popperjs/core": "^2.4.4",
     "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.0.4",
