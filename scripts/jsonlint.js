@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const chalk = require('chalk');
 const fse = require('fs-extra');
-const glob = require('glob-gitignore');
+const glob = require('globby');
 const path = require('path');
 
 const passMessage = (message) => `✓ ${chalk.gray(message)}`;
@@ -15,8 +15,9 @@ async function run() {
   });
   const eslintignore = eslintignoreContent.split(/\r?\n/).slice(0, -1);
 
-  const filenames = glob.sync('**/*.json', {
+  const filenames = await glob('**/*.json', {
     cwd: workspaceRoot,
+    gitignore: true,
     ignore: [...eslintignore, 'tsconfig*.json', 'tslint.json'],
   });
 

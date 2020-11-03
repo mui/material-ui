@@ -4,7 +4,7 @@
 
 // supported modes = check, check-changed, write, write-changed
 
-const glob = require('glob-gitignore');
+const glob = require('globby');
 const prettier = require('prettier');
 const fs = require('fs');
 const path = require('path');
@@ -31,8 +31,8 @@ function runPrettier(options) {
 
   const files = glob
     .sync('**/*.{js,md,tsx,ts,json}', {
+      gitignore: true,
       ignore: [
-        '**/node_modules/**',
         // these are auto-generated
         'docs/pages/api-docs/**/*.md',
         ...ignoredFiles,

@@ -3,13 +3,10 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
-import globCallback from 'glob';
-import { promisify } from 'util';
+import glob from 'fast-glob';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
 import { fixBabelGeneratorIssues, fixLineEndings } from '../docs/scripts/helpers';
-
-const glob = promisify(globCallback);
 
 enum GenerateResult {
   Success,
