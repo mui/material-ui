@@ -1,7 +1,6 @@
 const childProcess = require('child_process');
 const fs = require('fs');
 const glob = require('fast-glob');
-const os = require('os');
 const path = require('path');
 const yargs = require('yargs');
 
@@ -9,7 +8,8 @@ async function run(argv) {
   const workspaceRoot = path.resolve(__dirname, '../');
 
   const gitignore = fs.readFileSync(path.join(workspaceRoot, '.gitignore'), { encoding: 'utf-8' });
-  const ignore = gitignore.split(os.EOL).filter((pattern) => {
+  const eol = gitignore.match(/\r?\n/)[0];
+  const ignore = gitignore.split(eol).filter((pattern) => {
     return pattern.length > 0 && !pattern.startsWith('#');
   });
   const globPattern = `**/*${argv.testFilePattern}*.test.{js,ts,tsx}`;
