@@ -72,6 +72,41 @@ const getThemeValue = (prop, value, theme) => {
   return { [prop]: value };
 };
 
+function createEmptyBreakpointObject(breakpoints) {
+  const breakpointsInOrder = breakpoints.keys.reduce((acc, key) => {
+    const breakpointStyleKey = breakpoints.up(key);
+    return {
+      ...acc,
+      [breakpointStyleKey]: {},
+    };
+  }, {});
+  return breakpointsInOrder;
+}
+
+function removeUnusedBreakpoints(breakpointKeys, output) {
+  return breakpointKeys.reduce(
+    (acc, key) => {
+      const breakpointOutput = acc[key];
+      const isBreakpointUnused =
+        Object.keys(breakpointOutput).length === 0 && breakpointOutput.constructor === Object;
+      if (isBreakpointUnused) {
+        delete acc[key];
+      }
+      return acc;
+    },
+    { ...output },
+  );
+}
+
+const mergeBreakpointsInOrder = (breakpoints, ...output) => {
+  const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
+  const mergedOutput = [emptyBreakpoints, ...output].reduce(
+    (prev, next) => deepmerge(prev, next),
+    {},
+  );
+  return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
+};
+
 export const styleFunctionSx = (styles, theme) => {
   if (!styles) return null;
 
@@ -119,41 +154,6 @@ export const styleFunctionSx = (styles, theme) => {
     }
   });
   return css;
-};
-
-function createEmptyBreakpointObject(breakpoints) {
-  const breakpointsInOrder = breakpoints.keys.reduce((acc, key) => {
-    const breakpointStyleKey = breakpoints.up(key);
-    return {
-      ...acc,
-      [breakpointStyleKey]: {},
-    };
-  }, {});
-  return breakpointsInOrder;
-}
-
-function removeUnusedBreakpoints(breakpointKeys, output) {
-  return breakpointKeys.reduce(
-    (acc, key) => {
-      const breakpointOutput = acc[key];
-      const isBreakpointUnused =
-        Object.keys(breakpointOutput).length === 0 && breakpointOutput.constructor === Object;
-      if (isBreakpointUnused) {
-        delete acc[key];
-      }
-      return acc;
-    },
-    { ...output },
-  );
-}
-
-const mergeBreakpointsInOrder = (breakpoints, ...output) => {
-  const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
-  const mergedOutput = [emptyBreakpoints, ...output].reduce(
-    (prev, next) => deepmerge(prev, next),
-    {},
-  );
-  return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
 };
 
 const styleFunction = (props) => {
