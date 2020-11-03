@@ -72,7 +72,8 @@ const getThemeValue = (prop, value, theme) => {
   return { [prop]: value };
 };
 
-export const styleFunctionSx = (styles, theme) => {
+export const styleFunctionSx = (props = {}) => {
+  const { sx: styles, theme } = props;
   if (!styles) return null;
 
   if (typeof styles === 'function') {
@@ -96,7 +97,7 @@ export const styleFunctionSx = (styles, theme) => {
         }));
 
         if (objectsHaveSameKeys(breakpointsValues, styles[styleKey])) {
-          const transformedValue = styleFunctionSx(styles[styleKey], theme);
+          const transformedValue = styleFunctionSx({ sx: styles[styleKey], theme });
           css[styleKey] = transformedValue;
         } else {
           css = deepmerge(css, breakpointsValues);
@@ -119,7 +120,7 @@ const styleFunction = (props) => {
     }
   });
 
-  const sxValue = styleFunctionSx(props.sx, props.theme);
+  const sxValue = styleFunctionSx(props);
 
   return deepmerge(result, sxValue);
 };

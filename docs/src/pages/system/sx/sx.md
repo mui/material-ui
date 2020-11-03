@@ -4,7 +4,26 @@
 
 ## Getting started
 
-Each `@material-ui/core` component supports the `sx` prop. The prop is a superset of CSS, that let's you add any CSS to the underlaying component, while mapping values to different theme keys. This should help you to keep your application look consistent.
+The `sx` prop is a superset of CSS, that let's you add any CSS to the underlaying component, while mapping values to different theme keys. This should help you to keep your application look consistent. The prop is available in all `@material-ui/core` components.
+
+You can include this prop in your own components too by using the `styleFunctionSx` style function from `@material-ui/core/Box`, or by using the `experimentalStyled` from `@material-ui/core/styles` for creating the custom component.
+
+```jsx
+import { styleFunctionSx } from '@material-ui/core/Box';
+import styled from '@emotion/styled';
+
+const Div = styled('div')(styleFunctionSx);
+```
+
+or
+
+```jsx
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+
+const Div = styled('div')``;
+```
+
+<b>Note:</b>
 
 You should use this prop whenever you need to add a style override to a Material-UI component. If you repeatedly add the same styles on a component, then `styled()` is better alternative, as it allows you to specify the overrides only once, and reuse them in all component instances.
 
