@@ -65,25 +65,32 @@ yarn add @material-ui/core@next
 
 - 断点现在被当作值而不是范围来处理。 `down(key)` 的行为已更改为定义的媒体查询小于使用相应断点定义的值（不包含当前值）。 `between(start, end)` 也已更新，定义了媒体查询 start（包含）和 end（不包含）实际值之间的数值。 当使用 `down()`断点工具集时，你需要向上一步更新断点键。 当使用  `between(start, end)` 时，结束断点也应向上一步更新。 使用 `Hidden` 组件时也应该这样做。 下面列出了变动影响的例子：
 
-```diff
--theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
-+theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
-```
+  ```diff
+  -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
+  +theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
+  ```
 
-```diff
--theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
-+theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
-```
+  ```diff
+  -theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
+  +theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
+  ```
 
-```diff
--theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
-+theme.breakpoints.up('sm') // '@media (min-width:600px)'
-```
+  ```diff
+  -theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
+  +theme.breakpoints.up('sm') // '@media (min-width:600px)'
+  ```
 
-```diff
--<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
-+<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
-```
+  ```diff
+  -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
+  +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
+  ```
+
+- The signature of `theme.palette.augmentColor` helper has changed:
+
+  ```diff
+  -theme.palette.augmentColor(red);
+  +theme.palette.augmentColor({ color: red, name: 'brand' });
+  ```
 
 #### 变更
 
