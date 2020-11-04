@@ -124,11 +124,7 @@ export const styleFunctionSx = (styles, theme) => {
   Object.keys(styles).forEach((styleKey) => {
     if (typeof styles[styleKey] === 'object') {
       if (filterProps.indexOf(styleKey) !== -1) {
-        css = mergeBreakpointsInOrder(
-          theme.breakpoints,
-          css,
-          getThemeValue(styleKey, styles[styleKey], theme),
-        );
+        css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
       } else {
         const breakpointsValues = handleBreakpoints({ theme }, styles[styleKey], (x) => ({
           [styleKey]: x,
@@ -138,19 +134,15 @@ export const styleFunctionSx = (styles, theme) => {
           const transformedValue = styleFunctionSx(styles[styleKey], theme);
           css[styleKey] = transformedValue;
         } else {
-          css = mergeBreakpointsInOrder(theme.breakpoints, css, breakpointsValues);
+          css = deepmerge(css, breakpointsValues);
         }
       }
     } else if (typeof styles[styleKey] === 'function') {
-      css = mergeBreakpointsInOrder(theme.breakpoints, css, {
+      css = deepmerge(css, {
         [styleKey]: styles[styleKey](theme),
       });
     } else {
-      css = mergeBreakpointsInOrder(
-        theme.breakpoints,
-        css,
-        getThemeValue(styleKey, styles[styleKey], theme),
-      );
+      css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
     }
   });
   return css;
@@ -160,11 +152,7 @@ const styleFunction = (props) => {
   let result = {};
   Object.keys(props).forEach((prop) => {
     if (filterProps.indexOf(prop) !== -1 && prop !== 'sx') {
-      result = mergeBreakpointsInOrder(
-        props.theme.breakpoints,
-        result,
-        getThemeValue(prop, props[prop], props.theme),
-      );
+      result = deepmerge(result, getThemeValue(prop, props[prop], props.theme));
     }
   });
 
