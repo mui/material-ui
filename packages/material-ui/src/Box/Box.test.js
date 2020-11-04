@@ -60,15 +60,15 @@ describe('<Box />', () => {
   });
 
   it('respect properties order when generating the CSS', function test() {
-    const isMozilla = window.navigator.userAgent.indexOf("Firefox") > -1
+    const isMozilla = window.navigator.userAgent.indexOf('Firefox') > -1;
     const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
     if (isJSDOM || isMozilla) {
       // Test fails on Mozilla with just:
 
-	    // "border": "",
-	    // "border-color": "",
-      
+      // "border": "",
+      // "border-color": "",
+
       this.skip();
     }
 
@@ -107,15 +107,15 @@ describe('<Box />', () => {
   });
 
   it('respect properties order when generating the CSS from the sx prop', function test() {
-    const isMozilla = window.navigator.userAgent.indexOf("Firefox") > -1
+    const isMozilla = window.navigator.userAgent.indexOf('Firefox') > -1;
     const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
     if (isJSDOM || isMozilla) {
       // Test fails on Mozilla with just:
 
-	    // "border": "",
-	    // "border-color": "",
-      
+      // "border": "",
+      // "border-color": "",
+
       this.skip();
     }
 
