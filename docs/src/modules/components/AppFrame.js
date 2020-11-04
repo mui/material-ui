@@ -31,7 +31,7 @@ import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
+import { LANGUAGES_LABEL, SOURCE_CODE_REPO } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -297,7 +297,7 @@ function AppFrame(props) {
             <IconButton
               component="a"
               color="inherit"
-              href="https://github.com/mui-org/material-ui"
+              href={SOURCE_CODE_REPO}
               aria-label={t('github')}
               data-ga-event-category="header"
               data-ga-event-action="github"
