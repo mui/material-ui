@@ -138,9 +138,7 @@ export const styleFunctionSx = (styles, theme) => {
         }
       }
     } else if (typeof styles[styleKey] === 'function') {
-      css = deepmerge(css, {
-        [styleKey]: styles[styleKey](theme),
-      });
+      css = deepmerge(css, { [styleKey]: styles[styleKey](theme) });
     } else {
       css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
     }
