@@ -151,6 +151,28 @@ describe('styleFunction', () => {
         },
       });
     });
+
+    it('writes breakpoints in correct order', () => {
+      const result = styleFunction({
+        theme,
+        sx: { m: { md: 1, lg: 2 }, p: { xs: 0, sm: 1, md: 2 } },
+      });
+
+      // Test the order
+      expect(Object.keys(result)).to.deep.equal([
+        '@media (min-width:0px)',
+        '@media (min-width:600px)',
+        '@media (min-width:960px)',
+        '@media (min-width:1280px)',
+      ]);
+
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': { padding: '0px' },
+        '@media (min-width:600px)': { padding: '10px' },
+        '@media (min-width:960px)': { padding: '20px', margin: '10px' },
+        '@media (min-width:1280px)': { margin: '20px' },
+      });
+    });
   });
 
   describe('breakpoints', () => {
@@ -221,6 +243,7 @@ describe('styleFunction', () => {
         sx: { p: { xs: 0, sm: 1, md: 2 } },
       });
 
+      // Test the order
       expect(Object.keys(result)).to.deep.equal([
         '@media (min-width:0px)',
         '@media (min-width:600px)',
