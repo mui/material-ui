@@ -95,4 +95,41 @@ describe('<Box />', () => {
       'border-color': 'rgb(0, 0, 0)',
     });
   });
+
+  it('respect properties order when generating the CSS from the sx prop', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+
+    const theme = createMuiTheme({
+      palette: {
+        primary: {
+          // light: will be calculated from palette.primary.main,
+          main: 'rgb(0, 0, 255)',
+          // dark: will be calculated from palette.primary.main,
+          // contrastText: will be calculated to contrast with palette.primary.main
+        },
+      },
+    });
+
+    const testCaseBorderColorWins = render(
+      <ThemeProvider theme={theme}>
+        <Box sx={{ border: 1, borderColor: 'primary.main' }} />
+      </ThemeProvider>,
+    );
+
+    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+      border: '1px solid rgb(0, 0, 255)',
+      'border-color': 'rgb(0, 0, 255)',
+    });
+
+    const testCaseBorderWins = render(
+      <ThemeProvider theme={theme}>
+        <Box sx={{ borderColor: 'primary.main', border: 1 }} />
+      </ThemeProvider>,
+    );
+
+    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+      border: '1px solid rgb(0, 0, 0)',
+      'border-color': 'rgb(0, 0, 0)',
+    });
+  });
 });
