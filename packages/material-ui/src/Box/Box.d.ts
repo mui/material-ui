@@ -34,14 +34,20 @@ export type BoxStyleFunction = ComposedStyleFunction<
 
 type SystemProps = PropsFor<BoxStyleFunction>;
 type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
-type SxPropsValue = Omit<CSSObject, keyof SystemProps> & SystemProps;
+type CSSPropsValue = Omit<CSSObject, keyof SystemProps>;
 
 export type SxProps = {
-  [Name in keyof SxPropsValue]?:
-    | SxPropsValue[Name]
-    | ((theme: Theme) => CSSObject | SxPropsValue[Name])
+  [SystemName in keyof SystemProps]?:
+    | SystemProps[SystemName]
+    | ((theme: Theme) => CSSObject | SystemProps[SystemName])
     | SxProps;
-};
+} &
+  {
+    [CSSName in keyof CSSPropsValue]?:
+      | CSSPropsValue[CSSName]
+      | ((theme: Theme) => CSSObject | CSSPropsValue[CSSName])
+      | SxProps;
+  };
 
 export interface BoxProps extends ElementProps, SystemProps {
   children?: React.ReactNode | ((props: ElementProps) => React.ReactNode);
