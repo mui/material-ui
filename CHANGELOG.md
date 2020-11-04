@@ -22,6 +22,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
   A note on the terminology. "unstyled" means that the components have the same API as the "styled" components but come without CSS. Material-UI also contains "headless" components that exposes a hook API, e.g. [useAutocomplete](https://next.material-ui.com/components/autocomplete/#useautocomplete) or [usePagination](https://next.material-ui.com/components/pagination/#usepagination).
 
   This change is part of our strategy to iterate on v5 architecture with first the `Slider`. In the next release, we plan to replace the v4 slider with the v5 slider. Once the new approach is stress-tested and validated, we will roll out the new approach to all the components.
+
 - And many more 🐛 bug fixes and 📚 improvements.
 
 #### Breaking changes
