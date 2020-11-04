@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import Box from './Box';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 describe('<Box />', () => {
   const mount = createMount();
