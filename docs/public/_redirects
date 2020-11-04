@@ -128,9 +128,6 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /customization/themes/ /customization/theming/ 301
 https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
 https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
-/:lang/components/data-grid/* /components/data-grid/:splat 302
-/:lang/api/data-grid/ /api/data-grid/ 302
-/:lang/api/x-grid/ /api/x-grid/ 302
 
 # Proxies
 
@@ -147,7 +144,9 @@ https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 ## Unlike the store that expect to be hosted under a subfolder,
 ## material-ui-x is configured to be hosted at the root.
 /api/*/ https://next--material-ui-x.netlify.app/api/:splat/ 200
+/:lang/api/*/ https://next--material-ui-x.netlify.app/:lang/api/:splat/ 200
 /components/* https://next--material-ui-x.netlify.app/components/:splat 200
+/:lang/components/* https://next--material-ui-x.netlify.app/:lang/components/:splat 200
 /components/data-grid/demo/ https://muix-preview.netlify.app/ 200
 /_next/* https://next--material-ui-x.netlify.app/_next/:splat 200
 /static/x/* https://next--material-ui-x.netlify.app/static/x/:splat 200
