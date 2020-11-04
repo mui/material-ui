@@ -75,10 +75,8 @@ const getThemeValue = (prop, value, theme) => {
 function createEmptyBreakpointObject(breakpoints) {
   const breakpointsInOrder = breakpoints.keys.reduce((acc, key) => {
     const breakpointStyleKey = breakpoints.up(key);
-    return {
-      ...acc,
-      [breakpointStyleKey]: {},
-    };
+    acc[breakpointStyleKey] = {};
+    return acc;
   }, {});
   return breakpointsInOrder;
 }
