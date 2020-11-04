@@ -1,5 +1,115 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.15
+
+###### _Nov 4 2020_
+
+Big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚛️ Add support for React 17 (#23311) @eps1lon.
+  React 17 release is unusual because it doesn't add any new developer-facing features. It was released a couple of days ago. You can learn more about it in the [introduction post](https://reactjs.org/blog/2020/10/20/react-v17.html). Material-UI now supports `^16.8.0 || ^17.0.0`.
+- 🛠 Introduce a new `@material-ui/unstyled` package (#23270) @mnajdova.
+  This package will host the unstyled version of the components. In this first iteration, only the Slider is available. You can find it documented under the [same page](https://next.material-ui.com/components/slider-styled/#unstyled-slider) as the styled version.
+
+  **Why an unstyled package?**
+
+  While engineering teams are successfully building custom design systems by wrapping Material-UI, we [occasionally hear](https://github.com/mui-org/material-ui/issues/6218) that Material Design or our styling solution are something they don't need. Some teams prefer SASS, others prefer to customize the components starting from a pristine state. What all these teams have in common is that they value the features coming from the components, such as accessibility.
+
+  The unstyled package goes one step down in the abstraction layer, providing more flexibility. Angular Material introduced this approach two years ago. Today their unstyled components account for [25% of the usage](https://npm-stat.com/charts.html?package=%40angular%2Fmaterial&package=%40angular%2Fcdk&from=2017-11-03&to=2020-11-03).
+
+  Another reason for introducing this package is to prepare the groundwork for a [second theme](https://github.com/mui-org/material-ui/issues/22485) (not Material Design based).
+
+  A note on the terminology: "unstyled" means that the components have the same API as the "styled" components but come without CSS. Material-UI also contains "headless" components that exposes a hook API, e.g. [useAutocomplete](https://next.material-ui.com/components/autocomplete/#useautocomplete) or [usePagination](https://next.material-ui.com/components/pagination/#usepagination).
+
+  This change is part of our strategy to iterate on the v5 architecture with the `Slider` first. In the next alpha release, we plan to replace the v4 slider with the v5 slider. Once the new approach is stress-tested and validated, we will roll it out to all the components.
+
+- And many more 🐛 bug fixes and 📚 improvements.
+
+#### Breaking changes
+
+- [AppBar] Fix z-index when position="static" (#23325) @sujinleeme
+  Remove z-index when position static and relative
+- [theme] Fix error message for augmentColor failure (#23371) @reedanders
+  The signature of `theme.palette.augmentColor` helper has changed:
+
+  ```diff
+  -theme.palette.augmentColor(red);
+  +theme.palette.augmentColor({ color: red, name: 'brand' });
+  ```
+
+#### Changes
+
+- [Autocomplete] Fix unclickable area between text input and endAdornment (#23229) @sujinleeme
+- [Autocomplete] Follow Material Design State spec (#23323) @sujinleeme
+- [Avatar] Fix usage of srcset property (#23286) @matheuspiment
+- [ClickAwayListener] Fix mounting behavior in Portals in React 17 (#23315) @eps1lon
+- [core] Allow React 17 (#23311) @eps1lon
+- [Icon] Fix translation, e.g Google Translate (#23237) @cbeltrangomez84
+- [LinearProgress] Fix Safari's bug during composition of different paint (#23293) @montogeek
+- [Radio] Fix dot misalignment in Safari (#23239) @anasufana
+- [styled-engine] Fix tagged template syntax with multiple expressions (#23269) @eps1lon
+- [Table] Fix empty row logic when displaying all (#23280) @JoaoJesus94
+- [Table] Fix handling of rowsPerPage={-1} (#23299) @JoaoJesus94
+- [TextareaAutosize] Fix container with no intrinsic height (#23273) @sujinleeme
+- [TextField] Fix disabled color in Safari (#23375) @Morteza-Jenabzadeh
+- [theme] Fix spacing string arguments (#23224) @GuilleDF
+- [Tooltip] Fix excess spacing (#23233) @benneq
+
+### `@material-ui/unstyled@v5.0.0-alpha.15`
+
+- [unstyled] Create package and move SliderUnstyled there (#23270) @mnajdova
+- [core] Allow React 17 (#23311) @eps1lon
+
+### `@material-ui/lab@v5.0.0-alpha.15`
+
+- [lab] Migrate Timeline to TypeScript (#23242) @oliviertassinari
+- [core] Allow React 17 (#23311) @eps1lon
+
+### `@material-ui/icons@v5.0.0-alpha.15`
+
+- [core] Allow React 17 (#23311) @eps1lon
+
+### `@material-ui/styles@v5.0.0-alpha.15`
+
+- [core] Allow React 17 (#23311) @eps1lon
+
+### `@material-ui/system@v5.0.0-alpha.15`
+
+- [core] Allow React 17 (#23311) @eps1lon
+- [theme] Fix spacing string arguments (#23224) @GuilleDF
+
+### Docs
+
+- [Transition] Document default appear value (#23221) @GuilleDF
+- [blog] Danail Hadjiatanasov joins Material-UI (#23223) @oliviertassinari
+- [docs] Add Material-UI Builder to in-house ads (#23342) @mbrookes
+- [docs] Fix a few typos and add comma (#23284) @reedanders
+- [docs] Fix few propTypes in Inputs (#23331) @youknowhat
+- [docs] Fix language cookie (#23324) @mbrookes
+- [docs] Fix typo in `README.md` (#23329) @mtsknn
+- [docs] Guard against unknown value in userLanguage cookie (#23336) @mbrookes
+- [docs] Make it clearer that custom router is supported (#23304) @Maxgit3
+- [docs] Sync translations (#23080) @l10nbot
+- [docs] Update homepage quotes (#23326) @mbrookes
+- [docs] Update nav translations (#23234) @mbrookes
+- [docs] Update system pages to use sx prop instead of deprecated Box props (#23368) @mnajdova
+- [docs] Use present tense for bool prop descriptions (#23274) @mbrookes
+
+### Core
+
+- [utils] Add all @material-ui/core/utils to @material-ui/utils (#23264) @mnajdova
+- [core] Batch small changes (#23327) @oliviertassinari
+- [core] Fix implicit transitive 'csstype' dependency (#23301) @quinnturner
+- [core] Move material-ui-benchmark into benchmark/server (#23271) @eps1lon
+- [core] Replace temp package with node built-ins (#23262) @eps1lon
+- [core] Restrict top level imports that target CJS modules (#23159) @eps1lon
+- [test] Fix unexpected console warn/error spy swallowing unrelated messages (#23312) @eps1lon
+- [test] Fix various issues with the new cli on windows (#23381) @eps1lon
+- [test] Improve test debugging (#23372) @eps1lon
+- [test] Introduce experimental CLI (#23369) @eps1lon
+- [test] Prevent growing call stack in custom keyDown/keyUp (#23321) @eps1lon
+- [test] Run with Safari 13 (#23292) @eps1lon
+
 ## 5.0.0-alpha.14
 
 ###### _Oct 23 2020_
