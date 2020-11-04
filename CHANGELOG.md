@@ -25,6 +25,8 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 
 - And many more 🐛 bug fixes and 📚 improvements.
 
+### `@material-ui/core@v5.0.0-alpha.15`
+
 #### Breaking changes
 
 - [AppBar] Fix z-index when position="static" (#23325) @sujinleeme
