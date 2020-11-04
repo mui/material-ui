@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import Box from './Box';
 
@@ -72,37 +71,16 @@ describe('<Box />', () => {
       this.skip();
     }
 
-    const theme = createMuiTheme({
-      palette: {
-        primary: {
-          // light: will be calculated from palette.primary.main,
-          main: 'rgb(0, 0, 255)',
-          // dark: will be calculated from palette.primary.main,
-          // contrastText: will be calculated to contrast with palette.primary.main
-        },
-      },
-    });
-
-    const testCaseBorderColorWins = render(
-      <ThemeProvider theme={theme}>
-        <Box border={1} borderColor="primary.main" />
-      </ThemeProvider>,
-    );
+    const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
 
     expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
       border: '1px solid rgb(0, 0, 255)',
-      'border-color': 'rgb(0, 0, 255)',
     });
 
-    const testCaseBorderWins = render(
-      <ThemeProvider theme={theme}>
-        <Box borderColor="primary.main" border={1} />
-      </ThemeProvider>,
-    );
+    const testCaseBorderWins = render(<Box borderColor="rgb(0, 0, 255)" border={1} />);
 
     expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
       border: '1px solid rgb(0, 0, 0)',
-      'border-color': 'rgb(0, 0, 0)',
     });
   });
 
@@ -119,37 +97,18 @@ describe('<Box />', () => {
       this.skip();
     }
 
-    const theme = createMuiTheme({
-      palette: {
-        primary: {
-          // light: will be calculated from palette.primary.main,
-          main: 'rgb(0, 0, 255)',
-          // dark: will be calculated from palette.primary.main,
-          // contrastText: will be calculated to contrast with palette.primary.main
-        },
-      },
-    });
-
     const testCaseBorderColorWins = render(
-      <ThemeProvider theme={theme}>
-        <Box sx={{ border: 1, borderColor: 'primary.main' }} />
-      </ThemeProvider>,
+      <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
     );
 
     expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
       border: '1px solid rgb(0, 0, 255)',
-      'border-color': 'rgb(0, 0, 255)',
     });
 
-    const testCaseBorderWins = render(
-      <ThemeProvider theme={theme}>
-        <Box sx={{ borderColor: 'primary.main', border: 1 }} />
-      </ThemeProvider>,
-    );
+    const testCaseBorderWins = render(<Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />);
 
     expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
       border: '1px solid rgb(0, 0, 0)',
-      'border-color': 'rgb(0, 0, 0)',
     });
   });
 });
