@@ -57,4 +57,58 @@ describe('<Box />', () => {
     expect(element.getAttribute('font-family')).to.equal(null);
     expect(element.getAttribute('font-size')).to.equal(null);
   });
+
+  it('respect properties order when generating the CSS', function test() {
+    const isMozilla = window.navigator.userAgent.indexOf('Firefox') > -1;
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+    if (isJSDOM || isMozilla) {
+      // Test fails on Mozilla with just:
+
+      // "border": "",
+      // "border-color": "",
+
+      this.skip();
+    }
+
+    const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
+
+    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+      border: '1px solid rgb(0, 0, 255)',
+    });
+
+    const testCaseBorderWins = render(<Box borderColor="rgb(0, 0, 255)" border={1} />);
+
+    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+      border: '1px solid rgb(0, 0, 0)',
+    });
+  });
+
+  it('respect properties order when generating the CSS from the sx prop', function test() {
+    const isMozilla = window.navigator.userAgent.indexOf('Firefox') > -1;
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+    if (isJSDOM || isMozilla) {
+      // Test fails on Mozilla with just:
+
+      // "border": "",
+      // "border-color": "",
+
+      this.skip();
+    }
+
+    const testCaseBorderColorWins = render(
+      <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
+    );
+
+    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+      border: '1px solid rgb(0, 0, 255)',
+    });
+
+    const testCaseBorderWins = render(<Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />);
+
+    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+      border: '1px solid rgb(0, 0, 0)',
+    });
+  });
 });
