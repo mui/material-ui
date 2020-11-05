@@ -45,7 +45,7 @@ export type TableSortLabelTypeMap<
      * Sort icon to use.
      * @default ArrowDownwardIcon
      */
-    IconComponent?: React.ComponentType<{ className: string }>;
+    IconComponent?: React.ComponentType<{ className?: string }>;
   };
   defaultComponent: D;
 }>;
