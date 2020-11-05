@@ -81,24 +81,23 @@ function createEmptyBreakpointObject(breakpoints) {
   return breakpointsInOrder;
 }
 
-function removeUnusedBreakpoints(breakpointKeys, output) {
+function removeUnusedBreakpoints(breakpointKeys, style) {
   return breakpointKeys.reduce(
     (acc, key) => {
       const breakpointOutput = acc[key];
-      const isBreakpointUnused =
-        Object.keys(breakpointOutput).length === 0 && breakpointOutput.constructor === Object;
+      const isBreakpointUnused = Object.keys(breakpointOutput).length === 0;
       if (isBreakpointUnused) {
         delete acc[key];
       }
       return acc;
     },
-    { ...output },
+    { ...style },
   );
 }
 
-const mergeBreakpointsInOrder = (breakpoints, ...output) => {
+const mergeBreakpointsInOrder = (breakpoints, ...styles) => {
   const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
-  const mergedOutput = [emptyBreakpoints, ...output].reduce(
+  const mergedOutput = [emptyBreakpoints, ...styles].reduce(
     (prev, next) => deepmerge(prev, next),
     {},
   );
