@@ -219,5 +219,8 @@ export type TypographyProps = PropsFor<typeof typography>;
 
 export const visuallyHidden: React.CSSProperties;
 
+export const getThemeValue: (prop: string, value: any, theme: object) => any;
+export const styleFunctionSx: (props: object) => object;
+
 // utils
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
