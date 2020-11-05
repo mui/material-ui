@@ -2,7 +2,7 @@
 
 <p class="description">Styled system & style functions for building powerful design systems.</p>
 
-## Getting Started
+{{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
 `@material-ui/system` provides low-level utility functions called "_style functions_" for building powerful design systems. Some of the key features:
 
