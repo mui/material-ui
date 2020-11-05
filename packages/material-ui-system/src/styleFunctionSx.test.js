@@ -11,7 +11,7 @@ describe('styleFunctionSx', () => {
   };
 
   const theme = {
-    spacing: (val) => `${val*10}px`,
+    spacing: (val) => `${val * 10}px`,
     breakpoints: {
       keys: ['xs', 'sm', 'md', 'lg', 'xl'],
       values: breakpointsValues,
@@ -28,11 +28,11 @@ describe('styleFunctionSx', () => {
         main: 'rgb(0, 255, 0)',
       },
     },
-    typography : {
-      fontFamily:  '"Roboto", "Helvetica", "Arial", sans-serif',
+    typography: {
+      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
       fontWeightLight: 300,
       fontSize: 14,
-    }
+    },
   };
 
   it('resolves system', () => {
@@ -103,53 +103,53 @@ describe('styleFunctionSx', () => {
       },
     });
   });
-});
 
-describe('breakpoints', () => {
-  const breakpointsExpectedResult = {
-    '@media (min-width:0px)': { border: '1px solid' },
-    '@media (min-width:600px)': { border: '2px solid' },
-    '@media (min-width:960px)': { border: '3px solid' },
-    '@media (min-width:1280px)': { border: '4px solid' },
-    '@media (min-width:1920px)': { border: '5px solid' },
-  };
+  describe('breakpoints', () => {
+    const breakpointsExpectedResult = {
+      '@media (min-width:0px)': { border: '1px solid' },
+      '@media (min-width:600px)': { border: '2px solid' },
+      '@media (min-width:960px)': { border: '3px solid' },
+      '@media (min-width:1280px)': { border: '4px solid' },
+      '@media (min-width:1920px)': { border: '5px solid' },
+    };
 
-  it('resolves breakpoints array', () => {
-    const result = styleFunctionSx({
-      theme,
-      sx: { border: [1, 2, 3, 4, 5] },
+    it('resolves breakpoints array', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: { border: [1, 2, 3, 4, 5] },
+      });
+
+      expect(result).to.deep.equal(breakpointsExpectedResult);
     });
 
-    expect(result).to.deep.equal(breakpointsExpectedResult);
-  });
-
-  it('resolves breakpoints object', () => {
-    const result = styleFunctionSx({
-      theme,
-      sx: {
-        border: {
-          xs: 1,
-          sm: 2,
-          md: 3,
-          lg: 4,
-          xl: 5,
+    it('resolves breakpoints object', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          border: {
+            xs: 1,
+            sm: 2,
+            md: 3,
+            lg: 4,
+            xl: 5,
+          },
         },
-      },
+      });
+
+      expect(result).to.deep.equal(breakpointsExpectedResult);
     });
 
-    expect(result).to.deep.equal(breakpointsExpectedResult);
-  });
+    it('merges multiple breakpoints object', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: { m: [1, 2, 3], p: [5, 6, 7] },
+      });
 
-  it('merges multiple breakpoints object', () => {
-    const result = styleFunctionSx({
-      theme,
-      sx: { m: [1, 2, 3], p: [5, 6, 7] },
-    });
-
-    expect(result).to.deep.equal({
-      '@media (min-width:0px)': { padding: '50px', margin: '10px' },
-      '@media (min-width:600px)': { padding: '60px', margin: '20px' },
-      '@media (min-width:960px)': { padding: '70px', margin: '30px' },
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': { padding: '50px', margin: '10px' },
+        '@media (min-width:600px)': { padding: '60px', margin: '20px' },
+        '@media (min-width:960px)': { padding: '70px', margin: '30px' },
+      });
     });
   });
 });

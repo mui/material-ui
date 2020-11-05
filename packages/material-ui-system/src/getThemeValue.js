@@ -9,7 +9,7 @@ import sizing from './sizing';
 import spacing from './spacing';
 import typography from './typography';
 
-const getThemeValue = (prop, value, theme) => {
+function getThemeValue(prop, value, theme) {
   const inputProps = {
     [prop]: value,
     theme,
@@ -46,6 +46,6 @@ const getThemeValue = (prop, value, theme) => {
     return typography(inputProps);
   }
   return { [prop]: value };
-};
+}
 
 export default getThemeValue;

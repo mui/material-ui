@@ -26,15 +26,14 @@ const filterProps = [
   'sx',
 ];
 
-
 function objectsHaveSameKeys(...objects) {
   const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
   const union = new Set(allKeys);
   return objects.every((object) => union.size === Object.keys(object).length);
 }
 
-const styleFunctionSx = (props = {}) => {
-  const { sx: styles, theme } = props;
+function styleFunctionSx(props) {
+  const { sx: styles, theme } = props || {};
   if (!styles) return null;
 
   if (typeof styles === 'function') {
@@ -72,7 +71,7 @@ const styleFunctionSx = (props = {}) => {
   });
 
   return css;
-};
+}
 
 styleFunctionSx.filterProps = ['sx'];
 
