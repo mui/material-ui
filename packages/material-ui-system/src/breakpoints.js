@@ -116,7 +116,6 @@ export function mergeBreakpointsInOrder(breakpointsInput, ...styles) {
     {},
   );
   return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
-};
-
+}
 
 export default breakpoints;
