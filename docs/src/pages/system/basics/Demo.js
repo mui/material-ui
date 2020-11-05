@@ -3,67 +3,65 @@ import Box from '@material-ui/core/Box';
 import { alpha } from '@material-ui/core/styles';
 import ErrorIcon from '@material-ui/icons/Error';
 
-const Image = (props) => {
-  return <Box component="img" {...props} />;
-};
-
-const Span = (props) => {
-  return <Box component="span" {...props} />;
-};
-
 export default function Demo() {
   return (
-    <div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
+        alignItems: 'center',
+        bgcolor: 'background.paper',
+        overflow: 'hidden',
+        borderRadius: '12px',
+        boxShadow: 1,
+        fontWeight: 'fontWeightBold',
+      }}
+    >
+      <Img
+        sx={{ width: '100%', maxWidth: { xs: 350, md: 250 } }}
+        alt=""
+        src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400&dpr=2"
+      />
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          overflow: 'hidden',
-          width: { sm: 300, md: 400 },
-          borderRadius: '15px',
-          boxShadow: 3,
-          minHeight: { sm: 300, md: 400 },
-          ':hover': {
-            boxShadow: 6,
-          },
+          alignItems: { xs: 'center', md: 'flex-start' },
+          m: 3,
+          minWidth: { md: 350 },
         }}
       >
-        <Image
-          sx={{ width: '100%', height: { sm: 200, md: 300 } }}
-          src="/static/images/system/demo.jpg"
-        />
-        <Span
-          component="span"
-          sx={{ marginTop: 2, fontSize: 18, fontWeight: 'fontWeightMedium' }}
-        >
+        <Box component="span" sx={{ fontSize: 16, mt: 1 }}>
           123 Main St, Pheonix AZ
-        </Span>
-        <Span
-          component="span"
-          sx={{
-            color: 'primary.main',
-            fontSize: 20,
-            fontWeight: 'fontWeightMedium',
-          }}
-        >
-          $280.000 - $310.000
-        </Span>
+        </Box>
+        <Box component="span" sx={{ color: 'primary.main', fontSize: 22 }}>
+          $280,000 — $310,000
+        </Box>
         <Box
           sx={{
-            my: 1.5,
+            mt: 1.5,
             p: 0.5,
-            backgroundColor: (theme) => alpha(theme.palette.primary.light, 0.2),
+            backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
             borderRadius: '5px',
             color: 'primary.main',
+            fontWeight: 'fontWeightMedium',
             display: 'flex',
+            fontSize: 12,
             alignItems: 'center',
+            '& svg': {
+              fontSize: 21,
+              mr: 0.5,
+            },
           }}
         >
           <ErrorIcon />
-          <Span sx={{ marginLeft: 0.5 }}>CONFIDENCE SCORE 85%</Span>
+          {'CONFIDENCE SCORE 85%'}
         </Box>
       </Box>
-    </div>
+    </Box>
   );
+}
+
+function Img(props) {
+  return <Box component="img" {...props} />;
 }

@@ -6,7 +6,7 @@ The system lets you quickly build custom UI components leverating the design tok
 
 ## Demo
 
-{{"demo": "pages/system/basics/Demo.js"}}
+{{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
 
 ## Why
 
