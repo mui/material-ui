@@ -3,12 +3,10 @@ import Box from '@material-ui/core/Box';
 
 export default function BreakpointsAsArray() {
   return (
-    <Box
-      sx={{
-        width: [100, 200, 300, 400, 500],
-      }}
-    >
-      This box has a responsive width.
-    </Box>
+    <div>
+      <Box sx={{ width: [100, 200, 300, 400, 500] }}>
+        This box has a responsive width.
+      </Box>
+    </div>
   );
 }

@@ -138,13 +138,13 @@ If you would like to have responsive values for a CSS property, you can use the 
 
 The first option is to define your breakpoints as an array, from the smallest to the largest breakpoint.
 
-{{"demo": "pages/system/basics/BreakpointsAsArray.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/basics/BreakpointsAsArray.js"}}
 
 ### 2. Breakpoints as an object
 
 The second option for defining breakpoints is to define them as an object, using the breakpoints as keys. Here is the previous example again, using the object syntax.
 
-{{"demo": "pages/system/basics/BreakpointsAsObject.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 
 ## Custom breakpoints
 
@@ -205,7 +205,7 @@ declare module '@material-ui/core/styles/createBreakpoints' {
 
 If you wish to use the theme for a CSS property that is not supported by the system, you can use a function as the value, in which you can access the theme object.
 
-{{"demo": "pages/system/basics/ValueAsFunction.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/basics/ValueAsFunction.js"}}
 
 ## Prior art
 
