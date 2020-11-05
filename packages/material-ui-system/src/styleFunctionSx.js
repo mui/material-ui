@@ -1,6 +1,6 @@
 import { deepmerge } from '@material-ui/utils';
 import getThemeValue from './getThemeValue';
-import { handleBreakpoints } from './breakpoints';
+import { handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
 import borders from './borders';
 import display from './display';
 import flexbox from './flexbox';
@@ -70,7 +70,7 @@ function styleFunctionSx(props) {
     }
   });
 
-  return css;
+  return mergeBreakpointsInOrder(theme.breakpoints, css);
 }
 
 styleFunctionSx.filterProps = ['sx'];

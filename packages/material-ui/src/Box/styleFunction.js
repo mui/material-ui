@@ -10,6 +10,7 @@ import {
   spacing,
   typography,
   styleFunctionSx,
+  mergeBreakpointsInOrder,
   getThemeValue,
 } from '@material-ui/system';
 import { deepmerge } from '@material-ui/utils';
@@ -35,10 +36,7 @@ const styleFunction = (props) => {
       result = deepmerge(result, getThemeValue(prop, props[prop], props.theme));
     }
   });
-
-  const sxValue = styleFunctionSx(props);
-
-  return deepmerge(result, sxValue);
+  return mergeBreakpointsInOrder(props.theme.breakpoints, result);
 };
 
 styleFunction.filterProps = filterProps;

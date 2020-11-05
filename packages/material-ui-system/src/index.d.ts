@@ -43,6 +43,9 @@ export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoin
   styleFunction: StyleFunction<Props>
 ): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
 
+// restructures the breakpoints in the in the correct order and merges all styles args
+export function mergeBreakpointsInOrder(breakpointsInput: { keys: string[]; up: (key: string) => string }, ...styles: object[]): object;
+
 // compose.js
 /**
  * given a list of StyleFunction return the intersection of the props each individual
