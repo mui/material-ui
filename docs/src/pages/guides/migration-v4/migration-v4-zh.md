@@ -85,7 +85,7 @@ yarn add @material-ui/core@next
   +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
 
-- The signature of `theme.palette.augmentColor` helper has changed:
+- `theme.palette.augmentColor` 助手的签名已经改变：
 
   ```diff
   -theme.palette.augmentColor(red);
@@ -612,7 +612,7 @@ const classes = makeStyles(theme => ({
     +popperRef.current.forceUpdate()
     ```
 
-  - Modifiers' API has changed a lot. 这其中有太多的内容不能涵盖说明。
+  - 修改器的 API（Modifiers' API）发生了大量改变。 这其中有太多的内容不能涵盖说明。
 
 ### Portal
 
@@ -891,7 +891,7 @@ const classes = makeStyles(theme => ({
   +<Tooltip>
   ```
 
-### Typography
+### 文字铸排
 
 - 为了避免 [System](https://material-ui.com/system/basics/) 功能重复，我们替换了 `srOnly` 属性。
 
