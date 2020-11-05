@@ -119,7 +119,7 @@ const styleFunction = (props) => {
     }
   });
 
-  const sxValue = styleFunctionSx(props);
+  const sxValue = styleFunctionSx(props.sx, props.theme);
 
   return deepmerge(result, sxValue);
 };
