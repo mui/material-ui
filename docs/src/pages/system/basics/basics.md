@@ -10,7 +10,7 @@ The system lets you quickly build custom UI components leveraging the design tok
 
 ## Why
 
-There are several reasons for why you may need the system offered by Material-UI. Here are few of them:
+There are several reasons why you may need the system offered by Material-UI. Here are few of them:
 
 ### 1. Building consistent UIs is hard
 
