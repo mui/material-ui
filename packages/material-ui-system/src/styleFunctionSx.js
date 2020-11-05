@@ -1,6 +1,31 @@
+import { deepmerge } from '@material-ui/utils';
 import getThemeValue from './getThemeValue';
 import { handleBreakpoints } from './breakpoints';
-import { deepmerge } from '@material-ui/utils';
+import borders from './borders';
+import display from './display';
+import flexbox from './flexbox';
+import grid from './grid';
+import positions from './positions';
+import palette from './palette';
+import shadows from './shadows';
+import sizing from './sizing';
+import spacing from './spacing';
+import typography from './typography';
+
+const filterProps = [
+  ...borders.filterProps,
+  ...display.filterProps,
+  ...flexbox.filterProps,
+  ...grid.filterProps,
+  ...positions.filterProps,
+  ...palette.filterProps,
+  ...shadows.filterProps,
+  ...sizing.filterProps,
+  ...spacing.filterProps,
+  ...typography.filterProps,
+  'sx',
+];
+
 
 function objectsHaveSameKeys(...objects) {
   const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
