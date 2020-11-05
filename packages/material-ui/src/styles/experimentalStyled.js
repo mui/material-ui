@@ -108,7 +108,7 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
 
     expressionsWithDefaultTheme.push((props) => {
       const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-      return styleFunctionSx({ ...props, theme });
+      return styleFunctionSx(props.sx, theme);
     });
 
     return defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
