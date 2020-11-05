@@ -1,6 +1,10 @@
-# @material-ui/system
+# Material-UI System
 
-<p class="description">Styled system & style functions for building powerful design systems.</p>
+<p class="description">Utility-first style functions for rapidly building custom designs & systems.</p>
+
+The system lets you quickly build custom UI components leverating the design tokens defined in your theme.
+
+## Demo
 
 {{"demo": "pages/system/basics/Demo.js"}}
 
