@@ -12,40 +12,42 @@ interface CardHeaderProps {
 
 const CardHeader: React.FC<CardHeaderProps> = (props) => {
   const imgSize = [60, 90, 90, 120, 150];
-  return <Box
-    sx={{
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifContent: 'center',
-      bgcolor: `${props.color}.main`,
-      color: `${props.color}.contrastText`,
-      width: ['100%', '100%', '200px', '300px', '400px'],
-      height: ['100px', '200px', '100%', '100%', '100%'],
-    }}
-  >
-    <Box 
-      {...props}
-      component="img" 
+  return (
+    <Box
+      className="CardHeader"
       sx={{
-        border: 2,
-        borderColor: 'white',
-        display: 'block',
-        position: 'relative',
-        height: imgSize, 
-        width: imgSize,
-        margin: 'auto',
-        borderRadius: '50%',
-        ...props.sx,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifContent: 'center',
+        bgcolor: `${props.color}.main`,
+        width: ['100%', '100%', '200px', '300px', '400px'],
+        height: ['100px', '200px', '100%', '100%', '100%'],
       }}
-    />
-  </Box>
-}
+    >
+      <Box
+        {...props}
+        component="img"
+        sx={{
+          border: 2,
+          borderColor: 'white',
+          display: 'block',
+          position: 'relative',
+          height: imgSize,
+          width: imgSize,
+          margin: 'auto',
+          borderRadius: '50%',
+          ...props.sx,
+        }}
+      />
+    </Box>
+  );
+};
 
 interface CardContentProps {
   color?: Color;
   header?: string;
   description?: string;
-  sx?: SxProps
+  sx?: SxProps;
 }
 
 const CardContent: React.FC<CardContentProps> = (props) => {
@@ -54,12 +56,13 @@ const CardContent: React.FC<CardContentProps> = (props) => {
       {...props}
       sx={{
         display: 'inline-block',
-        px:1,
+        px: 1,
         py: 2,
         ...props.sx,
       }}
     >
-      <Box 
+      <Box
+        className="CardContent-header"
         sx={{
           fontSize: [12, 14, 16, 18, 20],
           fontWeight: [400, 400, 400, 500, 600],
@@ -69,12 +72,18 @@ const CardContent: React.FC<CardContentProps> = (props) => {
       >
         {props.header}
       </Box>
-      <Box sx={{ fontSize: [10, 12, 14, 16, 18], fontWeight: [400, 400, 400, 500, 600], color: 'grey' }}>
+      <Box
+        sx={{
+          fontSize: [10, 12, 14, 16, 18],
+          fontWeight: [400, 400, 400, 500, 600],
+          color: 'grey',
+        }}
+      >
         {props.description}
       </Box>
     </Box>
   );
-}
+};
 
 interface CardProps {
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
@@ -85,24 +94,43 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = (props) => {
-  return (<Box 
-    {...props} 
-    sx={{
-      display: 'flex',
-      flexDirection: ['column', 'column', 'row', 'row', 'row'],
-      width: [100, 200, 300, 400, 500],
-      border: 1,
-      borderColor: 'lightgrey',
-      borderRadius: '5px',
-      minHeight: [150, 100, 200, 300, 300],
-      ...props.sx, 
-    }}
-  >
-    <CardHeader color={props.color || 'primary'} src={props.profileImage} alt={props.header} />
-    <CardContent color={props.color || 'primary'} header={props.header} description={props.description} />
-  </Box>
-  )
-}
+  const {
+    color = 'primary',
+    profileImage,
+    header,
+    description,
+    sx,
+    ...rest
+  } = props;
+  return (
+    <Box
+      {...rest}
+      sx={{
+        display: 'flex',
+        flexDirection: ['column', 'column', 'row', 'row', 'row'],
+        width: [100, 200, 300, 400, 500],
+        border: 1,
+        borderColor: 'lightgrey',
+        borderRadius: '5px',
+        boxShadow: 3,
+        minHeight: [150, 100, 200, 300, 300],
+        ':hover': {
+          '& .CardHeader': {
+            bgcolor: `${props.color}.dark`,
+          },
+          '& .CardContent-header': {
+            color: `${props.color}.dark`,
+          },
+          boxShadow: 6,
+        },
+        ...sx,
+      }}
+    >
+      <CardHeader color={color} src={profileImage} alt={header} />
+      <CardContent color={color} header={header} description={description} />
+    </Box>
+  );
+};
 
 export default function Demo() {
   return (

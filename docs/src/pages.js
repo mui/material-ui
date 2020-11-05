@@ -185,7 +185,7 @@ const pages = [
       { pathname: '/system/spacing' },
       { pathname: '/system/screen-readers' },
       { pathname: '/system/typography' },
-      { pathname: '/system/api', title: 'API' },
+      { pathname: '/system/properties' },
     ],
   },
   {

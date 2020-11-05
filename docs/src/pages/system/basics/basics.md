@@ -2,7 +2,7 @@
 
 <p class="description">Styled system & style functions for building powerful design systems.</p>
 
-{{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/basics/Demo.js"}}
 
 ## Why
 
@@ -10,11 +10,11 @@ There are several reasons for why you may need the system offered by Material-UI
 
 ### 1. Building consistent UIs is hard
 
-This is especially true, when there is at least more than one person building the application. There has to be some synchronization to what are the design tokens and how are those used. What parts of the theme structure should be used with what CSS proeprties.
+This is especially true, when there is at least more than one person building the application. There has to be some synchronization to what are the design tokens and how are those used. What parts of the theme structure should be used with what CSS properties etc.
 
 ### 2. Switching context between JS and CSS
 
-Often we find ourselves jumping from the JS to the CSS files, or from the components definition to the instance usage in order to conclude where and how some styles are defined. This is particularly true as the complexity (LOCs/# of elements) of the component you are working on increases. We could save a lot of time by removing this contraint.
+Often we find ourselves jumping from the JS to the CSS files, or from the components definition to the instance usage in order to conclude where and how some styles are defined. This is particularly true as the complexity (LOCs/# of elements) of the component we are working on increases. We could save a lot of time by removing this contraint.
 
 ### 3. Less code to type
 
@@ -22,13 +22,13 @@ Usually when defining styles for a react component we need to either define a se
 
 ## How do we solve this?
 
-In order to solve these issues, we need to have simple way of pulling & wiring the correct design tokens for specific CSS properties, and adding them directly on the react element where we want the styles to be applied, by a prop, that can be easily discoverable.
+In order to solve these issues, we need to have a simple way of pulling & wiring the correct design tokens for specific CSS properties, and adding them directly on the react element where we want the styles to be applied, by a prop, that can be easily discoverable.
 
-The `sx` prop, as part of the system is the solution we see for solving this problems. In the example above, you may see how it can be used on the MUI components.
+The `sx` prop, as part of the system is the solution we see for solving these problems. In the example above, you may see how it can be used on the MUI components.
 
-It behaves as a superset of CSS and allows using values from the theme directly, by pulling specific values depending on the CSS property used. In addition to this, it allows a simple way of defining responsive values, that corresponds to the breakpoints values defined in the theme.
+The property behaves as a superset of CSS that offers mapping values from the theme directly, by pulling specific values depending on the CSS property used. In addition to this, it allows a simple way of defining responsive values, that corresponds to the breakpoints values defined in the theme.
 
-With it you can build easily your custom visual components, like `Card`, `Badge`, `Chip` that could accept the props & behave exactlly as your design system needs to.
+With it you can build easily your custom visual components, like `Card`, `Badge`, `Chip` that could accept the props & behave exactlly as your design system specifies.
 
 In the next sections, we will dive deeper into all features of the `sx` prop.
 
@@ -46,16 +46,7 @@ yarn add @material-ui/system
 
 The `sx` prop is a superset of CSS, that let's you add any CSS to the underlaying component, while mapping values to different theme keys. This should help you to keep your application look consistent. The prop is available in all `@material-ui/core` components.
 
-You can include this prop in your own components too by using the `styleFunctionSx` style function from `@material-ui/core/Box`, or by using the `experimentalStyled` from `@material-ui/core/styles` for creating the custom component.
-
-```jsx
-import { styleFunctionSx } from '@material-ui/core/Box';
-import styled from '@emotion/styled';
-
-const Div = styled('div')(styleFunctionSx);
-```
-
-or
+You can include this prop in your own components too by using the `experimentalStyled` utility from `@material-ui/core/styles` for creating your custom component.
 
 ```jsx
 import { experimentalStyled as styled } from '@material-ui/core/styles';
@@ -69,15 +60,61 @@ You should use this prop whenever you need to add a style override to a Material
 
 ### Design tokens in the theme
 
-You can explore the [System API](/system/api/) page to discover how the different CSS (and custom) properties are mapped to the theme keys.
+You can explore the [System properties](/system/properties/) page to discover how the different CSS (and custom) properties are mapped to the theme keys.
 
 ### Many shorthands
 
+We offer lots of shorthands on the CSS properties. Here are few examples:
+
+```jsx
+  <Box
+    sx={{
+      boxShadow: 1, // theme.shadows[1]
+      color: 'primary.main', // theme.palette.primary.main
+      m: 1, // margin: theme.spacing(1)
+      p: {
+        sx: 1, // [theme.breakpoints.up('sx')]: : { padding: theme.spacing(1) }
+      },
+      zIndex: 'tooltip', // theme.zIndex.tooltip
+    }}
+  >
+```
+
 ### Superset of CSS
 
-Child selector, pseudo selector, media queries, raw value.
+As the property is a superset of CSS, you can use child or pseudo selectors, media queries, raw css values etc. On the example above, we had several examples of this.
 
-## Usage 
+```jsx
+  // Using pseudo selectors
+  <Box
+    sx={{
+      // some styles
+      ":hover": {
+        '& .CardHeader': {
+          bgcolor: `${props.color}.dark`,
+        },
+        '& .CardContent-header': {
+          color: `${props.color}.dark`,
+        },
+        boxShadow: 6,
+      },
+    }}
+  >
+```
+
+```jsx
+  // Using media queries
+  <Box
+    sx={{
+      // some styles
+      "@media screen and (max-width: 992px)": {
+        width: 300,
+      },
+    }}
+  >
+```
+
+## Usage
 
 It can be used from 3 different sources:
 
