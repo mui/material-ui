@@ -207,7 +207,7 @@ declare module '@material-ui/core/styles/createBreakpoints' {
 
 ## Theme getter
 
-If you wish to use the theme for a CSS property that is not supported by the system, you can use a function as the value, in which you can access the theme object.
+If you wish to use the theme for a CSS property that is not supported natively by the system, you can use a function as the value, in which you can access the theme object.
 
 {{"demo": "pages/system/basics/ValueAsFunction.js"}}
 
