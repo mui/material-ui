@@ -72,6 +72,38 @@ const getThemeValue = (prop, value, theme) => {
   return { [prop]: value };
 };
 
+function createEmptyBreakpointObject(breakpoints) {
+  const breakpointsInOrder = breakpoints.keys.reduce((acc, key) => {
+    const breakpointStyleKey = breakpoints.up(key);
+    acc[breakpointStyleKey] = {};
+    return acc;
+  }, {});
+  return breakpointsInOrder;
+}
+
+function removeUnusedBreakpoints(breakpointKeys, style) {
+  return breakpointKeys.reduce(
+    (acc, key) => {
+      const breakpointOutput = acc[key];
+      const isBreakpointUnused = Object.keys(breakpointOutput).length === 0;
+      if (isBreakpointUnused) {
+        delete acc[key];
+      }
+      return acc;
+    },
+    { ...style },
+  );
+}
+
+const mergeBreakpointsInOrder = (breakpoints, ...styles) => {
+  const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
+  const mergedOutput = [emptyBreakpoints, ...styles].reduce(
+    (prev, next) => deepmerge(prev, next),
+    {},
+  );
+  return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
+};
+
 export const styleFunctionSx = (styles, theme) => {
   if (!styles) return null;
 
@@ -121,7 +153,7 @@ const styleFunction = (props) => {
 
   const sxValue = styleFunctionSx(props.sx, props.theme);
 
-  return deepmerge(result, sxValue);
+  return mergeBreakpointsInOrder(props.theme.breakpoints, result, sxValue);
 };
 
 styleFunction.filterProps = filterProps;
