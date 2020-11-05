@@ -1,6 +1,6 @@
 # Material-UI System
 
-<p class="description">Utility-first style functions for rapidly building custom designs & systems.</p>
+<p class="description">Utility-first style functions for rapidly building custom design systems.</p>
 
 The system lets you quickly build custom UI components leverating the design tokens defined in your theme.
 
