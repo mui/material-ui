@@ -804,10 +804,6 @@ export default function useAutocomplete(props) {
     firstFocus.current = true;
     ignoreFocus.current = false;
 
-    if (inputValue !== '') {
-      return;
-    }
-
     if (autoSelect && highlightedIndexRef.current !== -1 && popupOpen) {
       selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'blur');
     } else if (autoSelect && freeSolo && inputValue !== '') {
