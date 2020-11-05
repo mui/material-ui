@@ -1,144 +1,51 @@
 import * as React from 'react';
-import Box, { SxProps } from '@material-ui/core/Box';
+import Box, { BoxProps } from '@material-ui/core/Box';
+import { alpha, Theme } from '@material-ui/core/styles';
+import ErrorIcon from '@material-ui/icons/Error';
 
-type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
-
-interface CardHeaderProps {
-  color?: Color;
-  sx?: SxProps;
+interface ImageProps extends BoxProps {
   src?: string;
   alt?: string;
 }
 
-const CardHeader: React.FC<CardHeaderProps> = (props) => {
-  const imgSize = [60, 90, 90, 120, 150];
-  return (
-    <Box
-      className="CardHeader"
-      sx={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifContent: 'center',
-        bgcolor: `${props.color}.main`,
-        width: ['100%', '100%', '200px', '300px', '400px'],
-        height: ['100px', '200px', '100%', '100%', '100%'],
-      }}
-    >
-      <Box
-        {...props}
-        component="img"
-        sx={{
-          border: 2,
-          borderColor: 'white',
-          display: 'block',
-          position: 'relative',
-          height: imgSize,
-          width: imgSize,
-          margin: 'auto',
-          borderRadius: '50%',
-          ...props.sx,
-        }}
-      />
-    </Box>
-  );
-};
-
-interface CardContentProps {
-  color?: Color;
-  header?: string;
-  description?: string;
-  sx?: SxProps;
+const Image: React.FC<ImageProps> = (props) => {
+  return <Box component="img" {...props} />
 }
 
-const CardContent: React.FC<CardContentProps> = (props) => {
-  return (
-    <Box
-      {...props}
-      sx={{
-        display: 'inline-block',
-        px: 1,
-        py: 2,
-        ...props.sx,
-      }}
-    >
-      <Box
-        className="CardContent-header"
-        sx={{
-          fontSize: [12, 14, 16, 18, 20],
-          fontWeight: [400, 400, 400, 500, 600],
-          color: `${props.color}.main`,
-          my: [1, 1, 2, 2, 2],
-        }}
-      >
-        {props.header}
-      </Box>
-      <Box
-        sx={{
-          fontSize: [10, 12, 14, 16, 18],
-          fontWeight: [400, 400, 400, 500, 600],
-          color: 'grey',
-        }}
-      >
-        {props.description}
-      </Box>
-    </Box>
-  );
-};
-
-interface CardProps {
-  color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
-  header?: string;
-  description: string;
-  sx?: SxProps;
-  profileImage?: string;
+const Span: React.FC<BoxProps> = props => {
+  return <Box component="span" {...props} />
 }
-
-const Card: React.FC<CardProps> = (props) => {
-  const {
-    color = 'primary',
-    profileImage,
-    header,
-    description,
-    sx,
-    ...rest
-  } = props;
-  return (
-    <Box
-      {...rest}
-      sx={{
-        display: 'flex',
-        flexDirection: ['column', 'column', 'row', 'row', 'row'],
-        width: [100, 200, 300, 400, 500],
-        border: 1,
-        borderColor: 'lightgrey',
-        borderRadius: '5px',
-        boxShadow: 3,
-        minHeight: [150, 100, 200, 300, 300],
-        ':hover': {
-          '& .CardHeader': {
-            bgcolor: `${props.color}.dark`,
-          },
-          '& .CardContent-header': {
-            color: `${props.color}.dark`,
-          },
-          boxShadow: 6,
-        },
-        ...sx,
-      }}
-    >
-      <CardHeader color={color} src={profileImage} alt={header} />
-      <CardContent color={color} header={header} description={description} />
-    </Box>
-  );
-};
 
 export default function Demo() {
   return (
-    <Card
-      color="success"
-      profileImage="/static/images/cards/contemplative-reptile.jpg"
-      header="Contemplative Reptile"
-      description="This reptile is thinking about the future of our planet..."
-    />
+    <div>
+      <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        overflow: 'hidden',
+        width: { sm: 300, md: 400 },
+        borderRadius: '15px',
+        boxShadow: 3,
+        minHeight: { sm: 300, md: 400 },
+        ':hover': {
+          boxShadow: 6,
+        },
+      }}
+    >
+      <Image sx={{ width: '100%', height: {sm: 200, md: 300}}} src="/static/images/system/demo.jpg" />
+      <Span component="span" sx={{ marginTop: 2, fontSize: 18, fontWeight: 'fontWeightMedium' }}>
+        123 Main St, Pheonix AZ
+      </Span>
+      <Span component="span" sx={{ color: 'primary.main', fontSize: 20, fontWeight: 'fontWeightMedium'}}>
+        $280.000 - $310.000
+      </Span>
+      <Box sx={{ my: 1.5, p: 0.5, backgroundColor: (theme: Theme) => alpha(theme.palette.primary.light, 0.2), borderRadius: '5px', color: 'primary.main', display: 'flex', alignItems: 'center'}}>
+        <ErrorIcon />
+        <Span sx={{ marginLeft: 0.5 }}>CONFIDENCE SCORE 85%</Span>
+      </Box>
+    </Box>
+    </div>
   );
 }
