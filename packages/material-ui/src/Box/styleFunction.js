@@ -96,7 +96,7 @@ export const styleFunctionSx = (styles, theme) => {
         }));
 
         if (objectsHaveSameKeys(breakpointsValues, styles[styleKey])) {
-          const transformedValue = styleFunctionSx({ sx: styles[styleKey], theme });
+          const transformedValue = styleFunctionSx(styles[styleKey], theme);
           css[styleKey] = transformedValue;
         } else {
           css = deepmerge(css, breakpointsValues);
