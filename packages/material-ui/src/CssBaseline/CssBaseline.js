@@ -27,8 +27,8 @@ export const body = (theme) => ({
 const scrollBar = {
   track: '#2b2b2b',
   thumb: '#6b6b6b',
-  active: '#959595'
-}
+  active: '#959595',
+};
 
 export const styles = (theme) => ({
   '@global': {
