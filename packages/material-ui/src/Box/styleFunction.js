@@ -72,8 +72,7 @@ const getThemeValue = (prop, value, theme) => {
   return { [prop]: value };
 };
 
-export const styleFunctionSx = (props = {}) => {
-  const { sx: styles, theme } = props;
+export const styleFunctionSx = (styles, theme) => {
   if (!styles) return null;
 
   if (typeof styles === 'function') {
