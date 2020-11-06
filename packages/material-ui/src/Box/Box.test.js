@@ -88,7 +88,7 @@ describe('<Box />', () => {
     const isMozilla = window.navigator.userAgent.indexOf('Firefox') > -1;
     const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
-    if (isJSDOM || isMozilla) {
+    if (isJSDOM) {
       // Test fails on Mozilla with just:
 
       // "border": "",
@@ -104,6 +104,10 @@ describe('<Box />', () => {
     expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
       border: '1px solid rgb(0, 0, 255)',
     });
+
+    if (isMozilla) {
+      console.log(window.getComputedStyle(testCaseBorderColorWins.container.firstChild));
+    }
 
     const testCaseBorderWins = render(<Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />);
 
