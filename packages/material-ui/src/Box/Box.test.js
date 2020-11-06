@@ -101,13 +101,13 @@ describe('<Box />', () => {
       <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
     );
 
-    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
-      border: '1px solid rgb(0, 0, 255)',
-    });
-
     if (isMozilla) {
       console.log(window.getComputedStyle(testCaseBorderColorWins.container.firstChild));
     }
+    
+    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+      border: '1px solid rgb(0, 0, 255)',
+    });
 
     const testCaseBorderWins = render(<Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />);
 
