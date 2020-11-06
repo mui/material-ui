@@ -132,7 +132,7 @@ TODO: For #23220
 
 ### Core components
 
-All core Material-UI components will suppor the `sx` prop.
+All core Material-UI components will support the `sx` prop.
 
 ## Responsive values
 
