@@ -22,7 +22,7 @@ Often we find ourselves jumping from the JS to CSS, or from a component definiti
 
 ### 3. Less code to type
 
-Usually when defining styles for a react component we need to either define a separate stylesheet, use some kind of factory for creating the component (`styled()`), or use some kind of hook for generating the styles (for example `makeStyles()` & `useStyles()`), which not only means we need to switch the context from where we are currently in the code, but we need to also type much more code than the actual styles we want to have on some element.
+Usually when defining styles for a React component we need to either define a separate stylesheet, use some kind of factory for creating the component (`styled()`), or use some kind of hook for generating the styles (for example `makeStyles()` & `useStyles()`), which not only means we need to switch context from where we are currently in the code, but we need to also type much more code than the actual styles we want to have on some element.
 
 ## How do we solve this?
 
