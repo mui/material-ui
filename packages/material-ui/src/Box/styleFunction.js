@@ -9,9 +9,9 @@ import {
   sizing,
   spacing,
   typography,
-  styleFunctionSx,
   mergeBreakpointsInOrder,
-  getThemeValue,
+  unstable_styleFunctionSx as styleFunctionSx,
+  unstable_getThemeValue as getThemeValue,
 } from '@material-ui/system';
 import { deepmerge } from '@material-ui/utils';
 
