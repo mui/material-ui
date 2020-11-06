@@ -148,37 +148,20 @@ The following changes are supported by the adapter.
   ```js
   theme.spacing(2) => '16px'
   ```
-
+  
+- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 - The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
 
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuiTheme(),
-+const theme = createMuiTheme({
-+  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-+});
-```
-
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
-
--const theme = createMuiTheme({palette: { type: 'dark' }}),
-+const theme = createMuiTheme({
-+  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-+});
+-const theme = createMuiTheme({
+-  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
+-});
++const theme = createMuiTheme({palette: { mode: 'dark' }}),
 ```
 
 - The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
-
-- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
-
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
-
--const theme = createMuiTheme({palette: { type: 'dark' }}),
-+const theme = createMuiTheme({palette: { mode: 'dark' }}),
-```
 
 1. `props`
 
