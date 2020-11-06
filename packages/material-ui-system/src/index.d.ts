@@ -225,7 +225,9 @@ export type TypographyProps = PropsFor<typeof typography>;
 
 export const visuallyHidden: React.CSSProperties;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export function unstable_getThemeValue(prop: string, value: any, theme: object): any;
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export function unstable_styleFunctionSx(props: object): object;
 
 // utils
