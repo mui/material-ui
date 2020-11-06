@@ -719,7 +719,43 @@ const classes = makeStyles(theme => ({
   +<Slider components={{ Thumb: CustomThumb }} />
   ```  
 
-- The `classes` property is no longer available for styling the component. You can move these overrides to the theme's components overrides section, or you can follow one of the overrides approach described on the ([Style Library Interoperability](https://next.material-ui.com/guides/interoperability/)) page.
+- The `classes` property is no longer available for styling the component. You can fix this by one of these options:
+
+1. Move these overrides to the theme's components overrides section
+
+```diff
+-  const useStyles = makeStyles({
+-    root: {
+-      margin: '10px',
+-    },
+-    colorPrimary: {
+-      backgroundColor: '#232323',
+-    }
+-  });
++  const theme = createMuiTheme({
++    components: {
++      MuiSlider: {
++        styleOverrides: {
++          root: {
++            margin: '10px',
++          },
++          colorPrimary: {
++            backgroundColor: '#232323',
++          },
++        },
++      },
++    },
++  });
+  // ...
+-  const classes = useStyles();
+  // ...
++ <ThemeProvider theme={theme}>
+// ...  
+-  <Slider classes={classes}>
++  <Slider />
+```
+
+or you can follow one of the overrides approach described on the ([Style Library Interoperability](https://next.material-ui.com/guides/interoperability/)) page. The class names for the Slider component can be find on the [API page](https://next.material-ui.com/api/slider/#css).
 
 ### Snackbar
 
