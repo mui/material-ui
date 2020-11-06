@@ -65,6 +65,10 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
   Every element—including `*::before` and `*::after` are declared to inherit this property,
   which ensures that the declared width of the element is never exceeded due to padding or border.
 
+### Scrollbars
+
+In dark mode, the colors of the scrollbars are customized to provide a better contrast.
+
 ### Typography
 
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default).
