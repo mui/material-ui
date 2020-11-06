@@ -73,7 +73,7 @@ describe('<Box />', () => {
 
     const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
 
-    if(isMozilla) {
+    if (isMozilla) {
       expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
         'border-top-color': 'rgb(0, 0, 255)',
         'border-right-color': 'rgb(0, 0, 255)',
@@ -88,7 +88,7 @@ describe('<Box />', () => {
 
     const testCaseBorderWins = render(<Box borderColor="rgb(0, 0, 255)" border={1} />);
 
-    if(isMozilla) {
+    if (isMozilla) {
       expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
         'border-top-color': 'rgb(0, 0, 0)',
         'border-right-color': 'rgb(0, 0, 0)',
