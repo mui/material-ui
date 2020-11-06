@@ -25,10 +25,10 @@ export interface FontStyle
     fontWeightRegular: React.CSSProperties['fontWeight'];
     fontWeightMedium: React.CSSProperties['fontWeight'];
     fontWeightBold: React.CSSProperties['fontWeight'];
+    htmlFontSize: number;
   }> {}
 
 export interface FontStyleOptions extends Partial<FontStyle> {
-  htmlFontSize?: number;
   allVariants?: React.CSSProperties;
 }
 
