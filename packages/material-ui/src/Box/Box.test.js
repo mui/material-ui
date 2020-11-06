@@ -62,7 +62,7 @@ describe('<Box />', () => {
     const isMozilla = window.navigator.userAgent.indexOf('Firefox') > -1;
     const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
-    if (isJSDOM || isMozilla) {
+    if (isJSDOM) {
       // Test fails on Mozilla with just:
 
       // "border": "",
@@ -73,15 +73,33 @@ describe('<Box />', () => {
 
     const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
 
-    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
-      border: '1px solid rgb(0, 0, 255)',
-    });
+    if(isMozilla) {
+      expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+        'border-top-color': 'rgb(0, 0, 255)',
+        'border-right-color': 'rgb(0, 0, 255)',
+        'border-bottom-color': 'rgb(0, 0, 255)',
+        'border-left-color': 'rgb(0, 0, 255)',
+      });
+    } else {
+      expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+        border: '1px solid rgb(0, 0, 255)',
+      });
+    }
 
     const testCaseBorderWins = render(<Box borderColor="rgb(0, 0, 255)" border={1} />);
 
-    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
-      border: '1px solid rgb(0, 0, 0)',
-    });
+    if(isMozilla) {
+      expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+        'border-top-color': 'rgb(0, 0, 0)',
+        'border-right-color': 'rgb(0, 0, 0)',
+        'border-bottom-color': 'rgb(0, 0, 0)',
+        'border-left-color': 'rgb(0, 0, 0)',
+      });
+    } else {
+      expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+        border: '1px solid rgb(0, 0, 0)',
+      });
+    }
   });
 
   it('respect properties order when generating the CSS from the sx prop', function test() {
@@ -102,17 +120,31 @@ describe('<Box />', () => {
     );
 
     if (isMozilla) {
-      console.log(window.getComputedStyle(testCaseBorderColorWins.container.firstChild));
+      expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+        'border-top-color': 'rgb(0, 0, 255)',
+        'border-right-color': 'rgb(0, 0, 255)',
+        'border-bottom-color': 'rgb(0, 0, 255)',
+        'border-left-color': 'rgb(0, 0, 255)',
+      });
+    } else {
+      expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+        border: '1px solid rgb(0, 0, 255)',
+      });
     }
-    
-    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
-      border: '1px solid rgb(0, 0, 255)',
-    });
 
     const testCaseBorderWins = render(<Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />);
 
-    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
-      border: '1px solid rgb(0, 0, 0)',
-    });
+    if (isMozilla) {
+      expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+        'border-top-color': 'rgb(0, 0, 0)',
+        'border-right-color': 'rgb(0, 0, 0)',
+        'border-bottom-color': 'rgb(0, 0, 0)',
+        'border-left-color': 'rgb(0, 0, 0)',
+      });
+    } else {
+      expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+        border: '1px solid rgb(0, 0, 0)',
+      });
+    }
   });
 });
