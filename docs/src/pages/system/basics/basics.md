@@ -18,7 +18,7 @@ This is especially true when there is more than one person building the applicat
 
 ### 2. Switching context between JS and CSS
 
-Often we find ourselves jumping from the JS to the CSS files, or from the components definition to the instance usage in order to conclude where and how some styles are defined. This is particularly true as the complexity (LOCs/# of elements) of the component we are working on increases. We could save a lot of time by removing this contraint.
+Often we find ourselves jumping from the JS to CSS, or from a component definition to an instance in order to understand where and how some styles are defined. This is particularly true as the complexity (LOCs/# of elements) of the component we are working on increases. We could save a lot of time by removing this constraint.
 
 ### 3. Less code to type
 
