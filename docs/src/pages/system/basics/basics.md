@@ -16,9 +16,56 @@ There are several reasons why you may need the system offered by Material-UI. He
 
 This is especially true when there is more than one person building the application. There has to be some synchronization as to what the design tokens are and how  they are used, what parts of the theme structure should be used with what CSS properties, etc.
 
-### 2. Switching context between JS and CSS
+### 2. Switching context
 
 Often we find ourselves jumping from the JS to CSS, or from a component definition to an instance in order to understand where and how some styles are defined. This is particularly true as the complexity (LOCs/# of elements) of the component we are working on increases. We could save a lot of time by removing this constraint.
+
+```diff
+import * as React from 'react';
+-import styled from 'styled-components';
++import Box from '@material-ui/core/Box';
+
+-const Card = styled('div)({
+-  width: '200px',
+-  height: '200px',
+-  boxShadow: theme => theme.shadows[3],
+-});
+-
+-const Header = styled('h4')({
+-  color: 'grey',
+-});
+-
+-const Content = styled('p')({
+-  fontSize: '14px;,
+-  marginTop: '10px',
+-});
+
+export default function Demo() {
+-  return (<Card>
++  return (<Box
++    sx={{
++      width: '200px',
++      height: '200px',
++      boxShadow: theme => theme.shadows[3],
++    }}
++  >
+-    <Header>
++    <Box component="h4" sx={{ color: 'grey' }}>
+       123 Main St, Pheonix AZ
+-    </Header>   
++    </Box>
+-    <Content>
++    <Box component="p" sx={{
++      fontSize: '14px;,
++      marginTop: '10px',
++    }}>
+      $280,000 — $310,000
+-    </Content>
++    </Box>
+-  </Card>);
++  </Box>);
+}
+```
 
 ### 3. Less code to type
 
@@ -86,7 +133,7 @@ There are lots of shorthands on the CSS properties. Here are few examples:
 
 ### Superset of CSS
 
-As the property is a superset of CSS, you can use child or pseudo selectors, media queries, raw css values etc. Here are few examples:
+As the property is a superset of CSS, you can use child or pseudo selectors, media queries, raw CSS values etc. Here are few examples:
 
 ```jsx
   // Using pseudo selectors
