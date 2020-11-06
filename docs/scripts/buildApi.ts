@@ -193,16 +193,18 @@ async function annotateComponentDefinition(context: {
 }
 
 const camelCaseToKebabCase = (inputString: string) => {
-  const str = inputString.charAt(0).toLowerCase() + inputString.slice(1)
+  const str = inputString.charAt(0).toLowerCase() + inputString.slice(1);
   return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
-}
+};
 
 async function updateStylesDefinition(context: { api: ReactApi; component: { filename: string } }) {
   const workspaceRoot = path.resolve(__dirname, '../../');
   const { api, component } = context;
 
   const componentName = path.basename(component.filename).replace(/\.js$/, '');
-  const cssFilename = `${workspaceRoot}/docs/data/css/${camelCaseToKebabCase(componentName)}-css.json`;
+  const cssFilename = `${workspaceRoot}/docs/data/css/${camelCaseToKebabCase(
+    componentName,
+  )}-css.json`;
 
   try {
     const jsonCSSData = readFileSync(cssFilename, { encoding: 'utf8' });
@@ -210,7 +212,7 @@ async function updateStylesDefinition(context: { api: ReactApi; component: { fil
       const cssData = JSON.parse(jsonCSSData.toString());
       const classes = Object.keys(cssData);
       api.styles.classes = classes;
-  
+
       api.styles.descriptions = classes.reduce((acc, key) => {
         acc[key] = cssData[key].description;
         return acc;
