@@ -34,7 +34,7 @@ The prop provides a superset of CSS that maps values directly from the theme, de
 
 With it you can build easily your custom visual components, like `Card`, `Badge`, `Chip` that could accept the props & behave exactlly as your design system specifies.
 
-In the next sections, we will dive deeper into all features of the `sx` prop.
+In the following sections we will dive deeper into the features of the `sx` prop.
 
 ## Installation
 
