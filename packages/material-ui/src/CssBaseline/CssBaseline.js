@@ -57,6 +57,9 @@ export const styles = (theme) => ({
           '*::-webkit-scrollbar-thumb:active': {
             backgroundColor: scrollBar.active,
           },
+          '*::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: scrollBar.active,
+          },
           '*::-webkit-scrollbar-corner': {
             backgroundColor: scrollBar.track,
           },
