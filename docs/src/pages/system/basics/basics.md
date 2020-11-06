@@ -60,7 +60,7 @@ const Div = styled('div')``;
 
 <b>Note:</b>
 
-You should use this prop whenever you need to add a style override to a Material-UI component. If you repeatedly add the same styles on a component, then `styled()` is better alternative, as it allows you to specify the overrides only once, and reuse them in all component instances.
+You should use this prop whenever you need to add a style override to a Material-UI component. If you repeatedly apply the same styles to a component, then `styled()` is better alternative, as it allows you to specify the overrides only once, and reuse them in all component instances.
 
 ### Design tokens in the theme
 
