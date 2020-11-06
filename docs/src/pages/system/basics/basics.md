@@ -26,7 +26,7 @@ Usually when defining styles for a React component we need to either define a se
 
 ## How do we solve this?
 
-In order to solve these issues, we need to have a simple way of pulling & wiring the correct design tokens for specific CSS properties, and adding them directly on the react element where we want the styles to be applied, by a prop, that can be easily discoverable.
+In order to solve these issues, we need to have a simple way of pulling & wiring the correct design tokens for specific CSS properties, and adding them directly on the React element where we want the styles to be applied with a prop that is easily discoverable.
 
 The `sx` prop, as part of the system is the solution we see for solving these problems. In the example above, you may see how it can be used on the MUI components.
 
