@@ -198,14 +198,16 @@ const camelCaseToKebabCase = (inputString: string) => {
 }
 
 async function updateStylesDefinition(context: { api: ReactApi; component: { filename: string } }) {
+  const workspaceRoot = path.resolve(__dirname, '../../');
   const { api, component } = context;
 
   const componentName = path.basename(component.filename).replace(/\.js$/, '');
-  const cssFilename = `../data/css/${camelCaseToKebabCase(componentName)}-css.js`;
+  const cssFilename = `${workspaceRoot}/docs/data/css/${camelCaseToKebabCase(componentName)}-css.json`;
+
   try {
-    const cssModule = require(cssFilename);
-    if (cssModule) {
-      const cssData = cssModule.default;
+    const jsonCSSData = readFileSync(cssFilename, { encoding: 'utf8' });
+    if (jsonCSSData) {
+      const cssData = JSON.parse(jsonCSSData.toString());
       const classes = Object.keys(cssData);
       api.styles.classes = classes;
   
