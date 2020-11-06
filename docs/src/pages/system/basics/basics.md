@@ -30,7 +30,7 @@ In order to solve these issues, we need to have a simple way of pulling & wiring
 
 The `sx` prop, as part of the system, solves these problems. The example above shows how it can be used in MUI components.
 
-The property behaves as a superset of CSS that offers mapping values from the theme directly, by pulling specific values depending on the CSS property used. In addition to this, it allows a simple way of defining responsive values, that corresponds to the breakpoints values defined in the theme.
+The prop provides a superset of CSS that maps values directly from the theme, depending on the CSS property used. In addition, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
 
 With it you can build easily your custom visual components, like `Card`, `Badge`, `Chip` that could accept the props & behave exactlly as your design system specifies.
 
