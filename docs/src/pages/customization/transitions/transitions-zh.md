@@ -18,7 +18,7 @@
 
 #### 返回结果
 
-`
+`transition`: A CSS transition value, which composes all CSS properties that should be transitioned, together with the defined duration, easing and delay.
 
 `transition`：一个 CSS 的动画值，它包含了所有需要应用动画效果的 CSS 属性，以及定义的时长、缓动效果。</p>
 
