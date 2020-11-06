@@ -192,78 +192,33 @@ async function annotateComponentDefinition(context: {
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
-function trimComment(comment: string) {
-  let i = 0;
-  for (; i < comment.length; i += 1) {
-    if (comment[i] !== '*' && comment[i] !== ' ') {
-      break;
-    }
-  }
-  return comment.substr(i, comment.length - 1);
+const camelCaseToKebabCase = (inputString: string) => {
+  const str = inputString.charAt(0).toLowerCase() + inputString.slice(1)
+  return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
 }
 
 async function updateStylesDefinition(context: { api: ReactApi; component: { filename: string } }) {
+  const workspaceRoot = path.resolve(__dirname, '../../');
   const { api, component } = context;
 
-  const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
-  const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
-  const typesAST = await babel.parseAsync(typesSource, {
-    configFile: false,
-    filename: typesFilename,
-    presets: [require.resolve('@babel/preset-typescript')],
-  });
+  const componentName = path.basename(component.filename).replace(/\.js$/, '');
+  const cssFilename = `${workspaceRoot}/docs/data/css/${camelCaseToKebabCase(componentName)}-css.json`;
 
-  if (typesAST === null) {
-    throw new Error('No AST returned from babel.');
-  }
-
-  if (api.styles.classes.length === 0) {
-    const componentName = path.basename(typesFilename).replace(/\.d\.ts$/, '');
-
-    traverse(typesAST, {
-      ExportNamedDeclaration(babelPath) {
-        const { node } = babelPath;
-        const declaration = node.declaration as babel.types.TSTypeAliasDeclaration;
-
-        const name = declaration.id?.name;
-
-        const typeAnnotation = declaration.typeAnnotation as babel.types.TSUnionType;
-
-        if (name === `${componentName}ClassKey` && typeAnnotation.types) {
-          const classes: string[] = [];
-
-          const nodeLeadingComments = declaration.typeAnnotation.leadingComments || [];
-
-          typeAnnotation.types.forEach((typeNode) => {
-            const value = (typeNode as babel.types.TSLiteralType).literal.value as string;
-
-            classes.push(value);
-
-            let leadingComments = typeNode.leadingComments;
-            if (leadingComments) {
-              leadingComments = leadingComments.concat(nodeLeadingComments);
-            } else {
-              leadingComments = nodeLeadingComments;
-            }
-
-            if (leadingComments) {
-              for (let i = 0; i < leadingComments.length; i += 1) {
-                if (
-                  leadingComments[i].end + 5 ===
-                  (typeNode as babel.types.TSLiteralType).literal.start
-                ) {
-                  api.styles.descriptions[value] = trimComment(leadingComments[i].value);
-                }
-              }
-            }
-
-            return '';
-          });
-
-          api.styles.classes = classes;
-        }
-      },
-    });
+  try {
+    const jsonCSSData = readFileSync(cssFilename, { encoding: 'utf8' });
+    if (jsonCSSData) {
+      const cssData = JSON.parse(jsonCSSData.toString());
+      const classes = Object.keys(cssData);
+      api.styles.classes = classes;
+  
+      api.styles.descriptions = classes.reduce((acc, key) => {
+        acc[key] = cssData[key].description;
+        return acc;
+      }, {} as Record<string, string>);
+    }
+  } catch (err) {
+    // Do nothing if the file doesn't exist
+    // This is still not supported for all components
   }
 }
 

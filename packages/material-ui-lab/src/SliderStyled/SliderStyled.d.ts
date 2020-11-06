@@ -48,46 +48,4 @@ export const SliderValueLabel: React.FC<SliderValueLabel>;
  */
 declare const Slider: ExtendSliderUnstyled<SliderStyledTypeMap>;
 
-export type SliderStyledClassKey =
-  /** Class name applied to the root element. */
-  | 'root'
-  /** Class name applied to the root element if `color="primary"`. */
-  | 'colorPrimary'
-  /** Class name applied to the root element if `color="secondary"`. */
-  | 'colorSecondary'
-  /** Class name applied to the root element if `marks` is provided with at least one label. */
-  | 'marked'
-  /** Class name applied to the root element if `orientation="vertical"`. */
-  | 'vertical'
-  /** Pseudo-class applied to the root and thumb element if `disabled={true}`. */
-  | 'disabled'
-  /** Class name applied to the rail element. */
-  | 'rail'
-  /** Class name applied to the track element. */
-  | 'track'
-  /** Class name applied to the track element if `track={false}`. */
-  | 'trackFalse'
-  /** Class name applied to the track element if `track="inverted"`. */
-  | 'trackInverted'
-  /** Class name applied to the thumb element. */
-  | 'thumb'
-  /** Class name applied to the thumb element if `color="primary"`. */
-  | 'thumbColorPrimary'
-  /** Class name applied to the thumb element if `color="secondary"`. */
-  | 'thumbColorSecondary'
-  /** Pseudo-class applied to the thumb element if it's active. */
-  | 'active'
-  /** Pseudo-class applied to the thumb element if keyboard focused. */
-  | 'focusVisible'
-  /** Class name applied to the thumb label element. */
-  | 'valueLabel'
-  /** Class name applied to the mark element. */
-  | 'mark'
-  /** Class name applied to the mark element if active (depending on the value). */
-  | 'markActive'
-  /** Class name applied to the mark label element. */
-  | 'markLabel'
-  /** Class name applied to the mark label element if active (depending on the value). */
-  | 'markLabelActive';
-
 export default Slider;
