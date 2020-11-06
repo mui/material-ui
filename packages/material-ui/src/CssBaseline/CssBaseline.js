@@ -29,31 +29,31 @@ export const body = (theme) => ({
     backgroundColor: theme.palette.common.white,
   },
   ...(theme.palette.mode === 'dark'
-  ? {
-      scrollbarColor: `${scrollBar.thumb} ${scrollBar.track}`,
-      '&::-webkit-scrollbar, & *::-webkit-scrollbar': {
-        backgroundColor: scrollBar.track,
-      },
-      '&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb': {
-        borderRadius: 8,
-        backgroundColor: scrollBar.thumb,
-        minHeight: 24,
-        border: `3px solid ${scrollBar.track}`,
-      },
-      '&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus': {
-        backgroundColor: scrollBar.active,
-      },
-      '&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active': {
-        backgroundColor: scrollBar.active,
-      },
-      '&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover': {
-        backgroundColor: scrollBar.active,
-      },
-      '&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner': {
-        backgroundColor: scrollBar.track,
-      },
-    }
-  : {}),
+    ? {
+        scrollbarColor: `${scrollBar.thumb} ${scrollBar.track}`,
+        '&::-webkit-scrollbar, & *::-webkit-scrollbar': {
+          backgroundColor: scrollBar.track,
+        },
+        '&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb': {
+          borderRadius: 8,
+          backgroundColor: scrollBar.thumb,
+          minHeight: 24,
+          border: `3px solid ${scrollBar.track}`,
+        },
+        '&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus': {
+          backgroundColor: scrollBar.active,
+        },
+        '&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active': {
+          backgroundColor: scrollBar.active,
+        },
+        '&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover': {
+          backgroundColor: scrollBar.active,
+        },
+        '&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner': {
+          backgroundColor: scrollBar.track,
+        },
+      }
+    : {}),
 });
 
 export const styles = (theme) => ({
