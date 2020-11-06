@@ -14,7 +14,7 @@ There are several reasons why you may need the system offered by Material-UI. He
 
 ### 1. Building consistent UIs is hard
 
-This is especially true when there is more than one person building the application. There has to be some synchronization as to what the design tokens are and how  they are used, what parts of the theme structure should be used with what CSS properties, etc.
+This is especially true when there is more than one person building the application. There has to be some synchronization as to what the design tokens are and how they are used, what parts of the theme structure should be used with what CSS properties, etc.
 
 ### 2. Switching context
 
@@ -52,7 +52,7 @@ export default function Demo() {
 -    <Header>
 +    <Box component="h4" sx={{ color: 'grey' }}>
        123 Main St, Pheonix AZ
--    </Header>   
+-    </Header>
 +    </Box>
 -    <Content>
 +    <Box component="p" sx={{
@@ -96,6 +96,7 @@ yarn add @material-ui/system
 ## The `sx` prop
 
 We mentioned that you can use the `sx` prop on all MUI components. In addition to this, you may add the prop on your custom components too by using the `experimentalStyled` utility from `@material-ui/core/styles`.
+
 ```jsx
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 

@@ -19,14 +19,14 @@ export default function Demo() {
     >
       <Img
         sx={{ width: '100%', maxWidth: { xs: 350, md: 250 } }}
-        alt=""
+        alt="The house from the offer."
         src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400&dpr=2"
       />
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: { xs: 'center', md: 'flex-start' },
+          alignItems: { xs: 'center', md: 'flex-start' },
           m: 3,
           minWidth: { md: 350 },
         }}
