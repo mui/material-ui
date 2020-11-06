@@ -95,10 +95,7 @@ yarn add @material-ui/system
 
 ## The `sx` prop
 
-The `sx` prop is a superset of CSS, that let's you add any CSS to the underlaying component, while mapping values to different theme keys. This should help you to keep your application look consistent. The prop is available in all `@material-ui/core` components.
-
-You can include this prop in your own components too by using the `experimentalStyled` utility from `@material-ui/core/styles` for creating your custom components.
-
+We mentioned that you can use the `sx` prop on all MUI components. In addition to this, you may add the prop on your custom components too by using the `experimentalStyled` utility from `@material-ui/core/styles`.
 ```jsx
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
