@@ -705,6 +705,22 @@ const classes = makeStyles(theme => ({
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
+- The `ValueLabelComponent` prop is now part of the `components` prop.
+
+  ```diff
+  -<Slider ValueLabelComponent={CustomValueLabel} />
+  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  ```
+
+- The `ThumbComponent` prop is not part of the `components` prop.
+
+  ```diff
+  -<Slider ThumbComponent={CustomThumb} />
+  +<Slider components={{ Thumb: CustomThumb }} />
+  ```  
+
+- The `classes` property is no longer available for styling the component. You can move these overrides to the theme's components overrides section, or you can follow one of the overrides approach described on the ([Style Library Interoperability](https://next.material-ui.com/guides/interoperability/)) page.
+
 ### Snackbar
 
 - The notification now displays at the bottom left on large screens.
