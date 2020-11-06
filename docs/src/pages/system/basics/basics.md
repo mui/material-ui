@@ -2,74 +2,121 @@
 
 <p class="description">Utility-first style functions for rapidly building custom design systems.</p>
 
-The system lets you quickly build custom UI components leveraging the design tokens defined in your theme.
+Material-UI comes with dozens or **ready-to-use** components in the core.
+These components are an incredible starting point but when it comes to make your site stand out with a custom design, they can be challenging to customize. Introducing the system:
 
-## Demo
+The **system** lets you quickly build custom UI components leveraging the design tokens defined in your theme.
+
+## The demo
+
+_(Resize the window to see the responsive breakpoints)_
 
 {{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
 
-## Why
+## Why utility-first?
 
-There are several reasons why you may need the system offered by Material-UI. Here are few of them:
+Compare how the same stat component can be built with two different APIs.
 
-### 1. Building consistent UIs is hard
+{{"demo": "pages/system/basics/Why.js", "bg": true, "defaultCodeOpen": false}}
 
-This is especially true when there is more than one person building the application. There has to be some synchronization as to what the design tokens are and how they are used, what parts of the theme structure should be used with what CSS properties, etc.
+- ❌ using the standard styled-components API:
 
-### 2. Switching context
+```jsx
+const StatWrapper = styled('div')(
+  ({ theme }) => `
+  background-color: ${theme.palette.background.paper};
+  box-shadow: ${theme.shadows[1]};
+  border-radius: ${theme.shape.borderRadius}px;
+  padding: ${theme.spacing(2)};
+  min-width: 300px;
+`,
+);
 
-Often we find ourselves jumping from the JS to CSS, or from a component definition to an instance in order to understand where and how some styles are defined. This is particularly true as the complexity (LOCs/# of elements) of the component we are working on increases. We could save a lot of time by removing this constraint.
+const StatHeader = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.text.secondary};
+`,
+);
 
-```diff
-import * as React from 'react';
--import styled from 'styled-components';
-+import Box from '@material-ui/core/Box';
+const StyledTrend = styled(TrendingUpIcon)(
+  ({ theme }) => `
+  color: ${theme.palette.success.dark};
+  font-size: 16px;
+  vertical-alignment: sub;
+`,
+);
 
--const Card = styled('div)({
--  width: '200px',
--  height: '200px',
--  boxShadow: theme => theme.shadows[3],
--});
--
--const Header = styled('h4')({
--  color: 'grey',
--});
--
--const Content = styled('p')({
--  fontSize: '14px;,
--  marginTop: '10px',
--});
+const StatValue = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.text.primary};
+  font-size: 34px;
+  font-weight: ${theme.typography.fontWeightMedium};
+`,
+);
 
-export default function Demo() {
--  return (<Card>
-+  return (<Box
-+    sx={{
-+      width: '200px',
-+      height: '200px',
-+      boxShadow: theme => theme.shadows[3],
-+    }}
-+  >
--    <Header>
-+    <Box component="h4" sx={{ color: 'grey' }}>
-       123 Main St, Pheonix AZ
--    </Header>
-+    </Box>
--    <Content>
-+    <Box component="p" sx={{
-+      fontSize: '14px;,
-+      marginTop: '10px',
-+    }}>
-      $280,000 — $310,000
--    </Content>
-+    </Box>
--  </Card>);
-+  </Box>);
-}
+const StatDiff = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.success.dark};
+  display: inline;
+  font-weight: ${theme.typography.fontWeightMedium};
+  margin-left: ${theme.spacing(0.5)};
+  margin-right: ${theme.spacing(0.5)};
+`,
+);
+
+const StatPrevious = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.text.secondary};
+  display: inline;
+  font-size: 12px;
+`,
+);
+
+return (
+  <StatWrapper>
+    <StatHeader>Sessions</StatHeader>
+    <StatValue>{'98.3 K'}</StatValue>
+    <StyledTrend />
+    <StatDiff>{'18.77%'}</StatDiff>
+    <StatPrevious>{'vs last week'}</StatPrevious>
+  </StatWrapper>
+);
 ```
 
-### 3. Less code to type
+- ✅ using the system:
 
-Usually when defining styles for a React component we need to either define a separate stylesheet, use some kind of factory for creating the component (`styled()`), or use some kind of hook for generating the styles (for example `makeStyles()` & `useStyles()`), which not only means we need to switch context from where we are currently in the code, but we need to also type much more code than the actual styles we want to have on some element.
+```jsx
+/* prettier-ignore */
+<Box sx={{ bgcolor: 'background.paper', boxShadow: 1, borderRadius: 'borderRadius', p: 2, minWidth: 300 }}>
+  <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
+  <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}>
+    {'98.3 K'}
+  </Box>
+  <Box component={TrendingUpIcon} sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }} />
+  <Box sx={{ color: 'success.dark', display: 'inline', fontWeight: 'fontWeightMedium', mx: 0.5 }}>
+    {'18.77%'}
+  </Box>
+  <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
+    {'vs last week'}
+  </Box>
+</Box>
+```
+
+The system solves 3 problems:
+
+**1. Switching context wastes time.**
+
+There's no need to constantly jump between the usage of the styled components and where they are defined. With the system, those descriptions are right where you need them.
+
+**2. Naming things is hard.**
+
+Have you ever found yourself struggling to find a good name for a styled component?
+The system maps the styles directly to the element.
+All you have to do is worry about actual style properties.
+
+**3. Building consistent UIs is hard.**
+
+This is especially true when more than one person is building the application, as there has to be some coordination amongst members of the team regarding choice of design tokens and how they are used, what parts of the theme structure should be used with what CSS properties, and so on.
 
 ## How do we solve this?
 

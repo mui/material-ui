@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import { alpha } from '@material-ui/core/styles';
-import ErrorIcon from '@material-ui/icons/Error';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
 export default function Demo() {
   return (
@@ -32,10 +32,10 @@ export default function Demo() {
         }}
       >
         <Box component="span" sx={{ fontSize: 16, mt: 1 }}>
-          123 Main St, Pheonix AZ
+          {'123 Main St, Pheonix AZ'}
         </Box>
         <Box component="span" sx={{ color: 'primary.main', fontSize: 22 }}>
-          $280,000 — $310,000
+          {'$280,000 — $310,000'}
         </Box>
         <Box
           sx={{
@@ -54,7 +54,7 @@ export default function Demo() {
             },
           }}
         >
-          <ErrorIcon />
+          <ErrorOutlineIcon />
           {'CONFIDENCE SCORE 85%'}
         </Box>
       </Box>
