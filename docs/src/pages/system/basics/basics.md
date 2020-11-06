@@ -68,7 +68,7 @@ You can explore the [System properties](/system/properties/) page to discover ho
 
 ### Many shorthands
 
-We offer lots of shorthands on the CSS properties. Here are few examples:
+There are lots of shorthands on the CSS properties. Here are few examples:
 
 ```jsx
   <Box
