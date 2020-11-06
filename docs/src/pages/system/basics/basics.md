@@ -14,7 +14,7 @@ There are several reasons why you may need the system offered by Material-UI. He
 
 ### 1. Building consistent UIs is hard
 
-This is especially true, when there is at least more than one person building the application. There has to be some synchronization to what are the design tokens and how are those used. What parts of the theme structure should be used with what CSS properties etc.
+This is especially true when there is more than one person building the application. There has to be some synchronization as to what the design tokens are and how  they are used, what parts of the theme structure should be used with what CSS properties, etc.
 
 ### 2. Switching context between JS and CSS
 
