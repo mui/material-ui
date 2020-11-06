@@ -6,7 +6,7 @@ The system lets you quickly build custom UI components leveraging the design tok
 
 ## Demo
 
-{{"demo": "pages/system/basics/Demo.js"}}
+{{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
 
 ## Why
 
@@ -86,7 +86,7 @@ We offer lots of shorthands on the CSS properties. Here are few examples:
 
 ### Superset of CSS
 
-As the property is a superset of CSS, you can use child or pseudo selectors, media queries, raw css values etc. On the example above, we had several examples of this.
+As the property is a superset of CSS, you can use child or pseudo selectors, media queries, raw css values etc. Here are few examples:
 
 ```jsx
   // Using pseudo selectors
@@ -94,10 +94,10 @@ As the property is a superset of CSS, you can use child or pseudo selectors, med
     sx={{
       // some styles
       ":hover": {
-        '& .CardHeader': {
+        '& .ChildSelector': {
           bgcolor: `${props.color}.dark`,
         },
-        '& .CardContent-header': {
+        '& .OtherChildSelector': {
           color: `${props.color}.dark`,
         },
         boxShadow: 6,
