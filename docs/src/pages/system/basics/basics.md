@@ -28,7 +28,7 @@ Usually when defining styles for a React component we need to either define a se
 
 In order to solve these issues, we need to have a simple way of pulling & wiring the correct design tokens for specific CSS properties, and adding them directly on the React element where we want the styles to be applied with a prop that is easily discoverable.
 
-The `sx` prop, as part of the system is the solution we see for solving these problems. In the example above, you may see how it can be used on the MUI components.
+The `sx` prop, as part of the system, solves these problems. The example above shows how it can be used in MUI components.
 
 The property behaves as a superset of CSS that offers mapping values from the theme directly, by pulling specific values depending on the CSS property used. In addition to this, it allows a simple way of defining responsive values, that corresponds to the breakpoints values defined in the theme.
 
