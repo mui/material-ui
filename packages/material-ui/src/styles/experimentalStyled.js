@@ -1,6 +1,6 @@
 import styled from '@material-ui/styled-engine';
 import { propsToClassKey } from '@material-ui/styles';
-import { styleFunctionSx } from '@material-ui/system';
+import { unstable_styleFunctionSx } from '@material-ui/system';
 import defaultTheme from './defaultTheme';
 
 function isEmpty(obj) {
