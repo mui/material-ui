@@ -666,6 +666,13 @@ const appList = [
     link: 'https://www.buybags.de/',
     dateAdded: '2020-10-08',
   },
+  {
+    title: 'Agile Sprints',
+    description: 'Agile Sprints provides KPIs on your sprints so you can shine during retrospectives.',
+    image: 'agilesprints.png',
+    link: 'https://agilesprints.io',
+    dateAdded: '2020-11-07',
+  },
 ];
 
 export default appList;
