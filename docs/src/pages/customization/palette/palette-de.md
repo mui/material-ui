@@ -208,19 +208,7 @@ function App() {
     () =>
       createMuiTheme({
         palette: {
-          type: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
-  );
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline/>
-      <Routes />
-    </ThemeProvider>
-  );
-} 'dark' : 'light',
+          mode: prefersDarkMode ? 'dark' : 'light',
         },
       }),
     [prefersDarkMode],

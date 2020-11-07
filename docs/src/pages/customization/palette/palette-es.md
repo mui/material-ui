@@ -200,27 +200,19 @@ You can leverage this preference dynamically with the [useMediaQuery](/component
 For instance, you can enable the dark mode automatically:
 
 ```jsx
-declare module '@material-ui/core/styles/createMuiTheme' {
-  interface Theme {
-    status: {
-      danger: React.CSSProperties['color'],
-    }
-  }
-  interface ThemeOptions {
-    status: {
-      danger: React.CSSProperties['color']
-    }
-  }
-}
+import * as React from 'react';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-declare module "@material-ui/core/styles/createPalette" {
-  interface Palette {
-    neutral: Palette['primary'];
-  }
-  interface PaletteOptions {
-    neutral: PaletteOptions['primary'];
-  }
-} 'dark' : 'light',
+function App() {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
         },
       }),
     [prefersDarkMode],

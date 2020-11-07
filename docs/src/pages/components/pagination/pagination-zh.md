@@ -1,5 +1,5 @@
 ---
-title: React 分页（Pagination）组件
+title: React Pagination（分页）组件
 components: Pagination, PaginationItem
 githubLabel: 'component: Pagination'
 ---
