@@ -16,7 +16,7 @@ export interface TrapFocusProps {
    * For instance, you can provide the "tabbable" npm dependency.
    * @param {HTMLElement} root
    */
-  getTabbable: (root: HTMLElement) => string[];
+  getTabbable?: (root: HTMLElement) => string[];
   /**
    * Do we still want to enforce the focus?
    * This prop helps nesting TrapFocus elements.

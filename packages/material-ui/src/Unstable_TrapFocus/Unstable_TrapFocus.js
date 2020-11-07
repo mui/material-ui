@@ -68,7 +68,7 @@ function isFocusable(node) {
   return true;
 }
 
-function defaultTabbable(root) {
+export function defaultGetTabbable(root) {
   const regularTabNodes = [];
   const orderedTabNodes = [];
 
@@ -108,12 +108,11 @@ function Unstable_TrapFocus(props) {
     disableEnforceFocus = false,
     disableRestoreFocus = false,
     getDoc,
-    getTabbable = defaultTabbable,
+    getTabbable = defaultGetTabbable,
     isEnabled,
     open,
   } = props;
   const ignoreNextEnforceFocus = React.useRef();
-  const lastEvent = React.useRef(null);
   const sentinelStart = React.useRef(null);
   const sentinelEnd = React.useRef(null);
   const nodeToRestore = React.useRef();
@@ -121,32 +120,17 @@ function Unstable_TrapFocus(props) {
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
   const activated = React.useRef(false);
+
   const rootRef = React.useRef(null);
   const handleRef = useForkRef(children.ref, rootRef);
+  const lastKeydown = React.useRef(null);
 
   const prevOpenRef = React.useRef();
   React.useEffect(() => {
-    const doc = ownerDocument(rootRef.current);
-
-    if (
-      !prevOpenRef.current &&
-      open &&
-      rootRef.current &&
-      ((rootRef.current.contains(doc.activeElement) && disableAutoFocus) || !disableAutoFocus) &&
-      !ignoreNextEnforceFocus.current
-    ) {
-      if (!nodeToRestore.current) {
-        nodeToRestore.current = doc.activeElement;
-      }
-
-      activated.current = true;
-      onSentinelFocus('start')();
-    }
-
     prevOpenRef.current = open;
-  }, [disableAutoFocus, open]);
+  }, [open]);
 
-  if (!prevOpenRef.current && open && typeof window !== 'undefined' && !disableRestoreFocus) {
+  if (!prevOpenRef.current && open && typeof window !== 'undefined' && !disableAutoFocus) {
     // WARNING: Potentially unsafe in concurrent mode.
     // The way the read on `nodeToRestore` is setup could make this actually safe.
     // Say we render `open={false}` -> `open={true}` but never commit.
@@ -189,8 +173,13 @@ function Unstable_TrapFocus(props) {
         rootRef.current.setAttribute('tabIndex', -1);
       }
 
-      if (activated.current && !ignoreNextEnforceFocus.current) {
-        rootRef.current.focus();
+      if (activated.current) {
+        const tabbable = getTabbable(rootRef.current);
+        if (tabbable.length > 0) {
+          tabbable[0].focus();
+        } else {
+          rootRef.current.focus();
+        }
       }
     }
 
@@ -213,28 +202,6 @@ function Unstable_TrapFocus(props) {
     // We don't support changing that prop on an open TrapFocus
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
-
-  const onSentinelFocus = React.useCallback(
-    (position) => () => {
-      activated.current = true;
-      const tabbable = getTabbable(rootRef.current);
-
-      if (tabbable.length === 0) {
-        return rootRef.current.focus();
-      }
-
-      const shiftTab = Boolean(lastEvent.current?.shiftKey && lastEvent.current?.key === 'Tab');
-
-      if (position === 'start' && shiftTab) {
-        const focusEnd = tabbable[tabbable.length - 1];
-        return focusEnd.focus();
-      }
-
-      const focusStart = tabbable[0];
-      return focusStart.focus();
-    },
-    [getTabbable],
-  );
 
   React.useEffect(() => {
     // We might render an empty child.
@@ -277,29 +244,41 @@ function Unstable_TrapFocus(props) {
           return;
         }
 
-        rootElement.focus();
-      } else {
-        activated.current = true;
+        const tabbable = getTabbable(rootRef.current);
+
+        if (tabbable.length > 0) {
+          const isShiftTab = Boolean(
+            lastKeydown.current?.shiftKey && lastKeydown.current?.key === 'Tab',
+          );
+
+          const focusNext = tabbable[0];
+          const focusPrevious = tabbable[tabbable.length - 1];
+
+          if (isShiftTab) {
+            focusPrevious.focus();
+          } else {
+            focusNext.focus();
+          }
+        } else {
+          rootElement.focus();
+        }
       }
     };
 
     const loopFocus = (nativeEvent) => {
-      lastEvent.current = nativeEvent;
+      lastKeydown.current = nativeEvent;
 
       if (disableEnforceFocus || !isEnabled() || nativeEvent.key !== 'Tab') {
         return;
       }
 
       // Make sure the next tab starts from the right place.
-      if (doc.activeElement === rootRef.current) {
+      // doc.activeElement referes to the origin.
+      if (doc.activeElement === rootRef.current && nativeEvent.shiftKey) {
         // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.
         ignoreNextEnforceFocus.current = true;
-        if (nativeEvent.shiftKey) {
-          sentinelEnd.current.focus();
-        } else {
-          sentinelStart.current.focus();
-        }
+        sentinelEnd.current.focus();
       }
     };
 
@@ -327,17 +306,9 @@ function Unstable_TrapFocus(props) {
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
   const onFocus = (event) => {
-    if (
-      !activated.current &&
-      rootRef.current &&
-      event.relatedTarget &&
-      !rootRef.current.contains(event.relatedTarget) &&
-      event.relatedTarget !== sentinelStart.current &&
-      event.relatedTarget !== sentinelEnd.current
-    ) {
+    if (!activated.current) {
       nodeToRestore.current = event.relatedTarget;
     }
-
     activated.current = true;
     reactFocusEventTarget.current = event.target;
 
@@ -347,21 +318,23 @@ function Unstable_TrapFocus(props) {
     }
   };
 
+  const handleFocusSentinel = (event) => {
+    if (!activated.current) {
+      nodeToRestore.current = event.relatedTarget;
+    }
+    activated.current = true;
+  };
+
   return (
     <React.Fragment>
       <div
-        onFocus={onSentinelFocus('start')}
         tabIndex={0}
+        onFocus={handleFocusSentinel}
         ref={sentinelStart}
         data-test="sentinelStart"
       />
       {React.cloneElement(children, { ref: handleRef, onFocus })}
-      <div
-        onFocus={onSentinelFocus('end')}
-        tabIndex={0}
-        ref={sentinelEnd}
-        data-test="sentinelEnd"
-      />
+      <div tabIndex={0} onFocus={handleFocusSentinel} ref={sentinelEnd} data-test="sentinelEnd" />
     </React.Fragment>
   );
 }
@@ -409,7 +382,7 @@ Unstable_TrapFocus.propTypes = {
    * For instance, you can provide the "tabbable" npm dependency.
    * @param {HTMLElement} root
    */
-  getTabbable: PropTypes.func.isRequired,
+  getTabbable: PropTypes.func,
   /**
    * Do we still want to enforce the focus?
    * This prop helps nesting TrapFocus elements.

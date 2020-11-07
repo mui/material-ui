@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { act, createClientRender, fireEvent, screen, userEvent } from 'test/utils';
+import { act, createClientRender, screen, userEvent } from 'test/utils';
 import TrapFocus from './Unstable_TrapFocus';
 import Portal from '../Portal';
 
@@ -38,7 +38,7 @@ describe('<TrapFocus />', () => {
     expect(getByTestId('auto-focus')).toHaveFocus();
 
     initialFocus.focus();
-    expect(getByTestId('modal')).toHaveFocus();
+    expect(getByTestId('auto-focus')).toHaveFocus();
   });
 
   it('should not return focus to the children when disableEnforceFocus is true', () => {
@@ -110,14 +110,13 @@ describe('<TrapFocus />', () => {
     expect(screen.getByText('cancel')).toHaveFocus();
     userEvent.tab();
     expect(screen.getByText('ok')).toHaveFocus();
+    userEvent.tab();
+    expect(screen.getByText('x')).toHaveFocus();
 
     initialFocus.focus();
-    fireEvent.keyDown(screen.getByTestId('modal'), {
-      key: 'Tab',
-      shiftKey: true,
-    });
-
     expect(screen.getByText('x')).toHaveFocus();
+    userEvent.tab({ shift: true });
+    expect(screen.getByText('ok')).toHaveFocus();
   });
 
   it('should focus on first focus element after last has received a tab click', () => {
@@ -148,13 +147,7 @@ describe('<TrapFocus />', () => {
         </div>
       </TrapFocus>,
     );
-
-    const modalEl = screen.getByTestId('modal');
-    fireEvent.keyDown(modalEl, {
-      key: 'Tab',
-    });
-
-    expect(modalEl).toHaveFocus();
+    expect(screen.getByTestId('modal')).toHaveFocus();
   });
 
   it('should focus checked radio button if present in radio group', () => {
@@ -413,7 +406,7 @@ describe('<TrapFocus />', () => {
       });
 
       it('should trap once the focus moves inside', () => {
-        const { getByRole, getByTestId } = render(
+        const { getByRole } = render(
           <div>
             <input />
             <TrapFocus {...defaultProps} open disableAutoFocus>
@@ -426,13 +419,16 @@ describe('<TrapFocus />', () => {
 
         expect(initialFocus).toHaveFocus();
 
+        userEvent.tab();
+        expect(getByRole('textbox')).toHaveFocus();
+
         // the trap activates
-        getByTestId('modal').focus();
-        expect(getByTestId('modal')).toHaveFocus();
+        userEvent.tab();
+        expect(screen.getByTestId('focus-input')).toHaveFocus();
 
         // the trap prevent to escape
         getByRole('textbox').focus();
-        expect(screen.getByTestId('modal')).toHaveFocus();
+        expect(screen.getByTestId('focus-input')).toHaveFocus();
       });
 
       it('should restore the focus', () => {

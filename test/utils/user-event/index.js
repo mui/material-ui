@@ -1,4 +1,6 @@
 import { fireEvent, getConfig } from '@testing-library/dom';
+// eslint-disable-next-line no-restricted-imports
+import { defaultGetTabbable as getTabbable } from '@material-ui/core/Unstable_TrapFocus/Unstable_TrapFocus';
 
 // Absolutely NO events fire on label elements that contain their control
 // if that control is disabled. NUTS!
@@ -81,56 +83,14 @@ function tab({ shift = false, focusTrap } = {}) {
     focusTrap = document;
   }
 
-  const focusableElements = focusTrap.querySelectorAll(FOCUSABLE_SELECTOR);
+  const tabbable = getTabbable(focusTrap);
 
-  const enabledElements = [...focusableElements].filter(
-    (el) => el.getAttribute('tabindex') !== '-1' && !el.disabled,
-  );
-
-  if (enabledElements.length === 0) {
+  if (tabbable.length === 0) {
     return;
   }
 
-  const orderedElements = enabledElements
-    .map((el, idx) => ({ el, idx }))
-    .sort((a, b) => {
-      const tabIndexA = a.el.getAttribute('tabindex');
-      const tabIndexB = b.el.getAttribute('tabindex');
-
-      const diff = tabIndexA - tabIndexB;
-
-      return diff === 0 ? a.idx - b.idx : diff;
-    })
-    .map(({ el }) => el);
-
-  if (shift) {
-    orderedElements.reverse();
-  }
-
-  // keep only the checked or first element in each radio group
-  const prunedElements = [];
-  orderedElements.forEach((el) => {
-    if (el.type === 'radio' && el.name) {
-      const replacedIndex = prunedElements.findIndex(({ name }) => name === el.name);
-
-      if (replacedIndex === -1) {
-        prunedElements.push(el);
-      } else if (el.checked) {
-        prunedElements.splice(replacedIndex, 1);
-        prunedElements.push(el);
-      }
-    } else {
-      prunedElements.push(el);
-    }
-  });
-
-  if (shift) {
-    prunedElements.reverse();
-  }
-
-  const index = prunedElements.findIndex((el) => el === el.ownerDocument.activeElement);
-
-  const nextElement = getNextElement(index, shift, prunedElements, focusTrap);
+  const index = tabbable.findIndex((el) => el === el.ownerDocument.activeElement);
+  const nextElement = getNextElement(index, shift, tabbable, focusTrap);
 
   const shiftKeyInit = {
     key: 'Shift',
