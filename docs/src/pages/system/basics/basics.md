@@ -1,6 +1,6 @@
 # Material-UI System
 
-<p class="description">Utility-first style functions for rapidly building custom design systems.</p>
+<p class="description">Utility style functions for rapidly building custom design systems.</p>
 
 Material-UI comes with dozens or **ready-to-use** components in the core.
 These components are an incredible starting point but when it comes to make your site stand out with a custom design, they can be challenging to customize. Introducing the system:
@@ -23,13 +23,13 @@ npm install @material-ui/system
 yarn add @material-ui/system
 ```
 
-## Why utility-first?
+## Why utility?
 
 Compare how the same stat component can be built with two different APIs.
 
 {{"demo": "pages/system/basics/Why.js", "bg": true, "defaultCodeOpen": false}}
 
-- ❌ using the standard styled-components API:
+1. ❌ using the styled-components's API:
 
 ```jsx
 const StatWrapper = styled('div')(
@@ -93,7 +93,7 @@ return (
 );
 ```
 
-- ✅ using the system:
+2. ✅ using the system:
 
 ```jsx
 /* prettier-ignore */
@@ -112,6 +112,8 @@ return (
 </Box>
 ```
 
+### Problem solved
+
 The system focus on solving 3 main problems:
 
 **1. Switching context wastes time.**
@@ -126,17 +128,21 @@ All you have to do is worry about actual style properties.
 
 **3. Enforcing consistency in UIs is hard.**
 
-This is especially true when more than one person is building the application, as there has to be some coordination amongst members of the team regarding choice of design tokens and how they are used, what parts of the theme structure should be used with what CSS properties, and so on.
+This is especially true when more than one person is building the application, as there has to be some coordination amongst members of the team regarding the choice of design tokens and how they are used, what parts of the theme structure should be used with what CSS properties, and so on.
 
-The system provide direct access to the value in the theme. It makes it easier to design with constraints.
+The system provides direct access to the value in the theme. It makes it easier to design with constraints.
 
 ## The `sx` prop
 
-The `sx` prop, as part of the system, solves these problems by providing a simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used in Material-UI components.
+The `sx` prop, as the main part of the system, solves these problems by providing a fast & simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used to create a one-off design.
 
-This prop provides a superset of CSS that maps values directly from the theme, depending on the CSS property used. In addition, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
+This prop provides a superset of CSS that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
 
-With it you can easily build your custom visual components, such as card, badge, chip, exactly as your design system specifies. In the sections following this one, we will dive deeper into the features of the sx prop.
+### When to use it?
+
+The styled-components's API is great to build low-level components that need to support a wide variety of contexts.
+
+The `sx` prop is great anytime one-off styles need to be applied. It's called "utility" for this reason.
 
 ## Usage
 
@@ -146,7 +152,9 @@ You can explore the [System properties](/system/properties/) page to discover ho
 
 ### Shorthands
 
-There are lots of shorthands available for the CSS properties. Here are few examples:
+There are lots of shorthands available for the CSS properties.
+These are documented in the next pages, for instance, [the spacing](/system/spacing/).
+Here are an example leveraging them:
 
 ```jsx
 <Box
@@ -162,11 +170,12 @@ There are lots of shorthands available for the CSS properties. Here are few exam
 >
 ```
 
-These are documented in the following sections, for instance, [the spacing](/system/spacing/).
+These shorthands are **optional**, they are great to save time when writing styles but it can be overwhelming to learn new custom APIs.
+You might want to skip this part and bet on CSS, it has been standardized for decades, head to the next section.
 
 ### Superset of CSS
 
-As the prop supports a superset of CSS, you can use child or pseudo selectors, media queries, raw CSS values etc. Here are few examples:
+As the prop supports a superset of CSS, you can use child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples:
 
 - Using pseudo selectors:
 
@@ -313,18 +322,3 @@ const Div = styled('div')``;
 ### 4. Any element with the babel plugin
 
 TODO [#23220](https://github.com/mui-org/material-ui/issues/23220).
-
-## Prior art
-
-`@material-ui/system` synthesizes ideas & APIs from several different sources:
-
-- [Tachyons](https://tachyons.io/) was one of the first (2014) CSS libraries to promote the [Atomic CSS pattern](https://css-tricks.com/lets-define-exactly-atomic-css/) (or Functional CSS).
-- Tachyons was later on (2017) followed by [Tailwind CSS](https://tailwindcss.com/). They have made Atomic CSS more popular.
-- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. The way they group their "Helper classes" was used as inspiration.
-- In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions.
-  It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
-- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours:
-  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
-  - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
-  - [Primer Box](https://primer.style/components/docs/Box)
-- The actual implementation and the object responsive API was inspired by the [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system).
