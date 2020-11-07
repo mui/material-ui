@@ -85,10 +85,10 @@ const StatPrevious = styled('div')(
 return (
   <StatWrapper>
     <StatHeader>Sessions</StatHeader>
-    <StatValue>{'98.3 K'}</StatValue>
+    <StatValue>98.3 K</StatValue>
     <StyledTrend />
-    <StatDiff>{'18.77%'}</StatDiff>
-    <StatPrevious>{'vs last week'}</StatPrevious>
+    <StatDiff>18.77%</StatDiff>
+    <StatPrevious>vs last week</StatPrevious>
   </StatWrapper>
 );
 ```
@@ -98,16 +98,18 @@ return (
 ```jsx
 /* prettier-ignore */
 <Box sx={{ bgcolor: 'background.paper', boxShadow: 1, borderRadius: 'borderRadius', p: 2, minWidth: 300 }}>
-  <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
+  <Box sx={{ color: 'text.secondary' }}>
+    Sessions
+  </Box>
   <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}>
-    {'98.3 K'}
+    98.3 K
   </Box>
   <Box component={TrendingUpIcon} sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }} />
   <Box sx={{ color: 'success.dark', display: 'inline', fontWeight: 'fontWeightMedium', mx: 0.5 }}>
-    {'18.77%'}
+    18.77%
   </Box>
   <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-    {'vs last week'}
+    vs last week
   </Box>
 </Box>
 ```
