@@ -716,6 +716,7 @@ Tooltip.propTypes = {
   PopperComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Popper`](/api/popper/) element.
+   * @default {}
    */
   PopperProps: PropTypes.object,
   /**
