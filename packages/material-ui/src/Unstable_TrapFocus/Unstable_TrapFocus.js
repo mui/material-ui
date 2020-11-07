@@ -5,7 +5,8 @@ import { exactProp, elementAcceptingRef } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 
-const focusSelectorsRoot = [
+// Inspired by https://github.com/focus-trap/tabbable
+const candidatesSelector = [
   'input',
   'select',
   'textarea',
@@ -15,9 +16,87 @@ const focusSelectorsRoot = [
   'audio[controls]',
   'video[controls]',
   '[contenteditable]:not([contenteditable="false"])',
-  'details>summary:first-of-type',
-  'details',
-];
+].join(',');
+
+function getTabIndex(node) {
+  const tabindexAttr = parseInt(node.getAttribute('tabindex'), 10);
+
+  if (!Number.isNaN(tabindexAttr)) {
+    return tabindexAttr;
+  }
+
+  // Browsers do not return `tabIndex` correctly for contentEditable nodes;
+  // so if they don't have a tabindex attribute specifically set, assume it's 0.
+  // in Chrome, <details/>, <audio controls/> and <video controls/> elements get a default
+  //  `tabIndex` of -1 when the 'tabindex' attribute isn't specified in the DOM,
+  //  yet they are still part of the regular tab order; in FF, they get a default
+  //  `tabIndex` of 0; since Chrome still puts those elements in the regular tab
+  //  order, consider their tab index to be 0.
+  if (
+    node.contentEditable === 'true' ||
+    ((node.nodeName === 'AUDIO' || node.nodeName === 'VIDEO' || node.nodeName === 'DETAILS') &&
+      node.getAttribute('tabindex') === null)
+  ) {
+    return 0;
+  }
+
+  return node.tabIndex;
+}
+
+function isRadioTabble(node) {
+  if (!node.name) {
+    return true;
+  }
+
+  let input = node.ownerDocument.querySelector(`input[type="radio"][name="${node.name}"]:checked`);
+
+  if (!input) {
+    input = node.ownerDocument.querySelector(`input[type="radio"][name="${node.name}"]`);
+  }
+
+  return input === node;
+}
+
+function isFocusable(node) {
+  if (
+    node.disabled ||
+    (node.tagName === 'INPUT' && node.type === 'hidden') ||
+    (node.tagName === 'INPUT' && node.type === 'radio' && !isRadioTabble(node))
+  ) {
+    return false;
+  }
+  return true;
+}
+
+function defaultTabbable(root) {
+  const regularTabNodes = [];
+  const orderedTabNodes = [];
+
+  Array.from(root.querySelectorAll(candidatesSelector)).forEach((node, i) => {
+    const nodeTabIndex = getTabIndex(node);
+
+    if (nodeTabIndex === -1 || !isFocusable(node)) {
+      return;
+    }
+
+    if (nodeTabIndex === 0) {
+      regularTabNodes.push(node);
+    } else {
+      orderedTabNodes.push({
+        documentOrder: i,
+        tabIndex: nodeTabIndex,
+        node,
+      });
+    }
+  });
+
+  return orderedTabNodes
+    .sort((a, b) =>
+      a.tabIndex === b.tabIndex ? a.documentOrder - b.documentOrder : a.tabIndex - b.tabIndex,
+    )
+    .map((a) => a.node)
+    .concat(regularTabNodes);
+}
 
 /**
  * Utility component that locks focus inside the component.
@@ -29,8 +108,8 @@ function Unstable_TrapFocus(props) {
     disableEnforceFocus = false,
     disableRestoreFocus = false,
     getDoc,
+    getTabbable = defaultTabbable,
     isEnabled,
-    focusSelectors = () => [],
     open,
   } = props;
   const ignoreNextEnforceFocus = React.useRef();
@@ -137,101 +216,24 @@ function Unstable_TrapFocus(props) {
 
   const onSentinelFocus = React.useCallback(
     (position) => () => {
-      const isRadioTabble = (node) => {
-        if (!node.name) {
-          return true;
-        }
-
-        const radioScope = node.form || node.ownerDocument;
-        const radioSet = radioScope.querySelectorAll(`input[type="radio"][name="${node.name}"]`);
-
-        const getCheckedRadio = (nodes, form) => {
-          for (let i = 0; i < nodes.length; i += 1) {
-            if (nodes[i].checked && nodes[i].form === form) {
-              return nodes[i];
-            }
-          }
-        };
-
-        const checked = getCheckedRadio(radioSet, node.form);
-        return !checked || checked === node;
-      };
-
-      const getTabIndex = (node) => {
-        const tabindexAttr = parseInt(node.getAttribute('tabindex'), 10);
-
-        if (!Number.isNaN(tabindexAttr)) {
-          return tabindexAttr;
-        }
-
-        if (
-          node.contentEditable === 'true' ||
-          ((node.nodeName === 'AUDIO' ||
-            node.nodeName === 'VIDEO' ||
-            node.nodeName === 'DETAILS') &&
-            node.getAttribute('tabindex') === null)
-        ) {
-          return 0;
-        }
-
-        return node.tabIndex;
-      };
-
-      const isFocusable = (node) => {
-        const isInput = (nodeEl) => nodeEl.tagName === 'INPUT';
-        if (
-          node.disabled ||
-          (isInput(node) && node.type === 'hidden') ||
-          (isInput(node) && node.type === 'radio' && !isRadioTabble(node))
-        ) {
-          return false;
-        }
-        return true;
-      };
-
-      const selectors = [...focusSelectorsRoot, ...focusSelectors()].filter(Boolean);
-      const isShiftTab = Boolean(lastEvent.current?.shiftKey && lastEvent.current?.key === 'Tab');
-      const regularTabNodes = [];
-      const orderedTabNodes = [];
-
-      Array.from(rootRef.current.querySelectorAll(selectors.join(', '))).forEach((node, i) => {
-        const nodeTabIndex = getTabIndex(node);
-
-        if (!isFocusable(node) || nodeTabIndex < 0) {
-          return;
-        }
-
-        if (nodeTabIndex === 0) {
-          regularTabNodes.push(node);
-        } else {
-          orderedTabNodes.push({
-            documentOrder: i,
-            tabIndex: nodeTabIndex,
-            node,
-          });
-        }
-      });
-
-      const focusChildren = orderedTabNodes
-        .sort((a, b) =>
-          a.tabIndex === b.tabIndex ? a.documentOrder - b.documentOrder : a.tabIndex - b.tabIndex,
-        )
-        .map((a) => a.node)
-        .concat(regularTabNodes);
-
-      if (!focusChildren?.length) return rootRef.current.focus();
-      const focusStart = focusChildren[0];
-      const focusEnd = focusChildren[focusChildren.length - 1];
-
       activated.current = true;
+      const tabbable = getTabbable(rootRef.current);
 
-      if (position === 'start' && isShiftTab) {
+      if (tabbable.length === 0) {
+        return rootRef.current.focus();
+      }
+
+      const shiftTab = Boolean(lastEvent.current?.shiftKey && lastEvent.current?.key === 'Tab');
+
+      if (position === 'start' && shiftTab) {
+        const focusEnd = tabbable[tabbable.length - 1];
         return focusEnd.focus();
       }
 
+      const focusStart = tabbable[0];
       return focusStart.focus();
     },
-    [focusSelectors],
+    [getTabbable],
   );
 
   React.useEffect(() => {
@@ -246,7 +248,6 @@ function Unstable_TrapFocus(props) {
       const { current: rootElement } = rootRef;
       // Cleanup functions are executed lazily in React 17.
       // Contain can be called between the component being unmounted and its cleanup function being run.
-
       if (rootElement === null) {
         return;
       }
@@ -399,16 +400,16 @@ Unstable_TrapFocus.propTypes = {
    */
   disableRestoreFocus: PropTypes.bool,
   /**
-   * Accepts a function which returns an array of selectors
-   * to add to the component focusable elements.
-   *
-   */
-  focusSelectors: PropTypes.func,
-  /**
    * Return the document to consider.
    * We use it to implement the restore focus between different browser documents.
    */
   getDoc: PropTypes.func.isRequired,
+  /**
+   * Returns an array of ordered tabbable nodes (i.e. in tab order) within the root.
+   * For instance, you can provide the "tabbable" npm dependency.
+   * @param {HTMLElement} root
+   */
+  getTabbable: PropTypes.func.isRequired,
   /**
    * Do we still want to enforce the focus?
    * This prop helps nesting TrapFocus elements.

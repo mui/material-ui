@@ -12,6 +12,12 @@ export interface TrapFocusProps {
    */
   getDoc: () => Document;
   /**
+   * Returns an array of ordered tabbable nodes (i.e. in tab order) within the root.
+   * For instance, you can provide the "tabbable" npm dependency.
+   * @param {HTMLElement} root
+   */
+  getTabbable: (root: HTMLElement) => string[];
+  /**
    * Do we still want to enforce the focus?
    * This prop helps nesting TrapFocus elements.
    */
@@ -44,10 +50,6 @@ export interface TrapFocusProps {
    * @default false
    */
   disableRestoreFocus?: boolean;
-  /**
-   * Accepts a function which returns an array of selectors to add to the component focusable elements.
-   */
-  focusSelectors?: () => string[];
 }
 
 /**
