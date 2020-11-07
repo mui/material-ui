@@ -220,17 +220,26 @@ As the prop supports a superset of CSS, you can use child or pseudo-selectors, m
 
 If you would like to have responsive values for a CSS property, you can use the breakpoints shorthand syntax. There are two ways of defining the breakpoints:
 
-#### 1. Breakpoints as an array
+#### 1. Breakpoints as an object
 
-The first option is to define your breakpoints as an array, from the smallest to the largest breakpoint.
+The first option for defining breakpoints is to define them as an object, using the breakpoints as keys. Here is the previous example again, using the object syntax.
+
+{{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
+
+#### 2. Breakpoints as an array
+
+The second option is to define your breakpoints as an array, from the smallest to the largest breakpoint.
 
 {{"demo": "pages/system/basics/BreakpointsAsArray.js"}}
 
-#### 2. Breakpoints as an object
+> ⚠️ This option is only recommended when the theme has a limited number of breakpoints, e.g. 3.<br />
+> Prefer the object API if you have more breakpoints. For instance, the default theme of Material-UI has 5.
 
-The second option for defining breakpoints is to define them as an object, using the breakpoints as keys. Here is the previous example again, using the object syntax.
+You can skip breakpoints with the `null` value:
 
-{{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
+```jsx
+<Box sx={{ width: [null, null, 300] }}>This box has a responsive width.</Box>
+```
 
 ### Custom breakpoints
 
