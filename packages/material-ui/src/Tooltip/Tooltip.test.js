@@ -30,7 +30,7 @@ async function raf() {
   });
 }
 
-describe('<Tooltip />', () => {
+describe.only('<Tooltip />', () => {
   /**
    * @type {ReturnType<typeof useFakeTimers>}
    */

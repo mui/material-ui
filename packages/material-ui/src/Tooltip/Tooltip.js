@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
+import { elementAcceptingRef } from '@material-ui/utils';
 import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
@@ -184,7 +184,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     open: openProp,
     placement = 'bottom',
     PopperComponent = Popper,
-    PopperProps,
+    PopperProps = {},
     title,
     TransitionComponent = Grow,
     TransitionProps,
@@ -510,7 +510,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
-  const mergedPopperProps = React.useMemo(() => {
+  const modifiers = React.useMemo(() => {
     let tooltipModifiers = [
       {
         name: 'arrow',
@@ -521,16 +521,10 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         },
       },
     ];
-
-    if (PopperProps?.popperOptions?.modifiers) {
-      tooltipModifiers = tooltipModifiers.concat(PopperProps?.popperOptions?.modifiers);
+    if (PopperProps.modifiers) {
+      tooltipModifiers = tooltipModifiers.concat(PopperProps.modifiers);
     }
-
-    return deepmerge(PopperProps || {}, {
-      popperOptions: {
-        modifiers: tooltipModifiers,
-      },
-    });
+    return tooltipModifiers;
   }, [arrowRef, PopperProps]);
 
   return (
@@ -561,7 +555,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         id={id}
         transition
         {...interactiveWrapperListeners}
-        {...mergedPopperProps}
+        {...PopperProps}
+        modifiers={modifiers}
       >
         {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
