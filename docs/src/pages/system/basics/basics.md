@@ -23,7 +23,7 @@ npm install @material-ui/system
 yarn add @material-ui/system
 ```
 
-## Why utility?
+## Why use the system?
 
 Compare how the same stat component can be built with two different APIs.
 
