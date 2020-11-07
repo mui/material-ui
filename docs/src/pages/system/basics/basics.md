@@ -132,7 +132,7 @@ The system provide direct access to the value in the theme. It makes it easier t
 
 ## The `sx` prop
 
-The sx prop, as part of the system, solves these problems by providing a simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used in Material-UI components.
+The `sx` prop, as part of the system, solves these problems by providing a simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used in Material-UI components.
 
 This prop provides a superset of CSS that maps values directly from the theme, depending on the CSS property used. In addition, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
 
@@ -162,41 +162,50 @@ There are lots of shorthands available for the CSS properties. Here are few exam
 >
 ```
 
-These are documented in the following sections.
+These are documented in the following sections, for instance, [the spacing](/system/spacing/).
 
 ### Superset of CSS
 
 As the prop supports a superset of CSS, you can use child or pseudo selectors, media queries, raw CSS values etc. Here are few examples:
 
-```jsx
-  // Using pseudo selectors
+- Using pseudo selectors:
+
+  ```jsx
   <Box
     sx={{
       // some styles
       ":hover": {
-        '& .ChildSelector': {
-          bgcolor: `${props.color}.dark`,
-        },
-        '& .OtherChildSelector': {
-          color: `${props.color}.dark`,
-        },
         boxShadow: 6,
       },
     }}
   >
-```
+  ```
 
-```jsx
-  // Using media queries
+- Using media queries:
+
+  ```jsx
   <Box
     sx={{
       // some styles
-      "@media screen and (max-width: 992px)": {
+      '@media print': {
         width: 300,
       },
     }}
   >
-```
+  ```
+
+- Using nested selector:
+
+  ```jsx
+  <Box
+    sx={{
+      // some styles
+      '& .ChildSelector': {
+        bgcolor: 'primary.main',
+      },
+    }}
+  >
+  ```
 
 ### Responsive values
 
@@ -301,7 +310,7 @@ const Div = styled('div')``;
 >
 > You should use this prop whenever you need to add or override a component style. If you find you are repeatedly applying the same styles to a component, then `styled()` may be a better option, as it allows you to specify the styles only once, and reuse them in all component instances. See [Customizing components](/customization/components/) for all the alternatives.
 
-### 4. Babel plugin
+### 4. Any element with the babel plugin
 
 TODO [#23220](https://github.com/mui-org/material-ui/issues/23220).
 
