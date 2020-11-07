@@ -335,7 +335,7 @@ The `sx` prop can be used in four different locations:
 
 ### 1. Core components
 
-All core Material-UI components will support the `sx` prop.
+All core Material-UI components support the `sx` prop.
 
 ### 2. Box
 
