@@ -1,6 +1,6 @@
 # Material-UI System
 
-<p class="description">Utility style functions for rapidly building custom design systems.</p>
+<p class="description">CSS utilities for rapidly creating custom design.</p>
 
 Material-UI comes with dozens or **ready-to-use** components in the core.
 These components are an incredible starting point but when it comes to make your site stand out with a custom design, they can be challenging to customize. Introducing the system:
