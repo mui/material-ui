@@ -137,36 +137,26 @@ The following changes are supported by the adapter.
   theme.spacing(2) => '16px'
   ```
 
-- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
-
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
-
--const theme = createMuiTheme(),
-+const theme = createMuiTheme({
-+  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-+});
-```
-
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
-
--const theme = createMuiTheme({palette: { type: 'dark' }}),
-+const theme = createMuiTheme({
-+  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-+});
-```
-
-- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
-
 - The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+  -const theme = createMuiTheme({palette: { type: 'dark' }}),
+  +const theme = createMuiTheme({palette: { mode: 'dark' }}),
+  ```
 
--const theme = createMuiTheme({palette: { type: 'dark' }}),
-+const theme = createMuiTheme({palette: { mode: 'dark' }}),
-```
+- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed. If you depend on it, you can add it back:
+
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+
+  -const theme = createMuiTheme(),
+  +const theme = createMuiTheme({
+  +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
+  +});
+  ```
+
+- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
 
 1. `eigenschaften`
 
@@ -248,6 +238,28 @@ const classes = makeStyles(theme => ({
   -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
   +import Autocomplete from '@material-ui/core/Autocomplete';
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
+  ```
+
+- Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
+- `renderOption` should now return the full DOM structure of the option. It makes customizations easier. You can recover from the change with:
+
+  ```diff
+  <Autocomplete
+  - renderOption={(option, { selected }) => (
+  -   <React.Fragment>
+  + renderOption={(props, option, { selected }) => (
+  +   <li {...props}>
+        <Checkbox
+          icon={icon}
+          checkedIcon={checkedIcon}
+          style={{ marginRight: 8 }}
+          checked={selected}
+        />
+        {option.title}
+  -   </React.Fragment>
+  +   </li>
+    )}
+  />
   ```
 
 ### Avatar
