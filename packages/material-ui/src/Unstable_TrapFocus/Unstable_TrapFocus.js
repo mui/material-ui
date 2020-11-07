@@ -62,7 +62,9 @@ function Unstable_TrapFocus(props) {
         nodeToRestore.current = doc.activeElement;
       }
 
-      sentinelStart.current.focus();
+      activated.current = true;
+      onSentinelFocus('start')();
+
     }
 
     prevOpenRef.current = open;
@@ -111,7 +113,7 @@ function Unstable_TrapFocus(props) {
         rootRef.current.setAttribute('tabIndex', -1);
       }
 
-      if (activated.current) {
+      if (activated.current && !ignoreNextEnforceFocus.current) {
         rootRef.current.focus();
       }
     }
@@ -137,7 +139,7 @@ function Unstable_TrapFocus(props) {
   }, [open]);
 
   const onSentinelFocus = React.useCallback((position) => () => {
-    
+   
     const isRadioTabble = (node) => {
       
       if (!node.name) {
