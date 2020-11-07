@@ -511,23 +511,26 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   }
 
   const mergedPopperProps = React.useMemo(() => {
-    return deepmerge(
+    let tooltipModifiers = [
       {
-        popperOptions: {
-          modifiers: [
-            {
-              name: 'arrow',
-              enabled: Boolean(arrowRef),
-              options: {
-                element: arrowRef,
-                padding: 4,
-              },
-            },
-          ],
+        name: 'arrow',
+        enabled: Boolean(arrowRef),
+        options: {
+          element: arrowRef,
+          padding: 4,
         },
       },
-      PopperProps,
-    );
+    ];
+
+    if (PopperProps?.popperOptions?.modifiers) {
+      tooltipModifiers = tooltipModifiers.concat(PopperProps?.popperOptions?.modifiers);
+    }
+
+    return deepmerge(PopperProps || {}, {
+      popperOptions: {
+        modifiers: tooltipModifiers,
+      },
+    });
   }, [arrowRef, PopperProps]);
 
   return (
