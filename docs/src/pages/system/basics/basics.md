@@ -7,11 +7,21 @@ These components are an incredible starting point but when it comes to make your
 
 The **system** lets you quickly build custom UI components leveraging the design tokens defined in your theme.
 
-## The demo
+## Demo
 
 _(Resize the window to see the responsive breakpoints)_
 
 {{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
+
+## Installation
+
+```jsx
+// with npm
+npm install @material-ui/system
+
+// with yarn
+yarn add @material-ui/system
+```
 
 ## Why utility-first?
 
@@ -102,7 +112,7 @@ return (
 </Box>
 ```
 
-The system solves 3 problems:
+The system focus on solving 3 main problems:
 
 **1. Switching context wastes time.**
 
@@ -120,41 +130,15 @@ This is especially true when more than one person is building the application, a
 
 The system provide direct access to the value in the theme. It makes it easier to design with constraints.
 
-## How do we solve this?
-
-In order to solve these issues, we need to have a simple way of pulling & wiring the correct design tokens for specific CSS properties, and adding them directly on the React element where we want the styles to be applied with a prop that is easily discoverable.
-
-The `sx` prop, as part of the system, solves these problems. The example above shows how it can be used in MUI components.
-
-The prop provides a superset of CSS that maps values directly from the theme, depending on the CSS property used. In addition, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
-
-With it you can build easily your custom visual components, like `Card`, `Badge`, `Chip` that could accept the props & behave exactlly as your design system specifies.
-
-In the following sections we will dive deeper into the features of the `sx` prop.
-
-## Installation
-
-```jsx
-// with npm
-npm install @material-ui/system
-
-// with yarn
-yarn add @material-ui/system
-```
-
 ## The `sx` prop
 
-We mentioned that you can use the `sx` prop on all MUI components. In addition to this, you may add the prop on your custom components too by using the `experimentalStyled` utility from `@material-ui/core/styles`.
+The sx prop, as part of the system, solves these problems by providing a simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used in Material-UI components.
 
-```jsx
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+This prop provides a superset of CSS that maps values directly from the theme, depending on the CSS property used. In addition, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
 
-const Div = styled('div')``;
-```
+With it you can easily build your custom visual components, such as card, badge, chip, exactly as your design system specifies. In the sections following this one, we will dive deeper into the features of the sx prop.
 
-<b>Note:</b>
-
-You should use this prop whenever you need to add a style override to a Material-UI component. If you repeatedly apply the same styles to a component, then `styled()` is better alternative, as it allows you to specify the overrides only once, and reuse them in all component instances.
+## Usage
 
 ### Design tokens in the theme
 
@@ -214,39 +198,23 @@ As the prop supports a superset of CSS, you can use child or pseudo selectors, m
   >
 ```
 
-## Usage
-
-It can be used from 3 different sources:
-
-### Box
-
-The `Box` component is a light component that gives you access to this functionality.
-
-### Babel plugin
-
-TODO: For #23220
-
-### Core components
-
-All core Material-UI components will support the `sx` prop.
-
-## Responsive values
+### Responsive values
 
 If you would like to have responsive values for a CSS property, you can use the breakpoints shorthand syntax. There are two ways of defining the breakpoints:
 
-### 1. Breakpoints as an array
+#### 1. Breakpoints as an array
 
 The first option is to define your breakpoints as an array, from the smallest to the largest breakpoint.
 
 {{"demo": "pages/system/basics/BreakpointsAsArray.js"}}
 
-### 2. Breakpoints as an object
+#### 2. Breakpoints as an object
 
 The second option for defining breakpoints is to define them as an object, using the breakpoints as keys. Here is the previous example again, using the object syntax.
 
 {{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 
-## Custom breakpoints
+### Custom breakpoints
 
 You can also specify your own custom breakpoints, and use them as keys when defining the breakpoints object. Here is an example of how to do that.
 
@@ -301,11 +269,41 @@ declare module '@material-ui/core/styles/createBreakpoints' {
 }
 ```
 
-## Theme getter
+### Theme getter
 
 If you wish to use the theme for a CSS property that is not supported natively by the system, you can use a function as the value, in which you can access the theme object.
 
 {{"demo": "pages/system/basics/ValueAsFunction.js"}}
+
+## Implementations
+
+The `sx` prop can be used in four different locations:
+
+### 1. Core components
+
+All core Material-UI components will support the `sx` prop.
+
+### 2. Box
+
+[`Box`](/components/box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
+
+### 3. Custom components
+
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `experimentalStyled` utility from `@material-ui/core/styles`.
+
+```jsx
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+
+const Div = styled('div')``;
+```
+
+> **Note:**
+>
+> You should use this prop whenever you need to add or override a component style. If you find you are repeatedly applying the same styles to a component, then `styled()` may be a better option, as it allows you to specify the styles only once, and reuse them in all component instances. See [Customizing components](/customization/components/) for all the alternatives.
+
+### 4. Babel plugin
+
+TODO [#23220](https://github.com/mui-org/material-ui/issues/23220).
 
 ## Prior art
 
