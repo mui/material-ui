@@ -142,9 +142,34 @@ This prop provides a superset of CSS that maps values directly from the theme, d
 
 ### When to use it?
 
-The styled-components's API is great to build low-level components that need to support a wide variety of contexts.
+- **styled-components**: the API is great to build components that need to support a wide variety of contexts. These components are used in many different parts of the application and support different combinations of props.
+- **`sx` prop**: the API is great to apply one-off styles. It's called "utility" for this reason.
 
-The `sx` prop is great anytime one-off styles need to be applied. It's called "utility" for this reason.
+### Performance tradeoff
+
+The system relies on CSS-in-JS. It works with both emotion and styled-components.
+
+Pros:
+
+- 📚 It allows a lot of flexibility in the API. The `sx` prop supports a superset of CSS. There is **no need to learn CSS twice**. You are set once you have learn the standardized CSS syntax, it's safe, it hasn't changed for a decade. Then, you can **optionally** learn the shorthands if you value the save of time they bring.
+- 📦 No need for purge. Only the used CSS on the page is included. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties.
+  You pay the cost of [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) and [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). It cost around ~15 kB gzipped.
+  If you are already using the core components, it comes with no extra overhead.
+
+Cons:
+
+- The runtime performance take a hit.
+
+  | Benchmark case                    | Code snippet         | Time normalized |
+  | :-------------------------------- | :------------------- | --------------- |
+  | a. Render 1,000 primitives        | `<div className="">` | 100ms           |
+  | b. Render 1,000 components        | `<Div>`              | 110ms           |
+  | c. Render 1,000 styled components | `<StyledDiv>`        | 160ms           |
+  | d. Render 1,000 Box               | `<Box sx={}>`        | 270ms           |
+
+  _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) for a reproduction of these metrics._
+
+  We believe that for most applications, it's **fast enough**. There are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
 
 ## Usage
 
@@ -315,6 +340,7 @@ All core Material-UI components will support the `sx` prop.
 ### 2. Box
 
 [`Box`](/components/box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
+It renders a `<div>` element by default.
 
 ### 3. Custom components
 
