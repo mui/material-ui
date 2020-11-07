@@ -114,9 +114,11 @@ Have you ever found yourself struggling to find a good name for a styled compone
 The system maps the styles directly to the element.
 All you have to do is worry about actual style properties.
 
-**3. Building consistent UIs is hard.**
+**3. Enforcing consistency in UIs is hard.**
 
 This is especially true when more than one person is building the application, as there has to be some coordination amongst members of the team regarding choice of design tokens and how they are used, what parts of the theme structure should be used with what CSS properties, and so on.
+
+The system provide direct access to the value in the theme. It makes it easier to design with constraints.
 
 ## How do we solve this?
 
