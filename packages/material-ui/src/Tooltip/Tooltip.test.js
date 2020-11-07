@@ -30,7 +30,7 @@ async function raf() {
   });
 }
 
-describe.only('<Tooltip />', () => {
+describe('<Tooltip />', () => {
   /**
    * @type {ReturnType<typeof useFakeTimers>}
    */
@@ -790,10 +790,9 @@ describe.only('<Tooltip />', () => {
             popperOptions: {
               modifiers: [
                 {
-                  name: 'computeStyles',
-                  options: {
-                    gpuAcceleration: false,
-                  },
+                  name: 'foo',
+                  enabled: true,
+                  phase: 'main',
                 },
               ],
             },
@@ -806,11 +805,10 @@ describe.only('<Tooltip />', () => {
       );
 
       const appliedComputeStylesModifier = popperRef.current.state.orderedModifiers.find(
-        (modifier) => modifier.name === 'computeStyles',
+        (modifier) => modifier.name === 'foo',
       );
 
       expect(appliedComputeStylesModifier).not.to.equal(undefined);
-      expect(appliedComputeStylesModifier.options.gpuAcceleration).to.equal(false);
     });
   });
 

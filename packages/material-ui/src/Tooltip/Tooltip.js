@@ -510,7 +510,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
-  const modifiers = React.useMemo(() => {
+  const popperOptions = React.useMemo(() => {
     let tooltipModifiers = [
       {
         name: 'arrow',
@@ -521,10 +521,15 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         },
       },
     ];
-    if (PopperProps.modifiers) {
-      tooltipModifiers = tooltipModifiers.concat(PopperProps.modifiers);
+
+    if (PopperProps.popperOptions?.modifiers) {
+      tooltipModifiers = tooltipModifiers.concat(PopperProps.popperOptions.modifiers);
     }
-    return tooltipModifiers;
+
+    return {
+      ...PopperProps.popperOptions,
+      modifiers: tooltipModifiers,
+    };
   }, [arrowRef, PopperProps]);
 
   return (
@@ -556,7 +561,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         transition
         {...interactiveWrapperListeners}
         {...PopperProps}
-        modifiers={modifiers}
+        popperOptions={popperOptions}
       >
         {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
