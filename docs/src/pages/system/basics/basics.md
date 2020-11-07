@@ -158,27 +158,29 @@ You should use this prop whenever you need to add a style override to a Material
 
 You can explore the [System properties](/system/properties/) page to discover how the different CSS (and custom) properties are mapped to the theme keys.
 
-### Many shorthands
+### Shorthands
 
-There are lots of shorthands on the CSS properties. Here are few examples:
+There are lots of shorthands available for the CSS properties. Here are few examples:
 
 ```jsx
-  <Box
-    sx={{
-      boxShadow: 1, // theme.shadows[1]
-      color: 'primary.main', // theme.palette.primary.main
-      m: 1, // margin: theme.spacing(1)
-      p: {
-        sx: 1, // [theme.breakpoints.up('sx')]: : { padding: theme.spacing(1) }
-      },
-      zIndex: 'tooltip', // theme.zIndex.tooltip
-    }}
-  >
+<Box
+  sx={{
+    boxShadow: 1, // theme.shadows[1]
+    color: 'primary.main', // theme.palette.primary.main
+    m: 1, // margin: theme.spacing(1)
+    p: {
+      sx: 1, // [theme.breakpoints.up('sx')]: : { padding: theme.spacing(1) }
+    },
+    zIndex: 'tooltip', // theme.zIndex.tooltip
+  }}
+>
 ```
+
+These are documented in the following sections.
 
 ### Superset of CSS
 
-As the property is a superset of CSS, you can use child or pseudo selectors, media queries, raw CSS values etc. Here are few examples:
+As the prop supports a superset of CSS, you can use child or pseudo selectors, media queries, raw CSS values etc. Here are few examples:
 
 ```jsx
   // Using pseudo selectors
@@ -280,7 +282,7 @@ export default function CustomBreakpoints() {
 }
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+If you are using TypeScript, you will also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```ts
 declare module '@material-ui/core/styles/createBreakpoints' {

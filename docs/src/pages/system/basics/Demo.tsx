@@ -32,7 +32,7 @@ export default function Demo() {
         }}
       >
         <Box component="span" sx={{ fontSize: 16, mt: 1 }}>
-          {'123 Main St, Pheonix AZ'}
+          {'123 Main St, Phoenix AZ'}
         </Box>
         <Box component="span" sx={{ color: 'primary.main', fontSize: 22 }}>
           {'$280,000 — $310,000'}
