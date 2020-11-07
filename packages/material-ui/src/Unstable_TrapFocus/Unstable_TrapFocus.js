@@ -16,7 +16,7 @@ const focusSelectorsRoot = [
   'video[controls]',
   '[contenteditable]:not([contenteditable="false"])',
   'details>summary:first-of-type',
-  'details'
+  'details',
 ];
 
 /**
@@ -47,29 +47,26 @@ function Unstable_TrapFocus(props) {
 
   const prevOpenRef = React.useRef();
   React.useEffect(() => {
-
     const doc = ownerDocument(rootRef.current);
-    
-    if (!prevOpenRef.current && open && rootRef.current &&
-      (
-        (rootRef.current.contains(doc.activeElement) && disableAutoFocus)
-        ||
-        !disableAutoFocus
-      ) && !ignoreNextEnforceFocus.current
-    ) {
 
+    if (
+      !prevOpenRef.current &&
+      open &&
+      rootRef.current &&
+      ((rootRef.current.contains(doc.activeElement) && disableAutoFocus) || !disableAutoFocus) &&
+      !ignoreNextEnforceFocus.current
+    ) {
       if (!nodeToRestore.current) {
         nodeToRestore.current = doc.activeElement;
       }
 
       activated.current = true;
       onSentinelFocus('start')();
-
     }
 
     prevOpenRef.current = open;
   }, [disableAutoFocus, open]);
-  
+
   if (!prevOpenRef.current && open && typeof window !== 'undefined' && !disableRestoreFocus) {
     // WARNING: Potentially unsafe in concurrent mode.
     // The way the read on `nodeToRestore` is setup could make this actually safe.
@@ -138,106 +135,104 @@ function Unstable_TrapFocus(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  const onSentinelFocus = React.useCallback((position) => () => {
-   
-    const isRadioTabble = (node) => {
-      
-      if (!node.name) {
-        return true;
-      }
-      
-      const radioScope = node.form || node.ownerDocument;
-      const radioSet = radioScope.querySelectorAll(`input[type="radio"][name="${node.name}"]`);
-      
-      const getCheckedRadio = (nodes, form) => {
-        for (let i = 0; i < nodes.length; i += 1) {
-          if (nodes[i].checked && nodes[i].form === form) {
-            return nodes[i];
-          }
+  const onSentinelFocus = React.useCallback(
+    (position) => () => {
+      const isRadioTabble = (node) => {
+        if (!node.name) {
+          return true;
         }
+
+        const radioScope = node.form || node.ownerDocument;
+        const radioSet = radioScope.querySelectorAll(`input[type="radio"][name="${node.name}"]`);
+
+        const getCheckedRadio = (nodes, form) => {
+          for (let i = 0; i < nodes.length; i += 1) {
+            if (nodes[i].checked && nodes[i].form === form) {
+              return nodes[i];
+            }
+          }
+        };
+
+        const checked = getCheckedRadio(radioSet, node.form);
+        return !checked || checked === node;
+      };
+
+      const getTabIndex = (node) => {
+        const tabindexAttr = parseInt(node.getAttribute('tabindex'), 10);
+
+        if (!Number.isNaN(tabindexAttr)) {
+          return tabindexAttr;
+        }
+
+        if (
+          node.contentEditable === 'true' ||
+          ((node.nodeName === 'AUDIO' ||
+            node.nodeName === 'VIDEO' ||
+            node.nodeName === 'DETAILS') &&
+            node.getAttribute('tabindex') === null)
+        ) {
+          return 0;
+        }
+
+        return node.tabIndex;
+      };
+
+      const isFocusable = (node) => {
+        const isInput = (nodeEl) => nodeEl.tagName === 'INPUT';
+        if (
+          node.disabled ||
+          (isInput(node) && node.type === 'hidden') ||
+          (isInput(node) && node.type === 'radio' && !isRadioTabble(node))
+        ) {
+          return false;
+        }
+        return true;
+      };
+
+      const selectors = [...focusSelectorsRoot, ...focusSelectors()].filter(Boolean);
+      const isShiftTab = Boolean(lastEvent.current?.shiftKey && lastEvent.current?.key === 'Tab');
+      const regularTabNodes = [];
+      const orderedTabNodes = [];
+
+      Array.from(rootRef.current.querySelectorAll(selectors.join(', '))).forEach((node, i) => {
+        const nodeTabIndex = getTabIndex(node);
+
+        if (!isFocusable(node) || nodeTabIndex < 0) {
+          return;
+        }
+
+        if (nodeTabIndex === 0) {
+          regularTabNodes.push(node);
+        } else {
+          orderedTabNodes.push({
+            documentOrder: i,
+            tabIndex: nodeTabIndex,
+            node,
+          });
+        }
+      });
+
+      const focusChildren = orderedTabNodes
+        .sort((a, b) =>
+          a.tabIndex === b.tabIndex ? a.documentOrder - b.documentOrder : a.tabIndex - b.tabIndex,
+        )
+        .map((a) => a.node)
+        .concat(regularTabNodes);
+
+      if (!focusChildren?.length) return rootRef.current.focus();
+      const focusStart = focusChildren[0];
+      const focusEnd = focusChildren[focusChildren.length - 1];
+
+      activated.current = true;
+
+      if (position === 'start' && isShiftTab) {
+        return focusEnd.focus();
       }
-      
-      const checked = getCheckedRadio(radioSet, node.form);
-      return !checked || checked === node;
 
-    }
-
-    const getTabIndex = (node) => {
-      
-      const tabindexAttr = parseInt(node.getAttribute('tabindex'), 10);
-
-      if (!Number.isNaN(tabindexAttr)) {
-        return tabindexAttr;
-      }
-
-      if (
-        node.contentEditable === 'true' ||
-        (node.nodeName === 'AUDIO' ||
-          node.nodeName === 'VIDEO' ||
-          node.nodeName === 'DETAILS') &&
-        node.getAttribute('tabindex') === null
-      ) {
-        return 0;
-      }
-    
-      return node.tabIndex;
-    };
-
-    const isFocusable = (node) => {
-
-      const isInput = nodeEl => nodeEl.tagName === 'INPUT';
-      if (node.disabled || (isInput(node) && node.type === 'hidden')
-      || (isInput(node) && node.type === 'radio' && !isRadioTabble(node))) {
-        return false;        
-      }
-      return true;
-    }
-
-    const selectors = [...focusSelectorsRoot, ...focusSelectors()].filter(Boolean);
-    const isShiftTab = Boolean(lastEvent.current?.shiftKey && lastEvent.current?.key === 'Tab');
-    const regularTabNodes = [];
-    const orderedTabNodes = [];
-
-    Array.from(rootRef.current.querySelectorAll(selectors.join(', '))).forEach((node, i) => {
-      
-      const nodeTabIndex = getTabIndex(node);
-
-      if (!isFocusable(node) || nodeTabIndex < 0) {
-        return;
-      }
-
-      if (nodeTabIndex === 0) {
-        regularTabNodes.push(node);
-      } else {
-        orderedTabNodes.push({
-          documentOrder: i,
-          tabIndex: nodeTabIndex,
-          node,
-        });
-      }
-
-    }); 
-
-    const focusChildren = orderedTabNodes
-      .sort((a, b) => a.tabIndex === b.tabIndex
-        ? a.documentOrder - b.documentOrder
-        : a.tabIndex - b.tabIndex)
-      .map((a) => a.node)
-      .concat(regularTabNodes);
-    
-    if (!focusChildren?.length) return rootRef.current.focus();
-    const focusStart = focusChildren[0];
-    const focusEnd = focusChildren[focusChildren.length - 1];
-
-    activated.current = true;
-
-    if (position === 'start' && isShiftTab) {
-      return focusEnd.focus();
-    }
-
-    return focusStart.focus();
-
-  }, [focusSelectors]);
+      return focusStart.focus();
+    },
+    [focusSelectors],
+  );
 
   React.useEffect(() => {
     // We might render an empty child.
@@ -282,7 +277,6 @@ function Unstable_TrapFocus(props) {
         }
 
         rootElement.focus();
-
       } else {
         activated.current = true;
       }
@@ -308,7 +302,6 @@ function Unstable_TrapFocus(props) {
       }
     };
 
-
     doc.addEventListener('focusin', contain);
     doc.addEventListener('keydown', loopFocus, true);
 
@@ -333,8 +326,14 @@ function Unstable_TrapFocus(props) {
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
   const onFocus = (event) => {
-
-    if (!activated.current && rootRef.current && event.relatedTarget && !rootRef.current.contains(event.relatedTarget) && event.relatedTarget !== sentinelStart.current && event.relatedTarget !== sentinelEnd.current) {
+    if (
+      !activated.current &&
+      rootRef.current &&
+      event.relatedTarget &&
+      !rootRef.current.contains(event.relatedTarget) &&
+      event.relatedTarget !== sentinelStart.current &&
+      event.relatedTarget !== sentinelEnd.current
+    ) {
       nodeToRestore.current = event.relatedTarget;
     }
 
@@ -349,9 +348,19 @@ function Unstable_TrapFocus(props) {
 
   return (
     <React.Fragment>
-      <div onFocus={onSentinelFocus('start')} tabIndex={0} ref={sentinelStart} data-test="sentinelStart" />
+      <div
+        onFocus={onSentinelFocus('start')}
+        tabIndex={0}
+        ref={sentinelStart}
+        data-test="sentinelStart"
+      />
       {React.cloneElement(children, { ref: handleRef, onFocus })}
-      <div onFocus={onSentinelFocus('end')} tabIndex={0} ref={sentinelEnd} data-test="sentinelEnd" />
+      <div
+        onFocus={onSentinelFocus('end')}
+        tabIndex={0}
+        ref={sentinelEnd}
+        data-test="sentinelEnd"
+      />
     </React.Fragment>
   );
 }
@@ -390,9 +399,9 @@ Unstable_TrapFocus.propTypes = {
    */
   disableRestoreFocus: PropTypes.bool,
   /**
-   * Accepts a function which returns an array of selectors 
+   * Accepts a function which returns an array of selectors
    * to add to the component focusable elements.
-   * 
+   *
    */
   focusSelectors: PropTypes.func,
   /**

@@ -105,7 +105,6 @@ describe('<TrapFocus />', () => {
       </TrapFocus>,
     );
 
-
     expect(screen.getByText('x')).toHaveFocus();
     userEvent.tab();
     expect(screen.getByText('cancel')).toHaveFocus();
@@ -132,7 +131,7 @@ describe('<TrapFocus />', () => {
         </div>
       </TrapFocus>,
     );
-    
+
     userEvent.tab();
     expect(screen.getByText('cancel')).toHaveFocus();
     userEvent.tab();
@@ -201,7 +200,6 @@ describe('<TrapFocus />', () => {
     userEvent.tab();
     expect(screen.getByLabelText('two')).toHaveFocus();
   });
-
 
   it('does not steal focus from a portaled element if any prop but open changes', () => {
     function getDoc() {
