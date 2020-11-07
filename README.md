@@ -137,7 +137,7 @@ Although we love giving you the opportunity to put your stamp on Material-UI, we
 
 ## Changelog
 
-If you have recently updated, please read the [changelog](https://github.com/mui-org/material-ui/releases). for details of what has changed.
+If you have recently updated, please read the [changelog](https://github.com/mui-org/material-ui/releases) for details of what has changed.
 
 ## Roadmap
 
