@@ -144,6 +144,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   PopperComponent?: React.ComponentType<PopperProps>;
   /**
    * Props applied to the [`Popper`](/api/popper/) element.
+   * @default {}
    */
   PopperProps?: Partial<PopperProps>;
   /**

@@ -136,7 +136,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
         name: 'onUpdate',
         enabled: true,
         phase: 'afterWrite',
-        fn({ state }) {
+        fn: ({ state }) => {
           handlePopperUpdate(state);
         },
       },
