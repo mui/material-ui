@@ -10987,9 +10987,9 @@ markdown-to-jsx@^7.0.0:
   integrity sha512-0agsmQtnoAzGt2fO8jgoFL5wvDUbpjoIfQffErQZmP66BxaWMBGifsAo0RRuye+2Ydlp7csX6X6HpF2xaL6J1w==
 
 marked@^1.0.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-1.2.0.tgz#7221ce2395fa6cf6d722e6f2871a32d3513c85ca"
-  integrity sha512-tiRxakgbNPBr301ihe/785NntvYyhxlqcL3YaC8CaxJQh7kiaEtrN9B/eK2I2943Yjkh5gw25chYFDQhOMCwMA==
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-1.2.3.tgz#58817ba348a7c9398cb94d40d12e0d08df83af57"
+  integrity sha512-RQuL2i6I6Gn+9n81IDNGbL0VHnta4a+8ZhqvryXEniTb/hQNtf3i26hi1XWUhzb9BgVyWHKR3UO8MaHtKoYibw==
 
 material-ui-popup-state@^1.4.1:
   version "1.7.0"
