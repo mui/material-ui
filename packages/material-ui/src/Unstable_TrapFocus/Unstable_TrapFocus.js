@@ -43,25 +43,31 @@ function getTabIndex(node) {
   return node.tabIndex;
 }
 
-function isRadioTabble(node) {
+function isNonTabbableRadio(node) {
+  if (node.tagName !== 'INPUT' || node.type !== 'radio') {
+    return false;
+  }
+
   if (!node.name) {
-    return true;
+    return false;
   }
 
-  let input = node.ownerDocument.querySelector(`input[type="radio"][name="${node.name}"]:checked`);
+  const getRadio = (selector) => node.ownerDocument.querySelector(`input[type="radio"]${selector}`);
 
-  if (!input) {
-    input = node.ownerDocument.querySelector(`input[type="radio"][name="${node.name}"]`);
+  let roving = getRadio(`[name="${node.name}"]:checked`);
+
+  if (!roving) {
+    roving = getRadio(`[name="${node.name}"]`);
   }
 
-  return input === node;
+  return roving !== node;
 }
 
-function isFocusable(node) {
+function isNodeMatchingSelectorFocusable(node) {
   if (
     node.disabled ||
     (node.tagName === 'INPUT' && node.type === 'hidden') ||
-    (node.tagName === 'INPUT' && node.type === 'radio' && !isRadioTabble(node))
+    isNonTabbableRadio(node)
   ) {
     return false;
   }
@@ -75,7 +81,7 @@ export function defaultGetTabbable(root) {
   Array.from(root.querySelectorAll(candidatesSelector)).forEach((node, i) => {
     const nodeTabIndex = getTabIndex(node);
 
-    if (nodeTabIndex === -1 || !isFocusable(node)) {
+    if (nodeTabIndex === -1 || !isNodeMatchingSelectorFocusable(node)) {
       return;
     }
 
@@ -174,12 +180,7 @@ function Unstable_TrapFocus(props) {
       }
 
       if (activated.current) {
-        const tabbable = getTabbable(rootRef.current);
-        if (tabbable.length > 0) {
-          tabbable[0].focus();
-        } else {
-          rootRef.current.focus();
-        }
+        rootRef.current.focus();
       }
     }
 
@@ -244,7 +245,13 @@ function Unstable_TrapFocus(props) {
           return;
         }
 
-        const tabbable = getTabbable(rootRef.current);
+        let tabbable = [];
+        if (
+          doc.activeElement === sentinelStart.current ||
+          doc.activeElement === sentinelEnd.current
+        ) {
+          tabbable = getTabbable(rootRef.current);
+        }
 
         if (tabbable.length > 0) {
           const isShiftTab = Boolean(
@@ -303,7 +310,7 @@ function Unstable_TrapFocus(props) {
       doc.removeEventListener('focusin', contain);
       doc.removeEventListener('keydown', loopFocus, true);
     };
-  }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
+  }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
 
   const onFocus = (event) => {
     if (!activated.current) {

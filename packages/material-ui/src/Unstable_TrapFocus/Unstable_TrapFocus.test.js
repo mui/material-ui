@@ -26,10 +26,10 @@ describe('<TrapFocus />', () => {
     document.body.removeChild(initialFocus);
   });
 
-  it('should return focus to the children', () => {
+  it('should return focus to the root', () => {
     const { getByTestId } = render(
       <TrapFocus {...defaultProps} open>
-        <div tabIndex={-1} data-testid="modal">
+        <div tabIndex={-1} data-testid="root">
           <input autoFocus data-testid="auto-focus" />
         </div>
       </TrapFocus>,
@@ -38,7 +38,7 @@ describe('<TrapFocus />', () => {
     expect(getByTestId('auto-focus')).toHaveFocus();
 
     initialFocus.focus();
-    expect(getByTestId('auto-focus')).toHaveFocus();
+    expect(getByTestId('root')).toHaveFocus();
   });
 
   it('should not return focus to the children when disableEnforceFocus is true', () => {
@@ -71,7 +71,7 @@ describe('<TrapFocus />', () => {
     expect(getByTestId('auto-focus')).toHaveFocus();
   });
 
-  it('should warn if the modal content is not focusable', () => {
+  it('should warn if the root content is not focusable', () => {
     const UnfocusableDialog = React.forwardRef((_, ref) => <div ref={ref} />);
 
     expect(() => {
@@ -96,7 +96,7 @@ describe('<TrapFocus />', () => {
   it('should loop the tab key', () => {
     render(
       <TrapFocus {...defaultProps} open>
-        <div tabIndex={-1} data-testid="modal">
+        <div tabIndex={-1} data-testid="root">
           <div>Title</div>
           <button type="button">x</button>
           <button type="button">cancel</button>
@@ -104,7 +104,9 @@ describe('<TrapFocus />', () => {
         </div>
       </TrapFocus>,
     );
+    expect(screen.getByTestId('root')).toHaveFocus();
 
+    userEvent.tab();
     expect(screen.getByText('x')).toHaveFocus();
     userEvent.tab();
     expect(screen.getByText('cancel')).toHaveFocus();
@@ -114,7 +116,8 @@ describe('<TrapFocus />', () => {
     expect(screen.getByText('x')).toHaveFocus();
 
     initialFocus.focus();
-    expect(screen.getByText('x')).toHaveFocus();
+    expect(screen.getByTestId('root')).toHaveFocus();
+    screen.getByText('x').focus();
     userEvent.tab({ shift: true });
     expect(screen.getByText('ok')).toHaveFocus();
   });
@@ -122,7 +125,7 @@ describe('<TrapFocus />', () => {
   it('should focus on first focus element after last has received a tab click', () => {
     render(
       <TrapFocus {...defaultProps} open>
-        <div tabIndex={-1} data-testid="modal">
+        <div tabIndex={-1} data-testid="root">
           <div>Title</div>
           <button type="button">x</button>
           <button type="button">cancel</button>
@@ -132,66 +135,22 @@ describe('<TrapFocus />', () => {
     );
 
     userEvent.tab();
+    expect(screen.getByText('x')).toHaveFocus();
+    userEvent.tab();
     expect(screen.getByText('cancel')).toHaveFocus();
     userEvent.tab();
     expect(screen.getByText('ok')).toHaveFocus();
-    userEvent.tab();
-    expect(screen.getByText('x')).toHaveFocus();
   });
 
   it('should focus rootRef if no tabbable children are rendered', () => {
     render(
       <TrapFocus {...defaultProps} open>
-        <div tabIndex={-1} data-testid="modal">
+        <div tabIndex={-1} data-testid="root">
           <div>Title</div>
         </div>
       </TrapFocus>,
     );
-    expect(screen.getByTestId('modal')).toHaveFocus();
-  });
-
-  it('should focus checked radio button if present in radio group', () => {
-    const Test = () => {
-      const [value, setValue] = React.useState('two');
-      const onChange = (e) => setValue(e.target.value);
-      return (
-        <TrapFocus {...defaultProps} open>
-          <div tabIndex={-1} data-testid="modal">
-            <div>Title</div>
-            <input
-              aria-label="one"
-              checked={value === 'one'}
-              id="one"
-              name="one"
-              onChange={onChange}
-              type="radio"
-              value="one"
-            />
-            <input
-              aria-label="two"
-              checked={value === 'two'}
-              id="two"
-              name="two"
-              onChange={onChange}
-              type="radio"
-              value="two"
-            />
-            <input
-              aria-label="three"
-              checked={value === 'three'}
-              id="three"
-              name="three"
-              onChange={onChange}
-              type="radio"
-              value="three"
-            />
-          </div>
-        </TrapFocus>
-      );
-    };
-    render(<Test />);
-    userEvent.tab();
-    expect(screen.getByLabelText('two')).toHaveFocus();
+    expect(screen.getByTestId('root')).toHaveFocus();
   });
 
   it('does not steal focus from a portaled element if any prop but open changes', () => {
@@ -271,7 +230,7 @@ describe('<TrapFocus />', () => {
       return (
         <div onBlur={() => eventLog.push('blur')}>
           <TrapFocus getDoc={() => document} isEnabled={() => true} open {...props}>
-            <div data-testid="focus-root" tabIndex={-1}>
+            <div data-testid="root" tabIndex={-1}>
               <input data-testid="focus-input" />
             </div>
           </TrapFocus>
@@ -283,7 +242,7 @@ describe('<TrapFocus />', () => {
     // same behavior, just referential equality changes
     setProps({ isEnabled: () => true });
 
-    expect(screen.getByTestId('focus-input')).toHaveFocus();
+    expect(screen.getByTestId('root')).toHaveFocus();
     expect(eventLog).to.deep.equal([]);
   });
 
@@ -314,7 +273,7 @@ describe('<TrapFocus />', () => {
           disableRestoreFocus
           {...props}
         >
-          <div data-testid="focus-root" tabIndex={-1}>
+          <div data-testid="root" tabIndex={-1}>
             <input data-testid="focus-input" />
           </div>
         </TrapFocus>
@@ -325,7 +284,7 @@ describe('<TrapFocus />', () => {
     setProps({ open: false, disableRestoreFocus: false });
 
     // undesired: should be expect(initialFocus).toHaveFocus();
-    expect(screen.getByTestId('focus-input')).toHaveFocus();
+    expect(screen.getByTestId('root')).toHaveFocus();
   });
 
   it('undesired: setting `disableRestoreFocus` to false before closing has no effect', () => {
@@ -338,7 +297,7 @@ describe('<TrapFocus />', () => {
           disableRestoreFocus
           {...props}
         >
-          <div data-testid="focus-root" tabIndex={-1}>
+          <div data-testid="root" tabIndex={-1}>
             <input data-testid="focus-input" />
           </div>
         </TrapFocus>
@@ -350,7 +309,7 @@ describe('<TrapFocus />', () => {
     setProps({ open: false });
 
     // undesired: should be expect(initialFocus).toHaveFocus();
-    expect(screen.getByTestId('focus-input')).toHaveFocus();
+    expect(screen.getByTestId('root')).toHaveFocus();
   });
 
   describe('interval', () => {
@@ -368,23 +327,27 @@ describe('<TrapFocus />', () => {
       function WithRemovableElement({ hideButton = false }) {
         return (
           <TrapFocus {...defaultProps} open>
-            <div tabIndex={-1} role="dialog">
-              {!hideButton && <button type="button">I am going to disappear</button>}
+            <div tabIndex={-1} data-testid="root">
+              {!hideButton && (
+                <button type="button" data-testid="hide-button">
+                  I am going to disappear
+                </button>
+              )}
             </div>
           </TrapFocus>
         );
       }
 
-      const { getByRole, setProps } = render(<WithRemovableElement />);
-      const dialog = getByRole('dialog');
-      const toggleButton = getByRole('button', { name: 'I am going to disappear' });
+      const { setProps } = render(<WithRemovableElement />);
 
-      expect(toggleButton).toHaveFocus();
+      expect(screen.getByTestId('root')).toHaveFocus();
+      screen.getByTestId('hide-button').focus();
+      expect(screen.getByTestId('hide-button')).toHaveFocus();
 
       setProps({ hideButton: true });
-      expect(dialog).not.toHaveFocus();
+      expect(screen.getByTestId('root')).not.toHaveFocus();
       clock.tick(500); // wait for the interval check to kick in.
-      expect(dialog).toHaveFocus();
+      expect(screen.getByTestId('root')).toHaveFocus();
     });
 
     describe('prop: disableAutoFocus', () => {
@@ -393,7 +356,7 @@ describe('<TrapFocus />', () => {
           <div>
             <input />
             <TrapFocus {...defaultProps} open disableAutoFocus>
-              <div tabIndex={-1} data-testid="modal" />
+              <div tabIndex={-1} data-testid="root" />
             </TrapFocus>
           </div>,
         );
@@ -406,12 +369,12 @@ describe('<TrapFocus />', () => {
       });
 
       it('should trap once the focus moves inside', () => {
-        const { getByRole } = render(
+        render(
           <div>
-            <input />
+            <input data-testid="outside-input" />
             <TrapFocus {...defaultProps} open disableAutoFocus>
-              <div tabIndex={-1} data-testid="modal">
-                <button data-testid="focus-input" />
+              <div tabIndex={-1} data-testid="root">
+                <button type="buton" data-testid="focus-input" />
               </div>
             </TrapFocus>
           </div>,
@@ -419,16 +382,16 @@ describe('<TrapFocus />', () => {
 
         expect(initialFocus).toHaveFocus();
 
-        userEvent.tab();
-        expect(getByRole('textbox')).toHaveFocus();
+        screen.getByTestId('outside-input').focus();
+        expect(screen.getByTestId('outside-input')).toHaveFocus();
 
         // the trap activates
         userEvent.tab();
         expect(screen.getByTestId('focus-input')).toHaveFocus();
 
         // the trap prevent to escape
-        getByRole('textbox').focus();
-        expect(screen.getByTestId('focus-input')).toHaveFocus();
+        screen.getByTestId('outside-input').focus();
+        expect(screen.getByTestId('root')).toHaveFocus();
       });
 
       it('should restore the focus', () => {
@@ -436,26 +399,26 @@ describe('<TrapFocus />', () => {
           <div>
             <input data-testid="outside-input" />
             <TrapFocus {...defaultProps} open disableAutoFocus {...props}>
-              <div tabIndex={-1} data-testid="modal">
+              <div tabIndex={-1} data-testid="root">
                 <input data-testid="focus-input" />
               </div>
             </TrapFocus>
           </div>
         );
 
-        const { getByTestId, setProps } = render(<Test />);
+        const { setProps } = render(<Test />);
 
         // set the expected focus restore location
-        getByTestId('outside-input').focus();
-        expect(getByTestId('outside-input')).toHaveFocus();
+        screen.getByTestId('outside-input').focus();
+        expect(screen.getByTestId('outside-input')).toHaveFocus();
 
         // the trap activates
-        getByTestId('modal').focus();
-        expect(getByTestId('modal')).toHaveFocus();
+        screen.getByTestId('root').focus();
+        expect(screen.getByTestId('root')).toHaveFocus();
 
         // restore the focus to the first element before triggering the trap
         setProps({ open: false });
-        expect(getByTestId('outside-input')).toHaveFocus();
+        expect(screen.getByTestId('outside-input')).toHaveFocus();
       });
     });
   });

@@ -64,21 +64,51 @@ function blur(element) {
   });
 }
 
-function getNextElement(currentIndex, shift, elements, focusTrap) {
+function getNextElement({ tabbable, shift, focusTrap, previousElement }) {
+  if (previousElement.getAttribute('tabindex') === '-1') {
+    let found;
+
+    if (shift) {
+      for (let i = tabbable.length; i >= 0; i -= 1) {
+        if (
+          // eslint-disable-next-line no-bitwise
+          tabbable[i].compareDocumentPosition(previousElement) & Node.DOCUMENT_POSITION_FOLLOWING
+        ) {
+          found = tabbable[i];
+          break;
+        }
+      }
+    } else {
+      for (let i = 0; i < tabbable.length; i += 1) {
+        if (
+          // eslint-disable-next-line no-bitwise
+          tabbable[i].compareDocumentPosition(previousElement) & Node.DOCUMENT_POSITION_PRECEDING
+        ) {
+          found = tabbable[i];
+          break;
+        }
+      }
+    }
+    return found;
+  }
+
+  const currentIndex = tabbable.findIndex((el) => el === focusTrap.activeElement);
+
   if (focusTrap === document && currentIndex === 0 && shift) {
     return document.body;
   }
-  if (focusTrap === document && currentIndex === elements.length - 1 && !shift) {
+
+  if (focusTrap === document && currentIndex === tabbable.length - 1 && !shift) {
     return document.body;
   }
+
   const nextIndex = shift ? currentIndex - 1 : currentIndex + 1;
-  const defaultIndex = shift ? elements.length - 1 : 0;
-  return elements[nextIndex] || elements[defaultIndex];
+  const defaultIndex = shift ? tabbable.length - 1 : 0;
+
+  return tabbable[nextIndex] || tabbable[defaultIndex];
 }
 
 function tab({ shift = false, focusTrap } = {}) {
-  const previousElement = getActiveElement(focusTrap?.ownerDocument ?? document);
-
   if (!focusTrap) {
     focusTrap = document;
   }
@@ -89,8 +119,8 @@ function tab({ shift = false, focusTrap } = {}) {
     return;
   }
 
-  const index = tabbable.findIndex((el) => el === el.ownerDocument.activeElement);
-  const nextElement = getNextElement(index, shift, tabbable, focusTrap);
+  const previousElement = getActiveElement(focusTrap?.ownerDocument ?? document);
+  const nextElement = getNextElement({ shift, tabbable, focusTrap, previousElement });
 
   const shiftKeyInit = {
     key: 'Shift',
