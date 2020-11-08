@@ -118,7 +118,7 @@
     "stylis": "^3.5.4",
     "stylis-plugin-rtl": "^1.0.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^4.41.0",
+    "webpack": "^5.4.0",
     "webpack-bundle-analyzer": "^3.5.1"
   },
   "devDependencies": {
