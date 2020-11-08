@@ -5576,9 +5576,9 @@ compress-commons@^2.1.1:
     readable-stream "^2.3.6"
 
 compression-webpack-plugin@^6.0.2:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-6.0.4.tgz#524699c0ad4e94cab0eb199c734e291f6ab685b9"
-  integrity sha512-PViPdrF5UmqZxsr9WNoE+R6lTre6/5tC9TmWotBfhOQtWlc7oj/SXCsrecbZJ9LDpwLjHH6llPCKmw+JGPGN+A==
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-6.0.5.tgz#3d185efaf4b1f496db4155797cc8e7a5cd917552"
+  integrity sha512-mMQv27ywyrfM+GG1QEYVnpuoPBBqAxDvQLsTLPArzdV1GsgS/brQ7Ml1fJMuipp1KD2iHg1I88yDSXt8WhRvLw==
   dependencies:
     cacache "^15.0.5"
     find-cache-dir "^3.3.1"
