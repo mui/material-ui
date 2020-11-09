@@ -199,6 +199,7 @@ export function style<PropKey extends string, Theme extends object>(
 ): StyleFunction<{ [K in PropKey]?: unknown } & { theme: Theme }>;
 
 // typography.js
+export const font: SimpleStyleFunction<'font'>;
 export const fontFamily: SimpleStyleFunction<'fontFamily'>;
 export const fontSize: SimpleStyleFunction<'fontSize'>;
 export const fontStyle: SimpleStyleFunction<'fontStyle'>;
@@ -207,6 +208,7 @@ export const letterSpacing: SimpleStyleFunction<'letterSpacing'>;
 export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
 export const typography: SimpleStyleFunction<
+  | 'font'
   | 'fontFamily'
   | 'fontSize'
   | 'fontStyle'
