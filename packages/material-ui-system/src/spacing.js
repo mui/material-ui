@@ -101,7 +101,14 @@ export function createUnarySpacing(theme) {
       }
 
       if (process.env.NODE_ENV !== 'production') {
-        if (abs > themeSpacing.length - 1) {
+        if (!Number.isInteger(abs)) {
+          console.error(
+            [
+              'Material-UI: The `theme.spacing` array type cannot be combined with non integer values.' +
+                'You should either use an integer value that can be used as index, or define the `theme.spacing` as a number.',
+            ].join('\n'),
+          );
+        } else if (abs > themeSpacing.length - 1) {
           console.error(
             [
               `Material-UI: The value provided (${abs}) overflows.`,
