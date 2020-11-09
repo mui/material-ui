@@ -192,7 +192,8 @@ function MarkdownDocsFooter(props) {
     setComment(event.target.value);
   };
 
-  const handleSubmitComment = () => {
+  const handleSubmitComment = (event) => {
+    event.preventDefault();
     setCommentOpen(false);
     processFeedback();
   };
@@ -238,10 +239,16 @@ function MarkdownDocsFooter(props) {
                 role="group"
                 justifyContent="center"
                 alignItems="center"
-                aria-label={t('feedbackGroupLabel')}
+                aria-labelledby="feedback-message"
                 className={classes.feedback}
               >
-                <Typography align="center" variant="subtitle1" className={classes.feedbackMessage}>
+                <Typography
+                  align="center"
+                  component="div"
+                  id="feedback-message"
+                  variant="subtitle1"
+                  className={classes.feedbackMessage}
+                >
                   {t('feedbackMessage')}
                 </Typography>
                 <div>
@@ -273,32 +280,39 @@ function MarkdownDocsFooter(props) {
           </React.Fragment>
         )}
         <Collapse in={commentOpen} onEntered={handleEntered}>
-          <div>
-            <Typography variant="h6" gutterBottom id="feedback-title">
+          <form
+            aria-labelledby="feedback-message"
+            onReset={handleCancelComment}
+            onSubmit={handleSubmitComment}
+          >
+            <Typography component="div" variant="h6" gutterBottom>
               {t('feedbackTitle')}
             </Typography>
             <div>
-              <Typography color="textSecondary" gutterBottom>
+              <Typography id="feedback-description" color="textSecondary" gutterBottom>
                 {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
               </Typography>
               <TextField
                 multiline
                 variant="outlined"
                 margin="dense"
-                id="comment"
+                name="comment"
                 fullWidth
                 rows={6}
                 value={comment}
                 onChange={handleChangeTextfield}
-                inputProps={{ ref: inputRef }}
-                aria-labelledby="feedback-title"
+                inputProps={{
+                  'aria-label': t('feedbackCommentLabel'),
+                  'aria-describedby': 'feedback-description',
+                  ref: inputRef,
+                }}
               />
             </div>
             <DialogActions>
-              <Button onClick={handleCancelComment}>{t('cancel')}</Button>
-              <Button onClick={handleSubmitComment}>{t('submit')}</Button>
+              <Button type="reset">{t('cancel')}</Button>
+              <Button type="submit">{t('submit')}</Button>
             </DialogActions>
-          </div>
+          </form>
         </Collapse>
       </footer>
       <Snackbar
