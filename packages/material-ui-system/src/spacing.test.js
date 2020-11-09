@@ -11,7 +11,7 @@ describe('system spacing', () => {
         });
         expect(output).to.deep.equal({ padding: 8 });
       });
-  
+
       it('should be able to customize the unit value', () => {
         const output1 = spacing({
           theme: {
@@ -20,7 +20,7 @@ describe('system spacing', () => {
           p: 2,
         });
         expect(output1).to.deep.equal({ padding: 4 });
-  
+
         const output2 = spacing({
           theme: {
             spacing: [0, 3, 5, 8, 13, 21], // Fibonacci
@@ -28,7 +28,7 @@ describe('system spacing', () => {
           p: 1,
         });
         expect(output2).to.deep.equal({ padding: 3 });
-  
+
         const output3 = spacing({
           theme: {
             spacing: (x) => x ** 2,
@@ -38,7 +38,7 @@ describe('system spacing', () => {
         expect(output3).to.deep.equal({ padding: 4 });
       });
     });
-  
+
     describe('warnings', () => {
       it('should warn if the value overflow', () => {
         let output;
@@ -56,7 +56,7 @@ describe('system spacing', () => {
         );
         expect(output).to.deep.equal({ padding: undefined });
       });
-  
+
       it('should warn if the theme transformer is invalid', () => {
         let output;
         expect(() => {
@@ -73,7 +73,7 @@ describe('system spacing', () => {
         expect(output).to.deep.equal({ padding: undefined });
       });
     });
-  
+
     it('should support negative values', () => {
       const output = spacing({
         theme: {},
@@ -81,7 +81,7 @@ describe('system spacing', () => {
       });
       expect(output).to.deep.equal({ padding: -8 });
     });
-  
+
     it('should support composes values', () => {
       const output = spacing({
         theme: {},
@@ -92,7 +92,7 @@ describe('system spacing', () => {
         paddingRight: 8,
       });
     });
-  
+
     it('should support string', () => {
       const output = spacing({
         theme: {
@@ -102,7 +102,7 @@ describe('system spacing', () => {
       });
       expect(output).to.deep.equal({ padding: '-2em' });
     });
-  
+
     it('should support breakpoints', () => {
       const output1 = spacing({
         theme: {},
@@ -116,7 +116,7 @@ describe('system spacing', () => {
           padding: 16,
         },
       });
-  
+
       const output2 = spacing({
         theme: {},
         p: {
@@ -133,7 +133,7 @@ describe('system spacing', () => {
         },
       });
     });
-  
+
     it('should support full version', () => {
       const output1 = spacing({
         theme: {},
@@ -151,7 +151,7 @@ describe('system spacing', () => {
         paddingTop: 8,
       });
     });
-  
+
     it('should support string values', () => {
       const output = spacing({
         theme: {},
@@ -162,7 +162,7 @@ describe('system spacing', () => {
       });
     });
   });
-  
+
   describe('margin', () => {
     describe('themeTransformer', () => {
       it('should have a default unit value', () => {
@@ -172,7 +172,7 @@ describe('system spacing', () => {
         });
         expect(output).to.deep.equal({ margin: 8 });
       });
-  
+
       it('should be able to customize the unit value', () => {
         const output1 = margin({
           theme: {
@@ -181,7 +181,7 @@ describe('system spacing', () => {
           m: 2,
         });
         expect(output1).to.deep.equal({ margin: 4 });
-  
+
         const output2 = margin({
           theme: {
             spacing: [0, 3, 5, 8, 13, 21], // Fibonacci
@@ -189,7 +189,7 @@ describe('system spacing', () => {
           margin: 1,
         });
         expect(output2).to.deep.equal({ margin: 3 });
-  
+
         const output3 = margin({
           theme: {
             spacing: (x) => x ** 2,
@@ -199,7 +199,7 @@ describe('system spacing', () => {
         expect(output3).to.deep.equal({ margin: 4 });
       });
     });
-  
+
     describe('warnings', () => {
       it('should warn if the value overflow', () => {
         let output;
@@ -217,7 +217,7 @@ describe('system spacing', () => {
         );
         expect(output).to.deep.equal({ margin: undefined });
       });
-  
+
       it('should warn if the theme transformer is invalid', () => {
         let output;
         expect(() => {
@@ -234,7 +234,7 @@ describe('system spacing', () => {
         expect(output).to.deep.equal({ margin: undefined });
       });
     });
-  
+
     it('should support negative values', () => {
       const output = margin({
         theme: {},
@@ -242,7 +242,7 @@ describe('system spacing', () => {
       });
       expect(output).to.deep.equal({ margin: -8 });
     });
-  
+
     it('should support composes values', () => {
       const output = margin({
         theme: {},
@@ -253,7 +253,7 @@ describe('system spacing', () => {
         marginRight: 8,
       });
     });
-  
+
     it('should support string', () => {
       const output = margin({
         theme: {
@@ -263,7 +263,7 @@ describe('system spacing', () => {
       });
       expect(output).to.deep.equal({ margin: '-2em' });
     });
-  
+
     it('should support breakpoints', () => {
       const output1 = margin({
         theme: {},
@@ -277,7 +277,7 @@ describe('system spacing', () => {
           margin: 16,
         },
       });
-  
+
       const output2 = margin({
         theme: {},
         m: {
@@ -294,7 +294,7 @@ describe('system spacing', () => {
         },
       });
     });
-  
+
     it('should support full version', () => {
       const output1 = margin({
         theme: {},
@@ -312,7 +312,7 @@ describe('system spacing', () => {
         marginTop: 8,
       });
     });
-  
+
     it('should support string values', () => {
       const output = margin({
         theme: {},
@@ -323,7 +323,7 @@ describe('system spacing', () => {
       });
     });
   });
-  
+
   describe('padding', () => {
     describe('themeTransformer', () => {
       it('should have a default unit value', () => {
@@ -333,7 +333,7 @@ describe('system spacing', () => {
         });
         expect(output).to.deep.equal({ padding: 8 });
       });
-  
+
       it('should be able to customize the unit value', () => {
         const output1 = padding({
           theme: {
@@ -342,7 +342,7 @@ describe('system spacing', () => {
           p: 2,
         });
         expect(output1).to.deep.equal({ padding: 4 });
-  
+
         const output2 = padding({
           theme: {
             spacing: [0, 3, 5, 8, 13, 21], // Fibonacci
@@ -350,7 +350,7 @@ describe('system spacing', () => {
           p: 1,
         });
         expect(output2).to.deep.equal({ padding: 3 });
-  
+
         const output3 = padding({
           theme: {
             spacing: (x) => x ** 2,
@@ -360,7 +360,7 @@ describe('system spacing', () => {
         expect(output3).to.deep.equal({ padding: 4 });
       });
     });
-  
+
     describe('warnings', () => {
       it('should warn if the value overflow', () => {
         let output;
@@ -378,7 +378,7 @@ describe('system spacing', () => {
         );
         expect(output).to.deep.equal({ padding: undefined });
       });
-  
+
       it('should warn if the theme transformer is invalid', () => {
         let output;
         expect(() => {
@@ -395,7 +395,7 @@ describe('system spacing', () => {
         expect(output).to.deep.equal({ padding: undefined });
       });
     });
-  
+
     it('should support negative values', () => {
       const output = padding({
         theme: {},
@@ -403,7 +403,7 @@ describe('system spacing', () => {
       });
       expect(output).to.deep.equal({ padding: -8 });
     });
-  
+
     it('should support composes values', () => {
       const output = padding({
         theme: {},
@@ -414,7 +414,7 @@ describe('system spacing', () => {
         paddingRight: 8,
       });
     });
-  
+
     it('should support string', () => {
       const output = padding({
         theme: {
@@ -424,7 +424,7 @@ describe('system spacing', () => {
       });
       expect(output).to.deep.equal({ padding: '-2em' });
     });
-  
+
     it('should support breakpoints', () => {
       const output1 = padding({
         theme: {},
@@ -438,7 +438,7 @@ describe('system spacing', () => {
           padding: 16,
         },
       });
-  
+
       const output2 = padding({
         theme: {},
         p: {
@@ -455,7 +455,7 @@ describe('system spacing', () => {
         },
       });
     });
-  
+
     it('should support full version', () => {
       const output1 = padding({
         theme: {},
@@ -473,7 +473,7 @@ describe('system spacing', () => {
         paddingTop: 8,
       });
     });
-  
+
     it('should support string values', () => {
       const output = padding({
         theme: {},
