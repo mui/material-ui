@@ -410,7 +410,7 @@ async function buildDocs(options: {
   reactAPI.inheritance = getInheritance(testInfo, src);
 
   const styledComponent = reactAPI.styles.classes.length === 0;
-  if(styledComponent) {
+  if (styledComponent) {
     await updateStylesDefinition({
       api: reactAPI,
       component: componentObject,

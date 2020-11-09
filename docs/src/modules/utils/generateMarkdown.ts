@@ -476,18 +476,22 @@ function generateClasses(reactAPI: ReactApi, styledComponent: boolean) {
 ${text}
 
 You can override the style of the component thanks to one of these customization points:
-${styledComponent ? `
+${
+  styledComponent
+    ? `
 - With a [global class name](/guides/interoperability/#global-css).
 - With a rule name as part of the theme's component's [\`styleOverrides\` property](/customization/components/#global-theme-override).
-` : `
+`
+    : `
 - With a rule name of the [\`classes\` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [\`overrides\` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
-    reactAPI.filename,
-  )}) for more detail.
-`}
+        reactAPI.filename,
+      )}) for more detail.
+`
+}
 `;
 }
 
@@ -573,6 +577,8 @@ export default function generateMarkdown(reactAPI: ReactApi, styledComponent = f
     generateName(reactAPI),
     generateProps(reactAPI),
     '',
-    `${generateClasses(reactAPI, styledComponent)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,
+    `${generateClasses(reactAPI, styledComponent)}${generateInheritance(reactAPI)}${generateDemos(
+      reactAPI,
+    )}`,
   ].join('\n');
 }
