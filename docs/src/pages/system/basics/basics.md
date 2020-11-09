@@ -202,7 +202,7 @@ You might want to skip this part and bet on CSS, it has been standardized for de
 
 ### Superset of CSS
 
-As the prop supports a superset of CSS, you can use child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples:
+As part of the prop, you can use any regular CSS too: child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples:
 
 - Using pseudo selectors:
 
