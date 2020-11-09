@@ -131,8 +131,8 @@ https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 # v5: GridList -> ImageList
 /components/grid-list/ /components/image-list/ 301
 /api/grid-list/ /api/image-list/ 301
-/api/grid-list-tile/ /api/image-list-tile/ 301
-/api/grid-list-tile-bar/ /api/image-list-tile-bar/ 301
+/api/grid-list-tile/ /api/image-list-item/ 301
+/api/grid-list-tile-bar/ /api/image-list-item-bar/ 301
 
 # Proxies
 
