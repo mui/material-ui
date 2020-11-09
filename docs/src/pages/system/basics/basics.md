@@ -198,7 +198,7 @@ Here are an example leveraging them:
 ```
 
 These shorthands are **optional**, they are great to save time when writing styles but it can be overwhelming to learn new custom APIs.
-You might want to skip this part and bet on CSS, it has been standardized for decades, head to the next section.
+You might want to skip this part and bet on CSS, it has been standardized for decades, head to the [next section](#superset-of-css).
 
 ### Superset of CSS
 
