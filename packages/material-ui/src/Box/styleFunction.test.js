@@ -13,7 +13,10 @@ describe('styleFunction', () => {
         main: 'rgb(0, 255, 0)',
       },
     },
+    typography: { pxToRem: (pxValue) => `${pxValue / 16}rem` },
   });
+
+  const round = (value) => Math.round(value * 1e5) / 1e5;
 
   it('resolves palette', () => {
     const result = styleFunction({
@@ -41,18 +44,44 @@ describe('styleFunction', () => {
     });
   });
 
-  it('resolves typography', () => {
-    const result = styleFunction({
-      theme,
-      fontFamily: 'fontFamily',
-      fontWeight: 'fontWeightLight',
-      fontSize: 'fontSize',
+  describe('typography', () => {
+    it('resolves font prop', () => {
+      const result = styleFunction({
+        theme,
+        font: ['body2', 'body1'],
+      });
+
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: `${14 / 16}rem`,
+          letterSpacing: `${round(0.15 / 14)}em`,
+          fontWeight: 400,
+          lineHeight: 1.43,
+        },
+        '@media (min-width:600px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+        },
+      });
     });
 
-    expect(result).to.deep.equal({
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 300,
-      fontSize: 14,
+    it('resolves longhand font props', () => {
+      const result = styleFunction({
+        theme,
+        fontFamily: 'fontFamily',
+        fontWeight: 'fontWeightLight',
+        fontSize: 'fontSize',
+      });
+
+      expect(result).to.deep.equal({
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontWeight: 300,
+        fontSize: 14,
+      });
     });
   });
 
@@ -83,38 +112,64 @@ describe('styleFunction', () => {
   });
 
   describe('sx prop', () => {
-    it('resolves system', () => {
-      const result = styleFunction({
-        theme,
-        sx: {
-          color: 'primary.main',
-          bgcolor: 'secondary.main',
-          m: 2,
-          p: 1,
-          fontFamily: 'fontFamily',
-          fontWeight: 'fontWeightLight',
-          fontSize: 'fontSize',
-          displayPrint: 'block',
-          border: [1, 2, 3, 4, 5],
-        },
+    describe('system', () => {
+      it('resolves system ', () => {
+        const result = styleFunction({
+          theme,
+          sx: {
+            color: 'primary.main',
+            bgcolor: 'secondary.main',
+            m: 2,
+            p: 1,
+            fontFamily: 'fontFamily',
+            fontWeight: 'fontWeightLight',
+            fontSize: 'fontSize',
+            displayPrint: 'block',
+            border: [1, 2, 3, 4, 5],
+          },
+        });
+
+        expect(result).to.deep.equal({
+          color: 'rgb(0, 0, 255)',
+          backgroundColor: 'rgb(0, 255, 0)',
+          margin: '20px',
+          padding: '10px',
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontWeight: 300,
+          fontSize: 14,
+          '@media print': {
+            display: 'block',
+          },
+          '@media (min-width:0px)': { border: '1px solid' },
+          '@media (min-width:600px)': { border: '2px solid' },
+          '@media (min-width:960px)': { border: '3px solid' },
+          '@media (min-width:1280px)': { border: '4px solid' },
+          '@media (min-width:1920px)': { border: '5px solid' },
+        });
       });
 
-      expect(result).to.deep.equal({
-        color: 'rgb(0, 0, 255)',
-        backgroundColor: 'rgb(0, 255, 0)',
-        margin: '20px',
-        padding: '10px',
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontWeight: 300,
-        fontSize: 14,
-        '@media print': {
-          display: 'block',
-        },
-        '@media (min-width:0px)': { border: '1px solid' },
-        '@media (min-width:600px)': { border: '2px solid' },
-        '@media (min-width:960px)': { border: '3px solid' },
-        '@media (min-width:1280px)': { border: '4px solid' },
-        '@media (min-width:1920px)': { border: '5px solid' },
+      it('resolves system typography', () => {
+        const result = styleFunction({
+          theme,
+          sx: { font: ['body2', 'body1'] },
+        });
+
+        expect(result).to.deep.equal({
+          '@media (min-width:0px)': {
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontSize: `${14 / 16}rem`,
+            letterSpacing: `${round(0.15 / 14)}em`,
+            fontWeight: 400,
+            lineHeight: 1.43,
+          },
+          '@media (min-width:600px)': {
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontSize: '1rem',
+            letterSpacing: `${round(0.15 / 16)}em`,
+            fontWeight: 400,
+            lineHeight: 1.5,
+          },
+        });
       });
     });
 
