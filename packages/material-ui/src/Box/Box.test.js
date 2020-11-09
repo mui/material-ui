@@ -59,41 +59,51 @@ describe('<Box />', () => {
   });
 
   it('respect properties order when generating the CSS', function test() {
-    const isMozilla = window.navigator.userAgent.indexOf('Firefox') > -1;
     const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
-    if (isJSDOM || isMozilla) {
-      // Test fails on Mozilla with just:
-
-      // "border": "",
-      // "border-color": "",
-
+    if (isJSDOM) {
       this.skip();
     }
 
     const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
 
     expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
-      border: '1px solid rgb(0, 0, 255)',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 255)',
+      borderRightColor: 'rgb(0, 0, 255)',
+      borderBottomColor: 'rgb(0, 0, 255)',
+      borderLeftColor: 'rgb(0, 0, 255)',
     });
 
     const testCaseBorderWins = render(<Box borderColor="rgb(0, 0, 255)" border={1} />);
 
     expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
-      border: '1px solid rgb(0, 0, 0)',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 0)',
+      borderRightColor: 'rgb(0, 0, 0)',
+      borderBottomColor: 'rgb(0, 0, 0)',
+      borderLeftColor: 'rgb(0, 0, 0)',
     });
   });
 
   it('respect properties order when generating the CSS from the sx prop', function test() {
-    const isMozilla = window.navigator.userAgent.indexOf('Firefox') > -1;
     const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
-    if (isJSDOM || isMozilla) {
-      // Test fails on Mozilla with just:
-
-      // "border": "",
-      // "border-color": "",
-
+    if (isJSDOM) {
       this.skip();
     }
 
@@ -102,13 +112,35 @@ describe('<Box />', () => {
     );
 
     expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
-      border: '1px solid rgb(0, 0, 255)',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 255)',
+      borderRightColor: 'rgb(0, 0, 255)',
+      borderBottomColor: 'rgb(0, 0, 255)',
+      borderLeftColor: 'rgb(0, 0, 255)',
     });
 
     const testCaseBorderWins = render(<Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />);
 
     expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
-      border: '1px solid rgb(0, 0, 0)',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 0)',
+      borderRightColor: 'rgb(0, 0, 0)',
+      borderBottomColor: 'rgb(0, 0, 0)',
+      borderLeftColor: 'rgb(0, 0, 0)',
     });
   });
 });
