@@ -1,0 +1,18 @@
+import Ad from '_shared/Ad';
+import Example from '_shared/Example';
+import PageMeta from '_shared/PageMeta';
+import * as DateFnsExample from './Date-fns.example';
+
+<PageMeta title="Date-fns localization - @material-ui/pickers" />
+
+## Localization with date-fns
+
+When using date-fns, localization is performed by passing a locale object to the `LocalizationProvider` component.
+
+<Ad />
+
+#### Basic example
+
+_Note_: Any picker in the component tree will be re-rendered automatically on locale change.
+
+<Example source={DateFnsExample} />

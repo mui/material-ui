@@ -1,0 +1,40 @@
+# dependencies
+node_modules
+
+# build
+dist
+build
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.firebase/
+.env
+
+# coverage
+coverage
+
+# Cache directory
+.npm
+./cypress/**/*
+.next
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env.local
+
+# webstorm
+.idea/
+/lib/yarn.lock
+/docs/yarn.lock
+
+# editors
+.vs
+.DS_Store
+
+.vercel

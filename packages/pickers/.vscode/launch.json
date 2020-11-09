@@ -1,0 +1,39 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest Current File",
+      "program": "${workspaceFolder}/lib/node_modules/.bin/jest",
+      "args": [
+        "--runInBand",
+        "--config",
+        "${workspaceFolder}/lib/jest.config.js",
+        "${fileBasenameNoExtension}"
+      ],
+      "sourceMaps": true,
+      "preLaunchTask": "npm: test:typescript - lib",
+      "outFiles": [ "${workspaceFolder}/lib/src/__tests__/dist/**/*.js"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "env": {
+        "UTILS": "date-fns"
+      },
+      "windows": {
+        "program": "${workspaceFolder}/lib/node_modules/jest/bin/jest"
+      }
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:3001",
+      "webRoot": "${workspaceFoler}"
+    }
+  ]
+}

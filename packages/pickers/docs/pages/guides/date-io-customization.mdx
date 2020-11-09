@@ -1,0 +1,38 @@
+import Ad from '_shared/Ad';
+import Code from '_shared/Code.tsx';
+import Example from '_shared/Example';
+import PageMeta from '_shared/PageMeta';
+import utilsInterfaceCode from '!raw-loader!@date-io/core/IUtils.d.ts';
+import * as FormatsExample from './Formats.example';
+import * as OverrideLogicExample from './OverrideLogic.example';
+
+<PageMeta title="Customize date management logic" />
+
+## Customization date management logic
+
+For some reason, like timezone management and localization you may need to control how datepickers are working
+with your date management library.
+
+<Ad />
+
+#### Global formats customization
+
+All the formats used by the datepicker can be changed by `libFormats` prop in `LocalizationProvider`.
+Find all availble formats in [Adapter interface](#utils-interface)
+
+<Example source={FormatsExample} />
+
+#### Override date logic
+
+It is also possible to extend any adapter we providing and change the logic of date manipulations.
+Simply extend exported version of `date-io` adapter, and make it work as you need accordingly to [used interface](#utils-interface)
+
+> You can use ES6 class syntax or override values with the help of `.prototype` Object property.
+
+<Example source={OverrideLogicExample} />
+
+#### Utils interface
+
+_Note_ TDate - date object passed from the state (moment, native Date or Luxon`s DateTime)
+
+<Code language="ts" children={utilsInterfaceCode} />

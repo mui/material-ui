@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "exclude": [],
+  "include": ["../../typings.d.ts", "./typings.d.ts", "./**/*.tsx", "./**/*.ts", "./typescript/*"],
+  "compilerOptions": {
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "outDir": "./dist",
+    "sourceMap": true
+  }
+}

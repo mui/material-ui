@@ -1,0 +1,57 @@
+import PageMeta from '../../_shared/PageMeta';
+
+<PageMeta
+  title="Installation"
+  description="Step-by-step guide how to install @material-ui/pickers"
+/>
+
+## Installation
+
+Material UI Pickers is available as an [npm package](https://www.npmjs.com/package/@material-ui/pickers):
+
+```
+npm i @material-ui/pickers
+
+yarn add @material-ui/pickers
+```
+
+#### Peer Library
+
+`@material-ui/pickers` was designed to use the date management library of your choice.
+We are providing interfaces for [date-fns 2](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs) and [moment](https://momentjs.com/).
+
+```
+npm i date-fns
+// or
+npm i moment
+// or
+npm i luxon
+// or
+npm i dayjs
+```
+
+Tell pickers which date management library it should use with `LocalizationProvider`. This component takes a `dateAdapter`
+prop, and makes it available down the React tree thanks to [React Context](https://reactjs.org/docs/context.html). It should
+be used at the root of your component tree, or at the highest level you wish the pickers to be available.
+
+```jsx
+import { LocalizationProvider } from '@material-ui/pickers';
+
+// pick an adapter for your date library
+import MomentUtils from '@material-ui/pickers/adapter/moment';
+import DateFnsUtils from '@material-ui/pickers/adapter/date-fns';
+import LuxonUtils from '@material-ui/pickers/adapter/luxon';
+
+function App() {
+  return (
+    <LocalizationProvider dateAdapter={DateFnsUtils}>
+      <Root />
+    </LocalizationProvider>
+  );
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
+```
+
+It is also possible to pass the [date adapter directly to the picker](/guides/date-adapter-passing) and avoid using context,
+but please use this possibility wisely.

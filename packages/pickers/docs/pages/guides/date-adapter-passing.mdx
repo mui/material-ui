@@ -1,0 +1,26 @@
+import Ad from '_shared/Ad';
+import Code from '_shared/Code.tsx';
+import Example from '_shared/Example';
+import PageMeta from '_shared/PageMeta';
+import * as DateAdapterProp from './DateAdapterProp.example';
+
+<PageMeta title="Customize date management logic" />
+
+## Passing date adapter down to pickers
+
+There are a couple of ways to pass date-io adapter to pickers components.
+
+<Ad />
+
+#### Context vs dateAdapter prop
+
+Recomended way to pass date adapter is using our `LocalizationProvider` and pass it through the context.
+Also there is a `dateAdapter` prop available, it allows to get rid of additional context.
+
+But you need to understand a few things:
+
+- `dateAdapter` will create a new context instance inside the date-picker, it may impact rendering performance if you have a lot of pickers on the screen
+- You must make sure your adapter is properly memoized before passing it down
+  (if not – all components tree inside any picker will always rerender on your component change)
+
+<Example source={DateAdapterProp} />

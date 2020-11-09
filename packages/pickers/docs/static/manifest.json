@@ -1,0 +1,13 @@
+{
+  "short_name": "Material ui pickers",
+  "name": "Material ui pickers docs",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "theme_color": "#3da044",
+  "background_color": "#ffffff"
+}

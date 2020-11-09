@@ -1,0 +1,5 @@
+blank_issues_enabled: false # force the usage of a template
+contact_links:
+  - name: Support ❔
+    url: https://material-ui.com/getting-started/support/
+    about: I need support with Material-UI.

@@ -1,0 +1,54 @@
+import Ad from '_shared/Ad';
+import Example from '_shared/Example';
+import PageMeta from '_shared/PageMeta';
+import * as CssTheme from './CssTheme.example';
+import * as CssOverrides from './CssOverrides.example';
+import * as CssThemeSpacing from './CssThemeSpacing.example';
+
+<PageMeta title="CSS Overrides" />
+
+## Override styles
+
+The default pickers appearance is built based on material-ui's theme provided. So pickers will take all
+colors/fonts/theme settings as any other material-ui component.
+
+<Ad />
+
+#### Default theme
+
+You can customize the material-ui theme, that is passed to `ThemeProvider` and the pickers will leverage your settings.
+
+<Example testId="css-override" source={CssTheme} />
+
+#### Override example
+
+_Date/Time pickers are quite simple controls from UX perspective, so most people just use the default appearance_
+
+That's why we are not providing any for-component classes api to override stylesheets for any particular
+component. The only way to override existing stylesheets are with the use of global material-ui theme
+overrides.
+
+<Example source={CssOverrides} />
+
+#### Custom spacing
+
+Pickers will also leverage `spacing` from the material-ui's theme
+
+<Example source={CssThemeSpacing} />
+
+#### TypeScript
+
+For TypeScript users it's also required to extend default material-ui theme typings with pickers controls.
+This will also autocomplete classnames.
+
+Add the following to a TypeScript declaration file in your project, such as `overrides-mui.d.ts`:
+
+<!-- should be in sync with lib/src/__tests__/typings.d.ts -->
+
+```typescript
+import { MuiPickersComponentsToClassName } from '@material-ui/pickers/src/typings/overrides';
+
+declare module '@material-ui/core/styles/overrides' {
+  export interface ComponentNameToClassKey extends MuiPickersComponentsToClassName {}
+}
+```

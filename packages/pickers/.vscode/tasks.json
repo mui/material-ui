@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "type": "npm",
+      "script": "test:typescript",
+      "path": "lib/",
+      "problemMatcher": [],
+      "label": "npm: test:typescript - lib",
+      "detail": "rimraf src/__tests__/dist && tsc -p src/__tests__/tsconfig.json"
+    }
+  ]
+}

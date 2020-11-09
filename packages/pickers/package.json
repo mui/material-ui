@@ -1,0 +1,82 @@
+{
+  "version": "4.0.0-alpha.11",
+  "private": true,
+  "description": "Material-ui pickers root package",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "workspaces": [
+    "lib",
+    "docs"
+  ],
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "start": "yarn docs:dev",
+    "docs:dev": "yarn workspace docs dev",
+    "e2e:run": "cypress run",
+    "e2e:open": "cypress open",
+    "deduplicate": "node scripts/deduplicate.js",
+    "docgen": "node docs/scripts/docgen.js",
+    "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx,.jsx",
+    "lint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx,.jsx",
+    "prettier": "prettier --write './{lib,docs,e2e}/**/*.{js,jsx,ts,tsx,json,css,md,mdx}'",
+    "prettier:check": "prettier --check './{lib,docs,e2e}/**/*.{js,jsx,ts,tsx,json,css,md,mdx}'",
+    "build": "yarn workspaces run build & yarn workspaces run build:typescript",
+    "release": "yarn workspace @material-ui/pickers release && git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui-org/material-ui-pickers.git"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.9.6",
+    "@babel/runtime": "^7.8.4",
+    "@cypress/webpack-preprocessor": "^4.1.0",
+    "@percy/cypress": "^2.3.1",
+    "@testing-library/cypress": "^6.0.0",
+    "@testing-library/dom": "^7.21.5",
+    "@testing-library/react": "^10.4.7",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "babel-loader": "^8.1.0",
+    "cypress": "4.11.0",
+    "cypress-plugin-tab": "^1.0.5",
+    "cypress-react-unit-test": "^4.7.2",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-typescript": "^8.0.2",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-mocha": "^7.0.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "^3.9.6",
+    "wait-on": "^5.1.0",
+    "yarn-deduplicate": "^2.1.1"
+  },
+  "eslintIgnore": [
+    "**/node_modules",
+    "**/coverage",
+    "videos/",
+    "**/dist",
+    "/docs/layout",
+    "/docs/pages/index",
+    "/docs/_shared",
+    "/e2e/",
+    "**/build"
+  ],
+  "resolutions": {
+    "**/@babel/core": "^7.9.6",
+    "**/webpack": "^4.43.0"
+  }
+}

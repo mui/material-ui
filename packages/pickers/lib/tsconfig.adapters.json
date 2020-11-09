@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./adapter",
+    "outDir": "build/adapter"
+  },
+  "include": ["./adapter/**/*.ts*", "./typings.d.ts"]
+}

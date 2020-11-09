@@ -1,0 +1,56 @@
+import Ad from '_shared/Ad';
+import Example from '_shared/Example';
+import PageMeta from '_shared/PageMeta';
+import LinkedComponents from '_shared/LinkedComponents';
+
+import * as BasicDateTimePicker from './BasicDateTimePicker.example';
+import * as DateTimePickers from './DateTimePickers.example';
+import * as CustomDateTimePicker from './CustomDateTimePicker.example';
+import * as DateTimeValidation from './DateTimeValidation.example';
+
+<PageMeta component="DateTimePicker" />
+
+## Date & Time picker
+
+This component combines date & time pickers. It allows to select both date and time with the same control.
+
+**Note:** This component is not listed in [material design guidelines](https://material.io/components/)
+
+<Ad />
+
+#### Basic usage
+
+Allows choosing date then time. There are too many views, so tabs are required to visually distinguish date/time steps.
+
+<Example source={BasicDateTimePicker} />
+
+#### Responsiveness
+
+The date time picker component is designed and optimized for the device it runs on.
+
+- The "Mobile" version works best for touch devices and small screens.
+- The "Desktop" version works best for mouse devices and large screens.
+
+By default, the `DateTimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use.
+This can be customized by `desktopModeMediaQuery` prop.
+
+<Example source={DateTimePickers} />
+
+#### Date & Time validation
+
+It is possible to restrict date and time selection in two ways:
+
+- using `minDateTime`/`maxDateTime`, you can restrict time selection before or after a particular moment in time
+- using `minTime`/`maxTime`, you can disable selecting times before or after a certain time each day respectively
+
+<Example source={DateTimeValidation} />
+
+#### Customization
+
+Here are some examples of heavily customized date & time pickers
+
+<Example source={CustomDateTimePicker} />
+
+#### API
+
+<LinkedComponents components={['DateTimePicker']} />
