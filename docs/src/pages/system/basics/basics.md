@@ -5,7 +5,7 @@
 Material-UI comes with dozens or **ready-to-use** components in the core.
 These components are an incredible starting point but when it comes to make your site stand out with a custom design, they can be challenging to customize. Introducing the system:
 
-The **system** lets you quickly build custom UI components leveraging the design tokens defined in your theme.
+The **system** lets you quickly build custom UI components leveraging the values defined in your theme.
 
 ## Demo
 
