@@ -86,6 +86,16 @@ describe('spacing', () => {
       );
       expect(output).to.deep.equal({ padding: undefined });
     });
+
+    it('should accept non integer value', () => {
+      const output = spacing({
+        theme: {
+          spacing: 8,
+        },
+        p: 0.5,
+      });
+      expect(output).to.deep.equal({ padding: 4 });
+    });
   });
 
   it('should support negative values', () => {
