@@ -409,10 +409,13 @@ async function buildDocs(options: {
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
   reactAPI.inheritance = getInheritance(testInfo, src);
 
-  await updateStylesDefinition({
-    api: reactAPI,
-    component: componentObject,
-  });
+  const styledComponent = reactAPI.styles.classes.length === 0;
+  if(styledComponent) {
+    await updateStylesDefinition({
+      api: reactAPI,
+      component: componentObject,
+    });
+  }
 
   if (reactAPI.styles.classes) {
     reactAPI.styles.globalClasses = reactAPI.styles.classes.reduce((acc, key) => {
@@ -434,7 +437,7 @@ async function buildDocs(options: {
 
   let markdown;
   try {
-    markdown = generateMarkdown(reactAPI);
+    markdown = generateMarkdown(reactAPI, styledComponent);
   } catch (err) {
     console.log('Error generating markdown for', componentObject.filename);
     throw err;
