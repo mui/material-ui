@@ -48,10 +48,6 @@ const styles = (theme) => ({
       width: '100%',
     },
   },
-  hidden: {
-    ariaHidden: 'true',
-    opacity: 0,
-  },
 });
 
 function flattenPages(pages, current = []) {
@@ -152,7 +148,6 @@ function MarkdownDocsFooter(props) {
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState(false);
   const inputRef = React.useRef();
-  const bottomRef = React.useRef();
   const pageList = flattenPages(pages);
   const currentPageNum = findIndex(pageList, (page) => page.pathname === activePage?.pathname);
   const currentPage = pageList[currentPageNum];
@@ -181,9 +176,6 @@ function MarkdownDocsFooter(props) {
   const handleClickThumb = (vote) => async () => {
     if (vote !== rating) {
       setRating(vote);
-      // Focus a hidden element at the bottom of the page
-      // so that the texfield is visible when it opens.
-      bottomRef.current.focus();
       setCommentOpen(true);
     }
   };
@@ -321,7 +313,6 @@ function MarkdownDocsFooter(props) {
         onClose={handleCloseSnackbar}
         message={snackbarMessage}
       />
-      <input tabIndex="-1" ref={bottomRef} className={classes.hidden} />
     </React.Fragment>
   );
 }
