@@ -80,6 +80,12 @@ export const styles = (theme) => ({
     maxWidth: 300,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
+    '@media (pointer: coarse)': {
+      padding: '8px 16px',
+      fontSize: theme.typography.pxToRem(14),
+      lineHeight: `${round(16 / 14)}em`,
+      fontWeight: theme.typography.fontWeightRegular,
+    },
   },
   /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
   tooltipArrow: {
@@ -103,13 +109,6 @@ export const styles = (theme) => ({
       backgroundColor: 'currentColor',
       transform: 'rotate(45deg)',
     },
-  },
-  /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
-  touch: {
-    padding: '8px 16px',
-    fontSize: theme.typography.pxToRem(14),
-    lineHeight: `${round(16 / 14)}em`,
-    fontWeight: theme.typography.fontWeightRegular,
   },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
   tooltipPlacementLeft: {
@@ -353,20 +352,17 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const detectTouchStart = (event) => {
+  const handleMouseOver = handleEnter;
+  const handleMouseLeave = handleLeave;
+
+  const handleTouchStart = (event) => {
     ignoreNonTouchEvents.current = true;
 
     const childrenProps = children.props;
     if (childrenProps.onTouchStart) {
       childrenProps.onTouchStart(event);
     }
-  };
 
-  const handleMouseOver = handleEnter;
-  const handleMouseLeave = handleLeave;
-
-  const handleTouchStart = (event) => {
-    detectTouchStart(event);
     clearTimeout(leaveTimer.current);
     clearTimeout(closeTimer.current);
     clearTimeout(touchTimer.current);
@@ -451,7 +447,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     ...other,
     ...children.props,
     className: clsx(other.className, children.props.className),
-    onTouchStart: detectTouchStart,
     ref: handleRef,
     ...(followCursor ? { onMouseMove: handleMouseMove } : {}),
   };
@@ -573,7 +568,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
               className={clsx(
                 classes.tooltip,
                 {
-                  [classes.touch]: ignoreNonTouchEvents.current,
                   [classes.tooltipArrow]: arrow,
                 },
                 classes[`tooltipPlacement${capitalize(placementInner.split('-')[0])}`],

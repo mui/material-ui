@@ -67,7 +67,6 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">tooltip</span> | <span class="prop-name">.MuiTooltip-tooltip</span> | Styles applied to the tooltip (label wrapper) element.
 | <span class="prop-name">tooltipArrow</span> | <span class="prop-name">.MuiTooltip-tooltipArrow</span> | Styles applied to the tooltip (label wrapper) element if `arrow={true}`.
 | <span class="prop-name">arrow</span> | <span class="prop-name">.MuiTooltip-arrow</span> | Styles applied to the arrow element.
-| <span class="prop-name">touch</span> | <span class="prop-name">.MuiTooltip-touch</span> | Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.
 | <span class="prop-name">tooltipPlacementLeft</span> | <span class="prop-name">.MuiTooltip-tooltipPlacementLeft</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "left".
 | <span class="prop-name">tooltipPlacementRight</span> | <span class="prop-name">.MuiTooltip-tooltipPlacementRight</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "right".
 | <span class="prop-name">tooltipPlacementTop</span> | <span class="prop-name">.MuiTooltip-tooltipPlacementTop</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "top".

@@ -29,8 +29,6 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
     tooltipArrow?: string;
     /** Styles applied to the arrow element. */
     arrow?: string;
-    /** Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
-    touch?: string;
     /** Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
     tooltipPlacementLeft?: string;
     /** Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
