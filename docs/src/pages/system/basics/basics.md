@@ -152,7 +152,7 @@ The system relies on CSS-in-JS. It works with both emotion and styled-components
 Pros:
 
 - 📚 It allows a lot of flexibility in the API. The `sx` prop supports a superset of CSS. There is **no need to learn CSS twice**. You are set once you have learn the standardized CSS syntax, it's safe, it hasn't changed for a decade. Then, you can **optionally** learn the shorthands if you value the save of time they bring.
-- 📦 No need for purge. Only the used CSS on the page is included. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties.
+- 📦 Auto-purge. Only the used CSS on the page is sent to the client. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties.
   You pay the cost of [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) and [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). It cost around ~15 kB gzipped.
   If you are already using the core components, it comes with no extra overhead.
 
@@ -202,7 +202,7 @@ You might want to skip this part and bet on CSS, it has been standardized for de
 
 ### Superset of CSS
 
-As the prop supports a superset of CSS, you can use child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples:
+As part of the prop, you can use any regular CSS too: child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples:
 
 - Using pseudo selectors:
 
