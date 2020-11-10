@@ -195,6 +195,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
+  const prevUserSelect = React.useRef(null);
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
@@ -281,6 +282,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       clearTimeout(closeTimer.current);
       closeTimer.current = setTimeout(() => {
         ignoreNonTouchEvents.current = false;
+        document.body.style.WebkitUserSelect = prevUserSelect.current;
       }, theme.transitions.duration.shortest);
     },
   );
@@ -355,6 +357,9 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const detectTouchStart = (event) => {
     ignoreNonTouchEvents.current = true;
+    prevUserSelect.current = document.body.style.WebkitUserSelect;
+    // Prevent iOS text selection on long-tap.
+    document.body.style.WebkitUserSelect = 'none';
 
     const childrenProps = children.props;
     if (childrenProps.onTouchStart) {
@@ -407,6 +412,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
+      document.body.style.WebkitUserSelect = prevUserSelect.current;
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleClose, open]);
