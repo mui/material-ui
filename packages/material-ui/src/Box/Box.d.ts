@@ -49,8 +49,6 @@ export interface BoxProps extends ElementProps, SystemProps {
   component?: React.ElementType;
   clone?: boolean;
   ref?: React.Ref<unknown>;
-  // workaround for https://github.com/mui-org/material-ui/pull/15611
-  css?: SystemProps;
   sx?: SxProps;
 }
 

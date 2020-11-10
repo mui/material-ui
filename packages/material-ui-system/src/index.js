@@ -3,7 +3,6 @@ export * from './borders';
 export { default as breakpoints } from './breakpoints';
 export { handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
 export { default as compose } from './compose';
-export { default as css } from './css';
 export { default as display } from './display';
 export { default as flexbox } from './flexbox';
 export * from './flexbox';

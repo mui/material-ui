@@ -64,11 +64,6 @@ export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFu
 >;
 export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
 
-// css.js
-export function css<Props>(
-  styleFunction: StyleFunction<Props>
-): StyleFunction<Props & { css: Omit<Props, 'theme'> }>;
-
 export const display: SimpleStyleFunction<
   'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'
 >;
