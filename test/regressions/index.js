@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useFakeTimers } from 'sinon';
 import vrtest from 'vrtest-mui/client';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
@@ -259,12 +260,19 @@ tests.forEach((test) => {
   }
 
   suite.createTest(test.name, () => {
-    ReactDOM.render(
-      <TestViewer>
-        <TestCase />
-      </TestViewer>,
-      rootEl,
-    );
+    // Use a "real timestamp" so that we see a useful date instead of "00:00"
+    const clock = useFakeTimers(new Date('Mon Aug 18 14:11:54 2014 -0500'));
+
+    try {
+      ReactDOM.render(
+        <TestViewer>
+          <TestCase />
+        </TestViewer>,
+        rootEl,
+      );
+    } finally {
+      clock.restore();
+    }
   });
 });
 
