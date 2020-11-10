@@ -293,7 +293,7 @@ workflows:
   timezone-tests:
     triggers:
       - schedule:
-          cron: '0 0 0 * *'
+          cron: '23 * * * *'
           filters:
             branches:
               only:
