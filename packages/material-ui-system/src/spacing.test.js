@@ -72,7 +72,7 @@ describe('system spacing', () => {
         );
         expect(output).to.deep.equal({ padding: undefined });
       });
-      
+
       it('should warn if non integer value is used with theme.spacing defined as array', () => {
         let output;
         expect(() => {
@@ -88,7 +88,7 @@ describe('system spacing', () => {
         expect(output).to.deep.equal({ padding: undefined });
       });
     });
-    
+
     it('should accept non integer value', () => {
       const output = spacing({
         theme: {
@@ -274,7 +274,7 @@ describe('system spacing', () => {
         expect(output).to.deep.equal({ margin: undefined });
       });
     });
-    
+
     it('should accept non integer value', () => {
       const output = margin({
         theme: {
@@ -460,7 +460,7 @@ describe('system spacing', () => {
         expect(output).to.deep.equal({ padding: undefined });
       });
     });
-    
+
     it('should accept non integer value', () => {
       const output = padding({
         theme: {
