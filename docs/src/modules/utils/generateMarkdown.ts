@@ -480,7 +480,7 @@ ${
   styledComponent
     ? `
 - With a [global class name](/guides/interoperability/#global-css).
-- With a rule name as part of the theme's component's [\`styleOverrides\` property](/customization/components/#global-theme-override).
+- With a rule name as part of the component's [\`styleOverrides\` property](/customization/components/#global-theme-override) in a custom theme.
 `
     : `
 - With a rule name of the [\`classes\` object prop](/customization/components/#overriding-styles-with-classes).
