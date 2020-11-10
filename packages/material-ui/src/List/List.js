@@ -8,6 +8,7 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     listStyle: 'none',
+    overflow: 'hidden',
     margin: 0,
     padding: 0,
     position: 'relative',
