@@ -78,13 +78,14 @@ export const styles = (theme) => ({
     padding: '4px 8px',
     fontSize: theme.typography.pxToRem(11),
     maxWidth: 300,
+    margin: '2px',
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
   },
   /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
   tooltipArrow: {
     position: 'relative',
-    margin: '0',
+    margin: 0,
   },
   /* Styles applied to the arrow element. */
   arrow: {
@@ -195,7 +196,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
-  const prevUserSelect = React.useRef(null);
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
@@ -282,7 +282,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       clearTimeout(closeTimer.current);
       closeTimer.current = setTimeout(() => {
         ignoreNonTouchEvents.current = false;
-        document.body.style.WebkitUserSelect = prevUserSelect.current;
       }, theme.transitions.duration.shortest);
     },
   );
@@ -357,9 +356,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const detectTouchStart = (event) => {
     ignoreNonTouchEvents.current = true;
-    prevUserSelect.current = document.body.style.WebkitUserSelect;
-    // Prevent iOS text selection on long-tap.
-    document.body.style.WebkitUserSelect = 'none';
 
     const childrenProps = children.props;
     if (childrenProps.onTouchStart) {
@@ -376,7 +372,13 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     clearTimeout(closeTimer.current);
     clearTimeout(touchTimer.current);
     event.persist();
+
+    const prevUserSelect = document.body.style.WebkitUserSelect;
+    // Prevent iOS text selection on long-tap.
+    document.body.style.WebkitUserSelect = 'none';
+
     touchTimer.current = setTimeout(() => {
+      document.body.style.WebkitUserSelect = prevUserSelect;
       handleEnter(event);
     }, enterTouchDelay);
   };
@@ -412,7 +414,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.WebkitUserSelect = prevUserSelect.current;
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleClose, open]);
