@@ -281,6 +281,10 @@ async function buildDocs(options: {
     prettierConfigPath,
     theme,
   } = options;
+  if (componentObject.filename.indexOf('internal') !== -1) {
+    return;
+  }
+
   const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {

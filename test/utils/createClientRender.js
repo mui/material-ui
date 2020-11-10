@@ -167,7 +167,7 @@ Object.assign(fireEvent, rtlFireEvent, {
     // `element` shouldn't be `document` but we catch this later anyway
     const document = element.ownerDocument || element;
     const target = document.activeElement || document.body || document.documentElement;
-    if (target !== element) {
+    if (options.force !== true && target !== element) {
       // see https://www.w3.org/TR/uievents/#keydown
       const error = new Error(
         `\`keydown\` events can only be targeted at the active element which is ${prettyDOM(
@@ -210,6 +210,46 @@ Object.assign(fireEvent, rtlFireEvent, {
     originalFireEventKeyUp(element, options);
   },
 });
+
+/**
+ *
+ * @param {Element} target
+ * @param {'touchmove' | 'touchend'} type
+ * @param {object} options
+ * @param {Array<Pick<TouchInit, 'clientX' | 'clientY'>} options.changedTouches
+ * @returns void
+ */
+export function fireTouchChangedEvent(target, type, options) {
+  const { changedTouches } = options;
+  const originalGetBoundingClientRect = target.getBoundingClientRect;
+  target.getBoundingClientRect = () => ({
+    x: 0,
+    y: 0,
+    bottom: 0,
+    height: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    width: 0,
+  });
+
+  const event = new window.TouchEvent(type, {
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+    changedTouches: changedTouches.map(
+      (opts) =>
+        new window.Touch({
+          target,
+          identifier: 0,
+          ...opts,
+        }),
+    ),
+  });
+
+  fireEvent(target, event);
+  target.getBoundingClientRect = originalGetBoundingClientRect;
+}
 
 export * from '@testing-library/react/pure';
 export { act, cleanup, fireEvent };

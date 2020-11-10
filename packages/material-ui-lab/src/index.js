@@ -11,14 +11,74 @@ export * from './Autocomplete';
 export { default as AvatarGroup } from './AvatarGroup';
 export * from './AvatarGroup';
 
+export { default as DayPicker } from './DayPicker';
+export * from './DayPicker';
+
+export { default as DatePicker } from './DatePicker';
+export * from './DatePicker';
+
+export { default as DesktopDatePicker } from './DesktopDatePicker';
+export * from './DesktopDatePicker';
+
+export { default as MobileDatePicker } from './MobileDatePicker';
+export * from './MobileDatePicker';
+
+export { default as StaticDatePicker } from './StaticDatePicker';
+export * from './StaticDatePicker';
+
+export { default as TimePicker } from './TimePicker';
+export * from './TimePicker';
+
+export { default as DesktopTimePicker } from './DesktopTimePicker';
+export * from './DesktopTimePicker';
+
+export { default as MobileTimePicker } from './MobileTimePicker';
+export * from './MobileTimePicker';
+
+export { default as StaticTimePicker } from './StaticTimePicker';
+export * from './StaticTimePicker';
+
+export { default as DateTimePicker } from './DateTimePicker';
+export * from './DateTimePicker';
+
+export { default as DesktopDateTimePicker } from './DesktopDateTimePicker';
+export * from './DesktopDateTimePicker';
+
+export { default as MobileDateTimePicker } from './MobileDateTimePicker';
+export * from './MobileDateTimePicker';
+
+export { default as StaticDateTimePicker } from './StaticDateTimePicker';
+export * from './StaticDateTimePicker';
+
+export { default as DateRangePicker } from './DateRangePicker';
+export * from './DateRangePicker';
+
+export { default as DesktopDateRangePicker } from './DesktopDateRangePicker';
+export * from './DesktopDateRangePicker';
+
+export { default as MobileDateRangePicker } from './MobileDateRangePicker';
+export * from './MobileDateRangePicker';
+
+export { default as StaticDateRangePicker } from './StaticDateRangePicker';
+export * from './StaticDateRangePicker';
+
+export { default as ClockPicker } from './ClockPicker';
+export * from './ClockPicker';
+
 export { default as LoadingButton } from './LoadingButton';
 export * from './LoadingButton';
+
+export { default as LocalizationProvider } from './LocalizationProvider';
+export * from './LocalizationProvider';
 
 export { default as Pagination } from './Pagination';
 export * from './Pagination';
 
 export { default as PaginationItem } from './PaginationItem';
 export * from './PaginationItem';
+
+export { default as PickersDay } from './PickersDay';
+export * from './PickersDay';
 
 export { default as Rating } from './Rating';
 export * from './Rating';
@@ -68,6 +128,8 @@ export * from './TimelineOppositeContent';
 export { default as TimelineSeparator } from './TimelineSeparator';
 export * from './TimelineSeparator';
 
+export * from './TimePicker';
+
 export { default as ToggleButton } from './ToggleButton';
 export * from './ToggleButton';
 
@@ -79,6 +141,9 @@ export * from './TreeItem';
 
 export { default as TreeView } from './TreeView';
 export * from './TreeView';
+
+export { default as YearPicker } from './YearPicker';
+export * from './YearPicker';
 
 // createFilterOptions is exported from Autocomplete
 export { default as useAutocomplete } from './useAutocomplete';
