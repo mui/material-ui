@@ -43,6 +43,12 @@ export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoin
   styleFunction: StyleFunction<Props>
 ): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
 
+// restructures the breakpoints in the in the correct order and merges all styles args
+export function mergeBreakpointsInOrder(
+  breakpointsInput: { keys: string[]; up: (key: string) => string },
+  ...styles: object[]
+): object;
+
 // compose.js
 /**
  * given a list of StyleFunction return the intersection of the props each individual
@@ -218,6 +224,11 @@ export const typography: SimpleStyleFunction<
 export type TypographyProps = PropsFor<typeof typography>;
 
 export const visuallyHidden: React.CSSProperties;
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function unstable_getThemeValue(prop: string, value: any, theme: object): any;
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function unstable_styleFunctionSx(props: object): object;
 
 // utils
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
