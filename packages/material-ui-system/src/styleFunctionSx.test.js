@@ -9,7 +9,7 @@ describe('styleFunctionSx', () => {
     lg: 1280,
     xl: 1920,
   };
-  
+
   const round = (value) => Math.round(value * 1e5) / 1e5;
 
   const theme = {
@@ -47,7 +47,7 @@ describe('styleFunctionSx', () => {
         letterSpacing: `${round(0.15 / 14)}em`,
         fontWeight: 400,
         lineHeight: 1.43,
-      }
+      },
     },
   };
 
@@ -110,7 +110,7 @@ describe('styleFunctionSx', () => {
         },
       });
     });
-});
+  });
 
   it('resolves non system CSS properties if specified', () => {
     const result = styleFunctionSx({
