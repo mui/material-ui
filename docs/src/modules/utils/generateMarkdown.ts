@@ -440,7 +440,7 @@ Any other props supplied will be provided to the root element (${
   return text;
 }
 
-function generateClasses(reactAPI: ReactApi) {
+function generateClasses(reactAPI: ReactApi, styledComponent: boolean) {
   if (!reactAPI.styles.classes.length) {
     return '';
   }
@@ -476,15 +476,22 @@ function generateClasses(reactAPI: ReactApi) {
 ${text}
 
 You can override the style of the component thanks to one of these customization points:
-
+${
+  styledComponent
+    ? `
+- With a [global class name](/guides/interoperability/#global-css).
+- With a rule name as part of the component's [\`styleOverrides\` property](/customization/components/#global-theme-override) in a custom theme.
+`
+    : `
 - With a rule name of the [\`classes\` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [\`overrides\` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
-    reactAPI.filename,
-  )}) for more detail.
-
+        reactAPI.filename,
+      )}) for more detail.
+`
+}
 `;
 }
 
@@ -552,7 +559,7 @@ import { ${reactAPI.name} } from '${source}';
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).`;
 }
 
-export default function generateMarkdown(reactAPI: ReactApi) {
+export default function generateMarkdown(reactAPI: ReactApi, styledComponent = false) {
   return [
     generateHeader(reactAPI),
     '',
@@ -570,6 +577,8 @@ export default function generateMarkdown(reactAPI: ReactApi) {
     generateName(reactAPI),
     generateProps(reactAPI),
     '',
-    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,
+    `${generateClasses(reactAPI, styledComponent)}${generateInheritance(reactAPI)}${generateDemos(
+      reactAPI,
+    )}`,
   ].join('\n');
 }
