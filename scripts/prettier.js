@@ -12,6 +12,8 @@ const yargs = require('yargs');
 const { LANGUAGES } = require('docs/src/modules/constants');
 const listChangedFiles = require('./listChangedFiles');
 
+const workspaceRoot = path.resolve(__dirname, '../');
+
 function isTranslatedDocument(filename) {
   // markdown files from crowdin end with a 2 letter locale
   return new RegExp(String.raw`-(${LANGUAGES.join('|')})\.md$`).test(filename);
@@ -25,12 +27,28 @@ function runPrettier(options) {
 
   const warnedFiles = [];
   const ignoredFiles = fs
-    .readFileSync(path.join(process.cwd(), '.eslintignore'), 'utf-8')
+    .readFileSync(path.join(workspaceRoot, '.eslintignore'), 'utf-8')
     .split(/\r*\n/)
-    .filter((notEmpty) => notEmpty);
+    .filter((line) => {
+      return (
+        // ignore comments
+        !line.startsWith('#') &&
+        // skip empty lines
+        line.length > 0
+      );
+    })
+    .map((line) => {
+      if (line.startsWith('/')) {
+        // "/" marks the cwd of the ignore file.
+        // Since we declare the dirname of the gitignore the cwd we can prepend "." as a shortcut.
+        return `.${line}`;
+      }
+      return line;
+    });
 
   const files = glob
     .sync('**/*.{js,md,tsx,ts,json}', {
+      cwd: workspaceRoot,
       gitignore: true,
       ignore: [
         // these are auto-generated
