@@ -9,7 +9,7 @@ defaults: &defaults
     test-gate:
       description: A particular type of tests that should be run
       type: string
-      default: null
+      default: undefined
   environment:
     # expose it globally otherwise we have to thread it from each job to the install command
     REACT_DIST_TAG: << parameters.react-dist-tag >>
