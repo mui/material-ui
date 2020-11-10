@@ -45,10 +45,10 @@ describe('styleFunction', () => {
   });
 
   describe('typography', () => {
-    it('resolves font prop', () => {
+    it('resolves typography prop', () => {
       const result = styleFunction({
         theme,
-        font: ['body2', 'body1'],
+        typography: ['body2', 'body1'],
       });
 
       expect(result).to.deep.equal({
@@ -151,7 +151,7 @@ describe('styleFunction', () => {
       it('resolves system typography', () => {
         const result = styleFunction({
           theme,
-          sx: { font: ['body2', 'body1'] },
+          sx: { typography: ['body2', 'body1'] },
         });
 
         expect(result).to.deep.equal({
