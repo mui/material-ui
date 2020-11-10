@@ -12,18 +12,18 @@ import { adapterToUse, getByMuiTest, createPickerRender } from '../internal/pick
 describe('<DatePicker /> localization', () => {
   const render = createPickerRender({ strict: false, locale: fr });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('datePicker localized format for year view', () => {
+  it.only('datePicker localized format for year view', () => {
+    const value = adapterToUse.date('2018-01-01T00:00:00.000');
     render(
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}
-        value={adapterToUse.date('2018-01-01T00:00:00.000')}
+        value={value}
         onChange={() => {}}
         views={['year']}
       />,
     );
 
+    expect(screen.getByRole('textbox')).to.have.value(value.getFullYear().toString());
     expect(screen.getByRole('textbox')).to.have.value('2018');
 
     fireEvent.click(screen.getByLabelText(/Choose date/));
