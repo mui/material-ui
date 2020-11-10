@@ -261,7 +261,8 @@ tests.forEach((test) => {
 
   suite.createTest(test.name, () => {
     // Use a "real timestamp" so that we see a useful date instead of "00:00"
-    const clock = useFakeTimers(new Date('Mon Aug 18 14:11:54 2014 -0500'));
+    // A hardcoded timezone leads to inconsistent dates if they're constructed without a hardcoded timezone.
+    const clock = useFakeTimers(new Date(`Mon Aug 18 14:11:54 2014 ${Date.getTimezoneOffset()}`));
 
     try {
       ReactDOM.render(
