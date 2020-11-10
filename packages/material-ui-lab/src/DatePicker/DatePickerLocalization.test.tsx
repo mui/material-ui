@@ -22,6 +22,8 @@ describe('<DatePicker /> localization', () => {
         views={['year']}
       />,
     );
+    console.log(value);
+    console.log(value.getFullYear());
 
     expect(screen.getByRole('textbox')).to.have.value(value.getFullYear().toString());
     expect(screen.getByRole('textbox')).to.have.value('2018');
@@ -30,18 +32,19 @@ describe('<DatePicker /> localization', () => {
     expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('2018');
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('datePicker localized format for year+month view', () => {
+  it.only('datePicker localized format for year+month view', () => {
+    const value = adapterToUse.date('2018-01-01T00:00:00.000');
     render(
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}
-        value={adapterToUse.date('2018-01-01T00:00:00.000')}
+        value={value}
         onChange={() => {}}
         views={['year', 'month']}
       />,
     );
 
+    console.log(value);
+    console.log(value.getFullYear());
     expect(screen.getByRole('textbox')).to.have.value('janvier 2018');
 
     fireEvent.click(screen.getByLabelText(/Choose date/));
