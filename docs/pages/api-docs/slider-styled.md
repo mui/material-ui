@@ -86,7 +86,7 @@ Any other props supplied will be provided to the root element (native element).
 You can override the style of the component thanks to one of these customization points:
 
 - With a [global class name](/guides/interoperability/#global-css).
-- With a rule name as part of the theme's component's [`styleOverrides` property](/customization/components/#global-theme-override).
+- With a rule name as part of the component's [`styleOverrides` property](/customization/components/#global-theme-override) in a custom theme.
 
 ## Demos
 
