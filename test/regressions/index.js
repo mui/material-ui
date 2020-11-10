@@ -46,6 +46,17 @@ const blacklist = [
   'docs-components-chips/ChipsPlayground.png', // Redux isolation
   'docs-components-click-away-listener', // Needs interaction
   'docs-components-container', // Can't see the impact
+  'docs-components-date-picker/CustomInput.png', // Redundant
+  'docs-components-date-picker/LocalizedDatePicker.png', // Redundant
+  'docs-components-date-picker/ResponsiveDatePickers.png', // Redundant
+  'docs-components-date-picker/ServerRequestDatePicker.png', // Redundant
+  'docs-components-date-picker/ViewsDatePicker.png', // Redundant
+  'docs-components-date-range-picker/CalendarsDateRangePicker.png', // Redundant
+  'docs-components-date-range-picker/CustomDateRangeInputs.png', // Redundant
+  'docs-components-date-range-picker/MinMaxDateRangePicker.png', // Redundant
+  'docs-components-date-range-picker/ResponsiveDateRangePicker.png', // Redundant
+  'docs-components-date-time-picker/BasicDateTimePicker.png', // Redundant
+  'docs-components-date-time-picker/ResponsiveDateTimePickers.png', // Redundant
   'docs-components-dialogs', // Needs interaction
   'docs-components-drawers/SwipeableTemporaryDrawer.png', // Needs interaction
   'docs-components-drawers/TemporaryDrawer.png', // Needs interaction
@@ -96,6 +107,8 @@ const blacklist = [
   'docs-components-steppers/TextMobileStepper.png', // Flaky image loading
   'docs-components-tabs/AccessibleTabs.png', // Need interaction
   'docs-components-textarea-autosize', // Superseded by a dedicated regression test
+  'docs-components-time-picker/LocalizedTimePicker.png', // Redundant
+  'docs-components-time-picker/ResponsiveTimePickers.png', // Redundant
   'docs-components-tooltips', // Needs interaction
   'docs-components-transitions', // Needs interaction
   'docs-components-trap-focus', // Need interaction
@@ -113,7 +126,6 @@ const blacklist = [
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
-  'docs-getting-started-templates', // No public components
   'docs-getting-started-templates-album/Album.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Flaky random images
   'docs-getting-started-templates-checkout/AddressForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
@@ -125,8 +137,8 @@ const blacklist = [
   'docs-getting-started-templates-dashboard/Orders.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
   'docs-getting-started-templates-dashboard/Title.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
   'docs-getting-started-templates-sign-in-side/SignInSide.png', // Flaky
+  'docs-getting-started-templates', // No public components
   'docs-getting-started-usage/Usage.png', // No public components
-  /^docs-guides-.*/, // No public components
   'docs-landing', // Mostly images, redundant
   'docs-production-error', // No components, page for DX
   'docs-styles-advanced', // Redudant
@@ -141,6 +153,7 @@ const blacklist = [
   'docs-system-spacing', // Unit tests are enough
   'docs-system-typography', // Unit tests are enough
   'docs-versions', // No public components
+  /^docs-guides-.*/, // No public components
 ];
 
 const unusedBlacklistPatterns = new Set(blacklist);

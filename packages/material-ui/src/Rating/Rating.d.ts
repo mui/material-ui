@@ -68,10 +68,8 @@ export interface RatingProps
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
-   *
    * @param {number} value The rating label's value to format.
    * @returns {string}
-   *
    * @default function defaultLabelText(value) {
    *   return `${value} Star${value !== 1 ? 's' : ''}`;
    * }
@@ -103,14 +101,12 @@ export interface RatingProps
   name?: string;
   /**
    * Callback fired when the value changes.
-   *
    * @param {object} event The event source of the callback.
    * @param {number} value The new value.
    */
   onChange?: (event: React.SyntheticEvent, value: number | null) => void;
   /**
    * Callback function that is fired when the hover state changes.
-   *
    * @param {object} event The event source of the callback.
    * @param {number} value The new value.
    */
