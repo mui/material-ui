@@ -102,7 +102,7 @@ export default function transformer(file, api) {
         }
       });
       if (sxValue.length > 0) {
-      path.node.openingElement.attributes.push(
+        path.node.openingElement.attributes.push(
           j.jsxAttribute(
             j.jsxIdentifier('sx'),
             j.jsxExpressionContainer(j.objectExpression(sxValue)),

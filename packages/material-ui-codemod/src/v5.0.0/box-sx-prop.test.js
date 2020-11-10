@@ -13,7 +13,10 @@ describe('@material-ui/codemod', () => {
     describe('box-sx-prop', () => {
       it('transforms props as needed', () => {
         const actual = transform(
-          { source: read('./box-sx-prop.test/actual.js'), path: require.resolve('./box-sx-prop.test/actual.js') },
+          {
+            source: read('./box-sx-prop.test/actual.js'),
+            path: require.resolve('./box-sx-prop.test/actual.js'),
+          },
           { jscodeshift: jscodeshift },
           {},
         );
@@ -24,7 +27,10 @@ describe('@material-ui/codemod', () => {
 
       it('should be idempotent', () => {
         const actual = transform(
-          { source: read('./box-sx-prop.test/expected.js'), path: require.resolve('./box-sx-prop.test/expected.js') },
+          {
+            source: read('./box-sx-prop.test/expected.js'),
+            path: require.resolve('./box-sx-prop.test/expected.js'),
+          },
           { jscodeshift: jscodeshift },
           {},
         );
