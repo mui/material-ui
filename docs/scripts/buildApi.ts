@@ -197,29 +197,30 @@ const camelCaseToKebabCase = (inputString: string) => {
   return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
 };
 
-async function updateStylesDefinition(context: { api: ReactApi; component: { filename: string } }) {
+async function updateStylesDefinition(context: { styles: ReactApi['styles']; component: { filename: string } }) {
   const workspaceRoot = path.resolve(__dirname, '../../');
-  const { api, component } = context;
+  const { styles, component } = context;
 
   const componentName = path.basename(component.filename).replace(/\.js$/, '');
-  const cssFilename = `${workspaceRoot}/docs/data/css/${camelCaseToKebabCase(
+  const dataFilename = `${workspaceRoot}/docs/data/${camelCaseToKebabCase(
     componentName,
-  )}-css.json`;
+  )}.json`;
 
   try {
-    const jsonCSSData = readFileSync(cssFilename, { encoding: 'utf8' });
-    if (jsonCSSData) {
-      const cssData = JSON.parse(jsonCSSData.toString());
+    const jsonDataString = readFileSync(dataFilename, { encoding: 'utf8' });
+    const jsonData = JSON.parse(jsonDataString);
+    if (jsonData) {
+      const cssData = jsonData.css;
       const classes = Object.keys(cssData);
-      api.styles.classes = classes;
-
-      api.styles.descriptions = classes.reduce((acc, key) => {
+      styles.classes = classes;
+      styles.name = jsonData.name;
+      styles.descriptions = classes.reduce((acc, key) => {
         acc[key] = cssData[key].description;
         return acc;
       }, {} as Record<string, string>);
     }
   } catch (err) {
-    // Do nothing if the file doesn't exist
+    // Do nothing for now if the file doesn't exist
     // This is still not supported for all components
   }
 }
@@ -334,6 +335,15 @@ async function buildDocs(options: {
 
   styles.name = component?.default?.options?.name;
 
+  // styled components does not have the options static
+  const styledComponent = !component?.default?.options;
+  if (styledComponent) {
+    await updateStylesDefinition({
+      styles,
+      component: componentObject,
+    });
+  }
+
   if (component.styles && component.default.options) {
     // Collect the customization points of the `classes` property.
     styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
@@ -408,14 +418,6 @@ async function buildDocs(options: {
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
   reactAPI.inheritance = getInheritance(testInfo, src);
-
-  const styledComponent = reactAPI.styles.classes.length === 0;
-  if (styledComponent) {
-    await updateStylesDefinition({
-      api: reactAPI,
-      component: componentObject,
-    });
-  }
 
   if (reactAPI.styles.classes) {
     reactAPI.styles.globalClasses = reactAPI.styles.classes.reduce((acc, key) => {
