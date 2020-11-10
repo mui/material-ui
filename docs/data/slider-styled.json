@@ -1,7 +1,10 @@
 {
   "name": "MuiSlider",
   "css": {
-    "root": { "class": ".MuiSlider-root", "description": "Class name applied to the root element." },
+    "root": {
+      "class": ".MuiSlider-root",
+      "description": "Class name applied to the root element."
+    },
     "colorPrimary": {
       "class": ".MuiSlider-colorPrimary",
       "description": "Class name applied to the root element if `color=\"primary\"`."
@@ -22,7 +25,10 @@
       "class": ".Mui-disabled",
       "description": "Pseudo-class applied to the root and thumb element if `disabled={true}`."
     },
-    "rail": { "class": ".MuiSlider-rail", "description": "Class name applied to the rail element." },
+    "rail": {
+      "class": ".MuiSlider-rail",
+      "description": "Class name applied to the rail element."
+    },
     "track": {
       "class": ".MuiSlider-track",
       "description": "Class name applied to the track element."
@@ -59,7 +65,10 @@
       "class": ".MuiSlider-valueLabel",
       "description": "Class name applied to the thumb label element."
     },
-    "mark": { "class": ".MuiSlider-mark", "description": "Class name applied to the mark element." },
+    "mark": {
+      "class": ".MuiSlider-mark",
+      "description": "Class name applied to the mark element."
+    },
     "markActive": {
       "class": ".MuiSlider-markActive",
       "description": "Class name applied to the mark element if active (depending on the value)."

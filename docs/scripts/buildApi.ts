@@ -197,14 +197,15 @@ const camelCaseToKebabCase = (inputString: string) => {
   return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
 };
 
-async function updateStylesDefinition(context: { styles: ReactApi['styles']; component: { filename: string } }) {
+async function updateStylesDefinition(context: {
+  styles: ReactApi['styles'];
+  component: { filename: string };
+}) {
   const workspaceRoot = path.resolve(__dirname, '../../');
   const { styles, component } = context;
 
   const componentName = path.basename(component.filename).replace(/\.js$/, '');
-  const dataFilename = `${workspaceRoot}/docs/data/${camelCaseToKebabCase(
-    componentName,
-  )}.json`;
+  const dataFilename = `${workspaceRoot}/docs/data/${camelCaseToKebabCase(componentName)}.json`;
 
   try {
     const jsonDataString = readFileSync(dataFilename, { encoding: 'utf8' });
@@ -333,8 +334,6 @@ async function buildDocs(options: {
     globalClasses: {},
   };
 
-  styles.name = component?.default?.options?.name;
-
   // styled components does not have the options static
   const styledComponent = !component?.default?.options;
   if (styledComponent) {
@@ -349,6 +348,7 @@ async function buildDocs(options: {
     styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
       (className) => !className.match(/^(@media|@keyframes|@global)/),
     );
+    styles.name = component.default.options.name;
     styles.globalClasses = styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
         // @ts-expect-error
