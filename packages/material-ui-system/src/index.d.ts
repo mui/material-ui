@@ -205,7 +205,7 @@ export function style<PropKey extends string, Theme extends object>(
 ): StyleFunction<{ [K in PropKey]?: unknown } & { theme: Theme }>;
 
 // typography.js
-export const typographyFn: SimpleStyleFunction<'typography'>;
+export const typographyVariant: SimpleStyleFunction<'typography'>;
 export const fontFamily: SimpleStyleFunction<'fontFamily'>;
 export const fontSize: SimpleStyleFunction<'fontSize'>;
 export const fontStyle: SimpleStyleFunction<'fontStyle'>;
