@@ -71,6 +71,31 @@ describe('spacing', () => {
       );
       expect(output).to.deep.equal({ padding: undefined });
     });
+
+    it('should warn if non integer value is used with theme.spacing defined as array', () => {
+      let output;
+      expect(() => {
+        output = spacing({
+          theme: {
+            spacing: [1, 2, 3, 4, 5, 6],
+          },
+          p: 0.5,
+        });
+      }).toErrorDev(
+        'Material-UI: The `theme.spacing` array type cannot be combined with non integer values.',
+      );
+      expect(output).to.deep.equal({ padding: undefined });
+    });
+
+    it('should accept non integer value', () => {
+      const output = spacing({
+        theme: {
+          spacing: 8,
+        },
+        p: 0.5,
+      });
+      expect(output).to.deep.equal({ padding: 4 });
+    });
   });
 
   it('should support negative values', () => {

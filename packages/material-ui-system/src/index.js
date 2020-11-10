@@ -1,7 +1,7 @@
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';
-export { handleBreakpoints } from './breakpoints';
+export { handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
 export { default as compose } from './compose';
 export { default as css } from './css';
 export { default as display } from './display';
@@ -22,3 +22,5 @@ export { default as style } from './style';
 export { default as typography } from './typography';
 export * from './typography';
 export { default as visuallyHidden } from './visuallyHidden';
+export { default as unstable_styleFunctionSx } from './styleFunctionSx';
+export { default as unstable_getThemeValue } from './getThemeValue';

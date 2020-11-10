@@ -6,6 +6,14 @@ import { generate, GenerateOptions } from './generator';
 
 export type InjectOptions = {
   /**
+   * If source itself written in typescript prop-types disable prop-types validation
+   * by injecting propTypes as
+   * ```jsx
+   * .propTypes = { ... } as any
+   * ```
+   */
+  disableTypescriptPropTypesValidation?: boolean;
+  /**
    * By default all unused props are omitted from the result.
    * Set this to true to include them instead.
    */
@@ -110,6 +118,14 @@ function getUsedProps(
 
   getUsedPropsInternal(rootNode);
   return usedProps;
+}
+
+function flattenTsAsExpression(node: object | null | undefined) {
+  if (babelTypes.isTSAsExpression(node)) {
+    return node.expression as babel.Node;
+  }
+
+  return node;
 }
 
 function plugin(
@@ -284,6 +300,31 @@ function plugin(
           props,
         });
       },
+      VariableDeclaration(path) {
+        const { node } = path;
+
+        if (!babelTypes.isIdentifier(node.declarations[0].id)) return;
+        const nodeName = node.declarations[0].id.name;
+
+        // Handle any variable with /* @GeneratePropTypes */
+        if (
+          node.leadingComments &&
+          node.leadingComments.some((comment) => comment.value.includes('@GeneratePropTypes'))
+        ) {
+          if (!propTypes.body.some((prop) => prop.name === nodeName)) {
+            console.warn(
+              `It looks like the variable at ${node.loc} with /* @GeneratePropTypes */ is not a component, or props can not be inferred from typescript definitions.`,
+            );
+          }
+
+          injectPropTypes({
+            nodeName,
+            usedProps: [],
+            path: path as babel.NodePath<babelTypes.Node>,
+            props: propTypes.body.find((prop) => prop.name === nodeName)!,
+          });
+        }
+      },
       VariableDeclarator(path) {
         const { node } = path;
 
@@ -315,14 +356,16 @@ function plugin(
           });
         }
 
+        const nodeInit = flattenTsAsExpression(node.init);
+
         if (
-          babelTypes.isArrowFunctionExpression(node.init) ||
-          babelTypes.isFunctionExpression(node.init)
+          babelTypes.isArrowFunctionExpression(nodeInit) ||
+          babelTypes.isFunctionExpression(nodeInit)
         ) {
-          getFromProp(node.init.params[0]);
-        } else if (babelTypes.isCallExpression(node.init)) {
+          getFromProp(nodeInit.params[0]);
+        } else if (babelTypes.isCallExpression(nodeInit)) {
           // x = react.memo(props => <div/>)
-          const arg = node.init.arguments[0];
+          const arg = nodeInit.arguments[0];
           if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
             getFromProp(arg.params[0]);
           }
@@ -376,7 +419,6 @@ export function inject(
   const propTypesToInject = new Map<string, string>();
 
   const { plugins: babelPlugins = [], ...babelOptions } = options.babelOptions || {};
-
   const result = babel.transformSync(target, {
     plugins: [
       require.resolve('@babel/plugin-syntax-class-properties'),
