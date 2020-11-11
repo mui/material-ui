@@ -14,7 +14,7 @@ describe('@material-ui/lab', () => {
 
   it('should not have undefined exports', () => {
     Object.keys(MaterialUI).forEach((exportKey) =>
-      expect(Boolean(MaterialUI[exportKey])).to.equal(true),
+      expect(Boolean(MaterialUI[exportKey]), `${exportKey} is not truthy`).to.equal(true),
     );
   });
 });

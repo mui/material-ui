@@ -1,5 +1,5 @@
 ---
-title: React 菜单组件
+title: React Menu（菜单）组件
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: Menu'
 materialDesign: https://material.io/components/menus
@@ -30,7 +30,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## 菜单位置
+## 菜单定位
 
 因为 `Menu` 组件是基于 `Popover` 组件来进行定位的，所以你也可以使用与之相同的 [定位属性](/components/popover/#anchor-playground) 来对它的位置进行改变。 例如，你可以在描点的下方显示菜单：
 
@@ -54,7 +54,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/menu)。
 
-## 限高菜单
+## 最大高度的菜单
 
 如果最大高度的菜单仍无法显示所有菜单项，则菜单可以在内部滚动。
 

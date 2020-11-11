@@ -3,13 +3,10 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
-import globCallback from 'glob';
-import { promisify } from 'util';
+import glob from 'fast-glob';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
 import { fixBabelGeneratorIssues, fixLineEndings } from '../docs/scripts/helpers';
-
-const glob = promisify(globCallback);
 
 enum GenerateResult {
   Success,
@@ -23,6 +20,33 @@ enum GenerateResult {
  * Includes component names for which we can't generate .propTypes from the TypeScript types.
  */
 const todoComponents: string[] = [];
+
+const todoComponentsTs: string[] = [
+  'ClockPicker',
+  'DatePicker',
+  'DateRangePicker',
+  'DateRangePickerDay',
+  'DayPicker',
+  'DesktopDatePicker',
+  'DesktopDateRangePicker',
+  'StaticDateRangePicker',
+  'MobileDateRangePicker',
+  'DateTimePicker',
+  'DesktopDateTimePicker',
+  'DesktopTimePicker',
+  'LocalizationProvider',
+  'MobileDatePicker',
+  'MobileDateTimePicker',
+  'MobileTimePicker',
+  'MonthPicker',
+  'PickersCalendarSkeleton',
+  'PickersDay',
+  'StaticDatePicker',
+  'StaticDateTimePicker',
+  'StaticTimePicker',
+  'TimePicker',
+  'YearPicker',
+];
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -56,12 +80,28 @@ const useExternalPropsFromInputBase = [
  * of dynamically loading them. At that point this list should be removed.
  * TODO: typecheck values
  */
-const useExternalDocumentation: Record<string, string[]> = {
+const useExternalDocumentation: Record<string, '*' | string[]> = {
   Button: ['disableRipple'],
   // `classes` is always external since it is applied from a HOC
   // In DialogContentText we pass it through
   // Therefore it's considered "unused" in the actual component but we still want to document it.
   DialogContentText: ['classes'],
+  DatePicker: '*',
+  MobileDatePicker: '*',
+  StaticDatePicker: '*',
+  DesktopDatePicker: '*',
+  TimePicker: '*',
+  MobileTimePicker: '*',
+  StaticTimePicker: '*',
+  DesktopTimePicker: '*',
+  DateTimePicker: '*',
+  MobileDateTimePicker: '*',
+  StaticDateTimePicker: '*',
+  DesktopDateTimePicker: '*',
+  DateRangePicker: '*',
+  MobileDateRangePicker: '*',
+  StaticDateRangePicker: '*',
+  DesktopDateRangePicker: '*',
   FilledInput: useExternalPropsFromInputBase,
   IconButton: ['disableRipple'],
   Input: useExternalPropsFromInputBase,
@@ -182,6 +222,7 @@ async function generateProptypes(
   program: ttp.ts.Program,
   sourceFile: string,
   tsFile: string = sourceFile,
+  tsTodo: boolean = false,
 ): Promise<GenerateResult> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
@@ -216,6 +257,7 @@ async function generateProptypes(
   const unstyledFile = getUnstyledFile(tsFile);
 
   const result = ttp.inject(proptypes, sourceContent, {
+    disableTypescriptPropTypesValidation: tsTodo,
     removeExistingPropTypes: true,
     babelOptions: {
       filename: sourceFile,
@@ -271,7 +313,8 @@ async function generateProptypes(
       const { name: componentName } = component;
       if (
         useExternalDocumentation[componentName] &&
-        useExternalDocumentation[componentName].includes(prop.name)
+        (useExternalDocumentation[componentName] === '*' ||
+          useExternalDocumentation[componentName].includes(prop.name))
       ) {
         shouldDocument = true;
       }
@@ -335,14 +378,16 @@ async function run(argv: HandlerArgv) {
   const program = ttp.createTSProgram(files, tsconfig);
 
   const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {
-    const jsFile = tsFile.replace('.d.ts', '.js');
+    const componentName = path.basename(tsFile).replace(/(\.d\.ts|\.tsx|\.js)/g, '');
 
-    if (todoComponents.includes(path.basename(jsFile, '.js'))) {
+    if (todoComponents.includes(componentName)) {
       return GenerateResult.TODO;
     }
 
+    const tsTodo = todoComponentsTs.includes(componentName);
+
     const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
-    return generateProptypes(program, sourceFile, tsFile);
+    return generateProptypes(program, sourceFile, tsFile, tsTodo);
   });
 
   const results = await Promise.all(promises);

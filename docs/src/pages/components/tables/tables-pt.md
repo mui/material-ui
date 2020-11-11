@@ -2,6 +2,7 @@
 title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -9,21 +10,25 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">Tabelas exibem conjuntos de dados. Elas podem ser totalmente customizadas.</p>
 
-[Tabelas](https://material.io/design/components/data-tables.html) apresentam informações de uma forma fácil de visualizar, de modo que os usuários podem procurar por padrões e percepções. Elas podem ser incorporadas no conteúdo principal, assim como cartões.
-
-As tabelas podem incluir:
+[Tabelas](https://material.io/design/components/data-tables.html) apresentam informações de uma forma fácil de visualizar, de modo que os usuários podem procurar por padrões e percepções. Elas podem ser incorporadas no conteúdo principal, assim como cartões. They can include:
 
 - Uma visualização correspondente
 - Navegação
 - Ferramentas para consultar e manipular dados
 
-Ao incluir ferramentas, elas devem ser colocadas diretamente acima ou abaixo da tabela.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Estrutura
 
 Um exemplo simples sem frescuras.
 
 Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes das colunas, seguidas pelas linhas dos dados.
+
+## Classificando & Selecionando
+
+The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
 ## Tabela Simples
 
@@ -38,12 +43,6 @@ Este exemplo demonstra o uso de linhas clicáveis com `Checkbox` para a seleçã
 A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para impedir que os controles de paginação rolem, o componente TablePagination é usado fora da tabela. (O [Exemplo da 'ação de paginação customizada'](#custom-pagination-actions) abaixo mostra a paginação dentro de um TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
-
-## Classificando & Selecionando
-
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
 ## Tabelas Customizadas
 

@@ -83,7 +83,6 @@ function includePeerDependencies(deps, versions) {
 
   if (
     deps['@material-ui/lab'] ||
-    deps['@material-ui/pickers'] ||
     deps['@material-ui/x'] ||
     deps['@material-ui/x-grid'] ||
     deps['@material-ui/x-pickers'] ||
@@ -97,10 +96,6 @@ function includePeerDependencies(deps, versions) {
     deps['@material-ui/core'] = versions['@material-ui/core'];
     deps['@material-ui/icons'] = versions['@material-ui/icons'];
     deps['@material-ui/lab'] = versions['@material-ui/lab'];
-  }
-
-  if (deps['@material-ui/pickers']) {
-    deps['date-fns'] = 'latest';
   }
 }
 
@@ -131,8 +126,10 @@ function getDependencies(raw, options = {}) {
 
   const deps = {};
   const versions = {
-    'react-dom': reactVersion,
     react: reactVersion,
+    'react-dom': reactVersion,
+    '@emotion/core': 'latest',
+    '@emotion/styled': 'latest',
     '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
     '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
     '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
@@ -142,9 +139,6 @@ function getDependencies(raw, options = {}) {
     '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
     '@material-ui/unstyled': getMuiPackageVersion('unstyled', muiCommitRef),
     '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
-    '@material-ui/pickers': 'next',
-    '@emotion/core': 'latest',
-    '@emotion/styled': 'latest',
   };
 
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
@@ -163,6 +157,12 @@ function getDependencies(raw, options = {}) {
 
     if (!deps[name]) {
       deps[name] = versions[name] ? versions[name] : 'latest';
+    }
+
+    // e.g date-fns
+    const dateAdapter = /^@material-ui\/lab\/dateAdapter\/(.*)/;
+    if (dateAdapter.test(m[2])) {
+      deps[dateAdapter.exec(m[2])[1]] = 'latest';
     }
   }
 

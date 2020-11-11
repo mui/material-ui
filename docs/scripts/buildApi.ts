@@ -192,78 +192,37 @@ async function annotateComponentDefinition(context: {
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
-function trimComment(comment: string) {
-  let i = 0;
-  for (; i < comment.length; i += 1) {
-    if (comment[i] !== '*' && comment[i] !== ' ') {
-      break;
+const camelCaseToKebabCase = (inputString: string) => {
+  const str = inputString.charAt(0).toLowerCase() + inputString.slice(1);
+  return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
+};
+
+async function updateStylesDefinition(context: {
+  styles: ReactApi['styles'];
+  component: { filename: string };
+}) {
+  const workspaceRoot = path.resolve(__dirname, '../../');
+  const { styles, component } = context;
+
+  const componentName = path.basename(component.filename).replace(/\.js$/, '');
+  const dataFilename = `${workspaceRoot}/docs/data/${camelCaseToKebabCase(componentName)}.json`;
+
+  try {
+    const jsonDataString = readFileSync(dataFilename, { encoding: 'utf8' });
+    const jsonData = JSON.parse(jsonDataString);
+    if (jsonData) {
+      const cssData = jsonData.css;
+      const classes = Object.keys(cssData);
+      styles.classes = classes;
+      styles.name = jsonData.name;
+      styles.descriptions = classes.reduce((acc, key) => {
+        acc[key] = cssData[key].description;
+        return acc;
+      }, {} as Record<string, string>);
     }
-  }
-  return comment.substr(i, comment.length - 1);
-}
-
-async function updateStylesDefinition(context: { api: ReactApi; component: { filename: string } }) {
-  const { api, component } = context;
-
-  const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
-  const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
-  const typesAST = await babel.parseAsync(typesSource, {
-    configFile: false,
-    filename: typesFilename,
-    presets: [require.resolve('@babel/preset-typescript')],
-  });
-
-  if (typesAST === null) {
-    throw new Error('No AST returned from babel.');
-  }
-
-  if (api.styles.classes.length === 0) {
-    const componentName = path.basename(typesFilename).replace(/\.d\.ts$/, '');
-
-    traverse(typesAST, {
-      ExportNamedDeclaration(babelPath) {
-        const { node } = babelPath;
-        const declaration = node.declaration as babel.types.TSTypeAliasDeclaration;
-
-        const name = declaration.id?.name;
-
-        const typeAnnotation = declaration.typeAnnotation as babel.types.TSUnionType;
-
-        if (name === `${componentName}ClassKey` && typeAnnotation.types) {
-          const classes: string[] = [];
-
-          const nodeLeadingComments = declaration.typeAnnotation.leadingComments || [];
-
-          typeAnnotation.types.forEach((typeNode) => {
-            const value = (typeNode as babel.types.TSLiteralType).literal.value as string;
-
-            classes.push(value);
-
-            let leadingComments = typeNode.leadingComments;
-            if (leadingComments) {
-              leadingComments = leadingComments.concat(nodeLeadingComments);
-            } else {
-              leadingComments = nodeLeadingComments;
-            }
-
-            if (leadingComments) {
-              for (let i = 0; i < leadingComments.length; i += 1) {
-                if (
-                  leadingComments[i].end + 5 ===
-                  (typeNode as babel.types.TSLiteralType).literal.start
-                ) {
-                  api.styles.descriptions[value] = trimComment(leadingComments[i].value);
-                }
-              }
-            }
-
-            return '';
-          });
-
-          api.styles.classes = classes;
-        }
-      },
-    });
+  } catch (err) {
+    // Do nothing for now if the file doesn't exist
+    // This is still not supported for all components
   }
 }
 
@@ -355,6 +314,10 @@ async function buildDocs(options: {
     prettierConfigPath,
     theme,
   } = options;
+  if (componentObject.filename.indexOf('internal') !== -1) {
+    return;
+  }
+
   const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
@@ -374,7 +337,14 @@ async function buildDocs(options: {
     globalClasses: {},
   };
 
-  styles.name = component?.default?.options?.name;
+  // styled components does not have the options static
+  const styledComponent = !component?.default?.options;
+  if (styledComponent) {
+    await updateStylesDefinition({
+      styles,
+      component: componentObject,
+    });
+  }
 
   if (component.styles && component.default.options) {
     // Collect the customization points of the `classes` property.
@@ -451,11 +421,6 @@ async function buildDocs(options: {
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
   reactAPI.inheritance = getInheritance(testInfo, src);
 
-  await updateStylesDefinition({
-    api: reactAPI,
-    component: componentObject,
-  });
-
   if (reactAPI.styles.classes) {
     reactAPI.styles.globalClasses = reactAPI.styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
@@ -476,7 +441,7 @@ async function buildDocs(options: {
 
   let markdown;
   try {
-    markdown = generateMarkdown(reactAPI);
+    markdown = generateMarkdown(reactAPI, styledComponent);
   } catch (err) {
     console.log('Error generating markdown for', componentObject.filename);
     throw err;

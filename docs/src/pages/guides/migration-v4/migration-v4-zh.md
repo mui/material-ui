@@ -65,25 +65,32 @@ yarn add @material-ui/core@next
 
 - 断点现在被当作值而不是范围来处理。 `down(key)` 的行为已更改为定义的媒体查询小于使用相应断点定义的值（不包含当前值）。 `between(start, end)` 也已更新，定义了媒体查询 start（包含）和 end（不包含）实际值之间的数值。 当使用 `down()`断点工具集时，你需要向上一步更新断点键。 当使用  `between(start, end)` 时，结束断点也应向上一步更新。 使用 `Hidden` 组件时也应该这样做。 下面列出了变动影响的例子：
 
-```diff
--theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
-+theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
-```
+  ```diff
+  -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
+  +theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
+  ```
 
-```diff
--theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
-+theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
-```
+  ```diff
+  -theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
+  +theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
+  ```
 
-```diff
--theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
-+theme.breakpoints.up('sm') // '@media (min-width:600px)'
-```
+  ```diff
+  -theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
+  +theme.breakpoints.up('sm') // '@media (min-width:600px)'
+  ```
 
-```diff
--<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
-+<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
-```
+  ```diff
+  -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
+  +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
+  ```
+
+- `theme.palette.augmentColor` 助手的签名已经改变：
+
+  ```diff
+  -theme.palette.augmentColor(red);
+  +theme.palette.augmentColor({ color: red, name: 'brand' });
+  ```
 
 #### 变更
 
@@ -120,46 +127,36 @@ yarn add @material-ui/core@next
 
   修改前：
 
-  ```
+  ```js
   theme.spacing(2) => 16
   ```
 
   修改后：
 
-  ```
+  ```js
   theme.spacing(2) => '16px'
   ```
 
-- `theme.palette.text.hint` 键在 Material-UI 组件中未使用，现已被删除。
-
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
-
--const theme = createMuiTheme(),
-+const theme = createMuiTheme({
-+  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-+});
-```
-
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
-
--const theme = createMuiTheme({palette: { type: 'dark' }}),
-+const theme = createMuiTheme({
-+  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-+});
-```
-
-- 主题内的组件定义在 `components` 键下进行了重构，以便人们更容易地发现一个组件的定义。
-
 - 为了更好地遵循通常用于描述该功能的“黑暗模式”术语，我们将 `theme.palette.type` 重命名为 `theme.palette.mode`。
 
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+  -const theme = createMuiTheme({palette: { type: 'dark' }}),
+  +const theme = createMuiTheme({palette: { mode: 'dark' }}),
+  ```
 
--const theme = createMuiTheme({palette: { type: 'dark' }}),
-+const theme = createMuiTheme({palette: { mode: 'dark' }}),
-```
+- `theme.palette.text.hint` 键在 Material-UI 组件中未使用，现已被删除。 如果你的项目之前依赖它，那么也可以通过下面方法将它添加回来：
+
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+
+  -const theme = createMuiTheme(),
+  +const theme = createMuiTheme({
+  +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
+  +});
+  ```
+
+- 主题内的组件定义在 `components` 键下进行了重构，以便人们更容易地发现一个组件的定义。
 
 1. `属性`
 
@@ -217,6 +214,10 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+### AppBar 应用栏
+
+- [AppBar] 当 position 为 static 和 relative 时，z-index 将会被移除。
+
 ### Alert 警告提示
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
@@ -237,6 +238,28 @@ const classes = makeStyles(theme => ({
   -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
   +import Autocomplete from '@material-ui/core/Autocomplete';
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
+  ```
+
+- 移除 `debug` 属性。 有几个更简单的方式来使用它：`open={true}`，Chrome 开发者调试工具 [“Emulate focused”](https://twitter.com/sulco/status/1305841873945272321)，或者使用 React devtools prop setter。
+- `renderOption` 现在应该返回选项的完整 DOM 结构。 这样做可以让定制组件变得更加容易。 你可以通过下面方法进行回滚：
+
+  ```diff
+  <Autocomplete
+  - renderOption={(option, { selected }) => (
+  -   <React.Fragment>
+  + renderOption={(props, option, { selected }) => (
+  +   <li {...props}>
+        <Checkbox
+          icon={icon}
+          checkedIcon={checkedIcon}
+          style={{ marginRight: 8 }}
+          checked={selected}
+        />
+        {option.title}
+  -   </React.Fragment>
+  +   </li>
+    )}
+  />
   ```
 
 ### Avatar 头像组件
@@ -601,7 +624,7 @@ const classes = makeStyles(theme => ({
     +popperRef.current.forceUpdate()
     ```
 
-  - Modifiers' API has changed a lot. 这其中有太多的内容不能涵盖说明。
+  - 修改器的 API（Modifiers' API）发生了大量改变。 这其中有太多的内容不能涵盖说明。
 
 ### Portal
 
@@ -854,7 +877,7 @@ const classes = makeStyles(theme => ({
   +<TextareAutosize minRows={1}>
   ```
 
-### ToggleButton
+### ToggleButton 切换按钮
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 

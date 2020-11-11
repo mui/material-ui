@@ -1,5 +1,5 @@
 ---
-title: React 消息条组件
+title: React Snackbar（消息条）组件
 components: Snackbar, SnackbarContent
 githubLabel: 'component: Snackbar'
 materialDesign: https://material.io/components/snackbars

@@ -43,6 +43,12 @@ export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoin
   styleFunction: StyleFunction<Props>
 ): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
 
+// restructures the breakpoints in the in the correct order and merges all styles args
+export function mergeBreakpointsInOrder(
+  breakpointsInput: { keys: string[]; up: (key: string) => string },
+  ...styles: object[]
+): object;
+
 // compose.js
 /**
  * given a list of StyleFunction return the intersection of the props each individual
@@ -57,11 +63,6 @@ export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFu
   ComposedStyleProps<T>
 >;
 export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
-
-// css.js
-export function css<Props>(
-  styleFunction: StyleFunction<Props>
-): StyleFunction<Props & { css: Omit<Props, 'theme'> }>;
 
 export const display: SimpleStyleFunction<
   'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'
@@ -184,6 +185,44 @@ export function createUnarySpacing<Spacing>(theme: {
   : // warns in Dev
     () => undefined;
 
+export const margin: SimpleStyleFunction<
+  | 'm'
+  | 'mt'
+  | 'mr'
+  | 'mb'
+  | 'ml'
+  | 'mx'
+  | 'my'
+  | 'margin'
+  | 'marginTop'
+  | 'marginRight'
+  | 'marginBottom'
+  | 'marginLeft'
+  | 'marginX'
+  | 'marginY'
+>;
+
+export type MarginProps = PropsFor<typeof margin>;
+
+export const padding: SimpleStyleFunction<
+  | 'p'
+  | 'pt'
+  | 'pr'
+  | 'pb'
+  | 'pl'
+  | 'px'
+  | 'py'
+  | 'padding'
+  | 'paddingTop'
+  | 'paddingRight'
+  | 'paddingBottom'
+  | 'paddingLeft'
+  | 'paddingX'
+  | 'paddingY'
+>;
+
+export type PaddingProps = PropsFor<typeof padding>;
+
 // style.js
 export interface StyleOptions<PropKey, Theme extends object> {
   cssProperty?: PropKey | keyof React.CSSProperties | false;
@@ -218,6 +257,11 @@ export const typography: SimpleStyleFunction<
 export type TypographyProps = PropsFor<typeof typography>;
 
 export const visuallyHidden: React.CSSProperties;
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function unstable_getThemeValue(prop: string, value: any, theme: object): any;
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function unstable_styleFunctionSx(props: object): object;
 
 // utils
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;

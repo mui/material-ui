@@ -1,5 +1,5 @@
 ---
-title: React 按钮组件
+title: React Button（按钮）组件
 components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: Button'

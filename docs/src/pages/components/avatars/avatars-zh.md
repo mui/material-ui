@@ -1,7 +1,7 @@
 ---
-title: React 头像组件
+title: React Avatar（头像）组件
 components: Avatar, AvatarGroup, Badge
-githubLabel: '组件：头像'
+githubLabel: 'component: Avatar'
 ---
 
 # Avatar 头像组件

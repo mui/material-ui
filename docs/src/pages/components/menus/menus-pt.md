@@ -24,13 +24,13 @@ Escolhendo uma opção deve confirmar imediatamente a opção e fechar o menu.
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 
-## Menus Selecionados
+## Selected menu
 
 Se usado para a seleção de itens, quando abertos, menus simples tentam alinhar verticalmente o item de menu atualmente selecionado com o elemento de âncora, e o foco inicial será colocado no item de menu selecionado. O item de menu atualmente selecionado é definido usando a propriedade`selected`(de [ListItem](/api/list-item/)). Para usar um item de menu selecionado sem afetar o foco inicial ou o posicionamento vertical do menu, defina a propriedade `variant` como `menu`.
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## Menu positioning
+## Positioned menu
 
 Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it. For instance, you can display the menu below the anchor:
 
@@ -44,7 +44,7 @@ A principal responsabilidade do componente `MenuList` é manipular o foco.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Menus customizados
+## Customized menu
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -54,7 +54,7 @@ O `MenuItem` é um encapsulador em torno de `ListItem` com alguns estilos adicio
 
 🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/menu).
 
-## Altura máxima dos menus
+## Max height menu
 
 Se a altura de um menu impede que todos os itens de menu sejam exibidos, o menu terá internamente a opção de rolagem.
 

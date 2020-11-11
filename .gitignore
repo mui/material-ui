@@ -4,6 +4,7 @@
 .idea
 .vscode
 *.log
+*.tsbuildinfo
 /.eslintcache
 /.nyc_output
 /benchmark/**/dist

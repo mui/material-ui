@@ -96,7 +96,7 @@ const theme = createMuiTheme({
 
 浏览器计算出来的字体大小遵循了以下数学方程式：
 
-<img src="/static/images/font-size.png" alt="font size calculation" style="width: 458px;" />
+<img src="/static/images/font-size.png" alt="计算字体大小" style="width: 458px;" />
 
 <!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
