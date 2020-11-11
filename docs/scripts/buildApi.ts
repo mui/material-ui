@@ -351,6 +351,7 @@ async function buildDocs(options: {
     styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
       (className) => !className.match(/^(@media|@keyframes|@global)/),
     );
+    styles.name = component.default.options.name;
     styles.globalClasses = styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
         // @ts-expect-error
