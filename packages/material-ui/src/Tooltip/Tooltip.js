@@ -78,7 +78,7 @@ export const styles = (theme) => ({
     padding: '4px 8px',
     fontSize: theme.typography.pxToRem(11),
     maxWidth: 300,
-    margin: '2px',
+    margin: 2,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
   },
@@ -196,6 +196,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
+  const prevUserSelect = React.useRef();
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
@@ -246,6 +247,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       clearTimeout(closeTimer.current);
       clearTimeout(enterTimer.current);
       clearTimeout(leaveTimer.current);
+      document.body.style.WebkitUserSelect = prevUserSelect.current;
       clearTimeout(touchTimer.current);
     };
   }, []);
@@ -370,15 +372,16 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     detectTouchStart(event);
     clearTimeout(leaveTimer.current);
     clearTimeout(closeTimer.current);
+    document.body.style.WebkitUserSelect = prevUserSelect.current;
     clearTimeout(touchTimer.current);
     event.persist();
 
-    const prevUserSelect = document.body.style.WebkitUserSelect;
+    prevUserSelect.current = document.body.style.WebkitUserSelect;
     // Prevent iOS text selection on long-tap.
     document.body.style.WebkitUserSelect = 'none';
 
     touchTimer.current = setTimeout(() => {
-      document.body.style.WebkitUserSelect = prevUserSelect;
+      document.body.style.WebkitUserSelect = prevUserSelect.current;
       handleEnter(event);
     }, enterTouchDelay);
   };
@@ -388,6 +391,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       children.props.onTouchEnd(event);
     }
 
+    document.body.style.WebkitUserSelect = prevUserSelect.current;
     clearTimeout(touchTimer.current);
     clearTimeout(leaveTimer.current);
     event.persist();
