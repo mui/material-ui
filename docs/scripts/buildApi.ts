@@ -156,7 +156,11 @@ async function annotateComponentDefinition(context: {
 
   const demos = uniqBy<ReactApi['pagesMarkdown'][0]>(
     api.pagesMarkdown.filter((page) => {
-      return page.components.includes(api.name);
+      return (
+        page.components.includes(api.name) ||
+        (api.name.endsWith('Unstyled') &&
+          page.components.includes(api.name.replace('Unstyled', '')))
+      );
     }, []),
     (page) => page.pathname,
   );
