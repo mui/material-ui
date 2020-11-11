@@ -261,6 +261,7 @@ async function annotateClassesDefinition(context: {
       }
     },
   });
+
   if (end === null || start === 0) {
     // Some components actually don't implement this prop.
     return;
