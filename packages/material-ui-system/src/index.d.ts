@@ -185,6 +185,44 @@ export function createUnarySpacing<Spacing>(theme: {
   : // warns in Dev
     () => undefined;
 
+export const margin: SimpleStyleFunction<
+  | 'm'
+  | 'mt'
+  | 'mr'
+  | 'mb'
+  | 'ml'
+  | 'mx'
+  | 'my'
+  | 'margin'
+  | 'marginTop'
+  | 'marginRight'
+  | 'marginBottom'
+  | 'marginLeft'
+  | 'marginX'
+  | 'marginY'
+>;
+
+export type MarginProps = PropsFor<typeof margin>;
+
+export const padding: SimpleStyleFunction<
+  | 'p'
+  | 'pt'
+  | 'pr'
+  | 'pb'
+  | 'pl'
+  | 'px'
+  | 'py'
+  | 'padding'
+  | 'paddingTop'
+  | 'paddingRight'
+  | 'paddingBottom'
+  | 'paddingLeft'
+  | 'paddingX'
+  | 'paddingY'
+>;
+
+export type PaddingProps = PropsFor<typeof padding>;
+
 // style.js
 export interface StyleOptions<PropKey, Theme extends object> {
   cssProperty?: PropKey | keyof React.CSSProperties | false;
