@@ -39,10 +39,9 @@ describe('<DayPicker />', () => {
     expect(getAllByMuiTest('day')).to.have.length(31);
   });
 
-  it('renders year selection  standalone', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  // TODO
+  // eslint-disable-next-line mocha/no-skipped-tests
+  it.skip('renders year selection  standalone', () => {
     render(
       <DayPicker
         date={adapterToUse.date('2019-01-01T00:00:00.000')}
