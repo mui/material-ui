@@ -22,13 +22,13 @@ const styles = theme => ({
 
   it('should handle @ dependencies', () => {
     expect(getDependencies(s1)).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
       '@emotion/core': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
       'prop-types': 'latest',
-      'react-dom': 'latest',
-      react: 'latest',
     });
   });
 
@@ -48,6 +48,8 @@ const suggestions = [
 `;
 
     expect(getDependencies(source)).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
       '@emotion/core': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
@@ -55,20 +57,18 @@ const suggestions = [
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
       'react-draggable': 'latest',
-      'react-dom': 'latest',
-      react: 'latest',
     });
   });
 
   it('should support next dependencies', () => {
     expect(getDependencies(s1, { reactVersion: 'next' })).to.deep.equal({
+      react: 'next',
+      'react-dom': 'next',
       '@emotion/core': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
       'prop-types': 'latest',
-      'react-dom': 'next',
-      react: 'next',
     });
   });
 
@@ -78,31 +78,31 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import DateFnsAdapter from "@material-ui/pickers/adapter/date-fns";
-import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/lab';
 `;
 
     expect(getDependencies(source)).to.deep.equal({
-      'date-fns': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
+      'prop-types': 'latest',
       '@emotion/core': 'latest',
       '@emotion/styled': 'latest',
-      '@material-ui/pickers': 'next',
       '@material-ui/core': 'next',
-      'prop-types': 'latest',
-      'react-dom': 'latest',
-      react: 'latest',
+      '@material-ui/lab': 'next',
+      'date-fns': 'latest',
     });
   });
 
   it('can collect required @types packages', () => {
     expect(getDependencies(s1, { codeLanguage: 'TS' })).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      'prop-types': 'latest',
       '@emotion/core': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
-      'prop-types': 'latest',
-      'react-dom': 'latest',
-      react: 'latest',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
@@ -114,22 +114,22 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
   it('should handle multilines', () => {
     const source = `
 import * as React from 'react';
-import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
+import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
 import {
   LocalizationProvider as MuiPickersLocalizationProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
-} from '@material-ui/pickers';
+} from '@material-ui/lab';
     `;
 
     expect(getDependencies(source)).to.deep.equal({
-      'date-fns': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
       '@emotion/core': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
-      '@material-ui/pickers': 'next',
-      react: 'latest',
-      'react-dom': 'latest',
+      '@material-ui/lab': 'next',
+      'date-fns': 'latest',
     });
   });
 
@@ -139,12 +139,12 @@ import lab from '@material-ui/lab';
     `;
 
     expect(getDependencies(source)).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
       '@emotion/core': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
       '@material-ui/lab': 'next',
-      react: 'latest',
-      'react-dom': 'latest',
     });
   });
 
@@ -156,6 +156,8 @@ import { useDemoData } from '@material-ui/x-grid-data-generator';
     `;
 
     expect(getDependencies(source, { codeLanguage: 'TS' })).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
       '@emotion/core': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
@@ -165,8 +167,6 @@ import { useDemoData } from '@material-ui/x-grid-data-generator';
       '@material-ui/x-grid-data-generator': 'latest',
       '@types/react': 'latest',
       '@types/react-dom': 'latest',
-      react: 'latest',
-      'react-dom': 'latest',
       typescript: 'latest',
     });
   });

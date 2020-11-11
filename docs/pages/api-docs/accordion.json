@@ -20,5 +20,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Accordion/Accordion.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
-  "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>"
+  "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
+  "styledComponent": false
 }

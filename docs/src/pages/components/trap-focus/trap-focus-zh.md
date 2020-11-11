@@ -1,5 +1,5 @@
 ---
-title: React 陷阱焦点组件
+title: React Trap Focus（陷阱焦点）组件
 components: Unstable_TrapFocus
 githubLabel: 'component: TrapFocus'
 ---

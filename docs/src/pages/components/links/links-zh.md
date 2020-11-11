@@ -1,5 +1,5 @@
 ---
-components: React 链接组件
+components: React Link（链接）组件
 githubLabel: 'component: Link'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 ---

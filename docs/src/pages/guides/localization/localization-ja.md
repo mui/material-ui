@@ -74,7 +74,7 @@ You can [find the source](https://github.com/mui-org/material-ui/blob/next/packa
 
 To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there.
 
-Please do consider contributing new translations back to Material-UI by opening a pull request. However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
+Please do consider contributing new translations back to Material-UI by opening a pull request. However, Material-UI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ## RTL Support
 

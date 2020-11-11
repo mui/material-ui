@@ -203,6 +203,7 @@ function ApiDocs(props) {
     propDescriptions,
     props: componentProps,
     spread,
+    styledComponent,
     styles: componentStyles,
   } = pageContent;
 
@@ -214,7 +215,7 @@ function ApiDocs(props) {
       (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
     )
     // convert things like `/Table/Table.js` to ``
-    .replace(/\/([^/]+)\/\1\.js$/, '');
+    .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
   const sections = [
     'import',
@@ -338,14 +339,21 @@ import { ${componentName} } from '${source}';`}
                     classDescriptions={classDescriptions}
                   />
                   <br />
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t('overrideStyles').replace(
-                        /{{URL}}/,
-                        `${SOURCE_CODE_ROOT_URL}${filename}`,
-                      ),
-                    }}
-                  />
+                  <span dangerouslySetInnerHTML={{ __html: t('overrideStyles') }} />
+                  {styledComponent ? (
+                    <span
+                      dangerouslySetInnerHTML={{ __html: t('overrideStylesStyledComponent') }}
+                    />
+                  ) : (
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: t('overrideStylesJss').replace(
+                          /{{URL}}/,
+                          `${SOURCE_CODE_ROOT_URL}${filename}`,
+                        ),
+                      }}
+                    />
+                  )}
                 </React.Fragment>
               ) : null}
               <Heading hash="demos" />

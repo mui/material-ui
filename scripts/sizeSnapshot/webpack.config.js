@@ -1,13 +1,10 @@
 const path = require('path');
-const { promisify } = require('util');
 const CompressionPlugin = require('compression-webpack-plugin');
-const globCallback = require('glob');
+const glob = require('fast-glob');
 const TerserPlugin = require('terser-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const workspaceRoot = path.join(__dirname, '..', '..');
-
-const glob = promisify(globCallback);
 
 async function getWebpackEntries() {
   const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build');

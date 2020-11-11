@@ -167,8 +167,8 @@ async function annotateComponentDefinition(context: {
       }
 
       const { leadingComments } = node;
-      const jsdocBlock = leadingComments !== null ? leadingComments[0] : null;
-      if (leadingComments !== null && leadingComments.length > 1) {
+      const jsdocBlock = leadingComments != null ? leadingComments[0] : null;
+      if (leadingComments != null && leadingComments.length > 1) {
         throw new Error('Should only have a single leading jsdoc block');
       }
       if (jsdocBlock != null) {
@@ -223,6 +223,40 @@ async function annotateComponentDefinition(context: {
     .join('\n')}\n */`;
   const typesSourceNew = typesSource.slice(0, start) + jsdoc + typesSource.slice(end);
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
+}
+
+const camelCaseToKebabCase = (inputString: string) => {
+  const str = inputString.charAt(0).toLowerCase() + inputString.slice(1);
+  return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
+};
+
+async function updateStylesDefinition(context: {
+  styles: ReactApi['styles'];
+  component: { filename: string };
+}) {
+  const workspaceRoot = path.resolve(__dirname, '../../');
+  const { styles, component } = context;
+
+  const componentName = path.basename(component.filename).replace(/\.js$/, '');
+  const dataFilename = `${workspaceRoot}/docs/data/${camelCaseToKebabCase(componentName)}.json`;
+
+  try {
+    const jsonDataString = readFileSync(dataFilename, { encoding: 'utf8' });
+    const jsonData = JSON.parse(jsonDataString);
+    if (jsonData) {
+      const cssData = jsonData.css;
+      const classes = Object.keys(cssData);
+      styles.classes = classes;
+      styles.name = jsonData.name;
+      styles.descriptions = classes.reduce((acc, key) => {
+        acc[key] = cssData[key].description;
+        return acc;
+      }, {} as Record<string, string>);
+    }
+  } catch (err) {
+    // Do nothing for now if the file doesn't exist
+    // This is still not supported for all components
+  }
 }
 
 /**
@@ -367,6 +401,10 @@ async function buildDocs(options: {
     prettierConfigPath,
     theme,
   } = options;
+  if (componentObject.filename.indexOf('internal') !== -1) {
+    return;
+  }
+
   const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
@@ -454,6 +492,15 @@ async function buildDocs(options: {
   reactAPI.spread = spread;
   reactAPI.EOL = getLineFeed(src);
 
+  // styled components does not have the options static
+  const styledComponent = !component?.default?.options;
+  if (styledComponent) {
+    await updateStylesDefinition({
+      styles,
+      component: componentObject,
+    });
+  }
+
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
   reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
@@ -465,6 +512,24 @@ async function buildDocs(options: {
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
   reactAPI.inheritance = getInheritance(testInfo, src);
+
+  if (reactAPI.styles.classes) {
+    reactAPI.styles.globalClasses = reactAPI.styles.classes.reduce((acc, key) => {
+      acc[key] = generateClassName(
+        // @ts-expect-error
+        {
+          key,
+        },
+        {
+          options: {
+            name: styles.name,
+            theme: {},
+          },
+        },
+      );
+      return acc;
+    }, {} as Record<string, string>);
+  }
 
   try {
     checkProps(reactAPI);
@@ -481,6 +546,7 @@ async function buildDocs(options: {
 
   pageContent.filename = normalizePath(reactAPI.filename);
   pageContent.demos = generateDemoList(reactAPI);
+  pageContent.styledComponent = styledComponent;
 
   // Only keep "non-standard" global classnames
   Object.entries(pageContent.styles.globalClasses).forEach(([className, globalClassName]) => {

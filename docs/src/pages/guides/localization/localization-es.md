@@ -74,7 +74,7 @@ Puedes [encontrar la fuente](https://github.com/mui-org/material-ui/blob/next/pa
 
 To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there.
 
-Por favor considere contribuir con nuevas traducciones a Material-UI abriendo un pull request. Sin embargo, Material-UI pretende apoyar a los [100 locales más populares](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), podríamos no aceptar contribuciones para locales que no se utilizan con frecuencia, por ejemplo `gl-ES` que tiene "solo" 2. millones de hablantes nativos.
+Por favor considere contribuir con nuevas traducciones a Material-UI abriendo un pull request. However, Material-UI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ## Soporte RTL
 

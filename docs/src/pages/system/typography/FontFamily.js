@@ -5,10 +5,8 @@ import Box from '@material-ui/core/Box';
 export default function FontFamily() {
   return (
     <Typography component="div">
-      <Box fontFamily="fontFamily" m={1}>
-        Default
-      </Box>
-      <Box fontFamily="Monospace" fontSize="h6.fontSize" m={1}>
+      <Box sx={{ fontFamily: 'fontFamily', m: 1 }}>Default</Box>
+      <Box sx={{ fontFamily: 'Monospace', fontSize: 'h6.fontSize', m: 1 }}>
         Monospace
       </Box>
     </Typography>

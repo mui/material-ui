@@ -756,7 +756,7 @@ describe('<Tooltip />', () => {
                 {
                   name: 'arrow',
                   options: {
-                    foo: 'bar',
+                    padding: 8,
                   },
                 },
               ],
@@ -768,12 +768,47 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      expect(
-        popperRef.current.state.orderedModifiers.find((x) => x.name === 'arrow').options.foo,
-      ).to.equal('bar');
-      expect(
-        popperRef.current.state.orderedModifiers.find((x) => x.name === 'arrow').enabled,
-      ).to.equal(true);
+
+      const appliedArrowModifier = popperRef.current.state.orderedModifiers.find(
+        (modifier) => modifier.name === 'arrow',
+      );
+
+      expect(appliedArrowModifier).not.to.equal(undefined);
+      expect(appliedArrowModifier.enabled).to.equal(true);
+      expect(appliedArrowModifier.options.padding).to.equal(8);
+    });
+
+    it('should merge popperOptions with custom modifier', () => {
+      const popperRef = React.createRef();
+      render(
+        <Tooltip
+          title="Hello World"
+          open
+          arrow
+          PopperProps={{
+            popperRef,
+            popperOptions: {
+              modifiers: [
+                {
+                  name: 'foo',
+                  enabled: true,
+                  phase: 'main',
+                },
+              ],
+            },
+          }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      const appliedComputeStylesModifier = popperRef.current.state.orderedModifiers.find(
+        (modifier) => modifier.name === 'foo',
+      );
+
+      expect(appliedComputeStylesModifier).not.to.equal(undefined);
     });
   });
 

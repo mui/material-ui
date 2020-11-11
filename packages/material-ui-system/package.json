@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/system",
-  "version": "5.0.0-alpha.14",
+  "version": "5.0.0-alpha.15",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI System - Design system for Material-UI.",
@@ -38,9 +38,9 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@types/react": "^16.8.6",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "^5.0.0-alpha.14",
+    "@material-ui/utils": "^5.0.0-alpha.15",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {},

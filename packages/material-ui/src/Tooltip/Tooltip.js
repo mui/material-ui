@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
+import { elementAcceptingRef } from '@material-ui/utils';
 import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
@@ -184,7 +184,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     open: openProp,
     placement = 'bottom',
     PopperComponent = Popper,
-    PopperProps,
+    PopperProps = {},
     title,
     TransitionComponent = Grow,
     TransitionProps,
@@ -510,24 +510,26 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
-  const mergedPopperProps = React.useMemo(() => {
-    return deepmerge(
+  const popperOptions = React.useMemo(() => {
+    let tooltipModifiers = [
       {
-        popperOptions: {
-          modifiers: [
-            {
-              name: 'arrow',
-              enabled: Boolean(arrowRef),
-              options: {
-                element: arrowRef,
-                padding: 4,
-              },
-            },
-          ],
+        name: 'arrow',
+        enabled: Boolean(arrowRef),
+        options: {
+          element: arrowRef,
+          padding: 4,
         },
       },
-      PopperProps,
-    );
+    ];
+
+    if (PopperProps.popperOptions?.modifiers) {
+      tooltipModifiers = tooltipModifiers.concat(PopperProps.popperOptions.modifiers);
+    }
+
+    return {
+      ...PopperProps.popperOptions,
+      modifiers: tooltipModifiers,
+    };
   }, [arrowRef, PopperProps]);
 
   return (
@@ -558,7 +560,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         id={id}
         transition
         {...interactiveWrapperListeners}
-        {...mergedPopperProps}
+        {...PopperProps}
+        popperOptions={popperOptions}
       >
         {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
@@ -713,6 +716,7 @@ Tooltip.propTypes = {
   PopperComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Popper`](/api/popper/) element.
+   * @default {}
    */
   PopperProps: PropTypes.object,
   /**

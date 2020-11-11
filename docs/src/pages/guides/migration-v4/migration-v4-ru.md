@@ -65,25 +65,32 @@ Support for non-ref-forwarding class components in the `component` prop or as an
 
 - Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive). The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive). When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
 
-```diff
--theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
-+theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
-```
+  ```diff
+  -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
+  +theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
+  ```
 
-```diff
--theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
-+theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
-```
+  ```diff
+  -theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
+  +theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
+  ```
 
-```diff
--theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
-+theme.breakpoints.up('sm') // '@media (min-width:600px)'
-```
+  ```diff
+  -theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
+  +theme.breakpoints.up('sm') // '@media (min-width:600px)'
+  ```
 
-```diff
--<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
-+<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
-```
+  ```diff
+  -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
+  +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
+  ```
+
+- The signature of `theme.palette.augmentColor` helper has changed:
+
+  ```diff
+  -theme.palette.augmentColor(red);
+  +theme.palette.augmentColor({ color: red, name: 'brand' });
+  ```
 
 #### Upgrade helper
 
@@ -120,46 +127,36 @@ The following changes are supported by the adapter.
 
   Before:
 
-  ```
+  ```js
   theme.spacing(2) => 16
   ```
 
   After:
 
-  ```
+  ```js
   theme.spacing(2) => '16px'
   ```
 
-- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
-
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
-
--const theme = createMuiTheme(),
-+const theme = createMuiTheme({
-+  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-+});
-```
-
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
-
--const theme = createMuiTheme({palette: { type: 'dark' }}),
-+const theme = createMuiTheme({
-+  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-+});
-```
-
-- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
-
 - The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+  -const theme = createMuiTheme({palette: { type: 'dark' }}),
+  +const theme = createMuiTheme({palette: { mode: 'dark' }}),
+  ```
 
--const theme = createMuiTheme({palette: { type: 'dark' }}),
-+const theme = createMuiTheme({palette: { mode: 'dark' }}),
-```
+- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed. If you depend on it, you can add it back:
+
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+
+  -const theme = createMuiTheme(),
+  +const theme = createMuiTheme({
+  +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
+  +});
+  ```
+
+- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
 
 1. `props`
 
@@ -217,6 +214,10 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+### AppBar
+
+- [AppBar] Remove z-index when position static and relative
+
 ### Alert
 
 - Перемещаем компонент из lab в core. Компонент теперь стабилен.
@@ -237,6 +238,28 @@ const classes = makeStyles(theme => ({
   -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
   +import Autocomplete from '@material-ui/core/Autocomplete';
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
+  ```
+
+- Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
+- `renderOption` should now return the full DOM structure of the option. It makes customizations easier. You can recover from the change with:
+
+  ```diff
+  <Autocomplete
+  - renderOption={(option, { selected }) => (
+  -   <React.Fragment>
+  + renderOption={(props, option, { selected }) => (
+  +   <li {...props}>
+        <Checkbox
+          icon={icon}
+          checkedIcon={checkedIcon}
+          style={{ marginRight: 8 }}
+          checked={selected}
+        />
+        {option.title}
+  -   </React.Fragment>
+  +   </li>
+    )}
+  />
   ```
 
 ### Avatar

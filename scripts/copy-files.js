@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const path = require('path');
 const fse = require('fs-extra');
-const glob = require('glob');
+const glob = require('fast-glob');
 
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');
@@ -56,7 +56,7 @@ async function typescriptCopy({ from, to }) {
     return [];
   }
 
-  const files = glob.sync('**/*.d.ts', { cwd: from });
+  const files = await glob('**/*.d.ts', { cwd: from });
   const cmds = files.map((file) => fse.copy(path.resolve(from, file), path.resolve(to, file)));
   return Promise.all(cmds);
 }

@@ -5,19 +5,13 @@ import Box from '@material-ui/core/Box';
 export default function TextAlignment() {
   return (
     <Typography component="div">
-      <Box textAlign="justify" m={1}>
+      <Box sx={{ textAlign: 'justify', m: 1 }}>
         Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit
         amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus.
       </Box>
-      <Box textAlign="left" m={1}>
-        Left aligned text.
-      </Box>
-      <Box textAlign="center" m={1}>
-        Center aligned text.
-      </Box>
-      <Box textAlign="right" m={1}>
-        Right aligned text.
-      </Box>
+      <Box sx={{ textAlign: 'left', m: 1 }}>Left aligned text.</Box>
+      <Box sx={{ textAlign: 'center', m: 1 }}>Center aligned text.</Box>
+      <Box sx={{ textAlign: 'right', m: 1 }}>Right aligned text.</Box>
     </Typography>
   );
 }

@@ -79,13 +79,6 @@ export interface UseAutocompleteProps<
    */
   componentName?: string;
   /**
-   * If `true`, the popup will ignore the blur event if the input is filled.
-   * You can inspect the popup markup with your browser tools.
-   * Consider this option when you need to customize the component.
-   * @default false
-   */
-  debug?: boolean;
-  /**
    * If `true`, the input can't be cleared.
    * @default false
    */

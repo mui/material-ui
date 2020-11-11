@@ -275,7 +275,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     clearText = 'Clear',
     closeIcon = <CloseIcon fontSize="small" />,
     closeText = 'Close',
-    debug = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -600,13 +599,6 @@ Autocomplete.propTypes = {
    * @default 'Close'
    */
   closeText: PropTypes.string,
-  /**
-   * If `true`, the popup will ignore the blur event if the input is filled.
-   * You can inspect the popup markup with your browser tools.
-   * Consider this option when you need to customize the component.
-   * @default false
-   */
-  debug: PropTypes.bool,
   /**
    * The default input value. Use when the component is not controlled.
    * @default props.multiple ? [] : null

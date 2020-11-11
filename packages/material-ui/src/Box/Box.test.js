@@ -57,4 +57,90 @@ describe('<Box />', () => {
     expect(element.getAttribute('font-family')).to.equal(null);
     expect(element.getAttribute('font-size')).to.equal(null);
   });
+
+  it('respect properties order when generating the CSS', function test() {
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+    if (isJSDOM) {
+      this.skip();
+    }
+
+    const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
+
+    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 255)',
+      borderRightColor: 'rgb(0, 0, 255)',
+      borderBottomColor: 'rgb(0, 0, 255)',
+      borderLeftColor: 'rgb(0, 0, 255)',
+    });
+
+    const testCaseBorderWins = render(<Box borderColor="rgb(0, 0, 255)" border={1} />);
+
+    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 0)',
+      borderRightColor: 'rgb(0, 0, 0)',
+      borderBottomColor: 'rgb(0, 0, 0)',
+      borderLeftColor: 'rgb(0, 0, 0)',
+    });
+  });
+
+  it('respect properties order when generating the CSS from the sx prop', function test() {
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+    if (isJSDOM) {
+      this.skip();
+    }
+
+    const testCaseBorderColorWins = render(
+      <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
+    );
+
+    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 255)',
+      borderRightColor: 'rgb(0, 0, 255)',
+      borderBottomColor: 'rgb(0, 0, 255)',
+      borderLeftColor: 'rgb(0, 0, 255)',
+    });
+
+    const testCaseBorderWins = render(<Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />);
+
+    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 0)',
+      borderRightColor: 'rgb(0, 0, 0)',
+      borderBottomColor: 'rgb(0, 0, 0)',
+      borderLeftColor: 'rgb(0, 0, 0)',
+    });
+  });
 });

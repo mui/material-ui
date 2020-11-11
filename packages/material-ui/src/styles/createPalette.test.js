@@ -98,14 +98,19 @@ describe('createPalette()', () => {
     const palette = createPalette({});
 
     it('should accept a color', () => {
-      const color1 = palette.augmentColor(indigo);
+      const color1 = palette.augmentColor({ color: indigo, name: 'primary' });
       expect(color1).to.deep.include({
         dark: '#303f9f',
         light: '#7986cb',
         main: '#3f51b5',
         contrastText: '#fff',
       });
-      const color2 = palette.augmentColor(indigo, 400, 200, 600);
+      const color2 = palette.augmentColor({
+        color: indigo,
+        mainShade: 400,
+        lightShade: 200,
+        darkShade: 600,
+      });
       expect(color2).to.deep.include({
         light: '#9fa8da',
         main: '#5c6bc0',
@@ -116,7 +121,9 @@ describe('createPalette()', () => {
 
     it('should accept a partial palette color', () => {
       const color = palette.augmentColor({
-        main: indigo[500],
+        color: {
+          main: indigo[500],
+        },
       });
       expect(color).to.deep.include({
         light: 'rgb(101, 115, 195)',
@@ -143,10 +150,22 @@ describe('createPalette()', () => {
 
     it('throws an exception when a wrong color is provided', () => {
       expect(() => createPalette({ primary: '#fff' })).to.throw(
-        'The color object needs to have a `main` property or a `500` property.',
+        [
+          'Material-UI: The color (primary) provided to augmentColor(color) is invalid.',
+          'The color object needs to have a `main` property or a `500` property.',
+        ].join('\n'),
       );
       expect(() => createPalette({ primary: { main: { foo: 'bar' } } })).to.throw(
-        '`color.main` should be a string, but `{"foo":"bar"}` was provided instead.',
+        [
+          'Material-UI: The color (primary) provided to augmentColor(color) is invalid.',
+          '`color.main` should be a string, but `{"foo":"bar"}` was provided instead.',
+        ].join('\n'),
+      );
+      expect(() => createPalette({ primary: { main: undefined } })).to.throw(
+        [
+          'Material-UI: The color (primary) provided to augmentColor(color) is invalid.',
+          '`color.main` should be a string, but `undefined` was provided instead.',
+        ].join('\n'),
       );
     });
 

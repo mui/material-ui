@@ -1,5 +1,5 @@
 const childProcess = require('child_process');
-const glob = require('glob');
+const glob = require('fast-glob');
 const path = require('path');
 const { promisify } = require('util');
 const yargs = require('yargs');

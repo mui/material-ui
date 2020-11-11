@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "rootDir": "./src",
+    "outDir": "./build",
+    "emitDeclarationOnly": true
+  },
+  "include": ["src/**/*.ts*"],
+  "exclude": ["src/**/*.d.ts", "src/**/*.test.*", "./**/*.spec.*", "**/test-utils.tsx"],
+  "references": [{ "path": "../material-ui/tsconfig.build.json" }]
+}

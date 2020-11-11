@@ -77,7 +77,7 @@ const theme = createMuiTheme(
 
 要创建自己的翻译，或自定义英文文本，请将此文件复制到您的项目中，进行所需的任何更改并从那里导入语言环境。
 
-请考虑创建一个拉取请求（pull request）来为 Material-UI 贡献新的译文。 但是，Material-UI 的目标是支持 [100 个最流行的语言地区](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers)，对于那些不太流行的地区，我们可能不会接受贡献，例如  `gl-ES`  “只有” 250 万的母语使用者。
+请考虑创建一个拉取请求（pull request）来为 Material-UI 贡献新的译文。 然而，Material-UI 的目标是支持 [100个最常见的](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [本地化语言](https://www.ethnologue.com/guides/ethnologue200)，我们可能不接受不常用的本地化语言的贡献，例如 `gl-ES`，它“只有”250万母语使用者。
 
 ## RTL 支持
 
