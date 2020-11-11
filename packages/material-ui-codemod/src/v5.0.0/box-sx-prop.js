@@ -94,15 +94,16 @@ export default function transformer(file, api) {
     .findJSXElements('Box')
     .forEach((path) => {
       let sxValue = [];
-      path.node.openingElement.attributes.forEach((node, index) => {
+      const attributes = path.node.openingElement.attributes;
+      attributes.forEach((node, index) => {
         // Only transform whitelisted props
         if (boxProps.includes(node.name.name)) {
           sxValue = buildSxValue(node, sxValue);
-          delete path.node.openingElement.attributes[index];
+          delete attributes[index];
         }
       });
       if (sxValue.length > 0) {
-        path.node.openingElement.attributes.push(
+        attributes.push(
           j.jsxAttribute(
             j.jsxIdentifier('sx'),
             j.jsxExpressionContainer(j.objectExpression(sxValue)),
