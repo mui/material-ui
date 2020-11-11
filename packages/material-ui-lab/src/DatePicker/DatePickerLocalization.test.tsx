@@ -46,12 +46,12 @@ describe('<DatePicker /> localization', () => {
       />,
     );
 
-    // eslint-disable-next-line no-console
     console.log(adapterToUse.localDate('2018-01-01T00:00:00.000'));
-    // eslint-disable-next-line no-console
+    console.log(adapterToUse.localDate('2018-01-01T00:00:00.000').getFullYear());
     console.log(adapterToUse.date('2018-01-01T00:00:00.000'));
-    // eslint-disable-next-line no-console
+    console.log(adapterToUse.date('2018-01-01T00:00:00.000').getFullYear());
     console.log(adapterToUse.date('2018-01-01T00:00:00.000Z'));
+    console.log(adapterToUse.date('2018-01-01T00:00:00.000Z').getFullYear());
     expect(screen.getByRole('textbox')).to.have.value('janvier 2018');
 
     fireEvent.click(screen.getByLabelText(/Choose date/));
