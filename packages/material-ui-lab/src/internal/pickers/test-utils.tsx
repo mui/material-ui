@@ -21,6 +21,14 @@ export class AdapterClassToUse extends DateFnsAdapter {
     const isoDateWithTimezone = `${isoDateWithoutTimezone}${localIsoTimezone}`;
     return this.date(isoDateWithTimezone);
   }
+
+  /**
+   * WARNING: Only use with an explicit timezone. For local dates prefer `localDate`.
+   * @param value
+   */
+  date(value?: any): Date {
+    return super.date(value);
+  }
 }
 export const adapterToUse = new AdapterClassToUse();
 
