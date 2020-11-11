@@ -738,7 +738,7 @@ const classes = makeStyles(theme => ({
   ```diff
   -<Slider ThumbComponent={CustomThumb} />
   +<Slider components={{ Thumb: CustomThumb }} />
-  ```  
+  ```
 
 - The `classes` property is no longer available for styling the component. You can fix this by one of these options:
 
@@ -771,7 +771,7 @@ const classes = makeStyles(theme => ({
 -  const classes = useStyles();
   // ...
 + <ThemeProvider theme={theme}>
-// ...  
+// ...
 -  <Slider classes={classes}>
 +  <Slider />
 ```
