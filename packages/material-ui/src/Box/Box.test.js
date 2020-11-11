@@ -33,7 +33,7 @@ describe('<Box />', () => {
 
   it('renders children and box content', () => {
     const { container, getByTestId } = render(
-      <Box component="span" m={1}>
+      <Box component="span" sx={{ m: 1 }}>
         {testChildren}
       </Box>,
     );
@@ -43,14 +43,17 @@ describe('<Box />', () => {
 
   it('does not forward style props as DOM attributes', () => {
     const elementRef = React.createRef();
-    render(
-      <Box
-        color="primary.main"
-        fontFamily="Comic Sans"
-        fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
-        ref={elementRef}
-      />,
-    );
+
+    expect(() => {
+      render(
+        <Box
+          color="primary.main"
+          fontFamily="Comic Sans"
+          fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
+          ref={elementRef}
+        />,
+      );
+    }).toWarnDev('Material-UI: You are using deprecated props on the Box component.\n');
 
     const { current: element } = elementRef;
     expect(element.getAttribute('color')).to.equal(null);
@@ -65,7 +68,11 @@ describe('<Box />', () => {
       this.skip();
     }
 
-    const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
+    let testCaseBorderColorWins;
+
+    expect(() => {
+      testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
+    }).toWarnDev('Material-UI: You are using deprecated props on the Box component.\n');
 
     expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
@@ -82,7 +89,11 @@ describe('<Box />', () => {
       borderLeftColor: 'rgb(0, 0, 255)',
     });
 
-    const testCaseBorderWins = render(<Box borderColor="rgb(0, 0, 255)" border={1} />);
+    let testCaseBorderWins;
+
+    expect(() => {
+      testCaseBorderWins = render(<Box borderColor="rgb(0, 0, 255)" border={1} />);
+    }).toWarnDev('Material-UI: You are using deprecated props on the Box component.\n');
 
     expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
