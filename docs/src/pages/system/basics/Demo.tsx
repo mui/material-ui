@@ -3,6 +3,15 @@ import Box, { BoxProps } from '@material-ui/core/Box';
 import { alpha } from '@material-ui/core/styles';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
+interface ImgProps extends BoxProps {
+  src?: string;
+  alt?: string;
+}
+
+function Img(props: ImgProps) {
+  return <Box component="img" {...props} />;
+}
+
 export default function Demo() {
   return (
     <Box
@@ -60,13 +69,4 @@ export default function Demo() {
       </Box>
     </Box>
   );
-}
-
-interface ImgProps extends BoxProps {
-  src?: string;
-  alt?: string;
-}
-
-function Img(props: ImgProps) {
-  return <Box component="img" {...props} />;
 }
