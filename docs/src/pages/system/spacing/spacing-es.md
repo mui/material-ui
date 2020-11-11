@@ -32,10 +32,10 @@ const theme = {
   spacing: 8,
 }
 
-<Box m={-2} /> // margin: -16px;
-<Box m={0} /> // margin: 0px;
-<Box m={0.5} /> // margin: 4px;
-<Box m={2} /> // margin: 16px;
+<Box sx={{ m: -2 }} /> // margin: -16px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 0.5 }} /> // margin: 4px;
+<Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
 - input: `number` & theme: `array`: the property is value is used as the array index.
@@ -45,9 +45,9 @@ const theme = {
   spacing: [0, 2, 3, 5, 8],
 }
 
-<Box m={-2} /> // margin: -3px;
-<Box m={0} /> // margin: 0px;
-<Box m={2} /> // margin: 3px;
+<Box sx={{ m: -2 }} /> // margin: -3px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 2 }} /> // margin: 3px;
 ```
 
 - input: `number` & theme: `function`: the function is called with the property value.
@@ -57,15 +57,15 @@ const theme = {
   spacing: value => value ** 2,
 }
 
-<Box m={0} /> // margin: 0px;
-<Box m={2} /> // margin: 4px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
 - input: `string`: the property is passed as raw CSS value.
 
 ```jsx
-<Box m="2rem" /> // margin: 2rem;
-<Box mx="auto" /> // margin-left: auto; margin-right: auto;
+<Box sx={{ m: "2rem" }} /> // margin: 2rem;
+<Box sx={{ mx: "auto" }} /> // margin-left: auto; margin-right: auto;
 ```
 
 ## Ejemplo
@@ -73,9 +73,9 @@ const theme = {
 {{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box p={1}>…
-<Box m={1}>…
-<Box p={2}>…
+<Box sx={{ p: 1 }}>…
+<Box sx={{ m: 1 }}>…
+<Box sx={{ p: 2 }}>…
 ```
 
 ## Centrado Horizontal
@@ -83,7 +83,7 @@ const theme = {
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box mx="auto">…
+<Box sx={{ mx: "auto" }}>…
 ```
 
 ## API
@@ -112,11 +112,11 @@ import { spacing } from '@material-ui/system';
 _Algunas personas encuentran confusión con la abreviatura del prop, puedes usar la versión completa si lo prefieres:_
 
 ```diff
--<Box pt={2} />
-+<Box paddingTop={2} />
+-<Box sx={{ pt: 2 }} />
++<Box sx={{ paddingTop: 2 }} />
 ```
 
 ```diff
--<Box px={2} />
-+<Box paddingX={2} />
+-<Box sx={{ px: 2 }} />
++<Box sx={{ paddingX: 2 }} />
 ```

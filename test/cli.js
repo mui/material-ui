@@ -1,7 +1,6 @@
 const childProcess = require('child_process');
 const fs = require('fs');
 const glob = require('fast-glob');
-const os = require('os');
 const path = require('path');
 const yargs = require('yargs');
 
@@ -9,18 +8,35 @@ async function run(argv) {
   const workspaceRoot = path.resolve(__dirname, '../');
 
   const gitignore = fs.readFileSync(path.join(workspaceRoot, '.gitignore'), { encoding: 'utf-8' });
-  const ignore = gitignore.split(os.EOL).filter((pattern) => {
-    return pattern.length > 0 && !pattern.startsWith('#');
-  });
+  const ignore = gitignore
+    .split(/\r?\n/)
+    .filter((pattern) => {
+      return pattern.length > 0 && !pattern.startsWith('#');
+    })
+    .map((line) => {
+      if (line.startsWith('/')) {
+        // "/" marks the cwd of the ignore file.
+        // Since we declare the dirname of the gitignore the cwd we can prepend "." as a shortcut.
+        return `.${line}`;
+      }
+      return line;
+    });
   const globPattern = `**/*${argv.testFilePattern}*.test.{js,ts,tsx}`;
   const spec = glob.sync(globPattern, {
     cwd: workspaceRoot,
     ignore,
   });
 
+  if (spec.length === 0) {
+    throw new Error(`Could not find any file test files matching '${globPattern}'`);
+  }
+
   const args = ['mocha'].concat(spec);
   if (argv.bail) {
     args.push('--bail');
+  }
+  if (argv.inspectBrk) {
+    args.push('--inspect-brk');
   }
   if (!argv.single) {
     args.push('--watch');
@@ -34,6 +50,7 @@ async function run(argv) {
       ...process.env,
       NODE_ENV: 'test',
     },
+    shell: true,
     stdio: ['inherit', 'inherit', 'inherit'],
   });
 
@@ -60,6 +77,11 @@ yargs
           type: 'string',
         })
         .option('bail', {
+          alias: 'b',
+          description: 'Stop on first error.',
+          type: 'boolean',
+        })
+        .option('inspect-brk', {
           alias: 'b',
           description: 'Stop on first error.',
           type: 'boolean',

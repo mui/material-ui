@@ -1,5 +1,5 @@
 ---
-title: React 快速拨号组件
+title: React Speed Dial（快速拨号）组件
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: SpeedDial'
 0: 'https://material.io/components/buttons-floating-action-button#types-of-transitions'

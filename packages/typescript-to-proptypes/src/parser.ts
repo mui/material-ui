@@ -173,6 +173,12 @@ export function parseFromProgram(
       return t.createObjectType();
     }
 
+    const defaultGenericType = type.getDefault();
+    // This is generic type – use default type <T = SomeDefaultType>
+    if (defaultGenericType) {
+      return checkType(defaultGenericType, typeStack, name);
+    }
+
     {
       const typeNode = type as any;
 
@@ -196,6 +202,12 @@ export function parseFromProgram(
         case 'HTMLElement': {
           return t.createDOMElementType();
         }
+        case 'RegExp': {
+          return t.createInstanceOfType('RegExp');
+        }
+        case 'Date': {
+          return t.createInstanceOfType('Date');
+        }
         default:
           // continue with function execution
           break;
@@ -207,6 +219,14 @@ export function parseFromProgram(
       // @ts-ignore
       const arrayType: ts.Type = checker.getElementTypeOfArrayType(type);
       return t.createArrayType(checkType(arrayType, typeStack, name));
+    }
+
+    // @ts-ignore Potentially dangerous undocumented stuff
+    if (checker.isTupleType(type)) {
+      return t.createArrayType(
+        // @ts-ignore
+        t.createUnionType(type.typeArguments.map((x) => checkType(x, typeStack, name))),
+      );
     }
 
     if (type.isUnion()) {
@@ -246,6 +266,11 @@ export function parseFromProgram(
     }
 
     if (type.getCallSignatures().length) {
+      return t.createFunctionType();
+    }
+
+    // () => new ClassInstance
+    if (type.getConstructSignatures().length) {
       return t.createFunctionType();
     }
 
@@ -488,7 +513,15 @@ export function parseFromProgram(
 
   function visit(node: ts.Node) {
     // function x(props: type) { return <div/> }
-    if (ts.isFunctionDeclaration(node) && node.name && node.parameters.length === 1) {
+    if (
+      ts.isFunctionDeclaration(node) &&
+      node.name &&
+      node.parameters.length === 1 &&
+      checker
+        .getTypeAtLocation(node.name)
+        .getCallSignatures()
+        .some((signature) => isTypeJSXElementLike(signature.getReturnType()))
+    ) {
       parseFunctionComponent(node);
     }
     // const x = ...
@@ -523,7 +556,7 @@ export function parseFromProgram(
           ) {
             parseFunctionComponent(variableNode);
           }
-          // x = react.memo((props:type) { return <div/> })
+          //  x = react.memo((props:type) { return <div/> })
           else if (
             ts.isCallExpression(variableNode.initializer) &&
             variableNode.initializer.arguments.length > 0
@@ -542,6 +575,18 @@ export function parseFromProgram(
                   checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration),
                   node.getSourceFile(),
                 );
+              }
+            }
+          }
+          // handle component factories: x = createComponent()
+          if (variableNode.initializer) {
+            if (checkDeclarations && type.aliasSymbol && type.aliasTypeArguments) {
+              if (
+                type
+                  .getCallSignatures()
+                  .some((signature) => isTypeJSXElementLike(signature.getReturnType()))
+              ) {
+                parseFunctionComponent(variableNode);
               }
             }
           }

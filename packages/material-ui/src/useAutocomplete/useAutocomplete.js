@@ -70,7 +70,6 @@ export default function useAutocomplete(props) {
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
-    debug = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -804,10 +803,6 @@ export default function useAutocomplete(props) {
     setFocused(false);
     firstFocus.current = true;
     ignoreFocus.current = false;
-
-    if (debug && inputValue !== '') {
-      return;
-    }
 
     if (autoSelect && highlightedIndexRef.current !== -1 && popupOpen) {
       selectNewValue(event, filteredOptions[highlightedIndexRef.current], 'blur');

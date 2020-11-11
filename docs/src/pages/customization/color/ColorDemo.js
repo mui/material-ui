@@ -41,22 +41,26 @@ function ColorDemo(props) {
   const { classes, data } = props;
   const theme = useTheme();
   const primary = theme.palette.augmentColor({
-    main: data.primary,
-    output:
-      data.primaryShade === 4
-        ? `${data.primaryHue}`
-        : `{
-      main: '${data.primary}',
-    }`,
+    color: {
+      main: data.primary,
+      output:
+        data.primaryShade === 4
+          ? `${data.primaryHue}`
+          : `{
+        main: '${data.primary}',
+      }`,
+    },
   });
   const secondary = theme.palette.augmentColor({
-    main: data.secondary,
-    output:
-      data.secondaryShade === 11
-        ? `${data.secondaryHue}`
-        : `{
-      main: '${data.secondary}',
-    }`,
+    color: {
+      main: data.secondary,
+      output:
+        data.secondaryShade === 11
+          ? `${data.secondaryHue}`
+          : `{
+        main: '${data.secondary}',
+      }`,
+    },
   });
 
   return (

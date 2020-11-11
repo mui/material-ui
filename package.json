@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-alpha.14",
+  "version": "5.0.0-alpha.15",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=test babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -25,13 +25,13 @@
     "docs:mdicons:synonyms": "babel-node --config-file ./babel.config.js ./docs/scripts/updateIconSynonyms",
     "extract-error-codes": "lerna run --parallel extract-error-codes",
     "framer:build": "yarn workspace framer build",
-    "jsonlint": "node scripts/jsonlint.js",
+    "jsonlint": "node ./scripts/jsonlint.js",
     "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx",
     "lint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx",
     "stylelint": "stylelint 'docs/**/*.js' 'docs/**/*.ts' 'docs/**/*.tsx'",
     "prettier": "node ./scripts/prettier.js",
     "prettier:all": "node ./scripts/prettier.js write",
-    "size:snapshot": "node scripts/sizeSnapshot/create",
+    "size:snapshot": "node --max-old-space-size=2048 ./scripts/sizeSnapshot/create",
     "size:why": "node scripts/sizeSnapshot/why",
     "start": "yarn && yarn docs:dev",
     "t": "node test/cli.js",
@@ -68,7 +68,6 @@
     "@types/enzyme": "^3.10.3",
     "@types/format-util": "^1.0.1",
     "@types/fs-extra": "^9.0.0",
-    "@types/glob": "^7.1.1",
     "@types/jsdom": "^16.1.0",
     "@types/lodash": "^4.14.138",
     "@types/mocha": "^8.0.0",
@@ -114,8 +113,7 @@
     "fast-glob": "^3.2.4",
     "format-util": "^1.0.5",
     "fs-extra": "^9.0.0",
-    "glob": "^7.1.2",
-    "glob-gitignore": "^1.0.11",
+    "globby": "^11.0.1",
     "jsdom": "^16.0.0",
     "karma": "^5.0.1",
     "karma-browserstack-launcher": "~1.4.0",
@@ -155,7 +153,7 @@
     "url-loader": "^4.1.0",
     "vrtest-mui": "^0.3.4",
     "webpack": "^4.41.0",
-    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^4.0.0",
     "yargs": "^16.0.3",
     "yarn-deduplicate": "^3.0.0"
@@ -183,6 +181,7 @@
   "nyc": {
     "include": [
       "packages/material-ui/src/**/*.js",
+      "packages/material-ui/lab/**/*.{ts,tsx}",
       "packages/material-ui-utils/src/**/*.js",
       "packages/material-ui-styles/src/**/*.js"
     ],

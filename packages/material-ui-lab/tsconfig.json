@@ -1,4 +1,9 @@
 {
   "extends": "../../tsconfig",
-  "include": ["src/**/*", "test/**/*"]
+  "compilerOptions": {
+    // @date-io libraries produce duplicate type `DateType`
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["./**/*.spec.*"]
 }

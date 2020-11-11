@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { deepmerge } from '@material-ui/utils';
 import merge from './merge';
 
 // The breakpoint **start** at this value.
@@ -83,6 +84,38 @@ function breakpoints(styleFunction) {
   newStyleFunction.filterProps = ['xs', 'sm', 'md', 'lg', 'xl', ...styleFunction.filterProps];
 
   return newStyleFunction;
+}
+
+function createEmptyBreakpointObject(breakpointsInput) {
+  const breakpointsInOrder = breakpointsInput.keys.reduce((acc, key) => {
+    const breakpointStyleKey = breakpointsInput.up(key);
+    acc[breakpointStyleKey] = {};
+    return acc;
+  }, {});
+  return breakpointsInOrder;
+}
+
+function removeUnusedBreakpoints(breakpointKeys, style) {
+  return breakpointKeys.reduce(
+    (acc, key) => {
+      const breakpointOutput = acc[key];
+      const isBreakpointUnused = Object.keys(breakpointOutput).length === 0;
+      if (isBreakpointUnused) {
+        delete acc[key];
+      }
+      return acc;
+    },
+    { ...style },
+  );
+}
+
+export function mergeBreakpointsInOrder(breakpointsInput, ...styles) {
+  const emptyBreakpoints = createEmptyBreakpointObject(breakpointsInput);
+  const mergedOutput = [emptyBreakpoints, ...styles].reduce(
+    (prev, next) => deepmerge(prev, next),
+    {},
+  );
+  return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
 }
 
 export default breakpoints;

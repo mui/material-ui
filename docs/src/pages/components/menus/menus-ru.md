@@ -24,13 +24,13 @@ A basic menu opens over the anchor element by default (this option can be [chang
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 
-## Выбранные меню
+## Selected menu
 
 If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element, and the initial focus will be placed on the selected menu item. The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus or the vertical positioning of the menu, set the `variant` property to `menu`.
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## Menu positioning
+## Positioned menu
 
 Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it. For instance, you can display the menu below the anchor:
 
@@ -44,7 +44,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Customized menus
+## Customized menu
 
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
@@ -54,7 +54,7 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu).
 
-## Меню с максимальной высотой
+## Max height menu
 
 Если высота меню препятствует отображению всех пунктов меню, меню можно прокручивать внутри.
 

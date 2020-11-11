@@ -115,7 +115,7 @@ Você pode encontrar os detalhes no [guia TypeScript](/guides/typescript/#usage-
 
 ## Bibliotecas de roteamento
 
-A integração com bibliotecas de roteamento de terceiros é resolvida com a propriedade `component`. O comportamento é idêntico à descrição da propriedade acima. Aqui estão algumas demonstrações com [react-router-dom](https://github.com/ReactTraining/react-router). Ele cobre os componentes Button, Link e List, você deve ser capaz de aplicar a mesma estratégia com todos os componentes.
+A integração com bibliotecas de roteamento de terceiros é resolvida com a propriedade `component`. O comportamento é idêntico à descrição da propriedade acima. Aqui estão algumas demonstrações com [react-router-dom](https://github.com/ReactTraining/react-router). They cover the Button, Link, and List components. You can apply the same strategy with all the components (BottomNavigation, Card, etc.).
 
 ### Button
 

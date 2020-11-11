@@ -72,6 +72,10 @@ declare global {
        */
       toBeInaccessible(): void;
       /**
+       * Matcher with useful error messages if the dates don't match.
+       */
+      toEqualDateTime(expected: Date): void;
+      /**
        * Checks if the accessible name computation (according to `accname` spec)
        * matches the expectation.
        *
@@ -329,6 +333,9 @@ chai.use((chaiAPI, utils) => {
     const jsdomHint =
       'Styles in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
       'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`';
+    const shorthandHint =
+      'Browsers can compute shorthand properties differently. Prefer longhand properties e.g. `borderTopColor`, `borderRightColor` etc. instead of `border` or `border-color`.';
+    const messageHint = `${jsdomHint}\n${shorthandHint}`;
 
     if (isKarma) {
       // `#{exp}` and `#{act}` placeholders escape the newlines
@@ -338,8 +345,8 @@ chai.use((chaiAPI, utils) => {
       this.assert(
         // TODO Fix upstream docs/types
         (utils as any).eql(actualStyle, expectedStyle),
-        `expected ${styleTypeHint} style of #{this} did not match\nExpected:\n${expected}\nActual:\n${actual}\n\n\n${jsdomHint}`,
-        `expected #{this} to not have ${styleTypeHint} style\n${expected}\n\n\n${jsdomHint}`,
+        `expected ${styleTypeHint} style of #{this} did not match\nExpected:\n${expected}\nActual:\n${actual}\n\n\n${messageHint}`,
+        `expected #{this} to not have ${styleTypeHint} style\n${expected}\n\n\n${messageHint}`,
         expectedStyle,
         actualStyle,
       );
@@ -347,8 +354,8 @@ chai.use((chaiAPI, utils) => {
       this.assert(
         // TODO Fix upstream docs/types
         (utils as any).eql(actualStyle, expectedStyle),
-        `expected #{this} to have ${styleTypeHint} style #{exp} \n\n${jsdomHint}`,
-        `expected #{this} not to have ${styleTypeHint} style #{exp}${jsdomHint}`,
+        `expected #{this} to have ${styleTypeHint} style #{exp} \n\n${messageHint}`,
+        `expected #{this} not to have ${styleTypeHint} style #{exp}${messageHint}`,
         expectedStyle,
         actualStyle,
         true,
@@ -375,6 +382,15 @@ chai.use((chaiAPI, utils) => {
     assertMatchingStyles.call(this, computedStyle, expectedStyleUnnormalized, {
       styleTypeHint: 'computed',
     });
+  });
+
+  chai.Assertion.addMethod('toEqualDateTime', function toEqualDateTime(expectedDate, message) {
+    // eslint-disable-next-line no-underscore-dangle
+    const actualDate = this._obj;
+    const assertion = new chai.Assertion(actualDate.toISOString(), message);
+    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+    utils.transferFlags(this as any, assertion, false);
+    assertion.to.equal(expectedDate.toISOString());
   });
 });
 

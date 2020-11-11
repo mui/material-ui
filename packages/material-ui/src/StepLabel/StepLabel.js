@@ -79,6 +79,7 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
     classes,
     className,
     error = false,
+    icon: iconProp,
     optional,
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
@@ -86,7 +87,8 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
   } = props;
 
   const { alternativeLabel, orientation } = React.useContext(StepperContext);
-  const { active, disabled, completed, icon } = React.useContext(StepContext);
+  const { active, disabled, completed, icon: iconContext } = React.useContext(StepContext);
+  const icon = iconProp || iconContext;
 
   let StepIconComponent = StepIconComponentProp;
 

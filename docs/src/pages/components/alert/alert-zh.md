@@ -1,5 +1,5 @@
 ---
-title: React 警告提示组件
+title: React Alert （警告提示）组件
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'

@@ -50,6 +50,7 @@ export const styles = (theme) => {
       '&$disabled': {
         color: theme.palette.text.disabled,
         cursor: 'default',
+        WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
       },
     },
     /* Styles applied to the root element if the component is a descendant of `FormControl`. */
