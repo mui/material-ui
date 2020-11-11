@@ -287,13 +287,13 @@ describe('<Tooltip />', () => {
   it('should be controllable', () => {
     const eventLog = [];
 
-    const { getByRole } = render(
+    const { getByRole, setProps } = render(
       <Tooltip
         enterDelay={100}
         title="Hello World"
         onOpen={() => eventLog.push('open')}
         onClose={() => eventLog.push('close')}
-        open
+        open={false}
       >
         <button
           id="testChild"
@@ -314,6 +314,7 @@ describe('<Tooltip />', () => {
     });
 
     expect(eventLog).to.deep.equal(['mouseover', 'open']);
+    setProps({ open: true });
 
     fireEvent.mouseLeave(getByRole('button'));
     act(() => {

@@ -258,7 +258,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
     setOpenState(true);
 
-    if (onOpen) {
+    if (onOpen && !open) {
       onOpen(event);
     }
   };
@@ -274,7 +274,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       }, 800 + leaveDelay);
       setOpenState(false);
 
-      if (onClose) {
+      if (onClose && open) {
         onClose(event);
       }
 
