@@ -6,7 +6,22 @@ import DateFnsAdapter from '../../dateAdapter/date-fns';
 import LocalizationProvider from '../../LocalizationProvider';
 
 // TODO make possible to pass here any utils using cli
-export const AdapterClassToUse = DateFnsAdapter;
+export class AdapterClassToUse extends DateFnsAdapter {
+  /**
+   * @param isoDateWithoutTimezone The date in ISO 8601 format without the timezone.
+   * @example adapterToUse.localDate('2018-01-01T00:00:00.000')
+   */
+  localDate(isoDateWithoutTimezone: string): Date {
+    const timezoneOffset = this.date().getTimezoneOffset();
+    const absTimezoneOffset = Math.abs(timezoneOffset);
+    const localIsoTimezone = `${timezoneOffset < 0 ? '-' : '+'}${Math.floor(absTimezoneOffset / 60)
+      .toString()
+      .padStart(2, '0')}:${(absTimezoneOffset % 60).toString().padStart(2, '0')}`;
+
+    const isoDateWithTimezone = `${isoDateWithoutTimezone}${localIsoTimezone}`;
+    return this.date(isoDateWithTimezone);
+  }
+}
 export const adapterToUse = new AdapterClassToUse();
 
 export const FakeTransitionComponent = React.forwardRef<HTMLDivElement, TransitionProps>(

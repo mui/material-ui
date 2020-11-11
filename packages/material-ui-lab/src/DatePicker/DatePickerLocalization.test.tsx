@@ -36,7 +36,7 @@ describe('<DatePicker /> localization', () => {
       this.skip();
     }
 
-    const value = adapterToUse.date('2018-01-01T00:00:00.000');
+    const value = adapterToUse.localDate(`2018-01-01T00:00:00.000`);
     render(
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}
@@ -46,6 +46,8 @@ describe('<DatePicker /> localization', () => {
       />,
     );
 
+    // eslint-disable-next-line no-console
+    console.log(adapterToUse.localDate('2018-01-01T00:00:00.000'));
     // eslint-disable-next-line no-console
     console.log(adapterToUse.date('2018-01-01T00:00:00.000'));
     // eslint-disable-next-line no-console
