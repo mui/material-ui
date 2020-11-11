@@ -22,7 +22,7 @@ function styleFunctionSx(styleFunction) {
         ...merge(output, styleFunction({ theme: props.theme, ...props.css })),
         ...omit(props.css, [styleFunction.filterProps]),
       };
-    } else if(props.sx) {
+    } else if (props.sx) {
       return {
         ...merge(output, styleFunction({ theme: props.theme, ...props.sx })),
         ...omit(props.sx, [styleFunction.filterProps]),
@@ -46,13 +46,15 @@ function styleFunctionSx(styleFunction) {
 }
 
 /**
- * 
+ *
  * @deprecated
  * The css style function is deprecated. Use the `styleFunctionSx` instead.
  */
 export function css(styleFunction) {
-  if(process.env.NODE_ENV !== 'production') {
-    console.warn("Material-UI: The `css` function is deprecated. Use the `styleFunctionSx` instead.");
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(
+      'Material-UI: The `css` function is deprecated. Use the `styleFunctionSx` instead.',
+    );
   }
   return styleFunctionSx(styleFunction);
 }

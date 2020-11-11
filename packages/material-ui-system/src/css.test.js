@@ -42,5 +42,5 @@ describe('css', () => {
     expect(consoleWarnMock.messages()[0]).to.include(
       'Material-UI: The `css` function is deprecated. Use the `styleFunctionSx` instead.',
     );
-  })
+  });
 });

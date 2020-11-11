@@ -1,6 +1,6 @@
 import {
   compose,
-  css,
+  styleFunctionSx,
   palette,
   StyleFunction,
   spacing,
@@ -27,19 +27,19 @@ function composeTest() {
   styler({ color: 'test', spacing: 1 });
 }
 
-function cssTest() {
+function sxTest() {
   function styleFunction(props: { color?: string; spacing?: number; theme?: object }) {
     return {};
   }
 
-  const wideOrNarrowStyleFunction = css(styleFunction);
+  const wideOrNarrowStyleFunction = styleFunctionSx(styleFunction);
 
   // narrow
-  wideOrNarrowStyleFunction({ theme: {}, css: { color: 'blue', spacing: 2 } });
-  // wide, undesire: `css` is required, marking it as optional breaks system/basics/#css-property
-  wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2, css: {} });
+  wideOrNarrowStyleFunction({ theme: {}, sx: { color: 'blue', spacing: 2 } });
+  // wide, undesire: `sx` is required, marking it as optional breaks system/basics/#css-property
+  wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2, sx: {} });
   // wide and narrow
-  wideOrNarrowStyleFunction({ theme: {}, css: { color: 'blue', spacing: 2 }, color: 'red' });
+  wideOrNarrowStyleFunction({ theme: {}, sx: { color: 'blue', spacing: 2 }, color: 'red' });
 }
 
 /**
@@ -48,20 +48,20 @@ function cssTest() {
  * This is not equivalent to the implementation. Ideally `css` would be optional
  * but that breaks system/basics/#css-property
  */
-function cssRequiredTest() {
+function sxRequiredTest() {
   function styleRequiredFunction(props: { color: string }) {
     return {};
   }
 
-  const style = css(styleRequiredFunction);
+  const style = styleFunctionSx(styleRequiredFunction);
   style({
     color: 'red',
     // @ts-expect-error
     css: {},
   });
   // @ts-expect-error
-  style({ css: { color: 'red' } });
-  style({ color: 'blue', css: { color: 'red' } });
+  style({ sx: { color: 'red' } });
+  style({ color: 'blue', sx: { color: 'red' } });
 }
 
 /**
