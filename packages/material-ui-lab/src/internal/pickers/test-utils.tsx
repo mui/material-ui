@@ -14,7 +14,7 @@ export class AdapterClassToUse extends DateFnsAdapter {
   localDate(isoDateWithoutTimezone: string): Date {
     const timezoneOffset = this.date().getTimezoneOffset();
     const absTimezoneOffset = Math.abs(timezoneOffset);
-    const localIsoTimezone = `${timezoneOffset < 0 ? '-' : '+'}${Math.floor(absTimezoneOffset / 60)
+    const localIsoTimezone = `${timezoneOffset > 0 ? '-' : '+'}${Math.floor(absTimezoneOffset / 60)
       .toString()
       .padStart(2, '0')}:${(absTimezoneOffset % 60).toString().padStart(2, '0')}`;
 
