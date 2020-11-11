@@ -3,7 +3,7 @@
 <p class="description">CSS utilities for rapidly creating custom design.</p>
 
 Material-UI comes with dozens or **ready-to-use** components in the core.
-These components are an incredible starting point but when it comes to make your site stand out with a custom design, it can be simpler to start from an unstyled state. Introducing the system:
+These components are an incredible starting point but when it comes to making your site stand out with a custom design, it can be simpler to start from an unstyled state. Introducing the system:
 
 The **system** lets you quickly build custom UI components leveraging the values defined in your theme.
 
@@ -181,7 +181,7 @@ You can explore the [System properties](/system/properties/) page to discover ho
 
 There are lots of shorthands available for the CSS properties.
 These are documented in the next pages, for instance, [the spacing](/system/spacing/).
-Here are an example leveraging them:
+Here is an example leveraging them:
 
 ```jsx
 <Box
@@ -335,7 +335,7 @@ The `sx` prop can be used in four different locations:
 
 ### 1. Core components
 
-All core Material-UI components support the `sx` prop.
+All core Material-UI components will support the `sx` prop.
 
 ### 2. Box
 
@@ -351,10 +351,6 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const Div = styled('div')``;
 ```
-
-> **Note:**
->
-> You should use this prop whenever you need to add or override a component style. If you find you are repeatedly applying the same styles to a component, then `styled()` may be a better option, as it allows you to specify the styles only once, and reuse them in all component instances. See [Customizing components](/customization/components/) for all the alternatives.
 
 ### 4. Any element with the babel plugin
 
