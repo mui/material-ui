@@ -30,7 +30,7 @@ describe('<DatePicker /> localization', () => {
     expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('2018');
   });
 
-  it('datePicker localized format for year+month view', function test() {
+  it.only('datePicker localized format for year+month view', function test() {
     // TODO
     if (process.env.TEST_GATE !== 'experimental-timezones') {
       this.skip();
