@@ -1,6 +1,6 @@
 import styled from '@material-ui/styled-engine';
 import { propsToClassKey } from '@material-ui/styles';
-import { styleFunctionSx } from '../Box/styleFunction';
+import { unstable_styleFunctionSx as styleFunctionSx } from '@material-ui/system';
 import defaultTheme from './defaultTheme';
 
 function isEmpty(obj) {
@@ -108,7 +108,7 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
 
     expressionsWithDefaultTheme.push((props) => {
       const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-      return styleFunctionSx(props.sx, theme);
+      return styleFunctionSx({ ...props, theme });
     });
 
     return defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
