@@ -243,7 +243,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const id = useId(idProp);
 
   const stopTouchInteraction = useEventCallback(() => {
-    if (prevUserSelect.current) {
+    if (prevUserSelect.current !== undefined) {
       document.body.style.WebkitUserSelect = prevUserSelect.current;
       prevUserSelect.current = undefined;
     }
