@@ -324,6 +324,26 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
   });
 
+  it('should fail to open when open is true', () => {
+    const eventLog = [];
+    const { getByRole } = render(
+      <Tooltip enterDelay={100} title="Hello World" onOpen={() => eventLog.push('open')} open>
+        <button id="testChild" onMouseOver={() => eventLog.push('mouseover')} type="submit">
+          Hello World
+        </button>
+      </Tooltip>,
+    );
+
+    expect(eventLog).to.deep.equal([]);
+
+    fireEvent.mouseOver(getByRole('button'));
+    act(() => {
+      clock.tick(100);
+    });
+
+    expect(eventLog).not.to.deep.equal(['mouseover', 'open']);
+  });
+
   it('is dismissable by pressing Escape', () => {
     const transitionTimeout = 0;
     render(
