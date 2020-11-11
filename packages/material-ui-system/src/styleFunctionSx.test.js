@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { consoleWarnMock } from 'test/utils/consoleErrorMock';
-import css, { css as deprecatedCss } from './css';
+import styleFunctionSx, { css } from './styleFunctionSx';
 import style from './style';
 
 const textColor = style({
@@ -8,7 +8,7 @@ const textColor = style({
   themeKey: 'palette',
 });
 
-describe('css', () => {
+describe('styleFunctionSx', () => {
   beforeEach(() => {
     consoleWarnMock.spy();
   });
@@ -18,13 +18,13 @@ describe('css', () => {
   });
 
   it('should work', () => {
-    const palette = css(textColor);
+    const palette = styleFunctionSx(textColor);
 
     expect(palette.filterProps.length).to.equal(2);
     expect(
       palette({
         theme: {},
-        css: {
+        sx: {
           color: 'red',
           padding: 10,
         },
@@ -36,7 +36,7 @@ describe('css', () => {
   });
 
   it('should warn if deprecated css is used', () => {
-    deprecatedCss(textColor);
+    css(textColor);
 
     expect(consoleWarnMock.callCount()).to.equal(1);
     expect(consoleWarnMock.messages()[0]).to.include(

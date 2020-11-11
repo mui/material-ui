@@ -53,7 +53,8 @@ export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFu
 >;
 export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
 
-// css.js
+// styleFunctionSx.js
+
 /**
  * @deprecated
  * The css style function is deprecated. Use the styleFunctionSx instead.

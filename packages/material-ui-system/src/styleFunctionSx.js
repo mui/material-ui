@@ -22,7 +22,9 @@ function styleFunctionSx(styleFunction) {
         ...merge(output, styleFunction({ theme: props.theme, ...props.css })),
         ...omit(props.css, [styleFunction.filterProps]),
       };
-    } else if (props.sx) {
+    }
+
+    if (props.sx) {
       return {
         ...merge(output, styleFunction({ theme: props.theme, ...props.sx })),
         ...omit(props.sx, [styleFunction.filterProps]),
