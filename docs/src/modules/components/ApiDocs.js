@@ -56,7 +56,7 @@ const styles = (theme) => ({
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
   const t = useTranslate();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = 'en';
 
   return (
     <table>
@@ -120,7 +120,7 @@ PropsTable.propTypes = {
 function ClassesTable(props) {
   const { componentName, componentStyles, classDescriptions } = props;
   const t = useTranslate();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = 'en';
 
   return (
     <table>
@@ -191,7 +191,7 @@ Heading.propTypes = {
 function ApiDocs(props) {
   const { classes, disableAd = false, disableToc = false, pageContent } = props;
   const t = useTranslate();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = 'en';
   const {
     classDescriptions,
     componentDescription,
