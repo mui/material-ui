@@ -18,14 +18,6 @@ function round(value) {
   return Math.round(value * 1e5) / 1e5;
 }
 
-function setUserSelect(style, value) {
-  if (value) {
-    style.setProperty('-webkit-user-select', value);
-  } else {
-    style.removeProperty('-webkit-user-select');
-  }
-}
-
 function arrowGenerator() {
   return {
     '&[data-popper-placement*="bottom"] $arrow': {
@@ -252,7 +244,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const stopTouchInteraction = useEventCallback(() => {
     if (prevUserSelect.current) {
-      setUserSelect(document.body.style, prevUserSelect.current);
+      document.body.style.WebkitUserSelect = prevUserSelect.current;
       prevUserSelect.current = undefined;
     }
     clearTimeout(touchTimer.current);
@@ -390,12 +382,12 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     stopTouchInteraction();
     event.persist();
 
-    prevUserSelect.current = document.body.style.userSelect;
+    prevUserSelect.current = document.body.style.WebkitUserSelect;
     // Prevent iOS text selection on long-tap.
-    setUserSelect(document.body.style, 'none')
+    document.body.style.WebkitUserSelect = 'none';
 
     touchTimer.current = setTimeout(() => {
-      setUserSelect(document.body.style, prevUserSelect.current);
+      document.body.style.WebkitUserSelect = prevUserSelect.current;
       handleEnter(event);
     }, enterTouchDelay);
   };

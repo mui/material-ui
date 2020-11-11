@@ -349,8 +349,10 @@ describe('<Tooltip />', () => {
   });
 
   describe('touch screen', () => {
+    const isJSDOM = navigator.userAgent === 'node.js';
+
     afterEach(() => {
-      document.body.style.removeProperty('-webkit-user-select');
+      document.body.style.WebkitUserSelect = undefined;
     });
 
     it('should not respond to quick events', () => {
@@ -386,7 +388,7 @@ describe('<Tooltip />', () => {
         fireEvent.touchStart(getByRole('button'));
         expect(document.body.style.WebkitUserSelect).to.equal('none');
         clock.tick(enterTouchDelay + enterDelay);
-        expect(document.body.style.WebkitUserSelect).to.equal('');
+        expect(document.body.style.WebkitUserSelect).to.equal(isJSDOM ? undefined : '');
       });
 
       expect(getByRole('tooltip')).toBeVisible();
@@ -420,12 +422,12 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
 
-      document.body.style.userSelect = 'revert';
+      document.body.style.WebkitUserSelect = 'revert';
       act(() => {
         fireEvent.touchStart(getByRole('button'));
-        expect(document.body.style.userSelect).to.equal('none');
+        expect(document.body.style.WebkitUserSelect).to.equal('none');
         clock.tick(enterTouchDelay + enterDelay);
-        expect(document.body.style.userSelect).to.equal('revert');
+        expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
       });
     });
 
