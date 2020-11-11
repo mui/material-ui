@@ -349,6 +349,10 @@ describe('<Tooltip />', () => {
   });
 
   describe('touch screen', () => {
+    afterEach(() => {
+      document.body.style.WebkitUserSelect = undefined;
+    });
+
     it('should not respond to quick events', () => {
       const { getByRole, queryByRole } = render(
         <Tooltip title="Hello World">
@@ -375,14 +379,16 @@ describe('<Tooltip />', () => {
           title="Hello World"
           TransitionProps={{ timeout: transitionTimeout }}
         >
-          <button id="testChild" type="submit">
+          <button type="submit">
             Hello World
           </button>
         </Tooltip>,
       );
       act(() => {
         fireEvent.touchStart(getByRole('button'));
+        expect(document.body.style.WebkitUserSelect).to.equal('none');
         clock.tick(enterTouchDelay + enterDelay);
+        expect(document.body.style.WebkitUserSelect).to.equal(undefined);
       });
 
       expect(getByRole('tooltip')).toBeVisible();
@@ -397,6 +403,34 @@ describe('<Tooltip />', () => {
       });
 
       expect(queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('should restore the user-select state correctly', () => {
+      const enterTouchDelay = 700;
+      const enterDelay = 100;
+      const leaveTouchDelay = 1500;
+      const transitionTimeout = 10;
+      const { getByRole } = render(
+        <Tooltip
+          enterTouchDelay={enterTouchDelay}
+          enterDelay={enterDelay}
+          leaveTouchDelay={leaveTouchDelay}
+          title="Hello World"
+          TransitionProps={{ timeout: transitionTimeout }}
+        >
+          <button type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      document.body.style.WebkitUserSelect = 'revert';
+      act(() => {
+        fireEvent.touchStart(getByRole('button'));
+        expect(document.body.style.WebkitUserSelect).to.equal('none');
+        clock.tick(enterTouchDelay + enterDelay);
+        expect(document.body.style.WebkitUserSelect).to.equal('revert');
+      });
     });
 
     it('should not open if disableTouchListener', () => {

@@ -242,15 +242,22 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const id = useId(idProp);
 
+  const stopTouchInteraction = useEventCallback(() => {
+    if (prevUserSelect.current) {
+      document.body.style.WebkitUserSelect = prevUserSelect.current;
+      prevUserSelect.current = undefined;
+    }
+    clearTimeout(touchTimer.current);
+  });
+
   React.useEffect(() => {
     return () => {
       clearTimeout(closeTimer.current);
       clearTimeout(enterTimer.current);
       clearTimeout(leaveTimer.current);
-      document.body.style.WebkitUserSelect = prevUserSelect.current;
-      clearTimeout(touchTimer.current);
+      stopTouchInteraction();
     };
-  }, []);
+  }, [stopTouchInteraction]);
 
   const handleOpen = (event) => {
     clearTimeout(hystersisTimer);
@@ -372,8 +379,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     detectTouchStart(event);
     clearTimeout(leaveTimer.current);
     clearTimeout(closeTimer.current);
-    document.body.style.WebkitUserSelect = prevUserSelect.current;
-    clearTimeout(touchTimer.current);
+    stopTouchInteraction();
     event.persist();
 
     prevUserSelect.current = document.body.style.WebkitUserSelect;
