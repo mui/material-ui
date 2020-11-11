@@ -1,17 +1,19 @@
 import * as React from 'react';
 import { createMount, describeConformance } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
 import ClockPicker from '@material-ui/lab/ClockPicker';
+import { adapterToUse, AdapterClassToUse } from '../internal/pickers/test-utils';
 
 describe('<ClockPickerStandalone />', () => {
   const mount = createMount();
 
   const localizedMount = (node: React.ReactNode) => {
-    return mount(<LocalizationProvider dateAdapter={DateFnsAdapter}>{node}</LocalizationProvider>);
+    return mount(
+      <LocalizationProvider dateAdapter={AdapterClassToUse}>{node}</LocalizationProvider>,
+    );
   };
 
-  describeConformance(<ClockPicker date={new Date()} onChange={() => {}} />, () => ({
+  describeConformance(<ClockPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
     classes: {},
     inheritComponent: 'div',
     mount: localizedMount,

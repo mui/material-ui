@@ -12,9 +12,10 @@ import { adapterToUse, getByMuiTest, createPickerRender } from '../internal/pick
 describe('<DatePicker /> localization', () => {
   const render = createPickerRender({ strict: false, locale: fr });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('datePicker localized format for year view', () => {
+  it('datePicker localized format for year view', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}
@@ -30,13 +31,12 @@ describe('<DatePicker /> localization', () => {
     expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('2018');
   });
 
-  it.only('datePicker localized format for year+month view', function test() {
-    // TODO
+  it('datePicker localized format for year+month view', function test() {
     if (process.env.TEST_GATE !== 'experimental-timezones') {
       this.skip();
     }
 
-    const value = adapterToUse.localDate(`2018-01-01T00:00:00.000`);
+    const value = adapterToUse.date(`2018-01-01T00:00:00.000`);
     render(
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}
@@ -46,21 +46,16 @@ describe('<DatePicker /> localization', () => {
       />,
     );
 
-    console.log(adapterToUse.localDate('2018-01-01T00:00:00.000'));
-    console.log(adapterToUse.localDate('2018-01-01T00:00:00.000').getFullYear());
-    console.log(adapterToUse.date('2018-01-01T00:00:00.000'));
-    console.log(adapterToUse.date('2018-01-01T00:00:00.000').getFullYear());
-    console.log(adapterToUse.date('2018-01-01T00:00:00.000Z'));
-    console.log(adapterToUse.date('2018-01-01T00:00:00.000Z').getFullYear());
     expect(screen.getByRole('textbox')).to.have.value('janvier 2018');
 
     fireEvent.click(screen.getByLabelText(/Choose date/));
     expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('janvier');
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('datePicker localized format for year+month+date view', () => {
+  it('datePicker localized format for year+month+date view', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <MobileDatePicker
         onChange={() => {}}
@@ -84,7 +79,7 @@ describe('<DatePicker /> localization', () => {
 
     const Form = (props: FormProps) => {
       const { Picker, PickerProps } = props;
-      const [value, setValue] = React.useState<unknown>(new Date('01/01/2020'));
+      const [value, setValue] = React.useState<unknown>(adapterToUse.date('01/01/2020'));
 
       return (
         <Picker

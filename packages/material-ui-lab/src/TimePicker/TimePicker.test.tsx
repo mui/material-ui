@@ -190,8 +190,8 @@ describe('<TimePicker />', () => {
           onChange={() => {}}
           views={['hours', 'minutes', 'seconds']}
           value={adapterToUse.date('2018-01-01T00:00:00.000')}
-          minTime={new Date(0, 0, 0, 12, 15, 15)}
-          maxTime={new Date(0, 0, 0, 15, 45, 30)}
+          minTime={adapterToUse.date('2018-01-01T12:15:00.000')}
+          maxTime={adapterToUse.date('2018-01-01T15:45:30.000')}
         />,
       );
     });
@@ -243,13 +243,20 @@ describe('<TimePicker />', () => {
   });
 
   context('input validation', () => {
-    const createTime = (time: string) => new Date(`01/01/2000 ${time}`);
     const shouldDisableTime: TimePickerProps['shouldDisableTime'] = (value) => value === 10;
 
     [
       { expectedError: 'invalidDate', props: {}, input: 'invalidText' },
-      { expectedError: 'minTime', props: { minTime: createTime('08:00') }, input: '03:00' },
-      { expectedError: 'maxTime', props: { maxTime: createTime('08:00') }, input: '12:00' },
+      {
+        expectedError: 'minTime',
+        props: { minTime: adapterToUse.date(`2000-01-01T08:00:00.000`) },
+        input: '03:00',
+      },
+      {
+        expectedError: 'maxTime',
+        props: { maxTime: adapterToUse.date(`2000-01-01T08:00:00.000`) },
+        input: '12:00',
+      },
       { expectedError: 'shouldDisableTime-hours', props: { shouldDisableTime }, input: '10:00' },
       { expectedError: 'shouldDisableTime-minutes', props: { shouldDisableTime }, input: '00:10' },
     ].forEach(({ props, input, expectedError }) => {

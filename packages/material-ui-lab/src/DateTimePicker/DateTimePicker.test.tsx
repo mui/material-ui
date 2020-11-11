@@ -15,7 +15,7 @@ describe('<DateTimePicker />', () => {
   let clock: SinonFakeTimers;
 
   beforeEach(() => {
-    clock = useFakeTimers(new Date('2018-01-01T00:00:00.000').getTime());
+    clock = useFakeTimers(adapterToUse.date('2018-01-01T00:00:00.000').getTime());
   });
 
   afterEach(() => {
@@ -110,7 +110,7 @@ describe('<DateTimePicker />', () => {
     expect(getByMuiTest('minutes')).to.have.text('53');
 
     fireEvent.click(screen.getByText(/ok/i));
-    expect(onChangeMock.calledWith(new Date('2010-01-15T11:53:00.000'))).to.be.equal(true);
+    expect(onChangeMock.calledWith(adapterToUse.date('2010-01-15T11:53:00.000'))).to.be.equal(true);
   });
 
   it('prop: open – overrides open state', () => {
@@ -119,7 +119,7 @@ describe('<DateTimePicker />', () => {
         renderInput={(params) => <TextField {...params} />}
         open
         onChange={() => {}}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
       />,
     );
 
@@ -134,7 +134,7 @@ describe('<DateTimePicker />', () => {
         open
         onClose={onCloseMock}
         onChange={() => {}}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
       />,
     );
 
@@ -150,7 +150,7 @@ describe('<DateTimePicker />', () => {
         onChange={() => {}}
         dateAdapter={new DayJsAdapter({ locale: 'ru' })}
         disableMaskedInput
-        value={dayjs('2018-01-15T00:00:00.000Z')}
+        value={dayjs('2018-01-15T00:00:00.000')}
       />,
     );
 
@@ -179,17 +179,18 @@ describe('<DateTimePicker />', () => {
     expect(textbox.value).to.equal('12.');
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('prop: maxDateTime – minutes is disabled by date part', () => {
+  it('prop: maxDateTime – minutes is disabled by date part', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <DesktopDateTimePicker
         open
         openTo="minutes"
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}
-        value={adapterToUse.date('2018-01-01T12:00:00.000Z')}
-        minDateTime={adapterToUse.date('2018-01-01T12:30:00.000Z')}
+        value={adapterToUse.date('2018-01-01T12:00:00.000')}
+        minDateTime={adapterToUse.date('2018-01-01T12:30:00.000')}
       />,
     );
 
@@ -205,8 +206,8 @@ describe('<DateTimePicker />', () => {
         onChange={() => {}}
         ampm={false}
         renderInput={(params) => <TextField {...params} />}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
-        minDateTime={adapterToUse.date('2018-01-01T12:30:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
+        minDateTime={adapterToUse.date('2018-01-01T12:30:00.000')}
       />,
     );
 
@@ -220,7 +221,7 @@ describe('<DateTimePicker />', () => {
         openTo="hours"
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
       />,
     );
 
@@ -234,7 +235,7 @@ describe('<DateTimePicker />', () => {
         openTo="hours"
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
       />,
     );
 
@@ -242,15 +243,16 @@ describe('<DateTimePicker />', () => {
     expect(screen.getByLabelText('open next view')).to.have.attribute('disabled');
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('allows to select the same day and move to the next view', () => {
+  it('allows to select the same day and move to the next view', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     const onChangeMock = spy();
     render(
       <StaticDateTimePicker
         onChange={onChangeMock}
         renderInput={(params) => <TextField {...params} />}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
       />,
     );
 

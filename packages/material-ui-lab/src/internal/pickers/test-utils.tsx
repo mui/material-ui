@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { parseISO } from 'date-fns';
 import { createClientRender, fireEvent, screen } from 'test/utils';
 import { queryHelpers, Matcher, MatcherOptions } from '@testing-library/react/pure';
 import { TransitionProps } from '@material-ui/core/transitions';
@@ -6,27 +7,16 @@ import DateFnsAdapter from '../../dateAdapter/date-fns';
 import LocalizationProvider from '../../LocalizationProvider';
 
 // TODO make possible to pass here any utils using cli
+/**
+ * Wrapper around `@date-io/date-fns` that resolves https://github.com/dmtrKovalenko/date-io/issues/479.
+ * We're not using `adapter.date` in the implementation which means the implementation is safe.
+ * But we do use it in tests where usage of ISO dates without timezone is problematic
+ */
 export class AdapterClassToUse extends DateFnsAdapter {
-  /**
-   * @param isoDateWithoutTimezone The date in ISO 8601 format without the timezone.
-   * @example adapterToUse.localDate('2018-01-01T00:00:00.000')
-   */
-  localDate(isoDateWithoutTimezone: string): Date {
-    const timezoneOffset = this.date().getTimezoneOffset();
-    const absTimezoneOffset = Math.abs(timezoneOffset);
-    const localIsoTimezone = `${timezoneOffset > 0 ? '-' : '+'}${Math.floor(absTimezoneOffset / 60)
-      .toString()
-      .padStart(2, '0')}:${(absTimezoneOffset % 60).toString().padStart(2, '0')}`;
-
-    const isoDateWithTimezone = `${isoDateWithoutTimezone}${localIsoTimezone}`;
-    return this.date(isoDateWithTimezone);
-  }
-
-  /**
-   * WARNING: Only use with an explicit timezone. For local dates prefer `localDate`.
-   * @param value
-   */
   date(value?: any): Date {
+    if (typeof value === 'string') {
+      return parseISO(value);
+    }
     return super.date(value);
   }
 }
