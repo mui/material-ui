@@ -82,6 +82,16 @@ export default function styled(Component) {
       const classes = useStyles(props);
       const className = clsx(classes.root, classNameProp);
 
+      if(props.css) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn(
+            [
+              `Material-UI: The css prop on the ${name || Component.displayName} component is deprecated, please use the sx prop instead.`
+            ].join('\n'),
+          );
+        }
+      }
+
       let spread = other;
       if (filterProps) {
         spread = omit(spread, filterProps);
