@@ -12,7 +12,8 @@ const yargs = require('yargs');
 const { LANGUAGES } = require('docs/src/modules/constants');
 const listChangedFiles = require('./listChangedFiles');
 
-const workspaceRoot = path.resolve(__dirname, '../');
+// FIXME: Incorrect assumption
+const workspaceRoot = process.cwd();
 
 function isTranslatedDocument(filename) {
   // markdown files from crowdin end with a 2 letter locale
@@ -70,7 +71,7 @@ function runPrettier(options) {
     return;
   }
 
-  const prettierConfigPath = path.join(process.cwd(), 'prettier.config.js');
+  const prettierConfigPath = path.join(workspaceRoot, 'prettier.config.js');
 
   files.forEach((file) => {
     const prettierOptions = prettier.resolveConfig.sync(file, {
