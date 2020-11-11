@@ -165,10 +165,9 @@ describe('<DateRangePicker />', () => {
     expect(screen.getByRole('tooltip')).not.toBeVisible();
   });
 
-  it('allows pure keyboard selection of range', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  // TODO
+  // eslint-disable-next-line mocha/no-skipped-tests
+  it.skip('allows pure keyboard selection of range', () => {
     const onChangeMock = spy();
     render(
       <DesktopDateRangePicker
