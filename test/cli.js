@@ -8,10 +8,19 @@ async function run(argv) {
   const workspaceRoot = path.resolve(__dirname, '../');
 
   const gitignore = fs.readFileSync(path.join(workspaceRoot, '.gitignore'), { encoding: 'utf-8' });
-  const eol = gitignore.match(/\r?\n/)[0];
-  const ignore = gitignore.split(eol).filter((pattern) => {
-    return pattern.length > 0 && !pattern.startsWith('#');
-  });
+  const ignore = gitignore
+    .split(/\r?\n/)
+    .filter((pattern) => {
+      return pattern.length > 0 && !pattern.startsWith('#');
+    })
+    .map((line) => {
+      if (line.startsWith('/')) {
+        // "/" marks the cwd of the ignore file.
+        // Since we declare the dirname of the gitignore the cwd we can prepend "." as a shortcut.
+        return `.${line}`;
+      }
+      return line;
+    });
   const globPattern = `**/*${argv.testFilePattern}*.test.{js,ts,tsx}`;
   const spec = glob.sync(globPattern, {
     cwd: workspaceRoot,
