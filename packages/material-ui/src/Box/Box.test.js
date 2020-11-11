@@ -60,7 +60,7 @@ describe('<Box />', () => {
   it('warns if the css prop is used ', () => {
     render(<Box css={{ m: 1, p: 1 }} />);
 
-    expect(consoleWarnMock.callCount()).to.equal(2); // strict mode renders twice
+    expect(consoleWarnMock.callCount()).to.equal(1);
     expect(consoleWarnMock.messages()[0]).to.include(
       'Material-UI: The css prop on the MuiBox component is deprecated, please use the sx prop instead.',
     );
