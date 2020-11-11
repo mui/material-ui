@@ -350,7 +350,7 @@ describe('<Tooltip />', () => {
 
   describe('touch screen', () => {
     afterEach(() => {
-      document.body.style.WebkitUserSelect = undefined;
+      document.body.style.removeProperty('-webkit-user-select');
     });
 
     it('should not respond to quick events', () => {
@@ -379,16 +379,14 @@ describe('<Tooltip />', () => {
           title="Hello World"
           TransitionProps={{ timeout: transitionTimeout }}
         >
-          <button type="submit">
-            Hello World
-          </button>
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
       act(() => {
         fireEvent.touchStart(getByRole('button'));
         expect(document.body.style.WebkitUserSelect).to.equal('none');
         clock.tick(enterTouchDelay + enterDelay);
-        expect(document.body.style.WebkitUserSelect).to.equal(undefined);
+        expect(document.body.style.WebkitUserSelect).to.equal('');
       });
 
       expect(getByRole('tooltip')).toBeVisible();
@@ -418,18 +416,16 @@ describe('<Tooltip />', () => {
           title="Hello World"
           TransitionProps={{ timeout: transitionTimeout }}
         >
-          <button type="submit">
-            Hello World
-          </button>
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
 
-      document.body.style.WebkitUserSelect = 'revert';
+      document.body.style.userSelect = 'revert';
       act(() => {
         fireEvent.touchStart(getByRole('button'));
-        expect(document.body.style.WebkitUserSelect).to.equal('none');
+        expect(document.body.style.userSelect).to.equal('none');
         clock.tick(enterTouchDelay + enterDelay);
-        expect(document.body.style.WebkitUserSelect).to.equal('revert');
+        expect(document.body.style.userSelect).to.equal('revert');
       });
     });
 
