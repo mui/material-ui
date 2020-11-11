@@ -301,5 +301,7 @@ workflows:
               only:
                 - next
     jobs:
+      - test_unit:
+          test-gate: experimental-timezones
       - test_browser:
           test-gate: experimental-timezones
