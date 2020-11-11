@@ -243,6 +243,7 @@ workflows:
     jobs:
       - checkout
       - test_unit:
+          test-gate: experimental-timezones
           requires:
             - checkout
       - test_static:
@@ -252,6 +253,7 @@ workflows:
           requires:
             - checkout
       - test_browser:
+          test-gate: experimental-timezones
           requires:
             - checkout
       - test_regressions:
