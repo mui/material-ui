@@ -59,11 +59,11 @@ const StyledSlider = styled(SliderUnstyled)`
 
     :hover,
     &.Mui-focusVisible {
-      box-shadow: 0px 0px 0px 8px ${alpha('#000', 0.16)};
+      box-shadow: 0 0 0 8px ${alpha('#000', 0.16)};
     }
 
     &.mui-active: {
-      boxshadow: 0px 0px 0px 14px ${alpha('#000', 0.16)};
+      boxshadow: 0 0 0 14px ${alpha('#000', 0.16)};
     }
   }
 `;
