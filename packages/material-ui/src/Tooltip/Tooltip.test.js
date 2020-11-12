@@ -287,13 +287,13 @@ describe('<Tooltip />', () => {
   it('should be controllable', () => {
     const eventLog = [];
 
-    const { getByRole } = render(
+    const { getByRole, setProps } = render(
       <Tooltip
         enterDelay={100}
         title="Hello World"
         onOpen={() => eventLog.push('open')}
         onClose={() => eventLog.push('close')}
-        open
+        open={false}
       >
         <button
           id="testChild"
@@ -314,6 +314,7 @@ describe('<Tooltip />', () => {
     });
 
     expect(eventLog).to.deep.equal(['mouseover', 'open']);
+    setProps({ open: true });
 
     fireEvent.mouseLeave(getByRole('button'));
     act(() => {
@@ -321,6 +322,40 @@ describe('<Tooltip />', () => {
     });
 
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
+  });
+
+  it('should not call onOpen again if already open', () => {
+    const eventLog = [];
+    const { getByTestId } = render(
+      <Tooltip enterDelay={100} title="Hello World" onOpen={() => eventLog.push('open')} open>
+        <button data-testid="trigger" onMouseOver={() => eventLog.push('mouseover')} />
+      </Tooltip>,
+    );
+
+    expect(eventLog).to.deep.equal([]);
+
+    fireEvent.mouseOver(getByTestId('trigger'));
+    act(() => {
+      clock.tick(100);
+    });
+
+    expect(eventLog).to.deep.equal(['mouseover']);
+  });
+
+  it('should not call onClose if already closed', () => {
+    const eventLog = [];
+    const { getByTestId } = render(
+      <Tooltip title="Hello World" onClose={() => eventLog.push('close')} open={false}>
+        <button data-testid="trigger" onMouseLeave={() => eventLog.push('mouseleave')} />
+      </Tooltip>,
+    );
+
+    fireEvent.mouseLeave(getByTestId('trigger'));
+    act(() => {
+      clock.tick(0);
+    });
+
+    expect(eventLog).to.deep.equal(['mouseleave']);
   });
 
   it('is dismissable by pressing Escape', () => {
