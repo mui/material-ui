@@ -14,7 +14,7 @@ The `Modal` offers important features:
 - 🔐 Creates a backdrop, for disabling interaction below the modal.
 - 🔐 It disables scrolling of the page content while open.
 - ♿️ It properly manages focus; moving to the modal content,
-  and keeping it there until the modal is closed.
+      and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
 - 📦 [5 kB gzipped](/size-snapshot).
 
