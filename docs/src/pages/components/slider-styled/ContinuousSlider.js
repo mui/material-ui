@@ -7,7 +7,7 @@ import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({ palette: { primary: { main: '#FF0000' }}});
+const theme = createMuiTheme({ palette: { primary: { main: '#FF0000' } } });
 
 export default function ContinuousSlider() {
   const [value, setValue] = React.useState(30);
