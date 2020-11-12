@@ -1065,7 +1065,7 @@ describe('<Tooltip />', () => {
       document.body.style.WebkitUserSelect = prevWebkitUserSelect;
     });
 
-    it('should restore it after longpress', () => {
+    it('prevents text-selection during touch-longpress', () => {
       const enterTouchDelay = 700;
       const enterDelay = 100;
       const leaveTouchDelay = 1500;
