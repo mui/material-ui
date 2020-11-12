@@ -1073,14 +1073,16 @@ describe('<Tooltip />', () => {
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
-
       document.body.style.WebkitUserSelect = 'revert';
+
+      fireEvent.touchStart(getByRole('button'));
+
+      expect(document.body.style.WebkitUserSelect).to.equal('none');
+
       act(() => {
-        fireEvent.touchStart(getByRole('button'));
-        expect(document.body.style.WebkitUserSelect).to.equal('none');
         clock.tick(enterTouchDelay + enterDelay);
-        expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
       });
+      expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
     });
 
     it('restores user-select when unmounted during longpress', () => {
