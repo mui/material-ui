@@ -1,6 +1,5 @@
 import React from 'react';
 import { expect } from 'chai';
-import eStyled, { ThemeContext } from '@material-ui/styled-engine';
 import { createClientRender, screen } from 'test/utils';
 import createMuiTheme from './createMuiTheme';
 import styled from './experimentalStyled';
