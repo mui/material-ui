@@ -195,10 +195,14 @@ export const SliderThumb = experimentalStyled(
     ':hover': {
       boxShadow: 'none',
     },
-    ...(props.styleProps.orientation === 'vertical' && {
-      marginLeft: -3,
-      marginBottom: -4,
-    }),
+  },
+  '&.MuiSlider-vertical': {
+    marginLeft: -5,
+    marginBottom: -6,
+  },
+  '&.MuiSlider-vertical .Mui-disabled': {
+    marginLeft: -3,
+    marginBottom: -4,
   },
   ...(props.styleProps.color === 'secondary' && {
     ':hover, &.Mui-focusVisible': {

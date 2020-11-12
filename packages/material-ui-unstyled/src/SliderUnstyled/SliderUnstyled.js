@@ -614,6 +614,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // consider extracting to hook an reusing the lint rule for the varints
   const stateAndProps = {
     ...props,
+    classes: {},
     color,
     disabled,
     max,
