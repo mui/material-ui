@@ -208,7 +208,7 @@ export default function useAutocomplete(props) {
   const listboxAvailable = open && filteredOptions.length > 0;
 
   if (process.env.NODE_ENV !== 'production') {
-    if (value !== null && !freeSolo && options.length > 0) {
+    if (value !== null && !freeSolo && options?.length > 0) {
       const missingValue = (multiple ? value : [value]).filter(
         (value2) => !options.some((option) => getOptionSelected(option, value2)),
       );
