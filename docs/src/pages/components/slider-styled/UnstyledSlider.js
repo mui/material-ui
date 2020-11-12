@@ -62,8 +62,8 @@ const StyledSlider = styled(SliderUnstyled)`
       box-shadow: 0 0 0 8px ${alpha('#000', 0.16)};
     }
 
-    &.mui-active: {
-      boxshadow: 0 0 0 14px ${alpha('#000', 0.16)};
+    &.Mui-active {
+      box-shadow: 0 0 0 14px ${alpha('#000', 0.16)};
     }
   }
 `;
