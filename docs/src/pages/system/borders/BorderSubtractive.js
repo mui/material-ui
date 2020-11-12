@@ -12,7 +12,7 @@ const commonStyles = {
 
 export default function BorderSubtractive() {
   return (
-    <Box display="flex" justifyContent="center">
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <Box sx={{ ...commonStyles, border: 0 }} />
       <Box sx={{ ...commonStyles, borderTop: 0 }} />
       <Box sx={{ ...commonStyles, borderRight: 0 }} />

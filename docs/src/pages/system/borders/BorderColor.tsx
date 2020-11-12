@@ -11,7 +11,7 @@ const commonStyles = {
 
 export default function BorderColor() {
   return (
-    <Box display="flex" justifyContent="center">
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <Box sx={{ ...commonStyles, borderColor: 'primary.main' }} />
       <Box sx={{ ...commonStyles, borderColor: 'secondary.main' }} />
       <Box sx={{ ...commonStyles, borderColor: 'error.main' }} />

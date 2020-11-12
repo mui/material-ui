@@ -83,9 +83,9 @@ describe('<Box />', () => {
       );
 
       const { current: element } = elementRef;
-      expect(element.getAttribute('color')).to.equal(null);
-      expect(element.getAttribute('font-family')).to.equal(null);
-      expect(element.getAttribute('font-size')).to.equal(null);
+      expect(element).not.to.have.attribute('color');
+      expect(element).not.to.have.attribute('font-family');
+      expect(element).not.to.have.attribute('font-size');
     });
   });
 
@@ -96,7 +96,9 @@ describe('<Box />', () => {
       this.skip();
     }
 
-    const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
+    const testCaseBorderColorWins = render(
+      <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
+    );
 
     expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
@@ -113,7 +115,14 @@ describe('<Box />', () => {
       borderLeftColor: 'rgb(0, 0, 255)',
     });
 
-    const testCaseBorderWins = render(<Box borderColor="rgb(0, 0, 255)" border={1} />);
+    const testCaseBorderWins = render(
+      <Box
+        sx={{
+          borderColor: 'rgb(0, 0, 255)',
+          border: 1,
+        }}
+      />,
+    );
 
     expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',

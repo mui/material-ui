@@ -26,7 +26,7 @@ function AppForm(
   return (
     <div className={classes.root}>
       <Container maxWidth="sm">
-        <Box mt={7} mb={12}>
+        <Box sx={{ mt: 7, mb: 12 }}>
           <Paper className={classes.paper} background="light">
             {children}
           </Paper>

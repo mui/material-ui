@@ -13,7 +13,7 @@ function Terms() {
     <React.Fragment>
       <AppAppBar />
       <Container>
-        <Box mt={7} mb={12}>
+        <Box sx={{ mt: 7, mb: 12 }}>
           <Typography variant="h3" gutterBottom marked="center" align="center">
             Terms
           </Typography>
