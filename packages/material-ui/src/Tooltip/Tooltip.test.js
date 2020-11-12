@@ -1090,5 +1090,32 @@ describe('<Tooltip />', () => {
         expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
       });
     });
+
+    it('restores user-select when unmounted during longpress', () => {
+      const enterTouchDelay = 700;
+      const enterDelay = 100;
+      const leaveTouchDelay = 1500;
+      const transitionTimeout = 10;
+      const { unmount, getByRole } = render(
+        <Tooltip
+          enterTouchDelay={enterTouchDelay}
+          enterDelay={enterDelay}
+          leaveTouchDelay={leaveTouchDelay}
+          title="Hello World"
+          TransitionProps={{ timeout: transitionTimeout }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      document.body.style.WebkitUserSelect = 'revert';
+      // Let updates flush before unmounting
+      act(() => {
+        fireEvent.touchStart(getByRole('button'));
+      });
+      unmount();
+
+      expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
+    });
   });
 });
