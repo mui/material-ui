@@ -45,7 +45,7 @@ function styleFunctionSx(styleFunction) {
             if (!warnedOnce && props.css !== undefined) {
               warnedOnce = true;
               return new Error(
-                `Material-UI: The css prop is deprecated, please use the sx prop instead.`,
+                `Material-UI: The `css` prop is deprecated, please use the `sx` prop instead.`,
               );
             }
             return null;
