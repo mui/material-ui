@@ -1,5 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
+import eStyled, { ThemeContext } from '@material-ui/styled-engine';
 import { createClientRender, screen } from 'test/utils';
 import createMuiTheme from './createMuiTheme';
 import styled from './experimentalStyled';
@@ -53,6 +54,26 @@ describe('experimentalStyled', () => {
 
     expect(container.firstChild).toHaveComputedStyle({
       width: '8px',
+    });
+  });
+
+  it('REMOVE THIS: emotion theme should work', () => {
+    const Div = eStyled('div')`
+      width: ${(props) => { console.log(props); return props.theme.spacing; }};
+    `;
+
+    const theme = createMuiTheme({
+      spacing: 10,
+    });
+
+    const { container } = render(
+      <ThemeContext.Provider value={{ spacing: '10px' }}>
+        <Div>Test</Div>
+      </ThemeContext.Provider>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({
+      width: '10px',
     });
   });
 
