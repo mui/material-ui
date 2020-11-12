@@ -59,7 +59,7 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 const cache = createCache({
-  key: "css",
+  key: 'css',
   prepend: true,
 });
 
@@ -195,7 +195,7 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 const cache = createCache({
-  key: "css",
+  key: 'css',
   prepend: true,
 });
 
@@ -432,7 +432,7 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 const cache = createCache({
-  key: "css",
+  key: 'css',
   prepend: true,
 });
 
