@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@emotion/cache": "latest",
-    "@emotion/core": "latest",
+    "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@material-ui/core": "next",
     "clsx": "latest",

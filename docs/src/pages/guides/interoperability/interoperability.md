@@ -55,7 +55,7 @@ export default function PlainCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 const head = document.getElementsByTagName('head')[0];
@@ -197,7 +197,7 @@ export default function GlobalCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 const head = document.getElementsByTagName('head')[0];
@@ -440,7 +440,7 @@ export default function CssModulesSlider() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 const head = document.getElementsByTagName('head')[0];

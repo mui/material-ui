@@ -128,7 +128,7 @@ function getDependencies(raw, options = {}) {
   const versions = {
     react: reactVersion,
     'react-dom': reactVersion,
-    '@emotion/core': 'latest',
+    '@emotion/react': 'latest',
     '@emotion/styled': 'latest',
     '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
     '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),

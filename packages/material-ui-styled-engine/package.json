@@ -41,8 +41,8 @@
     "@babel/runtime": "^7.4.4"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.0.0-rc.0",
-    "@emotion/styled": "^11.0.0-rc.0"
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0"
   },
   "peerDependenciesMeta": {
     "@emotion/react": {

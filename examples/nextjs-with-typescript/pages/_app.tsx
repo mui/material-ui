@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import createCache from '@emotion/cache';
 import theme from '../src/theme';
