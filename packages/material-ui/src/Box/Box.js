@@ -69,10 +69,6 @@ Box.propTypes = {
   /**
    * @ignore
    */
-  css: PropTypes.object,
-  /**
-   * @ignore
-   */
   sx: PropTypes.object,
 };
 
