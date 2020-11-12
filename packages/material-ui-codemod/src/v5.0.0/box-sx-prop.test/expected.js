@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
-export default function BoxComponent() {
+export default function BoxComponent(props) {
   return (
     <Box
       sx={{
@@ -19,6 +19,11 @@ export default function BoxComponent() {
         }}>
         <Button component="span">Save</Button>
       </Box>
+      <Box
+        {...props}
+        sx={{
+          p: [1, 2, 4]
+        }} />
     </Box>
   );
 }
