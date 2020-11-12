@@ -344,6 +344,22 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal(['mouseover']);
   });
 
+  it('should not call onClose if already closed', () => {
+    const eventLog = [];
+    const { getByTestId } = render(
+      <Tooltip title="Hello World" onClose={() => eventLog.push('close')} open={false}>
+        <button data-testid="trigger" onMouseLeave={() => eventLog.push('mouseleave')} />
+      </Tooltip>,
+    );
+
+    fireEvent.mouseLeave(getByTestId('trigger'));
+    act(() => {
+      clock.tick(0);
+    });
+
+    expect(eventLog).to.deep.equal(['mouseleave']);
+  });
+
   it('is dismissable by pressing Escape', () => {
     const transitionTimeout = 0;
     render(
