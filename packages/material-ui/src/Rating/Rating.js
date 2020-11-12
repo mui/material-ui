@@ -245,7 +245,13 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   };
 
   const handleChange = (event) => {
-    const newValue = parseFloat(event.target.value);
+    let newValue = parseFloat(event.target.value);
+
+    // Give mouse priority over keyboard
+    // Fix https://github.com/mui-org/material-ui/issues/22827
+    if (hover !== -1) {
+      newValue = hover;
+    }
 
     setValueState(newValue);
 
@@ -474,7 +480,7 @@ Rating.propTypes = {
    */
   defaultValue: PropTypes.number,
   /**
-   * If `true`, the rating will be disabled.
+   * If `true`, the rating is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -492,10 +498,8 @@ Rating.propTypes = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
-   *
    * @param {number} value The rating label's value to format.
    * @returns {string}
-   *
    * @default function defaultLabelText(value) {
    *   return `${value} Star${value !== 1 ? 's' : ''}`;
    * }
@@ -527,14 +531,12 @@ Rating.propTypes = {
   name: PropTypes.string,
   /**
    * Callback fired when the value changes.
-   *
    * @param {object} event The event source of the callback.
    * @param {number} value The new value.
    */
   onChange: PropTypes.func,
   /**
    * Callback function that is fired when the hover state changes.
-   *
    * @param {object} event The event source of the callback.
    * @param {number} value The new value.
    */

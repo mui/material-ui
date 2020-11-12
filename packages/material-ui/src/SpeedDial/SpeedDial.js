@@ -2,10 +2,14 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { duration, withStyles } from '@material-ui/core/styles';
-import Zoom from '@material-ui/core/Zoom';
-import Fab from '@material-ui/core/Fab';
-import { capitalize, isMuiElement, useForkRef, useControlled } from '@material-ui/core/utils';
+import { duration } from '../styles/transitions';
+import withStyles from '../styles/withStyles';
+import Zoom from '../Zoom';
+import Fab from '../Fab';
+import capitalize from '../utils/capitalize';
+import isMuiElement from '../utils/isMuiElement';
+import useForkRef from '../utils/useForkRef';
+import useControlled from '../utils/useControlled';
 
 function getOrientation(direction) {
   if (direction === 'up' || direction === 'down') {
@@ -227,14 +231,17 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     }
 
     clearTimeout(eventTimer.current);
-    setOpenState(false);
-    if (onClose) {
-      if (event.type === 'blur') {
-        event.persist();
-        eventTimer.current = setTimeout(() => {
+    if (event.type === 'blur') {
+      event.persist();
+      eventTimer.current = setTimeout(() => {
+        setOpenState(false);
+        if (onClose) {
           onClose(event, 'blur');
-        });
-      } else {
+        }
+      });
+    } else {
+      setOpenState(false);
+      if (onClose) {
         onClose(event, 'mouseLeave');
       }
     }
@@ -275,19 +282,19 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     clearTimeout(eventTimer.current);
 
     if (!open) {
-      setOpenState(true);
-      if (onOpen) {
-        event.persist();
-        // Wait for a future focus or click event
-        eventTimer.current = setTimeout(() => {
+      event.persist();
+      // Wait for a future focus or click event
+      eventTimer.current = setTimeout(() => {
+        setOpenState(true);
+        if (onOpen) {
           const eventMap = {
             focus: 'focus',
             mouseenter: 'mouseEnter',
           };
 
           onOpen(event, eventMap[event.type]);
-        });
-      }
+        }
+      });
     }
   };
 
@@ -402,7 +409,7 @@ SpeedDial.propTypes = {
    */
   FabProps: PropTypes.object,
   /**
-   * If `true`, the SpeedDial will be hidden.
+   * If `true`, the SpeedDial is hidden.
    * @default false
    */
   hidden: PropTypes.bool,

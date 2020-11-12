@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 
@@ -62,7 +62,7 @@ export const styles = (theme) => ({
     '&$checked': {
       color: theme.palette.primary.main,
       '&:hover': {
-        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
         '@media (hover: none)': {
           backgroundColor: 'transparent',
         },
@@ -84,7 +84,7 @@ export const styles = (theme) => ({
     '&$checked': {
       color: theme.palette.secondary.main,
       '&:hover': {
-        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
         '@media (hover: none)': {
           backgroundColor: 'transparent',
         },
@@ -222,11 +222,11 @@ Switch.propTypes = {
    */
   defaultChecked: PropTypes.bool,
   /**
-   * If `true`, the switch will be disabled.
+   * If `true`, the switch is disabled.
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -262,7 +262,7 @@ Switch.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
   /**

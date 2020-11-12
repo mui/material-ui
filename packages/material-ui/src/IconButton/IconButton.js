@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 
@@ -15,13 +15,13 @@ export const styles = (theme) => ({
     fontSize: theme.typography.pxToRem(24),
     padding: 12,
     borderRadius: '50%',
-    overflow: 'visible', // Explicitly set the default value to solve a bug on IE 11.
+    overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
     color: theme.palette.action.active,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     '&:hover': {
-      backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -54,7 +54,7 @@ export const styles = (theme) => ({
   colorPrimary: {
     color: theme.palette.primary.main,
     '&:hover': {
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -65,7 +65,7 @@ export const styles = (theme) => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
     '&:hover': {
-      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -168,17 +168,17 @@ IconButton.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
-   * If `true`, the button will be disabled.
+   * If `true`, the button is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the  keyboard focus ripple will be disabled.
+   * If `true`, the  keyboard focus ripple is disabled.
    * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
    * to highlight the element by applying separate styles with the `focusVisibleClassName`.

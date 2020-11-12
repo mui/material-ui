@@ -22,12 +22,12 @@ describe('<TablePagination />', () => {
 
   before(() => {
     classes = getClasses(
-      <TablePagination count={1} onChangePage={noop} page={0} rowsPerPage={10} />,
+      <TablePagination count={1} onPageChange={noop} page={0} rowsPerPage={10} />,
     );
   });
 
   describeConformance(
-    <TablePagination count={1} onChangePage={noop} page={0} rowsPerPage={10} />,
+    <TablePagination count={1} onPageChange={noop} page={0} rowsPerPage={10} />,
     () => ({
       classes,
       inheritComponent: TableCell,
@@ -67,8 +67,8 @@ describe('<TablePagination />', () => {
               <TablePagination
                 count={42}
                 page={1}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
                 rowsPerPage={10}
                 labelDisplayedRows={labelDisplayedRows}
               />
@@ -90,8 +90,8 @@ describe('<TablePagination />', () => {
               <TablePagination
                 count={1}
                 page={0}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
                 rowsPerPage={10}
                 labelRowsPerPage="lines per page:"
               />
@@ -113,8 +113,8 @@ describe('<TablePagination />', () => {
               <TablePagination
                 count={1}
                 page={0}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
                 rowsPerPage={10}
                 labelRowsPerPage={
                   <React.Fragment>
@@ -142,8 +142,8 @@ describe('<TablePagination />', () => {
               <TablePagination
                 count={11}
                 page={0}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
                 rowsPerPage={10}
               />
             </TableRow>
@@ -164,8 +164,8 @@ describe('<TablePagination />', () => {
               <TablePagination
                 count={11}
                 page={1}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
                 rowsPerPage={10}
               />
             </TableRow>
@@ -179,7 +179,7 @@ describe('<TablePagination />', () => {
     });
   });
 
-  describe('prop: onChangePage', () => {
+  describe('prop: onPageChange', () => {
     it('should handle next button clicks properly', () => {
       let page = 1;
       const { getByRole } = render(
@@ -189,10 +189,10 @@ describe('<TablePagination />', () => {
               <TablePagination
                 count={30}
                 page={page}
-                onChangePage={(event, nextPage) => {
+                onPageChange={(event, nextPage) => {
                   page = nextPage;
                 }}
-                onChangeRowsPerPage={noop}
+                onRowsPerPageChange={noop}
                 rowsPerPage={10}
               />
             </TableRow>
@@ -214,10 +214,10 @@ describe('<TablePagination />', () => {
               <TablePagination
                 count={30}
                 page={page}
-                onChangePage={(event, nextPage) => {
+                onPageChange={(event, nextPage) => {
                   page = nextPage;
                 }}
-                onChangeRowsPerPage={noop}
+                onRowsPerPageChange={noop}
                 rowsPerPage={10}
               />
             </TableRow>
@@ -241,8 +241,8 @@ describe('<TablePagination />', () => {
                 count={0}
                 page={0}
                 rowsPerPage={10}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
               />
             </TableRow>
           </TableFooter>
@@ -260,8 +260,8 @@ describe('<TablePagination />', () => {
                 page={0}
                 rowsPerPage={5}
                 rowsPerPageOptions={[5]}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
                 count={10}
               />
             </TableRow>
@@ -286,7 +286,7 @@ describe('<TablePagination />', () => {
                   page={page}
                   rowsPerPage={10}
                   count={-1}
-                  onChangePage={(_, newPage) => {
+                  onPageChange={(_, newPage) => {
                     setPage(newPage);
                   }}
                 />
@@ -316,7 +316,7 @@ describe('<TablePagination />', () => {
                 page={1}
                 rowsPerPage={10}
                 count={98}
-                onChangePage={handleChangePage}
+                onPageChange={handleChangePage}
               />
             </TableRow>
           </TableFooter>
@@ -340,7 +340,7 @@ describe('<TablePagination />', () => {
                 page={0}
                 rowsPerPage={10}
                 count={98}
-                onChangePage={handleChangePage}
+                onPageChange={handleChangePage}
               />
             </TableRow>
           </TableFooter>
@@ -366,8 +366,8 @@ describe('<TablePagination />', () => {
             page: 2,
             count: 20,
             rowsPerPage: 10,
-            onChangePage: noop,
-            onChangeRowsPerPage: noop,
+            onPageChange: noop,
+            onRowsPerPageChange: noop,
           },
           'prop',
           'MockedTablePagination',
@@ -387,8 +387,8 @@ describe('<TablePagination />', () => {
               <TablePagination
                 count={1}
                 page={0}
-                onChangePage={noop}
-                onChangeRowsPerPage={noop}
+                onPageChange={noop}
+                onRowsPerPageChange={noop}
                 rowsPerPage={10}
                 SelectProps={{ id: 'foo', labelId: 'bar' }}
               />
@@ -400,6 +400,29 @@ describe('<TablePagination />', () => {
       // will be `getByRole('combobox')` in aria 1.2
       const [combobox] = getAllByRole('button');
       expect(combobox).toHaveAccessibleName('Rows per page: 10');
+    });
+  });
+
+  describe('prop: rowsPerPage', () => {
+    it('should display max number of rows text when prop is -1', () => {
+      const { container } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                count={25}
+                page={0}
+                rowsPerPage={-1}
+                onPageChange={noop}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      expect(container).to.include.text('All');
+      expect(container).to.include.text('1-25 of 25');
     });
   });
 });

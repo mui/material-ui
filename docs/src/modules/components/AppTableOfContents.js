@@ -3,16 +3,16 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     top: 70,
-    // Fix IE 11 position sticky issue.
+    // Fix IE11 position sticky issue.
     marginTop: 70,
     width: 175,
     flexShrink: 0,
@@ -100,7 +100,7 @@ function useThrottledOnScroll(callback, delay) {
 export default function AppTableOfContents(props) {
   const { items } = props;
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   const itemsWithNodeRef = React.useRef([]);
   React.useEffect(() => {

@@ -17,6 +17,19 @@ import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
 
+async function raf() {
+  return new Promise((resolve) => {
+    // Chrome and Safari have a bug where calling rAF once returns the current
+    // frame instead of the next frame, so we need to call a double rAF here.
+    // See crbug.com/675795 for more.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        resolve();
+      });
+    });
+  });
+}
+
 describe('<Tooltip />', () => {
   /**
    * @type {ReturnType<typeof useFakeTimers>}
@@ -70,10 +83,6 @@ describe('<Tooltip />', () => {
     );
 
     expect(getByRole('tooltip')).to.have.class(classes.popper);
-
-    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-    // can be removed once Popper#update is sync
-    clock.runAll();
   });
 
   describe('prop: disableHoverListener', () => {
@@ -99,10 +108,6 @@ describe('<Tooltip />', () => {
       );
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should not display if the title is an empty string', () => {
@@ -150,9 +155,6 @@ describe('<Tooltip />', () => {
       const target = screen.getByTestId('target');
       expect(target).toHaveAccessibleName('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
 
     it('should label the child when open with an exotic title', () => {
@@ -165,9 +167,6 @@ describe('<Tooltip />', () => {
       const target = screen.getByTestId('target');
       expect(target).toHaveAccessibleName('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
 
     it('can describe the child when closed', () => {
@@ -213,9 +212,6 @@ describe('<Tooltip />', () => {
       expect(target).toHaveAccessibleName('the label');
       expect(target).toHaveAccessibleDescription('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
 
     it('can describe the child when open with an exotic title', () => {
@@ -231,9 +227,6 @@ describe('<Tooltip />', () => {
       expect(target).toHaveAccessibleName('the label');
       expect(target).toHaveAccessibleDescription('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
   });
 
@@ -292,45 +285,42 @@ describe('<Tooltip />', () => {
   });
 
   it('should be controllable', () => {
-    const handleRequestOpen = spy();
-    const handleClose = spy();
+    const eventLog = [];
 
     const { getByRole } = render(
       <Tooltip
         enterDelay={100}
         title="Hello World"
-        onOpen={handleRequestOpen}
-        onClose={handleClose}
+        onOpen={() => eventLog.push('open')}
+        onClose={() => eventLog.push('close')}
         open
       >
-        <button id="testChild" type="submit">
+        <button
+          id="testChild"
+          onMouseLeave={() => eventLog.push('mouseleave')}
+          onMouseOver={() => eventLog.push('mouseover')}
+          type="submit"
+        >
           Hello World
         </button>
       </Tooltip>,
     );
 
-    expect(handleRequestOpen.callCount).to.equal(0);
-    expect(handleClose.callCount).to.equal(0);
+    expect(eventLog).to.deep.equal([]);
 
     fireEvent.mouseOver(getByRole('button'));
     act(() => {
       clock.tick(100);
     });
 
-    expect(handleRequestOpen.callCount).to.equal(1);
-    expect(handleClose.callCount).to.equal(0);
+    expect(eventLog).to.deep.equal(['mouseover', 'open']);
 
     fireEvent.mouseLeave(getByRole('button'));
     act(() => {
       clock.tick(0);
     });
 
-    expect(handleRequestOpen.callCount).to.equal(1);
-    expect(handleClose.callCount).to.equal(1);
-
-    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-    // can be removed once Popper#update is sync
-    clock.runAll();
+    expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
   });
 
   it('is dismissable by pressing Escape', () => {
@@ -433,10 +423,6 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-
-      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should handle autoFocus + onFocus forwarding', () => {
@@ -458,10 +444,6 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
   });
 
@@ -484,10 +466,6 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should use hysteresis with the enterDelay', () => {
@@ -536,10 +514,6 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should take the leaveDelay into account', () => {
@@ -585,23 +559,28 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: overrides', () => {
-    ['onTouchStart', 'onTouchEnd', 'onMouseEnter', 'onMouseOver', 'onMouseLeave'].forEach(
-      (name) => {
-        it(`should be transparent for the ${name} event`, () => {
-          const handler = spy();
-          const { getByRole } = render(
-            <Tooltip title="Hello World">
-              <button id="testChild" type="submit" {...{ [name]: handler }}>
-                Hello World
-              </button>
-            </Tooltip>,
-          );
-          const type = camelCase(name.slice(2));
-          fireEvent[type](getByRole('button'));
-          expect(handler.callCount).to.equal(1, `${name} should've been called`);
-        });
-      },
-    );
+    [
+      'onTouchStart',
+      'onTouchEnd',
+      'onMouseEnter',
+      'onMouseMove',
+      'onMouseOver',
+      'onMouseLeave',
+    ].forEach((name) => {
+      it(`should be transparent for the ${name} event`, () => {
+        const handler = spy();
+        const { getByRole } = render(
+          <Tooltip followCursor title="Hello World">
+            <button id="testChild" type="submit" {...{ [name]: handler }}>
+              Hello World
+            </button>
+          </Tooltip>,
+        );
+        const type = camelCase(name.slice(2));
+        fireEvent[type](getByRole('button'));
+        expect(handler.callCount).to.equal(1, `${name} should've been called`);
+      });
+    });
 
     it(`should be transparent for the focus and blur event`, () => {
       const handleBlur = spy();
@@ -633,7 +612,7 @@ describe('<Tooltip />', () => {
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
       const { getByRole } = render(
-        <Tooltip title="Hello World" open interactive>
+        <Tooltip title="Hello World" open>
           <button type="submit" onMouseOver={handleMouseOver}>
             Hello World
           </button>
@@ -643,10 +622,6 @@ describe('<Tooltip />', () => {
       fireEvent.mouseOver(getByRole('tooltip'));
 
       expect(handleMouseOver.callCount).to.equal(0);
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
   });
 
@@ -661,10 +636,6 @@ describe('<Tooltip />', () => {
           </Tooltip>,
         );
       }).not.toErrorDev();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should raise a warning when we are uncontrolled and can not listen to events', () => {
@@ -691,20 +662,15 @@ describe('<Tooltip />', () => {
           </Tooltip>,
         );
       }).not.toErrorDev();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
   });
 
-  describe('prop: interactive', () => {
-    it('should keep the overlay open if the popper element is hovered', () => {
+  describe('prop: disableInteractive', () => {
+    it('when false should keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
         <Tooltip
           title="Hello World"
           enterDelay={100}
-          interactive
           leaveDelay={111}
           TransitionProps={{ timeout: 10 }}
         >
@@ -731,9 +697,14 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
     });
 
-    it('should not animate twice', () => {
+    it('when `true` should not keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
-        <Tooltip title="Hello World" interactive enterDelay={500} TransitionProps={{ timeout: 10 }}>
+        <Tooltip
+          title="Hello World"
+          enterDelay={100}
+          leaveDelay={111}
+          TransitionProps={{ timeout: 10 }}
+        >
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -742,7 +713,7 @@ describe('<Tooltip />', () => {
 
       fireEvent.mouseOver(getByRole('button'));
       act(() => {
-        clock.tick(500);
+        clock.tick(100);
       });
 
       expect(getByRole('tooltip')).toBeVisible();
@@ -752,13 +723,9 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(10);
+      clock.tick(111 + 10);
 
-      expect(getByRole('tooltip')).toBeVisible();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
+      expect(getByRole('tooltip')).not.toBeVisible();
     });
   });
 
@@ -773,10 +740,6 @@ describe('<Tooltip />', () => {
       );
 
       expect(getByTestId('popper')).not.to.equal(null);
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should merge popperOptions with arrow modifier', () => {
@@ -789,11 +752,14 @@ describe('<Tooltip />', () => {
           PopperProps={{
             popperRef,
             popperOptions: {
-              modifiers: {
-                arrow: {
-                  foo: 'bar',
+              modifiers: [
+                {
+                  name: 'arrow',
+                  options: {
+                    padding: 8,
+                  },
                 },
-              },
+              ],
             },
           }}
         >
@@ -802,11 +768,47 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      expect(popperRef.current.modifiers.find((x) => x.name === 'arrow').foo).to.equal('bar');
 
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
+      const appliedArrowModifier = popperRef.current.state.orderedModifiers.find(
+        (modifier) => modifier.name === 'arrow',
+      );
+
+      expect(appliedArrowModifier).not.to.equal(undefined);
+      expect(appliedArrowModifier.enabled).to.equal(true);
+      expect(appliedArrowModifier.options.padding).to.equal(8);
+    });
+
+    it('should merge popperOptions with custom modifier', () => {
+      const popperRef = React.createRef();
+      render(
+        <Tooltip
+          title="Hello World"
+          open
+          arrow
+          PopperProps={{
+            popperRef,
+            popperOptions: {
+              modifiers: [
+                {
+                  name: 'foo',
+                  enabled: true,
+                  phase: 'main',
+                },
+              ],
+            },
+          }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      const appliedComputeStylesModifier = popperRef.current.state.orderedModifiers.find(
+        (modifier) => modifier.name === 'foo',
+      );
+
+      expect(appliedComputeStylesModifier).not.to.equal(undefined);
     });
   });
 
@@ -832,18 +834,12 @@ describe('<Tooltip />', () => {
   });
 
   describe('focus', () => {
-    function Test() {
-      return (
-        <Tooltip enterDelay={0} leaveDelay={0} title="Some information">
-          <button id="target" type="button">
-            Do something
-          </button>
-        </Tooltip>
-      );
-    }
-
     it('ignores base focus', () => {
-      const { getByRole, queryByRole } = render(<Test />);
+      const { getByRole, queryByRole } = render(
+        <Tooltip enterDelay={0} title="Some information">
+          <button />
+        </Tooltip>,
+      );
       simulatePointerDevice();
 
       expect(queryByRole('tooltip')).to.equal(null);
@@ -858,7 +854,12 @@ describe('<Tooltip />', () => {
     });
 
     it('opens on focus-visible', () => {
-      const { queryByRole, getByRole } = render(<Test />);
+      const eventLog = [];
+      const { queryByRole, getByRole } = render(
+        <Tooltip enterDelay={0} onOpen={() => eventLog.push('open')} title="Some information">
+          <button onFocus={() => eventLog.push('focus')} />
+        </Tooltip>,
+      );
       simulatePointerDevice();
 
       expect(queryByRole('tooltip')).to.equal(null);
@@ -866,10 +867,34 @@ describe('<Tooltip />', () => {
       focusVisible(getByRole('button'));
 
       expect(getByRole('tooltip')).toBeVisible();
+      expect(eventLog).to.deep.equal(['focus', 'open']);
+    });
 
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
+    it('closes on blur', () => {
+      const eventLog = [];
+      const transitionTimeout = 0;
+      const { getByRole } = render(
+        <Tooltip
+          enterDelay={0}
+          leaveDelay={0}
+          onClose={() => eventLog.push('close')}
+          open
+          title="Some information"
+          TransitionProps={{ timeout: transitionTimeout }}
+        >
+          <button onBlur={() => eventLog.push('blur')} />
+        </Tooltip>,
+      );
+      const button = getByRole('button');
+
+      act(() => {
+        button.focus();
+        button.blur();
+        clock.tick(transitionTimeout);
+      });
+
+      expect(getByRole('tooltip')).toBeVisible();
+      expect(eventLog).to.deep.equal(['blur', 'close']);
     });
 
     // https://github.com/mui-org/material-ui/issues/19883
@@ -886,7 +911,7 @@ describe('<Tooltip />', () => {
         );
       });
       const { getByRole } = render(
-        <Tooltip interactive open title="test">
+        <Tooltip open title="test">
           <TextField onFocus={handleFocus} />
         </Tooltip>,
       );
@@ -934,7 +959,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should use the same popper.js instance between two renders', () => {
+  it('should use the same Popper.js instance between two renders', () => {
     const popperRef = React.createRef();
     const { forceUpdate } = render(
       <Tooltip
@@ -965,6 +990,62 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       expect(getByTestId('CustomPopper')).toBeVisible();
+    });
+  });
+
+  describe('prop: followCursor', () => {
+    it('should use the position of the mouse', async function test() {
+      // Only callig render() outputs:
+      // An update to ForwardRef(Popper) inside a test was not wrapped in act(...).
+      // Somethings is wrong in JSDOM and strict mode.
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      // Avoid mock of raf
+      clock.restore();
+
+      const x = 50;
+      const y = 10;
+
+      render(
+        <Tooltip
+          title="Hello World"
+          placement="bottom-end"
+          open
+          followCursor
+          PopperProps={{ 'data-testid': 'popper' }}
+        >
+          <button data-testid="target" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      const tooltipElement = screen.getByTestId('popper');
+      const targetElement = screen.getByTestId('target');
+
+      fireEvent.mouseMove(targetElement, {
+        clientX: x,
+        clientY: y,
+      });
+
+      // Wait for the popperRef.current.update() call to resolve.
+      await raf();
+
+      expect(tooltipElement).toBeVisible();
+
+      // Layer acceleration can disable subpixel rendering which causes slightly
+      // blurry text on low PPI displays, so we want to use 2D transforms
+      // instead
+      if ((window.devicePixelRatio || 1) < 2) {
+        expect(tooltipElement).to.have.toHaveInlineStyle({
+          transform: `translate(${x}px, ${y}px)`,
+        });
+      } else {
+        expect(tooltipElement).to.have.toHaveInlineStyle({
+          transform: `translate3d(${x}px, ${y}px, 0px)`,
+        });
+      }
     });
   });
 });

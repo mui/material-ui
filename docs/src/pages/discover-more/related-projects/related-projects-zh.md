@@ -21,6 +21,10 @@
 - [unDraw](https://undraw.co/)： 📐 和 Unsplash 类似，但是提供了超赞的矢量插图。
 - [Simple Icons](https://simpleicons.org/)：超过 1000 个热门品牌的免费 SVG 图标。
 
+## 应用程序框架
+
+- [react-admin](https://github.com/marmelab/react-admin): 一个前端框架，用于在浏览器中构建运行与  REST/GraphQL APIs 之上的 B2B 应用程序。
+
 ## IDE 工具
 
 - [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets)：提供编写提示的 VSCode 扩展。
@@ -48,7 +52,7 @@
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui)：用于 [formik](https://jaredpalmer.com/formik) 和 Material-UI 捆绑使用。
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：用于 [Redux Form](https://redux-form.com/) 和 Material-UI 捆绑使用。
 - [mui-rff](https://github.com/lookfirst/mui-rff)：用于 [React Final Form](https://final-form.org/react) 和 Material-UI 捆绑使用。
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui)：用于 [formik](https://jaredpalmer.com/formik) 和 Material-UI 捆绑使用。
+- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) 用于 [UI Schema](https://github.com/ui-schema/ui-schema) 和 Material-UI 捆绑使用，兼容 JSON Schema
 
 ### 幻灯片
 

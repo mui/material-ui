@@ -45,6 +45,25 @@ yarn add @material-ui/core@next
 
 ## Handling breaking changes
 
+### Supported browsers and node versions
+
+The targets of the default bundle have changed.
+The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+
+The default bundle now supports:
+
+<!-- #stable-snapshot -->
+
+- Node 10 (up from 8)
+- Chrome 84 (up from 49)
+- Edge 85 (up from 14)
+- Firefox 78 (up from 52)
+- Safari 13 (macOS) and 12.2 (iOS) (up from 10)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+
+It no longer supports IE 11.
+If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+
 ### non-ref-forwarding class components
 
 Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
@@ -57,25 +76,32 @@ This change affects almost all components where you're using the `component` pro
   The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive).
   When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
 
-```diff
--theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
-+theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
-```
+  ```diff
+  -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
+  +theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
+  ```
 
-```diff
--theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
-+theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
-```
+  ```diff
+  -theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
+  +theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
+  ```
 
-```diff
--theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
-+theme.breakpoints.up('sm') // '@media (min-width:600px)'
-```
+  ```diff
+  -theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
+  +theme.breakpoints.up('sm') // '@media (min-width:600px)'
+  ```
 
-```diff
--<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
-+<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
-```
+  ```diff
+  -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
+  +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
+  ```
+
+- The signature of `theme.palette.augmentColor` helper has changed:
+
+  ```diff
+  -theme.palette.augmentColor(red);
+  +theme.palette.augmentColor({ color: red, name: 'brand' });
+  ```
 
 #### Upgrade helper
 
@@ -113,46 +139,37 @@ The following changes are supported by the adapter.
 
   Before:
 
-  ```
+  ```js
   theme.spacing(2) => 16
   ```
 
   After:
 
-  ```
+  ```js
   theme.spacing(2) => '16px'
   ```
 
-- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
-
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
-
--const theme = createMuiTheme(),
-+const theme = createMuiTheme({
-+  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-+});
-```
-
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
-
--const theme = createMuiTheme({palette: { type: 'dark' }}),
-+const theme = createMuiTheme({
-+  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-+});
-```
-
-- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
-
 - The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
-```diff
-import { createMuiTheme } from '@material-ui/core/styles';
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+  -const theme = createMuiTheme({palette: { type: 'dark' }}),
+  +const theme = createMuiTheme({palette: { mode: 'dark' }}),
+  ```
 
--const theme = createMuiTheme({palette: { type: 'dark' }}),
-+const theme = createMuiTheme({palette: { mode: 'dark' }}),
-```
+- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
+  If you depend on it, you can add it back:
+
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+
+  -const theme = createMuiTheme(),
+  +const theme = createMuiTheme({
+  +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
+  +});
+  ```
+
+- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
 
 1. `props`
 
@@ -196,6 +213,25 @@ const theme = createMuiTheme({
 });
 ```
 
+### Styles
+
+- Renamed `fade` to `alpha` to better describe its functionality.
+  The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
+
+```diff
+- import { fade } from '@material-ui/core/styles';
++ import { alpha } from '@material-ui/core/styles';
+
+const classes = makeStyles(theme => ({
+-  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
++  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+}));
+```
+
+### AppBar
+
+- [AppBar] Remove z-index when position static and relative
+
 ### Alert
 
 - Move the component from the lab to the core. The component is now stable.
@@ -207,7 +243,7 @@ const theme = createMuiTheme({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-  ### Autocomplete
+### Autocomplete
 
 - Move the component from the lab to the core. The component is now stable.
 
@@ -216,6 +252,29 @@ const theme = createMuiTheme({
   -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
   +import Autocomplete from '@material-ui/core/Autocomplete';
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
+  ```
+
+- Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
+- `renderOption` should now return the full DOM structure of the option.
+  It makes customizations easier. You can recover from the change with:
+
+  ```diff
+  <Autocomplete
+  - renderOption={(option, { selected }) => (
+  -   <React.Fragment>
+  + renderOption={(props, option, { selected }) => (
+  +   <li {...props}>
+        <Checkbox
+          icon={icon}
+          checkedIcon={checkedIcon}
+          style={{ marginRight: 8 }}
+          checked={selected}
+        />
+        {option.title}
+  -   </React.Fragment>
+  +   </li>
+    )}
+  />
   ```
 
 ### Avatar
@@ -227,6 +286,13 @@ const theme = createMuiTheme({
   -<Avatar classes={{ circle: 'className' }}>
   +<Avatar variant="circular">
   +<Avatar classes={{ circular: 'className' }}>
+  ```
+
+- Move the AvatarGroup from the lab to the core.
+
+  ```diff
+  -import AvatarGroup from '@material-ui/lab/AvatarGroup';
+  +import AvatarGroup from '@material-ui/core/AvatarGroup';
   ```
 
 ### Badge
@@ -331,6 +397,24 @@ const theme = createMuiTheme({
   />
   ```
 
+- [withMobileDialog] Remove this higher-order component. The hook API allows a simpler and more flexible solution:
+
+  ```diff
+  -import withMobileDialog from '@material-ui/core/withMobileDialog';
+  +import { useTheme, useMediaQuery } from '@material-ui/core';
+
+  function ResponsiveDialog(props) {
+  - const { fullScreen } = props;
+  + const theme = useTheme();
+  + const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const [open, setOpen] = React.useState(false);
+
+  // ...
+
+  -export default withMobileDialog()(ResponsiveDialog);
+  +export default ResponsiveDialog;
+  ```
+
 ### Divider
 
 - Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
@@ -400,6 +484,10 @@ const theme = createMuiTheme({
   ```
 
 - Remove `display: flex` from AccordionDetails as its too opinionated.
+  Most developers expect a display block.
+- Remove `IconButtonProps` prop from AccordionSummary.
+  The component renders a `<div>` element instead of an IconButton.
+  The prop is no longer necessary.
 
 ### Fab
 
@@ -533,6 +621,33 @@ const theme = createMuiTheme({
   +  }}
   />
   ```
+
+### Popper
+
+- Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2.
+  This third-party library has introduced a lot of changes.<br />
+  You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
+
+  - The CSS prefixes have changed:
+    ```diff
+    popper: {
+      zIndex: 1,
+    - '&[x-placement*="bottom"] $arrow': {
+    + '&[data-popper-placement*="bottom"] $arrow': {
+    ```
+  - Method names have changed.
+
+    ```diff
+    -popperRef.current.scheduleUpdate()
+    +popperRef.current.update()
+    ```
+
+    ```diff
+    -popperRef.current.update()
+    +popperRef.current.forceUpdate()
+    ```
+
+  - Modifiers' API has changed a lot. There are too many changes to be covered here.
 
 ### Portal
 
@@ -701,6 +816,16 @@ const theme = createMuiTheme({
   + getItemAriaLabel={…}
   ```
 
+- Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
+
+  ```diff
+  <TablePagination
+  - onChangeRowsPerPage={()=>{}}
+  - onChangePage={()=>{}}
+  + onRowsPerPageChange={()=>{}}
+  + onPageChange={()=>{}}
+  ```
+
 ### Tabs
 
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
@@ -741,6 +866,25 @@ const theme = createMuiTheme({
   +<TextField maxRows={6}>
   ```
 
+- Change ref forwarding expections on custom `inputComponent`.
+  The component should forward the `ref` prop instead of the `inputRef` prop.
+
+  ```diff
+  -function NumberFormatCustom(props) {
+  -  const { inputRef, onChange, ...other } = props;
+  +const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
+  +  props,
+  +  ref,
+  +) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+  -     getInputRef={inputRef}
+  +     getInputRef={ref}
+  ```
+
 ### TextareaAutosize
 
 - Remove the `rows` prop, use the `minRows` prop instead.
@@ -776,6 +920,23 @@ const theme = createMuiTheme({
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
+### Tooltip
+
+- Tooltips are now interactive by default.
+
+  The previous default behavior failed [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus).
+  To reflect the new default value, the prop was renamed to `disableInteractive`.
+  If you want to restore the old behavior (thus not reaching level AA), you can apply the following diff:
+
+  ```diff
+  -<Tooltip>
+  +<Tooltip disableInteractive>
+
+  # Interactive tooltips no longer need the `interactive` prop.
+  -<Tooltip interactive>
+  +<Tooltip>
+  ```
+
 ### Typography
 
 - Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
@@ -790,3 +951,12 @@ const theme = createMuiTheme({
   -<Typography variant="srOnly">Create a user</Typography>
   +<Span>Create a user</Span>
   ```
+
+### System
+
+- Replace `css` prop with `sx` to avoid collision with styled-components & emotion CSS props.
+
+```diff
+-<Box css={{ color: 'primary.main' }} />
++<Box sx={{ color: 'primary.main' }} />
+```

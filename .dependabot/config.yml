@@ -43,9 +43,6 @@ update_configs:
           # should be grouped with `react`
           dependency_name: 'react-test-renderer'
       - match:
-          # breaks `yarn size:why`
-          dependency_name: 'size-limit'
-      - match:
           # https://github.com/mui-org/material-ui/pull/17168#issuecomment-524861427
           dependency_name: 'tslint'
           version_requirement: '5.x'

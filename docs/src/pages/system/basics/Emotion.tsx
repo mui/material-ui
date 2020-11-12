@@ -6,7 +6,6 @@ import {
   spacing,
   SpacingProps,
 } from '@material-ui/system';
-import NoSsr from '@material-ui/core/NoSsr';
 
 const Box = styled.div<PaletteProps & SpacingProps>`
   ${palette}
@@ -15,10 +14,8 @@ const Box = styled.div<PaletteProps & SpacingProps>`
 
 export default function Emotion() {
   return (
-    <NoSsr>
-      <Box color="white" bgcolor="palevioletred" p={1}>
-        Emotion
-      </Box>
-    </NoSsr>
+    <Box color="white" bgcolor="palevioletred" p={1}>
+      Emotion
+    </Box>
   );
 }

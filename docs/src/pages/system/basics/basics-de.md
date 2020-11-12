@@ -18,7 +18,7 @@ Es ist wichtig zu verstehen, dass dieses Paket mit dieser Signatur reine (nebenw
 
 ### Demo
 
-Im Rest dieses *Erste Schritte* Abschnitts verwenden wir **styled-components** als Referenzbeispiel (um die Universalität dieses Pakets zu betonen). Alternativ können Sie [JSS verwenden](#interoperability). Die Demos basieren ebenfalls auf der **Standardeinstellung** des Material-UI [Themeobjekt](/customization/default-theme/).
+Im Rest dieses *Erste Schritte* Abschnitts verwenden wir **styled-components** als Referenzbeispiel (um die Universalität dieses Pakets zu betonen). Alternatively, you can [emotion](#interoperability) or any other CSS-in-JS styling solution. Die Demos basieren ebenfalls auf der **Standardeinstellung** des Material-UI [Themeobjekt](/customization/default-theme/).
 
 {{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
@@ -109,7 +109,7 @@ Um die Box-Komponente noch nützlicher zu machen, haben wir eine Sammlung von St
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using JSS internally):
+If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using emotion internally by default):
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -117,13 +117,7 @@ import Box from '@material-ui/core/Box';
 
 ## Interoperabilität
 
-`@material-ui/system` arbeitet mit den meisten CSS-in-JS-Bibliotheken, einschließlich JSS, Stilkomponenten und Emotionen.
-
-Wenn Sie bereits `@material-ui/core` verwenden, empfehlen wir Ihnen, mit der **JSS** zur Minimierung der Paketgröße zu beginnen.
-
-### JSS
-
-{{"demo": "pages/system/basics/JSS.js", "defaultCodeOpen": true}}
+`@material-ui/system` arbeitet mit den meisten CSS-in-JS-Bibliotheken, einschließlich JSS, Stilkomponenten und Emotionen. Here are a few examples usages.
 
 ### Styled components
 

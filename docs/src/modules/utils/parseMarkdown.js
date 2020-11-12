@@ -42,8 +42,14 @@ export function getHeaders(markdown) {
   // eslint-disable-next-line no-cond-assign
   while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
     const key = regexMatches[1];
-    const value = regexMatches[2].replace(/'(.*)'/, '$1');
-    headers[key] = value;
+    const value = regexMatches[2].replace(/(.*)/, '$1');
+    if (value[0] === '[') {
+      // Need double quotes to JSON parse.
+      headers[key] = JSON.parse(value.replace(/'/g, '"'));
+    } else {
+      // Remove trailing single quote yml escaping.
+      headers[key] = value.replace(/^'|'$/g, '');
+    }
   }
 
   if (headers.components) {

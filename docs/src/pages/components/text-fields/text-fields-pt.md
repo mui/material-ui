@@ -170,7 +170,7 @@ A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.co
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-O componente de campo fornecido deve manipular a propriedade `inputRef`. A propriedade deve ser chamada com um valor que implemente a seguinte interface:
+The provided input component should expose a ref with a value that implements the following interface:
 
 ```ts
 interface InputElement {
@@ -180,11 +180,30 @@ interface InputElement {
 ```
 
 ```jsx
-<div class="form-control">
-  <label for="my-input">Endereço de e-mail</label>
-  <input id="my-input" aria-describedby="my-helper-text" />
-  <span id="my-helper-text">Nós nunca compartilharemos seu e-mail.</span>
-</div>
+const MyInputComponent = React.forwardRef((props, ref) => {
+  const { component: Component, ...other } = props;
+
+  // implement `InputElement` interface
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      // logic to focus the rendered component from 3rd party belongs here
+    },
+    // hiding the value e.g. react-stripe-elements
+  }));
+
+  // `Component` will be your `SomeThirdPartyComponent` from below
+  return <Component {...other} />;
+});
+
+// usage
+<TextField
+  InputProps={{
+    inputComponent: MyInputComponent,
+    inputProps: {
+      component: SomeThirdPartyComponent,
+    },
+  }}
+/>;
 ```
 
 ## Acessibilidade

@@ -1,31 +1,19 @@
 import * as React from 'react';
-import PopperJs, { ReferenceObject } from 'popper.js';
+import { Instance, VirtualElement, Options, OptionsGeneric } from '@popperjs/core';
 import { Omit } from '..';
 import { PortalProps } from '../Portal';
 
-export type PopperPlacementType =
-  | 'bottom-end'
-  | 'bottom-start'
-  | 'bottom'
-  | 'left-end'
-  | 'left-start'
-  | 'left'
-  | 'right-end'
-  | 'right-start'
-  | 'right'
-  | 'top-end'
-  | 'top-start'
-  | 'top';
+export type PopperPlacementType = Options['placement'];
 
 export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   ref?: React.Ref<HTMLDivElement>;
   /**
-   * A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject),
+   * A HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
    */
-  anchorEl?: null | ReferenceObject | (() => ReferenceObject);
+  anchorEl?: null | VirtualElement | (() => VirtualElement);
   /**
    * Popper render function or node.
    */
@@ -66,9 +54,9 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    * A modifier is a function that is called each time Popper.js needs to
    * compute the position of the popper.
    * For this reason, modifiers should be very performant to avoid bottlenecks.
-   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v1/#modifiers).
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
    */
-  modifiers?: object;
+  modifiers?: Options['modifiers'];
   /**
    * If `true`, the popper is visible.
    */
@@ -79,14 +67,14 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    */
   placement?: PopperPlacementType;
   /**
-   * Options provided to the [`popper.js`](https://popper.js.org/docs/v1/) instance.
+   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
    * @default {}
    */
-  popperOptions?: object;
+  popperOptions?: Partial<OptionsGeneric<any>>;
   /**
    * A ref that points to the used popper instance.
    */
-  popperRef?: React.Ref<PopperJs>;
+  popperRef?: React.Ref<Instance>;
   /**
    * Help supporting a react-transition-group/Transition component.
    * @default false
@@ -95,7 +83,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
 }
 
 /**
- * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v1/) for positioning.
+ * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  * Demos:
  *
  * - [Autocomplete](https://material-ui.com/components/autocomplete/)

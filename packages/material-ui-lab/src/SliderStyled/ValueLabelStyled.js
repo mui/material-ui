@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useThemeProps, experimentalStyled } from '@material-ui/core/styles';
-import ValueLabelUnstyled from '../SliderUnstyled/ValueLabelUnstyled';
+import { ValueLabelUnstyled } from '@material-ui/unstyled/SliderUnstyled';
 
 const overridesResolver = (_, styles) => {
   const componentName = 'MuiSlider-valueLabel';
@@ -50,6 +50,7 @@ const ValueLabelRoot = experimentalStyled(
   '& .MuiSlider-valueLabelLabel': {
     color: props.theme.palette.primary.contrastText,
     transform: 'rotate(45deg)',
+    textAlign: 'center',
   },
 }));
 

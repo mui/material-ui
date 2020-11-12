@@ -10,7 +10,7 @@ In previous versions, Material-UI has used LESS, then a custom inline-style solu
 
 Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
-- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
+- Podes esperar [las mismas ventajas](https://www.styled-components.com/docs/basics#motivation) que las que tenían los componentes con estilos.
 
 <!-- #default-branch-switch -->
 

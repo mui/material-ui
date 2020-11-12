@@ -1,5 +1,5 @@
 ---
-title: React 陷阱焦点组件
+title: React Trap Focus（陷阱焦点）组件
 components: Unstable_TrapFocus
 githubLabel: 'component: TrapFocus'
 ---
@@ -15,7 +15,7 @@ githubLabel: 'component: TrapFocus'
 - 📦 [1.5kB 已压缩的包](https://material-ui.com/size-snapshot)。
 - ⚛️ 支持传送门组件
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 > 该组件处于试验阶段，是不稳定的。
 

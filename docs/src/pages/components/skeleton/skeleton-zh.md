@@ -1,5 +1,5 @@
 ---
-title: React 骨架屏组件
+title: React Skeleton（骨架屏）组件
 components: Skeleton
 githubLabel: 'component: Skeleton'
 ---
@@ -14,16 +14,23 @@ githubLabel: 'component: Skeleton'
 
 ## 使用
 
-这个组件可以 **直接在你的组件中** 使用。 就像这样：
+骨架屏组件可以**直接在你的组件内**使用。 就像这样：
 
 ```jsx
 {
-  item ? {
-  item ? {item ? (
-  <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
-) : (
-  <Skeleton variant="rect" width={210} height={118} />
-)}
+  item ? (
+    <img
+      style={{
+        width: 210,
+        height: 118,
+      }}
+      alt={item.title}
+      src={item.src}
+    />
+  ) : (
+    <Skeleton variant="rectangular" width={210} height={118} />
+  );
+}
 ```
 
 ## 变体

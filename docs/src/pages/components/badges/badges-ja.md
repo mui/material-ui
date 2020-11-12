@@ -1,5 +1,5 @@
 ---
-title: React Badge component
+title: React バッジコンポーネント
 components: Badge
 githubLabel: 'component: Badge'
 ---
@@ -10,7 +10,7 @@ githubLabel: 'component: Badge'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic badges
+## 基本的なバッジ
 
 プライマリー色とセカンダリーを使用した、テキストを含むバッジの例。 バッジが子要素に適用されます。
 

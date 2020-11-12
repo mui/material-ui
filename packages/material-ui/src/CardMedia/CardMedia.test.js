@@ -9,10 +9,10 @@ describe('<CardMedia />', () => {
   let classes;
   const render = createClientRender();
   before(() => {
-    classes = getClasses(<CardMedia image="/foo.jpg" />);
+    classes = getClasses(<CardMedia image="/fake.png" />);
   });
 
-  describeConformance(<CardMedia image="/foo.jpg" />, () => ({
+  describeConformance(<CardMedia image="/fake.png" />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
@@ -21,38 +21,38 @@ describe('<CardMedia />', () => {
   }));
 
   it('should have the backgroundImage specified', () => {
-    const { container } = render(<CardMedia image="/foo.jpg" />);
+    const { container } = render(<CardMedia image="/fake.png" />);
     const cardMedia = container.firstChild;
-    expect(cardMedia.style.backgroundImage).to.match(/\/foo\.jpg/m);
+    expect(cardMedia.style.backgroundImage).to.match(/\/fake.png/m);
   });
 
   it('should have backgroundImage specified even though custom styles got passed', () => {
-    const { container } = render(<CardMedia image="/foo.jpg" style={{ height: 200 }} />);
+    const { container } = render(<CardMedia image="/fake.png" style={{ height: 200 }} />);
     const cardMedia = container.firstChild;
-    expect(cardMedia.style.backgroundImage).to.match(/\/foo\.jpg/m);
+    expect(cardMedia.style.backgroundImage).to.match(/\/fake.png/m);
     expect(cardMedia.style.height).to.equal('200px');
   });
 
   it('should be possible to overwrite backgroundImage via custom styles', () => {
     const { container } = render(
-      <CardMedia image="/foo.jpg" style={{ backgroundImage: 'url(/bar.jpg)' }} />,
+      <CardMedia image="/fake.png" style={{ backgroundImage: 'url(fake2.png)' }} />,
     );
     const cardMedia = container.firstChild;
-    expect(cardMedia.style.backgroundImage).to.match(/\/bar\.jpg/m);
+    expect(cardMedia.style.backgroundImage).to.match(/fake2.png/m);
   });
 
   describe('prop: component', () => {
     it('should have `src` prop when media component specified', () => {
-      const { container } = render(<CardMedia image="/foo.jpg" component="iframe" />);
+      const { container } = render(<CardMedia image="/fake.png" component="iframe" />);
       const cardMedia = container.firstChild;
-      expect(cardMedia).to.have.attribute('src', '/foo.jpg');
+      expect(cardMedia).to.have.attribute('src', '/fake.png');
     });
 
     it('should not have `src` prop when picture media component specified', () => {
       const { container } = render(
         <CardMedia component="picture">
-          <source media="(min-width: 600px)" srcSet="big-cat.jpg" />
-          <img src="cat.jpg" alt="hello" />
+          <source media="(min-width: 600px)" srcSet="/fake.png" />
+          <img src="/fake.png" alt="hello" />
         </CardMedia>,
       );
       const cardMedia = container.firstChild;
@@ -60,13 +60,13 @@ describe('<CardMedia />', () => {
     });
 
     it('should not have default inline style when media component specified', () => {
-      const { container } = render(<CardMedia src="/foo.jpg" component="picture" />);
+      const { container } = render(<CardMedia src="/fake.png" component="picture" />);
       const cardMedia = container.firstChild;
       expect(cardMedia.style.backgroundImage).to.equal('');
     });
 
     it('should not have `src` prop if not media component specified', () => {
-      const { container } = render(<CardMedia image="/foo.jpg" component="table" />);
+      const { container } = render(<CardMedia image="/fake.png" component="table" />);
       const cardMedia = container.firstChild;
       expect(cardMedia).to.not.have.attribute('src');
     });

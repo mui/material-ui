@@ -13,6 +13,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
+import FormGroup from '@material-ui/core/FormGroup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   popper: {
     zIndex: 1,
-    '&[x-placement*="bottom"] $arrow': {
+    '&[data-popper-placement*="bottom"] $arrow': {
       top: 0,
       left: 0,
       marginTop: '-0.9em',
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
         borderColor: `transparent transparent ${theme.palette.background.paper} transparent`,
       },
     },
-    '&[x-placement*="top"] $arrow': {
+    '&[data-popper-placement*="top"] $arrow': {
       bottom: 0,
       left: 0,
       marginBottom: '-0.9em',
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
         borderColor: `${theme.palette.background.paper} transparent transparent transparent`,
       },
     },
-    '&[x-placement*="right"] $arrow': {
+    '&[data-popper-placement*="right"] $arrow': {
       left: 0,
       marginLeft: '-0.9em',
       height: '3em',
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
         borderColor: `transparent ${theme.palette.background.paper} transparent transparent`,
       },
     },
-    '&[x-placement*="left"] $arrow': {
+    '&[data-popper-placement*="left"] $arrow': {
       right: 0,
       marginRight: '-0.9em',
       height: '3em',
@@ -103,14 +104,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ScrollPlayground() {
   const anchorRef = React.useRef(null);
-  const [arrowRef, setArrowRef] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+
+  const [placement, setPlacement] = React.useState('bottom');
+  const [disablePortal, setDisablePortal] = React.useState(false);
+
+  const [flip, setFlip] = React.useState({
+    enabled: true,
+    altBoundary: true,
+    rootBoundary: 'document',
+  });
+  const [preventOverflow, setPreventOverflow] = React.useState({
+    enabled: true,
+    altAxis: true,
+    altBoundary: true,
+    tether: true,
+    rootBoundary: 'document',
+  });
 
   const [arrow, setArrow] = React.useState(false);
-  const [disablePortal, setDisablePortal] = React.useState(false);
-  const [flip, setFlip] = React.useState(true);
-  const [open, setOpen] = React.useState(false);
-  const [placement, setPlacement] = React.useState('bottom');
-  const [preventOverflow, setPreventOverflow] = React.useState('scrollParent');
+  const [arrowRef, setArrowRef] = React.useState(null);
 
   const handleClickButton = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -132,21 +145,35 @@ export default function ScrollPlayground() {
   <Popper
     placement="${placement}"
     disablePortal={${disablePortal}}
-    modifiers={{
-      flip: {
-        enabled: ${flip},
+    modifiers={[
+      {
+          name: 'flip',
+          enabled: ${flip.enabled},
+          options: {
+            altBoundary: ${flip.altBoundary},
+            rootBoundary: '${flip.rootBoundary}',
+            padding: 8
+          }
       },
-      preventOverflow: {
-        enabled: ${preventOverflow !== 'disabled'},
-        boundariesElement: '${
-          preventOverflow === 'disabled' ? 'scrollParent' : preventOverflow
-        }',
+      {
+        name: 'preventOverflow',
+        enabled: ${preventOverflow.enabled},
+        options: {
+          altAxis: ${preventOverflow.altAxis},
+          altBoundary: ${preventOverflow.altBoundary},
+          tether: ${preventOverflow.tether},
+          rootBoundary: ${preventOverflow.rootBoundary},
+          padding: 8
+        }
       },
-      arrow: {
+      {
+        name: 'arrow',
         enabled: ${arrow},
-        element: arrowRef,
+        options: {
+            element: arrowRef,
+        }
       },
-    }}
+    ]}
   >
   `;
   const id = open ? 'scroll-playground' : null;
@@ -181,25 +208,38 @@ export default function ScrollPlayground() {
               placement={placement}
               disablePortal={disablePortal}
               className={classes.popper}
-              modifiers={{
-                flip: {
-                  enabled: flip,
+              modifiers={[
+                {
+                  name: 'flip',
+                  enabled: flip.enabled,
+                  options: {
+                    altBoundary: flip.altBoundary,
+                    rootBoundary: flip.rootBoundary,
+                    padding: 8,
+                  },
                 },
-                arrow: {
+                {
+                  name: 'preventOverflow',
+                  enabled: preventOverflow.enabled,
+                  options: {
+                    altAxis: preventOverflow.altAxis,
+                    altBoundary: preventOverflow.altBoundary,
+                    tether: preventOverflow.tether,
+                    rootBoundary: preventOverflow.rootBoundary,
+                    padding: 8,
+                  },
+                },
+                {
+                  name: 'arrow',
                   enabled: arrow,
-                  element: arrowRef,
+                  options: {
+                    element: arrowRef,
+                  },
                 },
-                preventOverflow: {
-                  enabled: preventOverflow !== 'disabled',
-                  boundariesElement:
-                    preventOverflow === 'disabled'
-                      ? 'scrollParent'
-                      : preventOverflow,
-                },
-              }}
+              ]}
             >
               {arrow ? (
-                <span className={classes.arrow} ref={setArrowRef} />
+                <div className={classes.arrow} ref={setArrowRef} />
               ) : null}
               <Paper className={classes.paper}>
                 <DialogTitle>{"Use Google's location service?"}</DialogTitle>
@@ -218,13 +258,13 @@ export default function ScrollPlayground() {
         </Grid>
       </div>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography gutterBottom variant="h6">
-            Appearance
-          </Typography>
-          <div>
+        <Grid container item xs={12}>
+          <Grid item xs={12}>
+            <Typography variant="h6">Appearance</Typography>
+          </Grid>
+          <Grid item xs={6}>
             <TextField
-              margin="normal"
+              margin="dense"
               className={classes.select}
               label="Placement"
               select
@@ -255,77 +295,197 @@ export default function ScrollPlayground() {
               <option value="bottom">bottom</option>
               <option value="bottom-end">bottom-end</option>
             </TextField>
-          </div>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={disablePortal}
-                onChange={(event) => {
-                  setDisablePortal(event.target.checked);
-                }}
-                value="disablePortal"
-              />
-            }
-            label="Disable portal (the children stay within it's parent DOM hierarchy)"
-          />
+          </Grid>
+          <Grid item xs={6}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={disablePortal}
+                  onChange={(event) => {
+                    setDisablePortal(event.target.checked);
+                  }}
+                  value="disablePortal"
+                />
+              }
+              label="Disable portal"
+            />
+            <Typography display="block" variant="caption" color="textSecondary">
+              (the children stay within it&apos;s parent DOM hierarchy)
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography gutterBottom variant="h6">
+        <Grid item xs={12}>
+          <Typography variant="h6">
             Modifiers (options from Popper.js)
           </Typography>
-          <div>
-            <TextField
-              margin="normal"
-              className={classes.select}
-              label="Prevent overflow"
-              select
-              InputLabelProps={{
-                id: 'scroll-playground-overflow-label',
-              }}
-              SelectProps={{
-                native: true,
-                inputProps: {
-                  'aria-labelledby': 'scroll-playground-overflow-label',
-                },
-              }}
-              value={preventOverflow}
-              onChange={(event) => {
-                setPreventOverflow(event.target.value);
-              }}
-            >
-              <option value="disabled">disabled</option>
-              <option value="scrollParent">scrollParent</option>
-              <option value="viewport">viewport</option>
-              <option value="window">window</option>
-            </TextField>
-          </div>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={flip}
-                onChange={(event) => {
-                  setFlip(event.target.checked);
-                }}
-                value="flip"
+        </Grid>
+        <Grid container item xs={12} spacing={1}>
+          <Grid item xs={6}>
+            <FormGroup>
+              <Typography variant="subtitle1">Prevent Overflow</Typography>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={preventOverflow.enabled}
+                    onChange={(event) => {
+                      setPreventOverflow((old) => ({
+                        ...old,
+                        enabled: event.target.checked,
+                      }));
+                    }}
+                    value="arrow"
+                  />
+                }
+                label="Enable"
               />
-            }
-            label={[
-              'Flip',
-              '(flip the popper’s placement when it starts to overlap its reference element)',
-            ].join(' ')}
-          />
-          <FormControlLabel
-            control={
-              <Switch
-                checked={arrow}
-                onChange={(event) => {
-                  setArrow(event.target.checked);
-                }}
-                value="arrow"
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={preventOverflow.altAxis}
+                    onChange={(event) => {
+                      setPreventOverflow((old) => ({
+                        ...old,
+                        altAxis: event.target.checked,
+                      }));
+                    }}
+                    value="alt-axis"
+                  />
+                }
+                label="Alt axis"
               />
-            }
-            label="Arrow"
-          />
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={preventOverflow.altBoundary}
+                    onChange={(event) => {
+                      setPreventOverflow((old) => ({
+                        ...old,
+                        altBoundary: event.target.checked,
+                      }));
+                    }}
+                    value="alt-boundary"
+                  />
+                }
+                label="Alt Boundary"
+              />
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={preventOverflow.tether}
+                    onChange={(event) => {
+                      setPreventOverflow((old) => ({
+                        ...old,
+                        tether: event.target.checked,
+                      }));
+                    }}
+                    value="tether"
+                  />
+                }
+                label="Tether"
+              />
+              <TextField
+                margin="dense"
+                size="small"
+                label="Root Boundary"
+                select
+                InputLabelProps={{
+                  id: 'scroll-playground-prevent-overflow-root-boundary',
+                }}
+                SelectProps={{
+                  native: true,
+                  inputProps: {
+                    'aria-labelledby':
+                      'scroll-playground-prevent-overflow-root-boundary',
+                  },
+                }}
+                value={preventOverflow.rootBoundary}
+                onChange={(event) => {
+                  setPreventOverflow((old) => ({
+                    ...old,
+                    rootBoundary: event.target.value,
+                  }));
+                }}
+              >
+                <option value="document">document</option>
+                <option value="viewport">viewport</option>
+              </TextField>
+            </FormGroup>
+          </Grid>
+          <Grid item xs={6}>
+            <FormGroup>
+              <Typography variant="subtitle1">Flip</Typography>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={flip.enabled}
+                    onChange={(event) => {
+                      setFlip((old) => ({
+                        ...old,
+                        enabled: event.target.checked,
+                      }));
+                    }}
+                    value="enabled"
+                  />
+                }
+                label="Enable"
+              />
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={flip.altBoundary}
+                    onChange={(event) => {
+                      setFlip((old) => ({
+                        ...old,
+                        altBoundary: event.target.checked,
+                      }));
+                    }}
+                    value="alt-boundary"
+                  />
+                }
+                label="Alt Boundary"
+              />
+              <TextField
+                margin="dense"
+                size="small"
+                label="Root Boundary"
+                select
+                InputLabelProps={{
+                  id: 'scroll-playground-flip-root-boundary',
+                }}
+                SelectProps={{
+                  native: true,
+                  inputProps: {
+                    'aria-labelledby': 'scroll-playground-flip-root-boundary',
+                  },
+                }}
+                value={flip.rootBoundary}
+                onChange={(event) => {
+                  setFlip((old) => ({
+                    ...old,
+                    rootBoundary: event.target.value,
+                  }));
+                }}
+              >
+                <option value="document">document</option>
+                <option value="viewport">viewport</option>
+              </TextField>
+            </FormGroup>
+            <FormGroup>
+              <Typography variant="subtitle1">Arrow</Typography>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={arrow}
+                    onChange={(event) => {
+                      setArrow(event.target.checked);
+                    }}
+                    value="arrow"
+                  />
+                }
+                label="Enable"
+              />
+            </FormGroup>
+          </Grid>
         </Grid>
       </Grid>
       <HighlightedCode code={jsx} language="jsx" />

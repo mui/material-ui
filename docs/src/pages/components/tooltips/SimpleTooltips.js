@@ -23,16 +23,16 @@ export default function SimpleTooltips() {
   return (
     <div>
       <Tooltip title="Delete">
-        <IconButton aria-label="delete">
+        <IconButton>
           <DeleteIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Add" aria-label="add">
+      <Tooltip title="Add">
         <Fab color="primary" className={classes.fab}>
           <AddIcon />
         </Fab>
       </Tooltip>
-      <Tooltip title="Add" aria-label="add">
+      <Tooltip title="Add">
         <Fab color="secondary" className={classes.absolute}>
           <AddIcon />
         </Fab>

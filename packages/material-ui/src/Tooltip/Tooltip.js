@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
-import { fade } from '../styles/colorManipulator';
+import { elementAcceptingRef } from '@material-ui/utils';
+import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -20,44 +20,36 @@ function round(value) {
 
 function arrowGenerator() {
   return {
-    '&[x-placement*="bottom"] $arrow': {
+    '&[data-popper-placement*="bottom"] $arrow': {
       top: 0,
       left: 0,
       marginTop: '-0.71em',
-      marginLeft: 4,
-      marginRight: 4,
       '&::before': {
         transformOrigin: '0 100%',
       },
     },
-    '&[x-placement*="top"] $arrow': {
+    '&[data-popper-placement*="top"] $arrow': {
       bottom: 0,
       left: 0,
       marginBottom: '-0.71em',
-      marginLeft: 4,
-      marginRight: 4,
       '&::before': {
         transformOrigin: '100% 0',
       },
     },
-    '&[x-placement*="right"] $arrow': {
+    '&[data-popper-placement*="right"] $arrow': {
       left: 0,
       marginLeft: '-0.71em',
       height: '1em',
       width: '0.71em',
-      marginTop: 4,
-      marginBottom: 4,
       '&::before': {
         transformOrigin: '100% 100%',
       },
     },
-    '&[x-placement*="left"] $arrow': {
+    '&[data-popper-placement*="left"] $arrow': {
       right: 0,
       marginRight: '-0.71em',
       height: '1em',
       width: '0.71em',
-      marginTop: 4,
-      marginBottom: 4,
       '&::before': {
         transformOrigin: '0 0',
       },
@@ -71,7 +63,7 @@ export const styles = (theme) => ({
     zIndex: theme.zIndex.tooltip,
     pointerEvents: 'none', // disable jss-rtl plugin
   },
-  /* Styles applied to the Popper component if `interactive={true}`. */
+  /* Styles applied to the Popper component unless `disableInteractive={true}`. */
   popperInteractive: {
     pointerEvents: 'auto',
   },
@@ -79,7 +71,7 @@ export const styles = (theme) => ({
   popperArrow: arrowGenerator(),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
-    backgroundColor: fade(theme.palette.grey[700], 0.92),
+    backgroundColor: alpha(theme.palette.grey[700], 0.92),
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
@@ -101,7 +93,7 @@ export const styles = (theme) => ({
     width: '1em',
     height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
     boxSizing: 'border-box',
-    color: fade(theme.palette.grey[700], 0.9),
+    color: alpha(theme.palette.grey[700], 0.9),
     '&::before': {
       content: '""',
       margin: 'auto',
@@ -122,33 +114,33 @@ export const styles = (theme) => ({
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
   tooltipPlacementLeft: {
     transformOrigin: 'right center',
-    margin: '0 24px ',
+    marginRight: '24px',
     [theme.breakpoints.up('sm')]: {
-      margin: '0 14px',
+      marginRight: '14px',
     },
   },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
   tooltipPlacementRight: {
     transformOrigin: 'left center',
-    margin: '0 24px',
+    marginLeft: '24px',
     [theme.breakpoints.up('sm')]: {
-      margin: '0 14px',
+      marginLeft: '14px',
     },
   },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
   tooltipPlacementTop: {
     transformOrigin: 'center bottom',
-    margin: '24px 0',
+    marginBottom: '24px',
     [theme.breakpoints.up('sm')]: {
-      margin: '14px 0',
+      marginBottom: '14px',
     },
   },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
   tooltipPlacementBottom: {
     transformOrigin: 'center top',
-    margin: '24px 0',
+    marginTop: '24px',
     [theme.breakpoints.up('sm')]: {
-      margin: '14px 0',
+      marginTop: '14px',
     },
   },
 });
@@ -159,6 +151,15 @@ let hystersisTimer = null;
 export function testReset() {
   hystersisOpen = false;
   clearTimeout(hystersisTimer);
+}
+
+function composeEventHandler(handler, eventHandler) {
+  return (event) => {
+    if (eventHandler) {
+      eventHandler(event);
+    }
+    handler(event);
+  };
 }
 
 const Tooltip = React.forwardRef(function Tooltip(props, ref) {
@@ -173,8 +174,9 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     enterDelay = 100,
     enterNextDelay = 0,
     enterTouchDelay = 700,
+    followCursor = false,
     id: idProp,
-    interactive = false,
+    disableInteractive: disableInteractiveProp = false,
     leaveDelay = 0,
     leaveTouchDelay = 1500,
     onClose,
@@ -182,7 +184,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     open: openProp,
     placement = 'bottom',
     PopperComponent = Popper,
-    PopperProps,
+    PopperProps = {},
     title,
     TransitionComponent = Grow,
     TransitionProps,
@@ -193,6 +195,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
+
+  const disableInteractive = disableInteractiveProp || followCursor;
 
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();
@@ -259,13 +263,29 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const handleEnter = (forward = true) => (event) => {
-    const childrenProps = children.props;
+  const handleClose = useEventCallback(
+    /**
+     * @param {React.SyntheticEvent | Event} event
+     */
+    (event) => {
+      clearTimeout(hystersisTimer);
+      hystersisTimer = setTimeout(() => {
+        hystersisOpen = false;
+      }, 800 + leaveDelay);
+      setOpenState(false);
 
-    if (event.type === 'mouseover' && childrenProps.onMouseOver && forward) {
-      childrenProps.onMouseOver(event);
-    }
+      if (onClose) {
+        onClose(event);
+      }
 
+      clearTimeout(closeTimer.current);
+      closeTimer.current = setTimeout(() => {
+        ignoreNonTouchEvents.current = false;
+      }, theme.transitions.duration.shortest);
+    },
+  );
+
+  const handleEnter = (event) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -292,6 +312,15 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
+  const handleLeave = (event) => {
+    clearTimeout(enterTimer.current);
+    clearTimeout(leaveTimer.current);
+    event.persist();
+    leaveTimer.current = setTimeout(() => {
+      handleClose(event);
+    }, leaveDelay);
+  };
+
   const {
     isFocusVisibleRef,
     onBlur: handleBlurVisible,
@@ -305,10 +334,11 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
       setChildIsFocusVisible(false);
+      handleLeave(event);
     }
   };
 
-  const handleFocus = (forward = true) => (event) => {
+  const handleFocus = (event) => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
@@ -319,61 +349,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
       setChildIsFocusVisible(true);
-      handleEnter()(event);
+      handleEnter(event);
     }
-
-    const childrenProps = children.props;
-    if (childrenProps.onFocus && forward) {
-      childrenProps.onFocus(event);
-    }
-  };
-
-  const handleClose = useEventCallback(
-    /**
-     * @param {React.SyntheticEvent | Event} event
-     */
-    (event) => {
-      clearTimeout(hystersisTimer);
-      hystersisTimer = setTimeout(() => {
-        hystersisOpen = false;
-      }, 800 + leaveDelay);
-      setOpenState(false);
-
-      if (onClose) {
-        onClose(event);
-      }
-
-      clearTimeout(closeTimer.current);
-      closeTimer.current = setTimeout(() => {
-        ignoreNonTouchEvents.current = false;
-      }, theme.transitions.duration.shortest);
-    },
-  );
-
-  const handleLeave = (forward = true) => (event) => {
-    const childrenProps = children.props;
-
-    if (event.type === 'blur') {
-      if (childrenProps.onBlur && forward) {
-        childrenProps.onBlur(event);
-      }
-      handleBlur(event);
-    }
-
-    if (
-      event.type === 'mouseleave' &&
-      childrenProps.onMouseLeave &&
-      event.currentTarget === childNode
-    ) {
-      childrenProps.onMouseLeave(event);
-    }
-
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
-    event.persist();
-    leaveTimer.current = setTimeout(() => {
-      handleClose(event);
-    }, leaveDelay);
   };
 
   const detectTouchStart = (event) => {
@@ -385,6 +362,9 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
+  const handleMouseOver = handleEnter;
+  const handleMouseLeave = handleLeave;
+
   const handleTouchStart = (event) => {
     detectTouchStart(event);
     clearTimeout(leaveTimer.current);
@@ -392,7 +372,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     clearTimeout(touchTimer.current);
     event.persist();
     touchTimer.current = setTimeout(() => {
-      handleEnter()(event);
+      handleEnter(event);
     }, enterTouchDelay);
   };
 
@@ -418,7 +398,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
      * @param {KeyboardEvent} nativeEvent
      */
     function handleKeyDown(nativeEvent) {
-      // IE 11, Edge (prior to using Bink?) use 'Esc'
+      // IE11, Edge (prior to using Bink?) use 'Esc'
       if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
         handleClose(nativeEvent);
       }
@@ -440,6 +420,22 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     open = false;
   }
 
+  const positionRef = React.useRef({ x: 0, y: 0 });
+  const popperRef = React.useRef();
+
+  const handleMouseMove = (event) => {
+    const childrenProps = children.props;
+    if (childrenProps.onMouseMove) {
+      childrenProps.onMouseMove(event);
+    }
+
+    positionRef.current = { x: event.clientX, y: event.clientY };
+
+    if (popperRef.current) {
+      popperRef.current.update();
+    }
+  };
+
   const nameOrDescProps = {};
   const titleIsString = typeof title === 'string';
   if (describeChild) {
@@ -457,6 +453,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     className: clsx(other.className, children.props.className),
     onTouchStart: detectTouchStart,
     ref: handleRef,
+    ...(followCursor ? { onMouseMove: handleMouseMove } : {}),
   };
 
   if (process.env.NODE_ENV !== 'production') {
@@ -483,22 +480,22 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   }
 
   if (!disableHoverListener) {
-    childrenProps.onMouseOver = handleEnter();
-    childrenProps.onMouseLeave = handleLeave();
+    childrenProps.onMouseOver = composeEventHandler(handleMouseOver, childrenProps.onMouseOver);
+    childrenProps.onMouseLeave = composeEventHandler(handleMouseLeave, childrenProps.onMouseLeave);
 
-    if (interactive) {
-      interactiveWrapperListeners.onMouseOver = handleEnter(false);
-      interactiveWrapperListeners.onMouseLeave = handleLeave(false);
+    if (!disableInteractive) {
+      interactiveWrapperListeners.onMouseOver = handleMouseOver;
+      interactiveWrapperListeners.onMouseLeave = handleMouseLeave;
     }
   }
 
   if (!disableFocusListener) {
-    childrenProps.onFocus = handleFocus();
-    childrenProps.onBlur = handleLeave();
+    childrenProps.onFocus = composeEventHandler(handleFocus, childrenProps.onFocus);
+    childrenProps.onBlur = composeEventHandler(handleBlur, childrenProps.onBlur);
 
-    if (interactive) {
-      interactiveWrapperListeners.onFocus = handleFocus(false);
-      interactiveWrapperListeners.onBlur = handleLeave(false);
+    if (!disableInteractive) {
+      interactiveWrapperListeners.onFocus = handleFocus;
+      interactiveWrapperListeners.onBlur = handleBlur;
     }
   }
 
@@ -513,20 +510,26 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
-  const mergedPopperProps = React.useMemo(() => {
-    return deepmerge(
+  const popperOptions = React.useMemo(() => {
+    let tooltipModifiers = [
       {
-        popperOptions: {
-          modifiers: {
-            arrow: {
-              enabled: Boolean(arrowRef),
-              element: arrowRef,
-            },
-          },
+        name: 'arrow',
+        enabled: Boolean(arrowRef),
+        options: {
+          element: arrowRef,
+          padding: 4,
         },
       },
-      PopperProps,
-    );
+    ];
+
+    if (PopperProps.popperOptions?.modifiers) {
+      tooltipModifiers = tooltipModifiers.concat(PopperProps.popperOptions.modifiers);
+    }
+
+    return {
+      ...PopperProps.popperOptions,
+      modifiers: tooltipModifiers,
+    };
   }, [arrowRef, PopperProps]);
 
   return (
@@ -534,16 +537,31 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       {React.cloneElement(children, childrenProps)}
       <PopperComponent
         className={clsx(classes.popper, {
-          [classes.popperInteractive]: interactive,
+          [classes.popperInteractive]: !disableInteractive,
           [classes.popperArrow]: arrow,
         })}
         placement={placement}
-        anchorEl={childNode}
+        anchorEl={
+          followCursor
+            ? {
+                getBoundingClientRect: () => ({
+                  top: positionRef.current.y,
+                  left: positionRef.current.x,
+                  right: positionRef.current.x,
+                  bottom: positionRef.current.y,
+                  width: 0,
+                  height: 0,
+                }),
+              }
+            : childNode
+        }
+        popperRef={popperRef}
         open={childNode ? open : false}
         id={id}
         transition
         {...interactiveWrapperListeners}
-        {...mergedPopperProps}
+        {...PopperProps}
+        popperOptions={popperOptions}
       >
         {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
@@ -610,6 +628,12 @@ Tooltip.propTypes = {
    */
   disableHoverListener: PropTypes.bool,
   /**
+   * Makes a tooltip not interactive, i.e. it will close when the user
+   * hovers over the tooltip before the `leaveDelay` is expired.
+   * @default false
+   */
+  disableInteractive: PropTypes.bool,
+  /**
    * Do not respond to long press touch events.
    * @default false
    */
@@ -631,16 +655,15 @@ Tooltip.propTypes = {
    */
   enterTouchDelay: PropTypes.number,
   /**
+   * If `true`, the tooltip follow the cursor over the wrapped element.
+   * @default false
+   */
+  followCursor: PropTypes.bool,
+  /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
-  /**
-   * Makes a tooltip interactive, i.e. will not close when the user
-   * hovers over the tooltip before the `leaveDelay` is expired.
-   * @default false
-   */
-  interactive: PropTypes.bool,
   /**
    * The number of milliseconds to wait before hiding the tooltip.
    * This prop won't impact the leave touch delay (`leaveTouchDelay`).
@@ -693,6 +716,7 @@ Tooltip.propTypes = {
   PopperComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Popper`](/api/popper/) element.
+   * @default {}
    */
   PopperProps: PropTypes.object,
   /**

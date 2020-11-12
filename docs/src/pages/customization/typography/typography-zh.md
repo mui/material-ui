@@ -1,4 +1,4 @@
-# 文字排版
+# 文字铸排
 
 <p class="description">主题会提供一套能够一起协调工作的类型大小，也提供了布局网格。</p>
 
@@ -94,11 +94,11 @@ const theme = createMuiTheme({
 });
 ```
 
-有浏览器计算出来的字体大小遵循了以下数学方程式：
+浏览器计算出来的字体大小遵循了以下数学方程式：
 
-![font-size](/static/images/font-size.gif)
+<img src="/static/images/font-size.png" alt="计算字体大小" style="width: 458px;" />
 
-<!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
+<!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### 响应的字体大小
 

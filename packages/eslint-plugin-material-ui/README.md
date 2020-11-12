@@ -7,6 +7,7 @@ Custom eslint rules for Material-UI.
 - `disallow-active-element-as-key-event-target`
 - `docgen-ignore-before-comment`
 - `no-hardcoded-labels`
+- `lower-case-test-name`
 - ~~`restricted-path-imports`~~
 
 ### disallow-active-element-as-key-event-target

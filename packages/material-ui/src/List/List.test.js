@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { findOutermostIntrinsic, getClasses, createMount, describeConformance } from 'test/utils';
+import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
 import ListSubheader from '../ListSubheader';
 import List from './List';
 import ListItem from '../ListItem';
 
 describe('<List />', () => {
   const mount = createMount();
+  const render = createClientRender();
   let classes;
 
   before(() => {
@@ -21,44 +22,51 @@ describe('<List />', () => {
   }));
 
   it('should render with padding classes', () => {
-    const wrapper = mount(<List className="woofList" />);
-    const root = wrapper.find('ul');
-    expect(root.hasClass(classes.padding)).to.equal(true);
+    const { container } = render(<List className="woofList" />);
+
+    expect(container.firstChild).to.have.class(classes.padding);
   });
 
   it('can disable the padding', () => {
-    const wrapper = mount(<List disablePadding />);
-    expect(wrapper.find('ul').hasClass(classes.padding)).to.equal(false);
+    const { container } = render(<List disablePadding />);
+
+    expect(container.firstChild).not.to.have.class(classes.padding);
   });
 
   describe('prop: subheader', () => {
     it('should render with subheader class', () => {
-      const wrapper = mount(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      expect(wrapper.find('ul').hasClass(classes.subheader)).to.equal(true);
+      const { container } = render(<List subheader={<ListSubheader>Title</ListSubheader>} />);
+
+      expect(container.firstChild).to.have.class(classes.subheader);
     });
 
     it('should render ListSubheader', () => {
-      const wrapper = mount(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      expect(wrapper.find(ListSubheader).length).to.equal(1);
+      const { container } = render(<List subheader={<ListSubheader>Title</ListSubheader>} />);
+      const listSubheaderClasses = getClasses(<ListSubheader />);
+      const item = container.querySelector('li');
+
+      expect(item).to.have.class(listSubheaderClasses.root);
     });
   });
 
   describe('prop: dense', () => {
     it('is disabled by default', () => {
-      const wrapper = mount(<List />);
-      expect(findOutermostIntrinsic(wrapper).hasClass(classes.dense)).to.equal(false);
+      const { container } = render(<List />);
+
+      expect(container.firstChild).not.to.have.class(classes.dense);
     });
 
     it('adds a dense class', () => {
-      const wrapper = mount(<List dense />);
-      expect(findOutermostIntrinsic(wrapper).hasClass(classes.dense)).to.equal(true);
+      const { container } = render(<List dense />);
+
+      expect(container.firstChild).to.have.class(classes.dense);
     });
 
     it('sets dense on deep nested ListItem', () => {
       // mocking a tooltip
       const Tooltip = React.Fragment;
 
-      const wrapper = mount(
+      const { container } = render(
         <List dense>
           <Tooltip>
             <ListItem>Inbox</ListItem>
@@ -69,7 +77,11 @@ describe('<List />', () => {
       );
 
       const listItemClasses = getClasses(<ListItem />);
-      expect(wrapper.find('li').every(`.${listItemClasses.dense}`)).to.equal(true);
+
+      const liItems = container.querySelectorAll('li');
+      for (let i = 0; i < liItems.length; i += 1) {
+        expect(liItems[i]).to.have.class(listItemClasses.dense);
+      }
     });
   });
 });

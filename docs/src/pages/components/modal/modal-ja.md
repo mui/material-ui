@@ -14,7 +14,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 - 💄 一度に1つだけでは不十分な場合に、モーダルスタッキングを管理します。
 - 🔐モーダルの下のインタラクションを無効にするためのバックドロップを作成します。
 - 🔐open開いている間、ページコンテンツのスクロールを無効にします。
-- ♿️フォーカスを適切に管理します。モーダルコンテンツに移動し、 して、モーダルが閉じられるまでそこに保持します。
+- ♿️フォーカスを適切に管理します。モーダルコンテンツに移動 して、モーダルが閉じられるまでそこに保持します。
 - ♿️適切なARIAロールを自動的に追加します。
 - [5 kB gzipped](/size-snapshot).
 
@@ -51,6 +51,18 @@ Modal has built-in support for [react-transition-group](https://github.com/react
 Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
+
+## パフォーマンス
+
+The content of modal is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to change this default behavior by enabling the `keepMounted` prop:
+
+```jsx
+<Modal keepMounted />
+```
+
+{{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
+
+他のパフォーマンス最適化と同様、これは特効薬ではありません。 まずボトルネックを特定してから、これらの最適化戦略を試してください。
 
 ## Server-side modal
 

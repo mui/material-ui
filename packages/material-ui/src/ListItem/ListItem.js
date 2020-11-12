@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -27,9 +27,9 @@ export const styles = (theme) => ({
       backgroundColor: theme.palette.action.focus,
     },
     '&$selected': {
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       '&$focusVisible': {
-        backgroundColor: fade(
+        backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
         ),
@@ -61,7 +61,7 @@ export const styles = (theme) => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   },
-  /* Styles applied to the inner `component` element if `disableGutters={false}`. */
+  /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
   gutters: {
     paddingLeft: 16,
     paddingRight: 16,
@@ -80,13 +80,13 @@ export const styles = (theme) => ({
       },
     },
     '&$selected:hover': {
-      backgroundColor: fade(
+      backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
       ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       },
     },
   },
@@ -223,13 +223,13 @@ ListItem.propTypes = {
    */
   alignItems: PropTypes.oneOf(['center', 'flex-start']),
   /**
-   * If `true`, the list item will be focused during the first mount.
+   * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
    */
   autoFocus: PropTypes.bool,
   /**
-   * If `true`, the list item will be a button (using `ButtonBase`). Props intended
+   * If `true`, the list item is a button (using `ButtonBase`). Props intended
    * for `ButtonBase` can then be applied to `ListItem`.
    * @default false
    */
@@ -286,13 +286,13 @@ ListItem.propTypes = {
    */
   ContainerProps: PropTypes.object,
   /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * The prop defaults to the value inherited from the parent List component.
    * @default false
    */
   dense: PropTypes.bool,
   /**
-   * If `true`, the list item will be disabled.
+   * If `true`, the list item is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

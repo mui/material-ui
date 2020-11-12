@@ -4,6 +4,10 @@ const { danger, markdown } = require('danger');
 const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
+const azureBuildId = process.env.AZURE_BUILD_ID;
+const azureBuildUrl = `https://dev.azure.com/mui-org/Material-UI/_build/results?buildId=${azureBuildId}`;
+const dangerCommand = process.env.DANGER_COMMAND;
+
 const parsedSizeChangeThreshold = 300;
 const gzipSizeChangeThreshold = 100;
 
@@ -30,7 +34,7 @@ const UPSTREAM_REMOTE = 'danger-upstream';
  * scripts exit to avoid adding internal remotes to the local machine. This is
  * not an issue in CI.
  */
-async function cleanup() {
+async function reportBundleSizeCleanup() {
   await git(`remote remove ${UPSTREAM_REMOTE}`);
 }
 
@@ -103,7 +107,13 @@ function sieveResults(results) {
   return { all: results, main, pages };
 }
 
-async function run() {
+function prepareBundleSizeReport() {
+  markdown(
+    `Bundle size will be reported once [Azure build #${azureBuildId}](${azureBuildUrl}) finishes.`,
+  );
+}
+
+async function reportBundleSize() {
   // Use git locally to grab the commit which represents the place
   // where the branches differ
   const upstreamRepo = danger.github.pr.base.repo.full_name;
@@ -116,7 +126,7 @@ async function run() {
   await git(`fetch ${UPSTREAM_REMOTE}`);
   const mergeBaseCommit = await git(`merge-base HEAD ${UPSTREAM_REMOTE}/${upstreamRef}`);
 
-  const commitRange = `${mergeBaseCommit}...${danger.github.pr.head.sha}`;
+  const detailedComparisonUrl = `https://mui-dashboard.netlify.app/size-comparison?buildId=${azureBuildId}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number}`;
 
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
 
@@ -134,31 +144,32 @@ async function run() {
       markdown(importantChanges.join('\n'));
     }
 
-    const details = `[Details of bundle changes](https://mui-dashboard.netlify.app/size-comparison?buildId=${process.env.AZURE_BUILD_ID}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number})`;
+    const details = `[Details of bundle changes](${detailedComparisonUrl})`;
 
     markdown(details);
   } else {
-    // this can later be removed to reduce PR noise. It is kept for now for debug
-    // purposes only. DangerJS will swallow console.logs if it completes successfully
-    markdown(`No bundle size changes comparing ${commitRange}`);
+    markdown(`[No bundle size changes](${detailedComparisonUrl})`);
   }
 }
 
-(async () => {
-  let exitCode = 0;
-  try {
-    await run();
-  } catch (err) {
-    console.error(err);
-    exitCode = 1;
+async function run() {
+  switch (dangerCommand) {
+    case 'prepareBundleSizeReport':
+      prepareBundleSizeReport();
+      break;
+    case 'reportBundleSize':
+      try {
+        await reportBundleSize();
+      } finally {
+        await reportBundleSizeCleanup();
+      }
+      break;
+    default:
+      throw new TypeError(`Unrecognized danger command '${dangerCommand}'`);
   }
+}
 
-  try {
-    await cleanup();
-  } catch (err) {
-    console.error(err);
-    exitCode = 1;
-  }
-
-  process.exit(exitCode);
-})();
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

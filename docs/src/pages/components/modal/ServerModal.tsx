@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       minWidth: 300,
       transform: 'translateZ(0)',
-      // The position fixed scoping doesn't work in IE 11.
+      // The position fixed scoping doesn't work in IE11.
       // Disable this demo to preserve the others.
       '@media all and (-ms-high-contrast: none)': {
         display: 'none',

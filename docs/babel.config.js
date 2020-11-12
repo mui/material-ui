@@ -25,6 +25,7 @@ const alias = {
   // '@material-ui/styled-engine': '../packages/material-ui-styled-engine-sc/src',
   '@material-ui/system': '../packages/material-ui-system/src',
   '@material-ui/utils': '../packages/material-ui-utils/src',
+  '@material-ui/unstyled': '../packages/material-ui-unstyled/src',
   docs: './',
   modules: '../modules',
   pages: './pages',
@@ -49,7 +50,7 @@ module.exports = {
       },
     ],
     'babel-plugin-optimize-clsx',
-    // for IE 11 support
+    // for IE11 support
     '@babel/plugin-transform-object-assign',
     'babel-plugin-preval',
     [

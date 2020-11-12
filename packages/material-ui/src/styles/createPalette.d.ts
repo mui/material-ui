@@ -70,6 +70,14 @@ export type PaletteTonalOffset =
 export const light: TypeObject;
 export const dark: TypeObject;
 
+export interface PaletteAugmentColorOptions {
+  color: PaletteColorOptions;
+  mainShade?: number | string;
+  lightShade?: number | string;
+  darkShade?: number | string;
+  name?: number | string;
+}
+
 export interface Palette {
   common: CommonColors;
   mode: PaletteMode;
@@ -87,15 +95,7 @@ export interface Palette {
   action: TypeAction;
   background: TypeBackground;
   getContrastText: (background: string) => string;
-  augmentColor: {
-    (
-      color: ColorPartial,
-      mainShade?: number | string,
-      lightShade?: number | string,
-      darkShade?: number | string
-    ): PaletteColor;
-    (color: PaletteColorOptions): PaletteColor;
-  };
+  augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;
 }
 
 export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };

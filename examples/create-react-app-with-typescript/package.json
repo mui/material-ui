@@ -3,7 +3,9 @@
   "version": "4.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "latest",
+    "@emotion/core": "latest",
+    "@emotion/styled": "latest",
+    "@material-ui/core": "next",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "react": "latest",

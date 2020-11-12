@@ -147,17 +147,23 @@ const theme = createMuiTheme({
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     status: {
-      danger: React.CSSProperties['color'],
-    }
+      danger: React.CSSProperties['color'];
+    };
+  }
+  interface PaletteColor {
+    darker?: string;
+  }
+  interface SimplePaletteColorOptions {
+    darker?: string;
   }
   interface ThemeOptions {
     status: {
-      danger: React.CSSProperties['color']
-    }
+      danger: React.CSSProperties['color'];
+    };
   }
 }
 
-declare module "@material-ui/core/styles/createPalette" {
+declare module '@material-ui/core/styles/createPalette' {
   interface Palette {
     neutral: Palette['primary'];
   }
@@ -173,12 +179,12 @@ declare module "@material-ui/core/styles/createPalette" {
 
 ## 暗色模式
 
-材质界面有两种调色板的类型，亮色（light）（默认值）和 暗色（dark）模式。 您可以通过设置 `type: 'dark'` 来运用暗色主题。 虽然只是单一的数值变化，但在其内部却修改了多个调色板的数值。
+材质界面有两种调色板的类型，亮色（light）（默认值）和 暗色（dark）模式。 你可以通过设置 `mode: 'dark'` 来启用夜间模式。 虽然只是单一的数值变化，但在其内部却修改了多个调色板的数值。
 
 ```js
 const darkTheme = createMuiTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
   },
 });
 ```
@@ -208,7 +214,7 @@ function App() {
     () =>
       createMuiTheme({
         palette: {
-          type: prefersDarkMode ? 'dark' : 'light',
+          mode: prefersDarkMode ? 'dark' : 'light',
         },
       }),
     [prefersDarkMode],

@@ -18,7 +18,7 @@ Quando ativada, [dicas](https://material.io/design/components/tooltips.html) exi
 
 {{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
-## Posicionamento de dicas
+## Positioned tooltips
 
 O `Tooltip` tem 12 **posicionamentos** para ser escolhido. Eles não têm setas direcionais; em vez disso, eles dependem do movimento que emana da fonte para transmitir direção.
 
@@ -30,7 +30,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Dicas com seta
+## Arrow tooltips
 
 Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a qual elemento se refere.
 
@@ -61,13 +61,13 @@ Você pode definir os tipos de eventos que fazem com que uma dica seja exibida.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Dicas Controladas
+## Controlled tooltips
 
 Você pode usas as propriedades `open`, `onOpen` e `onClose` para controlar o comportamento da dica.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Largura Variável
+## Variable width
 
 A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
@@ -75,11 +75,11 @@ A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
 ## Interativo
 
-Uma dica pode ser interativa. Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## Elementos Desabilitados
+## Disabled elements
 
 Por padrão os elementos desabilitados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, como passar o mouse. Para acomodar elementos desabilitados, adicione um elemento encapsulador simples, como um `span`.
 
@@ -92,8 +92,9 @@ Por padrão os elementos desabilitados como `<button>` não disparam interaçõe
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'Um botão desabilitado'}
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}
+    >
+      A disabled button
     </button>
   </span>
 </Tooltip>
@@ -104,6 +105,18 @@ Por padrão os elementos desabilitados como `<button>` não disparam interaçõe
 Use uma transição diferente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
+
+## Segue o cursor
+
+You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## Virtual element
+
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
 ## Exibindo e ocultando
 
@@ -117,7 +130,7 @@ No celular, a dica é exibida quando o usuário pressiona longamente o elemento 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 
-By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in:
+By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. Por exemplo, em:
 
 ```html
 <button title="some more information">A button</button>

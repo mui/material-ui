@@ -1,8 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useThemeProps, experimentalStyled, fade, lighten, darken } from '@material-ui/core/styles';
+import {
+  useThemeProps,
+  experimentalStyled,
+  alpha,
+  lighten,
+  darken,
+} from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
-import SliderUnstyled from '../SliderUnstyled';
+import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
 import ValueLabelStyled from './ValueLabelStyled';
 
 const overridesResolver = (props, styles, name) => {
@@ -177,28 +183,34 @@ export const SliderThumb = experimentalStyled('span')((props) => ({
     ':hover': {
       boxShadow: 'none',
     },
+    ...(props.styleProps.orientation === 'vertical' && {
+      marginLeft: -3, //-5
+      marginBottom: -4, //-6
+    }),
   },
-  ...(props.styleProps.orientation === 'vertical' && {
-    marginLeft: -5,
-    marginBottom: -6,
-  }),
-  ...(props.styleProps.orientation === 'vertical' && {
-    '&.Mui-disabled': {
-      marginLeft: -3,
-      marginBottom: -4,
-    },
-  }),
   ...(props.styleProps.color === 'secondary' && {
-    ':hover': {
-      boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
-    },
-    '&.Mui-focusVisible': {
+    ':hover, &.Mui-focusVisible': {
       boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
     },
     '&.Mui-active': {
       boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.secondary.main, 0.16)}`,
     },
   }),
+  '& .MuiSlider-valueLabel': {
+    // IE11 centering bug, to remove from the customization demos once no longer supported
+    left: 'calc(-50% - 4px)',
+  },
+  '& .MuiSlider-mark': {
+    position: 'absolute',
+    width: 2,
+    height: 2,
+    borderRadius: 1,
+    backgroundColor: 'currentColor',
+    '&.MuiSlider-markActive': {
+      backgroundColor: props.theme.palette.background.paper,
+      opacity: 0.8,
+    },
+  },
 }));
 
 export const SliderValueLabel = experimentalStyled(ValueLabelStyled)({
@@ -359,7 +371,7 @@ Slider.propTypes = {
    */
   defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**
-   * If `true`, the slider will be disabled.
+   * If `true`, the slider is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -385,7 +397,7 @@ Slider.propTypes = {
   isRtl: PropTypes.bool,
   /**
    * Marks indicate predetermined values to which the user can move the slider.
-   * If `true` the marks will be spaced according the value of the `step` prop.
+   * If `true` the marks are spaced according the value of the `step` prop.
    * If an array, it should contain objects with `value` and an optional `label` keys.
    * @default false
    */
@@ -447,6 +459,10 @@ Slider.propTypes = {
    * @default 1
    */
   step: PropTypes.number,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The track presentation:
    *

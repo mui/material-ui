@@ -529,7 +529,7 @@ const appList = [
   },
   {
     title: 'Swimmy',
-    description: 'An open source forum PWA. 🇯🇵 (Github docs are in English)',
+    description: 'An open source forum PWA. 🇯🇵 (GitHub docs are in English)',
     image: 'swimmy.jpg',
     link: 'https://swimmy.io/',
     source: 'https://github.com/swimmy/swimmy.io',
@@ -658,6 +658,13 @@ const appList = [
     link: 'https://lightyearvpn.com',
     similarWebVisits: 534,
     dateAdded: '2020-09-11',
+  },
+  {
+    title: 'buybags',
+    description: 'buybags is a fashion shopping aggregator in Germany.',
+    image: 'buybags.jpg',
+    link: 'https://www.buybags.de/',
+    dateAdded: '2020-10-08',
   },
 ];
 

@@ -100,7 +100,8 @@ const StyledButton = withStyles({
 .MenuItem {
   color: black;
 }
-.MenuItem.selected { /* Increase the specificity */
+/* 提高优先级 */
+.MenuItem.selected {
   color: blue;
 }
 ```
@@ -132,7 +133,8 @@ const StyledButton = withStyles({
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* Increase the specificity */
+.MenuItem.Mui-selected {
+  /* 提高优先级 */
   color: blue;
 }
 ```
@@ -265,10 +267,6 @@ const GlobalCss = withStyles({
 
 // …
 
-<GlobalCss />
-
-<GlobalCss />;
-
 <GlobalCss />;
 ```
 
@@ -280,10 +278,12 @@ const GlobalCss = withStyles({
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     MuiButton: {
-      root: {
-        fontSize: '1rem',
+      styleOverrides: {
+        root: {
+          fontSize: '1rem',
+        },
       },
     },
   },

@@ -6,7 +6,7 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/co
  *  Modified slightly to suit our purposes.
  */
 
-// To replace with .findIndex() once we stop IE 11 support.
+// To replace with .findIndex() once we stop IE11 support.
 function findIndex(array, comp) {
   for (let i = 0; i < array.length; i += 1) {
     if (comp(array[i])) {

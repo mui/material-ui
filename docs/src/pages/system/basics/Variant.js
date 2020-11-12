@@ -9,10 +9,8 @@ const variant = style({
   themeKey: 'typography',
 });
 
-// ⚠ Text is already defined in the global context:
-// https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
 const Text = styled.span`
-  font-family: Helvetica;
+  font-family: Helvetica, sans-serif;
   ${variant}
   ${typography}
 `;

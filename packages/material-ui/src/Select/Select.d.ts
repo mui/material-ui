@@ -4,9 +4,9 @@ import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
 
-export interface SelectProps
+export interface SelectProps<T = unknown>
   extends StandardProps<InputProps, 'value' | 'onChange'>,
-    Pick<SelectInputProps, 'onChange'> {
+    Pick<SelectInputProps<T>, 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -50,7 +50,7 @@ export interface SelectProps
   /**
    * The default element value. Use when the component is not controlled.
    */
-  defaultValue?: unknown;
+  defaultValue?: T;
   /**
    * If `true`, a value is displayed even if no items are selected.
    *
@@ -104,7 +104,7 @@ export interface SelectProps
    */
   multiple?: boolean;
   /**
-   * If `true`, the component will be using a native `select` element.
+   * If `true`, the component uses a native `select` element.
    * @default false
    */
   native?: boolean;
@@ -115,7 +115,7 @@ export interface SelectProps
    * You can pull out the new value by accessing `event.target.value` (any).
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
-  onChange?: SelectInputProps['onChange'];
+  onChange?: SelectInputProps<T>['onChange'];
   /**
    * Callback fired when the component requests to be closed.
    * Use in controlled mode (see open).
@@ -142,20 +142,20 @@ export interface SelectProps
    * @param {any} value The `value` provided to the component.
    * @returns {ReactNode}
    */
-  renderValue?: (value: SelectProps['value']) => React.ReactNode;
+  renderValue?: (value: T) => React.ReactNode;
   /**
    * Props applied to the clickable div element.
    */
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
-   * The input value. Providing an empty string will select no options.
+   * The `input` value. Providing an empty string will select no options.
    * This prop is required when the `native` prop is `false` (default).
    * Set to an empty string `''` if you don't want any of the available options to be selected.
    *
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value?: unknown;
+  value?: T;
   /**
    * The variant to use.
    * @default 'standard'
@@ -176,4 +176,4 @@ export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
  * - [Select API](https://material-ui.com/api/select/)
  * - inherits [Input API](https://material-ui.com/api/input/)
  */
-export default function Select(props: SelectProps): JSX.Element;
+export default function Select<T>(props: SelectProps<T>): JSX.Element;

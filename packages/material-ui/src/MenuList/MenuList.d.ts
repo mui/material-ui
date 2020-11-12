@@ -38,7 +38,7 @@ export interface MenuListProps extends ListProps {
 export type MenuListClassKey = keyof NonNullable<MenuListProps['classes']>;
 
 /**
- * A permanently displayed menu following <https://www.w3.org/TR/wai-aria-practices/#menubutton>.
+ * A permanently displayed menu following https://www.w3.org/TR/wai-aria-practices/#menubutton.
  * It's exposed to help customization of the [`Menu`](https://material-ui.com/api/menu/) component. If you
  * use it separately you need to move focus into the component manually. Once
  * the focus is placed inside the component it is fully keyboard accessible.

@@ -135,12 +135,10 @@ In practice, you can set the `zeroMinWidth` prop:
 
 ### direction: column | column-reverse
 
-Though the `Grid` component has a `direction` prop that allows values of `row`, `row-reverse`, `column`, and `column-reverse`,
-there are some features that are not supported within `column` and `column-reverse` containers.
-The props which define the number of grids the component will use for a given breakpoint
-(`xs`, `sm`, `md`, `lg`, and `xl`) are focused on controlling width
-and do **not** have similar effects on height within `column` and `column-reverse` containers.
-If used within `column` or `column-reverse` containers, these props may have undesirable effects on the width of the `Grid` elements.
+The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
+
+They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers.
+If used, these props may have undesirable effects on the height of the `Grid` item elements.
 
 ## CSS Grid Layout
 

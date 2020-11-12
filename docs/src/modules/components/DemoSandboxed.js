@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { create } from 'jss';
 import { makeStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
 import rtl from 'jss-rtl';
-import { useSelector } from 'react-redux';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 function FramedDemo(props) {
   const { children, document } = props;
@@ -107,7 +107,7 @@ function DemoSandboxed(props) {
   const Sandbox = iframe ? DemoFrame : React.Fragment;
   const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
 
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <DemoErrorBoundary onResetDemoClick={onResetDemoClick} t={t}>

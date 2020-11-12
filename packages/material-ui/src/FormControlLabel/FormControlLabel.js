@@ -133,7 +133,7 @@ FormControlLabel.propTypes = {
    */
   control: PropTypes.element.isRequired,
   /**
-   * If `true`, the control will be disabled.
+   * If `true`, the control is disabled.
    */
   disabled: PropTypes.bool,
   /**

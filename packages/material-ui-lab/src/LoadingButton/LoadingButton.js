@@ -111,12 +111,12 @@ LoadingButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the button will be disabled.
+   * If `true`, the button is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the pending indicator will be shown.
+   * If `true`, the pending indicator is shown.
    * @default false
    */
   pending: PropTypes.bool,

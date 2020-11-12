@@ -153,7 +153,7 @@ OutlinedInput.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -170,7 +170,7 @@ OutlinedInput.propTypes = {
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the `input` element is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
@@ -179,12 +179,12 @@ OutlinedInput.propTypes = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the input will indicate an error.
+   * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the `input` will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,
@@ -208,13 +208,13 @@ OutlinedInput.propTypes = {
    */
   inputRef: refType,
   /**
-   * The label of the input. It is only used for layout. The actual labelling
+   * The label of the `input`. It is only used for layout. The actual labelling
    * is handled by `InputLabel`. If specified `labelWidth` is ignored.
    */
   label: PropTypes.node,
   /**
    * The width of the label. Is ignored if `label` is provided. Prefer `label`
-   * if the input label appears with a strike through.
+   * if the `input` label appears with a strike through.
    * @default 0
    */
   labelWidth: PropTypes.number,
@@ -233,7 +233,7 @@ OutlinedInput.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a textarea element will be rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -253,7 +253,7 @@ OutlinedInput.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**
@@ -262,7 +262,7 @@ OutlinedInput.propTypes = {
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,

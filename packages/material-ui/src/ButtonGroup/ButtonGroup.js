@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useThemeVariants } from '@material-ui/styles';
 import capitalize from '../utils/capitalize';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import Button from '../Button';
 
@@ -87,13 +87,13 @@ export const styles = (theme) => ({
   /* Styles applied to the children if `variant="text"` and `color="primary"`. */
   groupedTextPrimary: {
     '&:not(:last-child)': {
-      borderColor: fade(theme.palette.primary.main, 0.5),
+      borderColor: alpha(theme.palette.primary.main, 0.5),
     },
   },
   /* Styles applied to the children if `variant="text"` and `color="secondary"`. */
   groupedTextSecondary: {
     '&:not(:last-child)': {
-      borderColor: fade(theme.palette.secondary.main, 0.5),
+      borderColor: alpha(theme.palette.secondary.main, 0.5),
     },
   },
   /* Styles applied to the children if `variant="outlined"`. */
@@ -290,7 +290,7 @@ ButtonGroup.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the buttons will be disabled.
+   * If `true`, the buttons are disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -300,12 +300,12 @@ ButtonGroup.propTypes = {
    */
   disableElevation: PropTypes.bool,
   /**
-   * If `true`, the button keyboard focus ripple will be disabled.
+   * If `true`, the button keyboard focus ripple is disabled.
    * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
-   * If `true`, the button ripple effect will be disabled.
+   * If `true`, the button ripple effect is disabled.
    * @default false
    */
   disableRipple: PropTypes.bool,

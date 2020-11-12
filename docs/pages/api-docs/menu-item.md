@@ -31,7 +31,7 @@ The `MuiMenuItem` name can be used for providing [default props](/customization/
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Menu item contents. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">dense</span> | <span class="prop-type">bool</span> |  | If `true`, compact vertical padding designed for keyboard and mouse input will be used. The prop defaults to the value inherited from the parent List component. |
+| <span class="prop-name">dense</span> | <span class="prop-type">bool</span> |  | If `true`, compact vertical padding designed for keyboard and mouse input is used. The prop defaults to the value inherited from the parent List component. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
 | <span class="prop-name">ListItemClasses</span> | <span class="prop-type">object</span> |  | `classes` prop applied to the [`ListItem`](/api/list-item/) element. |
 
@@ -44,7 +44,7 @@ Any other props supplied will be provided to the root element ([ListItem](/api/l
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiMenuItem-root</span> | Styles applied to the root element.
-| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiMenuItem-gutters</span> | Styles applied to the root element if `disableGutters={false}`.
+| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiMenuItem-gutters</span> | Styles applied to the root element unless `disableGutters={true}`.
 | <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Styles applied to the root element if `selected={true}`.
 | <span class="prop-name">dense</span> | <span class="prop-name">.MuiMenuItem-dense</span> | Styles applied to the root element if dense.
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { spy } from 'sinon';
 import {
   getClasses,
@@ -46,6 +46,17 @@ describe('<TreeItem />', () => {
           'TreeItem',
         );
       }).toErrorDev('Failed prop type: The prop `onFocus` is not supported.');
+    });
+
+    it('should warn if an `ContentComponent` that does not hold a ref is used', () => {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          TreeItem.Naked.propTypes,
+          { nodeId: 'one', ContentComponent: () => {} },
+          'prop',
+          'TreeItem',
+        );
+      }).toErrorDev('Expected an element type that can hold a ref.');
     });
   });
 
@@ -2200,6 +2211,28 @@ describe('<TreeItem />', () => {
       expect(getByTestId('one')).to.have.attribute('aria-disabled', 'true');
       expect(getByTestId('two')).to.have.attribute('aria-disabled', 'true');
       expect(getByTestId('three')).to.have.attribute('aria-disabled', 'true');
+    });
+  });
+
+  describe('content customisation', () => {
+    it('should allow a custom ContentComponent', () => {
+      const mockContent = React.forwardRef((props, ref) => (
+        <div ref={ref}>MOCK CONTENT COMPONENT</div>
+      ));
+      const { container } = render(<TreeItem nodeId="one" ContentComponent={mockContent} />);
+      expect(container.textContent).to.equal('MOCK CONTENT COMPONENT');
+    });
+
+    it('should allow props to be passed to a custom ContentComponent', () => {
+      const mockContent = React.forwardRef((props, ref) => <div ref={ref}>{props.customProp}</div>);
+      const { container } = render(
+        <TreeItem
+          nodeId="one"
+          ContentComponent={mockContent}
+          ContentProps={{ customProp: 'ABCDEF' }}
+        />,
+      );
+      expect(container.textContent).to.equal('ABCDEF');
     });
   });
 

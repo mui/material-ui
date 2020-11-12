@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui-lab/src/AvatarGroup/AvatarGroup.js
+filename: /packages/material-ui/src/AvatarGroup/AvatarGroup.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -11,9 +11,9 @@ filename: /packages/material-ui-lab/src/AvatarGroup/AvatarGroup.js
 ## Import
 
 ```js
-import AvatarGroup from '@material-ui/lab/AvatarGroup';
+import AvatarGroup from '@material-ui/core/AvatarGroup';
 // or
-import { AvatarGroup } from '@material-ui/lab';
+import { AvatarGroup } from '@material-ui/core';
 ```
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
@@ -32,6 +32,7 @@ The `MuiAvatarGroup` name can be used for providing [default props](/customizati
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">5</span> | Max avatars to show before +x. |
 | <span class="prop-name">spacing</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;number</span> | <span class="prop-default">'medium'</span> | Spacing between avatars. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string</span> | <span class="prop-default">'circular'</span> | The shape of the avatars. |
 
 The `ref` is forwarded to the root element.
 
@@ -50,7 +51,7 @@ You can override the style of the component thanks to one of these customization
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/AvatarGroup/AvatarGroup.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/AvatarGroup/AvatarGroup.js) for more detail.
 
 ## Demos
 

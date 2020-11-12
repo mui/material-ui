@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Slider, { SliderThumb } from '@material-ui/lab/SliderStyled';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: `calc(300px + ${theme.spacing(6)})`,
-    },
-    margin: {
-      height: theme.spacing(3),
-    },
-  }),
+const Root = styled('div')(
+  ({ theme }) => `
+  width: calc(300px + ${theme.spacing(6)});
+`,
+);
+
+const Separator = styled('div')(
+  ({ theme }) => `
+  height: ${theme.spacing(3)};
+`,
 );
 
 interface Props {
@@ -54,7 +54,6 @@ const IOSSlider = styled(Slider)({
   color: '#3880ff',
   height: 2,
   padding: '15px 0',
-
   '& .MuiSlider-thumb': {
     height: 28,
     width: 28,
@@ -62,7 +61,6 @@ const IOSSlider = styled(Slider)({
     boxShadow: iOSBoxShadow,
     marginTop: -14,
     marginLeft: -14,
-
     '&:focus, &:hover, &.Mui-active': {
       boxShadow:
         '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
@@ -72,7 +70,6 @@ const IOSSlider = styled(Slider)({
       },
     },
   },
-
   '& .MuiSlider-valueLabel': {
     left: 'calc(-50% + 12px)',
     top: -22,
@@ -81,17 +78,14 @@ const IOSSlider = styled(Slider)({
       color: '#000',
     },
   },
-
   '& .MuiSlider-track': {
     height: 2,
   },
-
   '& .MuiSlider-rail': {
     height: 2,
     opacity: 0.5,
     backgroundColor: '#bfbfbf',
   },
-
   '& .MuiSlider-mark': {
     backgroundColor: '#bfbfbf',
     height: 8,
@@ -121,12 +115,10 @@ const PrettoSlider = styled(Slider)({
   '& .MuiSlider-valueLabel': {
     left: 'calc(-50% + 4px)',
   },
-
   '& .MuiSlider-track': {
     height: 8,
     borderRadius: 4,
   },
-
   '& .MuiSlider-rail': {
     height: 8,
     borderRadius: 4,
@@ -137,7 +129,6 @@ const AirbnbSlider = styled(Slider)({
   color: '#3a8589',
   height: 3,
   padding: '13px 0',
-
   '& .MuiSlider-thumb': {
     height: 27,
     width: 27,
@@ -158,11 +149,9 @@ const AirbnbSlider = styled(Slider)({
       marginRight: 1,
     },
   },
-
   '& .MuiSlider-track': {
     height: 3,
   },
-
   '& .MuiSlider-rail': {
     color: '#d8d8d8',
     opacity: 1,
@@ -181,10 +170,8 @@ function AirbnbThumbComponent(props: any) {
 }
 
 export default function CustomizedSlider() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Root>
       <Typography gutterBottom>iOS</Typography>
       <IOSSlider
         aria-label="ios slider"
@@ -192,14 +179,14 @@ export default function CustomizedSlider() {
         marks={marks}
         valueLabelDisplay="on"
       />
-      <div className={classes.margin} />
+      <Separator />
       <Typography gutterBottom>pretto.fr</Typography>
       <PrettoSlider
         valueLabelDisplay="auto"
         aria-label="pretto slider"
         defaultValue={20}
       />
-      <div className={classes.margin} />
+      <Separator />
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
         components={{
@@ -208,7 +195,7 @@ export default function CustomizedSlider() {
         aria-label="custom thumb label"
         defaultValue={20}
       />
-      <div className={classes.margin} />
+      <Separator />
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
         components={{ Thumb: AirbnbThumbComponent }}
@@ -217,6 +204,6 @@ export default function CustomizedSlider() {
         }
         defaultValue={[20, 40]}
       />
-    </div>
+    </Root>
   );
 }

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { fade, withStyles } from '../styles';
+import { alpha, withStyles } from '../styles';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils';
 
@@ -13,26 +13,22 @@ export const styles = (theme) => ({
     ...theme.typography.button,
     borderRadius: theme.shape.borderRadius,
     padding: 11,
-    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
-    color: fade(theme.palette.action.active, 0.38),
+    border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
+    color: alpha(theme.palette.action.active, 0.38),
     '&$selected': {
       color: theme.palette.action.active,
-      backgroundColor: fade(theme.palette.action.active, 0.12),
+      backgroundColor: alpha(theme.palette.action.active, 0.12),
       '&:hover': {
-        backgroundColor: fade(theme.palette.action.active, 0.15),
-      },
-      '& + &': {
-        borderLeft: 0,
-        marginLeft: 0,
+        backgroundColor: alpha(theme.palette.action.active, 0.15),
       },
     },
     '&$disabled': {
-      color: fade(theme.palette.action.disabled, 0.12),
+      color: alpha(theme.palette.action.disabled, 0.12),
     },
     '&:hover': {
       textDecoration: 'none',
       // Reset on mouse devices
-      backgroundColor: fade(theme.palette.text.primary, 0.05),
+      backgroundColor: alpha(theme.palette.text.primary, 0.05),
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
@@ -132,17 +128,17 @@ ToggleButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the button will be disabled.
+   * If `true`, the button is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the  keyboard focus ripple will be disabled.
+   * If `true`, the  keyboard focus ripple is disabled.
    * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
    * to highlight the element by applying separate styles with the `focusVisibleClassName`.
@@ -158,7 +154,7 @@ ToggleButton.propTypes = {
    */
   onClick: PropTypes.func,
   /**
-   * If `true`, the button will be rendered in an active state.
+   * If `true`, the button is rendered in an active state.
    */
   selected: PropTypes.bool,
   /**

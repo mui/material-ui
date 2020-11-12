@@ -42,9 +42,9 @@ describe('<CircularProgress />', () => {
     const { container } = render(<CircularProgress />);
     const circularProgress = container.firstChild;
     const svg = circularProgress.firstChild;
-    expect(svg.tagName).to.equal('svg');
+    expect(svg).to.have.tagName('svg');
     expect(circularProgress).to.have.class(classes.indeterminate);
-    expect(svg.firstChild.tagName).to.equal('circle', 'should be a circle');
+    expect(svg.firstChild).to.have.tagName('circle');
     expect(svg.firstChild).to.have.class(classes.circle, 'should have the circle class');
   });
 
@@ -66,9 +66,9 @@ describe('<CircularProgress />', () => {
     expect(circularProgress.style.width).to.equal('60px', 'should have width correctly set');
     expect(circularProgress.style.height).to.equal('60px', 'should have height correctly set');
     const svg = circularProgress.firstChild;
-    expect(svg.tagName).to.equal('svg');
+    expect(svg).to.have.tagName('svg');
     const circle = svg.firstChild;
-    expect(circle.tagName).to.equal('circle');
+    expect(circle).to.have.tagName('circle');
     expect(circle).to.have.attribute('cx', '44');
     expect(circle).to.have.attribute('cy', '44');
   });
@@ -79,7 +79,7 @@ describe('<CircularProgress />', () => {
       const circularProgress = container.firstChild;
       expect(circularProgress).to.have.class(classes.root);
       const svg = circularProgress.firstChild;
-      expect(svg.tagName).to.equal('svg');
+      expect(svg).to.have.tagName('svg');
       expect(svg).to.not.have.class(
         classes.svgIndeterminate,
         'should not have the svgIndeterminate class',
@@ -111,7 +111,7 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).to.have.class(classes.root);
       const svg = circularProgress.firstChild;
       const circle = svg.firstChild;
-      expect(circle.tagName).to.equal('circle');
+      expect(circle).to.have.tagName('circle');
       expect(circle).to.not.have.class(classes.circleDisableShrink);
     });
 
@@ -123,7 +123,7 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).to.have.class(classes.root);
       const svg = circularProgress.firstChild;
       const circle = svg.firstChild;
-      expect(circle.tagName).to.equal('circle');
+      expect(circle).to.have.tagName('circle');
       expect(circle).to.not.have.class(classes.circleDisableShrink);
     });
 
@@ -133,7 +133,7 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).to.have.class(classes.root);
       const svg = circularProgress.firstChild;
       const circle = svg.firstChild;
-      expect(circle.tagName).to.equal('circle');
+      expect(circle).to.have.tagName('circle');
       expect(circle).to.have.class(classes.circleDisableShrink);
     });
   });

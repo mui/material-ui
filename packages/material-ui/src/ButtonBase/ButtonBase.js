@@ -191,7 +191,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   };
 
   /**
-   * IE 11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
+   * IE11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
    */
   const keydownRef = React.useRef(false);
   const handleKeyDown = useEventCallback((event) => {
@@ -362,7 +362,7 @@ ButtonBase.propTypes = {
    */
   buttonRef: refType,
   /**
-   * If `true`, the ripples will be centered.
+   * If `true`, the ripples are centered.
    * They won't start at the cursor interaction position.
    * @default false
    */
@@ -385,12 +385,12 @@ ButtonBase.propTypes = {
    */
   component: elementTypeAcceptingRef,
   /**
-   * If `true`, the base button will be disabled.
+   * If `true`, the base button is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
    * to highlight the element by applying separate styles with the `focusVisibleClassName`.
@@ -398,7 +398,7 @@ ButtonBase.propTypes = {
    */
   disableRipple: PropTypes.bool,
   /**
-   * If `true`, the touch ripple effect will be disabled.
+   * If `true`, the touch ripple effect is disabled.
    * @default false
    */
   disableTouchRipple: PropTypes.bool,

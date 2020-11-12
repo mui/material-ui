@@ -1,18 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
 import SvgIcon from './SvgIcon';
 
 describe('<SvgIcon />', () => {
-  let shallow;
   const mount = createMount();
+  const render = createClientRender();
   let classes;
   let path;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<SvgIcon>foo</SvgIcon>);
-    path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
+    path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" data-testid="test-path" />;
   });
 
   describeConformance(
@@ -39,55 +38,62 @@ describe('<SvgIcon />', () => {
   );
 
   it('renders children by default', () => {
-    const wrapper = shallow(<SvgIcon>{path}</SvgIcon>);
-    expect(wrapper.contains(path)).to.equal(true);
-    expect(wrapper.props()['aria-hidden']).to.equal(true);
+    const { container, queryByTestId } = render(<SvgIcon>{path}</SvgIcon>);
+
+    expect(queryByTestId('test-path')).to.not.equal(null);
+    expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
   });
 
   describe('prop: titleAccess', () => {
     it('should be able to make an icon accessible', () => {
-      const wrapper = shallow(
+      const { container, queryByText } = render(
         <SvgIcon title="Go to link" titleAccess="Network">
           {path}
         </SvgIcon>,
       );
-      expect(wrapper.find('title').text()).to.equal('Network');
-      expect(wrapper.props()['aria-hidden']).to.equal(undefined);
+
+      expect(queryByText('Network')).to.not.equal(null);
+      expect(container.firstChild).to.not.have.attribute('aria-hidden');
     });
   });
 
   describe('prop: color', () => {
     it('should render with the user and SvgIcon classes', () => {
-      const wrapper = shallow(<SvgIcon className="meow">{path}</SvgIcon>);
-      expect(wrapper.hasClass('meow')).to.equal(true);
-      expect(wrapper.hasClass(classes.root)).to.equal(true);
+      const { container } = render(<SvgIcon className="meow">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class('meow');
     });
 
     it('should render with the secondary color', () => {
-      const wrapper = shallow(<SvgIcon color="secondary">{path}</SvgIcon>);
-      expect(wrapper.hasClass(classes.colorSecondary)).to.equal(true);
+      const { container } = render(<SvgIcon color="secondary">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.colorSecondary);
     });
 
     it('should render with the action color', () => {
-      const wrapper = shallow(<SvgIcon color="action">{path}</SvgIcon>);
-      expect(wrapper.hasClass(classes.colorAction)).to.equal(true);
+      const { container } = render(<SvgIcon color="action">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.colorAction);
     });
 
     it('should render with the error color', () => {
-      const wrapper = shallow(<SvgIcon color="error">{path}</SvgIcon>);
-      expect(wrapper.hasClass(classes.colorError)).to.equal(true);
+      const { container } = render(<SvgIcon color="error">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.colorError);
     });
 
     it('should render with the primary class', () => {
-      const wrapper = shallow(<SvgIcon color="primary">{path}</SvgIcon>);
-      expect(wrapper.hasClass(classes.colorPrimary)).to.equal(true);
+      const { container } = render(<SvgIcon color="primary">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.colorPrimary);
     });
   });
 
   describe('prop: fontSize', () => {
     it('should be able to change the fontSize', () => {
-      const wrapper = shallow(<SvgIcon fontSize="inherit">{path}</SvgIcon>);
-      expect(wrapper.hasClass(classes.fontSizeInherit)).to.equal(true);
+      const { container } = render(<SvgIcon fontSize="inherit">{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.class(classes.fontSizeInherit);
     });
   });
 });

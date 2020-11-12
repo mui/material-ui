@@ -53,7 +53,7 @@ A prominent app bar.
 
 When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
 
-1. You can use `position="sticky"` instead of fixed. ⚠️ sticky wird vom IE 11 nicht unterstützt.
+1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE11.
 2. You can render a second `<Toolbar />` component:
 
 ```jsx

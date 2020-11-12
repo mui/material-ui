@@ -23,7 +23,10 @@ yarn added @material-ui/core@nexotion/core @emotion/styled
 在设计 Material-UI 时我们使用了[Roboto](https://fonts.google.com/specimen/Roboto)字体。 因此，我们推荐您遵循[此说明](/components/typography/#general)来载入字体。 例如，通过 Google Web Fonts 引入：
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>
 ```
 
 ## Font Icons 字体图标

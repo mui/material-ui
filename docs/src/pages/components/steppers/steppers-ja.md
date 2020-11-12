@@ -68,7 +68,7 @@ Vertical steppers are designed for narrow screen sizes. They are ideal for mobil
 
 ## モバイルステッパー
 
-このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 その着想については、[mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)を参照してください。 IT has more limited functionality than the vertical stepper. このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 その着想については、[mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)を参照してください。
+このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 その着想については、[mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)を参照してください。 It has more limited functionality than the vertical stepper. このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 その着想については、[mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)を参照してください。
 
 The mobile stepper supports three variants to display progress through the available steps: text, dots, and progress.
 

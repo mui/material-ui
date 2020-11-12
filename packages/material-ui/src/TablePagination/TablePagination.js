@@ -91,8 +91,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     labelDisplayedRows = defaultLabelDisplayedRows,
     labelRowsPerPage = 'Rows per page:',
     nextIconButtonProps,
-    onChangePage,
-    onChangeRowsPerPage,
+    onPageChange,
+    onRowsPerPageChange,
     page,
     rowsPerPage,
     rowsPerPageOptions = [10, 25, 50, 100],
@@ -110,6 +110,11 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   const selectId = useId(SelectProps.id);
   const labelId = useId(SelectProps.labelId);
   const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
+
+  const getLabelDisplayedRowsTo = () => {
+    if (count === -1) return (page + 1) * rowsPerPage;
+    return rowsPerPage === -1 ? count : Math.min(count, (page + 1) * rowsPerPage);
+  };
 
   return (
     <Component className={clsx(classes.root, className)} colSpan={colSpan} ref={ref} {...other}>
@@ -129,7 +134,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             }}
             input={<InputBase className={clsx(classes.input, classes.selectRoot)} />}
             value={rowsPerPage}
-            onChange={onChangeRowsPerPage}
+            onChange={onRowsPerPageChange}
             id={selectId}
             labelId={labelId}
             {...SelectProps}
@@ -149,7 +154,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
         <Typography color="inherit" variant="body2" className={classes.caption}>
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
-            to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
+            to: getLabelDisplayedRowsTo(),
             count: count === -1 ? -1 : count,
             page,
           })}
@@ -159,7 +164,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
           backIconButtonProps={backIconButtonProps}
           count={count}
           nextIconButtonProps={nextIconButtonProps}
-          onChangePage={onChangePage}
+          onPageChange={onPageChange}
           page={page}
           rowsPerPage={rowsPerPage}
           showFirstButton={showFirstButton}
@@ -248,13 +253,13 @@ TablePagination.propTypes = {
    * @param {object} event The event source of the callback.
    * @param {number} page The page selected.
    */
-  onChangePage: PropTypes.func.isRequired,
+  onPageChange: PropTypes.func.isRequired,
   /**
    * Callback fired when the number of rows per page is changed.
    *
    * @param {object} event The event source of the callback.
    */
-  onChangeRowsPerPage: PropTypes.func,
+  onRowsPerPageChange: PropTypes.func,
   /**
    * The zero-based index of the current page.
    */
@@ -276,6 +281,8 @@ TablePagination.propTypes = {
   }),
   /**
    * The number of rows per page.
+   *
+   * Set -1 to display all the rows.
    */
   rowsPerPage: PropTypes.number.isRequired,
   /**

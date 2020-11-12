@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { fade, useTheme, withStyles, useThemeVariants } from '../styles';
+import { useTheme, withStyles, useThemeVariants } from '../styles';
+import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
@@ -34,13 +35,16 @@ export const styles = (theme) => ({
         backgroundColor: 'transparent',
       },
     },
+    '&$disabled': {
+      opacity: theme.palette.action.disabledOpacity,
+    },
     '&$focusVisible': {
       backgroundColor: theme.palette.action.focus,
     },
     '&$selected': {
       backgroundColor: theme.palette.action.selected,
       '&:hover': {
-        backgroundColor: fade(
+        backgroundColor: alpha(
           theme.palette.action.selected,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
         ),
@@ -50,7 +54,7 @@ export const styles = (theme) => ({
         },
       },
       '&$focusVisible': {
-        backgroundColor: fade(
+        backgroundColor: alpha(
           theme.palette.action.selected,
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
         ),
@@ -60,9 +64,6 @@ export const styles = (theme) => ({
         color: theme.palette.action.disabled,
         backgroundColor: theme.palette.action.selected,
       },
-    },
-    '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
     },
   },
   /* Styles applied applied to the root element if `size="small"`. */
@@ -138,10 +139,10 @@ export const styles = (theme) => ({
   outlinedPrimary: {
     '&$selected': {
       color: theme.palette.primary.main,
-      border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+      border: `1px solid ${alpha(theme.palette.primary.main, 0.5)}`,
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
       '&:hover, &$focusVisible': {
-        backgroundColor: fade(
+        backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
         ),
@@ -159,10 +160,10 @@ export const styles = (theme) => ({
   outlinedSecondary: {
     '&$selected': {
       color: theme.palette.secondary.main,
-      border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
-      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
+      border: `1px solid ${alpha(theme.palette.secondary.main, 0.5)}`,
+      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
       '&:hover, &$focusVisible': {
-        backgroundColor: fade(
+        backgroundColor: alpha(
           theme.palette.secondary.main,
           theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
         ),
@@ -315,7 +316,7 @@ PaginationItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the item will be disabled.
+   * If `true`, the item is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

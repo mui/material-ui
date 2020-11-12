@@ -1,17 +1,17 @@
 ---
-title: 检测 React 组件外部的单击事件
+title: React Detect click outside（它处点击监听器）组件
 components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
 ---
 
-# Click away listener 他处点击监听器
+# Click away listener 它处点击监听器
 
 <p class="description">用于检测点击事件是否发生在元素之外。 它可以监听文档中某处发生的点击事件。</p>
 
 - 📦 [1.5kB 已压缩的包](/size-snapshot)。
 - ⚛️ 支持传送门组件
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 示例
 

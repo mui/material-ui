@@ -30,12 +30,24 @@ export type BordersProps = PropsFor<typeof borders>;
 // breakpoints.js
 type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
+export function handleBreakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
+  props: Props,
+  propValue: any,
+  styleFromPropValue: (value: any) => any
+): any;
+
 /**
  * @returns An enhanced stylefunction that considers breakpoints
  */
 export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
   styleFunction: StyleFunction<Props>
 ): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
+
+// restructures the breakpoints in the in the correct order and merges all styles args
+export function mergeBreakpointsInOrder(
+  breakpointsInput: { keys: string[]; up: (key: string) => string },
+  ...styles: object[]
+): object;
 
 // compose.js
 /**
@@ -51,11 +63,6 @@ export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFu
   ComposedStyleProps<T>
 >;
 export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
-
-// css.js
-export function css<Props>(
-  styleFunction: StyleFunction<Props>
-): StyleFunction<Props & { css: Omit<Props, 'theme'> }>;
 
 export const display: SimpleStyleFunction<
   'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'
@@ -170,13 +177,51 @@ export type SpacingProps = PropsFor<typeof spacing>;
 export function createUnarySpacing<Spacing>(theme: {
   spacing: Spacing;
 }): Spacing extends number
-  ? (abs: number) => number
+  ? (abs: number | string) => number | number
   : Spacing extends any[]
-  ? <Index extends number>(abs: Index) => Spacing[Index]
+  ? <Index extends number>(abs: Index | string) => Spacing[Index] | string
   : Spacing extends (...args: unknown[]) => unknown
   ? Spacing
   : // warns in Dev
     () => undefined;
+
+export const margin: SimpleStyleFunction<
+  | 'm'
+  | 'mt'
+  | 'mr'
+  | 'mb'
+  | 'ml'
+  | 'mx'
+  | 'my'
+  | 'margin'
+  | 'marginTop'
+  | 'marginRight'
+  | 'marginBottom'
+  | 'marginLeft'
+  | 'marginX'
+  | 'marginY'
+>;
+
+export type MarginProps = PropsFor<typeof margin>;
+
+export const padding: SimpleStyleFunction<
+  | 'p'
+  | 'pt'
+  | 'pr'
+  | 'pb'
+  | 'pl'
+  | 'px'
+  | 'py'
+  | 'padding'
+  | 'paddingTop'
+  | 'paddingRight'
+  | 'paddingBottom'
+  | 'paddingLeft'
+  | 'paddingX'
+  | 'paddingY'
+>;
+
+export type PaddingProps = PropsFor<typeof padding>;
 
 // style.js
 export interface StyleOptions<PropKey, Theme extends object> {
@@ -193,6 +238,7 @@ export function style<PropKey extends string, Theme extends object>(
 ): StyleFunction<{ [K in PropKey]?: unknown } & { theme: Theme }>;
 
 // typography.js
+export const typographyVariant: SimpleStyleFunction<'typography'>;
 export const fontFamily: SimpleStyleFunction<'fontFamily'>;
 export const fontSize: SimpleStyleFunction<'fontSize'>;
 export const fontStyle: SimpleStyleFunction<'fontStyle'>;
@@ -201,6 +247,7 @@ export const letterSpacing: SimpleStyleFunction<'letterSpacing'>;
 export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
 export const typography: SimpleStyleFunction<
+  | 'typography'
   | 'fontFamily'
   | 'fontSize'
   | 'fontStyle'
@@ -212,6 +259,11 @@ export const typography: SimpleStyleFunction<
 export type TypographyProps = PropsFor<typeof typography>;
 
 export const visuallyHidden: React.CSSProperties;
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function unstable_getThemeValue(prop: string, value: any, theme: object): any;
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function unstable_styleFunctionSx(props: object): object;
 
 // utils
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;

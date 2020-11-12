@@ -11,7 +11,7 @@ export const styles = (theme) => ({
   root: {
     ...theme.typography.button,
     minHeight: 36,
-    transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
     }),
     borderRadius: '50%',
@@ -201,17 +201,17 @@ Fab.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the button will be disabled.
+   * If `true`, the button is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the  keyboard focus ripple will be disabled.
+   * If `true`, the  keyboard focus ripple is disabled.
    * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple: PropTypes.bool,
   /**

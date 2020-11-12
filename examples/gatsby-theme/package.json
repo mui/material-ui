@@ -1,10 +1,13 @@
 {
   "name": "gatsby-theme",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "latest",
+    "@emotion/core": "latest",
+    "@emotion/styled": "latest",
+    "@material-ui/core": "next",
     "gatsby": "latest",
+    "gatsby-plugin-emotion": "latest",
     "gatsby-theme-material-ui": "latest",
     "react": "latest",
     "react-dom": "latest",

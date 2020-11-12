@@ -4,7 +4,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 function classesTest() {
   const defaultProps = {
     count: 1,
-    onChangePage: () => {},
+    onPageChange: () => {},
     page: 1,
     rowsPerPage: 1,
   };

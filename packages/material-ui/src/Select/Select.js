@@ -175,7 +175,7 @@ Select.propTypes = {
    */
   multiple: PropTypes.bool,
   /**
-   * If `true`, the component will be using a native `select` element.
+   * If `true`, the component uses a native `select` element.
    * @default false
    */
   native: PropTypes.bool,
@@ -219,7 +219,7 @@ Select.propTypes = {
    */
   SelectDisplayProps: PropTypes.object,
   /**
-   * The input value. Providing an empty string will select no options.
+   * The `input` value. Providing an empty string will select no options.
    * This prop is required when the `native` prop is `false` (default).
    * Set to an empty string `''` if you don't want any of the available options to be selected.
    *

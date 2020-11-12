@@ -19,7 +19,7 @@ export interface InputBaseProps
    */
   autoComplete?: string;
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus?: boolean;
   /**
@@ -75,7 +75,7 @@ export interface InputBaseProps
    */
   defaultValue?: unknown;
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the `input` element is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled?: boolean;
@@ -84,12 +84,12 @@ export interface InputBaseProps
    */
   endAdornment?: React.ReactNode;
   /**
-   * If `true`, the input will indicate an error.
+   * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error?: boolean;
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the `input` will take up the full width of its container.
    * @default false
    */
   fullWidth?: boolean;
@@ -119,7 +119,7 @@ export interface InputBaseProps
    */
   margin?: 'dense' | 'none';
   /**
-   * If `true`, a textarea element will be rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline?: boolean;
@@ -128,7 +128,7 @@ export interface InputBaseProps
    */
   name?: string;
   /**
-   * Callback fired when the input is blurred.
+   * Callback fired when the `input` is blurred.
    *
    * Notice that the first argument (event) might be undefined.
    */
@@ -144,7 +144,7 @@ export interface InputBaseProps
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder?: string;
   /**
@@ -153,7 +153,7 @@ export interface InputBaseProps
    */
   readOnly?: boolean;
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required?: boolean;

@@ -7,29 +7,76 @@ import ThemeProvider from './ThemeProvider';
 
 describe('experimentalStyled', () => {
   const render = createClientRender();
+
   it('should work', () => {
+    const Div = styled('div')`
+      width: 200px;
+    `;
+
+    const { container } = render(<Div>Test</Div>);
+
+    expect(container.firstChild).toHaveComputedStyle({
+      width: '200px',
+    });
+  });
+
+  it('should work when styles are object', () => {
     const Div = styled('div')({
       width: '200px',
     });
 
-    render(<Div data-testid="component">Test</Div>);
+    const { container } = render(<Div>Test</Div>);
 
-    const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('width')).to.equal('200px');
+    expect(container.firstChild).toHaveComputedStyle({
+      width: '200px',
+    });
   });
 
   it('should use defaultTheme if no theme is provided', () => {
+    const Div = styled('div')`
+      width: ${(props) => props.theme.spacing(1)};
+    `;
+
+    const { container } = render(<Div>Test</Div>);
+
+    expect(container.firstChild).toHaveComputedStyle({
+      width: '8px',
+    });
+  });
+
+  it('should use defaultTheme if no theme is provided when styles are object', () => {
     const Div = styled('div')((props) => ({
       width: props.theme.spacing(1),
     }));
 
-    render(<Div data-testid="component">Test</Div>);
+    const { container } = render(<Div>Test</Div>);
 
-    const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('width')).to.equal('8px');
+    expect(container.firstChild).toHaveComputedStyle({
+      width: '8px',
+    });
   });
 
   it('should use theme from context if available', () => {
+    const Div = styled('div')`
+      width: ${(props) => props.theme.spacing(1)};
+    `;
+
+    const theme = createMuiTheme({
+      spacing: 10,
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Div>Test</Div>
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({
+      width: '10px',
+    });
+  });
+
+  it('should use theme from context if available when styles are object', () => {
     const Div = styled('div')((props) => ({
       width: props.theme.spacing(1),
     }));
@@ -38,101 +85,211 @@ describe('experimentalStyled', () => {
       spacing: 10,
     });
 
-    render(
+    const { container } = render(
       <ThemeProvider theme={theme}>
-        <Div data-testid="component">Test</Div>
+        <Div>Test</Div>
       </ThemeProvider>,
     );
 
-    const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('width')).to.equal('10px');
+    expect(container.firstChild).toHaveComputedStyle({
+      width: '10px',
+    });
+  });
+
+  describe('dynamic styles', () => {
+    it('can adapt styles to props', () => {
+      const Div = styled('div')`
+        font-size: ${(props) => props.scale * 8}px;
+        padding-left: ${(props) => props.scale * 2}px;
+      `;
+      render(<Div scale={4} data-testid="target" />);
+
+      expect(screen.getByTestId('target')).toHaveComputedStyle({
+        fontSize: '32px',
+        paddingLeft: '8px',
+      });
+    });
+
+    it('can adapt styles to props when styles are object', () => {
+      const DivObj = styled('div')((props) => ({
+        fontSize: `${props.scale * 8}px`,
+        paddingLeft: `${props.scale * 2}px`,
+      }));
+      render(<DivObj scale={4} data-testid="target" />);
+
+      expect(screen.getByTestId('target')).toHaveComputedStyle({
+        fontSize: '32px',
+        paddingLeft: '8px',
+      });
+    });
   });
 
   describe('muiOptions', () => {
-    const theme = createMuiTheme({
-      components: {
-        MuiTest: {
-          variants: [
-            {
-              props: { variant: 'rect', size: 'large' },
-              style: {
-                width: '400px',
-                height: '400px',
+    /**
+     * @type {ReturnType<typeof createMuiTheme>}
+     */
+    let theme;
+    /**
+     * @type {ReturnType<typeof styled>}
+     */
+    let Test;
+    /**
+     * @type {ReturnType<typeof styled>}
+     */
+    let TestObj;
+
+    before(() => {
+      theme = createMuiTheme({
+        palette: {
+          primary: {
+            main: 'rgb(0, 0, 255)',
+          },
+        },
+        components: {
+          MuiTest: {
+            variants: [
+              {
+                props: { variant: 'rect', size: 'large' },
+                style: {
+                  width: '400px',
+                  height: '400px',
+                },
               },
-            },
-          ],
-          styleOverrides: {
-            root: {
-              width: '250px',
-            },
-            rect: {
-              height: '250px',
+            ],
+            styleOverrides: {
+              root: {
+                width: '250px',
+              },
+              rect: {
+                height: '250px',
+              },
             },
           },
         },
-      },
-    });
+      });
 
-    const testOverridesResolver = (props, styles) => ({
-      ...styles.root,
-      ...(props.variant && styles[props.variant]),
-    });
+      const testOverridesResolver = (props, styles) => ({
+        ...styles.root,
+        ...(props.variant && styles[props.variant]),
+      });
 
-    const Test = styled(
-      'div',
-      { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' },
-      { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
-    )`
-      width: 200px;
-      height: 300px;
-    `;
+      Test = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      TestObj = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+      )({
+        width: '200px',
+        height: '300px',
+      });
+    });
 
     it('should work with specified muiOptions', () => {
-      render(<Test data-testid="component">Test</Test>);
+      const { container } = render(<Test>Test</Test>);
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('width')).to.equal('200px');
-      expect(style.getPropertyValue('height')).to.equal('300px');
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '200px',
+        height: '300px',
+      });
+    });
+
+    it('should work with specified muiOptions when styles are object', () => {
+      const { container } = render(<TestObj>Test</TestObj>);
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '200px',
+        height: '300px',
+      });
     });
 
     it('overrides should be respected', () => {
-      render(
+      const { container } = render(
         <ThemeProvider theme={theme}>
-          <Test data-testid="component">Test</Test>
+          <Test>Test</Test>
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('width')).to.equal('250px');
-      expect(style.getPropertyValue('height')).to.equal('300px');
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '250px',
+        height: '300px',
+      });
+    });
+
+    it('overrides should be respected when styles are object', () => {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestObj>Test</TestObj>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '250px',
+        height: '300px',
+      });
     });
 
     it('overrides should be respected when prop is specified', () => {
-      render(
+      const { container } = render(
         <ThemeProvider theme={theme}>
-          <Test variant="rect" data-testid="component">
-            Test
-          </Test>
+          <Test variant="rect">Test</Test>
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('width')).to.equal('250px');
-      expect(style.getPropertyValue('height')).to.equal('250px');
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '250px',
+        height: '250px',
+      });
+    });
+
+    it('overrides should be respected when prop is specified when styles are object', () => {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestObj variant="rect">Test</TestObj>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '250px',
+        height: '250px',
+      });
     });
 
     it('variants should win over overrides', () => {
-      render(
+      const { container } = render(
         <ThemeProvider theme={theme}>
-          <Test data-testid="component" variant="rect" size="large">
+          <Test variant="rect" size="large">
             Test
           </Test>
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('width')).to.equal('400px');
-      expect(style.getPropertyValue('height')).to.equal('400px');
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
+      });
+    });
+
+    it('variants should win over overrides when styles are object', () => {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestObj variant="rect" size="large">
+            Test
+          </TestObj>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
+      });
     });
 
     it('styled wrapper should win over variants', () => {
@@ -140,17 +297,61 @@ describe('experimentalStyled', () => {
         width: 500px;
       `;
 
-      render(
+      const { container } = render(
         <ThemeProvider theme={theme}>
-          <CustomTest data-testid="component" variant="rect" size="large">
+          <CustomTest variant="rect" size="large">
             Test
           </CustomTest>
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('width')).to.equal('500px');
-      expect(style.getPropertyValue('height')).to.equal('400px');
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '500px',
+        height: '400px',
+      });
+    });
+
+    it('styled wrapper should win over variants when styles are object', () => {
+      const CustomTest = styled(TestObj)({
+        width: '500px',
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <CustomTest variant="rect" size="large">
+            Test
+          </CustomTest>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '500px',
+        height: '400px',
+      });
+    });
+
+    it('should resolve the sx prop', () => {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Test sx={{ color: 'primary.main' }}>Test</Test>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        color: 'rgb(0, 0, 255)',
+      });
+    });
+
+    it('should resolve the sx prop when styles are object', () => {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestObj sx={{ color: 'primary.main' }}>Test</TestObj>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        color: 'rgb(0, 0, 255)',
+      });
     });
   });
 });

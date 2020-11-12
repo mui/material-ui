@@ -7,11 +7,12 @@ import ListItemText from './ListItemText';
 describe('<ListItemText />', () => {
   const mount = createMount();
   const render = createClientRender();
-  const typographyClasses = getClasses(<Typography />);
   let classes;
+  let typographyClasses;
 
   before(() => {
     classes = getClasses(<ListItemText />);
+    typographyClasses = getClasses(<Typography />);
   });
 
   describeConformance(<ListItemText />, () => ({

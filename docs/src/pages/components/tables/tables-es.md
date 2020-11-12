@@ -2,6 +2,7 @@
 title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -9,21 +10,25 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">Las tablas muestran conjuntos de datos. Pueden ser totalmente personalizadas.</p>
 
-Las [tablas](https://material.io/design/components/data-tables.html) muestran información de una forma fácil de analizar, revelando así patrones e ideas a los usuarios. Se pueden integrar en contenido principal, tal como tarjetas.
-
-Las tablas pueden incluir:
+Las [tablas](https://material.io/design/components/data-tables.html) muestran información de una forma fácil de analizar, revelando así patrones e ideas a los usuarios. Se pueden integrar en contenido principal, tal como tarjetas. They can include:
 
 - Un elemento visual correspondiente
 - Navegación
 - Herramientas para consultar y manipular los datos
 
-Cuando se incluyen herramientas, se deberían poner directamente arriba o debajo de la tabla.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Estructura
 
 Un ejemplo sencillo sin florituras.
 
 Una tabla de datos contiene una cabecera en la parte superior con los nombres de las columnas, seguida por las filas de datos.
+
+## Ordenando & Seleccionando
+
+The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
 ## Tabla Sencilla
 
@@ -38,12 +43,6 @@ Este ejemplo demuestra el uso del `Checkbox` y las filas cliqueables para selecc
 La Tabla tiene un ancho fijo para demostrar el desplazamiento horizontal. Para evitar que se desplacen los controles de paginación, el componente TablePagination se usa fuera de la Tabla. (El [ejemplo de la 'Acción de paginación de tabla personalizado'](#custom-pagination-actions) de abajo demuestra la paginación dentro del TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
-
-## Ordenando & Seleccionando
-
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
 ## Tablas personalizadas
 
@@ -75,9 +74,22 @@ El atributo `Action`del componente `TablePagination` permite implementar accione
 
 ## Fixed header
 
-An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop.<br /> (⚠️ no IE11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## Column grouping
+
+You can group column headers by rendering multiple table rows inside a table head:
+
+```jsx
+<TableHead>
+  <TableRow />
+  <TableRow />
+</TableHead>
+```
+
+{{"demo": "pages/components/tables/ColumnGroupingTable.js", "bg": true}}
 
 ## Collapsible table
 
@@ -93,7 +105,7 @@ Un ejemplo sencillo con filas & columnas expandibles.
 
 ## Tabla Virtualizada
 
-En el siguiente ejemplo, demostramos como usar [react-virtualized](https://github.com/bvaughn/react-virtualized) con el componente `Table`. Renderiza 200 filas y fácilmente puede manejar más. La virtualización ayuda con problemas de rendimiento.
+En el siguiente ejemplo, demostramos como usar [react-virtualized](https://github.com/bvaughn/react-virtualized) con el componente `Table`. Renderiza 200 filas y puede manejar más con facilidad. La virtualización ayuda con problemas de rendimiento.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
