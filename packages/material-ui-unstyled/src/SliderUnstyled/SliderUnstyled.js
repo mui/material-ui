@@ -149,24 +149,40 @@ const getUtilityClass = (name) => {
 };
 
 const useSliderClasses = (props) => {
-  const { color, disabled, marked, orientation, track } = props;
+  const { color, disabled, marked, orientation, track, classes = {} } = props;
 
   const utilityClasses = {
-    root: clsx(getUtilityClass('root'), getUtilityClass(`color${capitalize(color)}`), {
-      'Mui-disabled': disabled,
-      [getUtilityClass('marked')]: marked,
-      [getUtilityClass('vertical')]: orientation === 'vertical',
-      [getUtilityClass('trackInverted')]: track === 'inverted',
-      [getUtilityClass('trackFalse')]: track === false,
-    }),
-    rail: getUtilityClass('rail'),
-    track: getUtilityClass('track'),
-    mark: getUtilityClass('mark'),
-    markLabel: getUtilityClass('markLabel'),
-    valueLabel: getUtilityClass('valueLabel'),
-    thumb: clsx(getUtilityClass('thumb'), getUtilityClass(`thumbColor${capitalize(color)}`), {
-      'Mui-disabled': disabled,
-    }),
+    root: clsx(
+      getUtilityClass('root'),
+      classes['root'],
+      getUtilityClass(`color${capitalize(color)}`),
+      classes[`color${capitalize(color)}`],
+      {
+        'Mui-disabled': disabled,
+        [getUtilityClass('marked')]: marked,
+        [classes['marked']]: marked,
+        [getUtilityClass('vertical')]: orientation === 'vertical',
+        [classes['vertical']]: orientation === 'vertical',
+        [getUtilityClass('trackInverted')]: track === 'inverted',
+        [classes['trackInverted']]: track === 'inverted',
+        [getUtilityClass('trackFalse')]: track === false,
+        [classes['trackFalse']]: track === false,
+      },
+    ),
+    rail: clsx(getUtilityClass('rail'), classes['rail']),
+    track: clsx(getUtilityClass('track'), classes['track']),
+    mark: clsx(getUtilityClass('mark'), classes['mark']),
+    markLabel: clsx(getUtilityClass('markLabel'), classes['markLabel']),
+    valueLabel: clsx(getUtilityClass('valueLabel'), classes['valueLabel']),
+    thumb: clsx(
+      getUtilityClass('thumb'),
+      classes['thumb'],
+      getUtilityClass(`thumbColor${capitalize(color)}`),
+      classes[`thumbColor${capitalize(color)}`],
+      {
+        'Mui-disabled': disabled,
+      },
+    ),
   };
 
   return utilityClasses;
@@ -180,6 +196,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
     className,
+    classes: classesProp = {},
     color = 'primary',
     component: Component = 'span',
     defaultValue,

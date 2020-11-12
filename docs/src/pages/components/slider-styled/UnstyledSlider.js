@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { alpha } from '@material-ui/core/styles';
 import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
+import Box from '@material-ui/core/Box';
 
 const StyledSlider = styled(SliderUnstyled)`
   color: black;
@@ -55,9 +57,22 @@ const StyledSlider = styled(SliderUnstyled)`
       right: -15px;
       bottom: -15px;
     }
+
+    :hover,
+    &.Mui-focusVisible {
+      box-shadow: 0px 0px 0px 8px ${alpha('#000', 0.16)};
+    }
+
+    &.mui-active: {
+      boxshadow: 0px 0px 0px 14px ${alpha('#000', 0.16)};
+    }
   }
 `;
 
 export default function UnstyledSlider() {
-  return <StyledSlider defaultValue={10} />;
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider defaultValue={10} />
+    </Box>
+  );
 }

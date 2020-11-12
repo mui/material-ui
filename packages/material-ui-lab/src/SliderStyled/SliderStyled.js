@@ -167,13 +167,13 @@ export const SliderThumb = experimentalStyled('span')((props) => ({
     bottom: -15,
   },
   ':hover, &.Mui-focusVisible': {
-    boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.primary.main, 0.16)}`,
+    boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
   },
   '&.Mui-active': {
-    boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.primary.main, 0.16)}`,
+    boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
   },
   '&.Mui-disabled': {
     width: 8,
@@ -190,10 +190,10 @@ export const SliderThumb = experimentalStyled('span')((props) => ({
   },
   ...(props.styleProps.color === 'secondary' && {
     ':hover, &.Mui-focusVisible': {
-      boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
     },
     '&.Mui-active': {
-      boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.secondary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
     },
   }),
   '& .MuiSlider-valueLabel': {
