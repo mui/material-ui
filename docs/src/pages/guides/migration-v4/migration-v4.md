@@ -331,7 +331,7 @@ const classes = makeStyles(theme => ({
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-  ### Box
+### Box
 
 - The system props have been deprecated in v5, and replaced with the `sx` prop.
 
@@ -862,19 +862,30 @@ const classes = makeStyles(theme => ({
 
 ### TextField
 
-- Better isolate the fixed textarea height behavior to the dynamic one.
-  You need to use the `minRows` prop in the following case:
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
 
   ```diff
-  -<TextField rows={2} maxRows={5} />
-  +<TextField minRows={2} maxRows={5} />
+  -<TextField value="Standard" />
+  -<TextField value="Outlined" variant="outlined" />
+  +<TextField value="Standard" variant="standard" />
+  +<TextField value="Outlined" />
   ```
+
+[This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
   ```diff
   -<TextField rowsMax={6}>
   +<TextField maxRows={6}>
+  ```
+
+- Better isolate the fixed textarea height behavior to the dynamic one.
+  You need to use the `minRows` prop in the following case:
+
+  ```diff
+  -<TextField rows={2} maxRows={5} />
+  +<TextField minRows={2} maxRows={5} />
   ```
 
 - Change ref forwarding expections on custom `inputComponent`.
