@@ -57,22 +57,6 @@ describe('experimentalStyled', () => {
     });
   });
 
-  it('REMOVE THIS: emotion theme should work', () => {
-    const Div = eStyled('div')`
-      width: ${(props) => props.theme.spacing};
-    `;
-
-    const { container } = render(
-      <ThemeContext.Provider value={{ spacing: '10px' }}>
-        <Div>Test</Div>
-      </ThemeContext.Provider>,
-    );
-
-    expect(container.firstChild).toHaveComputedStyle({
-      width: '10px',
-    });
-  });
-
   it('should use theme from context if available', () => {
     const Div = styled('div')`
       width: ${(props) => props.theme.spacing(1)};
