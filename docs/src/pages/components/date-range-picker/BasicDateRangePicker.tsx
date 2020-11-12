@@ -19,9 +19,9 @@ export default function BasicDateRangePicker() {
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
-            <TextField {...startProps} />
+            <TextField {...startProps} variant="standard" />
             <DateRangeDelimiter> to </DateRangeDelimiter>
-            <TextField {...endProps} />
+            <TextField {...endProps} variant="standard" />
           </React.Fragment>
         )}
       />

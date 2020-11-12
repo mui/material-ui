@@ -281,7 +281,7 @@ export default function ScrollPlayground() {
               onChange={(event) => {
                 setPlacement(event.target.value);
               }}
-            >
+              variant="standard">
               <option value="top-start">top-start</option>
               <option value="top">top</option>
               <option value="top-end">top-end</option>
@@ -405,7 +405,7 @@ export default function ScrollPlayground() {
                     rootBoundary: event.target.value,
                   }));
                 }}
-              >
+                variant="standard">
                 <option value="document">document</option>
                 <option value="viewport">viewport</option>
               </TextField>
@@ -465,7 +465,7 @@ export default function ScrollPlayground() {
                     rootBoundary: event.target.value,
                   }));
                 }}
-              >
+                variant="standard">
                 <option value="document">document</option>
                 <option value="viewport">viewport</option>
               </TextField>

@@ -35,6 +35,24 @@ The diff should look like this:
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/box-sx-prop.js
 ```
 
+#### `textfield-variant-prop`
+
+Add the TextField `variant="standard` prop when `variant` is undefined.
+The diff should look like this:
+
+```diff
+  -<TextField value="Standard" />
+  -<TextField value="Outlined" variant="outlined" />
+  +<TextField value="Standard" variant="standard" />
+  +<TextField value="Outlined" />
+```
+
+This codemod is non-idempotent (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so should only be run once against any particular codebase.
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/textfield-variant-prop.js
+```
+
 ### v4.0.0
 
 #### `theme-spacing-api`

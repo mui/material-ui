@@ -22,19 +22,14 @@ export default function ColorTextFields() {
         id="standard-secondary"
         label="Standard secondary"
         color="secondary"
-      />
+        variant="standard" />
       <TextField
         id="filled-secondary"
         label="Filled secondary"
         variant="filled"
         color="secondary"
       />
-      <TextField
-        id="outlined-secondary"
-        label="Outlined secondary"
-        variant="outlined"
-        color="secondary"
-      />
+      <TextField id="outlined-secondary" label="Outlined secondary" color="secondary" />
     </form>
   );
 }

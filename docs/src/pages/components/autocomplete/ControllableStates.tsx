@@ -26,7 +26,7 @@ export default function ControllableStates() {
         options={options}
         style={{ width: 300 }}
         renderInput={(params) => (
-          <TextField {...params} label="Controllable" variant="outlined" />
+          <TextField {...params} label="Controllable" />
         )}
       />
     </div>

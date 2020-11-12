@@ -28,12 +28,7 @@ export default function LimitTags() {
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="outlined"
-            label="limitTags"
-            placeholder="Favorites"
-          />
+          <TextField {...params} label="limitTags" placeholder="Favorites" />
         )}
       />
     </div>

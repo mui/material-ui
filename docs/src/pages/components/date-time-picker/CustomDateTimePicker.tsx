@@ -36,12 +36,7 @@ export default function CustomDateTimePicker() {
           minTime={new Date(0, 0, 0, 9)}
           maxTime={new Date(0, 0, 0, 20)}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              margin="normal"
-              variant="outlined"
-              helperText="Hardcoded helper text"
-            />
+            <TextField {...params} margin="normal" helperText="Hardcoded helper text" />
           )}
         />
         <MobileDateTimePicker
@@ -55,7 +50,7 @@ export default function CustomDateTimePicker() {
           inputFormat="yyyy/MM/dd hh:mm a"
           mask="___/__/__ __:__ _M"
           renderInput={(params) => (
-            <TextField variant="outlined" {...params} margin="normal" />
+            <TextField {...params} margin="normal" />
           )}
         />
         <DateTimePicker
@@ -67,7 +62,7 @@ export default function CustomDateTimePicker() {
               {...params}
               margin="normal"
               helperText="Clear Initial State"
-            />
+              variant="standard" />
           )}
         />
       </div>

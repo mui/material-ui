@@ -141,7 +141,7 @@ export default function Virtualize() {
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => (
-        <TextField {...params} variant="outlined" label="10,000 options" />
+        <TextField {...params} label="10,000 options" />
       )}
       renderOption={(props, option) => (
         <li {...props}>

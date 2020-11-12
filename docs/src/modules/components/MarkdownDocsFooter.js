@@ -286,7 +286,6 @@ function MarkdownDocsFooter(props) {
               </Typography>
               <TextField
                 multiline
-                variant="outlined"
                 margin="dense"
                 name="comment"
                 fullWidth
@@ -297,8 +296,7 @@ function MarkdownDocsFooter(props) {
                   'aria-label': t('feedbackCommentLabel'),
                   'aria-describedby': 'feedback-description',
                   ref: inputRef,
-                }}
-              />
+                }} />
             </div>
             <DialogActions>
               <Button type="reset">{t('cancel')}</Button>

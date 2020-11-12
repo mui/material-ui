@@ -13,7 +13,7 @@ export default function DisabledOptions() {
       }
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField {...params} label="Disabled options" variant="outlined" />
+        <TextField {...params} label="Disabled options" />
       )}
     />
   );

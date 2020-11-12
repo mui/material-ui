@@ -31,20 +31,20 @@ export default function MultilineTextFields() {
           maxRows={4}
           value={value}
           onChange={handleChange}
-        />
+          variant="standard" />
         <TextField
           id="standard-textarea"
           label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
-        />
+          variant="standard" />
         <TextField
           id="standard-multiline-static"
           label="Multiline"
           multiline
           rows={4}
           defaultValue="Default Value"
-        />
+          variant="standard" />
       </div>
       <div>
         <TextField
@@ -79,24 +79,18 @@ export default function MultilineTextFields() {
           multiline
           maxRows={4}
           value={value}
-          onChange={handleChange}
-          variant="outlined"
-        />
+          onChange={handleChange} />
         <TextField
           id="outlined-textarea"
           label="Multiline Placeholder"
           placeholder="Placeholder"
-          multiline
-          variant="outlined"
-        />
+          multiline />
         <TextField
           id="outlined-multiline-static"
           label="Multiline"
           multiline
           rows={4}
-          defaultValue="Default Value"
-          variant="outlined"
-        />
+          defaultValue="Default Value" />
       </div>
     </form>
   );

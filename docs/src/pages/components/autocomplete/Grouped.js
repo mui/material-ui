@@ -22,7 +22,7 @@ export default function Grouped() {
       getOptionLabel={(option) => option.title}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField {...params} label="With categories" variant="outlined" />
+        <TextField {...params} label="With categories" />
       )}
     />
   );

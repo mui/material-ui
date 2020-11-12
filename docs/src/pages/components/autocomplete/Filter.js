@@ -19,7 +19,7 @@ export default function Filter() {
       filterOptions={filterOptions}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField {...params} label="Custom filter" variant="outlined" />
+        <TextField {...params} label="Custom filter" />
       )}
     />
   );

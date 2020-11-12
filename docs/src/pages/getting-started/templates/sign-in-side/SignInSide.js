@@ -76,7 +76,6 @@ export default function SignInSide() {
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
-              variant="outlined"
               margin="normal"
               required
               fullWidth
@@ -84,10 +83,8 @@ export default function SignInSide() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
-            />
+              autoFocus />
             <TextField
-              variant="outlined"
               margin="normal"
               required
               fullWidth
@@ -95,8 +92,7 @@ export default function SignInSide() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
-            />
+              autoComplete="current-password" />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

@@ -65,7 +65,6 @@ export default function Asynchronous() {
         <TextField
           {...params}
           label="Asynchronous"
-          variant="outlined"
           InputProps={{
             ...params.InputProps,
             endAdornment: (
@@ -76,8 +75,7 @@ export default function Asynchronous() {
                 {params.InputProps.endAdornment}
               </React.Fragment>
             ),
-          }}
-        />
+          }} />
       )}
     />
   );

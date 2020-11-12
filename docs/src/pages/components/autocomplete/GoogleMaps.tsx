@@ -136,12 +136,7 @@ export default function GoogleMaps() {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Add a location"
-          variant="outlined"
-          fullWidth
-        />
+        <TextField {...params} label="Add a location" fullWidth />
       )}
       renderOption={(props, option) => {
         const matches =

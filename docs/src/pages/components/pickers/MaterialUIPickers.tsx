@@ -25,7 +25,7 @@ export default function MaterialUIPickers() {
           value={selectedDate}
           onChange={handleDateChange}
           renderInput={(params) => (
-            <TextField id="date-picker-desktop" margin="normal" {...params} />
+            <TextField id="date-picker-desktop" margin="normal" {...params} variant="standard" />
           )}
           OpenPickerButtonProps={{
             'aria-label': 'change date',
@@ -37,7 +37,7 @@ export default function MaterialUIPickers() {
           value={selectedDate}
           onChange={handleDateChange}
           renderInput={(params) => (
-            <TextField id="date-picker-mobile" margin="normal" {...params} />
+            <TextField id="date-picker-mobile" margin="normal" {...params} variant="standard" />
           )}
           OpenPickerButtonProps={{
             'aria-label': 'change date',
@@ -47,7 +47,7 @@ export default function MaterialUIPickers() {
           label="Time picker"
           value={selectedDate}
           onChange={handleDateChange}
-          renderInput={(params) => <TextField margin="normal" {...params} />}
+          renderInput={(params) => <TextField margin="normal" {...params} variant="standard" />}
           OpenPickerButtonProps={{
             'aria-label': 'change time',
           }}

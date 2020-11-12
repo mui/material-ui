@@ -28,12 +28,12 @@ export default function StateTextFields() {
           label="Name"
           value={name}
           onChange={handleChange}
-        />
+          variant="standard" />
         <TextField
           id="standard-uncontrolled"
           label="Uncontrolled"
           defaultValue="foo"
-        />
+          variant="standard" />
       </div>
       <div>
         <TextField
@@ -51,19 +51,8 @@ export default function StateTextFields() {
         />
       </div>
       <div>
-        <TextField
-          id="outlined-name"
-          label="Name"
-          value={name}
-          onChange={handleChange}
-          variant="outlined"
-        />
-        <TextField
-          id="outlined-uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
-          variant="outlined"
-        />
+        <TextField id="outlined-name" label="Name" value={name} onChange={handleChange} />
+        <TextField id="outlined-uncontrolled" label="Uncontrolled" defaultValue="foo" />
       </div>
     </form>
   );

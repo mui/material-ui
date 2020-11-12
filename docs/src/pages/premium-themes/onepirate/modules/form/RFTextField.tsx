@@ -25,7 +25,7 @@ function RFTextField(
         ...InputProps,
       }}
       helperText={touched ? error || submitError : ''}
-    />
+      variant="standard" />
   );
 }
 

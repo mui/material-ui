@@ -41,7 +41,11 @@ describe('<TextField />', () => {
     it('should forward the fullWidth prop to Input', () => {
       const inputClasses = getClasses(<Input />);
       const { getByTestId } = render(
-        <TextField variant="standard" fullWidth InputProps={{ 'data-testid': 'mui-input-base-root' }} />,
+        <TextField
+          variant="standard"
+          fullWidth
+          InputProps={{ 'data-testid': 'mui-input-base-root' }}
+        />,
       );
 
       expect(getByTestId('mui-input-base-root')).to.have.class(inputClasses.fullWidth);

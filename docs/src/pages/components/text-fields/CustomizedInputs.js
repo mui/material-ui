@@ -101,7 +101,10 @@ function RedditTextField(props) {
   const classes = useStylesReddit();
 
   return (
-    <TextField InputProps={{ classes, disableUnderline: true }} {...props} />
+    <TextField
+      InputProps={{ classes, disableUnderline: true }}
+      {...props}
+      variant="standard" />
   );
 }
 
@@ -161,13 +164,11 @@ export default function CustomizedInputs() {
           className={classes.margin}
           label="ThemeProvider"
           id="mui-theme-provider-standard-input"
-        />
+          variant="standard" />
         <TextField
           className={classes.margin}
           label="ThemeProvider"
-          variant="outlined"
-          id="mui-theme-provider-outlined-input"
-        />
+          id="mui-theme-provider-outlined-input" />
       </ThemeProvider>
       <FormControl className={classes.margin}>
         <InputLabel shrink htmlFor="bootstrap-input">

@@ -11,7 +11,7 @@ export default function ComboBox() {
       options={top100Films}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField {...params} label="Movie" variant="outlined" />
+        <TextField {...params} label="Movie" />
       )}
     />
   );
