@@ -326,17 +326,15 @@ describe('<Tooltip />', () => {
 
   it('should not call onOpen again if already open', () => {
     const eventLog = [];
-    const { getByRole } = render(
+    const { getByTestId } = render(
       <Tooltip enterDelay={100} title="Hello World" onOpen={() => eventLog.push('open')} open>
-        <button id="testChild" onMouseOver={() => eventLog.push('mouseover')} type="submit">
-          Hello World
-        </button>
+        <button data-testid="trigger" onMouseOver={() => eventLog.push('mouseover')} />
       </Tooltip>,
     );
 
     expect(eventLog).to.deep.equal([]);
 
-    fireEvent.mouseOver(getByRole('button'));
+    fireEvent.mouseOver(getByTestId('trigger'));
     act(() => {
       clock.tick(100);
     });
