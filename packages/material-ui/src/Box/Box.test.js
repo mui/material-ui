@@ -63,7 +63,7 @@ describe('<Box />', () => {
 
     expect(consoleErrorMock.callCount()).to.equal(1);
     expect(consoleErrorMock.messages()[0]).to.include(
-      'Material-UI: The css prop is deprecated, please use the sx prop instead.',
+      'Material-UI: The `css` prop is deprecated, please use the `sx` prop instead.',
     );
   });
 });
