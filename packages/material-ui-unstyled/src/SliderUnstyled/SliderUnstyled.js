@@ -181,6 +181,7 @@ const useSliderClasses = (props) => {
       classes[`thumbColor${capitalize(color)}`],
       {
         'Mui-disabled': disabled,
+        [getUtilityClass('vertical')]: orientation === 'vertical',
       },
     ),
   };

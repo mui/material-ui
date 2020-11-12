@@ -168,7 +168,7 @@ export const SliderThumb = experimentalStyled(
   transition: props.theme.transitions.create(['box-shadow'], {
     duration: props.theme.transitions.duration.shortest,
   }),
-  '::after': {
+  '&::after': {
     position: 'absolute',
     content: '""',
     borderRadius: '50%',
@@ -178,7 +178,7 @@ export const SliderThumb = experimentalStyled(
     right: -15,
     bottom: -15,
   },
-  ':hover, &.Mui-focusVisible': {
+  '&:hover, &.Mui-focusVisible': {
     boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
     '@media (hover: none)': {
       boxShadow: 'none',
@@ -192,7 +192,7 @@ export const SliderThumb = experimentalStyled(
     height: 8,
     marginLeft: -4,
     marginTop: -3,
-    ':hover': {
+    '&:hover': {
       boxShadow: 'none',
     },
   },
@@ -200,33 +200,18 @@ export const SliderThumb = experimentalStyled(
     marginLeft: -5,
     marginBottom: -6,
   },
-  '&.MuiSlider-vertical .Mui-disabled': {
+  '&.MuiSlider-vertical &.Mui-disabled': {
     marginLeft: -3,
     marginBottom: -4,
   },
   ...(props.styleProps.color === 'secondary' && {
-    ':hover, &.Mui-focusVisible': {
+    '&:hover, &.Mui-focusVisible': {
       boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
     },
     '&.Mui-active': {
       boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
     },
   }),
-  '& .MuiSlider-valueLabel': {
-    // IE11 centering bug, to remove from the customization demos once no longer supported
-    left: 'calc(-50% - 4px)',
-  },
-  '& .MuiSlider-mark': {
-    position: 'absolute',
-    width: 2,
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    '&.MuiSlider-markActive': {
-      backgroundColor: props.theme.palette.background.paper,
-      opacity: 0.8,
-    },
-  },
 }));
 
 export const SliderValueLabel = experimentalStyled(ValueLabelStyled)({
