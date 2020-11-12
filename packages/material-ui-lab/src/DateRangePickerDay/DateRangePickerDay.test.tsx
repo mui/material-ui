@@ -1,21 +1,23 @@
 import * as React from 'react';
 import { getClasses, createMount, describeConformance } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
 import DateRangePickerDay from '@material-ui/lab/DateRangePickerDay';
+import { adapterToUse, AdapterClassToUse } from '../internal/pickers/test-utils';
 
 describe('<DateRangePickeryarDay />', () => {
   const mount = createMount();
   let classes: Record<string, string>;
 
   const localizedMount = (node: React.ReactNode) => {
-    return mount(<LocalizationProvider dateAdapter={DateFnsAdapter}>{node}</LocalizationProvider>);
+    return mount(
+      <LocalizationProvider dateAdapter={AdapterClassToUse}>{node}</LocalizationProvider>,
+    );
   };
 
   before(() => {
     classes = getClasses(
       <DateRangePickerDay
-        day={new Date()}
+        day={adapterToUse.date()}
         outsideCurrentMonth={false}
         selected
         focused
@@ -32,7 +34,7 @@ describe('<DateRangePickeryarDay />', () => {
 
   describeConformance(
     <DateRangePickerDay
-      day={new Date()}
+      day={adapterToUse.date()}
       outsideCurrentMonth={false}
       selected
       focused
