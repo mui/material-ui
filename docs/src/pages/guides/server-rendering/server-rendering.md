@@ -99,7 +99,7 @@ As we are also using emotion as our default styled engine, we need to extract th
 ```js
 import createCache from '@emotion/cache';
 
-const cache = createCache();
+const cache = createCache({ key: 'css' });
 
 export default cache;
 ```

@@ -79,7 +79,6 @@ import createCache from '@emotion/cache';
 const cacheRtl = createCache({
   key: 'muirtl',
   stylisPlugins: [rtlPlugin],
-  speedy: true,
 });
 
 function RTL(props) {

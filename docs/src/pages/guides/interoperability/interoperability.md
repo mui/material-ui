@@ -58,15 +58,9 @@ import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const head = document.getElementsByTagName('head')[0];
-
-const emotionContainer = head.insertBefore(
-  document.createElement('STYLE'),
-  head.firstChild,
-);
-
 const cache = createCache({
-  container: emotionContainer,
+  key: "css",
+  prepend: true,
 });
 
 export default function PlainCssPriority() {
@@ -200,15 +194,9 @@ import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const head = document.getElementsByTagName('head')[0];
-
-const emotionContainer = head.insertBefore(
-  document.createElement('STYLE'),
-  head.firstChild,
-);
-
 const cache = createCache({
-  container: emotionContainer,
+  key: "css",
+  prepend: true,
 });
 
 export default function GlobalCssPriority() {
@@ -443,15 +431,9 @@ import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const head = document.getElementsByTagName('head')[0];
-
-const emotionContainer = head.insertBefore(
-  document.createElement('STYLE'),
-  head.firstChild,
-);
-
 const cache = createCache({
-  container: emotionContainer,
+  key: "css",
+  prepend: true,
 });
 
 export default function CssModulesPriority() {
