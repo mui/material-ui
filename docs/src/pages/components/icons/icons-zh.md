@@ -5,7 +5,7 @@ components: Icon, SvgIcon
 
 # Icons 图标
 
-<p class="description">我们提供了一些建议和指导，能够帮组您在 Material-UI 中使用图标。</p>
+<p class="description">我们提供了一些建议和指导，能够帮助您在 Material-UI 中使用图标。</p>
 
 Material-UI 通过以下三种方式来支持图标的使用：
 

@@ -1,6 +1,6 @@
 ---
 title: React Typography（文字铸排）组件
-components: Typography
+components: 文字铸排
 ---
 
 # Typography 文字铸排
