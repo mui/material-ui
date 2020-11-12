@@ -102,7 +102,11 @@ export const SliderRoot = experimentalStyled(
   }),
 }));
 
-export const SliderRail = experimentalStyled('span')((props) => ({
+export const SliderRail = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSliderRail' },
+)((props) => ({
   display: 'block',
   position: 'absolute',
   width: '100%',
@@ -119,7 +123,11 @@ export const SliderRail = experimentalStyled('span')((props) => ({
   }),
 }));
 
-export const SliderTrack = experimentalStyled('span')((props) => ({
+export const SliderTrack = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSliderTrack' },
+)((props) => ({
   display: 'block',
   position: 'absolute',
   height: 2,
@@ -140,7 +148,11 @@ export const SliderTrack = experimentalStyled('span')((props) => ({
   }),
 }));
 
-export const SliderThumb = experimentalStyled('span')((props) => ({
+export const SliderThumb = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSliderThumb' },
+)((props) => ({
   position: 'absolute',
   width: 12,
   height: 12,
@@ -218,7 +230,11 @@ export const SliderValueLabel = experimentalStyled(ValueLabelStyled)({
   left: 'calc(-50% - 4px)',
 });
 
-export const SliderMark = experimentalStyled('span')((props) => ({
+export const SliderMark = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSliderMark' },
+)((props) => ({
   position: 'absolute',
   width: 2,
   height: 2,
@@ -230,7 +246,11 @@ export const SliderMark = experimentalStyled('span')((props) => ({
   },
 }));
 
-export const SliderMarkLabel = experimentalStyled('span')((props) => ({
+export const SliderMarkLabel = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSliderMarkLabel' },
+)((props) => ({
   ...props.theme.typography.body2,
   color: props.theme.palette.text.secondary,
   position: 'absolute',
