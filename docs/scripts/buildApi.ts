@@ -192,6 +192,40 @@ async function annotateComponentDefinition(context: {
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
+const camelCaseToKebabCase = (inputString: string) => {
+  const str = inputString.charAt(0).toLowerCase() + inputString.slice(1);
+  return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
+};
+
+async function updateStylesDefinition(context: {
+  styles: ReactApi['styles'];
+  component: { filename: string };
+}) {
+  const workspaceRoot = path.resolve(__dirname, '../../');
+  const { styles, component } = context;
+
+  const componentName = path.basename(component.filename).replace(/\.js$/, '');
+  const dataFilename = `${workspaceRoot}/docs/data/${camelCaseToKebabCase(componentName)}.json`;
+
+  try {
+    const jsonDataString = readFileSync(dataFilename, { encoding: 'utf8' });
+    const jsonData = JSON.parse(jsonDataString);
+    if (jsonData) {
+      const cssData = jsonData.css;
+      const classes = Object.keys(cssData);
+      styles.classes = classes;
+      styles.name = jsonData.name;
+      styles.descriptions = classes.reduce((acc, key) => {
+        acc[key] = cssData[key].description;
+        return acc;
+      }, {} as Record<string, string>);
+    }
+  } catch (err) {
+    // Do nothing for now if the file doesn't exist
+    // This is still not supported for all components
+  }
+}
+
 async function annotateClassesDefinition(context: {
   api: ReactApi;
   component: { filename: string };
@@ -304,6 +338,15 @@ async function buildDocs(options: {
     globalClasses: {},
   };
 
+  // styled components does not have the options static
+  const styledComponent = !component?.default?.options;
+  if (styledComponent) {
+    await updateStylesDefinition({
+      styles,
+      component: componentObject,
+    });
+  }
+
   if (component.styles && component.default.options) {
     // Collect the customization points of the `classes` property.
     styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
@@ -380,9 +423,27 @@ async function buildDocs(options: {
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
   reactAPI.inheritance = getInheritance(testInfo, src);
 
+  if (reactAPI.styles.classes) {
+    reactAPI.styles.globalClasses = reactAPI.styles.classes.reduce((acc, key) => {
+      acc[key] = generateClassName(
+        // @ts-expect-error
+        {
+          key,
+        },
+        {
+          options: {
+            name: styles.name,
+            theme: {},
+          },
+        },
+      );
+      return acc;
+    }, {} as Record<string, string>);
+  }
+
   let markdown;
   try {
-    markdown = generateMarkdown(reactAPI);
+    markdown = generateMarkdown(reactAPI, styledComponent);
   } catch (err) {
     console.log('Error generating markdown for', componentObject.filename);
     throw err;

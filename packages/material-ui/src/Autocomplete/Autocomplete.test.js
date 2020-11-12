@@ -888,7 +888,11 @@ describe('<Autocomplete />', () => {
       );
     });
 
-    it('should ignore keydown event until the IME is confirmed', () => {
+    it('should ignore keydown event until the IME is confirmed', function test() {
+      // TODO: Often times out in Firefox 78.
+      // Is this slow because of testing-library or because of the implementation?
+      this.timeout(4000);
+
       const { getByRole } = render(
         <Autocomplete
           open
