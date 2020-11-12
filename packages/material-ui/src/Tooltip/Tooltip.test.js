@@ -324,7 +324,7 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
   });
 
-  it('should fail to open when open is true', () => {
+  it('should not call onOpen again if already open', () => {
     const eventLog = [];
     const { getByRole } = render(
       <Tooltip enterDelay={100} title="Hello World" onOpen={() => eventLog.push('open')} open>
@@ -341,7 +341,7 @@ describe('<Tooltip />', () => {
       clock.tick(100);
     });
 
-    expect(eventLog).not.to.deep.equal(['mouseover', 'open']);
+    expect(eventLog).to.deep.equal(['mouseover']);
   });
 
   it('is dismissable by pressing Escape', () => {
