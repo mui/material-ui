@@ -200,7 +200,7 @@ export const SliderThumb = experimentalStyled(
     marginLeft: -5,
     marginBottom: -6,
   },
-  '&.MuiSlider-vertical &.Mui-disabled': {
+  '&.MuiSlider-vertical&.Mui-disabled': {
     marginLeft: -3,
     marginBottom: -4,
   },
