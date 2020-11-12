@@ -196,7 +196,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
-  const prevUserSelect = React.useRef();
 
   const disableInteractive = disableInteractiveProp || followCursor;
 
@@ -242,13 +241,14 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const id = useId(idProp);
 
-  const stopTouchInteraction = useEventCallback(() => {
+  const prevUserSelect = React.useRef();
+  const stopTouchInteraction = React.useCallback(() => {
     if (prevUserSelect.current !== undefined) {
       document.body.style.WebkitUserSelect = prevUserSelect.current;
       prevUserSelect.current = undefined;
     }
     clearTimeout(touchTimer.current);
-  });
+  }, []);
 
   React.useEffect(() => {
     return () => {
