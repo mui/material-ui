@@ -34,8 +34,8 @@ describe('<DateRangePicker />', () => {
   it('allows to select date range end-to-end', () => {
     function RangePickerTest() {
       const [range, changeRange] = React.useState<DateRange<Date>>([
-        new Date('2019-01-01T00:00:00.000'),
-        new Date('2019-01-01T00:00:00.000'),
+        adapterToUse.date('2019-01-01T00:00:00.000'),
+        adapterToUse.date('2019-01-01T00:00:00.000'),
       ]);
 
       return (
@@ -65,8 +65,8 @@ describe('<DateRangePicker />', () => {
         renderInput={defaultRangeRenderInput}
         onChange={() => {}}
         value={[
-          adapterToUse.date(new Date('2018-01-01T00:00:00.000Z')),
-          adapterToUse.date(new Date('2018-01-31T00:00:00.000Z')),
+          adapterToUse.date(adapterToUse.date('2018-01-01T00:00:00.000')),
+          adapterToUse.date(adapterToUse.date('2018-01-31T00:00:00.000')),
         ]}
       />,
     );
@@ -81,7 +81,7 @@ describe('<DateRangePicker />', () => {
         open
         renderInput={defaultRangeRenderInput}
         onChange={onChangeMock}
-        value={[new Date('2019-01-01T00:00:00.000'), null]}
+        value={[adapterToUse.date('2019-01-01T00:00:00.000'), null]}
       />,
     );
 
@@ -93,8 +93,8 @@ describe('<DateRangePicker />', () => {
 
     expect(onChangeMock.callCount).to.equal(2);
     const [changedRange] = onChangeMock.lastCall.args;
-    expect(changedRange[0]).to.toEqualDateTime(new Date('2019-01-01T00:00:00.000'));
-    expect(changedRange[1]).to.toEqualDateTime(new Date('2019-03-19T00:00:00.000'));
+    expect(changedRange[0]).to.toEqualDateTime(adapterToUse.date('2019-01-01T00:00:00.000'));
+    expect(changedRange[1]).to.toEqualDateTime(adapterToUse.date('2019-03-19T00:00:00.000'));
   });
 
   it('continues start selection if selected "end" date is before start', () => {
@@ -104,7 +104,7 @@ describe('<DateRangePicker />', () => {
         open
         renderInput={defaultRangeRenderInput}
         onChange={onChangeMock}
-        defaultCalendarMonth={new Date('2019-01-01T00:00:00.000')}
+        defaultCalendarMonth={adapterToUse.date('2019-01-01T00:00:00.000')}
         value={[null, null]}
       />,
     );
@@ -118,8 +118,8 @@ describe('<DateRangePicker />', () => {
 
     expect(onChangeMock.callCount).to.equal(3);
     const [changedRange] = onChangeMock.lastCall.args;
-    expect(changedRange[0]).to.toEqualDateTime(new Date('2019-01-19T00:00:00.000'));
-    expect(changedRange[1]).to.toEqualDateTime(new Date('2019-01-30T00:00:00.000'));
+    expect(changedRange[0]).to.toEqualDateTime(adapterToUse.date('2019-01-19T00:00:00.000'));
+    expect(changedRange[1]).to.toEqualDateTime(adapterToUse.date('2019-01-30T00:00:00.000'));
   });
 
   it('starts selection from end if end text field was focused', function test() {
@@ -128,7 +128,7 @@ describe('<DateRangePicker />', () => {
       <DesktopDateRangePicker
         renderInput={defaultRangeRenderInput}
         onChange={onChangeMock}
-        defaultCalendarMonth={new Date('2019-01-01T00:00:00.000')}
+        defaultCalendarMonth={adapterToUse.date('2019-01-01T00:00:00.000')}
         value={[null, null]}
       />,
     );
@@ -141,8 +141,8 @@ describe('<DateRangePicker />', () => {
     expect(getAllByMuiTest('DateRangeHighlight')).to.have.length(12);
     expect(onChangeMock.callCount).to.equal(2);
     const [changedRange] = onChangeMock.lastCall.args;
-    expect(changedRange[0]).toEqualDateTime(new Date('2019-01-19T00:00:00.000'));
-    expect(changedRange[1]).toEqualDateTime(new Date('2019-01-30T00:00:00.000'));
+    expect(changedRange[0]).toEqualDateTime(adapterToUse.date('2019-01-19T00:00:00.000'));
+    expect(changedRange[1]).toEqualDateTime(adapterToUse.date('2019-01-30T00:00:00.000'));
   });
 
   it('closes on focus out of fields', () => {
@@ -194,8 +194,8 @@ describe('<DateRangePicker />', () => {
 
     expect(
       onChangeMock.calledWith([
-        new Date('2019-06-06T00:00:00.000'),
-        new Date('2019-06-06T00:00:00.000'),
+        adapterToUse.date('2019-06-06T00:00:00.000'),
+        adapterToUse.date('2019-06-06T00:00:00.000'),
       ]),
     ).to.equal(true);
   });
@@ -204,7 +204,10 @@ describe('<DateRangePicker />', () => {
     render(
       <DesktopDateRangePicker
         reduceAnimations
-        value={[new Date('2019-05-19T00:00:00.000'), new Date('2019-10-30T00:00:00.000')]}
+        value={[
+          adapterToUse.date('2019-05-19T00:00:00.000'),
+          adapterToUse.date('2019-10-30T00:00:00.000'),
+        ]}
         renderInput={defaultRangeRenderInput}
         onChange={() => {}}
         TransitionComponent={FakeTransitionComponent}
@@ -226,7 +229,7 @@ describe('<DateRangePicker />', () => {
     render(
       <StaticDateRangePicker
         renderInput={defaultRangeRenderInput}
-        minDate={new Date('2005-01-01T00:00:00.000')}
+        minDate={adapterToUse.date('2005-01-01T00:00:00.000')}
         shouldDisableDate={isWeekend}
         onChange={() => {}}
         value={[
@@ -248,7 +251,10 @@ describe('<DateRangePicker />', () => {
         calendars={3}
         onChange={() => {}}
         TransitionComponent={FakeTransitionComponent}
-        value={[adapterToUse.date(new Date(NaN)), adapterToUse.date('2018-01-31T00:00:00.000')]}
+        value={[
+          adapterToUse.date(adapterToUse.date(NaN)),
+          adapterToUse.date('2018-01-31T00:00:00.000'),
+        ]}
       />,
     );
 

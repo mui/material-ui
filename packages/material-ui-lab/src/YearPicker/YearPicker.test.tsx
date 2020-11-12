@@ -5,7 +5,7 @@ import { getClasses, createMount, fireEvent, screen, describeConformance } from 
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
 import YearPicker from '@material-ui/lab/YearPicker';
-import { createPickerRender } from '../internal/pickers/test-utils';
+import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<YearPicker />', () => {
   const mount = createMount();
@@ -19,10 +19,10 @@ describe('<YearPicker />', () => {
   before(() => {
     classes = getClasses(
       <YearPicker
-        minDate={new Date('2019-01-01T00:00:00.000')}
-        maxDate={new Date('2029-01-01T00:00:00.000')}
+        minDate={adapterToUse.date('2019-01-01T00:00:00.000')}
+        maxDate={adapterToUse.date('2029-01-01T00:00:00.000')}
         isDateDisabled={() => false}
-        date={new Date()}
+        date={adapterToUse.date()}
         onChange={() => {}}
       />,
     );
@@ -30,10 +30,10 @@ describe('<YearPicker />', () => {
 
   describeConformance(
     <YearPicker
-      minDate={new Date('2019-01-01T00:00:00.000')}
-      maxDate={new Date('2029-01-01T00:00:00.000')}
+      minDate={adapterToUse.date('2019-01-01T00:00:00.000')}
+      maxDate={adapterToUse.date('2029-01-01T00:00:00.000')}
       isDateDisabled={() => false}
-      date={new Date()}
+      date={adapterToUse.date()}
       onChange={() => {}}
     />,
     () => ({
@@ -50,15 +50,15 @@ describe('<YearPicker />', () => {
     const onChangeMock = spy();
     render(
       <YearPicker
-        minDate={new Date('2019-01-01T00:00:00.000')}
-        maxDate={new Date('2029-01-01T00:00:00.000')}
+        minDate={adapterToUse.date('2019-01-01T00:00:00.000')}
+        maxDate={adapterToUse.date('2029-01-01T00:00:00.000')}
         isDateDisabled={() => false}
-        date={new Date('2019-02-02T00:00:00.000')}
+        date={adapterToUse.date('2019-02-02T00:00:00.000')}
         onChange={onChangeMock}
       />,
     );
 
     fireEvent.click(screen.getByText('2025', { selector: 'button' }));
-    expect(onChangeMock.calledWith(new Date('2025-02-02T00:00:00.000'))).to.equal(true);
+    expect(onChangeMock.calledWith(adapterToUse.date('2025-02-02T00:00:00.000'))).to.equal(true);
   });
 });
