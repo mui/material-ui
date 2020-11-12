@@ -59,12 +59,8 @@ describe('experimentalStyled', () => {
 
   it('REMOVE THIS: emotion theme should work', () => {
     const Div = eStyled('div')`
-      width: ${(props) => { console.log(props); return props.theme.spacing; }};
+      width: ${(props) => props.theme.spacing};
     `;
-
-    const theme = createMuiTheme({
-      spacing: 10,
-    });
 
     const { container } = render(
       <ThemeContext.Provider value={{ spacing: '10px' }}>
