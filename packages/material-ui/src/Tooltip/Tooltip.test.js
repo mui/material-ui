@@ -349,12 +349,6 @@ describe('<Tooltip />', () => {
   });
 
   describe('touch screen', () => {
-    const isJSDOM = navigator.userAgent === 'node.js';
-
-    afterEach(() => {
-      document.body.style.WebkitUserSelect = undefined;
-    });
-
     it('should not respond to quick events', () => {
       const { getByRole, queryByRole } = render(
         <Tooltip title="Hello World">
@@ -386,9 +380,7 @@ describe('<Tooltip />', () => {
       );
       act(() => {
         fireEvent.touchStart(getByRole('button'));
-        expect(document.body.style.WebkitUserSelect).to.equal('none');
         clock.tick(enterTouchDelay + enterDelay);
-        expect(document.body.style.WebkitUserSelect).to.equal(isJSDOM ? undefined : '');
       });
 
       expect(getByRole('tooltip')).toBeVisible();
