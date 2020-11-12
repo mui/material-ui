@@ -196,8 +196,8 @@ export const SliderThumb = experimentalStyled(
       boxShadow: 'none',
     },
     ...(props.styleProps.orientation === 'vertical' && {
-      marginLeft: -3, //-5
-      marginBottom: -4, //-6
+      marginLeft: -3,
+      marginBottom: -4,
     }),
   },
   ...(props.styleProps.color === 'secondary' && {

@@ -196,7 +196,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
     className,
-    classes: classesProp = {},
     color = 'primary',
     component: Component = 'span',
     defaultValue,
