@@ -17,8 +17,6 @@ function omit(input, fields) {
   return output;
 }
 
-let warnedOnce = false;
-
 // styled-components's API removes the mapping between components and styles.
 // Using components as a low-level styling construct can be simpler.
 export default function styled(Component) {
@@ -83,19 +81,6 @@ export default function styled(Component) {
       } = props;
       const classes = useStyles(props);
       const className = clsx(classes.root, classNameProp);
-
-      if (process.env.NODE_ENV !== 'production') {
-        if (!warnedOnce && props.css) {
-          warnedOnce = true;
-          console.warn(
-            [
-              `Material-UI: The css prop on the ${
-                name || Component.displayName
-              } component is deprecated, please use the sx prop instead.`,
-            ].join('\n'),
-          );
-        }
-      }
 
       let spread = other;
       if (filterProps) {

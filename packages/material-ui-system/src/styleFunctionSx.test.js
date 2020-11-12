@@ -20,7 +20,7 @@ describe('styleFunctionSx', () => {
   it('should work', () => {
     const palette = styleFunctionSx(textColor);
 
-    expect(palette.filterProps.length).to.equal(2);
+    expect(palette.filterProps.length).to.equal(3);
     expect(
       palette({
         theme: {},

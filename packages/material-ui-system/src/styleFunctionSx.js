@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { chainPropTypes } from '@material-ui/utils';
 import merge from './merge';
 
 function omit(input, fields) {
@@ -12,6 +13,8 @@ function omit(input, fields) {
 
   return output;
 }
+
+let warnedOnce = false;
 
 function styleFunctionSx(styleFunction) {
   const newStyleFunction = (props) => {
@@ -38,11 +41,20 @@ function styleFunctionSx(styleFunction) {
     process.env.NODE_ENV !== 'production'
       ? {
           ...styleFunction.propTypes,
-          css: PropTypes.object,
+          css: chainPropTypes(PropTypes.object, (props) => {
+            if (!warnedOnce && props.css !== undefined) {
+              warnedOnce = true;
+              return new Error(
+                `Material-UI: The css prop is deprecated, please use the sx prop instead.`,
+              );
+            }
+            return null;
+          }),
+          sx: PropTypes.object,
         }
       : {};
 
-  newStyleFunction.filterProps = ['css', ...styleFunction.filterProps];
+  newStyleFunction.filterProps = ['css', 'sx', ...styleFunction.filterProps];
 
   return newStyleFunction;
 }
