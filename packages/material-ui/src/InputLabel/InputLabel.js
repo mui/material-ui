@@ -40,7 +40,7 @@ export const styles = (theme) => ({
     transform: 'translate(0, 1.5px) scale(0.75)',
     transformOrigin: 'top left',
   },
-  /* Styles applied to the `input` element if `disableAnimation={false}`. */
+  /* Styles applied to the `input` element unless `disableAnimation={true}`. */
   animated: {
     transition: theme.transitions.create(['color', 'transform'], {
       duration: theme.transitions.duration.shorter,
@@ -164,11 +164,11 @@ InputLabel.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input of this label is focused.
+   * If `true`, the `input` of this label is focused.
    */
   focused: PropTypes.bool,
   /**
@@ -177,7 +177,7 @@ InputLabel.propTypes = {
    */
   margin: PropTypes.oneOf(['dense']),
   /**
-   * if `true`, the label will indicate that the input is required.
+   * if `true`, the label will indicate that the `input` is required.
    */
   required: PropTypes.bool,
   /**

@@ -1,16 +1,13 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
-import {
-  LocalizationProvider as MuiPickersLocalizationProvider,
-  TimePicker,
-  DesktopDatePicker,
-  MobileDatePicker,
-} from '@material-ui/pickers';
+import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import TimePicker from '@material-ui/lab/TimePicker';
+import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 
 export default function MaterialUIPickers() {
-  // The first commit of Material-UI
   const [selectedDate, setSelectedDate] = React.useState(
     new Date('2014-08-18T21:11:54'),
   );
@@ -20,15 +17,15 @@ export default function MaterialUIPickers() {
   };
 
   return (
-    <MuiPickersLocalizationProvider dateAdapter={DateFnsAdapter}>
+    <LocalizationProvider dateAdapter={DateFnsAdapter}>
       <Grid container justifyContent="space-around">
         <DesktopDatePicker
           inputFormat="MM/dd/yyyy"
           label="Date picker desktop"
           value={selectedDate}
           onChange={handleDateChange}
-          renderInput={(props) => (
-            <TextField id="date-picker-desktop" margin="normal" {...props} />
+          renderInput={(params) => (
+            <TextField id="date-picker-desktop" margin="normal" {...params} />
           )}
           OpenPickerButtonProps={{
             'aria-label': 'change date',
@@ -39,8 +36,8 @@ export default function MaterialUIPickers() {
           inputFormat="MM/dd/yyyy"
           value={selectedDate}
           onChange={handleDateChange}
-          renderInput={(props) => (
-            <TextField id="date-picker-mobile" margin="normal" {...props} />
+          renderInput={(params) => (
+            <TextField id="date-picker-mobile" margin="normal" {...params} />
           )}
           OpenPickerButtonProps={{
             'aria-label': 'change date',
@@ -50,12 +47,12 @@ export default function MaterialUIPickers() {
           label="Time picker"
           value={selectedDate}
           onChange={handleDateChange}
-          renderInput={(props) => <TextField margin="normal" {...props} />}
+          renderInput={(params) => <TextField margin="normal" {...params} />}
           OpenPickerButtonProps={{
             'aria-label': 'change time',
           }}
         />
       </Grid>
-    </MuiPickersLocalizationProvider>
+    </LocalizationProvider>
   );
 }

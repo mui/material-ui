@@ -66,6 +66,9 @@ const Icon = React.forwardRef(function Icon(props, ref) {
     <Component
       className={clsx(
         'material-icons',
+        // Prevent the translation of the text content.
+        // The font relies on the exact text content to render the icon.
+        'notranslate',
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',

@@ -4,7 +4,7 @@
 
 ## 快速上手
 
-`@material-ui/system` 提供了一些底层辅助函数，我们称之为 "_style functions_"，它们可以用于建立强大的设计系统。 以下是一些重要的特点：
+`@material-ui/system` 提供了一些底层工具集函数，我们称之为 "_style functions_"，它们可以用于建立强大的设计系统。 以下是一些重要的特点：
 
 - ⚛️ 可以在组件的属性中直接获取主题（theme）的值。
 - 🦋 鼓励 UI 保持一致性。
@@ -12,13 +12,13 @@
 - 🦎 可以和任何主题对象 (theme object) 结合使用。
 - 💅 使用广为流行的 CSS-in-JS 样式方案。
 - 📦 小于 [4KB 的压缩包](https://bundlephobia.com/result?p=@material-ui/system)。
-- 🚀 [快速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
+- 🚀 [快速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)，性能不会成为运行的瓶颈
 
-值得关注的是，整个仓库的函数都是无副作用的(side-effect free)，它们拥有这样的类型签名： `({ theme, ...style })=> style`。
+值得关注的是，整个仓库的函数都是无副作用的（side-effect free），它们都拥有这样的类型签名：`({ theme, ...style }) => style`, **就是这样**。
 
 ### 演示
 
-在*开始*章节的余下部分，我们会配合**styled-components** 作为演示例子(因为这个库具有普遍性)。 另外一个方案就是 [使用 JSS](#interoperability)。 另外，以下的例子都直接使用了 Material-UI 的 **默认** [主题对象](/customization/default-theme/)。
+在_开始（Getting Started）_章节的余下部分，我们会配合 **styled-components** 作为演示例子（因为这个库具有普遍性）。 另外，你也可以使用 [emotion](#interoperability) 或其他的任何 CSS-in-JS 样式解决方案。 以下的例子也都基于 Material-UI 的 **默认** [主题对象（theme object）](/customization/default-theme/)。
 
 {{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
@@ -47,11 +47,11 @@ const Box = styled.div`
 export default Box;
 ```
 
-这个 Box 组件现在就支持了 [间距属性](/system/spacing/#api) 和 [颜色属性](/system/palette/#api)。 例如，你可以提供一个间距属性：`p` 和一个颜色属性： `color`。
+如此操作之后，这个 Box 组件现在就支持了 [间距属性](/system/spacing/#api) 和 [颜色属性](/system/palette/#api)。 例如，你可以提供一个间距属性：`p` 和一个颜色属性： `color`。
 
 ```jsx
-<Box p="1rem" color="grey">Give me some space!</Box>
-</Box>
+<Box p="1rem" color="grey">
+  给我一些间距！
 </Box>
 ```
 
@@ -105,7 +105,7 @@ export default function App() {
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-如果你已经在使用 `@material-ui/core`，那么你可以使用 [Box 组件](/components/box/)（使用内嵌的 JSS）：
+如果你已经使用了 `@material-ui/core`，那么就可以使用 [Box 组件](/components/box/)（默认在内部使用）。
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -113,13 +113,7 @@ import Box from '@material-ui/core/Box';
 
 ## 互操作性
 
-`@material-ui/system` 适用于大多数 CSS-in-JS 库，包括了 JSS，styled-components，还有 emotion。
-
-如果你已经在使用 `@material-ui/core`，我们推荐你使用 **JSS** 方案，这样有助于减少包大小。
-
-### JSS
-
-{{"demo": "pages/system/basics/JSS.js", "defaultCodeOpen": true}}
+`@material-ui/system` 适用于大多数 CSS-in-JS 库，包括了 JSS，styled-components，还有 emotion。 下面是几个示例用法：
 
 ### Styled components
 
@@ -131,7 +125,7 @@ import Box from '@material-ui/core/Box';
 
 ## 响应式（Responsive）
 
-**所有** 的属性都是响应式的，我们支持3种不同的 Api。 如下的配置是默认断点(breakpoints) 配置，不过同时它们是可定制的。
+**所有**的属性都是响应式的。 有三种不同的 API – Array、Object 和 Collocation – 分别使用这种默认的（但可自定义）断点主题结构。
 
 ```js
 const values = {
@@ -201,7 +195,7 @@ const Box = styled.div`
 <Box p={2} sm={{ p: 3 }} md={{ p: 4 }} />;
 
 /**
- * Outputs:
+ * 输出：
  *
  * padding: 16px;
  * @media (min-width: 600px) {
@@ -228,7 +222,7 @@ const Box = styled.div`
 1. `options` (*Object*):
 
 - [Tachyons](https://tachyons.io/) (2014年) 是第一个促进了 [原子 CSS 模式(Atomic CSS pattern)](https://css-tricks.com/lets-define-exactly-atomic-css/) 发展的CSS库。
-- `options.cssProperty` (*String|Boolean* [optional]):默认是 `options.prop`。 这使用了 CSS 属性。 你可以传入 `false` 来禁用此选项。 禁用的情况下，这个属性会被作为样式对象应用于本身。 它可以用来 [渲染变体（rendering variants）](#variants)。
+- `options.cssProperty` (_String|Boolean_ [optional])：默认值是 `options.prop`。 这使用了 CSS 属性。 你可以传入 `false` 来禁用此选项。 禁用的情况下，这个属性会被作为样式对象应用于本身。 它可以用来 [渲染变体（rendering variants）](#variants)。
 - `options.themeKey` (*String* [optional])：主题路径的前缀。
 - `options.transform` (*Function* [optional])：指定在输出 CSS 值之前经过的转换
 
@@ -238,7 +232,7 @@ const Box = styled.div`
 
 #### 例子
 
-你可以创建一个支持一些CSS的网格属性的组件，如`grid-gap`。 若将 `spacing` 作为 `themeKey` 提供，你可以重用该逻辑，从而实现我们在其他 spacing 属性（如  `padding`）中定义的行为。
+你可以创建一个支持一些 CSS 的栅格属性的组件，如 `grid-gap`。 若将 `spacing` 作为 `themeKey` 提供，你可以重用该逻辑，从而实现我们在其他 spacing 属性（如  `padding`）中定义的行为。
 
 ```jsx
 import styled from 'styled-components';
@@ -308,7 +302,7 @@ const palette = compose(textColor, bgcolor);
 
 ## 变体
 
-帮助函数 `style()` 也可用于根据主题来返回不同的属性给样式对象。 在在这个例子中， `variant` 属性可以是 `theme.typography` 对象的任意键(key)。
+助手函数 `style()` 也可用于根据主题来为样式对象返回不同的属性。 在这个例子中， `variant` 属性支持 `theme.typography` 对象的所有键。
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
@@ -318,7 +312,7 @@ const palette = compose(textColor, bgcolor);
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
-## 它是如何工作的的呢
+## 工作原理
 
 styled-system 在 [解释它是如何工作的](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works) 方面做得很好 。 它可以协助为这种 “style function” 概念建立一个心理模型。
 

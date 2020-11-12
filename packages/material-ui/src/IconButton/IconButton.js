@@ -168,17 +168,17 @@ IconButton.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
-   * If `true`, the button will be disabled.
+   * If `true`, the button is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the  keyboard focus ripple will be disabled.
+   * If `true`, the  keyboard focus ripple is disabled.
    * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
    * to highlight the element by applying separate styles with the `focusVisibleClassName`.

@@ -529,7 +529,7 @@ const appList = [
   },
   {
     title: 'Swimmy',
-    description: 'An open source forum PWA. 🇯🇵 (Github docs are in English)',
+    description: 'An open source forum PWA. 🇯🇵 (GitHub docs are in English)',
     image: 'swimmy.jpg',
     link: 'https://swimmy.io/',
     source: 'https://github.com/swimmy/swimmy.io',

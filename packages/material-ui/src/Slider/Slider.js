@@ -737,6 +737,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       return;
     }
 
+    // Avoid text selection
     event.preventDefault();
     const finger = trackFinger(event, touchId);
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
@@ -940,7 +941,7 @@ Slider.propTypes = {
    */
   defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**
-   * If `true`, the slider will be disabled.
+   * If `true`, the slider is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -961,7 +962,7 @@ Slider.propTypes = {
   getAriaValueText: PropTypes.func,
   /**
    * Marks indicate predetermined values to which the user can move the slider.
-   * If `true` the marks will be spaced according the value of the `step` prop.
+   * If `true` the marks are spaced according the value of the `step` prop.
    * If an array, it should contain objects with `value` and an optional `label` keys.
    * @default false
    */

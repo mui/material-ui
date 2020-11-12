@@ -22,7 +22,7 @@ describe('<ImageListItem />', () => {
   }));
 
   const itemData = {
-    img: 'images/image-list/breakfast.jpg',
+    img: '/fake.png',
     title: 'Breakfast',
     author: 'jill111',
   };

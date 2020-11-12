@@ -5,12 +5,10 @@ import path from 'path';
 import rimraf from 'rimraf';
 import Mustache from 'mustache';
 import Queue from 'modules/waterfall/Queue';
-import util from 'util';
 import intersection from 'lodash/intersection';
-import glob from 'glob';
+import globAsync from 'fast-glob';
 import SVGO from 'svgo';
 
-const globAsync = util.promisify(glob);
 export const RENAME_FILTER_DEFAULT = './renameFilters/default';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
 

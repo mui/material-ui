@@ -10,7 +10,7 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
     root?: string;
     /** Styles applied to the root element if color secondary. */
     colorSecondary?: string;
-    /** Styles applied to the root element if `disableUnderline={false}`. */
+    /** Styles applied to the root element unless `disableUnderline={true}`. */
     underline?: string;
     /** Pseudo-class applied to the root element if the component is focused. */
     focused?: string;

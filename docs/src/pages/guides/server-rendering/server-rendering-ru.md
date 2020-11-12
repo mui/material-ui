@@ -82,21 +82,56 @@ When rendering, we will wrap `App`, the root component, inside a [`StylesProvide
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
+We then get the CSS from the `sheets` using `sheets.toString()`. As we are also using emotion as our default styled engine, we need to extract the styles from the emotion instance as well. For this we need to share the same cache definition for both the client and server:
+
+`cache.js`
+
+```js
+import createCache from '@emotion/cache';
+
+const cache = createCache();
+
+export default cache;
+```
+
+With this we are creating new Emotion server instance and using this to extract the critical styles for the html as well.
+
+We will see how this is passed along in the `renderFullPage` function.
 
 ```jsx
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import createEmotionServer from 'create-emotion-server';
 import App from './App';
 import theme from './theme';
+import cache from './cache';
+
+const { extractCritical } = createEmotionServer(cache);
 
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
-  res.send(renderFullPage(html, css));
+  const html = ReactDOMServer.renderToString(
+    sheets.collect(
+      <CacheProvider value={cache}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </CacheProvider>,
+    ),
+  );
+
+  // Grab the CSS from the sheets.
+  const css = sheets.toString();
+
+  // Grab the CSS from emotion
+  const styles = extractCritical(html);
+
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, `${css} ${styles.css}`));
 }
 
 const app = express();
@@ -104,26 +139,6 @@ const app = express();
 app.use('/build', express.static('build'));
 
 // This is fired every time the server-side receives a request.
-  const html = ReactDOMServer.renderToString(
-    sheets.collect(
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>,
-    ),
-  );
-
-  // Grab the CSS from the sheets.
-  import express from 'express';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
-import App from './App';
-import theme from './theme';
-
-function handleRender(req, res) {
-  const sheets = new ServerStyleSheets();
-
-  // Render the component to a string.
 */
 }
 
@@ -163,8 +178,10 @@ The client side is straightforward. All we need to do is remove the server-side 
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { CacheProvider } from '@emotion/core';
 import App from './App';
 import theme from './theme';
+import cache from './cache';
 
 function Main() {
   React.useEffect(() => {
@@ -175,9 +192,11 @@ function Main() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 

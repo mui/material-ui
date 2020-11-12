@@ -1,11 +1,14 @@
 import chai from 'chai';
 import chaiDom from 'chai-dom';
+import _ from 'lodash';
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
 
 chai.use(chaiDom);
+
+const isKarma = Boolean(process.env.KARMA);
 
 // https://stackoverflow.com/a/46755166/3406963
 declare global {
@@ -17,6 +20,42 @@ declare global {
        * @deprecated Use `inaccessible` + `visible` instead
        */
       toBeAriaHidden(): void;
+      /**
+       * Checks `expectedStyle` is a subset of the elements inline style i.e. `element.style`.
+       * @example expect(element).toHaveInlineStyle({ width: '200px' })
+       */
+      toHaveInlineStyle(
+        expectedStyle: Record<
+          Exclude<
+            keyof CSSStyleDeclaration,
+            | 'getPropertyPriority'
+            | 'getPropertyValue'
+            | 'item'
+            | 'removeProperty'
+            | 'setProperty'
+            | number
+          >,
+          string
+        >,
+      ): void;
+      /**
+       * Checks `expectedStyle` is a subset of the elements computed style i.e. `window.getComputedStyle(element)`.
+       * @example expect(element).toHaveComputedStyle({ width: '200px' })
+       */
+      toHaveComputedStyle(
+        expectedStyle: Record<
+          Exclude<
+            keyof CSSStyleDeclaration,
+            | 'getPropertyPriority'
+            | 'getPropertyValue'
+            | 'item'
+            | 'removeProperty'
+            | 'setProperty'
+            | number
+          >,
+          string
+        >,
+      ): void;
       /**
        * Check if an element's [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) is not `hidden` or `collapsed`.
        */
@@ -32,6 +71,10 @@ declare global {
        * @see [Excluding Elements from the Accessibility Tree](https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion)
        */
       toBeInaccessible(): void;
+      /**
+       * Matcher with useful error messages if the dates don't match.
+       */
+      toEqualDateTime(expected: Date): void;
       /**
        * Checks if the accessible name computation (according to `accname` spec)
        * matches the expectation.
@@ -72,14 +115,10 @@ function isInJSDOM() {
   return /jsdom/.test(window.navigator.userAgent);
 }
 
-function isInKarma() {
-  return !isInJSDOM();
-}
-
 // chai#utils.elToString that looks like stringified elements in testing-library
 function elementToString(element: Element | null | undefined) {
   if (typeof element?.nodeType === 'number') {
-    return prettyDOM(element, undefined, { highlight: !isInKarma(), maxDepth: 1 });
+    return prettyDOM(element, undefined, { highlight: !isKarma, maxDepth: 1 });
   }
   return String(element);
 }
@@ -139,7 +178,7 @@ chai.use((chaiAPI, utils) => {
     this.assert(
       element === document.activeElement,
       // karma does not show the diff like mocha does
-      `expected element to have focus${isInKarma() ? '\nexpected #{exp}\nactual: #{act}' : ''}`,
+      `expected element to have focus${isKarma ? '\nexpected #{exp}\nactual: #{act}' : ''}`,
       `expected element to NOT have focus \n${elementToString(element)}`,
       elementToString(element),
       elementToString(document.activeElement),
@@ -270,6 +309,88 @@ chai.use((chaiAPI, utils) => {
   chai.Assertion.addMethod('toBeVisible', function toBeVisible() {
     // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-unused-expressions
     new chai.Assertion(this._obj).to.be.visible;
+  });
+
+  function assertMatchingStyles(
+    this: Chai.AssertionStatic,
+    actualStyleDeclaration: CSSStyleDeclaration,
+    expectedStyleUnnormalized: Record<string, string>,
+    options: { styleTypeHint: string },
+  ): void {
+    const { styleTypeHint } = options;
+    // Compare objects using hyphen case.
+    // This is closer to actual CSS and required for getPropertyValue anyway.
+    const expectedStyle: Record<string, string> = {};
+    Object.keys(expectedStyleUnnormalized).forEach((cssProperty) => {
+      expectedStyle[_.kebabCase(cssProperty)] = expectedStyleUnnormalized[cssProperty];
+    });
+
+    const actualStyle: Record<string, string> = {};
+    Object.keys(expectedStyle).forEach((cssProperty) => {
+      actualStyle[cssProperty] = actualStyleDeclaration.getPropertyValue(cssProperty);
+    });
+
+    const jsdomHint =
+      'Styles in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
+      'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`';
+    const shorthandHint =
+      'Browsers can compute shorthand properties differently. Prefer longhand properties e.g. `borderTopColor`, `borderRightColor` etc. instead of `border` or `border-color`.';
+    const messageHint = `${jsdomHint}\n${shorthandHint}`;
+
+    if (isKarma) {
+      // `#{exp}` and `#{act}` placeholders escape the newlines
+      const expected = JSON.stringify(expectedStyle, null, 2);
+      const actual = JSON.stringify(actualStyle, null, 2);
+      // karma's `dots` reporter does not support diffs
+      this.assert(
+        // TODO Fix upstream docs/types
+        (utils as any).eql(actualStyle, expectedStyle),
+        `expected ${styleTypeHint} style of #{this} did not match\nExpected:\n${expected}\nActual:\n${actual}\n\n\n${messageHint}`,
+        `expected #{this} to not have ${styleTypeHint} style\n${expected}\n\n\n${messageHint}`,
+        expectedStyle,
+        actualStyle,
+      );
+    } else {
+      this.assert(
+        // TODO Fix upstream docs/types
+        (utils as any).eql(actualStyle, expectedStyle),
+        `expected #{this} to have ${styleTypeHint} style #{exp} \n\n${messageHint}`,
+        `expected #{this} not to have ${styleTypeHint} style #{exp}${messageHint}`,
+        expectedStyle,
+        actualStyle,
+        true,
+      );
+    }
+  }
+
+  chai.Assertion.addMethod('toHaveInlineStyle', function toHaveInlineStyle(
+    expectedStyleUnnormalized: Record<string, string>,
+  ) {
+    const element = utils.flag(this, 'object') as HTMLElement;
+
+    assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
+      styleTypeHint: 'inline',
+    });
+  });
+
+  chai.Assertion.addMethod('toHaveComputedStyle', function toHaveComputedStyle(
+    expectedStyleUnnormalized: Record<string, string>,
+  ) {
+    const element = utils.flag(this, 'object') as HTMLElement;
+    const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
+
+    assertMatchingStyles.call(this, computedStyle, expectedStyleUnnormalized, {
+      styleTypeHint: 'computed',
+    });
+  });
+
+  chai.Assertion.addMethod('toEqualDateTime', function toEqualDateTime(expectedDate, message) {
+    // eslint-disable-next-line no-underscore-dangle
+    const actualDate = this._obj;
+    const assertion = new chai.Assertion(actualDate.toISOString(), message);
+    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+    utils.transferFlags(this as any, assertion, false);
+    assertion.to.equal(expectedDate.toISOString());
   });
 });
 

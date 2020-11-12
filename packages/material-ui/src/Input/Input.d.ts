@@ -16,7 +16,7 @@ export interface InputProps extends StandardProps<InputBaseProps> {
     disabled?: string;
     /** Styles applied to the root element if color secondary. */
     colorSecondary?: string;
-    /** Styles applied to the root element if `disableUnderline={false}`. */
+    /** Styles applied to the root element unless `disableUnderline={true}`. */
     underline?: string;
     /** Pseudo-class applied to the root element if `error={true}`. */
     error?: string;
@@ -36,7 +36,7 @@ export interface InputProps extends StandardProps<InputBaseProps> {
     inputTypeSearch?: string;
   };
   /**
-   * If `true`, the input will not have an underline.
+   * If `true`, the `input` will not have an underline.
    */
   disableUnderline?: boolean;
 }

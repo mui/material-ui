@@ -71,6 +71,7 @@ const defaultTimeout = {
  */
 const Slide = React.forwardRef(function Slide(props, ref) {
   const {
+    appear = true,
     children,
     direction = 'down',
     in: inProp,
@@ -218,7 +219,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       onExit={handleExit}
       onExited={handleExited}
       onExiting={handleExiting}
-      appear
+      appear={appear}
       in={inProp}
       timeout={timeout}
       {...other}
@@ -243,6 +244,12 @@ Slide.propTypes = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
+  appear: PropTypes.bool,
   /**
    * A single child content element.
    */

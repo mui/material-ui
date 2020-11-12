@@ -87,8 +87,6 @@ export interface AutocompleteProps<
     endAdornment?: string;
     /** Styles applied to the clear indicator. */
     clearIndicator?: string;
-    /** Styles applied to the clear indicator if the input is dirty. */
-    clearIndicatorDirty?: string;
     /** Styles applied to the popup indicator. */
     popupIndicator?: string;
     /** Styles applied to the popup indicator if the popup is open. */
@@ -132,7 +130,7 @@ export interface AutocompleteProps<
    */
   closeText?: string;
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the input is disabled.
    * @default false
    */
   disabled?: boolean;

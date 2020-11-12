@@ -1,4 +1,4 @@
-# Spacing（间距）
+# Spacing 间距
 
 <p class="description">使用 theme.spacing() 助手来打造 UI 元素之间的一致的间距。</p>
 
@@ -28,7 +28,7 @@ theme.spacing(2); // `${4 * 2}px` = '8px'
 
 ```js
 const theme = createMuiTheme({
-  spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
+  spacing: (factor) => `${0.25 * factor}rem`, // (Bootstrap strategy)
 });
 
 theme.spacing(2); // = 0.25 * 2rem = 0.5rem = 8px

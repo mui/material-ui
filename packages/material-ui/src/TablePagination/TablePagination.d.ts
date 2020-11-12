@@ -109,6 +109,8 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       page: number;
       /**
        * The number of rows per page.
+       *
+       * Set -1 to display all the rows.
        */
       rowsPerPage: number;
       /**

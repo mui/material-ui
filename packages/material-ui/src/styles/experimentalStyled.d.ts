@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as CSS from 'csstype';
+import { Theme as DefaultTheme } from './createMuiTheme';
 
 export interface SerializedStyles {
   name: string;
@@ -183,7 +184,7 @@ interface MuiStyledOptions<Theme extends object = any> {
   overridesResolver?: (props: any, styles: string | object, name: string) => string | object;
 }
 
-export interface CreateMUIStyled<Theme extends object = any> {
+export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <Tag extends React.ComponentType<any>, ExtraProps = {}>(
     tag: Tag,
     options?: StyledOptions,

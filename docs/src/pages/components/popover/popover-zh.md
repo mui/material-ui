@@ -1,5 +1,5 @@
 ---
-title: React 弹出框组件
+title: React Popover（弹出框）组件
 components: Grow, Popover
 githubLabel: 'component: Popover'
 ---
@@ -13,7 +13,7 @@ githubLabel: 'component: Popover'
 - 该组件构建在 [`Modal`](/components/modal/) 组件之上。
 - 不同于  [`Popper`](/components/popper/) 组件，滚动（scroll）和 click away 行为是被阻止的。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 简单的弹出框
 
@@ -27,7 +27,7 @@ githubLabel: 'component: Popover'
 
 ## 鼠标悬停的交互事件
 
-这表明如何使用 `Popover` 组件来实现基于鼠标事件的弹出窗口行为。
+这表明如何使用 `Popover` 组件，并展示了使用鼠标事件来实现弹出窗口的效果。
 
 {{"demo": "pages/components/popover/MouseOverPopover.js"}}
 

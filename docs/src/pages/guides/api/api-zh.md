@@ -64,7 +64,7 @@ const styles = {
 
 一个组件内的嵌套组件具有：
 
-- their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
+- 它们自己的扁平化属性（当这些属性是顶层组件抽象的关键时），例如 `Input` 组件的 `id` 属性。
 - 当用户可能需要调整内部render方法的子组件时，他们自己的`xxxProps`属性，例如，在内部使用`input`的组件上公开`inputProps`和`InputProps`属性。
 - 他们自己的`xxxComponent`属性，用于执行组件注入。
 - 当您可能需要执行命令性操作时，例如，公开 `inputRef` 属性以访问 `input` 组件上的原生`input`，您就可以使用它们自己的 `xxxRef` 属性。 这有助于回答 [“我如何访问DOM元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)。
@@ -80,7 +80,7 @@ const styles = {
 
 ### 受控的组件
 
-大多数受控组件通过 `value` 和 `onChange` 属性进行控制, 但是, `onChange`/`onClose`/`onOpen` 组合用于显示相关状态。
+大多数受控组件通过 `value` 和 `onChange` 属性进行控制, 但是, `onChange`/`onClose`/`onOpen` 组合用于显示相关状态。 在事件较多的情况下，我们先放名词，再放动词，例如：`onPageChange`，`onRowsChange`。
 
 ### boolean vs enum
 

@@ -1,5 +1,5 @@
 ---
-title: React 警告提示组件
+title: React Alert （警告提示）组件
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
@@ -13,7 +13,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的提醒
+## 简单的警告提示
 
 警告提示有四种不同程度的级别，每种都有自己独特的颜色和图标。
 

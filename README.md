@@ -46,9 +46,13 @@ npm install @material-ui/core@next
 yarn add @material-ui/core@next
 ```
 
-**[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
-
-**[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
+<details>
+  <summary>Older versions</summary>
+  
+  - **[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
+  - **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
+  
+</details>
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 
@@ -108,7 +112,7 @@ Yes, it's really all you need to get started as you can see in this live and int
 ## Questions
 
 For _how-to_ questions and other non-issues,
-please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues.
+please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of GitHub issues.
 There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
 
 ## Examples
@@ -122,19 +126,18 @@ Check out our [documentation website](https://material-ui.com/).
 
 ## Premium Themes
 
-You can find complete templates & themes in the [Material-UI store](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store) .
+You can find complete templates & themes in the [Material-UI store](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
 
 ## Contributing
 
-Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Material-UI.
+Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Material-UI.
 
 Notice that contributions go far beyond pull requests and commits.
 Although we love giving you the opportunity to put your stamp on Material-UI, we also are thrilled to receive a variety of [other contributions](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project).
 
 ## Changelog
 
-Recently Updated?
-Please read the [changelog](https://github.com/mui-org/material-ui/releases).
+If you have recently updated, please read the [changelog](https://github.com/mui-org/material-ui/releases) for details of what has changed.
 
 ## Roadmap
 

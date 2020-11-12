@@ -34,7 +34,7 @@ The `MuiListSubheader` name can be used for providing [default props](/customiza
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the List Subheader will not have gutters. |
 | <span class="prop-name">disableSticky</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the List Subheader will not stick to the top during scroll. |
-| <span class="prop-name">inset</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the List Subheader will be indented. |
+| <span class="prop-name">inset</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the List Subheader is indented. |
 
 The `ref` is forwarded to the root element.
 
@@ -47,9 +47,9 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiListSubheader-root</span> | Styles applied to the root element.
 | <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiListSubheader-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiListSubheader-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
-| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiListSubheader-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
+| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiListSubheader-gutters</span> | Styles applied to the inner `component` element unless `disableGutters={true}`.
 | <span class="prop-name">inset</span> | <span class="prop-name">.MuiListSubheader-inset</span> | Styles applied to the root element if `inset={true}`.
-| <span class="prop-name">sticky</span> | <span class="prop-name">.MuiListSubheader-sticky</span> | Styles applied to the root element if `disableSticky={false}`.
+| <span class="prop-name">sticky</span> | <span class="prop-name">.MuiListSubheader-sticky</span> | Styles applied to the root element unless `disableSticky={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -12,9 +12,37 @@ import {
 import Snackbar from './Snackbar';
 
 describe('<Snackbar />', () => {
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
+  });
+
   const mount = createMount({ strict: true });
   let classes;
-  const render = createClientRender();
+
+  const clientRender = createClientRender();
+  /**
+   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
+   *
+   * @remarks
+   * This is for all intents and purposes the same as our client render method.
+   * `plainRender` is already wrapped in act().
+   * However, React has a bug that flushes effects in a portal synchronously.
+   * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
+   * React bug: https://github.com/facebook/react/issues/20074
+   */
+  function render(...args) {
+    const result = clientRender(...args);
+    clock.next();
+    return result;
+  }
 
   before(() => {
     classes = getClasses(<Snackbar open />);
@@ -46,16 +74,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('Consecutive messages', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should support synchronous onExited callback', () => {
       const messageCount = 2;
       let view;
@@ -118,16 +136,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: autoHideDuration', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should call onClose when the timer is done', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
@@ -306,16 +314,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: resumeHideDuration', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should not call onClose with not timeout after user interaction', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
@@ -418,16 +416,6 @@ describe('<Snackbar />', () => {
   });
 
   describe('prop: disableWindowBlurListener', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should pause auto hide when not disabled and window lost focus', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;

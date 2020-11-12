@@ -17,6 +17,9 @@ import SwipeArea from './SwipeArea';
 // trigger a native scroll.
 const UNCERTAINTY_THRESHOLD = 3; // px
 
+// This is the part of the drawer displayed on touch start.
+const DRAG_STARTED_SIGNAL = 20; // px
+
 // We can only have one node at the time claiming ownership for handling the swipe.
 // Otherwise, the UX would be confusing.
 // That's why we use a singleton here.
@@ -351,9 +354,9 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         // Compensate for the part of the drawer displayed on touch start.
         if (!disableDiscovery && !open) {
           if (horizontalSwipe) {
-            swipeInstance.current.startX -= swipeAreaWidth;
+            swipeInstance.current.startX -= DRAG_STARTED_SIGNAL;
           } else {
-            swipeInstance.current.startY -= swipeAreaWidth;
+            swipeInstance.current.startY -= DRAG_STARTED_SIGNAL;
           }
         }
       }
@@ -473,7 +476,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       // The ref may be null when a parent component updates while swiping.
       setPosition(
         getMaxTranslate(horizontalSwipe, paperRef.current) +
-          (disableDiscovery ? 20 : -swipeAreaWidth),
+          (disableDiscovery ? 15 : -DRAG_STARTED_SIGNAL),
         {
           changeTransition: false,
         },

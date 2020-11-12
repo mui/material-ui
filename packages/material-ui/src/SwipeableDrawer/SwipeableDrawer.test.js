@@ -233,15 +233,15 @@ describe('<SwipeableDrawer />', () => {
           fireEvent.touchStart(swipeArea, {
             touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[0] })],
           });
-          fireEvent.touchMove(document, {
-            touches: [new Touch({ identifier: 0, target: document, ...params.openTouches[1] })],
+          fireEvent.touchMove(swipeArea, {
+            touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[1] })],
           });
-          fireEvent.touchMove(document, {
-            touches: [new Touch({ identifier: 0, target: document, ...params.openTouches[2] })],
+          fireEvent.touchMove(swipeArea, {
+            touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[2] })],
           });
-          fireEvent.touchEnd(document, {
+          fireEvent.touchEnd(swipeArea, {
             changedTouches: [
-              new Touch({ identifier: 0, target: document, ...params.openTouches[2] }),
+              new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[2] }),
             ],
           });
           expect(handleOpen.callCount).to.equal(1);
@@ -254,16 +254,14 @@ describe('<SwipeableDrawer />', () => {
           fireEvent.touchStart(h1, {
             touches: [new Touch({ identifier: 0, target: h1, ...params.closeTouches[0] })],
           });
-          fireEvent.touchMove(document, {
-            touches: [new Touch({ identifier: 0, target: document, ...params.closeTouches[1] })],
+          fireEvent.touchMove(h1, {
+            touches: [new Touch({ identifier: 0, target: h1, ...params.closeTouches[1] })],
           });
-          fireEvent.touchMove(document, {
-            touches: [new Touch({ identifier: 0, target: document, ...params.closeTouches[2] })],
+          fireEvent.touchMove(h1, {
+            touches: [new Touch({ identifier: 0, target: h1, ...params.closeTouches[2] })],
           });
-          fireEvent.touchEnd(document, {
-            changedTouches: [
-              new Touch({ identifier: 0, target: document, ...params.closeTouches[2] }),
-            ],
+          fireEvent.touchEnd(h1, {
+            changedTouches: [new Touch({ identifier: 0, target: h1, ...params.closeTouches[2] })],
           });
           expect(handleClose.callCount).to.equal(1);
         });
@@ -278,12 +276,12 @@ describe('<SwipeableDrawer />', () => {
           fireEvent.touchStart(swipeArea, {
             touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[0] })],
           });
-          fireEvent.touchMove(document, {
-            touches: [new Touch({ identifier: 0, target: document, ...params.openTouches[1] })],
+          fireEvent.touchMove(swipeArea, {
+            touches: [new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[1] })],
           });
-          fireEvent.touchEnd(document, {
+          fireEvent.touchEnd(swipeArea, {
             changedTouches: [
-              new Touch({ identifier: 0, target: document, ...params.openTouches[1] }),
+              new Touch({ identifier: 0, target: swipeArea, ...params.openTouches[1] }),
             ],
           });
           expect(handleOpen.callCount).to.equal(0);
@@ -299,13 +297,11 @@ describe('<SwipeableDrawer />', () => {
           fireEvent.touchStart(h1, {
             touches: [new Touch({ identifier: 0, target: h1, ...params.closeTouches[0] })],
           });
-          fireEvent.touchMove(document, {
-            touches: [new Touch({ identifier: 0, target: document, ...params.closeTouches[1] })],
+          fireEvent.touchMove(h1, {
+            touches: [new Touch({ identifier: 0, target: h1, ...params.closeTouches[1] })],
           });
-          fireEvent.touchEnd(document, {
-            changedTouches: [
-              new Touch({ identifier: 0, target: document, ...params.closeTouches[1] }),
-            ],
+          fireEvent.touchEnd(h1, {
+            changedTouches: [new Touch({ identifier: 0, target: h1, ...params.closeTouches[1] })],
           });
           expect(handleClose.callCount).to.equal(0);
         });
@@ -323,8 +319,8 @@ describe('<SwipeableDrawer />', () => {
           const h1 = document.querySelector('h1');
           expect(h1).to.not.equal(null);
 
-          fireEvent.touchEnd(document, {
-            changedTouches: [new Touch({ identifier: 0, target: document, ...params.edgeTouch })],
+          fireEvent.touchEnd(swipeArea, {
+            changedTouches: [new Touch({ identifier: 0, target: swipeArea, ...params.edgeTouch })],
           });
 
           expect(handleOpen.callCount).to.equal(0);
@@ -346,8 +342,10 @@ describe('<SwipeableDrawer />', () => {
           fireEvent.touchStart(swipeArea, {
             touches: [new Touch({ identifier: 0, target: swipeArea, ...params.ignoreTouch })],
           });
-          fireEvent.touchEnd(document, {
-            changedTouches: [new Touch({ identifier: 0, target: document, ...params.ignoreTouch })],
+          fireEvent.touchEnd(swipeArea, {
+            changedTouches: [
+              new Touch({ identifier: 0, target: swipeArea, ...params.ignoreTouch }),
+            ],
           });
           expect(handleOpen.callCount).to.equal(0);
           expect(handleClose.callCount).to.equal(0);
@@ -366,15 +364,15 @@ describe('<SwipeableDrawer />', () => {
       fireEvent.touchStart(h1, {
         touches: [new Touch({ identifier: 0, target: h1, pageX: 250, clientY: 0 })],
       });
-      fireEvent.touchMove(document, {
-        touches: [new Touch({ identifier: 0, target: document, pageX: 180, clientY: 0 })],
+      fireEvent.touchMove(h1, {
+        touches: [new Touch({ identifier: 0, target: h1, pageX: 180, clientY: 0 })],
       });
       container.setProps({
         open: false,
         onClose: handleClose,
       });
-      fireEvent.touchEnd(document, {
-        changedTouches: [new Touch({ identifier: 0, target: document, pageX: 10, clientY: 0 })],
+      fireEvent.touchEnd(h1, {
+        changedTouches: [new Touch({ identifier: 0, target: h1, pageX: 10, clientY: 0 })],
       });
       expect(handleClose.callCount).to.equal(0);
     });
@@ -386,8 +384,8 @@ describe('<SwipeableDrawer />', () => {
       });
       container.unmount();
       //  trigger setState warning if listeners aren't cleaned.
-      fireEvent.touchMove(document, {
-        touches: [new Touch({ identifier: 0, target: document, pageX: 180, clientY: 0 })],
+      fireEvent.touchMove(swipeArea, {
+        touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 180, clientY: 0 })],
       });
       //  trigger setState warning if swipe handling is not cleaned, too
       fireEvent.touchStart(swipeArea, {

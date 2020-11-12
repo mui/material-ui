@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import { expect } from 'chai';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import elementTypeAcceptingRef from './elementTypeAcceptingRef';

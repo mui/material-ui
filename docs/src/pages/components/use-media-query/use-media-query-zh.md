@@ -14,7 +14,7 @@ githubLabel: 'hook: useMediaQuery'
 - 📦 [1kB 已压缩的包](/size-snapshot)。
 - 🤖 它支持服务器端渲染。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 简单的媒体查询
 
@@ -139,25 +139,6 @@ function handleRender(req, res) {
     </ThemeProvider>,
   );
 }
-      width: deviceType === 'mobile' ? '0px' : '1024px',
-    }),
-  });
-
-  const html = ReactDOMServer.renderToString(
-    <ThemeProvider
-      theme={{
-        props: {
-          // 更改 useMediaQuery 的默认选项
-          MuiUseMediaQuery: {
-            ssrMatchMedia,
-          },
-        },
-      }}
-    >
-      <App />
-    </ThemeProvider>,
-  );
-}
 ```
 
 {{"demo": "pages/components/use-media-query/ServerSide.js", "defaultCodeOpen": false}}
@@ -177,7 +158,7 @@ function handleRender(req, res) {
 #### 参数
 
 1. `query` (_String_ | _Function_)：代表要处理的媒体查询的字符串或接受主题（在上下文中）的回调函数，它会返回一个字符串。
-2. `options` (*Object* [optional]):
+2. `options` (_Object_ [optional]):
 
 - `options.defaultMatches` （*布尔值* [optional]）： 作为 `window.matchMedia()` 在服务器上不可用， 我们在第一次安装时返回默认匹配。 默认值为 `false`。
 - `options.matchMedia` (_Function_ [optional])：你可以提供你自己的 _matchMedia_ 实现。 用其您可以处理一个 iframe 内容窗口。

@@ -1,6 +1,7 @@
 const { createMacro, MacroError } = require('babel-plugin-macros');
 const helperModuleImports = require('@babel/helper-module-imports');
 const fs = require('fs');
+const path = require('path');
 
 function invertObject(object) {
   const inverted = {};
@@ -11,9 +12,13 @@ function invertObject(object) {
 }
 
 /**
+ * Supported imports:
+ * 1. bare specifier e.g. `'@material-ui/utils/macros/MuiError.macro'`
+ * 2. relative import from `packages/material-ui-utils/src` e.g. `'../macros/MuiError.macro'`
+ *
  * @param {import('babel-plugin-macros').MacroParams} param0
  */
-function muiError({ references, babel, config }) {
+function muiError({ references, babel, config, source }) {
   const { errorCodesPath = {}, missingError = 'annotate' } = config;
   const errorCodes = JSON.parse(fs.readFileSync(errorCodesPath, { encoding: 'utf8' }));
   const errorCodesLookup = invertObject(errorCodes);
@@ -125,13 +130,33 @@ function muiError({ references, babel, config }) {
     errorCode = parseInt(errorCode, 10);
 
     if (formatMuiErrorMessageIdentifier === null) {
-      // Outputs:
-      // import { formatMuiErrorMessage } from '@material-ui/utils';
-      formatMuiErrorMessageIdentifier = helperModuleImports.addNamed(
-        babelPath,
-        'formatMuiErrorMessage',
-        '@material-ui/utils',
-      );
+      const isBareImportSourceIdentifier = source.startsWith('@material-ui/utils');
+      if (isBareImportSourceIdentifier) {
+        // Input: import MuiError from '@material-ui/utils/macros/MuiError.macro'
+        // Outputs:
+        // import { formatMuiErrorMessage } from '@material-ui/utils';
+        formatMuiErrorMessageIdentifier = helperModuleImports.addNamed(
+          babelPath,
+          'formatMuiErrorMessage',
+          '@material-ui/utils',
+        );
+      } else {
+        const normalizedRelativeImport = path.normalize(
+          source.replace('../macros/MuiError.macro', './formatMuiErrorMessage'),
+        );
+        // 'formatMuiErrorMessage' implies './formatMuiErrorMessage' for fs paths but not for import specifiers.
+        const formatMuiErrorMessageImportSource = normalizedRelativeImport.startsWith('.')
+          ? normalizedRelativeImport
+          : `./${normalizedRelativeImport}`;
+        // Input: import MuiError from '../macros/MuiError.macro'
+        // Outputs:
+        // import formatMuiErrorMessage from './formatMuiErrorMessage';
+        formatMuiErrorMessageIdentifier = helperModuleImports.addDefault(
+          babelPath,
+          formatMuiErrorMessageImportSource,
+          { nameHint: 'formatMuiErrorMessage' },
+        );
+      }
     }
 
     // Outputs:

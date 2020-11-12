@@ -19,14 +19,6 @@ export default function Playground() {
     <div style={{ width: 300 }}>
       <Autocomplete
         {...defaultProps}
-        id="debug"
-        debug
-        renderInput={(params) => (
-          <TextField {...params} label="debug" margin="normal" />
-        )}
-      />
-      <Autocomplete
-        {...defaultProps}
         id="disable-close-on-select"
         disableCloseOnSelect
         renderInput={(params) => (

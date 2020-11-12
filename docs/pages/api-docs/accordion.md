@@ -31,7 +31,7 @@ The `MuiAccordion` name can be used for providing [default props](/customization
 | <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | The content of the accordion. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">defaultExpanded</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, expands the accordion by default. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the accordion will be displayed in a disabled state. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the accordion is displayed in a disabled state. |
 | <span class="prop-name">expanded</span> | <span class="prop-type">bool</span> |  | If `true`, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the expand/collapse state is changed.<br><br>**Signature:**<br>`function(event: object, expanded: boolean) => void`<br>*event:* The event source of the callback. **Warning**: This is a generic event not a change event.<br>*expanded:* The `expanded` state of the accordion. |
 | <span class="prop-name">square</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, rounded corners are disabled. |
@@ -47,7 +47,7 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiAccordion-root</span> | Styles applied to the root element.
-| <span class="prop-name">rounded</span> | <span class="prop-name">.MuiAccordion-rounded</span> | Styles applied to the root element if `square={false}`.
+| <span class="prop-name">rounded</span> | <span class="prop-name">.MuiAccordion-rounded</span> | Styles applied to the root element unless `square={true}`.
 | <span class="prop-name">expanded</span> | <span class="prop-name">.Mui-expanded</span> | Pseudo-class applied to the root element if `expanded={true}`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">region</span> | <span class="prop-name">.MuiAccordion-region</span> | Styles applied to the region element, the container of the children.

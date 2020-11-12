@@ -15,6 +15,14 @@ import Chip from '@material-ui/core/Chip';
 import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
 import Autocomplete from './Autocomplete';
 
+function checkHighlightIs(listbox, expected) {
+  if (expected) {
+    expect(listbox.querySelector('li[data-focus]')).to.have.text(expected);
+  } else {
+    expect(listbox.querySelector('li[data-focus]')).to.equal(null);
+  }
+}
+
 describe('<Autocomplete />', () => {
   const mount = createMount();
   let classes;
@@ -54,7 +62,11 @@ describe('<Autocomplete />', () => {
 
     it('should apply the icon classes', () => {
       const { container } = render(
-        <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
+        <Autocomplete
+          value={'one'}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
       );
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasClearIcon);
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
@@ -89,14 +101,10 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.change(document.activeElement, { target: { value: 'oo' } });
       fireEvent.change(document.activeElement, { target: { value: 'o' } });
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
     });
 
     it('should keep the highlight on the first item', () => {
@@ -111,13 +119,9 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.change(document.activeElement, { target: { value: 'two' } });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
     });
 
     it('should set the focus on the first item when possible', () => {
@@ -151,13 +155,9 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       setProps({ value: 'two' });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
     });
 
     it('should keep the current highlight if possible', () => {
@@ -173,15 +173,34 @@ describe('<Autocomplete />', () => {
       );
       const textbox = getByRole('textbox');
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
       fireEvent.keyDown(textbox, { key: 'Enter' });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
+    });
+
+    it('should work with filterSelectedOptions too', () => {
+      const options = ['Foo', 'Bar', 'Baz'];
+      const { getByRole } = render(
+        <Autocomplete
+          multiple
+          filterSelectedOptions
+          autoHighlight
+          value={options.slice(0, 1)}
+          options={options}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'Bar');
+      fireEvent.change(textbox, { target: { value: 'a' } });
+      checkHighlightIs(getByRole('listbox'), 'Bar');
+      fireEvent.change(textbox, { target: { value: 'aa' } });
+      fireEvent.change(textbox, { target: { value: 'a' } });
+      checkHighlightIs(getByRole('listbox'), 'Bar');
     });
   });
 
@@ -197,15 +216,11 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
       setProps({
         value: [],
       });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
     });
   });
 
@@ -273,19 +288,15 @@ describe('<Autocomplete />', () => {
       );
       const textbox = getByRole('textbox');
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
       fireEvent.keyDown(textbox, { key: 'ArrowUp' });
-      checkHighlightIs('three');
+      checkHighlightIs(getByRole('listbox'), 'three');
       fireEvent.keyDown(textbox, { key: 'Enter' }); // selects the last option (three)
       const input = getByRole('textbox');
       act(() => {
         input.blur();
         input.focus(); // opens the listbox again
       });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), null);
     });
   });
 
@@ -633,16 +644,11 @@ describe('<Autocomplete />', () => {
       expect(listbox).to.equal(null);
 
       const buttons = getAllByRole('button', { hidden: true });
-      // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        expect(buttons[0]).toBeInaccessible();
-      }
-      expect(buttons[1]).toHaveAccessibleName('Open');
-      expect(buttons[1]).to.have.attribute('title', 'Open');
-      expect(buttons).to.have.length(2);
-      buttons.forEach((button) => {
-        expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
-      });
+
+      expect(buttons[0]).toHaveAccessibleName('Open');
+      expect(buttons[0]).to.have.attribute('title', 'Open');
+      expect(buttons).to.have.length(1);
+      expect(buttons[0], 'button is not in tab order').to.have.property('tabIndex', -1);
     });
 
     specify('when open', () => {
@@ -676,15 +682,10 @@ describe('<Autocomplete />', () => {
       });
 
       const buttons = getAllByRole('button', { hidden: true });
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        expect(buttons[0]).toBeInaccessible();
-      }
-      expect(buttons[1]).toHaveAccessibleName('Close');
-      expect(buttons[1]).to.have.attribute('title', 'Close');
-      expect(buttons).to.have.length(2);
-      buttons.forEach((button) => {
-        expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
-      });
+      expect(buttons[0]).toHaveAccessibleName('Close');
+      expect(buttons[0]).to.have.attribute('title', 'Close');
+      expect(buttons).to.have.length(1);
+      expect(buttons[0], 'button is not in tab order').to.have.property('tabIndex', -1);
     });
 
     it('should add and remove aria-activedescendant', () => {
@@ -885,6 +886,28 @@ describe('<Autocomplete />', () => {
         'aria-activedescendant',
         options[options.length - 1].getAttribute('id'),
       );
+    });
+
+    it('should ignore keydown event until the IME is confirmed', function test() {
+      // TODO: Often times out in Firefox 78.
+      // Is this slow because of testing-library or because of the implementation?
+      this.timeout(4000);
+
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['가1', '가2']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      const listbox = getByRole('listbox');
+      // Actual Behavior when "가" (Korean) is entered and press the arrow down key once on macOS/Chrome
+      fireEvent.change(textbox, { target: { value: '가' } });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown', keyCode: 229 });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown', keyCode: 40 });
+
+      checkHighlightIs(listbox, '가1');
     });
   });
 
@@ -1258,15 +1281,11 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'one'
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'two'
 
-      function checkHighlightIs(expected) {
-        expect(listbox.querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('two');
+      checkHighlightIs(listbox, 'two');
 
       // three option is added and autocomplete re-renders, two should still be highlighted
       setProps({ options: ['one', 'two', 'three'] });
-      checkHighlightIs('two');
+      checkHighlightIs(listbox, 'two');
     });
 
     it('should not select undefined', () => {

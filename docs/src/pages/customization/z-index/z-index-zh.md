@@ -4,7 +4,7 @@
 
 在 Material-UI 中一些组件利用 `z-index` 来应用默认的 z-index 比例尺，我们将其设计为将抽屉（drawers），模态框（modals），消息条（snackbars），工具提示（tooltips）等组件正确地分层。
 
-The `z-index` values start at an arbitrary number, high and specific enough to ideally avoid conflicts:
+`z-index` 值的起点是一个任意的数字，最好提供一个具体的大数值以免发生冲突。
 
 - mobile stepper（移动设备的步骤条）：1000
 - speed dial（快速拨号）: 1050

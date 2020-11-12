@@ -2,7 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
-import { useSelector } from 'react-redux';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -29,7 +29,7 @@ const useStyles = makeStyles(
 
 export default function Pro() {
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <Link

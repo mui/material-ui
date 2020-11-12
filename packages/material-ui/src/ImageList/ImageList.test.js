@@ -5,12 +5,12 @@ import ImageList from './ImageList';
 
 const itemsData = [
   {
-    img: 'images/image-list/00-52-29-429_640.jpg',
+    img: '/fake.png',
     title: 'Breakfast',
     author: 'jill111',
   },
   {
-    img: 'images/image-list/burger-827309_640.jpg',
+    img: '/fake.png',
     title: 'Tasty burger',
     author: 'director90',
   },
@@ -40,7 +40,7 @@ describe('<ImageList />', () => {
 
   const children = itemsData.map((item) => (
     <span
-      key={item.img}
+      key={item.title}
       title={item.title}
       subtitle={<span>by: {item.author}</span>}
       data-testid="test-children"
@@ -117,7 +117,7 @@ describe('<ImageList />', () => {
         </ImageList>,
       );
 
-      expect(getByTestId('test-root').style).to.have.property('backgroundColor', 'red');
+      expect(getByTestId('test-root')).toHaveInlineStyle({ backgroundColor: 'red' });
     });
   });
 
@@ -189,18 +189,25 @@ describe('<ImageList />', () => {
     });
 
     describe('prop: gap', () => {
-      it('should render with modified grid-template-columns style', () => {
+      it('should render with modified grid-template-columns style', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+
         const { getByTestId } = render(
           <ImageList data-testid="test-root" gap={8}>
             {children}
           </ImageList>,
         );
 
-        expect(getByTestId('test-root').style.gap).to.equal('8px');
+        expect(getByTestId('test-root')).toHaveComputedStyle({
+          rowGap: '8px',
+          columnGap: '8px',
+        });
       });
 
       it('should render with modified column-gap style', function test() {
-        if (!/jsdom/.test(window.navigator.userAgent)) {
+        if (/jsdom/.test(window.navigator.userAgent)) {
           this.skip();
         }
 
@@ -210,7 +217,9 @@ describe('<ImageList />', () => {
           </ImageList>,
         );
 
-        expect(getByTestId('test-root').style['column-gap']).to.equal('8px');
+        expect(getByTestId('test-root')).toHaveComputedStyle({
+          columnGap: '8px',
+        });
       });
     });
   });

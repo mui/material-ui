@@ -57,7 +57,7 @@ export const styles = (theme) => {
         backgroundColor: theme.palette.action.disabledBackground,
       },
     },
-    /* Styles applied to the root element if `square={false}`. */
+    /* Styles applied to the root element unless `square={true}`. */
     rounded: {
       borderRadius: 0,
       '&:first-child': {
@@ -190,7 +190,7 @@ Accordion.propTypes = {
    */
   defaultExpanded: PropTypes.bool,
   /**
-   * If `true`, the accordion will be displayed in a disabled state.
+   * If `true`, the accordion is displayed in a disabled state.
    * @default false
    */
   disabled: PropTypes.bool,

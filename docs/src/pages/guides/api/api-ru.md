@@ -78,9 +78,9 @@ The name of a boolean property should be chosen based on the **default value**. 
 +<Input disabled />
 ```
 
-### Controlled components
+### Управляемые компоненты
 
-Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state.
+Большинство управляемых компонентов контролируются параметрами `value` и `onChange`, хотя комбинация `open` / `onClose` / `onOpen` используется с отвечающим за отображение состоянием. Если же событий несколько, то мы ставим в начало существительное, а затем глагол, например: `onPageChange`, `onRowsChange`.
 
 ### boolean vs enum
 
@@ -122,7 +122,7 @@ The `ref` is forwarded to the root element. This means that, without changing th
 
 ## Словарь
 
-- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. экземляр `window.HTMLDivElement`.
+- **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
 - **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
 - **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
 - **root component**: the outermost component that renders a host component.

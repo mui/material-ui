@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@material-ui/core';
-import { FabProps } from '@material-ui/core/Fab';
-import { TransitionHandlerProps, TransitionProps } from '@material-ui/core/transitions';
+import { InternalStandardProps as StandardProps } from '..';
+import { FabProps } from '../Fab';
+import { TransitionHandlerProps, TransitionProps } from '../transitions';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
@@ -47,7 +47,7 @@ export interface SpeedDialProps
    */
   direction?: 'up' | 'down' | 'left' | 'right';
   /**
-   * If `true`, the SpeedDial will be hidden.
+   * If `true`, the SpeedDial is hidden.
    * @default false
    */
   hidden?: boolean;

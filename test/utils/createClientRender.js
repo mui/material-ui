@@ -5,7 +5,6 @@ import {
   act,
   buildQueries,
   cleanup,
-  createEvent,
   fireEvent as rtlFireEvent,
   queries,
   render as testingLibraryRender,
@@ -157,15 +156,18 @@ export function createClientRender(globalOptions = {}) {
   };
 }
 
-const fireEvent = Object.assign(rtlFireEvent, {
-  // polyfill event.key(Code) for chrome 49 and edge 15 (supported in Material-UI v4)
-  // for user-interactions react does the polyfilling but manually created
-  // events don't have this luxury
+const originalFireEventKeyDown = rtlFireEvent.keyDown;
+const originalFireEventKeyUp = rtlFireEvent.keyUp;
+/**
+ * @type {typeof rtlFireEvent}
+ */
+const fireEvent = (...args) => rtlFireEvent(...args);
+Object.assign(fireEvent, rtlFireEvent, {
   keyDown(element, options = {}) {
     // `element` shouldn't be `document` but we catch this later anyway
     const document = element.ownerDocument || element;
     const target = document.activeElement || document.body || document.documentElement;
-    if (target !== element) {
+    if (options.force !== true && target !== element) {
       // see https://www.w3.org/TR/uievents/#keydown
       const error = new Error(
         `\`keydown\` events can only be targeted at the active element which is ${prettyDOM(
@@ -182,21 +184,7 @@ const fireEvent = Object.assign(rtlFireEvent, {
       throw error;
     }
 
-    const event = createEvent.keyDown(element, options);
-    Object.defineProperty(event, 'key', {
-      get() {
-        return options.key || '';
-      },
-    });
-    if (options.keyCode !== undefined && event.keyCode === 0) {
-      Object.defineProperty(event, 'keyCode', {
-        get() {
-          return options.keyCode;
-        },
-      });
-    }
-
-    rtlFireEvent(element, event);
+    originalFireEventKeyDown(element, options);
   },
   keyUp(element, options = {}) {
     // `element` shouldn't be `document` but we catch this later anyway
@@ -218,23 +206,50 @@ const fireEvent = Object.assign(rtlFireEvent, {
         .join('\n');
       throw error;
     }
-    const event = createEvent.keyUp(element, options);
-    Object.defineProperty(event, 'key', {
-      get() {
-        return options.key || '';
-      },
-    });
-    if (options.keyCode !== undefined && event.keyCode === 0) {
-      Object.defineProperty(event, 'keyCode', {
-        get() {
-          return options.keyCode;
-        },
-      });
-    }
 
-    rtlFireEvent(element, event);
+    originalFireEventKeyUp(element, options);
   },
 });
+
+/**
+ *
+ * @param {Element} target
+ * @param {'touchmove' | 'touchend'} type
+ * @param {object} options
+ * @param {Array<Pick<TouchInit, 'clientX' | 'clientY'>} options.changedTouches
+ * @returns void
+ */
+export function fireTouchChangedEvent(target, type, options) {
+  const { changedTouches } = options;
+  const originalGetBoundingClientRect = target.getBoundingClientRect;
+  target.getBoundingClientRect = () => ({
+    x: 0,
+    y: 0,
+    bottom: 0,
+    height: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    width: 0,
+  });
+
+  const event = new window.TouchEvent(type, {
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+    changedTouches: changedTouches.map(
+      (opts) =>
+        new window.Touch({
+          target,
+          identifier: 0,
+          ...opts,
+        }),
+    ),
+  });
+
+  fireEvent(target, event);
+  target.getBoundingClientRect = originalGetBoundingClientRect;
+}
 
 export * from '@testing-library/react/pure';
 export { act, cleanup, fireEvent };

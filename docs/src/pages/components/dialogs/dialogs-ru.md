@@ -1,5 +1,5 @@
 ---
-title: React Dialog component
+title: Компонент React Dialog
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: Dialog'
 materialDesign: https://material.io/components/dialogs
@@ -116,6 +116,10 @@ function MyComponent() {
 Попробуйте демо ниже, чтобы увидеть, что мы имеем в виду:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
+
+## Производительность
+
+Перейдите в раздел [Modal performance section](/components/modal/#performance).
 
 ## Ограничения
 

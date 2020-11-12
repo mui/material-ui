@@ -6,13 +6,16 @@ const StyledTextField = styled(TextField)`
   label.Mui-focused {
     color: green;
   }
+
   .MuiOutlinedInput-root {
     fieldset {
       border-color: red;
     }
+
     &:hover fieldset {
       border-color: yellow;
     }
+
     &.Mui-focused fieldset {
       border-color: green;
     }
