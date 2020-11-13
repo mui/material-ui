@@ -80,8 +80,8 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Sparkline                                                                                                      | ⏳⭐️  |
 | Splitter                                                                                                       | ⏳⭐️  |
 | Timeline                                                                                                       | 🧪     |
-| TopLayout                                                                                                      | ⏳     |
-| TreeSelect                                                                                                     | ⏳⭐️  |
+| Advanced layout                                                                                                      | ⏳⭐️     |
+| Tree Select                                                                                                     | ⏳⭐️  |
 | Tree View                                                                                                      | 🧪     |
 | Tree View - Multiselect                                                                                        | 🧪     |
 | Tree View - Checkbox                                                                                           | ⏳⭐️  |
