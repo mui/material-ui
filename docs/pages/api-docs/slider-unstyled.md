@@ -57,6 +57,36 @@ The `ref` is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
 
+## CSS
+
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">.root-1</span> | Class name applied to the root element.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.colorPrimary-2</span> | Class name applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.colorSecondary-3</span> | Class name applied to the root element if `color="secondary"`.
+| <span class="prop-name">marked</span> | <span class="prop-name">.marked-4</span> | Class name applied to the root element if `marks` is provided with at least one label.
+| <span class="prop-name">vertical</span> | <span class="prop-name">.vertical-5</span> | Class name applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.disabled-6</span> | Pseudo-class applied to the root and thumb element if `disabled={true}`.
+| <span class="prop-name">rail</span> | <span class="prop-name">.rail-7</span> | Class name applied to the rail element.
+| <span class="prop-name">track</span> | <span class="prop-name">.track-8</span> | Class name applied to the track element.
+| <span class="prop-name">trackFalse</span> | <span class="prop-name">.trackFalse-9</span> | Class name applied to the track element if `track={false}`.
+| <span class="prop-name">trackInverted</span> | <span class="prop-name">.trackInverted-10</span> | Class name applied to the track element if `track="inverted"`.
+| <span class="prop-name">thumb</span> | <span class="prop-name">.thumb-11</span> | Class name applied to the thumb element.
+| <span class="prop-name">thumbColorPrimary</span> | <span class="prop-name">.thumbColorPrimary-12</span> | Class name applied to the thumb element if `color="primary"`.
+| <span class="prop-name">thumbColorSecondary</span> | <span class="prop-name">.thumbColorSecondary-13</span> | Class name applied to the thumb element if `color="secondary"`.
+| <span class="prop-name">active</span> | <span class="prop-name">.active-14</span> | Pseudo-class applied to the thumb element if it's active.
+| <span class="prop-name">focusVisible</span> | <span class="prop-name">.focusVisible-15</span> | Pseudo-class applied to the thumb element if keyboard focused.
+| <span class="prop-name">valueLabel</span> | <span class="prop-name">.valueLabel-16</span> | Class name applied to the thumb label element.
+| <span class="prop-name">mark</span> | <span class="prop-name">.mark-17</span> | Class name applied to the mark element.
+| <span class="prop-name">markActive</span> | <span class="prop-name">.markActive-18</span> | Class name applied to the mark element if active (depending on the value).
+| <span class="prop-name">markLabel</span> | <span class="prop-name">.markLabel-19</span> | Class name applied to the mark label element.
+| <span class="prop-name">markLabelActive</span> | <span class="prop-name">.markLabelActive-20</span> | Class name applied to the mark label element if active (depending on the value).
+
+You can override the style of the component thanks to one of these customization points:
+
+- With a [global class name](/guides/interoperability/#global-css).
+- With a rule name as part of the component's [`styleOverrides` property](/customization/components/#global-theme-override) in a custom theme.
+
 ## Demos
 
 - [Slider](/components/slider/)
