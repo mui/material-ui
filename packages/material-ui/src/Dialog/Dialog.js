@@ -219,7 +219,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         <div
           className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
           onMouseDown={handleMouseDown}
-          data-mui-test="FakeBackdrop"
         >
           <PaperComponent
             elevation={24}

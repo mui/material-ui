@@ -395,7 +395,6 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         {...TransitionProps}
       >
         <Paper
-          data-mui-test="Popover"
           elevation={elevation}
           ref={paperRef}
           {...PaperProps}

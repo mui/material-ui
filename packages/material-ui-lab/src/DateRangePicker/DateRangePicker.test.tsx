@@ -268,12 +268,12 @@ describe('<DateRangePicker />', () => {
         open
         renderInput={defaultRangeRenderInput}
         onChange={() => {}}
-        renderDay={(day) => <div key={String(day)} data-mui-test="renderDayCalled" />}
+        renderDay={(day) => <div key={String(day)} data-testid="renderDayCalled" />}
         value={[null, null]}
       />,
     );
 
-    expect(getAllByMuiTest('renderDayCalled')).not.to.have.length(0);
+    expect(screen.getAllByTestId('renderDayCalled')).not.to.have.length(0);
   });
 
   it('prop – `calendars` renders provided amount of calendars', () => {
