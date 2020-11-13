@@ -6,16 +6,14 @@ async function main() {
   const baseUrl = 'http://localhost:5000';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
-  // reuse viewport from `vrtest`
-  // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
-  const windowSize = { width: 1000, height: 700 };
-
   const browser = await playwright.chromium.launch({
-    args: ['--font-render-hinting=none', `--window-size=${windowSize.width},${windowSize.height}`],
+    args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
-  const page = await browser.newPage();
+  // reuse viewport from `vrtest`
+  // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
+  const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
 
   // prevent flaky tests using images
   await page.route('**/*.{png,jpg,jpeg}', (route) => route.abort());
