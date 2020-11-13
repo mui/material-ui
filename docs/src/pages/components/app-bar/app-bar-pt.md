@@ -53,7 +53,7 @@ Uma barra de aplicativos proeminente.
 
 Quando você renderiza a barra de aplicativos com um posicionamento fixo, a dimensão do elemento não afeta o resto da página. Isso pode fazer com que parte do seu conteúdo pareça estar invisível, atrás da barra de aplicativos. Aqui estão 3 soluções possíveis:
 
-1. Você pode usar `position="sticky"` ao invés de fixed. ⚠️ sticky is not supported by IE11.
+1. Você pode usar `position="sticky"` ao invés de fixed. ⚠️ sticky não é suportado pelo IE11.
 2. Você pode renderizar um segundo componente `<Toolbar />`:
 
 ```jsx
