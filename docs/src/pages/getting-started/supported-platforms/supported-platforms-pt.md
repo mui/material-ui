@@ -10,7 +10,7 @@ O Material-UI suporta as versões mais recentes e estáveis de todos os principa
 
 | Edge  | Firefox | Chrome | Safari (macOS) | Safari (iOS) |
 |:----- |:------- |:------ |:-------------- |:------------ |
-| >= 85 | >= 78   | >= 84  | >= 13          | >= 12.2      |
+| >= 85 | >= 78   | >= 84  | >= 13          | >= 12.1      |
 
 <!-- #default-branch-switch -->
 
