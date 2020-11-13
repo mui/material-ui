@@ -104,7 +104,6 @@ function RedditTextField(props) {
     <TextField
       InputProps={{ classes, disableUnderline: true }}
       {...props}
-      variant="standard"
     />
   );
 }
@@ -153,11 +152,11 @@ export default function CustomizedInputs() {
         className={classes.margin}
         id="custom-css-standard-input"
         label="Custom CSS"
+        variant="standard"
       />
       <CssTextField
         className={classes.margin}
         label="Custom CSS"
-        variant="outlined"
         id="custom-css-outlined-input"
       />
       <ThemeProvider theme={newTheme}>
@@ -195,7 +194,6 @@ export default function CustomizedInputs() {
         className={classes.margin}
         label="CSS validation style"
         required
-        variant="outlined"
         defaultValue="Success"
         id="validation-outlined-input"
       />
