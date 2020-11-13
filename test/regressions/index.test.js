@@ -21,6 +21,7 @@ async function main() {
   // Wait for all requests to finish.
   // This should load shared ressources such as fonts.
   await page.goto(`${baseUrl}#no-dev`, { waitUntil: 'networkidle0' });
+  // If we still get flaky fonts after awaiting this try `document.fonts.ready`
   await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
 
   // Simulate portrait mode for date pickers.
