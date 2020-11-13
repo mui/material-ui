@@ -13,7 +13,10 @@ describe('styleFunction', () => {
         main: 'rgb(0, 255, 0)',
       },
     },
+    typography: { pxToRem: (pxValue) => `${pxValue / 16}rem` },
   });
+
+  const round = (value) => Math.round(value * 1e5) / 1e5;
 
   it('resolves palette', () => {
     const result = styleFunction({
@@ -41,18 +44,44 @@ describe('styleFunction', () => {
     });
   });
 
-  it('resolves typography', () => {
-    const result = styleFunction({
-      theme,
-      fontFamily: 'fontFamily',
-      fontWeight: 'fontWeightLight',
-      fontSize: 'fontSize',
+  describe('typography', () => {
+    it('resolves typography prop', () => {
+      const result = styleFunction({
+        theme,
+        typography: ['body2', 'body1'],
+      });
+
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: `${14 / 16}rem`,
+          letterSpacing: `${round(0.15 / 14)}em`,
+          fontWeight: 400,
+          lineHeight: 1.43,
+        },
+        '@media (min-width:600px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+        },
+      });
     });
 
-    expect(result).to.deep.equal({
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeight: 300,
-      fontSize: 14,
+    it('resolves longhand font props', () => {
+      const result = styleFunction({
+        theme,
+        fontFamily: 'fontFamily',
+        fontWeight: 'fontWeightLight',
+        fontSize: 'fontSize',
+      });
+
+      expect(result).to.deep.equal({
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontWeight: 300,
+        fontSize: 14,
+      });
     });
   });
 

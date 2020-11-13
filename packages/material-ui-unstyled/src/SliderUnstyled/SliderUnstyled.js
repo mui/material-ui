@@ -149,24 +149,41 @@ const getUtilityClass = (name) => {
 };
 
 const useSliderClasses = (props) => {
-  const { color, disabled, marked, orientation, track } = props;
+  const { color, disabled, marked, orientation, track, classes = {} } = props;
 
   const utilityClasses = {
-    root: clsx(getUtilityClass('root'), getUtilityClass(`color${capitalize(color)}`), {
-      'Mui-disabled': disabled,
-      [getUtilityClass('marked')]: marked,
-      [getUtilityClass('vertical')]: orientation === 'vertical',
-      [getUtilityClass('trackInverted')]: track === 'inverted',
-      [getUtilityClass('trackFalse')]: track === false,
-    }),
-    rail: getUtilityClass('rail'),
-    track: getUtilityClass('track'),
-    mark: getUtilityClass('mark'),
-    markLabel: getUtilityClass('markLabel'),
-    valueLabel: getUtilityClass('valueLabel'),
-    thumb: clsx(getUtilityClass('thumb'), getUtilityClass(`thumbColor${capitalize(color)}`), {
-      'Mui-disabled': disabled,
-    }),
+    root: clsx(
+      getUtilityClass('root'),
+      classes['root'],
+      getUtilityClass(`color${capitalize(color)}`),
+      classes[`color${capitalize(color)}`],
+      {
+        'Mui-disabled': disabled,
+        [getUtilityClass('marked')]: marked,
+        [classes['marked']]: marked,
+        [getUtilityClass('vertical')]: orientation === 'vertical',
+        [classes['vertical']]: orientation === 'vertical',
+        [getUtilityClass('trackInverted')]: track === 'inverted',
+        [classes['trackInverted']]: track === 'inverted',
+        [getUtilityClass('trackFalse')]: track === false,
+        [classes['trackFalse']]: track === false,
+      },
+    ),
+    rail: clsx(getUtilityClass('rail'), classes['rail']),
+    track: clsx(getUtilityClass('track'), classes['track']),
+    mark: clsx(getUtilityClass('mark'), classes['mark']),
+    markLabel: clsx(getUtilityClass('markLabel'), classes['markLabel']),
+    valueLabel: clsx(getUtilityClass('valueLabel'), classes['valueLabel']),
+    thumb: clsx(
+      getUtilityClass('thumb'),
+      classes['thumb'],
+      getUtilityClass(`thumbColor${capitalize(color)}`),
+      classes[`thumbColor${capitalize(color)}`],
+      {
+        'Mui-disabled': disabled,
+        [getUtilityClass('vertical')]: orientation === 'vertical',
+      },
+    ),
   };
 
   return utilityClasses;
@@ -599,6 +616,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // consider extracting to hook an reusing the lint rule for the varints
   const stateAndProps = {
     ...props,
+    classes: {},
     color,
     disabled,
     max,
@@ -627,9 +645,20 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       {...other}
       className={clsx(utilityClasses.root, rootProps.className, className)}
     >
-      <Rail {...railProps} className={clsx(utilityClasses.rail, railProps.className)} />
+      <Rail
+        {...railProps}
+        {...(isComponent(Rail) && {
+          styleProps: stateAndProps,
+          theme,
+        })}
+        className={clsx(utilityClasses.rail, railProps.className)}
+      />
       <Track
         {...trackProps}
+        {...(isComponent(Track) && {
+          styleProps: stateAndProps,
+          theme,
+        })}
         className={clsx(utilityClasses.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
       />
@@ -658,6 +687,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             <Mark
               data-index={index}
               {...markProps}
+              {...(isComponent(Mark) && {
+                styleProps: stateAndProps,
+                theme,
+              })}
               style={{ ...style, ...markProps.style }}
               className={clsx(utilityClasses.mark, markProps.className, {
                 [getUtilityClass('markActive')]: markActive,
@@ -668,6 +701,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 aria-hidden
                 data-index={index}
                 {...markLabelProps}
+                {...(isComponent(MarkLabel) && {
+                  styleProps: stateAndProps,
+                  theme,
+                })}
                 style={{ ...style, ...markLabelProps.style }}
                 className={clsx(utilityClasses.markLabel, markLabelProps.className, {
                   [getUtilityClass('markLabelActive')]: markActive,
@@ -690,6 +727,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             key={index}
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
+            {...(isComponent(ValueLabel) && {
+              styleProps: stateAndProps,
+              theme,
+            })}
             value={
               typeof valueLabelFormat === 'function'
                 ? valueLabelFormat(scale(value), index)
@@ -711,6 +752,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 'Mui-active': active === index,
                 'Mui-disabled': disabled,
                 'Mui-focusVisible': focusVisible === index,
+              })}
+              {...(isComponent(Thumb) && {
+                styleProps: stateAndProps,
+                theme,
               })}
               tabIndex={disabled ? null : 0}
               role="slider"

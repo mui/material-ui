@@ -23,9 +23,10 @@ import {
 describe('<DatePicker />', () => {
   const render = createPickerRender({ strict: false });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('render proper month', () => {
+  it('render proper month', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <StaticDatePicker
         value={adapterToUse.date('2019-01-01T00:00:00.000')}
@@ -39,9 +40,10 @@ describe('<DatePicker />', () => {
     expect(getAllByMuiTest('day')).to.have.length(31);
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('desktop Mode – Accepts date on day button click', () => {
+  it('desktop Mode – Accepts date on day button click', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     const onChangeMock = spy();
 
     render(
@@ -61,9 +63,10 @@ describe('<DatePicker />', () => {
     expect(screen.queryByRole('dialog')).to.equal(null);
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('mobile mode – Accepts date on `OK` button click', () => {
+  it('mobile mode – Accepts date on `OK` button click', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     const onChangeMock = spy();
     render(
       <MobileDatePicker
@@ -86,9 +89,10 @@ describe('<DatePicker />', () => {
     expect(screen.queryByRole('dialog')).to.equal(null);
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('switches between months', () => {
+  it('switches between months', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <StaticDatePicker
         reduceAnimations
@@ -110,9 +114,10 @@ describe('<DatePicker />', () => {
     expect(getByMuiTest('calendar-month-text')).to.have.text('December');
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('selects the closest enabled date if selected date is disabled', () => {
+  it('selects the closest enabled date if selected date is disabled', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     const onChangeMock = spy();
 
     render(
@@ -150,9 +155,10 @@ describe('<DatePicker />', () => {
     expect(onChangeMock.callCount).to.equal(1);
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('allows to select edge years from list', () => {
+  it('allows to select edge years from list', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <MobileDatePicker
         open
@@ -160,8 +166,8 @@ describe('<DatePicker />', () => {
         value={null}
         onChange={() => {}}
         openTo="year"
-        minDate={new Date('2000-01-01T00:00:00.000')}
-        maxDate={new Date('2010-01-01T00:00:00.000')}
+        minDate={adapterToUse.date('2000-01-01T00:00:00.000')}
+        maxDate={adapterToUse.date('2010-01-01T00:00:00.000')}
         renderInput={(params) => <TextField {...params} />}
       />,
     );
@@ -170,12 +176,13 @@ describe('<DatePicker />', () => {
     expect(getByMuiTest('datepicker-toolbar-date')).to.have.text('Fri, Jan 1');
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip("doesn't close picker on selection in Mobile mode", () => {
+  it("doesn't close picker on selection in Mobile mode", function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <MobileDatePicker
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}
       />,
@@ -187,13 +194,14 @@ describe('<DatePicker />', () => {
     expect(screen.queryByRole('dialog')).toBeVisible();
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('closes picker on selection in Desktop mode', async () => {
+  it('closes picker on selection in Desktop mode', async function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <DesktopDatePicker
         TransitionComponent={FakeTransitionComponent}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}
       />,
@@ -212,7 +220,7 @@ describe('<DatePicker />', () => {
     render(
       <MobileDatePicker
         clearable
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
         onChange={onChangeMock}
         DialogProps={{ TransitionComponent: FakeTransitionComponent }}
         renderInput={(params) => <TextField {...params} />}
@@ -226,9 +234,10 @@ describe('<DatePicker />', () => {
     expect(screen.queryByRole('dialog')).to.equal(null);
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip("prop `disableCloseOnSelect` – if `true` doesn't close picker", () => {
+  it("prop `disableCloseOnSelect` – if `true` doesn't close picker", function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <DesktopDatePicker
         TransitionComponent={FakeTransitionComponent}
@@ -245,9 +254,10 @@ describe('<DatePicker />', () => {
     expect(screen.queryByRole('dialog')).toBeVisible();
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('does not call onChange if same date selected', async () => {
+  it('does not call onChange if same date selected', async function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     const onChangeMock = spy();
 
     render(
@@ -273,7 +283,7 @@ describe('<DatePicker />', () => {
         renderInput={(props) => <TextField placeholder="10/10/2018" {...props} />}
         label="Masked input"
         inputFormat="dd/MM/yyyy"
-        value={new Date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         InputAdornmentProps={{
           disableTypography: true,
@@ -335,9 +345,10 @@ describe('<DatePicker />', () => {
     expect(getByMuiTest('picker-toolbar-title').textContent).to.equal('Default label');
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('prop `toolbarFormat` – should format toolbar according to passed format', () => {
+  it('prop `toolbarFormat` – should format toolbar according to passed format', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}
@@ -361,7 +372,7 @@ describe('<DatePicker />', () => {
         cancelText="stream"
         onClose={onCloseMock}
         onChange={onChangeMock}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
         DialogProps={{ TransitionComponent: FakeTransitionComponent }}
       />,
     );
@@ -411,9 +422,9 @@ describe('<DatePicker />', () => {
         openTo="year"
         onChange={() => {}}
         // getByRole() with name attribute is too slow, so restrict the number of rendered years
-        minDate={new Date('2025-01-01T00:00:00.000')}
-        maxDate={new Date('2035-01-01T00:00:00.000')}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        minDate={adapterToUse.date('2025-01-01T00:00:00.000')}
+        maxDate={adapterToUse.date('2035-01-01T00:00:00.000')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
         shouldDisableYear={(year) => adapterToUse.getYear(year) === 2030}
       />,
     );
@@ -434,7 +445,7 @@ describe('<DatePicker />', () => {
         renderInput={(params) => <TextField {...params} />}
         onChange={() => {}}
         onMonthChange={onMonthChangeMock}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
       />,
     );
 
@@ -449,7 +460,7 @@ describe('<DatePicker />', () => {
         loading
         renderInput={(params) => <TextField {...params} />}
         onChange={() => {}}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
       />,
     );
 
@@ -465,7 +476,7 @@ describe('<DatePicker />', () => {
         open
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}
-        value={adapterToUse.date('2018-01-01T00:00:00.000Z')}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
       />,
     );
 
@@ -478,7 +489,7 @@ describe('<DatePicker />', () => {
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}
         open
-        value={new Date()}
+        value={adapterToUse.date()}
         onChange={() => {}}
         ToolbarComponent={() => <div data-testid="custom-toolbar" />}
       />,
@@ -503,16 +514,17 @@ describe('<DatePicker />', () => {
     expect(screen.getAllByTestId('test-day')).to.have.length(31);
   });
 
-  // TODO
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('prop `defaultCalendarMonth` – opens on provided month if date is `null`', () => {
+  it('prop `defaultCalendarMonth` – opens on provided month if date is `null`', function test() {
+    if (process.env.TEST_GATE !== 'experimental-timezones') {
+      this.skip();
+    }
     render(
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}
         open
         value={null}
         onChange={() => {}}
-        defaultCalendarMonth={new Date('2018-07-01T00:00:00.000')}
+        defaultCalendarMonth={adapterToUse.date('2018-07-01T00:00:00.000')}
       />,
     );
 
