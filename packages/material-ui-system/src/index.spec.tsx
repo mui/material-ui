@@ -36,8 +36,8 @@ function sxTest() {
 
   // narrow
   wideOrNarrowStyleFunction({ theme: {}, sx: { color: 'blue', spacing: 2 } });
-  // wide, undesire: `sx` is required, marking it as optional breaks system/basics/#sx-property
-  wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2, sx: {} });
+  // wide
+  wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2 });
   // wide and narrow
   wideOrNarrowStyleFunction({ theme: {}, sx: { color: 'blue', spacing: 2 }, color: 'red' });
 }
