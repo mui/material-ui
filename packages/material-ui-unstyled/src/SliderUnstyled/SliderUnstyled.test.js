@@ -27,14 +27,14 @@ describe('<SliderUnstyled />', () => {
       ({ styleProps: stylePropsProp, theme: themeProp, ...rest }, ref) => {
         styleProps = stylePropsProp;
         theme = themeProp;
-        return <span ref={ref} {...rest}></span>;
+        return <span ref={ref} {...rest} />;
       },
     );
 
     render(<SliderUnstyled components={{ Root }} />);
 
     expect(styleProps).not.to.equal(null);
-    expect(styleProps).not.to.equal(null);
+    expect(theme).not.to.equal(null);
   });
 
   it('does not forward style props as DOM attributes if component slot is primitive', () => {
