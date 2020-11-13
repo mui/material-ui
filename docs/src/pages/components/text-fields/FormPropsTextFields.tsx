@@ -21,55 +21,44 @@ export default function FormPropsTextFields() {
       <div>
         <TextField
           required
-          id="standard-required"
+          id="outlined-required"
           label="Required"
           defaultValue="Hello World"
-          variant="standard"
         />
         <TextField
           disabled
-          id="standard-disabled"
+          id="outlined-disabled"
           label="Disabled"
           defaultValue="Hello World"
-          variant="standard"
         />
         <TextField
-          id="standard-password-input"
+          id="outlined-password-input"
           label="Password"
           type="password"
           autoComplete="current-password"
-          variant="standard"
         />
         <TextField
-          id="standard-read-only-input"
+          id="outlined-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
           InputProps={{
             readOnly: true,
           }}
-          variant="standard"
         />
         <TextField
-          id="standard-number"
+          id="outlined-number"
           label="Number"
           type="number"
           InputLabelProps={{
             shrink: true,
           }}
-          variant="standard"
         />
+        <TextField id="outlined-search" label="Search field" type="search" />
         <TextField
-          id="standard-search"
-          label="Search field"
-          type="search"
-          variant="standard"
-        />
-        <TextField
-          id="standard-helperText"
+          id="outlined-helperText"
           label="Helper text"
           defaultValue="Default Value"
           helperText="Some important text"
-          variant="standard"
         />
       </div>
       <div>
@@ -129,44 +118,55 @@ export default function FormPropsTextFields() {
       <div>
         <TextField
           required
-          id="outlined-required"
+          id="standard-required"
           label="Required"
           defaultValue="Hello World"
+          variant="standard"
         />
         <TextField
           disabled
-          id="outlined-disabled"
+          id="standard-disabled"
           label="Disabled"
           defaultValue="Hello World"
+          variant="standard"
         />
         <TextField
-          id="outlined-password-input"
+          id="standard-password-input"
           label="Password"
           type="password"
           autoComplete="current-password"
+          variant="standard"
         />
         <TextField
-          id="outlined-read-only-input"
+          id="standard-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
           InputProps={{
             readOnly: true,
           }}
+          variant="standard"
         />
         <TextField
-          id="outlined-number"
+          id="standard-number"
           label="Number"
           type="number"
           InputLabelProps={{
             shrink: true,
           }}
+          variant="standard"
         />
-        <TextField id="outlined-search" label="Search field" type="search" />
         <TextField
-          id="outlined-helperText"
+          id="standard-search"
+          label="Search field"
+          type="search"
+          variant="standard"
+        />
+        <TextField
+          id="standard-helperText"
           label="Helper text"
           defaultValue="Default Value"
           helperText="Some important text"
+          variant="standard"
         />
       </div>
     </form>

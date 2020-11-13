@@ -19,10 +19,9 @@ export default function ColorTextFields() {
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <TextField
-        id="standard-secondary"
-        label="Standard secondary"
+        id="outlined-secondary"
+        label="Outlined secondary"
         color="secondary"
-        variant="standard"
       />
       <TextField
         id="filled-secondary"
@@ -31,9 +30,10 @@ export default function ColorTextFields() {
         color="secondary"
       />
       <TextField
-        id="outlined-secondary"
-        label="Outlined secondary"
+        id="standard-secondary"
+        label="Standard secondary"
         color="secondary"
+        variant="standard"
       />
     </form>
   );

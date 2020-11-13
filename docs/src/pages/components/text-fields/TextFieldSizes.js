@@ -19,16 +19,14 @@ export default function TextFieldSizes() {
       <div>
         <TextField
           label="Size"
-          id="standard-size-small"
+          id="outlined-size-small"
           defaultValue="Small"
           size="small"
-          variant="standard"
         />
         <TextField
           label="Size"
-          id="standard-size-normal"
+          id="outlined-size-normal"
           defaultValue="Normal"
-          variant="standard"
         />
       </div>
       <div>
@@ -49,14 +47,16 @@ export default function TextFieldSizes() {
       <div>
         <TextField
           label="Size"
-          id="outlined-size-small"
+          id="standard-size-small"
           defaultValue="Small"
           size="small"
+          variant="standard"
         />
         <TextField
           label="Size"
-          id="outlined-size-normal"
+          id="standard-size-normal"
           defaultValue="Normal"
+          variant="standard"
         />
       </div>
     </form>

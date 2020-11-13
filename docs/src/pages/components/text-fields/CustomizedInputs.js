@@ -101,10 +101,7 @@ function RedditTextField(props) {
   const classes = useStylesReddit();
 
   return (
-    <TextField
-      InputProps={{ classes, disableUnderline: true }}
-      {...props}
-    />
+    <TextField InputProps={{ classes, disableUnderline: true }} {...props} />
   );
 }
 
@@ -194,6 +191,7 @@ export default function CustomizedInputs() {
         className={classes.margin}
         label="CSS validation style"
         required
+        variant="outlined"
         defaultValue="Success"
         id="validation-outlined-input"
       />

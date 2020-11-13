@@ -21,7 +21,7 @@ export default function LayoutTextFields() {
     <div className={classes.root}>
       <div>
         <TextField
-          id="standard-full-width"
+          id="outlined-full-width"
           label="Label"
           style={{ margin: 8 }}
           placeholder="Placeholder"
@@ -31,33 +31,29 @@ export default function LayoutTextFields() {
           InputLabelProps={{
             shrink: true,
           }}
-          variant="standard"
         />
         <TextField
           label="None"
-          id="margin-none"
+          id="outlined-margin-none"
           defaultValue="Default Value"
           className={classes.textField}
           helperText="Some important text"
-          variant="standard"
         />
         <TextField
           label="Dense"
-          id="margin-dense"
+          id="outlined-margin-dense"
           defaultValue="Default Value"
           className={classes.textField}
           helperText="Some important text"
           margin="dense"
-          variant="standard"
         />
         <TextField
           label="Normal"
-          id="margin-normal"
+          id="outlined-margin-normal"
           defaultValue="Default Value"
           className={classes.textField}
           helperText="Some important text"
           margin="normal"
-          variant="standard"
         />
       </div>
       <div>
@@ -103,7 +99,7 @@ export default function LayoutTextFields() {
       </div>
       <div>
         <TextField
-          id="outlined-full-width"
+          id="standard-full-width"
           label="Label"
           style={{ margin: 8 }}
           placeholder="Placeholder"
@@ -113,29 +109,33 @@ export default function LayoutTextFields() {
           InputLabelProps={{
             shrink: true,
           }}
+          variant="standard"
         />
         <TextField
           label="None"
-          id="outlined-margin-none"
+          id="margin-none"
           defaultValue="Default Value"
           className={classes.textField}
           helperText="Some important text"
+          variant="standard"
         />
         <TextField
           label="Dense"
-          id="outlined-margin-dense"
+          id="margin-dense"
           defaultValue="Default Value"
           className={classes.textField}
           helperText="Some important text"
           margin="dense"
+          variant="standard"
         />
         <TextField
           label="Normal"
-          id="outlined-margin-normal"
+          id="margin-normal"
           defaultValue="Default Value"
           className={classes.textField}
           helperText="Some important text"
           margin="normal"
+          variant="standard"
         />
       </div>
     </div>
