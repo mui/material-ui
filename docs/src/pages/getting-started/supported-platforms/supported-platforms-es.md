@@ -10,7 +10,7 @@ Material-UI es compatible con las versiones más recientes y estables de todos l
 
 | Edge  | Firefox | Chrome | Safari (macOS) | Safari (iOS) |
 |:----- |:------- |:------ |:-------------- |:------------ |
-| >= 85 | >= 78   | >= 84  | >= 13          | >= 12.2      |
+| >= 85 | >= 78   | >= 84  | >= 13          | >= 12.1      |
 
 <!-- #default-branch-switch -->
 
