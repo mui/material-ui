@@ -6,14 +6,16 @@ async function main() {
   const baseUrl = 'http://localhost:5000';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
+  // reuse viewport from `vrtest`
+  // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
+  const windowSize = { width: 1000, height: 700 };
+
   const browser = await playwright.chromium.launch({
-    args: ['--font-render-hinting=none'],
+    args: ['--font-render-hinting=none', `--window-size=${windowSize.width},${windowSize.height}`],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
-  // reuse viewport from `vrtest`
-  // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
-  const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
+  const page = await browser.newPage();
 
   // prevent flaky tests using images
   await page.route('**/*.{png,jpg,jpeg}', (route) => route.abort());
@@ -46,11 +48,14 @@ async function main() {
         await page.$eval(`#tests li:nth-of-type(${index + 1}) a`, (link) => {
           link.click();
         });
+
         const testcase = await page.waitForSelector('[data-testid="testcase"]');
+        const clip = await testcase.boundingBox();
 
         const screenshotPath = path.resolve(screenshotDir, `${route.replace(baseUrl, '.')}.png`);
         await fse.ensureDir(path.dirname(screenshotPath));
-        await testcase.screenshot({ path: screenshotPath, type: 'png' });
+        // Testcase.screenshot would resize the viewport to the element bbox.
+        await page.screenshot({ clip, path: screenshotPath, type: 'png' });
       });
     });
   });
