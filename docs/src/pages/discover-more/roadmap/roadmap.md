@@ -58,8 +58,8 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Carousel                                                                                                       | ⏳     |
 | Charts                                                                                                         | ⏳⭐️  |
 | Color Picker                                                                                                   | ⏳⭐️  |
-| Data Table                                                                                                     | 🛠      |
-| [Data Table (Advanced)](https://next.material-ui.com/components/data-grid/getting-started/#feature-comparison) | 🛠⭐    |
+| Data Grid                                                                                                     | 🛠      |
+| [Data Grid (Advanced)](/components/data-grid/getting-started/#feature-comparison) | 🛠⭐    |
 | Date Picker                                                                                                    | 🧪     |
 | Date Range Picker                                                                                              | 🧪⭐   |
 | Dropdown                                                                                                       | ⏳     |
