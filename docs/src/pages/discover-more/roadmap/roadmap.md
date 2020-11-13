@@ -53,37 +53,39 @@ Here are the components we will work on being supported in the Material-UI ecosy
 - ⏳ Planning to build
 - ⭐️ We will make some of the features available in [Material-UI X](https://github.com/mui-org/material-ui-x) (non-MIT)
 
-| Name                       | Status |
-| :------------------------- | ------ |
-| Big Calendar               | ⏳⭐️  |
-| Carousel                   | ⏳     |
-| Charts                     | ⏳⭐️  |
-| Color Picker               | ⏳⭐️  |
-| Date Picker                | 🧪     |
-| Date Range Picker          | 🧪⭐   |
-| Dropdown                   | ⏳     |
-| Dropzone                   | ⏳     |
-| File Upload                | ⏳     |
-| Gantt Chart                | ⏳⭐️  |
-| Gauge                      | ⏳⭐️  |
-| Image                      | ⏳     |
-| Masonry                    | ⏳⭐️  |
-| Navbar                     | ⏳     |
-| NProgress                  | ⏳     |
-| Nested Menu                | 🛠      |
-| Numeric Input              | ⏳     |
-| Pivot Grid                 | ⏳⭐️  |
-| Rich Text Editor           | ⏳⭐️  |
-| Scrollspy                  | ⏳     |
-| Sparkline                  | ⏳⭐️  |
-| Splitter                   | ⏳⭐️  |
-| Timeline                   | 🧪     |
-| TopLayout                  | ⏳     |
-| TreeSelect                 | ⏳⭐️  |
-| Tree View                  | 🧪     |
-| Tree View - Multiselect    | 🧪     |
-| Tree View - Checkbox       | ⏳⭐️  |
-| Tree View - Drag & Drop    | ⏳⭐️  |
-| Tree View - Virtualization | ⏳⭐️  |
+| Name                                                                                                           | Status |
+| :------------------------------------------------------------------------------------------------------------- | ------ |
+| Carousel                                                                                                       | ⏳     |
+| Charts                                                                                                         | ⏳⭐️  |
+| Color Picker                                                                                                   | ⏳⭐️  |
+| Data Table                                                                                                     | 🛠      |
+| [Data Table (Advanced)](https://next.material-ui.com/components/data-grid/getting-started/#feature-comparison) | 🛠⭐    |
+| Date Picker                                                                                                    | 🧪     |
+| Date Range Picker                                                                                              | 🧪⭐   |
+| Dropdown                                                                                                       | ⏳     |
+| Dropzone                                                                                                       | ⏳     |
+| File Upload                                                                                                    | ⏳     |
+| Gantt Chart                                                                                                    | ⏳⭐️  |
+| Gauge                                                                                                          | ⏳⭐️  |
+| Image                                                                                                          | ⏳     |
+| Masonry                                                                                                        | ⏳⭐️  |
+| Navbar                                                                                                         | ⏳     |
+| NProgress                                                                                                      | ⏳     |
+| Nested Menu                                                                                                    | 🛠      |
+| Numeric Input                                                                                                  | ⏳     |
+| Pivot Grid                                                                                                     | ⏳⭐️  |
+| Rich Text Editor                                                                                               | ⏳⭐️  |
+| Scheduler                                                                                                      | ⏳⭐️  |
+| Scrollspy                                                                                                      | ⏳     |
+| Sparkline                                                                                                      | ⏳⭐️  |
+| Splitter                                                                                                       | ⏳⭐️  |
+| Timeline                                                                                                       | 🧪     |
+| TopLayout                                                                                                      | ⏳     |
+| TreeSelect                                                                                                     | ⏳⭐️  |
+| Tree View                                                                                                      | 🧪     |
+| Tree View - Multiselect                                                                                        | 🧪     |
+| Tree View - Checkbox                                                                                           | ⏳⭐️  |
+| Tree View - Drag & Drop                                                                                        | ⏳⭐️  |
+| Tree View - Virtualization                                                                                     | ⏳⭐️  |
 
 > ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
