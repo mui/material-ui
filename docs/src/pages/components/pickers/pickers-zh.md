@@ -16,17 +16,13 @@ packageName: '@material-ui/lab'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## @material-ui/pickers
-
-![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
-
-[@material-ui/pickers](https://material-ui-pickers.dev/) 为您提供了日期和时间选择器的控件。
+## React 组件
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 
 ## 原生的选择器
 
-⚠️ 浏览器支持的原生输入控件[并不是完美的](https://caniuse.com/#feat=input-datetime)。 您可以看一下 [@material-ui/pickers](https://material-ui-pickers.dev/) 提供的更完善的方案。
+⚠️ 浏览器支持的原生输入控件[并不是完美的](https://caniuse.com/#feat=input-datetime)。
 
 ### Datepickers 日期选择器
 
