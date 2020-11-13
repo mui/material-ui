@@ -24,7 +24,7 @@ export default function PopoverPopupState() {
               horizontal: 'center',
             }}
           >
-            <Box p={2}>
+            <Box sx={{ p: 2 }}>
               <Typography>The content of the Popover.</Typography>
             </Box>
           </Popover>

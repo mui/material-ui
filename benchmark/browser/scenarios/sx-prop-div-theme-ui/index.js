@@ -32,7 +32,7 @@ export default function ThemeUiSxProp() {
             },
           }}
         >
-          theme-ui
+          test case
         </div>
       ))}
     </ThemeProvider>

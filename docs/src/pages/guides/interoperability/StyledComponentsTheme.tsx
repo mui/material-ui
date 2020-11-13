@@ -28,7 +28,7 @@ const CustomizedSlider = styled(Slider)(
 
 export default function StyledComponentsTheme() {
   return (
-    <Box width={300}>
+    <Box sx={{ width: 300 }}>
       <ThemeProvider theme={customTheme}>
         <CustomizedSlider defaultValue={30} />
       </ThemeProvider>

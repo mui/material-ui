@@ -257,7 +257,7 @@ function AppFrame(props) {
                   {language.text}
                 </MenuItem>
               ))}
-              <Box my={1}>
+              <Box sx={{ my: 1 }}>
                 <Divider />
               </Box>
               <MenuItem

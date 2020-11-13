@@ -169,7 +169,7 @@ function AppDrawer(props) {
         </div>
       </div>
       <Divider />
-      <Box mx={3} my={2}>
+      <Box sx={{ mx: 3, my: 2 }}>
         <DiamondSponsors spot="drawer" />
       </Box>
       {navItems}

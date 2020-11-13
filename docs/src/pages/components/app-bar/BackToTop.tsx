@@ -75,7 +75,7 @@ export default function BackToTop(props: Props) {
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <Container>
-        <Box my={2}>
+        <Box sx={{ my: 2 }}>
           {[...new Array(12)]
             .map(
               () => `Cras mattis consectetur purus sit amet fermentum.
