@@ -1,28 +1,18 @@
-# @material-ui/system
+# Material-UI 系统（System）
 
-<p class="description">风格化系统 & 风格化的功能，来构建强大的设计系统。</p>
+<p class="description">用于快速创建自定义设计的 CSS 工具集。</p>
 
-## 快速上手
+Material-UI 的核心包中带有几十个**即用型**组件。 开始使用这些组件时可能会非常困难，但当涉及到通过定制设计使你的网站脱颖而出时，从这样无风格的状态开始可能更简单。 介绍该系统：
 
-`@material-ui/system` 提供了一些底层工具集函数，我们称之为 "_style functions_"，它们可以用于建立强大的设计系统。 以下是一些重要的特点：
+**系统**让你可以利用主题中所定义的值来快速构建自定义 UI 组件。
 
-- ⚛️ 可以在组件的属性中直接获取主题（theme）的值。
-- 🦋 鼓励 UI 保持一致性。
-- 🌈 轻松地写入响应式的风格。
-- 🦎 可以和任何主题对象 (theme object) 结合使用。
-- 💅 使用广为流行的 CSS-in-JS 样式方案。
-- 📦 小于 [4KB 的压缩包](https://bundlephobia.com/result?p=@material-ui/system)。
-- 🚀 [快速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)，性能不会成为运行的瓶颈
+## 演示
 
-值得关注的是，整个仓库的函数都是无副作用的（side-effect free），它们都拥有这样的类型签名：`({ theme, ...style }) => style`, **就是这样**。
+_（调整窗口大小以查看响应的断点）_
 
-### 演示
+{{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
 
-在_开始（Getting Started）_章节的余下部分，我们会配合 **styled-components** 作为演示例子（因为这个库具有普遍性）。 另外，你也可以使用 [emotion](#interoperability) 或其他的任何 CSS-in-JS 样式解决方案。 以下的例子也都基于 Material-UI 的 **默认** [主题对象（theme object）](/customization/default-theme/)。
-
-{{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
-
-### 安装
+## 安装
 
 ```jsx
 // 使用 npm
@@ -32,306 +22,364 @@ npm install @material-ui/system
 yarn add @material-ui/system
 ```
 
-### 创建一个组件
+## 为什么要使用系统？
 
-若想使用 `Box` 组件，您得先创建一个。 首先，请将一个 `spacing` 和 `palette` 函数加入样式的参数。
+比较同一个统计组件如何使用两种不同的 API 来构建。
 
-```jsx
-import styled from 'styled-components';
-import { spacing, palette } from '@material-ui/system';
+{{"demo": "pages/system/basics/Why.js", "bg": true, "defaultCodeOpen": false}}
 
-const Box = styled.div`
-  ${spacing}${palette}
-`;
-
-export default Box;
-```
-
-如此操作之后，这个 Box 组件现在就支持了 [间距属性](/system/spacing/#api) 和 [颜色属性](/system/palette/#api)。 例如，你可以提供一个间距属性：`p` 和一个颜色属性： `color`。
+1. ❌ 使用 styled-components's API：
 
 ```jsx
-<Box p="1rem" color="grey">
-  给我一些间距！
-</Box>
-```
+const StatWrapper = styled('div')(
+  ({ theme }) => `
+  background-color: ${theme.palette.background.paper};
+  box-shadow: ${theme.shadows[1]};
+  border-radius: ${theme.shape.borderRadius}px;
+  padding: ${theme.spacing(2)};
+  min-width: 300px;
+`,
+);
 
-您可以用任何有效的 CSS 值来装饰这个组件。
+const StatHeader = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.text.secondary};
+`,
+);
 
-### Theming 主题
+const StyledTrend = styled(TrendingUpIcon)(
+  ({ theme }) => `
+  color: ${theme.palette.success.dark};
+  font-size: 16px;
+  vertical-alignment: sub;
+`,
+);
 
-大多数的时候，你会想通过一个主题的值来提高 UI 的一致性。 最好的情况是你已经预设了一组间距和颜色的值。 导入您样式解决方案的 theme provider。
+const StatValue = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.text.primary};
+  font-size: 34px;
+  font-weight: ${theme.typography.fontWeightMedium};
+`,
+);
 
-```jsx
-import * as React from 'react';
-import { ThemeProvider } from 'styled-components';
+const StatDiff = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.success.dark};
+  display: inline;
+  font-weight: ${theme.typography.fontWeightMedium};
+  margin-left: ${theme.spacing(0.5)};
+  margin-right: ${theme.spacing(0.5)};
+`,
+);
 
-const theme = {
-  spacing: 4,
-  palette: {
-    primary: '#007bff',
-  },
-};
+const StatPrevious = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.text.secondary};
+  display: inline;
+  font-size: 12px;
+`,
+);
 
-export default function App() {
-  return <ThemeProvider theme={theme}>{/* children */}</ThemeProvider>;
-}
-```
-
-现在，你可以提供一个间距的乘值：
-
-```jsx
-<Box p={1}>4px</Box>
-<Box p={2}>8px</Box>
-<Box p={-1}>-4px</Box>
-```
-
-以及一个主要颜色（primary color）：
-
-```jsx
-<Box color="primary">蓝色</Box>
-```
-
-### 全部包含
-
-为了使 Box 组件更实用，我们已预置了一套样式函数，下面是一个完整的列表：
-
-- [borders](/system/borders/#api)
-- [display](/system/display/#api)
-- [flexbox](/system/flexbox/#api)
-- [palette](/system/palette/#api)
-- [positions](/system/positions/#api)
-- [shadows](/system/shadows/#api)
-- [sizing](/system/sizing/#api)
-- [spacing](/system/spacing/#api)
-- [typography](/system/typography/#api)
-
-如果你已经使用了 `@material-ui/core`，那么就可以使用 [Box 组件](/components/box/)（默认在内部使用）。
-
-```jsx
-import Box from '@material-ui/core/Box';
-```
-
-## 互操作性
-
-`@material-ui/system` 适用于大多数 CSS-in-JS 库，包括了 JSS，styled-components，还有 emotion。 下面是几个示例用法：
-
-### Styled components
-
-{{"demo": "pages/system/basics/StyledComponents.js", "defaultCodeOpen": true}}
-
-### Emotion
-
-{{"demo": "pages/system/basics/Emotion.js", "defaultCodeOpen": true}}
-
-## 响应式（Responsive）
-
-**所有**的属性都是响应式的。 有三种不同的 API – Array、Object 和 Collocation – 分别使用这种默认的（但可自定义）断点主题结构。
-
-```js
-const values = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920,
-};
-
-const theme = {
-  breakpoints: {
-    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-    up: (key) => `@media (min-width:${values[key]}px)`,
-  },
-};
-```
-
-### Array
-
-```jsx
-<Box p={[2, 3, 4]} />
-
-/**
- * 输出:
- *
- * padding: 16px;
- * @media (min-width: 600px) {
- *   padding: 24px;
- * }
- * @media (min-width: 960px) {
- *   padding: 32px;
- * }
- */
-```
-
-### Object
-
-```jsx
-<Box p={{ xs: 2, sm: 3, md: 4 }} />
-
-/**
- * 输出:
- *
- * padding: 16px;
- * @media (min-width: 600px) {
- *   padding: 24px;
- * }
- * @media (min-width: 960px) {
- *   padding: 32px;
- * }
- */
-```
-
-### 搭配
-
-如果你想对断点值进行分组，可以使用 `breakpoints()` 助手。
-
-```jsx
-import { compose, spacing, palette, breakpoints } from '@material-ui/system';
-import styled from 'styled-components';
-
-const Box = styled.div`
-  ${breakpoints(compose(spacing, palette))}
-`;
-
-<Box p={2} sm={{ p: 3 }} md={{ p: 4 }} />;
-
-/**
- * 输出：
- *
- * padding: 16px;
- * @media (min-width: 600px) {
- *   padding: 24px;
- * }
- * @media (min-width: 960px) {
- *   padding: 32px;
- * }
- */
-```
-
-{{"demo": "pages/system/basics/CollocationApi.js"}}
-
-## 定制样式属性
-
-### `style(options) => style function`
-
-你可以使用这个助手来创建你自己的样式函数。
-
-不是所有的 CSS 属性都是被支持的。 若你有这个想法支持新的属性，这也是有可能的。 而改变主题的路径前缀也是有可能性的。
-
-#### 参数
-
-1. `options` (*Object*):
-
-- [Tachyons](https://tachyons.io/) (2014年) 是第一个促进了 [原子 CSS 模式(Atomic CSS pattern)](https://css-tricks.com/lets-define-exactly-atomic-css/) 发展的CSS库。
-- `options.cssProperty` (_String|Boolean_ [optional])：默认值是 `options.prop`。 这使用了 CSS 属性。 你可以传入 `false` 来禁用此选项。 禁用的情况下，这个属性会被作为样式对象应用于本身。 它可以用来 [渲染变体（rendering variants）](#variants)。
-- `options.themeKey` (*String* [optional])：主题路径的前缀。
-- `options.transform` (*Function* [optional])：指定在输出 CSS 值之前经过的转换
-
-#### 返回结果
-
-`style function`：被创建的样式函数。
-
-#### 例子
-
-你可以创建一个支持一些 CSS 的栅格属性的组件，如 `grid-gap`。 若将 `spacing` 作为 `themeKey` 提供，你可以重用该逻辑，从而实现我们在其他 spacing 属性（如  `padding`）中定义的行为。
-
-```jsx
-import styled from 'styled-components';
-import { style } from '@material-ui/system';
-import { Box } from '@material-ui/core';
-
-const gridGap = style({
-  prop: 'gridGap',
-  themeKey: 'spacing',
-});
-
-const Grid = styled(Box)`
-  ${gridGap}
-`;
-const example = (
-  <Grid display="grid" gridGap={[2, 3]}>
-    ...
-  </Grid>
+return (
+  <StatWrapper>
+    <StatHeader>会话</StatHeader>
+    <StatValue>98.3 K</StatValue>
+    <StyledTrend />
+    <StatDiff>18.77%</StatDiff>
+    <StatPrevious>与上周相比</StatPrevious>
+  </StatWrapper>
 );
 ```
 
-你还可以同时添加 `prop` 和 `cssProperty` 来自定义属性名称，并使用 `transform` 函数来转换值。
+2. ✅ 使用系统：
 
 ```jsx
-import styled from 'styled-components';
-import { style } from '@material-ui/system';
-
-const borderColor = style({
-  prop: 'bc',
-  cssProperty: 'borderColor',
-  themeKey: 'palette',
-  transform: (value) => `${value} !important`,
-});
-
-const Colored = styled.div`
-  ${borderColor}
-`;
-const example = <Colored bc="primary.main">...</Colored>;
+<Box
+  sx={{
+    bgcolor: 'background.paper',
+    boxShadow: 1,
+    borderRadius: 'borderRadius',
+    p: 2,
+    minWidth: 300,
+  }}
+>
+  <Box
+    sx={{
+      color: 'text.secondary',
+    }}
+  >
+    会话
+  </Box>
+  <Box
+    sx={{
+      color: 'text.primary',
+      fontSize: 34,
+      fontWeight: 'fontWeightMedium',
+    }}
+  >
+    98.3 K
+  </Box>
+  <Box
+    component={TrendingUpIcon}
+    sx={{
+      color: 'success.dark',
+      fontSize: 16,
+      verticalAlign: 'sub',
+    }}
+  />
+  <Box
+    sx={{
+      color: 'success.dark',
+      display: 'inline',
+      fontWeight: 'fontWeightMedium',
+      mx: 0.5,
+    }}
+  >
+    18.77%
+  </Box>
+  <Box
+    sx={{
+      color: 'text.secondary',
+      display: 'inline',
+      fontSize: 12,
+    }}
+  >
+    与上周相比
+  </Box>
+</Box>
 ```
 
-### `compose(...style functions) => style function`
+### 问题已经解决
 
-将多个不同的样式函数合为一体。
+这套系统重点是解决如下三个主要问题：
 
-#### 返回结果
+**1. 切换上下文会浪费时间。 **
 
-`style function`：被创建的样式函数。
+用户没有必要在样式组件的用法和定义的地方不断跳转。 有了这个系统，直接就可以在你需要的组件上面进行样式定制。
 
-#### 例子
+**2. 命名是一件很难的事情。**
 
-```js
-import { style, compose } from '@material-ui/system';
+你有没有发现自己在为一个样式组件找一个好名字而苦恼？ 该系统可以直接将样式映射到元素。 所以你要做的就是只关心实际的样式属性。
 
-export const textColor = style({
-  prop: 'color',
-  themeKey: 'palette',
-});
+**3。 UI 中要达成一致是很困难的。 **
 
-export const bgcolor = style({
-  prop: 'bgcolor',
-  cssProperty: 'backgroundColor',
-  themeKey: 'palette',
-});
+当不止一个人在构建应用程序时尤其如此，因为团队成员之间必须就设计标记的选择和使用方式进行一些协调，主题结构的哪些部分应该使用哪些 CSS 属性等等。
 
-const palette = compose(textColor, bgcolor);
+系统可直接访问主题中的数值。 这样做可以在设计时更容易受到约束。
+
+## `sx` 属性
+
+`sx` 属性作为系统的主要部分，为了解决了这些问题，它提供了一种快速 & 简单的方式，也就是将特定 CSS 属性的正确设计标记直接应用到 React 元素中。 [上面的这个演示](#demo) 展示了如何使用它来创建一次性设计。
+
+该属性提供了一个 CSS 的超集，根据使用的 CSS 属性，直接从主题中映射值。 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。
+
+### 何时使用？
+
+- **styled-components**：该 API 适用于构建需要支持各种上下文的组件。 这些组件将被应用在许多不同的部位，支持不同的属性组合。
+- **`sx` 属性**：该 API 非常适合创造一次性的样式。 因此它被叫做“工具集”。
+
+### 性能开销
+
+该系统依赖 CSS-in-JS。 它可以同时和 emotion 以及 styled-components 一起工作。
+
+优点：
+
+- 📚 它允许 API 具有很大的灵活性。 `sx` 属性支持 CSS 的超集。 所以**不需要重学 CSS**。 只要你学会了标准化的 CSS 语法，就可以了，很安全，十年来都没有变化。 当然如果你想要节省时间的话，也可以**选择**学习速记语法。
+- 📦 自动清除。 只有页面上使用过的 CSS 才会被发送到客户端。 所以初始化该捆绑包的大小成本是**灵活的**。 它的大小不会随着使用 CSS 属性的数量变多而同时增长。 你只需要在 [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) 和 [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system) 上考虑打包大小。 在 gzip 的环境下，它们大概占用约 15kb 的空间。 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。
+
+缺点：
+
+- 运行时会造成性能影响：
+
+  | 基准测试              | 代码片段                       | 花费时间  |
+  |:----------------- |:-------------------------- | ----- |
+  | a. 渲染 1,000 个基元   | `<div className="">` | 100ms |
+  | b. 渲染 1,000 个组件   | `<Div>`              | 110ms |
+  | c. 渲染 1,000 个样式组件 | `<StyledDiv>`        | 160ms |
+  | d. 渲染一千个分组（Box）   | `<Box sx={}>`        | 270ms |
+
+  _这里是可复现的 [性能测试文件夹](https://github.com/mui-org/material-ui/tree/next/benchmark/browser)。_
+
+  我们相信对于大多数应用来说，运行速度已经**足够快了**。 当性能变得至关重要时，有一些简单的变通办法。 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
+
+## 使用
+
+### 主题中的设计标记
+
+你可以探索 [系统属性](/system/properties/) 页面来发现不同的 CSS（和自定义）属性是如何映射到主题键的。
+
+### 速记语法
+
+CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有记录，例如 [间距](/system/spacing/)。 如下是一个使用它们的例子：
+
+```jsx
+<Box
+  sx={{
+    boxShadow: 1, // theme.shadows[1]
+    color: 'primary.main', // theme.palette.primary.main
+    m: 1, // margin: theme.spacing(1)
+    p: {
+      sx: 1, // [theme.breakpoints.up('sx')]: : { padding: theme.spacing(1) }
+    },
+    zIndex: 'tooltip', // theme.zIndex.tooltip
+  }}
+>
 ```
 
-## 变体
+这些速记语法是**可选的**，虽然使用这些能够快速编写样式，但是也要考虑到学习自定义 API 的时间成本。 你可能想要跳过这部分并专注于使用标准几十年都没有变化的 CSS 规则，那么请跳转到 [下一节](#superset-of-css)。
 
-助手函数 `style()` 也可用于根据主题来为样式对象返回不同的属性。 在这个例子中， `variant` 属性支持 `theme.typography` 对象的所有键。
+### CSS 超集
 
-{{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
+作为属性的一部分，你也可以使用任何常规的 CSS：child 或者 pseudo-selectors，媒体查询（media queries）, raw CSS values，等等。 以下是几个例子：
 
-## CSS 属性
+- 使用伪类选择器：
 
-如果您想要自定义 CSS 的值，您可以使用 `css()` 助手。 如果您想要自定义 CSS 的值，您可以使用 `css()` 助手。
+  ```jsx
+  <Box
+    sx={{
+      // some styles
+      ":hover": {
+        boxShadow: 6,
+      },
+    }}
+  >
+  ```
 
-{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
+- 使用媒体查询：
 
-## 工作原理
+  ```jsx
+  <Box
+    sx={{
+      // some styles
+      '@media print': {
+        width: 300,
+      },
+    }}
+  >
+  ```
 
-styled-system 在 [解释它是如何工作的](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works) 方面做得很好 。 它可以协助为这种 “style function” 概念建立一个心理模型。
+- 使用嵌套选择器：
 
-## 实际用例
+  ```jsx
+  <Box
+    sx={{
+      // some styles
+      '& .ChildSelector': {
+        bgcolor: 'primary.main',
+      },
+    }}
+  >
+  ```
 
-在实践中，一个 Box 组件可以节省我们很多时间。 在这个例子中，我们演示了如何搭建一个 Banner 组件。
+### 响应式的值
 
-{{"demo": "pages/system/basics/RealWorld.js", "bg": true}}
+如果你想要你的 CSS 属性是响应式的，那么可以使用断点速记语法。 确定断点有两种方法：
 
-## 现有技术
+#### 1. 将断点作为对象
 
-`@material-ui/system` 从不同地方借鉴了一些想法和 API：
+定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 这里又是前面的例子，使用的是对象语法。
 
-- [Tachyons](https://tachyons.io/)是第一批（2014年）促进了 [原子化使用 CSS 模式（Atomic CSS pattern）](https://css-tricks.com/lets-define-exactly-atomic-css/) （或者 Functional CSS）的 CSS 库。
-- 之后相继推出了 Tachyons（2017年）以及 [Tailwind CSS](https://tailwindcss.com/)。 他们让 Atomic CSS 更受欢迎。
-- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) 在 v2，v3，和 v4 中一步步介绍了原子化的类名（atomic class names）。 这种对 “助手类” 分组方式让他们得到启发。
-- 在 React 世界中， [Styled System](https://github.com/jxnblk/styled-system) （2017年）是第一批推动样式函数的（style functions）。 它可以做出一个通用的 Box 组件，这种方式可以替换创建一个新元素时原子化的 CSS 以及一些辅助类。
-- Pinterest、GitHub 和 Segment.io 等大型公司都在使用不同风格的相同方法：
-  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
-  - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
-  - [Primer Box](https://primer.style/components/docs/Box)
-- 实际的操作和对象响应 API（object responsive API）是受到 [Smooth-UI 的系统](https://smooth-ui.smooth-code.com/docs-basics-system) 的启发。
+{{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
+
+#### 2. 将断点作为数组
+
+第二种选择是将你的断点沿着最小到最大来进行定义。
+
+{{"demo": "pages/system/basics/BreakpointsAsArray.js"}}
+
+> ⚠️ 只有当主题的断点数量有限时，才建议使用这个选项，例如 3.<br />。 如果你需要使用更多的断点，那么首选对象 API。 例如，Material-UI 的默认主题是 5.
+
+你可以使用 `null` 值来跳过断点：
+
+```jsx
+<Box sx={{ width: [null, null, 300] }}>该分组的宽度是响应式的。</Box>
+
+```
+
+### 自定义断点
+
+你也可以指定自定义断点，并在定义断点对象时将其作为键。 下面是一个如何操作的例子。
+
+```jsx
+import * as React from 'react';
+import Box from '@material-ui/core/Box';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1280,
+    },
+  },
+});
+
+export default function CustomBreakpoints() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          width: {
+            tablet: 100,
+            laptop: 300,
+            desktop: 500,
+          },
+        }}
+      >
+        该分组的宽度是响应式的
+      </Box>
+    </ThemeProvider>
+  );
+}
+```
+
+如果你使用的是 TypeScript，那么将需要使用 [模块扩展（module augmentation）](/guides/typescript/#customization-of-theme) 来让主题接收上述值。
+
+```ts
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: false; // 移除 `xs` 断点
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // 添加 `tablet` 断点
+    laptop: true;
+    desktop: true;
+  }
+}
+```
+
+### 主题获取
+
+如果你想用主题来处理系统不支持的 CSS 属性，那么你可以使用一个函数作为值，在其中你就可以访问主题对象。
+
+{{"demo": "pages/system/basics/ValueAsFunction.js"}}
+
+## 实现
+
+`sx` 属性可以用于四个不同的位置：
+
+### 1. 核心组件
+
+所有的 Material-UI 核心组件都支持 `sx` 属性。
+
+### 2. Box 分组
+
+[`Box`](/components/box/) 是一个轻量级组件，它可以以工具集的方式通过包装其他组件来达到访问其 `sx` 属性的目的。 默认情况下将渲染一个 `<div>` 元素。
+
+### 3。 自定义组件
+
+除了 Material-UI 组件，你也可以通过使用 `@material-ui/core/styles` 中的 `experimentalStyled` 工具集来将 `sx` 属性添加到你的自定义组件中。
+
+```jsx
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+
+const Div = styled('div')``;
+```
+
+### 4、 使用 babel 插件的任何元素
+
+等待开发 [#23220](https://github.com/mui-org/material-ui/issues/23220)。
