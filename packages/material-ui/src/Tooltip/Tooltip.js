@@ -78,13 +78,14 @@ export const styles = (theme) => ({
     padding: '4px 8px',
     fontSize: theme.typography.pxToRem(11),
     maxWidth: 300,
+    margin: 2,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
   },
   /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
   tooltipArrow: {
     position: 'relative',
-    margin: '0',
+    margin: 0,
   },
   /* Styles applied to the arrow element. */
   arrow: {
@@ -240,14 +241,23 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const id = useId(idProp);
 
+  const prevUserSelect = React.useRef();
+  const stopTouchInteraction = React.useCallback(() => {
+    if (prevUserSelect.current !== undefined) {
+      document.body.style.WebkitUserSelect = prevUserSelect.current;
+      prevUserSelect.current = undefined;
+    }
+    clearTimeout(touchTimer.current);
+  }, []);
+
   React.useEffect(() => {
     return () => {
       clearTimeout(closeTimer.current);
       clearTimeout(enterTimer.current);
       clearTimeout(leaveTimer.current);
-      clearTimeout(touchTimer.current);
+      stopTouchInteraction();
     };
-  }, []);
+  }, [stopTouchInteraction]);
 
   const handleOpen = (event) => {
     clearTimeout(hystersisTimer);
@@ -369,9 +379,15 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     detectTouchStart(event);
     clearTimeout(leaveTimer.current);
     clearTimeout(closeTimer.current);
-    clearTimeout(touchTimer.current);
+    stopTouchInteraction();
     event.persist();
+
+    prevUserSelect.current = document.body.style.WebkitUserSelect;
+    // Prevent iOS text selection on long-tap.
+    document.body.style.WebkitUserSelect = 'none';
+
     touchTimer.current = setTimeout(() => {
+      document.body.style.WebkitUserSelect = prevUserSelect.current;
       handleEnter(event);
     }, enterTouchDelay);
   };

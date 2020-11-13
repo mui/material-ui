@@ -175,14 +175,6 @@ const pages = [
     ),
   },
   {
-    pathname: '/styles',
-    children: [
-      { pathname: '/styles/basics' },
-      { pathname: '/styles/advanced' },
-      { pathname: '/styles/api', title: 'API' },
-    ],
-  },
-  {
     pathname: '/system',
     children: [
       { pathname: '/system/basics' },
@@ -196,7 +188,15 @@ const pages = [
       { pathname: '/system/spacing' },
       { pathname: '/system/screen-readers' },
       { pathname: '/system/typography' },
-      { pathname: '/system/api', title: 'API' },
+      { pathname: '/system/properties' },
+    ],
+  },
+  {
+    pathname: '/styles',
+    children: [
+      { pathname: '/styles/basics' },
+      { pathname: '/styles/advanced' },
+      { pathname: '/styles/api', title: 'API' },
     ],
   },
   {

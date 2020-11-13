@@ -18,6 +18,23 @@ APIs.
 
 ## Included Scripts
 
+### v5.0.0
+
+#### `box-sx-prop`
+
+Updates the Box API from separate system props to `sx`.
+
+The diff should look like this:
+
+```diff
+-<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
++<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/box-sx-prop.js
+```
+
 ### v4.0.0
 
 #### `theme-spacing-api`

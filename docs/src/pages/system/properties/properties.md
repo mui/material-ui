@@ -1,6 +1,6 @@
-# API
+# Properties
 
-<p class="description">The API reference of the @material-ui/system package.</p>
+<p class="description">The properties reference of the @material-ui/system package.</p>
 
 | Group                             | Import name      | Prop               | CSS property                                                                                 | Theme key                                                              |
 | :-------------------------------- | :--------------- | :----------------- | :------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------- |

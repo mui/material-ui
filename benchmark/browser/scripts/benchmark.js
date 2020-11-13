@@ -56,22 +56,26 @@ const getMedian = (measures) => {
 };
 
 const printMeasure = (name, measures) => {
-  console.log(`\n${name}:\n`);
+  console.log(`${name}:`);
 
   let sum = 0;
   const totalNum = measures.length;
 
   measures.forEach((measure) => {
     sum += measure;
-    console.log(`${measure.toFixed(2)}ms`);
+    // Uncomment for more details
+    // console.log(`${measure.toFixed(2)}ms`);
   });
 
+  console.log(
+    `mean: ${Number(sum / totalNum).toFixed(2)}ms, median: ${Number(getMedian(measures)).toFixed(
+      2,
+    )}ms`,
+  );
   console.log('-------------');
-  console.log(`Avg: ${Number(sum / totalNum).toFixed(2)}ms`);
-  console.log(`Median: ${Number(getMedian(measures)).toFixed(2)}ms`);
 };
 
-async function runMeasures(browser, testCaseName, testCase, times) {
+async function runMeasures(browser, testCaseName, testCase, times = 10) {
   const measures = [];
 
   for (let i = 0; i < times; i += 1) {
@@ -95,32 +99,36 @@ async function run() {
   const [server, browser] = await Promise.all([createServer({ port: PORT }), createBrowser()]);
 
   try {
-    await runMeasures(browser, 'noop (baseline)', './noop/index.js', 10);
+    // Test that there no significant offset
+    await runMeasures(browser, 'noop (baseline)', './noop/index.js');
+    // Test the cost of React primitives
+    await runMeasures(browser, 'React primitives', './primitives/index.js');
+    // Test the cost of React components abstraction
+    await runMeasures(browser, 'React components', './components/index.js');
+    // Test that @material-ui/styled-engine doesn't add an signifiant overhead
+    await runMeasures(browser, 'Styled Material-UI', './styled-material-ui/index.js');
+    await runMeasures(browser, 'Styled emotion', './styled-emotion/index.js');
+    await runMeasures(browser, 'Styled SC', './styled-sc/index.js');
+    // Test the performance compared to the v4 standard
+    await runMeasures(browser, 'makeStyles', './make-styles/index.js');
+    // Test that the sx prop vs props spreaing has no signficiant difference
+    await runMeasures(browser, 'sx Material-UI box', './sx-prop-box-material-ui/index.js');
+    await runMeasures(browser, 'Box Material-UI', './box-material-ui-styles/index.js');
+    // Test the Box perf with alternatives
+    await runMeasures(browser, 'sx Theme-UI box', './sx-prop-box-theme-ui/index.js');
+    await runMeasures(browser, 'sx Theme-UI div', './sx-prop-div-theme-ui/index.js');
+    await runMeasures(browser, 'Box Chakra-UI', './box-chakra-ui/index.js');
+    // Test the system perf difference with alternatives
     await runMeasures(
       browser,
       'styled-components Box + @material-ui/system',
       './styled-components-box-material-ui-system/index.js',
-      10,
     );
     await runMeasures(
       browser,
       'styled-components Box + styled-system',
       './styled-components-box-styled-system/index.js',
-      10,
     );
-    await runMeasures(browser, 'Box emotion', './box-emotion/index.js', 10);
-    await runMeasures(browser, 'Box @material-ui/styles', './box-material-ui-styles/index.js', 10);
-    await runMeasures(browser, 'Box styled-components', './box-styled-components/index.js', 10);
-    await runMeasures(
-      browser,
-      'Basic styled-components box',
-      './basic-styled-components/index.js',
-      10,
-    );
-    await runMeasures(browser, 'Chakra-UI box component', './box-chakra-ui/index.js', 10);
-    await runMeasures(browser, 'Theme-UI box sx prop', './sx-prop-box-theme-ui/index.js', 10);
-    await runMeasures(browser, 'Theme-UI div sx prop', './sx-prop-div-theme-ui/index.js', 10);
-    await runMeasures(browser, 'Material-UI box sx prop', './sx-prop-box-material-ui/index.js', 10);
   } finally {
     await Promise.all([browser.close(), server.close()]);
   }

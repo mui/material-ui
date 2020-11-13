@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 
-export default function BoxSxPropMaterialUI() {
+export default function SxPropBoxMaterialUI() {
   return (
     <React.Fragment>
       {new Array(1000).fill().map(() => (
@@ -9,16 +9,16 @@ export default function BoxSxPropMaterialUI() {
           sx={{
             width: 200,
             height: 200,
-            backgroundColor: [undefined, 'primary.light', 'primary.main', 'primary.dark'],
             borderWidth: '3px',
             borderColor: 'white',
-            borderStyle: [undefined, 'dashed', 'solid', 'dotted'],
+            backgroundColor: { sm: 'primary.main' },
+            borderStyle: { sm: 'dashed' },
             ':hover': {
               backgroundColor: (theme) => theme.palette.secondary.dark,
             },
           }}
         >
-          material-ui
+          test case
         </Box>
       ))}
     </React.Fragment>
