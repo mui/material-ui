@@ -46,16 +46,11 @@ async function main() {
         await page.$eval(`#tests li:nth-of-type(${index + 1}) a`, (link) => {
           link.click();
         });
-        await page.waitForSelector('[data-testid="testcase"]');
+        const testcase = await page.waitForSelector('[data-testid="testcase"]');
 
-        const clip = await page.$eval('[data-testid="testcase"]', (element) => {
-          const bbox = element.getBoundingClientRect();
-
-          return { x: bbox.x, y: bbox.y, width: bbox.width, height: bbox.height };
-        });
         const screenshotPath = path.resolve(screenshotDir, `${route.replace(baseUrl, '.')}.png`);
         await fse.ensureDir(path.dirname(screenshotPath));
-        await page.screenshot({ clip, path: screenshotPath, type: 'png' });
+        await testcase.screenshot({ path: screenshotPath, type: 'png' });
       });
     });
   });
