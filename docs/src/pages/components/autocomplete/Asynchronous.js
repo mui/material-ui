@@ -75,7 +75,8 @@ export default function Asynchronous() {
                 {params.InputProps.endAdornment}
               </React.Fragment>
             ),
-          }} />
+          }}
+        />
       )}
     />
   );

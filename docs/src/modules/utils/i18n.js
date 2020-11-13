@@ -20,7 +20,7 @@ export function useTranslate() {
 
   return React.useMemo(
     () =>
-      (function translate(key, options = {}) {
+      function translate(key, options = {}) {
         const { ignoreWarning = false } = options;
         const wordings = translations[userLanguage];
 
@@ -42,7 +42,7 @@ export function useTranslate() {
         }
 
         return translation;
-      }),
+      },
     [userLanguage],
   );
 }

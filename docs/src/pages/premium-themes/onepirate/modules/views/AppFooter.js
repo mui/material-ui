@@ -133,7 +133,8 @@ export default function AppFooter() {
                 native: true,
               }}
               className={classes.language}
-              variant="standard">
+              variant="standard"
+            >
               {LANGUAGES.map((language) => (
                 <option value={language.code} key={language.code}>
                   {language.name}

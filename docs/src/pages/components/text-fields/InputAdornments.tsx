@@ -80,7 +80,8 @@ export default function InputAdornments() {
               <InputAdornment position="start">Kg</InputAdornment>
             ),
           }}
-          variant="standard" />
+          variant="standard"
+        />
         <FormControl
           className={clsx(
             classes.margin,
@@ -205,7 +206,8 @@ export default function InputAdornments() {
             startAdornment: (
               <InputAdornment position="start">Kg</InputAdornment>
             ),
-          }} />
+          }}
+        />
         <FormControl
           className={clsx(classes.margin, classes.textField)}
           variant="outlined"

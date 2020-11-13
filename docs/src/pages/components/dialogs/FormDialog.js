@@ -41,7 +41,8 @@ export default function FormDialog() {
             label="Email Address"
             type="email"
             fullWidth
-            variant="standard" />
+            variant="standard"
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

@@ -31,14 +31,16 @@ export default function LayoutTextFields() {
           InputLabelProps={{
             shrink: true,
           }}
-          variant="standard" />
+          variant="standard"
+        />
         <TextField
           label="None"
           id="margin-none"
           defaultValue="Default Value"
           className={classes.textField}
           helperText="Some important text"
-          variant="standard" />
+          variant="standard"
+        />
         <TextField
           label="Dense"
           id="margin-dense"
@@ -46,7 +48,8 @@ export default function LayoutTextFields() {
           className={classes.textField}
           helperText="Some important text"
           margin="dense"
-          variant="standard" />
+          variant="standard"
+        />
         <TextField
           label="Normal"
           id="margin-normal"
@@ -54,7 +57,8 @@ export default function LayoutTextFields() {
           className={classes.textField}
           helperText="Some important text"
           margin="normal"
-          variant="standard" />
+          variant="standard"
+        />
       </div>
       <div>
         <TextField
@@ -108,27 +112,31 @@ export default function LayoutTextFields() {
           margin="normal"
           InputLabelProps={{
             shrink: true,
-          }} />
+          }}
+        />
         <TextField
           label="None"
           id="outlined-margin-none"
           defaultValue="Default Value"
           className={classes.textField}
-          helperText="Some important text" />
+          helperText="Some important text"
+        />
         <TextField
           label="Dense"
           id="outlined-margin-dense"
           defaultValue="Default Value"
           className={classes.textField}
           helperText="Some important text"
-          margin="dense" />
+          margin="dense"
+        />
         <TextField
           label="Normal"
           id="outlined-margin-normal"
           defaultValue="Default Value"
           className={classes.textField}
           helperText="Some important text"
-          margin="normal" />
+          margin="normal"
+        />
       </div>
     </div>
   );

@@ -296,7 +296,8 @@ function MarkdownDocsFooter(props) {
                   'aria-label': t('feedbackCommentLabel'),
                   'aria-describedby': 'feedback-description',
                   ref: inputRef,
-                }} />
+                }}
+              />
             </div>
             <DialogActions>
               <Button type="reset">{t('cancel')}</Button>

@@ -24,7 +24,8 @@ export default function Playground() {
             {...params}
             label="disableCloseOnSelect"
             margin="normal"
-            variant="standard" />
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -32,7 +33,12 @@ export default function Playground() {
         id="clear-on-escape"
         clearOnEscape
         renderInput={(params) => (
-          <TextField {...params} label="clearOnEscape" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="clearOnEscape"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -40,7 +46,12 @@ export default function Playground() {
         id="disable-clearable"
         disableClearable
         renderInput={(params) => (
-          <TextField {...params} label="disableClearable" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="disableClearable"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -48,14 +59,24 @@ export default function Playground() {
         id="include-input-in-list"
         includeInputInList
         renderInput={(params) => (
-          <TextField {...params} label="includeInputInList" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="includeInputInList"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
         {...flatProps}
         id="flat-demo"
         renderInput={(params) => (
-          <TextField {...params} label="flat" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="flat"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -66,7 +87,12 @@ export default function Playground() {
           setValue(newValue);
         }}
         renderInput={(params) => (
-          <TextField {...params} label="controlled" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="controlled"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -75,7 +101,12 @@ export default function Playground() {
         autoComplete
         includeInputInList
         renderInput={(params) => (
-          <TextField {...params} label="autoComplete" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="autoComplete"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -83,7 +114,12 @@ export default function Playground() {
         id="disable-list-wrap"
         disableListWrap
         renderInput={(params) => (
-          <TextField {...params} label="disableListWrap" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="disableListWrap"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -91,7 +127,12 @@ export default function Playground() {
         id="open-on-focus"
         openOnFocus
         renderInput={(params) => (
-          <TextField {...params} label="openOnFocus" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="openOnFocus"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -99,7 +140,12 @@ export default function Playground() {
         id="auto-highlight"
         autoHighlight
         renderInput={(params) => (
-          <TextField {...params} label="autoHighlight" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="autoHighlight"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -107,7 +153,12 @@ export default function Playground() {
         id="auto-select"
         autoSelect
         renderInput={(params) => (
-          <TextField {...params} label="autoSelect" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="autoSelect"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -115,7 +166,12 @@ export default function Playground() {
         id="disabled"
         disabled
         renderInput={(params) => (
-          <TextField {...params} label="disabled" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="disabled"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -123,7 +179,12 @@ export default function Playground() {
         id="disable-portal"
         disablePortal
         renderInput={(params) => (
-          <TextField {...params} label="disablePortal" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="disablePortal"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -131,7 +192,12 @@ export default function Playground() {
         id="blur-on-select"
         blurOnSelect
         renderInput={(params) => (
-          <TextField {...params} label="blurOnSelect" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="blurOnSelect"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -139,7 +205,12 @@ export default function Playground() {
         id="clear-on-blur"
         clearOnBlur
         renderInput={(params) => (
-          <TextField {...params} label="clearOnBlur" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="clearOnBlur"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -147,7 +218,12 @@ export default function Playground() {
         id="select-on-focus"
         selectOnFocus
         renderInput={(params) => (
-          <TextField {...params} label="selectOnFocus" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="selectOnFocus"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
     </div>

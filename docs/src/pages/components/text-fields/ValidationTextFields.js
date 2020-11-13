@@ -22,14 +22,16 @@ export default function ValidationTextFields() {
           id="standard-error"
           label="Error"
           defaultValue="Hello World"
-          variant="standard" />
+          variant="standard"
+        />
         <TextField
           error
           id="standard-error-helper-text"
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."
-          variant="standard" />
+          variant="standard"
+        />
       </div>
       <div>
         <TextField
@@ -49,13 +51,19 @@ export default function ValidationTextFields() {
         />
       </div>
       <div>
-        <TextField error id="outlined-error" label="Error" defaultValue="Hello World" />
+        <TextField
+          error
+          id="outlined-error"
+          label="Error"
+          defaultValue="Hello World"
+        />
         <TextField
           error
           id="outlined-error-helper-text"
           label="Error"
           defaultValue="Hello World"
-          helperText="Incorrect entry." />
+          helperText="Incorrect entry."
+        />
       </div>
     </form>
   );

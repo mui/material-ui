@@ -38,7 +38,9 @@ export default function LocalizedTimePicker() {
           <TimePicker
             value={selectedDate}
             onChange={(date) => handleDateChange(date)}
-            renderInput={(params) => <TextField {...params} margin="normal" variant="standard" />}
+            renderInput={(params) => (
+              <TextField {...params} margin="normal" variant="standard" />
+            )}
           />
           <ToggleButtonGroup value={locale} exclusive>
             {Object.keys(localeMap).map((localeItem) => (

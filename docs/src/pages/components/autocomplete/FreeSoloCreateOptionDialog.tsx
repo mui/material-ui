@@ -121,7 +121,8 @@ export default function FreeSoloCreateOptionDialog() {
               }
               label="title"
               type="text"
-              variant="standard" />
+              variant="standard"
+            />
             <TextField
               margin="dense"
               id="name"
@@ -134,7 +135,8 @@ export default function FreeSoloCreateOptionDialog() {
               }
               label="year"
               type="number"
-              variant="standard" />
+              variant="standard"
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>

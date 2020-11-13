@@ -132,7 +132,8 @@ export default function FormattedInputs() {
         InputProps={{
           inputComponent: NumberFormatCustom as any,
         }}
-        variant="standard" />
+        variant="standard"
+      />
     </div>
   );
 }

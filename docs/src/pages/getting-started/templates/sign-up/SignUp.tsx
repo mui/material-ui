@@ -69,7 +69,8 @@ export default function SignUp() {
                 fullWidth
                 id="firstName"
                 label="First Name"
-                autoFocus />
+                autoFocus
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -78,7 +79,8 @@ export default function SignUp() {
                 id="lastName"
                 label="Last Name"
                 name="lastName"
-                autoComplete="lname" />
+                autoComplete="lname"
+              />
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -87,7 +89,8 @@ export default function SignUp() {
                 id="email"
                 label="Email Address"
                 name="email"
-                autoComplete="email" />
+                autoComplete="email"
+              />
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -97,7 +100,8 @@ export default function SignUp() {
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password" />
+                autoComplete="current-password"
+              />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel

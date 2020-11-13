@@ -51,7 +51,8 @@ export default function MultilineTextFields() {
           value={currency}
           onChange={handleChange}
           helperText="Please select your currency"
-          variant="standard">
+          variant="standard"
+        >
           {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -68,7 +69,8 @@ export default function MultilineTextFields() {
             native: true,
           }}
           helperText="Please select your currency"
-          variant="standard">
+          variant="standard"
+        >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -118,7 +120,8 @@ export default function MultilineTextFields() {
           label="Select"
           value={currency}
           onChange={handleChange}
-          helperText="Please select your currency">
+          helperText="Please select your currency"
+        >
           {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -134,7 +137,8 @@ export default function MultilineTextFields() {
           SelectProps={{
             native: true,
           }}
-          helperText="Please select your currency">
+          helperText="Please select your currency"
+        >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

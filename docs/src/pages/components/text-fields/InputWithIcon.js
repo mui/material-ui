@@ -43,14 +43,19 @@ export default function InputWithIcon() {
             </InputAdornment>
           ),
         }}
-        variant="standard" />
+        variant="standard"
+      />
       <div className={classes.margin}>
         <Grid container spacing={1} alignItems="flex-end">
           <Grid item>
             <AccountCircle />
           </Grid>
           <Grid item>
-            <TextField id="input-with-icon-grid" label="With a grid" variant="standard" />
+            <TextField
+              id="input-with-icon-grid"
+              label="With a grid"
+              variant="standard"
+            />
           </Grid>
         </Grid>
       </div>

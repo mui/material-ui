@@ -83,7 +83,8 @@ export default function SignInSide() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus />
+              autoFocus
+            />
             <TextField
               margin="normal"
               required
@@ -92,7 +93,8 @@ export default function SignInSide() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password" />
+              autoComplete="current-password"
+            />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

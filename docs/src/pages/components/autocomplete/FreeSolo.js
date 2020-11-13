@@ -27,7 +27,8 @@ export default function FreeSolo() {
             InputProps={{
               ...params.InputProps,
               type: 'search',
-            }} />
+            }}
+          />
         )}
       />
     </div>

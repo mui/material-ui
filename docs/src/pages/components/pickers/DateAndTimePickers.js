@@ -28,7 +28,8 @@ export default function DateAndTimePickers() {
         InputLabelProps={{
           shrink: true,
         }}
-        variant="standard" />
+        variant="standard"
+      />
     </form>
   );
 }

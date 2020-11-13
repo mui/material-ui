@@ -60,7 +60,8 @@ function Content(props) {
                   disableUnderline: true,
                   className: classes.searchInput,
                 }}
-                variant="standard" />
+                variant="standard"
+              />
             </Grid>
             <Grid item>
               <Button variant="contained" className={classes.addUser}>
