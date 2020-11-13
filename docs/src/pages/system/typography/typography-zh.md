@@ -77,12 +77,13 @@
 import { typography } from '@material-ui/system';
 ```
 
-| 导入名称            | 属性              | CSS 属性           | Theme key                                                              |
-|:--------------- |:--------------- |:---------------- |:---------------------------------------------------------------------- |
-| `fontFamily`    | `fontFamily`    | `font-family`    | [`typography`](/customization/default-theme/?expand-path=$.typography) |
-| `fontSize`      | `fontSize`      | `font-size`      | [`typography`](/customization/default-theme/?expand-path=$.typography) |
-| `fontStyle`     | `fontStyle`     | `font-style`     | [`typography`](/customization/default-theme/?expand-path=$.typography) |
-| `fontWeight`    | `fontWeight`    | `font-weight`    | [`typography`](/customization/default-theme/?expand-path=$.typography) |
-| `letterSpacing` | `letterSpacing` | `letter-spacing` | none                                                                   |
-| `lineHeight`    | `lineHeight`    | `line-height`    | none                                                                   |
-| `textAlign`     | `textAlign`     | `text-align`     | none                                                                   |
+| 导入名称            | 属性              | CSS 属性                                                                                       | Theme key                                                              |
+|:--------------- |:--------------- |:-------------------------------------------------------------------------------------------- |:---------------------------------------------------------------------- |
+| `typography`    | `typography`    | `font-family`, `font-weight`, `font-size`, `line-height`, `letter-spacing`, `text-transform` | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| `fontFamily`    | `fontFamily`    | `font-family`                                                                                | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| `fontSize`      | `fontSize`      | `font-size`                                                                                  | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| `fontStyle`     | `fontStyle`     | `font-style`                                                                                 | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| `fontWeight`    | `fontWeight`    | `font-weight`                                                                                | [`typography`](/customization/default-theme/?expand-path=$.typography) |
+| `letterSpacing` | `letterSpacing` | `letter-spacing`                                                                             | none                                                                   |
+| `lineHeight`    | `lineHeight`    | `line-height`                                                                                | none                                                                   |
+| `textAlign`     | `textAlign`     | `text-align`                                                                                 | none                                                                   |
