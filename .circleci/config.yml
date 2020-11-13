@@ -227,15 +227,14 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:10
-      - image: selenium/standalone-chrome:3.11.0
+      - image: circleci/node:10-browsers
     steps:
       - checkout
       - install_js
       - run:
           name: Visual regression tests
           command: |
-            DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
+            yarn test:regressions
             yarn argos
 workflows:
   version: 2
