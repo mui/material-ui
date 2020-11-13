@@ -4,9 +4,9 @@ import NoSsr from '@material-ui/core/NoSsr';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { compose, spacing, palette, styleFunctionSx } from '@material-ui/system';
 
-const Box = styled.div`
-  ${styleFunctionSx(compose(spacing, palette))}
-`;
+const styleFunction = styleFunctionSx(compose(spacing, palette));
+
+const Box = styled.div(styleFunction);
 
 const theme = createMuiTheme();
 
