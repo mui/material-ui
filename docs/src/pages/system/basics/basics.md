@@ -319,12 +319,12 @@ In this example, the `variant` property supports all the keys present in `theme.
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
-## CSS property
+## `sx` property	
 
-If you want to support custom CSS values, you can use the `css()` helper.
-It will process the `css` property.
+If you want to support custom CSS values, you can use the `styleFunctionSx()` helper.	
+It will process the `sx` property.	
 
-{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/basics/SxProp.js", "bg": true}}
 
 ## How it works
 

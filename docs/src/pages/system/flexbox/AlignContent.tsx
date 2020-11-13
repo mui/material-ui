@@ -11,7 +11,7 @@ export default function AlignContent() {
         p={1}
         m={1}
         bgcolor="background.paper"
-        css={{ maxWidth: 300, height: 200 }}
+        sx={{ maxWidth: 300, height: 200 }}
       >
         <Box p={1} bgcolor="grey.300">
           Item 1
@@ -42,7 +42,7 @@ export default function AlignContent() {
         p={1}
         m={1}
         bgcolor="background.paper"
-        css={{ maxWidth: 300, height: 200 }}
+        sx={{ maxWidth: 300, height: 200 }}
       >
         <Box p={1} bgcolor="grey.300">
           Item 1
