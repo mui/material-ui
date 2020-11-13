@@ -294,7 +294,7 @@ export default function Pricing() {
             </Grid>
           ))}
         </Grid>
-        <Box mt={5}>
+        <Box sx={{ mt: 5 }}>
           <Copyright />
         </Box>
       </Container>

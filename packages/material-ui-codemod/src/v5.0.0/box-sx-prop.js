@@ -97,7 +97,7 @@ export default function transformer(file, api) {
       const attributes = path.node.openingElement.attributes;
       attributes.forEach((node, index) => {
         // Only transform whitelisted props
-        if (boxProps.includes(node.name.name)) {
+        if (node.type === 'JSXAttribute' && boxProps.includes(node.name.name)) {
           sxValue = buildSxValue(node, sxValue);
           delete attributes[index];
         }

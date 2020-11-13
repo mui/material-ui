@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import PropTypes from 'prop-types';
+import { createSandbox } from 'sinon';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import Box from './Box';
 
@@ -19,21 +21,9 @@ describe('<Box />', () => {
     </div>
   );
 
-  it('warns if system props are used directly on the Box component', () => {
-    expect(() => {
-      render(
-        <Box
-          color="primary.main"
-          fontFamily="Comic Sans"
-          fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
-        />,
-      );
-    }).toWarnDev('Material-UI: You are using deprecated props on the Box component.\n');
-  });
-
   it('renders children and box content', () => {
     const { container, getByTestId } = render(
-      <Box component="span" m={1}>
+      <Box component="span" sx={{ m: 1 }}>
         {testChildren}
       </Box>,
     );
@@ -41,21 +31,62 @@ describe('<Box />', () => {
     expect(container.querySelectorAll('span').length).to.equal(1);
   });
 
-  it('does not forward style props as DOM attributes', () => {
-    const elementRef = React.createRef();
-    render(
-      <Box
-        color="primary.main"
-        fontFamily="Comic Sans"
-        fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
-        ref={elementRef}
-      />,
-    );
+  describe('warnings', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
 
-    const { current: element } = elementRef;
-    expect(element.getAttribute('color')).to.equal(null);
-    expect(element.getAttribute('font-family')).to.equal(null);
-    expect(element.getAttribute('font-size')).to.equal(null);
+    it('warns if system props are used directly on the Box component', () => {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          // If this breaks too often remove the test.
+          // Testing propTypes isn't worth the effort of using expando properties for internal propTypes-only stuff.
+          // eslint-disable-next-line no-underscore-dangle
+          Box.__emotion_base.propTypes,
+          {
+            color: 'primary.main',
+            fontFamily: 'Comic Sans',
+            fontSize: { xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' },
+          },
+          'props',
+          'MockedName',
+        );
+      }).toErrorDev(
+        'Warning: Failed props type: The following props are deprecated: `color`, `fontFamily`, `fontSize`.',
+      );
+    });
+  });
+
+  describe('deprecated props', () => {
+    const consoleSandbox = createSandbox();
+
+    beforeEach(() => {
+      // Otherwise our global setup throws on prop-types warnings.
+      // The tested props are deprecated so we're not worried about new, unexpected console errors.
+      consoleSandbox.stub(console, 'warn');
+      consoleSandbox.stub(console, 'error');
+    });
+
+    afterEach(() => {
+      consoleSandbox.restore();
+    });
+
+    it('does not forward style props as DOM attributes', () => {
+      const elementRef = React.createRef();
+      render(
+        <Box
+          color="primary.main"
+          fontFamily="Comic Sans"
+          fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
+          ref={elementRef}
+        />,
+      );
+
+      const { current: element } = elementRef;
+      expect(element).not.to.have.attribute('color');
+      expect(element).not.to.have.attribute('font-family');
+      expect(element).not.to.have.attribute('font-size');
+    });
   });
 
   it('respect properties order when generating the CSS', function test() {
@@ -65,7 +96,9 @@ describe('<Box />', () => {
       this.skip();
     }
 
-    const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
+    const testCaseBorderColorWins = render(
+      <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
+    );
 
     expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
@@ -82,7 +115,14 @@ describe('<Box />', () => {
       borderLeftColor: 'rgb(0, 0, 255)',
     });
 
-    const testCaseBorderWins = render(<Box borderColor="rgb(0, 0, 255)" border={1} />);
+    const testCaseBorderWins = render(
+      <Box
+        sx={{
+          borderColor: 'rgb(0, 0, 255)',
+          border: 1,
+        }}
+      />,
+    );
 
     expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',

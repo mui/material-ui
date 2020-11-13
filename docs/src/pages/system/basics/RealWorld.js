@@ -9,11 +9,11 @@ import Box from '@material-ui/core/Box';
 
 export default function RealWorld() {
   return (
-    <Box clone pt={2} pr={1} pb={1} pl={2}>
+    <Box clone sx={{ pt: 2, pr: 1, pb: 1, pl: 2 }}>
       <Paper elevation={0}>
         <Grid container spacing={2} alignItems="center" wrap="nowrap">
           <Grid item>
-            <Box bgcolor="primary.main" clone>
+            <Box clone sx={{ bgcolor: 'primary.main' }}>
               <Avatar>
                 <SignalWifiOffIcon />
               </Avatar>

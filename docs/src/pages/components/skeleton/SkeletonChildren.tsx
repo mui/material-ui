@@ -18,8 +18,8 @@ function SkeletonChildrenDemo(props: { loading?: boolean }) {
 
   return (
     <div>
-      <Box display="flex" alignItems="center">
-        <Box margin={1}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ margin: 1 }}>
           {loading ? (
             <Skeleton variant="circular">
               <Avatar />
@@ -28,7 +28,7 @@ function SkeletonChildrenDemo(props: { loading?: boolean }) {
             <Avatar src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg" />
           )}
         </Box>
-        <Box width="100%">
+        <Box sx={{ width: '100%' }}>
           {loading ? (
             <Skeleton width="100%">
               <Typography>.</Typography>
