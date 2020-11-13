@@ -25,6 +25,16 @@ async function main() {
   await page.goto(`${baseUrl}#no-dev`, { waitUntil: 'networkidle0' });
   await page.waitForSelector('[data-webfontloader="active"]', { state: 'attached' });
 
+  // Simulate portrait mode for date pickers.
+  // See `useIsLandscape`.
+  await page.evaluate(() => {
+    Object.defineProperty(window.screen.orientation, 'angle', {
+      get() {
+        return 0;
+      },
+    });
+  });
+
   const routes = await page.$$eval('#tests a', (links) => {
     return links.map((link) => {
       return link.href;
