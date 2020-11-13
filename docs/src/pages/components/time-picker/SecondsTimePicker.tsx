@@ -21,7 +21,9 @@ export default function SecondsTimePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
         />
         <TimePicker
           ampmInClock
@@ -33,7 +35,9 @@ export default function SecondsTimePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
         />
       </div>
     </LocalizationProvider>

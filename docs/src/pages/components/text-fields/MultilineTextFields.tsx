@@ -25,7 +25,7 @@ export default function MultilineTextFields() {
     <form className={classes.root} noValidate autoComplete="off">
       <div>
         <TextField
-          id="standard-multiline-flexible"
+          id="outlined-multiline-flexible"
           label="Multiline"
           multiline
           maxRows={4}
@@ -33,13 +33,13 @@ export default function MultilineTextFields() {
           onChange={handleChange}
         />
         <TextField
-          id="standard-textarea"
+          id="outlined-textarea"
           label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
         />
         <TextField
-          id="standard-multiline-static"
+          id="outlined-multiline-static"
           label="Multiline"
           multiline
           rows={4}
@@ -74,28 +74,28 @@ export default function MultilineTextFields() {
       </div>
       <div>
         <TextField
-          id="outlined-multiline-flexible"
+          id="standard-multiline-flexible"
           label="Multiline"
           multiline
           maxRows={4}
           value={value}
           onChange={handleChange}
-          variant="outlined"
+          variant="standard"
         />
         <TextField
-          id="outlined-textarea"
+          id="standard-textarea"
           label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
-          variant="outlined"
+          variant="standard"
         />
         <TextField
-          id="outlined-multiline-static"
+          id="standard-multiline-static"
           label="Multiline"
           multiline
           rows={4}
           defaultValue="Default Value"
-          variant="outlined"
+          variant="standard"
         />
       </div>
     </form>

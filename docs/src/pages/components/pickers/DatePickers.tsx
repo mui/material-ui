@@ -30,6 +30,7 @@ export default function DatePickers() {
         InputLabelProps={{
           shrink: true,
         }}
+        variant="standard"
       />
     </form>
   );

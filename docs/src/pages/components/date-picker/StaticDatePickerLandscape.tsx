@@ -18,7 +18,7 @@ export default function StaticDatePickerLandscape() {
         onChange={(newValue) => {
           setValue(newValue);
         }}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => <TextField {...params} variant="standard" />}
       />
     </LocalizaitonProvider>
   );

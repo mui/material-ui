@@ -622,6 +622,7 @@ describe('<InputBase />', () => {
               </InputAdornment>
             ),
           }}
+          variant="standard"
         />,
       );
     });

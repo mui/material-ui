@@ -44,7 +44,6 @@ export default function Tags() {
         renderInput={(params) => (
           <TextField
             {...params}
-            variant="outlined"
             label="filterSelectedOptions"
             placeholder="Favorites"
           />

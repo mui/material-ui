@@ -96,7 +96,7 @@ export default function FreeSoloCreateOptionDialog() {
         style={{ width: 300 }}
         freeSolo
         renderInput={(params) => (
-          <TextField {...params} label="Free solo dialog" variant="outlined" />
+          <TextField {...params} label="Free solo dialog" />
         )}
       />
       <Dialog
@@ -123,6 +123,7 @@ export default function FreeSoloCreateOptionDialog() {
               }
               label="title"
               type="text"
+              variant="standard"
             />
             <TextField
               margin="dense"
@@ -136,6 +137,7 @@ export default function FreeSoloCreateOptionDialog() {
               }
               label="year"
               type="number"
+              variant="standard"
             />
           </DialogContent>
           <DialogActions>
