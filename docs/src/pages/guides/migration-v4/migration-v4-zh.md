@@ -24,7 +24,7 @@
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^5.0.0-alpha.1"
+  "@material-ui/core": "^5.0.0"
 }
 ```
 
@@ -59,7 +59,7 @@ yarn add @material-ui/core@next
 
 ### 非转发类（non-ref-forwarding class）组件
 
-对 `component` 属性中的非转发类组件或作为直接 `子类` 的支持已被放弃。 如果你使用了 `unstable_createStrictModeTheme` 或者在 `React.StrictMode` 中没有看到任何与 `findDOMNode` 相关的任何警告，那么你不需要做任何事情。 否则请查看我们指南中的 [“注意事项与参考文献”部分](/guides/composition/#caveat-with-refs) 来了解如何迁移。 这个变化几乎影响了所有使用 `component` 属性的组件或者将 `children` 传递给要求 `children` 作为元素的组件（例如 `<MenuList><CustomMenuItem /></MenuList>`）
+对 `component` 属性中的非转发（non-ref-forwarding）类组件或作为直接 `子类（children）` 的支持已被放弃。 如果你使用了 `unstable_createStrictModeTheme` 或者在 `React.StrictMode` 中没有看到任何与 `findDOMNode` 相关的任何警告，那么你不需要做任何事情。 否则请查看我们指南中的 [“注意事项与参考文献”部分](/guides/composition/#caveat-with-refs) 来了解如何迁移。 这个变化几乎影响了所有使用 `component` 属性的组件或者将 `children` 传递给要求 `children` 作为元素的组件（例如 `<MenuList><CustomMenuItem /></MenuList>`）
 
 ### 主题
 
@@ -315,6 +315,18 @@ const classes = makeStyles(theme => ({
   -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
+
+
+  ###  Box
+
+- system 属性在 v5 中已废弃且被 `sx` 属性取代。
+
+```diff
+-<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
++<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+```
+
+[该编码器（codemod）](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#box-sx-prop) 将自动将你的代码更新为新的语法。
 
 ### Button
 
@@ -917,3 +929,12 @@ const classes = makeStyles(theme => ({
   -<Typography variant="srOnly">创建用户</Typography>
   +<Span>创建用户</Span>
   ```
+
+### System 系统
+
+- 为了避免与 styled-components & emotion CSS 属性冲突，我们将该 `css` 属性替换为 `sx`。
+
+```diff
+-<Box css={{ color: 'primary.main' }} />
++<Box sx={{ color: 'primary.main' }} />
+```
