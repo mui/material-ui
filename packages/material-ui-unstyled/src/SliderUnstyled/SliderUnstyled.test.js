@@ -19,7 +19,7 @@ describe('<SliderUnstyled />', () => {
     testComponentPropWith: 'span',
   }));
 
-  it('forwards style props as DOM attributes', () => {
+  it('forwards style props on the Root component', () => {
     let styleProps = null;
     let theme = null;
 
