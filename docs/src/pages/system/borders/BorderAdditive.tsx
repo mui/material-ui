@@ -11,7 +11,7 @@ const commonStyles = {
 
 export default function BorderAdditive() {
   return (
-    <Box display="flex" justifyContent="center">
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <Box sx={{ ...commonStyles, border: 1 }} />
       <Box sx={{ ...commonStyles, borderTop: 1 }} />
       <Box sx={{ ...commonStyles, borderRight: 1 }} />

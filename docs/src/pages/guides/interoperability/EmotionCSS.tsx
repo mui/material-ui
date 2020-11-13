@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 
 export default function EmotionCSS() {
   return (
-    <Box width={300}>
+    <Box sx={{ width: 300 }}>
       <Slider defaultValue={30} />
       <Slider
         defaultValue={30}

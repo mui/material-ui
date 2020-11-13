@@ -6,9 +6,14 @@ defaults: &defaults
       description: The dist-tag of react to be used
       type: string
       default: stable
+    test-gate:
+      description: A particular type of tests that should be run
+      type: string
+      default: undefined
   environment:
     # expose it globally otherwise we have to thread it from each job to the install command
     REACT_DIST_TAG: << parameters.react-dist-tag >>
+    TEST_GATE: << parameters.test-gate >>
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:10
@@ -285,3 +290,16 @@ workflows:
                 - next
     jobs:
       - test_types_next
+  timezone-tests:
+    triggers:
+      - schedule:
+          cron: '23 * * * *'
+          filters:
+            branches:
+              only:
+                - next
+    jobs:
+      - test_unit:
+          test-gate: experimental-timezones
+      - test_browser:
+          test-gate: experimental-timezones

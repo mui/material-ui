@@ -29,7 +29,7 @@ You need to update your `package.json` to use the latest version of Material-UI.
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^5.0.0-alpha.1"
+  "@material-ui/core": "^5.0.0"
 }
 ```
 
@@ -66,7 +66,7 @@ If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-b
 
 ### non-ref-forwarding class components
 
-Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
+Support for non-ref-forwarding class components in the `component` prop or as immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
 Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
@@ -330,6 +330,17 @@ const classes = makeStyles(theme => ({
   -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
+
+  ### Box
+
+- The system props have been deprecated in v5, and replaced with the `sx` prop.
+
+```diff
+-<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
++<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+```
+
+[This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
 
 ### Button
 

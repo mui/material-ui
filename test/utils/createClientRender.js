@@ -167,7 +167,7 @@ Object.assign(fireEvent, rtlFireEvent, {
     // `element` shouldn't be `document` but we catch this later anyway
     const document = element.ownerDocument || element;
     const target = document.activeElement || document.body || document.documentElement;
-    if (options.force !== true && target !== element) {
+    if (target !== element) {
       // see https://www.w3.org/TR/uievents/#keydown
       const error = new Error(
         `\`keydown\` events can only be targeted at the active element which is ${prettyDOM(
