@@ -287,7 +287,11 @@ function generatePropType(type: PropTypeDescriptor): string | undefined {
 }
 
 function generateName(reactAPI: ReactApi) {
-  if (reactAPI.styles.classes.length && !reactAPI.styles.name && reactAPI.name.indexOf('Unstyled') === -1) {
+  if (
+    reactAPI.styles.classes.length &&
+    !reactAPI.styles.name &&
+    reactAPI.name.indexOf('Unstyled') === -1
+  ) {
     throw new Error(`Missing styles name on ${reactAPI.name} component`);
   }
 
