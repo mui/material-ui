@@ -8,6 +8,7 @@ import {
   act,
   createClientRender,
   fireEvent,
+  screen,
 } from 'test/utils';
 import Modal from '../Modal';
 import Dialog from './Dialog';
@@ -25,17 +26,17 @@ function userClick(element) {
 }
 
 /**
- * @param {HTMLElement} container
+ * @param {typeof import('test/utils').screen} view
  */
-function findBackdrop(container) {
-  return container.querySelector('[data-mui-test="FakeBackdrop"]');
+function findBackdrop(view) {
+  return view.getByRole('dialog').parentElement;
 }
 
 /**
- * @param {HTMLElement} container
+ * @param {typeof import('test/utils').screen} view
  */
-function clickBackdrop(container) {
-  userClick(findBackdrop(container));
+function clickBackdrop(view) {
+  userClick(findBackdrop(view));
 }
 
 describe('<Dialog />', () => {
@@ -108,7 +109,9 @@ describe('<Dialog />', () => {
       dialog.click();
     });
 
-    fireEvent.keyDown(document.querySelector('[data-mui-test="FakeBackdrop"]'), { key: 'Esc' });
+    // keyDown not targetted at anything specific
+    // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
     expect(onEscapeKeyDown.calledOnce).to.equal(true);
     expect(onClose.calledOnce).to.equal(true);
 
@@ -136,30 +139,22 @@ describe('<Dialog />', () => {
 
     act(() => {
       dialog.click();
-      fireEvent.keyDown(document.querySelector('[data-mui-test="FakeBackdrop"]'), { key: 'Esc' });
+      // keyDown is not targetted at anything specific.
+      // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+      fireEvent.keyDown(document.activeElement, { key: 'Esc' });
     });
 
     expect(onClose.callCount).to.equal(0);
 
-    clickBackdrop(document.body);
+    clickBackdrop(screen);
     expect(onClose.callCount).to.equal(0);
-  });
-
-  it('should spread custom props on the modal root node', () => {
-    render(
-      <Dialog data-my-prop="woofDialog" open>
-        foo
-      </Dialog>,
-    );
-    const modal = document.querySelector('[data-mui-test="Modal"]');
-    expect(modal).to.have.attribute('data-my-prop', 'woofDialog');
   });
 
   describe('backdrop', () => {
     it('does have `role` `none presentation`', () => {
       render(<Dialog open>foo</Dialog>);
 
-      expect(findBackdrop(document.body)).to.have.attribute('role', 'none presentation');
+      expect(findBackdrop(screen)).to.have.attribute('role', 'none presentation');
     });
 
     it('calls onBackdropClick and onClose when clicked', () => {
@@ -171,7 +166,7 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
 
-      clickBackdrop(document);
+      clickBackdrop(screen);
       expect(onBackdropClick.callCount).to.equal(1);
       expect(onClose.callCount).to.equal(1);
     });
@@ -198,7 +193,7 @@ describe('<Dialog />', () => {
       );
 
       fireEvent.mouseDown(getByRole('heading'));
-      findBackdrop(document.body).click();
+      findBackdrop(screen).click();
       expect(getByRole('dialog')).not.to.equal(null);
     });
   });

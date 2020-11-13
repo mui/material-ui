@@ -1,4 +1,4 @@
-import chai from 'chai';
+import chai, { AssertionError } from 'chai';
 import chaiDom from 'chai-dom';
 import _ from 'lodash';
 import { isInaccessible } from '@testing-library/dom';
@@ -367,6 +367,10 @@ chai.use((chaiAPI, utils) => {
     expectedStyleUnnormalized: Record<string, string>,
   ) {
     const element = utils.flag(this, 'object') as HTMLElement;
+    if (element?.nodeType !== 1) {
+      // Same pre-condition for negated and unnegated  assertion
+      throw new AssertionError(`Expected an Element but got ${String(element)}`);
+    }
 
     assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
       styleTypeHint: 'inline',
@@ -377,6 +381,10 @@ chai.use((chaiAPI, utils) => {
     expectedStyleUnnormalized: Record<string, string>,
   ) {
     const element = utils.flag(this, 'object') as HTMLElement;
+    if (element?.nodeType !== 1) {
+      // Same pre-condition for negated and unnegated  assertion
+      throw new AssertionError(`Expected an Element but got ${String(element)}`);
+    }
     const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
 
     assertMatchingStyles.call(this, computedStyle, expectedStyleUnnormalized, {

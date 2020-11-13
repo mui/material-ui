@@ -223,7 +223,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
       <div
-        data-mui-test="Modal"
         ref={handleRef}
         onKeyDown={handleKeyDown}
         role="presentation"
