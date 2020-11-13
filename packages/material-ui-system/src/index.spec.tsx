@@ -36,17 +36,17 @@ function sxTest() {
 
   // narrow
   wideOrNarrowStyleFunction({ theme: {}, sx: { color: 'blue', spacing: 2 } });
-  // wide, undesire: `sx` is required, marking it as optional breaks system/basics/#css-property
+  // wide, undesire: `sx` is required, marking it as optional breaks system/basics/#sx-property
   wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2, sx: {} });
   // wide and narrow
   wideOrNarrowStyleFunction({ theme: {}, sx: { color: 'blue', spacing: 2 }, color: 'red' });
 }
 
 /**
- * marking a prop as required requires it in props object and `css` object
+ * marking a prop as required requires it in props object and `sx` object
  *
- * This is not equivalent to the implementation. Ideally `css` would be optional
- * but that breaks system/basics/#css-property
+ * This is not equivalent to the implementation. Ideally `sx` would be optional
+ * but that breaks system/basics/#sx-property
  */
 function sxRequiredTest() {
   function styleRequiredFunction(props: { color: string }) {
@@ -57,7 +57,7 @@ function sxRequiredTest() {
   style({
     color: 'red',
     // @ts-expect-error
-    css: {},
+    sx: {},
   });
   // @ts-expect-error
   style({ sx: { color: 'red' } });

@@ -319,6 +319,13 @@ In this example, the `variant` property supports all the keys present in `theme.
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
+## `sx` property	
+
+If you want to support custom CSS values, you can use the `styleFunctionSx()` helper.	
+It will process the `sx` property.	
+
+{{"demo": "pages/system/basics/SxProp.js", "bg": true}}
+
 ## How it works
 
 styled-system has done a great job at [explaining how it works](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works).
