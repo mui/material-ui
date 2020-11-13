@@ -165,7 +165,9 @@ describe('<DatePicker /> keyboard interactions', () => {
           />,
         );
 
-        fireEvent.keyDown(document.body, { force: true, keyCode, key });
+        // Don't care about what's focused.
+        // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+        fireEvent.keyDown(document.activeElement!, { keyCode, key });
 
         expect(document.activeElement).toHaveAccessibleName(expectFocusedDay);
       });
@@ -189,9 +191,10 @@ describe('<DatePicker /> keyboard interactions', () => {
 
     expect(document.activeElement).to.have.attr('aria-label', 'Aug 13, 2020');
 
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < 3; i++) {
-      fireEvent.keyDown(document.body, { force: true, keyCode: 37, key: 'ArrowLeft' });
+    for (let i = 0; i < 3; i += 1) {
+      // Don't care about what's focused.
+      // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+      fireEvent.keyDown(document.activeElement!, { keyCode: 37, key: 'ArrowLeft' });
     }
 
     // leaves focus on the same date
@@ -223,7 +226,9 @@ describe('<DatePicker /> keyboard interactions', () => {
           />,
         );
 
-        fireEvent.keyDown(document.body, { force: true, keyCode, key });
+        // Don't care about what's focused.
+        // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+        fireEvent.keyDown(document.activeElement!, { keyCode, key });
 
         expect(document.activeElement).to.have.text(expectFocusedYear);
       });
