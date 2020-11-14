@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import { useSelector, useDispatch } from 'react-redux';
-import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
+import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Collapse from '@material-ui/core/Collapse';
@@ -25,6 +25,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
+import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -648,7 +649,7 @@ const useStyles = makeStyles(
     /* Isolate the demo with an outline. */
     demoBgOutlined: {
       padding: theme.spacing(3),
-      border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+      border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
       borderLeftWidth: 0,
       borderRightWidth: 0,
       [theme.breakpoints.up('sm')]: {
@@ -705,8 +706,8 @@ const useStyles = makeStyles(
   { name: 'Demo' },
 );
 
-function Demo(props) {
-  const { demo, demoOptions, githubLocation } = props;
+export default function Demo(props) {
+  const { demo, demoOptions, disableAd, githubLocation } = props;
   const classes = useStyles();
   const t = useSelector((state) => state.options.t);
   const codeVariant = useSelector((state) => state.options.codeVariant);
@@ -763,6 +764,8 @@ function Demo(props) {
 
   const initialFocusRef = React.useRef(null);
 
+  const [showAd, setShowAd] = React.useState(false);
+
   return (
     <div className={classes.root}>
       <div
@@ -805,20 +808,26 @@ function Demo(props) {
           demoOptions={demoOptions}
           demoSourceId={demoSourceId}
           initialFocusRef={initialFocusRef}
-          onCodeOpenChange={() => setCodeOpen((open) => !open)}
+          onCodeOpenChange={() => {
+            setCodeOpen((open) => !open);
+            setShowAd(true);
+          }}
           onResetDemoClick={resetDemo}
           openDemoSource={openDemoSource}
           showPreview={showPreview}
         />
       )}
       <Collapse in={openDemoSource} unmountOnExit>
-        <HighlightedCode
-          className={classes.code}
-          id={demoSourceId}
-          code={showPreview && !codeOpen ? jsx : demoData.raw}
-          language={demoData.sourceLanguage}
-        />
+        <div>
+          <HighlightedCode
+            className={classes.code}
+            id={demoSourceId}
+            code={showPreview && !codeOpen ? jsx : demoData.raw}
+            language={demoData.sourceLanguage}
+          />
+        </div>
       </Collapse>
+      {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
     </div>
   );
 }
@@ -826,7 +835,6 @@ function Demo(props) {
 Demo.propTypes = {
   demo: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
+  disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,
 };
-
-export default Demo;

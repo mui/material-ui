@@ -164,7 +164,7 @@ html {
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
-## Variants
+## Variantes
 
 The typography object comes with [13 variants](/components/typography/#component) by default:
 

@@ -1,5 +1,5 @@
 ---
-title: Divider React-Komponente
+title: React Divider component
 components: Divider
 ---
 
@@ -33,6 +33,6 @@ In einer Liste sollten sie sicherstellen, dass der `Trenner` als `<li>` gerender
 
 ## Vertikale Trennlinien
 
-You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
+Sie können einen Trenner auch vertikal mit der `orientation` prop rendern. Note the use of the `flexItem` prop to accommodate for the flex container.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}

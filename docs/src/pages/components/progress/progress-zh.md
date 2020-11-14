@@ -1,5 +1,5 @@
 ---
-title: React 进度环和进度条组件
+title: React Circular progress（进度环组件），React Linear progress （进度条组件）
 components: CircularProgress, LinearProgress
 ---
 
@@ -22,7 +22,7 @@ components: CircularProgress, LinearProgress
 
 ### 定量的环形进度条
 
-{{"demo": "pages/components/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### 交互集成
 

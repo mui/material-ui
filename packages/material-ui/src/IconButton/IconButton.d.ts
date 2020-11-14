@@ -28,7 +28,6 @@ export type IconButtonTypeMap<
  * Demos:
  *
  * - [Buttons](https://material-ui.com/components/buttons/)
- * - [Grid List](https://material-ui.com/components/grid-list/)
  *
  * API:
  *

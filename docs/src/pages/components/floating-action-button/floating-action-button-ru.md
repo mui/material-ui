@@ -1,5 +1,5 @@
 ---
-title: Fab React component
+title: Компонент React Fab
 components: Fab
 ---
 

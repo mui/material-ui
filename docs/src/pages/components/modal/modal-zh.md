@@ -1,5 +1,5 @@
 ---
-title: React 模态框组件
+title: React Modal（模态框）组件
 components: Modal
 ---
 
@@ -21,7 +21,7 @@ components: Modal
 当你创建一个模态对话框时，使用[对话框（Dialog）](/components/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
 - [Dialog](/components/dialogs/)
-- [Drawer 抽屉](/components/drawers/)
+- [Drawer（抽屉）](/components/drawers/)
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
@@ -54,7 +54,7 @@ React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
-## 局限性
+## 设计局限
 
 ### 焦点陷阱
 

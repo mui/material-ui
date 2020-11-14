@@ -36,8 +36,19 @@ export default function AdDisplay(props) {
 
   /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
-    <span className={clsx(classes.root, 'ad-display', className)}>
-      <a href={ad.link} target="_blank" rel="noopener sponsored">
+    <span className={clsx(classes.root, className)}>
+      <a
+        href={ad.link}
+        target="_blank"
+        rel="noopener sponsored"
+        {...(ad.label
+          ? {
+              'data-ga-event-category': 'ad',
+              'data-ga-event-action': 'click',
+              'data-ga-event-label': ad.label,
+            }
+          : {})}
+      >
         <span className={classes.imageWrapper}>
           <img height="100" width="130" className={classes.image} src={ad.img} alt={ad.name} />
         </span>

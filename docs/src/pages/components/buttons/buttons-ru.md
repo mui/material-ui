@@ -1,5 +1,5 @@
 ---
-title: React-компонент Кнопка
+title: Компонент React Button
 components: Button, IconButton, ButtonBase
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Tooltip React component
+title: Компонент React Tooltip
 components: Tooltip
 ---
 

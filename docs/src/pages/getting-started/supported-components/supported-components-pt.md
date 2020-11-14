@@ -44,8 +44,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Painéis de Expansão](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legado Material v1*)
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Lista de grade)
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)****
 - **[Listas](https://material.io/design/components/lists.html) ✓** 
   - [Tipos:](https://material.io/design/components/lists.html#types) 
     - **Linha única ✓**
@@ -78,11 +77,11 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **[Contínuo](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legado Material v1*)
-- **[Subtítulo](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legado Material v1*) 
+- **[Padrão](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legado Material v1) 
   - **[Lista](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[Grade](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
-- **[Assistentes](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legado Material v1*) 
+- **[Subtítulo](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legado Material v1*) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Etapas mobile](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
@@ -90,7 +89,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **[Abas fixas](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Abas roláveis](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
 - **[Campos de texto](https://material.io/design/components/text-fields.html) ✓** 
-  - **[Padrão](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legado Material v1)
+  - **[Painéis de Expansão](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legado Material v1*)
   - **[Preenchido](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
   - **[Contorno](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - [Tipos](https://material.io/design/components/text-fields.html#input-types): 

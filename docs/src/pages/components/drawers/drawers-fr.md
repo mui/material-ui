@@ -1,5 +1,5 @@
 ---
-title: Composant React Tiroir
+title: React Drawer component
 components: Drawer, SwipeableDrawer
 ---
 

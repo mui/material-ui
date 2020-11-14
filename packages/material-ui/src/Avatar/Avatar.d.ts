@@ -34,7 +34,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The shape of the avatar.
      */
-    variant?: 'circle' | 'rounded' | 'square';
+    variant?: 'circle' | 'circular' | 'rounded' | 'square';
   };
   defaultComponent: D;
   classKey: AvatarClassKey;
@@ -56,6 +56,7 @@ export type AvatarClassKey =
   | 'root'
   | 'colorDefault'
   | 'circle'
+  | 'circular'
   | 'rounded'
   | 'square'
   | 'img'

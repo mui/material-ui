@@ -7,25 +7,25 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 <p class="description">Los campos de texto permiten a los usuarios ingresar y editar texto.</p>
 
-[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
+[Text fields](https://material.io/design/components/text-fields.html) permiten al usuario ingresar un texto en una UI. Generalmente se encuentran en formularios y diálogos.
 
 ## TextField
 
 El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda.
 
-It supports standard, outlined and filled styling.
+Soporta estilos "Standard", "Outlined" y "Filled".
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
-**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/) ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)), but Material-UI will continue to support it.
+**Nota:** La variante estándar de `TextField` no esta mas documentada en [guía Material Design](https://material.io/) ([Aquí esta el por que](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)), pero Material-UI continuara soportándolo.
 
-## Form props
+## Propiedades del Form
 
 Para ello, hay que proporcionar una implementación personalizada del elemento `<input>` con el atributo `inputComponent`. Se pueden utilizar librerías externas para formatear un campo de texto.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
-## Validation
+## Validación 
 
 The `error` prop toggles the error state, the `helperText` prop can then be used to provide feedback to the user about the error.
 
@@ -103,7 +103,7 @@ La personalización no se limita a usar CSS, también puedes usar una composici�
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field).
+🎨 Si buscas un poco de inspiración, puedes visitar [MUI Treasury's ejemplos de customizacion](https://mui-treasury.com/styles/text-field).
 
 ## Limitaciones
 

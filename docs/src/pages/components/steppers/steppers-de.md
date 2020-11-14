@@ -1,5 +1,5 @@
 ---
-title: Stepper React-Komponente
+title: React Stepper component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 

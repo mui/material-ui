@@ -2,10 +2,17 @@ name: 'Maintenance'
 on:
   # So that PRs touching the same files as the push are updated
   push:
+    branches:
+      - master
+      - next
   # So that the `dirtyLabel` is removed if conflicts are resolved
-  # On forks the secret isn't set. We need to manually remove it.
-  #pull_request:
-  #  types: [synchronize]
+  # Could put too much strain on rate limit
+  # If we hit the rate limit too often remove this event
+  pull_request_target:
+    branches:
+      - master
+      - next
+    types: [synchronize]
 
 jobs:
   main:

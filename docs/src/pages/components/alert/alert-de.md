@@ -1,9 +1,9 @@
 ---
-title: Hinweis React-Komponente
+title: React Alert component
 components: Alert, AlertTitle
 ---
 
-# Hinweis
+# Hinweis (Alert)
 
 <p class="description">Ein Hinweis zeigt eine kurze, wichtige Nachricht auf eine Weise, welche die Aufmerksamkeit des Benutzers auf sich zieht ohne die Aufgabe des Benutzers zu unterbrechen.</p>
 
@@ -11,7 +11,7 @@ components: Alert, AlertTitle
 
 ## Einfache Hinweise
 
-Der Hinweis bietet vier Schweregrade an welche je ein eigenes Icon und eine eigene Farbe besitzen.
+Der Hinweis bietet vier Schweregrade an, welche je ein eigenes Icon und eine eigene Farbe besitzen.
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 
@@ -47,13 +47,13 @@ Setting the icon prop to false will remove the icon altogether.
 
 ## Varianten
 
-Two additional variants are available – outlined, and filled:
+Zwei weitere Varianten sind verfügbar – umrandet und ausgefüllt:
 
 ### Umrandung
 
 {{"demo": "pages/components/alert/OutlinedAlerts.js"}}
 
-### Gefüllt
+### Ausgefüllt
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 

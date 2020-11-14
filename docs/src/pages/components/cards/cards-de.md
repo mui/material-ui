@@ -1,9 +1,9 @@
 ---
-title: Cards React Komponente
+title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
-# Card (karte)
+# Karte (Card)
 
 <p class="description">Karten enthalten Inhalte und Aktionen zu einem bestimmten Thema.</p>
 
@@ -25,7 +25,7 @@ Set `variant="outlined"` to render an outlined card.
 
 ## Komplexe Interaktion
 
-Auf dem Desktop können Karteninhalte erweitert werden.
+Auf dem Desktop können Karteninhalte erweitert werden. (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 

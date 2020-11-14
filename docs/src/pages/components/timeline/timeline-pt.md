@@ -1,5 +1,5 @@
 ---
-title: Componente React para Linha do tempo
+title: React Timeline component
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 ---
 

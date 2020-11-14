@@ -2,7 +2,7 @@
 
 <p class="description">Commencez rapidement avec React et Material-UI.</p>
 
-Les composants Material-UI fonctionnent de manière isolée. **They are self-supporting**, and will only inject the styles they need to display. Ils ne s'appuient sur aucune feuille de style globale telle que [normalize.css](https://github.com/necolas/normalize.css/).
+Les composants Material-UI fonctionnent de manière isolée. **Ils sont autonomes**, ils injecteront uniquement les styles nécessaires. Ils ne s'appuient sur aucune feuille de style globale telle que [normalize.css](https://github.com/necolas/normalize.css/).
 
 Vous pouvez utiliser n'importe lequel des composants comme indiqué dans la documentation. Veuillez vous référer à chaque [page de démonstration](/components/buttons/) pour voir comment les composants doivent être importés.
 
@@ -47,7 +47,7 @@ Pour que le rendu et le zoom tactile soient corrects pour tous les périphériqu
 
 ### CssBaseline
 
-Material-UI fournit un composant [CssBaseline](/components/css-baseline/) facultatif. It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UI fournit un composant [CssBaseline](/components/css-baseline/) facultatif. Cela corrige les incohérences entre les navigateurs et les périphériques tout en réinitialisant le style des éléments HTML les plus courants.
 
 ## Documentation versionnée
 

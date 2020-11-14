@@ -15,7 +15,7 @@ Text justification toggle buttons present options for left, right, center, full,
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
-## Multiple selection
+## Selección múltiple
 
 Logically-grouped options, like bold, italic, and underline, allow multiple options to be selected.
 
@@ -31,7 +31,7 @@ Botones más grandes o más pequeños? Use the `size` prop.
 
 {{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
-## Enforce value set
+## Forzar valor establecido
 
 If you want to enforce at least one button to be active, you can adapt your handleChange function.
 
@@ -57,7 +57,7 @@ const handleAlignment = (event, newAlignment) => {
 
 ## Botón de conmutación personalizado
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 

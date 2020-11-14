@@ -60,13 +60,6 @@ const users = [
     caption: 'Netflix',
   },
   {
-    logo: 'coursera.svg',
-    logoWidth: 169,
-    logoHeight: 23,
-    caption: 'Coursera',
-    class: 'coursera',
-  },
-  {
     logo: 'amazon.svg',
     logoWidth: 119,
     logoHeight: 36,
@@ -79,6 +72,13 @@ const users = [
     logoHeight: 50,
     caption: 'Unity',
     class: 'unity',
+  },
+  {
+    logo: 'spotify.svg',
+    logoWidth: 180,
+    logoHeight: 54,
+    caption: 'Spotify',
+    class: 'spotify',
   },
 ];
 
@@ -93,7 +93,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacing(4),
     },
     users: {
-      padding: theme.spacing(10, 4, 0),
+      padding: theme.spacing(10, 6, 0),
     },
     grid: {
       marginTop: theme.spacing(5),
@@ -105,11 +105,11 @@ const useStyles = makeStyles(
     amazon: {
       margin: theme.spacing(2.4, 3, 1.5),
     },
-    coursera: {
-      margin: theme.spacing(2.3, 3, 1.5),
-    },
     unity: {
       margin: theme.spacing(0.5, 3, 1.5),
+    },
+    spotify: {
+      margin: theme.spacing(0, 3, 1.5),
     },
     walmart: {
       margin: '13px 4px 12px',
@@ -156,7 +156,7 @@ export default function Users() {
             <Grid container justify="center">
               <Button
                 variant="outlined"
-                href="https://spectrum.chat/material-ui/general/whos-using-material-ui~00e6687a-9b2d-454f-97a6-950d9fde71cf"
+                href="https://github.com/mui-org/material-ui/issues/22426"
                 rel="noopener nofollow"
                 target="_blank"
                 className={classes.button}

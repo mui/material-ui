@@ -206,12 +206,7 @@ workflows:
   version: 2
   pipeline:
     jobs:
-      - checkout:
-          filters:
-            branches:
-              ignore:
-                - l10n
-                - /dependabot\//
+      - checkout
       - test_unit:
           requires:
             - checkout

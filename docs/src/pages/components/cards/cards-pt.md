@@ -1,5 +1,5 @@
 ---
-title: Componente React para Cartão
+title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
@@ -25,7 +25,7 @@ Defina `variant="outlined"` para renderizar um cartão delineado.
 
 ## Interação Complexa
 
-O conteúdo do cartão pode ser expandido.
+O conteúdo do cartão pode ser expandido. (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 

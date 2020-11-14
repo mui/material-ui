@@ -1,5 +1,5 @@
 ---
-title: Componente React Hidden
+title: React Hidden component
 components: Hidden
 ---
 

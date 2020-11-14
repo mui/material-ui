@@ -1,5 +1,5 @@
 ---
-title: Componente React para Modal
+title: React Modal component
 components: Modal
 ---
 

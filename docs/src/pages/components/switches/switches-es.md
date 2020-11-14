@@ -1,15 +1,15 @@
 ---
-title: Switch React component
+title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
 # Switch
 
-<p class="description">Switches toggle the state of a single setting on or off.</p>
+<p class="description">Los conmutadores alternan los estados de un solo ajuste.</p>
 
-[Switches](https://material.io/design/components/selection-controls.html#switches) are the preferred way to adjust settings on mobile. The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
+[Estos](https://material.io/design/components/selection-controls.html#switches) son la manera mas común de ajustar una configuración en dispositivos móviles. La opcion controllada por el switch asi como el estado internmo de este, deben especificarse de manera clara en la etiqueta inline correspondiente.
 
-## Basic switches
+## Conmutadores Básicos
 
 {{"demo": "pages/components/switches/Switches.js"}}
 
@@ -31,7 +31,7 @@ Here are some examples of customizing the component. Here are some examples of c
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/switch).
 
 ## Tamaños
 
@@ -45,7 +45,7 @@ Puede cambiar la ubicación de la etiqueta:
 
 {{"demo": "pages/components/switches/FormControlLabelPosition.js"}}
 
-## When to use
+## Cuándo usarlo
 
 - [Checkboxes vs. Interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 

@@ -1,10 +1,8 @@
 trigger:
   branches:
     include:
-      - '*'
-    exclude:
-      - l10n
-      - dependabot/*
+      - 'master'
+      - 'next'
 
 # https://developercommunity.visualstudio.com/comments/949241/view.html
 pr:

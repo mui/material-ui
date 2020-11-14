@@ -1,5 +1,5 @@
 ---
-title: Componente React para Acordeão
+title: Componente de Acordeão React
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 ---
 

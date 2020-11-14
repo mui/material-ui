@@ -57,6 +57,12 @@ export default function PlainCssButton() {
 ```jsx
 */}
 </StylesProvider>
+      import { StylesProvider } from '@material-ui/core/styles';
+
+<StylesProvider injectFirst>
+  {/* Your component tree.
+      */}
+</StylesProvider>
       Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
@@ -144,6 +150,12 @@ export default function GlobalCssButton() {
 ```jsx
 */}
 </StylesProvider>
+      import { StylesProvider } from '@material-ui/core/styles';
+
+<StylesProvider injectFirst>
+  {/* Your component tree.
+      */}
+</StylesProvider>
       Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
@@ -189,6 +201,12 @@ export default function StyledComponents() {
 
 ```jsx
 */}
+</StylesProvider>
+      import { StylesProvider } from '@material-ui/core/styles';
+
+<StylesProvider injectFirst>
+  {/* Your component tree.
+      */}
 </StylesProvider>
       Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
@@ -364,6 +382,12 @@ export default function CssModulesButton() {
 ```jsx
 */}
 </StylesProvider>
+      import { StylesProvider } from '@material-ui/core/styles';
+
+<StylesProvider injectFirst>
+  {/* Your component tree.
+      */}
+</StylesProvider>
       Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
@@ -454,6 +478,12 @@ export default function EmotionCSS() {
 
 ```jsx
 */}
+</StylesProvider>
+      import { StylesProvider } from '@material-ui/core/styles';
+
+<StylesProvider injectFirst>
+  {/* Your component tree.
+      */}
 </StylesProvider>
       Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```

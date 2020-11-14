@@ -1,9 +1,9 @@
 ---
-title: React 抽屉组件
+title: React Drawer（抽屉）组件
 components: Drawer, SwipeableDrawer
 ---
 
-# Drawer 抽屉
+# Drawer（抽屉）
 
 <p class="description">导航抽屉提供了一个访问您应用中的目标地址的途径。侧边栏被固定在屏幕的左侧或右侧，而它包含了一些补充内容。</p>
 

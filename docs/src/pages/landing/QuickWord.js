@@ -23,10 +23,15 @@ const backers = [
     title: 'Call-Em-All - The easy way to message your group',
   },
   {
+    href: 'https://octopus.com/?utm_source=materialui&utm_medium=referral',
+    alt: 'octopus',
+    title: 'Octopus - Repeatable, reliable deployments',
+  },
+  {
     href:
-      'https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui',
-    alt: 'sencha',
-    title: 'Sencha - UI Components for Productive Dev Teams',
+      'https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral',
+    alt: 'doit-intl',
+    title: 'DoiT - Management Platform for Google Cloud and AWS',
   },
 ];
 

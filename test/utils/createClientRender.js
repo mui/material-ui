@@ -10,6 +10,7 @@ import {
   queries,
   render as testingLibraryRender,
   prettyDOM,
+  within,
 } from '@testing-library/react/pure';
 
 // holes are *All* selectors which aren't necessary for id selectors
@@ -80,10 +81,12 @@ export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
   afterEach(async () => {
-    // If this issues an act() warning you probably didn't
-    // wait for an async event in your test (or didn't wrap it in act() at all).
-    // please wait for every update in your test and make appropriate assertions
-    await cleanup();
+    // act to flush effect cleanup functions
+    // state updates during this phase are safe
+    // TODO: Revisit once https://github.com/testing-library/react-testing-library/pull/768 is resolved.
+    await act(async () => {
+      await cleanup();
+    });
   });
 
   return function configuredClientRender(element, options = {}) {
@@ -174,6 +177,9 @@ const fireEvent = Object.assign(rtlFireEvent, {
 
 export * from '@testing-library/react/pure';
 export { act, cleanup, fireEvent };
+// We import from `@testing-library/react` and `@testing-library/dom` before creating a JSDOM.
+// At this point a global document isn't available yet. Now it is.
+export const screen = within(document.body);
 
 export function render() {
   throw new Error(

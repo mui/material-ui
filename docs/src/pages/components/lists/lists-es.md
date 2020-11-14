@@ -1,5 +1,5 @@
 ---
-title: Componente List React
+title: React List component
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
@@ -77,7 +77,7 @@ El switch es la acción secundaria y un objetivo separado.
 
 Al desplazarse, los subencabezados permanecen anclados en la parte superior de la pantalla hasta que el siguiente subencabezado los saque de la pantalla.
 
-This feature relies on CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
+Esta característica se basa en el posicionamiento sticky de CSS. Desafortunadamente, [no está implementado](https://caniuse.com/#search=sticky) por todos los navegadores compatibles. El valor por defecto soportado es `disableSticky` cuando el navegador no provee el soporte.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
@@ -85,9 +85,9 @@ This feature relies on CSS sticky positioning. Unfortunately it's [not implement
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
-## Virtualized List
+## Virtualización de listas
 
-In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. Renderiza 200 filas y fácilmente puede manejar más. La virtualización ayuda con problemas de rendimiento.
+En el siguiente ejemplo se demuestra como usar [react-window](https://github.com/bvaughn/react-window) con el componente `List`. Renderiza 200 filas y puede manejar más con facilidad. La virtualización ayuda con problemas de rendimiento.
 
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
@@ -95,4 +95,4 @@ If this library doesn't cover your use case, you should consider using [react-vi
 
 ## Personalización
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/list-item).

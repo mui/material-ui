@@ -1,5 +1,5 @@
 ---
-title: Componente React para Seleção
+title: React Select component
 components: Select, NativeSelect
 ---
 

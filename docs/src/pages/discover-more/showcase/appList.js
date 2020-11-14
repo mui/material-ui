@@ -620,6 +620,25 @@ const appList = [
     stars: 14,
     dateAdded: '2020-03-25',
   },
+  {
+    title: 'Backstage',
+    description:
+      'Backstage is an open platform by Spotify for building developer portals.',
+    image: 'backstage.jpg',
+    link: 'https://backstage.io',
+    source: 'https://github.com/spotify/backstage',
+    stars: 7400,
+    dateAdded: '2020-08-31',
+  },
+  {
+    title: 'LightyearVPN',
+    description:
+      'LightyearVPN is a simple to use, fast and secure VPN software.',
+    image: 'lightyearvpn.jpg',
+    link: 'https://lightyearvpn.com',
+    similarWebVisits: 534,
+    dateAdded: '2020-09-11',
+  },
 ];
 
 export default appList;

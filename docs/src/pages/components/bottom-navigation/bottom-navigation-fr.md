@@ -5,18 +5,18 @@ components: BottomNavigation, BottomNavigationAction
 
 # Bottom Navigation (Barre de navigation inférieure)
 
-<p class="description">Les barres de navigation inférieures permettent le mouvement entre les destinations principales dans une application.</p>
+<p class="description">Les barres de navigation inférieures permettent de se déplacer entre les destinations principales dans une application.</p>
 
-[La barre de navigation inférieure](https://material.io/design/components/bottom-navigation.html) affichage de trois à cinq destinations au bas de l'écran. Chaque destination est représentée par une icône et une étiquette de texte facultative. Lorsque vous appuyez sur une icône de navigation inférieure, l'utilisateur est dirigé vers la destination de navigation de premier niveau associée à cette icône.
+[Les barres de navigation du bas](https://material.io/design/components/bottom-navigation.html) affichent trois à cinq destinations au bas d'un écran. Chaque destination est représentée par une icône et une étiquette de texte optionnelle. Lorsqu'une icône de navigation en bas de page est enfoncée, l'utilisateur est dirigé vers la destination de navigation de niveau supérieur associée à cette icône.
 
 ## Bottom Navigation (Barre de navigation inférieure)
 
-Lorsqu'il y a seulement **trois** actions, l'affichage d'icônes et des étiquettes de texte en permanence.
+Lorsqu'il n'y a que **trois actions** , afficher à la fois les icônes et les libellés de texte en tout temps.
 
 {{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js", "bg": true}}
 
-## Navigation inférieure sans étiquette
+## Navigation du bas sans étiquette
 
-Si il y a **quatre** ou **cinq** actions, affichage inactif points de vue uniquement sous forme d'icônes.
+S'il y a **quatre actions** ou **cinq actions** , afficher les vues inactives uniquement sous forme d'icônes.
 
 {{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}

@@ -1,5 +1,5 @@
 ---
-title: Tabs React component
+title: React Tabs component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 ---
 
@@ -65,11 +65,11 @@ Left and right scroll buttons will never be presented. All scrolling must be ini
 
 ## Customized tabs
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/tabs/).
 
 ## Vertical tabs
 

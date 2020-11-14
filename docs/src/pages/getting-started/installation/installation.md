@@ -70,3 +70,14 @@ affecting performance and bandwidth utilization.
 ⚠️ The UMD links are using the `latest` tag to point to the latest version of the library.
 This pointer is **unstable**, it shifts as we release new versions.
 You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+
+## Design resources
+
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
+<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
+
+A set of reusable components for design tools is available, designed to match the React components, and to help you craft great products:
+
+- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch): A large UI kit with over 600 handcrafted Material-UI symbols.
+- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma): A large UI kit with over 600 handcrafted Material-UI components.
+- [Framer](https://packages.framer.com/package/material-ui/material-ui): A small free UI kit of Material-UI components.

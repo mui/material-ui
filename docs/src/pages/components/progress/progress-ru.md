@@ -22,7 +22,7 @@ components: CircularProgress, LinearProgress
 
 ### Circular determinate
 
-{{"demo": "pages/components/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### Interactive integration
 

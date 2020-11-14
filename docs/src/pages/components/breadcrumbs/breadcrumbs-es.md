@@ -1,5 +1,5 @@
 ---
-title: Componente React Migas de pan
+title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 ---
 
@@ -11,9 +11,9 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Active last breadcrumb
+## Activa las últimas migas de pan
 
-Keep the last breadcrumb interactive.
+Mantenga las últimas migas de pan interactivas.
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 
@@ -33,7 +33,7 @@ En los siguientes ejemplos, estamos usando dos cadenas como separadores, y un í
 
 ## Migas de pan personalizadas
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 

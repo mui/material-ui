@@ -205,7 +205,10 @@ describe('makeStyles', () => {
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-2' });
 
-      wrapper.unmount();
+      // TODO: Unnecessary on `next` branch
+      act(() => {
+        wrapper.unmount();
+      });
       expect(sheetsRegistry.registry.length).to.equal(0);
     });
 

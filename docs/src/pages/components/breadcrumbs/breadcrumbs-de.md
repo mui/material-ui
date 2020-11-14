@@ -1,5 +1,5 @@
 ---
-title: Breadcrumbs React-Komponente
+title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 ---
 
@@ -19,7 +19,7 @@ Keep the last breadcrumb interactive.
 
 ## Benutzerdefiniertes Trennzeichen
 
-In den folgenden Beispielen werden zwei textbasierte Trennzeichen und ein SVG Icon verwendet.
+In den folgenden Beispielen werden zwei textbasierte Trennzeichen und ein SVG-Icon verwendet.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 

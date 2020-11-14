@@ -1,5 +1,5 @@
 ---
-title: Composant React Fil d'Ariane
+title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 ---
 
@@ -11,9 +11,9 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Active last breadcrumb
+## Dernier fil d'Ariane actif
 
-Keep the last breadcrumb interactive.
+Garder le dernier fil d'ariane interactif.
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 

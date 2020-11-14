@@ -92,7 +92,7 @@ const theme = createMuiTheme({
 });
 ```
 
-有浏览器计算出来的字体大小遵循了以下数学方程式：
+浏览器计算出来的字体大小遵循了以下数学方程式：
 
 ![font-size](/static/images/font-size.gif)
 

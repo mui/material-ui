@@ -149,7 +149,10 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Sua árvore de componentes.
-      Agora, você pode sobrescrever os estilos do Material-UI. */}
+      import { StylesProvider } from '@material-ui/core/styles';
+
+<StylesProvider injectFirst>
+  {/* Sua árvore de componentes. */}
 </StylesProvider>
 ```
 

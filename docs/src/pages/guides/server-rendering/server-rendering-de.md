@@ -68,13 +68,14 @@ function handleRender(req, res) {
   /* ... */
 }
 
+function handleRender(req, res) {
+  /* ...
+*/
+}
+
 const app = express();
 
 // Isso é acionado toda vez que o servidor recebe uma solicitação.
-app.use(handleRender);
-
-const port = 3000;
-app.listen(port);
 ```
 
 ### Verarbeiten der Anfrage
@@ -88,7 +89,10 @@ The key step in server-side rendering is to render the initial HTML of the compo
 We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
 
 ```jsx
-res.send(renderFullPage(html, css));
+const css = sheets.toString();
+
+  // Zurücksenden der gerenderten Seite an den Client.
+  res.send(renderFullPage(html, css));
 }
 
 const app = express();
@@ -96,9 +100,15 @@ const app = express();
 app.use('/build', express.static('build'));
 
 // Dies wird jedes Mal ausgelöst, wenn der Server eine Anfrage erhält.
-  const css = sheets.toString();
+  const html = ReactDOMServer.renderToString(
+    sheets.collect(
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>,
+    ),
+  );
 
-  // Zurücksenden der gerenderten Seite an den Client.
+  // Grab the CSS from the sheets.
   import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -110,15 +120,6 @@ function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
-    sheets.collect(
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>,
-    ),
-  );
-
-  // Grab the CSS from the sheets.
 app.use(handleRender);
 
 const port = 3000;

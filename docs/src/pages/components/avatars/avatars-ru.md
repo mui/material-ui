@@ -1,5 +1,5 @@
 ---
-title: React-компонент Аватар
+title: Компонент React Avatar
 components: Avatar, AvatarGroup, Badge
 ---
 

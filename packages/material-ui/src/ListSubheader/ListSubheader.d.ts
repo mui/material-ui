@@ -17,7 +17,6 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
  *
  * Demos:
  *
- * - [Grid List](https://material-ui.com/components/grid-list/)
  * - [Lists](https://material-ui.com/components/lists/)
  *
  * API:

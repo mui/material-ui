@@ -1,5 +1,5 @@
 ---
-title: Slider React component
+title: Компонент React Slider
 components: Slider
 ---
 

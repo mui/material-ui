@@ -33,7 +33,7 @@ If you wish to add support for a component or feature not highlighted here, plea
 - **[Dialogs](https://material.io/design/components/dialogs.html) ✓** 
   - **[Alert dialog](https://material.io/design/components/dialogs.html#alert-dialog) ✓**
   - **Selectable ✓**
-  - **[Confirmation dialogs](https://material.io/design/components/dialogs.html#confirmation-dialog) ✓**
+  - **Icônes ✓**
 - **[Dividers](https://material.io/design/components/dividers.html) ✓** 
   - **[Full bleed](https://material.io/design/components/dividers.html#types) ✓**
   - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** (Can be composed with Dialog and List.)
@@ -44,8 +44,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
-- **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
+- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)****
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
   - [Types:](https://material.io/design/components/lists.html#types) 
     - **Single line ✓**
@@ -78,7 +77,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
+- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)

@@ -1,5 +1,5 @@
 ---
-title: Popover React component
+title: Компонент React Popover
 components: Grow, Popover
 ---
 

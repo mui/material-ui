@@ -203,6 +203,15 @@ export function ThemeProvider(props) {
           },
           ...paletteColors,
         },
+        // v5 migration
+        props: {
+          MuiBadge: {
+            overlap: 'rectangular',
+          },
+          MuiAvatar: {
+            variant: 'circular',
+          },
+        },
         spacing,
       },
       dense ? highDensity : null,

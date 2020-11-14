@@ -1,5 +1,5 @@
 ---
-title: Componente Grid React
+title: React Grid component
 components: Grid
 ---
 
@@ -8,6 +8,8 @@ components: Grid
 <p class="description">El grid responsive de Material Design se adapta al tamaño y orientación de la pantalla, garantizando la consistencia en todos los diseños.</p>
 
 La [cuadrícula](https://material.io/design/layout/responsive-layout-grid.html) crea consistencia visual en la distribución de elementos a la vez que permite flexibilidad en una amplia variedad de diseños. La IU responsive de Material Design se basa en una distribución de cuadrícula de 12 columnas.
+
+> ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/components/data-grid/).
 
 ## Cómo funciona
 
@@ -31,7 +33,7 @@ Esta función de transformación de la salida se puede personalizar [usando el t
 
 ## Grids fluidos
 
-El fluid grid usa columnas que escalan y redimencionan el contenido. Un layout de fluid grid puede usar separaciones para determinar si el layout necesita cambiar dramaticamente.
+El fluid grid usa columnas que escalan y redimensionan el contenido. Un layout de fluid grid puede usar separaciones para determinar si el layout necesita cambiar dramaticamente.
 
 ### Grid básica
 

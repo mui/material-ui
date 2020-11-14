@@ -6,7 +6,7 @@ import MuiAvatar from '@material-ui/core/Avatar';
 import { Icon } from './Icon';
 
 interface Props {
-  variant?: 'circle' | 'rounded' | 'square';
+  variant?: 'circle' | 'circular' | 'rounded' | 'square';
   backgroundColor?: string;
   textColor?: string;
   icon?: string;
@@ -57,7 +57,7 @@ addPropertyControls(Avatar, {
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['circle', 'rounded', 'square'],
+    options: ['circle', 'circular', 'rounded', 'square'],
   },
   backgroundColor: {
     type: ControlType.Color,

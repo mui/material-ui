@@ -30,9 +30,11 @@ module.exports = {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
         'process.env': {
+          COMMIT_REF: JSON.stringify(process.env.COMMIT_REF),
           ENABLE_AD: JSON.stringify(process.env.ENABLE_AD),
           GITHUB_AUTH: JSON.stringify(process.env.GITHUB_AUTH),
           LIB_VERSION: JSON.stringify(pkg.version),
+          PULL_REQUEST: JSON.stringify(process.env.PULL_REQUEST === 'true'),
           REACT_MODE: JSON.stringify(reactMode),
         },
       }),
@@ -69,8 +71,8 @@ module.exports = {
         (context, request, callback) => {
           const hasDependencyOnRepoPackages = [
             'notistack',
-            'material-table',
             '@material-ui/pickers',
+            '@material-ui/data-grid',
           ].includes(request);
 
           if (hasDependencyOnRepoPackages) {
@@ -98,7 +100,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(material-table|notistack|@material-ui(\/|\\)pickers)/,
+            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)(pickers|data-grid))/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -111,6 +113,7 @@ module.exports = {
                     {
                       alias: {
                         '@material-ui/core': '../packages/material-ui/src',
+                        '@material-ui/utils': '../packages/material-ui-utils/src',
                       },
                       transformFunctions: ['require'],
                     },

@@ -1,29 +1,29 @@
-# Migration From v0.x to v1
+# Migración de v0.x a v1
 
-<p class="description">Yeah, v1 has been released! Take advantage of 2 years worth of effort.</p>
+<p class="description">¡Sí, v1 ha sido liberado! Tome ventaja de 2 años de esfuerzo.</p>
 
-## FAQ
+## Preguntas Frecuentes
 
-### Woah - the API is way different! Does that mean 1.0 is completely different, I’ll have to learn the basics all over again, and migrating will be practically impossible?
+### Woah - la API es muy diferente! ¿Significa eso que 1.0 es completamente diferente, tendré que aprender lo básico una vez más, y migrar será prácticamente imposible?
 
-I’m glad you asked! The answer is no. The core concepts haven’t changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
+¡Me alegro de que lo preguntas! La respuesta es no. Los conceptos básicos no han cambiado. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
-### What motivated such a large change?
+### ¿Qué motivó un cambio tan importante?
 
-Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). The ecosystem has evolved a lot since then, we have also learned a lot. [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up** taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
+Material-UI se inició hace [4 años](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). El ecosistema ha evolucionado mucho desde entonces, también hemos aprendido mucho. [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up** taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
 
 - New styling solution using CSS-in-JS (better [customization](/customization/components/) power, better performance)
 - New theme handling (nesting, self-supporting, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/zeit/next.js)
 - Way better [test coverage](/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))
 - Full [server-side rendering](/guides/server-rendering/) support
-- Wide range of [supported browsers](/getting-started/supported-platforms/)
+- Amplia gama de [navegadores compatibles](/getting-started/supported-platforms/)
 
-### Where should I start in a migration?
+### ¿Dónde debo empezar en una migración?
 
-1. Start by installing the v1.x version of Material-UI along side the v0.x version.
+1. Comience instalando la versión v1.x de Material-UI junto a la versión v0.x.
     
-    With yarn:
+    Con yarn:
 
 ```sh
   yarn add material-ui
@@ -185,6 +185,6 @@ RaisedButton upgrade path:
 +<Select value={this.state.value}></Select>
 ```
 
-### To be continued…
+### Para continuar…
 
-Have you successfully migrated your app, and wish to help the community? There is an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). Any pull request is welcomed 😊.
+¿Has migrado con éxito tu aplicación y quieres ayudar a la comunidad? Hay un problema abierto para terminar esta guía de migración [#7195](https://github.com/mui-org/material-ui/issues/7195). Cualquier pull request es bienvenido 😊.

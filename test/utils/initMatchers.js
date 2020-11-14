@@ -4,6 +4,10 @@ import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleName } from 'dom-accessibility-api';
 
+function isInJSDOM() {
+  return /jsdom/.test(window.navigator.userAgent);
+}
+
 // chai#utils.elToString that looks like stringified elements in testing-library
 function elementToString(element) {
   if (typeof element?.nodeType === 'number') {
@@ -129,6 +133,7 @@ chai.use((chaiAPI, utils) => {
     }
 
     const actualName = computeAccessibleName(root, {
+      computedStyleSupportsPseudoElements: !isInJSDOM(),
       // in local development we pretend to be visible. full getComputedStyle is
       // expensive and reserved for CI
       getComputedStyle: process.env.CI ? undefined : pretendVisibleGetComputedStyle,

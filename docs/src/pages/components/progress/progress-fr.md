@@ -22,7 +22,7 @@ Lorsque vous affichez les progrès d'une séquence de processus, indiquez le pro
 
 ### Circular determinate
 
-{{"demo": "pages/components/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### Interactive integration
 

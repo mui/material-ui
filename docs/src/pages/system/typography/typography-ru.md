@@ -2,7 +2,7 @@
 
 <p class="description">Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.</p>
 
-## Text alignment
+## Выравнивание текста
 
 {{"demo": "pages/system/typography/TextAlignment.js", "defaultCodeOpen": false}}
 
@@ -24,7 +24,7 @@
 <Box fontWeight="fontWeightBold">…
 ```
 
-## Font size
+## Размер шрифта
 
 {{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 

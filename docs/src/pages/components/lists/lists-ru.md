@@ -1,5 +1,5 @@
 ---
-title: Список, компонент React
+title: Компонент React List
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 

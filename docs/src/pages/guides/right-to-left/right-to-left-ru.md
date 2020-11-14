@@ -12,7 +12,7 @@ Make sure the `dir` attribute is set on the body, otherwise native components wi
 <body dir="rtl">
 ```
 
-### 2. Theme
+### 2. Темы
 
 Set the direction in your custom theme:
 

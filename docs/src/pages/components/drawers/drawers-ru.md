@@ -1,5 +1,5 @@
 ---
-title: Панель, компонент React
+title: Компонент React Drawer
 components: Drawer, SwipeableDrawer
 ---
 

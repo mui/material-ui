@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 function CircularProgressWithLabel(props) {
   return (
     <Box position="relative" display="inline-flex">
-      <CircularProgress variant="static" {...props} />
+      <CircularProgress variant="determinate" {...props} />
       <Box
         top={0}
         left={0}
@@ -28,7 +28,7 @@ function CircularProgressWithLabel(props) {
 
 CircularProgressWithLabel.propTypes = {
   /**
-   * The value of the progress indicator for the determinate and static variants.
+   * The value of the progress indicator for the determinate variant.
    * Value between 0 and 100.
    */
   value: PropTypes.number.isRequired,
@@ -39,7 +39,7 @@ export default function CircularStatic() {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
     }, 800);
     return () => {
       clearInterval(timer);

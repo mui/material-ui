@@ -5,10 +5,11 @@
 ### 钻石级 💎
 
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sencha" href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="/static/in-house/sencha-256x256.png" alt="sencha" title="面向高效开发团队的 UI 组件" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="octopus" href="https://octopus.com/?utm_source=materialui&utm_medium=referral" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/1287123?s=256" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="doit-intl" href="https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/8424863?s=256" alt="doit-intl" title="谷歌云和 AWS 的管理平台" loading="lazy" /></a>
 </p>
 
-*2/3 个位置仍空缺*
+_2/3 个位置可用_
 
 ### 黄金级 🏆
 

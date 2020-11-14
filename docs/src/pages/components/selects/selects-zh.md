@@ -1,5 +1,5 @@
 ---
-title: React 选择器组件
+title: React Select（选择器）组件
 components: Select, NativeSelect
 ---
 

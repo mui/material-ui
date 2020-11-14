@@ -44,7 +44,7 @@ function pageToTitleI18n(page, t) {
  * set of packages that ship their own typings instead of using @types/ namespace
  * Array because Set([iterable]) is not supported in IE11
  */
-const packagesWithBundledTypes = ['@material-ui/core', '@material-ui/lab'];
+const packagesWithBundledTypes = [];
 
 /**
  * WARNING: Always uses `latest` typings.
@@ -57,9 +57,10 @@ const packagesWithBundledTypes = ['@material-ui/core', '@material-ui/lab'];
  * @param {Record<string, string>} deps - list of dependency as `name => version`
  */
 function addTypeDeps(deps) {
-  const packagesWithDTPackage = Object.keys(deps).filter(
-    (name) => packagesWithBundledTypes.indexOf(name) === -1,
-  );
+  const packagesWithDTPackage = Object.keys(deps)
+    .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
+    // All the Material-UI packages come with bundled types
+    .filter((name) => name.indexOf('@material-ui/') !== 0);
 
   packagesWithDTPackage.forEach((name) => {
     let resolvedName = name;
@@ -79,31 +80,64 @@ function includePeerDependencies(deps, versions) {
     react: versions.react,
   });
 
-  if (deps['@material-ui/lab'] && !deps['@material-ui/core']) {
+  if (
+    deps['@material-ui/lab'] ||
+    deps['@material-ui/pickers'] ||
+    deps['@material-ui/x'] ||
+    deps['@material-ui/x-grid'] ||
+    deps['@material-ui/x-pickers'] ||
+    deps['@material-ui/x-tree-view'] ||
+    deps['@material-ui/data-grid']
+  ) {
     deps['@material-ui/core'] = versions['@material-ui/core'];
+  }
+
+  if (deps['@material-ui/x-grid-data-generator']) {
+    deps['@material-ui/core'] = versions['@material-ui/core'];
+    deps['@material-ui/icons'] = versions['@material-ui/icons'];
+    deps['@material-ui/lab'] = versions['@material-ui/lab'];
+  }
+
+  if (deps['@material-ui/pickers']) {
+    deps['date-fns'] = 'latest';
   }
 }
 
 /**
+ * @param {string} packageName - The name of a package living inside this repository.
+ * @param {string} [commitRef]
+ * @return string - A valid version for a dependency entry in a package.json
+ */
+function getMuiPackageVersion(packageName, commitRef) {
+  if (commitRef === undefined) {
+    // TODO: change 'next' to 'latest' once next is merged into master.
+    return 'latest';
+  }
+  const shortSha = commitRef.slice(0, 8);
+  return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@material-ui/${packageName}`;
+}
+
+/**
  * @param {string} raw - ES6 source with es module imports
- * @param {objects} options
- * @param {'JS' | 'TS'} options.codeLanguage
- * @param {'next' | 'latest'} options.reactVersion
+ * @param {object} options
+ * @param {'JS' | 'TS'} [options.codeLanguage] -
+ * @param {string} [options.muiCommitRef] - If specified use `@material-ui/*` packages from a specific commit.
+ * @param {'next' | 'latest'} [options.reactVersion]
  * @returns {Record<string, 'latest'>} map of packages with their required version
  */
 function getDependencies(raw, options = {}) {
-  const { codeLanguage = CODE_VARIANTS.JS, reactVersion = 'latest' } = options;
+  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef, reactVersion = 'latest' } = options;
 
   const deps = {};
   const versions = {
     'react-dom': reactVersion,
     react: reactVersion,
-    '@material-ui/core': 'latest',
-    '@material-ui/icons': 'latest',
-    '@material-ui/lab': 'latest',
-    '@material-ui/styles': 'latest',
-    '@material-ui/system': 'latest',
-    '@material-ui/utils': 'latest',
+    '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
+    '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
+    '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
+    '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
+    '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
+    '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
     // TODO: remove once @material-ui/pickers v4 is released.
     '@date-io/date-fns': 'v1',
   };

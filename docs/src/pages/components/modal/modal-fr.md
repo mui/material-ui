@@ -1,5 +1,5 @@
 ---
-title: Modal React component
+title: React Modal component
 components: Modal
 ---
 
@@ -14,7 +14,7 @@ Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. 
 - 🔐 It disables scrolling of the page content while open.
 - ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
-- 📦 [5 kB gzipped](/size-snapshot).
+- 📦 [5 kB gzippé](/size-snapshot).
 
 > **Note de terminologie**. Le terme "modal" est parfois utilisé pour signifier "dialogue", mais c'est un terme impropre. Un élément est considéré modal si [il bloque l'interaction avec le reste de l'application](https://en.wikipedia.org/wiki/Modal_window). A modal window describes parts of a UI.
 
@@ -87,4 +87,4 @@ This is done for accessibility purposes, however, it might create issues. In the
     ```
 
 - The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-- That is, users cannot interact with content outside an active modal window. Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. This might create [conflicting behaviors](#focus-trap).
+- Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window. Keep in mind that a "modal window" overlays on either the primary window or another modal window. This might create [conflicting behaviors](#focus-trap).

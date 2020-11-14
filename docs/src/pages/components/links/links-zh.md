@@ -8,7 +8,7 @@ components: Link
 
 ## 简单的链接
 
-链接组件是基于 [文字铸排（Typography）](/api/typography/)组件而开发的。 您可以利用它的一些属性。
+链接组件是基于 [文字铸排（Typography）](/api/typography/) 组件而开发的。 您可以利用它的一些属性。
 
 {{"demo": "pages/components/links/Links.js"}}
 

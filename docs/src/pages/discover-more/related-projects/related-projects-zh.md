@@ -6,11 +6,14 @@
 
 ## 设计资源
 
-- **Sketch**：[Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — 一个大型的 UI 工具包，它有着 600 多个手工打造的 Material-UI 的符号 💎。
-- **Figma**： [Figma for Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — 一个大型的 UI 工具包，它有着 600 多个手工打造的 Material-UI 组件 🎨。
-- **Framer**：[Framer for Material-UI](https://packages.framer.com/package/material-ui/material-ui) — 一个小型的 MIT UI 工具包，可以预览手工打造的 Material-UI 组件。
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
+<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
 
-没有找到您的团队所需的设计资料吗？ [请来找我们把！](mailto:design@material-ui.com)
+一套可重复使用的设计工具组件已经面世，这些工具是为了配合 React 组件而设计的，它们可以帮助你制作优秀的产品。
+
+- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 符号。
+- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 组件。
+- [Framer](https://packages.framer.com/package/material-ui/material-ui)：Material-UI 组件的小型 UI 套件
 
 ## 图像和图案
 
@@ -30,13 +33,6 @@
 
 - [@mui-treasury/layout](https://mui-treasury.com/layout)：处理一个页面整体布局的组件。 您可以找到几个相关的例子，例如： [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs)。
 
-### Table
-
-- [material-table](https://github.com/mbrn/material-table)：一款针对 React 的简洁有效的的数据库，它基于 Material-UI Table 并且添加了一些额外的功能。 它支持许多不同的使用情况（可编辑、过滤、分组、排序、选择、国际化（i18n）、树状数据等）。
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/)：针对 Material-UI 的兼并对数据进行排序、搜索、筛选、分组、操作等功能的数据网格（[付费的许可证](https://js.devexpress.com/licensing/)）。
-- [mui-datatables](https://github.com/gregnb/mui-datatables)：Material-UI 的响应式数据表格，包括筛选，排序，搜索等功能。
-- [tubular-react](https://github.com/unosquare/tubular-react): 一个带有本地或者远程的数据来源的 Material-UI 表格。 它能够对数据进行筛选、排序、自由搜索、导出为本地 CSV 以及汇总。
-
 ### 通知
 
 - [notistack](https://github.com/iamhosseindhv/notistack)：轻松地显示消息条（snackbars）（所以您不必手动处理它们的打开/关闭状态）。
@@ -50,7 +46,7 @@
 - 使用 [formik-material-ui](https://github.com/stackworx/formik-material-ui) 将 Material-UI 和 [formik](https://jaredpalmer.com/formik) 结合使用。
 - 使用 [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) 将 Material-UI 和 [Redux Form](https://redux-form.com/) 结合使用。
 - 使用 [mui-rff](https://github.com/lookfirst/mui-rff) 将 Material-UI 和 [React Final Form](https://final-form.org/react) 结合使用。
-- [data-driven-forms MUI mapper](https://github.com/data-driven-forms/react-forms/tree/master/packages/mui-component-mapper) 绑定 Material-UI 与 [数据驱动表单（Data Driven Forms）](https://data-driven-forms.org/) 一起使用。
+- [data-driven-forms MUI mapper](https://github.com/data-driven-forms/react-forms/tree/master/packages/mui-component-mapper) Bindings 可以实现将 Material-UI 与 [数据驱动表单（Data Driven Forms）](https://data-driven-forms.org/) 一起使用。
 
 ### 幻灯片
 
@@ -60,7 +56,7 @@
 
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image)：图片在完全加载之前都是很简陋的。 使用 material 图像来物化它！ 它会像 material 图像的加载模式建议的一样淡入。
 
-### 分页
+### 分页组件 Pagination 
 
 - [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination)：一个基于 Material-UI 的扁平化设计的分页组件。
 
@@ -72,7 +68,7 @@
 
 - [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/)：一个基于 Material-UI 的图表，它可以提供各种图表类型来可视化数据，包括条形图、线形图、面积图、散点图、饼图，以及更多（需要 [付费许可证](https://js.devexpress.com/licensing/)）。
 
-### 对话框
+### Dialog
 
 - [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm)：您无需编写模板代码，就可以轻松使用确认对话框功能来简化用户的确认操作。
 

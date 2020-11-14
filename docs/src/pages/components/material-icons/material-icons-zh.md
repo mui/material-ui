@@ -5,9 +5,9 @@ components: Icon, SvgIcon
 
 # Material Icons 图标
 
-<p class="description">你可以在我们的官网上找到1100多个 React Material 图标。</p>
+<p class="description">你可以在我们的官网上找到 1100 多个 React Material icons。</p>
 
-[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) 这个 npm 包包含了1100多个已经被转换成 [`SvgIcon`](/api/svg-icon/) 的官方 [Material 图标](https://material.io/tools/icons/?style=baseline) 。
+[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) 这个 npm 包包含了 1100 多个已经被转换成 [`SvgIcon`](/api/svg-icon/) 的官方 [Material icons](https://material.io/tools/icons/?style=baseline) 。
 
 {{"demo": "pages/components/material-icons/SearchIcons.js", "hideToolbar": true, "bg": true}}
 

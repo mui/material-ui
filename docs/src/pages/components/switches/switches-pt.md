@@ -1,5 +1,5 @@
 ---
-title: Componente React para Interruptores
+title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 

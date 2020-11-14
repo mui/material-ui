@@ -1,9 +1,9 @@
 ---
-title: React-компонент Таблица
+title: Компонент React Table
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
-# Table (tаблица)
+# Table (таблица)
 
 <p class="description">Таблицы отображают наборы данных. Они могут быть полностью модифицированы.</p>
 
@@ -19,25 +19,25 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ## Структура
 
+Простой пример без излишеств.
+
 Таблица данных содержит 1 строку заголовка, в которой перечислены имена столбцов, за которыми следуют строки для данных.
 
-Флажки должны сопровождать каждую строку, если пользователю необходимо выбрать или манипулировать данными.
+## Сортировка и выбор строк
 
-It utilizes the [`Collapse`](/api/collapse/) component. Это позволяет программам чтения с экрана идентифицировать значение ячейки по имени строки и столбца.
+The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Простая таблица
 
-Простой пример без излишеств.
-
-{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
-
-## Плотная компоновка таблицы
-
-Простой пример таблицы с плотной компоновкой и без излишеств.
+Флажки должны сопровождать каждую строку, если пользователю необходимо выбрать или манипулировать данными.
 
 {{"demo": "pages/components/tables/DenseTable.js", "bg": true}}
 
-## Сортировка и выбор строк
+## Плотная компоновка таблицы
 
 В этом примере демонстрируется использование `чекбокса` и кликабельных строк для выбора данных в настраиваемой `панели инструментов`. Здесь используется компонент `TableSortLabel` чтобы помочь стилизовать заголовки столбцов.
 
@@ -96,24 +96,6 @@ An example of a table with expandable rows, revealing more information. It utili
 В следующем примере мы покажем, как использовать [react-virtualized](https://github.com/bvaughn/react-virtualized) с компонентом `Table`. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
-
-## Дополнительные проекты
-
-Для более сложных вариантов использования вы можете воспользоваться:
-
-### material-table
-
-![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
-
-[material-table](https://github.com/mbrn/material-table) представляет собой простой и мощный объект DataTable для React на основе Material-UI Table с некоторыми дополнительными функциями. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
-
-{{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
-
-### Прочее
-
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
 
 ## Доступность
 
