@@ -227,7 +227,9 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:10
+      - image: mcr.microsoft.com/playwright:bionic
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
       - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
