@@ -10,7 +10,7 @@ import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import jssRtl from 'jss-rtl';
 import { StyleSheetManager } from 'styled-components';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { useRouter } from 'next/router';
@@ -282,7 +282,7 @@ function findActivePage(currentPages, pathname) {
 }
 
 // Cache for the ltr version of the styles
-export const cacheLtr = createCache();
+export const cacheLtr = createCache({ key: 'css' });
 cacheLtr.compat = true;
 
 // Cache for the rtl version of the styles
