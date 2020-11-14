@@ -5,9 +5,9 @@
 
 Big thanks to the 10 contributors who made this release possible.
 
-This release is intended to help and prepare the migration to Material-UI v5 ⏫:
+This release is intended to help prepare the migration to Material-UI v5 ⏫:
 
-- 📚 Add deprecations to anticipate v5. A deprecation is added every time a breaking change in v5 allows it. If no warnings are reported in the console, you are set. Each warning comes with a simple message that explains how to handle the deprecation.
+- 📚 Start to add deprecations in anticipation of v5. We plan to add a deprecation for any breaking change in v5 that allows it. Each warning comes with a simple message that explains how to handle the deprecation. If no warnings are reported in the console, you are set for this first batch.
 Please report issues with the deprecations on [#22074](https://github.com/mui-org/material-ui/issues/22074) (wrong instructions, false-positives, floods in the console, etc.).
 - ⚛️ Backport two fixes with React 17 (#22263, #23367) @eps1lon
 - 🐛 Backport a RTL fix with the latest version of Chrome (#22830) @ankit
