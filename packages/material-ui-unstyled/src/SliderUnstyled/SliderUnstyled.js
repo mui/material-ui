@@ -687,7 +687,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             <Mark
               data-index={index}
               {...markProps}
-
               {...(!isHostComponent(Mark) && {
                 styleProps: stateAndProps,
                 theme,
