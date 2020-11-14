@@ -252,7 +252,9 @@ function ApiDocs(props) {
     // Any other props supplied will be provided to the root element ({{spreadHintElement}}).
     spreadHint = t('spreadHint').replace(
       /{{spreadHintElement}}/,
-      inheritance ? `<a href="${inheritance.pathname}">${inheritance.component}</a>` : t('nativeElement'),
+      inheritance
+        ? `<a href="${inheritance.pathname}">${inheritance.component}</a>`
+        : t('nativeElement'),
     );
   }
 
