@@ -18,7 +18,7 @@ Here are the top priorities:
   - Prioritize the creation of frequently needed components.
   - Encourage the usage of third-party components if they already exist and are well maintained.
 - 0.5 - **Better customization.** 💅 We want to make our component customization intuitive, no matter if you are using global CSS or styled-components:
-  - Use styled-components by default: [#6115](https://github.com/mui-org/material-ui/issues/6115).
+  - Use emotion by default: [#6115](https://github.com/mui-org/material-ui/issues/6115).
   - Allow the use of the Box props in all the core components: [#15561](https://github.com/mui-org/material-ui/issues/15561).
   - Allow the usage of dynamic theme variants and colors: [#15573](https://github.com/mui-org/material-ui/issues/15573) & [#13875](https://github.com/mui-org/material-ui/issues/13875).
   - Allow the use of the components without any styles: [#6218](https://github.com/mui-org/material-ui/issues/6218).
@@ -53,50 +53,39 @@ Here are the components we will work on being supported in the Material-UI ecosy
 - ⏳ Planning to build
 - ⭐️ We will make some of the features available in [Material-UI X](https://github.com/mui-org/material-ui-x) (non-MIT)
 
-| Name                       | Status |
-| :------------------------- | ------ |
-| Rating                     | 🧪     |
-| Skeleton                   | 🧪     |
-| Speed Dial                 | 🧪     |
-| Toggle Button              | 🧪     |
-| Autocomplete               | 🧪     |
-| Combo Box                  | 🧪     |
-| Multiselect                | 🧪     |
-| Alert                      | 🧪     |
-| Pagination                 | 🧪     |
-| Timeline                   | 🧪     |
-| Date Picker                | 🛠      |
-| Date Range Picker          | 🛠⭐    |
-| Data Grid                  | 🛠⭐️   |
-| Data Grid - Column pinning | ⏳⭐️  |
-| Data Grid - Nested row     | ⏳⭐️  |
-| Tree View                  | 🛠      |
-| Tree View - Multiselect    | 🛠⭐️   |
-| Tree View - Checkbox       | ⏳⭐️  |
-| Tree View - Drag & Drop    | ⏳⭐️  |
-| Tree View - Virtualization | ⏳⭐️  |
-| Carousel                   | ⏳     |
-| Dropdown                   | ⏳     |
-| Dropzone                   | ⏳     |
-| File Upload                | ⏳     |
-| Image                      | ⏳     |
-| Stack                      | ⏳     |
-| Navbar                     | ⏳     |
-| NProgress                  | ⏳     |
-| Nested Menu                | ⏳     |
-| Numeric Input              | ⏳     |
-| Scrollspy                  | ⏳     |
-| TopLayout                  | ⏳     |
-| Splitter                   | ⏳⭐️  |
-| Masonry                    | ⏳⭐️  |
-| Pivot Grid                 | ⏳⭐️  |
-| Big Calendar               | ⏳⭐️  |
-| Sparkline                  | ⏳⭐️  |
-| Gauge                      | ⏳⭐️  |
-| Charts                     | ⏳⭐️  |
-| TreeSelect                 | ⏳⭐️  |
-| Rich Text Editor           | ⏳⭐️  |
-| Gantt Chart                | ⏳⭐️  |
-| Color Picker               | ⏳⭐️  |
+| Name                                                                              | Status |
+| :-------------------------------------------------------------------------------- | ------ |
+| Advanced layout                                                                   | ⏳⭐️  |
+| Carousel                                                                          | ⏳     |
+| Charts                                                                            | ⏳⭐️  |
+| Color Picker                                                                      | ⏳⭐️  |
+| Data Grid                                                                         | 🛠      |
+| [Data Grid (Advanced)](/components/data-grid/getting-started/#feature-comparison) | 🛠⭐    |
+| Date Picker                                                                       | 🧪     |
+| Date Range Picker                                                                 | 🧪⭐   |
+| Dropdown                                                                          | ⏳     |
+| Dropzone                                                                          | ⏳     |
+| File Upload                                                                       | ⏳     |
+| Gantt Chart                                                                       | ⏳⭐️  |
+| Gauge                                                                             | ⏳⭐️  |
+| Image                                                                             | ⏳     |
+| Masonry                                                                           | ⏳⭐️  |
+| Navbar                                                                            | ⏳     |
+| NProgress                                                                         | ⏳     |
+| Nested Menu                                                                       | 🛠      |
+| Numeric Input                                                                     | ⏳     |
+| Pivot Grid                                                                        | ⏳⭐️  |
+| Rich Text Editor                                                                  | ⏳⭐️  |
+| Scheduler                                                                         | ⏳⭐️  |
+| Scrollspy                                                                         | ⏳     |
+| Sparkline                                                                         | ⏳⭐️  |
+| Splitter                                                                          | ⏳⭐️  |
+| Timeline                                                                          | 🧪     |
+| Tree Select                                                                       | ⏳⭐️  |
+| Tree View                                                                         | 🧪     |
+| Tree View - Multiselect                                                           | 🧪     |
+| Tree View - Checkbox                                                              | ⏳⭐️  |
+| Tree View - Drag & Drop                                                           | ⏳⭐️  |
+| Tree View - Virtualization                                                        | ⏳⭐️  |
 
 > ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
