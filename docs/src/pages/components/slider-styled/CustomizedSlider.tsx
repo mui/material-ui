@@ -1,6 +1,6 @@
 import * as React from 'react';
+import Slider, { SliderThumb } from '@material-ui/lab/SliderStyled';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Slider from '@material-ui/lab/SliderStyled';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -161,11 +161,11 @@ const AirbnbSlider = styled(Slider)({
 
 function AirbnbThumbComponent(props: any) {
   return (
-    <span {...props}>
+    <SliderThumb {...props}>
       <span className="bar" />
       <span className="bar" />
       <span className="bar" />
-    </span>
+    </SliderThumb>
   );
 }
 
