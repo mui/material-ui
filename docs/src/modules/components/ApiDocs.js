@@ -2,23 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { exactProp } from '@material-ui/utils';
 import Typography from '@material-ui/core/Typography';
-import NoSsr from '@material-ui/core/NoSsr';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import Head from 'docs/src/modules/components/Head';
-import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
-import AppContainer from 'docs/src/modules/components/AppContainer';
-import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
-import Ad from 'docs/src/modules/components/Ad';
-import AdManager from 'docs/src/modules/components/AdManager';
-import AdGuest from 'docs/src/modules/components/AdGuest';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import MarkdowElement from 'docs/src/modules/components/MarkdownElement';
-import MarkdownDocsFooter from './MarkdownDocsFooter';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import TopLayoutDocsPages from 'docs/src/modules/components/TopLayoutDocsPages';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 
 const styles = (theme) => ({
@@ -264,116 +255,94 @@ function ApiDocs(props) {
   }
 
   return (
-    <AppFrame>
-      <AdManager>
-        <Head title={`${componentName} API - Material-UI`} description={description} />
-        {disableAd ? null : (
-          <AdGuest>
-            <Ad placement="body" />
-          </AdGuest>
-        )}
-        <div
-          className={clsx(classes.root, {
-            [classes.ad]: !disableAd,
-            [classes.toc]: !disableToc,
-          })}
-        >
-          <AppContainer className={classes.container}>
-            <MarkdowElement>
-              <div className={classes.actions}>
-                <EditPage markdownLocation={filename} />
-              </div>
-              <h1>{componentName} API</h1>
-              <Typography variant="h5" component="div" gutterBottom>
-                {description}
-              </Typography>
-              <Heading hash="import" />
-              <HighlightedCode
-                code={`
+    <TopLayoutDocsPages
+      description={description}
+      disableAd={disableAd}
+      disableToc={disableToc}
+      location={filename}
+      title={`${componentName} API – Material-UI`}
+      toc={toc}
+    >
+      <MarkdownElement>
+        <h1>{componentName} API</h1>
+        <Typography variant="h5" component="div" gutterBottom>
+          {description}
+        </Typography>
+        <Heading hash="import" />
+        <HighlightedCode
+          code={`
 import ${componentName} from '${source}/${componentName}';
 // ${t('or')}
 import { ${componentName} } from '${source}';`}
-                language="jsx"
+          language="jsx"
+        />
+        <span dangerouslySetInnerHTML={{ __html: t('apiImportDifference') }} />
+        {componentDescription[userLanguage] && (
+          <span dangerouslySetInnerHTML={{ __html: componentDescription[userLanguage] }} />
+        )}
+        {componentStyles.name && (
+          <React.Fragment>
+            <Heading hash="component-name" />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('apiStyleOverrides').replace(/{{styles\.name}}/, `Mui${componentName}`),
+              }}
+            />
+          </React.Fragment>
+        )}
+        <Heading hash="props" />
+        <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
+        <br />
+        {refHint}
+        <br />
+        <span dangerouslySetInnerHTML={{ __html: spreadHint }} />
+        {inheritance && (
+          <React.Fragment>
+            <Heading hash="inheritance" level="h3" />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('inheritanceDescription')
+                  .replace(/{{component}}/, inheritance.component)
+                  .replace(/{{pathname}}/, inheritance.pathname)
+                  .replace(/{{suffix}}/, inheritanceSuffix)
+                  .replace(/{{componentName}}/, componentName),
+              }}
+            />
+          </React.Fragment>
+        )}
+        {componentStyles.classes ? (
+          <React.Fragment>
+            <Heading hash="css" />
+            <ClassesTable
+              componentName={componentName}
+              componentStyles={componentStyles}
+              classDescriptions={classDescriptions}
+            />
+            <br />
+            <span dangerouslySetInnerHTML={{ __html: t('overrideStyles') }} />
+            {styledComponent ? (
+              <span dangerouslySetInnerHTML={{ __html: t('overrideStylesStyledComponent') }} />
+            ) : (
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t('overrideStylesJss').replace(
+                    /{{URL}}/,
+                    `${SOURCE_CODE_ROOT_URL}${filename}`,
+                  ),
+                }}
               />
-              <span dangerouslySetInnerHTML={{ __html: t('apiImportDifference') }} />
-              {componentDescription[userLanguage] && (
-                <span dangerouslySetInnerHTML={{ __html: componentDescription[userLanguage] }} />
-              )}
-              {componentStyles.name && (
-                <React.Fragment>
-                  <Heading hash="component-name" />
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t('apiStyleOverrides').replace(
-                        /{{styles\.name}}/,
-                        `Mui${componentName}`,
-                      ),
-                    }}
-                  />
-                </React.Fragment>
-              )}
-              <Heading hash="props" />
-              <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
-              <br />
-              {refHint}
-              <br />
-              <span dangerouslySetInnerHTML={{ __html: spreadHint }} />
-              {inheritance && (
-                <React.Fragment>
-                  <Heading hash="inheritance" level="h3" />
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t('inheritanceDescription')
-                        .replace(/{{component}}/, inheritance.component)
-                        .replace(/{{pathname}}/, inheritance.pathname)
-                        .replace(/{{suffix}}/, inheritanceSuffix)
-                        .replace(/{{componentName}}/, componentName),
-                    }}
-                  />
-                </React.Fragment>
-              )}
-              {componentStyles.classes ? (
-                <React.Fragment>
-                  <Heading hash="css" />
-                  <ClassesTable
-                    componentName={componentName}
-                    componentStyles={componentStyles}
-                    classDescriptions={classDescriptions}
-                  />
-                  <br />
-                  <span dangerouslySetInnerHTML={{ __html: t('overrideStyles') }} />
-                  {styledComponent ? (
-                    <span
-                      dangerouslySetInnerHTML={{ __html: t('overrideStylesStyledComponent') }}
-                    />
-                  ) : (
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: t('overrideStylesJss').replace(
-                          /{{URL}}/,
-                          `${SOURCE_CODE_ROOT_URL}${filename}`,
-                        ),
-                      }}
-                    />
-                  )}
-                </React.Fragment>
-              ) : null}
-              <Heading hash="demos" />
-              <span dangerouslySetInnerHTML={{ __html: demos }} />
-              <NoSsr>
-                <MarkdownDocsFooter />
-              </NoSsr>
-            </MarkdowElement>
-          </AppContainer>
-        </div>
-        {disableToc ? null : <AppTableOfContents items={toc} />}
-      </AdManager>
+            )}
+          </React.Fragment>
+        ) : null}
+        <Heading hash="demos" />
+        <span dangerouslySetInnerHTML={{ __html: demos }} />
+      </MarkdownElement>
       <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
         <symbol id="anchor-link-icon" viewBox="0 0 16 16">
           <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
         </symbol>
       </svg>
-    </AppFrame>
+    </TopLayoutDocsPages>
   );
 }
 
