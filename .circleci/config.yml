@@ -227,7 +227,8 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:10
+      - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
       - install_js
