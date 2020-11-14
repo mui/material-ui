@@ -19,7 +19,6 @@ export default function Demo() {
     >
       <Box
         sx={{
-          width: '100%',
           maxHeight: { xs: 233, md: 167 },
           maxWidth: { xs: 350, md: 250 },
         }}
