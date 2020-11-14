@@ -2129,6 +2129,7 @@ describe('<Autocomplete />', () => {
         onChange={handleChange}
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
+            event.persist();
             event.defaultMuiPrevented = true;
           }
         }}
