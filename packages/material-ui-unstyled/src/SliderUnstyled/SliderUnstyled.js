@@ -727,10 +727,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             key={index}
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
-            {...(!isHostComponent(ValueLabel) && {
-              styleProps: stateAndProps,
-              theme,
-            })}
             value={
               typeof valueLabelFormat === 'function'
                 ? valueLabelFormat(scale(value), index)
