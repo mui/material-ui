@@ -2120,4 +2120,25 @@ describe('<Autocomplete />', () => {
 
     expect(getAllByRole('option')).to.have.length(1);
   });
+
+  it('should prevent the default event handlers', () => {
+    const handleChange = spy();
+    render(
+      <Autocomplete
+        options={['one', 'two']}
+        onChange={handleChange}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            event.defaultMuiPrevented = true;
+          }
+        }}
+        renderInput={(params) => <TextField autoFocus {...params} />}
+      />,
+    );
+    const textbox = screen.getByRole('textbox');
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'Enter' });
+    expect(handleChange.callCount).to.equal(0);
+  });
 });

@@ -208,7 +208,7 @@ export default function useAutocomplete(props) {
   const listboxAvailable = open && filteredOptions.length > 0;
 
   if (process.env.NODE_ENV !== 'production') {
-    if (value !== null && !freeSolo && options?.length > 0) {
+    if (value !== null && !freeSolo && options.length > 0) {
       const missingValue = (multiple ? value : [value]).filter(
         (value2) => !options.some((option) => getOptionSelected(option, value2)),
       );
@@ -656,6 +656,14 @@ export default function useAutocomplete(props) {
   };
 
   const handleKeyDown = (other) => (event) => {
+    if (other.onKeyDown) {
+      other.onKeyDown(event);
+    }
+
+    if (event.defaultMuiPrevented) {
+      return;
+    }
+
     if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
       setFocusedTag(-1);
       focusTag(-1);
@@ -774,10 +782,6 @@ export default function useAutocomplete(props) {
           break;
         default:
       }
-    }
-
-    if (other.onKeyDown) {
-      other.onKeyDown(event);
     }
   };
 
