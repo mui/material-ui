@@ -6,12 +6,12 @@
 
 Big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
 
-- 📅 Migrate to the date picker in the lab (#22692) @dmtrKovalenko.
-  We have integrated the components inside the code infrastructure. In the coming days, we will migrate all the issues from [material-ui-pickers](https://github.com/mui-org/material-ui-pickers) and archive the repository. This migration will help provide first-class support for the date picker components. The component will stay in the lab as long as necessary to reach the high expectations bar we have for core components. You can find the [new documentation here](https://next.material-ui.com/components/pickers/).
+- 📅 Migrate the date picker to the lab (#22692) @dmtrKovalenko.
+  We have integrated the components with the code infrastructure. Next we will migrate all the GitHub issues from [material-ui-pickers](https://github.com/mui-org/material-ui-pickers) and archive the repository. This migration will help provide first-class support for the date picker components. The component will stay in the lab as long as necessary to reach the high quality bar we have for core components. You can find the [new documentation here](https://next.material-ui.com/components/pickers/).
 
-  While the sources are currently hosted in the [main repository](https://github.com/mui-org/material-ui), we might move them to the [x repository](https://github.com/mui-org/material-ui-x), depending on what is easier for the commercial date range picker. The date picker will stay open source no matter what.
+  While the source code is currently hosted in the [main repository](https://github.com/mui-org/material-ui), we might move it to the [x repository](https://github.com/mui-org/material-ui-x) in the future, depending on what is easier for the commercial date range picker. The date picker will stay open source no matter what.
 
-- 📚 Revamp the documentation for [the system](https://next.material-ui.com/system/basics/). The System contains CSS utilities for rapidly implementing custom designs. It now emphasizes the `sx` prop. It's ideal for adding one-off styles, e.g. padding. When pushed to its limits, it can be used to implement quickly a complete marketing page.
+- 📚 Revamp the documentation for [the system](https://next.material-ui.com/system/basics/). The System contains CSS utilities. The documentation now promotes the use of the `sx` prop. It's ideal for adding one-off styles, e.g. padding, but when pushed to its limits, it can be used to implement quickly a complete page.
 - 👩‍🎨 Upgrade emotion to v11 (#23007) @mnajdova.
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -34,7 +34,7 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 
 #### Changes
 
-- [Autocomplete] Use Popper with when disablePortal (#23263) @eps1lon
+- [Autocomplete] Use Popper when `disablePortal` (#23263) @eps1lon
 - [Box] Better DX for deprecated props (#23285) @eps1lon
 - [codemod] Add a codemod for the Box sx prop (#23465) @mbrookes
 - [CssBaseline] Add dark mode scrollbar support (#23407) @mmmols
@@ -73,7 +73,6 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 ### Docs
 
 - [docs] Allow to host code in a different repo (#23390) @oliviertassinari
-- [docs] Avoid confusing nav items with disabled items (#23283) @eps1lon
 - [docs] CHANGELOG for v5.0.0-alpha.15 (#23383) @oliviertassinari
 - [docs] Fix examples download URLs to match the correct branch name (#23467) @matchatype
 - [docs] Fix links being opened when dismissing context menus (#23491) @eps1lon
