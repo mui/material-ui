@@ -139,7 +139,7 @@ function ClassesTable(props) {
             </td>
             <td align="left">
               <span className="prop-name">
-                {componentStyles.globalClasses[className] || `Mui${componentName}-${className}`}
+                .{componentStyles.globalClasses[className] || `Mui${componentName}-${className}`}
               </span>
             </td>
             <td
