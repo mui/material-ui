@@ -312,11 +312,11 @@ A função utilitária `style()` também pode ser usada para mapear propriedades
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
-## Propriedade CSS
+## `sx` property
 
-Se você quiser suportar valores customizados de CSS, você pode usar o utilitário `css()`. Ele irá processar a propriedade `css`.
+If you want to support custom CSS values, you can use the `styleFunctionSx()` helper. It will process the `sx` property.
 
-{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/basics/SxProp.js", "bg": true}}
 
 ## Como funciona
 
