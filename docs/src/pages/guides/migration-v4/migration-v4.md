@@ -751,44 +751,6 @@ const classes = makeStyles(theme => ({
   +<Slider components={{ Thumb: CustomThumb }} />
   ```
 
-- The `classes` prop is no longer available for styling the component. You can fix this by one of these options:
-
-  1. Move these overrides to the theme's components overrides section
-
-  ```diff
-  -  const useStyles = makeStyles({
-  -    root: {
-  -      margin: '10px',
-  -    },
-  -    colorPrimary: {
-  -      backgroundColor: '#232323',
-  -    }
-  -  });
-  +  const theme = createMuiTheme({
-  +    components: {
-  +      MuiSlider: {
-  +        styleOverrides: {
-  +          root: {
-  +            margin: '10px',
-  +          },
-  +          colorPrimary: {
-  +            backgroundColor: '#232323',
-  +          },
-  +        },
-  +      },
-  +    },
-  +  });
-    // ...
-  -  const classes = useStyles();
-    // ...
-  + <ThemeProvider theme={theme}>
-  // ...
-  -  <Slider classes={classes}>
-  +  <Slider />
-  ```
-
-  or 2. you can follow one of the overrides approach described on the ([Style Library Interoperability](/guides/interoperability/)) page. The class names for the Slider component can be find on the [API page](/api/slider/#css).
-
 ### Snackbar
 
 - The notification now displays at the bottom left on large screens.

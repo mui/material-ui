@@ -1,9 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
+import {
+  useThemeProps,
+  experimentalStyled,
+  alpha,
+  lighten,
+  darken,
+} from '@material-ui/core/styles';
+import { capitalize } from '@material-ui/core/utils';
 import SliderUnstyled, { SliderValueLabelUnstyled } from '@material-ui/unstyled/SliderUnstyled';
-import { useThemeProps, experimentalStyled, alpha, lighten, darken } from '../styles';
-import capitalize from '../utils/capitalize';
 
 const overridesResolver = (props, styles, name) => {
   const {
@@ -48,7 +54,7 @@ const overridesResolver = (props, styles, name) => {
   return styleOverrides;
 };
 
-const SliderRoot = experimentalStyled(
+export const SliderRoot = experimentalStyled(
   'span',
   {},
   { muiName: 'MuiSlider', overridesResolver },
@@ -94,125 +100,138 @@ const SliderRoot = experimentalStyled(
       marginRight: 20,
     }),
   }),
-  '& .MuiSlider-rail': {
-    display: 'block',
+}));
+
+export const SliderRail = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSlider-rail' },
+)((props) => ({
+  display: 'block',
+  position: 'absolute',
+  width: '100%',
+  height: 2,
+  borderRadius: 1,
+  backgroundColor: 'currentColor',
+  opacity: 0.38,
+  ...(props.styleProps.orientation === 'vertical' && {
+    height: '100%',
+    width: 2,
+  }),
+  ...(props.styleProps.track === 'inverted' && {
+    opacity: 1,
+  }),
+}));
+
+export const SliderTrack = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSlider-track' },
+)((props) => ({
+  display: 'block',
+  position: 'absolute',
+  height: 2,
+  borderRadius: 1,
+  backgroundColor: 'currentColor',
+  ...(props.styleProps.orientation === 'vertical' && {
+    width: 2,
+  }),
+  ...(props.styleProps.track === false && {
+    display: 'none',
+  }),
+  ...(props.styleProps.track === 'inverted' && {
+    backgroundColor:
+      // Same logic as the LinearProgress track color
+      props.theme.palette.mode === 'light'
+        ? lighten(props.theme.palette.primary.main, 0.62)
+        : darken(props.theme.palette.primary.main, 0.5),
+  }),
+}));
+
+export const SliderThumb = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSlider-thumb' },
+)((props) => ({
+  position: 'absolute',
+  width: 12,
+  height: 12,
+  marginLeft: -6,
+  marginTop: -5,
+  boxSizing: 'border-box',
+  borderRadius: '50%',
+  outline: 0,
+  backgroundColor: 'currentColor',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  transition: props.theme.transitions.create(['box-shadow'], {
+    duration: props.theme.transitions.duration.shortest,
+  }),
+  '&::after': {
     position: 'absolute',
-    width: '100%',
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    opacity: 0.38,
-    ...(props.styleProps.orientation === 'vertical' && {
-      height: '100%',
-      width: 2,
-    }),
-    ...(props.styleProps.track === 'inverted' && {
-      opacity: 1,
-    }),
-  },
-  '& .MuiSlider-track': {
-    display: 'block',
-    position: 'absolute',
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    ...(props.styleProps.orientation === 'vertical' && {
-      width: 2,
-    }),
-    ...(props.styleProps.track === false && {
-      display: 'none',
-    }),
-    ...(props.styleProps.track === 'inverted' && {
-      backgroundColor:
-        // Same logic as the LinearProgress track color
-        props.theme.palette.mode === 'light'
-          ? lighten(props.theme.palette.primary.main, 0.62)
-          : darken(props.theme.palette.primary.main, 0.5),
-    }),
-  },
-  '& .MuiSlider-thumb': {
-    position: 'absolute',
-    width: 12,
-    height: 12,
-    marginLeft: -6,
-    marginTop: -5,
-    boxSizing: 'border-box',
+    content: '""',
     borderRadius: '50%',
-    outline: 0,
-    backgroundColor: 'currentColor',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: props.theme.transitions.create(['box-shadow'], {
-      duration: props.theme.transitions.duration.shortest,
-    }),
-    '::after': {
-      position: 'absolute',
-      content: '""',
-      borderRadius: '50%',
-      // reach 42px hit target (2 * 15 + thumb diameter)
-      left: -15,
-      top: -15,
-      right: -15,
-      bottom: -15,
+    // reach 42px hit target (2 * 15 + thumb diameter)
+    left: -15,
+    top: -15,
+    right: -15,
+    bottom: -15,
+  },
+  '&:hover, &.Mui-focusVisible': {
+    boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
+    '@media (hover: none)': {
+      boxShadow: 'none',
     },
-    ':hover, &.Mui-focusVisible': {
-      boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
-      '@media (hover: none)': {
-        boxShadow: 'none',
-      },
+  },
+  '&.Mui-active': {
+    boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
+  },
+  '&.Mui-disabled': {
+    width: 8,
+    height: 8,
+    marginLeft: -4,
+    marginTop: -3,
+    '&:hover': {
+      boxShadow: 'none',
+    },
+  },
+  '&.MuiSlider-vertical': {
+    marginLeft: -5,
+    marginBottom: -6,
+  },
+  '&.MuiSlider-vertical&.Mui-disabled': {
+    marginLeft: -3,
+    marginBottom: -4,
+  },
+  ...(props.styleProps.color === 'secondary' && {
+    '&:hover, &.Mui-focusVisible': {
+      boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
     },
     '&.Mui-active': {
-      boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
     },
-    '&.Mui-disabled': {
-      width: 8,
-      height: 8,
-      marginLeft: -4,
-      marginTop: -3,
-      ':hover': {
-        boxShadow: 'none',
-      },
-      ...(props.styleProps.orientation === 'vertical' && {
-        marginLeft: -3,
-        marginBottom: -4,
-      }),
+  }),
+}));
+
+export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled)((props) => ({
+  // IE 11 centering bug, to remove from the customization demos once no longer supported
+  left: 'calc(-50% - 4px)',
+  '&.MuiSlider-valueLabelOffset': {
+    '&.MuiSlider-valueLabelOpen': {
+      transform: 'scale(1) translateY(-10px)',
     },
-    ...(props.styleProps.orientation === 'vertical' && {
-      marginLeft: -5,
-      marginBottom: -6,
+    zIndex: 1,
+    ...props.theme.typography.body2,
+    fontSize: props.theme.typography.pxToRem(12),
+    lineHeight: 1.2,
+    transition: props.theme.transitions.create(['transform'], {
+      duration: props.theme.transitions.duration.shortest,
     }),
-    ...(props.styleProps.color === 'secondary' && {
-      ':hover': {
-        boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
-      },
-      '&.Mui-focusVisible': {
-        boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
-      },
-      '&.Mui-active': {
-        boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
-      },
-    }),
-  },
-  '& .MuiSlider-valueLabel': {
-    // IE11 centering bug, to remove from the customization demos once no longer supported
-    left: 'calc(-50% - 4px)',
-    '&.MuiSlider-valueLabelOffset': {
-      '&.MuiSlider-valueLabelOpen': {
-        transform: 'scale(1) translateY(-10px)',
-      },
-      zIndex: 1,
-      ...props.theme.typography.body2,
-      fontSize: props.theme.typography.pxToRem(12),
-      lineHeight: 1.2,
-      transition: props.theme.transitions.create(['transform'], {
-        duration: props.theme.transitions.duration.shortest,
-      }),
-      top: -34,
-      transformOrigin: 'bottom center',
-      transform: 'scale(0)',
-      position: 'absolute',
-    },
+    top: -34,
+    transformOrigin: 'bottom center',
+    transform: 'scale(0)',
+    position: 'absolute',
   },
   '& .MuiSlider-valueLabelCircle': {
     display: 'flex',
@@ -229,41 +248,97 @@ const SliderRoot = experimentalStyled(
     transform: 'rotate(45deg)',
     textAlign: 'center',
   },
-  '& .MuiSlider-mark': {
-    position: 'absolute',
-    width: 2,
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    '&.MuiSlider-markActive': {
-      backgroundColor: props.theme.palette.background.paper,
-      opacity: 0.8,
-    },
-  },
-  '& .MuiSlider-markLabel': {
-    ...props.theme.typography.body2,
-    color: props.theme.palette.text.secondary,
-    position: 'absolute',
-    top: 26,
-    transform: 'translateX(-50%)',
-    whiteSpace: 'nowrap',
-    ...(props.styleProps.orientation === 'vertical' && {
-      top: 'auto',
-      left: 26,
-      transform: 'translateY(50%)',
-    }),
-    '@media (pointer: coarse)': {
-      top: 40,
-      ...(props.styleProps.orientation === 'vertical' && {
-        top: 'auto',
-        left: 31,
-      }),
-    },
-    '&.MuiSlider-markLabelActive': {
-      color: props.theme.palette.text.primary,
-    },
+}));
+
+export const SliderMark = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSlider-mark' },
+)((props) => ({
+  position: 'absolute',
+  width: 2,
+  height: 2,
+  borderRadius: 1,
+  backgroundColor: 'currentColor',
+  '&.MuiSlider-markActive': {
+    backgroundColor: props.theme.palette.background.paper,
+    opacity: 0.8,
   },
 }));
+
+export const SliderMarkLabel = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSlider-markLabel' },
+)((props) => ({
+  ...props.theme.typography.body2,
+  color: props.theme.palette.text.secondary,
+  position: 'absolute',
+  top: 26,
+  transform: 'translateX(-50%)',
+  whiteSpace: 'nowrap',
+  ...(props.styleProps.orientation === 'vertical' && {
+    top: 'auto',
+    left: 26,
+    transform: 'translateY(50%)',
+  }),
+  '@media (pointer: coarse)': {
+    top: 40,
+    ...(props.styleProps.orientation === 'vertical' && {
+      left: 31,
+    }),
+  },
+  '&.MuiSlider-markLabelActive': {
+    color: props.theme.palette.text.primary,
+  },
+}));
+
+SliderRoot.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  styleProps: PropTypes.shape({
+    'aria-label': PropTypes.string,
+    'aria-labelledby': PropTypes.string,
+    'aria-valuetext': PropTypes.string,
+    classes: PropTypes.object,
+    color: PropTypes.oneOf(['primary', 'secondary']),
+    defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+    disabled: PropTypes.bool,
+    getAriaLabel: PropTypes.func,
+    getAriaValueText: PropTypes.func,
+    isRtl: PropTypes.bool,
+    marks: PropTypes.oneOfType([
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.node,
+          value: PropTypes.number.isRequired,
+        }),
+      ),
+      PropTypes.bool,
+    ]),
+    max: PropTypes.number,
+    min: PropTypes.number,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    onChangeCommitted: PropTypes.func,
+    orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+    scale: PropTypes.func,
+    step: PropTypes.number,
+    track: PropTypes.oneOf(['inverted', 'normal', false]),
+    value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+    valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+    valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  }),
+};
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
@@ -273,7 +348,12 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
       {...other}
       components={{
         Root: SliderRoot,
-        ValueLabel: SliderValueLabelUnstyled,
+        Rail: SliderRail,
+        Track: SliderTrack,
+        Thumb: SliderThumb,
+        ValueLabel: SliderValueLabel,
+        Mark: SliderMark,
+        MarkLabel: SliderMarkLabel,
         ...components,
       }}
       ref={ref}
@@ -322,6 +402,10 @@ Slider.propTypes = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
