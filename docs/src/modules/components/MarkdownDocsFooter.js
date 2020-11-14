@@ -286,7 +286,6 @@ function MarkdownDocsFooter(props) {
               </Typography>
               <TextField
                 multiline
-                variant="outlined"
                 margin="dense"
                 name="comment"
                 fullWidth

@@ -45,7 +45,7 @@ export default function MultilineTextFields() {
     <form className={classes.root} noValidate autoComplete="off">
       <div>
         <TextField
-          id="standard-select-currency"
+          id="outlined-select-currency"
           select
           label="Select"
           value={currency}
@@ -59,7 +59,7 @@ export default function MultilineTextFields() {
           ))}
         </TextField>
         <TextField
-          id="standard-select-currency-native"
+          id="outlined-select-currency-native"
           select
           label="Native select"
           value={currency}
@@ -113,13 +113,13 @@ export default function MultilineTextFields() {
       </div>
       <div>
         <TextField
-          id="outlined-select-currency"
+          id="standard-select-currency"
           select
           label="Select"
           value={currency}
           onChange={handleChange}
           helperText="Please select your currency"
-          variant="outlined"
+          variant="standard"
         >
           {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -128,7 +128,7 @@ export default function MultilineTextFields() {
           ))}
         </TextField>
         <TextField
-          id="outlined-select-currency-native"
+          id="standard-select-currency-native"
           select
           label="Native select"
           value={currency}
@@ -137,7 +137,7 @@ export default function MultilineTextFields() {
             native: true,
           }}
           helperText="Please select your currency"
-          variant="outlined"
+          variant="standard"
         >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>

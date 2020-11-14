@@ -189,7 +189,7 @@ const useSliderClasses = (props) => {
   return utilityClasses;
 };
 
-const isComponent = (element) => typeof element !== 'string';
+const isHostComponent = (element) => typeof element === 'string';
 const Forward = ({ children }) => children;
 
 const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
@@ -637,7 +637,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     <Root
       ref={handleRef}
       onMouseDown={handleMouseDown}
-      {...(isComponent(Root) && {
+      {...(!isHostComponent(Root) && {
         styleProps: stateAndProps,
         theme,
       })}
@@ -647,7 +647,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     >
       <Rail
         {...railProps}
-        {...(isComponent(Rail) && {
+        {...(!isHostComponent(Rail) && {
           styleProps: stateAndProps,
           theme,
         })}
@@ -655,7 +655,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       />
       <Track
         {...trackProps}
-        {...(isComponent(Track) && {
+        {...(!isHostComponent(Track) && {
           styleProps: stateAndProps,
           theme,
         })}
@@ -687,7 +687,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             <Mark
               data-index={index}
               {...markProps}
-              {...(isComponent(Mark) && {
+
+              {...(!isHostComponent(Mark) && {
                 styleProps: stateAndProps,
                 theme,
               })}
@@ -701,7 +702,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 aria-hidden
                 data-index={index}
                 {...markLabelProps}
-                {...(isComponent(MarkLabel) && {
+                {...(!isHostComponent(MarkLabel) && {
                   styleProps: stateAndProps,
                   theme,
                 })}
@@ -736,7 +737,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 ? valueLabelFormat(scale(value), index)
                 : valueLabelFormat
             }
-            {...(isComponent(ValueLabel) && {
+            {...(!isHostComponent(ValueLabel) && {
               styleProps: stateAndProps,
               theme,
             })}
@@ -753,7 +754,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 'Mui-disabled': disabled,
                 'Mui-focusVisible': focusVisible === index,
               })}
-              {...(isComponent(Thumb) && {
+              {...(!isHostComponent(Thumb) && {
                 styleProps: stateAndProps,
                 theme,
               })}

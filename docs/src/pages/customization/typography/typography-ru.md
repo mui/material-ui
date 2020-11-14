@@ -1,4 +1,4 @@
-# Оформление текста
+# Typography
 
 <p class="description">The theme provides a set of type sizes that work well together, and also with the layout grid.</p>
 

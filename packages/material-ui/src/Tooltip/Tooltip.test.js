@@ -945,7 +945,7 @@ describe('<Tooltip />', () => {
       });
       const { getByRole } = render(
         <Tooltip open title="test">
-          <TextField onFocus={handleFocus} />
+          <TextField onFocus={handleFocus} variant="standard" />
         </Tooltip>,
       );
       const input = getByRole('textbox');

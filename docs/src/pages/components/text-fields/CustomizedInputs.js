@@ -149,11 +149,11 @@ export default function CustomizedInputs() {
         className={classes.margin}
         id="custom-css-standard-input"
         label="Custom CSS"
+        variant="standard"
       />
       <CssTextField
         className={classes.margin}
         label="Custom CSS"
-        variant="outlined"
         id="custom-css-outlined-input"
       />
       <ThemeProvider theme={newTheme}>
@@ -161,11 +161,11 @@ export default function CustomizedInputs() {
           className={classes.margin}
           label="ThemeProvider"
           id="mui-theme-provider-standard-input"
+          variant="standard"
         />
         <TextField
           className={classes.margin}
           label="ThemeProvider"
-          variant="outlined"
           id="mui-theme-provider-outlined-input"
         />
       </ThemeProvider>

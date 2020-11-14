@@ -65,7 +65,6 @@ export default function SignUp() {
               <TextField
                 autoComplete="fname"
                 name="firstName"
-                variant="outlined"
                 required
                 fullWidth
                 id="firstName"
@@ -75,7 +74,6 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                variant="outlined"
                 required
                 fullWidth
                 id="lastName"
@@ -86,7 +84,6 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
                 required
                 fullWidth
                 id="email"
@@ -97,7 +94,6 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
                 required
                 fullWidth
                 name="password"

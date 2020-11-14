@@ -11,7 +11,9 @@ export default function TimeValidationTimePicker() {
     <LocalizationProvider dateAdapter={DateFnsAdapter}>
       <div style={{ width: 300 }}>
         <TimePicker
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
           value={value}
           label="min/max time"
           onChange={(newValue) => {
@@ -21,7 +23,9 @@ export default function TimeValidationTimePicker() {
           maxTime={new Date(0, 0, 0, 18, 45)}
         />
         <TimePicker
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
           label="Disable odd hours"
           value={value}
           onChange={(newValue) => {

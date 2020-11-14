@@ -39,7 +39,6 @@ export default function CustomDateTimePicker() {
             <TextField
               {...params}
               margin="normal"
-              variant="outlined"
               helperText="Hardcoded helper text"
             />
           )}
@@ -54,9 +53,7 @@ export default function CustomDateTimePicker() {
           minDate={new Date('2018-01-01T00:00')}
           inputFormat="yyyy/MM/dd hh:mm a"
           mask="___/__/__ __:__ _M"
-          renderInput={(params) => (
-            <TextField variant="outlined" {...params} margin="normal" />
-          )}
+          renderInput={(params) => <TextField {...params} margin="normal" />}
         />
         <DateTimePicker
           clearable
@@ -67,6 +64,7 @@ export default function CustomDateTimePicker() {
               {...params}
               margin="normal"
               helperText="Clear Initial State"
+              variant="standard"
             />
           )}
         />

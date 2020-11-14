@@ -10,7 +10,7 @@ export default function BasicDateTimePicker() {
   return (
     <LocalizationProvider dateAdapter={DateFnsAdapter}>
       <DateTimePicker
-        renderInput={(props) => <TextField variant="outlined" {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         label="DateTimePicker"
         value={selectedDate}
         onChange={handleDateChange}

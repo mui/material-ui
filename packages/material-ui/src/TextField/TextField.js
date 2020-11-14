@@ -88,7 +88,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     SelectProps,
     type,
     value,
-    variant = 'standard',
+    variant = 'outlined',
     ...other
   } = props;
 
@@ -356,7 +356,7 @@ TextField.propTypes = {
   value: PropTypes.any,
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };

@@ -24,7 +24,7 @@ Necesitas actualizar tu `package.json` para usar la última versión de Material
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^5.0.0-alpha.1"
+  "@material-ui/core": "^5.0.0"
 }
 ```
 
@@ -59,7 +59,7 @@ It no longer supports IE 11. If you need to support IE 11, check out our [legacy
 
 ### non-ref-forwarding class components
 
-Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything. Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate. This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
+Support for non-ref-forwarding class components in the `component` prop or as immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything. Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate. This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
 ### Tema
 
@@ -315,6 +315,18 @@ const classes = makeStyles(theme => ({
   -<BottomNavigation onChange={(event: React. ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React. SyntheticEvent) => {}} />
   ```
+
+
+  ###  Box
+
+- The system props have been deprecated in v5, and replaced with the `sx` prop.
+
+```diff
+-<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
++<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+```
+
+[This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
 
 ### Button (Botón)
 
@@ -917,3 +929,12 @@ const classes = makeStyles(theme => ({
   -<Typography variant="srOnly">Create a user</Typography>
   +<Span>Create a user</Span>
   ```
+
+### Sistema
+
+- Replace `css` prop with `sx` to avoid collision with styled-components & emotion CSS props.
+
+```diff
+-<Box css={{ color: 'primary.main' }} />
++<Box sx={{ color: 'primary.main' }} />
+```

@@ -61,6 +61,10 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 
 - `box-sizing` é definido globalmente no elemento `<html>` para `border-box`. Todos elementos—incluindo `*::before` e `*::after` são declarados para herdar essa propriedade, que garante que a largura declarada do elemento nunca seja excedida devido ao preenchimento da borda.
 
+### Scrollbars
+
+In dark mode, the colors of the scrollbars are customized to provide a better contrast.
+
 ### Tipografia
 
 - Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho da fonte do `<html>` na página de [documentação do tema](/customization/typography/#typography-html-font-size).
