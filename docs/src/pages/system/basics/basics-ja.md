@@ -312,11 +312,11 @@ The `style()` helper can also be used to maps properties to style objects in a t
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
-## CSS property
+## `sx` property
 
-It will process the `css` property. If you want to support custom CSS values, you can use the `css()` helper.
+If you want to support custom CSS values, you can use the `styleFunctionSx()` helper. It will process the `sx` property.
 
-{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/basics/SxProp.js", "bg": true}}
 
 ## 仕組み
 
