@@ -235,7 +235,7 @@ jobs:
       - install_js
       - run:
           name: Run visual regression tests
-          command: yarn test:regressions
+          command: xvfb-run yarn test:regressions
       - run:
           name: Upload screenshots to Argos CI
           command: yarn argos
