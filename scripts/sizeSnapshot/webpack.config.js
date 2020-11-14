@@ -8,7 +8,7 @@ const workspaceRoot = path.join(__dirname, '..', '..');
 
 async function getWebpackEntries() {
   const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build');
-  const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*/index.js'))).map(
+  const coreComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
       let entryName = componentName;
@@ -29,7 +29,7 @@ async function getWebpackEntries() {
   );
 
   const labPackagePath = path.join(workspaceRoot, 'packages/material-ui-lab/build');
-  const labComponents = (await glob(path.join(labPackagePath, '[A-Z]*/index.js'))).map(
+  const labComponents = (await glob(path.join(labPackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
 
