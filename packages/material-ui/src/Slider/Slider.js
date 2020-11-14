@@ -213,22 +213,20 @@ export const SliderThumb = experimentalStyled(
 export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled)((props) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
-  '&.MuiSlider-valueLabelOffset': {
-    '&.MuiSlider-valueLabelOpen': {
-      transform: 'scale(1) translateY(-10px)',
-    },
-    zIndex: 1,
-    ...props.theme.typography.body2,
-    fontSize: props.theme.typography.pxToRem(12),
-    lineHeight: 1.2,
-    transition: props.theme.transitions.create(['transform'], {
-      duration: props.theme.transitions.duration.shortest,
-    }),
-    top: -34,
-    transformOrigin: 'bottom center',
-    transform: 'scale(0)',
-    position: 'absolute',
+  '&.MuiSlider-valueLabelOpen': {
+    transform: 'scale(1) translateY(-10px)',
   },
+  zIndex: 1,
+  ...props.theme.typography.body2,
+  fontSize: props.theme.typography.pxToRem(12),
+  lineHeight: 1.2,
+  transition: props.theme.transitions.create(['transform'], {
+    duration: props.theme.transitions.duration.shortest,
+  }),
+  top: -34,
+  transformOrigin: 'bottom center',
+  transform: 'scale(0)',
+  position: 'absolute',
   '& .MuiSlider-valueLabelCircle': {
     display: 'flex',
     alignItems: 'center',
