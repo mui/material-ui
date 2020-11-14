@@ -12,9 +12,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
 import DoneIcon from '@material-ui/icons/Done';
-import Autocomplete, {
-  AutocompleteCloseReason,
-} from '@material-ui/core/Autocomplete';
+import Autocomplete, { AutocompleteCloseReason } from '@material-ui/core/Autocomplete';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
 
@@ -130,10 +128,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function GitHubLabel() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [value, setValue] = React.useState<LabelType[]>([
-    labels[1],
-    labels[11],
-  ]);
+  const [value, setValue] = React.useState<LabelType[]>([labels[1], labels[11]]);
   const [pendingValue, setPendingValue] = React.useState<LabelType[]>([]);
   const theme = useTheme();
 
@@ -187,9 +182,7 @@ export default function GitHubLabel() {
       >
         <ClickAwayListener onClickAway={handleClose}>
           <div>
-            <div className={classes.header}>
-              Apply labels to this pull request
-            </div>
+            <div className={classes.header}>Apply labels to this pull request</div>
             <Autocomplete
               open
               multiple

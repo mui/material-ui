@@ -18,11 +18,7 @@ export default function ColorTextFields() {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <TextField
-        id="outlined-secondary"
-        label="Outlined secondary"
-        color="secondary"
-      />
+      <TextField id="outlined-secondary" label="Outlined secondary" color="secondary" />
       <TextField
         id="filled-secondary"
         label="Filled secondary"

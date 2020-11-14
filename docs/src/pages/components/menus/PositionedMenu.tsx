@@ -16,11 +16,7 @@ export default function PositionedMenu() {
 
   return (
     <div>
-      <Button
-        aria-controls="positioned-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
+      <Button aria-controls="positioned-menu" aria-haspopup="true" onClick={handleClick}>
         Open Menu
       </Button>
       <Menu

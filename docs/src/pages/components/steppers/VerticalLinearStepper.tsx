@@ -70,9 +70,7 @@ export default function VerticalLinearStepper() {
           <Step key={step.label}>
             <StepLabel
               optional={
-                index === 2 ? (
-                  <Typography variant="caption">Last step</Typography>
-                ) : null
+                index === 2 ? <Typography variant="caption">Last step</Typography> : null
               }
             >
               {step.label}

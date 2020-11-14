@@ -51,12 +51,7 @@ interface Data {
   density: number;
 }
 
-function createData(
-  name: string,
-  code: string,
-  population: number,
-  size: number,
-): Data {
+function createData(name: string, code: string, population: number, size: number): Data {
   const density = population / size;
   return { name, code, population, size, density };
 }
@@ -97,9 +92,7 @@ export default function StickyHeadTable() {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };

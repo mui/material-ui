@@ -139,11 +139,7 @@ export default function CustomizedSwitches() {
       />
       <FormControlLabel
         control={
-          <IOSSwitch
-            checked={state.checkedB}
-            onChange={handleChange}
-            name="checkedB"
-          />
+          <IOSSwitch checked={state.checkedB} onChange={handleChange} name="checkedB" />
         }
         label="iOS style"
       />
@@ -151,11 +147,7 @@ export default function CustomizedSwitches() {
         <Grid component="label" container alignItems="center" spacing={1}>
           <Grid item>Off</Grid>
           <Grid item>
-            <AntSwitch
-              checked={state.checkedC}
-              onChange={handleChange}
-              name="checkedC"
-            />
+            <AntSwitch checked={state.checkedC} onChange={handleChange} name="checkedC" />
           </Grid>
           <Grid item>On</Grid>
         </Grid>

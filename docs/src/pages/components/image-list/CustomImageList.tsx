@@ -24,13 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-function srcset(
-  image: string,
-  width: number,
-  height: number,
-  rows = 1,
-  cols = 1,
-) {
+function srcset(image: string, width: number, height: number, rows = 1, cols = 1) {
   return `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format 1x,
   ${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format&dpr=2 2x`;
 }
@@ -46,18 +40,12 @@ export default function CustomImageList() {
 
         return (
           <ImageListItem key={item.img} cols={cols} rows={rows}>
-            <img
-              srcSet={srcset(item.img, 250, 200, rows, cols)}
-              alt={item.title}
-            />
+            <img srcSet={srcset(item.img, 250, 200, rows, cols)} alt={item.title} />
             <ImageListItemBar
               title={item.title}
               position="top"
               actionIcon={
-                <IconButton
-                  aria-label={`star ${item.title}`}
-                  className={classes.icon}
-                >
+                <IconButton aria-label={`star ${item.title}`} className={classes.icon}>
                   <StarBorderIcon />
                 </IconButton>
               }

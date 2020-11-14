@@ -29,11 +29,7 @@ export default function IconLabelButtons() {
         Delete
       </Button>
       {/* This Button uses a Font Icon, see the installation instructions in the Icon component docs. */}
-      <Button
-        variant="contained"
-        className={classes.button}
-        endIcon={<Icon>send</Icon>}
-      >
+      <Button variant="contained" className={classes.button} endIcon={<Icon>send</Icon>}>
         Send
       </Button>
       <Button

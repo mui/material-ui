@@ -154,10 +154,7 @@ import { ReactComponent as StarIcon } from './star.svg';
 The `createSvgIcon` utility component is used to create the [Material icons](#material-icons). It can be used to wrap an SVG path with an SvgIcon component.
 
 ```jsx
-const HomeIcon = createSvgIcon(
-  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />,
-  'Home',
-);
+const HomeIcon = createSvgIcon(<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />, 'Home');
 ```
 
 {{"demo": "pages/components/icons/CreateSvgIcon.js"}}
@@ -188,10 +185,7 @@ As a prerequisite, you must include one, such as the
 [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
 
 ```html
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
-/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 `Icon` will set the correct class name for the Material Icons font. For other fonts, you must supply the

@@ -29,10 +29,7 @@ export default function MenuListComposition() {
   };
 
   const handleClose = (event: React.MouseEvent<EventTarget>) => {
-    if (
-      anchorRef.current &&
-      anchorRef.current.contains(event.target as HTMLElement)
-    ) {
+    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
 
@@ -85,8 +82,7 @@ export default function MenuListComposition() {
             <Grow
               {...TransitionProps}
               style={{
-                transformOrigin:
-                  placement === 'bottom' ? 'center top' : 'center bottom',
+                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
               <Paper>

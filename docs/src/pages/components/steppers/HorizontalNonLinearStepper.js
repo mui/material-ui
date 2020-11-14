@@ -30,11 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = [
-  'Select campaign settings',
-  'Create an ad group',
-  'Create an ad',
-];
+const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
 export default function HorizontalNonLinearStepper() {
   const classes = useStyles();
@@ -134,9 +130,7 @@ export default function HorizontalNonLinearStepper() {
                   </Typography>
                 ) : (
                   <Button onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1
-                      ? 'Finish'
-                      : 'Complete Step'}
+                    {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Complete Step'}
                   </Button>
                 ))}
             </div>

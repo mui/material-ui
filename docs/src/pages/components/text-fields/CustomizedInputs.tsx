@@ -109,9 +109,7 @@ function RedditTextField(props: TextFieldProps) {
 
   return (
     <TextField
-      InputProps={
-        { classes, disableUnderline: true } as Partial<OutlinedInputProps>
-      }
+      InputProps={{ classes, disableUnderline: true } as Partial<OutlinedInputProps>}
       {...props}
     />
   );

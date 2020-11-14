@@ -27,10 +27,7 @@ interface FadeProps {
   onExited?: () => {};
 }
 
-const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
-  props,
-  ref,
-) {
+const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
   const { in: open, children, onEnter, onExited, ...other } = props;
   const style = useSpring({
     from: { opacity: 0 },

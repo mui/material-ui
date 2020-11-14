@@ -32,9 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomDay() {
   const classes = useStyles();
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(
-    new Date(),
-  );
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   const renderWeekPickerDay = (
     date: Date,

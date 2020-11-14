@@ -30,10 +30,7 @@ export default function SimpleListMenu() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLElement>,
-    index: number,
-  ) => {
+  const handleMenuItemClick = (event: React.MouseEvent<HTMLElement>, index: number) => {
     setSelectedIndex(index);
     setAnchorEl(null);
   };

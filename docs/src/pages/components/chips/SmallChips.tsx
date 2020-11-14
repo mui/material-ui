@@ -58,13 +58,7 @@ export default function SmallChips() {
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
-      <Chip
-        size="small"
-        label="Clickable Link"
-        component="a"
-        href="#chip"
-        clickable
-      />
+      <Chip size="small" label="Clickable Link" component="a" href="#chip" clickable />
       <Chip
         size="small"
         avatar={<Avatar>M</Avatar>}

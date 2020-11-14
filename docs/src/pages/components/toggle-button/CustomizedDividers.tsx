@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  makeStyles,
-  withStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
@@ -49,10 +44,7 @@ export default function CustomizedDividers() {
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
 
-  const handleFormat = (
-    event: React.MouseEvent<HTMLElement>,
-    newFormats: string[],
-  ) => {
+  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
     setFormats(newFormats);
   };
 

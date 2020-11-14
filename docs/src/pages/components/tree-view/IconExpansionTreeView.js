@@ -17,14 +17,7 @@ const useStyles = makeStyles({
 });
 
 const CustomContent = React.forwardRef(function CustomContent(props, ref) {
-  const {
-    classes,
-    label,
-    nodeId,
-    icon: iconProp,
-    expansionIcon,
-    displayIcon,
-  } = props;
+  const { classes, label, nodeId, icon: iconProp, expansionIcon, displayIcon } = props;
 
   const {
     disabled,

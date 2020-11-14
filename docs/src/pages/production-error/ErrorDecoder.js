@@ -25,10 +25,9 @@ export default function ErrorDecoder() {
     query: { code, ...query },
   } = useRouter();
   const queryArgs = query['args[]'];
-  const args = React.useMemo(
-    () => (Array.isArray(queryArgs) ? queryArgs : [queryArgs]),
-    [queryArgs],
-  );
+  const args = React.useMemo(() => (Array.isArray(queryArgs) ? queryArgs : [queryArgs]), [
+    queryArgs,
+  ]);
 
   const [data, dispatch] = React.useReducer(
     (previousState, action) => {
@@ -99,9 +98,8 @@ export default function ErrorDecoder() {
   if (data.state === 'rejected') {
     return (
       <Typography color="error">
-        Seems like we&apos;re having some issues loading the original message.
-        Try reloading the page. If the error persists please report this isse on
-        our{' '}
+        Seems like we&apos;re having some issues loading the original message. Try
+        reloading the page. If the error persists please report this isse on our{' '}
         <Link
           href="https://github.com/mui-org/material-ui/issues/new?template=1.bug.md"
           target="_blank"
@@ -116,8 +114,8 @@ export default function ErrorDecoder() {
   if (errorMessage === undefined) {
     return (
       <Typography>
-        When you encounter an error, you&apos;ll receive a link to this page for
-        that specific error and we&apos;ll show you the full error text.
+        When you encounter an error, you&apos;ll receive a link to this page for that
+        specific error and we&apos;ll show you the full error text.
       </Typography>
     );
   }

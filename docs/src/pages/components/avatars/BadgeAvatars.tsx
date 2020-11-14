@@ -1,12 +1,7 @@
 import * as React from 'react';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
-import {
-  Theme,
-  makeStyles,
-  withStyles,
-  createStyles,
-} from '@material-ui/core/styles';
+import { Theme, makeStyles, withStyles, createStyles } from '@material-ui/core/styles';
 
 const StyledBadge = withStyles((theme: Theme) =>
   createStyles({
@@ -81,9 +76,7 @@ export default function BadgeAvatars() {
           vertical: 'bottom',
           horizontal: 'right',
         }}
-        badgeContent={
-          <SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        }
+        badgeContent={<SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />}
       >
         <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
       </Badge>

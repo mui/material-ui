@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete, {
-  createFilterOptions,
-} from '@material-ui/core/Autocomplete';
+import Autocomplete, { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 const filter = createFilterOptions<FilmOptionType>();
 
@@ -60,9 +58,7 @@ export default function FreeSoloCreateOption() {
       renderOption={(props, option) => <li {...props}>{option.title}</li>}
       style={{ width: 300 }}
       freeSolo
-      renderInput={(params) => (
-        <TextField {...params} label="Free solo with text demo" />
-      )}
+      renderInput={(params) => <TextField {...params} label="Free solo with text demo" />}
     />
   );
 }
@@ -143,8 +139,7 @@ const top100Films: FilmOptionType[] = [
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
   {
-    title:
-      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { title: 'The Great Dictator', year: 1940 },

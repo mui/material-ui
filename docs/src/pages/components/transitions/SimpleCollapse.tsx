@@ -52,20 +52,14 @@ export default function SimpleCollapse() {
         <Collapse in={checked}>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon
-                points="0,100 50,00, 100,100"
-                className={classes.polygon}
-              />
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
             </svg>
           </Paper>
         </Collapse>
         <Collapse in={checked} collapsedSize={40}>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon
-                points="0,100 50,00, 100,100"
-                className={classes.polygon}
-              />
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
             </svg>
           </Paper>
         </Collapse>
@@ -75,10 +69,7 @@ export default function SimpleCollapse() {
           <Collapse orientation="horizontal" in={checked}>
             <Paper elevation={4} className={classes.paper}>
               <svg className={classes.svg}>
-                <polygon
-                  points="0,100 50,00, 100,100"
-                  className={classes.polygon}
-                />
+                <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
               </svg>
             </Paper>
           </Collapse>
@@ -87,10 +78,7 @@ export default function SimpleCollapse() {
           <Collapse orientation="horizontal" in={checked} collapsedSize={40}>
             <Paper elevation={4} className={classes.paper}>
               <svg className={classes.svg}>
-                <polygon
-                  points="0,100 50,00, 100,100"
-                  className={classes.polygon}
-                />
+                <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
               </svg>
             </Paper>
           </Collapse>

@@ -121,7 +121,6 @@ export default function GitHubLabel() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [value, setValue] = React.useState([labels[1], labels[11]]);
-
   const [pendingValue, setPendingValue] = React.useState([]);
   const theme = useTheme();
 
@@ -175,9 +174,7 @@ export default function GitHubLabel() {
       >
         <ClickAwayListener onClickAway={handleClose}>
           <div>
-            <div className={classes.header}>
-              Apply labels to this pull request
-            </div>
+            <div className={classes.header}>Apply labels to this pull request</div>
             <Autocomplete
               open
               multiple

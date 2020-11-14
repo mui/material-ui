@@ -35,12 +35,8 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function InteractiveGrid() {
   const classes = useStyles();
   const [direction, setDirection] = React.useState<GridDirection>('row');
-  const [justifyContent, setJustifyContent] = React.useState<GridJustification>(
-    'center',
-  );
-  const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>(
-    'center',
-  );
+  const [justifyContent, setJustifyContent] = React.useState<GridJustification>('center');
+  const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>('center');
 
   const jsx = `
 <Grid
@@ -94,21 +90,13 @@ export default function InteractiveGrid() {
                     );
                   }}
                 >
-                  <FormControlLabel
-                    value="row"
-                    control={<Radio />}
-                    label="row"
-                  />
+                  <FormControlLabel value="row" control={<Radio />} label="row" />
                   <FormControlLabel
                     value="row-reverse"
                     control={<Radio />}
                     label="row-reverse"
                   />
-                  <FormControlLabel
-                    value="column"
-                    control={<Radio />}
-                    label="column"
-                  />
+                  <FormControlLabel value="column" control={<Radio />} label="column" />
                   <FormControlLabel
                     value="column-reverse"
                     control={<Radio />}
@@ -127,8 +115,7 @@ export default function InteractiveGrid() {
                   value={justifyContent}
                   onChange={(event) => {
                     setJustifyContent(
-                      (event.target as HTMLInputElement)
-                        .value as GridJustification,
+                      (event.target as HTMLInputElement).value as GridJustification,
                     );
                   }}
                 >
@@ -137,11 +124,7 @@ export default function InteractiveGrid() {
                     control={<Radio />}
                     label="flex-start"
                   />
-                  <FormControlLabel
-                    value="center"
-                    control={<Radio />}
-                    label="center"
-                  />
+                  <FormControlLabel value="center" control={<Radio />} label="center" />
                   <FormControlLabel
                     value="flex-end"
                     control={<Radio />}
@@ -175,8 +158,7 @@ export default function InteractiveGrid() {
                   value={alignItems}
                   onChange={(event) => {
                     setAlignItems(
-                      (event.target as HTMLInputElement)
-                        .value as GridItemsAlignment,
+                      (event.target as HTMLInputElement).value as GridItemsAlignment,
                     );
                   }}
                 >
@@ -185,21 +167,13 @@ export default function InteractiveGrid() {
                     control={<Radio />}
                     label="flex-start"
                   />
-                  <FormControlLabel
-                    value="center"
-                    control={<Radio />}
-                    label="center"
-                  />
+                  <FormControlLabel value="center" control={<Radio />} label="center" />
                   <FormControlLabel
                     value="flex-end"
                     control={<Radio />}
                     label="flex-end"
                   />
-                  <FormControlLabel
-                    value="stretch"
-                    control={<Radio />}
-                    label="stretch"
-                  />
+                  <FormControlLabel value="stretch" control={<Radio />} label="stretch" />
                   <FormControlLabel
                     value="baseline"
                     control={<Radio />}

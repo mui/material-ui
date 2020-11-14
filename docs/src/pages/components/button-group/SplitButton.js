@@ -10,11 +10,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
-const options = [
-  'Create a merge commit',
-  'Squash and merge',
-  'Rebase and merge',
-];
+const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
 
 export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
@@ -74,8 +70,7 @@ export default function SplitButton() {
             <Grow
               {...TransitionProps}
               style={{
-                transformOrigin:
-                  placement === 'bottom' ? 'center top' : 'center bottom',
+                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
               <Paper>

@@ -21,17 +21,8 @@ export default function StateTextFields() {
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div>
-        <TextField
-          id="outlined-name"
-          label="Name"
-          value={name}
-          onChange={handleChange}
-        />
-        <TextField
-          id="outlined-uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
-        />
+        <TextField id="outlined-name" label="Name" value={name} onChange={handleChange} />
+        <TextField id="outlined-uncontrolled" label="Uncontrolled" defaultValue="foo" />
       </div>
       <div>
         <TextField

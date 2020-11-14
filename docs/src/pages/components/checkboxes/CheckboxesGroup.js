@@ -40,24 +40,16 @@ export default function CheckboxesGroup() {
         <FormLabel component="legend">Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={
-              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
-            }
+            control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
             label="Gilad Gray"
           />
           <FormControlLabel
-            control={
-              <Checkbox checked={jason} onChange={handleChange} name="jason" />
-            }
+            control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
             label="Jason Killian"
           />
           <FormControlLabel
             control={
-              <Checkbox
-                checked={antoine}
-                onChange={handleChange}
-                name="antoine"
-              />
+              <Checkbox checked={antoine} onChange={handleChange} name="antoine" />
             }
             label="Antoine Llorca"
           />
@@ -73,24 +65,16 @@ export default function CheckboxesGroup() {
         <FormLabel component="legend">Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={
-              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
-            }
+            control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
             label="Gilad Gray"
           />
           <FormControlLabel
-            control={
-              <Checkbox checked={jason} onChange={handleChange} name="jason" />
-            }
+            control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
             label="Jason Killian"
           />
           <FormControlLabel
             control={
-              <Checkbox
-                checked={antoine}
-                onChange={handleChange}
-                name="antoine"
-              />
+              <Checkbox checked={antoine} onChange={handleChange} name="antoine" />
             }
             label="Antoine Llorca"
           />

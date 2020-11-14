@@ -61,8 +61,7 @@ const useContentStyles = makeStyles((theme) =>
       '$root$selected:hover &': {
         backgroundColor: alpha(
           theme.palette.primary.main,
-          theme.palette.action.selectedOpacity +
-            theme.palette.action.hoverOpacity,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
@@ -75,8 +74,7 @@ const useContentStyles = makeStyles((theme) =>
       '$root$selected$focused &': {
         backgroundColor: alpha(
           theme.palette.primary.main,
-          theme.palette.action.selectedOpacity +
-            theme.palette.action.focusOpacity,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
         ),
       },
     },
@@ -91,14 +89,7 @@ const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps,
   ref,
 ) {
-  const {
-    classes,
-    label,
-    nodeId,
-    icon: iconProp,
-    expansionIcon,
-    displayIcon,
-  } = props;
+  const { classes, label, nodeId, icon: iconProp, expansionIcon, displayIcon } = props;
 
   const contentClasses = useContentStyles();
 
@@ -114,9 +105,7 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     preventSelection(event);
   };
 

@@ -89,12 +89,7 @@ function HomeSteps() {
   return (
     <Container disableGutters className={classes.root}>
       <Grid container>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          className={clsx(classes.step, classes.leftStep)}
-        >
+        <Grid item xs={12} md={6} className={clsx(classes.step, classes.leftStep)}>
           <div className={classes.stepTitle}>
             <FileDownloadIcon className={classes.stepIcon} />
             <Typography variant="h6" component="h2">
@@ -128,12 +123,7 @@ function HomeSteps() {
           <Divider className={classes.divider} />
           <Button component={InstallationLink}>{t('installButton')}</Button>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          className={clsx(classes.step, classes.rightStep)}
-        >
+        <Grid item xs={12} md={6} className={clsx(classes.step, classes.rightStep)}>
           <div className={classes.stepTitle}>
             <BuildIcon className={classes.stepIcon} />
             <Typography variant="h6" component="h2">

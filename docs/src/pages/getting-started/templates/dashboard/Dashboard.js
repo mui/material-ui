@@ -99,9 +99,7 @@ const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
     backgroundColor:
-      theme.palette.mode === 'light'
-        ? theme.palette.grey[100]
-        : theme.palette.grey[900],
+      theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
@@ -142,10 +140,7 @@ export default function Dashboard() {
             color="inherit"
             aria-label="open drawer"
             onClick={toggleDrawer}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden,
-            )}
+            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
           </IconButton>

@@ -23,14 +23,7 @@ const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps,
   ref,
 ) {
-  const {
-    classes,
-    label,
-    nodeId,
-    icon: iconProp,
-    expansionIcon,
-    displayIcon,
-  } = props;
+  const { classes, label, nodeId, icon: iconProp, expansionIcon, displayIcon } = props;
 
   const {
     disabled,
@@ -44,21 +37,15 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     preventSelection(event);
   };
 
-  const handleExpansionClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleExpansionClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     handleExpansion(event);
   };
 
-  const handleSelectionClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleSelectionClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     handleSelection(event);
   };
 

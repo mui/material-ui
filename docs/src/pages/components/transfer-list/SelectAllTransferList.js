@@ -92,12 +92,9 @@ export default function TransferList() {
         avatar={
           <Checkbox
             onClick={handleToggleAll(items)}
-            checked={
-              numberOfChecked(items) === items.length && items.length !== 0
-            }
+            checked={numberOfChecked(items) === items.length && items.length !== 0}
             indeterminate={
-              numberOfChecked(items) !== items.length &&
-              numberOfChecked(items) !== 0
+              numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0
             }
             disabled={items.length === 0}
             inputProps={{
@@ -114,12 +111,7 @@ export default function TransferList() {
           const labelId = `transfer-list-all-item-${value}-label`;
 
           return (
-            <ListItem
-              key={value}
-              role="listitem"
-              button
-              onClick={handleToggle(value)}
-            >
+            <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
               <ListItemIcon>
                 <Checkbox
                   checked={checked.indexOf(value) !== -1}

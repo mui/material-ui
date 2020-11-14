@@ -53,9 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardHeader: {
     backgroundColor:
-      theme.palette.mode === 'light'
-        ? theme.palette.grey[200]
-        : theme.palette.grey[700],
+      theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
   },
   cardPricing: {
     display: 'flex',
@@ -131,12 +129,7 @@ const footers = [
   },
   {
     title: 'Resources',
-    description: [
-      'Resource',
-      'Resource name',
-      'Another resource',
-      'Final resource',
-    ],
+    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
   },
   {
     title: 'Legal',
@@ -150,12 +143,7 @@ export default function Pricing() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        className={classes.appBar}
-      >
+      <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Typography
             variant="h6"
@@ -166,28 +154,13 @@ export default function Pricing() {
             Company name
           </Typography>
           <nav>
-            <Link
-              variant="button"
-              color="textPrimary"
-              href="#"
-              className={classes.link}
-            >
+            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
               Features
             </Link>
-            <Link
-              variant="button"
-              color="textPrimary"
-              href="#"
-              className={classes.link}
-            >
+            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
               Enterprise
             </Link>
-            <Link
-              variant="button"
-              color="textPrimary"
-              href="#"
-              className={classes.link}
-            >
+            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
               Support
             </Link>
           </nav>
@@ -207,15 +180,10 @@ export default function Pricing() {
         >
           Pricing
         </Typography>
-        <Typography
-          variant="h5"
-          align="center"
-          color="textSecondary"
-          component="p"
-        >
-          Quickly build an effective pricing table for your potential customers
-          with this layout. It&apos;s built with default Material-UI components
-          with little customization.
+        <Typography variant="h5" align="center" color="textSecondary" component="p">
+          Quickly build an effective pricing table for your potential customers with this
+          layout. It&apos;s built with default Material-UI components with little
+          customization.
         </Typography>
       </Container>
       {/* End hero unit */}

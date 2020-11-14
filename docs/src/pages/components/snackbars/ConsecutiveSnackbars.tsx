@@ -27,9 +27,9 @@ export interface State {
 export default function ConsecutiveSnackbars() {
   const [snackPack, setSnackPack] = React.useState<SnackbarMessage[]>([]);
   const [open, setOpen] = React.useState(false);
-  const [messageInfo, setMessageInfo] = React.useState<
-    SnackbarMessage | undefined
-  >(undefined);
+  const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(
+    undefined,
+  );
 
   React.useEffect(() => {
     if (snackPack.length && !messageInfo) {
@@ -47,10 +47,7 @@ export default function ConsecutiveSnackbars() {
     setSnackPack((prev) => [...prev, { message, key: new Date().getTime() }]);
   };
 
-  const handleClose = (
-    event: React.SyntheticEvent | MouseEvent,
-    reason?: string,
-  ) => {
+  const handleClose = (event: React.SyntheticEvent | MouseEvent, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }

@@ -205,13 +205,11 @@ interface Props extends WithStyles<typeof styles> {
 Applying `withStyles(styles)` as a function works as expected:
 
 ```tsx
-const DecoratedSFC = withStyles(styles)(
-  ({ text, type, color, classes }: Props) => (
-    <Typography variant={type} color={color} classes={classes}>
-      {text}
-    </Typography>
-  ),
-);
+const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
+  <Typography variant={type} color={color} classes={classes}>
+    {text}
+  </Typography>
+));
 
 const DecoratedClass = withStyles(styles)(
   class extends React.Component<Props> {

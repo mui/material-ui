@@ -35,9 +35,7 @@ export default function Asynchronous() {
 
       if (active) {
         setOptions(
-          Object.keys(countries).map(
-            (key) => countries[key].item[0],
-          ) as CountryType[],
+          Object.keys(countries).map((key) => countries[key].item[0]) as CountryType[],
         );
       }
     })();
@@ -76,9 +74,7 @@ export default function Asynchronous() {
             ...params.InputProps,
             endAdornment: (
               <React.Fragment>
-                {loading ? (
-                  <CircularProgress color="inherit" size={20} />
-                ) : null}
+                {loading ? <CircularProgress color="inherit" size={20} /> : null}
                 {params.InputProps.endAdornment}
               </React.Fragment>
             ),

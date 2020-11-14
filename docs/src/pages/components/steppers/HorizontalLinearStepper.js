@@ -27,11 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = [
-  'Select campaign settings',
-  'Create an ad group',
-  'Create an ad',
-];
+const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
 export default function HorizontalLinearStepper() {
   const classes = useStyles();
@@ -87,9 +83,7 @@ export default function HorizontalLinearStepper() {
           const stepProps = {};
           const labelProps = {};
           if (isStepOptional(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
-            );
+            labelProps.optional = <Typography variant="caption">Optional</Typography>;
           }
           if (isStepSkipped(index)) {
             stepProps.completed = false;
@@ -113,9 +107,7 @@ export default function HorizontalLinearStepper() {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <Typography className={classes.instructions}>
-            Step {activeStep + 1}
-          </Typography>
+          <Typography className={classes.instructions}>Step {activeStep + 1}</Typography>
           <div className={classes.buttonWrapper}>
             <Button
               color="inherit"
@@ -127,11 +119,7 @@ export default function HorizontalLinearStepper() {
             </Button>
             <div className={classes.spacer} />
             {isStepOptional(activeStep) && (
-              <Button
-                color="inherit"
-                onClick={handleSkip}
-                className={classes.button}
-              >
+              <Button color="inherit" onClick={handleSkip} className={classes.button}>
                 Skip
               </Button>
             )}

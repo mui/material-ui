@@ -100,9 +100,7 @@ const useStylesReddit = makeStyles((theme) => ({
 function RedditTextField(props) {
   const classes = useStylesReddit();
 
-  return (
-    <TextField InputProps={{ classes, disableUnderline: true }} {...props} />
-  );
+  return <TextField InputProps={{ classes, disableUnderline: true }} {...props} />;
 }
 
 const useStyles = makeStyles((theme) => ({

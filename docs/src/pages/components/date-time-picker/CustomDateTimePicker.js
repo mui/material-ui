@@ -34,11 +34,7 @@ export default function CustomDateTimePicker() {
           minTime={new Date(0, 0, 0, 9)}
           maxTime={new Date(0, 0, 0, 20)}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              margin="normal"
-              helperText="Hardcoded helper text"
-            />
+            <TextField {...params} margin="normal" helperText="Hardcoded helper text" />
           )}
         />
         <MobileDateTimePicker

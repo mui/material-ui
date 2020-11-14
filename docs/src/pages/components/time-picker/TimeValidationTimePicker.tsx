@@ -5,9 +5,7 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import TimePicker from '@material-ui/lab/TimePicker';
 
 export default function TimeValidationTimePicker() {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2020-01-01 12:00'),
-  );
+  const [value, setValue] = React.useState<Date | null>(new Date('2020-01-01 12:00'));
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

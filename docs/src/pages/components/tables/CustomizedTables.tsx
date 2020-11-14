@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  withStyles,
-  Theme,
-  createStyles,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';

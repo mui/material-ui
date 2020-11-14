@@ -22,19 +22,14 @@ A function which returns [a class name generator function](https://cssinjs.org/j
 
 ```jsx
 import * as React from 'react';
-import {
-  StylesProvider,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
+import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
 });
 
 export default function App() {
-  return (
-    <StylesProvider generateClassName={generateClassName}>...</StylesProvider>
-  );
+  return <StylesProvider generateClassName={generateClassName}>...</StylesProvider>;
 }
 ```
 
