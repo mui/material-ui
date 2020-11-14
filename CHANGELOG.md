@@ -1,5 +1,109 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.16
+
+###### _Nov 14 2020_
+
+Big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
+
+- 📅 Migrate the date picker to the lab (#22692) @dmtrKovalenko.
+  We have integrated the components with the code infrastructure. Next we will migrate all the GitHub issues from [material-ui-pickers](https://github.com/mui-org/material-ui-pickers) and archive the repository. This migration will help provide first-class support for the date picker components. The component will stay in the lab as long as necessary to reach the high quality bar we have for core components. You can find the [new documentation here](https://next.material-ui.com/components/pickers/).
+
+  While the source code is currently hosted in the [main repository](https://github.com/mui-org/material-ui), we might move it to the [x repository](https://github.com/mui-org/material-ui-x) in the future, depending on what is easier for the commercial date range picker. The date picker will stay open source no matter what.
+
+- 📚 Revamp the documentation for [the system](https://next.material-ui.com/system/basics/). The System contains CSS utilities. The documentation now promotes the use of the `sx` prop. It's ideal for adding one-off styles, e.g. padding, but when pushed to its limits, it can be used to implement quickly a complete page.
+- 👩‍🎨 Upgrade emotion to v11 (#23007) @mnajdova.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.16`
+
+#### Breaking changes
+
+- [TextField] Change default variant from standard to outlined (#23503) @mbrookes
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
+
+  ```diff
+  -<TextField value="Standard" />
+  -<TextField value="Outlined" variant="outlined" />
+  +<TextField value="Standard" variant="standard" />
+  +<TextField value="Outlined" />
+  ```
+
+- [Autocomplete] Remove `debug` in favor of `open` and dev tools (#23377) @eps1lon
+  There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools props.
+
+#### Changes
+
+- [Autocomplete] Use Popper when `disablePortal` (#23263) @eps1lon
+- [Box] Better DX for deprecated props (#23285) @eps1lon
+- [codemod] Add a codemod for the Box sx prop (#23465) @mbrookes
+- [CssBaseline] Add dark mode scrollbar support (#23407) @mmmols
+- [Slider] Extract slots as standalone components (#22893) @mnajdova
+- [Stepper] Fix the icon prop support in StepLabel (#23408) @randyshoopman
+- [theme] Add htmlFontSize to Typography interface (#23412) @fergusmcdonald
+- [Tooltip] Fix PopperProps popper modifiers not being merged properly (#23421) @dominique-mueller
+- [Tooltip] Long press select text on iOS (#23466) @hmaddisb
+- [Tooltip] Unexpected behaviour onOpen/onClose (#23482) @brorlarsnicklas
+
+### `@material-ui/lab@v5.0.0-alpha.16`
+
+- [DatePicker] Migrate to the lab #22692 @dmtrKovalenko
+
+### `@material-ui/system@v5.0.0-alpha.16`
+
+- [system] Add typography prop that will pull from theme.typography (#23451) @mnajdova
+- [system] Create separate margin and padding functions (#23452) @mnajdova
+- [system] Export styleFunctionSx and improve signature (#23397) @mnajdova
+- [system] Merge breakpoints in correct order (#23380) @mnajdova
+- [system] Remove css utility in favor of sx (#23454) @mnajdova
+- [system] Warn for spacing when non integer value is used with theme.spacing array (#23460) @mnajdova
+
+### `@material-ui/styled-engine@v5.0.0-alpha.16`
+
+- [styled-engine] Upgrade emotion to 11 RC (#23007) @mnajdova
+
+### `@material-ui/unstyled@v5.0.0-alpha.16`
+
+- [Slider] Extract slots as standalone components (#22893) @mnajdova
+
+### `@material-ui/codemod@v5.0.0-alpha.16`
+
+- [TextField] Change default variant from standard to outlined (#23503) @mbrookes
+
+### Docs
+
+- [docs] Allow to host code in a different repo (#23390) @oliviertassinari
+- [docs] CHANGELOG for v5.0.0-alpha.15 (#23383) @oliviertassinari
+- [docs] Fix examples download URLs to match the correct branch name (#23467) @matchatype
+- [docs] Fix links being opened when dismissing context menus (#23491) @eps1lon
+- [docs] Fix the Netlify proxy for localization of X (#23387) @oliviertassinari
+- [docs] Fix usage of palette.type instead of palette.mode in docs (#23414) @hubgit
+- [docs] Improve documentation of the system (#23294) @mnajdova
+- [docs] Improve feedback a11y (#23459) @eps1lon
+- [docs] Improve formatting of the system (#23509) @oliviertassinari
+- [docs] Improve migration guide for theme.palette (#23416) @hubgit
+- [docs] Mention delay instead of transition twice (#23393) @benmneb
+- [docs] Prepare Material-UI X (#1893) @oliviertassinari
+- [docs] Redirect legacy GridList pages to ImageList (#23456) @eps1lon
+- [docs] Remove redundant aria-label when wrapped in Tooltip (#23455) @eps1lon
+- [docs] Sync translations (#23316) @l10nbot
+- [docs] Update buildAPI script to handle the "styled" components (#23370) @mnajdova
+- [docs] Update new components in the roadmap (#23507) @mbrookes
+- [docs] Update translations (#23501) @l10nbot
+
+### Core
+
+- [core] Batch small changes (#23422) @oliviertassinari
+- [core] Fix skipped ignore patterns (#23474) @eps1lon
+- [core] Switch to globby and fast-glob (#23382) @eps1lon
+- [test] Increase timeout threshold for slow Firefox tests (#23463) @eps1lon
+- [test] Make sure system properties are in the same order when generating CSS (#23388) @mnajdova
+- [test] Prefer longhand properties (#23445) @eps1lon
+- [test] Remove data-mui-test from tests (#23498) @eps1lon
+- [test] Remove keyDown#force (#23488) @eps1lon
+- [test] Use adapter instead of native Date (#23475) @eps1lon
+- [test] Use fake timers in visual regression tests (#23464) @eps1lon
+
 ## 5.0.0-alpha.15
 
 ###### _Nov 4 2020_
