@@ -10,10 +10,7 @@ export default function Overflow() {
       >
         Overflow Hidden. Overflow Hidden. Overflow Hidden.
       </Box>
-      <Box
-        component="div"
-        sx={{ overflow: 'auto', my: 2, bgcolor: 'background.paper' }}
-      >
+      <Box component="div" sx={{ overflow: 'auto', my: 2, bgcolor: 'background.paper' }}>
         Overflow Auto. Overflow Auto. Overflow Auto.
       </Box>
     </div>
