@@ -89,8 +89,8 @@ function MarkdownDocs(props) {
 MarkdownDocs.propTypes = {
   demos: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
-  headers: PropTypes.object.isRequired,
-  rendered: PropTypes.array.isRequired,
+  disableToc: PropTypes.bool.isRequired,
+  docs: PropTypes.object.isRequired,
   requireDemo: PropTypes.func,
 };
 
