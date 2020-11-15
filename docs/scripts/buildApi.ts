@@ -337,7 +337,7 @@ function extractClassConditions(classDescriptions: { [key: string]: { [key: stri
         if (conditions) {
           classConditions[componentName][className] = {
             description: classDescription.replace(stylesRegex, '$1{{conditions}}.'),
-            conditions: conditions[2].replace('`', '<code>').replace('`', '</code>'),
+            conditions: conditions[2].replace(/`(.*?)`/g, '<code>$1</code>'),
           };
         } else {
           classConditions[componentName][className] = { description: classDescription };
