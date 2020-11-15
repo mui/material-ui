@@ -24,5 +24,4 @@ Page.getInitialProps = async () => {
   };
 
   return { pageContent };
-}
-
+};
