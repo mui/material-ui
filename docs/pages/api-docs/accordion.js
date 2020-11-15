@@ -24,4 +24,5 @@ Page.getInitialProps = async (ctx) => {
   };
 
   return { pageContent };
-};
+}
+

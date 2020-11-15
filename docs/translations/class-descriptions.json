@@ -3,15 +3,15 @@
     "root": { "description": "Styles applied to the root element." },
     "rounded": {
       "description": "Styles applied to the root element unless {{conditions}}.",
-      "conditions": "`square={true}`"
+      "conditions": "<code>square={true}</code>"
     },
     "expanded": {
       "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "`expanded={true}`"
+      "conditions": "<code>expanded={true}</code>"
     },
     "disabled": {
       "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "`disabled={true}`"
+      "conditions": "<code>disabled={true}</code>"
     },
     "region": {
       "description": "Styles applied to the region element, the container of the children."
