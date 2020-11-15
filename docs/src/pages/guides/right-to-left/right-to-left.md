@@ -72,14 +72,13 @@ If you use emotion as your style engine, you should create new cache instance th
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 // Create rtl cache
 const cacheRtl = createCache({
   key: 'muirtl',
   stylisPlugins: [rtlPlugin],
-  speedy: true,
 });
 
 function RTL(props) {

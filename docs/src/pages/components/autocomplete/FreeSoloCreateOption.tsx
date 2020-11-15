@@ -61,11 +61,7 @@ export default function FreeSoloCreateOption() {
       style={{ width: 300 }}
       freeSolo
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Free solo with text demo"
-          variant="outlined"
-        />
+        <TextField {...params} label="Free solo with text demo" />
       )}
     />
   );

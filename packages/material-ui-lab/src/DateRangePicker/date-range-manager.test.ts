@@ -3,9 +3,9 @@ import { calculateRangeChange, calculateRangePreview } from './date-range-manage
 import { adapterToUse } from '../internal/pickers/test-utils';
 import { DateRange } from './RangeTypes';
 
-const start2018 = new Date('2018-01-01T00:00:00.000Z');
-const mid2018 = new Date('2018-06-01T00:00:00.000Z');
-const end2019 = new Date('2019-01-01T00:00:00.000Z');
+const start2018 = adapterToUse.date('2018-01-01T00:00:00.000');
+const mid2018 = adapterToUse.date('2018-06-01T00:00:00.000');
+const end2019 = adapterToUse.date('2019-01-01T00:00:00.000');
 
 describe('date-range-manager', () => {
   [

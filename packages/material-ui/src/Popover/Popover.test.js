@@ -178,11 +178,11 @@ describe('<Popover />', () => {
 
     it('uses Grow as the Transition of the modal', () => {
       const wrapper = mount(
-        <Popover {...defaultProps} open>
+        <Popover {...defaultProps} open data-testid="Modal">
           <div />
         </Popover>,
       );
-      const modal = wrapper.find('[data-mui-test="Modal"]');
+      const modal = wrapper.find('[data-testid="Modal"]');
       const transition = modal.find(Grow);
 
       expect(transition.exists()).to.equal(true);
@@ -332,9 +332,10 @@ describe('<Popover />', () => {
               anchorEl={anchorEl}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
+              PaperProps={{ 'data-testid': 'Popover' }}
               TransitionProps={{
                 onEntered: () => {
-                  popoverEl = document.querySelector('[data-mui-test="Popover"]');
+                  popoverEl = document.querySelector('[data-testid="Popover"]');
                   resolve();
                 },
               }}
@@ -348,9 +349,8 @@ describe('<Popover />', () => {
       };
 
       expectPopover = (top, left) => {
-        expect(popoverEl.style.top).to.equal(`${top}px`);
+        expect(popoverEl).toHaveInlineStyle({ top: `${top}px`, left: `${left}px` });
 
-        expect(popoverEl.style.left).to.equal(`${left}px`);
         wrapper.unmount();
       };
     });
@@ -473,9 +473,10 @@ describe('<Popover />', () => {
               anchorPosition={anchorPosition}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
+              PaperProps={{ 'data-testid': 'Popover' }}
               TransitionProps={{
                 onEntered: () => {
-                  popoverEl = document.querySelector('[data-mui-test="Popover"]');
+                  popoverEl = document.querySelector('[data-testid="Popover"]');
                   resolve();
                 },
               }}
@@ -487,9 +488,11 @@ describe('<Popover />', () => {
         });
 
       expectPopover = (top, left) => {
-        expect(popoverEl.style.top).to.equal(`${top}px`);
+        expect(popoverEl).toHaveInlineStyle({
+          top: `${top}px`,
+          left: `${left}px`,
+        });
 
-        expect(popoverEl.style.left).to.equal(`${left}px`);
         wrapper.unmount();
       };
     });
@@ -521,11 +524,12 @@ describe('<Popover />', () => {
               transitionDuration={0}
               TransitionProps={{
                 onEntered: () => {
-                  popoverEl = document.querySelector('[data-mui-test="Popover"]');
+                  popoverEl = document.querySelector('[data-testid="Popover"]');
                   resolve();
                 },
               }}
               PaperProps={{
+                'data-testid': 'Popover',
                 style: {
                   top: 11,
                   left: 12,
@@ -539,9 +543,11 @@ describe('<Popover />', () => {
         });
 
       expectPopover = (top, left) => {
-        expect(popoverEl.style.top).to.equal(`${top}px`);
+        expect(popoverEl).toHaveInlineStyle({
+          top: `${top}px`,
+          left: `${left}px`,
+        });
 
-        expect(popoverEl.style.left).to.equal(`${left}px`);
         wrapper.unmount();
       };
     });

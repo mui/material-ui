@@ -41,6 +41,7 @@ export default function FormDialog() {
             label="Email Address"
             type="email"
             fullWidth
+            variant="standard"
           />
         </DialogContent>
         <DialogActions>

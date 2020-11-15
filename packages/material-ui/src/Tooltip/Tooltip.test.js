@@ -287,13 +287,13 @@ describe('<Tooltip />', () => {
   it('should be controllable', () => {
     const eventLog = [];
 
-    const { getByRole } = render(
+    const { getByRole, setProps } = render(
       <Tooltip
         enterDelay={100}
         title="Hello World"
         onOpen={() => eventLog.push('open')}
         onClose={() => eventLog.push('close')}
-        open
+        open={false}
       >
         <button
           id="testChild"
@@ -314,6 +314,7 @@ describe('<Tooltip />', () => {
     });
 
     expect(eventLog).to.deep.equal(['mouseover', 'open']);
+    setProps({ open: true });
 
     fireEvent.mouseLeave(getByRole('button'));
     act(() => {
@@ -321,6 +322,40 @@ describe('<Tooltip />', () => {
     });
 
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
+  });
+
+  it('should not call onOpen again if already open', () => {
+    const eventLog = [];
+    const { getByTestId } = render(
+      <Tooltip enterDelay={100} title="Hello World" onOpen={() => eventLog.push('open')} open>
+        <button data-testid="trigger" onMouseOver={() => eventLog.push('mouseover')} />
+      </Tooltip>,
+    );
+
+    expect(eventLog).to.deep.equal([]);
+
+    fireEvent.mouseOver(getByTestId('trigger'));
+    act(() => {
+      clock.tick(100);
+    });
+
+    expect(eventLog).to.deep.equal(['mouseover']);
+  });
+
+  it('should not call onClose if already closed', () => {
+    const eventLog = [];
+    const { getByTestId } = render(
+      <Tooltip title="Hello World" onClose={() => eventLog.push('close')} open={false}>
+        <button data-testid="trigger" onMouseLeave={() => eventLog.push('mouseleave')} />
+      </Tooltip>,
+    );
+
+    fireEvent.mouseLeave(getByTestId('trigger'));
+    act(() => {
+      clock.tick(0);
+    });
+
+    expect(eventLog).to.deep.equal(['mouseleave']);
   });
 
   it('is dismissable by pressing Escape', () => {
@@ -375,9 +410,7 @@ describe('<Tooltip />', () => {
           title="Hello World"
           TransitionProps={{ timeout: transitionTimeout }}
         >
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
       act(() => {
@@ -912,7 +945,7 @@ describe('<Tooltip />', () => {
       });
       const { getByRole } = render(
         <Tooltip open title="test">
-          <TextField onFocus={handleFocus} />
+          <TextField onFocus={handleFocus} variant="standard" />
         </Tooltip>,
       );
       const input = getByRole('textbox');
@@ -1046,6 +1079,72 @@ describe('<Tooltip />', () => {
           transform: `translate3d(${x}px, ${y}px, 0px)`,
         });
       }
+    });
+  });
+
+  describe('user-select state', () => {
+    let prevWebkitUserSelect;
+    beforeEach(() => {
+      prevWebkitUserSelect = document.body.style.WebkitUserSelect;
+    });
+
+    afterEach(() => {
+      document.body.style.WebkitUserSelect = prevWebkitUserSelect;
+    });
+
+    it('prevents text-selection during touch-longpress', () => {
+      const enterTouchDelay = 700;
+      const enterDelay = 100;
+      const leaveTouchDelay = 1500;
+      const transitionTimeout = 10;
+      const { getByRole } = render(
+        <Tooltip
+          enterTouchDelay={enterTouchDelay}
+          enterDelay={enterDelay}
+          leaveTouchDelay={leaveTouchDelay}
+          title="Hello World"
+          TransitionProps={{ timeout: transitionTimeout }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+      document.body.style.WebkitUserSelect = 'revert';
+
+      fireEvent.touchStart(getByRole('button'));
+
+      expect(document.body.style.WebkitUserSelect).to.equal('none');
+
+      act(() => {
+        clock.tick(enterTouchDelay + enterDelay);
+      });
+      expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
+    });
+
+    it('restores user-select when unmounted during longpress', () => {
+      const enterTouchDelay = 700;
+      const enterDelay = 100;
+      const leaveTouchDelay = 1500;
+      const transitionTimeout = 10;
+      const { unmount, getByRole } = render(
+        <Tooltip
+          enterTouchDelay={enterTouchDelay}
+          enterDelay={enterDelay}
+          leaveTouchDelay={leaveTouchDelay}
+          title="Hello World"
+          TransitionProps={{ timeout: transitionTimeout }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      document.body.style.WebkitUserSelect = 'revert';
+      // Let updates flush before unmounting
+      act(() => {
+        fireEvent.touchStart(getByRole('button'));
+      });
+      unmount();
+
+      expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
     });
   });
 });

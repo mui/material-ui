@@ -24,13 +24,13 @@ export default function StateTextFields() {
     <form className={classes.root} noValidate autoComplete="off">
       <div>
         <TextField
-          id="standard-name"
+          id="outlined-name"
           label="Name"
           value={name}
           onChange={handleChange}
         />
         <TextField
-          id="standard-uncontrolled"
+          id="outlined-uncontrolled"
           label="Uncontrolled"
           defaultValue="foo"
         />
@@ -52,17 +52,17 @@ export default function StateTextFields() {
       </div>
       <div>
         <TextField
-          id="outlined-name"
+          id="standard-name"
           label="Name"
           value={name}
           onChange={handleChange}
-          variant="outlined"
+          variant="standard"
         />
         <TextField
-          id="outlined-uncontrolled"
+          id="standard-uncontrolled"
           label="Uncontrolled"
           defaultValue="foo"
-          variant="outlined"
+          variant="standard"
         />
       </div>
     </form>

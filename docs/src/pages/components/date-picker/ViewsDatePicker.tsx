@@ -18,7 +18,12 @@ export default function ViewsDatePicker() {
             setValue(newValue);
           }}
           renderInput={(params) => (
-            <TextField {...params} margin="normal" helperText={null} />
+            <TextField
+              {...params}
+              margin="normal"
+              helperText={null}
+              variant="standard"
+            />
           )}
         />
         <DatePicker
@@ -31,7 +36,12 @@ export default function ViewsDatePicker() {
             setValue(newValue);
           }}
           renderInput={(params) => (
-            <TextField {...params} margin="normal" helperText={null} />
+            <TextField
+              {...params}
+              margin="normal"
+              helperText={null}
+              variant="standard"
+            />
           )}
         />
         <DatePicker
@@ -43,7 +53,12 @@ export default function ViewsDatePicker() {
             setValue(newValue);
           }}
           renderInput={(params) => (
-            <TextField {...params} margin="normal" helperText={null} />
+            <TextField
+              {...params}
+              margin="normal"
+              helperText={null}
+              variant="standard"
+            />
           )}
         />
         <DatePicker
@@ -54,7 +69,12 @@ export default function ViewsDatePicker() {
             setValue(newValue);
           }}
           renderInput={(params) => (
-            <TextField {...params} margin="normal" helperText={null} />
+            <TextField
+              {...params}
+              margin="normal"
+              helperText={null}
+              variant="standard"
+            />
           )}
         />
         <DatePicker
@@ -65,7 +85,12 @@ export default function ViewsDatePicker() {
             setValue(newValue);
           }}
           renderInput={(params) => (
-            <TextField {...params} margin="normal" helperText={null} />
+            <TextField
+              {...params}
+              margin="normal"
+              helperText={null}
+              variant="standard"
+            />
           )}
         />
       </div>

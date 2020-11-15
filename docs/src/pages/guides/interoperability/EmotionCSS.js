@@ -1,11 +1,11 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx, css } from '@emotion/react';
 import Slider from '@material-ui/lab/SliderStyled';
 import Box from '@material-ui/core/Box';
 
 export default function EmotionCSS() {
   return (
-    <Box width={300}>
+    <Box sx={{ width: 300 }}>
       <Slider defaultValue={30} />
       <Slider
         defaultValue={30}

@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 
 export default function Height() {
   return (
-    <Box height={100} width="100%">
+    <Box sx={{ height: 100, width: '100%' }}>
       <Box
         sx={{
           height: '25%',

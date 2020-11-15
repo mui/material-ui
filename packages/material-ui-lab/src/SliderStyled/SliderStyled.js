@@ -54,7 +54,7 @@ const overridesResolver = (props, styles, name) => {
   return styleOverrides;
 };
 
-const SliderRoot = experimentalStyled(
+export const SliderRoot = experimentalStyled(
   'span',
   {},
   { muiName: 'MuiSlider', overridesResolver },
@@ -100,143 +100,165 @@ const SliderRoot = experimentalStyled(
       marginRight: 20,
     }),
   }),
-  '& .MuiSlider-rail': {
-    display: 'block',
+}));
+
+export const SliderRail = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSlider-rail' },
+)((props) => ({
+  display: 'block',
+  position: 'absolute',
+  width: '100%',
+  height: 2,
+  borderRadius: 1,
+  backgroundColor: 'currentColor',
+  opacity: 0.38,
+  ...(props.styleProps.orientation === 'vertical' && {
+    height: '100%',
+    width: 2,
+  }),
+  ...(props.styleProps.track === 'inverted' && {
+    opacity: 1,
+  }),
+}));
+
+export const SliderTrack = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSlider-track' },
+)((props) => ({
+  display: 'block',
+  position: 'absolute',
+  height: 2,
+  borderRadius: 1,
+  backgroundColor: 'currentColor',
+  ...(props.styleProps.orientation === 'vertical' && {
+    width: 2,
+  }),
+  ...(props.styleProps.track === false && {
+    display: 'none',
+  }),
+  ...(props.styleProps.track === 'inverted' && {
+    backgroundColor:
+      // Same logic as the LinearProgress track color
+      props.theme.palette.mode === 'light'
+        ? lighten(props.theme.palette.primary.main, 0.62)
+        : darken(props.theme.palette.primary.main, 0.5),
+  }),
+}));
+
+export const SliderThumb = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSlider-thumb' },
+)((props) => ({
+  position: 'absolute',
+  width: 12,
+  height: 12,
+  marginLeft: -6,
+  marginTop: -5,
+  boxSizing: 'border-box',
+  borderRadius: '50%',
+  outline: 0,
+  backgroundColor: 'currentColor',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  transition: props.theme.transitions.create(['box-shadow'], {
+    duration: props.theme.transitions.duration.shortest,
+  }),
+  '&::after': {
     position: 'absolute',
-    width: '100%',
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    opacity: 0.38,
-    ...(props.styleProps.orientation === 'vertical' && {
-      height: '100%',
-      width: 2,
-    }),
-    ...(props.styleProps.track === 'inverted' && {
-      opacity: 1,
-    }),
-  },
-  '& .MuiSlider-track': {
-    display: 'block',
-    position: 'absolute',
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    ...(props.styleProps.orientation === 'vertical' && {
-      width: 2,
-    }),
-    ...(props.styleProps.track === false && {
-      display: 'none',
-    }),
-    ...(props.styleProps.track === 'inverted' && {
-      backgroundColor:
-        // Same logic as the LinearProgress track color
-        props.theme.palette.mode === 'light'
-          ? lighten(props.theme.palette.primary.main, 0.62)
-          : darken(props.theme.palette.primary.main, 0.5),
-    }),
-  },
-  '& .MuiSlider-thumb': {
-    position: 'absolute',
-    width: 12,
-    height: 12,
-    marginLeft: -6,
-    marginTop: -5,
-    boxSizing: 'border-box',
+    content: '""',
     borderRadius: '50%',
-    outline: 0,
-    backgroundColor: 'currentColor',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: props.theme.transitions.create(['box-shadow'], {
-      duration: props.theme.transitions.duration.shortest,
-    }),
-    '::after': {
-      position: 'absolute',
-      content: '""',
-      borderRadius: '50%',
-      // reach 42px hit target (2 * 15 + thumb diameter)
-      left: -15,
-      top: -15,
-      right: -15,
-      bottom: -15,
+    // reach 42px hit target (2 * 15 + thumb diameter)
+    left: -15,
+    top: -15,
+    right: -15,
+    bottom: -15,
+  },
+  '&:hover, &.Mui-focusVisible': {
+    boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
+    '@media (hover: none)': {
+      boxShadow: 'none',
     },
-    ':hover, &.Mui-focusVisible': {
-      boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
-      '@media (hover: none)': {
-        boxShadow: 'none',
-      },
+  },
+  '&.Mui-active': {
+    boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
+  },
+  '&.Mui-disabled': {
+    width: 8,
+    height: 8,
+    marginLeft: -4,
+    marginTop: -3,
+    '&:hover': {
+      boxShadow: 'none',
+    },
+  },
+  '&.MuiSlider-vertical': {
+    marginLeft: -5,
+    marginBottom: -6,
+  },
+  '&.MuiSlider-vertical&.Mui-disabled': {
+    marginLeft: -3,
+    marginBottom: -4,
+  },
+  ...(props.styleProps.color === 'secondary' && {
+    '&:hover, &.Mui-focusVisible': {
+      boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
     },
     '&.Mui-active': {
-      boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
     },
-    '&.Mui-disabled': {
-      width: 8,
-      height: 8,
-      marginLeft: -4,
-      marginTop: -3,
-      ':hover': {
-        boxShadow: 'none',
-      },
-      ...(props.styleProps.orientation === 'vertical' && {
-        marginLeft: -3,
-        marginBottom: -4,
-      }),
-    },
+  }),
+}));
+
+export const SliderValueLabel = experimentalStyled(ValueLabelStyled)({
+  // IE 11 centering bug, to remove from the customization demos once no longer supported
+  left: 'calc(-50% - 4px)',
+});
+
+export const SliderMark = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSlider-mark' },
+)((props) => ({
+  position: 'absolute',
+  width: 2,
+  height: 2,
+  borderRadius: 1,
+  backgroundColor: 'currentColor',
+  '&.MuiSlider-markActive': {
+    backgroundColor: props.theme.palette.background.paper,
+    opacity: 0.8,
+  },
+}));
+
+export const SliderMarkLabel = experimentalStyled(
+  'span',
+  {},
+  { muiName: 'MuiSlider-markLabel' },
+)((props) => ({
+  ...props.theme.typography.body2,
+  color: props.theme.palette.text.secondary,
+  position: 'absolute',
+  top: 26,
+  transform: 'translateX(-50%)',
+  whiteSpace: 'nowrap',
+  ...(props.styleProps.orientation === 'vertical' && {
+    top: 'auto',
+    left: 26,
+    transform: 'translateY(50%)',
+  }),
+  '@media (pointer: coarse)': {
+    top: 40,
     ...(props.styleProps.orientation === 'vertical' && {
-      marginLeft: -5,
-      marginBottom: -6,
-    }),
-    ...(props.styleProps.color === 'secondary' && {
-      ':hover': {
-        boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
-      },
-      '&.Mui-focusVisible': {
-        boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
-      },
-      '&.Mui-active': {
-        boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
-      },
+      left: 31,
     }),
   },
-  '& .MuiSlider-valueLabel': {
-    // IE11 centering bug, to remove from the customization demos once no longer supported
-    left: 'calc(-50% - 4px)',
-  },
-  '& .MuiSlider-mark': {
-    position: 'absolute',
-    width: 2,
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    '&.MuiSlider-markActive': {
-      backgroundColor: props.theme.palette.background.paper,
-      opacity: 0.8,
-    },
-  },
-  '& .MuiSlider-markLabel': {
-    ...props.theme.typography.body2,
-    color: props.theme.palette.text.secondary,
-    position: 'absolute',
-    top: 26,
-    transform: 'translateX(-50%)',
-    whiteSpace: 'nowrap',
-    ...(props.styleProps.orientation === 'vertical' && {
-      top: 'auto',
-      left: 26,
-      transform: 'translateY(50%)',
-    }),
-    '@media (pointer: coarse)': {
-      top: 40,
-      ...(props.styleProps.orientation === 'vertical' && {
-        top: 'auto',
-        left: 31,
-      }),
-    },
-    '&.MuiSlider-markLabelActive': {
-      color: props.theme.palette.text.primary,
-    },
+  '&.MuiSlider-markLabelActive': {
+    color: props.theme.palette.text.primary,
   },
 }));
 
@@ -295,7 +317,12 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
       {...other}
       components={{
         Root: SliderRoot,
-        ValueLabel: ValueLabelStyled,
+        Rail: SliderRail,
+        Track: SliderTrack,
+        Thumb: SliderThumb,
+        ValueLabel: SliderValueLabel,
+        Mark: SliderMark,
+        MarkLabel: SliderMarkLabel,
         ...components,
       }}
       ref={ref}

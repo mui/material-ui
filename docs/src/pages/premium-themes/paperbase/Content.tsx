@@ -67,6 +67,7 @@ function Content(props: ContentProps) {
                   disableUnderline: true,
                   className: classes.searchInput,
                 }}
+                variant="standard"
               />
             </Grid>
             <Grid item>

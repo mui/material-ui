@@ -19,17 +19,23 @@ export default function ResponsiveDateTimePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
         />
         <DesktopDateTimePicker
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
         />
         <DateTimePicker
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
           value={value}
           onChange={(newValue) => {
             setValue(newValue);

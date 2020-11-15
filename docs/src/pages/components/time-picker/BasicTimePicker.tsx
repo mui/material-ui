@@ -16,7 +16,9 @@ export default function BasicTimePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
         />
         <TimePicker
           ampm={false}
@@ -25,7 +27,9 @@ export default function BasicTimePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
         />
       </div>
     </LocalizationProvider>

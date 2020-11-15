@@ -99,7 +99,7 @@ As we are also using emotion as our default styled engine, we need to extract th
 ```js
 import createCache from '@emotion/cache';
 
-const cache = createCache();
+const cache = createCache({ key: 'css' });
 
 export default cache;
 ```
@@ -187,7 +187,7 @@ Let's take a look at the client file:
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';
 import cache from './cache';

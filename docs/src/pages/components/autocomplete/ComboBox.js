@@ -6,12 +6,11 @@ import Autocomplete from '@material-ui/core/Autocomplete';
 export default function ComboBox() {
   return (
     <Autocomplete
+      disablePortal
       id="combo-box-demo"
       options={top100Films}
       style={{ width: 300 }}
-      renderInput={(params) => (
-        <TextField {...params} label="Combo box" variant="outlined" />
-      )}
+      renderInput={(params) => <TextField {...params} label="Movie" />}
     />
   );
 }

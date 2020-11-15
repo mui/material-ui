@@ -11,7 +11,9 @@ export default function DateTimeValidation() {
     <LocalizationProvider dateAdapter={DateFnsAdapter}>
       <div style={{ width: 300 }}>
         <DateTimePicker
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
           label="Ignore date and time"
           value={value}
           onChange={(newValue) => {
@@ -20,7 +22,9 @@ export default function DateTimeValidation() {
           minDateTime={new Date()}
         />
         <DateTimePicker
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => (
+            <TextField {...params} margin="normal" variant="standard" />
+          )}
           label="Ignore time in each day"
           value={value}
           onChange={(newValue) => {
