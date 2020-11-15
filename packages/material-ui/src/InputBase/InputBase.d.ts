@@ -123,11 +123,11 @@ export interface InputBaseProps
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
-  rowsMax?: string | number;
+  maxRows?: string | number;
   /**
    * Minimum number of rows to display when multiline option is set to true.
    */
-  rowsMin?: string | number;
+  minRows?: string | number;
   /**
    * Start `InputAdornment` for this component.
    */
