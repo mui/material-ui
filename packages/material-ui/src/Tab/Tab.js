@@ -18,13 +18,11 @@ export const styles = (theme) => ({
     padding: '6px 12px',
     [theme.breakpoints.up('sm')]: {
       padding: '6px 24px',
+      minWidth: 160,
     },
     overflow: 'hidden',
     whiteSpace: 'normal',
     textAlign: 'center',
-    [theme.breakpoints.up('sm')]: {
-      minWidth: 160,
-    },
   },
   /* Styles applied to the root element if both `icon` and `label` are provided. */
   labelIcon: {
