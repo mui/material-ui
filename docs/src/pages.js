@@ -151,7 +151,7 @@ const pages = [
             children: [
               { pathname: '/components/pickers', title: 'Introduction' },
               { pathname: '/components/date-picker' },
-              { pathname: '/components/date-range-picker' },
+              { pathname: '/components/date-range-picker', title: 'Date Range Picker ⚡️' },
               { pathname: '/components/date-time-picker' },
               { pathname: '/components/time-picker' },
             ],

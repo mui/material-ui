@@ -232,7 +232,7 @@ describe('<Autocomplete />', () => {
           limitTags={2}
           options={['one', 'two', 'three']}
           defaultValue={['one', 'two', 'three']}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} variant="standard" />}
         />,
       );
 
@@ -257,7 +257,7 @@ describe('<Autocomplete />', () => {
           limitTags={0}
           options={['one', 'two', 'three']}
           defaultValue={['one', 'two', 'three']}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} variant="standard" />}
         />,
       );
 
