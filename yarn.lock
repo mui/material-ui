@@ -1156,10 +1156,10 @@
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.3.13.tgz#90c71da493f20204b7a972929cc5c482d078b3fa"
   integrity sha512-AlEKV7TxjeK+jxWVKcCFrfYAk8spX9aCyiToFIiLPtfQbsjmRGLIhb5VZgptQcJdHtLXo7+m0DuurwFgUToQuA==
 
-"@date-io/core@^2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.8.0.tgz#bbfdd5d09c6757e456478e0bcc0764ecc85b5d40"
-  integrity sha512-MIL74B3O08gjjm5fcDSWME5MfdsvyQBX58zlWHIzM+m2h3+M5rP6P+T3qym3FWnpc8EKK5E8kF97nLqNiOwgkQ==
+"@date-io/core@^2.10.6", "@date-io/core@^2.8.0":
+  version "2.10.6"
+  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.10.6.tgz#1a6e671b590a08af8bd0784f3a93670e5d2d5bd7"
+  integrity sha512-MGYt4GEB/4ZMdSbj6FS7/gPBvuhHUwnn5O6t8PlkSqGF1310qxypVyK4CZg5RQgev25L3R5eLVdNTyYrJOL8Rw==
 
 "@date-io/date-fns@^2.8.0":
   version "2.8.0"
@@ -1169,11 +1169,11 @@
     "@date-io/core" "^2.8.0"
 
 "@date-io/dayjs@^2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@date-io/dayjs/-/dayjs-2.8.0.tgz#d8203109cf331307a9a61b739a548d24cf31567c"
-  integrity sha512-DdtpYhZZwGRjjzTeEPLMvb0OhIOTPc3hNsw99PM+pRSk/4k1Z1xhMLDlm+fcOb2y03P1pY/f0CrRTGMb7l0KIQ==
+  version "2.10.6"
+  resolved "https://registry.yarnpkg.com/@date-io/dayjs/-/dayjs-2.10.6.tgz#8ac598813f349090d5af677184c37a8804a1081f"
+  integrity sha512-hAJXEt+cLUYn+5l84Mo0P2BXtyQcQSSKrzGUYFAuQL9zYS2BlXH3s/fXOygv+saxaMR0wCVtVAT9h7yC1Usnew==
   dependencies:
-    "@date-io/core" "^2.8.0"
+    "@date-io/core" "^2.10.6"
 
 "@date-io/luxon@^2.8.0":
   version "2.8.0"
