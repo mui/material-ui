@@ -916,6 +916,9 @@ const classes = makeStyles(theme => ({
 
 ### Tabs
 
+- Updates to match the Material Design guidelines:
+  - Remove min-width
+  - Improve padding
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
