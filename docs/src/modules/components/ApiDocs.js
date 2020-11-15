@@ -162,6 +162,7 @@ function Heading(props) {
 
   return (
     <Level>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content */}
       <a className="anchor-link" id={hash} />
       {t(hash)}
       <a className="anchor-link-style" aria-hidden="true" aria-label="anchor" href={`#${hash}`}>
