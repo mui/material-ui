@@ -89,7 +89,7 @@ if (process.env.NODE_ENV !== 'production') {
           '',
           `<Box m={2} /> should become <Box sx={{ m: 2 }} />`,
           '',
-          'You can automate the migration with this codemod: https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#box-sx-prop',
+          'You can automate the migration with this codemod: https://github.com/mui-org/material-ui/blob/HEAD/packages/material-ui-codemod/README.md#box-sx-prop',
         ].join('\n'),
       );
     }
