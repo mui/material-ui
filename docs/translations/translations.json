@@ -29,7 +29,6 @@
   "copySource": "Copy the source",
   "copySourceLinkJS": "Copy link to JavaScript source",
   "copySourceLinkTS": "Copy link to TypeScript source",
-  "css": "CSS",
   "dashboardDescr": "A minimal dashboard with taskbar and mini variant draw. The chart is courtesy of Recharts, but it is simple to substitute an alternative.",
   "dashboardTitle": "Dashboard",
   "decreaseSpacing": "decrease spacing",
