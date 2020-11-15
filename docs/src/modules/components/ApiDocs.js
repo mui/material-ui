@@ -265,7 +265,7 @@ function ApiDocs(props) {
     >
       <MarkdownElement>
         <h1>{componentName} API</h1>
-        <Typography variant="h5" component="div" gutterBottom>
+        <Typography variant="h5" component="p" className="description" gutterBottom>
           {description}
         </Typography>
         <Heading hash="import" />
