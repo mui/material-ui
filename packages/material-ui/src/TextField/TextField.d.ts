@@ -99,6 +99,11 @@ export interface BaseTextFieldProps
    */
   rows?: string | number;
   /**
+   * Maximum number of rows to display.
+   * @deprecated Use `maxRows` instead.
+   */
+  rowsMax?: string | number;
+  /**
    * Maximum number of rows to display when multiline option is set to true.
    */
   maxRows?: string | number;

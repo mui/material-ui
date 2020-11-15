@@ -27,9 +27,20 @@ const styles = {
 };
 
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {
-  const { onChange, rows, maxRows, minRows: minRowsProp = 1, style, value, ...other } = props;
+  const {
+    onChange,
+    rows,
+    rowsMax,
+    rowsMin: rowsMinProp = 1,
+    maxRows: maxRowsProp,
+    minRows: minRowsProp = 1,
+    style,
+    value,
+    ...other
+  } = props;
 
-  const minRows = rows || minRowsProp;
+  const maxRows = maxRowsProp || rowsMax;
+  const minRows = rows || rowsMinProp || minRowsProp;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef(null);
@@ -184,6 +195,14 @@ TextareaAutosize.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Maximum number of rows to display.
+   */
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * Minimum number of rows to display.
+   */
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * @ignore
    */
   onChange: PropTypes.func,
@@ -192,19 +211,20 @@ TextareaAutosize.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * Use `minRows` instead. The prop will be removed in v5.
-   *
-   * @deprecated
+   * Minimum number of rows to display.
+   * @deprecated Use `rowsMin` instead.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Maximum number of rows to display.
+   * @deprecated Use `maxRows` instead.
    */
-  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Minimum number of rows to display.
+   * @deprecated Use `minRows` instead.
    */
-  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
    */

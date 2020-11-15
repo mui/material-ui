@@ -192,6 +192,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     readOnly,
     renderSuffix,
     rows,
+    rowsMax,
+    rowsMin,
     maxRows,
     minRows,
     startAdornment,
@@ -371,11 +373,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref: null,
     };
   } else if (multiline) {
-    if (rows && !maxRows && !minRows) {
+    if (rows && !maxRows && !minRows && !rowsMax && !rowsMin) {
       InputComponent = 'textarea';
     } else {
       inputProps = {
-        rows,
+        minRows: rows || minRows,
+        rowsMax,
         maxRows,
         ...inputProps,
       };

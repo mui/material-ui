@@ -83,6 +83,8 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     placeholder,
     required = false,
     rows,
+    rowsMax,
+    maxRows,
     select = false,
     SelectProps,
     type,
@@ -136,6 +138,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       multiline={multiline}
       name={name}
       rows={rows}
+      rowsMax={rowsMax}
       maxRows={maxRows}
       type={type}
       value={value}
