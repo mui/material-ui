@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { useFakeTimers } from 'sinon';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
@@ -264,6 +265,26 @@ function App() {
     });
   }, []);
 
+  const realTimersDone = fontState !== 'pending';
+
+  const [testPrepared, setTestPrepared] = React.useState(false);
+  React.useEffect(() => {
+    if (realTimersDone) {
+      // Use a "real timestamp" so that we see a useful date instead of "00:00"
+      // eslint-disable-next-line react-hooks/rules-of-hooks -- not a React hook
+      const clock = useFakeTimers(new Date('Mon Aug 18 14:11:54 2014 -0500'));
+      // It might make sense to expose the clock to individual test cases in case they're interactive.
+      // For simplicity we're treating every test the same in that we're using fake timers.
+      // Though there's an argument to be made that individual tests should control their timers like we do in our unit tests.
+      setTestPrepared(true);
+
+      return () => {
+        clock.restore();
+      };
+    }
+    return undefined;
+  }, [realTimersDone]);
+
   function computePath(test) {
     return `/${test.suite}/${test.name}`;
   }
@@ -282,7 +303,7 @@ function App() {
 
             return (
               <Route key={path} exact path={path}>
-                <TestCase />
+                {testPrepared && <TestCase />}
               </Route>
             );
           })}
