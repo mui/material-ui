@@ -1,0 +1,47 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'action'<br>&#124;&nbsp;'disabled'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+      },
+      "default": "'inherit'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "fontSize": {
+      "type": {
+        "name": "enum",
+        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;'small'"
+      },
+      "default": "'default'"
+    },
+    "htmlColor": { "type": { "name": "string" } },
+    "shapeRendering": { "type": { "name": "string" } },
+    "titleAccess": { "type": { "name": "string" } },
+    "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
+  },
+  "name": "SvgIcon",
+  "styles": {
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorSecondary",
+      "colorAction",
+      "colorError",
+      "colorDisabled",
+      "fontSizeInherit",
+      "fontSizeSmall",
+      "fontSizeLarge"
+    ],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "SVGSVGElement",
+  "filename": "/packages/material-ui/src/SvgIcon/SvgIcon.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/icons/\">Icons</a></li>\n<li><a href=\"/components/material-icons/\">Material Icons</a></li></ul>",
+  "styledComponent": false
+}

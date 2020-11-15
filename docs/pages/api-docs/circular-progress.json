@@ -1,0 +1,48 @@
+{
+  "description": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
+  "props": {
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+      },
+      "default": "'primary'"
+    },
+    "disableShrink": { "type": { "name": "custom", "description": "bool" }, "default": "false" },
+    "size": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "default": "40"
+    },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "thickness": { "type": { "name": "number" }, "default": "3.6" },
+    "value": { "type": { "name": "number" }, "default": "0" },
+    "variant": {
+      "type": { "name": "enum", "description": "'determinate'<br>&#124;&nbsp;'indeterminate'" },
+      "default": "'indeterminate'"
+    }
+  },
+  "name": "CircularProgress",
+  "styles": {
+    "classes": [
+      "root",
+      "determinate",
+      "indeterminate",
+      "colorPrimary",
+      "colorSecondary",
+      "svg",
+      "circle",
+      "circleDeterminate",
+      "circleIndeterminate",
+      "circleDisableShrink"
+    ],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/CircularProgress/CircularProgress.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/progress/\">Progress</a></li></ul>",
+  "styledComponent": false
+}

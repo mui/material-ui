@@ -1,0 +1,33 @@
+{
+  "description": "The Zoom transition can be used for the floating variant of the\n[Button](/components/buttons/#floating-action-buttons) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "props": {
+    "appear": { "type": { "name": "bool" }, "default": "true" },
+    "children": { "type": { "name": "custom", "description": "element" } },
+    "in": { "type": { "name": "bool" } },
+    "onEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onEntered": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onEntering": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onExit": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onExited": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onExiting": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "timeout": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
+    }
+  },
+  "name": "Zoom",
+  "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Zoom/Zoom.js",
+  "inheritance": {
+    "component": "Transition",
+    "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
+  },
+  "demos": "<ul><li><a href=\"/components/transitions/\">Transitions</a></li></ul>",
+  "styledComponent": true
+}

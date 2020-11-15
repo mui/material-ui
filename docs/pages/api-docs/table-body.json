@@ -1,0 +1,16 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": { "type": { "name": "elementType" } }
+  },
+  "name": "TableBody",
+  "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
+  "forwardsRefTo": "HTMLTableSectionElement",
+  "filename": "/packages/material-ui/src/TableBody/TableBody.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
+  "styledComponent": false
+}

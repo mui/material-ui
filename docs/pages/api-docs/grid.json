@@ -1,0 +1,147 @@
+{
+  "props": {
+    "alignContent": {
+      "type": {
+        "name": "enum",
+        "description": "'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'stretch'"
+      },
+      "default": "'stretch'"
+    },
+    "alignItems": {
+      "type": {
+        "name": "enum",
+        "description": "'baseline'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'stretch'"
+      },
+      "default": "'stretch'"
+    },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": { "type": { "name": "elementType" } },
+    "container": { "type": { "name": "bool" } },
+    "direction": {
+      "type": {
+        "name": "enum",
+        "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'"
+      },
+      "default": "'row'"
+    },
+    "item": { "type": { "name": "bool" } },
+    "justifyContent": {
+      "type": {
+        "name": "enum",
+        "description": "'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'space-evenly'"
+      },
+      "default": "'flex-start'"
+    },
+    "lg": {
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
+    "md": {
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
+    "sm": {
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
+    "spacing": {
+      "type": {
+        "name": "enum",
+        "description": "0<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10"
+      },
+      "default": "0"
+    },
+    "wrap": {
+      "type": {
+        "name": "enum",
+        "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
+      },
+      "default": "'wrap'"
+    },
+    "xl": {
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
+    "xs": {
+      "type": {
+        "name": "union",
+        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
+    "zeroMinWidth": { "type": { "name": "bool" } }
+  },
+  "name": "Grid",
+  "styles": {
+    "classes": [
+      "root",
+      "container",
+      "item",
+      "zeroMinWidth",
+      "direction-xs-column",
+      "direction-xs-column-reverse",
+      "direction-xs-row-reverse",
+      "wrap-xs-nowrap",
+      "wrap-xs-wrap-reverse",
+      "align-items-xs-center",
+      "align-items-xs-flex-start",
+      "align-items-xs-flex-end",
+      "align-items-xs-baseline",
+      "align-content-xs-center",
+      "align-content-xs-flex-start",
+      "align-content-xs-flex-end",
+      "align-content-xs-space-between",
+      "align-content-xs-space-around",
+      "justify-content-xs-center",
+      "justify-content-xs-flex-end",
+      "justify-content-xs-space-between",
+      "justify-content-xs-space-around",
+      "justify-content-xs-space-evenly",
+      "spacing-xs-1",
+      "spacing-xs-2",
+      "spacing-xs-3",
+      "spacing-xs-4",
+      "spacing-xs-5",
+      "spacing-xs-6",
+      "spacing-xs-7",
+      "spacing-xs-8",
+      "spacing-xs-9",
+      "spacing-xs-10",
+      "grid-xs-auto",
+      "grid-xs-true",
+      "grid-xs-1",
+      "grid-xs-2",
+      "grid-xs-3",
+      "grid-xs-4",
+      "grid-xs-5",
+      "grid-xs-6",
+      "grid-xs-7",
+      "grid-xs-8",
+      "grid-xs-9",
+      "grid-xs-10",
+      "grid-xs-11",
+      "grid-xs-12"
+    ],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Grid/Grid.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/grid/\">Grid</a></li></ul>",
+  "styledComponent": false
+}

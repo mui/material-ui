@@ -1,0 +1,60 @@
+{
+  "description": "The props of the [Modal](/api/modal/) component are available\nwhen `variant=\"temporary\"` is set.",
+  "props": {
+    "anchor": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'left'"
+    },
+    "BackdropProps": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "elevation": { "type": { "name": "number" }, "default": "16" },
+    "ModalProps": { "type": { "name": "object" }, "default": "{}" },
+    "onClose": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "PaperProps": { "type": { "name": "object" }, "default": "{}" },
+    "SlideProps": { "type": { "name": "object" } },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'permanent'<br>&#124;&nbsp;'persistent'<br>&#124;&nbsp;'temporary'"
+      },
+      "default": "'temporary'"
+    }
+  },
+  "name": "Drawer",
+  "styles": {
+    "classes": [
+      "root",
+      "docked",
+      "paper",
+      "paperAnchorLeft",
+      "paperAnchorRight",
+      "paperAnchorTop",
+      "paperAnchorBottom",
+      "paperAnchorDockedLeft",
+      "paperAnchorDockedTop",
+      "paperAnchorDockedRight",
+      "paperAnchorDockedBottom",
+      "modal"
+    ],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Drawer/Drawer.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/drawers/\">Drawers</a></li></ul>",
+  "styledComponent": false
+}

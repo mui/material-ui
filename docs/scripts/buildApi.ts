@@ -505,9 +505,9 @@ async function buildDocs(options: {
   // no Object.assign to visually check for collisions
   reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
 
-  if (reactAPI.name !== 'Accordion') {
-    return;
-  }
+  // if (reactAPI.name !== 'Accordion') {
+  //   return;
+  // }
 
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');

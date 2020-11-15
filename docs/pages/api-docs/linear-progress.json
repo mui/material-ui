@@ -1,0 +1,50 @@
+{
+  "description": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
+  "props": {
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "default": "'primary'"
+    },
+    "value": { "type": { "name": "number" } },
+    "valueBuffer": { "type": { "name": "number" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'buffer'<br>&#124;&nbsp;'determinate'<br>&#124;&nbsp;'indeterminate'<br>&#124;&nbsp;'query'"
+      },
+      "default": "'indeterminate'"
+    }
+  },
+  "name": "LinearProgress",
+  "styles": {
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorSecondary",
+      "determinate",
+      "indeterminate",
+      "buffer",
+      "query",
+      "dashed",
+      "dashedColorPrimary",
+      "dashedColorSecondary",
+      "bar",
+      "barColorPrimary",
+      "barColorSecondary",
+      "bar1Indeterminate",
+      "bar1Determinate",
+      "bar1Buffer",
+      "bar2Indeterminate",
+      "bar2Buffer"
+    ],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/LinearProgress/LinearProgress.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/progress/\">Progress</a></li></ul>",
+  "styledComponent": false
+}
