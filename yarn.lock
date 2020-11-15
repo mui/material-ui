@@ -7072,14 +7072,10 @@ emotion-server@^10.0.27:
   dependencies:
     create-emotion-server "10.0.27"
 
-emotion-theming@^10.0.27:
-  version "10.0.27"
-  resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-10.0.27.tgz#1887baaec15199862c89b1b984b79806f2b9ab10"
-  integrity sha512-MlF1yu/gYh8u+sLUqA0YuA9JX0P4Hb69WlKc/9OLo+WCXuX6sy/KoIa+qJimgmr2dWqnypYKYPX37esjDBbhdw==
-  dependencies:
-    "@babel/runtime" "^7.5.5"
-    "@emotion/weak-memoize" "0.2.5"
-    hoist-non-react-statics "^3.3.0"
+emotion-theming@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-11.0.0.tgz#821de3c9804cfe7bb5fda2dd12ad722a6c5bcff5"
+  integrity sha512-OhYpCGBjaLcD9c4ptwCr9SxHjfRTDqeqdzMobusJ+a/drlfnJ3AT9gmGKIhNHiXtr6626h6fsvLY22Or9CxUqw==
 
 emotion@^10.0.27:
   version "10.0.27"
