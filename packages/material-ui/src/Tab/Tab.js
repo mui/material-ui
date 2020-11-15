@@ -11,7 +11,6 @@ export const styles = (theme) => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
-    minWidth: 72,
     position: 'relative',
     minHeight: 48,
     flexShrink: 0,
