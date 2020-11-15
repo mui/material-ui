@@ -107,7 +107,7 @@ const pages = [
         children: [
           {
             pathname: '/components/data-grid',
-            title: 'Overview',
+            subheader: '/components/data-grid/overview',
           },
           { pathname: '/components/data-grid/getting-started' },
           { pathname: '/components/data-grid/columns' },
