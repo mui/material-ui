@@ -241,7 +241,7 @@ function ApiDocs(props) {
   let spreadHint = '';
   if (spread) {
     // Any other props supplied will be provided to the root element ({{spreadHintElement}}).
-    spreadHint = t('spreadHint').replace(
+    spreadHint = t('apiSpreadHint').replace(
       /{{spreadHintElement}}/,
       inheritance
         ? `<a href="${inheritance.pathname}">${inheritance.component}</a>`
@@ -251,7 +251,7 @@ function ApiDocs(props) {
 
   let inheritanceSuffix = '';
   if (inheritance && inheritance.component === 'Transition') {
-    inheritanceSuffix = t('inheritanceSuffixTransition');
+    inheritanceSuffix = t('apiInheritanceSuffixTransition');
   }
 
   return (
@@ -301,7 +301,7 @@ import { ${componentName} } from '${source}';`}
             <Heading hash="inheritance" level="h3" />
             <span
               dangerouslySetInnerHTML={{
-                __html: t('inheritanceDescription')
+                __html: t('apiInheritanceDescription')
                   .replace(/{{component}}/, inheritance.component)
                   .replace(/{{pathname}}/, inheritance.pathname)
                   .replace(/{{suffix}}/, inheritanceSuffix)
@@ -319,13 +319,13 @@ import { ${componentName} } from '${source}';`}
               classDescriptions={classDescriptions}
             />
             <br />
-            <span dangerouslySetInnerHTML={{ __html: t('overrideStyles') }} />
+            <span dangerouslySetInnerHTML={{ __html: t('apiOverrideStyles') }} />
             {styledComponent ? (
-              <span dangerouslySetInnerHTML={{ __html: t('overrideStylesStyledComponent') }} />
+              <span dangerouslySetInnerHTML={{ __html: t('apiOverrideStylesStyledComponent') }} />
             ) : (
               <span
                 dangerouslySetInnerHTML={{
-                  __html: t('overrideStylesJss').replace(
+                  __html: t('apiOverrideStylesJss').replace(
                     /{{URL}}/,
                     `${SOURCE_CODE_ROOT_URL}${filename}`,
                   ),
