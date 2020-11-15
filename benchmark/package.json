@@ -18,7 +18,7 @@
     "@material-ui/core": "^5.0.0-alpha.1",
     "@material-ui/styles": "^5.0.0-alpha.1",
     "@material-ui/system": "^5.0.0-alpha.1",
-    "emotion": "^10.0.27",
+    "emotion": "^11.0.0",
     "emotion-server": "^10.0.27",
     "emotion-theming": "^10.0.27",
     "puppeteer": "^5.0.0",
