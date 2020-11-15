@@ -192,8 +192,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     readOnly,
     renderSuffix,
     rows,
-    rowsMax,
-    rowsMin,
+    maxRows,
+    minRows,
     startAdornment,
     type = 'text',
     value: valueProp,
@@ -371,12 +371,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref: null,
     };
   } else if (multiline) {
-    if (rows && !rowsMax && !rowsMin) {
+    if (rows && !maxRows && !minRows) {
       InputComponent = 'textarea';
     } else {
       inputProps = {
         rows,
-        rowsMax,
+        maxRows,
         ...inputProps,
       };
 
@@ -607,11 +607,11 @@ InputBase.propTypes = {
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Minimum number of rows to display when multiline option is set to true.
    */
-  rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Start `InputAdornment` for this component.
    */

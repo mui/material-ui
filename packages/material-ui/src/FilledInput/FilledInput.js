@@ -285,7 +285,7 @@ FilledInput.propTypes = {
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Start `InputAdornment` for this component.
    */

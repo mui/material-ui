@@ -27,9 +27,9 @@ const styles = {
 };
 
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {
-  const { onChange, rows, rowsMax, rowsMin: rowsMinProp = 1, style, value, ...other } = props;
+  const { onChange, rows, maxRows, minRows: minRowsProp = 1, style, value, ...other } = props;
 
-  const rowsMin = rows || rowsMinProp;
+  const minRows = rows || minRowsProp;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef(null);
@@ -69,11 +69,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     // The height of the outer content
     let outerHeight = innerHeight;
 
-    if (rowsMin) {
-      outerHeight = Math.max(Number(rowsMin) * singleRowHeight, outerHeight);
+    if (minRows) {
+      outerHeight = Math.max(Number(minRows) * singleRowHeight, outerHeight);
     }
-    if (rowsMax) {
-      outerHeight = Math.min(Number(rowsMax) * singleRowHeight, outerHeight);
+    if (maxRows) {
+      outerHeight = Math.min(Number(maxRows) * singleRowHeight, outerHeight);
     }
     outerHeight = Math.max(outerHeight, singleRowHeight);
 
@@ -110,7 +110,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
       return prevState;
     });
-  }, [rowsMax, rowsMin, props.placeholder]);
+  }, [maxRows, minRows, props.placeholder]);
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
@@ -152,7 +152,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         onChange={handleChange}
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
-        rows={rowsMin}
+        rows={minRows}
         style={{
           height: state.outerHeightStyle,
           // Need a large enough difference to allow scrolling.
@@ -192,7 +192,7 @@ TextareaAutosize.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * Use `rowsMin` instead. The prop will be removed in v5.
+   * Use `minRows` instead. The prop will be removed in v5.
    *
    * @deprecated
    */
@@ -200,11 +200,11 @@ TextareaAutosize.propTypes = {
   /**
    * Maximum number of rows to display.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Minimum number of rows to display.
    */
-  rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
    */

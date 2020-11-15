@@ -13,11 +13,11 @@ export interface TextareaAutosizeProps
   /**
    * Maximum number of rows to display.
    */
-  rowsMax?: string | number;
+  maxRows?: string | number;
   /**
    * Minimum number of rows to display.
    */
-  rowsMin?: string | number;
+  minRows?: string | number;
 }
 
 /**

@@ -83,7 +83,6 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     placeholder,
     required = false,
     rows,
-    rowsMax,
     select = false,
     SelectProps,
     type,
@@ -137,7 +136,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       multiline={multiline}
       name={name}
       rows={rows}
-      rowsMax={rowsMax}
+      maxRows={maxRows}
       type={type}
       value={value}
       id={id}
@@ -325,7 +324,7 @@ TextField.propTypes = {
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
