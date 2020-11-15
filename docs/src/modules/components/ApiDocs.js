@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { exactProp } from '@material-ui/utils';
 import Typography from '@material-ui/core/Typography';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import EditPage from 'docs/src/modules/components/EditPage';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import TopLayoutDocsPages from 'docs/src/modules/components/TopLayoutDocsPages';
@@ -163,7 +162,7 @@ function Heading(props) {
 
   return (
     <Level>
-      <a className="anchor-link" id={hash}></a>
+      <a className="anchor-link" id={hash} />
       {t(hash)}
       <a className="anchor-link-style" aria-hidden="true" aria-label="anchor" href={`#${hash}`}>
         <svg>
@@ -180,7 +179,7 @@ Heading.propTypes = {
 };
 
 function ApiDocs(props) {
-  const { classes, disableAd = false, disableToc = false, pageContent } = props;
+  const { disableAd = false, disableToc = false, pageContent } = props;
   const t = useTranslate();
   const userLanguage = 'en';
   const {
@@ -347,7 +346,6 @@ import { ${componentName} } from '${source}';`}
 }
 
 ApiDocs.propTypes = {
-  classes: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   pageContent: PropTypes.object.isRequired,
