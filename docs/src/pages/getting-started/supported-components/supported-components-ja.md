@@ -1,6 +1,6 @@
 # サポートされているコンポーネント
 
-<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。</p>
+<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。</p>
 
 While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, nor every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
 
@@ -81,7 +81,7 @@ While we strive to follow the guidelines where practical (applying common sense 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
-- [Tabs](https://material.io/design/components/tabs.html) ✓ 
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)**** 
   - **[Fixed tabs](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
   - **[Mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
