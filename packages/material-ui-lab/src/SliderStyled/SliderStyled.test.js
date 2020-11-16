@@ -557,7 +557,7 @@ describe('<Slider />', () => {
       }
       ValueLabelComponent.propTypes = { value: PropTypes.number };
 
-      const screenResult = render(
+      const { setProps, queryByTestId } = render(
         <Slider
           components={{ ValueLabel: ValueLabelComponent }}
           valueLabelDisplay="on"
@@ -565,13 +565,13 @@ describe('<Slider />', () => {
         />,
       );
 
-      expect(screenResult.queryByTestId('value-label')).to.have.class('open');
+      expect(queryByTestId('value-label')).to.have.class('open');
 
-      screenResult.setProps({
+      setProps({
         valueLabelDisplay: 'off',
       });
 
-      expect(screenResult.queryByTestId('value-label')).to.equal(null);
+      expect(queryByTestId('value-label')).to.equal(null);
     });
   });
 
