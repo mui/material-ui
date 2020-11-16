@@ -191,7 +191,7 @@ function ApiDocs(props) {
     'import',
     componentStyles.name && 'component-name',
     'props',
-    componentStyles.globalClasses.length && 'css',
+    componentStyles.classes && 'css',
     'demos',
   ];
 
