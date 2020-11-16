@@ -27,7 +27,7 @@ export default function Demo() {
 4. The <b>CSS property</b> column describes which CSS property will be generated when this system property is used.
 5. And lastly, the <b>Theme key</b> column tells you how this property is wired with the theme - with this example, whatever value you might use will be used as input to the `theme.spacing` helper.
 
-Let's take a look at one example:
+Let's take a look at an example:
 
 ```jsx
 <Box sx={{ mb: 3 }} />
