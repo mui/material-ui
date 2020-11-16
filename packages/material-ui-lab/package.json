@@ -23,7 +23,7 @@
   },
   "homepage": "https://material-ui.com/components/about-the-lab",
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern &&yarn build:node && yarn build:stable && yarn build:copy-files",
+    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files ",
     "build:legacy": "node ../../scripts/build legacy",
     "build:modern": "node ../../scripts/build modern",
     "build:node": "node ../../scripts/build node",
@@ -70,10 +70,10 @@
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0 || ^17.0.0",
-    "@date-io/date-fns": "^2.8.0",
-    "@date-io/dayjs": "^2.8.0",
-    "@date-io/luxon": "^2.8.0",
-    "@date-io/moment": "^2.8.0",
+    "@date-io/date-fns": "^2.10.6",
+    "@date-io/dayjs": "^2.10.6",
+    "@date-io/luxon": "^2.10.6",
+    "@date-io/moment": "^2.10.6",
     "react-transition-group": "^4.4.1",
     "rifm": "^0.12.0"
   },

@@ -10,10 +10,11 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">Date pickers let the user select a range of dates.</p>
 
-> ⚠️⚠️ The date range picker is unstable, and **not suitable** for use in production. ⚠️⚠️
+> ⚠️ Premium component
 > <br /><br />
-> The date range picker will be made available in the coming months for production use as part of a paid extension (commercial license) to the community edition (MIT license) of Material-UI.
-> This paid extension will include advanced components (rich data grid, date range picker, tree view drag & drop, etc.). [Early access](https://material-ui.com/store/items/material-ui-x/) starts at an affordable price.
+> The date range picker is intended for Material-UI X, a commercial set of advanced components built on top of the community edition (MIT license) of Material-UI.
+> <br /><br />
+> This paid extension will include more advanced components (rich data grid, date range picker, tree view drag & drop, etc.). [Early access](https://material-ui.com/store/items/material-ui-x/) starts at an affordable price.
 
 The date range pickers let the user select a range of dates.
 

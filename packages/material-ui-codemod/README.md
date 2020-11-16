@@ -41,10 +41,10 @@ Add the TextField `variant="standard` prop when `variant` is undefined.
 The diff should look like this:
 
 ```diff
-  -<TextField value="Standard" />
-  -<TextField value="Outlined" variant="outlined" />
-  +<TextField value="Standard" variant="standard" />
-  +<TextField value="Outlined" />
+-<TextField value="Standard" />
+-<TextField value="Outlined" variant="outlined" />
++<TextField value="Standard" variant="standard" />
++<TextField value="Outlined" />
 ```
 
 This codemod is non-idempotent (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so should only be run once against any particular codebase.

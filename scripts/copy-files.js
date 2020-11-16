@@ -24,7 +24,7 @@ async function includeFileInBuild(file) {
  * @param {string} rootDir
  */
 async function createModulePackages({ from, to }) {
-  const directoryPackages = glob.sync('*/index.js', { cwd: from }).map(path.dirname);
+  const directoryPackages = glob.sync('*/index.{js,ts,tsx}', { cwd: from }).map(path.dirname);
 
   await Promise.all(
     directoryPackages.map(async (directoryPackage) => {
