@@ -2123,23 +2123,34 @@ describe('<Autocomplete />', () => {
 
   it('should prevent the default event handlers', () => {
     const handleChange = spy();
-    render(
-      <Autocomplete
-        options={['one', 'two']}
-        onChange={handleChange}
+    const handleSubmit = spy();
+    const Test = () => (
+      <div
         onKeyDown={(event) => {
-          if (event.key === 'Enter') {
-            event.persist();
-            event.defaultMuiPrevented = true;
+          if (!event.defaultPrevented && event.key === 'Enter') {
+            handleSubmit();
           }
         }}
-        renderInput={(params) => <TextField autoFocus {...params} />}
-      />,
+      >
+        <Autocomplete
+          options={['one', 'two']}
+          onChange={handleChange}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              event.persist();
+              event.defaultMuiPrevented = true;
+            }
+          }}
+          renderInput={(params) => <TextField autoFocus {...params} />}
+        />
+      </div>
     );
+    render(<Test />);
     const textbox = screen.getByRole('textbox');
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     fireEvent.keyDown(textbox, { key: 'Enter' });
     expect(handleChange.callCount).to.equal(0);
+    expect(handleSubmit.callCount).to.equal(1);
   });
 });
