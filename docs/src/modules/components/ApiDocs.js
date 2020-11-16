@@ -123,6 +123,18 @@ ClassesTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
+function getTransaltedHeader(t, header) {
+  const transitions = {
+    import: t('import'),
+    props: t('props'),
+    inheritance: t('inheritance'),
+    demos: t('demos'),
+    css: 'CSS',
+  };
+
+  return transitions[header] || header;
+}
+
 function Heading(props) {
   const { hash, level: Level = 'h2' } = props;
   const t = useTranslate();
@@ -131,7 +143,7 @@ function Heading(props) {
     <Level>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content */}
       <a className="anchor-link" id={hash} />
-      {hash === 'css' ? 'CSS' : t(hash)}
+      {getTransaltedHeader(t, hash)}
       <a className="anchor-link-style" aria-hidden="true" aria-label="anchor" href={`#${hash}`}>
         <svg>
           <use xlinkHref="#anchor-link-icon" />
@@ -187,7 +199,7 @@ function ApiDocs(props) {
   sections.forEach((sectionName) => {
     if (sectionName) {
       toc.push({
-        text: t(sectionName),
+        text: getTransaltedHeader(t, sectionName),
         hash: sectionName,
         children: [
           ...(sectionName === 'props' && inheritance
