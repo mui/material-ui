@@ -9,7 +9,7 @@ Let's take the following row from [the table below](#properties-reference-table)
 | [spacing](/system/spacing/) | `spacing`             | `mb`, `marginBottom` | `margin-bottom`         | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
 1. The <b>Group</b> column links to the documentation page where this group of properties is described; in this example, the [spacing](/system/spacing/) page.
-2. The <b>System style function</b> references the function which generates the properties shown in the other columns, in case you want to use it for adding this functionality to your custom components. The function can be imported from `@material-ui/system`.
+2. The <b>System style function</b> column references the function which generates the properties shown in the other columns, in case you want to use it for adding this functionality to your custom components. The function can be imported from `@material-ui/system`.
 
 ```jsx
 import * as React from 'react';
