@@ -1,7 +1,7 @@
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { ServerStyleSheet } from 'styled-components';
-import createEmotionServer from 'create-emotion-server';
+import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
