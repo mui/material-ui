@@ -4,7 +4,7 @@
 
 ## はじめに
 
-`@material-ui/system`は、 "*style functions*" と呼ばれる低レベルのユーティリティ関数を提供し、強力な設計システムを構築します。 主な機能の一部： 主な機能の一部： 主な機能の一部： 主な機能の一部：
+`@material-ui/system`は、 "*style functions*" と呼ばれる低レベルのユーティリティ関数を提供し、強力な設計システムを構築します。 主な機能の一部： 主な機能の一部： 主な機能の一部： 主な機能の一部： 主な機能の一部：
 
 - ⚛️コンポーネントのpropsからテーマの値に直接アクセスします。
 - 🦋 UIの一貫性を促進します。
@@ -312,11 +312,11 @@ The `style()` helper can also be used to maps properties to style objects in a t
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
-## `sx` property
+## CSS property
 
-If you want to support custom CSS values, you can use the `styleFunctionSx()` helper. It will process the `sx` property.
+If you want to support custom CSS values, you can use the `css()` helper. It will process the `css` property.
 
-{{"demo": "pages/system/basics/SxProp.js", "bg": true}}
+{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
 ## 仕組み
 
