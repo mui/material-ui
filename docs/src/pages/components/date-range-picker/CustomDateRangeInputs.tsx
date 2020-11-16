@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
 
@@ -10,7 +10,7 @@ export default function CustomDateRangeInputs() {
   ]);
 
   return (
-    <LocalizationProvider dateAdapter={DateFnsAdapter}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
         label="Advanced keyboard"
         value={selectedDate}

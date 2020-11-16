@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateRangeDelimiter from '@material-ui/lab/DateRangeDelimiter';
 import MobileDateRangePicker, {
@@ -12,7 +12,7 @@ export default function ResponsiveDateRangePicker() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
 
   return (
-    <LocalizationProvider dateAdapter={DateFnsAdapter}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <MobileDateRangePicker
         startText="Mobile start"
         value={value}

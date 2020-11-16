@@ -6,7 +6,7 @@ import enLocale from 'date-fns/locale/en-US';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 import TextField from '@material-ui/core/TextField';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import DatePicker from '@material-ui/lab/DatePicker';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
@@ -34,7 +34,7 @@ export default function LocalizedDatePicker() {
 
   return (
     <LocalizationProvider
-      dateAdapter={DateFnsAdapter}
+      dateAdapter={AdapterDateFns}
       locale={localeMap[locale]}
     >
       <div style={{ width: 300 }}>

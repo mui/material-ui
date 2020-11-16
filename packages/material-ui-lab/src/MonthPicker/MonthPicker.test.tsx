@@ -3,7 +3,7 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import { getClasses, createMount, fireEvent, screen, describeConformance } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import MonthPicker from '@material-ui/lab/MonthPicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
@@ -13,7 +13,7 @@ describe('<MonthPicker />', () => {
   let classes: Record<string, string>;
 
   const localizedMount = (node: React.ReactNode) => {
-    return mount(<LocalizationProvider dateAdapter={DateFnsAdapter}>{node}</LocalizationProvider>);
+    return mount(<LocalizationProvider dateAdapter={AdapterDateFns}>{node}</LocalizationProvider>);
   };
 
   before(() => {

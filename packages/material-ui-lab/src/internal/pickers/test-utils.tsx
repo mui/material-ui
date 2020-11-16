@@ -3,7 +3,7 @@ import { parseISO } from 'date-fns';
 import { createClientRender, fireEvent, screen } from 'test/utils';
 import { queryHelpers, Matcher, MatcherOptions } from '@testing-library/react/pure';
 import { TransitionProps } from '@material-ui/core/transitions';
-import DateFnsAdapter from '../../dateAdapter/date-fns';
+import AdapterDateFns from '../../AdapterDateFns';
 import LocalizationProvider from '../../LocalizationProvider';
 
 // TODO make possible to pass here any utils using cli
@@ -12,7 +12,7 @@ import LocalizationProvider from '../../LocalizationProvider';
  * We're not using `adapter.date` in the implementation which means the implementation is safe.
  * But we do use it in tests where usage of ISO dates without timezone is problematic
  */
-export class AdapterClassToUse extends DateFnsAdapter {
+export class AdapterClassToUse extends AdapterDateFns {
   date(value?: any): Date {
     if (typeof value === 'string') {
       return parseISO(value);
