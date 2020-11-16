@@ -8,6 +8,11 @@ import withWidth, { isWidthDown } from '../withWidth';
  * Notice that this Higher-order Component is incompatible with server-side rendering.
  */
 const withMobileDialog = (options = {}) => (Component) => {
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(
+      'Material-UI: The `withMobileDialog` function is deprecated. See https://github.com/mui-org/material-ui/pull/23202.',
+    );
+  }
   const { breakpoint = 'sm' } = options;
 
   function WithMobileDialog(props) {

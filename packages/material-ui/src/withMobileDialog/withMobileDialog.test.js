@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { createShallow } from '@material-ui/core/test-utils';
 import Dialog from '../Dialog';
 import withMobileDialog from './withMobileDialog';
+import { consoleWarnMock } from 'test/utils/consoleErrorMock';
 
 describe('withMobileDialog', () => {
   let shallow;
@@ -64,5 +65,14 @@ describe('withMobileDialog', () => {
   describe('screen width: xl', () => {
     isFullScreen(['xl'], 'xl');
     isNotFullScreen(['xs', 'sm', 'md', 'lg'], 'xl');
+  });
+
+  it('should warn if withMobileDialog is used', () => {
+    shallow(withMobileDialog());
+
+    expect(consoleWarnMock.callCount()).to.equal(1);
+    expect(consoleWarnMock.messages()[0]).to.include(
+      'Material-UI: The `withMobileDialog` function is deprecated. See https://github.com/mui-org/material-ui/pull/23202.',
+    );
   });
 });
