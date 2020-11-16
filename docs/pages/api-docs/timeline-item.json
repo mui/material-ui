@@ -22,5 +22,5 @@
   "filename": "/packages/material-ui-lab/src/TimelineItem/TimelineItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

@@ -46,5 +46,5 @@
   "filename": "/packages/material-ui/src/IconButton/IconButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

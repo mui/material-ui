@@ -27,5 +27,5 @@
   "filename": "/packages/material-ui/src/Modal/Modal.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/modal/\">Modal</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

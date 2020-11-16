@@ -109,5 +109,5 @@
   "filename": "/packages/material-ui/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

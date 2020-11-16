@@ -11,5 +11,5 @@
   "filename": "/packages/material-ui/src/NoSsr/NoSsr.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/no-ssr/\">No Ssr</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

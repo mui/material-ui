@@ -32,5 +32,5 @@
   "filename": "/packages/material-ui/src/MenuItem/MenuItem.js",
   "inheritance": { "component": "ListItem", "pathname": "/api/list-item/" },
   "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

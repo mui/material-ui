@@ -379,7 +379,7 @@ function extractClassConditions(classDescriptions: { [key: string]: { [key: stri
         const conditions = classDescription.match(stylesRegex);
 
         if (conditions) {
-          classConditions[componentName][classNlideame] = {
+          classConditions[componentName][className] = {
             description: classDescription.replace(stylesRegex, '$1{{conditions}}.'),
             conditions: conditions[2].replace(/`(.*?)`/g, '<code>$1</code>'),
           };
@@ -469,8 +469,8 @@ async function buildDocs(options: {
   };
 
   // styled components does not have the options static
-  const nonJSSComponent = !component?.default?.options;
-  if (nonJSSComponent) {
+  const styledComponent = !component?.default?.options;
+  if (styledComponent) {
     await updateStylesDefinition({
       styles,
       component: componentObject,
@@ -590,7 +590,7 @@ async function buildDocs(options: {
 
   pageContent.filename = normalizePath(reactAPI.filename);
   pageContent.demos = generateDemoList(reactAPI);
-  pageContent.nonJSSComponent = nonJSSComponent;
+  pageContent.styledComponent = styledComponent;
 
   // Only keep "non-standard" global classnames
   Object.entries(pageContent.styles.globalClasses).forEach(([className, globalClassName]) => {
@@ -702,7 +702,7 @@ Page.getInitialProps = async () => {
 
   await annotateComponentDefinition({ api: reactAPI, component: componentObject });
 
-  if (!nonJSSComponent) {
+  if (!styledComponent) {
     await annotateClassesDefinition({
       api: reactAPI,
       component: componentObject,

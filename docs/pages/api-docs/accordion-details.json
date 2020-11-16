@@ -11,5 +11,5 @@
   "filename": "/packages/material-ui/src/AccordionDetails/AccordionDetails.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

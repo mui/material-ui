@@ -15,5 +15,5 @@
   "filename": "/packages/material-ui/src/CardMedia/CardMedia.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

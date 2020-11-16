@@ -173,7 +173,7 @@ function ApiDocs(props) {
     propDescriptions,
     props: componentProps,
     spread,
-    nonJSSComponent,
+    styledComponent,
     styles: componentStyles,
   } = pageContent;
 
@@ -299,7 +299,7 @@ import { ${componentName} } from '${source}';`}
             />
             <br />
             <span dangerouslySetInnerHTML={{ __html: t('apiOverrideStyles') }} />
-            {nonJSSComponent ? (
+            {styledComponent ? (
               <span dangerouslySetInnerHTML={{ __html: t('apiOverrideStylesStyledComponent') }} />
             ) : (
               <span

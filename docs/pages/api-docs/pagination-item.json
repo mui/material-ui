@@ -71,5 +71,5 @@
   "filename": "/packages/material-ui/src/PaginationItem/PaginationItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/pagination/\">Pagination</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

@@ -64,5 +64,5 @@
   "filename": "/packages/material-ui/src/Dialog/Dialog.js",
   "inheritance": { "component": "Modal", "pathname": "/api/modal/" },
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

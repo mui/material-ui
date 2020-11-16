@@ -35,5 +35,5 @@
   "filename": "/packages/material-ui/src/Radio/Radio.js",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
   "demos": "<ul><li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

@@ -56,5 +56,5 @@
   "filename": "/packages/material-ui/src/Drawer/Drawer.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/drawers/\">Drawers</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

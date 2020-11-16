@@ -50,5 +50,5 @@
   "filename": "/packages/material-ui/src/Snackbar/Snackbar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/snackbars/\">Snackbars</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

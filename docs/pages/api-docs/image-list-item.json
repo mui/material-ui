@@ -15,5 +15,5 @@
   "filename": "/packages/material-ui/src/ImageListItem/ImageListItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/image-list/\">Image List</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

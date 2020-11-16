@@ -17,5 +17,5 @@
   "filename": "/packages/material-ui/src/StepIcon/StepIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

@@ -22,5 +22,5 @@
   "filename": "/packages/material-ui/src/BottomNavigationAction/BottomNavigationAction.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/bottom-navigation/\">Bottom Navigation</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

@@ -77,5 +77,5 @@
   "filename": "/packages/material-ui/src/Chip/Chip.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/chips/\">Chips</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

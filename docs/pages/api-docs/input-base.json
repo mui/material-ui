@@ -73,5 +73,5 @@
   "filename": "/packages/material-ui/src/InputBase/InputBase.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

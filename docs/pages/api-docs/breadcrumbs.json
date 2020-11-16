@@ -17,5 +17,5 @@
   "filename": "/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/breadcrumbs/\">Breadcrumbs</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

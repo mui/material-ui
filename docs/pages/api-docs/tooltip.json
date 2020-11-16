@@ -54,5 +54,5 @@
   "filename": "/packages/material-ui/src/Tooltip/Tooltip.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tooltips/\">Tooltips</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

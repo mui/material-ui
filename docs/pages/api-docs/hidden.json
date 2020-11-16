@@ -35,5 +35,5 @@
   "filename": "/packages/material-ui/src/Hidden/Hidden.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/hidden/\">Hidden</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

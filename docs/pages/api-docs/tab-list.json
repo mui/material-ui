@@ -7,5 +7,5 @@
   "filename": "/packages/material-ui-lab/src/TabList/TabList.js",
   "inheritance": { "component": "Tabs", "pathname": "/api/tabs/" },
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

@@ -104,5 +104,5 @@
   "filename": "/packages/material-ui-lab/src/SliderStyled/SliderStyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/slider-styled/\">Slider Styled</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

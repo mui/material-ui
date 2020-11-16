@@ -116,5 +116,5 @@
   "filename": "/packages/material-ui-unstyled/src/SliderUnstyled/SliderUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/slider-styled/\">Slider Styled</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

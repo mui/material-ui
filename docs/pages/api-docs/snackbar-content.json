@@ -13,5 +13,5 @@
   "filename": "/packages/material-ui/src/SnackbarContent/SnackbarContent.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/snackbars/\">Snackbars</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

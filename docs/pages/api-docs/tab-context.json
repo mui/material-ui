@@ -9,5 +9,5 @@
   "filename": "/packages/material-ui-lab/src/TabContext/TabContext.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

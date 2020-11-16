@@ -11,5 +11,5 @@
   "filename": "/packages/material-ui/src/ScopedCssBaseline/ScopedCssBaseline.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/css-baseline/\">Css Baseline</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

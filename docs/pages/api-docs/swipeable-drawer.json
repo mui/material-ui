@@ -86,5 +86,5 @@
   "filename": "/packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js",
   "inheritance": { "component": "Drawer", "pathname": "/api/drawer/" },
   "demos": "<ul><li><a href=\"/components/drawers/\">Drawers</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

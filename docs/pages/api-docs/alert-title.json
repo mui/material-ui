@@ -11,5 +11,5 @@
   "filename": "/packages/material-ui/src/AlertTitle/AlertTitle.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/alert/\">Alert</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

@@ -18,5 +18,5 @@
   "filename": "/packages/material-ui/src/TableRow/TableRow.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

@@ -53,5 +53,5 @@
   "filename": "/packages/material-ui/src/ListItem/ListItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

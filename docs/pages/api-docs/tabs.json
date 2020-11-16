@@ -67,5 +67,5 @@
   "filename": "/packages/material-ui/src/Tabs/Tabs.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

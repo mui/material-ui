@@ -43,5 +43,5 @@
   "filename": "/packages/material-ui/src/SvgIcon/SvgIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/icons/\">Icons</a></li>\n<li><a href=\"/components/material-icons/\">Material Icons</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

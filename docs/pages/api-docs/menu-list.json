@@ -20,5 +20,5 @@
   "filename": "/packages/material-ui/src/MenuList/MenuList.js",
   "inheritance": { "component": "List", "pathname": "/api/list/" },
   "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

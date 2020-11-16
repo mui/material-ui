@@ -29,5 +29,5 @@
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
   },
   "demos": "<ul><li><a href=\"/components/popover/\">Popover</a></li>\n<li><a href=\"/components/transitions/\">Transitions</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

@@ -52,5 +52,5 @@
   "filename": "/packages/material-ui/src/SpeedDial/SpeedDial.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/speed-dial/\">Speed Dial</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

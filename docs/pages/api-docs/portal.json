@@ -11,5 +11,5 @@
   "filename": "/packages/material-ui/src/Portal/Portal.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/portal/\">Portal</a></li></ul>",
-  "nonJSSComponent": true
+  "styledComponent": true
 }

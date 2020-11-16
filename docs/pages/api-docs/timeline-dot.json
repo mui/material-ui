@@ -38,5 +38,5 @@
   "filename": "/packages/material-ui-lab/src/TimelineDot/TimelineDot.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }

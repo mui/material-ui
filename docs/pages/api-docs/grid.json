@@ -143,5 +143,5 @@
   "filename": "/packages/material-ui/src/Grid/Grid.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/grid/\">Grid</a></li></ul>",
-  "nonJSSComponent": false
+  "styledComponent": false
 }
