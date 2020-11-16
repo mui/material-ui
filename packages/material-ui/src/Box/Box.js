@@ -81,10 +81,16 @@ if (process.env.NODE_ENV !== 'production') {
 
     if (unsupportedProps.length > 0) {
       return new Error(
-        `The following props are deprecated: ${unsupportedProps
-          .map((prop) => `\`${prop}\``)
-          .join(', ')}. You should move the properties inside the \`sx\` prop. For example:\n` +
-          '<Box m={2} /> should become <Box sx={{ m: 2 }} />',
+        [
+          `The following props are deprecated: ${unsupportedProps
+            .map((prop) => `\`${prop}\``)
+            .join(', ')}.`,
+          `You should move the properties inside the \`sx\` prop, for example:`,
+          '',
+          `<Box m={2} /> should become <Box sx={{ m: 2 }} />`,
+          '',
+          'You can automate the migration with this codemod: https://github.com/mui-org/material-ui/blob/HEAD/packages/material-ui-codemod/README.md#box-sx-prop',
+        ].join('\n'),
       );
     }
     return null;
