@@ -347,6 +347,10 @@ async function annotateClassesDefinition(context: {
   );
 }
 
+function generateMuiName(name: string) {
+  return `Mui${name.replace('Unstyled', '')}`;
+}
+
 async function buildDocs(options: {
   component: { filename: string };
   pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
@@ -480,7 +484,7 @@ async function buildDocs(options: {
         },
         {
           options: {
-            name: styles.name,
+            name: styles.name || generateMuiName(name),
             theme: {},
           },
         },
