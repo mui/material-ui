@@ -23,7 +23,7 @@ export default function Demo() {
 }
 ```
 
-3. The <b>System key</b> column, gives you the key/keys by which you may use this property as part of the system (or the `sx` prop).
+3. The <b>System keys</b> column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
 4. The <b>CSS property</b> column describes which CSS property will be generated when this system property is used.
 5. And lastly, the <b>Theme key</b> column tells you how this property is wired with the theme - with this property, whatever value you may use will be used as input to the `theme.spacing` helper.
 
