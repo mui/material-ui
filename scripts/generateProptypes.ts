@@ -233,7 +233,6 @@ async function generateProptypes(
 
   const unstyledFile = getUnstyledDefinitionFilename(tsFile);
 
-
   const result = ttp.inject(proptypes, sourceContent, {
     disableTypescriptPropTypesValidation: tsTodo,
     removeExistingPropTypes: true,
