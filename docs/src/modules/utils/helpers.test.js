@@ -202,4 +202,27 @@ import * as Utils from '@material-ui/utils';
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/utils',
     });
   });
+
+  it('should date adapters', () => {
+    const source = `
+import * as React from 'react';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import AdapterDayjs from '@material-ui/lab/AdapterDayjs';
+import AdapterLuxon from '@material-ui/lab/AdapterLuxon';
+import AdapterMoment from '@material-ui/lab/AdapterMoment';
+    `;
+
+    expect(getDependencies(source)).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@material-ui/core': 'next',
+      '@material-ui/lab': 'next',
+      'date-fns': 'latest',
+      dayjs: 'latest',
+      luxon: 'latest',
+      moment: 'latest',
+    });
+  });
 });
