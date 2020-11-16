@@ -11,6 +11,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       children?: React.ReactNode;
       /**
+       * Override or extend the styles applied to the component.
        */
       classes?: {
         /** Styles applied to the root element. */
