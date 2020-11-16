@@ -4,7 +4,7 @@
 
 Let's take the following row, for example:
 
-| Group                       | System style function | System key           | CSS property/properties | Theme mapping                                                                 |
+| Group                       | System style function | System key(s)        | CSS property/properties | Theme mapping                                                                 |
 | :-------------------------- | :-------------------- | :------------------- | :---------------------- | :---------------------------------------------------------------------------- |
 | [spacing](/system/spacing/) | `spacing`             | `mb`, `marginBottom` | `margin-bottom`         | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
