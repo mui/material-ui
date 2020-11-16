@@ -1,11 +1,11 @@
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => {
+const styles = (theme) => {
   return {};
 };
 
-const stylesShorthandStripped = theme => ({});
+const stylesShorthandStripped = (theme) => ({});
 
-const stylesShorthand = theme => ({
-  a: 1
+const stylesShorthand = (theme) => ({
+  a: 1,
 });
