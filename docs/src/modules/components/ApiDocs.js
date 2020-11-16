@@ -124,7 +124,7 @@ ClassesTable.propTypes = {
 };
 
 function getTransaltedHeader(t, header) {
-  const transitions = {
+  const translations = {
     import: t('import'),
     props: t('props'),
     inheritance: t('inheritance'),
@@ -132,7 +132,7 @@ function getTransaltedHeader(t, header) {
     css: 'CSS',
   };
 
-  return transitions[header] || header;
+  return translations[header] || header;
 }
 
 function Heading(props) {
