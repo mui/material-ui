@@ -2,7 +2,7 @@
 
 <p class="description">This page lists all of the custom system properties, how are they linked with the theme, and which CSS properties they compute.</p>
 
-Let's take the following row, for example:
+Let's take the following row from [the table below](#properties-reference-table), for example:
 
 | Group                       | System style function | System key(s)        | CSS property/properties | Theme mapping                                                                 |
 | :-------------------------- | :-------------------- | :------------------- | :---------------------- | :---------------------------------------------------------------------------- |
