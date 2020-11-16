@@ -5,7 +5,7 @@
         "name": "shape",
         "description": "{ horizontal: 'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
       },
-      "default": "{\r\n  vertical: 'top',\r\n  horizontal: 'right',\r\n}"
+      "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}"
     },
     "badgeContent": { "type": { "name": "node" } },
     "children": { "type": { "name": "node" } },

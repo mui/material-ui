@@ -1,5 +1,5 @@
 {
-  "description": "The Slide transition is used by the [Drawer](/components/drawers/) component.\r\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "description": "The Slide transition is used by the [Drawer](/components/drawers/) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
     "appear": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "custom", "description": "element" } },
@@ -23,7 +23,7 @@
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\r\n  enter: duration.enteringScreen,\r\n  exit: duration.leavingScreen,\r\n}"
+      "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
     }
   },
   "name": "Slide",

@@ -7,7 +7,7 @@
         "name": "shape",
         "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;number, vertical: 'bottom'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;number }"
       },
-      "default": "{\r\n  vertical: 'top',\r\n  horizontal: 'left',\r\n}"
+      "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}"
     },
     "anchorPosition": {
       "type": { "name": "shape", "description": "{ left: number, top: number }" }
@@ -37,7 +37,7 @@
         "name": "shape",
         "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;number, vertical: 'bottom'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;number }"
       },
-      "default": "{\r\n  vertical: 'top',\r\n  horizontal: 'left',\r\n}"
+      "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}"
     },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "transitionDuration": {

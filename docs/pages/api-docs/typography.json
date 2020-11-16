@@ -37,7 +37,7 @@
     },
     "variantMapping": {
       "type": { "name": "object" },
-      "default": "{\r\n  h1: 'h1',\r\n  h2: 'h2',\r\n  h3: 'h3',\r\n  h4: 'h4',\r\n  h5: 'h5',\r\n  h6: 'h6',\r\n  subtitle1: 'h6',\r\n  subtitle2: 'h6',\r\n  body1: 'p',\r\n  body2: 'p',\r\n  inherit: 'p',\r\n}"
+      "default": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  subtitle1: 'h6',\n  subtitle2: 'h6',\n  body1: 'p',\n  body2: 'p',\n  inherit: 'p',\n}"
     }
   },
   "name": "Typography",

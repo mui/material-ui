@@ -42,6 +42,8 @@ function writePrettifiedFile(filename: string, data: string, prettierConfigPath:
     );
   }
 
+  data = data.replace(/\\r\\n/g, '\\n');
+
   writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
     encoding: 'utf8',
   });

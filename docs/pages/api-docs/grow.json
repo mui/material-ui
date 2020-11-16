@@ -1,5 +1,5 @@
 {
-  "description": "The Grow transition is used by the [Tooltip](/components/tooltips/) and\r\n[Popover](/components/popover/) components.\r\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "description": "The Grow transition is used by the [Tooltip](/components/tooltips/) and\n[Popover](/components/popover/) components.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
     "appear": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "custom", "description": "element" } },

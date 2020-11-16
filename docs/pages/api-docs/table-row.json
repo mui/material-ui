@@ -1,5 +1,5 @@
 {
-  "description": "Will automatically set dynamic row height\r\nbased on the material table element parent (head, body, etc).",
+  "description": "Will automatically set dynamic row height\nbased on the material table element parent (head, body, etc).",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },

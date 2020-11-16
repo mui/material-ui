@@ -1,5 +1,5 @@
 {
-  "description": "`FormGroup` wraps controls such as `Checkbox` and `Switch`.\r\nIt provides compact row layout.\r\nFor the `Radio`, you should be using the `RadioGroup` component instead of this one.",
+  "description": "`FormGroup` wraps controls such as `Checkbox` and `Switch`.\nIt provides compact row layout.\nFor the `Radio`, you should be using the `RadioGroup` component instead of this one.",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },

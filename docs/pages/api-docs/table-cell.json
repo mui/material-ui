@@ -1,5 +1,5 @@
 {
-  "description": "The component renders a `<th>` element when the parent context is a header\r\nor otherwise a `<td>` element.",
+  "description": "The component renders a `<th>` element when the parent context is a header\nor otherwise a `<td>` element.",
   "props": {
     "align": {
       "type": {

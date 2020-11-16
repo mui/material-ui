@@ -1,5 +1,5 @@
 {
-  "description": "The props of the [Modal](/api/modal/) component are available\r\nwhen `variant=\"temporary\"` is set.",
+  "description": "The props of the [Modal](/api/modal/) component are available\nwhen `variant=\"temporary\"` is set.",
   "props": {
     "anchor": {
       "type": {

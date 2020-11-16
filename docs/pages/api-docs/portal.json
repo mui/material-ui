@@ -1,5 +1,5 @@
 {
-  "description": "Portals provide a first-class way to render children into a DOM node\r\nthat exists outside the DOM hierarchy of the parent component.",
+  "description": "Portals provide a first-class way to render children into a DOM node\nthat exists outside the DOM hierarchy of the parent component.",
   "props": {
     "children": { "type": { "name": "node" } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },

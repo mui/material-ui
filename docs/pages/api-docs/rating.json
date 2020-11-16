@@ -8,12 +8,12 @@
     "emptyLabelText": { "type": { "name": "node" }, "default": "'Empty'" },
     "getLabelText": {
       "type": { "name": "func" },
-      "default": "function defaultLabelText(value) {\r\n  return `${value} Star${value !== 1 ? 's' : ''}`;\r\n}"
+      "default": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}"
     },
     "icon": { "type": { "name": "node" }, "default": "<Star fontSize=\"inherit\" />" },
     "IconContainerComponent": {
       "type": { "name": "elementType" },
-      "default": "function IconContainer(props) {\r\n  const { value, ...other } = props;\r\n  return <span {...other} />;\r\n}"
+      "default": "function IconContainer(props) {\n  const { value, ...other } = props;\n  return <span {...other} />;\n}"
     },
     "max": { "type": { "name": "number" }, "default": "5" },
     "name": { "type": { "name": "string" } },

@@ -1,5 +1,5 @@
 {
-  "description": "`InputBase` contains as few styles as possible.\r\nIt aims to be a simple building block for creating an input.\r\nIt contains a load of style reset and some state logic.",
+  "description": "`InputBase` contains as few styles as possible.\nIt aims to be a simple building block for creating an input.\nIt contains a load of style reset and some state logic.",
   "props": {
     "aria-describedby": {
       "type": { "name": "string" },
