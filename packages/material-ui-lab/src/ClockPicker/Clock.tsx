@@ -58,6 +58,7 @@ export const styles = (theme: Theme) =>
       position: 'absolute',
       pointerEvents: 'auto',
       outline: 'none',
+      // Disable scroll capabilities.
       touchAction: 'none',
       userSelect: 'none',
       '&:active': {
