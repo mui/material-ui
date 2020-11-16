@@ -36,7 +36,7 @@ Let's take a look at an example:
 <Box sx={{ marginBottom: theme => theme.spacing(3)}} />
 ```
 
-As the default theme spacing is 8px, this will result in the following CSS class
+As the default theme spacing is 8px, this will result in the following CSS class:
 
 ```css
 .hash-MuiBox {
