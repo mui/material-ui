@@ -10,7 +10,7 @@ import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
-import { getLineFeed } from './helpers';
+import { getLineFeed, getUnstyledDefinitionFilename } from './helpers';
 import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
 import generateMarkdown, { ReactApi } from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
@@ -198,11 +198,6 @@ async function annotateComponentDefinition(context: {
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
-const camelCaseToKebabCase = (inputString: string) => {
-  const str = inputString.charAt(0).toLowerCase() + inputString.slice(1);
-  return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
-};
-
 const trimComment = (comment: string) => {
   let startIdx = 0;
   while (comment[startIdx] === '*' || comment[startIdx] === ' ') {
@@ -220,36 +215,27 @@ async function updateStylesDefinition(context: {
   styles: ReactApi['styles'];
   component: { filename: string };
 }) {
-  const workspaceRoot = path.resolve(__dirname, '../../');
   const { styles, component } = context;
 
-  const componentName = path.basename(component.filename).replace(/\.js$/, '');
-  const dataFilename = `${workspaceRoot}/docs/data/${camelCaseToKebabCase(componentName)}.json`;
+  const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
+
+  const unstyledFileName = getUnstyledDefinitionFilename(typesFilename);
 
   try {
-    const jsonDataString = readFileSync(dataFilename, { encoding: 'utf8' });
-    const jsonData = JSON.parse(jsonDataString);
-    if (jsonData) {
-      const cssData = jsonData.css;
-      const classes = Object.keys(cssData);
-      styles.classes = classes;
-      styles.name = jsonData.name;
-      styles.descriptions = classes.reduce((acc, key) => {
-        acc[key] = cssData[key].description;
-        return acc;
-      }, {} as Record<string, string>);
-    }
-  } catch (err) {
     // If the JSON file doesn't exists try extracting the info from the TS definition
-    const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
-    const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
+    const typesSource = readFileSync(unstyledFileName, { encoding: 'utf8' });
     const typesAST = await babel.parseAsync(typesSource, {
       configFile: false,
-      filename: typesFilename,
+      filename: unstyledFileName,
       presets: [require.resolve('@babel/preset-typescript')],
     });
     if (typesAST === null) {
       throw new Error('No AST returned from babel.');
+    }
+
+    // is not unstyled component
+    if (typesFilename !== unstyledFileName) {
+      styles.name = generateMuiName(path.parse(component.filename).name);
     }
 
     traverse(typesAST, {
@@ -273,6 +259,8 @@ async function updateStylesDefinition(context: {
         }
       },
     });
+  } catch (e) {
+    // Do nothing as not every components has an unstyled version
   }
 }
 
@@ -350,7 +338,7 @@ async function annotateClassesDefinition(context: {
 }
 
 function generateMuiName(name: string) {
-  return `Mui${name.replace('Unstyled', '')}`;
+  return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
 }
 
 async function buildDocs(options: {
