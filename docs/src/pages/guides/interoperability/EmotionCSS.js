@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx, css } from '@emotion/react';
 import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
 

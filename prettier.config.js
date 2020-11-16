@@ -17,5 +17,12 @@ module.exports = {
         printWidth: 80,
       },
     },
+    {
+      files: ['docs/src/pages/system/**/*.{js,tsx,md}'],
+      options: {
+        // allow more space for the system
+        printWidth: 90,
+      },
+    },
   ],
 };

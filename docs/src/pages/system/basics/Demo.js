@@ -3,10 +3,6 @@ import Box from '@material-ui/core/Box';
 import { alpha } from '@material-ui/core/styles';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
-function Img(props) {
-  return <Box component="img" {...props} />;
-}
-
 export default function Demo() {
   return (
     <Box
@@ -21,11 +17,20 @@ export default function Demo() {
         fontWeight: 'fontWeightBold',
       }}
     >
-      <Img
-        sx={{ width: '100%', maxWidth: { xs: 350, md: 250 } }}
-        alt="The house from the offer."
-        src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=400&dpr=2"
-      />
+      <Box
+        sx={{
+          maxHeight: { xs: 233, md: 167 },
+          maxWidth: { xs: 350, md: 250 },
+        }}
+        clone
+      >
+        <img
+          alt="The house from the offer."
+          height="233"
+          width="350"
+          src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+        />
+      </Box>
       <Box
         sx={{
           display: 'flex',

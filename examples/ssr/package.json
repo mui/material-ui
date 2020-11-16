@@ -9,7 +9,7 @@
     "@babel/preset-env": "latest",
     "@babel/preset-react": "latest",
     "@emotion/cache": "latest",
-    "@emotion/core": "latest",
+    "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@material-ui/core": "next",
     "babel-loader": "latest",
