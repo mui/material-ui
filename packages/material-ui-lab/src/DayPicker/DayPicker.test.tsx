@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, fireEvent, screen, describeConformance } from 'test/utils';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import DayPicker from '@material-ui/lab/DayPicker';
 import { adapterToUse, createPickerRender, getAllByMuiTest } from '../internal/pickers/test-utils';
 
@@ -12,7 +12,7 @@ describe('<DayPicker />', () => {
   let classes: Record<string, string>;
 
   const localizedMount = (node: React.ReactNode) => {
-    return mount(<LocalizationProvider dateAdapter={DateFnsAdapter}>{node}</LocalizationProvider>);
+    return mount(<LocalizationProvider dateAdapter={AdapterDateFns}>{node}</LocalizationProvider>);
   };
 
   before(() => {

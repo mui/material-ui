@@ -2,6 +2,17 @@ const upperFirst = require('lodash/upperFirst');
 const camelCase = require('lodash/camelCase');
 const { CODE_VARIANTS, LANGUAGES } = require('../constants');
 
+/**
+ * Mapping from the date adapter sub-packages to the npm packages they require.
+ * @example `@material-ui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
+ */
+const dateAdapterPackageMapping = {
+  AdapterDateFns: 'date-fns',
+  AdapterDayjs: 'dayjs',
+  AdapterLuxon: 'luxon',
+  AdapterMoment: 'moment',
+};
+
 function titleize(string) {
   if (process.env.NODE_ENV !== 'production') {
     if (typeof string !== 'string' || string.length <= 0) {
@@ -160,9 +171,15 @@ function getDependencies(raw, options = {}) {
     }
 
     // e.g date-fns
-    const dateAdapter = /^@material-ui\/lab\/dateAdapter\/(.*)/;
-    if (dateAdapter.test(m[2])) {
-      deps[dateAdapter.exec(m[2])[1]] = 'latest';
+    const dateAdapterMatch = m[2].match(/^@material-ui\/lab\/(Adapter.*)/);
+    if (dateAdapterMatch !== null) {
+      const packageName = dateAdapterPackageMapping[dateAdapterMatch[1]];
+      if (packageName === undefined) {
+        throw new TypeError(
+          `Can't determine required npm package for adapter '${dateAdapterMatch[1]}'`,
+        );
+      }
+      deps[packageName] = 'latest';
     }
   }
 

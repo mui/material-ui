@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import TimePicker from '@material-ui/lab/TimePicker';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
@@ -17,7 +17,7 @@ export default function MaterialUIPickers() {
   };
 
   return (
-    <LocalizationProvider dateAdapter={DateFnsAdapter}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Grid container justifyContent="space-around">
         <DesktopDatePicker
           inputFormat="MM/dd/yyyy"

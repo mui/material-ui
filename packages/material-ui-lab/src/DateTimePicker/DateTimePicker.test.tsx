@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 import MobileDateTimePicker from '@material-ui/lab/MobileDateTimePicker';
 import DesktopDateTimePicker from '@material-ui/lab/DesktopDateTimePicker';
 import StaticDateTimePicker from '@material-ui/lab/StaticDateTimePicker';
-import DayJsAdapter from '../dateAdapter/dayjs';
+import AdapterDayjs from '../AdapterDayjs';
 import { adapterToUse, getByMuiTest, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<DateTimePicker />', () => {
@@ -148,7 +148,7 @@ describe('<DateTimePicker />', () => {
         open
         renderInput={(params) => <TextField {...params} />}
         onChange={() => {}}
-        dateAdapter={new DayJsAdapter({ locale: 'ru' })}
+        dateAdapter={new AdapterDayjs({ locale: 'ru' })}
         disableMaskedInput
         value={dayjs('2018-01-15T00:00:00.000')}
       />,
