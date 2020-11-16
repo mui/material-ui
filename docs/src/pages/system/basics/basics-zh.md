@@ -312,11 +312,11 @@ const palette = compose(textColor, bgcolor);
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
-## `sx` property
+## CSS 属性
 
-If you want to support custom CSS values, you can use the `styleFunctionSx()` helper. It will process the `sx` property.
+如果您想要自定义 CSS 的值，您可以使用 `css()` 助手。 它将会处理 `css` 属性。 It will process the `sx` property.
 
-{{"demo": "pages/system/basics/SxProp.js", "bg": true}}
+{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
 ## 它是如何工作的
 
