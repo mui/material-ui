@@ -7,11 +7,11 @@ const getUtilityClass = (name) => {
 };
 
 const useValueLabelClasses = (props) => {
-  const { open, valueLabelDisplay } = props;
+  const { open } = props;
 
   const utilityClasses = {
     offset: clsx('MuiSlider-valueLabel', getUtilityClass('offset'), {
-      [getUtilityClass('open')]: open || valueLabelDisplay === 'on',
+      [getUtilityClass('open')]: open,
     }),
     circle: getUtilityClass('circle'),
     label: getUtilityClass('label'),
@@ -24,12 +24,8 @@ const useValueLabelClasses = (props) => {
  * @ignore - internal component.
  */
 function ValueLabel(props) {
-  const { children, className, value, valueLabelDisplay, components = {}, theme } = props;
+  const { children, className, value, components = {}, theme } = props;
   const classes = useValueLabelClasses(props);
-
-  if (valueLabelDisplay === 'off') {
-    return children;
-  }
 
   const Root = components.Root || 'span';
 

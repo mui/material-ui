@@ -156,7 +156,11 @@ async function annotateComponentDefinition(context: {
 
   const demos = uniqBy<ReactApi['pagesMarkdown'][0]>(
     api.pagesMarkdown.filter((page) => {
-      return page.components.includes(api.name);
+      return (
+        page.components.includes(api.name) ||
+        (api.name.endsWith('Unstyled') &&
+          page.components.includes(api.name.replace('Unstyled', '')))
+      );
     }, []),
     (page) => page.pathname,
   );
@@ -197,6 +201,19 @@ const camelCaseToKebabCase = (inputString: string) => {
   return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
 };
 
+const trimComment = (comment: string) => {
+  let startIdx = 0;
+  while (comment[startIdx] === '*' || comment[startIdx] === ' ') {
+    startIdx += 1;
+  }
+  let endIdx = comment.length;
+  while (comment[startIdx] === ' ') {
+    endIdx -= 1;
+  }
+
+  return comment.substr(startIdx, endIdx);
+};
+
 async function updateStylesDefinition(context: {
   styles: ReactApi['styles'];
   component: { filename: string };
@@ -221,8 +238,39 @@ async function updateStylesDefinition(context: {
       }, {} as Record<string, string>);
     }
   } catch (err) {
-    // Do nothing for now if the file doesn't exist
-    // This is still not supported for all components
+    // If the JSON file doesn't exists try extracting the info from the TS definition
+    const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
+    const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
+    const typesAST = await babel.parseAsync(typesSource, {
+      configFile: false,
+      filename: typesFilename,
+      presets: [require.resolve('@babel/preset-typescript')],
+    });
+    if (typesAST === null) {
+      throw new Error('No AST returned from babel.');
+    }
+
+    traverse(typesAST, {
+      TSPropertySignature(babelPath) {
+        const { node } = babelPath;
+        const possiblyPropName = (node.key as babel.types.Identifier).name;
+        if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
+          const members = (node.typeAnnotation.typeAnnotation as babel.types.TSTypeLiteral).members;
+
+          if (members) {
+            styles.descriptions = {};
+            members.forEach((member) => {
+              const className = ((member as babel.types.TSPropertySignature)
+                .key as babel.types.Identifier).name;
+              styles.classes.push(className);
+              if (member.leadingComments) {
+                styles.descriptions[className] = trimComment(member.leadingComments[0].value);
+              }
+            });
+          }
+        }
+      },
+    });
   }
 }
 
@@ -476,11 +524,14 @@ Page.getInitialProps = () => {
   console.log('Built markdown docs for', reactAPI.name);
 
   await annotateComponentDefinition({ api: reactAPI, component: componentObject });
-  await annotateClassesDefinition({
-    api: reactAPI,
-    component: componentObject,
-    prettierConfigPath,
-  });
+
+  if (!styledComponent) {
+    await annotateClassesDefinition({
+      api: reactAPI,
+      component: componentObject,
+      prettierConfigPath,
+    });
+  }
 }
 
 function run(argv: { componentDirectories?: string[]; grep?: string; outputDirectory?: string }) {
