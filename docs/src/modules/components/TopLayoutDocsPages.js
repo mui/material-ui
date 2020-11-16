@@ -94,14 +94,14 @@ function TopLayoutDocsPages(props) {
 }
 
 TopLayoutDocsPages.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   description: PropTypes.string.isRequired,
-  disableAd: PropTypes.bool,
-  disableToc: PropTypes.bool,
+  disableAd: PropTypes.bool.isRequired,
+  disableToc: PropTypes.bool.isRequired,
   location: PropTypes.string,
   title: PropTypes.string.isRequired,
-  toc: PropTypes.object.isRequired,
+  toc: PropTypes.array.isRequired,
 };
 
 if (process.env.NODE_ENV !== 'production') {

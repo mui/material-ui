@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
 import { exactProp } from '@material-ui/utils';
 import Typography from '@material-ui/core/Typography';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -10,38 +9,6 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import TopLayoutDocsPages from 'docs/src/modules/components/TopLayoutDocsPages';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
-
-const styles = (theme) => ({
-  root: {
-    width: '100%',
-  },
-  container: {
-    position: 'relative',
-  },
-  actions: {
-    position: 'absolute',
-    right: 16,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-  },
-  ad: {
-    '& .description': {
-      marginBottom: 198,
-    },
-    '& .description.ad': {
-      marginBottom: 40,
-    },
-  },
-  toc: {
-    [theme.breakpoints.up('sm')]: {
-      width: 'calc(100% - 175px)',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 175px - 240px)',
-    },
-  },
-});
 
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
@@ -356,4 +323,4 @@ if (process.env.NODE_ENV !== 'production') {
   ApiDocs.propTypes = exactProp(ApiDocs.propTypes);
 }
 
-export default withStyles(styles)(ApiDocs);
+export default ApiDocs;

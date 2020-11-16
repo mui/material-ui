@@ -1,11 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import {
-  palette,
-  PaletteProps,
-  spacing,
-  SpacingProps,
-} from '@material-ui/system';
+import { palette, PaletteProps, spacing, SpacingProps } from '@material-ui/system';
 
 const Box = styled.div<PaletteProps & SpacingProps>`
   ${palette}
