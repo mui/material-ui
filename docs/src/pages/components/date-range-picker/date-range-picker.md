@@ -28,7 +28,7 @@ Please install any of these libraries and set up the right date engine by wrappi
 
 ```jsx
 // or @material-ui/lab/dateAdapter/{dayjs,luxon,moment} or any valid date-io adapter
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import DateFnsAdapter from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {

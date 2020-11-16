@@ -3,7 +3,7 @@ import AlarmIcon from '@material-ui/icons/Alarm';
 import SnoozeIcon from '@material-ui/icons/Snooze';
 import TextField from '@material-ui/core/TextField';
 import ClockIcon from '@material-ui/icons/AccessTime';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateTimePicker from '@material-ui/lab/DateTimePicker';
 import MobileDateTimePicker from '@material-ui/lab/MobileDateTimePicker';
@@ -13,7 +13,7 @@ export default function CustomDateTimePicker() {
   const [value, setValue] = React.useState(new Date('2019-01-01T18:54'));
 
   return (
-    <LocalizationProvider dateAdapter={DateFnsAdapter}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <div style={{ width: 300 }}>
         <DateTimePicker
           disableFuture

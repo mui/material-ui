@@ -5,7 +5,7 @@ import ReactDOMServer from 'react-dom/server';
 import styledComponents, { ServerStyleSheet } from 'styled-components';
 import styledEmotion from '@emotion/styled';
 import { css } from '@emotion/react';
-import { renderStylesToString } from 'emotion-server';
+import { renderStylesToString } from '@emotion/server';
 import injectSheet, { JssProvider, SheetsRegistry } from 'react-jss';
 import { styled as styledMui, withStyles, makeStyles, StylesProvider } from '@material-ui/styles';
 import jss, { getDynamicStyles } from 'jss';

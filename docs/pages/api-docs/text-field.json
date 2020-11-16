@@ -1,0 +1,62 @@
+{
+  "description": "The `TextField` is a convenience wrapper for the most common cases (80%).\r\nIt cannot be all things to all people, otherwise the API would grow out of control.\r\n\r\n## Advanced Configuration\r\n\r\nIt's important to understand that the text field is a simple abstraction\r\non top of the following components:\r\n\r\n- [FormControl](/api/form-control/)\r\n- [InputLabel](/api/input-label/)\r\n- [FilledInput](/api/filled-input/)\r\n- [OutlinedInput](/api/outlined-input/)\r\n- [Input](/api/input/)\r\n- [FormHelperText](/api/form-helper-text/)\r\n\r\nIf you wish to alter the props applied to the `input` element, you can do so as follows:\r\n\r\n```jsx\r\nconst inputProps = {\r\n  step: 300,\r\n};\r\n\r\nreturn <TextField id=\"time\" type=\"time\" inputProps={inputProps} />;\r\n```\r\n\r\nFor advanced cases, please look at the source of TextField by clicking on the\r\n\"Edit this page\" button above. Consider either:\r\n\r\n- using the upper case props for passing values directly to the components\r\n- using the underlying components directly as shown in the demos",
+  "props": {
+    "autoComplete": { "type": { "name": "string" } },
+    "autoFocus": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "default": "'primary'"
+    },
+    "defaultValue": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "FormHelperTextProps": { "type": { "name": "object" } },
+    "fullWidth": { "type": { "name": "bool" } },
+    "helperText": { "type": { "name": "node" } },
+    "id": { "type": { "name": "string" } },
+    "InputLabelProps": { "type": { "name": "object" } },
+    "inputProps": { "type": { "name": "object" } },
+    "InputProps": { "type": { "name": "object" } },
+    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "label": { "type": { "name": "node" } },
+    "margin": {
+      "type": {
+        "name": "enum",
+        "description": "'dense'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
+      }
+    },
+    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "multiline": { "type": { "name": "bool" } },
+    "name": { "type": { "name": "string" } },
+    "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onChange": { "type": { "name": "func" } },
+    "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "placeholder": { "type": { "name": "string" } },
+    "required": { "type": { "name": "bool" } },
+    "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "select": { "type": { "name": "bool" } },
+    "SelectProps": { "type": { "name": "object" } },
+    "size": { "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" } },
+    "type": { "type": { "name": "string" } },
+    "value": { "type": { "name": "any" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      },
+      "default": "'outlined'"
+    }
+  },
+  "name": "TextField",
+  "styles": { "classes": ["root"], "globalClasses": {} },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/TextField/TextField.js",
+  "inheritance": { "component": "FormControl", "pathname": "/api/form-control/" },
+  "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/components/pickers/\">Pickers</a></li>\n<li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
+  "nonJSSComponent": false
+}

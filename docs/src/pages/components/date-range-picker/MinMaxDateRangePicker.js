@@ -1,7 +1,7 @@
 import * as React from 'react';
 import addWeeks from 'date-fns/addWeeks';
 import TextField from '@material-ui/core/TextField';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateRangePicker from '@material-ui/lab/DateRangePicker';
 import DateRangeDelimiter from '@material-ui/lab/DateRangeDelimiter';
@@ -14,7 +14,7 @@ export default function MinMaxDateRangePicker() {
   const [value, setValue] = React.useState([null, null]);
 
   return (
-    <LocalizationProvider dateAdapter={DateFnsAdapter}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
         disablePast
         value={value}

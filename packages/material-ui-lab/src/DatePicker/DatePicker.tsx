@@ -107,7 +107,7 @@ const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(R
   /**
    * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
    * ```jsx
-   * dateAdapter={new DateFnsAdapter({ locale: ruLocale })}
+   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
    * ```
    */
   dateAdapter: PropTypes.object,

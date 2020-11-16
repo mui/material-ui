@@ -64,7 +64,6 @@ module.exports = {
           '!@material-ui/utils/macros',
           '@material-ui/utils/macros/*',
           '!@material-ui/utils/macros/*.macro',
-          '!@material-ui/lab/dateAdapter/*',
         ],
       },
     ],

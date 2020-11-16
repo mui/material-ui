@@ -81,7 +81,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/lab';
 `;
 
@@ -118,7 +118,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
   it('should handle multilines', () => {
     const source = `
 import * as React from 'react';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import {
   LocalizationProvider as MuiPickersLocalizationProvider,
   KeyboardTimePicker,
@@ -207,6 +207,29 @@ import * as Utils from '@material-ui/utils';
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/utils',
       '@material-ui/unstyled':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/unstyled',
+    });
+  });
+
+  it('should date adapters', () => {
+    const source = `
+import * as React from 'react';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import AdapterDayjs from '@material-ui/lab/AdapterDayjs';
+import AdapterLuxon from '@material-ui/lab/AdapterLuxon';
+import AdapterMoment from '@material-ui/lab/AdapterMoment';
+    `;
+
+    expect(getDependencies(source)).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@material-ui/core': 'next',
+      '@material-ui/lab': 'next',
+      'date-fns': 'latest',
+      dayjs: 'latest',
+      luxon: 'latest',
+      moment: 'latest',
     });
   });
 });
