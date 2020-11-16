@@ -152,7 +152,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     maxWidth = 'sm',
     onBackdropClick,
     onClose,
-    onEscapeKeyDown,
     open,
     PaperComponent = Paper,
     PaperProps = {},
@@ -199,7 +198,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
       closeAfterTransition
       disableBackdropClick={disableBackdropClick}
       disableEscapeKeyDown={disableEscapeKeyDown}
-      onEscapeKeyDown={onEscapeKeyDown}
       onClose={onClose}
       open={open}
       ref={ref}
