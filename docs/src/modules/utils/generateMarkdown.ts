@@ -444,7 +444,7 @@ Any other props supplied will be provided to the root element (${
   return text;
 }
 
-function generateClasses(reactAPI: ReactApi, styledComponent: boolean) {
+function generateClasses(reactAPI: ReactApi, nonJSSComponent: boolean) {
   if (!reactAPI.styles.classes.length) {
     return '';
   }
@@ -481,7 +481,7 @@ ${text}
 
 You can override the style of the component thanks to one of these customization points:
 ${
-  styledComponent
+  nonJSSComponent
     ? `
 - With a [global class name](/guides/interoperability/#global-css).
 - With a rule name as part of the component's [\`styleOverrides\` property](/customization/components/#global-theme-override) in a custom theme.
@@ -563,7 +563,7 @@ import { ${reactAPI.name} } from '${source}';
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).`;
 }
 
-export default function generateMarkdown(reactAPI: ReactApi, styledComponent = false) {
+export default function generateMarkdown(reactAPI: ReactApi, nonJSSComponent = false) {
   return [
     generateHeader(reactAPI),
     '',
@@ -581,7 +581,7 @@ export default function generateMarkdown(reactAPI: ReactApi, styledComponent = f
     generateName(reactAPI),
     generateProps(reactAPI),
     '',
-    `${generateClasses(reactAPI, styledComponent)}${generateInheritance(reactAPI)}${generateDemos(
+    `${generateClasses(reactAPI, nonJSSComponent)}${generateInheritance(reactAPI)}${generateDemos(
       reactAPI,
     )}`,
   ].join('\n');
