@@ -212,6 +212,10 @@ const trimComment = (comment: string) => {
   return comment.substr(startIdx, endIdx - startIdx + 1);
 };
 
+function generateMuiName(name: string) {
+  return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
+}
+
 async function updateStylesDefinition(context: {
   styles: ReactApi['styles'];
   component: { filename: string };
@@ -336,10 +340,6 @@ async function annotateClassesDefinition(context: {
       encoding: 'utf8',
     },
   );
-}
-
-function generateMuiName(name: string) {
-  return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
 }
 
 async function buildDocs(options: {
