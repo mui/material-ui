@@ -46,7 +46,7 @@ As the default theme spacing is 8px, this will result in the following CSS class
 
 ## Properties reference table
 
-| Group                             | System style function | System key         | CSS property/properties                                                                      | Theme mapping                                                                       |
+| Group                             | System style function | System key(s)         | CSS property/properties                                                                      | Theme mapping                                                                       |
 | :-------------------------------- | :-------------------- | :----------------- | :------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
 | [borders](/system/borders/)       | `border`              | `border`           | `border`                                                                                     | `${value}px solid`                                                                  |
 | [borders](/system/borders/)       | `borderBottom`        | `borderBottom`     | `border-bottom`                                                                              | `${value}px solid`                                                                  |
