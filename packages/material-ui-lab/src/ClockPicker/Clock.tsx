@@ -58,7 +58,7 @@ export const styles = (theme: Theme) =>
       position: 'absolute',
       pointerEvents: 'auto',
       outline: 'none',
-      touchActions: 'none',
+      touchAction: 'none',
       userSelect: 'none',
       '&:active': {
         cursor: 'move',
