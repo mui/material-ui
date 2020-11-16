@@ -156,6 +156,8 @@ async function annotateComponentDefinition(context: {
 
   const demos = uniqBy<ReactApi['pagesMarkdown'][0]>(
     api.pagesMarkdown.filter((page) => {
+      // Testing for Unstyled avoids the need to mention the unstyled components in the
+      // `components` key of the markdown header YAML.
       return (
         page.components.includes(api.name) ||
         (api.name.endsWith('Unstyled') &&
