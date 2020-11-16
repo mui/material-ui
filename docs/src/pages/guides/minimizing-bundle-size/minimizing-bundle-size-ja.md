@@ -24,7 +24,7 @@ import { Button, TextField } from '@material-ui/core';
 
 ### 選択肢 1
 
-パス指定インポートを利用して、使用していないモジュールのインポートを避けることができます。 例えば： 例えば：
+パス指定インポートを利用して、使用していないモジュールのインポートを避けることができます。 例えば： 例えば： 例えば：
 
 ```js
 // 🚀 早い! import Button from '@material-ui/core/Button';
@@ -59,7 +59,7 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 3rd level
 ```
 
-`eslint`を使用している場合、 [`no-restricted-imports` ルール](https://eslint.org/docs/rules/no-restricted-imports)で問題のあるインポートを検知可能です。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。
+`eslint`を使用している場合、 [`no-restricted-imports` ルール](https://eslint.org/docs/rules/no-restricted-imports)で問題のあるインポートを検知可能です。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。
 
 ```json
 {
@@ -203,7 +203,7 @@ Create React Appを使用している場合、`.babelrc`の利用を許容して
 
 #### 2. すべてのインポートを変換する
 
-ついに、既存のコードを [上位層インポート](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) に変更できます。 以下のような 変更になります。 以下のような 変更になります。
+ついに、既存のコードを [上位層インポート](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) に変更できます。 以下のような 変更になります。 以下のような 変更になります。 以下のような 変更になります。
 
 ```diff
 -import Button from '@material-ui/core/Button';
