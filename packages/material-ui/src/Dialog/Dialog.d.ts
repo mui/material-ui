@@ -94,11 +94,6 @@ export interface DialogProps
    */
   onClose?: ModalProps['onClose'];
   /**
-   * Callback fired when the escape key is pressed,
-   * `disableKeyboard` is false and the modal is in focus.
-   */
-  onEscapeKeyDown?: ModalProps['onEscapeKeyDown'];
-  /**
    * If `true`, the Dialog is open.
    */
   open: ModalProps['open'];

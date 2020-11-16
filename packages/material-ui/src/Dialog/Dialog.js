@@ -315,11 +315,6 @@ Dialog.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired when the escape key is pressed,
-   * `disableKeyboard` is false and the modal is in focus.
-   */
-  onEscapeKeyDown: PropTypes.func,
-  /**
    * If `true`, the Dialog is open.
    */
   open: PropTypes.bool.isRequired,
