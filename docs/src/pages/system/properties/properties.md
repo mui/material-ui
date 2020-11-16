@@ -9,26 +9,19 @@ For example, let's the the following row:
 | [spacing](/system/spacing/) | `spacing`             | `mb,marginBottom` | `margin-bottom`         | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
 1. The <b>Group</b> column gives you access to the documentation page where this group of properties are described, in the example, the [spacing](/system/spacing/) page.
-
 2. The <b>System style function</b> is referencing the style function which generates these properties, in case you want to use it for adding this functionality to your custom components. The function can be imported from `@material-ui/system`.
-
 3. The <b>System key</b> column, gives you the key/keys by which you may use this property as part of the system (or the `sx` prop).
-
 4. The <b>CSS proprety</b> column describes which CSS property will be generated when this system prop is used.
-
 5. And lastly, the <b>Theme key</b> column tells you how this property is wired with the theme - with this property, whatever value you may use will be used as input to the `theme.spacing` helper.
 
 Let's take a look on one example:
-
 ```jsx
 <Box sx={{ mb: 3 }} />
 
 // equivalent as
 <Box sx={{ marginBottom: theme => theme.spacing(3)}} />
 ```
-
 As the default theme spacing is 8, this will result in the following CSS class
-
 ```css
 .hash-MuiBox {
   margin-bottom: 24px;
