@@ -203,12 +203,13 @@ const trimComment = (comment: string) => {
   while (comment[startIdx] === '*' || comment[startIdx] === ' ') {
     startIdx += 1;
   }
-  let endIdx = comment.length;
-  while (comment[startIdx] === ' ') {
+
+  let endIdx = comment.length - 1;
+  while (comment[endIdx] === ' ') {
     endIdx -= 1;
   }
 
-  return comment.substr(startIdx, endIdx);
+  return comment.substr(startIdx, endIdx - startIdx + 1);
 };
 
 async function updateStylesDefinition(context: {
