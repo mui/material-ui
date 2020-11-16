@@ -81,6 +81,7 @@ function getUsedProps(
             );
           }
         } else if (babelTypes.isIdentifier(x.argument)) {
+          // get access props from rest-spread (`{...other}`)
           getUsedPropsInternal(x.argument);
         }
       });
@@ -95,6 +96,13 @@ function getUsedProps(
                 babelTypes.isThisExpression(init.object) &&
                 babelTypes.isIdentifier(init.property, { name: 'props' })) &&
             babelTypes.isObjectPattern(path.node.id)
+          ) {
+            getUsedPropsInternal(path.node.id);
+          } else if (
+            // currently tracking `inProps` which stands for the given props e.g. `function Modal(inProps) {}`
+            babelTypes.isIdentifier(node, { name: 'inProps' }) &&
+            // `const props = ...` assuming the right-hand side has `inProps` as input.
+            babelTypes.isIdentifier(path.node.id, { name: 'props' })
           ) {
             getUsedPropsInternal(path.node.id);
           }
@@ -340,7 +348,7 @@ function plugin(
         const props = propTypes.body.find((prop) => prop.name === nodeName);
         if (!props) return;
 
-        function getFromProp(prop: babelTypes.Node) {
+        function getFromProp(propsNode: babelTypes.Node) {
           // Prevent visiting again
           (node as any).hasBeenVisited = true;
           path.skip();
@@ -348,8 +356,8 @@ function plugin(
           injectPropTypes({
             path: path.parentPath,
             usedProps:
-              babelTypes.isIdentifier(prop) || babelTypes.isObjectPattern(prop)
-                ? getUsedProps(path as babel.NodePath, prop)
+              babelTypes.isIdentifier(propsNode) || babelTypes.isObjectPattern(propsNode)
+                ? getUsedProps(path as babel.NodePath, propsNode)
                 : [],
             props: props!,
             nodeName,

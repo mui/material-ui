@@ -355,9 +355,17 @@ Modal.propTypes = {
    */
   onClose: PropTypes.func,
   /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
    * If `true`, the modal is open.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
 };
 
 export default Modal;
