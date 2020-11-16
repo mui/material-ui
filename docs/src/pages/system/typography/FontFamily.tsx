@@ -6,9 +6,7 @@ export default function FontFamily() {
   return (
     <Typography component="div">
       <Box sx={{ fontFamily: 'fontFamily', m: 1 }}>Default</Box>
-      <Box sx={{ fontFamily: 'Monospace', fontSize: 'h6.fontSize', m: 1 }}>
-        Monospace
-      </Box>
+      <Box sx={{ fontFamily: 'Monospace', fontSize: 'h6.fontSize', m: 1 }}>Monospace</Box>
     </Typography>
   );
 }
