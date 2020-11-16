@@ -15,13 +15,16 @@ For example, let's the the following row:
 5. And lastly, the <b>Theme key</b> column tells you how this property is wired with the theme - with this property, whatever value you may use will be used as input to the `theme.spacing` helper.
 
 Let's take a look on one example:
+
 ```jsx
 <Box sx={{ mb: 3 }} />
 
 // equivalent as
 <Box sx={{ marginBottom: theme => theme.spacing(3)}} />
 ```
+
 As the default theme spacing is 8, this will result in the following CSS class
+
 ```css
 .hash-MuiBox {
   margin-bottom: 24px;
