@@ -32,7 +32,7 @@ Let's take a look at an example:
 ```jsx
 <Box sx={{ mb: 3 }} />
 
-// equivalent as
+// is equivalent to
 <Box sx={{ marginBottom: theme => theme.spacing(3)}} />
 ```
 
