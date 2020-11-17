@@ -344,7 +344,7 @@ const classes = makeStyles(theme => ({
 +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
 ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
 
 ### Button
 
@@ -883,7 +883,7 @@ const classes = makeStyles(theme => ({
   +<TextField value="Outlined" />
   ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
