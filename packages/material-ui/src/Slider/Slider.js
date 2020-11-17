@@ -9,9 +9,10 @@ import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { alpha, lighten, darken } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
+
 export { sliderClasses } from '@material-ui/unstyled/SliderUnstyled';
 
-const overridesResolver = (props, styles, name) => {
+const overridesResolver = (props, styles) => {
   const {
     color = 'primary',
     marks: marksProp = false,
