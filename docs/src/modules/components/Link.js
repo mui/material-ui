@@ -28,21 +28,18 @@ function Link(props) {
   const {
     activeClassName = 'active',
     className: classNameProps,
-    href: routerHref,
+    href,
     innerRef,
     naked,
     role: roleProp,
     ...other
   } = props;
 
-  // apply nextjs rewrites
-  const href = routerHref.replace(/\/api-docs\/(.*)/, '/api/$1');
-
   const router = useRouter();
 
   const userLanguage = useUserLanguage();
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === routerHref && activeClassName,
+    [activeClassName]: router.pathname === href && activeClassName,
   });
 
   if (userLanguage !== 'en' && href.indexOf('/') === 0 && href.indexOf('/blog') !== 0) {
