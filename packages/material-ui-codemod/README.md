@@ -35,6 +35,26 @@ The diff should look like this:
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/box-sx-prop.js
 ```
 
+#### `moved-components`
+
+Updates all imports of `@material-ui/lab` components that moved to `@material-ui/core`.
+
+```diff
+-import Skeleton from '@material-ui/lab/Skeleton';
++import Skeleton from '@material-ui/core/Skeleton';
+```
+
+or
+
+```diff
+-import { SpeedDial } from '@material-ui/lab';
++import { SpeedDial } from '@material-ui/core';
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/moved-components.js
+```
+
 #### `textfield-variant-prop`
 
 Add the TextField `variant="standard` prop when `variant` is undefined.
