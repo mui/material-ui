@@ -1,27 +1,15 @@
 import React from 'react';
-import ApiDocs from 'docs/src/modules/components/ApiDocs';
-import mapApiTranslations, { parsePropsMarkdown } from 'docs/src/modules/utils/mapApiTranslations';
-import jsonPageContent from './list-subheader.json';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-export default function Page({ pageContent }) {
-  return <ApiDocs pageContent={pageContent} />;
+const pageFilename = 'api/list-subheader';
+const requireRaw = require.context('!raw-loader!./', false, /\/list-subheader\.md$/);
+
+export default function Page({ docs }) {
+  return <MarkdownDocs docs={docs} />;
 }
 
-Page.getInitialProps = async () => {
-  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
-  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
-  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
-
-  const componentDescription = mapApiTranslations(req1, 'ListSubheader');
-  const propDescriptions = parsePropsMarkdown(mapApiTranslations(req2, 'ListSubheader'));
-  const classDescriptions = mapApiTranslations(req3, 'ListSubheader');
-
-  const pageContent = {
-    ...jsonPageContent,
-    componentDescription,
-    propDescriptions,
-    classDescriptions,
-  };
-
-  return { pageContent };
+Page.getInitialProps = () => {
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  return { demos, docs };
 };
