@@ -42,9 +42,6 @@ function writePrettifiedFile(filename: string, data: string, prettierConfigPath:
     );
   }
 
-  // We need to replace the \r\n sequence with the common EOL to avoid differences on windows
-  data = data.replace(/\\r\\n/g, '\\n');
-
   writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
     encoding: 'utf8',
   });
