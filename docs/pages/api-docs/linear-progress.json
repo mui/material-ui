@@ -42,7 +42,7 @@
     "globalClasses": {}
   },
   "spread": true,
-  "forwardsRefTo": "HTMLDivElement",
+  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/material-ui/src/LinearProgress/LinearProgress.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/progress/\">Progress</a></li></ul>",
