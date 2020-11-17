@@ -6,7 +6,11 @@ import * as prettier from 'prettier';
 import glob from 'fast-glob';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
-import { fixBabelGeneratorIssues, fixLineEndings } from '../docs/scripts/helpers';
+import {
+  fixBabelGeneratorIssues,
+  fixLineEndings,
+  getUnstyledDefinitionFilename,
+} from '../docs/scripts/helpers';
 
 enum GenerateResult {
   Success,
@@ -227,12 +231,7 @@ async function generateProptypes(
 
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
-  const unstyledFile = tsFile.endsWith('Styled.d.ts')
-    ? tsFile.replace(/material-ui-lab|material-ui-core|Styled/g, (matched) => {
-        if (matched === 'Styled') return 'Unstyled';
-        return 'material-ui-unstyled';
-      })
-    : null;
+  const unstyledFile = getUnstyledDefinitionFilename(tsFile);
 
   const result = ttp.inject(proptypes, sourceContent, {
     disableTypescriptPropTypesValidation: tsTodo,

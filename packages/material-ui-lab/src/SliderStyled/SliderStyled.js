@@ -8,8 +8,7 @@ import {
   darken,
 } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
-import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
-import ValueLabelStyled from './ValueLabelStyled';
+import SliderUnstyled, { SliderValueLabelUnstyled } from '@material-ui/unstyled/SliderUnstyled';
 
 const overridesResolver = (props, styles, name) => {
   const {
@@ -100,6 +99,21 @@ export const SliderRoot = experimentalStyled(
       marginRight: 20,
     }),
   }),
+  '& .MuiSlider-valueLabelCircle': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 32,
+    height: 32,
+    borderRadius: '50% 50% 50% 0',
+    backgroundColor: 'currentColor',
+    transform: 'rotate(-45deg)',
+  },
+  '& .MuiSlider-valueLabelLabel': {
+    color: props.theme.palette.primary.contrastText,
+    transform: 'rotate(45deg)',
+    textAlign: 'center',
+  },
 }));
 
 export const SliderRail = experimentalStyled(
@@ -214,10 +228,24 @@ export const SliderThumb = experimentalStyled(
   }),
 }));
 
-export const SliderValueLabel = experimentalStyled(ValueLabelStyled)({
+export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled)((props) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
-});
+  '&.MuiSlider-valueLabelOpen': {
+    transform: 'scale(1) translateY(-10px)',
+  },
+  zIndex: 1,
+  ...props.theme.typography.body2,
+  fontSize: props.theme.typography.pxToRem(12),
+  lineHeight: 1.2,
+  transition: props.theme.transitions.create(['transform'], {
+    duration: props.theme.transitions.duration.shortest,
+  }),
+  top: -34,
+  transformOrigin: 'bottom center',
+  transform: 'scale(0)',
+  position: 'absolute',
+}));
 
 export const SliderMark = experimentalStyled(
   'span',
@@ -351,6 +379,10 @@ Slider.propTypes = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'

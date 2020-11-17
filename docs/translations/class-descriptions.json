@@ -2204,7 +2204,61 @@
       "description": "Class name applied to the mark label element if active (depending on the value)."
     }
   },
-  "SliderUnstyled": {},
+  "SliderUnstyled": {
+    "root": { "description": "Class name applied to the root element." },
+    "colorPrimary": {
+      "description": "Class name applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Class name applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "marked": {
+      "description": "Class name applied to the root element if {{conditions}}.",
+      "conditions": "<code>marks</code> is provided with at least one label"
+    },
+    "vertical": {
+      "description": "Class name applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root and thumb element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "rail": { "description": "Class name applied to the rail element." },
+    "track": { "description": "Class name applied to the track element." },
+    "trackFalse": {
+      "description": "Class name applied to the track element if {{conditions}}.",
+      "conditions": "<code>track={false}</code>"
+    },
+    "trackInverted": {
+      "description": "Class name applied to the track element if {{conditions}}.",
+      "conditions": "<code>track=\"inverted\"</code>"
+    },
+    "thumb": { "description": "Class name applied to the thumb element." },
+    "thumbColorPrimary": {
+      "description": "Class name applied to the thumb element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "thumbColorSecondary": {
+      "description": "Class name applied to the thumb element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "active": { "description": "Pseudo-class applied to the thumb element if it's active." },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the thumb element if keyboard focused."
+    },
+    "valueLabel": { "description": "Class name applied to the thumb label element." },
+    "mark": { "description": "Class name applied to the mark element." },
+    "markActive": {
+      "description": "Class name applied to the mark element if active (depending on the value)."
+    },
+    "markLabel": { "description": "Class name applied to the mark label element." },
+    "markLabelActive": {
+      "description": "Class name applied to the mark label element if active (depending on the value)."
+    }
+  },
   "Snackbar": {
     "root": { "description": "Styles applied to the root element." },
     "anchorOriginTopCenter": {
