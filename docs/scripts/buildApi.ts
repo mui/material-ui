@@ -3,13 +3,15 @@ import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
+import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import uniqBy from 'lodash/uniqBy';
 import * as prettier from 'prettier';
+import * as recast from 'recast';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
-import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import { defaultHandlers, parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import checkProps, { ReactApi } from 'docs/src/modules/utils/checkProps';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
@@ -17,7 +19,6 @@ import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import generatePropTypeDescription from 'docs/src/modules/utils/generatePropTypeDescription';
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
 import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
@@ -30,6 +31,146 @@ const componentDescriptions: { [key: string]: string } = {};
 const propDescriptions: { [key: string]: { [key: string]: string | undefined } } = {};
 
 const generateClassName = createGenerateClassName();
+
+function getDeprecatedInfo(type: PropTypeDescriptor) {
+  const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
+  const match = type.raw.match(marker);
+  const startIndex = type.raw.search(marker);
+  if (match) {
+    const offset = match[0].length;
+
+    return {
+      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
+      explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
+    };
+  }
+
+  return false;
+}
+
+function getChained(type: PropTypeDescriptor) {
+  if (type.raw) {
+    const marker = 'chainPropTypes';
+    const indexStart = type.raw.indexOf(marker);
+
+    if (indexStart !== -1) {
+      const parsed = docgenParse(
+        `
+        import PropTypes from 'prop-types';
+        const Foo = () => <div />
+        Foo.propTypes = {
+          bar: ${recast.print(recast.parse(type.raw).program.body[0].expression.arguments[0]).code}
+        }
+        export default Foo
+      `,
+        null,
+        null,
+        // helps react-docgen pickup babel.config.js
+        { filename: './' },
+      );
+      return {
+        type: parsed.props.bar.type,
+        required: parsed.props.bar.required,
+      };
+    }
+  }
+
+  return false;
+}
+
+function escapeCell(value: string): string {
+  // As the pipe is use for the table structure
+  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
+}
+
+function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
+  return type.raw === 'elementTypeAcceptingRef';
+}
+
+function isRefType(type: PropTypeDescriptor): boolean {
+  return type.raw === 'refType';
+}
+
+function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
+  return /^elementAcceptingRef/.test(type.raw);
+}
+
+function generatePropTypeDescription(type: PropTypeDescriptor): string | undefined {
+  switch (type.name) {
+    case 'custom': {
+      if (isElementTypeAcceptingRefProp(type)) {
+        return `element type`;
+      }
+      if (isElementAcceptingRefProp(type)) {
+        return `element`;
+      }
+      if (isRefType(type)) {
+        return `ref`;
+      }
+      if (type.raw === 'HTMLElementType') {
+        return `HTML element`;
+      }
+
+      const deprecatedInfo = getDeprecatedInfo(type);
+      if (deprecatedInfo !== false) {
+        return generatePropTypeDescription({
+          // eslint-disable-next-line react/forbid-foreign-prop-types
+          name: deprecatedInfo.propTypes,
+        } as any);
+      }
+
+      const chained = getChained(type);
+      if (chained !== false) {
+        return generatePropTypeDescription(chained.type);
+      }
+
+      return type.raw;
+    }
+
+    case 'shape':
+      return `{ ${Object.keys(type.value)
+        .map((subValue) => {
+          const subType = type.value[subValue];
+          return `${subValue}${subType.required ? '' : '?'}: ${generatePropTypeDescription(
+            subType,
+          )}`;
+        })
+        .join(', ')} }`;
+
+    case 'union':
+      return (
+        type.value
+          .map((type2) => {
+            return generatePropTypeDescription(type2);
+          })
+          // Display one value per line as it's better for visibility.
+          .join('<br>&#124;&nbsp;')
+      );
+    case 'enum':
+      return (
+        type.value
+          .map((type2) => {
+            return escapeCell(type2.value);
+          })
+          // Display one value per line as it's better for visibility.
+          .join('<br>&#124;&nbsp;')
+      );
+
+    case 'arrayOf': {
+      return `Array&lt;${generatePropTypeDescription(type.value)}&gt;`;
+    }
+
+    case 'instanceOf': {
+      if (type.value.startsWith('typeof')) {
+        return /typeof (.*) ===/.exec(type.value)![1];
+      }
+      return type.value;
+    }
+
+    default:
+      return type.name;
+  }
+}
 
 function writePrettifiedFile(filename: string, data: string, prettierConfigPath: string) {
   const prettierConfig = prettier.resolveConfig.sync(filename, {
@@ -540,80 +681,71 @@ async function buildDocs(options: {
 
   classDescriptions[reactAPI.name] = reactAPI.styles.descriptions;
 
-  // Deep clone so as not to mutate reactAPI (it's used later for the type annotations)
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
-  const pageContent = JSON.parse(JSON.stringify(reactAPI));
-
-  pageContent.filename = normalizePath(reactAPI.filename);
-  pageContent.demos = generateDemoList(reactAPI);
-  pageContent.styledComponent = styledComponent;
-
-  // Only keep "non-standard" global classnames
-  Object.entries(pageContent.styles.globalClasses).forEach(([className, globalClassName]) => {
-    if (globalClassName === `Mui${pageContent.name}-${className}`) {
-      delete pageContent.styles.globalClasses[className];
-    }
-  });
-
   /**
-   * Minimize the props data to that needed for API page
+   * Minimize the props data to that needed for API page.
    */
-  Object.entries(pageContent.props).forEach(([propName, propData]: any) => {
-    const jsdocDefaultValue = propData.jsdocDefaultValue;
-    let description = propData.description;
+  const pageContent = {
+    description: reactAPI.description.length ? reactAPI.description : undefined,
+    props: _.fromPairs(
+      Object.entries(reactAPI.props).map(([propName, propData]) => {
+        let description = propData.description;
 
-    if (description === '@ignore') {
-      return;
-    }
+        if (description === '@ignore') {
+          return [propName, propData];
+        }
 
-    if (propName === 'classes') {
-      description += ' See <a href="#css">CSS API</a> below for more details.';
-    }
+        if (propName === 'classes') {
+          description += ' See <a href="#css">CSS API</a> below for more details.';
+        }
 
-    propDescriptions[name] = {
-      ...propDescriptions[name],
-      [propName]: description && description.replace(/\n@default.*$/, ''),
-    };
-    delete propData.description;
+        propDescriptions[name] = {
+          ...propDescriptions[name],
+          [propName]: description && description.replace(/\n@default.*$/, ''),
+        };
 
-    propData.type.description = generatePropTypeDescription(propData.type);
+        // Only keep `default` for bool props if it isn't "false"#
+        let defaultValue: string | undefined;
+        if (propData.type.name !== 'bool' || propData.jsdocDefaultValue?.value !== 'false') {
+          defaultValue = propData.jsdocDefaultValue?.value;
+        }
 
-    if (propData.type.description === propData.type.name) {
-      delete propData.type.description;
-    }
-    delete propData.type.value;
-    delete propData.type.raw;
-
-    // Only keep `default` for bool props if it isn't "false"
-    if (
-      propData.type.name !== 'bool' ||
-      (jsdocDefaultValue && jsdocDefaultValue.value !== 'false')
-    ) {
-      propData.default = jsdocDefaultValue && jsdocDefaultValue.value;
-    }
-    delete propData.defaultValue;
-    delete propData.jsdocDefaultValue;
-
-    if (propData.required === false) {
-      delete propData.required;
-    }
-  });
+        const propTypeDescription = generatePropTypeDescription(propData.type);
+        return [
+          propName,
+          {
+            type: {
+              name: propData.type.name,
+              description:
+                propTypeDescription !== propData.type.name ? propTypeDescription : undefined,
+            },
+            default: defaultValue,
+            // undefined values are not serialized => saving some bytes
+            required: propData.required ? true : undefined,
+          },
+        ];
+      }),
+    ),
+    name: reactAPI.name,
+    styles: {
+      classes: reactAPI.styles.classes,
+      globalClasses: _.fromPairs(
+        Object.entries(reactAPI.styles.globalClasses).filter(([className, globalClassName]) => {
+          // Only keep "non-standard" global classnames
+          return globalClassName !== `Mui${reactAPI.name}-${className}`;
+        }),
+      ),
+    },
+    spread: reactAPI.spread,
+    forwardsRefTo: reactAPI.forwardsRefTo,
+    filename: normalizePath(reactAPI.filename),
+    inheritance: reactAPI.inheritance,
+    demos: generateDemoList(reactAPI),
+    styledComponent,
+  };
 
   if (reactAPI.description.length) {
     componentDescriptions[reactAPI.name] = reactAPI.description;
   }
-
-  if (pageContent.description === '') {
-    delete pageContent.description;
-  }
-
-  delete pageContent.src;
-  delete pageContent.EOL;
-  delete pageContent.methods;
-  delete pageContent.displayName;
-  delete pageContent.pagesMarkdown;
-  delete pageContent.styles.name;
-  delete pageContent.styles.descriptions;
 
   // docs/pages/component-name.json
   writePrettifiedFile(
