@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import mapTranslations from './mapTranslations';
 
 const req = require.context('docs/translations', false, /translations.*\.json$/);
-const translations = mapTranslations(req);
+const translations = mapTranslations(req, 'json');
 
 function getPath(obj, path) {
   if (!path || typeof path !== 'string') {
