@@ -17,12 +17,11 @@ import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import { getUnstyledDefinitionFilename } from 'docs/scripts/helpers';
 import generatePropTypeDescription from 'docs/src/modules/utils/generatePropTypeDescription';
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
 import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
-import { getLineFeed } from './helpers';
+import { getLineFeed, getUnstyledDefinitionFilename } from './helpers';
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
