@@ -1,0 +1,16 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "dividers": { "type": { "name": "bool" } }
+  },
+  "name": "DialogContent",
+  "styles": { "classes": ["root", "dividers"], "globalClasses": {} },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/DialogContent/DialogContent.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
+  "styledComponent": false
+}

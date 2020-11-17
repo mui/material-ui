@@ -1,0 +1,90 @@
+{
+  "props": {
+    "anchor": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'bottom'", "computed": false },
+          { "value": "'left'", "computed": false },
+          { "value": "'right'", "computed": false },
+          { "value": "'top'", "computed": false }
+        ]
+      },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "'left'", "computed": false }
+    },
+    "children": { "type": { "name": "node" } },
+    "disableBackdropTransition": { "type": { "name": "bool" } },
+    "disableDiscovery": { "type": { "name": "bool" } },
+    "disableSwipeToOpen": {
+      "type": { "name": "bool" },
+      "default": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
+    },
+    "hideBackdrop": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
+    "hysteresis": { "type": { "name": "number" }, "default": "0.52" },
+    "minFlingVelocity": { "type": { "name": "number" }, "default": "450" },
+    "ModalProps": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "BackdropProps": {
+            "name": "shape",
+            "value": {
+              "component": { "name": "custom", "raw": "elementTypeAcceptingRef", "required": false }
+            },
+            "required": false
+          }
+        }
+      },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "onClose": { "type": { "name": "func" }, "required": true },
+    "onOpen": { "type": { "name": "func" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "PaperProps": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "component": { "name": "custom", "raw": "elementTypeAcceptingRef", "required": false },
+          "style": { "name": "object", "required": false }
+        }
+      },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "SwipeAreaProps": { "type": { "name": "object" } },
+    "swipeAreaWidth": { "type": { "name": "number" }, "default": "20" },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'permanent'", "computed": false },
+          { "value": "'persistent'", "computed": false },
+          { "value": "'temporary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "'temporary'", "computed": false }
+    }
+  },
+  "name": "SwipeableDrawer",
+  "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js",
+  "inheritance": { "component": "Drawer", "pathname": "/api/drawer/" },
+  "demos": "<ul><li><a href=\"/components/drawers/\">Drawers</a></li></ul>",
+  "styledComponent": true
+}

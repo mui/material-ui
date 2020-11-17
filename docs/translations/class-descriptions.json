@@ -1,0 +1,3016 @@
+{
+  "Accordion": {
+    "root": { "description": "Styles applied to the root element." },
+    "rounded": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>square={true}</code>"
+    },
+    "expanded": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>expanded={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "region": {
+      "description": "Styles applied to the region element, the container of the children."
+    }
+  },
+  "AccordionActions": {
+    "root": { "description": "Styles applied to the root element." },
+    "spacing": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>disableSpacing={true}</code>"
+    }
+  },
+  "AccordionDetails": { "root": { "description": "Styles applied to the root element." } },
+  "AccordionSummary": {
+    "root": { "description": "Styles applied to the root element." },
+    "expanded": {
+      "description": "Pseudo-class applied to the root element, children wrapper element and `IconButton` component if {{conditions}}.",
+      "conditions": "<code>expanded={true}</code>"
+    },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the ButtonBase root element if the button is keyboard focused."
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "content": { "description": "Styles applied to the children wrapper element." },
+    "expandIconWrapper": { "description": "Styles applied to the `expandIcon`'s wrapper element." }
+  },
+  "Alert": {
+    "root": { "description": "Styles applied to the root element." },
+    "filled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "standard": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"standard\"</code>"
+    },
+    "standardSuccess": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"success\"</code>"
+    },
+    "standardInfo": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"info\"</code>"
+    },
+    "standardWarning": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"warning\"</code>"
+    },
+    "standardError": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"standard\"</code> and <code>color=\"error\"</code>"
+    },
+    "outlinedSuccess": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"success\"</code>"
+    },
+    "outlinedInfo": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"info\"</code>"
+    },
+    "outlinedWarning": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>"
+    },
+    "outlinedError": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"error\"</code>"
+    },
+    "filledSuccess": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"success\"</code>"
+    },
+    "filledInfo": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"info\"</code>"
+    },
+    "filledWarning": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"warning\"</code>"
+    },
+    "filledError": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"error\"</code>"
+    },
+    "icon": { "description": "Styles applied to the icon wrapper element." },
+    "message": { "description": "Styles applied to the message wrapper element." },
+    "action": {
+      "description": "Styles applied to the action wrapper element if {{conditions}}.",
+      "conditions": "<code>action</code> is provided"
+    }
+  },
+  "AlertTitle": { "root": { "description": "Styles applied to the root element." } },
+  "AppBar": {
+    "root": { "description": "Styles applied to the root element." },
+    "positionFixed": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"fixed\"</code>"
+    },
+    "positionAbsolute": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"absolute\"</code>"
+    },
+    "positionSticky": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"sticky\"</code>"
+    },
+    "positionStatic": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"static\"</code>"
+    },
+    "positionRelative": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"relative\"</code>"
+    },
+    "colorDefault": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"default\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "colorInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"inherit\"</code>"
+    },
+    "colorTransparent": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"transparent\"</code>"
+    }
+  },
+  "Autocomplete": {
+    "root": { "description": "Styles applied to the root element." },
+    "@media (pointer": { "description": "Avoid double tap issue on iOS" },
+    "fullWidth": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fullWidth={true}</code>"
+    },
+    "focused": { "description": "Pseudo-class applied to the root element if focused." },
+    "tag": { "description": "Styles applied to the tag elements, e.g. the chips." },
+    "tagSizeSmall": {
+      "description": "Styles applied to the tag elements, e.g. the chips if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "hasPopupIcon": { "description": "Styles applied when the popup icon is rendered." },
+    "hasClearIcon": { "description": "Styles applied when the clear icon is rendered." },
+    "inputRoot": { "description": "Styles applied to the Input element." },
+    "input": { "description": "Styles applied to the input element." },
+    "inputFocused": { "description": "Styles applied to the input element if tag focused." },
+    "endAdornment": { "description": "Styles applied to the endAdornment element." },
+    "clearIndicator": { "description": "Styles applied to the clear indicator." },
+    "popupIndicator": { "description": "Styles applied to the popup indicator." },
+    "popupIndicatorOpen": {
+      "description": "Styles applied to the popup indicator if the popup is open."
+    },
+    "popper": { "description": "Styles applied to the popper element." },
+    "popperDisablePortal": {
+      "description": "Styles applied to the popper element if {{conditions}}.",
+      "conditions": "<code>disablePortal={true}</code>"
+    },
+    "paper": { "description": "Styles applied to the `Paper` component." },
+    "listbox": { "description": "Styles applied to the `listbox` component." },
+    "loading": { "description": "Styles applied to the loading wrapper." },
+    "noOptions": { "description": "Styles applied to the no option wrapper." },
+    "option": { "description": "Styles applied to the option elements." },
+    "groupLabel": { "description": "Styles applied to the group's label elements." },
+    "groupUl": { "description": "Styles applied to the group's ul elements." }
+  },
+  "Avatar": {
+    "root": { "description": "Styles applied to the root element." },
+    "colorDefault": {
+      "description": "Styles applied to the root element if not `src` or `srcSet`."
+    },
+    "circular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"circular\"</code>"
+    },
+    "rounded": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"rounded\"</code>"
+    },
+    "square": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"square\"</code>"
+    },
+    "img": {
+      "description": "Styles applied to the img element if either `src` or `srcSet` is defined."
+    },
+    "fallback": { "description": "Styles applied to the fallback icon" }
+  },
+  "AvatarGroup": {
+    "root": { "description": "Styles applied to the root element." },
+    "avatar": { "description": "Styles applied to the avatar elements." }
+  },
+  "Backdrop": {
+    "root": { "description": "Styles applied to the root element." },
+    "invisible": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>invisible={true}</code>"
+    }
+  },
+  "Badge": {
+    "root": { "description": "Styles applied to the root element." },
+    "badge": { "description": "Styles applied to the badge `span` element." },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "colorError": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "dot": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"dot\"</code>"
+    },
+    "standard": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"standard\"</code>"
+    },
+    "anchorOriginTopRightRectangular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"rectangular\"</code>"
+    },
+    "anchorOriginBottomRightRectangular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"rectangular\"</code>"
+    },
+    "anchorOriginTopLeftRectangular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"rectangular\"</code>"
+    },
+    "anchorOriginBottomLeftRectangular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"rectangular\"</code>"
+    },
+    "anchorOriginTopRightCircular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"circular\"</code>"
+    },
+    "anchorOriginBottomRightCircular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"circular\"</code>"
+    },
+    "anchorOriginTopLeftCircular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"circular\"</code>"
+    },
+    "anchorOriginBottomLeftCircular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"</code>"
+    },
+    "invisible": {
+      "description": "Pseudo-class to the badge `span` element if {{conditions}}.",
+      "conditions": "<code>invisible={true}</code>"
+    }
+  },
+  "BottomNavigation": { "root": { "description": "Styles applied to the root element." } },
+  "BottomNavigationAction": {
+    "root": { "description": "Styles applied to the root element." },
+    "selected": { "description": "Pseudo-class applied to the root element if selected." },
+    "iconOnly": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>showLabel={false}</code> and not selected"
+    },
+    "wrapper": {
+      "description": "Styles applied to the span element that wraps the icon and label."
+    },
+    "label": { "description": "Styles applied to the label's span element." }
+  },
+  "Breadcrumbs": {
+    "root": { "description": "Styles applied to the root element." },
+    "ol": { "description": "Styles applied to the ol element." },
+    "li": { "description": "Styles applied to the li element." },
+    "separator": { "description": "Styles applied to the separator element." }
+  },
+  "Button": {
+    "root": { "description": "Styles applied to the root element." },
+    "label": { "description": "Styles applied to the span element that wraps the children." },
+    "text": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code>"
+    },
+    "textPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
+    },
+    "textSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "outlinedPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
+    },
+    "outlinedSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "contained": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"contained\"</code>"
+    },
+    "containedPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"primary\"</code>"
+    },
+    "containedSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "disableElevation": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>disableElevation={true}</code>"
+    },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the ButtonBase root element if the button is keyboard focused."
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "colorInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"inherit\"</code>"
+    },
+    "textSizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code> and <code>variant=\"text\"</code>"
+    },
+    "textSizeLarge": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"large\"</code> and <code>variant=\"text\"</code>"
+    },
+    "outlinedSizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "outlinedSizeLarge": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"large\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "containedSizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code> and <code>variant=\"contained\"</code>"
+    },
+    "containedSizeLarge": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"large\"</code> and <code>variant=\"contained\"</code>"
+    },
+    "sizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "sizeLarge": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"large\"</code>"
+    },
+    "fullWidth": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fullWidth={true}</code>"
+    },
+    "startIcon": { "description": "Styles applied to the startIcon element if supplied." },
+    "endIcon": { "description": "Styles applied to the endIcon element if supplied." },
+    "iconSizeSmall": {
+      "description": "Styles applied to the icon element if supplied and `size=\"small\"`."
+    },
+    "iconSizeMedium": {
+      "description": "Styles applied to the icon element if supplied and `size=\"medium\"`."
+    },
+    "iconSizeLarge": {
+      "description": "Styles applied to the icon element if supplied and `size=\"large\"`."
+    }
+  },
+  "ButtonBase": {
+    "root": { "description": "Styles applied to the root element." },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the root element if keyboard focused."
+    }
+  },
+  "ButtonGroup": {
+    "root": { "description": "Styles applied to the root element." },
+    "contained": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"contained\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "text": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code>"
+    },
+    "disableElevation": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>disableElevation={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to child elements if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "fullWidth": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fullWidth={true}</code>"
+    },
+    "vertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "grouped": { "description": "Styles applied to the children." },
+    "groupedHorizontal": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "groupedVertical": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "groupedText": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code>"
+    },
+    "groupedTextHorizontal": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"horizontal\"</code>"
+    },
+    "groupedTextVertical": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"vertical\"</code>"
+    },
+    "groupedTextPrimary": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
+    },
+    "groupedTextSecondary": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "groupedOutlined": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "groupedOutlinedHorizontal": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"horizontal\"</code>"
+    },
+    "groupedOutlinedVertical": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"vertical\"</code>"
+    },
+    "groupedOutlinedPrimary": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
+    },
+    "groupedOutlinedSecondary": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "groupedContained": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"contained\"</code>"
+    },
+    "groupedContainedHorizontal": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"horizontal\"</code>"
+    },
+    "groupedContainedVertical": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"vertical\"</code>"
+    },
+    "groupedContainedPrimary": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"primary\"</code>"
+    },
+    "groupedContainedSecondary": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
+    }
+  },
+  "Card": { "root": { "description": "Styles applied to the root element." } },
+  "CardActionArea": {
+    "root": { "description": "Styles applied to the root element." },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused."
+    },
+    "focusHighlight": {
+      "description": "Styles applied to the overlay that covers the action area when it is keyboard focused."
+    }
+  },
+  "CardActions": {
+    "root": { "description": "Styles applied to the root element." },
+    "spacing": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>disableSpacing={true}</code>"
+    }
+  },
+  "CardContent": { "root": { "description": "Styles applied to the root element." } },
+  "CardHeader": {
+    "root": { "description": "Styles applied to the root element." },
+    "avatar": { "description": "Styles applied to the avatar element." },
+    "action": { "description": "Styles applied to the action element." },
+    "content": { "description": "Styles applied to the content wrapper element." },
+    "title": { "description": "Styles applied to the title Typography element." },
+    "subheader": { "description": "Styles applied to the subheader Typography element." }
+  },
+  "CardMedia": {
+    "root": { "description": "Styles applied to the root element." },
+    "media": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>component=\"video, audio, picture, iframe, or img\"</code>"
+    },
+    "img": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>component=\"picture or img\"</code>"
+    }
+  },
+  "Checkbox": {
+    "root": { "description": "Styles applied to the root element." },
+    "checked": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>checked={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "indeterminate": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>indeterminate={true}</code>"
+    },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    }
+  },
+  "Chip": {
+    "root": { "description": "Styles applied to the root element." },
+    "sizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "clickable": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>onClick</code> is defined or <code>clickable={true}</code>"
+    },
+    "clickableColorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>onClick</code> and <code>color=\"primary\"</code> is defined or <code>clickable={true}</code>"
+    },
+    "clickableColorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>onClick</code> and <code>color=\"secondary\"</code> is defined or <code>clickable={true}</code>"
+    },
+    "deletable": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>onDelete</code> is defined"
+    },
+    "deletableColorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>onDelete</code> and <code>color=\"primary\"</code> is defined"
+    },
+    "deletableColorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>onDelete</code> and <code>color=\"secondary\"</code> is defined"
+    },
+    "outlined": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "filled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "outlinedPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
+    },
+    "outlinedSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "avatar": { "description": "Styles applied to the `avatar` element." },
+    "avatarSmall": {
+      "description": "Styles applied to the `avatar` element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "avatarColorPrimary": {
+      "description": "Styles applied to the `avatar` element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "avatarColorSecondary": {
+      "description": "Styles applied to the `avatar` element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "icon": { "description": "Styles applied to the `icon` element." },
+    "iconSmall": {
+      "description": "Styles applied to the `icon` element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "iconColorPrimary": {
+      "description": "Styles applied to the `icon` element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "iconColorSecondary": {
+      "description": "Styles applied to the `icon` element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "label": { "description": "Styles applied to the label `span` element." },
+    "labelSmall": {
+      "description": "Styles applied to the label `span` element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "deleteIcon": { "description": "Styles applied to the `deleteIcon` element." },
+    "deleteIconSmall": {
+      "description": "Styles applied to the `deleteIcon` element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "deleteIconColorPrimary": {
+      "description": "Styles applied to the deleteIcon element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"filled\"</code>"
+    },
+    "deleteIconColorSecondary": {
+      "description": "Styles applied to the deleteIcon element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"filled\"</code>"
+    },
+    "deleteIconOutlinedColorPrimary": {
+      "description": "Styles applied to the deleteIcon element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "deleteIconOutlinedColorSecondary": {
+      "description": "Styles applied to the deleteIcon element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the root element if keyboard focused."
+    }
+  },
+  "CircularProgress": {
+    "root": { "description": "Styles applied to the root element." },
+    "determinate": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"determinate\"</code>"
+    },
+    "indeterminate": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"indeterminate\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "svg": { "description": "Styles applied to the `svg` element." },
+    "circle": { "description": "Styles applied to the `circle` svg path." },
+    "circleDeterminate": {
+      "description": "Styles applied to the `circle` svg path if {{conditions}}.",
+      "conditions": "<code>variant=\"determinate\"</code>"
+    },
+    "circleIndeterminate": {
+      "description": "Styles applied to the `circle` svg path if {{conditions}}.",
+      "conditions": "<code>variant=\"indeterminate\"</code>"
+    },
+    "circleDisableShrink": {
+      "description": "Styles applied to the `circle` svg path if {{conditions}}.",
+      "conditions": "<code>disableShrink={true}</code>"
+    }
+  },
+  "ClickAwayListener": {},
+  "Collapse": {
+    "root": { "description": "Styles applied to the root element." },
+    "horizontal": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "entered": {
+      "description": "Styles applied to the root element when the transition has entered."
+    },
+    "hidden": {
+      "description": "Styles applied to the root element when the transition has exited and `collapsedSize` != 0px."
+    },
+    "wrapper": { "description": "Styles applied to the outer wrapper element." },
+    "wrapperInner": { "description": "Styles applied to the inner wrapper element." }
+  },
+  "Container": {
+    "root": { "description": "Styles applied to the root element." },
+    "disableGutters": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>disableGutters={true}</code>"
+    },
+    "fixed": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fixed={true}</code>"
+    },
+    "maxWidthXs": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>maxWidth=\"xs\"</code>"
+    },
+    "maxWidthSm": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>maxWidth=\"sm\"</code>"
+    },
+    "maxWidthMd": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>maxWidth=\"md\"</code>"
+    },
+    "maxWidthLg": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>maxWidth=\"lg\"</code>"
+    },
+    "maxWidthXl": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>maxWidth=\"xl\"</code>"
+    }
+  },
+  "CssBaseline": {},
+  "Dialog": {
+    "root": { "description": "Styles applied to the root element." },
+    "scrollPaper": {
+      "description": "Styles applied to the container element if {{conditions}}.",
+      "conditions": "<code>scroll=\"paper\"</code>"
+    },
+    "scrollBody": {
+      "description": "Styles applied to the container element if {{conditions}}.",
+      "conditions": "<code>scroll=\"body\"</code>"
+    },
+    "container": { "description": "Styles applied to the container element." },
+    "paper": { "description": "Styles applied to the `Paper` component." },
+    "paperScrollPaper": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>scroll=\"paper\"</code>"
+    },
+    "paperScrollBody": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>scroll=\"body\"</code>"
+    },
+    "paperWidthFalse": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>maxWidth=false</code>"
+    },
+    "paperWidthXs": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>maxWidth=\"xs\"</code>"
+    },
+    "paperWidthSm": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>maxWidth=\"sm\"</code>"
+    },
+    "paperWidthMd": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>maxWidth=\"md\"</code>"
+    },
+    "paperWidthLg": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>maxWidth=\"lg\"</code>"
+    },
+    "paperWidthXl": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>maxWidth=\"xl\"</code>"
+    },
+    "paperFullWidth": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>fullWidth={true}</code>"
+    },
+    "paperFullScreen": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>fullScreen={true}</code>"
+    }
+  },
+  "DialogActions": {
+    "root": { "description": "Styles applied to the root element." },
+    "spacing": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>disableSpacing={true}</code>"
+    }
+  },
+  "DialogContent": {
+    "root": { "description": "Styles applied to the root element." },
+    "dividers": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>dividers={true}</code>"
+    }
+  },
+  "DialogContentText": { "root": { "description": "Styles applied to the root element." } },
+  "DialogTitle": { "root": { "description": "Styles applied to the root element." } },
+  "Divider": {
+    "root": { "description": "Styles applied to the root element." },
+    "absolute": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>absolute={true}</code>"
+    },
+    "inset": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"inset\"</code>"
+    },
+    "fullWidth": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"fullWidth\"</code>"
+    },
+    "light": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>light={true}</code>"
+    },
+    "middle": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"middle\"</code>"
+    },
+    "vertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "flexItem": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>flexItem={true}</code>"
+    },
+    "withChildren": { "description": "Styles applied to the root element if divider have text." },
+    "withChildrenVertical": {
+      "description": "Styles applied to the root element if divider have text and `orientation=\"vertical\"`."
+    },
+    "textAlignRight": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>textAlign=\"right\" orientation=\"horizontal\"</code>"
+    },
+    "textAlignLeft": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>textAlign=\"left\" orientation=\"horizontal\"</code>"
+    },
+    "wrapper": {
+      "description": "Styles applied to the span children element if {{conditions}}.",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "wrapperVertical": {
+      "description": "Styles applied to the span children element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    }
+  },
+  "Drawer": {
+    "root": { "description": "Styles applied to the root element." },
+    "docked": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"permanent or persistent\"</code>"
+    },
+    "paper": { "description": "Styles applied to the `Paper` component." },
+    "paperAnchorLeft": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>anchor=\"left\"</code>"
+    },
+    "paperAnchorRight": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>anchor=\"right\"</code>"
+    },
+    "paperAnchorTop": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>anchor=\"top\"</code>"
+    },
+    "paperAnchorBottom": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>anchor=\"bottom\"</code>"
+    },
+    "paperAnchorDockedLeft": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>anchor=\"left\"</code> and <code>variant</code> is not \"temporary\""
+    },
+    "paperAnchorDockedTop": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>anchor=\"top\"</code> and <code>variant</code> is not \"temporary\""
+    },
+    "paperAnchorDockedRight": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>anchor=\"right\"</code> and <code>variant</code> is not \"temporary\""
+    },
+    "paperAnchorDockedBottom": {
+      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "conditions": "<code>anchor=\"bottom\"</code> and <code>variant</code> is not \"temporary\""
+    },
+    "modal": { "description": "Styles applied to the `Modal` component." }
+  },
+  "Fab": {
+    "root": { "description": "Styles applied to the root element." },
+    "label": { "description": "Styles applied to the span element that wraps the children." },
+    "primary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "secondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "extended": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"extended\"</code>"
+    },
+    "circular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"circular\"</code>"
+    },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the ButtonBase root element if the button is keyboard focused."
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "colorInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"inherit\"</code>"
+    },
+    "sizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>`"
+    },
+    "sizeMedium": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"medium\"</code>`"
+    }
+  },
+  "Fade": {},
+  "FilledInput": {
+    "root": { "description": "Styles applied to the root element." },
+    "colorSecondary": { "description": "Styles applied to the root element if color secondary." },
+    "underline": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>disableUnderline={true}</code>"
+    },
+    "focused": {
+      "description": "Pseudo-class applied to the root element if the component is focused."
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "adornedStart": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>startAdornment</code> is provided"
+    },
+    "adornedEnd": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>endAdornment</code> is provided"
+    },
+    "error": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>error={true}</code>"
+    },
+    "marginDense": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "multiline": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "hiddenLabel": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>hiddenLabel={true}</code>"
+    },
+    "input": { "description": "Styles applied to the `input` element." },
+    "inputMarginDense": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "inputHiddenLabel": {
+      "description": "Styles applied to the `input` if in `<FormControl hiddenLabel />`."
+    },
+    "inputMultiline": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "inputAdornedStart": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>startAdornment</code> is provided"
+    },
+    "inputAdornedEnd": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>endAdornment</code> is provided"
+    }
+  },
+  "FormControl": {
+    "root": { "description": "Styles applied to the root element." },
+    "marginNormal": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>margin=\"normal\"</code>"
+    },
+    "marginDense": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "fullWidth": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fullWidth={true}</code>"
+    }
+  },
+  "FormControlLabel": {
+    "root": { "description": "Styles applied to the root element." },
+    "labelPlacementStart": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>labelPlacement=\"start\"</code>"
+    },
+    "labelPlacementTop": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>labelPlacement=\"top\"</code>"
+    },
+    "labelPlacementBottom": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>labelPlacement=\"bottom\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "label": { "description": "Styles applied to the label's Typography component." }
+  },
+  "FormGroup": {
+    "root": { "description": "Styles applied to the root element." },
+    "row": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>row={true}</code>"
+    }
+  },
+  "FormHelperText": {
+    "root": { "description": "Styles applied to the root element." },
+    "error": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>error={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "marginDense": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "contained": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code> or <code>variant=\"outlined\"</code>"
+    },
+    "focused": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>focused={true}</code>"
+    },
+    "filled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>filled={true}</code>"
+    },
+    "required": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>required={true}</code>"
+    }
+  },
+  "FormLabel": {
+    "root": { "description": "Styles applied to the root element." },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if the color is secondary."
+    },
+    "focused": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>focused={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "error": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>error={true}</code>"
+    },
+    "filled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>filled={true}</code>"
+    },
+    "required": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>required={true}</code>"
+    },
+    "asterisk": { "description": "Styles applied to the asterisk element." }
+  },
+  "Grid": {
+    "root": { "description": "Styles applied to the root element." },
+    "container": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>container={true}</code>"
+    },
+    "item": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>item={true}</code>"
+    },
+    "zeroMinWidth": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>zeroMinWidth={true}</code>"
+    },
+    "direction-xs-column": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>direction=\"column\"</code>"
+    },
+    "direction-xs-column-reverse": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>direction=\"column-reverse\"</code>"
+    },
+    "direction-xs-row-reverse": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>direction=\"row-reverse\"</code>"
+    },
+    "wrap-xs-nowrap": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>wrap=\"nowrap\"</code>"
+    },
+    "wrap-xs-wrap-reverse": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>wrap=\"reverse\"</code>"
+    },
+    "align-items-xs-center": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alignItems=\"center\"</code>"
+    },
+    "align-items-xs-flex-start": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alignItems=\"flex-start\"</code>"
+    },
+    "align-items-xs-flex-end": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alignItems=\"flex-end\"</code>"
+    },
+    "align-items-xs-baseline": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alignItems=\"baseline\"</code>"
+    },
+    "align-content-xs-center": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alignContent=\"center\"</code>"
+    },
+    "align-content-xs-flex-start": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alignContent=\"flex-start\"</code>"
+    },
+    "align-content-xs-flex-end": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alignContent=\"flex-end\"</code>"
+    },
+    "align-content-xs-space-between": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alignContent=\"space-between\"</code>"
+    },
+    "align-content-xs-space-around": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alignContent=\"space-around\"</code>"
+    },
+    "justify-content-xs-center": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>justifyContent=\"center\"</code>"
+    },
+    "justify-content-xs-flex-end": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>justifyContent=\"flex-end\"</code>"
+    },
+    "justify-content-xs-space-between": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>justifyContent=\"space-between\"</code>"
+    },
+    "justify-content-xs-space-around": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>justifyContent=\"space-around\"</code>"
+    },
+    "justify-content-xs-space-evenly": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>justifyContent=\"space-evenly\"</code>"
+    }
+  },
+  "Grow": {},
+  "Hidden": {},
+  "Icon": {
+    "root": { "description": "Styles applied to the root element." },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "colorAction": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"action\"</code>"
+    },
+    "colorError": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "colorDisabled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"disabled\"</code>"
+    },
+    "fontSizeInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fontSize=\"inherit\"</code>"
+    },
+    "fontSizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fontSize=\"small\"</code>"
+    },
+    "fontSizeLarge": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fontSize=\"large\"</code>"
+    }
+  },
+  "IconButton": {
+    "root": { "description": "Styles applied to the root element." },
+    "edgeStart": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>edge=\"start\"</code>"
+    },
+    "edgeEnd": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>edge=\"end\"</code>"
+    },
+    "colorInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"inherit\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "sizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "label": { "description": "Styles applied to the children container element." }
+  },
+  "ImageList": {
+    "root": { "description": "Styles applied to the root element." },
+    "masonry": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"masonry\"</code>"
+    },
+    "quilted": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"quilted\"</code>"
+    },
+    "standard": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"standard\"</code>"
+    },
+    "woven": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"woven\"</code>"
+    }
+  },
+  "ImageListItem": {
+    "root": { "description": "Styles applied to the root element." },
+    "img": { "description": "Styles applied to an `img` element to ensure it covers the item." },
+    "standard": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"standard\"</code>"
+    },
+    "woven": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"woven\"</code>"
+    }
+  },
+  "ImageListItemBar": {
+    "root": { "description": "Styles applied to the root element." },
+    "positionBottom": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"bottom\"</code>"
+    },
+    "positionTop": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"top\"</code>"
+    },
+    "positionBelow": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"below\"</code>"
+    },
+    "titleWrap": { "description": "Styles applied to the title and subtitle container element." },
+    "titleWrapBelow": {
+      "description": "Styles applied to the title and subtitle container element if {{conditions}}.",
+      "conditions": "<code>position=\"below\"</code>"
+    },
+    "titleWrapActionPosLeft": {
+      "description": "Styles applied to the container element if {{conditions}}.",
+      "conditions": "<code>actionPosition=\"left\"</code>"
+    },
+    "titleWrapActionPosRight": {
+      "description": "Styles applied to the container element if {{conditions}}.",
+      "conditions": "<code>actionPosition=\"right\"</code>"
+    },
+    "title": { "description": "Styles applied to the title container element." },
+    "subtitle": { "description": "Styles applied to the subtitle container element." },
+    "actionIcon": { "description": "Styles applied to the actionIcon if supplied." },
+    "actionIconActionPosLeft": {
+      "description": "Styles applied to the actionIcon if {{conditions}}.",
+      "conditions": "<code>actionPosition=\"left\"</code>"
+    }
+  },
+  "Input": {
+    "root": { "description": "Styles applied to the root element." },
+    "formControl": {
+      "description": "Styles applied to the root element if the component is a descendant of `FormControl`."
+    },
+    "focused": { "description": "Styles applied to the root element if the component is focused." },
+    "disabled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "colorSecondary": { "description": "Styles applied to the root element if color secondary." },
+    "underline": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>disableUnderline={true}</code>"
+    },
+    "error": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>error={true}</code>"
+    },
+    "marginDense": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "multiline": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "fullWidth": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fullWidth={true}</code>"
+    },
+    "input": { "description": "Styles applied to the `input` element." },
+    "inputMarginDense": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "inputMultiline": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "inputTypeSearch": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>type=\"search\"</code>"
+    }
+  },
+  "InputAdornment": {
+    "root": { "description": "Styles applied to the root element." },
+    "filled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "positionStart": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"start\"</code>"
+    },
+    "positionEnd": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"end\"</code>"
+    },
+    "disablePointerEvents": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>disablePointerEvents=true</code>"
+    },
+    "hiddenLabel": {
+      "description": "Styles applied if the adornment is used inside <FormControl hiddenLabel />."
+    },
+    "marginDense": {
+      "description": "Styles applied if the adornment is used inside <FormControl margin=\"dense\" />."
+    }
+  },
+  "InputBase": {
+    "root": { "description": "Styles applied to the root element." },
+    "formControl": {
+      "description": "Styles applied to the root element if the component is a descendant of `FormControl`."
+    },
+    "focused": { "description": "Styles applied to the root element if the component is focused." },
+    "disabled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "adornedStart": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>startAdornment</code> is provided"
+    },
+    "adornedEnd": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>endAdornment</code> is provided"
+    },
+    "error": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>error={true}</code>"
+    },
+    "marginDense": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "multiline": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if the color is secondary."
+    },
+    "fullWidth": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fullWidth={true}</code>"
+    },
+    "hiddenLabel": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>hiddenLabel={true}</code>"
+    },
+    "input": { "description": "Styles applied to the `input` element." },
+    "inputMarginDense": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "inputMultiline": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "inputTypeSearch": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>type=\"search\"</code>"
+    },
+    "inputAdornedStart": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>startAdornment</code> is provided"
+    },
+    "inputAdornedEnd": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>endAdornment</code> is provided"
+    },
+    "inputHiddenLabel": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>hiddenLabel={true}</code>"
+    }
+  },
+  "InputLabel": {
+    "root": { "description": "Styles applied to the root element." },
+    "focused": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>focused={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "error": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>error={true}</code>"
+    },
+    "required": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>required={true}</code>"
+    },
+    "asterisk": { "description": "Pseudo-class applied to the asterisk element." },
+    "formControl": {
+      "description": "Styles applied to the root element if the component is a descendant of `FormControl`."
+    },
+    "marginDense": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "shrink": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>shrink={true}</code>"
+    },
+    "animated": {
+      "description": "Styles applied to the `input` element unless {{conditions}}.",
+      "conditions": "<code>disableAnimation={true}</code>"
+    },
+    "filled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    }
+  },
+  "LinearProgress": {
+    "root": { "description": "Styles applied to the root element." },
+    "colorPrimary": {
+      "description": "Styles applied to the root and bar2 element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>; bar2 if <code>variant=\"buffer\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root and bar2 elements if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>; bar2 if <code>variant=\"buffer\"</code>"
+    },
+    "determinate": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"determinate\"</code>"
+    },
+    "indeterminate": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"indeterminate\"</code>"
+    },
+    "buffer": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"buffer\"</code>"
+    },
+    "query": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"query\"</code>"
+    },
+    "dashed": {
+      "description": "Styles applied to the additional bar element if {{conditions}}.",
+      "conditions": "<code>variant=\"buffer\"</code>"
+    },
+    "dashedColorPrimary": {
+      "description": "Styles applied to the additional bar element if {{conditions}}.",
+      "conditions": "<code>variant=\"buffer\"</code> and <code>color=\"primary\"</code>"
+    },
+    "dashedColorSecondary": {
+      "description": "Styles applied to the additional bar element if {{conditions}}.",
+      "conditions": "<code>variant=\"buffer\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "bar": { "description": "Styles applied to the layered bar1 and bar2 elements." },
+    "barColorPrimary": {
+      "description": "Styles applied to the bar elements if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>; bar2 if <code>variant</code> not \"buffer\""
+    },
+    "barColorSecondary": {
+      "description": "Styles applied to the bar elements if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>; bar2 if <code>variant</code> not \"buffer\""
+    },
+    "bar1Indeterminate": {
+      "description": "Styles applied to the bar1 element if {{conditions}}.",
+      "conditions": "<code>variant=\"indeterminate or query\"</code>"
+    },
+    "bar1Determinate": {
+      "description": "Styles applied to the bar1 element if {{conditions}}.",
+      "conditions": "<code>variant=\"determinate\"</code>"
+    },
+    "bar1Buffer": {
+      "description": "Styles applied to the bar1 element if {{conditions}}.",
+      "conditions": "<code>variant=\"buffer\"</code>"
+    },
+    "bar2Indeterminate": {
+      "description": "Styles applied to the bar2 element if {{conditions}}.",
+      "conditions": "<code>variant=\"indeterminate or query\"</code>"
+    },
+    "bar2Buffer": {
+      "description": "Styles applied to the bar2 element if {{conditions}}.",
+      "conditions": "<code>variant=\"buffer\"</code>"
+    }
+  },
+  "Link": {
+    "root": { "description": "Styles applied to the root element." },
+    "underlineNone": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>underline=\"none\"</code>"
+    },
+    "underlineHover": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>underline=\"hover\"</code>"
+    },
+    "underlineAlways": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>underline=\"always\"</code>"
+    },
+    "button": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>component=\"button\"</code>"
+    },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the root element if the link is keyboard focused."
+    }
+  },
+  "List": {
+    "root": { "description": "Styles applied to the root element." },
+    "padding": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>disablePadding={true}</code>"
+    },
+    "dense": { "description": "Styles applied to the root element if dense." },
+    "subheader": {
+      "description": "Styles applied to the root element if a `subheader` is provided."
+    }
+  },
+  "ListItem": {
+    "root": {
+      "description": "Styles applied to the (normally root) `component` element. May be wrapped by a `container`."
+    },
+    "container": {
+      "description": "Styles applied to the `container` element if {{conditions}}.",
+      "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
+    },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if {{conditions}}.",
+      "conditions": "<code>button={true}</code>"
+    },
+    "dense": { "description": "Styles applied to the `component` element if dense." },
+    "alignItemsFlexStart": {
+      "description": "Styles applied to the `component` element if {{conditions}}.",
+      "conditions": "<code>alignItems=\"flex-start\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the inner `component` element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "divider": {
+      "description": "Styles applied to the inner `component` element if {{conditions}}.",
+      "conditions": "<code>divider={true}</code>"
+    },
+    "gutters": {
+      "description": "Styles applied to the inner `component` element unless {{conditions}}.",
+      "conditions": "<code>disableGutters={true}</code>"
+    },
+    "button": {
+      "description": "Styles applied to the inner `component` element if {{conditions}}.",
+      "conditions": "<code>button={true}</code>"
+    },
+    "secondaryAction": {
+      "description": "Styles applied to the `component` element if {{conditions}}.",
+      "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
+    },
+    "selected": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>selected={true}</code>"
+    }
+  },
+  "ListItemAvatar": {
+    "root": { "description": "Styles applied to the root element." },
+    "alignItemsFlexStart": {
+      "description": "Styles applied to the root element when the parent `ListItem` uses `alignItems=\"flex-start\"`."
+    }
+  },
+  "ListItemIcon": {
+    "root": { "description": "Styles applied to the root element." },
+    "alignItemsFlexStart": {
+      "description": "Styles applied to the root element when the parent `ListItem` uses `alignItems=\"flex-start\"`."
+    }
+  },
+  "ListItemSecondaryAction": {
+    "root": { "description": "Styles applied to the root element." },
+    "disableGutters": {
+      "description": "Styles applied to the root element when the parent `ListItem` has `disableGutters={true}`."
+    }
+  },
+  "ListItemText": {
+    "root": { "description": "Styles applied to the root element." },
+    "multiline": {
+      "description": "Styles applied to the `Typography` components if primary and secondary are set."
+    },
+    "dense": { "description": "Styles applied to the `Typography` components if dense." },
+    "inset": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>inset={true}</code>"
+    },
+    "primary": { "description": "Styles applied to the primary `Typography` component." },
+    "secondary": { "description": "Styles applied to the secondary `Typography` component." }
+  },
+  "ListSubheader": {
+    "root": { "description": "Styles applied to the root element." },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"inherit\"</code>"
+    },
+    "gutters": {
+      "description": "Styles applied to the inner `component` element unless {{conditions}}.",
+      "conditions": "<code>disableGutters={true}</code>"
+    },
+    "inset": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>inset={true}</code>"
+    },
+    "sticky": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>disableSticky={true}</code>"
+    }
+  },
+  "LoadingButton": {
+    "root": { "description": "Styles applied to the root element." },
+    "pending": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>pending={true}</code>"
+    },
+    "pendingIndicator": { "description": "Styles applied to the pendingIndicator element." },
+    "pendingIndicatorCenter": {
+      "description": "Styles applied to the pendingIndicator element if {{conditions}}.",
+      "conditions": "<code>pendingPosition=\"center\"</code>"
+    },
+    "pendingIndicatorStart": {
+      "description": "Styles applied to the pendingIndicator element if {{conditions}}.",
+      "conditions": "<code>pendingPosition=\"start\"</code>"
+    },
+    "pendingIndicatorEnd": {
+      "description": "Styles applied to the pendingIndicator element if {{conditions}}.",
+      "conditions": "<code>pendingPosition=\"end\"</code>"
+    },
+    "endIconPendingEnd": {
+      "description": "Styles applied to the endIcon element if {{conditions}}.",
+      "conditions": "<code>pending={true}</code> and <code>pendingPosition=\"end\"</code>"
+    },
+    "startIconPendingStart": {
+      "description": "Styles applied to the startIcon element if {{conditions}}.",
+      "conditions": "<code>pending={true}</code> and <code>pendingPosition=\"start\"</code>"
+    },
+    "labelPendingCenter": {
+      "description": "Styles applied to the label element if {{conditions}}.",
+      "conditions": "<code>pending={true}</code> and <code>pendingPosition=\"center\"</code>"
+    }
+  },
+  "Menu": {
+    "paper": { "description": "Styles applied to the `Paper` component." },
+    "list": { "description": "Styles applied to the `List` component via `MenuList`." }
+  },
+  "MenuItem": {
+    "root": { "description": "Styles applied to the root element." },
+    "gutters": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>disableGutters={true}</code>"
+    },
+    "selected": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>selected={true}</code>"
+    },
+    "dense": { "description": "Styles applied to the root element if dense." }
+  },
+  "MenuList": {},
+  "MobileStepper": {
+    "root": { "description": "Styles applied to the root element." },
+    "positionBottom": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"bottom\"</code>"
+    },
+    "positionTop": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"top\"</code>"
+    },
+    "positionStatic": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>position=\"static\"</code>"
+    },
+    "dots": {
+      "description": "Styles applied to the dots container if {{conditions}}.",
+      "conditions": "<code>variant=\"dots\"</code>"
+    },
+    "dot": {
+      "description": "Styles applied to each dot if {{conditions}}.",
+      "conditions": "<code>variant=\"dots\"</code>"
+    },
+    "dotActive": {
+      "description": "Styles applied to a dot if {{conditions}}.",
+      "conditions": "<code>variant=\"dots\"</code> and this is the active step"
+    },
+    "progress": {
+      "description": "Styles applied to the Linear Progress component if {{conditions}}.",
+      "conditions": "<code>variant=\"progress\"</code>"
+    }
+  },
+  "Modal": {},
+  "NativeSelect": {
+    "root": { "description": "Styles applied to the select component `root` class." },
+    "select": { "description": "Styles applied to the select component `select` class." },
+    "filled": {
+      "description": "Styles applied to the select component if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to the select component if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "selectMenu": { "description": "Styles applied to the select component `selectMenu` class." },
+    "disabled": { "description": "Pseudo-class applied to the select component `disabled` class." },
+    "icon": { "description": "Styles applied to the icon component." },
+    "iconOpen": { "description": "Styles applied to the icon component if the popup is open." },
+    "iconFilled": {
+      "description": "Styles applied to the icon component if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "iconOutlined": {
+      "description": "Styles applied to the icon component if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "nativeInput": { "description": "Styles applied to the underlying native input component." }
+  },
+  "NoSsr": {},
+  "OutlinedInput": {
+    "root": { "description": "Styles applied to the root element." },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if the color is secondary."
+    },
+    "focused": { "description": "Styles applied to the root element if the component is focused." },
+    "disabled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "adornedStart": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>startAdornment</code> is provided"
+    },
+    "adornedEnd": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>endAdornment</code> is provided"
+    },
+    "error": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>error={true}</code>"
+    },
+    "marginDense": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "multiline": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "notchedOutline": { "description": "Styles applied to the `NotchedOutline` element." },
+    "input": { "description": "Styles applied to the `input` element." },
+    "inputMarginDense": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>margin=\"dense\"</code>"
+    },
+    "inputMultiline": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>multiline={true}</code>"
+    },
+    "inputAdornedStart": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>startAdornment</code> is provided"
+    },
+    "inputAdornedEnd": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>endAdornment</code> is provided"
+    }
+  },
+  "Pagination": {
+    "root": { "description": "Styles applied to the root element." },
+    "ul": { "description": "Styles applied to the ul element." },
+    "outlined": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "text": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code>"
+    }
+  },
+  "PaginationItem": {
+    "root": { "description": "Styles applied to the root element." },
+    "page": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>type=\"page\"</code>"
+    },
+    "sizeSmall": {
+      "description": "Styles applied applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "sizeLarge": {
+      "description": "Styles applied applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"large\"</code>"
+    },
+    "text": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code>"
+    },
+    "textPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
+    },
+    "textSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "outlinedPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
+    },
+    "outlinedSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "rounded": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>rounded=\"true\"</code>"
+    },
+    "ellipsis": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>type=\"start-ellipsis\"</code> or <code>type=\"end-ellipsis\"</code>"
+    },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the root element if keyboard focused."
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "selected": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>selected={true}</code>"
+    },
+    "icon": { "description": "Styles applied to the icon element." }
+  },
+  "Paper": {
+    "root": { "description": "Styles applied to the root element." },
+    "rounded": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>square={true}</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "elevation": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"elevation\"</code>"
+    }
+  },
+  "Popover": {
+    "root": { "description": "Styles applied to the root element." },
+    "paper": { "description": "Styles applied to the `Paper` component." }
+  },
+  "Popper": {},
+  "Portal": {},
+  "Radio": {
+    "root": { "description": "Styles applied to the root element." },
+    "checked": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>checked={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    }
+  },
+  "RadioGroup": {},
+  "Rating": {
+    "root": { "description": "Styles applied to the root element." },
+    "sizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "sizeLarge": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"large\"</code>"
+    },
+    "readOnly": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>readOnly={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the root element if keyboard focused."
+    },
+    "visuallyHidden": { "description": "Visually hide an element." },
+    "label": { "description": "Styles applied to the label elements." },
+    "labelEmptyValueActive": {
+      "description": "Styles applied to the label of the \"no value\" input when it is active."
+    },
+    "icon": { "description": "Styles applied to the icon wrapping elements." },
+    "iconEmpty": { "description": "Styles applied to the icon wrapping elements when empty." },
+    "iconFilled": { "description": "Styles applied to the icon wrapping elements when filled." },
+    "iconHover": { "description": "Styles applied to the icon wrapping elements when hover." },
+    "iconFocus": { "description": "Styles applied to the icon wrapping elements when focus." },
+    "iconActive": { "description": "Styles applied to the icon wrapping elements when active." },
+    "decimal": {
+      "description": "Styles applied to the icon wrapping elements when decimals are necessary."
+    }
+  },
+  "ScopedCssBaseline": { "root": { "description": "Styles applied to the root element." } },
+  "Select": {
+    "root": { "description": "Styles applied to the select component `root` class." },
+    "select": { "description": "Styles applied to the select component `select` class." },
+    "filled": {
+      "description": "Styles applied to the select component if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to the select component if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "selectMenu": { "description": "Styles applied to the select component `selectMenu` class." },
+    "disabled": { "description": "Pseudo-class applied to the select component `disabled` class." },
+    "icon": { "description": "Styles applied to the icon component." },
+    "iconOpen": { "description": "Styles applied to the icon component if the popup is open." },
+    "iconFilled": {
+      "description": "Styles applied to the icon component if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "iconOutlined": {
+      "description": "Styles applied to the icon component if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "nativeInput": { "description": "Styles applied to the underlying native input component." }
+  },
+  "Skeleton": {
+    "root": { "description": "Styles applied to the root element." },
+    "text": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code>"
+    },
+    "rectangular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"rectangular\"</code>"
+    },
+    "circular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"circular\"</code>"
+    },
+    "pulse": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>animation=\"pulse\"</code>"
+    },
+    "wave": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>animation=\"wave\"</code>"
+    },
+    "withChildren": { "description": "Styles applied when the component is passed children." },
+    "fitContent": {
+      "description": "Styles applied when the component is passed children and no width."
+    },
+    "heightAuto": {
+      "description": "Styles applied when the component is passed children and no height."
+    }
+  },
+  "Slide": {},
+  "Slider": {
+    "root": { "description": "Styles applied to the root element." },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "marked": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>marks</code> is provided with at least one label"
+    },
+    "vertical": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root and thumb element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "rail": { "description": "Styles applied to the rail element." },
+    "track": { "description": "Styles applied to the track element." },
+    "trackFalse": {
+      "description": "Styles applied to the track element if {{conditions}}.",
+      "conditions": "<code>track={false}</code>"
+    },
+    "trackInverted": {
+      "description": "Styles applied to the track element if {{conditions}}.",
+      "conditions": "<code>track=\"inverted\"</code>"
+    },
+    "thumb": { "description": "Styles applied to the thumb element." },
+    "thumbColorPrimary": {
+      "description": "Styles applied to the thumb element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "thumbColorSecondary": {
+      "description": "Styles applied to the thumb element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "active": { "description": "Pseudo-class applied to the thumb element if it's active." },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the thumb element if keyboard focused."
+    },
+    "valueLabel": { "description": "Styles applied to the thumb label element." },
+    "mark": { "description": "Styles applied to the mark element." },
+    "markActive": {
+      "description": "Styles applied to the mark element if active (depending on the value)."
+    },
+    "markLabel": { "description": "Styles applied to the mark label element." },
+    "markLabelActive": {
+      "description": "Styles applied to the mark label element if active (depending on the value)."
+    }
+  },
+  "SliderStyled": {
+    "root": { "description": "Class name applied to the root element." },
+    "colorPrimary": {
+      "description": "Class name applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Class name applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "marked": {
+      "description": "Class name applied to the root element if {{conditions}}.",
+      "conditions": "<code>marks</code> is provided with at least one label"
+    },
+    "vertical": {
+      "description": "Class name applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root and thumb element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "rail": { "description": "Class name applied to the rail element." },
+    "track": { "description": "Class name applied to the track element." },
+    "trackFalse": {
+      "description": "Class name applied to the track element if {{conditions}}.",
+      "conditions": "<code>track={false}</code>"
+    },
+    "trackInverted": {
+      "description": "Class name applied to the track element if {{conditions}}.",
+      "conditions": "<code>track=\"inverted\"</code>"
+    },
+    "thumb": { "description": "Class name applied to the thumb element." },
+    "thumbColorPrimary": {
+      "description": "Class name applied to the thumb element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "thumbColorSecondary": {
+      "description": "Class name applied to the thumb element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "active": { "description": "Pseudo-class applied to the thumb element if it's active." },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the thumb element if keyboard focused."
+    },
+    "valueLabel": { "description": "Class name applied to the thumb label element." },
+    "mark": { "description": "Class name applied to the mark element." },
+    "markActive": {
+      "description": "Class name applied to the mark element if active (depending on the value)."
+    },
+    "markLabel": { "description": "Class name applied to the mark label element." },
+    "markLabelActive": {
+      "description": "Class name applied to the mark label element if active (depending on the value)."
+    }
+  },
+  "SliderUnstyled": {},
+  "Snackbar": {
+    "root": { "description": "Styles applied to the root element." },
+    "anchorOriginTopCenter": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'top', 'center' }}</code>"
+    },
+    "anchorOriginBottomCenter": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'center' }}</code>"
+    },
+    "anchorOriginTopRight": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
+    },
+    "anchorOriginBottomRight": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>"
+    },
+    "anchorOriginTopLeft": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>"
+    },
+    "anchorOriginBottomLeft": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
+    }
+  },
+  "SnackbarContent": {
+    "root": { "description": "Styles applied to the root element." },
+    "message": { "description": "Styles applied to the message wrapper element." },
+    "action": {
+      "description": "Styles applied to the action wrapper element if {{conditions}}.",
+      "conditions": "<code>action</code> is provided"
+    }
+  },
+  "SpeedDial": {
+    "root": { "description": "Styles applied to the root element." },
+    "fab": { "description": "Styles applied to the Fab component." },
+    "directionUp": { "description": "Styles applied to the root if direction=\"up\"" },
+    "directionDown": { "description": "Styles applied to the root if direction=\"down\"" },
+    "directionLeft": { "description": "Styles applied to the root if direction=\"left\"" },
+    "directionRight": { "description": "Styles applied to the root if direction=\"right\"" },
+    "actions": { "description": "Styles applied to the actions (`children` wrapper) element." },
+    "actionsClosed": {
+      "description": "Styles applied to the actions (`children` wrapper) element if {{conditions}}.",
+      "conditions": "<code>open={false}</code>"
+    }
+  },
+  "SpeedDialAction": {
+    "fab": { "description": "Styles applied to the Fab component." },
+    "fabClosed": {
+      "description": "Styles applied to the Fab component if {{conditions}}.",
+      "conditions": "<code>open={false}</code>"
+    },
+    "staticTooltip": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>tooltipOpen={true}</code>"
+    },
+    "staticTooltipClosed": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>tooltipOpen={true}</code> and <code>open={false}</code>"
+    },
+    "staticTooltipLabel": {
+      "description": "Styles applied to the static tooltip label if {{conditions}}.",
+      "conditions": "<code>tooltipOpen={true}</code>"
+    },
+    "tooltipPlacementLeft": {
+      "description": "Styles applied to the root if {{conditions}}.",
+      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"left\"</code>"
+    },
+    "tooltipPlacementRight": {
+      "description": "Styles applied to the root if {{conditions}}.",
+      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"right\"</code>"
+    }
+  },
+  "SpeedDialIcon": {
+    "root": { "description": "Styles applied to the root element." },
+    "icon": { "description": "Styles applied to the icon component." },
+    "iconOpen": {
+      "description": "Styles applied to the icon component if {{conditions}}.",
+      "conditions": "<code>open={true}</code>"
+    },
+    "iconWithOpenIconOpen": {
+      "description": "Styles applied to the icon when an `openIcon` is provided and if {{conditions}}.",
+      "conditions": "<code>open={true}</code>"
+    },
+    "openIcon": { "description": "Styles applied to the `openIcon` if provided." },
+    "openIconOpen": {
+      "description": "Styles applied to the `openIcon` if provided and if {{conditions}}.",
+      "conditions": "<code>open={true}</code>"
+    }
+  },
+  "Step": {
+    "root": { "description": "Styles applied to the root element." },
+    "horizontal": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "vertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "alternativeLabel": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alternativeLabel={true}</code>"
+    },
+    "completed": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>completed={true}</code>"
+    }
+  },
+  "StepButton": {
+    "root": { "description": "Styles applied to the root element." },
+    "horizontal": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "vertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "touchRipple": { "description": "Styles applied to the `ButtonBase` touch-ripple." }
+  },
+  "StepConnector": {
+    "root": { "description": "Styles applied to the root element." },
+    "horizontal": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "vertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "alternativeLabel": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alternativeLabel={true}</code>"
+    },
+    "active": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>active={true}</code>"
+    },
+    "completed": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>completed={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "line": { "description": "Styles applied to the line element." },
+    "lineHorizontal": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "lineVertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    }
+  },
+  "StepContent": {
+    "root": { "description": "Styles applied to the root element." },
+    "last": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>last={true}</code> (controlled by <code>Step</code>)"
+    },
+    "transition": { "description": "Styles applied to the Transition component." }
+  },
+  "StepIcon": {
+    "root": { "description": "Styles applied to the root element." },
+    "text": { "description": "Styles applied to the SVG text element." },
+    "active": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>active={true}</code>"
+    },
+    "completed": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>completed={true}</code>"
+    },
+    "error": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>error={true}</code>"
+    }
+  },
+  "StepLabel": {
+    "root": { "description": "Styles applied to the root element." },
+    "horizontal": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "vertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "label": {
+      "description": "Styles applied to the `Typography` component which wraps `children`."
+    },
+    "active": {
+      "description": "Pseudo-class applied to the `Typography` component if {{conditions}}.",
+      "conditions": "<code>active={true}</code>"
+    },
+    "completed": {
+      "description": "Pseudo-class applied to the `Typography` component if {{conditions}}.",
+      "conditions": "<code>completed={true}</code>"
+    },
+    "error": {
+      "description": "Pseudo-class applied to the root element and `Typography` component if {{conditions}}.",
+      "conditions": "<code>error={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element and `Typography` component if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "iconContainer": { "description": "Styles applied to the `icon` container element." },
+    "alternativeLabel": {
+      "description": "Pseudo-class applied to the root and icon container and `Typography` if {{conditions}}.",
+      "conditions": "<code>alternativeLabel={true}</code>"
+    },
+    "labelContainer": {
+      "description": "Styles applied to the container element which wraps `Typography` and `optional`."
+    }
+  },
+  "Stepper": {
+    "root": { "description": "Styles applied to the root element." },
+    "horizontal": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "vertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "alternativeLabel": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>alternativeLabel={true}</code>"
+    }
+  },
+  "SvgIcon": {
+    "root": { "description": "Styles applied to the root element." },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "colorAction": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"action\"</code>"
+    },
+    "colorError": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "colorDisabled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"disabled\"</code>"
+    },
+    "fontSizeInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fontSize=\"inherit\"</code>"
+    },
+    "fontSizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fontSize=\"small\"</code>"
+    },
+    "fontSizeLarge": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fontSize=\"large\"</code>"
+    }
+  },
+  "SwipeableDrawer": {},
+  "Switch": {
+    "root": { "description": "Styles applied to the root element." },
+    "edgeStart": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>edge=\"start\"</code>"
+    },
+    "edgeEnd": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>edge=\"end\"</code>"
+    },
+    "switchBase": {
+      "description": "Styles applied to the internal `SwitchBase` component's `root` class."
+    },
+    "colorPrimary": {
+      "description": "Styles applied to the internal SwitchBase component's root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the internal SwitchBase component's root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "sizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "checked": {
+      "description": "Pseudo-class applied to the internal `SwitchBase` component's `checked` class."
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the internal SwitchBase component's disabled class."
+    },
+    "input": {
+      "description": "Styles applied to the internal SwitchBase component's input element."
+    },
+    "thumb": {
+      "description": "Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop."
+    },
+    "track": { "description": "Styles applied to the track element." }
+  },
+  "Tab": {
+    "root": { "description": "Styles applied to the root element." },
+    "labelIcon": {
+      "description": "Styles applied to the root element if both `icon` and `label` are provided."
+    },
+    "textColorInherit": {
+      "description": "Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor=\"inherit\"`."
+    },
+    "textColorPrimary": {
+      "description": "Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor=\"primary\"`."
+    },
+    "textColorSecondary": {
+      "description": "Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor=\"secondary\"`."
+    },
+    "selected": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>selected={true}</code> (controlled by the Tabs component)"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code> (controlled by the Tabs component)"
+    },
+    "fullWidth": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fullWidth={true}</code> (controlled by the Tabs component)"
+    },
+    "wrapped": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>wrapped={true}</code>"
+    },
+    "wrapper": { "description": "Styles applied to the `icon` and `label`'s wrapper element." }
+  },
+  "TabContext": {},
+  "TabList": {},
+  "TabPanel": { "root": { "description": "Styles applied to the root element." } },
+  "TabScrollButton": {
+    "root": { "description": "Styles applied to the root element." },
+    "vertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    }
+  },
+  "Table": {
+    "root": { "description": "Styles applied to the root element." },
+    "stickyHeader": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>stickyHeader={true}</code>"
+    }
+  },
+  "TableBody": { "root": { "description": "Styles applied to the root element." } },
+  "TableCell": {
+    "root": { "description": "Styles applied to the root element." },
+    "head": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"head\"</code> or <code>context.table.head</code>"
+    },
+    "body": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"body\"</code> or <code>context.table.body</code>"
+    },
+    "footer": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"footer\"</code> or <code>context.table.footer</code>"
+    },
+    "sizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "paddingCheckbox": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>padding=\"checkbox\"</code>"
+    },
+    "paddingNone": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>padding=\"none\"</code>"
+    },
+    "alignLeft": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"left\"</code>"
+    },
+    "alignCenter": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"center\"</code>"
+    },
+    "alignRight": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"right\"</code>"
+    },
+    "alignJustify": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"justify\"</code>"
+    },
+    "stickyHeader": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>context.table.stickyHeader={true}</code>"
+    }
+  },
+  "TableContainer": { "root": { "description": "Styles applied to the root element." } },
+  "TableFooter": { "root": { "description": "Styles applied to the root element." } },
+  "TableHead": { "root": { "description": "Styles applied to the root element." } },
+  "TablePagination": {
+    "root": { "description": "Styles applied to the root element." },
+    "toolbar": { "description": "Styles applied to the Toolbar component." },
+    "spacer": { "description": "Styles applied to the spacer element." },
+    "caption": {
+      "description": "Styles applied to the caption Typography components if {{conditions}}.",
+      "conditions": "<code>variant=\"caption\"</code>"
+    },
+    "selectRoot": { "description": "Styles applied to the Select component root element." },
+    "select": { "description": "Styles applied to the Select component `select` class." },
+    "selectIcon": { "description": "Styles applied to the Select component `icon` class." },
+    "input": { "description": "Styles applied to the `InputBase` component." },
+    "menuItem": { "description": "Styles applied to the MenuItem component." },
+    "actions": {
+      "description": "Styles applied to the internal `TablePaginationActions` component."
+    }
+  },
+  "TableRow": {
+    "root": { "description": "Styles applied to the root element." },
+    "selected": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>selected={true}</code>"
+    },
+    "hover": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>hover={true}</code>"
+    },
+    "head": { "description": "Styles applied to the root element if table variant=\"head\"." },
+    "footer": { "description": "Styles applied to the root element if table variant=\"footer\"." }
+  },
+  "TableSortLabel": {
+    "root": { "description": "Styles applied to the root element." },
+    "active": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>active={true}</code>"
+    },
+    "icon": { "description": "Styles applied to the icon component." },
+    "iconDirectionDesc": {
+      "description": "Styles applied to the icon component if {{conditions}}.",
+      "conditions": "<code>direction=\"desc\"</code>"
+    },
+    "iconDirectionAsc": {
+      "description": "Styles applied to the icon component if {{conditions}}.",
+      "conditions": "<code>direction=\"asc\"</code>"
+    }
+  },
+  "Tabs": {
+    "root": { "description": "Styles applied to the root element." },
+    "vertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "flexContainer": { "description": "Styles applied to the flex container element." },
+    "flexContainerVertical": {
+      "description": "Styles applied to the flex container element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "centered": {
+      "description": "Styles applied to the flex container element if {{conditions}}.",
+      "conditions": "<code>centered={true}</code> & <code>!variant=\"scrollable\"</code>"
+    },
+    "scroller": { "description": "Styles applied to the tablist element." },
+    "fixed": {
+      "description": "Styles applied to the tablist element if {{conditions}}.",
+      "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
+    },
+    "scrollableX": {
+      "description": "Styles applied to the tablist element if {{conditions}}.",
+      "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"horizontal\"</code>"
+    },
+    "scrollableY": {
+      "description": "Styles applied to the tablist element if {{conditions}}.",
+      "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"vertical\"</code>"
+    },
+    "hideScrollbar": {
+      "description": "Styles applied to the tablist element if {{conditions}}.",
+      "conditions": "<code>variant=\"scrollable\"</code> and <code>visibleScrollbar={false}</code>"
+    },
+    "scrollButtons": { "description": "Styles applied to the `ScrollButtonComponent` component." },
+    "scrollButtonsHideMobile": {
+      "description": "Styles applied to the `ScrollButtonComponent` component if {{conditions}}.",
+      "conditions": "<code>allowScrollButtonsMobile={true}</code>"
+    },
+    "indicator": { "description": "Styles applied to the `TabIndicator` component." }
+  },
+  "TextField": { "root": { "description": "Styles applied to the root element." } },
+  "TextareaAutosize": {},
+  "Timeline": {
+    "root": { "description": "Styles applied to the root element." },
+    "alignLeft": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"left\"</code>"
+    },
+    "alignRight": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"right\"</code>"
+    },
+    "alignAlternate": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"alternate\"</code>"
+    }
+  },
+  "TimelineConnector": { "root": { "description": "Styles applied to the root element." } },
+  "TimelineContent": {
+    "root": { "description": "Styles applied to the root element." },
+    "alignRight": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"right\"</code>"
+    }
+  },
+  "TimelineDot": {
+    "root": { "description": "Styles applied to the root element." },
+    "filled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "filledGrey": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"grey\"</code> and <code>variant=\"filled\"</code>"
+    },
+    "outlinedGrey": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"grey\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "filledPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"filled\"</code>"
+    },
+    "outlinedPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "filledSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"filled\"</code>"
+    },
+    "outlinedSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>"
+    }
+  },
+  "TimelineItem": {
+    "root": { "description": "Styles applied to the root element." },
+    "alignLeft": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"left\"</code>"
+    },
+    "alignRight": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"right\"</code>"
+    },
+    "alignAlternate": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"alternate\"</code>"
+    },
+    "missingOppositeContent": {
+      "description": "Styles applied to the root element if TimelineOppositeContent isn't provided."
+    },
+    "content": { "description": "Styles applied to the timeline content node." },
+    "oppositeContent": { "description": "Styles applied to the timeline opposite content node." }
+  },
+  "TimelineOppositeContent": {
+    "root": { "description": "Styles applied to the root element." },
+    "alignRight": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"right\"</code>"
+    }
+  },
+  "TimelineSeparator": { "root": { "description": "Styles applied to the root element." } },
+  "ToggleButton": {
+    "root": { "description": "Styles applied to the root element." },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "selected": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>selected={true}</code>"
+    },
+    "label": { "description": "Styles applied to the `label` wrapper element." },
+    "sizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "sizeLarge": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"large\"</code>"
+    }
+  },
+  "ToggleButtonGroup": {
+    "root": { "description": "Styles applied to the root element." },
+    "vertical": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    },
+    "grouped": { "description": "Styles applied to the children." },
+    "groupedHorizontal": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>orientation=\"horizontal\"</code>"
+    },
+    "groupedVertical": {
+      "description": "Styles applied to the children if {{conditions}}.",
+      "conditions": "<code>orientation=\"vertical\"</code>"
+    }
+  },
+  "Toolbar": {
+    "root": { "description": "Styles applied to the root element." },
+    "gutters": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>disableGutters={true}</code>"
+    },
+    "regular": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"regular\"</code>"
+    },
+    "dense": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"dense\"</code>"
+    }
+  },
+  "Tooltip": {
+    "popper": { "description": "Styles applied to the Popper component." },
+    "popperInteractive": {
+      "description": "Styles applied to the Popper component unless {{conditions}}.",
+      "conditions": "<code>disableInteractive={true}</code>"
+    },
+    "popperArrow": {
+      "description": "Styles applied to the Popper component if {{conditions}}.",
+      "conditions": "<code>arrow={true}</code>"
+    },
+    "tooltip": { "description": "Styles applied to the tooltip (label wrapper) element." },
+    "tooltipArrow": {
+      "description": "Styles applied to the tooltip (label wrapper) element if {{conditions}}.",
+      "conditions": "<code>arrow={true}</code>"
+    },
+    "arrow": { "description": "Styles applied to the arrow element." },
+    "touch": {
+      "description": "Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch."
+    },
+    "tooltipPlacementLeft": {
+      "description": "Styles applied to the tooltip (label wrapper) element if {{conditions}}.",
+      "conditions": "<code>placement</code> contains \"left\""
+    },
+    "tooltipPlacementRight": {
+      "description": "Styles applied to the tooltip (label wrapper) element if {{conditions}}.",
+      "conditions": "<code>placement</code> contains \"right\""
+    },
+    "tooltipPlacementTop": {
+      "description": "Styles applied to the tooltip (label wrapper) element if {{conditions}}.",
+      "conditions": "<code>placement</code> contains \"top\""
+    },
+    "tooltipPlacementBottom": {
+      "description": "Styles applied to the tooltip (label wrapper) element if {{conditions}}.",
+      "conditions": "<code>placement</code> contains \"bottom\""
+    }
+  },
+  "TreeItem": {
+    "root": { "description": "Styles applied to the root element." },
+    "group": { "description": "Styles applied to the `role=\"group\"` element." },
+    "content": { "description": "Styles applied to the content element." },
+    "expanded": { "description": "Pseudo-class applied to the content element when expanded." },
+    "selected": { "description": "Pseudo-class applied to the content element when selected." },
+    "focused": { "description": "Pseudo-class applied to the content element when focused." },
+    "disabled": { "description": "Pseudo-class applied to the element when disabled." },
+    "iconContainer": { "description": "Styles applied to the tree node icon." },
+    "label": { "description": "Styles applied to the label element." }
+  },
+  "TreeView": { "root": { "description": "Styles applied to the root element." } },
+  "Typography": {
+    "root": { "description": "Styles applied to the root element." },
+    "body2": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"body2\"</code>"
+    },
+    "body1": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"body1\"</code>"
+    },
+    "caption": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"caption\"</code>"
+    },
+    "button": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"button\"</code>"
+    },
+    "h1": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"h1\"</code>"
+    },
+    "h2": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"h2\"</code>"
+    },
+    "h3": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"h3\"</code>"
+    },
+    "h4": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"h4\"</code>"
+    },
+    "h5": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"h5\"</code>"
+    },
+    "h6": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"h6\"</code>"
+    },
+    "subtitle1": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"subtitle1\"</code>"
+    },
+    "subtitle2": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"subtitle2\"</code>"
+    },
+    "overline": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"overline\"</code>"
+    },
+    "inherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"inherit\"</code>"
+    },
+    "alignLeft": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"left\"</code>"
+    },
+    "alignCenter": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"center\"</code>"
+    },
+    "alignRight": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"right\"</code>"
+    },
+    "alignJustify": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"justify\"</code>"
+    },
+    "noWrap": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>nowrap={true}</code>"
+    },
+    "gutterBottom": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>gutterBottom={true}</code>"
+    },
+    "paragraph": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>paragraph={true}</code>"
+    },
+    "colorInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"inherit\"</code>"
+    },
+    "colorPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "colorTextPrimary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"textPrimary\"</code>"
+    },
+    "colorTextSecondary": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"textSecondary\"</code>"
+    },
+    "colorError": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"error\"</code>"
+    },
+    "displayInline": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>display=\"inline\"</code>"
+    },
+    "displayBlock": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>display=\"block\"</code>"
+    }
+  },
+  "Unstable_TrapFocus": {},
+  "Zoom": {}
+}

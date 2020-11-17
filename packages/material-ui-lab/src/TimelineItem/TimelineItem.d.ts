@@ -18,7 +18,7 @@ export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HT
     alignRight?: string;
     /** Styles applied to the root element if `align="alternate"`. */
     alignAlternate?: string;
-    /** Styles applied to the root element if no there isn't TimelineOppositeContent provided. */
+    /** Styles applied to the root element if TimelineOppositeContent isn't provided. */
     missingOppositeContent?: string;
     /** Styles applied to the timeline content node. */
     content?: string;

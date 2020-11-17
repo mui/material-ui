@@ -4,7 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
 import { CacheProvider } from '@emotion/react';
-import createEmotionServer from 'create-emotion-server';
+import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
 import cache from './cache';

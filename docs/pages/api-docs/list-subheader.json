@@ -1,0 +1,29 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'"
+      },
+      "default": "'default'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "disableGutters": { "type": { "name": "bool" } },
+    "disableSticky": { "type": { "name": "bool" } },
+    "inset": { "type": { "name": "bool" } }
+  },
+  "name": "ListSubheader",
+  "styles": {
+    "classes": ["root", "colorPrimary", "colorInherit", "gutters", "inset", "sticky"],
+    "globalClasses": {}
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui/src/ListSubheader/ListSubheader.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
+  "styledComponent": false
+}

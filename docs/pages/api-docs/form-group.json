@@ -1,0 +1,17 @@
+{
+  "description": "`FormGroup` wraps controls such as `Checkbox` and `Switch`.\nIt provides compact row layout.\nFor the `Radio`, you should be using the `RadioGroup` component instead of this one.",
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "row": { "type": { "name": "bool" } }
+  },
+  "name": "FormGroup",
+  "styles": { "classes": ["root", "row"], "globalClasses": {} },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/FormGroup/FormGroup.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/switches/\">Switches</a></li></ul>",
+  "styledComponent": false
+}

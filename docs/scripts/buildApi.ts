@@ -1,39 +1,60 @@
-/* eslint-disable no-console */
-import * as babel from '@babel/core';
-import traverse from '@babel/traverse';
+/* eslint-disable no-console, no-shadow */
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
+import * as babel from '@babel/core';
+import traverse from '@babel/traverse';
 import kebabCase from 'lodash/kebabCase';
 import uniqBy from 'lodash/uniqBy';
 import * as prettier from 'prettier';
-import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
-import { getLineFeed } from './helpers';
-import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
-import generateMarkdown, { ReactApi } from '../src/modules/utils/generateMarkdown';
-import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
-import { getHeaders } from '../src/modules/utils/parseMarkdown';
-import parseTest from '../src/modules/utils/parseTest';
-import { pageToTitle } from '../src/modules/utils/helpers';
-import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
-import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
+import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
+import checkProps, { ReactApi } from 'docs/src/modules/utils/checkProps';
+import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import parseTest from 'docs/src/modules/utils/parseTest';
+import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
+import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
+import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import generatePropTypeDescription from 'docs/src/modules/utils/generatePropTypeDescription';
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
+import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
+import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
+import { getLineFeed } from './helpers';
+
+const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
+
+const classDescriptions: { [key: string]: { [key: string]: string } } = {};
+const componentDescriptions: { [key: string]: string } = {};
+const propDescriptions: { [key: string]: { [key: string]: string | undefined } } = {};
 
 const generateClassName = createGenerateClassName();
 
-const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
+function writePrettifiedFile(filename: string, data: string, prettierConfigPath: string) {
+  const prettierConfig = prettier.resolveConfig.sync(filename, {
+    config: prettierConfigPath,
+  });
+  if (prettierConfig === null) {
+    throw new Error(
+      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
+    );
+  }
+
+  writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
+    encoding: 'utf8',
+  });
+}
 
 /**
  * Receives a component's test information and source code and return's an object
- * containing the inherited component's name and pathname
- * @param testInfo Information retrieved from the component's describeConformance() in its test.js file
- * @param src The component's source code
+ * containing the inherited component's name and pathname.
+ * @param testInfo Information retrieved from the component's describeConformance() in its test.js file.
+ * @param src The component's source code.
  */
 function getInheritance(
   testInfo: {
-    /** The name of the component functionality is inherited from */
+    /** The name of the component functionality is inherited from. */
     inheritComponent: string | undefined;
   },
   src: string,
@@ -41,7 +62,7 @@ function getInheritance(
   let inheritedComponentName = testInfo.inheritComponent;
 
   if (inheritedComponentName == null) {
-    const match = src.match(inheritedComponentRegexp);
+    const match = src.match(/\/\/ @inheritedComponent (.*)/);
     if (match !== null) {
       inheritedComponentName = match[1];
     }
@@ -97,6 +118,18 @@ function computeApiDescription(api: ReactApi, options: { host: string }): Promis
   });
 }
 
+/**
+ * Add demos & API comment block to type definitions, e.g.:
+ * /**
+ *  * Demos:
+ *  *
+ *  * - [Icons](https://material-ui.com/components/icons/)
+ *  * - [Material Icons](https://material-ui.com/components/material-icons/)
+ *  *
+ *  * API:
+ *  *
+ *  * - [Icon API](https://material-ui.com/api/icon/)
+ */
 async function annotateComponentDefinition(context: {
   component: { filename: string };
   api: ReactApi;
@@ -226,6 +259,9 @@ async function updateStylesDefinition(context: {
   }
 }
 
+/**
+ * Add class descriptions to type definitions
+ */
 async function annotateClassesDefinition(context: {
   api: ReactApi;
   component: { filename: string };
@@ -281,22 +317,72 @@ async function annotateClassesDefinition(context: {
   const typesSourceNew =
     typesSource.slice(0, start) + classesDefinitionSource + typesSource.slice(end);
 
-  const prettierConfig = prettier.resolveConfig.sync(typesFilename, {
-    config: prettierConfigPath,
+  writePrettifiedFile(typesFilename, typesSourceNew, prettierConfigPath);
+}
+
+/**
+ * Substitute CSS class description conditions with placeholder
+ */
+function extractClassConditions(classDescriptions: { [key: string]: { [key: string]: string } }) {
+  const classConditions: any = {};
+  const stylesRegex = /(if |unless )(`.*)./;
+
+  Object.entries(classDescriptions).forEach(([componentName, descriptions]: [string, object]) => {
+    classConditions[componentName] = {};
+
+    Object.entries(descriptions).forEach(([className, classDescription]: [string, string]) => {
+      if (className) {
+        const conditions = classDescription.match(stylesRegex);
+
+        if (conditions) {
+          classConditions[componentName][className] = {
+            description: classDescription.replace(stylesRegex, '$1{{conditions}}.'),
+            conditions: conditions[2].replace(/`(.*?)`/g, '<code>$1</code>'),
+          };
+        } else {
+          classConditions[componentName][className] = { description: classDescription };
+        }
+      }
+    });
   });
-  if (prettierConfig === null) {
-    throw new Error(
-      `Could not resolve config for '${typesFilename}' using prettier config path '${prettierConfigPath}'.`,
+  return classConditions;
+}
+
+/**
+ * Generate list of component demos
+ */
+function generateDemoList(reactAPI: ReactApi): string {
+  const pagesMarkdown = reactAPI.pagesMarkdown.filter((page) => {
+    return (
+      !DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)
     );
+  });
+
+  if (pagesMarkdown.length === 0) {
+    return '';
   }
 
-  writeFileSync(
-    typesFilename,
-    prettier.format(typesSourceNew, { ...prettierConfig, filepath: typesFilename }),
-    {
-      encoding: 'utf8',
-    },
-  );
+  return `<ul>${pagesMarkdown
+    .map((page) => `<li><a href="${page.pathname}/">${pageToTitle(page)}</a></li>`)
+    .join('\n')}</ul>`;
+}
+
+/**
+ * Replaces backslashes with slashes
+ * TODO: Why not using node's path.normalize?
+ */
+function normalizePath(filepath: string): string {
+  return filepath.replace(/\\/g, '/');
+}
+
+function sortObject(object: any) {
+  const orderedData: any = {};
+  Object.keys(object)
+    .sort()
+    .forEach((key) => {
+      orderedData[key] = object[key];
+    });
+  return orderedData;
 }
 
 async function buildDocs(options: {
@@ -338,15 +424,6 @@ async function buildDocs(options: {
     globalClasses: {},
   };
 
-  // styled components does not have the options static
-  const styledComponent = !component?.default?.options;
-  if (styledComponent) {
-    await updateStylesDefinition({
-      styles,
-      component: componentObject,
-    });
-  }
-
   if (component.styles && component.default.options) {
     // Collect the customization points of the `classes` property.
     styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
@@ -356,9 +433,7 @@ async function buildDocs(options: {
     styles.globalClasses = styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
         // @ts-expect-error
-        {
-          key,
-        },
+        { key },
         {
           options: {
             name: styles.name,
@@ -384,8 +459,11 @@ async function buildDocs(options: {
     /**
      * Collect classes comments from the source
      */
-    const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*};[\r\n][\r\n]/;
-    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*(\w*)/g;
+    // Match the styles definition in the source
+    const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*?}\){0,1};[\r\n][\r\n]/;
+    // Match the class name & description
+    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*'*(.*?)'*?[:,]/g;
+
     // Extract the styles section from the source
     const stylesSrc = stylesRegexp.exec(styleSrc);
 
@@ -404,20 +482,32 @@ async function buildDocs(options: {
       filename: componentObject.filename,
     });
   } catch (err) {
-    console.log('Error parsing src for', componentObject.filename);
+    console.error('Error parsing src for', componentObject.filename);
     throw err;
   }
 
   reactAPI.name = name;
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
-  reactAPI.src = src;
   reactAPI.spread = spread;
   reactAPI.EOL = getLineFeed(src);
+
+  // styled components does not have the options static
+  const styledComponent = !component?.default?.options;
+  if (styledComponent) {
+    await updateStylesDefinition({
+      styles,
+      component: componentObject,
+    });
+  }
 
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
   reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
+
+  // if (reactAPI.name !== 'Accordion') {
+  //   return;
+  // }
 
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
@@ -441,41 +531,133 @@ async function buildDocs(options: {
     }, {} as Record<string, string>);
   }
 
-  let markdown;
   try {
-    markdown = generateMarkdown(reactAPI, styledComponent);
+    checkProps(reactAPI);
   } catch (err) {
-    console.log('Error generating markdown for', componentObject.filename);
+    console.log('Error checking props for', componentObject.filename);
     throw err;
   }
 
-  writeFileSync(
-    path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.md`),
-    markdown.replace(/\r?\n/g, reactAPI.EOL),
+  classDescriptions[reactAPI.name] = reactAPI.styles.descriptions;
+
+  // Deep clone so as not to mutate reactAPI (it's used later for the type annotations)
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
+  const pageContent = JSON.parse(JSON.stringify(reactAPI));
+
+  pageContent.filename = normalizePath(reactAPI.filename);
+  pageContent.demos = generateDemoList(reactAPI);
+  pageContent.styledComponent = styledComponent;
+
+  // Only keep "non-standard" global classnames
+  Object.entries(pageContent.styles.globalClasses).forEach(([className, globalClassName]) => {
+    if (globalClassName === `Mui${pageContent.name}-${className}`) {
+      delete pageContent.styles.globalClasses[className];
+    }
+  });
+
+  /**
+   * Minimize the props data to that needed for API page
+   */
+  Object.entries(pageContent.props).forEach(([propName, propData]: any) => {
+    const jsdocDefaultValue = propData.jsdocDefaultValue;
+    let description = propData.description;
+
+    if (description === '@ignore') {
+      return;
+    }
+
+    if (propName === 'classes') {
+      description += ' See <a href="#css">CSS API</a> below for more details.';
+    }
+
+    propDescriptions[name] = {
+      ...propDescriptions[name],
+      [propName]: description && description.replace(/\n@default.*$/, ''),
+    };
+    delete propData.description;
+
+    propData.type.description = generatePropTypeDescription(propData.type);
+
+    if (propData.type.description === propData.type.name) {
+      delete propData.type.description;
+    }
+    delete propData.type.value;
+    delete propData.type.raw;
+
+    // Only keep `default` for bool props if it isn't "false"
+    if (
+      propData.type.name !== 'bool' ||
+      (jsdocDefaultValue && jsdocDefaultValue.value !== 'false')
+    ) {
+      propData.default = jsdocDefaultValue && jsdocDefaultValue.value;
+    }
+    delete propData.defaultValue;
+    delete propData.jsdocDefaultValue;
+
+    if (propData.required === false) {
+      delete propData.required;
+    }
+  });
+
+  if (reactAPI.description.length) {
+    componentDescriptions[reactAPI.name] = reactAPI.description;
+  }
+
+  if (pageContent.description === '') {
+    delete pageContent.description;
+  }
+
+  delete pageContent.src;
+  delete pageContent.EOL;
+  delete pageContent.methods;
+  delete pageContent.displayName;
+  delete pageContent.pagesMarkdown;
+  delete pageContent.styles.name;
+  delete pageContent.styles.descriptions;
+
+  // docs/pages/component-name.json
+  writePrettifiedFile(
+    path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.json`),
+    JSON.stringify(pageContent),
+    prettierConfigPath,
   );
+
   writeFileSync(
     path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.js`),
     `import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import ApiDocs from 'docs/src/modules/components/ApiDocs';
+import mapApiTranslations, { parsePropsMarkdown } from 'docs/src/modules/utils/mapApiTranslations';
+import jsonPageContent from './${kebabCase(reactAPI.name)}.json';
 
-const pageFilename = 'api/${kebabCase(reactAPI.name)}';
-const requireRaw = require.context('!raw-loader!./', false, /\\/${kebabCase(reactAPI.name)}\\.md$/);
-
-export default function Page({ docs }) {
-  return <MarkdownDocs docs={docs} />;
+export default function Page({ pageContent }) {
+  return <ApiDocs pageContent={pageContent} />;
 }
 
-Page.getInitialProps = () => {
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
-  return { demos, docs };
+Page.getInitialProps = async () => {
+  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
+  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
+  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
+
+  const componentDescription = mapApiTranslations(req1, '${reactAPI.name}');
+  const propDescriptions = parsePropsMarkdown(mapApiTranslations(req2, '${reactAPI.name}'));
+  const classDescriptions = mapApiTranslations(req3, '${reactAPI.name}');
+
+  const pageContent = {
+    ...jsonPageContent,
+    componentDescription,
+    propDescriptions,
+    classDescriptions,
+  };
+
+  return { pageContent };
 };
 `.replace(/\r?\n/g, reactAPI.EOL),
   );
 
-  console.log('Built markdown docs for', reactAPI.name);
+  console.log('Built API docs for', reactAPI.name);
 
   await annotateComponentDefinition({ api: reactAPI, component: componentObject });
+
   await annotateClassesDefinition({
     api: reactAPI,
     component: componentObject,
@@ -500,6 +682,16 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
   const theme = createMuiTheme();
 
+  /**
+   * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>
+   *
+   * e.g.:
+   * [{
+   *   pathname: '/components/accordion',
+   *   filename: '/Users/user/Projects/material-ui/docs/src/pages/components/badges/accordion-ja.md',
+   *   components: [ 'Accordion', 'AccordionActions', 'AccordionDetails', 'AccordionSummary' ]
+   * }, ...]
+   */
   const pagesMarkdown = findPagesMarkdown()
     .map((markdown) => {
       const markdownSource = readFileSync(markdown.filename, 'utf8');
@@ -509,6 +701,11 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
       };
     })
     .filter((markdown) => markdown.components.length > 0);
+
+  /**
+   * components: Array<{ filename: string }>
+   * [{ filename: '/Users/user/Projects/material-ui/packages/material-ui/src/Accordion/Accordion.js'}, ...]
+   */
   const components = componentDirectories
     .reduce((directories, componentDirectory) => {
       return directories.concat(findComponents(componentDirectory));
@@ -522,6 +719,12 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
   const componentBuilds = components.map((component) => {
     // use Promise.allSettled once we switch to node 12
+
+    // Don't document ThmeProvider API
+    if (component.filename.includes('ThemeProvider')) {
+      return { status: 'fulfilled' };
+    }
+
     return buildDocs({
       component,
       outputDirectory,
@@ -541,6 +744,24 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
   });
 
   Promise.all(componentBuilds).then((builds) => {
+    writePrettifiedFile(
+      path.resolve('docs/translations', 'component-descriptions.json'),
+      JSON.stringify(sortObject(componentDescriptions)),
+      prettierConfigPath,
+    );
+
+    writePrettifiedFile(
+      path.resolve('docs/translations', 'prop-descriptions.json'),
+      JSON.stringify(sortObject(propDescriptions)),
+      prettierConfigPath,
+    );
+
+    writePrettifiedFile(
+      path.resolve('docs/translations', 'class-descriptions.json'),
+      JSON.stringify(sortObject(extractClassConditions(classDescriptions))),
+      prettierConfigPath,
+    );
+
     const fails = builds.filter(
       (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',
     );
@@ -561,7 +782,7 @@ yargs
     builder: (command) => {
       return command
         .positional('outputDirectory', {
-          description: 'directory where the markdown is written to',
+          description: 'directory where the files are written to',
           type: 'string',
         })
         .positional('componentDirectories', {
@@ -571,7 +792,7 @@ yargs
         })
         .option('grep', {
           description:
-            'Only generate markdown for component filenames matching the pattern. The string is treated as a RegExp.',
+            'Only generate files for component filenames matching the pattern. The string is treated as a RegExp.',
           type: 'string',
         });
     },
