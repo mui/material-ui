@@ -16,7 +16,7 @@ const sliderClasses = {
   rail: getUtilityClass('rail'),
   track: getUtilityClass('track'),
   mark: getUtilityClass('mark'),
-  markActive: getUtilityClass('markActive'), 
+  markActive: getUtilityClass('markActive'),
   markLabel: getUtilityClass('markLabel'),
   markLabelActive: getUtilityClass('markLabelActive'),
   thumb: getUtilityClass('thumb'),

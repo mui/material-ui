@@ -1,4 +1,4 @@
-type SliderClasses = {
+interface SliderClasses {
   root: string;
   active: string;
   focusVisible: string;

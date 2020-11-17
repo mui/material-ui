@@ -1,7 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
-import SliderUnstyled, { SliderValueLabelUnstyled, sliderClasses } from '@material-ui/unstyled/SliderUnstyled';
+import SliderUnstyled, {
+  SliderValueLabelUnstyled,
+  sliderClasses,
+} from '@material-ui/unstyled/SliderUnstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { alpha, lighten, darken } from '../styles/colorManipulator';
@@ -556,6 +559,5 @@ Slider.propTypes = {
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
-
 
 export default Slider;
