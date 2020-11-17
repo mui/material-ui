@@ -195,33 +195,6 @@ const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
   config: path.join(__dirname, '../prettier.config.js'),
 });
 
-const getUnstyledFile = (tsFile: string) => {
-  let unstyledFile = '';
-
-  if (tsFile.endsWith('.d.ts') && tsFile.indexOf('material-ui-unstyled') === -1) {
-    unstyledFile = tsFile;
-
-    const pathParts = unstyledFile.split('/');
-    const componentName = pathParts[pathParts.length - 1].replace('.d.ts', '');
-    const directoryName = pathParts[pathParts.length - 2];
-
-    const componentNameReg = new RegExp(componentName, 'g');
-
-    unstyledFile = unstyledFile.replace(
-      /packages\/material-ui-lab|packages\/material-ui/g,
-      'packages/material-ui-unstyled',
-    );
-    unstyledFile = unstyledFile.replace(componentNameReg, `${componentName}Unstyled`);
-
-    if (directoryName !== componentName) {
-      const directoryNameReg = new RegExp(directoryName, 'g');
-      unstyledFile = unstyledFile.replace(directoryNameReg, `${directoryName}Unstyled`);
-    }
-  }
-
-  return unstyledFile;
-};
-
 async function generateProptypes(
   program: ttp.ts.Program,
   sourceFile: string,
