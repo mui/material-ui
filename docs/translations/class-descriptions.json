@@ -2095,61 +2095,6 @@
   },
   "Slide": {},
   "Slider": {
-    "root": { "description": "Styles applied to the root element." },
-    "colorPrimary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "colorSecondary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code>"
-    },
-    "marked": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>marks</code> is provided with at least one label"
-    },
-    "vertical": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
-    },
-    "disabled": {
-      "description": "Pseudo-class applied to the root and thumb element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "rail": { "description": "Styles applied to the rail element." },
-    "track": { "description": "Styles applied to the track element." },
-    "trackFalse": {
-      "description": "Styles applied to the track element if {{conditions}}.",
-      "conditions": "<code>track={false}</code>"
-    },
-    "trackInverted": {
-      "description": "Styles applied to the track element if {{conditions}}.",
-      "conditions": "<code>track=\"inverted\"</code>"
-    },
-    "thumb": { "description": "Styles applied to the thumb element." },
-    "thumbColorPrimary": {
-      "description": "Styles applied to the thumb element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "thumbColorSecondary": {
-      "description": "Styles applied to the thumb element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code>"
-    },
-    "active": { "description": "Pseudo-class applied to the thumb element if it's active." },
-    "focusVisible": {
-      "description": "Pseudo-class applied to the thumb element if keyboard focused."
-    },
-    "valueLabel": { "description": "Styles applied to the thumb label element." },
-    "mark": { "description": "Styles applied to the mark element." },
-    "markActive": {
-      "description": "Styles applied to the mark element if active (depending on the value)."
-    },
-    "markLabel": { "description": "Styles applied to the mark label element." },
-    "markLabelActive": {
-      "description": "Styles applied to the mark label element if active (depending on the value)."
-    }
-  },
-  "SliderStyled": {
     "root": { "description": "Class name applied to the root element." },
     "colorPrimary": {
       "description": "Class name applied to the root element if {{conditions}}.",

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
-import SliderUnstyled, { SliderValueLabelUnstyled } from '@material-ui/unstyled/SliderUnstyled';
+import SliderUnstyled, { SliderValueLabelUnstyled, sliderClasses } from '@material-ui/unstyled/SliderUnstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { alpha, lighten, darken } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
+export { sliderClasses } from '@material-ui/unstyled/SliderUnstyled';
 
 const overridesResolver = (props, styles, name) => {
   const {
@@ -30,20 +31,20 @@ const overridesResolver = (props, styles, name) => {
   const styleOverrides = {
     ...styles.root,
     ...styles[`color${capitalize(color)}`],
-    '&.Mui-disabled': styles.disabled,
+    [`&.${sliderClasses.disabled}`]: styles.disabled,
     ...(marked && styles.marked),
     ...(orientation === 'vertical' && styles.vertical),
     ...(track === 'inverted' && styles.trackInverted),
     ...(track === false && styles.trackFalse),
-    [`& .${name}-rail`]: styles.rail,
-    [`& .${name}-track`]: styles.track,
-    [`& .${name}-mark`]: styles.mark,
-    [`& .${name}-markLabel`]: styles.markLabel,
-    [`& .${name}-valueLabel`]: styles.valueLabel,
-    [`& .${name}-thumb`]: {
+    [`& .${sliderClasses.rail}`]: styles.rail,
+    [`& .${sliderClasses.track}`]: styles.track,
+    [`& .${sliderClasses.mark}`]: styles.mark,
+    [`& .${sliderClasses.markLabel}`]: styles.markLabel,
+    [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
+    [`& .${sliderClasses.thumb}`]: {
       ...styles.thumb,
       ...styles[`thumbColor${capitalize(color)}`],
-      '&.Mui-disabled': styles.disabled,
+      [`&.${sliderClasses.disabled}`]: styles.disabled,
     },
   };
 
@@ -68,7 +69,7 @@ export const SliderRoot = experimentalStyled(
   ...(props.styleProps.color === 'secondary' && {
     color: props.theme.palette.secondary.main,
   }),
-  '&.Mui-disabled': {
+  [`&.${sliderClasses.disabled}`]: {
     pointerEvents: 'none',
     cursor: 'default',
     color: props.theme.palette.grey[400],
@@ -96,7 +97,7 @@ export const SliderRoot = experimentalStyled(
       marginRight: 20,
     }),
   }),
-  '& .MuiSlider-valueLabelCircle': {
+  [`& .${sliderClasses.valueLabelCircle}`]: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -106,7 +107,7 @@ export const SliderRoot = experimentalStyled(
     backgroundColor: 'currentColor',
     transform: 'rotate(-45deg)',
   },
-  '& .MuiSlider-valueLabelLabel': {
+  [`& .${sliderClasses.valueLabelLabel}`]: {
     color: props.theme.palette.primary.contrastText,
     transform: 'rotate(45deg)',
     textAlign: 'center',
@@ -189,16 +190,16 @@ export const SliderThumb = experimentalStyled(
     right: -15,
     bottom: -15,
   },
-  '&:hover, &.Mui-focusVisible': {
+  [`&:hover, &.${sliderClasses.focusVisible}`]: {
     boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
   },
-  '&.Mui-active': {
+  [`&.${sliderClasses.active}`]: {
     boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
   },
-  '&.Mui-disabled': {
+  [`&.${sliderClasses.disabled}`]: {
     width: 8,
     height: 8,
     marginLeft: -4,
@@ -207,19 +208,19 @@ export const SliderThumb = experimentalStyled(
       boxShadow: 'none',
     },
   },
-  '&.MuiSlider-vertical': {
+  [`&.${sliderClasses.vertical}`]: {
     marginLeft: -5,
     marginBottom: -6,
   },
-  '&.MuiSlider-vertical&.Mui-disabled': {
+  [`&.${sliderClasses.vertical}&.${sliderClasses.disabled}`]: {
     marginLeft: -3,
     marginBottom: -4,
   },
   ...(props.styleProps.color === 'secondary' && {
-    '&:hover, &.Mui-focusVisible': {
+    [`&:hover, &.${sliderClasses.focusVisible}`]: {
       boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
     },
-    '&.Mui-active': {
+    [`&.${sliderClasses.active}`]: {
       boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
     },
   }),
@@ -228,7 +229,7 @@ export const SliderThumb = experimentalStyled(
 export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled)((props) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
-  '&.MuiSlider-valueLabelOpen': {
+  [`&.${sliderClasses.valueLabelOpen}`]: {
     transform: 'scale(1) translateY(-10px)',
   },
   zIndex: 1,
@@ -254,7 +255,7 @@ export const SliderMark = experimentalStyled(
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
-  '&.MuiSlider-markActive': {
+  [`&.${sliderClasses.markActive}`]: {
     backgroundColor: props.theme.palette.background.paper,
     opacity: 0.8,
   },
@@ -282,7 +283,7 @@ export const SliderMarkLabel = experimentalStyled(
       left: 31,
     }),
   },
-  '&.MuiSlider-markLabelActive': {
+  [`&.${sliderClasses.markLabelActive}`]: {
     color: props.theme.palette.text.primary,
   },
 }));
@@ -555,5 +556,6 @@ Slider.propTypes = {
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
+
 
 export default Slider;
