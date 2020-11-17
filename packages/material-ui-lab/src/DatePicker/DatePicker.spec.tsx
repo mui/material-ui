@@ -1,8 +1,8 @@
 import * as React from 'react';
 import moment, { Moment } from 'moment';
 import { DatePicker, StaticDatePicker, DayPicker, PickersDay } from '@material-ui/lab';
-import DateFnsAdapter from '../dateAdapter/date-fns';
-import MomentAdapter from '../dateAdapter/moment';
+import AdapterDateFns from '../AdapterDateFns';
+import MomentAdapter from '../AdapterMoment';
 
 // Allows to set date type right with generic JSX syntax
 <DatePicker<Date>
@@ -42,7 +42,7 @@ const InferTest = () => {
   onChange={(date) => console.log(date)}
   renderInput={() => <input />}
   // @ts-expect-error
-  dateAdapter={new DateFnsAdapter()}
+  dateAdapter={new AdapterDateFns()}
 />;
 
 // Conflict between explicit generic type and date adapter causes error

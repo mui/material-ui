@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Badge from '@material-ui/core/Badge';
 import TextField from '@material-ui/core/TextField';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
 import PickersDay from '@material-ui/lab/PickersDay';
 import DatePicker from '@material-ui/lab/DatePicker';
@@ -75,7 +75,7 @@ export default function ServerRequestDatePicker() {
   };
 
   return (
-    <LocalizaitonProvider dateAdapter={DateFnsAdapter}>
+    <LocalizaitonProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         value={value}
         loading={isLoading}

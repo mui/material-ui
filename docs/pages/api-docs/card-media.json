@@ -1,0 +1,19 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": { "type": { "name": "elementType" } },
+    "image": { "type": { "name": "string" } },
+    "src": { "type": { "name": "string" } },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" }
+  },
+  "name": "CardMedia",
+  "styles": { "classes": ["root", "media", "img"], "globalClasses": {} },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/CardMedia/CardMedia.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
+  "styledComponent": false
+}

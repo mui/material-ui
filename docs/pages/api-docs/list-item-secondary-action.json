@@ -1,0 +1,16 @@
+{
+  "description": "Must be used as the last child of ListItem to function properly.",
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
+  },
+  "name": "ListItemSecondaryAction",
+  "styles": { "classes": ["root", "disableGutters"], "globalClasses": {} },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAction.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
+  "styledComponent": false
+}

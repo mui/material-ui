@@ -1,0 +1,39 @@
+{
+  "props": {
+    "checked": { "type": { "name": "bool" } },
+    "checkedIcon": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+      },
+      "default": "'secondary'"
+    },
+    "disabled": { "type": { "name": "bool" } },
+    "disableRipple": { "type": { "name": "bool" } },
+    "icon": { "type": { "name": "node" } },
+    "id": { "type": { "name": "string" } },
+    "inputProps": { "type": { "name": "object" } },
+    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" } },
+    "size": {
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "default": "'medium'"
+    },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "Radio",
+  "styles": {
+    "classes": ["root", "checked", "disabled", "colorPrimary", "colorSecondary"],
+    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Radio/Radio.js",
+  "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
+  "demos": "<ul><li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li></ul>",
+  "styledComponent": false
+}

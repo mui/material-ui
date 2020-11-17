@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
 import DayPicker from '@material-ui/lab/DayPicker';
 
@@ -7,7 +7,7 @@ export default function InternalPickers() {
   const [date, setDate] = React.useState<Date | null>(new Date());
 
   return (
-    <LocalizaitonProvider dateAdapter={DateFnsAdapter}>
+    <LocalizaitonProvider dateAdapter={AdapterDateFns}>
       <DayPicker
         allowKeyboardControl={false}
         date={date}

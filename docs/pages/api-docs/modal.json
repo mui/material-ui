@@ -1,0 +1,31 @@
+{
+  "description": "Modal is a lower-level construct that is leveraged by the following components:\n\n- [Dialog](/api/dialog/)\n- [Drawer](/api/drawer/)\n- [Menu](/api/menu/)\n- [Popover](/api/popover/)\n\nIf you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component\nrather than directly using Modal.\n\nThis component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).",
+  "props": {
+    "BackdropComponent": { "type": { "name": "elementType" }, "default": "SimpleBackdrop" },
+    "BackdropProps": { "type": { "name": "object" } },
+    "children": { "type": { "name": "custom", "description": "element" } },
+    "closeAfterTransition": { "type": { "name": "bool" } },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disableAutoFocus": { "type": { "name": "bool" } },
+    "disableBackdropClick": { "type": { "name": "bool" } },
+    "disableEnforceFocus": { "type": { "name": "bool" } },
+    "disableEscapeKeyDown": { "type": { "name": "bool" } },
+    "disablePortal": { "type": { "name": "bool" } },
+    "disableRestoreFocus": { "type": { "name": "bool" } },
+    "disableScrollLock": { "type": { "name": "bool" } },
+    "hideBackdrop": { "type": { "name": "bool" } },
+    "keepMounted": { "type": { "name": "bool" } },
+    "onBackdropClick": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "onEscapeKeyDown": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" }, "required": true }
+  },
+  "name": "Modal",
+  "styles": { "classes": [], "globalClasses": {} },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Modal/Modal.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/modal/\">Modal</a></li></ul>",
+  "styledComponent": true
+}

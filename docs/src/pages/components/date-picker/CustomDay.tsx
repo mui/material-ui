@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
 import DatePicker from '@material-ui/lab/DatePicker';
 import PickersDay, { PickersDayProps } from '@material-ui/lab/PickersDay';
@@ -66,7 +66,7 @@ export default function CustomDay() {
   };
 
   return (
-    <LocalizaitonProvider dateAdapter={DateFnsAdapter}>
+    <LocalizaitonProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         label="Week picker"
         value={selectedDate}
