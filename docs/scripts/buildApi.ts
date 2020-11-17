@@ -382,8 +382,8 @@ async function buildDocs(options: {
   };
 
   // styled components does not have the options static
-  const styledComponent = !component?.default?.options;
-  if (styledComponent) {
+  const nonJSSComponent = !component?.default?.options;
+  if (nonJSSComponent) {
     await updateStylesDefinition({
       styles,
       component: componentObject,
@@ -486,7 +486,7 @@ async function buildDocs(options: {
 
   let markdown;
   try {
-    markdown = generateMarkdown(reactAPI, styledComponent);
+    markdown = generateMarkdown(reactAPI, nonJSSComponent);
   } catch (err) {
     console.log('Error generating markdown for', componentObject.filename);
     throw err;
@@ -520,7 +520,7 @@ Page.getInitialProps = () => {
 
   await annotateComponentDefinition({ api: reactAPI, component: componentObject });
 
-  if (!styledComponent) {
+  if (!nonJSSComponent) {
     await annotateClassesDefinition({
       api: reactAPI,
       component: componentObject,
