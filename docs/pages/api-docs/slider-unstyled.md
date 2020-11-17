@@ -21,7 +21,6 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 
 
-
 ## Props
 
 | Name | Type | Default | Description |
@@ -29,6 +28,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">aria-label</span> | <span class="prop-type">string</span> |  | The label of the slider. |
 | <span class="prop-name">aria-labelledby</span> | <span class="prop-type">string</span> |  | The id of the element containing a label for the slider. |
 | <span class="prop-name">aria-valuetext</span> | <span class="prop-type">string</span> |  | A string value that provides a user-friendly name for the current value of the slider. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">components</span> | <span class="prop-type">{ Mark?: elementType, MarkLabel?: elementType, Rail?: elementType, Root?: elementType, Thumb?: elementType, Track?: elementType, ValueLabel?: elementType }</span> | <span class="prop-default">{}</span> | The components used for each slot inside the Slider. Either a string to use a HTML element or a component. |

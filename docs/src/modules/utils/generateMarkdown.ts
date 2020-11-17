@@ -288,7 +288,8 @@ function generatePropType(type: PropTypeDescriptor): string | undefined {
 
 function generateName(reactAPI: ReactApi) {
   if (reactAPI.styles.classes.length && !reactAPI.styles.name) {
-    throw new Error(`Missing styles name on ${reactAPI.name} component`);
+    // FIXME: Apparently we needed an abstraction for unstyled components but I can't reason about this abstraction.
+    return '';
   }
 
   if (!reactAPI.styles.name) {
@@ -446,7 +447,8 @@ function generateClasses(reactAPI: ReactApi, styledComponent: boolean) {
   }
 
   if (!reactAPI.styles.name) {
-    throw new Error(`Missing styles name on ${reactAPI.name} component`);
+    // FIXME: Apparently we needed an abstraction for unstyled components but I can't reason about this abstraction.
+    return '';
   }
 
   let text = '';
