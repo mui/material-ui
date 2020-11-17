@@ -8,6 +8,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
 import Link from 'docs/src/modules/components/Link';
@@ -78,6 +79,57 @@ const styles = (theme) => ({
   },
 });
 
+// Annotiate it with the subsection it is in, if matched
+function annotateItem(item, subheader) {
+  if (
+    ['/components/data-grid', '/components/lab', '/components/pickers'].some(
+      (section) => section === subheader,
+    )
+  ) {
+    item.prefix = subheader;
+  }
+  return item;
+}
+
+// Remove component subsections
+function flattenPages(pages, current = [], subheader) {
+  return pages.reduce((items, item) => {
+    if (
+      item.children &&
+      item.children.length > 1 &&
+      item.subheader &&
+      item.subheader.startsWith('/components')
+    ) {
+      items = flattenPages(item.children, items, subheader || item.subheader);
+    } else {
+      items.push(
+        item.children && item.children.length === 1
+          ? item.children[0]
+          : annotateItem(item, subheader),
+      );
+    }
+    return items;
+  }, current);
+}
+
+// Sort by component name
+function byComponentName(a, b) {
+  const sectionA = a.prefix && a.prefix.split('/')[2];
+  const sectionB = b.prefix && b.prefix.split('/')[2];
+  const componentA = a.pathname.split('/')[2];
+  const componentB = b.pathname.split('/')[2];
+  const pageA = sectionA ? sectionA + componentA : componentB;
+  const pageB = sectionB ? sectionB + componentB : componentB;
+
+  let comparison = 0;
+  if (pageA > pageB) {
+    comparison = 1;
+  } else if (pageA < pageB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
 function renderNavItems(options) {
   const { pages, ...params } = options;
 
@@ -97,13 +149,19 @@ function renderNavItems(options) {
  * @param {import('docs/src/pages').MuiPage} context.page
  */
 function reduceChildRoutes(context) {
-  const { onClose, activePage, items, depth, t } = context;
+  const { onClose, activePage, items, inputRef, depth, t, searchString, setSearchString } = context;
+
   let { page } = context;
+
   if (page.displayNav === false) {
     return items;
   }
 
-  if (page.children && page.children.length > 1) {
+  const handleInputChange = (event) => {
+    setSearchString(event.target.value);
+  };
+
+  if (page.pathname === '/components' || (page.children && page.children.length > 1)) {
     const title = pageToTitleI18n(page, t);
     const topLevel = activePage ? activePage.pathname.indexOf(`${page.pathname}/`) === 0 : false;
 
@@ -111,11 +169,22 @@ function reduceChildRoutes(context) {
       <AppDrawerNavItem
         linkProps={page.linkProps}
         depth={depth}
-        key={title}
+        key={page.subheader ? page.subheader : page.pathname}
         topLevel={topLevel && !page.subheader}
         openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
       >
+        {page.pathname === '/components' && depth === 0 && (
+          <TextField
+            type="search"
+            size="small"
+            onChange={handleInputChange}
+            value={searchString}
+            placeholder="Filter (f)"
+            style={{ marginLeft: 24, fontSize: 14 }}
+            inputRef={inputRef}
+          />
+        )}
         {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
       </AppDrawerNavItem>,
     );
@@ -146,14 +215,65 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 function AppDrawer(props) {
   const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
+  const inputRef = React.useRef();
+  const [searchString, setSearchString] = React.useState('');
+  const [filteredPages, setFilteredPages] = React.useState(pages);
   const userLanguage = useUserLanguage();
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
   const t = useTranslate();
 
+  React.useEffect(() => {
+    const newPages = JSON.parse(JSON.stringify(pages));
+
+    if (searchString !== '') {
+      newPages[1].children = flattenPages(pages[1].children)
+        .filter(
+          (page) =>
+            page.pathname
+              .replace(/\/.*?\//, '') // Remove leading `/components/`
+              .replace('-', ' ')
+              .indexOf(searchString.toLowerCase()) !== -1,
+        )
+        .sort(byComponentName);
+    }
+
+    setFilteredPages(newPages);
+  }, [pages, setFilteredPages, searchString]);
+
+  React.useEffect(() => {
+    const handleKeyDown = (nativeEvent) => {
+      if (
+        nativeEvent.key === 'f' &&
+        ['BUTTON', 'BODY', 'MAIN'].some((element) => element === document.activeElement.nodeName) &&
+        inputRef.current &&
+        document.activeElement !== inputRef.current
+      ) {
+        nativeEvent.preventDefault();
+        inputRef.current.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   const navItems = React.useMemo(
-    () => renderNavItems({ onClose, pages, activePage, depth: 0, t }),
-    [activePage, pages, onClose, t],
+    () =>
+      renderNavItems({
+        activePage,
+        depth: 0,
+        inputRef,
+        onClose,
+        pages: filteredPages,
+        searchString,
+        setSearchString,
+        t,
+      }),
+    [activePage, inputRef, filteredPages, onClose, searchString, t],
   );
+
   const drawer = (
     <PersistScroll>
       <div className={classes.toolbarIe11}>

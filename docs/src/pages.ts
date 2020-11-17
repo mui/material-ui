@@ -36,17 +36,6 @@ const pages: MuiPage[] = [
     children: [
       {
         pathname: '/components',
-        subheader: '/components/layout',
-        children: [
-          { pathname: '/components/box' },
-          { pathname: '/components/container' },
-          { pathname: '/components/grid' },
-          { pathname: '/components/hidden' },
-          { pathname: '/components/image-list' },
-        ],
-      },
-      {
-        pathname: '/components',
         subheader: '/components/inputs',
         children: [
           { pathname: '/components/autocomplete' },
@@ -62,43 +51,6 @@ const pages: MuiPage[] = [
           { pathname: '/components/text-fields', title: 'Text field' },
           { pathname: '/components/transfer-list' },
           { pathname: '/components/toggle-button' },
-        ],
-      },
-      {
-        pathname: '/components',
-        subheader: '/components/navigation',
-        children: [
-          { pathname: '/components/bottom-navigation' },
-          { pathname: '/components/breadcrumbs' },
-          { pathname: '/components/drawers', title: 'Drawer' },
-          { pathname: '/components/links', title: 'Link' },
-          { pathname: '/components/menus', title: 'Menu' },
-          { pathname: '/components/pagination' },
-          { pathname: '/components/speed-dial' },
-          { pathname: '/components/steppers', title: 'Stepper' },
-          { pathname: '/components/tabs' },
-        ],
-      },
-      {
-        pathname: '/components',
-        subheader: '/components/surfaces',
-        children: [
-          { pathname: '/components/accordion' },
-          { pathname: '/components/app-bar' },
-          { pathname: '/components/cards', title: 'Card' },
-          { pathname: '/components/paper' },
-        ],
-      },
-      {
-        pathname: '/components',
-        subheader: '/components/feedback',
-        children: [
-          { pathname: '/components/alert' },
-          { pathname: '/components/backdrop' },
-          { pathname: '/components/dialogs' },
-          { pathname: '/components/progress' },
-          { pathname: '/components/skeleton' },
-          { pathname: '/components/snackbars', title: 'Snackbar' },
         ],
       },
       {
@@ -137,6 +89,54 @@ const pages: MuiPage[] = [
           { pathname: '/components/data-grid/localization', title: '🚧 Localization' },
           { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
           { pathname: '/components/data-grid/accessibility' },
+        ],
+      },
+      {
+        pathname: '/components',
+        subheader: '/components/surfaces',
+        children: [
+          { pathname: '/components/accordion' },
+          { pathname: '/components/app-bar' },
+          { pathname: '/components/cards', title: 'Card' },
+          { pathname: '/components/paper' },
+        ],
+      },
+      {
+        pathname: '/components',
+        subheader: '/components/feedback',
+        children: [
+          { pathname: '/components/alert' },
+          { pathname: '/components/backdrop' },
+          { pathname: '/components/dialogs', title: 'Dialog' },
+          { pathname: '/components/progress' },
+          { pathname: '/components/skeleton' },
+          { pathname: '/components/snackbars', title: 'Snackbar' },
+        ],
+      },
+      {
+        pathname: '/components',
+        subheader: '/components/navigation',
+        children: [
+          { pathname: '/components/bottom-navigation' },
+          { pathname: '/components/breadcrumbs' },
+          { pathname: '/components/drawers', title: 'Drawer' },
+          { pathname: '/components/links', title: 'Link' },
+          { pathname: '/components/menus', title: 'Menu' },
+          { pathname: '/components/pagination' },
+          { pathname: '/components/speed-dial' },
+          { pathname: '/components/steppers', title: 'Stepper' },
+          { pathname: '/components/tabs' },
+        ],
+      },
+      {
+        pathname: '/components',
+        subheader: '/components/layout',
+        children: [
+          { pathname: '/components/box' },
+          { pathname: '/components/container' },
+          { pathname: '/components/grid' },
+          { pathname: '/components/hidden' },
+          { pathname: '/components/image-list' },
         ],
       },
       {

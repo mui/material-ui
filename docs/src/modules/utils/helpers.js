@@ -47,6 +47,14 @@ function pageToTitle(page) {
 
 function pageToTitleI18n(page, t) {
   const path = page.subheader || page.pathname;
+
+  if (page.prefix !== undefined) {
+    return `${t(`pages.${page.prefix}`, {
+      ignoreWarning: true,
+    })} - ${t(`pages.${path}`, {
+      ignoreWarning: true,
+    })}`;
+  }
   return t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
 }
 

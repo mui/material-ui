@@ -160,7 +160,7 @@
     "/components/feedback": "Feedback",
     "/components/alert": "Alert",
     "/components/backdrop": "Backdrop",
-    "/components/dialogs": "Dialogs",
+    "/components/dialogs": "Dialog",
     "/components/progress": "Progress",
     "/components/skeleton": "Skeleton",
     "/components/snackbars": "Snackbar",
