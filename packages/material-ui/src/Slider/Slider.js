@@ -96,6 +96,21 @@ export const SliderRoot = experimentalStyled(
       marginRight: 20,
     }),
   }),
+  '& .MuiSlider-valueLabelCircle': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 32,
+    height: 32,
+    borderRadius: '50% 50% 50% 0',
+    backgroundColor: 'currentColor',
+    transform: 'rotate(-45deg)',
+  },
+  '& .MuiSlider-valueLabelLabel': {
+    color: props.theme.palette.primary.contrastText,
+    transform: 'rotate(45deg)',
+    textAlign: 'center',
+  },
 }));
 
 export const SliderRail = experimentalStyled(
@@ -227,21 +242,6 @@ export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled)((pr
   transformOrigin: 'bottom center',
   transform: 'scale(0)',
   position: 'absolute',
-  '& .MuiSlider-valueLabelCircle': {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 32,
-    height: 32,
-    borderRadius: '50% 50% 50% 0',
-    backgroundColor: 'currentColor',
-    transform: 'rotate(-45deg)',
-  },
-  '& .MuiSlider-valueLabelLabel': {
-    color: props.theme.palette.primary.contrastText,
-    transform: 'rotate(45deg)',
-    textAlign: 'center',
-  },
 }));
 
 export const SliderMark = experimentalStyled(

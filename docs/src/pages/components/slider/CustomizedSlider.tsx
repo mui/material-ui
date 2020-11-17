@@ -73,10 +73,8 @@ const IOSSlider = styled(Slider)({
   '& .MuiSlider-valueLabel': {
     left: 'calc(-50% + 12px)',
     top: -22,
-    '& .MuiSlider-valueLabelCircle': {
+    '& *': {
       background: 'transparent',
-    },
-    '& .MuiSlider-valueLabelLabel': {
       color: '#000',
     },
   },
