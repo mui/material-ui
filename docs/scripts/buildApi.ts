@@ -1,4 +1,3 @@
-/* eslint-disable no-console, no-shadow */
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import * as babel from '@babel/core';
@@ -507,7 +506,7 @@ async function annotateClassesDefinition(context: {
 /**
  * Substitute CSS class description conditions with placeholder
  */
-function extractClassConditions(classDescriptions: { [key: string]: { [key: string]: string } }) {
+function extractClassConditions() {
   const classConditions: any = {};
   const stylesRegex = /(if |unless )(`.*)./;
 
@@ -754,7 +753,7 @@ async function buildDocs(options: {
   try {
     checkProps(reactAPI);
   } catch (err) {
-    console.log('Error checking props for', componentObject.filename);
+    console.error('Error checking props for', componentObject.filename);
     throw err;
   }
 
@@ -862,6 +861,7 @@ Page.getInitialProps = () => {
 `.replace(/\r?\n/g, reactAPI.EOL),
   );
 
+  // eslint-disable-next-line no-console
   console.log('Built API docs for', reactAPI.name);
 
   await annotateComponentDefinition({ api: reactAPI, component: componentObject });
@@ -968,7 +968,7 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
     writePrettifiedFile(
       path.resolve('docs/translations', 'class-descriptions.json'),
-      JSON.stringify(sortObject(extractClassConditions(classDescriptions))),
+      JSON.stringify(sortObject(extractClassConditions())),
       prettierConfigPath,
     );
 
