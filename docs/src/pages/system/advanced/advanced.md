@@ -10,7 +10,7 @@ The easiest way to support the `sx` prop on your custom components is to use the
 
 ## Use the `unstable_styleFuntionSx` utility
 
-The `experimentalStyled()` offers other functionalities, like access to default theme, as well as access to the theme overrides and variants. If you would not like to use these utility, you may use the lighter version of utility for adding the `sx` utility on your custom components - the `unstable_styleFunctionSx` utility.
+The `experimentalStyled()` offers other functionalities, like access to the default theme, as well as access to the theme overrides and variants. If you would not like to use these utilities, you may use the lighter version of the utility for adding the `sx` utility on your custom components - the `unstable_styleFunctionSx` utility.
 
 {{"demo": "pages/system/advanced/StyleFunctionSxDemo.js"}}
 
