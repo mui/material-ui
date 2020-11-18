@@ -307,7 +307,7 @@ export interface CSSOthersObjectForCSSObject {
 }
 
 /**
- * Map all nested selectors
+ * Map all nested selectors.
  */
 export interface CSSSelectorObject {
   [cssSelector: string]: SystemStyleObject;
