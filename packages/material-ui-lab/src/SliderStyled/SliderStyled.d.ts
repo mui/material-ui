@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/core/Box';
+import { SxProps } from '@material-ui/system';
 import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
