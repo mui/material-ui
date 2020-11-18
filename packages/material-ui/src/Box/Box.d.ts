@@ -36,7 +36,9 @@ export type ResponsiveStyleValue<T> = T | Array<T | null>;
  * All non-vendor-prefixed CSS properties. (Allow `number` to support CSS-in-JS libs,
  * since they are converted to pixels)
  */
-export interface CSSProperties extends CSS.StandardProperties<number | string>, CSS.SvgProperties<number | string> {}
+export interface CSSProperties
+  extends CSS.StandardProperties<number | string>,
+    CSS.SvgProperties<number | string> {}
 
 /**
  * Map of all CSS pseudo selectors (`:hover`, `:focus`, ...)
@@ -47,7 +49,10 @@ export type CSSPseudoSelectorProps = { [K in CSS.Pseudos]?: SystemStyleObject };
  * CSS as POJO that is compatible with CSS-in-JS libaries.
  * Copied directly from [emotion](https://github.com/emotion-js/emotion/blob/ca3ad1c1dcabf78a95b55cc2dc94cad1998a3196/packages/serialize/types/index.d.ts#L45) types
  */
-export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudosForCSSObject, CSSOthersObjectForCSSObject {}
+export interface CSSObject
+  extends CSSPropertiesWithMultiValues,
+    CSSPseudosForCSSObject,
+    CSSOthersObjectForCSSObject {}
 
 export type CSSPropertiesWithMultiValues = {
   [K in keyof CSSProperties]: CSSProperties[K];
@@ -59,8 +64,8 @@ export interface CSSOthersObjectForCSSObject {
 }
 
 /**
-* Map all nested selectors
-*/
+ * Map all nested selectors
+ */
 export interface CSSSelectorObject {
   [cssSelector: string]: SystemStyleObject;
 }
@@ -390,15 +395,15 @@ export interface OverwriteCSSProperties {
  * theme function or nested) in `SystemCssProperties`.
  */
 export interface AllSystemCSSProperties
-    extends Omit<CSSProperties, keyof OverwriteCSSProperties>,
-        AliasesCSSProperties,
-        OverwriteCSSProperties {}
+  extends Omit<CSSProperties, keyof OverwriteCSSProperties>,
+    AliasesCSSProperties,
+    OverwriteCSSProperties {}
 
 export type SystemCssProperties = {
-    [K in keyof AllSystemCSSProperties]:
-        | ResponsiveStyleValue<AllSystemCSSProperties[K]>
-        | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>)
-        | SystemStyleObject;
+  [K in keyof AllSystemCSSProperties]:
+    | ResponsiveStyleValue<AllSystemCSSProperties[K]>
+    | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>)
+    | SystemStyleObject;
 };
 
 /**
@@ -407,13 +412,10 @@ export type SystemCssProperties = {
  * their corresponding values. Other valid CSS properties are also allowed.
  */
 export type SystemStyleObject =
-    | SystemCssProperties
-    | CSSPseudoSelectorProps
-    | CSSSelectorObject
-    // | VariantProperty
-    // | UseThemeFunction
-    // | EmotionLabel
-    | null;
+  | SystemCssProperties
+  | CSSPseudoSelectorProps
+  | CSSSelectorObject
+  | null;
 
 /**
  * Box typings
