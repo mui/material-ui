@@ -2,7 +2,7 @@ import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '..';
 
 export interface LinearProgressProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
   /**
    * Override or extend the styles applied to the component.
    */
