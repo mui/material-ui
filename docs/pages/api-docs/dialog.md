@@ -32,7 +32,6 @@ The `MuiDialog` name can be used for providing [default props](/customization/gl
 | <span class="prop-name">aria-labelledby</span> | <span class="prop-type">string</span> |  | The id(s) of the element(s) that label the dialog. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Dialog children, usually the included sub-components. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">disableBackdropClick</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, clicking the backdrop will not fire the `onClose` callback. |
 | <span class="prop-name">disableEscapeKeyDown</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, hitting escape will not fire the `onClose` callback. |
 | <span class="prop-name">fullScreen</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the dialog is full-screen. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the dialog stretches to `maxWidth`.<br>Notice that the dialog width grow is limited by the default margin. |

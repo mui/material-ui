@@ -69,7 +69,6 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
 
   return (
     <Dialog
-      disableBackdropClick
       disableEscapeKeyDown
       maxWidth="xs"
       TransitionProps={{ onEntering: handleEntering }}
