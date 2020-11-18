@@ -68,7 +68,7 @@ describe('withMobileDialog', () => {
   });
 
   it('should warn if withMobileDialog is used', () => {
-    shallow(withMobileDialog());
+    withMobileDialog();
 
     expect(consoleWarnMock.callCount()).to.equal(1);
     expect(consoleWarnMock.messages()[0]).to.include(
