@@ -17,10 +17,6 @@ import {
 import { Theme } from '../styles/createMuiTheme';
 import { Omit } from '..';
 
-/**
- * Box typings
- */
-
 export type BoxStyleFunction = ComposedStyleFunction<
   [
     typeof borders,
