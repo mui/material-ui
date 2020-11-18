@@ -1,18 +1,16 @@
 # Migration from @material-ui-pickers
 
-<p class="description">`@material-ui/pickers` was moved to the @material-ui/lab</p>
+<p class="description">@material-ui/pickers was moved to the @material-ui/lab.</p>
 
-> ## ☢️ Attention
-
-> Pickers were entirely changed. In most places, the logic was rewritten from scratch, so it's not possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to migrate, the easiest way will be to go through the component usages in your codebase and rewrite them one-by-one. Don't forget to run your tests after each!
+> **⚠️ Pickers were entirely changed**. In most places, the logic was rewritten from scratch, so it's not possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to migrate, the easiest way will be to go through the component usages in your codebase and rewrite them one-by-one. Don't forget to run your tests after each!
 
 This guide is an overview of the core concepts that were changed from pickers v3.2.10.
 
-## ⬇️ Install
+## Installation
 
-You simply need to install the `@material-ui/lab` package if it's not already installed. Nothing more required.
+You simply need to install the `@material-ui/lab` package if it's not already installed. Nothing more is required.
 
-## 🌚 Imports
+## Imports
 
 The `keyboard` version of pickers is no longer published. All versions of mobile and desktop pickers implement keyboard input for accessibility.
 
@@ -24,7 +22,7 @@ The `keyboard` version of pickers is no longer published. All versions of mobile
 +<DatePicker />
 ```
 
-Also, instead of providing a `variant` prop, these were moved to different imports, meaning that your bundle won't  include `Dialog` if you are using only the desktop picker.
+Also, instead of providing a `variant` prop, these were moved to different imports, meaning that your bundle won't include `Dialog` if you are using only the desktop picker.
 
 - `<DesktopDatePicker />` – Only desktop view.
 - `<MobileDatePicker />` – Only mobile view.
@@ -32,6 +30,7 @@ Also, instead of providing a `variant` prop, these were moved to different impor
 - `<StaticDatePicker />` – The picker view itself, without input or any other wrapper.
 
 ```diff
+-import { DatePicker } from '@material-ui/pickers';
 +import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 
 -<DatePicker variant="inline" />
@@ -48,7 +47,7 @@ The `MuiPickersUtilsProvider` was removed in favor of `LocalizationProvider`. Al
 
 ```js
 import AdapterDateFns from '@date-io/date-fns';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers/MuiPickersUtilsProvider';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 ```
 
 ✅ After:
@@ -88,7 +87,7 @@ Previously, props were spread on the `<TextField />` component. From now on you 
 
 ## State management
 
-The state/value management logic for pickers was rewritten from scratch. Pickers will now call the `onChange` prop when each view of picker ends its input. The `onError` handler is  also completely different. Triple-check your pickers with forms integration, because form-integration issues can be subtle.
+The state/value management logic for pickers was rewritten from scratch. Pickers will now call the `onChange` prop when each view of the date picker ends is completed. The `onError` handler is also completely different. Triple-check your pickers with forms integration, because form-integration issues can be subtle.
 
 ## No required mask
 

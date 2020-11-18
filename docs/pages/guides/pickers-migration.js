@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'guides/pickers-migration';
-const requireDemo = require.context('docs/src/pages/guides/pickers-migration', false, /\.(js|tsx)$/);
+const requireDemo = require.context(
+  'docs/src/pages/guides/pickers-migration',
+  false,
+  /\.(js|tsx)$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/guides/pickers-migration',
   false,
