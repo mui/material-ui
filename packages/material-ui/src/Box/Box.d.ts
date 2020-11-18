@@ -310,6 +310,24 @@ export interface AliasesCSSProperties {
    * @see https://developer.mozilla.org/docs/Web/CSS/padding-bottom
    */
   paddingY?: StandardCSSProperties['paddingTop'];
+
+  /**
+   * The **`typography`** is shorthand property for CSS properties **`font-family`**, **`font-weight`**, **`font-size`**, **`line-height`**, **`letter-spacing`** and **`text-transform``**. It takes the values defined under `theme.typography` and spreads them on the element.
+   *
+   * **Initial value**: `0`
+   *
+   * | Chrome | Firefox | Safari |  Edge  |  IE   |
+   * | :----: | :-----: | :----: | :----: | :---: |
+   * | **2**  |  **1**  | **1**  | **12** | **5.5** |
+   *
+   * @see https://developer.mozilla.org/docs/Web/CSS/font-family
+   * @see https://developer.mozilla.org/docs/Web/CSS/font-weight
+   * @see https://developer.mozilla.org/docs/Web/CSS/font-size
+   * @see https://developer.mozilla.org/docs/Web/CSS/line-height
+   * @see https://developer.mozilla.org/docs/Web/CSS/letter-spacing
+   * @see https://developer.mozilla.org/docs/Web/CSS/text-transform
+   */
+  typography?: string;
 }
 
 export interface OverwriteCSSProperties {
