@@ -2,7 +2,7 @@
 
 <p class="description">Here you can find examples of how you can use the system in your custom components.</p>
 
-## Adding the `sx` prop on your custom components
+## Adding the `sx` prop to your custom components
 
 The `unstable_styleFunctionSx` utility adds the support for the `sx` in your own components.
 
