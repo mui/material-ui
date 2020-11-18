@@ -20,10 +20,11 @@ async function exec(command, args) {
 }
 
 const screenshotsBase = 'test/regressions/screenshots/chrome';
+const BATCH_COUNT = 2;
 
 async function run() {
   let screenshots = await glob(`${screenshotsBase}/**/*`);
-  screenshots = chunk(screenshots, Math.ceil(screenshots.length / 2));
+  screenshots = chunk(screenshots, Math.ceil(screenshots.length / BATCH_COUNT));
 
   await Promise.all(
     screenshots.map((chunks, chunkIndex) =>
@@ -46,7 +47,7 @@ async function run() {
       '--token',
       process.env.ARGOS_TOKEN,
       '--batchCount',
-      3,
+      BATCH_COUNT,
       '--external-build-id',
       process.env.CIRCLE_SHA1,
     ]);
