@@ -266,7 +266,6 @@ export function unstable_getThemeValue(prop: string, value: any, theme: object):
 
 // sx prop
 
-
 /**
  * CSS typings
  */
