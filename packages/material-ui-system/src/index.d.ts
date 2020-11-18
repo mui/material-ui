@@ -479,7 +479,7 @@ export interface AliasesCSSProperties {
    */
   pr?: StandardCSSProperties['paddingRight'];
   /**
-   * The **`padding-bottom`** CSS property sets the height of the padding area on the bottom of an element.
+   * The **`padding-bottom`** CSS property sets the height of the padding on the bottom of an element.
    *
    * **Initial value**: `0`
    *
