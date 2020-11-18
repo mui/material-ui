@@ -284,7 +284,7 @@ export interface CSSProperties
     CSS.SvgProperties<number | string> {}
 
 /**
- * Map of all CSS pseudo selectors (`:hover`, `:focus`, ...)
+ * Map of all CSS pseudo selectors (`:hover`, `:focus`, ...).
  */
 export type CSSPseudoSelectorProps = { [K in CSS.Pseudos]?: SystemStyleObject };
 
