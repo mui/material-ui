@@ -15,7 +15,7 @@ const Div = styled('div')<DivProps>(
   unstable_styleFunctionSx as InterpolationFunction<DivProps>,
 );
 
-export default function Demo() {
+export default function StyleFunctionSxDemo() {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
