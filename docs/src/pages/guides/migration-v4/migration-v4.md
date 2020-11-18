@@ -615,6 +615,20 @@ const classes = makeStyles(theme => ({
   />;
   ```
 
+- Remove `onEscapeKeyDown` prop.
+  Use `onClose` with `reason === "escapeKeyDown"` instead.
+
+  ```diff
+  <Modal
+  -  onEscapeKeyDown={handleEscapeKeyDown}
+  +  onClose={(event, reason) => {
+  +    if (reason === "escapeKeyDown") {
+  +      handleEscapeKeyDown(event);
+  +    }
+  +  }}
+  />;
+  ```
+
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
