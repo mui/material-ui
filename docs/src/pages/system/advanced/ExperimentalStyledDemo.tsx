@@ -4,6 +4,6 @@ import { SxProps } from '@material-ui/core/Box';
 
 const Div = styled('div')<{ sx?: SxProps }>``;
 
-export default function ExperimentalStyledDemo {
+export default function ExperimentalStyledDemo() {
   return <Div sx={{ m: 1, p: 1, border: 1 }}>Custom component using the system</Div>;
 }

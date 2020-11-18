@@ -9,7 +9,7 @@ const theme = createMuiTheme();
 
 const Div = styled('div')(unstable_styleFunctionSx);
 
-export default function Demo() {
+export default function StyleFunctionSxDemo() {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
