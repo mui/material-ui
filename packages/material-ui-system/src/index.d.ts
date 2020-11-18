@@ -455,7 +455,7 @@ export interface AliasesCSSProperties {
    */
   p?: StandardCSSProperties['padding'];
   /**
-   * The **`padding-top`** padding area on the top of an element.
+   * The **`padding-top`** CSS property sets the height of the padding at the top of an element.
    *
    * **Initial value**: `0`
    *
