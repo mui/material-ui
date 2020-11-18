@@ -1,6 +1,8 @@
 const movedLabComponents = [
   'Alert',
+  'AlertTitle',
   'Autocomplete',
+  'AvatarGroup',
   'Pagination',
   'Rating',
   'Skeleton',
