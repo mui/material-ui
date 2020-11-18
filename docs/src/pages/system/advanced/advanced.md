@@ -18,4 +18,4 @@ If you are already using the Material-UI's `styled()` wrapper, the easiest way t
 
 If you wouldn't like to use the `sx` prop on your custom components, but only some bits from the system, you can use and combine the different style functions available as part of the system.
 
-{{"demo": "pages/system/advanced/CombiningStyleFunctionsDemo.js"}}
+{{"demo": "pages/system/advanced/CombiningStyleFunctionsDemo.js", "defaultCodeOpen": true}}
