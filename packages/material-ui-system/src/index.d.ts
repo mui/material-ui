@@ -337,7 +337,7 @@ export interface AliasesCSSProperties {
    */
   m?: StandardCSSProperties['margin'];
   /**
-   * The **`margin-top`** CSS property sets the margin area on the top of an element. A positive value places it farther from its neighbors, while a negative value places it closer.
+   * The **`margin-top`** CSS property sets the margin on the top of an element. A positive value places it farther from its neighbors, while a negative value places it closer.
    *
    * **Initial value**: `0`
    *
