@@ -1,8 +1,19 @@
-const getUtilityClass = (name) => {
+import { SliderUnstyledTypeMap } from './SliderUnstyled';
+
+const getUtilityClass = (name: string): string => {
   return `MuiSlider-${name}`;
 };
 
-const sliderClasses = {
+const sliderClasses: NonNullable<
+  SliderUnstyledTypeMap['props']['classes'] & {
+    thumbPrimary: string;
+    thumbSecondary: string;
+    valueLabelOffset: string;
+    valueLabelOpen: string;
+    valueLabelCircle: string;
+    valueLabelLabel: string;
+  }
+> = {
   root: getUtilityClass('root'),
   active: 'Mui-active',
   focusVisible: 'Mui-focusVisible',
