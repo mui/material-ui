@@ -28,10 +28,7 @@ describe('<DayPicker />', () => {
     skip: ['componentProp', 'propsSpread', 'reactTestRenderer'],
   }));
 
-  it('renders calendar standalone', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('renders calendar standalone', () => {
     render(<DayPicker date={adapterToUse.date('2019-01-01T00:00:00.000')} onChange={() => {}} />);
 
     expect(screen.getByText('January')).toBeVisible();

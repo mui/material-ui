@@ -290,16 +290,3 @@ workflows:
                 - next
     jobs:
       - test_types_next
-  timezone-tests:
-    triggers:
-      - schedule:
-          cron: '23 * * * *'
-          filters:
-            branches:
-              only:
-                - next
-    jobs:
-      - test_unit:
-          test-gate: experimental-timezones
-      - test_browser:
-          test-gate: experimental-timezones
