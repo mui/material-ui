@@ -491,7 +491,7 @@ export interface AliasesCSSProperties {
    */
   pb?: StandardCSSProperties['paddingBottom'];
   /**
-   * The **`padding-left`** CSS property sets the width of the padding area on the left side of an element.
+   * The **`padding-left`** CSS property sets the width of the padding at the left side of an element.
    *
    * **Initial value**: `0`
    *
