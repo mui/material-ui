@@ -12,10 +12,12 @@ import {
   spacing,
   typography,
   PropsFor,
+  SxProps,
 } from '@material-ui/system';
+import { Theme } from '../styles/createMuiTheme';
 import { Omit } from '..';
 
-type BoxStyleFunction = ComposedStyleFunction<
+export type BoxStyleFunction = ComposedStyleFunction<
   [
     typeof borders,
     typeof display,
@@ -34,11 +36,12 @@ type SystemProps = PropsFor<BoxStyleFunction>;
 type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
 
 export interface BoxProps extends ElementProps, SystemProps {
+  children?: React.ReactNode | ((props: ElementProps) => React.ReactNode);
   // styled API
   component?: React.ElementType;
   clone?: boolean;
-  // workaround for https://github.com/mui-org/material-ui/pull/15611
-  css?: SystemProps;
+  ref?: React.Ref<unknown>;
+  sx?: SxProps<Theme>;
 }
 
 declare const Box: React.ComponentType<BoxProps>;

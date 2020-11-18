@@ -36,7 +36,7 @@ export interface ListItemTextProps<
    */
   disableTypography?: boolean;
   /**
-   * If `true`, the children will be indented.
+   * If `true`, the children are indented.
    * This should be used if there is no left avatar or left icon.
    * @default false
    */

@@ -34,7 +34,7 @@ describe('useScrollTrigger', () => {
         <span ref={triggerRef}>{`${trigger}`}</span>
         <div ref={containerRef}>
           <Container ref={customContainer ? setContainer : null}>
-            <Box my={2}>Custom container</Box>
+            <Box sx={{ my: 2 }}>Custom container</Box>
           </Container>
         </div>
       </React.Fragment>

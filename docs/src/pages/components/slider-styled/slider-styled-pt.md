@@ -95,7 +95,9 @@ A faixa pode ser invertida com `track="inverted"`.
 
 ## Escala não linear
 
-Você pode usar a propriedade `scale` para representar o `value` em uma escala diferente. Por exemplo, na demonstração seguinte, o valor *x* representa a potência de *10^x*.
+Você pode usar a propriedade `scale` para representar o `value` em uma escala diferente.
+
+In the following demo, the value _x_ represents the value _2^x_. Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "pages/components/slider-styled/NonLinearSlider.js"}}
 

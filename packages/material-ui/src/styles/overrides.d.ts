@@ -8,6 +8,7 @@ import { AlertTitleClassKey } from '../AlertTitle';
 import { AppBarClassKey } from '../AppBar';
 import { AutocompleteClassKey } from '../Autocomplete';
 import { AvatarClassKey } from '../Avatar';
+import { AvatarGroupClassKey } from '../AvatarGroup';
 import { BackdropClassKey } from '../Backdrop';
 import { BadgeClassKey } from '../Badge';
 import { BottomNavigationActionClassKey } from '../BottomNavigationAction';
@@ -124,6 +125,7 @@ export interface ComponentNameToClassKey {
   MuiAppBar: AppBarClassKey;
   MuiAutocomplete: AutocompleteClassKey;
   MuiAvatar: AvatarClassKey;
+  MuiAvatarGroup: AvatarGroupClassKey;
   MuiBackdrop: BackdropClassKey;
   MuiBadge: BadgeClassKey;
   MuiBottomNavigation: BottomNavigationClassKey;

@@ -1,20 +1,6 @@
 import { ComponentsProps, ComponentsOverrides, ComponentsVariants } from '@material-ui/core';
 
 export interface LabComponents {
-  MuiAvatarGroup?: {
-    defaultProps?: ComponentsProps['MuiAvatarGroup'];
-    styleOverrides?: ComponentsOverrides['MuiAvatarGroup'];
-  };
-  MuiPagination?: {
-    defaultProps?: ComponentsProps['MuiPagination'];
-    styleOverrides?: ComponentsOverrides['MuiPagination'];
-    variants?: ComponentsVariants['MuiPagination'];
-  };
-  MuiPaginationItem?: {
-    defaultProps?: ComponentsProps['MuiPaginationItem'];
-    styleOverrides?: ComponentsOverrides['MuiPaginationItem'];
-    variants?: ComponentsVariants['MuiPaginationItem'];
-  };
   MuiTabList?: {
     defaultProps?: ComponentsProps['MuiTabList'];
     styleOverrides?: ComponentsOverrides['MuiTabList'];

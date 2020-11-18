@@ -90,7 +90,7 @@ Table.propTypes = {
   /**
    * Set the header sticky.
    *
-   * ⚠️ It doesn't work with IE 11.
+   * ⚠️ It doesn't work with IE11.
    * @default false
    */
   stickyHeader: PropTypes.bool,

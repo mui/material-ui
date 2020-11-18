@@ -5,7 +5,7 @@ import Autocomplete from '@material-ui/core/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 
 // ISO 3166-1 alpha-2
-// ⚠️ No support for IE 11
+// ⚠️ No support for IE11
 function countryToFlag(isoCode) {
   return typeof String.fromCodePoint !== 'undefined'
     ? isoCode
@@ -49,7 +49,6 @@ export default function CountrySelect() {
         <TextField
           {...params}
           label="Choose a country"
-          variant="outlined"
           inputProps={{
             ...params.inputProps,
             autoComplete: 'new-password', // disable autocomplete and autofill

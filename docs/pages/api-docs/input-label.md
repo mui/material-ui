@@ -33,10 +33,10 @@ The `MuiInputLabel` name can be used for providing [default props](/customizatio
 | <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'</span> |  | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">disableAnimation</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the transition animation is disabled. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, apply disabled class. |
-| <span class="prop-name">error</span> | <span class="prop-type">bool</span> |  | If `true`, the label will be displayed in an error state. |
-| <span class="prop-name">focused</span> | <span class="prop-type">bool</span> |  | If `true`, the input of this label is focused. |
+| <span class="prop-name">error</span> | <span class="prop-type">bool</span> |  | If `true`, the label is displayed in an error state. |
+| <span class="prop-name">focused</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` of this label is focused. |
 | <span class="prop-name">margin</span> | <span class="prop-type">'dense'</span> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
-| <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | if `true`, the label will indicate that the input is required. |
+| <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | if `true`, the label will indicate that the `input` is required. |
 | <span class="prop-name">shrink</span> | <span class="prop-type">bool</span> |  | If `true`, the label is shrunk. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'</span> |  | The variant to use. |
 
@@ -57,7 +57,7 @@ Any other props supplied will be provided to the root element ([FormLabel](/api/
 | <span class="prop-name">formControl</span> | <span class="prop-name">.MuiInputLabel-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
 | <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiInputLabel-marginDense</span> | Styles applied to the root element if `margin="dense"`.
 | <span class="prop-name">shrink</span> | <span class="prop-name">.MuiInputLabel-shrink</span> | Styles applied to the `input` element if `shrink={true}`.
-| <span class="prop-name">animated</span> | <span class="prop-name">.MuiInputLabel-animated</span> | Styles applied to the `input` element if `disableAnimation={false}`.
+| <span class="prop-name">animated</span> | <span class="prop-name">.MuiInputLabel-animated</span> | Styles applied to the `input` element unless `disableAnimation={true}`.
 | <span class="prop-name">filled</span> | <span class="prop-name">.MuiInputLabel-filled</span> | Styles applied to the root element if `variant="filled"`.
 | <span class="prop-name">outlined</span> | <span class="prop-name">.MuiInputLabel-outlined</span> | Styles applied to the root element if `variant="outlined"`.
 

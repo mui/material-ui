@@ -22,7 +22,7 @@ describe('<ImageListItem />', () => {
   }));
 
   const itemData = {
-    img: 'images/image-list/breakfast.jpg',
+    img: '/fake.png',
     title: 'Breakfast',
     author: 'jill111',
   };
@@ -35,7 +35,7 @@ describe('<ImageListItem />', () => {
     });
     Image.muiName = 'Image';
 
-    return mount(
+    return render(
       <ImageListItem>
         <Image />
         {null}

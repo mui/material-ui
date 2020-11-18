@@ -11,7 +11,7 @@ export const styles = (theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  /* Styles applied to the root element if `disableGutters={false}`. */
+  /* Styles applied to the root element unless `disableGutters={true}`. */
   gutters: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),

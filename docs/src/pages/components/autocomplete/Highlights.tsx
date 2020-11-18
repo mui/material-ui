@@ -13,12 +13,7 @@ export default function Highlights() {
       options={top100Films}
       getOptionLabel={(option) => option.title}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Highlights"
-          variant="outlined"
-          margin="normal"
-        />
+        <TextField {...params} label="Highlights" margin="normal" />
       )}
       renderOption={(props, option, { inputValue }) => {
         const matches = match(option.title, inputValue);

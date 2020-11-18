@@ -29,6 +29,77 @@ export interface Localization {
   };
 }
 
+export const arEG: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'إظهر العنوان',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'إذهب الى الصفحة الأولى';
+          }
+          if (type === 'last') {
+            return 'إذهب الي الصفحة الأخيرة';
+          }
+          if (type === 'next') {
+            return 'إذهب الى الصفحة التالية';
+          }
+          // if (type === 'previous') {
+          return 'إذهب الى الصفحة السابقة';
+        },
+        labelRowsPerPage: 'عدد الصفوف في الصفحة:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} ${value !== 1 ? 'نجوم' : 'نجمة'}`,
+        emptyLabelText: 'فارغ',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'مسح',
+        closeText: 'إغلاق',
+        loadingText: 'يتم التحميل…',
+        noOptionsText: 'لا يوجد خيارات',
+        openText: 'فتح',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'إغلاق',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'التنقل عبر الصفحات',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'إذهب إلى '} صفحة ${page}`;
+          }
+          if (type === 'first') {
+            return 'إذهب الى الصفحة الأولى';
+          }
+          if (type === 'last') {
+            return 'إذهب الي الصفحة الأخيرة';
+          }
+          if (type === 'next') {
+            return 'إذهب الى الصفحة التالية';
+          }
+          // if (type === 'previous') {
+          return 'إذهب الى الصفحة السابقة';
+        },
+      },
+    },
+  },
+};
+
 export const azAZ: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -1532,6 +1603,78 @@ export const koKR: Localization = {
     //     },
     //   },
     // },
+  },
+};
+
+export const kzKZ: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Толық жолды көрсету',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Бірінші бетке өту';
+          }
+          if (type === 'last') {
+            return 'Соңғы бетке өту';
+          }
+          if (type === 'next') {
+            return 'Келесі бетке өту';
+          }
+          // if (type === 'previous') {
+          return 'Алдыңғы бетке өту';
+        },
+        labelRowsPerPage: 'Беттегі қатарлар:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${count !== -1 ? count : `+${to}`} қатардың ішінен ${from}-${to}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} жұлдыз`,
+        emptyLabelText: 'Рейтинг жоқ',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Тазарту',
+        closeText: 'Жабу',
+        loadingText: 'Жүктелуде…',
+        noOptionsText: 'Қол жетімді нұсқалар жоқ',
+        openText: 'Ашу',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Жабу',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Беттерді шарлау',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            if (selected) return `${page} — бет`;
+            return `${page} — бетке өту`;
+          }
+          if (type === 'first') {
+            return 'Бірінші бетке өту';
+          }
+          if (type === 'last') {
+            return 'Соңғы бетке өту';
+          }
+          if (type === 'next') {
+            return 'Келесі бетке өту';
+          }
+          // if (type === 'previous') {
+          return 'Алдыңғы бетке өту';
+        },
+      },
+    },
   },
 };
 

@@ -110,7 +110,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 
 ## `useAutocomplete`
 
-Para casos de customização avançada nós expomos o hook `useAutocomplete()`. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. O componente autocompletar usa esse hook internamente.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. O componente autocompletar usa esse hook internamente.
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
@@ -277,12 +277,12 @@ Pesquise dentro de 10.000 opções geradas aleatoriamente. A lista é virtualiza
 
 Os navegadores têm heurística para ajudar os usuários a preencherem os campos do formulário. No entanto, isso pode prejudicar a experiência do usuário com o componente.
 
-Por padrão, o componente desabilita o recurso de **autocomplete** (recurso que memoriza informações que o usuário forneceu em sessões anteriores) com o atributo `autoComplete="off"`.
+By default, the component disables the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
 
-No entanto, além de relembrar valores fornecidos anteriormente, o navegador também pode propor sugestões de **autofill** (preenchimento automático para informações de login, endereço ou detalhes de pagamento). No caso de você querer evitar o recurso de preenchimento automático, tente o seguinte:
+In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). No caso de você querer evitar o recurso de preenchimento automático, tente o seguinte:
 
 - Nomeie o campo sem fornecer informações para o navegador do que ele representa. `id="field1"` ao invés de `id="country"`. Se você deixar o id do vazio, o componente utiliza um id aleatório.
-- Defina `autoComplete="new-password"`:
+- Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
   <TextField
@@ -293,6 +293,8 @@ No entanto, além de relembrar valores fornecidos anteriormente, o navegador tam
     }}
   />
   ```
+
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 

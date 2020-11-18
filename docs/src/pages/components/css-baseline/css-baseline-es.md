@@ -61,6 +61,10 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 - La propiedad `box-sizing` se establece globalmente en el elemento `<html>` con el valor `border-box`. Cada elemento, incluyendo `*::before` y `*::after`, es declarado para heredar ésta propiedad, la cual asegura que el ancho declarado del elemento nunca sea excedido gracias al relleno o al borde.
 
+### Scrollbars
+
+In dark mode, the colors of the scrollbars are customized to provide a better contrast.
+
 ### Tipografía
 
 - No se declara ningún tamaño de fuente de base en el elemento `<html>`, pero se asume 16px (el valor predeterminado del navegador). Puedes aprender más acerca de las implicaciones de cambiar el tamaño de fuente predeterminado de `<html>`, en la página [de documentación del tema](/customization/typography/#typography-html-font-size).

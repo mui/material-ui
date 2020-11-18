@@ -11,7 +11,7 @@ export default function Index() {
     <Container maxWidth="sm">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Gatsby v4-beta example
+          Gatsby v5-alpha example
         </Typography>
         <Link to="/about" color="secondary">
           Go to the about page

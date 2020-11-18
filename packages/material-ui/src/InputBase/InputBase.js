@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
+import { refType, elementTypeAcceptingRef } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
@@ -50,6 +50,7 @@ export const styles = (theme) => {
       '&$disabled': {
         color: theme.palette.text.disabled,
         cursor: 'default',
+        WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
       },
     },
     /* Styles applied to the root element if the component is a descendant of `FormControl`. */
@@ -96,12 +97,12 @@ export const styles = (theme) => {
       display: 'block',
       // Make the flex item shrink with Firefox
       minWidth: 0,
-      width: '100%', // Fix IE 11 width issue
+      width: '100%', // Fix IE11 width issue
       animationName: 'mui-auto-fill-cancel',
       animationDuration: '10ms',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
-      '&:-ms-input-placeholder': placeholder, // IE 11
+      '&:-ms-input-placeholder': placeholder, // IE11
       '&::-ms-input-placeholder': placeholder, // Edge
       '&:focus': {
         outline: 0,
@@ -118,11 +119,11 @@ export const styles = (theme) => {
       'label[data-shrink=false] + $formControl &': {
         '&::-webkit-input-placeholder': placeholderHidden,
         '&::-moz-placeholder': placeholderHidden, // Firefox 19+
-        '&:-ms-input-placeholder': placeholderHidden, // IE 11
+        '&:-ms-input-placeholder': placeholderHidden, // IE11
         '&::-ms-input-placeholder': placeholderHidden, // Edge
         '&:focus::-webkit-input-placeholder': placeholderVisible,
         '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
-        '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
+        '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
         '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
       },
       '&$disabled': {
@@ -211,8 +212,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         console.error(
           [
             'Material-UI: You have provided a `inputComponent` to the input component',
-            'that does not correctly handle the `inputRef` prop.',
-            'Make sure the `inputRef` prop is called with a HTMLInputElement.',
+            'that does not correctly handle the `ref` prop.',
+            'Make sure the `ref` prop is called with a HTMLInputElement.',
           ].join('\n'),
         );
       }
@@ -278,7 +279,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   }, [value, checkDirty, isControlled]);
 
   const handleFocus = (event) => {
-    // Fix a bug with IE 11 where the focus/blur events are triggered
+    // Fix a bug with IE11 where the focus/blur events are triggered
     // while the input is disabled.
     if (fcs.disabled) {
       event.stopPropagation();
@@ -357,23 +358,10 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   };
 
   let InputComponent = inputComponent;
-  let inputProps = {
-    ...inputPropsProp,
-    ref: handleInputRef,
-  };
+  let inputProps = inputPropsProp;
 
-  if (typeof InputComponent !== 'string') {
-    inputProps = {
-      // Rename ref to inputRef as we don't know the
-      // provided `inputComponent` structure.
-      inputRef: handleInputRef,
-      type,
-      ...inputProps,
-      ref: null,
-    };
-  } else if (multiline) {
+  if (multiline && InputComponent === 'input') {
     if (rows) {
-      InputComponent = 'textarea';
       if (process.env.NODE_ENV !== 'production') {
         if (minRows || maxRows) {
           console.warn(
@@ -381,8 +369,15 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           );
         }
       }
+      inputProps = {
+        type: undefined,
+        ...inputProps,
+      };
+
+      InputComponent = 'textarea';
     } else {
       inputProps = {
+        type: undefined,
         maxRows,
         minRows,
         ...inputProps,
@@ -390,11 +385,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
       InputComponent = TextareaAutosize;
     }
-  } else {
-    inputProps = {
-      type,
-      ...inputProps,
-    };
   }
 
   const handleAutoFill = (event) => {
@@ -450,7 +440,9 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           value={value}
           onKeyDown={onKeyDown}
           onKeyUp={onKeyUp}
+          type={type}
           {...inputProps}
+          ref={handleInputRef}
           className={clsx(
             classes.input,
             {
@@ -496,7 +488,7 @@ InputBase.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -517,7 +509,7 @@ InputBase.propTypes = {
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the `input` element is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
@@ -526,12 +518,12 @@ InputBase.propTypes = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the input will indicate an error.
+   * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the `input` will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,
@@ -544,7 +536,7 @@ InputBase.propTypes = {
    * Either a string to use a HTML element or a component.
    * @default 'input'
    */
-  inputComponent: PropTypes.elementType,
+  inputComponent: elementTypeAcceptingRef,
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * @default {}
@@ -569,7 +561,7 @@ InputBase.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a textarea element will be rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -578,7 +570,7 @@ InputBase.propTypes = {
    */
   name: PropTypes.string,
   /**
-   * Callback fired when the input is blurred.
+   * Callback fired when the `input` is blurred.
    *
    * Notice that the first argument (event) might be undefined.
    */
@@ -607,7 +599,7 @@ InputBase.propTypes = {
    */
   onKeyUp: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**
@@ -620,7 +612,7 @@ InputBase.propTypes = {
    */
   renderSuffix: PropTypes.func,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,

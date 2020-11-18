@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', // Fix IE11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -61,7 +61,6 @@ export default function SignIn() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
-            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -72,7 +71,6 @@ export default function SignIn() {
             autoFocus
           />
           <TextField
-            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -108,7 +106,7 @@ export default function SignIn() {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
+      <Box sx={{ mt: 8 }}>
         <Copyright />
       </Box>
     </Container>

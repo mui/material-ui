@@ -208,7 +208,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       [size]: tabMeta ? tabMeta[size] : 0,
     };
 
-    // IE 11 support, replace with Number.isNaN
+    // IE11 support, replace with Number.isNaN
     // eslint-disable-next-line no-restricted-globals
     if (isNaN(indicatorStyle[start]) || isNaN(indicatorStyle[size])) {
       setIndicatorStyle(newIndicatorStyle);
@@ -578,7 +578,7 @@ Tabs.propTypes = {
    */
   'aria-labelledby': PropTypes.string,
   /**
-   * If `true`, the tabs will be centered.
+   * If `true`, the tabs are centered.
    * This prop is intended for large views.
    * @default false
    */
@@ -670,7 +670,7 @@ Tabs.propTypes = {
    */
   variant: PropTypes.oneOf(['fullWidth', 'scrollable', 'standard']),
   /**
-   * If `true`, the scrollbar will be visible. It can be useful when displaying
+   * If `true`, the scrollbar is visible. It can be useful when displaying
    * a long vertical list of tabs.
    * @default false
    */

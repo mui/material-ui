@@ -178,7 +178,9 @@ function ColorTool(props) {
 
   const colorBar = (color) => {
     const background = theme.palette.augmentColor({
-      main: color,
+      color: {
+        main: color,
+      },
     });
 
     return (

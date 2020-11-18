@@ -1,7 +1,5 @@
-// https://github.com/airbnb/enzyme/issues/1792
-import 'core-js/modules/es6.array.from';
-import 'formdata-polyfill';
 import './utils/init';
+import './utils/setupKarma';
 
 const integrationContext = require.context(
   '../packages/material-ui/test/integration',

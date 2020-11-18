@@ -32,12 +32,6 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
-## Additional actions
-
-`Checkbox`などのアクションまたはボタンを`AccordionSummary`の内部で使うために、フォーカスの伝播を止めて、アクション時にクリックイベントがパネルの開閉動作を呼ばないようにする必要があります。 また、アクションに `aria-label` を付与する必要があります。 そうしないと、入れ子になったアクションのラベルがアコーディオンの拡張を制御する親コンポーネントのボタンのラベルに含まれることになります。
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
-
 ## パフォーマンス
 
 Accordionsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:

@@ -24,6 +24,7 @@ components: Alert, AlertTitle
 githubLabel: 'component: Alert'
 packageName: '@material-ui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
+authors: ['foo', 'bar']
 ---
 `),
       ).to.deep.equal({
@@ -32,6 +33,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
         packageName: '@material-ui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
+        authors: ['foo', 'bar'],
       });
     });
   });

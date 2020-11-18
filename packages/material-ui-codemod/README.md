@@ -18,6 +18,61 @@ APIs.
 
 ## Included Scripts
 
+### v5.0.0
+
+#### `box-sx-prop`
+
+Updates the Box API from separate system props to `sx`.
+
+The diff should look like this:
+
+```diff
+-<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
++<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/box-sx-prop.js
+```
+
+#### `moved-lab-modules`
+
+Updates all imports for `@material-ui/lab` components that have moved to `@material-ui/core`.
+
+```diff
+-import Skeleton from '@material-ui/lab/Skeleton';
++import Skeleton from '@material-ui/core/Skeleton';
+```
+
+or
+
+```diff
+-import { SpeedDial } from '@material-ui/lab';
++import { SpeedDial } from '@material-ui/core';
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/moved-lab-modules.js
+```
+
+#### `textfield-variant-prop`
+
+Add the TextField `variant="standard` prop when `variant` is undefined.
+The diff should look like this:
+
+```diff
+-<TextField value="Standard" />
+-<TextField value="Outlined" variant="outlined" />
++<TextField value="Standard" variant="standard" />
++<TextField value="Outlined" />
+```
+
+This codemod is non-idempotent (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so should only be run once against any particular codebase.
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/textfield-variant-prop.js
+```
+
 ### v4.0.0
 
 #### `theme-spacing-api`

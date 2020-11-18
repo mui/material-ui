@@ -110,7 +110,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
@@ -277,14 +277,12 @@ Suche innerhalb von 10.000 zufällig generierten Optionen. Die Liste ist virtual
 
 Die Browser haben Heuristiken, um den Benutzern zu helfen, die Formulareingaben auszufüllen. Es kann jedoch die UX der Komponente negativ beeinflussen.
 
-By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+By default, the component disables the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
 
-Zusätzlich zur Speicherung der eingegebenen Werte kann der Browser aber auch **Autofill** Vorschläge vorschlagen (gespeichertes Login, Adresse oder Zahlungsinformationen). Falls Sie die automatische Füllung vermeiden möchten, können Sie Folgendes versuchen:
+In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). Falls Sie die automatische Füllung vermeiden möchten, können Sie Folgendes versuchen:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. Wenn Sie die ID leer lassen, verwendet die Komponente eine zufällige ID.
-- Setze `autoComplete="neues Passwort"`: jsx Setze `autoComplete="neues Passwort": 
-    jsx` Setze `autoComplete="neues Passwort": 
-        jsx`
+- Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
   inputProps={{
@@ -293,6 +291,8 @@ Zusätzlich zur Speicherung der eingegebenen Werte kann der Browser aber auch **
       }}
       /&#062;
   ```
+
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 

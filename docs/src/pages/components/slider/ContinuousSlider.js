@@ -25,7 +25,7 @@ export default function ContinuousSlider() {
       <Typography id="continuous-slider" gutterBottom>
         Volume
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item>
           <VolumeDown />
         </Grid>

@@ -53,7 +53,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 アプリバーの位置を固定してレンダリングすると、要素の寸法はページの残りの部分に影響しません。 これにより、コンテンツの一部がアプリバーの背後で見えなくなる可能性があります。 以下に3つの解決策を示します。 これにより、コンテンツの一部がアプリバーの背後で見えなくなる可能性があります。 以下に3つの解決策を示します。 これにより、コンテンツの一部がアプリバーの背後で見えなくなる可能性があります。 以下に3つの解決策を示します。
 
-1. fixed の代わりに `position="sticky"` を使用できます。 fixed の代わりに `position="sticky"` を使用できます。 ⚠️ stickyはIE 11ではサポートされていません。 fixed の代わりに `position="sticky"` を使用できます。 ⚠️ stickyはIE 11ではサポートされていません。
+1. fixed の代わりに `position="sticky"` を使用できます。 fixed の代わりに `position="sticky"` を使用できます。 ⚠️ stickyはIE 11ではサポートされていません。 ⚠️ sticky is not supported by IE11.
 2. 2番目の `<Toolbar />` コンポーネントをレンダリングできます:
 
 ```jsx

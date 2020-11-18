@@ -10,7 +10,7 @@ import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import jssRtl from 'jss-rtl';
 import { StyleSheetManager } from 'styled-components';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { useRouter } from 'next/router';
@@ -23,7 +23,8 @@ import loadScript from 'docs/src/modules/utils/loadScript';
 import RtlContext from 'docs/src/modules/utils/RtlContext';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
+import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
 // Configure JSS
 const jss = create({
@@ -45,18 +46,18 @@ acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
 function LanguageNegotiation() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
 
   React.useEffect(() => {
     const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(router.asPath);
     const preferedLanguage =
-      getCookie('userLanguage') !== 'noDefault' && userLanguage === 'en'
-        ? acceptLanguage.get(navigator.language)
-        : userLanguage;
+      LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
+      acceptLanguage.get(navigator.language) ||
+      userLanguage;
 
-    if (preferedLanguage !== userLanguage) {
+    if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
       window.location = preferedLanguage === 'en' ? canonical : `/${preferedLanguage}${canonical}`;
-    } else if (userLanguageUrl !== userLanguage) {
+    } else if (userLanguage !== userLanguageUrl) {
       dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { userLanguage: userLanguageUrl } });
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -213,7 +214,7 @@ async function registerServiceWorker() {
   if (
     'serviceWorker' in navigator &&
     process.env.NODE_ENV === 'production' &&
-    window.location.host.indexOf('material-ui.com') <= 0
+    window.location.host.indexOf('material-ui.com') !== -1
   ) {
     // register() automatically attempts to refresh the sw.js.
     const registration = await navigator.serviceWorker.register('/sw.js');
@@ -281,7 +282,7 @@ function findActivePage(currentPages, pathname) {
 }
 
 // Cache for the ltr version of the styles
-export const cacheLtr = createCache();
+export const cacheLtr = createCache({ key: 'css' });
 cacheLtr.compat = true;
 
 // Cache for the rtl version of the styles

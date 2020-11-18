@@ -1,7 +1,3 @@
-export default function unsupportedProp(
-  props: { [key: string]: any },
-  propName: string,
-  componentName: string,
-  location: string,
-  propFullName: string
-): Error | null;
+import { unstable_unsupportedProp as unsupportedProp } from '@material-ui/utils';
+
+export default unsupportedProp;

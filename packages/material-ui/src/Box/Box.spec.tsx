@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 
-function responsiveTest() {
+function ResponsiveTest() {
   <Box p={[2, 3, 4]} />;
   <Box p={{ xs: 2, sm: 3, md: 4 }} />;
   // undesired

@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', // Fix IE11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -76,7 +76,6 @@ export default function SignInSide() {
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
-              variant="outlined"
               margin="normal"
               required
               fullWidth
@@ -87,7 +86,6 @@ export default function SignInSide() {
               autoFocus
             />
             <TextField
-              variant="outlined"
               margin="normal"
               required
               fullWidth
@@ -121,7 +119,7 @@ export default function SignInSide() {
                 </Link>
               </Grid>
             </Grid>
-            <Box mt={5}>
+            <Box sx={{ mt: 5 }}>
               <Copyright />
             </Box>
           </form>

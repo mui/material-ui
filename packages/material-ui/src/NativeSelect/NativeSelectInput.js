@@ -61,7 +61,7 @@ NativeSelectInput.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the select will be disabled.
+   * If `true`, the select is disabled.
    */
   disabled: PropTypes.bool,
   /**

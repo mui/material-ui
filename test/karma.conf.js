@@ -25,6 +25,12 @@ module.exports = function setKarmaConfig(config) {
         served: true,
         included: true,
       },
+      {
+        pattern: 'test/assets/*.png',
+        watched: false,
+        included: false,
+        served: true,
+      },
     ],
     plugins: ['karma-mocha', 'karma-chrome-launcher', 'karma-sourcemap-loader', 'karma-webpack'],
     /**
@@ -40,6 +46,10 @@ module.exports = function setKarmaConfig(config) {
     preprocessors: {
       'test/karma.tests.js': ['webpack', 'sourcemap'],
     },
+    proxies: {
+      '/fake.png': '/base/test/assets/fake.png',
+      '/fake2.png': '/base/test/assets/fake2.png',
+    },
     reporters: ['dots'],
     webpack: {
       mode: 'development',
@@ -49,6 +59,8 @@ module.exports = function setKarmaConfig(config) {
           'process.env': {
             NODE_ENV: JSON.stringify('test'),
             CI: JSON.stringify(process.env.CI),
+            KARMA: JSON.stringify(true),
+            TEST_GATE: JSON.stringify(process.env.TEST_GATE),
           },
         }),
       ],
@@ -58,6 +70,9 @@ module.exports = function setKarmaConfig(config) {
             test: /\.(js|ts|tsx)$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
+            options: {
+              envName: 'stable',
+            },
           },
         ],
       },
@@ -114,30 +129,32 @@ module.exports = function setKarmaConfig(config) {
         BrowserStack_Chrome: {
           base: 'BrowserStack',
           os: 'OS X',
-          os_version: 'Sierra',
+          os_version: 'Catalina',
           browser: 'chrome',
-          browser_version: '49.0',
+          browser_version: '84.0',
         },
         BrowserStack_Firefox: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',
           browser: 'firefox',
-          browser_version: '52.0',
+          browser_version: '78.0',
         },
         BrowserStack_Safari: {
           base: 'BrowserStack',
           os: 'OS X',
-          os_version: 'Sierra',
+          os_version: 'Catalina',
           browser: 'safari',
-          browser_version: '10.1',
+          // We support 12.2 on iOS.
+          // However, 12.1 is very flaky on desktop (mobile is always flaky).
+          browser_version: '13.0',
         },
         BrowserStack_Edge: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',
           browser: 'edge',
-          browser_version: '14.0',
+          browser_version: '85.0',
         },
       },
     };

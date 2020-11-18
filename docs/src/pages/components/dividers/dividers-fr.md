@@ -15,7 +15,7 @@ materialDesign: https://material.io/components/dividers
 
 ## Liste diviseurs
 
-The divider renders as an `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
+Par défaut, le diviseur est rendu comme un `<hr>`. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 

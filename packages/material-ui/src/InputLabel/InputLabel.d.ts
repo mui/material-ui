@@ -29,7 +29,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
     marginDense?: string;
     /** Styles applied to the `input` element if `shrink={true}`. */
     shrink?: string;
-    /** Styles applied to the `input` element if `disableAnimation={false}`. */
+    /** Styles applied to the `input` element unless `disableAnimation={true}`. */
     animated?: string;
     /** Styles applied to the root element if `variant="filled"`. */
     filled?: string;
@@ -47,11 +47,11 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   disabled?: boolean;
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    */
   error?: boolean;
   /**
-   * If `true`, the input of this label is focused.
+   * If `true`, the `input` of this label is focused.
    */
   focused?: boolean;
   /**
@@ -60,7 +60,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   margin?: 'dense';
   /**
-   * if `true`, the label will indicate that the input is required.
+   * if `true`, the label will indicate that the `input` is required.
    */
   required?: boolean;
   /**

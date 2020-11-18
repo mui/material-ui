@@ -1,5 +1,5 @@
 ---
-title: React 选择器组件
+title: React Select（选择器）组件
 components: Select, NativeSelect
 githubLabel: 'component: Select'
 ---
@@ -14,7 +14,7 @@ githubLabel: 'component: Select'
 
 我们通常将菜单（Menus）放置在其所点击的元素上，这样的话能够确保当前选定的菜单项显示在点击的元素之上。
 
-Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相替代。
+{{"demo": "pages/components/selects/BasicSelect.js"}}
 
 ## 高级功能
 
@@ -44,7 +44,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 为了提高用户体验，对于在移动设备上使用平台的原生选择器这样的模式，我们是支持的。
 
-🎨如果你是在寻找灵感，你可以查看 [MUI Treasury's customization examples](https://mui-treasury.com/styles/select)。
+{{"demo": "pages/components/selects/NativeSelect.js"}}
 
 ## TextField
 
@@ -62,7 +62,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 多重选择
 
-`Select` 组件也支持多项选择。 你可以通过 `multiple` 属性来启用它。
+`Select` 组件也支持多项选择。 你可以通过使用 `multiple` 属性来启用它。
 
 与单项选择一样，您可以通过访问 `onChange` 的回调函数中的 `event.target.value ` 来提取新的值。 它总是以一个数组的形式出现。
 

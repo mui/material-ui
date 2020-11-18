@@ -25,12 +25,7 @@ export default function Locales() {
             setLocale(newValue);
           }}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Locale"
-              variant="outlined"
-              fullWidth
-            />
+            <TextField {...params} label="Locale" fullWidth />
           )}
         />
         <TablePagination

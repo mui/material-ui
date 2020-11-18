@@ -287,7 +287,11 @@ function generatePropType(type: PropTypeDescriptor): string | undefined {
 }
 
 function generateName(reactAPI: ReactApi) {
-  if (reactAPI.styles.classes.length && !reactAPI.styles.name) {
+  if (
+    reactAPI.styles.classes.length &&
+    !reactAPI.styles.name &&
+    reactAPI.name.indexOf('Unstyled') === -1
+  ) {
     throw new Error(`Missing styles name on ${reactAPI.name} component`);
   }
 
@@ -440,12 +444,12 @@ Any other props supplied will be provided to the root element (${
   return text;
 }
 
-function generateClasses(reactAPI: ReactApi) {
+function generateClasses(reactAPI: ReactApi, nonJSSComponent: boolean) {
   if (!reactAPI.styles.classes.length) {
     return '';
   }
 
-  if (!reactAPI.styles.name) {
+  if (!reactAPI.styles.name && reactAPI.name.indexOf('Unstyled') === -1) {
     throw new Error(`Missing styles name on ${reactAPI.name} component`);
   }
 
@@ -476,15 +480,22 @@ function generateClasses(reactAPI: ReactApi) {
 ${text}
 
 You can override the style of the component thanks to one of these customization points:
-
+${
+  nonJSSComponent
+    ? `
+- With a [global class name](/guides/interoperability/#global-css).
+- With a rule name as part of the component's [\`styleOverrides\` property](/customization/components/#global-theme-override) in a custom theme.
+`
+    : `
 - With a rule name of the [\`classes\` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [\`overrides\` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
-    reactAPI.filename,
-  )}) for more detail.
-
+        reactAPI.filename,
+      )}) for more detail.
+`
+}
 `;
 }
 
@@ -540,7 +551,7 @@ function generateImportStatement(reactAPI: ReactApi): string {
       (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
     )
     // convert things like `/Table/Table.js` to ``
-    .replace(/\/([^/]+)\/\1\.js$/, '');
+    .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
   return `## Import
 
 \`\`\`js
@@ -552,7 +563,7 @@ import { ${reactAPI.name} } from '${source}';
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).`;
 }
 
-export default function generateMarkdown(reactAPI: ReactApi) {
+export default function generateMarkdown(reactAPI: ReactApi, nonJSSComponent = false) {
   return [
     generateHeader(reactAPI),
     '',
@@ -570,6 +581,8 @@ export default function generateMarkdown(reactAPI: ReactApi) {
     generateName(reactAPI),
     generateProps(reactAPI),
     '',
-    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,
+    `${generateClasses(reactAPI, nonJSSComponent)}${generateInheritance(reactAPI)}${generateDemos(
+      reactAPI,
+    )}`,
   ].join('\n');
 }

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', // Fix IE11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -65,7 +65,6 @@ export default function SignUp() {
               <TextField
                 autoComplete="fname"
                 name="firstName"
-                variant="outlined"
                 required
                 fullWidth
                 id="firstName"
@@ -75,7 +74,6 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                variant="outlined"
                 required
                 fullWidth
                 id="lastName"
@@ -86,7 +84,6 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
                 required
                 fullWidth
                 id="email"
@@ -97,7 +94,6 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
                 required
                 fullWidth
                 name="password"
@@ -131,7 +127,7 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
+      <Box sx={{ mt: 5 }}>
         <Copyright />
       </Box>
     </Container>

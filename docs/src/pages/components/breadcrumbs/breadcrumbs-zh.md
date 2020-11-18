@@ -1,5 +1,5 @@
 ---
-title: React 面包屑导航组件
+title: React Breadcrumbs（面包屑导航）组件
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: Breadcrumbs'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
@@ -11,7 +11,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 基本的面包屑导航
+## 简单的面包屑导航
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 

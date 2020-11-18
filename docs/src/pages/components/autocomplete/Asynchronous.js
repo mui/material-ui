@@ -65,7 +65,6 @@ export default function Asynchronous() {
         <TextField
           {...params}
           label="Asynchronous"
-          variant="outlined"
           InputProps={{
             ...params.InputProps,
             endAdornment: (

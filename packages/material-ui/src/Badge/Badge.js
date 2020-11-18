@@ -299,7 +299,7 @@ Badge.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the badge will be invisible.
+   * If `true`, the badge is invisible.
    */
   invisible: PropTypes.bool,
   /**

@@ -110,7 +110,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 
 ## `useAutocomplete`
 
-高度な利用方法のために、 `useAutocomplete()` hooksがあります。 JSXのレンダリングに関連する値以外は、Autocompleteコンポーネントとほぼ同じ値をとります。 Autocompleteコンポーネントは内部でこのhookを使用しています。
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. JSXのレンダリングに関連する値以外は、Autocompleteコンポーネントとほぼ同じ値をとります。 Autocompleteコンポーネントは内部でこのhookを使用しています。
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
@@ -277,12 +277,12 @@ const filterOptions = (options, { inputValue }) =>
 
 ブラウザは入力補助のために経験則を持っています。 しかし、これはコンポーネントのUXを損なう可能性があります。
 
-デフォルトでは, **autocomplete** 機能(特定の欄に以前入力した内容を保持しておくもの) は `autoComplete="off"` で無効化しています。
+By default, the component disables the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
 
-しかし、過去に入力された値を記憶しておくことに加えて、ブラウザは**autofill** を提案してくることがあります。 autofillを避けたい場合、以下の方法を取れます。
+In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). autofillを避けたい場合、以下の方法を取れます。
 
 - ブラウザが判断できない命名を入力欄に使う。 ブラウザが判断できない命名を入力欄に使う。 例: `id="country"`の代わりに、`id="field1"`を使う idを空にした場合、コンポーネントはランダムなidを保管します。 idを空にした場合、コンポーネントはランダムなidを保管します。
-- Set `autoComplete="new-password"`: jsx jsx
+- Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
   inputProps={{
@@ -291,6 +291,8 @@ const filterOptions = (options, { inputValue }) =>
       }}
       /&#062;
   ```
+
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 

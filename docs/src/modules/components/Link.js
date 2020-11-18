@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
-import { useSelector } from 'react-redux';
+import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
   const { as, href, ...other } = props;
@@ -40,7 +40,7 @@ function Link(props) {
 
   const router = useRouter();
 
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === routerHref && activeClassName,
   });

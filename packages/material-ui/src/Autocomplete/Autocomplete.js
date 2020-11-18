@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '../styles';
+import { alpha } from '../styles/colorManipulator';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
@@ -16,12 +17,12 @@ export { createFilterOptions };
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    '&$focused $clearIndicatorDirty': {
+    '&$focused $clearIndicator': {
       visibility: 'visible',
     },
     /* Avoid double tap issue on iOS */
     '@media (pointer: fine)': {
-      '&:hover $clearIndicatorDirty': {
+      '&:hover $clearIndicator': {
         visibility: 'visible',
       },
     },
@@ -146,8 +147,6 @@ export const styles = (theme) => ({
     padding: 4,
     visibility: 'hidden',
   },
-  /* Styles applied to the clear indicator if the input is dirty. */
-  clearIndicatorDirty: {},
   /* Styles applied to the popup indicator. */
   popupIndicator: {
     padding: 2,
@@ -168,7 +167,7 @@ export const styles = (theme) => ({
   /* Styles applied to the `Paper` component. */
   paper: {
     ...theme.typography.body1,
-    overflow: 'hidden',
+    overflow: 'auto',
     margin: '4px 0',
   },
   /* Styles applied to the `listbox` component. */
@@ -193,6 +192,7 @@ export const styles = (theme) => ({
   option: {
     minHeight: 48,
     display: 'flex',
+    overflow: 'hidden',
     justifyContent: 'flex-start',
     alignItems: 'center',
     cursor: 'pointer',
@@ -206,18 +206,38 @@ export const styles = (theme) => ({
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
-    '&[aria-selected="true"]': {
-      backgroundColor: theme.palette.action.selected,
-    },
     '&[data-focus="true"]': {
       backgroundColor: theme.palette.action.hover,
-    },
-    '&:active': {
-      backgroundColor: theme.palette.action.selected,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
     '&[aria-disabled="true"]': {
       opacity: theme.palette.action.disabledOpacity,
       pointerEvents: 'none',
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: theme.palette.action.focus,
+    },
+    '&[aria-selected="true"]': {
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&[data-focus="true"]': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.action.selected,
+        },
+      },
+      '&.Mui-focusVisible': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
+      },
     },
   },
   /* Styles applied to the group's label elements. */
@@ -234,12 +254,6 @@ export const styles = (theme) => ({
   },
 });
 
-function DisablePortal(props) {
-  // eslint-disable-next-line react/prop-types
-  const { anchorEl, open, ...other } = props;
-  return <div {...other} />;
-}
-
 const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
@@ -255,7 +269,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     clearText = 'Clear',
     closeIcon = <CloseIcon fontSize="small" />,
     closeText = 'Close',
-    debug = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -294,7 +307,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     openText = 'Open',
     options,
     PaperComponent = Paper,
-    PopperComponent: PopperComponentProp = Popper,
+    PopperComponent = Popper,
     popupIcon = <ArrowDropDownIcon />,
     renderGroup: renderGroupProp,
     renderInput,
@@ -306,8 +319,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     ...other
   } = props;
   /* eslint-enable @typescript-eslint/no-unused-vars */
-
-  const PopperComponent = disablePortal ? DisablePortal : PopperComponentProp;
 
   const {
     getRootProps,
@@ -389,7 +400,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     });
   };
 
-  const hasClearIcon = !disableClearable && !disabled;
+  const hasClearIcon = !disableClearable && !disabled && dirty;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   return (
@@ -425,9 +436,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                     {...getClearProps()}
                     aria-label={clearText}
                     title={clearText}
-                    className={clsx(classes.clearIndicator, {
-                      [classes.clearIndicatorDirty]: dirty,
-                    })}
+                    className={classes.clearIndicator}
                   >
                     {closeIcon}
                   </IconButton>
@@ -463,6 +472,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           className={clsx(classes.popper, {
             [classes.popperDisablePortal]: disablePortal,
           })}
+          disablePortal={disablePortal}
           style={{
             width: anchorEl ? anchorEl.clientWidth : null,
           }}
@@ -551,7 +561,7 @@ Autocomplete.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the input's text will be cleared on blur if no value is selected.
+   * If `true`, the input's text is cleared on blur if no value is selected.
    *
    * Set to `true` if you want to help the user enter a new value.
    * Set to `false` if you want to help the user resume his search.
@@ -583,13 +593,6 @@ Autocomplete.propTypes = {
    */
   closeText: PropTypes.string,
   /**
-   * If `true`, the popup will ignore the blur event if the input is filled.
-   * You can inspect the popup markup with your browser tools.
-   * Consider this option when you need to customize the component.
-   * @default false
-   */
-  debug: PropTypes.bool,
-  /**
    * The default input value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
@@ -605,7 +608,7 @@ Autocomplete.propTypes = {
    */
   disableCloseOnSelect: PropTypes.bool,
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the input is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -858,7 +861,7 @@ Autocomplete.propTypes = {
    */
   renderTags: PropTypes.func,
   /**
-   * If `true`, the input's text will be selected on focus.
+   * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
    * @default !props.freeSolo
    */

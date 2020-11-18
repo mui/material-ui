@@ -17,6 +17,6 @@ describe('<CssBaseline />', () => {
 
     const child = container.querySelector('#child');
 
-    expect(child.tagName).to.equal('DIV');
+    expect(child).to.have.tagName('div');
   });
 });

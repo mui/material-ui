@@ -32,7 +32,7 @@ The `MuiTabs` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">allowScrollButtonsMobile</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the scroll buttons aren't forced hidden on mobile. By default the scroll buttons are hidden on mobile and takes precedence over `scrollButtons`. |
 | <span class="prop-name">aria-label</span> | <span class="prop-type">string</span> |  | The label for the Tabs as a string. |
 | <span class="prop-name">aria-labelledby</span> | <span class="prop-type">string</span> |  | An id or list of ids separated by a space that label the Tabs. |
-| <span class="prop-name">centered</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the tabs will be centered. This prop is intended for large views. |
+| <span class="prop-name">centered</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the tabs are centered. This prop is intended for large views. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
@@ -47,7 +47,7 @@ The `MuiTabs` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">textColor</span> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'inherit'</span> | Determines the color of the `Tab`. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this prop to `false`. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | Determines additional display behavior of the tabs:<br> - `scrollable` will invoke scrolling properties and allow for horizontally  scrolling (or swiping) of the tab bar.  -`fullWidth` will make the tabs grow to use all the available space,  which should be used for small views, like on mobile.  - `standard` will render the default state. |
-| <span class="prop-name">visibleScrollbar</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the scrollbar will be visible. It can be useful when displaying a long vertical list of tabs. |
+| <span class="prop-name">visibleScrollbar</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the scrollbar is visible. It can be useful when displaying a long vertical list of tabs. |
 
 The `ref` is forwarded to the root element.
 

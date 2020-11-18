@@ -149,7 +149,6 @@ const Menu = React.forwardRef(function Menu(props, ref) {
       {...other}
     >
       <MenuList
-        data-mui-test="Menu"
         onKeyDown={handleListKeyDown}
         actions={menuListActionsRef}
         autoFocus={autoFocus && (activeItemIndex === -1 || disableAutoFocusItem)}

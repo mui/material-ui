@@ -29,15 +29,15 @@ The `MuiListItem` name can be used for providing [default props](/customization/
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">alignItems</span> | <span class="prop-type">'center'<br>&#124;&nbsp;'flex-start'</span> | <span class="prop-default">'center'</span> | Defines the `align-items` style property. |
-| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be focused during the first mount. Focus will also be triggered if the value changes from false to true. |
-| <span class="prop-name">button</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be a button (using `ButtonBase`). Props intended for `ButtonBase` can then be applied to `ListItem`. |
+| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item is focused during the first mount. Focus will also be triggered if the value changes from false to true. |
+| <span class="prop-name">button</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item is a button (using `ButtonBase`). Props intended for `ButtonBase` can then be applied to `ListItem`. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. If a `ListItemSecondaryAction` is used it must be the last child. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">ContainerComponent</span> | <span class="prop-type">element type</span> | <span class="prop-default">'li'</span> | The container component used when a `ListItemSecondaryAction` is the last child.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">ContainerProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the container component if used. |
-| <span class="prop-name">dense</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input will be used. The prop defaults to the value inherited from the parent List component. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be disabled. |
+| <span class="prop-name">dense</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input is used. The prop defaults to the value inherited from the parent List component. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item is disabled. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
 | <span class="prop-name">divider</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a 1px light border is added to the bottom of the list item. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Use to apply selected styling. |
@@ -57,7 +57,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">alignItemsFlexStart</span> | <span class="prop-name">.MuiListItem-alignItemsFlexStart</span> | Styles applied to the `component` element if `alignItems="flex-start"`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the inner `component` element if `disabled={true}`.
 | <span class="prop-name">divider</span> | <span class="prop-name">.MuiListItem-divider</span> | Styles applied to the inner `component` element if `divider={true}`.
-| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiListItem-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
+| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiListItem-gutters</span> | Styles applied to the inner `component` element unless `disableGutters={true}`.
 | <span class="prop-name">button</span> | <span class="prop-name">.MuiListItem-button</span> | Styles applied to the inner `component` element if `button={true}`.
 | <span class="prop-name">secondaryAction</span> | <span class="prop-name">.MuiListItem-secondaryAction</span> | Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
 | <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
