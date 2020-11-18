@@ -114,4 +114,4 @@ Mask is no longer required. Also, if your provided mask is not valid, pickers wi
 
 ## And many more
 
-There are a lot more changes, like prop renames, deletions, etc. Be careful to update using find & replace. Make sure your tests and build passed!
+There are a lot more changes, like prop renames, deletions, etc. Be careful to update using find & replace. Make sure your tests and build pass!
