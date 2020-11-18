@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/core/Box';
+import { SxProps } from '@material-ui/system';
 import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
 } from '@material-ui/unstyled/SliderUnstyled';
+import { Theme } from '@material-ui/core/styles';
 
 export type SliderStyledTypeMap<
   D extends React.ElementType = 'span',
@@ -13,7 +14,7 @@ export type SliderStyledTypeMap<
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
-    sx?: SxProps;
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;
