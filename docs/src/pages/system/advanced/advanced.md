@@ -1,6 +1,6 @@
 # Advanced
 
-<p class="description">Here you can find examples of how you can use the system on your custom components.</p>
+<p class="description">Here you can find examples of how you can use the system in your custom components.</p>
 
 ## Adding the `sx` prop on your custom components
 
