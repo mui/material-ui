@@ -23,7 +23,7 @@ const screenshotsBase = 'test/regressions/screenshots/chrome';
 
 async function run() {
   let screenshots = await glob(`${screenshotsBase}/**/*`);
-  screenshots = chunk(screenshots, Math.ceil(screenshots.length / 3));
+  screenshots = chunk(screenshots, Math.ceil(screenshots.length / 2));
 
   await Promise.all(
     screenshots.map((chunks, chunkIndex) =>
