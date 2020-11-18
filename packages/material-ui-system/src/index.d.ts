@@ -264,12 +264,6 @@ export const visuallyHidden: React.CSSProperties;
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function unstable_getThemeValue(prop: string, value: any, theme: object): any;
 
-// sx prop
-
-/**
- * CSS typings
- */
-
 export type StandardCSSProperties = CSS.PropertiesFallback<number | string>;
 
 /**
@@ -669,9 +663,8 @@ export type SystemCssProperties<Theme extends object = {}> = {
 };
 
 /**
- * The `SystemStyleObject` extends [style props](https://emotion.sh/docs/object-styles)
- * such that properties that are part of the `Theme` will be transformed to
- * their corresponding values. Other valid CSS properties are also allowed.
+ * The `SystemStyleObject` defines custom properties that will be transformed to
+ * their corresponding values from the `Theme`. Other valid CSS properties are also allowed.
  */
 export type SystemStyleObject<Theme extends object = {}> =
   | SystemCssProperties<Theme>
