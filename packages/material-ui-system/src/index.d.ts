@@ -545,7 +545,7 @@ export interface AliasesCSSProperties {
    */
   py?: StandardCSSProperties['paddingTop'];
   /**
-   * The **`paddingY`** is shorthand property for CSS properties **`padding-top`** and **`padding-bottom`**. They set the width of the padding area on the top and bottom of an element.
+   * The **`paddingY`** property is shorthand for the CSS properties **`padding-top`** and **`padding-bottom`**. They set the width of the padding at the top and bottom of an element.
    *
    * **Initial value**: `0`
    *
