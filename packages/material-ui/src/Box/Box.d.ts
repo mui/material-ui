@@ -45,7 +45,7 @@ export interface BoxProps extends ElementProps, SystemProps {
   component?: React.ElementType;
   clone?: boolean;
   ref?: React.Ref<unknown>;
-  sx?: SxProps;
+  sx?: SxProps<Theme>;
 }
 
 declare const Box: React.ComponentType<BoxProps>;

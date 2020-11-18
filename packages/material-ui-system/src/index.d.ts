@@ -662,7 +662,7 @@ export interface AllSystemCSSProperties
     AliasesCSSProperties,
     OverwriteCSSProperties {}
 
-export type SystemCssProperties = {
+export type SystemCssProperties<Theme extends object = {}> = {
   [K in keyof AllSystemCSSProperties]:
     | ResponsiveStyleValue<AllSystemCSSProperties[K]>
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>)
@@ -674,44 +674,13 @@ export type SystemCssProperties = {
  * such that properties that are part of the `Theme` will be transformed to
  * their corresponding values. Other valid CSS properties are also allowed.
  */
-export type SystemStyleObject =
-  | SystemCssProperties
+export type SystemStyleObject<Theme extends object = {}> =
+  | SystemCssProperties<Theme>
   | CSSPseudoSelectorProps
   | CSSSelectorObject
   | null;
 
-/**
- * Box typings
- */
-
-export type BoxStyleFunction = ComposedStyleFunction<
-  [
-    typeof borders,
-    typeof display,
-    typeof flexbox,
-    typeof grid,
-    typeof palette,
-    typeof positions,
-    typeof shadows,
-    typeof sizing,
-    typeof spacing,
-    typeof typography
-  ]
->;
-
-type SystemProps = PropsFor<BoxStyleFunction>;
-type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
-
-export type SxProps = SystemStyleObject;
-
-export interface BoxProps extends ElementProps, SystemProps {
-  children?: React.ReactNode | ((props: ElementProps) => React.ReactNode);
-  // styled API
-  component?: React.ElementType;
-  clone?: boolean;
-  ref?: React.Ref<unknown>;
-  sx?: SxProps;
-}
+export type SxProps<Theme extends object = {}> = SystemStyleObject<Theme>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function unstable_styleFunctionSx(props: object): object;
