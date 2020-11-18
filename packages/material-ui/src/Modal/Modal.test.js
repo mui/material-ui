@@ -161,16 +161,29 @@ describe('<Modal />', () => {
     });
 
     it('should let the user disable backdrop click triggering onClose', () => {
+      function ModalWithDisabledBackdropClick(props) {
+        const { onClose, ...other } = props;
+        function handleClose(event, reason) {
+          if (reason !== 'backdropClick') {
+            onClose(event, reason);
+          }
+        }
+
+        return (
+          <Modal onClose={handleClose} {...other}>
+            <div />
+          </Modal>
+        );
+      }
       const onClose = spy();
       const { getByTestId } = render(
-        <Modal
+        <ModalWithDisabledBackdropClick
           onClose={onClose}
           open
-          disableBackdropClick
           BackdropProps={{ 'data-testid': 'backdrop' }}
         >
           <div />
-        </Modal>,
+        </ModalWithDisabledBackdropClick>,
       );
 
       getByTestId('backdrop').click();
