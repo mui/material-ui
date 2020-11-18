@@ -1,4 +1,4 @@
-const movedLabComponents = [
+const movedLabModules = [
   'Alert',
   'AlertTitle',
   'Autocomplete',
@@ -11,6 +11,7 @@ const movedLabComponents = [
   'SpeedDialIcon',
   'ToggleButton',
   'ToggleButtonGroup',
+  'useAutocomplete',
 ];
 
 /**
@@ -28,7 +29,7 @@ export default function transformer(file, api) {
       if (subPackageImportMatch !== null) {
         const componentName = subPackageImportMatch[1];
 
-        if (movedLabComponents.includes(componentName)) {
+        if (movedLabModules.includes(componentName)) {
           /**
            * @type {import('jscodeshift').ASTPath}
            */
@@ -41,7 +42,7 @@ export default function transformer(file, api) {
         const coreImportSpecifiers = [];
         path.node.specifiers.forEach((specifier) => {
           if (specifier.type === 'ImportSpecifier') {
-            if (movedLabComponents.includes(specifier.imported.name)) {
+            if (movedLabModules.includes(specifier.imported.name)) {
               coreImportSpecifiers.push(specifier);
             } else {
               labImportSpecifiers.push(specifier);

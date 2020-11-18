@@ -243,7 +243,7 @@ const classes = makeStyles(theme => ({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-  You can use the [`moved-lab-components` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-components) for automatic migration.
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Autocomplete
 
@@ -256,7 +256,7 @@ const classes = makeStyles(theme => ({
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
 
-  You can use our [`moved-lab-components` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-components) for automatic migration.
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
 - `renderOption` should now return the full DOM structure of the option.
@@ -605,7 +605,7 @@ const classes = makeStyles(theme => ({
   +import usePagination from '@material-ui/core/usePagination';
   ```
 
-  You can use our [`moved-lab-components` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-components) for automatic migration.
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
 
@@ -680,7 +680,7 @@ const classes = makeStyles(theme => ({
   +import Rating from '@material-ui/core/Rating';
   ```
 
-  You can use our [`moved-lab-components` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-components) for automatic migration.
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Change the default empty icon to improve accessibility.
   If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
@@ -725,7 +725,7 @@ const classes = makeStyles(theme => ({
   +import Skeleton from '@material-ui/core/Skeleton';
   ```
 
-  You can use our [`moved-lab-components` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-components) for automatic migration.
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
 
@@ -792,7 +792,7 @@ const classes = makeStyles(theme => ({
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
 
-  You can use our [`moved-lab-components` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-components) for automatic migration.
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Stepper
 
@@ -954,7 +954,7 @@ const classes = makeStyles(theme => ({
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
-  You can use our [`moved-lab-components` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-components) for automatic migration.
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Tooltip
 
