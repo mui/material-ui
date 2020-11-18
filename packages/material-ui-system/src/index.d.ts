@@ -467,7 +467,7 @@ export interface AliasesCSSProperties {
    */
   pt?: StandardCSSProperties['paddingTop'];
   /**
-   * The **`padding-right`** CSS property sets the width of the padding area on the right side of an element.
+   * The **`padding-right`** CSS property sets the width of the padding at the right side of an element.
    *
    * **Initial value**: `0`
    *
