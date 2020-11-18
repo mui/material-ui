@@ -1,6 +1,22 @@
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 
-const pages = [
+export interface MuiPage {
+  pathname: string;
+  children?: MuiPage[];
+  disableDrawer?: boolean;
+  displayNav?: boolean;
+  /**
+   * Props spread to the Link component
+   */
+  linkProps?: Record<string, unknown>;
+  subheader?: string;
+  /**
+   * Overrides the default page title.
+   */
+  title?: string;
+}
+
+const pages: MuiPage[] = [
   {
     pathname: '/getting-started',
     children: [
@@ -168,11 +184,15 @@ const pages = [
     title: 'Component API',
     pathname: '/api-docs',
     children: [
-      ...findPages[0].children,
+      ...findPages[0].children!,
       ...[{ pathname: '/api-docs/data-grid' }, { pathname: '/api-docs/x-grid' }],
-    ].sort((a, b) =>
-      a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
-    ),
+    ]
+      .sort((a, b) =>
+        a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
+      )
+      .map((page) => {
+        return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
+      }),
   },
   {
     pathname: '/system',
