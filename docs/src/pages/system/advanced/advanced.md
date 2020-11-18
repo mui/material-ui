@@ -6,7 +6,7 @@
 
 The easiest way to support the `sx` prop on your custom components is to use the `experimentalStyled()` utility that comes from `@material-ui/core/styles` for creating your custom components. Here is an example of how it can be used:
 
-{{"demo": "pages/system/advanced/ExperimentalStyledDemo.js"}}
+{{"demo": "pages/system/advanced/ExperimentalStyledDemo.js", "defaultCodeOpen": true}}
 
 ## Use the `unstable_styleFuntionSx` utility
 
