@@ -189,6 +189,7 @@ const pages = [
       { pathname: '/system/screen-readers' },
       { pathname: '/system/typography' },
       { pathname: '/system/properties' },
+      { pathname: '/system/advanced' },
     ],
   },
   {
