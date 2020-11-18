@@ -593,7 +593,7 @@ export interface AliasesCSSProperties {
 
 export interface OverwriteCSSProperties {
   /**
-   * The **`border`** shorthand CSS property sets an element's border. It sets the values of `border-width`, `border-style`, and `border-color`.
+   * The **`border`** CSS property is shorthand for the CSS properties **`border-width`**, **`border-style`**, and **`border-color`**. It sets an element's border.
    *
    * **Initial value**: `none`
    *
