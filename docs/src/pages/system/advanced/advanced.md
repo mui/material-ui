@@ -16,6 +16,6 @@ The `experimentalStyled()` offers other functionalities, like access to default 
 
 ## Using standalone system utilities
 
-If you wouldn't like to use the `sx` prop on your custom components, but only some bits from the system, you can use and combine the different style function available as part of the system.
+If you wouldn't like to use the `sx` prop on your custom components, but only some bits from the system, you can use and combine the different style functions available as part of the system.
 
 {{"demo": "pages/system/advanced/CombiningStyleFunctionsDemo.js"}}
