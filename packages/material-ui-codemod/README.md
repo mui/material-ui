@@ -35,7 +35,7 @@ The diff should look like this:
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/box-sx-prop.js
 ```
 
-#### `moved-components`
+#### `moved-lab-components`
 
 Updates all imports for `@material-ui/lab` components that have moved to `@material-ui/core`.
 
@@ -52,7 +52,7 @@ or
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/moved-components.js
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v5.0.0/moved-lab-components.js
 ```
 
 #### `textfield-variant-prop`
