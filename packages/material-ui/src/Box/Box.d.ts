@@ -30,7 +30,7 @@ export type StandardCSSProperties = CSS.PropertiesFallback<number | string>;
  *
  * For more information see: https://styled-system.com/responsive-styles
  */
-export type ResponsiveStyleValue<T> = T | Array<T | null>;
+export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
 
 /**
  * All non-vendor-prefixed CSS properties. (Allow `number` to support CSS-in-JS libs,
