@@ -4,15 +4,15 @@
 
 ## Adding the `sx` prop on your custom components
 
-The easiest way to support the `sx` prop on your custom components is to use the `experimentalStyled()` utility that comes from `@material-ui/core/styles` for creating your custom components. Here is an example of how it can be used:
-
-{{"demo": "pages/system/advanced/ExperimentalStyledDemo.js", "defaultCodeOpen": true}}
-
-## Use the `unstable_styleFuntionSx` utility
-
-The `experimentalStyled()` offers other functionalities, like access to the default theme, as well as access to the theme overrides and variants. If you would not like to use these utilities, you may use the lighter version of the utility for adding the `sx` utility on your custom components - the `unstable_styleFunctionSx` utility.
+The `unstable_styleFunctionSx` utility adds the support for the `sx` in your own components.
 
 {{"demo": "pages/system/advanced/StyleFunctionSxDemo.js"}}
+
+### Built-in `sx` from the core
+
+If you are already using the Material-UI's `styled()` wrapper, the easiest way to support the `sx` prop on your custom components is to use the `experimentalStyled()` utility that comes from `@material-ui/core/styles` for creating your custom components. Here is an example of how it can be used:
+
+{{"demo": "pages/system/advanced/ExperimentalStyledDemo.js", "defaultCodeOpen": true}}
 
 ## Using standalone system utilities
 
