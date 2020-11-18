@@ -13,6 +13,11 @@ describe('withMobileDialog', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
+    consoleWarnMock.spy();
+  });
+
+  after(() => {
+    consoleWarnMock.reset();
   });
 
   function isFullScreen(breakpoints, width) {
@@ -65,14 +70,5 @@ describe('withMobileDialog', () => {
   describe('screen width: xl', () => {
     isFullScreen(['xl'], 'xl');
     isNotFullScreen(['xs', 'sm', 'md', 'lg'], 'xl');
-  });
-
-  it('should warn if withMobileDialog is used', () => {
-    withMobileDialog();
-
-    expect(consoleWarnMock.callCount()).to.equal(1);
-    expect(consoleWarnMock.messages()[0]).to.include(
-      'Material-UI: The `withMobileDialog` function is deprecated. See https://github.com/mui-org/material-ui/pull/23202.',
-    );
   });
 });

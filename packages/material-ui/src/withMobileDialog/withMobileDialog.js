@@ -2,6 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import withWidth, { isWidthDown } from '../withWidth';
 
+let warnedOnce = false;
+
 /**
  * Dialog will responsively be full screen *at or below* the given breakpoint
  * (defaults to 'sm' for mobile devices).
@@ -9,9 +11,15 @@ import withWidth, { isWidthDown } from '../withWidth';
  */
 const withMobileDialog = (options = {}) => (Component) => {
   if (process.env.NODE_ENV !== 'production') {
-    console.warn(
-      'Material-UI: The `withMobileDialog` function is deprecated. See https://github.com/mui-org/material-ui/pull/23202.',
-    );
+    if (!warnedOnce) {
+      console.warn(
+        [
+          'Material-UI: The `withMobileDialog` function is deprecated.',
+          'Head to https://github.com/mui-org/material-ui/pull/23202 for a migration path.',
+        ].join('\n'),
+      );
+      warnedOnce = true;
+    }
   }
   const { breakpoint = 'sm' } = options;
 
