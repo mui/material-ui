@@ -37,7 +37,7 @@ find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-u
 
 #### `moved-components`
 
-Updates all imports of `@material-ui/lab` components that moved to `@material-ui/core`.
+Updates all imports for `@material-ui/lab` components that have moved to `@material-ui/core`.
 
 ```diff
 -import Skeleton from '@material-ui/lab/Skeleton';

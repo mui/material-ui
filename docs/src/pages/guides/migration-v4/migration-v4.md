@@ -243,7 +243,7 @@ const classes = makeStyles(theme => ({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-  You can use our [`moved-components` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-components) for automatic migration.
+  You can use the [`moved-components` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-components) for automatic migration.
 
 ### Autocomplete
 
