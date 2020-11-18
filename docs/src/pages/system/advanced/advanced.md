@@ -10,7 +10,7 @@ The `unstable_styleFunctionSx` utility adds the support for the `sx` to your own
 
 ### Built-in `sx` from the core
 
-If you are already using the Material-UI's `styled()` wrapper, the easiest way to support the `sx` prop on your custom components is to use the `experimentalStyled()` utility that comes from `@material-ui/core/styles` for creating your custom components. Here is an example of how it can be used:
+If you're already using Material-UI's `styled()` wrapper, the easiest way to support the `sx` prop in your custom components is to use the `experimentalStyled()` utility that comes from `@material-ui/core/styles`. Here is an example of how it can be used:
 
 {{"demo": "pages/system/advanced/ExperimentalStyledDemo.js", "defaultCodeOpen": true}}
 
