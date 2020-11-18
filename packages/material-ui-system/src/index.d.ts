@@ -276,8 +276,8 @@ export type StandardCSSProperties = CSS.PropertiesFallback<number | string>;
 export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
 
 /**
- * All non-vendor-prefixed CSS properties. (Allow `number` to support CSS-in-JS libs,
- * since they are converted to pixels)
+ * All non-vendor-prefixed CSS properties. (Also allows `number` in order to support CSS-in-JS libs,
+ * since they are converted to `px`.)
  */
 export interface CSSProperties
   extends CSS.StandardProperties<number | string>,
