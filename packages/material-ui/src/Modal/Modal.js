@@ -76,7 +76,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     manager = defaultManager,
     onBackdropClick,
     onClose,
-    onEscapeKeyDown,
+    onKeyDown,
     open,
     ...other
   } = props;
@@ -178,6 +178,10 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   };
 
   const handleKeyDown = (event) => {
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+
     // The handler doesn't take event.defaultPrevented into account:
     //
     // event.preventDefault() is meant to stop default behaviors like
@@ -186,10 +190,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     // Only special HTML elements have these default behaviors.
     if (event.key !== 'Escape' || !isTopModal()) {
       return;
-    }
-
-    if (onEscapeKeyDown) {
-      onEscapeKeyDown(event);
     }
 
     if (!disableEscapeKeyDown) {
@@ -355,14 +355,17 @@ Modal.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired when the escape key is pressed,
-   * `disableEscapeKeyDown` is false and the modal is in focus.
+   * @ignore
    */
-  onEscapeKeyDown: PropTypes.func,
+  onKeyDown: PropTypes.func,
   /**
    * If `true`, the modal is open.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
 };
 
 export default Modal;

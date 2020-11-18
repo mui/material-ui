@@ -152,7 +152,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     maxWidth = 'sm',
     onBackdropClick,
     onClose,
-    onEscapeKeyDown,
     open,
     PaperComponent = Paper,
     PaperProps = {},
@@ -199,7 +198,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
       closeAfterTransition
       disableBackdropClick={disableBackdropClick}
       disableEscapeKeyDown={disableEscapeKeyDown}
-      onEscapeKeyDown={onEscapeKeyDown}
       onClose={onClose}
       open={open}
       ref={ref}
@@ -314,11 +312,6 @@ Dialog.propTypes = {
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
-  /**
-   * Callback fired when the escape key is pressed,
-   * `disableKeyboard` is false and the modal is in focus.
-   */
-  onEscapeKeyDown: PropTypes.func,
   /**
    * If `true`, the Dialog is open.
    */
