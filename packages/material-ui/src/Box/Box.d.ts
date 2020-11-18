@@ -334,6 +334,18 @@ export interface AliasesCSSProperties {
    * @see https://developer.mozilla.org/docs/Web/CSS/text-transform
    */
   typography?: string;
+  /**
+   * The **`displayPrint`** property sets the display value for the element when the page is printed.
+   *
+   * **Initial value**: `inline`
+   *
+   * | Chrome | Firefox | Safari |  Edge  |  IE   |
+   * | :----: | :-----: | :----: | :----: | :---: |
+   * | **1**  |  **1**  | **1**  | **12** | **4** |
+   *
+   * @see https://developer.mozilla.org/docs/Web/CSS/display
+   */
+  displayPrint?: StandardCSSProperties['display'];
 }
 
 export interface OverwriteCSSProperties {
