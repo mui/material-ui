@@ -4,7 +4,7 @@
 
 ## Adding the `sx` prop to your custom components
 
-The `unstable_styleFunctionSx` utility adds the support for the `sx` in your own components.
+The `unstable_styleFunctionSx` utility adds the support for the `sx` to your own components.
 
 {{"demo": "pages/system/advanced/StyleFunctionSxDemo.js"}}
 
