@@ -503,7 +503,7 @@ export interface AliasesCSSProperties {
    */
   pl?: StandardCSSProperties['paddingLeft'];
   /**
-   * The **`px`** is shorthand property for CSS properties **`padding-left`** and **`padding-right`**. They set the width of the padding area on the left and right side of an element.
+   * The **`px`** property is shorthand for the CSS properties **`padding-left`** and **`padding-right`**. They set the width of the padding at the left and right side of an element.
    *
    * **Initial value**: `0`
    *
