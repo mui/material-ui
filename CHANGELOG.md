@@ -1,5 +1,99 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## UNRELEASED - 4.12.0
+###### _Nov 14 2020_
+
+Big thanks to the 10 contributors who made this release possible.
+
+This release is intended to help prepare the migration to Material-UI v5 ⏫:
+
+- 📚 Start to add deprecations in anticipation of v5. We plan to add a deprecation for any breaking change in v5 that allows it. Each warning comes with a simple message that explains how to handle the deprecation. If no warnings are reported in the console, you are set for this first batch.
+Please report issues with the deprecations on [#22074](https://github.com/mui-org/material-ui/issues/22074) (wrong instructions, false-positives, floods in the console, etc.).
+- ⚛️ Backport two fixes with React 17 (#22263, #23367) @eps1lon
+- 🐛 Backport a RTL fix with the latest version of Chrome (#22830) @ankit
+
+You can expect similar releases like this one in the coming months.
+
+### `@material-ui/core@v4.12.0`
+
+#### Deprecations
+
+- [theme] Deprecate `fade` color utility in favor of `alpha` (#22837) @mnajdova
+- [theme] Deprecate theme.mixins.gutters (#22245) @joshwooding
+- [Avatar] Add circular variant (#22090) @eps1lon
+- [Badge] Add overlap circular and rectangular (#22076) @eps1lon
+- [Box] Deprecate css prop in favor of sx (#23480) @mnajdova
+- [CircularProgress] Backport simplified determinate style & deprecate static (#22094) @mbrookes
+- [Dialog] Deprecate the transition onX props (#22114) @mbrookes
+- [GridList] Rename to ImageList & add deprecation warnings (#22363) @mbrookes
+- [Menu] Deprecate transition onX props (#22213) @mbrookes
+- [Popover] Deprecate transition onX props (#22202) @mbrookes
+- [Snackbar] Deprecate transition onX props (#22206) @mbrookes
+
+#### Changes
+
+- [ClickAwayListener] Fix mounting behavior in Portals in React 17 (#23367) @eps1lon
+- [TrapFocus] Prevent possible crash in React 17 (#22263) @eps1lon
+- [Tabs] Fix RTL scrollbar with Chrome 85 (#22830) @ankit
+
+### Docs
+
+- [blog] Allow to support card preview (#23087) @oliviertassinari
+- [blog] Danail Hadjiatanasov joins Material-UI (#23223) @oliviertassinari
+- [blog] New posts (#22607) @oliviertassinari
+- [blog] Q2 2020 Update (#21822) @oliviertassinari
+- [blog] Q3 2020 Update (#23055) @oliviertassinari
+- [docs] Add Backstage to showcase (#22428) @stefanalund
+- [docs] Add Design resources in installation (#22209) @oliviertassinari
+- [docs] Add DoiT diamond sponsor (#22436) @oliviertassinari
+- [docs] Add LightyearVPN to showcase (#22568) @lightyearvpn
+- [docs] Add Material-UI Builder to in-house ads (#23342) @mbrookes
+- [docs] Add Octopus diamond sponsor (#22178) @oliviertassinari
+- [docs] Add Spotify to users (#22776) @mbrookes
+- [docs] Add ethicalads.io (#21752) @oliviertassinari
+- [docs] Add live demo with DataGrid (#22697) @oliviertassinari
+- [docs] Add notification about survey @oliviertassinari
+- [docs] Add notification for MUI for Figma v4.12.0 (#23212) @mbrookes
+- [docs] Add redirection for links published on npm (#22575) @oliviertassinari
+- [docs] Allow to host code in a different repo (#23390) @oliviertassinari
+- [docs] Avoid confusion between layout grid and data grid (#22681) @oliviertassinari
+- [docs] Backport _redirect from next @oliviertassinari
+- [docs] Change "Let Us Know" button URL (#22521) @mbrookes
+- [docs] Clear the different between table vs data grid right at the start @oliviertassinari
+- [docs] Encourage DataGrid in /components/tables/ over alternatives (#22637) @oliviertassinari
+- [docs] Engage with more Russian users @oliviertassinari
+- [docs] Fix 404 reported by Moz.com @oliviertassinari
+- [docs] Fix codesandbox link @oliviertassinari
+- [docs] Fix static asset loading with X @oliviertassinari
+- [docs] Fix theme.palette.type usage @oliviertassinari
+- [docs] Forward x data-grid (#22400) @oliviertassinari
+- [docs] Improve SEO on titles (#22742) @oliviertassinari
+- [docs] Improve ad display @oliviertassinari
+- [docs] Improve codesandbox generation logic (#22221) @oliviertassinari
+- [docs] Improve export to CodeSandbox (#22346) @oliviertassinari
+- [docs] Improve position in the side nav of DataGrid @oliviertassinari
+- [docs] Include new video on customization @oliviertassinari
+- [docs] Option to disable ads (#22574) @oliviertassinari
+- [docs] Point to the production branch of x @oliviertassinari
+- [docs] Reduce tracking events (#21710) @eps1lon
+- [docs] Remove codefund Ads (#21714) @eps1lon
+- [docs] Remove expansion-panels @oliviertassinari
+- [docs] Remove v5 docs capability @oliviertassinari
+- [docs] Sync translation (#21638, #21751, #21925, #22751, #22850, #22887, #23357) @oliviertassinari
+- [docs] Update homepage quotes (#23326) @mbrookes
+- [docs] Use codesandbox deploy for demos created from deploy previews (#22616) @eps1lon
+- [docs] configuring redirects for MUI X (#22632) @dtassone
+
+### Core
+
+- [core] Remove Alert codeowner @oliviertassinari
+- [core] Small changes (master) (#22022) @oliviertassinari
+- [test] Add skip ci to Crowdin commit message (#22684) @mbrookes
+- [test] Fix CI @oliviertassinari
+- [test] Only run on push for master/next (#22627) @eps1lon
+- [test] Run CircleCI anytime (#22686) @eps1lon
+- [test] Update react next patch (#22393) @eps1lon
+
 ## 4.11.0
 ###### *July 1, 2020*
 
