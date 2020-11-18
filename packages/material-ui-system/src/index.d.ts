@@ -560,7 +560,7 @@ export interface AliasesCSSProperties {
   paddingY?: StandardCSSProperties['paddingTop'];
 
   /**
-   * The **`typography`** is shorthand property for CSS properties **`font-family`**, **`font-weight`**, **`font-size`**, **`line-height`**, **`letter-spacing`** and **`text-transform``**.
+   * The **`typography`** property  is shorthand for the CSS properties **`font-family`**, **`font-weight`**, **`font-size`**, **`line-height`**, **`letter-spacing`** and **`text-transform``**.
    * It takes the values defined under `theme.typography` and spreads them on the element.
    *
    * **Initial value**: `0`
