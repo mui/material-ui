@@ -408,6 +408,21 @@ const classes = makeStyles(theme => ({
   />
   ```
 
+- Remove `disableBackdropClick` prop.
+  Ignore close events from `onClose` when `reason === "backdropClick"` instead
+
+  ```diff
+  <Dialog
+    disableBackdropClick
+  -  onClose={handleClose}
+  +  onClose={(event, reason) => {
+  +    if (reason !== "backdropClick") {
+  +      onClose(event, reason);
+  +    }
+  +  }}
+  />;
+  ```
+
 - [withMobileDialog] Remove this higher-order component. The hook API allows a simpler and more flexible solution:
 
   ```diff
@@ -584,6 +599,21 @@ const classes = makeStyles(theme => ({
   ```
 
 ### Modal
+
+- Remove `disableBackdropClick` prop.
+  Ignore close events from `onClose` when `reason === "backdropClick"` instead
+
+  ```diff
+  <Modal
+    disableBackdropClick
+  -  onClose={handleClose}
+  +  onClose={(event, reason) => {
+  +    if (reason !== "backdropClick") {
+  +      onClose(event, reason);
+  +    }
+  +  }}
+  />;
+  ```
 
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
