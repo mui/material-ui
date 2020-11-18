@@ -1,27 +1,15 @@
 import React from 'react';
-import ApiDocs from 'docs/src/modules/components/ApiDocs';
-import mapApiTranslations, { parsePropsMarkdown } from 'docs/src/modules/utils/mapApiTranslations';
-import jsonPageContent from './step.json';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-export default function Page({ pageContent }) {
-  return <ApiDocs pageContent={pageContent} />;
+const pageFilename = 'api/step';
+const requireRaw = require.context('!raw-loader!./', false, /\/step\.md$/);
+
+export default function Page({ docs }) {
+  return <MarkdownDocs docs={docs} />;
 }
 
-Page.getInitialProps = async () => {
-  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
-  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
-  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
-
-  const componentDescription = mapApiTranslations(req1, 'Step');
-  const propDescriptions = parsePropsMarkdown(mapApiTranslations(req2, 'Step'));
-  const classDescriptions = mapApiTranslations(req3, 'Step');
-
-  const pageContent = {
-    ...jsonPageContent,
-    componentDescription,
-    propDescriptions,
-    classDescriptions,
-  };
-
-  return { pageContent };
+Page.getInitialProps = () => {
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  return { demos, docs };
 };

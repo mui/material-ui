@@ -11,7 +11,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_useControlled as useControlled,
 } from '@material-ui/utils';
-import ValueLabelComponent from './ValueLabelUnstyled';
+import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
 function asc(a, b) {
   return a - b;
@@ -190,6 +190,7 @@ const useSliderClasses = (props) => {
 };
 
 const isHostComponent = (element) => typeof element === 'string';
+const Forward = ({ children }) => children;
 
 const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const {
@@ -602,7 +603,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const Thumb = components.Thumb || 'span';
   const thumbProps = componentsProps.thumb || {};
 
-  const ValueLabel = components.ValueLabel || ValueLabelComponent;
+  const ValueLabel = components.ValueLabel || SliderValueLabelUnstyled;
   const valueLabelProps = componentsProps.valueLabel || {};
 
   const Mark = components.Mark || 'span';
@@ -719,8 +720,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
 
+        const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabel;
+
         return (
-          <ValueLabel
+          <ValueLabelComponent
             key={index}
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
@@ -769,7 +772,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               onMouseOver={handleMouseOver}
               onMouseLeave={handleMouseLeave}
             />
-          </ValueLabel>
+          </ValueLabelComponent>
         );
       })}
     </Root>
@@ -817,6 +820,10 @@ SliderUnstyled.propTypes = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
   /**
    * @ignore
    */

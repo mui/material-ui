@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import {
@@ -522,14 +523,55 @@ describe('<Slider />', () => {
   });
 
   describe('prop: valueLabelDisplay', () => {
-    it('should always display the value label', () => {
-      const { getByRole, setProps } = render(<Slider valueLabelDisplay="auto" value={50} />);
+    it('should always display the value label according to on and off', () => {
+      const { getByRole, setProps } = render(<Slider valueLabelDisplay="on" value={50} />);
       const thumb = getByRole('slider');
-      expect(thumb.textContent).to.equal('50');
+      expect(thumb.firstChild).to.have.class('MuiSlider-valueLabelOpen');
+
       setProps({
         valueLabelDisplay: 'off',
       });
-      expect(thumb.textContent).to.equal('');
+
+      const newThumb = getByRole('slider');
+      expect(newThumb.firstChild).to.equal(null);
+    });
+
+    it('should display the value label only on hover for auto', () => {
+      const { getByRole } = render(<Slider valueLabelDisplay="auto" value={50} />);
+      const thumb = getByRole('slider');
+      expect(thumb.firstChild).not.to.have.class('MuiSlider-valueLabelOpen');
+
+      fireEvent.mouseOver(thumb);
+
+      expect(thumb.firstChild).to.have.class('MuiSlider-valueLabelOpen');
+    });
+
+    it('should be respected when using custom value label', () => {
+      function ValueLabelComponent(props) {
+        const { value, open } = props;
+        return (
+          <span data-testid="value-label" className={clsx({ open })}>
+            {value}
+          </span>
+        );
+      }
+      ValueLabelComponent.propTypes = { value: PropTypes.number };
+
+      const { setProps, queryByTestId } = render(
+        <Slider
+          components={{ ValueLabel: ValueLabelComponent }}
+          valueLabelDisplay="on"
+          value={50}
+        />,
+      );
+
+      expect(queryByTestId('value-label')).to.have.class('open');
+
+      setProps({
+        valueLabelDisplay: 'off',
+      });
+
+      expect(queryByTestId('value-label')).to.equal(null);
     });
   });
 
