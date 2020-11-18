@@ -632,7 +632,7 @@ export interface OverwriteCSSProperties {
    */
   fontWeight?: CSS.Property.FontWeight | string;
   /**
-   * The **`z-index`** CSS property sets the z-order of a positioned element and its descendants or flex items. Overlapping elements with a larger z-index cover those with a smaller one.
+   * The **`z-index`** CSS property sets the z-order of a positioned element and its descendants or flex items. Overlapping elements with a higher z-index cover those with a lower one.
    *
    * **Initial value**: `auto`
    *
