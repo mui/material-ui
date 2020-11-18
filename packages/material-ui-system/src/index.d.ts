@@ -361,7 +361,7 @@ export interface AliasesCSSProperties {
    */
   mr?: StandardCSSProperties['marginRight'];
   /**
-   * The **`margin-bottom`** CSS property sets the margin area on the bottom of an element. A positive value places it farther from its neighbors, while a negative value places it closer.
+   * The **`margin-bottom`** CSS property sets the margin on the bottom of an element. A positive value places it farther from its neighbors, while a negative value places it closer.
    *
    * **Initial value**: `0`
    *
