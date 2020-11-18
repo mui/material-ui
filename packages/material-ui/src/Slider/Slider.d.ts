@@ -7,8 +7,6 @@ import {
 import { Theme } from '@material-ui/core/styles';
 import { OverrideProps } from '../OverridableComponent';
 
-
-
 export type SliderTypeMap<
   D extends React.ElementType = 'span',
   P = {}
