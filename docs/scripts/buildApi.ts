@@ -466,8 +466,8 @@ async function buildDocs(options: {
     );
 
     Object.keys(unstyledReactAPI.props).forEach((prop) => {
-      if(unstyledReactAPI.props[prop].defaultValue) {
-        reactAPI.props[prop] = unstyledReactAPI.props[prop]; 
+      if (unstyledReactAPI.props[prop].defaultValue) {
+        reactAPI.props[prop] = unstyledReactAPI.props[prop];
       }
     });
   } catch (err) {
