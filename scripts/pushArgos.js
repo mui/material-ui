@@ -1,57 +1,55 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 const util = require('util');
 const glob = require('fast-glob');
 const fse = require('fs-extra');
-const chunk = require('lodash/chunk');
+const _chunk = require('lodash/chunk');
 const childProcess = require('child_process');
 
-const execFileAsync = util.promisify(childProcess.execFile);
+const execFileNode = util.promisify(childProcess.execFile);
 
-async function exec(command, args) {
-  const options = {
+function execFile(command, args) {
+  return execFileNode(command, args, {
     cwd: process.cwd(),
     env: process.env,
-    stdio: 'pipe',
     encoding: 'utf-8',
-  };
-
-  const results = await execFileAsync(command, args, options);
-  return results.stdout;
+  });
 }
 
 const screenshotsBase = 'test/regressions/screenshots/chrome';
-const BATCH_COUNT = 2;
+const screenshotsTmp = 'test/regressions/screenshots/argos';
+const BATCH_SIZE = 200;
 
 async function run() {
-  let screenshots = await glob(`${screenshotsBase}/**/*`);
-  screenshots = chunk(screenshots, Math.ceil(screenshots.length / BATCH_COUNT));
+  const screenshots = await glob(`${screenshotsBase}/**/*`);
+  const chunks = _chunk(screenshots, BATCH_SIZE);
 
   await Promise.all(
-    screenshots.map((chunks, chunkIndex) =>
+    chunks.map((chunk, chunkIndex) =>
       Promise.all(
-        chunks.map((screenshot) => {
+        chunk.map((screenshot) => {
           return fse.move(
             screenshot,
-            `${screenshotsBase}/${chunkIndex}/${screenshot.replace(screenshotsBase, '')}`,
+            `${screenshotsTmp}/${chunkIndex}/${screenshot.replace(screenshotsBase, '')}`,
           );
         }),
       ),
     ),
   );
 
-  for (let i = 0; i < screenshots.length; i += 1) {
+  for (let i = 0; i < chunks.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
-    const stdout = await exec('argos', [
+    const argosResults = await execFile('argos', [
       'upload',
-      `${screenshotsBase}/${i}`,
+      `${screenshotsTmp}/${i}`,
       '--token',
       process.env.ARGOS_TOKEN,
       '--batchCount',
-      BATCH_COUNT,
+      chunks.length,
       '--external-build-id',
       process.env.CIRCLE_SHA1,
     ]);
-    console.log(stdout);
+    console.log(argosResults.stdout);
   }
 }
 
