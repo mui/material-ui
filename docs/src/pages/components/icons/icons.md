@@ -185,17 +185,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 
 The `Icon` component will display an icon from any icon font that supports ligatures.
 As a prerequisite, you must include one, such as the
-[Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
-
-```html
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
-/>
-```
-
-`Icon` will by default set the correct class name for the Material Icons font (filled variant).
-
+[Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project.
 To use an icon simply wrap the icon name (font ligature) with the `Icon` component,
 for example:
 
@@ -208,23 +198,36 @@ import Icon from '@material-ui/core/Icon';
 By default, an Icon will inherit the current text color.
 Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
 
-For other fonts, you must supply the class name using the Icon component's `baseClass` prop.
+### Font Material icons
+
+`Icon` will by default set the correct class name for the Material Icons font (filled variant).
+All you need to do is load the font, for instance, via Google Web Fonts:
+
+```html
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+```
+
+{{"demo": "pages/components/icons/Icons.js"}}
+
+### Custom font
+
+For other fonts, you can customize the baseline class name using the `baseClassName` prop.
+For instance, you can display two-tone icons with Material Design:
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
 
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Material+Icons+Round"
-  // Import the round MDI variant                             ^^^^^^
-/>
-
-<Icon baseClass="material-icons-round">star</Icon>;
+  href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
+  // Import the two tones MD variant                           ^^^^^^^^
+/>;
 ```
 
-### Font Material icons
-
-{{"demo": "pages/components/icons/Icons.js"}}
+{{"demo": "pages/components/icons/TwoToneIcons.js"}}
 
 ### Font Awesome
 

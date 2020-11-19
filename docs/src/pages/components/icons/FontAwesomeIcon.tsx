@@ -33,7 +33,6 @@ export default function FontAwesomeIcon() {
     <div className={classes.root}>
       <Icon baseClassName="fas" className="fa-plus-circle" />
       <Icon baseClassName="fas" className="fa-plus-circle" color="primary" />
-      <Icon baseClassName="fas" className="fa-plus-circle" color="secondary" />
       <Icon
         baseClassName="fas"
         className="fa-plus-circle"
