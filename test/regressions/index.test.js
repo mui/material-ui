@@ -68,7 +68,9 @@ async function main() {
         // Move cursor offscreen to not trigger hover unwanted hover effects.
         page.mouse.move(0, 0);
 
-        const testcase = await page.waitForSelector('[data-testid="testcase"]');
+        const testcase = await page.waitForSelector(
+          '[data-testid="testcase"]:not([aria-busy="true"])',
+        );
         const clip = await testcase.boundingBox();
 
         const screenshotPath = path.resolve(screenshotDir, `${route.replace(baseUrl, '.')}.png`);
