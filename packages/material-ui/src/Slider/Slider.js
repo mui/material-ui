@@ -1,16 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
-import SliderUnstyled, {
-  SliderValueLabelUnstyled,
-  sliderClasses,
-} from '@material-ui/unstyled/SliderUnstyled';
+import { SliderUnstyled, SliderValueLabelUnstyled, sliderClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { alpha, lighten, darken } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 
-export { sliderClasses } from '@material-ui/unstyled/SliderUnstyled';
+export { sliderClasses };
 
 const overridesResolver = (props, styles) => {
   const {

@@ -4,20 +4,17 @@ const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
 const defaultAlias = {
-  '@material-ui/core': path.resolve(__dirname, './packages/material-ui/src'),
-  '@material-ui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),
-  '@material-ui/icons': path.resolve(__dirname, './packages/material-ui-icons/src'),
-  '@material-ui/lab': path.resolve(__dirname, './packages/material-ui-lab/src'),
-  '@material-ui/styled-engine': path.resolve(__dirname, './packages/material-ui-styled-engine/src'),
-  '@material-ui/styled-engine-sc': path.resolve(
-    __dirname,
-    './packages/material-ui-styled-engine-sc/src',
-  ),
-  '@material-ui/styles': path.resolve(__dirname, './packages/material-ui-styles/src'),
-  '@material-ui/system': path.resolve(__dirname, './packages/material-ui-system/src'),
-  '@material-ui/unstyled': path.resolve(__dirname, './packages/material-ui-unstyled/src'),
-  '@material-ui/utils': path.resolve(__dirname, './packages/material-ui-utils/src'),
-  'typescript-to-proptypes': path.resolve(__dirname, './packages/typescript-to-proptypes/src'),
+  '@material-ui/core': './packages/material-ui/src',
+  '@material-ui/docs': './packages/material-ui-docs/src',
+  '@material-ui/icons': './packages/material-ui-icons/src',
+  '@material-ui/lab': './packages/material-ui-lab/src',
+  '@material-ui/styled-engine': './packages/material-ui-styled-engine/src',
+  '@material-ui/styled-engine-sc': './packages/material-ui-styled-engine-sc/src',
+  '@material-ui/styles': './packages/material-ui-styles/src',
+  '@material-ui/system': './packages/material-ui-system/src',
+  '@material-ui/unstyled': './packages/material-ui-unstyled/src',
+  '@material-ui/utils': './packages/material-ui-utils/src',
+  'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
 };
 
 const productionPlugins = [
@@ -112,18 +109,6 @@ module.exports = function getBabelConfig(api) {
             {
               alias: {
                 modules: './modules',
-              },
-            },
-          ],
-        ],
-      },
-      rollup: {
-        plugins: [
-          [
-            'babel-plugin-module-resolver',
-            {
-              alias: {
-                '@material-ui/unstyled': defaultAlias['@material-ui/unstyled'],
               },
             },
           ],
