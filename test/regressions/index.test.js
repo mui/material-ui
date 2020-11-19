@@ -57,6 +57,8 @@ async function main() {
         await page.$eval(`#tests li:nth-of-type(${index + 1}) a`, (link) => {
           link.click();
         });
+        // Move cursor offscreen to not trigger hover unwanted hover effects.
+        page.mouse.move(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY);
 
         const testcase = await page.waitForSelector('[data-testid="testcase"]');
         const clip = await testcase.boundingBox();
