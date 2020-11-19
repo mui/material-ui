@@ -20,9 +20,9 @@ describe('<LinearProgress />', () => {
 
   describeConformance(<LinearProgress />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'span',
     mount,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
   }));
 

@@ -92,7 +92,13 @@ function renderNavItems(options) {
   );
 }
 
-function reduceChildRoutes({ onClose, activePage, items, page, depth, t }) {
+/**
+ * @param {object} context
+ * @param {import('docs/src/pages').MuiPage} context.page
+ */
+function reduceChildRoutes(context) {
+  const { onClose, activePage, items, depth, t } = context;
+  let { page } = context;
   if (page.displayNav === false) {
     return items;
   }

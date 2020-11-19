@@ -111,7 +111,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
   }
 
   return (
-    <div
+    <span
       className={clsx(
         classes.root,
         {
@@ -142,7 +142,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
           strokeWidth={thickness}
         />
       </svg>
-    </div>
+    </span>
   );
 });
 

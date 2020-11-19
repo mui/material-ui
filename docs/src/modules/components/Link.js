@@ -28,25 +28,24 @@ function Link(props) {
   const {
     activeClassName = 'active',
     className: classNameProps,
-    href: routerHref,
+    href,
     innerRef,
     naked,
     role: roleProp,
+    as: asProp = href,
     ...other
   } = props;
-
-  // apply nextjs rewrites
-  const href = routerHref.replace(/\/api-docs\/(.*)/, '/api/$1');
 
   const router = useRouter();
 
   const userLanguage = useUserLanguage();
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === routerHref && activeClassName,
+    [activeClassName]: router.pathname === href && activeClassName,
   });
 
+  let linkAs = asProp;
   if (userLanguage !== 'en' && href.indexOf('/') === 0 && href.indexOf('/blog') !== 0) {
-    other.as = `/${userLanguage}${href}`;
+    linkAs = `/${userLanguage}${linkAs}`;
   }
 
   // catch role passed from ButtonBase. This is definitely a link
@@ -63,11 +62,21 @@ function Link(props) {
   }
 
   if (naked) {
-    return <NextComposed className={className} href={href} ref={innerRef} role={role} {...other} />;
+    return (
+      <NextComposed
+        as={linkAs}
+        className={className}
+        href={href}
+        ref={innerRef}
+        role={role}
+        {...other}
+      />
+    );
   }
 
   return (
     <MuiLink
+      as={linkAs}
       component={NextComposed}
       className={className}
       href={href}
