@@ -125,8 +125,6 @@ export * from './TimelineOppositeContent';
 export { default as TimelineSeparator } from './TimelineSeparator';
 export * from './TimelineSeparator';
 
-export * from './TimePicker';
-
 export { default as ToggleButton } from './ToggleButton';
 export * from './ToggleButton';
 
