@@ -67,7 +67,7 @@ La démo suivante ne suit pas la spécification Material Design, mais illustre c
 
 ## Grille imbriquée
 
-The `container` and `item` properties are two independent booleans. They can be combined.
+The `container` and `item` properties are two independent booleans. Ils peuvent être combinés.
 
 > Un **container** flex est la boîte générée par un élément avec un affichage calculé de `flex` ou `inline-flex`. Les enfants entrants d'un conteneur flex sont appelés éléments** flex **et sont disposés à l'aide du modèle d'agencement Flex.
 
@@ -98,7 +98,7 @@ Il existe une limitation à la marge négative utilisée pour mettre en œuvre l
 
 ### white-space: nowrap;
 
-The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
+La configuration initiale sur les éléments flex est `min-width: auto`. Cela provoque un conflit de positionnement lorsque les enfants utilisent `white-space : nowrap;`. Vous pouvez rencontrer le problème avec :
 
 ```jsx
 <Grid item xs>
