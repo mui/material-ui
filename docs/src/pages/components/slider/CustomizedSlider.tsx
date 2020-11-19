@@ -18,15 +18,14 @@ const Separator = styled('div')(
 
 interface Props {
   children: React.ReactElement;
-  open: boolean;
   value: number;
 }
 
 function ValueLabelComponent(props: Props) {
-  const { children, open, value } = props;
+  const { children, value } = props;
 
   return (
-    <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
+    <Tooltip enterTouchDelay={0} placement="top" title={value}>
       {children}
     </Tooltip>
   );
