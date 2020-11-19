@@ -1,20 +1,16 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { unstable_capitalize as capitalize } from '@material-ui/utils';
-
-const getUtilityClass = (name) => {
-  return `MuiSlider-valueLabel${capitalize(name)}`;
-};
+import sliderClasses from './sliderClasses';
 
 const useValueLabelClasses = (props) => {
   const { open } = props;
 
   const utilityClasses = {
-    offset: clsx('MuiSlider-valueLabel', getUtilityClass('offset'), {
-      [getUtilityClass('open')]: open,
+    offset: clsx(sliderClasses.valueLabel, sliderClasses.valueLabelOffset, {
+      [sliderClasses.valueLabelOpen]: open,
     }),
-    circle: getUtilityClass('circle'),
-    label: getUtilityClass('label'),
+    circle: sliderClasses.valueLabelCircle,
+    label: sliderClasses.valueLabelLabel,
   };
 
   return utilityClasses;

@@ -11,6 +11,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_useControlled as useControlled,
 } from '@material-ui/utils';
+import sliderClasses from './sliderClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
 function asc(a, b) {
@@ -144,44 +145,40 @@ function doesSupportTouchActionNone() {
   return cachedSupportsTouchActionNone;
 }
 
-const getUtilityClass = (name) => {
-  return `MuiSlider-${name}`;
-};
-
 const useSliderClasses = (props) => {
   const { color, disabled, marked, orientation, track, classes = {} } = props;
 
   const utilityClasses = {
     root: clsx(
-      getUtilityClass('root'),
+      sliderClasses['root'],
       classes['root'],
-      getUtilityClass(`color${capitalize(color)}`),
+      sliderClasses[`color${capitalize(color)}`],
       classes[`color${capitalize(color)}`],
       {
-        'Mui-disabled': disabled,
-        [getUtilityClass('marked')]: marked,
+        [sliderClasses['disabled']]: disabled,
+        [sliderClasses['marked']]: marked,
         [classes['marked']]: marked,
-        [getUtilityClass('vertical')]: orientation === 'vertical',
+        [sliderClasses['vertical']]: orientation === 'vertical',
         [classes['vertical']]: orientation === 'vertical',
-        [getUtilityClass('trackInverted')]: track === 'inverted',
+        [sliderClasses['trackInverted']]: track === 'inverted',
         [classes['trackInverted']]: track === 'inverted',
-        [getUtilityClass('trackFalse')]: track === false,
+        [sliderClasses['trackFalse']]: track === false,
         [classes['trackFalse']]: track === false,
       },
     ),
-    rail: clsx(getUtilityClass('rail'), classes['rail']),
-    track: clsx(getUtilityClass('track'), classes['track']),
-    mark: clsx(getUtilityClass('mark'), classes['mark']),
-    markLabel: clsx(getUtilityClass('markLabel'), classes['markLabel']),
-    valueLabel: clsx(getUtilityClass('valueLabel'), classes['valueLabel']),
+    rail: clsx(sliderClasses['rail'], classes['rail']),
+    track: clsx(sliderClasses['track'], classes['track']),
+    mark: clsx(sliderClasses['mark'], classes['mark']),
+    markLabel: clsx(sliderClasses['markLabel'], classes['markLabel']),
+    valueLabel: clsx(sliderClasses['valueLabel'], classes['valueLabel']),
     thumb: clsx(
-      getUtilityClass('thumb'),
+      sliderClasses['thumb'],
       classes['thumb'],
-      getUtilityClass(`thumbColor${capitalize(color)}`),
+      sliderClasses[`thumbColor${capitalize(color)}`],
       classes[`thumbColor${capitalize(color)}`],
       {
-        'Mui-disabled': disabled,
-        [getUtilityClass('vertical')]: orientation === 'vertical',
+        [sliderClasses['disabled']]: disabled,
+        [sliderClasses['vertical']]: orientation === 'vertical',
       },
     ),
   };
@@ -693,7 +690,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               })}
               style={{ ...style, ...markProps.style }}
               className={clsx(utilityClasses.mark, markProps.className, {
-                [getUtilityClass('markActive')]: markActive,
+                [sliderClasses['markActive']]: markActive,
               })}
             />
             {mark.label != null ? (
@@ -707,7 +704,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 })}
                 style={{ ...style, ...markLabelProps.style }}
                 className={clsx(utilityClasses.markLabel, markLabelProps.className, {
-                  [getUtilityClass('markLabelActive')]: markActive,
+                  [sliderClasses['markLabelActive']]: markActive,
                 })}
               >
                 {mark.label}
@@ -745,9 +742,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             <Thumb
               {...thumbProps}
               className={clsx(utilityClasses.thumb, thumbProps.className, {
-                'Mui-active': active === index,
-                'Mui-disabled': disabled,
-                'Mui-focusVisible': focusVisible === index,
+                [sliderClasses['active']]: active === index,
+                [sliderClasses['disabled']]: disabled,
+                [sliderClasses['focusVisible']]: focusVisible === index,
               })}
               {...(!isHostComponent(Thumb) && {
                 styleProps: stateAndProps,

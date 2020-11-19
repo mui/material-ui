@@ -747,6 +747,20 @@ const classes = makeStyles(theme => ({
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
+- The `ValueLabelComponent` prop is now part of the `components` prop.
+
+  ```diff
+  -<Slider ValueLabelComponent={CustomValueLabel} />
+  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  ```
+
+- The `ThumbComponent` prop is not part of the `components` prop.
+
+  ```diff
+  -<Slider ThumbComponent={CustomThumb} />
+  +<Slider components={{ Thumb: CustomThumb }} />
+  ```
+
 ### Snackbar
 
 - The notification now displays at the bottom left on large screens.
