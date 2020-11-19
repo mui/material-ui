@@ -6,7 +6,7 @@ import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
 // Get all the tests specifically written for preventing regressions.
-const requireRegression = require.context('./tests', true, /(js|ts|tsx)$/);
+const requireRegression = require.context('./tests', true, /\.(js|ts|tsx)$/);
 const regressions = requireRegression.keys().reduce((res, path) => {
   const [suite, name] = path
     .replace('./', '')
