@@ -8,7 +8,7 @@ import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
 import IconButton from '../IconButton';
 import Chip from '../Chip';
-import CloseIcon from '../internal/svg-icons/Close';
+import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 
@@ -264,7 +264,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     ChipProps,
     classes,
     className,
-    clearIcon = <CloseIcon fontSize="small" />,
+    clearIcon = <ClearIcon fontSize="small" />,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     clearText = 'Clear',
@@ -562,7 +562,7 @@ Autocomplete.propTypes = {
   className: PropTypes.string,
   /**
    * The icon to display in place of the default clear icon.
-   * @default <CloseIcon fontSize="small" />
+   * @default <ClearIcon fontSize="small" />
    */
   clearIcon: PropTypes.node,
   /**

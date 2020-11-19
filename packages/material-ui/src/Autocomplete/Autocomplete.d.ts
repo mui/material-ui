@@ -112,7 +112,7 @@ export interface AutocompleteProps<
   };
   /**
    * The icon to display in place of the default clear icon.
-   * @default <CloseIcon fontSize="small" />
+   * @default <ClearIcon fontSize="small" />
    */
   clearIcon?: React.ReactNode;
   /**
