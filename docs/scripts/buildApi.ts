@@ -19,7 +19,7 @@ import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
 import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
-import { getLineFeed, getUnstyledDefinitionFilename } from './helpers';
+import { getLineFeed, getUnstyledFilename } from './helpers';
 
 const generateClassName = createGenerateClassName();
 
@@ -224,7 +224,7 @@ async function updateStylesDefinition(context: {
 
   const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
 
-  const unstyledFileName = getUnstyledDefinitionFilename(typesFilename);
+  const unstyledFileName = getUnstyledFilename(typesFilename, true);
 
   try {
     // If the JSON file doesn't exists try extracting the info from the TS definition
@@ -449,6 +449,29 @@ async function buildDocs(options: {
   } catch (err) {
     console.log('Error parsing src for', componentObject.filename);
     throw err;
+  }
+
+  // Try to get data for the unstyled component
+  try {
+    const unstyledFileName = getUnstyledFilename(componentObject.filename);
+    const unstyledSrc = readFileSync(unstyledFileName, 'utf8');
+
+    const unstyledReactAPI = docgenParse(
+      unstyledSrc,
+      null,
+      defaultHandlers.concat(muiDefaultPropsHandler),
+      {
+        filename: unstyledFileName,
+      },
+    );
+
+    Object.keys(unstyledReactAPI.props).forEach((prop) => {
+      if(unstyledReactAPI.props[prop].defaultValue) {
+        reactAPI.props[prop] = unstyledReactAPI.props[prop]; 
+      }
+    });
+  } catch (err) {
+    // Unstyled component does not exist
   }
 
   reactAPI.name = name;
