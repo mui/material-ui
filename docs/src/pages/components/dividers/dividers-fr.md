@@ -17,7 +17,7 @@ Par défaut, le diviseur est rendu comme un `<hr>`. You can save rendering this 
 
 ## Spécification HTML5
 
-In a list, you should ensure the `Divider` is rendered as an `<li>` to match the HTML5 specification. The examples below show two ways of achieving this.
+Dans une liste, vous devez vous assurer que le `Divider` est rendu en tant que `<li>` pour correspondre à la spécification HTML5. Les exemples ci-dessous montrent deux manières d'y parvenir.
 
 ## Encart De Diviseurs
 
