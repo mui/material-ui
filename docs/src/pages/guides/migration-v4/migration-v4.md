@@ -408,19 +408,19 @@ const classes = makeStyles(theme => ({
   />
   ```
 
-- Remove `disableBackdropClick` prop.
-  Ignore close events from `onClose` when `reason === "backdropClick"` instead
+- Remove the `disableBackdropClick` prop because redundant.
+  Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 
   ```diff
   <Dialog
-    disableBackdropClick
-  -  onClose={handleClose}
-  +  onClose={(event, reason) => {
-  +    if (reason !== "backdropClick") {
-  +      onClose(event, reason);
-  +    }
-  +  }}
-  />;
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
+  />
   ```
 
 - [withMobileDialog] Remove this higher-order component. The hook API allows a simpler and more flexible solution:
@@ -600,33 +600,33 @@ const classes = makeStyles(theme => ({
 
 ### Modal
 
-- Remove `disableBackdropClick` prop.
-  Ignore close events from `onClose` when `reason === "backdropClick"` instead
+- Remove the `disableBackdropClick` prop because redundant.
+  Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 
   ```diff
   <Modal
-    disableBackdropClick
-  -  onClose={handleClose}
-  +  onClose={(event, reason) => {
-  +    if (reason !== "backdropClick") {
-  +      onClose(event, reason);
-  +    }
-  +  }}
-  />;
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
+  />
   ```
 
-- Remove `onEscapeKeyDown` prop.
+- Remove the `onEscapeKeyDown` prop because redundant.
   Use `onClose` with `reason === "escapeKeyDown"` instead.
 
   ```diff
   <Modal
-  -  onEscapeKeyDown={handleEscapeKeyDown}
-  +  onClose={(event, reason) => {
-  +    if (reason === "escapeKeyDown") {
-  +      handleEscapeKeyDown(event);
-  +    }
-  +  }}
-  />;
+  - onEscapeKeyDown={handleEscapeKeyDown}
+  + onClose={(event, reason) => {
+  +   if (reason === 'escapeKeyDown') {
+  +     handleEscapeKeyDown(event);
+  +   }
+  + }}
+  />
   ```
 
 - Remove `onRendered` prop.
