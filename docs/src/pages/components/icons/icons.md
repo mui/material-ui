@@ -194,8 +194,7 @@ As a prerequisite, you must include one, such as the
 />
 ```
 
-`Icon` will set the correct class name for the Material Icons font. For other fonts, you must supply the
-class name using the Icon component's `className` prop.
+`Icon` will by default set the correct class name for the Material Icons font (filled variant).
 
 To use an icon simply wrap the icon name (font ligature) with the `Icon` component,
 for example:
@@ -208,6 +207,20 @@ import Icon from '@material-ui/core/Icon';
 
 By default, an Icon will inherit the current text color.
 Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
+
+For other fonts, you must supply the class name using the Icon component's `baseClass` prop.
+
+```jsx
+import Icon from '@material-ui/core/Icon';
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Material+Icons+Round"
+  // Import the round MDI variant                             ^^^^^^
+/>
+
+<Icon baseClass="material-icons-round">star</Icon>;
+```
 
 ### Font Material icons
 
