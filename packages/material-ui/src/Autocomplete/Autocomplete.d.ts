@@ -111,7 +111,7 @@ export interface AutocompleteProps<
     groupUl?: string;
   };
   /**
-   * The icon to display in place of the default close icon.
+   * The icon to display in place of the default clear icon.
    * @default <CloseIcon fontSize="small" />
    */
   clearIcon?: React.ReactNode;
