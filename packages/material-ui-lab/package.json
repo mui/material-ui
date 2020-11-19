@@ -65,7 +65,6 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@material-ui/system": "^5.0.0-alpha.16",
-    "@material-ui/unstyled": "^5.0.0-alpha.16",
     "@material-ui/utils": "^5.0.0-alpha.15",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",

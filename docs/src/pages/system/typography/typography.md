@@ -2,6 +2,10 @@
 
 <p class="description">Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.</p>
 
+## Variant
+
+{{"demo": "pages/system/typography/Variant.js"}}
+
 ## Text alignment
 
 {{"demo": "pages/system/typography/TextAlignment.js", "defaultCodeOpen": false}}

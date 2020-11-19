@@ -3,14 +3,14 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiSlider from '@material-ui/core/Slider';
 
 interface Props {
-  color: 'primary' | 'secondary';
-  disabled: boolean;
-  max: number;
-  min: number;
-  orientation: 'horizontal' | 'vertical';
-  step: number;
-  track: 'inverted' | 'normal' | false;
-  valueLabelDisplay: 'auto' | 'off' | 'on';
+  color?: 'primary' | 'secondary';
+  disabled?: boolean;
+  max?: number;
+  min?: number;
+  orientation?: 'horizontal' | 'vertical';
+  step?: number;
+  track?: 'inverted' | 'normal' | false;
+  valueLabelDisplay?: 'auto' | 'off' | 'on';
   width: number | string;
   height: number;
 }
@@ -21,14 +21,6 @@ export function Slider(props: Props): JSX.Element {
 }
 
 Slider.defaultProps = {
-  color: 'primary' as 'primary',
-  disabled: false,
-  max: 100,
-  min: 0,
-  orientation: 'horizontal' as 'horizontal',
-  step: 1,
-  track: 'normal' as 'normal',
-  valueLabelDisplay: 'off' as 'off',
   width: 160,
   height: 24,
 };

@@ -10,16 +10,16 @@ import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
-import { getLineFeed } from './helpers';
-import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
-import generateMarkdown, { ReactApi } from '../src/modules/utils/generateMarkdown';
-import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
-import { getHeaders } from '../src/modules/utils/parseMarkdown';
-import parseTest from '../src/modules/utils/parseTest';
-import { pageToTitle } from '../src/modules/utils/helpers';
-import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
-import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
+import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
+import generateMarkdown, { ReactApi } from 'docs/src/modules/utils/generateMarkdown';
+import parseTest from 'docs/src/modules/utils/parseTest';
+import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
+import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
+import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
+import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
+import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
+import { getLineFeed, getUnstyledDefinitionFilename } from './helpers';
 
 const generateClassName = createGenerateClassName();
 
@@ -156,7 +156,13 @@ async function annotateComponentDefinition(context: {
 
   const demos = uniqBy<ReactApi['pagesMarkdown'][0]>(
     api.pagesMarkdown.filter((page) => {
-      return page.components.includes(api.name);
+      // Testing for Unstyled avoids the need to mention the unstyled components in the
+      // `components` key of the markdown header YAML.
+      return (
+        page.components.includes(api.name) ||
+        (api.name.endsWith('Unstyled') &&
+          page.components.includes(api.name.replace('Unstyled', '')))
+      );
     }, []),
     (page) => page.pathname,
   );
@@ -192,37 +198,74 @@ async function annotateComponentDefinition(context: {
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
-const camelCaseToKebabCase = (inputString: string) => {
-  const str = inputString.charAt(0).toLowerCase() + inputString.slice(1);
-  return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase();
+const trimComment = (comment: string) => {
+  let startIdx = 0;
+  while (comment[startIdx] === '*' || comment[startIdx] === ' ') {
+    startIdx += 1;
+  }
+
+  let endIdx = comment.length - 1;
+  while (comment[endIdx] === ' ') {
+    endIdx -= 1;
+  }
+
+  return comment.substr(startIdx, endIdx - startIdx + 1);
 };
+
+function generateMuiName(name: string) {
+  return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
+}
 
 async function updateStylesDefinition(context: {
   styles: ReactApi['styles'];
   component: { filename: string };
 }) {
-  const workspaceRoot = path.resolve(__dirname, '../../');
   const { styles, component } = context;
 
-  const componentName = path.basename(component.filename).replace(/\.js$/, '');
-  const dataFilename = `${workspaceRoot}/docs/data/${camelCaseToKebabCase(componentName)}.json`;
+  const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
+
+  const unstyledFileName = getUnstyledDefinitionFilename(typesFilename);
 
   try {
-    const jsonDataString = readFileSync(dataFilename, { encoding: 'utf8' });
-    const jsonData = JSON.parse(jsonDataString);
-    if (jsonData) {
-      const cssData = jsonData.css;
-      const classes = Object.keys(cssData);
-      styles.classes = classes;
-      styles.name = jsonData.name;
-      styles.descriptions = classes.reduce((acc, key) => {
-        acc[key] = cssData[key].description;
-        return acc;
-      }, {} as Record<string, string>);
+    // If the JSON file doesn't exists try extracting the info from the TS definition
+    const typesSource = readFileSync(unstyledFileName, { encoding: 'utf8' });
+    const typesAST = await babel.parseAsync(typesSource, {
+      configFile: false,
+      filename: unstyledFileName,
+      presets: [require.resolve('@babel/preset-typescript')],
+    });
+    if (typesAST === null) {
+      throw new Error('No AST returned from babel.');
     }
-  } catch (err) {
-    // Do nothing for now if the file doesn't exist
-    // This is still not supported for all components
+
+    // is not unstyled component
+    if (typesFilename !== unstyledFileName) {
+      styles.name = generateMuiName(path.parse(component.filename).name);
+    }
+
+    traverse(typesAST, {
+      TSPropertySignature(babelPath) {
+        const { node } = babelPath;
+        const possiblyPropName = (node.key as babel.types.Identifier).name;
+        if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
+          const members = (node.typeAnnotation.typeAnnotation as babel.types.TSTypeLiteral).members;
+
+          if (members) {
+            styles.descriptions = {};
+            members.forEach((member) => {
+              const className = ((member as babel.types.TSPropertySignature)
+                .key as babel.types.Identifier).name;
+              styles.classes.push(className);
+              if (member.leadingComments) {
+                styles.descriptions[className] = trimComment(member.leadingComments[0].value);
+              }
+            });
+          }
+        }
+      },
+    });
+  } catch (e) {
+    // Do nothing as not every components has an unstyled version
   }
 }
 
@@ -339,8 +382,8 @@ async function buildDocs(options: {
   };
 
   // styled components does not have the options static
-  const styledComponent = !component?.default?.options;
-  if (styledComponent) {
+  const nonJSSComponent = !component?.default?.options;
+  if (nonJSSComponent) {
     await updateStylesDefinition({
       styles,
       component: componentObject,
@@ -432,7 +475,7 @@ async function buildDocs(options: {
         },
         {
           options: {
-            name: styles.name,
+            name: styles.name || generateMuiName(name),
             theme: {},
           },
         },
@@ -443,7 +486,7 @@ async function buildDocs(options: {
 
   let markdown;
   try {
-    markdown = generateMarkdown(reactAPI, styledComponent);
+    markdown = generateMarkdown(reactAPI, nonJSSComponent);
   } catch (err) {
     console.log('Error generating markdown for', componentObject.filename);
     throw err;
@@ -476,11 +519,14 @@ Page.getInitialProps = () => {
   console.log('Built markdown docs for', reactAPI.name);
 
   await annotateComponentDefinition({ api: reactAPI, component: componentObject });
-  await annotateClassesDefinition({
-    api: reactAPI,
-    component: componentObject,
-    prettierConfigPath,
-  });
+
+  if (!nonJSSComponent) {
+    await annotateClassesDefinition({
+      api: reactAPI,
+      component: componentObject,
+      prettierConfigPath,
+    });
+  }
 }
 
 function run(argv: { componentDirectories?: string[]; grep?: string; outputDirectory?: string }) {

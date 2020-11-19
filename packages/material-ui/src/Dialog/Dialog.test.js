@@ -80,8 +80,7 @@ describe('<Dialog />', () => {
     expect(getAllByTestId('Transition')).to.have.lengthOf(1);
   });
 
-  it('calls onEscapeKeydown when pressing Esc followed by onClose and removes the content after the specified duration', () => {
-    const onEscapeKeyDown = spy();
+  it('calls onClose when pressing Esc and removes the content after the specified duration', () => {
     const onClose = spy();
     function TestCase() {
       const [open, close] = React.useReducer(() => false, true);
@@ -91,12 +90,7 @@ describe('<Dialog />', () => {
       };
 
       return (
-        <Dialog
-          open={open}
-          transitionDuration={100}
-          onEscapeKeyDown={onEscapeKeyDown}
-          onClose={handleClose}
-        >
+        <Dialog open={open} transitionDuration={100} onClose={handleClose}>
           foo
         </Dialog>
       );
@@ -112,7 +106,6 @@ describe('<Dialog />', () => {
     // keyDown not targetted at anything specific
     // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
     fireEvent.keyDown(document.activeElement, { key: 'Esc' });
-    expect(onEscapeKeyDown.calledOnce).to.equal(true);
     expect(onClose.calledOnce).to.equal(true);
 
     act(() => {

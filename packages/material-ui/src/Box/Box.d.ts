@@ -12,9 +12,9 @@ import {
   spacing,
   typography,
   PropsFor,
+  SxProps,
 } from '@material-ui/system';
 import { Theme } from '../styles/createMuiTheme';
-import { CSSObject } from '../styles/experimentalStyled';
 import { Omit } from '..';
 
 export type BoxStyleFunction = ComposedStyleFunction<
@@ -34,14 +34,6 @@ export type BoxStyleFunction = ComposedStyleFunction<
 
 type SystemProps = PropsFor<BoxStyleFunction>;
 type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
-type SxPropsValue = Omit<CSSObject, keyof SystemProps> & SystemProps;
-
-export type SxProps = {
-  [Name in keyof SxPropsValue]?:
-    | SxPropsValue[Name]
-    | ((theme: Theme) => CSSObject | SxPropsValue[Name])
-    | SxProps;
-};
 
 export interface BoxProps extends ElementProps, SystemProps {
   children?: React.ReactNode | ((props: ElementProps) => React.ReactNode);
@@ -49,7 +41,7 @@ export interface BoxProps extends ElementProps, SystemProps {
   component?: React.ElementType;
   clone?: boolean;
   ref?: React.Ref<unknown>;
-  sx?: SxProps;
+  sx?: SxProps<Theme>;
 }
 
 declare const Box: React.ComponentType<BoxProps>;

@@ -102,11 +102,6 @@ export interface ModalProps
     bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
   }['bivarianceHack'];
   /**
-   * Callback fired when the escape key is pressed,
-   * `disableEscapeKeyDown` is false and the modal is in focus.
-   */
-  onEscapeKeyDown?: React.ReactEventHandler<{}>;
-  /**
    * If `true`, the modal is open.
    */
   open: boolean;
