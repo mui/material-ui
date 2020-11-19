@@ -25,7 +25,7 @@ export default function Icons() {
       <Icon fontSize="small">add_circle</Icon>
       <Icon style={{ fontSize: 30 }}>add_circle</Icon>
       {/* Use the round variant */}
-      <Icon baseClass="material-icons-round">add_circle</Icon>
+      <Icon baseClassName="material-icons-round">add_circle</Icon>
     </div>
   );
 }

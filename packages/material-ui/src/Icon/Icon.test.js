@@ -69,7 +69,7 @@ describe('<Icon />', () => {
 
     it('should render without the default class', () => {
       const { getByTestId } = render(
-        <Icon data-testid="root" baseClass="material-icons-round">
+        <Icon data-testid="root" baseClassName="material-icons-round">
           account_circle
         </Icon>,
       );
@@ -79,7 +79,7 @@ describe('<Icon />', () => {
 
     it('should render with the supplied base class', () => {
       const { getByTestId } = render(
-        <Icon data-testid="root" baseClass="material-icons-round">
+        <Icon data-testid="root" baseClassName="material-icons-round">
           account_circle
         </Icon>,
       );

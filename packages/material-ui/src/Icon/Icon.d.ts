@@ -5,6 +5,12 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**
+     * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
+     * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
+     * @default 'material-icons'
+     */
+    baseClassName?: string;
+    /**
      * The name of the icon font ligature.
      */
     children?: React.ReactNode;
@@ -41,14 +47,6 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * @default 'default'
      */
     fontSize?: 'inherit' | 'default' | 'small' | 'large';
-    /**
-     * The base class applied to the icon. Defaults to material-icons, but can be changed to any
-     * other base class that suits the icon font you're (e.g. material-icons-rounded, fas) or set
-     * to blank to omit "material-icons" and then use the className prop to apply the desired classes
-     * (e.g. <Icon baseClass="" className="fas fa-user" ... />)
-     * @default 'material-icons'
-     */
-    baseClass?: string;
   };
   defaultComponent: D;
 }
