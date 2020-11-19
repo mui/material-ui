@@ -114,7 +114,7 @@ export interface AutocompleteProps<
    * The icon to display in place of the default close icon.
    * @default <CloseIcon fontSize="small" />
    */
-  closeIcon?: React.ReactNode;
+  clearIcon?: React.ReactNode;
   /**
    * Override the default text for the *clear* icon button.
    *
