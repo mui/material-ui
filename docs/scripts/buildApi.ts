@@ -451,11 +451,17 @@ async function buildDocs(options: {
     throw err;
   }
 
+  const unstyledFileName = getUnstyledFilename(componentObject.filename);
+  let unstyledSrc;
+
   // Try to get data for the unstyled component
   try {
-    const unstyledFileName = getUnstyledFilename(componentObject.filename);
-    const unstyledSrc = readFileSync(unstyledFileName, 'utf8');
+    unstyledSrc = readFileSync(unstyledFileName, 'utf8');
+  } catch (err) {
+    // Unstyled component does not exist
+  }
 
+  if(unstyledSrc) {
     const unstyledReactAPI = docgenParse(
       unstyledSrc,
       null,
@@ -470,8 +476,6 @@ async function buildDocs(options: {
         reactAPI.props[prop] = unstyledReactAPI.props[prop];
       }
     });
-  } catch (err) {
-    // Unstyled component does not exist
   }
 
   reactAPI.name = name;
