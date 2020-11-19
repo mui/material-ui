@@ -1,9 +1,8 @@
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 const util = require('util');
 const glob = require('fast-glob');
 const fse = require('fs-extra');
-const _chunk = require('lodash/chunk');
+const lodashChunk = require('lodash/chunk');
 const childProcess = require('child_process');
 
 const execFileNode = util.promisify(childProcess.execFile);
@@ -22,7 +21,7 @@ const BATCH_SIZE = 200;
 
 async function run() {
   const screenshots = await glob(`${screenshotsBase}/**/*`);
-  const chunks = _chunk(screenshots, BATCH_SIZE);
+  const chunks = lodashChunk(screenshots, BATCH_SIZE);
 
   await Promise.all(
     chunks.map((chunk, chunkIndex) =>
