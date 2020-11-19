@@ -4,7 +4,7 @@
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=test babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
     "deduplicate": "node scripts/deduplicate.js",
-    "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
+    "argos": "node ./scripts/pushArgos.js",
     "benchmark:browser": "yarn workspace benchmark browser",
     "build:codesandbox": "lerna run --parallel --scope \"@material-ui/*\" build",
     "docs:api": "rimraf ./docs/pages/api-docs && yarn docs:api:build",
