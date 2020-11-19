@@ -23,6 +23,7 @@ const styles = (theme) => ({
   },
   root: {
     backgroundColor: theme.palette.background.default,
+    display: 'inline-block',
     padding: theme.spacing(1),
   },
 });
@@ -30,7 +31,11 @@ const styles = (theme) => ({
 function TestViewer(props) {
   const { children, classes } = props;
 
-  return <div className={classes.root}>{children}</div>;
+  return (
+    <div data-testid="testcase" className={classes.root}>
+      {children}
+    </div>
+  );
 }
 
 TestViewer.propTypes = {

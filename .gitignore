@@ -15,6 +15,7 @@
 /examples/**/.cache
 /packages/material-ui-codemod/lib
 /packages/material-ui-icons/material-icons/*
+/test/regressions/build
 /test/regressions/screenshots
 /test/selenium-output
 /tmp
