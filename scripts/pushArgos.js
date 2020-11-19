@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const util = require('util');
 const glob = require('fast-glob');
 const fse = require('fs-extra');
@@ -48,6 +47,7 @@ async function run() {
       '--external-build-id',
       process.env.CIRCLE_SHA1,
     ]);
+    // eslint-disable-next-line no-console -- pipe stdout
     console.log(argosResults.stdout);
   }
 }
