@@ -461,7 +461,7 @@ async function buildDocs(options: {
     // Unstyled component does not exist
   }
 
-  if(unstyledSrc) {
+  if (unstyledSrc) {
     const unstyledReactAPI = docgenParse(
       unstyledSrc,
       null,
