@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "clsx": "latest",
-    "next": "latest",
+    "next": "10.0.2-canary.20",
     "react": "latest",
     "react-dom": "latest"
   },
