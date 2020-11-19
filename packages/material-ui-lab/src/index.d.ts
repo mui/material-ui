@@ -127,20 +127,23 @@ export * from './StaticDateTimePicker';
 export { default as DateRangePicker } from './DateRangePicker';
 export * from './DateRangePicker';
 
-export {
-  default as DesktopDateRangePicker,
-  DesktopDateRangePickerProps,
-} from './DesktopDateRangePicker';
+export { default as DateRangePickerDay } from './DateRangePickerDay';
+export * from './DateRangePickerDay';
 
-export {
-  default as MobileDateRangePicker,
-  MobileDateRangePickerProps,
-} from './MobileDateRangePicker';
+export { default as PickersCalendarSkeleton } from './PickersCalendarSkeleton';
+export * from './PickersCalendarSkeleton';
 
-export {
-  default as StaticDateRangePicker,
-  StaticDateRangePickerProps,
-} from './StaticDateRangePicker';
+export { default as MonthPicker } from './MonthPicker';
+export * from './MonthPicker';
+
+export { default as DesktopDateRangePicker } from './DesktopDateRangePicker';
+export * from './DesktopDateRangePicker';
+
+export { default as MobileDateRangePicker } from './MobileDateRangePicker';
+export * from './MobileDateRangePicker';
+
+export { default as StaticDateRangePicker } from './StaticDateRangePicker';
+export * from './StaticDateRangePicker';
 
 export { default as ClockPicker } from './ClockPicker';
 export * from './ClockPicker';
