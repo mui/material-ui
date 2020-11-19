@@ -66,7 +66,7 @@ async function main() {
           link.click();
         });
         // Move cursor offscreen to not trigger hover unwanted hover effects.
-        page.mouse.move(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY);
+        page.mouse.move(0, 0);
 
         const testcase = await page.waitForSelector('[data-testid="testcase"]');
         const clip = await testcase.boundingBox();
