@@ -53,6 +53,15 @@ export * from './StaticDateTimePicker';
 export { default as DateRangePicker } from './DateRangePicker';
 export * from './DateRangePicker';
 
+export { default as DateRangePickerDay } from './DateRangePickerDay';
+export * from './DateRangePickerDay';
+
+export { default as PickersCalendarSkeleton } from './PickersCalendarSkeleton';
+export * from './PickersCalendarSkeleton';
+
+export { default as MonthPicker } from './MonthPicker';
+export * from './MonthPicker';
+
 export { default as DesktopDateRangePicker } from './DesktopDateRangePicker';
 export * from './DesktopDateRangePicker';
 
