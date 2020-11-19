@@ -179,10 +179,7 @@ describe('<DateTimePicker />', () => {
     expect(textbox.value).to.equal('12.');
   });
 
-  it('prop: maxDateTime – minutes is disabled by date part', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('prop: maxDateTime – minutes is disabled by date part', () => {
     render(
       <DesktopDateTimePicker
         open
@@ -243,10 +240,7 @@ describe('<DateTimePicker />', () => {
     expect(screen.getByLabelText('open next view')).to.have.attribute('disabled');
   });
 
-  it('allows to select the same day and move to the next view', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('allows to select the same day and move to the next view', () => {
     const onChangeMock = spy();
     render(
       <StaticDateTimePicker
