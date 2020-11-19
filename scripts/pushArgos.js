@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 const util = require('util');
 const glob = require('fast-glob');
