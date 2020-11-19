@@ -82,7 +82,7 @@ yargs
           type: 'boolean',
         })
         .option('inspect-brk', {
-          alias: 'b',
+          alias: 'd',
           description: 'Stop on first error.',
           type: 'boolean',
         })
