@@ -561,7 +561,7 @@ Autocomplete.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The icon to display in place of the default close icon.
+   * The icon to display in place of the default clear icon.
    * @default <CloseIcon fontSize="small" />
    */
   clearIcon: PropTypes.node,
