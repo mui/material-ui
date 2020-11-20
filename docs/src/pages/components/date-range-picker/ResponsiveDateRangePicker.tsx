@@ -3,10 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateRangeDelimiter from '@material-ui/lab/DateRangeDelimiter';
-import MobileDateRangePicker, {
-  DateRange,
-} from '@material-ui/lab/MobileDateRangePicker';
+import MobileDateRangePicker from '@material-ui/lab/MobileDateRangePicker';
 import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
+import { DateRange } from '@material-ui/lab/DateRangePicker';
 
 export default function ResponsiveDateRangePicker() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);

@@ -353,6 +353,4 @@ const MobileDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', M
 
 export type MobileDateRangePickerProps = React.ComponentProps<typeof MobileDateRangePicker>;
 
-export type DateRange<T> = import('../DateRangePicker/RangeTypes').DateRange<T>;
-
 export default MobileDateRangePicker;

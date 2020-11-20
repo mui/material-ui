@@ -4,7 +4,8 @@ import { spy } from 'sinon';
 import { isWeekend } from 'date-fns';
 import { screen, fireEvent } from 'test/utils';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
-import DesktopDateRangePicker, { DateRange } from '@material-ui/lab/DesktopDateRangePicker';
+import { DateRange } from '@material-ui/lab/DateRangePicker';
+import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
 import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
 import {
   createPickerRender,
