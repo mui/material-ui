@@ -292,35 +292,7 @@ jobs:
           command: yarn test:argos
 workflows:
   version: 2
-  pipeline:
-    jobs:
-      - checkout
-      - test_unit:
-          requires:
-            - checkout
-      - test_static:
-          requires:
-            - checkout
-      - test_types:
-          requires:
-            - checkout
-      - test_browser:
-          requires:
-            - checkout
-      - test_regressions:
-          requires:
-            - test_unit
-            - test_static
-            - test_types
-            - test_browser
   profile-tests:
-    triggers:
-      - schedule:
-          cron: '0 0 * * *'
-          filters:
-            branches:
-              only:
-                - next
     jobs:
       - test_profile:
           test-gate: enable-dispatching-profiler
