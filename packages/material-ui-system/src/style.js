@@ -10,15 +10,15 @@ function getPath(obj, path) {
   return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
 }
 
-function getValue(themeMapping, transform, propValueFinal) {
+function getValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {
   let value;
 
   if (typeof themeMapping === 'function') {
     value = themeMapping(propValueFinal);
   } else if (Array.isArray(themeMapping)) {
-    value = themeMapping[propValueFinal] || propValueFinal;
+    value = themeMapping[propValueFinal] || userValue;
   } else {
-    value = getPath(themeMapping, propValueFinal) || propValueFinal;
+    value = getPath(themeMapping, propValueFinal) || userValue;
 
     if (transform) {
       value = transform(value);
@@ -48,6 +48,7 @@ function style(options) {
           themeMapping,
           transform,
           `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
+          propValueFinal
         );
       }
 
