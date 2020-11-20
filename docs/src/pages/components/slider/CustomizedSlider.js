@@ -18,10 +18,10 @@ const Separator = styled('div')(
 );
 
 function ValueLabelComponent(props) {
-  const { children, open, value } = props;
+  const { children, value } = props;
 
   return (
-    <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
+    <Tooltip enterTouchDelay={0} placement="top" title={value}>
       {children}
     </Tooltip>
   );
@@ -29,7 +29,6 @@ function ValueLabelComponent(props) {
 
 ValueLabelComponent.propTypes = {
   children: PropTypes.element.isRequired,
-  open: PropTypes.bool.isRequired,
   value: PropTypes.number.isRequired,
 };
 
