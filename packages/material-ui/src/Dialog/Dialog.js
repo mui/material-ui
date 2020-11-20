@@ -145,7 +145,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     children,
     classes,
     className,
-    disableBackdropClick = false,
     disableEscapeKeyDown = false,
     fullScreen = false,
     fullWidth = false,
@@ -182,7 +181,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
       onBackdropClick(event);
     }
 
-    if (!disableBackdropClick && onClose) {
+    if (onClose) {
       onClose(event, 'backdropClick');
     }
   };
@@ -196,7 +195,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         ...BackdropProps,
       }}
       closeAfterTransition
-      disableBackdropClick={disableBackdropClick}
       disableEscapeKeyDown={disableEscapeKeyDown}
       onClose={onClose}
       open={open}
@@ -272,11 +270,6 @@ Dialog.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * If `true`, clicking the backdrop will not fire the `onClose` callback.
-   * @default false
-   */
-  disableBackdropClick: PropTypes.bool,
   /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false

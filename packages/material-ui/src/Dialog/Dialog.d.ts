@@ -54,11 +54,6 @@ export interface DialogProps
     paperFullScreen?: string;
   };
   /**
-   * If `true`, clicking the backdrop will not fire the `onClose` callback.
-   * @default false
-   */
-  disableBackdropClick?: boolean;
-  /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
