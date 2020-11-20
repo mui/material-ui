@@ -284,8 +284,8 @@ const classes = makeStyles(theme => ({
 - Rename `closeIcon` prop with `clearIcon` to avoid confusion.
 
   ```diff
-  -<Autocomplete closeIcon={defaultCloseIcon} />
-  +<Autocomplete clearIcon={defaultCloseIcon} />
+  -<Autocomplete closeIcon={defaultClearIcon} />
+  +<Autocomplete clearIcon={defaultClearIcon} />
   ```
 
 ### Avatar
