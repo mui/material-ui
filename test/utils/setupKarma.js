@@ -3,13 +3,27 @@ import { createMochaHooks } from './mochaHooks';
 
 const mochaHooks = createMochaHooks(window.Mocha);
 
+/**
+ * Emit events from `DispatchingProfiler` as `browser_info` karma events.
+ */
+function handleReactProfilerResults(event) {
+  // Only own properties are persisteded when sending the object.
+  const info = { type: event.type, detail: event.detail };
+  // eslint-disable-next-line no-underscore-dangle -- public: http://karma-runner.github.io/5.2/dev/plugins.html
+  window.__karma__.info(info);
+}
+
 before(function beforeAllHook() {
   mochaHooks.beforeAll.forEach((mochaHook) => {
     mochaHook.call(this);
   });
+
+  window.addEventListener('reactProfilerResults', handleReactProfilerResults);
 });
 
 after(function afterAllHook() {
+  window.removeEventListener('reactProfilerResults', handleReactProfilerResults);
+
   mochaHooks.afterAll.forEach((mochaHook) => {
     mochaHook.call(this);
   });

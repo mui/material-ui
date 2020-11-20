@@ -84,11 +84,26 @@ function clientRender(element, options = {}) {
     container,
     hydrate,
     strict = true,
+    profiler,
     wrapper: InnerWrapper = React.Fragment,
   } = options;
 
+  if (profiler === null) {
+    // TODO: remove tests rendering in mocha hooks
+    // throw new Error('Rendered outside of a test. Use the test renderer only in tests.');
+  }
+
   const Mode = strict ? React.StrictMode : React.Fragment;
   function Wrapper({ children }) {
+    if (profiler !== null) {
+      return (
+        <Mode>
+          <React.Profiler id={profiler.id} onRender={profiler.onRender}>
+            <InnerWrapper>{children}</InnerWrapper>
+          </React.Profiler>
+        </Mode>
+      );
+    }
     return (
       <Mode>
         <InnerWrapper>{children}</InnerWrapper>
@@ -131,9 +146,73 @@ function clientRender(element, options = {}) {
  */
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
-
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
+
+  class NoopProfiler {
+    id = 'noop';
+
+    // eslint-disable-next-line class-methods-use-this
+    onRender() {}
+
+    // eslint-disable-next-line class-methods-use-this
+    report() {}
+  }
+
+  class DispatchingProfiler {
+    renders = [];
+
+    /**
+     *
+     * @param {import('mocha').Test} test
+     */
+    constructor(test) {
+      /**
+       * @readonly
+       */
+      this.test = test;
+      this.id = test.fullTitle();
+    }
+
+    /**
+     * @type {import('react').ProfilerOnRenderCallback}
+     */
+    onRender = (id, phase, actualDuration, baseDuration, startTime, commitTime, interactions) => {
+      // Do minimal work here to keep the render fast.
+      // Though it's unclear whether work here affects the profiler results.
+      // But even if it doesn't we'll keep the test feedback snappy.
+      this.renders.push([
+        id,
+        phase,
+        actualDuration,
+        baseDuration,
+        startTime,
+        commitTime,
+        interactions,
+      ]);
+    };
+
+    report() {
+      const event = new window.CustomEvent('reactProfilerResults', {
+        detail: {
+          [this.id]: this.renders.map((entry) => {
+            return {
+              phase: entry[1],
+              actualDuration: entry[2],
+              baseDuration: entry[3],
+              startTime: entry[4],
+              commitTime: entry[5],
+              interactions: entry[6],
+            };
+          }),
+        },
+      });
+      window.dispatchEvent(event);
+    }
+  }
+
+  const Profiler =
+    process.env.TEST_GATE === 'enable-dispatching-profiler' ? DispatchingProfiler : NoopProfiler;
 
   /**
    * Flag whether `createClientRender` was called in a suite i.e. describe() block.
@@ -154,7 +233,18 @@ export function createClientRender(globalOptions = {}) {
     }
   });
 
-  afterEach(() => {
+  let profiler = null;
+  beforeEach(function beforeEachHook() {
+    const test = this.currentTest;
+    if (test === undefined) {
+      throw new Error(
+        'Unable to find the currently running test. This is a bug with the client-renderer. Please report this issue to a maintainer.',
+      );
+    }
+    profiler = new Profiler(this.currentTest);
+  });
+
+  afterEach(async () => {
     if (setTimeout.hasOwnProperty('clock')) {
       const error = Error(
         "Can't cleanup before fake timers are restored.\n" +
@@ -168,12 +258,14 @@ export function createClientRender(globalOptions = {}) {
     }
 
     cleanup();
+    profiler.report();
+    profiler = null;
   });
 
   return function configuredClientRender(element, options = {}) {
     const { strict = globalStrict, ...localOptions } = options;
 
-    return clientRender(element, { ...localOptions, strict });
+    return clientRender(element, { ...localOptions, strict, profiler });
   };
 }
 
