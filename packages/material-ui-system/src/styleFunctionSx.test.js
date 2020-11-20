@@ -90,9 +90,10 @@ describe('styleFunctionSx', () => {
     it('resolves system using string', () => {
       const result = styleFunctionSx({
         theme,
-        sx: 'color:primary.main bgcolor:secondary.main m:2 p:1 fontFamily:fontFamily fontWeight:fontWeightLight fontSize:fontSize displayPrint:block xs:border:1 sm:border:2 md:border:3 lg:border:4 xl:border:5',
+        sx:
+          'color:primary.main bgcolor:secondary.main m:2 p:1 fontFamily:fontFamily fontWeight:fontWeightLight fontSize:fontSize displayPrint:block xs:border:1 sm:border:2 md:border:3 lg:border:4 xl:border:5',
       });
-      
+
       expect(result).to.deep.equal({
         color: 'rgb(0, 0, 255)',
         backgroundColor: 'rgb(0, 255, 0)',
@@ -116,6 +117,30 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme,
         sx: { typography: ['body2', 'body1'] },
+      });
+
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: `${14 / 16}rem`,
+          letterSpacing: `${round(0.15 / 14)}em`,
+          fontWeight: 400,
+          lineHeight: 1.43,
+        },
+        '@media (min-width:600px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+        },
+      });
+    });
+
+    it('resolves system typography using string', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: 'xs:typography:body2 sm:typography:body1',
       });
 
       expect(result).to.deep.equal({
@@ -206,6 +231,15 @@ describe('styleFunctionSx', () => {
       expect(result).to.deep.equal(breakpointsExpectedResult);
     });
 
+    it('resolves breakpoints using string', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: 'xs:border:1 sm:border:2 md:border:3 lg:border:4 xl:border:5',
+      });
+
+      expect(result).to.deep.equal(breakpointsExpectedResult);
+    });
+
     it('merges multiple breakpoints object', () => {
       const result = styleFunctionSx({
         theme,
@@ -219,10 +253,45 @@ describe('styleFunctionSx', () => {
       });
     });
 
+    it('merges multiple breakpoints definitions using string', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: 'xs:m:1 sm:m:2 md:m:3 xs:p:5 sm:p:6 md:p:7',
+      });
+
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': { padding: '50px', margin: '10px' },
+        '@media (min-width:600px)': { padding: '60px', margin: '20px' },
+        '@media (min-width:960px)': { padding: '70px', margin: '30px' },
+      });
+    });
+
     it('writes breakpoints in correct order', () => {
       const result = styleFunctionSx({
         theme,
         sx: { m: { md: 1, lg: 2 }, p: { xs: 0, sm: 1, md: 2 } },
+      });
+
+      // Test the order
+      expect(Object.keys(result)).to.deep.equal([
+        '@media (min-width:0px)',
+        '@media (min-width:600px)',
+        '@media (min-width:960px)',
+        '@media (min-width:1280px)',
+      ]);
+
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': { padding: '0px' },
+        '@media (min-width:600px)': { padding: '10px' },
+        '@media (min-width:960px)': { padding: '20px', margin: '10px' },
+        '@media (min-width:1280px)': { margin: '20px' },
+      });
+    });
+
+    it('writes breakpoints in correct order using string', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: 'md:m:1 lg:m:2 xs:p:0 sm:p:1 md:p:2',
       });
 
       // Test the order

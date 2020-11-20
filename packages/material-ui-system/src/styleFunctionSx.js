@@ -73,7 +73,6 @@ function processStyleFunctionSx(props) {
   return mergeBreakpointsInOrder(theme.breakpoints, css);
 }
 
-
 function convertStringSxToObject(sx) {
   return sx.split(' ').reduce((acc, item) => {
     const split = item.split(':');
@@ -81,25 +80,21 @@ function convertStringSxToObject(sx) {
       const [breakpoint, property, value] = split;
       if (typeof acc[property] === 'string') {
         acc[property] = {
-          xs: acc[property],
-          [breakpoint]: value,
+          [breakpoint]: !isNaN(value) ? Number(value) : value,
         };
       } else if (typeof acc[property] === 'object') {
         acc[property] = {
           ...acc[property],
-          [breakpoint]: value,
+          [breakpoint]: !isNaN(value) ? Number(value) : value,
         };
       } else {
         acc[property] = {
-          [breakpoint]: value,
+          [breakpoint]: !isNaN(value) ? Number(value) : value,
         };
       }
-    } else if (split.length === 2){
+    } else if (split.length === 2) {
       const [property, value] = split;
-      if(!isNaN(value)) {
-        acc[property] = Number(value);
-      }
-      acc[property] = value;
+      acc[property] = !isNaN(value) ? Number(value) : value;
     } else {
       const [property] = split;
       acc[property] = true;
@@ -108,11 +103,9 @@ function convertStringSxToObject(sx) {
   }, {});
 }
 
-
 function styleFunctionSx(props) {
   const processedSx = typeof props.sx === 'string' ? convertStringSxToObject(props.sx) : props.sx;
-
-  return processStyleFunctionSx({ ...props, sx: processedSx});
+  return processStyleFunctionSx({ ...props, sx: processedSx });
 }
 
 styleFunctionSx.filterProps = ['sx'];
