@@ -1,17 +1,18 @@
 import * as React from 'react';
 import styled, { InterpolationFunction, ThemeProvider } from 'styled-components';
-import { unstable_styleFunctionSx } from '@material-ui/system';
+import { unstable_styleFunctionSx, SxProps } from '@material-ui/system';
 import NoSsr from '@material-ui/core/NoSsr';
-import { SxProps } from '@material-ui/core/Box';
 import { createMuiTheme } from '@material-ui/core/styles';
 
-interface DivProps extends React.HTMLAttributes<'div'> {
+interface DivProps {
   sx?: SxProps;
 }
 
 const theme = createMuiTheme();
 
-const Div = styled('div')<DivProps>(
+const Div = styled('div')<{
+  sx?: SxProps;
+}>(
   unstable_styleFunctionSx as InterpolationFunction<DivProps>,
 );
 
