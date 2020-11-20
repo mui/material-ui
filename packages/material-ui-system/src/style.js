@@ -48,7 +48,7 @@ function style(options) {
           themeMapping,
           transform,
           `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
-          propValueFinal
+          propValueFinal,
         );
       }
 
