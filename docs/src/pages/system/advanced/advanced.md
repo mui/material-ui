@@ -4,18 +4,12 @@
 
 ## Adding the `sx` prop to your custom components
 
-The `unstable_styleFunctionSx` utility adds the support for the `sx` to your own components.
+The `unstable_styleFunctionSx` utility adds the support for the `sx` to your own components. You may use the `Box` components that comes from `@material-ui/core` as a root of your component tree instead, but if you would not like to depend on the core and have a smaller bundle size, this utility would give you the same capabilities.
 
 {{"demo": "pages/system/advanced/StyleFunctionSxDemo.js"}}
 
-### Built-in `sx` from the core
-
-If you're already using Material-UI's `styled()` wrapper, the easiest way to support the `sx` prop in your custom components is to use the `experimentalStyled()` utility that comes from `@material-ui/core/styles`. Here is an example of how it can be used:
-
-{{"demo": "pages/system/advanced/ExperimentalStyledDemo.js", "defaultCodeOpen": true}}
-
 ## Using standalone system utilities
 
-If you wouldn't like to use the `sx` prop on your custom components, but only some bits from the system, you can use and combine the different style functions available as part of the system.
+If you wouldn't like to use the `sx` prop on your custom components, but only some bits from the system, you can use and combine the different style functions available as part of the system. You are likely to use this approach if you neeed smaller bundle size and better performance for the price of using a small set of what the `sx` supports.
 
 {{"demo": "pages/system/advanced/CombiningStyleFunctionsDemo.js", "defaultCodeOpen": true}}
