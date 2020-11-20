@@ -49,7 +49,7 @@
     "test:umd": "node packages/material-ui/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
     "test:watch": "yarn test:unit --watch",
-    "typescript": "lerna run typescript --parallel"
+    "typescript": "lerna run --no-bail --parallel typescript"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
