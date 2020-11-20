@@ -260,6 +260,7 @@ jobs:
     steps:
       - checkout
       - install_js
+      - prepare_chrome_headless
       - run:
           name: Tests real browsers
           # TODO: which browsers? Figuring out the difference between headless and headful for now.
