@@ -69,7 +69,7 @@ Box.propTypes = {
   /**
    * @ignore
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 if (process.env.NODE_ENV !== 'production') {
