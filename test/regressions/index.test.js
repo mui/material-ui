@@ -15,8 +15,16 @@ async function main() {
   // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
   const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
 
-  // prevent flaky tests using images
-  await page.route('**/*.{png,jpg,jpeg}', (route) => route.abort());
+  // Block images since they slow down tests (need download).
+  // They're also most likely decorative for documentation demos
+  await page.route(/./, async (route, request) => {
+    const type = await request.resourceType();
+    if (type === 'image') {
+      route.abort();
+    } else {
+      route.continue();
+    }
+  });
 
   // Wait for all requests to finish.
   // This should load shared ressources such as fonts.
@@ -57,8 +65,12 @@ async function main() {
         await page.$eval(`#tests li:nth-of-type(${index + 1}) a`, (link) => {
           link.click();
         });
+        // Move cursor offscreen to not trigger unwanted hover effects.
+        page.mouse.move(0, 0);
 
-        const testcase = await page.waitForSelector('[data-testid="testcase"]');
+        const testcase = await page.waitForSelector(
+          '[data-testid="testcase"]:not([aria-busy="true"])',
+        );
         const clip = await testcase.boundingBox();
 
         const screenshotPath = path.resolve(screenshotDir, `${route.replace(baseUrl, '.')}.png`);
