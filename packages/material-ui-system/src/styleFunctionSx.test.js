@@ -52,7 +52,7 @@ describe('styleFunctionSx', () => {
   };
 
   describe('system', () => {
-    it('resolves system ', () => {
+    it('resolves system', () => {
       const result = styleFunctionSx({
         theme,
         sx: {
@@ -68,6 +68,31 @@ describe('styleFunctionSx', () => {
         },
       });
 
+      expect(result).to.deep.equal({
+        color: 'rgb(0, 0, 255)',
+        backgroundColor: 'rgb(0, 255, 0)',
+        margin: '20px',
+        padding: '10px',
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontWeight: 300,
+        fontSize: 14,
+        '@media print': {
+          display: 'block',
+        },
+        '@media (min-width:0px)': { border: '1px solid' },
+        '@media (min-width:600px)': { border: '2px solid' },
+        '@media (min-width:960px)': { border: '3px solid' },
+        '@media (min-width:1280px)': { border: '4px solid' },
+        '@media (min-width:1920px)': { border: '5px solid' },
+      });
+    });
+
+    it('resolves system using string', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: 'color:primary.main bgcolor:secondary.main m:2 p:1 fontFamily:fontFamily fontWeight:fontWeightLight fontSize:fontSize displayPrint:block xs:border:1 sm:border:2 md:border:3 lg:border:4 xl:border:5',
+      });
+      
       expect(result).to.deep.equal({
         color: 'rgb(0, 0, 255)',
         backgroundColor: 'rgb(0, 255, 0)',

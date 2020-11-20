@@ -32,7 +32,7 @@ function objectsHaveSameKeys(...objects) {
   return objects.every((object) => union.size === Object.keys(object).length);
 }
 
-function styleFunctionSx(props) {
+function processStyleFunctionSx(props) {
   const { sx: styles, theme } = props || {};
   if (!styles) return null;
 
@@ -71,6 +71,48 @@ function styleFunctionSx(props) {
   });
 
   return mergeBreakpointsInOrder(theme.breakpoints, css);
+}
+
+
+function convertStringSxToObject(sx) {
+  return sx.split(' ').reduce((acc, item) => {
+    const split = item.split(':');
+    if (split.length === 3) {
+      const [breakpoint, property, value] = split;
+      if (typeof acc[property] === 'string') {
+        acc[property] = {
+          xs: acc[property],
+          [breakpoint]: value,
+        };
+      } else if (typeof acc[property] === 'object') {
+        acc[property] = {
+          ...acc[property],
+          [breakpoint]: value,
+        };
+      } else {
+        acc[property] = {
+          [breakpoint]: value,
+        };
+      }
+    } else if (split.length === 2){
+      const [property, value] = split;
+      if(!isNaN(value)) {
+        acc[property] = Number(value);
+      }
+      acc[property] = value;
+    } else {
+      const [property] = split;
+      acc[property] = true;
+    }
+    return acc;
+  }, {});
+}
+
+
+function styleFunctionSx(props) {
+  const processedSx = typeof props.sx === 'string' ? convertStringSxToObject(props.sx) : props.sx;
+
+  return processStyleFunctionSx({ ...props, sx: processedSx});
 }
 
 styleFunctionSx.filterProps = ['sx'];

@@ -672,7 +672,7 @@ export type SystemStyleObject<Theme extends object = {}> =
   | CSSSelectorObject
   | null;
 
-export type SxProps<Theme extends object = {}> = SystemStyleObject<Theme>;
+export type SxProps<Theme extends object = {}> = SystemStyleObject<Theme> | string;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function unstable_styleFunctionSx(props: object): object;
