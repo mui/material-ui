@@ -4,7 +4,7 @@
 
 ## Adding the `sx` prop to your custom components
 
-The `unstable_styleFunctionSx` utility adds the support for the `sx` to your own components. You may use the `Box` components that comes from `@material-ui/core` as a root of your component tree instead, but if you would not like to depend on the core and have a smaller bundle size, this utility would give you the same capabilities.
+The `unstable_styleFunctionSx` utility adds the support for the `sx` to your own components. Normally you would use the `Box` components from `@material-ui/core` as the root of your component tree. If you would like to use it independently from Material-UI, this utility will give you the same capabilities, while having a smaller bundle size.
 
 {{"demo": "pages/system/advanced/StyleFunctionSxDemo.js"}}
 
