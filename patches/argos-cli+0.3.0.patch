@@ -1,0 +1,17 @@
+diff --git a/node_modules/argos-cli/lib/index.js b/node_modules/argos-cli/lib/index.js
+index 9260e62..2a59c7e 100644
+--- a/node_modules/argos-cli/lib/index.js
++++ b/node_modules/argos-cli/lib/index.js
+@@ -51,7 +51,11 @@ _commander.default.command('upload <directory>').description('Upload screenshots
+     const res = await (0, _upload.default)(_objectSpread({
+       directory
+     }, command));
+-    json = await res.json();
++    try {
++      json = await res.json();
++    } catch (error) {
++      throw new Error(`Failed to parse response body as JSON:\n\n${await res.text()}`)
++    }
+ 
+     if (json.error) {
+       throw new _upload.UploadError(json.error.message);

@@ -122,11 +122,7 @@ describe('<DatePicker /> keyboard interactions', () => {
   });
 
   describe('Calendar keyboard navigation', () => {
-    it('autofocus selected day on mount', function test() {
-      if (process.env.TEST_GATE !== 'experimental-timezones') {
-        this.skip();
-      }
-
+    it('autofocus selected day on mount', () => {
       // Important: Use <StaticDatePicker /> here in order to avoid async waiting for focus because of packages/material-ui-lab/src/internal/pickers/hooks/useCanAutoFocus.tsx logic
       render(
         <StaticDatePicker
@@ -149,11 +145,7 @@ describe('<DatePicker /> keyboard interactions', () => {
       { keyCode: 39, key: 'ArrowRight', expectFocusedDay: 'Aug 14, 2020' },
       { keyCode: 40, key: 'ArrowDown', expectFocusedDay: 'Aug 20, 2020' },
     ].forEach(({ key, keyCode, expectFocusedDay }) => {
-      it(key, function test() {
-        if (process.env.TEST_GATE !== 'experimental-timezones') {
-          this.skip();
-        }
-
+      it(key, () => {
         // Important: Use <StaticDatePicker /> here in order to avoid async waiting for focus because of packages/material-ui-lab/src/internal/pickers/hooks/useCanAutoFocus.tsx logic
         render(
           <StaticDatePicker
@@ -174,10 +166,7 @@ describe('<DatePicker /> keyboard interactions', () => {
     });
   });
 
-  it("doesn't allow to select disabled date from keyboard", async function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it("doesn't allow to select disabled date from keyboard", async () => {
     render(
       <StaticDatePicker
         allowKeyboardControl
@@ -208,11 +197,7 @@ describe('<DatePicker /> keyboard interactions', () => {
       { keyCode: 39, key: 'ArrowRight', expectFocusedYear: '2021' },
       { keyCode: 40, key: 'ArrowDown', expectFocusedYear: '2024' },
     ].forEach(({ key, keyCode, expectFocusedYear }) => {
-      it(key, function test() {
-        if (process.env.TEST_GATE !== 'experimental-timezones') {
-          this.skip();
-        }
-
+      it(key, () => {
         render(
           <StaticDatePicker
             open

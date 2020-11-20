@@ -39,8 +39,8 @@ export function pick12hOr24hFormat(
 }
 
 const MASK_USER_INPUT_SYMBOL = '_';
-export const staticDateWith2DigitTokens = new Date('2019-11-21T22:30:00.000');
-export const staticDateWith1DigitTokens = new Date('2019-01-01T09:00:00.000');
+const staticDateWith2DigitTokens = '2019-11-21T22:30:00.000';
+const staticDateWith1DigitTokens = '2019-01-01T09:00:00.000';
 
 export function checkMaskIsValidForCurrentFormat(
   mask: string,

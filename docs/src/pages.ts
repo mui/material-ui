@@ -172,7 +172,6 @@ const pages: MuiPage[] = [
               { pathname: '/components/time-picker' },
             ],
           },
-          { pathname: '/components/slider-styled' },
           { pathname: '/components/timeline' },
           { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },

@@ -159,41 +159,19 @@ so we also need to take into account the rendering engine.
 
 #### Run the visual regression tests
 
-`yarn test:regressions`
-
-Next, we are using [docker](https://github.com/docker/docker) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
+We are using [playwright](https://playwright.dev/) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
 
 ![before](/test/docs-regressions-before.png)
 ![diff](/test/docs-regressions-diff.png)
 
 Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/test/regressions/tests/Menu/SimpleMenuList.js#L6-L16) with the `Menu` component.
 
-#### Installation
+##### Development
 
-The visual regression tests suite has a hard dependency on [docker](https://github.com/docker/docker).
-You need to **install** it, then run the following commands:
+When working on the visual regression tests you can run `yarn test:regressions:dev` in the background to constantly rebuild the views used for visual regression testing.
+To actually take the screenshots you can then run `yarn test:regressions:run`.
+You can pass the same arguments as you could to `mocha`.
+For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
+You can view the screenshots in `test/regressions/screenshots/chrome`.
 
-```sh
-docker-compose up -d
-```
-
-Due to issues with networking in OS X, getting the container to see the
-test page may require additional configuration as the `docker0` interface
-does not exist.
-
-You can create an alias for the loopback interface using the instructions
-provided at https://docs.docker.com/docker-for-mac/networking/#/there-is-no-docker0-bridge-on-macos
-
-```
-sudo ifconfig lo0 alias 10.200.10.1/24
-```
-
-In our `vrtest` config this is set as the default, although it can be overridden with an env var:
-
-```
-testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
-```
-
-In addition to docker, the visual regression tests depend on either
-[ImageMagick](https://www.imagemagick.org/)
-or [GraphicsMagick](https://www.graphicsmagick.org/) being installed.
+Alternatively, you might want to open `http://localhost:5000` (while `yarn test:regressions:dev` is running) to view individual views separately.

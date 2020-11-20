@@ -89,5 +89,5 @@ You can override the style of the component thanks to one of these customization
 
 ## Demos
 
-- [Slider Styled](/components/slider-styled/)
+- [Slider](/components/slider/)
 

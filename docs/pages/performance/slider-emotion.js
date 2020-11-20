@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NoSsr from '@material-ui/core/NoSsr';
-import SliderStyled from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 const data = {
   name: 'Frozen yoghurt',
@@ -17,7 +17,7 @@ export default function SliderEmotion() {
     <NoSsr defer>
       <div style={{ width: 300 }}>
         {rows.map((row, index) => (
-          <SliderStyled value={20} key={index} />
+          <Slider value={20} key={index} />
         ))}
       </div>
     </NoSsr>
