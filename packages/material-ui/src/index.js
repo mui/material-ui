@@ -6,6 +6,8 @@ export * from './styles';
 
 export * from './utils';
 
+export * from '@material-ui/unstyled';
+
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
 

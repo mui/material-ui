@@ -1,3 +1,4 @@
+import path from 'path';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
@@ -16,7 +17,7 @@ const babelOptions = {
   // We are using @babel/plugin-transform-runtime
   runtimeHelpers: true,
   extensions: ['.js', '.ts', '.tsx'],
-  configFile: '../../babel.config.js',
+  configFile: path.resolve(__dirname, '../../../babel.config.js'),
 };
 const commonjsOptions = {
   ignoreGlobal: true,

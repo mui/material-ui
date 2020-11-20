@@ -248,12 +248,11 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('handleKeyDown()', () => {
+  describe('event: keydown', () => {
     it('when mounted, TopModal and event not esc should not call given functions', () => {
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
-        <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+        <Modal open onClose={onCloseSpy}>
           <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
@@ -263,17 +262,15 @@ describe('<Modal />', () => {
         key: 'j', // Not escape
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 0);
       expect(onCloseSpy).to.have.property('callCount', 0);
     });
 
-    it('should call onEscapeKeyDown and onClose', () => {
+    it('should call onClose when Esc is pressed and stop event propagation', () => {
       const handleKeyDown = spy();
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
-          <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+          <Modal open onClose={onCloseSpy}>
             <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
@@ -284,23 +281,16 @@ describe('<Modal />', () => {
         key: 'Escape',
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 1);
       expect(onCloseSpy).to.have.property('callCount', 1);
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('should not call onChange when `disableEscapeKeyDown=true`', () => {
+    it('should not call onClose when `disableEscapeKeyDown=true`', () => {
       const handleKeyDown = spy();
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
-          <Modal
-            open
-            disableEscapeKeyDown
-            onEscapeKeyDown={onEscapeKeyDownSpy}
-            onClose={onCloseSpy}
-          >
+          <Modal open disableEscapeKeyDown onClose={onCloseSpy}>
             <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
@@ -311,8 +301,20 @@ describe('<Modal />', () => {
         key: 'Escape',
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 1);
       expect(onCloseSpy).to.have.property('callCount', 0);
+      expect(handleKeyDown).to.have.property('callCount', 1);
+    });
+
+    it('calls onKeyDown on the Modal', () => {
+      const handleKeyDown = spy();
+      const { getByTestId } = render(
+        <Modal open onKeyDown={handleKeyDown}>
+          <button autoFocus data-testid="target" />
+        </Modal>,
+      );
+
+      fireEvent.keyDown(getByTestId('target'), { key: 'j' });
+
       expect(handleKeyDown).to.have.property('callCount', 1);
     });
   });

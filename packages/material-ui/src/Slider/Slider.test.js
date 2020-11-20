@@ -2,18 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Slider from './Slider';
-import ValueLabel from './ValueLabel';
+import Slider, { sliderClasses as classes } from './Slider';
 
 function createTouches(touches) {
   return {
@@ -34,15 +26,10 @@ describe('<Slider />', () => {
   }
 
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Slider value={0} />);
-  });
-
   describeConformance(<Slider value={0} />, () => ({
-    classes,
+    classes: {},
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
@@ -529,28 +516,26 @@ describe('<Slider />', () => {
 
   describe('prop: valueLabelDisplay', () => {
     it('should always display the value label according to on and off', () => {
-      const valueLabelClasses = getClasses(<ValueLabel />);
       const { getByRole, setProps } = render(<Slider valueLabelDisplay="on" value={50} />);
       const thumb = getByRole('slider');
-      expect(thumb).to.have.class(valueLabelClasses.open);
+      expect(thumb.firstChild).to.have.class(classes.valueLabelOpen);
 
       setProps({
         valueLabelDisplay: 'off',
       });
 
       const newThumb = getByRole('slider');
-      expect(newThumb).not.to.have.class(valueLabelClasses.open);
+      expect(newThumb.firstChild).to.equal(null);
     });
 
     it('should display the value label only on hover for auto', () => {
-      const valueLabelClasses = getClasses(<ValueLabel />);
       const { getByRole } = render(<Slider valueLabelDisplay="auto" value={50} />);
       const thumb = getByRole('slider');
-      expect(thumb).not.to.have.class(valueLabelClasses.open);
+      expect(thumb.firstChild).not.to.have.class(classes.valueLabelOpen);
 
       fireEvent.mouseOver(thumb);
 
-      expect(thumb).to.have.class(valueLabelClasses.open);
+      expect(thumb.firstChild).to.have.class(classes.valueLabelOpen);
     });
 
     it('should be respected when using custom value label', () => {
@@ -565,7 +550,11 @@ describe('<Slider />', () => {
       ValueLabelComponent.propTypes = { value: PropTypes.number };
 
       const screen = render(
-        <Slider ValueLabelComponent={ValueLabelComponent} valueLabelDisplay="on" value={50} />,
+        <Slider
+          components={{ ValueLabel: ValueLabelComponent }}
+          valueLabelDisplay="on"
+          value={50}
+        />,
       );
 
       expect(screen.queryByTestId('value-label')).to.have.class('open');
@@ -674,7 +663,7 @@ describe('<Slider />', () => {
     it('should warn if aria-valuetext is provided', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          Slider.Naked.propTypes,
+          Slider.propTypes,
           { classes: {}, value: [20, 50], 'aria-valuetext': 'hot' },
           'prop',
           'MockedSlider',
@@ -685,7 +674,7 @@ describe('<Slider />', () => {
     it('should warn if aria-label is provided', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          Slider.Naked.propTypes,
+          Slider.propTypes,
           { classes: {}, value: [20, 50], 'aria-label': 'hot' },
           'prop',
           'MockedSlider',
@@ -783,7 +772,7 @@ describe('<Slider />', () => {
       const { getByTestId } = render(
         <Slider
           value={10}
-          ValueLabelComponent={ValueLabelComponent}
+          components={{ ValueLabel: ValueLabelComponent }}
           valueLabelDisplay="on"
           valueLabelFormat={(n) => n.toString(2)}
         />,

@@ -195,9 +195,6 @@ module.exports = {
   },
   reactStrictMode: reactMode === 'legacy-strict',
   async rewrites() {
-    return [
-      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
-      { source: '/api/:rest*', destination: '/api-docs/:rest*' },
-    ];
+    return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
   },
 };
