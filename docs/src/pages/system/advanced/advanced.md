@@ -10,6 +10,6 @@ The `unstable_styleFunctionSx` utility adds the support for the `sx` to your own
 
 ## Using standalone system utilities
 
-If you wouldn't like to use the `sx` prop on your custom components, but only some bits from the system, you can use and combine the different style functions available as part of the system. You are likely to use this approach if you neeed smaller bundle size and better performance for the price of using a small set of what the `sx` supports.
+If you only need some elements of the system in your custom components, you can directly use and combine the different style functions available, and access them as component props. You might use this approach if you need smaller bundle size and better performance than using Box, for the price of using a subset of what the `sx` supports, and a different API.
 
 {{"demo": "pages/system/advanced/CombiningStyleFunctionsDemo.js", "defaultCodeOpen": true}}
