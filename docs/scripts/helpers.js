@@ -43,7 +43,7 @@ function getUnstyledFilename(filename, definitionFile = false) {
 
     const pathParts = unstyledFile.split(separator);
 
-    const componentName = pathParts[pathParts.length - 1].replace('.d.ts', '').replace('.js', '');
+    const componentName = pathParts[pathParts.length - 1];
     const directoryName = pathParts[pathParts.length - 2];
 
     const componentNameReg = new RegExp(componentName, 'g');
