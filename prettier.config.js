@@ -18,10 +18,10 @@ module.exports = {
       },
     },
     {
-      files: ['docs/src/pages/system/**/*.{js,tsx,md}'],
+      files: ['docs/src/pages/system/basics/*.{js,tsx,md}'],
       options: {
-        // allow more space for the system
-        printWidth: 90,
+        // allow more space for the system' demo
+        printWidth: 100,
       },
     },
   ],

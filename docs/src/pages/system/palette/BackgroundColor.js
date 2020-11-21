@@ -6,7 +6,9 @@ export default function BackgroundColor() {
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} sm={4}>
-        <Box sx={{ bgcolor: 'primary.main', color: 'primary.contrastText', p: 2 }}>
+        <Box
+          sx={{ bgcolor: 'primary.main', color: 'primary.contrastText', p: 2 }}
+        >
           primary.main
         </Box>
       </Grid>
@@ -27,7 +29,9 @@ export default function BackgroundColor() {
         </Box>
       </Grid>
       <Grid item xs={12} sm={4}>
-        <Box sx={{ bgcolor: 'warning.main', color: 'warning.contrastText', p: 2 }}>
+        <Box
+          sx={{ bgcolor: 'warning.main', color: 'warning.contrastText', p: 2 }}
+        >
           warning.main
         </Box>
       </Grid>
@@ -37,7 +41,9 @@ export default function BackgroundColor() {
         </Box>
       </Grid>
       <Grid item xs={12} sm={4}>
-        <Box sx={{ bgcolor: 'success.main', color: 'success.contrastText', p: 2 }}>
+        <Box
+          sx={{ bgcolor: 'success.main', color: 'success.contrastText', p: 2 }}
+        >
           success.main
         </Box>
       </Grid>
@@ -47,7 +53,9 @@ export default function BackgroundColor() {
         </Box>
       </Grid>
       <Grid item xs={12} sm={4}>
-        <Box sx={{ bgcolor: 'text.secondary', color: 'background.paper', p: 2 }}>
+        <Box
+          sx={{ bgcolor: 'text.secondary', color: 'background.paper', p: 2 }}
+        >
           text.secondary
         </Box>
       </Grid>
