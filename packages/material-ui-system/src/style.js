@@ -42,7 +42,7 @@ function style(options) {
     const styleFromPropValue = (propValueFinal) => {
       let value = getValue(themeMapping, transform, propValueFinal);
 
-      if (propValueFinal === value) {
+      if (propValueFinal === value && typeof propValueFinal === 'string') {
         // Haven't found value
         value = getValue(
           themeMapping,
