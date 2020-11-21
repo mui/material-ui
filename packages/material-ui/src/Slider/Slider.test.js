@@ -43,13 +43,25 @@ describe('<Slider />', () => {
     const { container, getByRole } = render(
       <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
     );
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      left: 0,
+    }));
     const slider = getByRole('slider');
 
-    fireEvent.mouseDown(container.firstChild);
-    fireEvent.mouseUp(document.body);
+    fireEvent.mouseDown(container.firstChild, {
+      buttons: 1,
+      clientX: 10,
+    });
+    fireEvent.mouseUp(container.firstChild, {
+      buttons: 1,
+      clientX: 10,
+    });
 
     expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.args[0][1]).to.equal(10);
     expect(handleChangeCommitted.callCount).to.equal(1);
+    expect(handleChangeCommitted.args[0][1]).to.equal(10);
 
     slider.focus();
     fireEvent.keyDown(slider, {
