@@ -232,7 +232,7 @@ function AppDrawer(props) {
             page.pathname
               // Remove leading `/components/`, include section in search
               .replace(/\/.*?\//, page.prefix ? `${page.prefix.split('/')[2]} ` : '')
-              .replace(/[-\/]/g, ' ')
+              .replace(/[-/]/g, ' ')
               .indexOf(searchString.toLowerCase()) !== -1
           );
         })
