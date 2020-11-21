@@ -118,7 +118,7 @@ function byComponentName(a, b) {
   const sectionB = b.prefix && b.prefix.split('/')[2];
   const componentA = a.pathname.split('/')[2];
   const componentB = b.pathname.split('/')[2];
-  const pageA = sectionA ? sectionA + componentA : componentB;
+  const pageA = sectionA ? sectionA + componentA : componentA;
   const pageB = sectionB ? sectionB + componentB : componentB;
 
   let comparison = 0;
