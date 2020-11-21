@@ -314,9 +314,9 @@ const palette = compose(textColor, bgcolor);
 
 ## CSS 属性
 
-如果您想要自定义 CSS 的值，您可以使用 `css()` 助手。 它将会处理 `css` 属性。
+如果您想要自定义 CSS 的值，您可以使用 `css()` 助手。 它将处理 `sx` 属性。
 
-{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/basics/SxProp.js", "bg": true}}
 
 ## 它是如何工作的
 

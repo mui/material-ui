@@ -59,7 +59,7 @@ If you wish to add support for a component or feature not highlighted here, plea
     - **Switch ✓**
     - Reorder
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
-  - [Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓ 
+  - **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)**** 
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
     - **Text field dropdown menu ✓** (Select)

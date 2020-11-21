@@ -254,7 +254,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 注意が必要な実装の詳細は、次のとおりです。
 
-- *non React static* プロパティを転送するので、このHOCはより「透明」です。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。
+- *non React static* プロパティを転送するので、このHOCはより「透明」です。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。
 
 #### 引数
 

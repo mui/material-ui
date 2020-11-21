@@ -314,7 +314,7 @@ The `style()` helper can also be used to maps properties to style objects in a t
 
 ## Propiedad CSS
 
-It will process the `css` property. If you want to support custom CSS values, you can use the `css()` helper.
+If you want to support custom CSS values, you can use the `css()` helper. It will process the `css` property.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
