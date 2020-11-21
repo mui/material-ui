@@ -1,6 +1,6 @@
 const upperFirst = require('lodash/upperFirst');
 const camelCase = require('lodash/camelCase');
-const { CODE_VARIANTS, LANGUAGES } = require('../constants');
+const { CODE_VARIANTS, SOURCE_CODE_REPO, LANGUAGES } = require('../constants');
 
 /**
  * Mapping from the date adapter sub-packages to the npm packages they require.
@@ -116,12 +116,25 @@ function includePeerDependencies(deps, versions) {
  * @return string - A valid version for a dependency entry in a package.json
  */
 function getMuiPackageVersion(packageName, commitRef) {
-  if (commitRef === undefined) {
+  if (commitRef === undefined || SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui') {
     // TODO: change 'next' to 'latest' once next is merged into master.
     return 'next';
   }
   const shortSha = commitRef.slice(0, 8);
   return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@material-ui/${packageName}`;
+}
+
+/**
+ * @param {string} packageName - The name of a package living inside this repository.
+ * @param {string} [commitRef]
+ * @return string - A valid version for a dependency entry in a package.json
+ */
+function getMuiXPackageVersion(packageName, commitRef) {
+  if (commitRef === undefined || SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui-x') {
+    return 'latest';
+  }
+  const shortSha = commitRef.slice(0, 8);
+  return `https://pkg.csb.dev/mui-org/material-ui-x/commit/${shortSha}/@material-ui/${packageName}`;
 }
 
 /**
@@ -150,6 +163,13 @@ function getDependencies(raw, options = {}) {
     '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
     '@material-ui/unstyled': getMuiPackageVersion('unstyled', muiCommitRef),
     '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
+    '@material-ui/data-grid': getMuiXPackageVersion('data-grid', muiCommitRef),
+    '@material-ui/x-grid': getMuiXPackageVersion('x-grid', muiCommitRef),
+    '@material-ui/x-license': getMuiXPackageVersion('x-license', muiCommitRef),
+    '@material-ui/x-grid-data-generator': getMuiXPackageVersion(
+      'x-grid-data-generator',
+      muiCommitRef,
+    ),
   };
 
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
