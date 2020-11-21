@@ -67,48 +67,54 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   });
 
   const inputRef = React.useRef(null);
+  const displayRef = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
   const handleRef = useForkRef(ref, inputRefProp);
 
+  const handleDisplayRef = React.useCallback((node) => {
+    displayRef.current = node;
+
+    if (node) {
+      setDisplayNode(node);
+    }
+  }, []);
+
   React.useImperativeHandle(
     handleRef,
     () => ({
       focus: () => {
-        displayNode.focus();
+        displayRef.current.focus();
       },
       node: inputRef.current,
       value,
     }),
-    [displayNode, value],
+    [value],
   );
 
   React.useEffect(() => {
-    if (autoFocus && displayNode) {
-      displayNode.focus();
+    if (autoFocus) {
+      displayRef.current.focus();
     }
-  }, [autoFocus, displayNode]);
+  }, [autoFocus]);
 
   React.useEffect(() => {
-    if (displayNode) {
-      const label = ownerDocument(displayNode).getElementById(labelId);
-      if (label) {
-        const handler = () => {
-          if (getSelection().isCollapsed) {
-            displayNode.focus();
-          }
-        };
-        label.addEventListener('click', handler);
-        return () => {
-          label.removeEventListener('click', handler);
-        };
-      }
+    const label = ownerDocument(displayRef.current).getElementById(labelId);
+    if (label) {
+      const handler = () => {
+        if (getSelection().isCollapsed) {
+          displayRef.current.focus();
+        }
+      };
+      label.addEventListener('click', handler);
+      return () => {
+        label.removeEventListener('click', handler);
+      };
     }
-
     return undefined;
-  }, [labelId, displayNode]);
+  }, [labelId]);
 
   const update = (open, event) => {
     if (open) {
@@ -132,7 +138,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
     // Hijack the default focus behavior.
     event.preventDefault();
-    displayNode.focus();
+    displayRef.current.focus();
 
     update(true, event);
   };
@@ -353,7 +359,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   return (
     <React.Fragment>
       <div
-        ref={setDisplayNode}
+        ref={handleDisplayRef}
         tabIndex={tabIndex}
         role="button"
         aria-disabled={disabled ? 'true' : undefined}
