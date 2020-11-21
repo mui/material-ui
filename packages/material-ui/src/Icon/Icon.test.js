@@ -66,6 +66,26 @@ describe('<Icon />', () => {
 
       expect(getByTestId('root')).to.have.class(classes.colorPrimary);
     });
+
+    it('should render without the default class', () => {
+      const { getByTestId } = render(
+        <Icon data-testid="root" baseClassName="material-icons-round">
+          account_circle
+        </Icon>,
+      );
+
+      expect(getByTestId('root')).to.not.have.class('material-icons');
+    });
+
+    it('should render with the supplied base class', () => {
+      const { getByTestId } = render(
+        <Icon data-testid="root" baseClassName="material-icons-round">
+          account_circle
+        </Icon>,
+      );
+
+      expect(getByTestId('root')).to.have.class('material-icons-round');
+    });
   });
 
   describe('prop: fontSize', () => {
