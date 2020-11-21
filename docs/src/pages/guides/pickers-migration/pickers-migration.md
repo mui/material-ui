@@ -2,7 +2,7 @@
 
 <p class="description">@material-ui/pickers was moved to the @material-ui/lab.</p>
 
-> **⚠️ Pickers were entirely changed**. In most places, the logic was rewritten from scratch, so it's not possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to migrate, the easiest way will be to go through the component usages in your codebase and rewrite them one-by-one. Don't forget to run your tests after each!
+> **⚠️ The date picker components were rewrote**. In most places, the logic was rewritten from scratch, so it's not possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to migrate, the easiest way will be to go through the component usages in your codebase and rewrite them one-by-one. Don't forget to run your tests after each!
 
 This guide is an overview of the core concepts that were changed from pickers v3.2.10.
 
@@ -116,3 +116,5 @@ Mask is no longer required. Also, if your provided mask is not valid, pickers wi
 
 There are many changes, be careful, make sure your tests, and build pass.
 In the event you have an advanced usage of the date picker, it will likely be simpler to rewrite it.
+
+Please open a pull request to improve the guide if you notice an opportunity for doing such.
