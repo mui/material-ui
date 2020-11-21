@@ -281,6 +281,13 @@ const classes = makeStyles(theme => ({
   />
   ```
 
+- Rename `closeIcon` prop with `clearIcon` to avoid confusion.
+
+  ```diff
+  -<Autocomplete closeIcon={defaultClearIcon} />
+  +<Autocomplete clearIcon={defaultClearIcon} />
+  ```
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
