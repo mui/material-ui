@@ -2,7 +2,7 @@
 
 <p class="description">@material-ui/pickers was moved to the @material-ui/lab.</p>
 
-> **⚠️ The date picker components were rewrote**. In most places, the logic was rewritten from scratch, so it's not possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to migrate, the easiest way will be to go through the component usages in your codebase and rewrite them one-by-one. Don't forget to run your tests after each!
+> **⚠️ The date picker components were rewritten**. In most places, the logic was rewritten from scratch, so it isn't possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to upgrade, the easiest way might be to go through each picker usage in your codebase, and rewrite them one at a time. Don't forget to run your tests after each!
 
 This guide is an overview of the core concepts that were changed from pickers v3.2.10.
 
