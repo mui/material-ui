@@ -79,7 +79,7 @@ const styles = (theme) => ({
   },
 });
 
-// Annotiate it with the subsection it is in, if matched
+// Annotiate item with the subsection it is in, if matched
 function annotateItem(item, subheader) {
   if (
     ['/components/data-grid', '/components/lab', '/components/pickers'].some(
@@ -230,7 +230,8 @@ function AppDrawer(props) {
         .filter(
           (page) =>
             page.pathname
-              .replace(/\/.*?\//, '') // Remove leading `/components/`
+              // Remove leading `/components/`, include section in search
+              .replace(/\/.*?\//, page.prefix ? page.prefix.replace(/\/.*?\//, '') : '')
               .replace('-', ' ')
               .indexOf(searchString.toLowerCase()) !== -1,
         )
