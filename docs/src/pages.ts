@@ -197,6 +197,7 @@ const pages: MuiPage[] = [
     pathname: '/system',
     children: [
       { pathname: '/system/basics' },
+      { pathname: '/system/properties' },
       { pathname: '/system/borders' },
       { pathname: '/system/display' },
       { pathname: '/system/flexbox' },
@@ -207,7 +208,7 @@ const pages: MuiPage[] = [
       { pathname: '/system/spacing' },
       { pathname: '/system/screen-readers' },
       { pathname: '/system/typography' },
-      { pathname: '/system/properties' },
+      { pathname: '/system/advanced' },
     ],
   },
   {
