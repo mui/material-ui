@@ -117,4 +117,35 @@ describe('style', () => {
       border: '4px solid',
     });
   });
+
+  it('should fallback to composed theme keys', () => {
+    const fontWeight = style({
+      prop: 'fontWeight',
+      themeKey: 'typography',
+    });
+
+    const output1 = fontWeight({
+      theme: {
+        typography: {
+          fontWeightBold: 700,
+        },
+      },
+      fontWeight: 'bold',
+    });
+    expect(output1).to.deep.equal({
+      fontWeight: 700,
+    });
+
+    const output2 = fontWeight({
+      theme: {
+        typography: {
+          fontWeight: 700,
+        },
+      },
+      fontWeight: 'default',
+    });
+    expect(output2).to.deep.equal({
+      fontWeight: 700,
+    });
+  });
 });
