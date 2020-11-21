@@ -227,14 +227,15 @@ function AppDrawer(props) {
 
     if (searchString !== '') {
       newPages[1].children = flattenPages(pages[1].children)
-        .filter(
-          (page) =>
+        .filter((page) => {
+          return (
             page.pathname
               // Remove leading `/components/`, include section in search
-              .replace(/\/.*?\//, page.prefix ? page.prefix.replace(/\/.*?\//, '') : '')
-              .replace('-', ' ')
-              .indexOf(searchString.toLowerCase()) !== -1,
-        )
+              .replace(/\/.*?\//, page.prefix ? `${page.prefix.split('/')[2]} ` : '')
+              .replace(/[-\/]/g, ' ')
+              .indexOf(searchString.toLowerCase()) !== -1
+          );
+        })
         .sort(byComponentName);
     }
 
