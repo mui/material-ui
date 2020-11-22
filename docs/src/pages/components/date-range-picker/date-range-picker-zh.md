@@ -11,7 +11,7 @@ materialDesign: https://material.io/components/date-pickers
 <p class="description">日期选择器让用户选择一系列的日期。
 </p>
 
-> ⚠️⚠️ 该组件不是稳定版本，**不适用**于生产环境中。 ⚠️⚠️ <br /><br /> 日期范围选择将在今后的几个月内提供生产可用的稳定版本，并且作为 Material-UI 社区版本（MIT license）的付费扩展（商业许可）的一部分。 该付费扩展将包含高级组件（丰富的数据网格、日期范围选择器、可拖拽的树形视图 & drop 等等）。 你现在可以以实惠的价格 [提前使用](https://material-ui.com/store/items/material-ui-x/)。
+> ⚠️ 高级组件 <br /><br /> 时间范围选择器组件适用于 Material-UI X, 它是基于在社区版本（MIT 协议）的 Material-UI 上建立的。 <br /><br /> 该付费扩展将包括更高级的组件（大数据栅格，时间范围选择器，可拖动的树形视图 & 拖放组件等等）。 你现在可以以实惠的价格 [提前使用](https://material-ui.com/store/items/material-ui-x/)。
 
 日期范围选择器让用户选择一个日期范围。
 
@@ -25,7 +25,7 @@ materialDesign: https://material.io/components/date-pickers
 
 ```jsx
 // 或者使用 @material-ui/lab/dateAdapter/{dayjs,luxon,moment} 或者使用任何有效的 date-io 适配器
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+import DateFnsAdapter from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
