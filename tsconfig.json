@@ -29,6 +29,9 @@
       "@material-ui/types": ["./packages/material-ui-types"],
       "@material-ui/unstyled": ["./packages/material-ui-unstyled/src"],
       "@material-ui/unstyled/*": ["./packages/material-ui-unstyled/src/*"],
+      "react": ["react/v16"],
+      "react-dom": ["react-dom/v16"],
+      "react-is": ["react-is/v16"],
       "test/*": ["./test/*"],
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     },
