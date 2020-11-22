@@ -114,6 +114,12 @@ Mask is no longer required. Also, if your provided mask is not valid, pickers wi
 
 ## And many more
 
+- ```diff
+  <DatePicker
+  - format="DD-MMM-YYYY"
+  + inputFormat="DD-MMM-YYYY"
+  ```
+
 There are many changes, be careful, make sure your tests, and build pass.
 In the event you have an advanced usage of the date picker, it will likely be simpler to rewrite it.
 
