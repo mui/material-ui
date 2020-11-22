@@ -1,5 +1,11 @@
 export function isPlainObject(item: unknown): item is Record<keyof any, unknown> {
-  return item && typeof item === 'object' && item.constructor === Object;
+  return (
+    item !== null &&
+    typeof item === 'object' &&
+    // TS thinks `item is possibly null` even though this was our first guard.
+    // @ts-expect-error
+    item.constructor === Object
+  );
 }
 
 export interface DeepmergeOptions {
