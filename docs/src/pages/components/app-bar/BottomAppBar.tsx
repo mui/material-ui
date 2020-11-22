@@ -116,7 +116,9 @@ export default function BottomAppBar() {
                 <ListSubheader className={classes.subheader}>Today</ListSubheader>
               )}
               {id === 3 && (
-                <ListSubheader className={classes.subheader}>Yesterday</ListSubheader>
+                <ListSubheader className={classes.subheader}>
+                  Yesterday
+                </ListSubheader>
               )}
               <ListItem button>
                 <ListItemAvatar>

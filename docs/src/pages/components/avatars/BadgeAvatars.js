@@ -70,7 +70,9 @@ export default function BadgeAvatars() {
           vertical: 'bottom',
           horizontal: 'right',
         }}
-        badgeContent={<SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />}
+        badgeContent={
+          <SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        }
       >
         <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
       </Badge>

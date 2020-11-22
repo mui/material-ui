@@ -80,7 +80,8 @@ export default function MenuListComposition() {
             <Grow
               {...TransitionProps}
               style={{
-                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
               <Paper>

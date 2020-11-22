@@ -131,8 +131,16 @@ function ChipsPlayground(props) {
                 value={variant}
                 onChange={handleChange}
               >
-                <FormControlLabel value="filled" control={<Radio />} label="filled" />
-                <FormControlLabel value="outlined" control={<Radio />} label="outlined" />
+                <FormControlLabel
+                  value="filled"
+                  control={<Radio />}
+                  label="filled"
+                />
+                <FormControlLabel
+                  value="outlined"
+                  control={<Radio />}
+                  label="outlined"
+                />
               </RadioGroup>
             </FormControl>
           </Grid>
@@ -146,8 +154,16 @@ function ChipsPlayground(props) {
                 value={color}
                 onChange={handleChange}
               >
-                <FormControlLabel value="default" control={<Radio />} label="default" />
-                <FormControlLabel value="primary" control={<Radio />} label="primary" />
+                <FormControlLabel
+                  value="default"
+                  control={<Radio />}
+                  label="default"
+                />
+                <FormControlLabel
+                  value="primary"
+                  control={<Radio />}
+                  label="primary"
+                />
                 <FormControlLabel
                   value="secondary"
                   control={<Radio />}
@@ -166,7 +182,11 @@ function ChipsPlayground(props) {
                 value={size}
                 onChange={handleChange}
               >
-                <FormControlLabel value="medium" control={<Radio />} label="medium" />
+                <FormControlLabel
+                  value="medium"
+                  control={<Radio />}
+                  label="medium"
+                />
                 <FormControlLabel value="small" control={<Radio />} label="small" />
               </RadioGroup>
             </FormControl>
@@ -197,7 +217,11 @@ function ChipsPlayground(props) {
                 onChange={handleChange}
               >
                 <FormControlLabel value="none" control={<Radio />} label="none" />
-                <FormControlLabel value="letter" control={<Radio />} label="letter" />
+                <FormControlLabel
+                  value="letter"
+                  control={<Radio />}
+                  label="letter"
+                />
                 <FormControlLabel value="img" control={<Radio />} label="img" />
               </RadioGroup>
             </FormControl>
@@ -213,8 +237,16 @@ function ChipsPlayground(props) {
                 onChange={handleChange}
               >
                 <FormControlLabel value="none" control={<Radio />} label="none" />
-                <FormControlLabel value="default" control={<Radio />} label="default" />
-                <FormControlLabel value="custom" control={<Radio />} label="custom" />
+                <FormControlLabel
+                  value="default"
+                  control={<Radio />}
+                  label="default"
+                />
+                <FormControlLabel
+                  value="custom"
+                  control={<Radio />}
+                  label="custom"
+                />
               </RadioGroup>
             </FormControl>
           </Grid>

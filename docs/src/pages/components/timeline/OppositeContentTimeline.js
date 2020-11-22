@@ -42,7 +42,9 @@ export default function OppositeContentTimeline() {
           <TimelineContent>Sleep</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent color="textSecondary">9:00 am</TimelineOppositeContent>
+          <TimelineOppositeContent color="textSecondary">
+            9:00 am
+          </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />

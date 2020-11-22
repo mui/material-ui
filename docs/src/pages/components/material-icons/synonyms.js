@@ -227,7 +227,8 @@ const synonyms = {
   EnhancedEncryption: 'lock security',
   Equalizer: 'adjustment chart graph noise sound static volume',
   Error: 'alert announcement circle danger exclamation feedback problem warning',
-  ErrorOutline: 'alert announcement circle danger exclamation feedback problem warning',
+  ErrorOutline:
+    'alert announcement circle danger exclamation feedback problem warning',
   Euro: 'cash currency finance money price profit',
   EuroSymbol: 'cash currency dollar finance money price profit',
   Event: 'agenda calendar date item mark month range remember reminder today week',
@@ -392,7 +393,8 @@ const synonyms = {
   LinkOff: 'anchor',
   List: 'editor file format index menu task todo',
   ListAlt: 'box contained editor format lines reorder stacked task title todo sheet',
-  LiveHelp: 'alert announcement bubble comment faq information mark question support',
+  LiveHelp:
+    'alert announcement bubble comment faq information mark question support',
   LiveTv: 'monitor television',
   LocalActivity: 'star',
   LocalAirport: 'airplane flying',
@@ -479,7 +481,8 @@ const synonyms = {
   NotificationsNone: 'alert bell ring',
   NotificationsOff: 'alert bell ring',
   NotificationsPaused: 'aleet bell ring',
-  NotInterested: 'allowed banned circle disabled dislike interested not off prohibited x',
+  NotInterested:
+    'allowed banned circle disabled dislike interested not off prohibited x',
   NotListedLocation: 'map pin questionmark',
   OfflineBolt: 'circle flash lightning spark',
   OfflinePin: 'checkmark circle',
@@ -562,14 +565,16 @@ const synonyms = {
   QuestionAnswer: 'bubble chat comment conversation converse message speech talk',
   Queue: 'add collection music playlist stream video',
   QueueMusic: 'add collection playlist stream',
-  QueuePlayNext: 'add arrow collection device monitor music playlist plus screen video',
+  QueuePlayNext:
+    'add arrow collection device monitor music playlist plus screen video',
   Radio: 'antenna device listen music player tune',
   RadioButtonChecked: 'circle',
   RadioButtonUnchecked: 'circle',
   RateReview: 'chat comment message',
   Receipt: 'bill credit invoice paper payment sale transaction',
   RecentActors: 'cards carousel contacts human profile user',
-  RecordVoiceOver: 'human person profile recording sound speaking speech transcript user',
+  RecordVoiceOver:
+    'human person profile recording sound speaking speech transcript user',
   Reddit: 'brand logo social',
   Redeem: 'certificate credit giftcard present',
   Redo: 'arrow',
@@ -717,7 +722,8 @@ const synonyms = {
   Subtitles: 'accessibility accessible captions language translate',
   Subway: 'metro',
   SupervisedUserCircle: 'avatar human people person profile supervisor',
-  SupervisorAccount: 'administrator avatar human people person profile supervised user',
+  SupervisorAccount:
+    'administrator avatar human people person profile supervised user',
   SurroundSound: 'audio circle speaker system volumn',
   SwapCalls: 'arrow',
   SwapHoriz: 'arrows back direction horizontal',

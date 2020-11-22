@@ -25,9 +25,10 @@ export default function ErrorDecoder() {
     query: { code, ...query },
   } = useRouter();
   const queryArgs = query['args[]'];
-  const args = React.useMemo(() => (Array.isArray(queryArgs) ? queryArgs : [queryArgs]), [
-    queryArgs,
-  ]);
+  const args = React.useMemo(
+    () => (Array.isArray(queryArgs) ? queryArgs : [queryArgs]),
+    [queryArgs],
+  );
 
   const [data, dispatch] = React.useReducer(
     (previousState, action) => {

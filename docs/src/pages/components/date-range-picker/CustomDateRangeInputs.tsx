@@ -4,7 +4,10 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
 
 export default function CustomDateRangeInputs() {
-  const [selectedDate, handleDateChange] = React.useState<DateRange<Date>>([null, null]);
+  const [selectedDate, handleDateChange] = React.useState<DateRange<Date>>([
+    null,
+    null,
+  ]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

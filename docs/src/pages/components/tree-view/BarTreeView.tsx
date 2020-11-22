@@ -89,7 +89,14 @@ const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps,
   ref,
 ) {
-  const { classes, label, nodeId, icon: iconProp, expansionIcon, displayIcon } = props;
+  const {
+    classes,
+    label,
+    nodeId,
+    icon: iconProp,
+    expansionIcon,
+    displayIcon,
+  } = props;
 
   const contentClasses = useContentStyles();
 

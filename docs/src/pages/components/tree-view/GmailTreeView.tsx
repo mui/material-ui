@@ -81,7 +81,14 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
 
 function StyledTreeItem(props: StyledTreeItemProps) {
   const classes = useTreeItemStyles();
-  const { bgColor, color, labelIcon: LabelIcon, labelInfo, labelText, ...other } = props;
+  const {
+    bgColor,
+    color,
+    labelIcon: LabelIcon,
+    labelInfo,
+    labelText,
+    ...other
+  } = props;
 
   return (
     <TreeItem

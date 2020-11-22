@@ -198,8 +198,8 @@ export default function ScrollPlayground() {
               Toggle Popper
             </Button>
             <Typography className={classes.legend}>
-              Scroll around this container to experiment with flip and preventOverflow
-              modifiers.
+              Scroll around this container to experiment with flip and
+              preventOverflow modifiers.
             </Typography>
             <Popper
               id={id}
@@ -391,7 +391,8 @@ export default function ScrollPlayground() {
                 SelectProps={{
                   native: true,
                   inputProps: {
-                    'aria-labelledby': 'scroll-playground-prevent-overflow-root-boundary',
+                    'aria-labelledby':
+                      'scroll-playground-prevent-overflow-root-boundary',
                   },
                 }}
                 value={preventOverflow.rootBoundary}

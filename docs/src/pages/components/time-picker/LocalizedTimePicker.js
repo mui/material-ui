@@ -29,7 +29,10 @@ export default function LocalizedTimePicker() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <div style={{ width: 300 }}>
-        <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[locale]}>
+        <LocalizationProvider
+          dateAdapter={AdapterDateFns}
+          locale={localeMap[locale]}
+        >
           <TimePicker
             value={selectedDate}
             onChange={(date) => handleDateChange(date)}

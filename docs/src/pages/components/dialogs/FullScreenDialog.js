@@ -74,7 +74,10 @@ export default function FullScreenDialog() {
           </ListItem>
           <Divider />
           <ListItem button>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
+            <ListItemText
+              primary="Default notification ringtone"
+              secondary="Tethys"
+            />
           </ListItem>
         </List>
       </Dialog>

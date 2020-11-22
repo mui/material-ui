@@ -232,10 +232,16 @@ const styles = (theme) => ({
 });
 
 function computeNodeIds(object, prefix) {
-  if ((object !== null && typeof object === 'object') || typeof object === 'function') {
+  if (
+    (object !== null && typeof object === 'object') ||
+    typeof object === 'function'
+  ) {
     const ids = [];
     Object.keys(object).forEach((key) => {
-      ids.push(`${prefix}${key}`, ...computeNodeIds(object[key], `${prefix}${key}.`));
+      ids.push(
+        `${prefix}${key}`,
+        ...computeNodeIds(object[key], `${prefix}${key}.`),
+      );
     });
 
     return ids;
@@ -325,7 +331,11 @@ function DefaultTheme(props) {
         }
         label={t('useDarkTheme')}
       />
-      <Inspector className={classes.inspector} data={data} expandPaths={expandPaths} />
+      <Inspector
+        className={classes.inspector}
+        data={data}
+        expandPaths={expandPaths}
+      />
     </div>
   );
 }

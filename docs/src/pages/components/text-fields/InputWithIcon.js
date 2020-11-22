@@ -51,7 +51,11 @@ export default function InputWithIcon() {
             <AccountCircle />
           </Grid>
           <Grid item>
-            <TextField id="input-with-icon-grid" label="With a grid" variant="standard" />
+            <TextField
+              id="input-with-icon-grid"
+              label="With a grid"
+              variant="standard"
+            />
           </Grid>
         </Grid>
       </div>

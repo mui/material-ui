@@ -112,7 +112,9 @@ export default function GoogleMaps() {
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
       }}
-      renderInput={(params) => <TextField {...params} label="Add a location" fullWidth />}
+      renderInput={(params) => (
+        <TextField {...params} label="Add a location" fullWidth />
+      )}
       renderOption={(props, option) => {
         const matches = option.structured_formatting.main_text_matched_substrings;
         const parts = parse(

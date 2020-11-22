@@ -58,7 +58,11 @@ function Media(props) {
           )
         }
         subheader={
-          loading ? <Skeleton animation="wave" height={10} width="40%" /> : '5 hours ago'
+          loading ? (
+            <Skeleton animation="wave" height={10} width="40%" />
+          ) : (
+            '5 hours ago'
+          )
         }
       />
       {loading ? (

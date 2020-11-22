@@ -128,7 +128,10 @@ export default function InputAdornments() {
           }}
           variant="filled"
         />
-        <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
+        <FormControl
+          className={clsx(classes.margin, classes.textField)}
+          variant="filled"
+        >
           <FilledInput
             id="filled-adornment-weight"
             value={values.weight}
@@ -141,7 +144,10 @@ export default function InputAdornments() {
           />
           <FormHelperText id="filled-weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
+        <FormControl
+          className={clsx(classes.margin, classes.textField)}
+          variant="filled"
+        >
           <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
           <FilledInput
             id="filled-adornment-password"

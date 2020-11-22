@@ -33,7 +33,11 @@ export default function BasicButtonGroup() {
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-      <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+      <ButtonGroup
+        variant="text"
+        color="primary"
+        aria-label="text primary button group"
+      >
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>

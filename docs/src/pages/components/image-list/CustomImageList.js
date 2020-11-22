@@ -45,7 +45,10 @@ export default function CustomImageList() {
               title={item.title}
               position="top"
               actionIcon={
-                <IconButton aria-label={`star ${item.title}`} className={classes.icon}>
+                <IconButton
+                  aria-label={`star ${item.title}`}
+                  className={classes.icon}
+                >
                   <StarBorderIcon />
                 </IconButton>
               }

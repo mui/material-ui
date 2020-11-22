@@ -251,7 +251,8 @@ const appList = [
   },
   {
     title: 'LessWrong',
-    description: 'LessWrong is a community blog devoted to the art of human rationality.',
+    description:
+      'LessWrong is a community blog devoted to the art of human rationality.',
     image: 'lesswrong.jpg',
     link: 'https://www.lesswrong.com/',
     similarWebVisits: 774,
@@ -617,7 +618,8 @@ const appList = [
   },
   {
     title: 'CinemaPlus',
-    description: 'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
+    description:
+      'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
     image: 'cinemaplus.jpg',
     link: 'https://elcinema.herokuapp.com/',
     similarWebVisits: 100,

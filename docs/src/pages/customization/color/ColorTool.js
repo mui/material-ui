@@ -251,7 +251,9 @@ function ColorTool(props) {
                   value={hue}
                   name={intent}
                   aria-labelledby={`tooltip-${intent}-${hue}`}
-                  icon={<div className={classes.radioIcon} style={{ backgroundColor }} />}
+                  icon={
+                    <div className={classes.radioIcon} style={{ backgroundColor }} />
+                  }
                   checkedIcon={
                     <div
                       className={classes.radioIconSelected}

@@ -17,7 +17,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const TextMaskCustom = React.forwardRef<HTMLElement>(function TextMaskCustom(props, ref) {
+const TextMaskCustom = React.forwardRef<HTMLElement>(function TextMaskCustom(
+  props,
+  ref,
+) {
   const setRef = React.useCallback(
     (maskedInputRef: { inputElement: HTMLElement } | null) => {
       const value = maskedInputRef ? maskedInputRef.inputElement : null;

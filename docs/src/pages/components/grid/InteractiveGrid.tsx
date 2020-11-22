@@ -35,7 +35,9 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function InteractiveGrid() {
   const classes = useStyles();
   const [direction, setDirection] = React.useState<GridDirection>('row');
-  const [justifyContent, setJustifyContent] = React.useState<GridJustification>('center');
+  const [justifyContent, setJustifyContent] = React.useState<GridJustification>(
+    'center',
+  );
   const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>('center');
 
   const jsx = `
@@ -96,7 +98,11 @@ export default function InteractiveGrid() {
                     control={<Radio />}
                     label="row-reverse"
                   />
-                  <FormControlLabel value="column" control={<Radio />} label="column" />
+                  <FormControlLabel
+                    value="column"
+                    control={<Radio />}
+                    label="column"
+                  />
                   <FormControlLabel
                     value="column-reverse"
                     control={<Radio />}
@@ -124,7 +130,11 @@ export default function InteractiveGrid() {
                     control={<Radio />}
                     label="flex-start"
                   />
-                  <FormControlLabel value="center" control={<Radio />} label="center" />
+                  <FormControlLabel
+                    value="center"
+                    control={<Radio />}
+                    label="center"
+                  />
                   <FormControlLabel
                     value="flex-end"
                     control={<Radio />}
@@ -167,13 +177,21 @@ export default function InteractiveGrid() {
                     control={<Radio />}
                     label="flex-start"
                   />
-                  <FormControlLabel value="center" control={<Radio />} label="center" />
+                  <FormControlLabel
+                    value="center"
+                    control={<Radio />}
+                    label="center"
+                  />
                   <FormControlLabel
                     value="flex-end"
                     control={<Radio />}
                     label="flex-end"
                   />
-                  <FormControlLabel value="stretch" control={<Radio />} label="stretch" />
+                  <FormControlLabel
+                    value="stretch"
+                    control={<Radio />}
+                    label="stretch"
+                  />
                   <FormControlLabel
                     value="baseline"
                     control={<Radio />}

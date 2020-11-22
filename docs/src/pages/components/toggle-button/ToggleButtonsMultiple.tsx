@@ -10,7 +10,10 @@ import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 export default function ToggleButtonsMultiple() {
   const [formats, setFormats] = React.useState(() => ['bold', 'italic']);
 
-  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
+  const handleFormat = (
+    event: React.MouseEvent<HTMLElement>,
+    newFormats: string[],
+  ) => {
     setFormats(newFormats);
   };
 

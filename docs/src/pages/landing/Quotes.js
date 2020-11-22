@@ -188,7 +188,11 @@ function Quote(props) {
 
   return (
     <Card variant="outlined" className={classes.card}>
-      <CardActionArea component={QuoteLink} href={href} className={classes.cardAction}>
+      <CardActionArea
+        component={QuoteLink}
+        href={href}
+        className={classes.cardAction}
+      >
         <CardContent>
           <Grid container spacing={1}>
             <Grid item>

@@ -5,7 +5,9 @@ import CircularProgress, {
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function CircularProgressWithLabel(props: CircularProgressProps & { value: number }) {
+function CircularProgressWithLabel(
+  props: CircularProgressProps & { value: number },
+) {
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress variant="determinate" {...props} />

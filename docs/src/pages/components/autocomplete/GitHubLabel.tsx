@@ -12,7 +12,9 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
 import DoneIcon from '@material-ui/icons/Done';
-import Autocomplete, { AutocompleteCloseReason } from '@material-ui/core/Autocomplete';
+import Autocomplete, {
+  AutocompleteCloseReason,
+} from '@material-ui/core/Autocomplete';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
 

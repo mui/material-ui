@@ -66,7 +66,10 @@ function ColorDemo(props) {
   return (
     <div className={classes.root}>
       <div className={classes.appFrame}>
-        <div className={classes.statusBar} style={{ backgroundColor: primary.dark }} />
+        <div
+          className={classes.statusBar}
+          style={{ backgroundColor: primary.dark }}
+        />
         <AppBar position="static" style={{ backgroundColor: primary.main }}>
           <Toolbar style={{ color: primary.contrastText }}>
             <IconButton

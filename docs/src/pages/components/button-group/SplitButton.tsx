@@ -34,7 +34,10 @@ export default function SplitButton() {
   };
 
   const handleClose = (event: React.MouseEvent<Document, MouseEvent>) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
       return;
     }
 
@@ -73,7 +76,8 @@ export default function SplitButton() {
             <Grow
               {...TransitionProps}
               style={{
-                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
               <Paper>

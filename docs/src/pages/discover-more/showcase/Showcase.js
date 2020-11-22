@@ -96,7 +96,12 @@ function Showcase(props) {
         sortFunction,
       ).map((app) => (
         <div key={app.title}>
-          <Typography component="h2" variant="h4" gutterBottom className={classes.title}>
+          <Typography
+            component="h2"
+            variant="h4"
+            gutterBottom
+            className={classes.title}
+          >
             <span>{app.title}</span>
             {app.source ? (
               <IconButton

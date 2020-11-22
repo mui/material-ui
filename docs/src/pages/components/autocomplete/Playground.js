@@ -84,7 +84,12 @@ export default function Playground() {
           setValue(newValue);
         }}
         renderInput={(params) => (
-          <TextField {...params} label="controlled" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="controlled"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -119,7 +124,12 @@ export default function Playground() {
         id="open-on-focus"
         openOnFocus
         renderInput={(params) => (
-          <TextField {...params} label="openOnFocus" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="openOnFocus"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -140,7 +150,12 @@ export default function Playground() {
         id="auto-select"
         autoSelect
         renderInput={(params) => (
-          <TextField {...params} label="autoSelect" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="autoSelect"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -148,7 +163,12 @@ export default function Playground() {
         id="disabled"
         disabled
         renderInput={(params) => (
-          <TextField {...params} label="disabled" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="disabled"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete
@@ -182,7 +202,12 @@ export default function Playground() {
         id="clear-on-blur"
         clearOnBlur
         renderInput={(params) => (
-          <TextField {...params} label="clearOnBlur" margin="normal" variant="standard" />
+          <TextField
+            {...params}
+            label="clearOnBlur"
+            margin="normal"
+            variant="standard"
+          />
         )}
       />
       <Autocomplete

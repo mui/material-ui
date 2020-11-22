@@ -23,7 +23,10 @@ export default function QuiltedImageList() {
     <ImageList variant="quilted" cols={4} rowHeight={121} className={classes.root}>
       {itemData.map((item) => (
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
-          <img srcSet={srcset(item.img, 121, item.rows, item.cols)} alt={item.title} />
+          <img
+            srcSet={srcset(item.img, 121, item.rows, item.cols)}
+            alt={item.title}
+          />
         </ImageListItem>
       ))}
     </ImageList>

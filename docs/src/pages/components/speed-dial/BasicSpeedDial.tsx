@@ -50,11 +50,15 @@ const actions = [
 
 export default function SpeedDials() {
   const classes = useStyles();
-  const [direction, setDirection] = React.useState<SpeedDialProps['direction']>('up');
+  const [direction, setDirection] = React.useState<SpeedDialProps['direction']>(
+    'up',
+  );
   const [hidden, setHidden] = React.useState(false);
 
   const handleDirectionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDirection((event.target as HTMLInputElement).value as SpeedDialProps['direction']);
+    setDirection(
+      (event.target as HTMLInputElement).value as SpeedDialProps['direction'],
+    );
   };
 
   const handleHiddenChange = (event: React.ChangeEvent<HTMLInputElement>) => {

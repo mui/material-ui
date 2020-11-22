@@ -8,7 +8,9 @@ import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 
 export default function MaterialUIPickers() {
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date('2014-08-18T21:11:54'),
+  );
 
   const handleDateChange = (date) => {
     setSelectedDate(date);

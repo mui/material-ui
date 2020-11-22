@@ -110,7 +110,12 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth variant="contained" className={classes.submit}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            className={classes.submit}
+          >
             Sign Up
           </Button>
           <Grid container justifyContent="flex-end">

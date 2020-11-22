@@ -1,5 +1,10 @@
 import React from 'react';
-import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/styles';
+import {
+  withStyles,
+  Theme,
+  createStyles,
+  WithStyles,
+} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Button from '../components/Button';
@@ -62,7 +67,12 @@ function ProductHowItWorks(props: WithStyles<typeof styles>) {
           className={classes.curvyLines}
           alt="curvy lines"
         />
-        <Typography variant="h4" marked="center" className={classes.title} component="h2">
+        <Typography
+          variant="h4"
+          marked="center"
+          className={classes.title}
+          component="h2"
+        >
           How it works
         </Typography>
         <div>
@@ -89,8 +99,8 @@ function ProductHowItWorks(props: WithStyles<typeof styles>) {
                   className={classes.image}
                 />
                 <Typography variant="h5" align="center">
-                  First come, first served. Our offers are in limited quantities, so be
-                  quick.
+                  First come, first served. Our offers are in limited quantities, so
+                  be quick.
                 </Typography>
               </div>
             </Grid>

@@ -42,7 +42,9 @@ interface ButtonStyles extends WithStyles<typeof styles> {
   color: string;
 }
 
-const StyledButton = withStyles(styles)(({ classes, color, ...other }: ButtonStyles) => (
+const StyledButton = withStyles(
+  styles,
+)(({ classes, color, ...other }: ButtonStyles) => (
   <Button className={classes.root} {...other} />
 ));
 

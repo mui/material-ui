@@ -25,11 +25,15 @@ export default function SwitchesGroup() {
       <FormLabel component="legend">Assign responsibility</FormLabel>
       <FormGroup>
         <FormControlLabel
-          control={<Switch checked={state.gilad} onChange={handleChange} name="gilad" />}
+          control={
+            <Switch checked={state.gilad} onChange={handleChange} name="gilad" />
+          }
           label="Gilad Gray"
         />
         <FormControlLabel
-          control={<Switch checked={state.jason} onChange={handleChange} name="jason" />}
+          control={
+            <Switch checked={state.jason} onChange={handleChange} name="jason" />
+          }
           label="Jason Killian"
         />
         <FormControlLabel

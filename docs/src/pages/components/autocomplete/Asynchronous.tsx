@@ -35,7 +35,9 @@ export default function Asynchronous() {
 
       if (active) {
         setOptions(
-          Object.keys(countries).map((key) => countries[key].item[0]) as CountryType[],
+          Object.keys(countries).map(
+            (key) => countries[key].item[0],
+          ) as CountryType[],
         );
       }
     })();

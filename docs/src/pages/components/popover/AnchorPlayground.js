@@ -197,7 +197,11 @@ function AnchorPlayground(props) {
               value={anchorReference}
               onChange={handleChange}
             >
-              <FormControlLabel value="anchorEl" control={<Radio />} label="anchorEl" />
+              <FormControlLabel
+                value="anchorEl"
+                control={<Radio />}
+                label="anchorEl"
+              />
               <FormControlLabel
                 value="anchorPosition"
                 control={<Radio />}

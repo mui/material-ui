@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { withStyles, WithStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  withStyles,
+  WithStyles,
+  createStyles,
+  Theme,
+} from '@material-ui/core/styles';
 import MuiSnackbar, { SnackbarProps } from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import CloseIcon from '@material-ui/icons/Close';
@@ -45,7 +50,9 @@ interface ExtraSnackbarProps {
   closeFunc?: () => void;
 }
 
-function Snackbar(props: WithStyles<typeof styles> & SnackbarProps & ExtraSnackbarProps) {
+function Snackbar(
+  props: WithStyles<typeof styles> & SnackbarProps & ExtraSnackbarProps,
+) {
   const { classes, message, closeFunc, ...other } = props;
 
   return (

@@ -62,7 +62,11 @@ export default function ToggleButtonNotEmpty() {
       </Grid>
       <Grid item sm={12} md={6}>
         <div className={classes.toggleContainer}>
-          <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="device">
+          <ToggleButtonGroup
+            value={formats}
+            onChange={handleFormat}
+            aria-label="device"
+          >
             <ToggleButton value="laptop" aria-label="laptop">
               <LaptopIcon />
             </ToggleButton>
