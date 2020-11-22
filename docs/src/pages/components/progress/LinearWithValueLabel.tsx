@@ -6,9 +6,7 @@ import LinearProgress, {
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function LinearProgressWithLabel(
-  props: LinearProgressProps & { value: number },
-) {
+function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Box sx={{ width: '100%', mr: 1 }}>
@@ -35,9 +33,7 @@ export default function LinearWithValueLabel() {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress((prevProgress) =>
-        prevProgress >= 100 ? 10 : prevProgress + 10,
-      );
+      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
     }, 800);
     return () => {
       clearInterval(timer);

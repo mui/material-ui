@@ -61,10 +61,7 @@ export default function FontAwesomeSvgIconDemo() {
       <Button variant="contained" startIcon={<FontAwesomeIcon icon={faInfo} />}>
         Example
       </Button>
-      <Button
-        variant="contained"
-        startIcon={<FontAwesomeSvgIcon icon={faInfo} />}
-      >
+      <Button variant="contained" startIcon={<FontAwesomeSvgIcon icon={faInfo} />}>
         Example
       </Button>
     </div>

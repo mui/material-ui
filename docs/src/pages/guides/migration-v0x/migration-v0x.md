@@ -68,9 +68,7 @@ const themeV0 = getMuiTheme({
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <V0MuiThemeProvider muiTheme={themeV0}>
-        {/*Components*/}
-      </V0MuiThemeProvider>
+      <V0MuiThemeProvider muiTheme={themeV0}>{/*Components*/}</V0MuiThemeProvider>
     </MuiThemeProvider>
   );
 }

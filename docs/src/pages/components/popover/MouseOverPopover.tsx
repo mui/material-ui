@@ -18,9 +18,7 @@ export default function MouseOverPopover() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  const handlePopoverOpen = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
-  ) => {
+  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setAnchorEl(event.currentTarget);
   };
 

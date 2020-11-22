@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  makeStyles,
-  Theme,
-  useTheme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme, useTheme, createStyles } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';

@@ -12,9 +12,9 @@ const Input = styled(MuiInput)`
 `;
 
 export default function InputSlider() {
-  const [value, setValue] = React.useState<
-    number | string | Array<number | string>
-  >(30);
+  const [value, setValue] = React.useState<number | string | Array<number | string>>(
+    30,
+  );
 
   const handleSliderChange = (
     event: React.SyntheticEvent,

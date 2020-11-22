@@ -154,11 +154,7 @@ function ColorlibStepIcon(props: StepIconProps) {
   );
 }
 
-const steps = [
-  'Select campaign settings',
-  'Create an ad group',
-  'Create an ad',
-];
+const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
 export default function CustomizedSteppers() {
   const classes = useStyles();
@@ -177,11 +173,7 @@ export default function CustomizedSteppers() {
           </Step>
         ))}
       </Stepper>
-      <Stepper
-        alternativeLabel
-        activeStep={1}
-        connector={<ColorlibConnector />}
-      >
+      <Stepper alternativeLabel activeStep={1} connector={<ColorlibConnector />}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>

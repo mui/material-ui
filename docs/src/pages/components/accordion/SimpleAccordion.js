@@ -57,9 +57,7 @@ export default function SimpleAccordion() {
           aria-controls="panel3a-content"
           id="panel3a-header"
         >
-          <Typography className={classes.heading}>
-            Disabled Accordion
-          </Typography>
+          <Typography className={classes.heading}>Disabled Accordion</Typography>
         </AccordionSummary>
       </Accordion>
     </div>

@@ -17,9 +17,8 @@ interface ColorsMapping {
 }
 
 // Like https://github.com/brunobertolini/styled-by
-const styledBy = (property: string, mapping: ColorsMapping) => (
-  props: Styles,
-) => mapping[props[property]];
+const styledBy = (property: string, mapping: ColorsMapping) => (props: Styles) =>
+  mapping[props[property]];
 
 const styles = {
   root: {

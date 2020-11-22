@@ -150,11 +150,7 @@ function AnchorPlayground(props) {
     <div>
       <Grid container justifyContent="center">
         <Grid item className={classes.buttonWrapper}>
-          <Button
-            ref={anchorRef}
-            variant="contained"
-            onClick={handleClickButton}
-          >
+          <Button ref={anchorRef} variant="contained" onClick={handleClickButton}>
             Open Popover
           </Button>
           {anchorReference === 'anchorEl' && (

@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  alpha,
-  withStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { alpha, withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -27,10 +22,7 @@ const PurpleSwitch = withStyles((theme: Theme) =>
       '&$checked': {
         color: purple[500],
         '&:hover': {
-          backgroundColor: alpha(
-            purple[500],
-            theme.palette.action.hoverOpacity,
-          ),
+          backgroundColor: alpha(purple[500], theme.palette.action.hoverOpacity),
         },
       },
       '&$checked + $track': {
@@ -75,10 +67,7 @@ const IOSSwitch = withStyles((theme: Theme) =>
       border: `1px solid ${theme.palette.grey[400]}`,
       backgroundColor: theme.palette.grey[50],
       opacity: 1,
-      transition: theme.transitions.create([
-        'background-color',
-        'border-color',
-      ]),
+      transition: theme.transitions.create(['background-color', 'border-color']),
     },
     checked: {},
     focusVisible: {},

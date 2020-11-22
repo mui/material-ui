@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  createMuiTheme,
-  makeStyles,
-  ThemeProvider,
-} from '@material-ui/core/styles';
+import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({

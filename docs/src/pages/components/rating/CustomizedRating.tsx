@@ -71,9 +71,7 @@ export default function CustomizedRating() {
       <StyledRating
         name="customized-color"
         defaultValue={2}
-        getLabelText={(value: number) =>
-          `${value} Heart${value !== 1 ? 's' : ''}`
-        }
+        getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
         precision={0.5}
         icon={<FavoriteIcon fontSize="inherit" />}
         emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}

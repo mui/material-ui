@@ -55,9 +55,7 @@ export default function SpeedDials() {
   );
   const [hidden, setHidden] = React.useState(false);
 
-  const handleDirectionChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleDirectionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDirection(
       (event.target as HTMLInputElement).value as SpeedDialProps['direction'],
     );
@@ -71,11 +69,7 @@ export default function SpeedDials() {
     <div className={classes.root}>
       <FormControlLabel
         control={
-          <Switch
-            checked={hidden}
-            onChange={handleHiddenChange}
-            color="primary"
-          />
+          <Switch checked={hidden} onChange={handleHiddenChange} color="primary" />
         }
         label="Hidden"
       />

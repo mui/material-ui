@@ -238,9 +238,7 @@ export default function ScrollPlayground() {
                 },
               ]}
             >
-              {arrow ? (
-                <div className={classes.arrow} ref={setArrowRef} />
-              ) : null}
+              {arrow ? <div className={classes.arrow} ref={setArrowRef} /> : null}
               <Paper className={classes.paper}>
                 <DialogTitle>{"Use Google's location service?"}</DialogTitle>
                 <DialogContent>
@@ -316,9 +314,7 @@ export default function ScrollPlayground() {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h6">
-            Modifiers (options from Popper.js)
-          </Typography>
+          <Typography variant="h6">Modifiers (options from Popper.js)</Typography>
         </Grid>
         <Grid container item xs={12} spacing={1}>
           <Grid item xs={6}>
