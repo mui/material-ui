@@ -84,6 +84,7 @@ function ProductValues(props) {
                 {
                   'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '
                 }
+
                 {'your Sundays will not be alike.'}
               </Typography>
             </div>

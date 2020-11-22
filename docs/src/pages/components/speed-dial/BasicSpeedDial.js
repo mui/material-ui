@@ -49,6 +49,7 @@ const actions = [
 export default function SpeedDials() {
   const classes = useStyles();
   const [direction, setDirection] = React.useState('up');
+
   const [hidden, setHidden] = React.useState(false);
 
   const handleDirectionChange = (event) => {

@@ -30,6 +30,7 @@ export default function InteractiveGrid() {
   const classes = useStyles();
   const [direction, setDirection] = React.useState('row');
   const [justifyContent, setJustifyContent] = React.useState('center');
+
   const [alignItems, setAlignItems] = React.useState('center');
 
   const jsx = `
