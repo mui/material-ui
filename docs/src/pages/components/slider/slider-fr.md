@@ -1,6 +1,6 @@
 ---
 title: React Slider component
-components: Slider
+components: Slider, SliderUnstyled
 githubLabel: 'component: Slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
@@ -99,6 +99,10 @@ You can use the `scale` prop to represent the `value` on a different scale.
 In the following demo, the value _x_ represents the value _2^x_. Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
+
+## Unstyled slider
+
+{{"demo": "pages/components/slider/UnstyledSlider.js"}}
 
 ## Accessibilité
 

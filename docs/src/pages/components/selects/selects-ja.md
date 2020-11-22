@@ -68,7 +68,7 @@ To properly label your `Select` input you need an extra element with an `id` tha
 
 To properly label your `Select` input you need an extra element with an `id` that contains a label. To properly label your `Select` input you need an extra element with an `id` that contains a label.
 
-単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
+単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
 
 
 

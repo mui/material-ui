@@ -196,7 +196,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 ### Input personalizado
 
-El apoyo `renderInput` te permite personalizar la entrada renderizada. El primer argumento de este apoyo renderizado contiene apoyos que necesitas para avanzar. Ponga atención específica a las claves  `red` y `inputProps`.
+El apoyo `renderInput` te permite personalizar la entrada renderizada. El primer argumento de este apoyo renderizado contiene apoyos que necesitas para avanzar. Ponga atención específica a las claves `red` y `inputProps`.
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
@@ -300,7 +300,7 @@ VoiceOver en iOS Safari no soporta el atributo `aria-owns` especialmente bien. P
 
 ### ListboxComponent
 
-Si proporciona un apoyo personalizado `ListboxComponent`, usted necesita asegurarse de que  el contedenedor de desplazamiento destinado tiene el atributo  `role`  esta configurado `listbox`.  Esto asegura el comportamiento correcto del desplazamiento, por ejemplo cuando usas el teclado para navegar.
+Si proporciona un apoyo personalizado `ListboxComponent`, usted necesita asegurarse de que el contedenedor de desplazamiento destinado tiene el atributo `role` esta configurado `listbox`. Esto asegura el comportamiento correcto del desplazamiento, por ejemplo cuando usas el teclado para navegar.
 
 ## Accesibilidad
 

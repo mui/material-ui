@@ -26,17 +26,17 @@ Some important features of the `Popper` component:
 
 ## Les transitions
 
-The open/close state of the popper can be animated with a render prop child and a transition component. This component should respect the following conditions:
+The open/close state of the popper can be animated with a render prop child and a transition component. Ce composant doit respecter les conditions suivantes :
 
 - Be a direct child descendent of the popper.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
+- Appeler la propriété de callback `onEnter` lorsque la transition d'entrée démarre.
+- Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée. Call the `onExited` callback prop when the exit transition is completed.
 
 Popper has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
 {{"demo": "pages/components/popper/TransitionsPopper.js"}}
 
-Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+Alternativement, vous pouvez utiliser [react-spring](https://github.com/react-spring/react-spring).
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 

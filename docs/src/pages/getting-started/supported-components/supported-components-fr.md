@@ -11,7 +11,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
 - **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
-- **[Buttons](https://material.io/design/components/buttons.html) ✓**
+- ****[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)******
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓**
   - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
   - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
