@@ -173,7 +173,7 @@ Pros:
 
 Cons:
 
-- The runtime performance take a hit.
+- The runtime performance takes a hit.
 
   | Benchmark case                    | Code snippet         | Time normalized |
   | :-------------------------------- | :------------------- | --------------- |
