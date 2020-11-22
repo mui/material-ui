@@ -1,6 +1,6 @@
 # サポートされているコンポーネント
 
-<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。</p>
+<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。</p>
 
 While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, nor every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
 
