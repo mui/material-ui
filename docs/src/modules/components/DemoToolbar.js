@@ -471,6 +471,7 @@ export default function DemoToolbar(props) {
           </Tooltip>
           <IconButton
             onClick={handleMoreClick}
+            aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
             {...getControlProps(7)}
