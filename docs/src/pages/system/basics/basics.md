@@ -175,12 +175,12 @@ Cons:
 
 - The runtime performance takes a hit.
 
-  | Benchmark case                    | Code snippet         | Time normalized |
-  | :-------------------------------- | :------------------- | --------------- |
-  | a. Render 1,000 primitives        | `<div className="">` | 100ms           |
-  | b. Render 1,000 components        | `<Div>`              | 110ms           |
-  | c. Render 1,000 styled components | `<StyledDiv>`        | 160ms           |
-  | d. Render 1,000 Box               | `<Box sx={}>`        | 270ms           |
+  | Benchmark case                    | Code snippet          | Time normalized |
+  | :-------------------------------- | :-------------------- | --------------- |
+  | a. Render 1,000 primitives        | `<div className="…">` | 100ms           |
+  | b. Render 1,000 components        | `<Div>`               | 110ms           |
+  | c. Render 1,000 styled components | `<StyledDiv>`         | 160ms           |
+  | d. Render 1,000 Box               | `<Box sx={…}>`        | 270ms           |
 
   _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) for a reproduction of these metrics._
 
