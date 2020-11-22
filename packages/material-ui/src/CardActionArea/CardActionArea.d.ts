@@ -30,10 +30,9 @@ export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButton
  * - [CardActionArea API](https://material-ui.com/api/card-action-area/)
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
-declare const CardActionArea: ExtendButtonBase<CardActionAreaTypeMap<
-  {},
-  ButtonBaseTypeMap['defaultComponent']
->>;
+declare const CardActionArea: ExtendButtonBase<
+  CardActionAreaTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>
+>;
 
 export type CardActionAreaClassKey = keyof NonNullable<CardActionAreaProps['classes']>;
 
