@@ -36,12 +36,11 @@ export type BoxStyleFunction = ComposedStyleFunction<
 type SystemProps = PropsFor<BoxStyleFunction>;
 type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
 
-export interface BoxTypeMap<P = {}, D extends React.ElementType = 'span'> {
+export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     ElementProps &
     SystemProps & {
       children?: React.ReactNode | ((props: ElementProps) => React.ReactNode);
-      // styled API
       component?: React.ElementType;
       clone?: boolean;
       ref?: React.Ref<unknown>;
