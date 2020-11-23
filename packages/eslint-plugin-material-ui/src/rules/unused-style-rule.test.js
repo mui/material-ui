@@ -1,5 +1,5 @@
 const eslint = require('eslint');
-const rule = require('./warn-unused-classes');
+const rule = require('./unused-style-rule');
 
 const ruleTester = new eslint.RuleTester({
   parser: require.resolve('@typescript-eslint/parser'),
@@ -7,14 +7,14 @@ const ruleTester = new eslint.RuleTester({
     ecmaFeatures: { jsx: true },
   },
 });
-ruleTester.run('warn-unused-classes', rule, {
+ruleTester.run('unused-style-rule', rule, {
   valid: [
     `const useStyles = makeStyles(() => ({
       testClass: {
         backgroundColor: 'red'
       }
     }))
-    
+
     const Component = () => {
       const classes = useStyles()
       return <div className={classes.testClass}>test</div>
@@ -27,14 +27,16 @@ ruleTester.run('warn-unused-classes', rule, {
           backgroundColor: 'red'
         }
       }))
-      
+
       const Component = () => {
         const classes = useStyles()
         return <div>test</div>
       }`,
-      errors: [{
-        message: 'Class `testClass` is unused'
-      }]
+      errors: [
+        {
+          message: 'Class `testClass` is unused',
+        },
+      ],
     },
   ],
 });

@@ -4,16 +4,12 @@ Custom eslint rules for Material-UI.
 
 ## List of supported rules
 
-- `warn-unused-classes`
 - `disallow-active-element-as-key-event-target`
 - `docgen-ignore-before-comment`
 - `no-hardcoded-labels`
 - `lower-case-test-name`
+- `unused-style-rule`
 - ~~`restricted-path-imports`~~
-
-### warn-unused-classes
-
-Warn the user if a class declared in `makeStyles` is not used in the component it is defined in.
 
 ### disallow-active-element-as-key-event-target
 
@@ -30,7 +26,11 @@ Enforce correct usage of `@ignore` in the prop-types block comments.
 Prevent the usage of hardcoded labels.
 The docs are translated via crowdin, we prefer to use `t` from the redux store.
 
-### restricted-path-imports
+### unused-style-rule
+
+Find style rules declared in `makeStyles` that are not used in the component.
+
+### ~~restricted-path-imports~~
 
 Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports) using the following configuration:
 
