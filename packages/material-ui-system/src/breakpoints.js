@@ -23,7 +23,7 @@ function containsBreakpoint(styleObject, themeBreakpoints) {
   const matchValues = themeBreakpoints.values || values;
   let result = false;
 
-  Object.keys(matchValues).forEach(breakpoint => {
+  Object.keys(matchValues).forEach((breakpoint) => {
     if (styleObject[breakpoint]) result = true;
   });
 
@@ -64,7 +64,7 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
         return acc;
       }, {});
     }
-    
+
     return propValue;
   }
 
