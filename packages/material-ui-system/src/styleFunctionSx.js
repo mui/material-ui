@@ -66,7 +66,10 @@ function styleFunctionSx(props) {
     } else if (typeof styles[styleKey] === 'function') {
       css = deepmerge(css, { [styleKey]: styles[styleKey](theme) });
     } else {
-      css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
+      const result = getThemeValue(styleKey, styles[styleKey], theme);
+      Object.keys(result).forEach((key) => {
+        css[key] = result[key];
+      });
     }
   });
 

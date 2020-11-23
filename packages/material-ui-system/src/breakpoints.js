@@ -19,6 +19,14 @@ const defaultBreakpoints = {
   up: (key) => `@media (min-width:${values[key]}px)`,
 };
 
+function containsBreakpoint(styleObject, breakpoints) {
+  const matchValues = breakpoints.values || values;
+  for (const breakpoint in Object.keys(matchValues)) {
+    if (styleObject[breakpoint]) return true;
+  }
+  return false;
+}
+
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
   if (process.env.NODE_ENV !== 'production') {
     if (!props.theme) {
@@ -36,16 +44,25 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
 
   if (typeof propValue === 'object') {
     const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
-    return Object.keys(propValue).reduce((acc, breakpoint) => {
-      // key is breakpoint
-      if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
-        acc[themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
-      } else {
-        const cssKey = breakpoint;
-        acc[cssKey] = propValue[cssKey];
-      }
-      return acc;
-    }, {});
+    if (containsBreakpoint(propValue, themeBreakpoints)) {
+      return Object.keys(propValue).reduce((acc, breakpoint) => {
+        // key is breakpoint
+        if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
+          acc[themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
+        } else {
+          if (process.env.NODE_ENV !== 'production') {
+            console.warn(
+              'Material-UI: Cannot combine breakpoints definition with other CSS properties',
+            );
+          }
+          const cssKey = breakpoint;
+          acc[cssKey] = propValue[cssKey];
+        }
+        return acc;
+      }, {});
+    } else {
+      return propValue;
+    }
   }
 
   const output = styleFromPropValue(propValue);

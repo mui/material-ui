@@ -1,9 +1,14 @@
 /* eslint-disable no-console */
 import Benchmark from 'benchmark';
 import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-system';
-import { spacing, palette, typography, compose } from '@material-ui/system';
+import {
+  spacing,
+  palette,
+  typography,
+  compose,
+  unstable_styleFunctionSx,
+} from '@material-ui/system';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { styleFunction } from '@material-ui/core/Box';
 
 const suite = new Benchmark.Suite('system', {
   onError: (event) => {
@@ -73,13 +78,15 @@ suite
   })
   // ---
   .add('@material-ui/core all-inclusive', () => {
-    styleFunction({
+    unstable_styleFunctionSx({
       theme: materialSystemTheme,
-      color: 'primary.main',
-      bgcolor: 'background.paper',
-      fontFamily: 'h6.fontFamily',
-      fontSize: ['h6.fontSize', 'h4.fontSize', 'h3.fontSize'],
-      p: [2, 3, 4],
+      sx: {
+        color: 'primary.main',
+        bgcolor: 'background.paper',
+        fontFamily: 'h6.fontFamily',
+        fontSize: ['h6.fontSize', 'h4.fontSize', 'h3.fontSize'],
+        p: [2, 3, 4],
+      },
     });
   })
   .on('cycle', (event) => {

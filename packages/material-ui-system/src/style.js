@@ -44,7 +44,9 @@ function style(options) {
       };
     };
 
-    return handleBreakpoints(props, propValue, styleFromPropValue);
+    return typeof propValue === 'object' || Array.isArray(propValue)
+      ? handleBreakpoints(props, propValue, styleFromPropValue)
+      : styleFromPropValue(propValue);
   };
 
   fn.propTypes =
