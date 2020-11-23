@@ -70,7 +70,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 #### Changes
 
-- [CircularProgress][LinearProgress] Change components from div to span (#23587) @bruno-azzi
+- [CircularProgress][linearprogress] Change components from div to span (#23587) @bruno-azzi
 - [Grid] Improve warning when a prop is missing (#23630) @udayRedI
 - [Icon] Allow customizing the 'material-icons' base class name (#23613) @rart
 - [Select] Fix focus() call on ref (#23302) @reedanders
