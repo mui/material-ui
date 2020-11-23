@@ -8,8 +8,8 @@
 |:--------------------------- |:--------- |:-------------------- |:--------------- |:----------------------------------------------------------------------------- |
 | [spacing](/system/spacing/) | `spacing` | `mb`, `marginBottom` | `margin-bottom` | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
-1. <b>Group</b> 列链接到描述该组属性的文档页面；在本例中，它是链接到 [spacing](/system/spacing/) 页面。
-2. The <b>System style function</b> column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@material-ui/system`. You can see an example of using the style functions on the [advanced page](/system/advanced/#using-standalone-system-utilities).
+1. <b>组</b>列链接到描述该组属性的文档页面；在本例中，它是链接到 [spacing](/system/spacing/) 页面。
+2. <b>系统样式函数</b>列列出了生成其他列中显示的属性的函数，以作为你要将此功能添加到自定义组件中的参考。 函数可以从 `@material-ui/system` 导入。 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。
 
 3. <b>系统键</b>一列列出了你可以通过 `sx` 属性（或作为系统函数）使用此属性的键。
 4. <b>CSS 属性</b>列描述了当使用该系统属性时，将生成哪个CSS属性。
