@@ -69,6 +69,11 @@ module.exports = {
                   // e.g. `{ ...foo }`
                   return;
                 }
+
+                if (property.key.type === 'Literal' && property.key.value === '@global') {
+                  return;
+                }
+
                 definedClasses[property.key.name] = property;
               });
             }
