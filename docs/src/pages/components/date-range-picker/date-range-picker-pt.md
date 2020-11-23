@@ -29,9 +29,7 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (
-    <LocalizationProvider dateAdapter={DateFnsAdapter}>
-      ...
-    </LocalizationProvider>
+    <LocalizationProvider dateAdapter={DateFnsAdapter}>...</LocalizationProvider>
   );
 }
 ```
