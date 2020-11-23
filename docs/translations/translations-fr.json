@@ -250,6 +250,7 @@
     "/guides/composition": "Composition",
     "/guides/server-rendering": "Rendu serveur",
     "/guides/responsive-ui": "UI responsive",
+    "/guides/pickers-migration": "Migration from @material-ui/pickers",
     "/guides/migration-v4": "Migration From v4",
     "/guides/migration-v3": "Migration depuis v3x",
     "/guides/migration-v0x": "Migration depuis v0.x",
