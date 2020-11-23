@@ -6,8 +6,8 @@ interface TestProps {
 }
 
 const Test: React.FC<TestProps> = (props) => {
-  return <span {...props} />
-}
+  return <span {...props} />;
+};
 
 function ResponsiveTest() {
   <Box p={[2, 3, 4]} />;
