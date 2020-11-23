@@ -222,13 +222,11 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 - Se você está compondo o componente:
 
 ```jsx
-<FormControl>
-  <InputLabel htmlFor="my-input">Email address</InputLabel>
-  <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">
-    We'll never share your email.
-  </FormHelperText>
-</FormControl>
+<div class="form-control" mark="crwd-mark">
+  <label for="my-input">Endereço de e-mail</label>
+  <input id="my-input" aria-describedby="my-helper-text" />
+  <span id="my-helper-text">Nós nunca compartilharemos seu e-mail.</span>
+</div>
 ```
 
 ## Projetos Complementares
