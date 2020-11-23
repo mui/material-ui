@@ -77,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  active: {},
 }));
 
 export default function AppDrawerNavItem(props) {

@@ -38,7 +38,6 @@ const useStyles = makeStyles(
     root: {
       flex: '1 0 100%',
     },
-    foo: {},
     hero: {
       paddingTop: theme.spacing(8),
       color: theme.palette.primary.main,
