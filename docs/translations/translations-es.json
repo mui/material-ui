@@ -250,6 +250,7 @@
     "/guides/composition": "Composición",
     "/guides/server-rendering": "Renderizado en el servidor",
     "/guides/responsive-ui": "Interfaz de usuario adaptable",
+    "/guides/pickers-migration": "Migration from @material-ui/pickers",
     "/guides/migration-v4": "Migration From v4",
     "/guides/migration-v3": "Migración desde v3",
     "/guides/migration-v0x": "Migración desde v0.x",
