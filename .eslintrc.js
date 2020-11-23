@@ -112,7 +112,7 @@ module.exports = {
         // Otherwise the rule thinks inner props = outer props
         // But in TypeScript we want to know that a certain prop is defined during render
         // while it can be ommitted from the callsite.
-        // Then defaultProps (or default values) will make sure the the prop is defined during render
+        // Then defaultProps (or default values) will make sure that the prop is defined during render
         allowRequiredDefaults: true,
       },
     ],

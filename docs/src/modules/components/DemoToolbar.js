@@ -308,27 +308,6 @@ export default function DemoToolbar(props) {
     }
   };
 
-  const handleStackBlitzClick = () => {
-    const demoConfig = getDemoConfig(demoData);
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.target = '_blank';
-    form.action = 'https://stackblitz.com/run';
-    addHiddenInput(form, 'project[template]', 'javascript');
-    addHiddenInput(form, 'project[title]', demoConfig.title);
-    addHiddenInput(form, 'project[description]', demoConfig.description);
-    addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
-    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
-    Object.keys(demoConfig.files).forEach((key) => {
-      const value = demoConfig.files[key];
-      addHiddenInput(form, `project[files][${key}]`, value);
-    });
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-    handleMoreClose();
-  };
-
   const createHandleCodeSourceLink = (anchor) => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
@@ -492,6 +471,7 @@ export default function DemoToolbar(props) {
           </Tooltip>
           <IconButton
             onClick={handleMoreClick}
+            aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
             {...getControlProps(7)}
@@ -525,16 +505,6 @@ export default function DemoToolbar(props) {
             >
               {t('viewGitHub')}
             </MenuItem>
-            {demoOptions.hideEditButton ? null : (
-              <MenuItem
-                data-ga-event-category="demo"
-                data-ga-event-label={demoOptions.demo}
-                data-ga-event-action="stackblitz"
-                onClick={handleStackBlitzClick}
-              >
-                {t('stackblitz')}
-              </MenuItem>
-            )}
             <MenuItem
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
