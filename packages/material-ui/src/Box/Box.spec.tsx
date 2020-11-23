@@ -8,7 +8,7 @@ interface TestProps {
 function Test(props: TestProps) {
   const { test, ...rest } = props;
   return <span {...rest}>{test}</span>;
-};
+}
 
 function ResponsiveTest() {
   <Box p={[2, 3, 4]} />;
