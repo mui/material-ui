@@ -327,7 +327,7 @@ const classes = makeStyles(theme => ({
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-###  Box
+### Box 分组
 
 - system 属性在 v5 中已废弃且被 `sx` 属性取代。
 
@@ -604,7 +604,7 @@ const classes = makeStyles(theme => ({
   />
   ```
 
-- 因为属性重复，所以我们移除了 `onEscapeKeyDown`。 Use `onClose` with `reason === "escapeKeyDown"` instead.
+- 因为属性重复，所以我们移除了 `onEscapeKeyDown`。 使用 `onClose` 和 `reason === "escapeKeyDown"` 来代替。
 
   ```diff
   <Modal
