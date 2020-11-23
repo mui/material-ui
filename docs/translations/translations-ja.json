@@ -250,6 +250,7 @@
     "/guides/composition": "コンポジション",
     "/guides/server-rendering": "サーバーサイドレンダリング",
     "/guides/responsive-ui": "レスポンシブUI",
+    "/guides/pickers-migration": "Migration from @material-ui/pickers",
     "/guides/migration-v4": "Migration From v4",
     "/guides/migration-v3": "v3からの移行",
     "/guides/migration-v0x": "v0.からの移行",
