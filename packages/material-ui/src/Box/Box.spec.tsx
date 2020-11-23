@@ -5,8 +5,9 @@ interface TestProps {
   test?: string;
 }
 
-const Test: React.FC<TestProps> = (props) => {
-  return <span {...props} />;
+function Test(props: TestProps) {
+  const { test, ...rest } = props;
+  return <span {...rest}>{test}</span>;
 };
 
 function ResponsiveTest() {
