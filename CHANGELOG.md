@@ -104,8 +104,8 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
   It better fits with the current import convention.
 
   ```diff
-  -import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
-  +import DateFnsAdapter from '@material-ui/lab/AdapterDateFns';
+  -import AdapterDateFns from '@material-ui/lab/dateAdapter/date-fns';
+  +import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
   ```
 
 #### Changes
