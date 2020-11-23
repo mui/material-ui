@@ -11,8 +11,8 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
   ![system TypeScript](https://user-images.githubusercontent.com/3165635/99920493-20f60a00-2d24-11eb-8748-c5dd7fe85cbd.png)
 
-- 💅 Migrate the first component of the core to the v5 styling architecture (#23308) @mnajdova.
-  We have spend the last few months iterating on the new styling approach in the lab. We are confident enough in the new approach to move it to the core. We have migrated the Slider. We will wait a week or two to collect feedback on it, before scaling it to the rest of the codebase.
+- 💅 Migrate the first core component to the v5 styling architecture (#23308) @mnajdova.
+  We have spent the last few months iterating on the new styling approach in the lab, and are confident enough in the new approach to move it to the core, so we have migrated the Slider. We will wait a week or two to collect feedback on it, before scaling it to the rest of the codebase.
 - 📅 Fix the first few issues on the date picker components since the migration in the lab.
 - And many more 🐛 bug fixes and 📚 improvements.
 
