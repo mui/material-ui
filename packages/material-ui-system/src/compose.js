@@ -2,7 +2,7 @@ import merge from './merge';
 import style from './style';
 
 function compose(...styles) {
-  const configs = styles.reduce((acc, style) => ({...acc, ...style.config}), {});
+  const configs = styles.reduce((acc, style) => ({ ...acc, ...style.config }), {});
   const fn = style(configs);
 
   // Alternative approach that doesn't yield any performance gain.

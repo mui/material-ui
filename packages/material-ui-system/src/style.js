@@ -12,18 +12,18 @@ function getPath(obj, path) {
 function style(inputOptions) {
   let config;
 
-  if(inputOptions.prop) {
+  if (inputOptions.prop) {
     config = {
-      [inputOptions.prop]: inputOptions
-    }
+      [inputOptions.prop]: inputOptions,
+    };
   } else {
     config = inputOptions;
   }
-  
+
   const fn = (props) => {
     const result = {};
 
-    Object.keys(config).forEach(key => {
+    Object.keys(config).forEach((key) => {
       const options = config[key];
       const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
@@ -58,14 +58,15 @@ function style(inputOptions) {
         };
       };
 
-      const res = typeof propValue === 'object' || Array.isArray(propValue)
-        ? handleBreakpoints(props, propValue, styleFromPropValue)
-        : styleFromPropValue(propValue);
+      const res =
+        typeof propValue === 'object' || Array.isArray(propValue)
+          ? handleBreakpoints(props, propValue, styleFromPropValue)
+          : styleFromPropValue(propValue);
 
       if (res) {
-        Object.keys(res).forEach(key => {
+        Object.keys(res).forEach((key) => {
           result[key] = res[key];
-        })
+        });
       }
     });
 
@@ -74,7 +75,7 @@ function style(inputOptions) {
 
   fn.propTypes =
     process.env.NODE_ENV !== 'production'
-      ? Object.keys(config).reduce((acc, o) => acc[o] = responsivePropType,{})
+      ? Object.keys(config).reduce((acc, o) => (acc[o] = responsivePropType), {})
       : {};
 
   fn.filterProps = Object.keys(config);
