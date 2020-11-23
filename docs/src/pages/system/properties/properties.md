@@ -9,19 +9,7 @@ Let's take the following row from [the table below](#properties-reference-table)
 | [spacing](/system/spacing/) | `spacing`             | `mb`, `marginBottom` | `margin-bottom`         | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
 1. The <b>Group</b> column links to the documentation page where this group of properties is described; in this example, the [spacing](/system/spacing/) page.
-2. The <b>System style function</b> column references the function which generates the properties shown in the other columns, in case you want to use it for adding this functionality to your custom components. The function can be imported from `@material-ui/system`.
-
-```jsx
-import * as React from 'react';
-import styled from 'styled-components';
-import { spacing } from '@material-ui/system';
-
-const Div = styled('div')(spacing);
-
-export default function Demo() {
-  return <Div mb={3} />;
-}
-```
+2. The <b>System style function</b> column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@material-ui/system`. You can see an example of using the style functions on the [advanced page](/system/advanced/#using-standalone-system-utilities).
 
 3. The <b>System keys</b> column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
 4. The <b>CSS property</b> column describes which CSS property will be generated when this system property is used.

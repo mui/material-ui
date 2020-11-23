@@ -54,11 +54,7 @@ function Media(props) {
               <Typography gutterBottom variant="body2">
                 {item.title}
               </Typography>
-              <Typography
-                display="block"
-                variant="caption"
-                color="textSecondary"
-              >
+              <Typography display="block" variant="caption" color="textSecondary">
                 {item.channel}
               </Typography>
               <Typography variant="caption" color="textSecondary">

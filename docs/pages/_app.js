@@ -233,7 +233,7 @@ function loadDependencies() {
   dependenciesLoaded = true;
 
   loadCSS(
-    'https://fonts.googleapis.com/icon?family=Material+Icons',
+    'https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Two+Tone',
     document.querySelector('#material-icon-font'),
   );
 }

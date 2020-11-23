@@ -67,11 +67,7 @@ export default function ComposedTextField() {
       </FormControl>
       <FormControl variant="filled">
         <InputLabel htmlFor="component-filled">Name</InputLabel>
-        <FilledInput
-          id="component-filled"
-          value={name}
-          onChange={handleChange}
-        />
+        <FilledInput id="component-filled" value={name} onChange={handleChange} />
       </FormControl>
     </form>
   );

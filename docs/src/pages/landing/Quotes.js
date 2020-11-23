@@ -212,11 +212,7 @@ function Quote(props) {
               >
                 {name}
               </Typography>
-              <Typography
-                component="div"
-                variant="subtitle2"
-                color="textSecondary"
-              >
+              <Typography component="div" variant="subtitle2" color="textSecondary">
                 {userName}
               </Typography>
             </Grid>

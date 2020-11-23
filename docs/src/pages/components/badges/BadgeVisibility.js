@@ -61,9 +61,7 @@ export default function BadgeVisibility() {
           <MailIcon />
         </Badge>
         <FormControlLabel
-          control={
-            <Switch checked={!invisible} onChange={handleBadgeVisibility} />
-          }
+          control={<Switch checked={!invisible} onChange={handleBadgeVisibility} />}
           label="Show Badge"
         />
       </div>

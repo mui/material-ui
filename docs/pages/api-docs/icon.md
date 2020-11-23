@@ -28,6 +28,7 @@ The `MuiIcon` name can be used for providing [default props](/customization/glob
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">baseClassName</span> | <span class="prop-type">string</span> | <span class="prop-default">'material-icons'</span> | The base class applied to the icon. Defaults to 'material-icons', but can be changed to any other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc). |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The name of the icon font ligature. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'action'<br>&#124;&nbsp;'disabled'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'inherit'</span> | The color of the component. It supports those theme colors that make sense for this component. |

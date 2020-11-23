@@ -34,7 +34,7 @@ Nada extravagante, apenas CSS.
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSlider.css';
 
 export default function PlainCssSlider() {
@@ -53,18 +53,12 @@ export default function PlainCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const head = document.getElementsByTagName('head')[0];
-
-const emotionContainer = head.insertBefore(
-  document.createElement('STYLE'),
-  head.firstChild,
-);
-
 const cache = createCache({
-  container: emotionContainer,
+  key: 'css',
+  prepend: true,
 });
 
 export default function PlainCssPriority() {
@@ -104,7 +98,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSliderDeep1.css';
 
 export default function PlainCssSliderDeep1() {
@@ -139,7 +133,7 @@ The above demo relies on the [default `className` values](/styles/advanced/#with
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSliderDeep2.css';
 
 export default function PlainCssSliderDeep2() {
@@ -178,7 +172,7 @@ Fornecer explicitamente os nomes das classes ao componente é um esforço excess
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './GlobalCssSlider.css';
 
 export default function GlobalCssSlider() {
@@ -192,18 +186,12 @@ export default function GlobalCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const head = document.getElementsByTagName('head')[0];
-
-const emotionContainer = head.insertBefore(
-  document.createElement('STYLE'),
-  head.firstChild,
-);
-
 const cache = createCache({
-  container: emotionContainer,
+  key: 'css',
+  prepend: true,
 });
 
 export default function GlobalCssPriority() {
@@ -243,7 +231,7 @@ The following example overrides the slider's `thumb` style in addition to the cu
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './GlobalCssSliderDeep.css';
 
 export default function GlobalCssSliderDeep() {
@@ -267,7 +255,7 @@ After the style engine is configured properly, you can use the `experimentalStyl
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
@@ -293,7 +281,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
@@ -323,7 +311,7 @@ The above demo relies on the [default `className` values](/styles/advanced/#with
 ```jsx
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 const CustomizedSlider = styled((props) => (
   <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
@@ -401,7 +389,7 @@ TODO: fill this section after the portal is implemented with the new styled engi
 
 ```jsx
 import React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
 
@@ -421,18 +409,12 @@ export default function CssModulesSlider() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const head = document.getElementsByTagName('head')[0];
-
-const emotionContainer = head.insertBefore(
-  document.createElement('STYLE'),
-  head.firstChild,
-);
-
 const cache = createCache({
-  container: emotionContainer,
+  key: 'css',
+  prepend: true,
 });
 
 export default function CssModulesPriority() {
@@ -474,7 +456,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 export default function CssModulesSliderDeep1() {
   return (
@@ -510,7 +492,7 @@ The above demo relies on the [default `className` values](/styles/advanced/#with
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 export default function CssModulesSliderDeep2() {
   return (
@@ -540,8 +522,8 @@ O método **css()** do Emotion funciona perfeitamente com Material-UI.
 
 ```jsx
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import Slider from '@material-ui/lab/SliderStyled';
+import { jsx, css } from '@emotion/react';
+import Slider from '@material-ui/core/Slider';
 
 export default function EmotionCSS() {
   return (

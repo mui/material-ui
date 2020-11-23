@@ -276,18 +276,12 @@ let DialogDetails = (props) => {
                     className={clsx(classes.context, classes.contextPrimary)}
                   />
                   <selectedIcon.Component
-                    className={clsx(
-                      classes.context,
-                      classes.contextPrimaryInverse,
-                    )}
+                    className={clsx(classes.context, classes.contextPrimaryInverse)}
                   />
                 </Grid>
                 <Grid container justifyContent="center">
                   <selectedIcon.Component
-                    className={clsx(
-                      classes.context,
-                      classes.contextTextPrimary,
-                    )}
+                    className={clsx(classes.context, classes.contextTextPrimary)}
                   />
                   <selectedIcon.Component
                     className={clsx(
@@ -298,10 +292,7 @@ let DialogDetails = (props) => {
                 </Grid>
                 <Grid container justifyContent="center">
                   <selectedIcon.Component
-                    className={clsx(
-                      classes.context,
-                      classes.contextTextSecondary,
-                    )}
+                    className={clsx(classes.context, classes.contextTextSecondary)}
                   />
                   <selectedIcon.Component
                     className={clsx(
@@ -533,11 +524,7 @@ export default function SearchIcons() {
         <Typography
           className={classes.results}
         >{`${icons.length} matching results`}</Typography>
-        <Icons
-          icons={icons}
-          classes={classes}
-          handleOpenClick={handleOpenClick}
-        />
+        <Icons icons={icons} classes={classes} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
         open={open}

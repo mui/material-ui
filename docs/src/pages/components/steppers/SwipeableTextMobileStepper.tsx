@@ -87,11 +87,7 @@ function SwipeableTextMobileStepper() {
         {images.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <img
-                className={classes.img}
-                src={step.imgPath}
-                alt={step.label}
-              />
+              <img className={classes.img} src={step.imgPath} alt={step.label} />
             ) : null}
           </div>
         ))}

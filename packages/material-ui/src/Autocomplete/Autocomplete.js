@@ -8,7 +8,7 @@ import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
 import IconButton from '../IconButton';
 import Chip from '../Chip';
-import CloseIcon from '../internal/svg-icons/Close';
+import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 
@@ -264,10 +264,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     ChipProps,
     classes,
     className,
+    clearIcon = <ClearIcon fontSize="small" />,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     clearText = 'Clear',
-    closeIcon = <CloseIcon fontSize="small" />,
     closeText = 'Close',
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
@@ -438,7 +438,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                     title={clearText}
                     className={classes.clearIndicator}
                   >
-                    {closeIcon}
+                    {clearIcon}
                   </IconButton>
                 ) : null}
 
@@ -561,6 +561,11 @@ Autocomplete.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The icon to display in place of the default clear icon.
+   * @default <ClearIcon fontSize="small" />
+   */
+  clearIcon: PropTypes.node,
+  /**
    * If `true`, the input's text is cleared on blur if no value is selected.
    *
    * Set to `true` if you want to help the user enter a new value.
@@ -580,11 +585,6 @@ Autocomplete.propTypes = {
    * @default 'Clear'
    */
   clearText: PropTypes.string,
-  /**
-   * The icon to display in place of the default close icon.
-   * @default <CloseIcon fontSize="small" />
-   */
-  closeIcon: PropTypes.node,
   /**
    * Override the default text for the *close popup* icon button.
    *

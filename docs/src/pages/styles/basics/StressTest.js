@@ -60,9 +60,7 @@ export default function StressTest() {
             />
           </div>
           <div>
-            <label htmlFor="background-color">
-              background-color property:{' '}
-            </label>
+            <label htmlFor="background-color">background-color property: </label>
             <input
               id="background-color"
               type="color"

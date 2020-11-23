@@ -32,11 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const steps = [
-  'Select campaign settings',
-  'Create an ad group',
-  'Create an ad',
-];
+const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
 export default function HorizontalNonLinearStepper() {
   const classes = useStyles();

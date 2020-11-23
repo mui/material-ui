@@ -35,12 +35,7 @@ function Media(props: MediaProps) {
       <CardHeader
         avatar={
           loading ? (
-            <Skeleton
-              animation="wave"
-              variant="circular"
-              width={40}
-              height={40}
-            />
+            <Skeleton animation="wave" variant="circular" width={40} height={40} />
           ) : (
             <Avatar
               alt="Ted talk"
@@ -76,11 +71,7 @@ function Media(props: MediaProps) {
         }
       />
       {loading ? (
-        <Skeleton
-          animation="wave"
-          variant="rectangular"
-          className={classes.media}
-        />
+        <Skeleton animation="wave" variant="rectangular" className={classes.media} />
       ) : (
         <CardMedia
           className={classes.media}
@@ -91,11 +82,7 @@ function Media(props: MediaProps) {
       <CardContent>
         {loading ? (
           <React.Fragment>
-            <Skeleton
-              animation="wave"
-              height={10}
-              style={{ marginBottom: 6 }}
-            />
+            <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
             <Skeleton animation="wave" height={10} width="80%" />
           </React.Fragment>
         ) : (

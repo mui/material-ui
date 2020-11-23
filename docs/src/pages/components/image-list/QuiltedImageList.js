@@ -20,18 +20,9 @@ export default function QuiltedImageList() {
   const classes = useStyles();
 
   return (
-    <ImageList
-      variant="quilted"
-      cols={4}
-      rowHeight={121}
-      className={classes.root}
-    >
+    <ImageList variant="quilted" cols={4} rowHeight={121} className={classes.root}>
       {itemData.map((item) => (
-        <ImageListItem
-          key={item.img}
-          cols={item.cols || 1}
-          rows={item.rows || 1}
-        >
+        <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
           <img
             srcSet={srcset(item.img, 121, item.rows, item.cols)}
             alt={item.title}

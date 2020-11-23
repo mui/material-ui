@@ -86,13 +86,13 @@ function breakpoints(styleFunction) {
   return newStyleFunction;
 }
 
-function createEmptyBreakpointObject(breakpointsInput) {
-  const breakpointsInOrder = breakpointsInput.keys.reduce((acc, key) => {
+function createEmptyBreakpointObject(breakpointsInput = {}) {
+  const breakpointsInOrder = breakpointsInput?.keys?.reduce((acc, key) => {
     const breakpointStyleKey = breakpointsInput.up(key);
     acc[breakpointStyleKey] = {};
     return acc;
   }, {});
-  return breakpointsInOrder;
+  return breakpointsInOrder || {};
 }
 
 function removeUnusedBreakpoints(breakpointKeys, style) {

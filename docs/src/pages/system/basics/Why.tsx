@@ -14,7 +14,9 @@ export default function Why() {
       }}
     >
       <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
-      <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}>
+      <Box
+        sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}
+      >
         98.3 K
       </Box>
       <Box

@@ -65,10 +65,7 @@ export default function GoogleMaps() {
   const fetch = React.useMemo(
     () =>
       throttle(
-        (
-          request: { input: string },
-          callback: (results?: PlaceType[]) => void,
-        ) => {
+        (request: { input: string }, callback: (results?: PlaceType[]) => void) => {
           (autocompleteService.current as any).getPlacePredictions(
             request,
             callback,
@@ -139,14 +136,10 @@ export default function GoogleMaps() {
         <TextField {...params} label="Add a location" fullWidth />
       )}
       renderOption={(props, option) => {
-        const matches =
-          option.structured_formatting.main_text_matched_substrings;
+        const matches = option.structured_formatting.main_text_matched_substrings;
         const parts = parse(
           option.structured_formatting.main_text,
-          matches.map((match: any) => [
-            match.offset,
-            match.offset + match.length,
-          ]),
+          matches.map((match: any) => [match.offset, match.offset + match.length]),
         );
 
         return (

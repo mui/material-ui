@@ -20,9 +20,7 @@ const localeMap = {
 
 export default function LocalizedTimePicker() {
   const [locale, setLocale] = React.useState<keyof typeof localeMap>('ru');
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(
-    new Date(),
-  );
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   const selectLocale = (newLocale: any) => {
     setLocale(newLocale);

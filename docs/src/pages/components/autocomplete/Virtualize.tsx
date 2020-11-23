@@ -39,55 +39,56 @@ function useResetCache(data: any) {
 }
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef<HTMLDivElement>(
-  function ListboxComponent(props, ref) {
-    const { children, ...other } = props;
-    const itemData = React.Children.toArray(children);
-    const theme = useTheme();
-    const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
-      noSsr: true,
-    });
-    const itemCount = itemData.length;
-    const itemSize = smUp ? 36 : 48;
+const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxComponent(
+  props,
+  ref,
+) {
+  const { children, ...other } = props;
+  const itemData = React.Children.toArray(children);
+  const theme = useTheme();
+  const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
+    noSsr: true,
+  });
+  const itemCount = itemData.length;
+  const itemSize = smUp ? 36 : 48;
 
-    const getChildSize = (child: React.ReactNode) => {
-      if (React.isValidElement(child) && child.type === ListSubheader) {
-        return 48;
-      }
+  const getChildSize = (child: React.ReactNode) => {
+    if (React.isValidElement(child) && child.type === ListSubheader) {
+      return 48;
+    }
 
-      return itemSize;
-    };
+    return itemSize;
+  };
 
-    const getHeight = () => {
-      if (itemCount > 8) {
-        return 8 * itemSize;
-      }
-      return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
-    };
+  const getHeight = () => {
+    if (itemCount > 8) {
+      return 8 * itemSize;
+    }
+    return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
+  };
 
-    const gridRef = useResetCache(itemCount);
+  const gridRef = useResetCache(itemCount);
 
-    return (
-      <div ref={ref}>
-        <OuterElementContext.Provider value={other}>
-          <VariableSizeList
-            itemData={itemData}
-            height={getHeight() + 2 * LISTBOX_PADDING}
-            width="100%"
-            ref={gridRef}
-            outerElementType={OuterElementType}
-            innerElementType="ul"
-            itemSize={(index) => getChildSize(itemData[index])}
-            overscanCount={5}
-            itemCount={itemCount}
-          >
-            {renderRow}
-          </VariableSizeList>
-        </OuterElementContext.Provider>
-      </div>
-    );
-  },
-);
+  return (
+    <div ref={ref}>
+      <OuterElementContext.Provider value={other}>
+        <VariableSizeList
+          itemData={itemData}
+          height={getHeight() + 2 * LISTBOX_PADDING}
+          width="100%"
+          ref={gridRef}
+          outerElementType={OuterElementType}
+          innerElementType="ul"
+          itemSize={(index) => getChildSize(itemData[index])}
+          overscanCount={5}
+          itemCount={itemCount}
+        >
+          {renderRow}
+        </VariableSizeList>
+      </OuterElementContext.Provider>
+    </div>
+  );
+});
 
 function random(length: number) {
   const characters =
@@ -113,9 +114,7 @@ const useStyles = makeStyles({
 
 const OPTIONS = Array.from(new Array(10000))
   .map(() => random(10 + Math.ceil(Math.random() * 20)))
-  .sort((a: string, b: string) =>
-    a.toUpperCase().localeCompare(b.toUpperCase()),
-  );
+  .sort((a: string, b: string) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
 const renderGroup = (params: AutocompleteRenderGroupParams) => [
   <ListSubheader key={params.key} component="div">
@@ -134,9 +133,7 @@ export default function Virtualize() {
       disableListWrap
       classes={classes}
       ListboxComponent={
-        ListboxComponent as React.ComponentType<
-          React.HTMLAttributes<HTMLElement>
-        >
+        ListboxComponent as React.ComponentType<React.HTMLAttributes<HTMLElement>>
       }
       renderGroup={renderGroup}
       options={OPTIONS}

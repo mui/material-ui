@@ -29,12 +29,19 @@ export default function FontAwesomeIcon() {
 
   return (
     <div className={classes.root}>
-      <Icon className="fas fa-plus-circle" />
-      <Icon className="fas fa-plus-circle" color="primary" />
-      <Icon className="fas fa-plus-circle" color="secondary" />
-      <Icon className="fas fa-plus-circle" style={{ color: green[500] }} />
-      <Icon className="fas fa-plus-circle" fontSize="small" />
-      <Icon className="fas fa-plus-circle" style={{ fontSize: 30 }} />
+      <Icon baseClassName="fas" className="fa-plus-circle" />
+      <Icon baseClassName="fas" className="fa-plus-circle" color="primary" />
+      <Icon
+        baseClassName="fas"
+        className="fa-plus-circle"
+        style={{ color: green[500] }}
+      />
+      <Icon baseClassName="fas" className="fa-plus-circle" fontSize="small" />
+      <Icon
+        baseClassName="fas"
+        className="fa-plus-circle"
+        style={{ fontSize: 30 }}
+      />
     </div>
   );
 }

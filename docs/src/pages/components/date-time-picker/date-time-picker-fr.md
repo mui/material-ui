@@ -23,13 +23,13 @@ This component relies on the date management library of your choice. It supports
 Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
 
 ```jsx
-// or @material-ui/lab/dateAdapter/{dayjs,luxon,moment} or any valid date-io adapter
-import DateFnsAdapter from '@material-ui/lab/dateAdapter/date-fns';
+// or @material-ui/lab/Adapter{DayJS,Luxon,Moment} or any valid date-io adapter
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (
-    <LocalizationProvider dateAdapter={DateFnsAdapter}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       ...
     </LocalizationProvider>
   );

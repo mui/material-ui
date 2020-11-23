@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { loadCSS } from 'fg-loadcss';
-import {
-  ThemeProvider,
-  createMuiTheme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import MdPhone from '@material-ui/icons/Phone';
 import Chip from '@material-ui/core/Chip';

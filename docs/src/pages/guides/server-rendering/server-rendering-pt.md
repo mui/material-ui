@@ -92,7 +92,7 @@ Em seguida, obtemos o CSS das `folhas` usando `sheets.toString()`. As we are als
 ```js
 import createCache from '@emotion/cache';
 
-const cache = createCache();
+const cache = createCache({ key: 'css' });
 
 export default cache;
 ```
@@ -106,7 +106,7 @@ import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
-import createEmotionServer from 'create-emotion-server';
+import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
 import cache from './cache';
@@ -179,7 +179,7 @@ O lado do cliente é simples. Tudo o que precisamos fazer é remover o CSS gerad
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';
 import cache from './cache';

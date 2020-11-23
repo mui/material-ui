@@ -84,14 +84,13 @@ Once you have created a new JSS instance with the plugin, you need to make it av
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 // Create rtl cache
 const cacheRtl = createCache({
   key: 'muirtl',
   stylisPlugins: [rtlPlugin],
-  speedy: true,
 });
 
 function RTL(props) {

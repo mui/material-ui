@@ -17,9 +17,7 @@ export default function Locales() {
       >
         <Autocomplete
           options={Object.keys(locales)}
-          getOptionLabel={(key) =>
-            `${key.substring(0, 2)}-${key.substring(2, 4)}`
-          }
+          getOptionLabel={(key) => `${key.substring(0, 2)}-${key.substring(2, 4)}`}
           style={{ width: 300 }}
           value={locale}
           disableClearable

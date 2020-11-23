@@ -9,7 +9,7 @@ githubLabel: 'component: CssBaseline'
 
 Die Style-Funktion der [Palette](/system/palette/).
 
-## Global reset
+## Globaler Reset
 
 Möglicherweise kennen Sie [normalize.css](https://github.com/necolas/normalize.css), eine Sammlung von HTML-Element- und Attributstil-Normalisierungen.
 
@@ -29,7 +29,7 @@ export default function MyApp() {
 
 ## Scoping on children
 
-However, you might be progressively migrating a website to Material-UI, using a global reset might not be an option. It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
+Allerdings könnte es sein, dass Sie schrittweise eine Website auf Material-UI migrieren, weswegen die Verwendung eines globalen Resets möglicherweise keine Option ist. It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
 
 ```jsx
 import * as React from 'react';

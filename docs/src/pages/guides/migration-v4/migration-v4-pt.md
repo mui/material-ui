@@ -57,13 +57,13 @@ O pacote padrão agora suporta:
 
 Não há mais o suporte para o IE 11. Se você precisar do suporte para o IE 11, confira nosso [pacote legado](/guides/minimizing-bundle-size/#legacy-bundle).
 
-### Componentes de classe e non-ref-forwarding
+### Componentes de classe sem o encaminhamento de refs
 
-Support for non-ref-forwarding class components in the `component` prop or as immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React. StrictMode` then you don't need to do anything. Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate. This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
+O suporte para componentes de classe, sem o encaminhamento de refs, na propriedade `component` ou como um elemento `children` imediato foi removido. Se você estava usando `unstable_createStrictModeTheme` ou não recebeu quaisquer avisos relacionados a `findDOMNode` no `React. StrictMode`, então você não precisa fazer nada. Caso contrário, confira a seção ["Advertência com refs" em nosso guia de composição](/guides/composition/#caveat-with-refs) para descobrir como migrar. Esta alteração afeta quase todos os componentes no qual você está usando a propriedade `component` ou passando diretamente um  `children` para componentes que requerem `children` como elemento (ou seja, `<MenuList><CustomMenuItem /></MenuList>`)
 
 ### Tema
 
-- Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive). The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive). When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
+- Pontos de quebra agora são tratados como valores, em vez de intervalos. O comportamento de `down(key)` foi modificado para definir uma consulta de mídia menor do que o valor definido como ponto de quebra correspondente (de forma exclusiva). O `between(start, end)` também foi atualizado para definir uma consulta de mídia para os valores reais entre o início (de forma inclusiva) e fim (de forma exclusiva). Ao usar o utilitário de pontos de quebra `down()`, você precisa atualizar a chave de ponto de quebra em um passo. Ao usar o `between(start, end)`, o ponto de quebra de fim também deve ser atualizado em um passo. O mesmo deve ser feito ao usar o componente `Hidden`. Observe exemplos das definições de mudanças necessárias abaixo:
 
   ```diff
   -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
@@ -92,9 +92,9 @@ Support for non-ref-forwarding class components in the `component` prop or as im
   +theme.palette.augmentColor({ color: red, name: 'brand' });
   ```
 
-#### Upgrade helper
+#### Utilitário para atualização
 
-For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure.
+Para uma transição mais suave, o utilitário `adaptV4Theme` permite que você atualize de forma iterativa algumas das alterações do tema para a nova estrutura do tema.
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
@@ -107,11 +107,11 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 +}));
 ```
 
-The following changes are supported by the adapter.
+As seguintes alterações são aplicadas por este utilitário adaptador.
 
-#### Changes
+#### Alterações
 
-- The "gutters" abstraction hasn't proven to be used frequently enough to be valuable.
+- A abstração com a função "gutters" não provou ser utilizada com frequência suficiente para ser valiosa.
 
   ```diff
   -theme.mixins.gutters(),
@@ -123,21 +123,21 @@ The following changes are supported by the adapter.
   +},
   ```
 
-- `theme.spacing` now returns single values with px units by default. This change improves the integration with styled-components & emotion.
+- `theme.spacing` agora retorna valores únicos com a unidade px por padrão. Esta alteração melhora a integração com styled-components & emotion.
 
-  Before:
+  Antes:
 
   ```js
   theme.spacing(2) => 16
   ```
 
-  After:
+  Depois:
 
   ```js
   theme.spacing(2) => '16px'
   ```
 
-- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
+- O `theme.palette.type` foi renomeado para `theme.palette.mode`, para melhor seguir o termo "modo escuro",  que é geralmente usado para descrever este recurso.
 
   ```diff
   import { createMuiTheme } from '@material-ui/core/styles';
@@ -145,7 +145,7 @@ The following changes are supported by the adapter.
   +const theme = createMuiTheme({palette: { mode: 'dark' }}),
   ```
 
-- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed. If you depend on it, you can add it back:
+- A chave `theme.palette.text.hint` não era usada em componentes do Material-UI e foi removida. Se você depende dela, você pode adicioná-la de volta:
 
   ```diff
   import { createMuiTheme } from '@material-ui/core/styles';
@@ -156,7 +156,7 @@ The following changes are supported by the adapter.
   +});
   ```
 
-- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
+- As definições dos componentes dentro do tema foi reestruturada sob a chave  `components`, para permitir que as pessoas possam descobrir de uma maneira facilitada as definições sobre um componente.
 
 1. `props`
 
@@ -202,7 +202,7 @@ const theme = createMuiTheme({
 
 ### Estilos
 
-- Renamed `fade` to `alpha` to better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
+- Renomeado `fade` para `alpha` para descrever melhor a sua funcionalidade. O nome anterior estava gerando confusão quando a cor de entrada já tinha um valor alfa. O utilitário **sobrescreve** o valor alfa da cor.
 
 ```diff
 - import { fade } from '@material-ui/core/styles';
@@ -214,9 +214,9 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
-### Uma barra de aplicativos proeminente.
+### AppBar
 
-- [AppBar] Remove z-index when position static and relative
+- [AppBar] Remova z-index quando a posição for estática e relativa
 
 ### Alerta
 
@@ -229,6 +229,8 @@ const classes = makeStyles(theme => ({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 ### Autocompletar
 
 - Mova o componente do lab para o core. O componente agora é estável.
@@ -240,8 +242,10 @@ const classes = makeStyles(theme => ({
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
 
-- Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
-- `renderOption` should now return the full DOM structure of the option. It makes customizations easier. You can recover from the change with:
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
+- Remova a propriedade `debug`. Existem algumas alternativas mais simples: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), ou React devtools prop setter.
+- `renderOption` deve agora retornar uma estrutura completa do DOM da opção. Isso torna as customizações mais fáceis. Você pode aplicar a alteração com:
 
   ```diff
   <Autocomplete
@@ -262,9 +266,16 @@ const classes = makeStyles(theme => ({
   />
   ```
 
+- Rename `closeIcon` prop with `clearIcon` to avoid confusion.
+
+  ```diff
+  -<Autocomplete closeIcon={defaultClearIcon} />
+  +<Autocomplete clearIcon={defaultClearIcon} />
+  ```
+
 ### Avatar
 
-- Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Renomeie `circle` para `circular` para obter consistência. Os valores possíveis devem ser adjetivos e não substantivos:
 
   ```diff
   -<Avatar variant="circle">
@@ -273,7 +284,7 @@ const classes = makeStyles(theme => ({
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
-- Move the AvatarGroup from the lab to the core.
+- Mova o componente AvatarGroup do lab para o core.
 
   ```diff
   -import AvatarGroup from '@material-ui/lab/AvatarGroup';
@@ -282,7 +293,7 @@ const classes = makeStyles(theme => ({
 
 ### Badge
 
-- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- Renomeie `circle` para `circular` e `rectangle` para`rectangular` para obter consistência. Os valores possíveis devem ser adjetivos e não substantivos:
 
   ```diff
   -<Badge overlap="circle">
@@ -309,28 +320,27 @@ const classes = makeStyles(theme => ({
 
 ### BottomNavigation
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`.
+- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
 
   ```diff
   -<BottomNavigation onChange={(event: React. ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React. SyntheticEvent) => {}} />
   ```
 
+### Box
 
-  ###  Box
-
-- The system props have been deprecated in v5, and replaced with the `sx` prop.
+- As propriedades de sistema foram descontinuadas na v5, e substituídas pela propriedade `sx`.
 
 ```diff
 -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
 +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
 ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
+[Este codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) atualizará automaticamente seu código para a nova sintaxe.
 
 ### Button
 
-- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
+- A propriedade  `color` do botão agora é "primary" por padrão, e "default" foi removido. Isto torna o botão mais próximo da especificação do Material Design e simplifica a API.
 
   ```diff
   -<Button color="primary" />
@@ -339,9 +349,9 @@ const classes = makeStyles(theme => ({
   +<Button />
   ```
 
-### Conjunto de progressos
+### CircularProgress
 
-- The `static` variant has been merged into the `determinate` variant, with the latter assuming the appearance of the former. The removed variant was rarely useful. It was an exception to Material Design, and was removed from the specification.
+- A variante `static` foi mesclada na variante `determinate`, assumindo a última a aparência da primeira. A variante removida raramente foi útil. Era uma exceção para Material Design, e foi removida da especificação.
 
   ```diff
   -<CircularProgress variant="determinate" />
@@ -352,11 +362,11 @@ const classes = makeStyles(theme => ({
   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
   ```
 
-> NB: If you had previously customized determinate, your customizations are probably no longer valid. Please remove them.
+> NB: Se você já tinha customizado como "determinate", suas customizações provavelmente não são mais válidas. Por favor, remova-as.
 
 ### Collapse
 
-- The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
+- A propriedade `collapsedHeight` foi renomeada para `collapsedSize` para dar suporte para a direção horizontal.
 
   ```diff
   -<Collapse collapsedHeight={40}>
@@ -390,6 +400,20 @@ const classes = makeStyles(theme => ({
   +    onExited,
   +    onExiting,
   +  }}
+  />
+  ```
+
+- Remove the `disableBackdropClick` prop because redundant. Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
+
+  ```diff
+  <Dialog
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
   />
   ```
 
@@ -461,7 +485,7 @@ const classes = makeStyles(theme => ({
   +</Accordion>
   ```
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`.
+- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
 
   ```diff
   -<Accordion onChange={(event: React. ChangeEvent<{}>, expanded: boolean) => {}} />
@@ -484,7 +508,7 @@ const classes = makeStyles(theme => ({
 
 ### Fab
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Rename `round` to `circular` for consistency. Os valores possíveis devem ser adjetivos e não substantivos:
 
   ```diff
   -<Fab variant="round">
@@ -566,6 +590,33 @@ const classes = makeStyles(theme => ({
 
 ### Modal
 
+- Remove the `disableBackdropClick` prop because redundant. Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
+
+  ```diff
+  <Modal
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
+  />
+  ```
+
+- Remove the `onEscapeKeyDown` prop because redundant. Use `onClose` with `reason === "escapeKeyDown"` instead.
+
+  ```diff
+  <Modal
+  - onEscapeKeyDown={handleEscapeKeyDown}
+  + onClose={(event, reason) => {
+  +   if (reason === 'escapeKeyDown') {
+  +     handleEscapeKeyDown(event);
+  +   }
+  + }}
+  />
+  ```
+
 - Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
 ### Paginação
@@ -581,7 +632,9 @@ const classes = makeStyles(theme => ({
   +import usePagination from '@material-ui/core/usePagination';
   ```
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
+- Rename `round` to `circular` for consistency. Os valores possíveis devem ser adjetivos e não substantivos:
 
   ```diff
   -<Pagination shape="round">
@@ -651,6 +704,8 @@ const classes = makeStyles(theme => ({
   +import Rating from '@material-ui/core/Rating';
   ```
 
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 - Change the default empty icon to improve accessibility. If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
 
   ```diff
@@ -694,7 +749,9 @@ const classes = makeStyles(theme => ({
   ```
 
 
-- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns: 
+You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
+- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. Os valores possíveis devem ser adjetivos e não substantivos: 
   
   
 
@@ -712,12 +769,33 @@ const classes = makeStyles(theme => ({
 
 ### Slider
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`. 
+- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`. 
+  
   
 
   ```diff
   -<Slider onChange={(event: React. ChangeEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React. SyntheticEvent, value: unknown) => {}} />
+  ```
+
+
+- The `ValueLabelComponent` prop is now part of the `components` prop. 
+  
+  
+
+  ```diff
+  -<Slider ValueLabelComponent={CustomValueLabel} />
+  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  ```
+
+
+- The `ThumbComponent` prop is not part of the `components` prop. 
+  
+  
+
+  ```diff
+  -<Slider ThumbComponent={CustomThumb} />
+  +<Slider components={{ Thumb: CustomThumb }} />
   ```
 
 
@@ -765,6 +843,7 @@ const classes = makeStyles(theme => ({
 
 - Mova o componente do lab para o core. O componente agora é estável. 
   
+  
 
   ```diff
   -import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -775,6 +854,8 @@ const classes = makeStyles(theme => ({
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
 
+
+You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 
 
@@ -851,7 +932,7 @@ const classes = makeStyles(theme => ({
 
 ### Abas
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`. 
+- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`. 
   
   
 
@@ -881,15 +962,18 @@ const classes = makeStyles(theme => ({
 
 ### TextField
 
-- Better isolate the fixed textarea height behavior to the dynamic one. You need to use the `minRows` prop in the following case: 
-  
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines. 
   
 
   ```diff
-  -<TextField rows={2} maxRows={5} />
-  +<TextField minRows={2} maxRows={5} />
+  -<TextField value="Standard" />
+  -<TextField value="Outlined" variant="outlined" />
+  +<TextField value="Standard" variant="standard" />
+  +<TextField value="Outlined" />
   ```
 
+
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes. 
   
@@ -898,6 +982,16 @@ const classes = makeStyles(theme => ({
   ```diff
   -<TextField rowsMax={6}>
   +<TextField maxRows={6}>
+  ```
+
+
+- Better isolate the fixed textarea height behavior to the dynamic one. You need to use the `minRows` prop in the following case: 
+  
+  
+
+  ```diff
+  -<TextField rows={2} maxRows={5} />
+  +<TextField minRows={2} maxRows={5} />
   ```
 
 
@@ -962,6 +1056,7 @@ const classes = makeStyles(theme => ({
 
 - Mova o componente do lab para o core. O componente agora é estável. 
   
+  
 
   ```diff
   -import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -970,6 +1065,8 @@ const classes = makeStyles(theme => ({
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
+
+You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 
 

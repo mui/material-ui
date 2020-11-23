@@ -39,11 +39,7 @@ export default function UploadButtons() {
         type="file"
       />
       <label htmlFor="icon-button-file">
-        <IconButton
-          color="primary"
-          aria-label="upload picture"
-          component="span"
-        >
+        <IconButton color="primary" aria-label="upload picture" component="span">
           <PhotoCamera />
         </IconButton>
       </label>

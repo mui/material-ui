@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-alpha.16",
+  "version": "5.0.0-alpha.17",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=test babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -49,7 +49,7 @@
     "test:umd": "node packages/material-ui/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
     "test:watch": "yarn test:unit --watch",
-    "typescript": "lerna run typescript --parallel"
+    "typescript": "lerna run --no-bail --parallel typescript"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -78,7 +78,7 @@
     "@types/lodash": "^4.14.138",
     "@types/mocha": "^8.0.0",
     "@types/prettier": "^2.0.0",
-    "@types/react": "^16.9.44",
+    "@types/react": "^17.0.0",
     "@types/sinon": "^9.0.0",
     "@types/webpack": "^4.41.22",
     "@types/yargs": "^15.0.5",
@@ -185,6 +185,8 @@
     "**/@babel/preset-typescript": "^7.10.4",
     "**/@babel/runtime": "^7.10.2",
     "**/@babel/types": "^7.10.2",
+    "**/@types/react": "^17.0.0",
+    "**/@types/react-dom": "^17.0.0",
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
     "**/react-is": "^16.13.1",

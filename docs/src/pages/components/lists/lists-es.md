@@ -83,7 +83,7 @@ El switch es la acción secundaria y un objetivo separado.
 
 Al desplazarse, los subencabezados permanecen anclados en la parte superior de la pantalla hasta que el siguiente subencabezado los saque de la pantalla.
 
-Esta característica se basa en el posicionamiento sticky de CSS. Desafortunadamente,  [no está implementado](https://caniuse.com/#search=sticky) por todos los navegadores compatibles. El valor por defecto soportado es  `disableSticky` cuando el navegador no provee el soporte.
+Esta característica se basa en el posicionamiento sticky de CSS. Desafortunadamente, [no está implementado](https://caniuse.com/#search=sticky) por todos los navegadores compatibles. El valor por defecto soportado es `disableSticky` cuando el navegador no provee el soporte.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
@@ -99,7 +99,7 @@ When rendering a list within a component that defines its own gutters, `ListItem
 
 ## Virtualización de listas
 
-En el siguiente ejemplo se demuestra como usar  [react-window](https://github.com/bvaughn/react-window) con el componente `List`. Renderiza 200 filas y puede manejar más con facilidad. La virtualización ayuda con problemas de rendimiento.
+En el siguiente ejemplo se demuestra como usar [react-window](https://github.com/bvaughn/react-window) con el componente `List`. Renderiza 200 filas y puede manejar más con facilidad. La virtualización ayuda con problemas de rendimiento.
 
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 

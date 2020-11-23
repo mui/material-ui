@@ -38,9 +38,7 @@ export default function InteractiveGrid() {
   const [justifyContent, setJustifyContent] = React.useState<GridJustification>(
     'center',
   );
-  const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>(
-    'center',
-  );
+  const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>('center');
 
   const jsx = `
 <Grid
@@ -94,11 +92,7 @@ export default function InteractiveGrid() {
                     );
                   }}
                 >
-                  <FormControlLabel
-                    value="row"
-                    control={<Radio />}
-                    label="row"
-                  />
+                  <FormControlLabel value="row" control={<Radio />} label="row" />
                   <FormControlLabel
                     value="row-reverse"
                     control={<Radio />}
@@ -127,8 +121,7 @@ export default function InteractiveGrid() {
                   value={justifyContent}
                   onChange={(event) => {
                     setJustifyContent(
-                      (event.target as HTMLInputElement)
-                        .value as GridJustification,
+                      (event.target as HTMLInputElement).value as GridJustification,
                     );
                   }}
                 >
@@ -175,8 +168,7 @@ export default function InteractiveGrid() {
                   value={alignItems}
                   onChange={(event) => {
                     setAlignItems(
-                      (event.target as HTMLInputElement)
-                        .value as GridItemsAlignment,
+                      (event.target as HTMLInputElement).value as GridItemsAlignment,
                     );
                   }}
                 >

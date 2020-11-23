@@ -9,20 +9,20 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 <p class="description">Le composant modal fournit une base solide pour la création de boîtes de dialogue, de popovers, de lightboxes ou autres.</p>
 
-Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. The `Modal` offers important features:
+Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. La `Modal` offre d'importantes fonctionnalités :
 
-- 💄 Manages modal stacking when one-at-a-time just isn't enough.
-- 🔐 Creates a backdrop, for disabling interaction below the modal.
-- 🔐 It disables scrolling of the page content while open.
-- ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
-- ♿️ Adds the appropriate ARIA roles automatically.
+- 💄 Gère la superposition de modales.
+- 🔐 Crée un backdrop, pour désactiver les interactions sous la modale.
+- 🔐 Désactive le scroll de la page quand elle est ouverte.
+- ♿️ Gère proprement le focus ;  assure l'accessibilité au contenu de la modale jusqu'à sa fermeture.
+- ♿ Ajoute automatiquement les rôles ARIA appropriés.
 - 📦 [5 kB gzippé](/size-snapshot).
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 > **Note de terminologie**. Le terme "modal" est parfois utilisé pour signifier "dialogue", mais c'est un terme impropre. Un élément est considéré modal si [il bloque l'interaction avec le reste de l'application](https://en.wikipedia.org/wiki/Modal_window). A modal window describes parts of a UI.
 
-If you are creating a modal dialog, you probably want to use the [Dialog](/components/dialogs/) component rather than directly using Modal. Modal est un élément de construction de niveau faible exploitée par les composants suivants :
+Si vous créez une boîte de dialogue modale, vous voudrez probablement utiliser le composant [Dialog](/components/dialogs/) plutôt que d'utiliser directement Modal. Modal est un élément de construction de niveau faible exploitée par les composants suivants :
 
 - [Dialog](/components/dialogs/)
 - [Drawer (Tiroir)](/components/drawers/)
@@ -33,22 +33,22 @@ If you are creating a modal dialog, you probably want to use the [Dialog](/compo
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
-Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
+Notez que vous pouvez désactiver le contour (souvent bleu ou or) avec la propriété `outline : 0` CSS .
 
 ## Les transitions
 
-The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
+L'état ouvert/fermé de la modale peut être animé avec un composant de transition. Ce composant doit respecter les conditions suivantes :
 
-- Be a direct child descendent of the modal.
-- Have an `in` prop. This corresponds to the open / close state.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+- Être un enfant descendant direct du modal.
+- Avoir la propriété `in`. Correspond à l'état ouvert/fermé.
+- Appeler la propriété de callback `onEnter` lorsque la transition d'entrée démarre.
+- Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée. Ces deux fonctions de callback permettent à la modale de retirer le contenu enfant lorsqu'elle est fermée et que la transition est terminée.
 
-Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
+Modal a un support intégré pour [react-transition-group](https://github.com/reactjs/react-transition-group).
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
-Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+Alternativement, vous pouvez utiliser [react-spring](https://github.com/react-spring/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
@@ -64,7 +64,7 @@ The content of modal is unmounted when closed. If you need to make the content a
 
 Se n'est tout de même pas une solution miracle. Soyez sure de d'abord identifier les goulot d'étranglement et ensuite de considérer ses stratégies d'optimisation.
 
-## Server-side modal
+## Modal côté serveur
 
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 

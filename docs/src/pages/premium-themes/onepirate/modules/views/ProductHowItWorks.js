@@ -94,8 +94,8 @@ function ProductHowItWorks(props) {
                   className={classes.image}
                 />
                 <Typography variant="h5" align="center">
-                  First come, first served. Our offers are in limited
-                  quantities, so be quick.
+                  First come, first served. Our offers are in limited quantities, so
+                  be quick.
                 </Typography>
               </div>
             </Grid>

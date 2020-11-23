@@ -57,8 +57,7 @@ const useContentStyles = makeStyles((theme) => ({
     '$root$selected:hover &': {
       backgroundColor: alpha(
         theme.palette.primary.main,
-        theme.palette.action.selectedOpacity +
-          theme.palette.action.hoverOpacity,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
       ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -71,8 +70,7 @@ const useContentStyles = makeStyles((theme) => ({
     '$root$selected$focused &': {
       backgroundColor: alpha(
         theme.palette.primary.main,
-        theme.palette.action.selectedOpacity +
-          theme.palette.action.focusOpacity,
+        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
       ),
     },
   },
