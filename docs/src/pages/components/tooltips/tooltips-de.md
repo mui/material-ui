@@ -92,17 +92,7 @@ Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerintera
 ```jsx
 <Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'A disabled button'}
-    </button>
-  </span>
-</Tooltip> { pointerEvents: 'none' } : {}}
-    >
-      {'A disabled button'}
-    </button>
-  </span>
-</Tooltip> { pointerEvents: 'none' } : {}}
-    >
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
       A disabled button
     </button>
   </span>
