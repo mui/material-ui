@@ -102,10 +102,11 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
 
   if (process.env.NODE_ENV !== 'production') {
     // Exposed for test purposes.
-    WithStyles.Naked = Component;
     WithStyles.options = options;
-    WithStyles.useStyles = useStyles;
+    WithStyles.Naked = Component;
   }
+  // TODO: how to get classes in prod?
+  WithStyles.useStyles = useStyles;
 
   return WithStyles;
 };

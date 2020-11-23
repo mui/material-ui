@@ -66,6 +66,11 @@ module.exports = function setKarmaConfig(config) {
     webpack: {
       mode: 'development',
       devtool: 'inline-source-map',
+      optimization: {
+        // Helps debugging and build perf.
+        // Bundle size is irrelevant for local serving.
+        minimize: false,
+      },
       plugins: [
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify('test'),
