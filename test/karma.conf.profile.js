@@ -76,7 +76,7 @@ module.exports = function setKarmaConfig(config) {
           'process.env.NODE_ENV': JSON.stringify('test'),
           'process.env.CI': JSON.stringify(process.env.CI),
           'process.env.KARMA': JSON.stringify(true),
-          'process.env.TEST_GATE': JSON.stringify(process.env.TEST_GATE),
+          'process.env.TEST_GATE': JSON.stringify('enable-dispatching-profiler'),
         }),
       ],
       module: {
