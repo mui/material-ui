@@ -1,5 +1,153 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.17
+
+###### _Nov 23 2020_
+
+Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 📚 Improve the IntelliSense support for the `sx` prop (#23599) @mnajdova.
+  You should now get a description for each property of the system. For instance with `mx`:
+
+  ![system TypeScript](https://user-images.githubusercontent.com/3165635/99920493-20f60a00-2d24-11eb-8748-c5dd7fe85cbd.png)
+
+- 💅 Migrate the first core component to the v5 styling architecture (#23308) @mnajdova.
+  We have spent the last few months iterating on the new styling approach in the lab, and are confident enough in the new approach to move it to the core, so we have migrated the Slider. We will wait a week or two to collect feedback on it, before scaling it to the rest of the codebase.
+- 📅 Fix the first few issues on the date picker components since the migration in the lab.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.17`
+
+#### Breaking changes
+
+- [Autocomplete] Rename `closeIcon` prop with `clearIcon` to avoid confusion (#23617) @akhilmhdh.
+
+  ```diff
+  -<Autocomplete closeIcon={icon} />
+  +<Autocomplete clearIcon={icon} />
+  ```
+
+- [Dialog] Remove the `disableBackdropClick` prop. It's redundant with the `reason` argument (#23607) @eps1lon.
+
+  ```diff
+  <Dialog
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
+  />
+  ```
+
+- [Modal] Remove the `disableBackdropClick` prop. It's redundant with the `reason` argument (#23607) @eps1lon.
+
+  ```diff
+  <Modal
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
+  />
+  ```
+
+- [Modal] Remove the `onEscapeKeyDown` prop. It's redundant with the `reason` argument. (#23571) @eps1lon
+
+  ```diff
+  <Modal
+  -  onEscapeKeyDown={handleEscapeKeyDown}
+  +  onClose={(event, reason) => {
+  +    if (reason === "escapeKeyDown") {
+  +      handleEscapeKeyDown(event);
+  +    }
+  +  }}
+  />;
+  ```
+
+#### Changes
+
+- [CircularProgress][linearprogress] Change components from div to span (#23587) @bruno-azzi
+- [Grid] Improve warning when a prop is missing (#23630) @udayRedI
+- [Icon] Allow customizing the 'material-icons' base class name (#23613) @rart
+- [Select] Fix focus() call on ref (#23302) @reedanders
+- [Slider] Add test case for triggering a specific value (#23642) @Thehambalamba
+- [Slider] Replace core Slider with SliderStyled (#23308) @mnajdova
+- [Slider] General cleanup and add classes prop for unstyled (#23569) @mnajdova
+- [styles] Add support for TypeScript 4.1 (#23633) @eps1lon
+
+### `@material-ui/codemod@v5.0.0-alpha.17`
+
+- [codemod] Add moved-lab-modules (#23588) @eps1lon
+  This codemod is part of our effort to make the migration from v4 to v5 as painless as possible.
+
+### `@material-ui/utils@v5.0.0-alpha.17`
+
+- [Grid] Improve warning when a prop is missing (#23630) @udayRedI
+
+### `@material-ui/system@v5.0.0-alpha.17`
+
+- [system] Improve the `sx` prop IntelliSense (#23599) @mnajdova
+
+### `@material-ui/unstyled@v5.0.0-alpha.17`
+
+- [Slider] Replace core Slider with SliderStyled (#23308) @mnajdova
+
+### `@material-ui/lab@v5.0.0-alpha.17`
+
+#### Breaking changes
+
+- [DatePicker] Change the import path of the date adapters (#23568) @eps1lon.
+  It better fits with the current import convention.
+
+  ```diff
+  -import AdapterDateFns from '@material-ui/lab/dateAdapter/date-fns';
+  +import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+  ```
+
+#### Changes
+
+- [DatePicker] Add missing exports (#23621) @havgry
+- [DatePicker] Add missing TypeScript definitions (#23560) @mbrookes
+- [DatePicker] Fix false-positive when validating mask in Safari (#23602) @eps1lon
+- [DatePicker] Fix missing manifest for typescript packages (#23564) @eps1lon
+- [TimePicker] Prevent scroll when interacting with the clock (#23563) @knightss27
+
+### Docs
+
+- [docs] Add advanced page for the system (#23596) @mnajdova
+- [docs] Add docs for typography in system (#23510) @oliviertassinari
+- [docs] API pages i18n (#23214) @mbrookes
+- [docs] Create pickers migration guide (#23605) @dmtrKovalenko
+- [docs] Enable TS language service for docs/src (#23576) @eps1lon
+- [docs] Explain the information listed on the system properties page (#23566) @mnajdova
+- [docs] Fix /api client-side routing (#23586) @eps1lon
+- [docs] Fix the Box section title on migration-v4 guide (#23679) @claudioldf
+- [docs] Generate default values for docs from the unstyled components (#23614) @mnajdova
+- [docs] Increase printWidth from 80 to 85(#23512) @eps1lon
+- [docs] Prevent layout jumps from img loading in system demo (#23504) @eps1lon
+- [docs] Remove controlled Tooltip example in Slider (#23625) @micsidoruk
+- [docs] Remove dead demos in the system basics page (#23565) @mnajdova
+- [docs] Replace emotion-server packages with @emotion/server (#23557) @numToStr
+- [docs] Sync translations (#23648) @l10nbot
+
+### Core
+
+- [core] Add support for TypeScript 4.1 (#23633) @eps1lon
+- [core] Batch small changes (#23554) @oliviertassinari
+- [core] Cleanup emotion dependencies (#23556) @eps1lon
+- [core] Fix formatting (#23567) @eps1lon
+- [core] Fix tracked component size regression (#23516) @eps1lon
+- [core] Fix transpilation target of UMD bundle (#23618) @eps1lon
+- [test] Create chunks for Argos (#23518) @oliviertassinari
+- [test] Debug argos-cli upload failures (#23623) @eps1lon
+- [test] Enable experimental-timezone tests (#23595) @eps1lon
+- [test] Misc visual regression flakiness improvements (#23619) @eps1lon
+- [test] Use playwright instead of vrtest (#23500) @eps1lon
+
 ## 5.0.0-alpha.16
 
 ###### _Nov 14 2020_
