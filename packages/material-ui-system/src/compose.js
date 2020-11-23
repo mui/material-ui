@@ -1,16 +1,9 @@
 import merge from './merge';
+import style from './style';
 
 function compose(...styles) {
-  const fn = (props) =>
-    styles.reduce((acc, style) => {
-      const output = style(props);
-
-      if (output) {
-        return merge(acc, output);
-      }
-
-      return acc;
-    }, {});
+  const configs = styles.reduce((acc, style) => ({...acc, ...style.config}), {});
+  const fn = style(configs);
 
   // Alternative approach that doesn't yield any performance gain.
   // const handlers = styles.reduce((acc, style) => {
@@ -30,13 +23,6 @@ function compose(...styles) {
   //     return acc;
   //   }, {});
   // };
-
-  fn.propTypes =
-    process.env.NODE_ENV !== 'production'
-      ? styles.reduce((acc, style) => Object.assign(acc, style.propTypes), {})
-      : {};
-
-  fn.filterProps = styles.reduce((acc, style) => acc.concat(style.filterProps), []);
 
   return fn;
 }

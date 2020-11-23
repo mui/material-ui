@@ -9,54 +9,76 @@ function getPath(obj, path) {
   return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
 }
 
-function style(options) {
-  const { prop, cssProperty = options.prop, themeKey, transform } = options;
+function style(inputOptions) {
+  let config;
 
-  const fn = (props) => {
-    if (props[prop] == null) {
-      return null;
+  if(inputOptions.prop) {
+    config = {
+      [inputOptions.prop]: inputOptions
     }
+  } else {
+    config = inputOptions;
+  }
+  
+  const fn = (props) => {
+    const result = {};
 
-    const propValue = props[prop];
-    const theme = props.theme;
-    const themeMapping = getPath(theme, themeKey) || {};
-    const styleFromPropValue = (propValueFinal) => {
-      let value;
+    Object.keys(config).forEach(key => {
+      const options = config[key];
+      const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
-      if (typeof themeMapping === 'function') {
-        value = themeMapping(propValueFinal);
-      } else if (Array.isArray(themeMapping)) {
-        value = themeMapping[propValueFinal] || propValueFinal;
-      } else {
-        value = getPath(themeMapping, propValueFinal) || propValueFinal;
+      if (props[prop] == null) {
+        return null;
+      }
 
-        if (transform) {
-          value = transform(value);
+      const propValue = props[prop];
+      const theme = props.theme;
+      const themeMapping = getPath(theme, themeKey) || {};
+      const styleFromPropValue = (propValueFinal) => {
+        let value;
+
+        if (typeof themeMapping === 'function') {
+          value = themeMapping(propValueFinal);
+        } else if (Array.isArray(themeMapping)) {
+          value = themeMapping[propValueFinal] || propValueFinal;
+        } else {
+          value = getPath(themeMapping, propValueFinal) || propValueFinal;
+
+          if (transform) {
+            value = transform(value);
+          }
         }
-      }
 
-      if (cssProperty === false) {
-        return value;
-      }
+        if (cssProperty === false) {
+          return value;
+        }
 
-      return {
-        [cssProperty]: value,
+        return {
+          [cssProperty]: value,
+        };
       };
-    };
 
-    return typeof propValue === 'object' || Array.isArray(propValue)
-      ? handleBreakpoints(props, propValue, styleFromPropValue)
-      : styleFromPropValue(propValue);
+      const res = typeof propValue === 'object' || Array.isArray(propValue)
+        ? handleBreakpoints(props, propValue, styleFromPropValue)
+        : styleFromPropValue(propValue);
+
+      if (res) {
+        Object.keys(res).forEach(key => {
+          result[key] = res[key];
+        })
+      }
+    });
+
+    return result;
   };
 
   fn.propTypes =
     process.env.NODE_ENV !== 'production'
-      ? {
-          [prop]: responsivePropType,
-        }
+      ? Object.keys(config).reduce((acc, o) => acc[o] = responsivePropType,{})
       : {};
 
-  fn.filterProps = [prop];
+  fn.filterProps = Object.keys(config);
+  fn.config = config;
 
   return fn;
 }
