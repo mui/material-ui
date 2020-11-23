@@ -225,8 +225,6 @@ const MyInputComponent = React.forwardRef((props, ref) => {
   <Input id="my-input" aria-describedby="my-helper-text" />
   <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
 </FormControl>
-  </FormHelperText>
-</FormControl>
 ```
 
 ## 補完プロジェクト
