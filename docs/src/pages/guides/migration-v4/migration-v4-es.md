@@ -327,7 +327,7 @@ const classes = makeStyles(theme => ({
   +<BottomNavigation onChange={(event: React. SyntheticEvent) => {}} />
   ```
 
-###  Box
+### Cuadro
 
 - The system props have been deprecated in v5, and replaced with the `sx` prop.
 
