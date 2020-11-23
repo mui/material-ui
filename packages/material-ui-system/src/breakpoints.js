@@ -19,12 +19,15 @@ const defaultBreakpoints = {
   up: (key) => `@media (min-width:${values[key]}px)`,
 };
 
-function containsBreakpoint(styleObject, breakpoints) {
-  const matchValues = breakpoints.values || values;
-  for (const breakpoint in Object.keys(matchValues)) {
-    if (styleObject[breakpoint]) return true;
-  }
-  return false;
+function containsBreakpoint(styleObject, themeBreakpoints) {
+  const matchValues = themeBreakpoints.values || values;
+  let result = false;
+
+  Object.keys(matchValues).forEach(breakpoint => {
+    if (styleObject[breakpoint]) result = true;
+  });
+
+  return result;
 }
 
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
@@ -60,9 +63,9 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
         }
         return acc;
       }, {});
-    } else {
-      return propValue;
     }
+    
+    return propValue;
   }
 
   const output = styleFromPropValue(propValue);
