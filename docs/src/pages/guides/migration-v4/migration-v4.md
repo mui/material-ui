@@ -360,6 +360,13 @@ const classes = makeStyles(theme => ({
 +<Box sx={{ borderRadius: 1 }}>
 ```
 
+- Renamed `createUnarySpacing` to `createUnaryUnit`. All props of the new function defaults to the values necessary for it to behave identically as `createUnarySpacing`.
+
+```diff
+-createUnarySpacing(theme)
++createUnaryUnit(theme)
+```
+
 ### Button
 
 - The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
