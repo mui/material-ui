@@ -85,10 +85,6 @@ module.exports = function setKarmaConfig(config) {
           // https://github.com/sinonjs/sinon/issues/1951
           // use the cdn main field. Neither module nor main are supported for browserbuilds
           sinon: 'sinon/pkg/sinon.js',
-          // https://github.com/testing-library/react-testing-library/issues/486
-          // "default" bundles are not browser compatible
-          '@testing-library/react/pure':
-            '@testing-library/react/dist/@testing-library/react.pure.esm',
         },
         extensions: ['.js', '.ts', '.tsx'],
       },
