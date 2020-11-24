@@ -66,7 +66,7 @@ export const borderRadius = (props) => {
   const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
 
   return Object.keys(props)
-    .map((prop) => resolveCssProperty(props, ['borderRadius'], prop, transformer))
+    .map((prop) => resolveCssProperty(props, prop, transformer))
     .reduce(merge, {});
 }
 
