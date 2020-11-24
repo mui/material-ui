@@ -261,7 +261,14 @@ export function createClientRender(globalOptions = {}) {
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
 
-  before(() => {
+  /**
+   * Flag whether `createClientRender` was called in a suite i.e. describe() block.
+   * For legacy reasons `createClientRender` might accidentally be called in a before(Each) hook.
+   */
+  let wasCalledInSuite = false;
+  before(function beforeHook() {
+    wasCalledInSuite = true;
+
     if (enableDispatchingProfiler) {
       // TODO windows?
       const filename = new Error().stack
@@ -301,6 +308,14 @@ export function createClientRender(globalOptions = {}) {
 
   let profiler = null;
   beforeEach(function beforeEachHook() {
+    if (!wasCalledInSuite) {
+      const error = new Error(
+        'Unable to run `before` hook for `createClientRender`. This usually indicates that `createClientRender` was called in a `before` hook instead of in a `describe()` block.',
+      );
+      error.stack = createClientRenderStack;
+      throw error;
+    }
+
     const test = this.currentTest;
     if (test === undefined) {
       throw new Error(
@@ -310,7 +325,7 @@ export function createClientRender(globalOptions = {}) {
     profiler = new Profiler(this.currentTest);
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     if (setTimeout.hasOwnProperty('clock')) {
       const error = Error(
         "Can't cleanup before fake timers are restored.\n" +
