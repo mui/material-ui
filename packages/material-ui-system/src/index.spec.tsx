@@ -1,6 +1,6 @@
 import {
   compose,
-  styleFunctionSx,
+  css,
   palette,
   StyleFunction,
   spacing,
@@ -27,41 +27,41 @@ function composeTest() {
   styler({ color: 'test', spacing: 1 });
 }
 
-function sxTest() {
+function cssTest() {
   function styleFunction(props: { color?: string; spacing?: number; theme?: object }) {
     return {};
   }
 
-  const wideOrNarrowStyleFunction = styleFunctionSx(styleFunction);
+  const wideOrNarrowStyleFunction = css(styleFunction);
 
   // narrow
-  wideOrNarrowStyleFunction({ theme: {}, sx: { color: 'blue', spacing: 2 } });
-  // wide
-  wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2 });
+  wideOrNarrowStyleFunction({ theme: {}, css: { color: 'blue', spacing: 2 } });
+  // wide, undesire: `css` is required, marking it as optional breaks system/basics/#css-property
+  wideOrNarrowStyleFunction({ theme: {}, color: 'blue', spacing: 2, css: {} });
   // wide and narrow
-  wideOrNarrowStyleFunction({ theme: {}, sx: { color: 'blue', spacing: 2 }, color: 'red' });
+  wideOrNarrowStyleFunction({ theme: {}, css: { color: 'blue', spacing: 2 }, color: 'red' });
 }
 
 /**
- * marking a prop as required requires it in props object and `sx` object
+ * marking a prop as required requires it in props object and `css` object
  *
- * This is not equivalent to the implementation. Ideally `sx` would be optional
- * but that breaks system/basics/#sx-property
+ * This is not equivalent to the implementation. Ideally `css` would be optional
+ * but that breaks system/basics/#css-property
  */
-function sxRequiredTest() {
+function cssRequiredTest() {
   function styleRequiredFunction(props: { color: string }) {
     return {};
   }
 
-  const style = styleFunctionSx(styleRequiredFunction);
+  const style = css(styleRequiredFunction);
   style({
     color: 'red',
     // @ts-expect-error
-    sx: {},
+    css: {},
   });
   // @ts-expect-error
-  style({ sx: { color: 'red' } });
-  style({ color: 'blue', sx: { color: 'red' } });
+  style({ css: { color: 'red' } });
+  style({ color: 'blue', css: { color: 'red' } });
 }
 
 /**

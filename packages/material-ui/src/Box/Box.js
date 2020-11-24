@@ -10,11 +10,11 @@ import {
   sizing,
   spacing,
   typography,
-  styleFunctionSx,
+  css,
 } from '@material-ui/system';
 import styled from '../styles/styled';
 
-export const styleFunction = styleFunctionSx(
+export const styleFunction = css(
   compose(
     borders,
     display,

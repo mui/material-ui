@@ -37,13 +37,8 @@ export interface BoxProps extends ElementProps, SystemProps {
   // styled API
   component?: React.ElementType;
   clone?: boolean;
-  /**
-   * @deprecated
-   * Use the `sx` prop instead
-   */
-  css?: SystemProps;
   // workaround for https://github.com/mui-org/material-ui/pull/15611
-  sx?: SystemProps;
+  css?: SystemProps;
 }
 
 declare const Box: React.ComponentType<BoxProps>;
