@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
-import deprecatedPropType from '../utils/deprecatedPropType';
 import Modal from '../Modal';
 import Backdrop from '../Backdrop';
 import Fade from '../Fade';
@@ -331,15 +330,15 @@ Dialog.propTypes = {
   /**
    * Callback fired before the dialog enters.
    */
-  onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onEnter: PropTypes.func,
   /**
    * Callback fired when the dialog has entered.
    */
-  onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onEntered: PropTypes.func,
   /**
    * Callback fired when the dialog is entering.
    */
-  onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onEntering: PropTypes.func,
   /**
    * Callback fired when the escape key is pressed,
    * `disableKeyboard` is false and the modal is in focus.
@@ -348,15 +347,15 @@ Dialog.propTypes = {
   /**
    * Callback fired before the dialog exits.
    */
-  onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onExit: PropTypes.func,
   /**
    * Callback fired when the dialog has exited.
    */
-  onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onExited: PropTypes.func,
   /**
    * Callback fired when the dialog is exiting.
    */
-  onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onExiting: PropTypes.func,
   /**
    * If `true`, the Dialog is open.
    */
