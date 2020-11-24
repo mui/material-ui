@@ -80,10 +80,6 @@ const paddingKeys = [
 
 const spacingKeys = [...marginKeys, ...paddingKeys];
 
-export function createUnarySpacing(theme) {
-  return createUnaryUnit(theme, 'spacing', 8, 'spacing');
-}
-
 export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
   const themeSpacing = getPath(theme, themeKey) || defaultValue;
 
@@ -147,6 +143,10 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
   }
 
   return () => undefined;
+}
+
+export function createUnarySpacing(theme) {
+  return createUnaryUnit(theme, 'spacing', 8, 'spacing');
 }
 
 export function getValue(transformer, propValue) {
