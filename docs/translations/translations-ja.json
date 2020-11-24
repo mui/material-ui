@@ -86,7 +86,6 @@
   "skipToContent": "コンテンツへ移動",
   "sourceCode": "ソースコード",
   "spacingUnit": "スペーシングユニット",
-  "stackblitz": "StackBlitz(JS only) で編集する",
   "stars": "GitHubのスター数",
   "stickyFooterDescr": "ページ内コンテンツが短い場合は、表示領域の下にフッターを固定します。",
   "stickyFooterTitle": "固定フッター",
