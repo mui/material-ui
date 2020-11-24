@@ -24,7 +24,6 @@ const styledSystemTheme = {
 };
 
 const styledSystemCSSFunction = css({
-  theme: styledSystemTheme,
   color: 'primary.main',
   bg: 'background.paper',
   fontFamily: 'h6.fontFamily',
@@ -35,14 +34,7 @@ const styledSystemCSSFunction = css({
 suite
   // ---
   .add('@styled-system/css', () => {
-    styledSystemCSSFunction({
-      theme: styledSystemTheme,
-      color: 'primary.main',
-      bg: 'background.paper',
-      fontFamily: 'h6.fontFamily',
-      fontSize: ['h6.fontSize', 'h4.fontSize', 'h3.fontSize'],
-      p: [2, 3, 4],
-    });
+    styledSystemCSSFunction({ theme: styledSystemTheme });
   })
   // ---
   .add('@material-ui/core all-inclusive', () => {
