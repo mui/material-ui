@@ -43,6 +43,7 @@ function KarmaReporterReactProfiler(karmaConfig) {
    */
   this.onBrowserStart = (browser) => {
     allRenders.set(browser.id, {});
+    // Create it on start to signal to users where the files will appear
     fse.ensureDirSync(path.join(outputDir, browser.name));
 
     browser.emitter.addListener('browser_info', handleBrowserInfo);
@@ -54,6 +55,7 @@ function KarmaReporterReactProfiler(karmaConfig) {
   this.onBrowserComplete = (browser) => {
     browser.emitter.removeListener('browser_info', handleBrowserInfo);
 
+    fse.ensureDirSync(path.join(outputDir, browser.name));
     fse.writeJSONSync(
       path.join(outputDir, browser.name, `${Date.now()}.json`),
       allRenders.get(browser.id),
