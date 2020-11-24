@@ -1,12 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import itemData from './itemData';
+import tileData from './tileData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
-  imageList: {
+  gridList: {
     width: 500,
     height: 450,
   },
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
  * import image from 'path/to/image.jpg';
  * [etc...]
  *
- * const itemData = [
+ * const tileData = [
  *   {
  *     img: image,
  *     title: 'Image',
@@ -42,30 +42,30 @@ const useStyles = makeStyles((theme) => ({
  *   },
  * ];
  */
-export default function TitlebarImageList() {
+export default function TitlebarGridList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ImageList rowHeight={180} className={classes.imageList}>
-        <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
+      <GridList cellHeight={180} className={classes.gridList}>
+        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">December</ListSubheader>
-        </ImageListItem>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img}>
-            <img src={item.img} alt={item.title} />
-            <ImageListItemBar
-              title={item.title}
-              subtitle={<span>by: {item.author}</span>}
+        </GridListTile>
+        {tileData.map((tile) => (
+          <GridListTile key={tile.img}>
+            <img src={tile.img} alt={tile.title} />
+            <GridListTileBar
+              title={tile.title}
+              subtitle={<span>by: {tile.author}</span>}
               actionIcon={
-                <IconButton aria-label={`info about ${item.title}`} className={classes.icon}>
+                <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
                   <InfoIcon />
                 </IconButton>
               }
             />
-          </ImageListItem>
+          </GridListTile>
         ))}
-      </ImageList>
+      </GridList>
     </div>
   );
 }

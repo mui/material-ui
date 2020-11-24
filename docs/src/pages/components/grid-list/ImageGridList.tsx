@@ -1,8 +1,8 @@
 import React from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import itemData from './itemData';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import tileData from './tileData';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
     },
-    imageList: {
+    gridList: {
       width: 500,
       height: 450,
     },
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
  * import image from 'path/to/image.jpg';
  * [etc...]
  *
- * const itemData = [
+ * const tileData = [
  *   {
  *     img: image,
  *     title: 'Image',
@@ -38,18 +38,18 @@ const useStyles = makeStyles((theme: Theme) =>
  *   },
  * ];
  */
-export default function BasicImageList() {
+export default function ImageGridList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ImageList rowHeight={160} className={classes.imageList} cols={3}>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img} cols={item.cols || 1}>
-            <img src={item.img} alt={item.title} />
-          </ImageListItem>
+      <GridList cellHeight={160} className={classes.gridList} cols={3}>
+        {tileData.map((tile) => (
+          <GridListTile key={tile.img} cols={tile.cols || 1}>
+            <img src={tile.img} alt={tile.title} />
+          </GridListTile>
         ))}
-      </ImageList>
+      </GridList>
     </div>
   );
 }

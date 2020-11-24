@@ -1,11 +1,11 @@
 import React from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import itemData from './itemData';
+import tileData from './tileData';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
     },
-    imageList: {
+    gridList: {
       width: 500,
       height: 450,
-      // Promote the list into its own layer in Chrome. This cost memory, but helps keep FPS high.
+      // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
       transform: 'translateZ(0)',
     },
     titleBar: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
  * import image from 'path/to/image.jpg';
  * [etc...]
  *
- * const itemData = [
+ * const tileData = [
  *   {
  *     img: image,
  *     title: 'Image',
@@ -51,29 +51,29 @@ const useStyles = makeStyles((theme: Theme) =>
  *   },
  * ];
  */
-export default function AdvancedImageList() {
+export default function AdvancedGridList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ImageList rowHeight={200} gap={1} className={classes.imageList}>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img} cols={item.featured ? 2 : 1} rows={item.featured ? 2 : 1}>
-            <img src={item.img} alt={item.title} />
-            <ImageListItemBar
-              title={item.title}
-              position="top"
+      <GridList cellHeight={200} spacing={1} className={classes.gridList}>
+        {tileData.map((tile) => (
+          <GridListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
+            <img src={tile.img} alt={tile.title} />
+            <GridListTileBar
+              title={tile.title}
+              titlePosition="top"
               actionIcon={
-                <IconButton aria-label={`star ${item.title}`} className={classes.icon}>
+                <IconButton aria-label={`star ${tile.title}`} className={classes.icon}>
                   <StarBorderIcon />
                 </IconButton>
               }
               actionPosition="left"
               className={classes.titleBar}
             />
-          </ImageListItem>
+          </GridListTile>
         ))}
-      </ImageList>
+      </GridList>
     </div>
   );
 }
