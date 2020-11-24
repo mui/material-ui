@@ -533,17 +533,22 @@ describe('<Autocomplete />', () => {
 
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
-    const { setProps } = render(
-      <Autocomplete
-        options={['one', 'two']}
+    const Test = (props) => (
+      <div
         onKeyDown={(event) => {
           if (!event.defaultPrevented && event.key === 'Enter') {
             handleSubmit();
           }
         }}
-        renderInput={(props2) => <TextField {...props2} autoFocus />}
-      />,
+      >
+        <Autocomplete
+          options={['one', 'two']}
+          renderInput={(props2) => <TextField {...props2} autoFocus />}
+          {...props}
+        />
+      </div>
     );
+    const { setProps } = render(<Test />);
     let textbox = screen.getByRole('textbox');
 
     fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -580,19 +585,22 @@ describe('<Autocomplete />', () => {
       const handleSubmit = spy();
       const handleChange = spy();
       const { getAllByRole } = render(
-        <Autocomplete
-          disabledItemsFocusable
-          getOptionDisabled={(option) => option === 'two'}
+        <div
           onKeyDown={(event) => {
             if (!event.defaultPrevented && event.key === 'Enter') {
               handleSubmit();
             }
           }}
-          onChange={handleChange}
-          openOnFocus
-          options={['one', 'two', 'three']}
-          renderInput={(props2) => <TextField {...props2} autoFocus />}
-        />,
+        >
+          <Autocomplete
+            disabledItemsFocusable
+            getOptionDisabled={(option) => option === 'two'}
+            onChange={handleChange}
+            openOnFocus
+            options={['one', 'two', 'three']}
+            renderInput={(props2) => <TextField {...props2} autoFocus />}
+          />
+        </div>,
       );
 
       let options;
