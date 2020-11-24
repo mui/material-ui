@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { Box, extendTheme, ChakraProvider } from '@chakra-ui/react';
+import { Box, ThemeProvider } from '@chakra-ui/core';
 
-const customTheme = extendTheme({
+const customTheme = {
   colors: {
     text: '#000',
     background: '#fff',
     primary: '#33e',
   },
-});
+};
 
 export default function BoxChakraUi() {
   return (
-    <ChakraProvider theme={customTheme}>
+    <ThemeProvider theme={customTheme}>
       {new Array(1000).fill().map(() => (
         <Box
           width={200}
@@ -25,6 +25,6 @@ export default function BoxChakraUi() {
           test case
         </Box>
       ))}
-    </ChakraProvider>
+    </ThemeProvider>
   );
 }
