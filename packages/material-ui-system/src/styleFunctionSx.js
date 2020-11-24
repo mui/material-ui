@@ -26,6 +26,20 @@ const filterProps = [
   'sx',
 ];
 
+// function objectsHaveSameKeys(...objects) {
+//   const objectsKeysLength = [];
+
+//   const allKeys = objects.reduce((keys, object) => {
+//     const objectKeysLength = Object.keys(object);
+
+//     objectsKeysLength.push(objectKeysLength);
+//     return keys.concat(objectKeysLength);
+//   }, []);
+
+//   const union = new Set(allKeys);
+//   return objectsKeysLength.every((objectLength) => union.size === objectLength);
+// }
+
 function objectsHaveSameKeys(...objects) {
   const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
   const union = new Set(allKeys);
@@ -50,6 +64,7 @@ function styleFunctionSx(props) {
   Object.keys(styles).forEach((styleKey) => {
     if (typeof styles[styleKey] === 'object') {
       if (filterProps.indexOf(styleKey) !== -1) {
+        // breakpoints, need deepmerge
         css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
       } else {
         const breakpointsValues = handleBreakpoints({ theme }, styles[styleKey], (x) => ({
@@ -57,9 +72,9 @@ function styleFunctionSx(props) {
         }));
 
         if (objectsHaveSameKeys(breakpointsValues, styles[styleKey])) {
-          const transformedValue = styleFunctionSx({ sx: styles[styleKey], theme });
-          css[styleKey] = transformedValue;
+          css[styleKey] = styleFunctionSx({ sx: styles[styleKey], theme });
         } else {
+          // breakpoints for regular CSS values, need deep merge
           css = deepmerge(css, breakpointsValues);
         }
       }

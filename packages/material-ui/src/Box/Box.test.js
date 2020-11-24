@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createSandbox } from 'sinon';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import Box from './Box';
 
@@ -54,38 +53,6 @@ describe('<Box />', () => {
       }).toErrorDev(
         'Warning: Failed props type: The following props are deprecated: `color`, `fontFamily`, `fontSize`.',
       );
-    });
-  });
-
-  describe('deprecated props', () => {
-    const consoleSandbox = createSandbox();
-
-    beforeEach(() => {
-      // Otherwise our global setup throws on prop-types warnings.
-      // The tested props are deprecated so we're not worried about new, unexpected console errors.
-      consoleSandbox.stub(console, 'warn');
-      consoleSandbox.stub(console, 'error');
-    });
-
-    afterEach(() => {
-      consoleSandbox.restore();
-    });
-
-    it('does not forward style props as DOM attributes', () => {
-      const elementRef = React.createRef();
-      render(
-        <Box
-          color="primary.main"
-          fontFamily="Comic Sans"
-          fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
-          ref={elementRef}
-        />,
-      );
-
-      const { current: element } = elementRef;
-      expect(element).not.to.have.attribute('color');
-      expect(element).not.to.have.attribute('font-family');
-      expect(element).not.to.have.attribute('font-size');
     });
   });
 

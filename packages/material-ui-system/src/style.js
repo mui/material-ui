@@ -64,10 +64,12 @@ function style(inputOptions) {
           : styleFromPropValue(propValue);
 
       if (res) {
-        Object.keys(res).forEach((key) => {
-          result[key] = res[key];
+        Object.keys(res).forEach((k) => {
+          result[k] = res[k];
         });
       }
+
+      return null;
     });
 
     return result;
@@ -75,7 +77,7 @@ function style(inputOptions) {
 
   fn.propTypes =
     process.env.NODE_ENV !== 'production'
-      ? Object.keys(config).reduce((acc, o) => (acc[o] = responsivePropType), {})
+      ? Object.keys(config).reduce((acc, o) => { acc[o] = responsivePropType; return acc; }, {})
       : {};
 
   fn.filterProps = Object.keys(config);
