@@ -1,16 +1,11 @@
 ### [Versions](https://material-ui.com/versions/)
 
 ## UNRELEASED - 4.12.0
-###### _Nov 14 2020_
-
-Big thanks to the 10 contributors who made this release possible.
 
 This release is intended to help prepare the migration to Material-UI v5 ⏫:
 
 - 📚 Start to add deprecations in anticipation of v5. We plan to add a deprecation for any breaking change in v5 that allows it. Each warning comes with a simple message that explains how to handle the deprecation. If no warnings are reported in the console, you are set for this first batch.
 Please report issues with the deprecations on [#22074](https://github.com/mui-org/material-ui/issues/22074) (wrong instructions, false-positives, floods in the console, etc.).
-- ⚛️ Backport two fixes with React 17 (#22263, #23367) @eps1lon
-- 🐛 Backport a RTL fix with the latest version of Chrome (#22830) @ankit
 
 You can expect similar releases like this one in the coming months.
 
@@ -30,11 +25,26 @@ You can expect similar releases like this one in the coming months.
 - [Popover] Deprecate transition onX props (#22202) @mbrookes
 - [Snackbar] Deprecate transition onX props (#22206) @mbrookes
 
-#### Changes
+## 4.11.1
+###### _Nov 24 2020_
 
+Big thanks to the 12 contributors who made this release possible.
+
+- 🐛 Fix integration issue with TypeScript 4.1 (#23692) @ldrick
+- ⚛️ Fix two issues with React 17 (#22263, #23367) @eps1lon
+  v4 doesn't have official support for React 17 like v5 has. Use it at your own risk.
+- 🐛 Fix right-to-left support of Tabs since Chrome 85 (#22830) @ankit
+
+### `@material-ui/core@v4.11.1`
+
+- [styles] Add support for TypeScript 4.1 (#23692) @ldrick
 - [ClickAwayListener] Fix mounting behavior in Portals in React 17 (#23367) @eps1lon
 - [TrapFocus] Prevent possible crash in React 17 (#22263) @eps1lon
 - [Tabs] Fix RTL scrollbar with Chrome 85 (#22830) @ankit
+
+### `@material-ui/styles@v4.11.1`
+
+- [styles] Add support for TypeScript 4.1 (#23692) @ldrick
 
 ### Docs
 
