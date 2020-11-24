@@ -11,13 +11,17 @@ export const styles = (theme) => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
+    minWidth: 72,
     position: 'relative',
     minHeight: 48,
     flexShrink: 0,
-    padding: '6px 24px',
+    padding: '6px 12px',
     overflow: 'hidden',
     whiteSpace: 'normal',
     textAlign: 'center',
+    [theme.breakpoints.up('sm')]: {
+      minWidth: 160,
+    },
   },
   /* Styles applied to the root element if both `icon` and `label` are provided. */
   labelIcon: {
