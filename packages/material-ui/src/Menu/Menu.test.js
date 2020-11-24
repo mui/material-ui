@@ -44,16 +44,14 @@ describe('<Menu />', () => {
 
         const wrapper = mount(
           <Menu
-            TransitionProps={{
-              onEnter: handleEnter,
-              onEntering: handleEntering,
-              onEntered: () => {
-                expect(handleEnter.callCount).to.equal(1);
-                expect(handleEnter.args[0].length).to.equal(2);
-                expect(handleEntering.callCount).to.equal(1);
-                expect(handleEntering.args[0].length).to.equal(2);
-                done();
-              },
+            onEnter={handleEnter}
+            onEntering={handleEntering}
+            onEntered={() => {
+              expect(handleEnter.callCount).to.equal(1);
+              expect(handleEnter.args[0].length).to.equal(2);
+              expect(handleEntering.callCount).to.equal(1);
+              expect(handleEntering.args[0].length).to.equal(2);
+              done();
             }}
             {...defaultProps}
           />,
@@ -72,16 +70,14 @@ describe('<Menu />', () => {
 
         const wrapper = mount(
           <Menu
-            TransitionProps={{
-              onExit: handleExit,
-              onExiting: handleExiting,
-              onExited: () => {
-                expect(handleExit.callCount).to.equal(1);
-                expect(handleExit.args[0].length).to.equal(1);
-                expect(handleExiting.callCount).to.equal(1);
-                expect(handleExiting.args[0].length).to.equal(1);
-                done();
-              },
+            onExit={handleExit}
+            onExiting={handleExiting}
+            onExited={() => {
+              expect(handleExit.callCount).to.equal(1);
+              expect(handleExit.args[0].length).to.equal(1);
+              expect(handleExiting.callCount).to.equal(1);
+              expect(handleExiting.args[0].length).to.equal(1);
+              done();
             }}
             {...defaultProps}
             open
@@ -165,34 +161,28 @@ describe('<Menu />', () => {
     expect(false).to.equal(menuEl.contains(document.activeElement));
   });
 
-  it('should call TransitionProps.onEntering with element if exists', () => {
+  it('should call props.onEntering with element if exists', () => {
     const onEnteringSpy = spy();
-    const wrapper = mount(
-      <Menu {...defaultProps} TransitionProps={{ onEntering: onEnteringSpy }} />,
-    );
+    const wrapper = mount(<Menu {...defaultProps} onEntering={onEnteringSpy} />);
     const popover = wrapper.find(Popover);
 
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
-    popover.props().TransitionProps.onEntering(elementForHandleEnter);
+    popover.props().onEntering(elementForHandleEnter);
     expect(onEnteringSpy.callCount).to.equal(1);
     expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
   });
 
-  it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
+  it('should call props.onEntering, disableAutoFocusItem', () => {
     const onEnteringSpy = spy();
     const wrapper = mount(
-      <Menu
-        disableAutoFocusItem
-        {...defaultProps}
-        TransitionProps={{ onEntering: onEnteringSpy }}
-      />,
+      <Menu disableAutoFocusItem {...defaultProps} onEntering={onEnteringSpy} />,
     );
     const popover = wrapper.find(Popover);
 
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
-    popover.props().TransitionProps.onEntering(elementForHandleEnter);
+    popover.props().onEntering(elementForHandleEnter);
     expect(onEnteringSpy.callCount).to.equal(1);
     expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
   });
