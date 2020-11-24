@@ -20,11 +20,6 @@ function noTrace(interaction, callback) {
   return callback();
 }
 
-function fileFromCodeFrame(line) {
-  const fileMatch = line.match(/\(([^)]+):(\d+):(\d+)\)/);
-  return { name: fileMatch[1], line: +fileMatch[2], column: +fileMatch[3] };
-}
-
 /**
  * Path used in Error.prototype.stack.
  *
@@ -42,10 +37,18 @@ function traceByStack(interactionName, callback) {
   const { stack } = new Error();
   const testLines = stack
     .split(/\r?\n/)
-    .filter((line) => {
-      return /\.test\.(js|ts|ts)/.test(line);
+    .map((line) => {
+      // anonymous functions create a "weird" stackframe like
+      // "at path/to/actual.test.js (path/to/utility/file.js <- karma.test.js)"
+      const fileMatch = line.match(/([^\s(]+\.test\.(js|ts|tsx)):(\d+):(\d+)/);
+      if (fileMatch === null) {
+        return null;
+      }
+      return { name: fileMatch[1], line: +fileMatch[3], column: +fileMatch[4] };
     })
-    .map(fileFromCodeFrame)
+    .filter((maybeTestFile) => {
+      return maybeTestFile !== null;
+    })
     .map((file) => {
       return `${file.name.replace(workspaceRoot, '')}:${file.line}:${file.column}`;
     });
@@ -264,11 +267,11 @@ export function createClientRender(globalOptions = {}) {
       const filename = new Error().stack
         ?.split(/\r?\n/)
         .map((line) => {
-          try {
-            return fileFromCodeFrame(line).name;
-          } catch (error) {
+          const fileMatch = line.match(/\(([^)]+):\d+:\d+\)/);
+          if (fileMatch === null) {
             return null;
           }
+          return fileMatch[1];
         })
         .find((file) => {
           return file?.endsWith('createClientRender.js');
