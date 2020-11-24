@@ -64,7 +64,11 @@ module.exports = function setKarmaConfig(config) {
       outputDir: path.join(workspaceRoot, 'tmp/react-profiler-report/karma'),
     },
     webpack: {
+      // TODO: profile in production
       mode: 'development',
+      // Works with source-map-support in production.
+      // Even though it's documented as "no":
+      // https://webpack.js.org/configuration/devtool/#devtool
       devtool: 'inline-source-map',
       optimization: {
         // Helps debugging and build perf.
@@ -73,6 +77,7 @@ module.exports = function setKarmaConfig(config) {
       },
       plugins: [
         new webpack.DefinePlugin({
+          // TODO: profile in production
           'process.env.NODE_ENV': JSON.stringify('test'),
           'process.env.CI': JSON.stringify(process.env.CI),
           'process.env.KARMA': JSON.stringify(true),
@@ -97,6 +102,10 @@ module.exports = function setKarmaConfig(config) {
       },
       resolve: {
         alias: {
+          // "How to use profiling in production"
+          // https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977#react-dom1660--scheduler0100
+          'react-dom$': 'react-dom/profiling',
+          'scheduler/tracing': 'scheduler/tracing-profiling',
           // yarn alias for `pretty-format@3`
           // @testing-library/dom -> pretty-format@25
           // which uses Object.entries which isn't implemented in all browsers

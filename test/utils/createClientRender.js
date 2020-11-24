@@ -11,6 +11,49 @@ import {
   prettyDOM,
   within,
 } from '@testing-library/react/pure';
+import { unstable_trace } from 'scheduler/tracing';
+
+const enableDispatchingProfiler = process.env.TEST_GATE === 'enable-dispatching-profiler';
+
+function noTrace(interaction, callback) {
+  return callback();
+}
+
+function fileFromCodeFrame(line) {
+  const fileMatch = line.match(/\(([^)]+):(\d+):(\d+)\)/);
+  return { name: fileMatch[1], line: +fileMatch[2], column: +fileMatch[3] };
+}
+
+/**
+ * Path used in Error.prototype.stack.
+ *
+ * Computed in `before` hook.
+ * @type {string}
+ */
+let workspaceRoot;
+
+/**
+ * @param {string} interactionName - Human readable label for this particular interaction.
+ * @param {() => T} callback
+ * @returns {T}
+ */
+function traceByStack(interactionName, callback) {
+  const { stack } = new Error();
+  const testLines = stack
+    .split(/\r?\n/)
+    .filter((line) => {
+      return /\.test\.(js|ts|ts)/.test(line);
+    })
+    .map(fileFromCodeFrame)
+    .map((file) => {
+      return `${file.name.replace(workspaceRoot, '')}:${file.line}:${file.column}`;
+    });
+  const originLine = testLines[testLines.length - 1] ?? 'unknown line';
+
+  return unstable_trace(`${originLine} (${interactionName})`, performance.now(), callback);
+}
+
+const trace = enableDispatchingProfiler ? traceByStack : noTrace;
 
 // holes are *All* selectors which aren't necessary for id selectors
 const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
@@ -111,27 +154,31 @@ function clientRender(element, options = {}) {
   }
   Wrapper.propTypes = { children: PropTypes.node };
 
-  const result = testingLibraryRender(element, {
-    baseElement,
-    container,
-    hydrate,
-    queries: { ...queries, ...customQueries },
-    wrapper: Wrapper,
-  });
+  const result = trace('render', () =>
+    testingLibraryRender(element, {
+      baseElement,
+      container,
+      hydrate,
+      queries: { ...queries, ...customQueries },
+      wrapper: Wrapper,
+    }),
+  );
 
   /**
    * convenience helper. Better than repeating all props.
    */
   result.setProps = function setProps(props) {
-    result.rerender(React.cloneElement(element, props));
+    trace('setProps', () => result.rerender(React.cloneElement(element, props)));
     return result;
   };
 
   result.forceUpdate = function forceUpdate() {
-    result.rerender(
-      React.cloneElement(element, {
-        'data-force-update': String(Math.random()),
-      }),
+    trace('forceUpdate', () =>
+      result.rerender(
+        React.cloneElement(element, {
+          'data-force-update': String(Math.random()),
+        }),
+      ),
     );
     return result;
   };
@@ -201,7 +248,7 @@ export function createClientRender(globalOptions = {}) {
               baseDuration: entry[3],
               startTime: entry[4],
               commitTime: entry[5],
-              interactions: entry[6],
+              interactions: Array.from(entry[6]),
             };
           }),
         },
@@ -210,8 +257,26 @@ export function createClientRender(globalOptions = {}) {
     }
   }
 
-  const Profiler =
-    process.env.TEST_GATE === 'enable-dispatching-profiler' ? DispatchingProfiler : NoopProfiler;
+  before(() => {
+    if (enableDispatchingProfiler) {
+      // TODO windows?
+      const filename = new Error().stack
+        ?.split(/\r?\n/)
+        .map((line) => {
+          try {
+            return fileFromCodeFrame(line).name;
+          } catch (error) {
+            return null;
+          }
+        })
+        .find((file) => {
+          return file?.endsWith('createClientRender.js');
+        });
+      workspaceRoot = filename?.replace('test/utils/createClientRender.js', '');
+    }
+  });
+
+  const Profiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
 
   /**
    * Flag whether `createClientRender` was called in a suite i.e. describe() block.
@@ -256,7 +321,7 @@ export function createClientRender(globalOptions = {}) {
       throw error;
     }
 
-    cleanup();
+    trace('cleanup', cleanup);
     profiler.report();
     profiler = null;
   });
@@ -273,7 +338,10 @@ const originalFireEventKeyUp = rtlFireEvent.keyUp;
 /**
  * @type {typeof rtlFireEvent}
  */
-const fireEvent = (...args) => rtlFireEvent(...args);
+const fireEvent = (target, event, ...args) => {
+  return trace(event.type, () => rtlFireEvent(target, event, ...args));
+};
+// TODO: Trace every event.
 Object.assign(fireEvent, rtlFireEvent, {
   keyDown(element, options = {}) {
     // `element` shouldn't be `document` but we catch this later anyway
@@ -296,7 +364,7 @@ Object.assign(fireEvent, rtlFireEvent, {
       throw error;
     }
 
-    originalFireEventKeyDown(element, options);
+    trace('keydown', () => originalFireEventKeyDown(element, options));
   },
   keyUp(element, options = {}) {
     // `element` shouldn't be `document` but we catch this later anyway
@@ -319,7 +387,7 @@ Object.assign(fireEvent, rtlFireEvent, {
       throw error;
     }
 
-    originalFireEventKeyUp(element, options);
+    trace('keyUp', () => originalFireEventKeyUp(element, options));
   },
 });
 
@@ -364,6 +432,7 @@ export function fireTouchChangedEvent(target, type, options) {
 }
 
 export * from '@testing-library/react/pure';
+// TODO: Trace act, cleanup
 export { act, cleanup, fireEvent };
 // We import from `@testing-library/react` and `@testing-library/dom` before creating a JSDOM.
 // At this point a global document isn't available yet. Now it is.
