@@ -52,61 +52,26 @@ function style(options) {
         );
       }
 
-      if (props[prop] == null) {
-        return null;
+      if (cssProperty === false) {
+        return value;
       }
 
-      const propValue = props[prop];
-      const theme = props.theme;
-      const themeMapping = getPath(theme, themeKey) || {};
-      const styleFromPropValue = (propValueFinal) => {
-        let value;
-
-        if (typeof themeMapping === 'function') {
-          value = themeMapping(propValueFinal);
-        } else if (Array.isArray(themeMapping)) {
-          value = themeMapping[propValueFinal] || propValueFinal;
-        } else {
-          value = getPath(themeMapping, propValueFinal) || propValueFinal;
-
-          if (transform) {
-            value = transform(value);
-          }
-        }
-
-        if (cssProperty === false) {
-          return value;
-        }
-
-        return {
-          [cssProperty]: value,
-        };
+      return {
+        [cssProperty]: value,
       };
+    };
 
-      const res =
-        typeof propValue === 'object' || Array.isArray(propValue)
-          ? handleBreakpoints(props, propValue, styleFromPropValue)
-          : styleFromPropValue(propValue);
-
-      if (res) {
-        Object.keys(res).forEach((k) => {
-          result[k] = res[k];
-        });
-      }
-
-      return null;
-    });
-
-    return result;
+    return handleBreakpoints(props, propValue, styleFromPropValue);
   };
 
   fn.propTypes =
     process.env.NODE_ENV !== 'production'
-      ? Object.keys(config).reduce((acc, o) => { acc[o] = responsivePropType; return acc; }, {})
+      ? {
+          [prop]: responsivePropType,
+        }
       : {};
 
-  fn.filterProps = Object.keys(config);
-  fn.config = config;
+  fn.filterProps = [prop];
 
   return fn;
 }
