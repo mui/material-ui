@@ -1,12 +1,7 @@
 /* eslint-disable no-console */
 import Benchmark from 'benchmark';
-import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-system';
 import {
-  spacing,
-  palette,
-  typography,
-  compose,
-  unstable_styleFunctionSx,
+  unstable_styleFunctionSx as materialSystemFunction,
 } from '@material-ui/system';
 import { createMuiTheme } from '@material-ui/core/styles';
 
@@ -78,7 +73,7 @@ suite
   })
   // ---
   .add('@material-ui/core all-inclusive', () => {
-    unstable_styleFunctionSx({
+    materialSystemFunction({
       theme: materialSystemTheme,
       sx: {
         color: 'primary.main',

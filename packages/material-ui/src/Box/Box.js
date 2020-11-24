@@ -1,42 +1,27 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import styleFunction from './styleFunction';
 import styled from '../styles/experimentalStyled';
-
-function omit(input, fields) {
-  const output = {};
-
-  Object.keys(input).forEach((prop) => {
-    if (fields.indexOf(prop) === -1) {
-      output[prop] = input[prop];
-    }
-  });
-
-  return output;
-}
 
 /**
  * @ignore - do not document.
  */
 const Box = React.forwardRef(function Box(props, ref) {
-  const { children, clone, className, component: Component = 'div', ...other } = props;
-
-  const spread = omit(other, styleFunction.filterProps);
+  const { children, clone, className, component: Component = 'div', sx, ...other } = props;
 
   if (clone) {
     return React.cloneElement(children, {
       className: clsx(children.props.className, className),
-      ...spread,
+      ...other,
     });
   }
 
   if (typeof children === 'function') {
-    return children({ className, ...spread });
+    return children({ className, ...other });
   }
 
   return (
-    <Component ref={ref} className={className} {...spread}>
+    <Component ref={ref} className={className} {...other}>
       {children}
     </Component>
   );
@@ -97,4 +82,4 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default styled(Box, {}, { muiName: 'MuiBox' })(styleFunction);
+export default styled(Box, {}, { muiName: 'MuiBox' })``;
