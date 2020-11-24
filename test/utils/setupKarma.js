@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+import sourceMapSupport from 'source-map-support';
 import { createMochaHooks } from './mochaHooks';
 
 const mochaHooks = createMochaHooks(window.Mocha);
@@ -14,6 +15,10 @@ function handleReactProfilerResults(event) {
 }
 
 before(function beforeAllHook() {
+  if (process.env.TEST_GATE === 'enable-dispatching-profiler') {
+    sourceMapSupport.install();
+  }
+
   mochaHooks.beforeAll.forEach((mochaHook) => {
     mochaHook.call(this);
   });
