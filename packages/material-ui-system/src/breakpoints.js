@@ -106,7 +106,7 @@ function breakpoints(styleFunction) {
   return newStyleFunction;
 }
 
-function createEmptyBreakpointObject(breakpointsInput = {}) {
+export function createEmptyBreakpointObject(breakpointsInput = {}) {
   const breakpointsInOrder = breakpointsInput?.keys?.reduce((acc, key) => {
     const breakpointStyleKey = breakpointsInput.up(key);
     acc[breakpointStyleKey] = {};
@@ -115,7 +115,7 @@ function createEmptyBreakpointObject(breakpointsInput = {}) {
   return breakpointsInOrder || {};
 }
 
-function removeUnusedBreakpoints(breakpointKeys, style) {
+export function removeUnusedBreakpoints(breakpointKeys, style) {
   return breakpointKeys.reduce(
     (acc, key) => {
       const breakpointOutput = acc[key];
@@ -125,7 +125,7 @@ function removeUnusedBreakpoints(breakpointKeys, style) {
       }
       return acc;
     },
-    { ...style },
+    style,
   );
 }
 

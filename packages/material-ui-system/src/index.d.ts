@@ -44,6 +44,17 @@ export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoin
   styleFunction: StyleFunction<Props>
 ): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
 
+export function createEmptyBreakpointObject(
+  breakpointsInput: { keys: string[]; up: (key: string) => string },
+  style: object
+): object;
+
+// restructures the breakpoints in the in the correct order and merges all styles args
+export function removeUnusedBreakpoints(
+  breakpointsInput: { keys: string[]; up: (key: string) => string },
+  styles: object
+): object;
+
 // restructures the breakpoints in the in the correct order and merges all styles args
 export function mergeBreakpointsInOrder(
   breakpointsInput: { keys: string[]; up: (key: string) => string },

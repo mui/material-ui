@@ -1,6 +1,6 @@
 import { deepmerge } from '@material-ui/utils';
 import getThemeValue from './getThemeValue';
-import { handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
+import { handleBreakpoints, createEmptyBreakpointObject, removeUnusedBreakpoints } from './breakpoints';
 import borders from './borders';
 import display from './display';
 import flexbox from './flexbox';
@@ -23,7 +23,6 @@ const filterProps = [
   ...sizing.filterProps,
   ...spacing.filterProps,
   ...typography.filterProps,
-  'sx',
 ];
 
 function objectsHaveSameKeys(...objects) {
@@ -54,7 +53,10 @@ function styleFunctionSx(props) {
     return styles;
   }
 
-  let css = {};
+  const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
+  const breakpointsKeys = Object.keys(emptyBreakpoints)
+
+  let css = emptyBreakpoints;
 
   Object.keys(styles).forEach((styleKey) => {
     if (typeof styles[styleKey] === 'object') {
@@ -84,7 +86,7 @@ function styleFunctionSx(props) {
     }
   });
 
-  return mergeBreakpointsInOrder(theme.breakpoints, css);
+  return removeUnusedBreakpoints(breakpointsKeys, css);
 }
 
 styleFunctionSx.filterProps = ['sx'];
