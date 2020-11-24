@@ -82,11 +82,6 @@ module.exports = function setKarmaConfig(config) {
       },
       resolve: {
         alias: {
-          // yarn alias for `pretty-format@3`
-          // @testing-library/dom -> pretty-format@25
-          // which uses Object.entries which isn't implemented in all browsers
-          // we support
-          'pretty-format': require.resolve('pretty-format-v24'),
           // https://github.com/sinonjs/sinon/issues/1951
           // use the cdn main field. Neither module nor main are supported for browserbuilds
           sinon: 'sinon/pkg/sinon.js',
