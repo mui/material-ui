@@ -59,6 +59,22 @@ describe('<DateRangePicker />', () => {
     expect(getAllByMuiTest('DateRangeHighlight')).to.have.length(24);
   });
 
+  it('allows a single day range', () => {
+    render(
+      <DesktopDateRangePicker
+        open
+        renderInput={defaultRangeRenderInput}
+        onChange={() => {}}
+        value={[
+          adapterToUse.date(adapterToUse.date('2018-01-01T00:00:00.000')),
+          adapterToUse.date(adapterToUse.date('2018-01-01T00:00:00.000')),
+        ]}
+      />,
+    );
+
+    expect(getAllByMuiTest('DateRangeHighlight')).to.have.length(1);
+  });
+
   it('highlights the selected range of dates', () => {
     render(
       <DesktopDateRangePicker
