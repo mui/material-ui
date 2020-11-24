@@ -57,6 +57,69 @@ function traceByStack(interactionName, callback) {
   return unstable_trace(`${originLine} (${interactionName})`, performance.now(), callback);
 }
 
+class NoopProfiler {
+  id = 'noop';
+
+  // eslint-disable-next-line class-methods-use-this
+  onRender() {}
+
+  // eslint-disable-next-line class-methods-use-this
+  report() {}
+}
+
+class DispatchingProfiler {
+  renders = [];
+
+  /**
+   *
+   * @param {import('mocha').Test} test
+   */
+  constructor(test) {
+    /**
+     * @readonly
+     */
+    this.test = test;
+    this.id = test.fullTitle();
+  }
+
+  /**
+   * @type {import('react').ProfilerOnRenderCallback}
+   */
+  onRender = (id, phase, actualDuration, baseDuration, startTime, commitTime, interactions) => {
+    // Do minimal work here to keep the render fast.
+    // Though it's unclear whether work here affects the profiler results.
+    // But even if it doesn't we'll keep the test feedback snappy.
+    this.renders.push([
+      id,
+      phase,
+      actualDuration,
+      baseDuration,
+      startTime,
+      commitTime,
+      interactions,
+    ]);
+  };
+
+  report() {
+    const event = new window.CustomEvent('reactProfilerResults', {
+      detail: {
+        [this.id]: this.renders.map((entry) => {
+          return {
+            phase: entry[1],
+            actualDuration: entry[2],
+            baseDuration: entry[3],
+            startTime: entry[4],
+            commitTime: entry[5],
+            interactions: Array.from(entry[6]),
+          };
+        }),
+      },
+    });
+    window.dispatchEvent(event);
+  }
+}
+
+const Profiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
 const trace = enableDispatchingProfiler ? traceByStack : noTrace;
 
 // holes are *All* selectors which aren't necessary for id selectors
@@ -199,68 +262,6 @@ export function createClientRender(globalOptions = {}) {
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
 
-  class NoopProfiler {
-    id = 'noop';
-
-    // eslint-disable-next-line class-methods-use-this
-    onRender() {}
-
-    // eslint-disable-next-line class-methods-use-this
-    report() {}
-  }
-
-  class DispatchingProfiler {
-    renders = [];
-
-    /**
-     *
-     * @param {import('mocha').Test} test
-     */
-    constructor(test) {
-      /**
-       * @readonly
-       */
-      this.test = test;
-      this.id = test.fullTitle();
-    }
-
-    /**
-     * @type {import('react').ProfilerOnRenderCallback}
-     */
-    onRender = (id, phase, actualDuration, baseDuration, startTime, commitTime, interactions) => {
-      // Do minimal work here to keep the render fast.
-      // Though it's unclear whether work here affects the profiler results.
-      // But even if it doesn't we'll keep the test feedback snappy.
-      this.renders.push([
-        id,
-        phase,
-        actualDuration,
-        baseDuration,
-        startTime,
-        commitTime,
-        interactions,
-      ]);
-    };
-
-    report() {
-      const event = new window.CustomEvent('reactProfilerResults', {
-        detail: {
-          [this.id]: this.renders.map((entry) => {
-            return {
-              phase: entry[1],
-              actualDuration: entry[2],
-              baseDuration: entry[3],
-              startTime: entry[4],
-              commitTime: entry[5],
-              interactions: Array.from(entry[6]),
-            };
-          }),
-        },
-      });
-      window.dispatchEvent(event);
-    }
-  }
-
   before(() => {
     if (enableDispatchingProfiler) {
       // TODO windows?
@@ -279,8 +280,6 @@ export function createClientRender(globalOptions = {}) {
       workspaceRoot = filename?.replace('test/utils/createClientRender.js', '');
     }
   });
-
-  const Profiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
 
   /**
    * Flag whether `createClientRender` was called in a suite i.e. describe() block.
