@@ -51,8 +51,9 @@ _Synthetic benchmark_
 ```sh
 yarn server:system
 
-@styled-system/css x 43,248 ops/sec ±3.82% (170 runs sampled)
-@material-ui/core all-inclusive x 28,203 ops/sec ±2.92% (182 runs sampled)
+@styled-system/css x 68,411 ops/sec ±0.63% (189 runs sampled)
+@chakra-ui/system/css x 234,332 ops/sec ±1.00% (192 runs sampled)
+@material-ui/system styleFunctionSx x 41,202 ops/sec ±0.68% (191 runs sampled)
 ```
 
 ## Real-world benchmark

@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import Benchmark from 'benchmark';
-import { unstable_styleFunctionSx as styleFunction } from '@material-ui/system';
-import css from '@styled-system/css';
+import { unstable_styleFunctionSx as styleFunctionSx } from '@material-ui/system';
+import styledSystemCss from '@styled-system/css';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { css as chakraCss } from '@chakra-ui/system';
 
 const suite = new Benchmark.Suite('system', {
   onError: (event) => {
@@ -26,7 +27,7 @@ const styledSystemTheme = {
 suite
   // ---
   .add('@styled-system/css', () => {
-    css({
+    styledSystemCss({
       color: 'primary.main',
       bg: 'background.paper',
       fontFamily: 'h6.fontFamily',
@@ -35,8 +36,18 @@ suite
     })({ theme: styledSystemTheme });
   })
   // ---
-  .add('@material-ui/core all-inclusive', () => {
-    styleFunction({
+  .add('@chakra-ui/system/css', () => {
+    chakraCss({
+      color: 'primary.main',
+      bg: 'background.paper',
+      fontFamily: 'h6.fontFamily',
+      fontSize: ['h6.fontSize', 'h4.fontSize', 'h3.fontSize'],
+      p: [2, 3, 4],
+    })({ theme: styledSystemTheme });
+  })
+  // ---
+  .add('@material-ui/system styleFunctionSx', () => {
+    styleFunctionSx({
       theme: materialSystemTheme,
       sx: {
         color: 'primary.main',
