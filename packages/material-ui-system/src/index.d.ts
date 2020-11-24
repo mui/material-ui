@@ -175,14 +175,14 @@ export const spacing: SimpleStyleFunction<
   | 'paddingY'
 >;
 export type SpacingProps = PropsFor<typeof spacing>;
-export function createUnaryUnit<Spacing>(theme: {
-  spacing: Spacing;
-}): Spacing extends number
+export function createUnaryUnit<Unit>(theme: {
+  spacing: Unit;
+}): Unit extends number
   ? (abs: number | string) => number | number
-  : Spacing extends any[]
-  ? <Index extends number>(abs: Index | string) => Spacing[Index] | string
-  : Spacing extends (...args: unknown[]) => unknown
-  ? Spacing
+  : Unit extends any[]
+  ? <Index extends number>(abs: Index | string) => Unit[Index] | string
+  : Unit extends (...args: unknown[]) => unknown
+  ? Unit
   : // warns in Dev
     () => undefined;
 
