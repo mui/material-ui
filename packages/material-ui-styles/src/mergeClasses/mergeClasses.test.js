@@ -15,6 +15,7 @@ describe('mergeClasses', () => {
       root: 'foo bar',
     });
   });
+
   it('should allow newClasses to be partial', () => {
     const output = mergeClasses({
       baseClasses: {
@@ -30,6 +31,7 @@ describe('mergeClasses', () => {
       child: 'baz',
     });
   });
+
   it('should allow newClasses to be optional', () => {
     const baseClasses = {
       root: 'foo',
