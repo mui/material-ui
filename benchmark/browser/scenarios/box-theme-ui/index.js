@@ -15,7 +15,7 @@ const theme = {
   },
 };
 
-export default function ThemeUISxPropBox() {
+export default function BoxThemeUI() {
   return (
     <ThemeProvider theme={theme}>
       {new Array(1000).fill().map(() => (
