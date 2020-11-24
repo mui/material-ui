@@ -353,6 +353,13 @@ const classes = makeStyles(theme => ({
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
 
+- The `borderRadius` system prop value transformation has been changed. It now expects number and multiplies this value with the `theme.shape.borderRadius` value.
+
+```diff
+-<Box sx={{ borderRadius: 'borderRadius' }}>
++<Box sx={{ borderRadius: 1 }}>
+```
+
 ### Button
 
 - The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
