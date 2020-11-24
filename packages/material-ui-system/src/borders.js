@@ -1,7 +1,6 @@
 import responsivePropType from './responsivePropType';
 import style from './style';
 import compose from './compose';
-import merge from './merge';
 import { createUnaryUnit, getStyleFromPropValue } from './spacing';
 import { handleBreakpoints } from './breakpoints';
 
@@ -65,9 +64,7 @@ function resolveCssProperty(props, prop, transformer) {
 export const borderRadius = (props) => {
   const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
 
-  return Object.keys(props)
-    .map((prop) => resolveCssProperty(props, prop, transformer))
-    .reduce(merge, {});
+  return props.borderRadius ? resolveCssProperty(props, 'borderRadius', transformer) : {};
 }
 
 borderRadius.propTypes =
