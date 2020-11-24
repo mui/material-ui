@@ -26,24 +26,19 @@ const filterProps = [
   'sx',
 ];
 
-// function objectsHaveSameKeys(...objects) {
-//   const objectsKeysLength = [];
-
-//   const allKeys = objects.reduce((keys, object) => {
-//     const objectKeysLength = Object.keys(object);
-
-//     objectsKeysLength.push(objectKeysLength);
-//     return keys.concat(objectKeysLength);
-//   }, []);
-
-//   const union = new Set(allKeys);
-//   return objectsKeysLength.every((objectLength) => union.size === objectLength);
-// }
-
 function objectsHaveSameKeys(...objects) {
-  const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
+  const objectsKeysLength = [];
+
+  const allKeys = objects.reduce((keys, object) => {
+    const objectKeys = Object.keys(object);
+
+    objectsKeysLength.push(objectKeys.length);
+    return keys.concat(objectKeys);
+  }, []);
+
   const union = new Set(allKeys);
-  return objects.every((object) => union.size === Object.keys(object).length);
+
+  return objectsKeysLength.every((objectLength) => union.size === objectLength);
 }
 
 function styleFunctionSx(props) {
@@ -81,6 +76,7 @@ function styleFunctionSx(props) {
     } else if (typeof styles[styleKey] === 'function') {
       css = deepmerge(css, { [styleKey]: styles[styleKey](theme) });
     } else {
+      // simple value no need for deepmerge
       const result = getThemeValue(styleKey, styles[styleKey], theme);
       Object.keys(result).forEach((key) => {
         css[key] = result[key];
