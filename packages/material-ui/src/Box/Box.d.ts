@@ -14,6 +14,7 @@ import {
   PropsFor,
   SxProps,
 } from '@material-ui/system';
+import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createMuiTheme';
 import { Omit } from '..';
 
@@ -35,15 +36,24 @@ export type BoxStyleFunction = ComposedStyleFunction<
 type SystemProps = PropsFor<BoxStyleFunction>;
 type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
 
-export interface BoxProps extends ElementProps, SystemProps {
-  children?: React.ReactNode | ((props: ElementProps) => React.ReactNode);
-  // styled API
-  component?: React.ElementType;
-  clone?: boolean;
-  ref?: React.Ref<unknown>;
-  sx?: SxProps<Theme>;
+export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P &
+    ElementProps &
+    SystemProps & {
+      children?: React.ReactNode | ((props: ElementProps) => React.ReactNode);
+      component?: React.ElementType;
+      clone?: boolean;
+      ref?: React.Ref<unknown>;
+      sx?: SxProps<Theme>;
+    };
+  defaultComponent: D;
 }
 
-declare const Box: React.ComponentType<BoxProps>;
+declare const Box: OverridableComponent<BoxTypeMap>;
+
+export type BoxProps<
+  D extends React.ElementType = BoxTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<BoxTypeMap<P, D>, D>;
 
 export default Box;
