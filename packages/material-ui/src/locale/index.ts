@@ -1855,7 +1855,7 @@ export const ptBR: Localization = {
         },
         labelRowsPerPage: 'Linhas por página:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} de ${count !== -1 ? count : `more than ${to}`}`,
+          `${from}-${to} de ${count !== -1 ? count : `mais de ${to}`}`,
       },
     },
     MuiRating: {
