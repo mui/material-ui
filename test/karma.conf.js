@@ -12,7 +12,7 @@ process.env.CHROME_BIN = require('puppeteer').executablePath();
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
-    browsers: ['ChromeHeadlessNoSandbox'],
+    browsers: ['chromeHeadless'],
     browserDisconnectTimeout: 120000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 300000, // default 10000
@@ -87,7 +87,7 @@ module.exports = function setKarmaConfig(config) {
       writeToDisk: Boolean(process.env.CI),
     },
     customLaunchers: {
-      ChromeHeadlessNoSandbox: {
+      chromeHeadless: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox'],
       },
@@ -101,30 +101,25 @@ module.exports = function setKarmaConfig(config) {
     newConfig = {
       ...baseConfig,
       browserStack,
-      browsers: baseConfig.browsers.concat([
-        'BrowserStack_Chrome',
-        'BrowserStack_Firefox',
-        'BrowserStack_Safari',
-        'BrowserStack_Edge',
-      ]),
+      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safar', 'edge']),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: {
         ...baseConfig.customLaunchers,
-        BrowserStack_Chrome: {
+        chrome: {
           base: 'BrowserStack',
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'chrome',
           browser_version: '84.0',
         },
-        BrowserStack_Firefox: {
+        firefox: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',
           browser: 'firefox',
           browser_version: '78.0',
         },
-        BrowserStack_Safari: {
+        safar: {
           base: 'BrowserStack',
           os: 'OS X',
           os_version: 'Catalina',
@@ -133,7 +128,7 @@ module.exports = function setKarmaConfig(config) {
           // However, 12.1 is very flaky on desktop (mobile is always flaky).
           browser_version: '13.0',
         },
-        BrowserStack_Edge: {
+        edge: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',
