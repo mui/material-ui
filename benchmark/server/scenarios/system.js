@@ -24,6 +24,10 @@ const styledSystemTheme = {
   fonts: materialSystemTheme.typography,
 };
 
+styledSystemTheme.breakpoints.base = styledSystemTheme.breakpoints[0];
+styledSystemTheme.breakpoints.sm = styledSystemTheme.breakpoints[1];
+styledSystemTheme.breakpoints.lg = styledSystemTheme.breakpoints[2];
+
 suite
   // ---
   .add('@styled-system/css', () => {
