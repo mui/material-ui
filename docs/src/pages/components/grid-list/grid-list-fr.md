@@ -1,6 +1,6 @@
 ---
 title: Composant React Grid List
-components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
+components: GridList, GridListTile, GridListTileBar
 ---
 
 # Grid list

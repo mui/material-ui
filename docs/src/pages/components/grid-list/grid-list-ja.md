@@ -31,8 +31,4 @@ components: GridList, GridListTile, GridListTileBar
 
 この例では、`rows` and `cols` プロップを使用してタイルのサイズを調整し、 `padding`プロップを使用して間隔を調整する方法を示します。 タイルには、上部にカスタムのタイトルバーがあり、カスタムのグラデーション`titleBackground`があります。 セカンダリアクション `IconButton` は左側に配置されます。
 
-<<<<<<< HEAD:docs/src/pages/components/image-list/image-list-ja.md
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
-=======
 {{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}
->>>>>>> parent of a2c1b56e22... [GridList] Rename to ImageList & add deprecation warnings (#22363):docs/src/pages/components/grid-list/grid-list-ja.md

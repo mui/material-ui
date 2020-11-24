@@ -1,5 +1,4 @@
 ---
-<<<<<<< HEAD:docs/src/pages/components/image-list/image-list-zh.md
 title: React Image list（图像列表）组件
 components: GridList, GridListTile, GridListTileBar
 ---

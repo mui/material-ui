@@ -31,8 +31,4 @@ Este ejemplo muestra una lista cuadrícula con una sola línea desplazable horiz
 
 Este ejemplo muestra cuadros "destacados" usando los props filas (`rows`) y columnas (`cols`) para ajustar el tamaño del cuadro, y la prop relleno (`padding`) para ajustar el espaciado. Los cuadros tienen una barra de título personalizada, ubicada en la parte superior y un fondo de titulo (`titleBackground`) con degradado personalizado. La acción secundaria `IconButton` está ubicada a la izquierda.
 
-<<<<<<< HEAD:docs/src/pages/components/image-list/image-list-es.md
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
-=======
 {{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}
->>>>>>> parent of a2c1b56e22... [GridList] Rename to ImageList & add deprecation warnings (#22363):docs/src/pages/components/grid-list/grid-list-es.md

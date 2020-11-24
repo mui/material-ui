@@ -31,8 +31,4 @@ Dieses Beispiel zeigt eine horizontale, durchlaufbare, einzeilige Rasterliste vo
 
 In diesem Beispiel werden "vorgestellte" Fliesen dargestellt, wobei die Eigenschaften `rows` und `cols` die Größe der Kacheln festlegen und der Abstand durch die `padding` Eigenschaft einstellen wird. Die Kacheln haben eine angepasste Titleleiste, an der Spitze positioniert ist und einem benutzerdefinierten Gradienten `titleBackground` hat. Die sekundäre Aktion `IconButton` befindet sich links.
 
-<<<<<<< HEAD:docs/src/pages/components/image-list/image-list-de.md
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
-=======
 {{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}
->>>>>>> parent of a2c1b56e22... [GridList] Rename to ImageList & add deprecation warnings (#22363):docs/src/pages/components/grid-list/grid-list-de.md

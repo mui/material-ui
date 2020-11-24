@@ -31,8 +31,4 @@ components: GridList, GridListTile, GridListTileBar
 
 В этом примере демонстрирует «рекомендуемые» листы, в которых используются свойства `rows` и `cols` чтобы отрегулировать размер плитки, и свойство `padding` чтобы отрегулировать поля между плитками. На плитках можно видеть пользовательскую полосу расположенную вверху с даным значением градиента в свойстве `titleBackground`. Дополнительное действие в `Кнопке-иконке` распложенно по левую сторону.
 
-<<<<<<< HEAD:docs/src/pages/components/image-list/image-list-ru.md
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
-=======
 {{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}
->>>>>>> parent of a2c1b56e22... [GridList] Rename to ImageList & add deprecation warnings (#22363):docs/src/pages/components/grid-list/grid-list-ru.md
