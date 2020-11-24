@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import { alpha } from '../styles/colorManipulator';
+import { fade } from '../styles/colorManipulator';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -17,7 +17,7 @@ export const styles = (theme) => ({
       backgroundColor: theme.palette.action.hover,
     },
     '&$selected, &$selected:hover': {
-      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
     },
   },
   /* Pseudo-class applied to the root element if `selected={true}`. */

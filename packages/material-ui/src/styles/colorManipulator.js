@@ -198,8 +198,6 @@ export function emphasize(color, coefficient = 0.15) {
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
 }
 
-let warnedOnce = false;
-
 /**
  * Set the absolute transparency of a color.
  * Any existing alpha values are overwritten.
@@ -207,36 +205,8 @@ let warnedOnce = false;
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
  * @param {number} value - value to set the alpha channel to in the range 0 -1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
- *
- * @deprecated
- * Use `import { alpha } from '@material-ui/core/styles'` instead.
  */
 export function fade(color, value) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warnedOnce) {
-      warnedOnce = true;
-      console.error(
-        [
-          'Material-UI: The `fade` color utility was renamed to `alpha` to better describe its functionality.',
-          '',
-          "You should use `import { alpha } from '@material-ui/core/styles'`",
-        ].join('\n'),
-      );
-    }
-  }
-
-  return alpha(color, value);
-}
-
-/**
- * Set the absolute transparency of a color.
- * Any existing alpha value is overwritten.
- *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @param {number} value - value to set the alpha channel to in the range 0-1
- * @returns {string} A CSS color string. Hex input values are returned as rgb
- */
-export function alpha(color, value) {
   color = decomposeColor(color);
   value = clamp(value);
 

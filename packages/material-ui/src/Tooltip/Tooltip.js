@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
-import { alpha } from '../styles/colorManipulator';
+import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -80,7 +80,7 @@ export const styles = (theme) => ({
   popperArrow: arrowGenerator(),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
-    backgroundColor: alpha(theme.palette.grey[700], 0.9),
+    backgroundColor: fade(theme.palette.grey[700], 0.9),
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
@@ -103,7 +103,7 @@ export const styles = (theme) => ({
     width: '1em',
     height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
     boxSizing: 'border-box',
-    color: alpha(theme.palette.grey[700], 0.9),
+    color: fade(theme.palette.grey[700], 0.9),
     '&::before': {
       content: '""',
       margin: 'auto',

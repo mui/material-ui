@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
-import { alpha } from '../styles/colorManipulator';
+import { fade } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 
@@ -62,7 +62,7 @@ export const styles = (theme) => ({
     '&$checked': {
       color: theme.palette.primary.main,
       '&:hover': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
         '@media (hover: none)': {
           backgroundColor: 'transparent',
         },
@@ -84,7 +84,7 @@ export const styles = (theme) => ({
     '&$checked': {
       color: theme.palette.secondary.main,
       '&:hover': {
-        backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
         '@media (hover: none)': {
           backgroundColor: 'transparent',
         },

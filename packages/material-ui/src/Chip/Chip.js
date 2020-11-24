@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
-import { emphasize, alpha } from '../styles/colorManipulator';
+import { emphasize, fade } from '../styles/colorManipulator';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
@@ -12,7 +12,7 @@ import ButtonBase from '../ButtonBase';
 export const styles = (theme) => {
   const backgroundColor =
     theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
-  const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
+  const deleteIconColor = fade(theme.palette.text.primary, 0.26);
 
   return {
     /* Styles applied to the root element. */
@@ -130,7 +130,7 @@ export const styles = (theme) => {
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
-        backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+        backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       },
       '& $avatar': {
         marginLeft: 4,
@@ -156,7 +156,7 @@ export const styles = (theme) => {
       color: theme.palette.primary.main,
       border: `1px solid ${theme.palette.primary.main}`,
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       },
     },
     /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
@@ -164,7 +164,7 @@ export const styles = (theme) => {
       color: theme.palette.secondary.main,
       border: `1px solid ${theme.palette.secondary.main}`,
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
-        backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
     // TODO v5: remove
@@ -219,7 +219,7 @@ export const styles = (theme) => {
       cursor: 'pointer',
       margin: '0 5px 0 -6px',
       '&:hover': {
-        color: alpha(deleteIconColor, 0.4),
+        color: fade(deleteIconColor, 0.4),
       },
     },
     /* Styles applied to the `deleteIcon` element if `size="small"`. */
@@ -231,28 +231,28 @@ export const styles = (theme) => {
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`. */
     deleteIconColorPrimary: {
-      color: alpha(theme.palette.primary.contrastText, 0.7),
+      color: fade(theme.palette.primary.contrastText, 0.7),
       '&:hover, &:active': {
         color: theme.palette.primary.contrastText,
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="default"`. */
     deleteIconColorSecondary: {
-      color: alpha(theme.palette.secondary.contrastText, 0.7),
+      color: fade(theme.palette.secondary.contrastText, 0.7),
       '&:hover, &:active': {
         color: theme.palette.secondary.contrastText,
       },
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
     deleteIconOutlinedColorPrimary: {
-      color: alpha(theme.palette.primary.main, 0.7),
+      color: fade(theme.palette.primary.main, 0.7),
       '&:hover, &:active': {
         color: theme.palette.primary.main,
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
     deleteIconOutlinedColorSecondary: {
-      color: alpha(theme.palette.secondary.main, 0.7),
+      color: fade(theme.palette.secondary.main, 0.7),
       '&:hover, &:active': {
         color: theme.palette.secondary.main,
       },

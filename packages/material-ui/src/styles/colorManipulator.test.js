@@ -8,7 +8,7 @@ import {
   darken,
   decomposeColor,
   emphasize,
-  alpha,
+  fade,
   getContrastRatio,
   getLuminance,
   lighten,
@@ -216,26 +216,26 @@ describe('utils/colorManipulator', () => {
     });
   });
 
-  describe('alpha', () => {
+  describe('fade', () => {
     it('converts an rgb color to an rgba color with the value provided', () => {
-      expect(alpha('rgb(1, 2, 3)', 0.4)).to.equal('rgba(1, 2, 3, 0.4)');
+      expect(fade('rgb(1, 2, 3)', 0.4)).to.equal('rgba(1, 2, 3, 0.4)');
     });
 
     it('updates an rgba color with the alpha value provided', () => {
-      expect(alpha('rgba(255, 0, 0, 0.2)', 0.5)).to.equal('rgba(255, 0, 0, 0.5)');
+      expect(fade('rgba(255, 0, 0, 0.2)', 0.5)).to.equal('rgba(255, 0, 0, 0.5)');
     });
 
     it('converts an hsl color to an hsla color with the value provided', () => {
-      expect(alpha('hsl(0, 100%, 50%)', 0.1)).to.equal('hsla(0, 100%, 50%, 0.1)');
+      expect(fade('hsl(0, 100%, 50%)', 0.1)).to.equal('hsla(0, 100%, 50%, 0.1)');
     });
 
     it('updates an hsla color with the alpha value provided', () => {
-      expect(alpha('hsla(0, 100%, 50%, 0.2)', 0.5)).to.equal('hsla(0, 100%, 50%, 0.5)');
+      expect(fade('hsla(0, 100%, 50%, 0.2)', 0.5)).to.equal('hsla(0, 100%, 50%, 0.5)');
     });
 
     it('throw on invalid colors', () => {
       expect(() => {
-        alpha('white', 0.4);
+        fade('white', 0.4);
       }).to.throw('Material-UI: Unsupported `white` color');
     });
   });

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { alpha, useTheme, withStyles } from '@material-ui/core/styles';
+import { fade, useTheme, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import LastPageIcon from '../internal/svg-icons/LastPage';
@@ -40,7 +40,7 @@ export const styles = (theme) => ({
     '&$selected': {
       backgroundColor: theme.palette.action.selected,
       '&:hover, &$focusVisible': {
-        backgroundColor: alpha(
+        backgroundColor: fade(
           theme.palette.action.selected,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
         ),
@@ -130,10 +130,10 @@ export const styles = (theme) => ({
   outlinedPrimary: {
     '&$selected': {
       color: theme.palette.primary.main,
-      border: `1px solid ${alpha(theme.palette.primary.main, 0.5)}`,
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+      border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.activatedOpacity),
       '&:hover, &$focusVisible': {
-        backgroundColor: alpha(
+        backgroundColor: fade(
           theme.palette.primary.main,
           theme.palette.action.activatedOpacity + theme.palette.action.hoverOpacity,
         ),
@@ -151,10 +151,10 @@ export const styles = (theme) => ({
   outlinedSecondary: {
     '&$selected': {
       color: theme.palette.secondary.main,
-      border: `1px solid ${alpha(theme.palette.secondary.main, 0.5)}`,
-      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
+      border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
+      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
       '&:hover, &$focusVisible': {
-        backgroundColor: alpha(
+        backgroundColor: fade(
           theme.palette.secondary.main,
           theme.palette.action.activatedOpacity + theme.palette.action.hoverOpacity,
         ),

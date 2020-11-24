@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
-import { alpha } from '../styles/colorManipulator';
+import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 
@@ -21,7 +21,7 @@ export const styles = (theme) => ({
       duration: theme.transitions.duration.shortest,
     }),
     '&:hover': {
-      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -54,7 +54,7 @@ export const styles = (theme) => ({
   colorPrimary: {
     color: theme.palette.primary.main,
     '&:hover': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -65,7 +65,7 @@ export const styles = (theme) => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
     '&:hover': {
-      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',

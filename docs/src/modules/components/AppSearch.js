@@ -3,7 +3,7 @@ import url from 'url';
 import { useSelector } from 'react-redux';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { alpha, useTheme, makeStyles } from '@material-ui/core/styles';
+import { fade, useTheme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
@@ -76,9 +76,9 @@ const useStyles = makeStyles(
       marginRight: theme.spacing(2),
       marginLeft: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
-      backgroundColor: alpha(theme.palette.common.white, 0.15),
+      backgroundColor: fade(theme.palette.common.white, 0.15),
       '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
+        backgroundColor: fade(theme.palette.common.white, 0.25),
       },
       '& $inputInput': {
         transition: theme.transitions.create('width'),

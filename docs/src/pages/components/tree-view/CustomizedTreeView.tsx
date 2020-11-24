@@ -1,6 +1,6 @@
 import React from 'react';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import { alpha, makeStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { fade, makeStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
@@ -57,7 +57,7 @@ const StyledTreeItem = withStyles((theme: Theme) =>
     group: {
       marginLeft: 7,
       paddingLeft: 18,
-      borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
+      borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
     },
   }),
 )((props: TreeItemProps) => <TreeItem {...props} TransitionComponent={TransitionComponent} />);
