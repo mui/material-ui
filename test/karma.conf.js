@@ -56,12 +56,10 @@ module.exports = function setKarmaConfig(config) {
       devtool: 'inline-source-map',
       plugins: [
         new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify('test'),
-            CI: JSON.stringify(process.env.CI),
-            KARMA: JSON.stringify(true),
-            TEST_GATE: JSON.stringify(process.env.TEST_GATE),
-          },
+          'process.env.NODE_ENV': JSON.stringify('test'),
+          'process.env.CI': JSON.stringify(process.env.CI),
+          'process.env.KARMA': JSON.stringify(true),
+          'process.env.TEST_GATE': JSON.stringify(process.env.TEST_GATE),
         }),
       ],
       module: {
