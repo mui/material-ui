@@ -15,7 +15,7 @@ export default function BorderRadius() {
     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <Box sx={{ ...commonStyles, borderRadius: '50%' }} />
       <Box sx={{ ...commonStyles, borderRadius: 1 }} />
-      <Box sx={{ ...commonStyles, borderRadius: 16 }} />
+      <Box sx={{ ...commonStyles, borderRadius: '16px' }} />
     </Box>
   );
 }

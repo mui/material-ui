@@ -65,12 +65,10 @@ export const borderRadius = (props) => {
   const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
 
   return props.borderRadius ? resolveCssProperty(props, 'borderRadius', transformer) : {};
-}
+};
 
 borderRadius.propTypes =
-  process.env.NODE_ENV !== 'production'
-    ? { borderRadius: responsivePropType }
-    : {};
+  process.env.NODE_ENV !== 'production' ? { borderRadius: responsivePropType } : {};
 
 borderRadius.filterProps = ['borderRadius'];
 

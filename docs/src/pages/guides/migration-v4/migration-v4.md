@@ -360,6 +360,11 @@ const classes = makeStyles(theme => ({
 +<Box sx={{ borderRadius: 1 }}>
 ```
 
+```diff
+-<Box sx={{ borderRadius: 16 }}>
++<Box sx={{ borderRadius: '16px' }}>
+```
+
 ### Button
 
 - The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
