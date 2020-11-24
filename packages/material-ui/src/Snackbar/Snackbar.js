@@ -7,7 +7,6 @@ import ClickAwayListener from '../ClickAwayListener';
 import useEventCallback from '../utils/useEventCallback';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
-import deprecatedPropType from '../utils/deprecatedPropType';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 
@@ -325,27 +324,27 @@ Snackbar.propTypes = {
   /**
    * Callback fired before the transition is entering.
    */
-  onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
+  onEnter: PropTypes.func,
   /**
    * Callback fired when the transition has entered.
    */
-  onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
+  onEntered: PropTypes.func,
   /**
    * Callback fired when the transition is entering.
    */
-  onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
+  onEntering: PropTypes.func,
   /**
    * Callback fired before the transition is exiting.
    */
-  onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
+  onExit: PropTypes.func,
   /**
    * Callback fired when the transition has exited.
    */
-  onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
+  onExited: PropTypes.func,
   /**
    * Callback fired when the transition is exiting.
    */
-  onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
+  onExiting: PropTypes.func,
   /**
    * @ignore
    */
