@@ -1,3 +1,4 @@
+import { unstable_capitalize as capitalize } from '@material-ui/utils';
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
 
@@ -7,6 +8,24 @@ function getPath(obj, path) {
   }
 
   return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
+}
+
+function getValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {
+  let value;
+
+  if (typeof themeMapping === 'function') {
+    value = themeMapping(propValueFinal);
+  } else if (Array.isArray(themeMapping)) {
+    value = themeMapping[propValueFinal] || userValue;
+  } else {
+    value = getPath(themeMapping, propValueFinal) || userValue;
+
+    if (transform) {
+      value = transform(value);
+    }
+  }
+
+  return value;
 }
 
 function style(options) {
@@ -21,18 +40,16 @@ function style(options) {
     const theme = props.theme;
     const themeMapping = getPath(theme, themeKey) || {};
     const styleFromPropValue = (propValueFinal) => {
-      let value;
+      let value = getValue(themeMapping, transform, propValueFinal);
 
-      if (typeof themeMapping === 'function') {
-        value = themeMapping(propValueFinal);
-      } else if (Array.isArray(themeMapping)) {
-        value = themeMapping[propValueFinal] || propValueFinal;
-      } else {
-        value = getPath(themeMapping, propValueFinal) || propValueFinal;
-
-        if (transform) {
-          value = transform(value);
-        }
+      if (propValueFinal === value && typeof propValueFinal === 'string') {
+        // Haven't found value
+        value = getValue(
+          themeMapping,
+          transform,
+          `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
+          propValueFinal,
+        );
       }
 
       if (cssProperty === false) {
