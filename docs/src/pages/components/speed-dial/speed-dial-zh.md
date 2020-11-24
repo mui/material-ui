@@ -34,7 +34,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 ## 恒定不变的操作的工具提示
 
-SpeedDialActions 工具提示组件可以持续显示，这样一来用户不用长按就能在触摸设备上看到提示内容了。
+The SpeedDialActions tooltips can be displayed persistently so that users don't have to long-press to see the tooltip on touch devices.
 
 为了演示的目的，该示例为所有设备都启用了该功能，但在生产环境中，它可以使用 `isTouch` 逻辑来有条件地设置属性。
 
@@ -52,12 +52,12 @@ SpeedDialActions 工具提示组件可以持续显示，这样一来用户不用
 #### 已提供
 
 - Fab 有 `aria-haspopup`，`aria-expanded` 和 `aria-controls` 属性。
-- 快速拨号操作容器根据方向设置了 `role="menu"` 和 `aria-orientation`。
+- The speed dial actions container has `role="menu"` and `aria-orientation` set according to the direction.
 - 快速拨号操作具有 `role="menuitem"` 和引用相关工具提示的 `aria-describedby` 属性。
 
 ### 键盘输入
 
 - 对焦时打开快速拨号组件。
 - 空格键和回车键将会触发所选的快速拨号动作，并且切换快速拨号组件的打开状态。
-- 光标键可将焦点移至下一个或上一个快速拨号操作。 （请注意，任何光标键的方向都可以用来打开快速拨号。 这使得实际或感知的快速拨号盘方向的预期行为得以实现，例如，对于将快速拨号盘视为下拉菜单的屏幕阅读器用户而言。）
+- 光标键可将焦点移至下一个或上一个快速拨号操作。 （请注意，任何光标键的方向都可以用来打开快速拨号。 This enables the expected behavior for the actual or perceived orientation of the speed dial, for example for a screen reader user who perceives the speed dial as a drop-down menu.)
 - Escape 键将会关闭快速拨号盘，如果一个快速快速拨号盘的动作被聚焦，则将该焦点回退到 Fab。
