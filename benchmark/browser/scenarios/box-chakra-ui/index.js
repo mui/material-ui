@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, ThemeProvider } from '@chakra-ui/core';
+import { chakra } from '@chakra-ui/system';
 
 const customTheme = {
   colors: {
@@ -11,11 +11,12 @@ const customTheme = {
 
 export default function BoxChakraUi() {
   return (
-    <ThemeProvider theme={customTheme}>
+    <div>
       {new Array(1000).fill().map(() => (
-        <Box
+        <chakra.div
           width={200}
           height={200}
+          theme={customTheme}
           color={'primary'}
           backgroundColor={['primary', 'text', 'background']}
           borderWidth={'3px'}
@@ -23,8 +24,8 @@ export default function BoxChakraUi() {
           borderStyle={['dashed', 'solid', 'dotted']}
         >
           test case
-        </Box>
+        </chakra.div>
       ))}
-    </ThemeProvider>
+    </div>
   );
 }

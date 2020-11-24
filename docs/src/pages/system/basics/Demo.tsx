@@ -14,7 +14,7 @@ export default function Demo() {
         overflow: 'hidden',
         borderRadius: '12px',
         boxShadow: 1,
-        fontWeight: 'fontWeightBold',
+        fontWeight: 'bold',
       }}
     >
       <Box
