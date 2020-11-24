@@ -86,7 +86,6 @@
   "skipToContent": "跳转到内容",
   "sourceCode": "源代码",
   "spacingUnit": "间隔单元",
-  "stackblitz": "在 StackBlitz 中编辑（仅限JS）",
   "stars": "GitHub 点赞数",
   "stickyFooterDescr": "当页面内容比较简短的时候，在可视区域的底端附加上一个页脚。",
   "stickyFooterTitle": "Sticky footer",
