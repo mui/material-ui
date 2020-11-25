@@ -2,7 +2,7 @@ import { unstable_capitalize as capitalize } from '@material-ui/utils';
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
 
-function getPath(obj, path) {
+export function getPath(obj, path) {
   if (!path || typeof path !== 'string') {
     return null;
   }
