@@ -64,8 +64,6 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
         return acc;
       }, {});
     }
-
-    return propValue;
   }
 
   const output = styleFromPropValue(propValue);
