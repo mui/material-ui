@@ -31,64 +31,6 @@ describe('<Box />', () => {
     expect(container.querySelectorAll('span').length).to.equal(1);
   });
 
-  describe('warnings', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-    });
-
-    it('warns if system props are used directly on the Box component', () => {
-      expect(() => {
-        PropTypes.checkPropTypes(
-          // If this breaks too often remove the test.
-          // Testing propTypes isn't worth the effort of using expando properties for internal propTypes-only stuff.
-          // eslint-disable-next-line no-underscore-dangle
-          Box.__emotion_base.propTypes,
-          {
-            color: 'primary.main',
-            fontFamily: 'Comic Sans',
-            fontSize: { xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' },
-          },
-          'props',
-          'MockedName',
-        );
-      }).toErrorDev(
-        'Warning: Failed props type: The following props are deprecated: `color`, `fontFamily`, `fontSize`.',
-      );
-    });
-  });
-
-  describe('deprecated props', () => {
-    const consoleSandbox = createSandbox();
-
-    beforeEach(() => {
-      // Otherwise our global setup throws on prop-types warnings.
-      // The tested props are deprecated so we're not worried about new, unexpected console errors.
-      consoleSandbox.stub(console, 'warn');
-      consoleSandbox.stub(console, 'error');
-    });
-
-    afterEach(() => {
-      consoleSandbox.restore();
-    });
-
-    it('does not forward style props as DOM attributes', () => {
-      const elementRef = React.createRef();
-      render(
-        <Box
-          color="primary.main"
-          fontFamily="Comic Sans"
-          fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
-          ref={elementRef}
-        />,
-      );
-
-      const { current: element } = elementRef;
-      expect(element).not.to.have.attribute('color');
-      expect(element).not.to.have.attribute('font-family');
-      expect(element).not.to.have.attribute('font-size');
-    });
-  });
-
   it('respect properties order when generating the CSS', function test() {
     const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
