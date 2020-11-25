@@ -148,9 +148,9 @@ function renderSystem(req, res) {
         p: [2, 3, 4],
         border: {
           sm: 1,
-          md: 2
+          md: 2,
         },
-      }
+      },
     });
   }
 
