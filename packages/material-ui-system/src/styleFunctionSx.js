@@ -52,6 +52,13 @@ function callable(maybeFn, ...args) {
   return typeof maybeFn === 'function' ? maybeFn(...args) : maybeFn;
 }
 
+function updateMediaQueries(mediaQueriesValues, key, value) {
+  if (!mediaQueriesValues[key]) {
+    mediaQueriesValues[key] = [];
+  }
+  mediaQueriesValues[key].push(value);
+}
+
 function styleFunctionSx(props) {
   const { sx: styles, theme } = props || {};
   if (!styles) return null;
@@ -97,11 +104,7 @@ function styleFunctionSx(props) {
         }
 
         Object.keys(result).forEach((breakpointKey) => {
-          // media query
-          if (!mediaQueriesValues[breakpointKey]) {
-            mediaQueriesValues[breakpointKey] = [];
-          }
-          mediaQueriesValues[breakpointKey].push(result[breakpointKey]);
+          updateMediaQueries(mediaQueriesValues, breakpointKey, result[breakpointKey]);
         });
       } else {
         // simple value no need for deepmerge
@@ -113,11 +116,7 @@ function styleFunctionSx(props) {
     } else {
       const resolvedValue = styleFunctionSx(value);
 
-      // media query
-      if (!mediaQueriesValues[styleKey]) {
-        mediaQueriesValues[styleKey] = [];
-      }
-      mediaQueriesValues[styleKey].push(resolvedValue);
+      updateMediaQueries(mediaQueriesValues, styleKey, resolvedValue);
     }
   });
 
