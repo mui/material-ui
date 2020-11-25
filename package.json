@@ -138,7 +138,6 @@
     "playwright": "^1.6.1",
     "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.0.1",
-    "pretty-format-v24": "npm:pretty-format@24",
     "prop-types": "^15.7.2",
     "puppeteer": "^5.0.0",
     "react": "^16.14.0",

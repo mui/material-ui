@@ -12,7 +12,7 @@ process.env.CHROME_BIN = require('puppeteer').executablePath();
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
-    browsers: ['ChromeHeadlessNoSandbox'],
+    browsers: ['chromeHeadless'],
     browserDisconnectTimeout: 120000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 300000, // default 10000
@@ -56,12 +56,10 @@ module.exports = function setKarmaConfig(config) {
       devtool: 'inline-source-map',
       plugins: [
         new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify('test'),
-            CI: JSON.stringify(process.env.CI),
-            KARMA: JSON.stringify(true),
-            TEST_GATE: JSON.stringify(process.env.TEST_GATE),
-          },
+          'process.env.NODE_ENV': JSON.stringify('test'),
+          'process.env.CI': JSON.stringify(process.env.CI),
+          'process.env.KARMA': JSON.stringify(true),
+          'process.env.TEST_GATE': JSON.stringify(process.env.TEST_GATE),
         }),
       ],
       module: {
@@ -81,20 +79,6 @@ module.exports = function setKarmaConfig(config) {
         fs: 'empty',
       },
       resolve: {
-        alias: {
-          // yarn alias for `pretty-format@3`
-          // @testing-library/dom -> pretty-format@25
-          // which uses Object.entries which isn't implemented in all browsers
-          // we support
-          'pretty-format': require.resolve('pretty-format-v24'),
-          // https://github.com/sinonjs/sinon/issues/1951
-          // use the cdn main field. Neither module nor main are supported for browserbuilds
-          sinon: 'sinon/pkg/sinon.js',
-          // https://github.com/testing-library/react-testing-library/issues/486
-          // "default" bundles are not browser compatible
-          '@testing-library/react/pure':
-            '@testing-library/react/dist/@testing-library/react.pure.esm',
-        },
         extensions: ['.js', '.ts', '.tsx'],
       },
     },
@@ -103,7 +87,7 @@ module.exports = function setKarmaConfig(config) {
       writeToDisk: Boolean(process.env.CI),
     },
     customLaunchers: {
-      ChromeHeadlessNoSandbox: {
+      chromeHeadless: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox'],
       },
@@ -117,30 +101,25 @@ module.exports = function setKarmaConfig(config) {
     newConfig = {
       ...baseConfig,
       browserStack,
-      browsers: baseConfig.browsers.concat([
-        'BrowserStack_Chrome',
-        'BrowserStack_Firefox',
-        'BrowserStack_Safari',
-        'BrowserStack_Edge',
-      ]),
+      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safar', 'edge']),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: {
         ...baseConfig.customLaunchers,
-        BrowserStack_Chrome: {
+        chrome: {
           base: 'BrowserStack',
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'chrome',
           browser_version: '84.0',
         },
-        BrowserStack_Firefox: {
+        firefox: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',
           browser: 'firefox',
           browser_version: '78.0',
         },
-        BrowserStack_Safari: {
+        safar: {
           base: 'BrowserStack',
           os: 'OS X',
           os_version: 'Catalina',
@@ -149,7 +128,7 @@ module.exports = function setKarmaConfig(config) {
           // However, 12.1 is very flaky on desktop (mobile is always flaky).
           browser_version: '13.0',
         },
-        BrowserStack_Edge: {
+        edge: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',

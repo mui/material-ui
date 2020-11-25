@@ -48,7 +48,8 @@ async function run(argv) {
   const mochaProcess = childProcess.spawn('yarn', args, {
     env: {
       ...process.env,
-      NODE_ENV: 'test',
+      BABEL_ENV: 'test',
+      NODE_ENV: argv.production ? 'production' : 'test',
     },
     shell: true,
     stdio: ['inherit', 'inherit', 'inherit'],
@@ -82,8 +83,14 @@ yargs
           type: 'boolean',
         })
         .option('inspect-brk', {
-          alias: 'b',
+          alias: 'd',
           description: 'Stop on first error.',
+          type: 'boolean',
+        })
+        .option('production', {
+          alias: 'p',
+          description:
+            'Run tests in production environment. WARNING: Will not work with most tests.',
           type: 'boolean',
         })
         .option('single', {
