@@ -1283,9 +1283,9 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // three option is added and autocomplete re-renders, two should still be highlighted
+      // three option is added and autocomplete re-renders, reset the highlight
       setProps({ options: ['one', 'two', 'three'] });
-      checkHighlightIs(listbox, 'two');
+      checkHighlightIs(listbox, null);
     });
 
     it('should not select undefined', () => {
@@ -2015,16 +2015,16 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('textbox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      expect(handleHighlightChange.callCount).to.equal(2);
-      expect(handleHighlightChange.args[1][0]).to.not.equal(undefined);
-      expect(handleHighlightChange.args[1][1]).to.equal(options[0]);
-      expect(handleHighlightChange.args[1][2]).to.equal('keyboard');
-
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(3);
       expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
-      expect(handleHighlightChange.args[2][1]).to.equal(options[1]);
+      expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
       expect(handleHighlightChange.args[2][2]).to.equal('keyboard');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(handleHighlightChange.callCount).to.equal(4);
+      expect(handleHighlightChange.args[3][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[3][1]).to.equal(options[1]);
+      expect(handleHighlightChange.args[3][2]).to.equal('keyboard');
     });
 
     it('should support mouse event', () => {
@@ -2040,10 +2040,10 @@ describe('<Autocomplete />', () => {
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseOver(firstOption);
-      expect(handleHighlightChange.callCount).to.equal(2);
-      expect(handleHighlightChange.args[1][0]).to.not.equal(undefined);
-      expect(handleHighlightChange.args[1][1]).to.equal(options[0]);
-      expect(handleHighlightChange.args[1][2]).to.equal('mouse');
+      expect(handleHighlightChange.callCount).to.equal(3);
+      expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
+      expect(handleHighlightChange.args[2][2]).to.equal('mouse');
     });
 
     it('should pass to onHighlightChange the correct value after filtering', () => {
@@ -2066,6 +2066,26 @@ describe('<Autocomplete />', () => {
       expect(handleHighlightChange.args[handleHighlightChange.args.length - 1][1]).to.equal(
         options[2],
       );
+    });
+
+    it('should reset the highlight when the options change', () => {
+      const handleHighlightChange = [];
+      const { getByRole, setProps } = render(
+        <Autocomplete
+          onHighlightChange={(event, option) => {
+            handleHighlightChange.push(option);
+          }}
+          openOnFocus
+          autoHighlight
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      checkHighlightIs(getByRole('listbox'), 'one');
+      setProps({ options: ['four', 'five'] });
+      checkHighlightIs(getByRole('listbox'), 'four');
+      expect(handleHighlightChange).to.deep.equal([null, 'one', 'four']);
     });
   });
 
