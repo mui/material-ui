@@ -1477,13 +1477,8 @@ describe('<Autocomplete />', () => {
     });
 
     it('should mantain list box open clicking on input when it is not empty', () => {
-      const handleHighlightChange = spy();
       const { getByRole, getAllByRole } = render(
-        <Autocomplete
-          onHighlightChange={handleHighlightChange}
-          options={['one']}
-          renderInput={(params) => <TextField {...params} />}
-        />,
+        <Autocomplete options={['one']} renderInput={(params) => <TextField {...params} />} />,
       );
       const combobox = getByRole('combobox');
       const textbox = getByRole('textbox');
@@ -1501,11 +1496,9 @@ describe('<Autocomplete />', () => {
     });
 
     it('should not toggle list box', () => {
-      const handleHighlightChange = spy();
       const { getByRole } = render(
         <Autocomplete
           value="one"
-          onHighlightChange={handleHighlightChange}
           options={['one']}
           renderInput={(params) => <TextField {...params} />}
         />,
