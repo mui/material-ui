@@ -55,14 +55,17 @@ export interface DialogProps
   onClose?: ModalProps['onClose'];
   /**
    * Callback fired before the dialog enters.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEnter?: TransitionHandlerProps['onEnter'];
   /**
    * Callback fired when the dialog has entered.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEntered?: TransitionHandlerProps['onEntered'];
   /**
    * Callback fired when the dialog is entering.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEntering?: TransitionHandlerProps['onEntering'];
   /**
@@ -72,14 +75,17 @@ export interface DialogProps
   onEscapeKeyDown?: ModalProps['onEscapeKeyDown'];
   /**
    * Callback fired before the dialog exits.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExit?: TransitionHandlerProps['onExit'];
   /**
    * Callback fired when the dialog has exited.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExited?: TransitionHandlerProps['onExited'];
   /**
    * Callback fired when the dialog is exiting.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExiting?: TransitionHandlerProps['onExiting'];
   /**

@@ -330,14 +330,17 @@ Dialog.propTypes = {
   onClose: PropTypes.func,
   /**
    * Callback fired before the dialog enters.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
   /**
    * Callback fired when the dialog has entered.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
   /**
    * Callback fired when the dialog is entering.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
   /**
@@ -347,14 +350,17 @@ Dialog.propTypes = {
   onEscapeKeyDown: PropTypes.func,
   /**
    * Callback fired before the dialog exits.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
   /**
    * Callback fired when the dialog has exited.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
   /**
    * Callback fired when the dialog is exiting.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
   /**

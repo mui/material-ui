@@ -44,31 +44,37 @@ export interface MenuProps
   onClose?: PopoverProps['onClose'];
   /**
    * Callback fired before the Menu enters.
+   * @deprecated Use the `TransitionProps` property instead.
    * @document
    */
   onEnter?: PopoverProps['onEnter'];
   /**
    * Callback fired when the Menu has entered.
+   * @deprecated Use the `TransitionProps` property instead.
    * @document
    */
   onEntered?: PopoverProps['onEntered'];
   /**
    * Callback fired when the Menu is entering.
+   * @deprecated Use the `TransitionProps` property instead.
    * @document
    */
   onEntering?: PopoverProps['onEntering'];
   /**
    * Callback fired before the Menu exits.
+   * @deprecated Use the `TransitionProps` property instead.
    * @document
    */
   onExit?: PopoverProps['onExit'];
   /**
    * Callback fired when the Menu has exited.
+   * @deprecated Use the `TransitionProps` property instead.
    * @document
    */
   onExited?: PopoverProps['onExited'];
   /**
    * Callback fired when the Menu is exiting.
+   * @deprecated Use the `TransitionProps` property instead.
    * @document
    */
   onExiting?: PopoverProps['onExiting'];

@@ -194,6 +194,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     rows,
     rowsMax,
     rowsMin,
+    maxRows,
+    minRows,
     startAdornment,
     type = 'text',
     value: valueProp,
@@ -371,12 +373,13 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref: null,
     };
   } else if (multiline) {
-    if (rows && !rowsMax && !rowsMin) {
+    if (rows && !maxRows && !minRows && !rowsMax && !rowsMin) {
       InputComponent = 'textarea';
     } else {
       inputProps = {
-        rows,
+        minRows: rows || minRows,
         rowsMax,
+        maxRows,
         ...inputProps,
       };
 
@@ -547,6 +550,14 @@ InputBase.propTypes = {
    */
   margin: PropTypes.oneOf(['dense', 'none']),
   /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * If `true`, a textarea element will be rendered.
    */
   multiline: PropTypes.bool,
@@ -605,11 +616,13 @@ InputBase.propTypes = {
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * Maximum number of rows to display when multiline option is set to true.
+   * Maximum number of rows to display.
+   * @deprecated Use `maxRows` instead.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * Minimum number of rows to display when multiline option is set to true.
+   * Minimum number of rows to display.
+   * @deprecated Use `minRows` instead.
    */
   rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**

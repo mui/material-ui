@@ -54,7 +54,7 @@ function Textarea() {
         multiline
         value={value}
         onChange={handleChange}
-        rowsMax={4}
+        maxRows={4}
       />
       <Input className={classes.input} multiline placeholder="long placeholder long placeholder" />
       <Input
