@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  act,
+  act as rtlAct,
   buildQueries,
   cleanup,
   fireEvent as rtlFireEvent,
@@ -433,9 +433,13 @@ export function fireTouchChangedEvent(target, type, options) {
   target.getBoundingClientRect = originalGetBoundingClientRect;
 }
 
+export function act(callback) {
+  return trace('act', () => rtlAct(callback));
+}
+
 export * from '@testing-library/react/pure';
-// TODO: Trace act, cleanup
-export { act, cleanup, fireEvent, userEvent };
+// TODO: Trace cleanup
+export { cleanup, fireEvent, userEvent };
 // We import from `@testing-library/react` and `@testing-library/dom` before creating a JSDOM.
 // At this point a global document isn't available yet. Now it is.
 export const screen = within(document.body);
