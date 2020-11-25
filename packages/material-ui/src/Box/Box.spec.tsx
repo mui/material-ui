@@ -22,7 +22,7 @@ function ResponsiveTest() {
         xs: 12,
         sm: 18,
         md: 24,
-      }
+      },
     }}
   >
     Object API
