@@ -15,8 +15,6 @@ import Pricing from 'docs/src/pages/getting-started/templates/pricing/Pricing';
 import { spacing, palette, unstable_styleFunctionSx as styleFunction } from '@material-ui/system';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
-import styledComponents, { ServerStyleSheet } from 'styled-components';
-import styledEmotion from '@emotion/styled';
 
 const StyledFunction = materialStyled('div')(() => ({
   color: 'blue',

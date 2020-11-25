@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import PropTypes from 'prop-types';
-import { createSandbox } from 'sinon';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import Box from './Box';
 
