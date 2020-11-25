@@ -268,10 +268,7 @@ describe('<DateRangePicker />', () => {
         calendars={3}
         onChange={() => {}}
         TransitionComponent={FakeTransitionComponent}
-        value={[
-          adapterToUse.date(NaN),
-          adapterToUse.date('2018-01-31T00:00:00.000'),
-        ]}
+        value={[adapterToUse.date(NaN), adapterToUse.date('2018-01-31T00:00:00.000')]}
       />,
     );
 
