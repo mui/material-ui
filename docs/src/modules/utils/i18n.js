@@ -1,9 +1,22 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import mapTranslations from './mapTranslations';
+
+function mapTranslations(req) {
+  const translations = {};
+  req.keys().forEach((filename) => {
+    const match = filename.match(new RegExp(`-([a-z]{2}).json$`));
+
+    if (match) {
+      translations[match[1]] = req(filename);
+    } else {
+      translations.en = req(filename);
+    }
+  });
+  return translations;
+}
 
 const req = require.context('docs/translations', false, /translations.*\.json$/);
-const translations = mapTranslations(req, 'json');
+const translations = mapTranslations(req);
 
 function getPath(obj, path) {
   if (!path || typeof path !== 'string') {
