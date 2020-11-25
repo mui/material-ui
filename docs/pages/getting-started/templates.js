@@ -1,5 +1,5 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import TopLayoutDocs from 'docs/src/modules/components/TopLayoutDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'getting-started/templates';
@@ -15,7 +15,7 @@ const requireRaw = require.context(
 );
 
 export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} disableToc />;
+  return <TopLayoutDocs demos={demos} docs={docs} requireDemo={requireDemo} disableToc />;
 }
 
 Page.getInitialProps = () => {

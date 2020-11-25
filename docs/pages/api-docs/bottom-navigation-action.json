@@ -1,0 +1,26 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "icon": { "type": { "name": "node" } },
+    "label": { "type": { "name": "node" } },
+    "onChange": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onTouchEnd": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onTouchStart": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "showLabel": { "type": { "name": "bool" } },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "BottomNavigationAction",
+  "styles": {
+    "classes": ["root", "selected", "iconOnly", "wrapper", "label"],
+    "globalClasses": { "selected": "Mui-selected" }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/BottomNavigationAction/BottomNavigationAction.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
+  "demos": "<ul><li><a href=\"/components/bottom-navigation/\">Bottom Navigation</a></li></ul>",
+  "styledComponent": false
+}

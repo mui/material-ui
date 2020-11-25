@@ -1,5 +1,5 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import TopLayoutDocs from 'docs/src/modules/components/TopLayoutDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/autocomplete';
@@ -15,7 +15,7 @@ const requireRaw = require.context(
 requireDemo.keys().map(requireDemo);
 
 export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return <TopLayoutDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
 Page.getInitialProps = () => {

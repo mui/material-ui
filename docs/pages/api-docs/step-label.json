@@ -1,0 +1,35 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "error": { "type": { "name": "bool" } },
+    "icon": { "type": { "name": "node" } },
+    "optional": { "type": { "name": "node" } },
+    "StepIconComponent": { "type": { "name": "elementType" } },
+    "StepIconProps": { "type": { "name": "object" } }
+  },
+  "name": "StepLabel",
+  "styles": {
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "label",
+      "active",
+      "completed",
+      "error",
+      "disabled",
+      "iconContainer",
+      "alternativeLabel",
+      "labelContainer"
+    ],
+    "globalClasses": { "error": "Mui-error", "disabled": "Mui-disabled" }
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/StepLabel/StepLabel.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
+  "styledComponent": false
+}

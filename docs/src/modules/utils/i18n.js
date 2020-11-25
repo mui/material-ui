@@ -48,7 +48,7 @@ export function useTranslate() {
           const fullKey = `${userLanguage}:${key}`;
           // No warnings in CI env
           if (!ignoreWarning && !warnedOnce[fullKey] && typeof window !== 'undefined') {
-            console.error(`Missing translation for ${fullKey}.`);
+            console.error(`Missing translation for ${fullKey}`);
             warnedOnce[fullKey] = true;
           }
           return getPath(translations.en, key);
