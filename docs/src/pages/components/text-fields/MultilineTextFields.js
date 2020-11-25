@@ -26,7 +26,7 @@ export default function MultilineTextFields() {
           id="standard-multiline-flexible"
           label="Multiline"
           multiline
-          rowsMax={4}
+          maxRows={4}
           value={value}
           onChange={handleChange}
         />
@@ -49,7 +49,7 @@ export default function MultilineTextFields() {
           id="filled-multiline-flexible"
           label="Multiline"
           multiline
-          rowsMax={4}
+          maxRows={4}
           value={value}
           onChange={handleChange}
           variant="filled"
@@ -75,7 +75,7 @@ export default function MultilineTextFields() {
           id="outlined-multiline-flexible"
           label="Multiline"
           multiline
-          rowsMax={4}
+          maxRows={4}
           value={value}
           onChange={handleChange}
           variant="outlined"

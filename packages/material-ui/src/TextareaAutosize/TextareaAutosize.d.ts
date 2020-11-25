@@ -5,19 +5,28 @@ export interface TextareaAutosizeProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'children' | 'rows'> {
   ref?: React.Ref<HTMLTextAreaElement>;
   /**
-   * Use `rowsMin` instead. The prop will be removed in v5.
-   *
-   * @deprecated
+   * Minimum number of rows to display.
+   * @deprecated Use `rowsMin` instead.
    */
   rows?: string | number;
   /**
    * Maximum number of rows to display.
+   * @deprecated Use `maxRows` instead.
    */
   rowsMax?: string | number;
   /**
    * Minimum number of rows to display.
+   * @deprecated Use `minRows` instead.
    */
   rowsMin?: string | number;
+  /**
+   * Maximum number of rows to display.
+   */
+  maxRows?: string | number;
+  /**
+   * Minimum number of rows to display.
+   */
+  minRows?: string | number;
 }
 
 /**

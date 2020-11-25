@@ -324,26 +324,32 @@ Snackbar.propTypes = {
   onClose: PropTypes.func,
   /**
    * Callback fired before the transition is entering.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the transition has entered.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the transition is entering.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired before the transition is exiting.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the transition has exited.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the transition is exiting.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**

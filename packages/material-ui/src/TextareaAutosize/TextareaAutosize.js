@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
+import deprecatedPropType from '../utils/deprecatedPropType';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
@@ -27,9 +28,20 @@ const styles = {
 };
 
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {
-  const { onChange, rows, rowsMax, rowsMin: rowsMinProp = 1, style, value, ...other } = props;
+  const {
+    onChange,
+    rows,
+    rowsMax,
+    rowsMin: rowsMinProp,
+    maxRows: maxRowsProp,
+    minRows: minRowsProp = 1,
+    style,
+    value,
+    ...other
+  } = props;
 
-  const rowsMin = rows || rowsMinProp;
+  const maxRows = maxRowsProp || rowsMax;
+  const minRows = rows || rowsMinProp || minRowsProp;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef(null);
@@ -69,11 +81,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     // The height of the outer content
     let outerHeight = innerHeight;
 
-    if (rowsMin) {
-      outerHeight = Math.max(Number(rowsMin) * singleRowHeight, outerHeight);
+    if (minRows) {
+      outerHeight = Math.max(Number(minRows) * singleRowHeight, outerHeight);
     }
-    if (rowsMax) {
-      outerHeight = Math.min(Number(rowsMax) * singleRowHeight, outerHeight);
+    if (maxRows) {
+      outerHeight = Math.min(Number(maxRows) * singleRowHeight, outerHeight);
     }
     outerHeight = Math.max(outerHeight, singleRowHeight);
 
@@ -110,7 +122,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
       return prevState;
     });
-  }, [rowsMax, rowsMin, props.placeholder]);
+  }, [maxRows, minRows, props.placeholder]);
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
@@ -152,7 +164,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         onChange={handleChange}
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
-        rows={rowsMin}
+        rows={minRows}
         style={{
           height: state.outerHeightStyle,
           // Need a large enough difference to allow scrolling.
@@ -184,6 +196,14 @@ TextareaAutosize.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Maximum number of rows to display.
+   */
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * Minimum number of rows to display.
+   */
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * @ignore
    */
   onChange: PropTypes.func,
@@ -192,19 +212,29 @@ TextareaAutosize.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * Use `rowsMin` instead. The prop will be removed in v5.
-   *
-   * @deprecated
+   * Minimum number of rows to display.
+   * @deprecated Use `rowsMin` instead.
    */
-  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rows: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    'Use `rowsMin` instead.',
+  ),
   /**
    * Maximum number of rows to display.
+   * @deprecated Use `maxRows` instead.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rowsMax: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    'Use `maxRows` instead.',
+  ),
   /**
    * Minimum number of rows to display.
+   * @deprecated Use `minRows` instead.
    */
-  rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rowsMin: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    'Use `minRows` instead.',
+  ),
   /**
    * @ignore
    */

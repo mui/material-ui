@@ -99,9 +99,14 @@ export interface BaseTextFieldProps
    */
   rows?: string | number;
   /**
-   * Maximum number of rows to display when multiline option is set to true.
+   * Maximum number of rows to display.
+   * @deprecated Use `maxRows` instead.
    */
   rowsMax?: string | number;
+  /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  maxRows?: string | number;
   /**
    * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
