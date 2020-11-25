@@ -32,7 +32,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     onChange,
     rows,
     rowsMax,
-    rowsMin: rowsMinProp = 1,
+    rowsMin: rowsMinProp,
     maxRows: maxRowsProp,
     minRows: minRowsProp = 1,
     style,
