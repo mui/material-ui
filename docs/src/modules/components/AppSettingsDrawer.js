@@ -24,13 +24,12 @@ const styles = (theme) => ({
   paper: {
     width: 240,
     backgroundColor: theme.palette.background.level1,
-    padding: 16,
-  },
-  divider: {
-    margin: '8px 0 0',
   },
   heading: {
     margin: '16px 0 8px',
+  },
+  toggleButtonGroup: {
+    width: '100%',
   },
   icon: {
     margin: '0 8px 0 16px',
@@ -72,100 +71,104 @@ function AppSettingsDrawer(props) {
       }}
       {...other}
     >
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
         <Typography variant="h5">{t('settings.siteSettings')}</Typography>
         <IconButton color="inherit" onClick={onClose}>
           <CloseIcon />
         </IconButton>
       </Box>
-      <Divider className={classes.divider} />
-      <Typography gutterBottom className={classes.heading}>
-        {t('settings.mode')}
-      </Typography>
-      <ToggleButtonGroup
-        orientation="vertical"
-        exclusive
-        value={mode}
-        onChange={handleChangeThemeMode}
-        aria-label={t('settings.mode')}
-      >
-        <ToggleButton
-          value="light"
-          aria-label={t('settings.light')}
-          data-ga-event-category="settings"
-          data-ga-event-action="light"
+      <Divider />
+      <Box sx={{ pl: 2, pr: 2 }}>
+        <Typography gutterBottom className={classes.heading}>
+          {t('settings.mode')}
+        </Typography>
+        <ToggleButtonGroup
+          orientation="vertical"
+          exclusive
+          value={mode}
+          onChange={handleChangeThemeMode}
+          aria-label={t('settings.mode')}
+          className={classes.toggleButtonGroup}
         >
-          <Box sx={{ display: 'flex', width: '100%' }}>
-            <Brightness7Icon className={classes.icon} />
-            {t('settings.light')}
-          </Box>
-        </ToggleButton>
-        <ToggleButton
-          value="system"
-          aria-label={t('settings.system')}
-          data-ga-event-category="settings"
-          data-ga-event-action="system"
+          <ToggleButton
+            value="light"
+            aria-label={t('settings.light')}
+            data-ga-event-category="settings"
+            data-ga-event-action="light"
+          >
+            <Box sx={{ display: 'flex', width: '100%' }}>
+              <Brightness7Icon className={classes.icon} />
+              {t('settings.light')}
+            </Box>
+          </ToggleButton>
+          <ToggleButton
+            value="system"
+            aria-label={t('settings.system')}
+            data-ga-event-category="settings"
+            data-ga-event-action="system"
+          >
+            <Box sx={{ display: 'flex', width: '100%' }}>
+              <SettingsBrightnessIcon className={classes.icon} />
+              {t('settings.system')}
+            </Box>
+          </ToggleButton>
+          <ToggleButton
+            value="dark"
+            aria-label={t('settings.dark')}
+            data-ga-event-category="settings"
+            data-ga-event-action="dark"
+          >
+            <Box sx={{ display: 'flex', width: '100%' }}>
+              <Brightness4Icon className={classes.icon} />
+              {t('settings.dark')}
+            </Box>
+          </ToggleButton>
+        </ToggleButtonGroup>
+        <Typography gutterBottom className={classes.heading}>
+          {t('settings.direction')}
+        </Typography>
+        <ToggleButtonGroup
+          orientation="vertical"
+          exclusive
+          value={theme.direction}
+          onChange={handleChangeDirection}
+          aria-label={t('settings.mode')}
+          className={classes.toggleButtonGroup}
         >
-          <Box sx={{ display: 'flex', width: '100%' }}>
-            <SettingsBrightnessIcon className={classes.icon} />
-            {t('settings.system')}
-          </Box>
-        </ToggleButton>
-        <ToggleButton
-          value="dark"
-          aria-label={t('settings.dark')}
+          <ToggleButton
+            value="ltr"
+            aria-label={t('settings.light')}
+            data-ga-event-category="settings"
+            data-ga-event-action="ltr"
+          >
+            <Box sx={{ display: 'flex', width: '100%' }}>
+              <FormatTextdirectionLToRIcon className={classes.icon} />
+              {t('settings.ltr')}
+            </Box>
+          </ToggleButton>
+          <ToggleButton
+            value="rtl"
+            aria-label={t('settings.system')}
+            data-ga-event-category="settings"
+            data-ga-event-action="rtl"
+          >
+            <Box sx={{ display: 'flex', width: '100%' }}>
+              <FormatTextdirectionRToLIcon className={classes.icon} />
+              {t('settings.rtl')}
+            </Box>
+          </ToggleButton>
+        </ToggleButtonGroup>
+        <Typography gutterBottom className={classes.heading}>
+          {t('settings.color')}
+        </Typography>
+        <Link
+          href="/customization/color/#playground"
           data-ga-event-category="settings"
-          data-ga-event-action="dark"
+          data-ga-event-action="colors"
         >
-          <Box sx={{ display: 'flex', width: '100%' }}>
-            <Brightness4Icon className={classes.icon} />
-            {t('settings.dark')}
-          </Box>
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <Typography gutterBottom className={classes.heading}>
-        {t('settings.direction')}
-      </Typography>
-      <ToggleButtonGroup
-        orientation="vertical"
-        exclusive
-        value={theme.direction}
-        onChange={handleChangeDirection}
-        aria-label={t('settings.mode')}
-      >
-        <ToggleButton
-          value="ltr"
-          aria-label={t('settings.light')}
-          data-ga-event-category="settings"
-          data-ga-event-action="ltr"
-        >
-          <Box sx={{ display: 'flex', width: '100%' }}>
-            <FormatTextdirectionLToRIcon className={classes.icon} />
-            {t('settings.ltr')}
-          </Box>
-        </ToggleButton>
-        <ToggleButton
-          value="rtl"
-          aria-label={t('settings.system')}
-          data-ga-event-category="settings"
-          data-ga-event-action="rtl"
-        >
-          <Box sx={{ display: 'flex', width: '100%' }}>
-            <FormatTextdirectionRToLIcon className={classes.icon} />
-            {t('settings.rtl')}
-          </Box>
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <Typography gutterBottom className={classes.heading}>
-        {t('settings.color')}
-      </Typography>
-      <Link
-        href="/customization/color/#playground"
-        data-ga-event-category="settings"
-        data-ga-event-action="colors"
-      >
-        {t('editWebsiteColors')}
-      </Link>
+          {t('editWebsiteColors')}
+        </Link>
+      </Box>
     </Drawer>
   );
 }
