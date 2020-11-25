@@ -69,15 +69,6 @@ const useStyles = makeStyles(
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(2),
     },
-    link: {
-      marginTop: theme.spacing(1),
-      display: 'block',
-    },
-    img: {
-      maxWidth: 500,
-      width: '100%',
-      height: 'auto',
-    },
   }),
   { name: 'Steps' },
 );
