@@ -1,7 +1,7 @@
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';
-export { handleBreakpoints, mergeBreakpointsInOrder, createEmptyBreakpointObject, removeUnusedBreakpoints } from './breakpoints';
+export { handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
 export { default as compose } from './compose';
 export { default as display } from './display';
 export { default as flexbox } from './flexbox';

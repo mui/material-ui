@@ -1,6 +1,9 @@
-import { deepmerge } from '@material-ui/utils';
 import getThemeValue from './getThemeValue';
-import { handleBreakpoints, createEmptyBreakpointObject, removeUnusedBreakpoints } from './breakpoints';
+import {
+  handleBreakpoints,
+  createEmptyBreakpointObjectOfArrays,
+  removeUnusedBreakpoints,
+} from './breakpoints';
 import borders from './borders';
 import display from './display';
 import flexbox from './flexbox';
@@ -11,6 +14,7 @@ import shadows from './shadows';
 import sizing from './sizing';
 import spacing from './spacing';
 import typography from './typography';
+import merge from './merge';
 
 const filterProps = [
   ...borders.filterProps,
@@ -40,6 +44,14 @@ function objectsHaveSameKeys(...objects) {
   return objectsKeysLength.every((objectLength) => union.size === objectLength);
 }
 
+function isMediaQuery(str) {
+  return str.charAt(0) === '@';
+}
+
+function callable(maybeFn, ...args) {
+  return typeof maybeFn === 'function' ? maybeFn(...args) : maybeFn;
+}
+
 function styleFunctionSx(props) {
   const { sx: styles, theme } = props || {};
   if (!styles) return null;
@@ -53,37 +65,67 @@ function styleFunctionSx(props) {
     return styles;
   }
 
-  const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
-  const breakpointsKeys = Object.keys(emptyBreakpoints)
+  const emptyBreakpoints = createEmptyBreakpointObjectOfArrays(theme.breakpoints);
+  const breakpointsKeys = Object.keys(emptyBreakpoints);
 
-  let css = emptyBreakpoints;
+  const mediaQueriesValues = emptyBreakpoints;
+
+  const css = {};
 
   Object.keys(styles).forEach((styleKey) => {
-    if (typeof styles[styleKey] === 'object') {
-      if (filterProps.indexOf(styleKey) !== -1) {
-        // breakpoints, need deepmerge
-        css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
-      } else {
-        const breakpointsValues = handleBreakpoints({ theme }, styles[styleKey], (x) => ({
-          [styleKey]: x,
-        }));
+    const value = callable(styles[styleKey], theme);
 
-        if (objectsHaveSameKeys(breakpointsValues, styles[styleKey])) {
-          css[styleKey] = styleFunctionSx({ sx: styles[styleKey], theme });
+    if (!isMediaQuery(styleKey)) {
+      // simple CSS value
+      if (typeof value === 'object') {
+        // breakpoints object
+        let result = {};
+
+        if (filterProps.indexOf(styleKey) !== -1) {
+          result = getThemeValue(styleKey, value, theme);
         } else {
-          // breakpoints for regular CSS values, need deep merge
-          css = deepmerge(css, breakpointsValues);
+          const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
+            [styleKey]: x,
+          }));
+
+          if (objectsHaveSameKeys(breakpointsValues, value)) {
+            css[styleKey] = styleFunctionSx({ sx: styles[styleKey], theme });
+            return;
+          }
+
+          result = breakpointsValues;
         }
+
+        Object.keys(result).forEach((breakpointKey) => {
+          // media query
+          if (!mediaQueriesValues[breakpointKey]) {
+            mediaQueriesValues[breakpointKey] = [];
+          }
+          mediaQueriesValues[breakpointKey].push(result[breakpointKey]);
+        });
+      } else {
+        // simple value no need for deepmerge
+        const result = getThemeValue(styleKey, value, theme);
+        Object.keys(result).forEach((key) => {
+          css[key] = result[key];
+        });
       }
-    } else if (typeof styles[styleKey] === 'function') {
-      css = deepmerge(css, { [styleKey]: styles[styleKey](theme) });
     } else {
-      // simple value no need for deepmerge
-      const result = getThemeValue(styleKey, styles[styleKey], theme);
-      Object.keys(result).forEach((key) => {
-        css[key] = result[key];
-      });
+      const resolvedValue = styleFunctionSx(value);
+
+      // media query
+      if (!mediaQueriesValues[styleKey]) {
+        mediaQueriesValues[styleKey] = [];
+      }
+      mediaQueriesValues[styleKey].push(resolvedValue);
     }
+  });
+
+  Object.keys(mediaQueriesValues).forEach((mediaQueryKey) => {
+    css[mediaQueryKey] = mediaQueriesValues[mediaQueryKey].reduce(
+      (acc, next) => merge(acc, next),
+      {},
+    );
   });
 
   return removeUnusedBreakpoints(breakpointsKeys, css);
