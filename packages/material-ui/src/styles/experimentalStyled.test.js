@@ -353,5 +353,54 @@ describe('experimentalStyled', () => {
         color: 'rgb(0, 0, 255)',
       });
     });
+
+    it('should respect the skipSx option', () => {
+      const testOverridesResolver = (props, styles) => ({
+        ...styles.root,
+        ...(props.variant && styles[props.variant]),
+      });
+
+      const TestNoSx = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { muiName: 'MuiTest', overridesResolver: testOverridesResolver, skipSx: true },
+      )(({ sx = {} }) => ({
+        ...(sx.m && {
+          margin: `${sx.m * -1}px`,
+        }),
+      }));
+
+      const { container: containerNoSx } = render(
+        <ThemeProvider theme={theme}>
+          <TestNoSx sx={{ m: 1 }}>Test</TestNoSx>
+        </ThemeProvider>,
+      );
+
+      // sx prop ignored, custom function takes place
+      expect(containerNoSx.firstChild).toHaveComputedStyle({
+        margin: '-1px',
+      });
+
+      const TestWithSx = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+      )(({ sx = {} }) => ({
+        ...(sx.m && {
+          margin: `${sx.m * -1}px`,
+        }),
+      }));
+
+      const { container: containerSxProp } = render(
+        <ThemeProvider theme={theme}>
+          <TestWithSx sx={{ m: 1 }}>Test</TestWithSx>
+        </ThemeProvider>,
+      );
+
+      // default sx props takes place
+      expect(containerSxProp.firstChild).toHaveComputedStyle({
+        margin: '8px',
+      });
+    });
   });
 });
