@@ -15,7 +15,7 @@ process.env.CHROME_BIN = require('puppeteer').executablePath();
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
-    browsers: ['chrome-headless'],
+    browsers: ['chromeHeadless'],
     browserDisconnectTimeout: 120000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 300000, // default 10000
@@ -106,18 +106,6 @@ module.exports = function setKarmaConfig(config) {
           // https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977#react-dom1660--scheduler0100
           'react-dom$': 'react-dom/profiling',
           'scheduler/tracing': 'scheduler/tracing-profiling',
-          // yarn alias for `pretty-format@3`
-          // @testing-library/dom -> pretty-format@25
-          // which uses Object.entries which isn't implemented in all browsers
-          // we support
-          'pretty-format': require.resolve('pretty-format-v24'),
-          // https://github.com/sinonjs/sinon/issues/1951
-          // use the cdn main field. Neither module nor main are supported for browserbuilds
-          sinon: 'sinon/pkg/sinon.js',
-          // https://github.com/testing-library/react-testing-library/issues/486
-          // "default" bundles are not browser compatible
-          '@testing-library/react/pure':
-            '@testing-library/react/dist/@testing-library/react.pure.esm',
         },
         extensions: ['.js', '.ts', '.tsx'],
       },
@@ -127,7 +115,7 @@ module.exports = function setKarmaConfig(config) {
       writeToDisk: Boolean(process.env.CI),
     },
     customLaunchers: {
-      'chrome-headless': {
+      chromeHeadless: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox'],
       },
