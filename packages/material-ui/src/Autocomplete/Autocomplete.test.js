@@ -2015,16 +2015,16 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('textbox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      expect(handleHighlightChange.callCount).to.equal(3);
-      expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
-      expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
-      expect(handleHighlightChange.args[2][2]).to.equal('keyboard');
+      expect(handleHighlightChange.callCount).to.equal(2);
+      expect(handleHighlightChange.args[1][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[1][1]).to.equal(options[0]);
+      expect(handleHighlightChange.args[1][2]).to.equal('keyboard');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      expect(handleHighlightChange.callCount).to.equal(4);
-      expect(handleHighlightChange.args[3][0]).to.not.equal(undefined);
-      expect(handleHighlightChange.args[3][1]).to.equal(options[1]);
-      expect(handleHighlightChange.args[3][2]).to.equal('keyboard');
+      expect(handleHighlightChange.callCount).to.equal(3);
+      expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[2][1]).to.equal(options[1]);
+      expect(handleHighlightChange.args[2][2]).to.equal('keyboard');
     });
 
     it('should support mouse event', () => {
@@ -2040,10 +2040,10 @@ describe('<Autocomplete />', () => {
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseOver(firstOption);
-      expect(handleHighlightChange.callCount).to.equal(3);
-      expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
-      expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
-      expect(handleHighlightChange.args[2][2]).to.equal('mouse');
+      expect(handleHighlightChange.callCount).to.equal(2);
+      expect(handleHighlightChange.args[1][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[1][1]).to.equal(options[0]);
+      expect(handleHighlightChange.args[1][2]).to.equal('mouse');
     });
 
     it('should pass to onHighlightChange the correct value after filtering', () => {

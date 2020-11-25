@@ -1,5 +1,6 @@
 /* eslint-disable no-constant-condition */
 import * as React from 'react';
+import isEqual from 'lodash/isEqual';
 import { setRef, useEventCallback, useControlled, unstable_useId as useId } from '../utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
@@ -128,6 +129,7 @@ export default function useAutocomplete(props) {
   const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
+  const lastHighlightedOption = React.useRef(null);
 
   const [value, setValueState] = useControlled({
     controlled: valueProp,
@@ -287,9 +289,10 @@ export default function useAutocomplete(props) {
       inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
     }
 
-    if (onHighlightChange) {
+    if (onHighlightChange && !isEqual(filteredOptions[index], lastHighlightedOption.current)) {
       onHighlightChange(event, index === -1 ? null : filteredOptions[index], reason);
     }
+    lastHighlightedOption.current = filteredOptions[index];
 
     if (!listboxRef.current) {
       return;
@@ -425,7 +428,7 @@ export default function useAutocomplete(props) {
     const valueItem = multiple ? value[0] : value;
 
     // The popup is empty, reset
-    if (filteredOptions.length === 0 || valueItem == null) {
+    if (filteredOptions.length === 0) {
       changeHighlightedIndex({ diff: 'reset' });
       return;
     }
@@ -458,6 +461,11 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    if (highlightedIndexRef.current === -1) {
+      changeHighlightedIndex({ diff: 'reset' });
+      return;
+    }
+
     // Prevent the highlighted index to leak outside the boundaries.
     if (highlightedIndexRef.current >= filteredOptions.length - 1) {
       setHighlightedIndex({ index: filteredOptions.length - 1 });
@@ -470,8 +478,7 @@ export default function useAutocomplete(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     // Only sync the highlighted index when the option switch between empty and not
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    filteredOptions.length === 0,
+    filteredOptions,
     // Don't sync the highlighted index with the value when multiple
     // eslint-disable-next-line react-hooks/exhaustive-deps
     multiple ? false : value,
