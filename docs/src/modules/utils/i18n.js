@@ -1,9 +1,22 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import mapTranslations from './mapTranslations';
+
+function mapTranslations(req) {
+  const translations = {};
+  req.keys().forEach((filename) => {
+    const match = filename.match(new RegExp(`-([a-z]{2}).json$`));
+
+    if (match) {
+      translations[match[1]] = req(filename);
+    } else {
+      translations.en = req(filename);
+    }
+  });
+  return translations;
+}
 
 const req = require.context('docs/translations', false, /translations.*\.json$/);
-const translations = mapTranslations(req, 'json');
+const translations = mapTranslations(req);
 
 function getPath(obj, path) {
   if (!path || typeof path !== 'string') {
@@ -13,7 +26,7 @@ function getPath(obj, path) {
   return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
 }
 
-const warnOnce = {};
+const warnedOnce = {};
 
 export function useTranslate() {
   const userLanguage = useSelector((state) => state.options.userLanguage);
@@ -34,9 +47,9 @@ export function useTranslate() {
         if (!translation) {
           const fullKey = `${userLanguage}:${key}`;
           // No warnings in CI env
-          if (!ignoreWarning && !warnOnce[fullKey] && typeof window !== 'undefined') {
+          if (!ignoreWarning && !warnedOnce[fullKey] && typeof window !== 'undefined') {
             console.error(`Missing translation for ${fullKey}.`);
-            warnOnce[fullKey] = true;
+            warnedOnce[fullKey] = true;
           }
           return getPath(translations.en, key);
         }
