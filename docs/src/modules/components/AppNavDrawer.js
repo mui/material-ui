@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import Box from '@material-ui/core/Box';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
-import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
+import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -108,7 +108,7 @@ function reduceChildRoutes(context) {
     const topLevel = activePage ? activePage.pathname.indexOf(`${page.pathname}/`) === 0 : false;
 
     items.push(
-      <AppDrawerNavItem
+      <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
@@ -117,14 +117,14 @@ function reduceChildRoutes(context) {
         title={title}
       >
         {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
-      </AppDrawerNavItem>,
+      </AppNavDrawerItem>,
     );
   } else {
     const title = pageToTitleI18n(page, t);
     page = page.children && page.children.length === 1 ? page.children[0] : page;
 
     items.push(
-      <AppDrawerNavItem
+      <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
@@ -143,7 +143,7 @@ function reduceChildRoutes(context) {
 // So: <SwipeableDrawer disableBackdropTransition={false} />
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-function AppDrawer(props) {
+function AppNavDrawer(props) {
   const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
   const userLanguage = useUserLanguage();
@@ -218,7 +218,7 @@ function AppDrawer(props) {
   );
 }
 
-AppDrawer.propTypes = {
+AppNavDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   disablePermanent: PropTypes.bool.isRequired,
@@ -227,4 +227,4 @@ AppDrawer.propTypes = {
   onOpen: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(AppDrawer);
+export default withStyles(styles)(AppNavDrawer);

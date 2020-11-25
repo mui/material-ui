@@ -1,0 +1,179 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles, useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+import ToggleButton from '@material-ui/core/ToggleButton';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
+import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness';
+import FormatTextdirectionLToRIcon from '@material-ui/icons/FormatTextdirectionLToR';
+import FormatTextdirectionRToLIcon from '@material-ui/icons/FormatTextdirectionRToL';
+import Link from 'docs/src/modules/components/Link';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
+import { getCookie } from 'docs/src/modules/utils/helpers';
+
+const styles = (theme) => ({
+  paper: {
+    width: 240,
+    backgroundColor: theme.palette.background.level1,
+    padding: 16,
+  },
+  divider: {
+    margin: '8px 0 0',
+  },
+  heading: {
+    margin: '16px 0 8px',
+  },
+  icon: {
+    margin: '0 8px 0 16px',
+  },
+});
+
+function AppSettingsDrawer(props) {
+  const { classes, onClose, open = false, ...other } = props;
+  const t = useTranslate();
+  const theme = useTheme();
+  const changeTheme = useChangeTheme();
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+  const [mode, setMode] = React.useState(getCookie('paletteMode') || 'system');
+
+  const handleChangeThemeMode = (event, paletteMode) => {
+    if (paletteMode === 'system') {
+      setMode('system');
+      document.cookie = 'paletteMode=; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+      changeTheme({ paletteMode: preferredMode });
+    } else {
+      setMode(paletteMode);
+      document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
+      changeTheme({ paletteMode });
+    }
+  };
+
+  const handleChangeDirection = (event, direction) => {
+    changeTheme({ direction });
+  };
+
+  return (
+    <Drawer
+      anchor="right"
+      onClose={onClose}
+      open={open}
+      classes={{
+        paper: classes.paper,
+      }}
+      {...other}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography variant="h5">{t('settings.siteSettings')}</Typography>
+        <IconButton color="inherit" onClick={onClose}>
+          <CloseIcon />
+        </IconButton>
+      </Box>
+      <Divider className={classes.divider} />
+      <Typography gutterBottom className={classes.heading}>
+        {t('settings.mode')}
+      </Typography>
+      <ToggleButtonGroup
+        orientation="vertical"
+        exclusive
+        value={mode}
+        onChange={handleChangeThemeMode}
+        aria-label={t('settings.mode')}
+      >
+        <ToggleButton
+          value="light"
+          aria-label={t('settings.light')}
+          data-ga-event-category="settings"
+          data-ga-event-action="light"
+        >
+          <Box sx={{ display: 'flex', width: '100%' }}>
+            <Brightness7Icon className={classes.icon} />
+            {t('settings.light')}
+          </Box>
+        </ToggleButton>
+        <ToggleButton
+          value="system"
+          aria-label={t('settings.system')}
+          data-ga-event-category="settings"
+          data-ga-event-action="system"
+        >
+          <Box sx={{ display: 'flex', width: '100%' }}>
+            <SettingsBrightnessIcon className={classes.icon} />
+            {t('settings.system')}
+          </Box>
+        </ToggleButton>
+        <ToggleButton
+          value="dark"
+          aria-label={t('settings.dark')}
+          data-ga-event-category="settings"
+          data-ga-event-action="dark"
+        >
+          <Box sx={{ display: 'flex', width: '100%' }}>
+            <Brightness4Icon className={classes.icon} />
+            {t('settings.dark')}
+          </Box>
+        </ToggleButton>
+      </ToggleButtonGroup>
+      <Typography gutterBottom className={classes.heading}>
+        {t('settings.direction')}
+      </Typography>
+      <ToggleButtonGroup
+        orientation="vertical"
+        exclusive
+        value={theme.direction}
+        onChange={handleChangeDirection}
+        aria-label={t('settings.mode')}
+      >
+        <ToggleButton
+          value="ltr"
+          aria-label={t('settings.light')}
+          data-ga-event-category="settings"
+          data-ga-event-action="ltr"
+        >
+          <Box sx={{ display: 'flex', width: '100%' }}>
+            <FormatTextdirectionLToRIcon className={classes.icon} />
+            {t('settings.ltr')}
+          </Box>
+        </ToggleButton>
+        <ToggleButton
+          value="rtl"
+          aria-label={t('settings.system')}
+          data-ga-event-category="settings"
+          data-ga-event-action="rtl"
+        >
+          <Box sx={{ display: 'flex', width: '100%' }}>
+            <FormatTextdirectionRToLIcon className={classes.icon} />
+            {t('settings.rtl')}
+          </Box>
+        </ToggleButton>
+      </ToggleButtonGroup>
+      <Typography gutterBottom className={classes.heading}>
+        {t('settings.color')}
+      </Typography>
+      <Link
+        href="/customization/color/#playground"
+        data-ga-event-category="settings"
+        data-ga-event-action="colors"
+      >
+        {t('editWebsiteColors')}
+      </Link>
+    </Drawer>
+  );
+}
+
+AppSettingsDrawer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool,
+};
+
+export default withStyles(styles)(AppSettingsDrawer);
