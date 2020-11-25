@@ -82,26 +82,32 @@ export interface PopoverProps
   onClose?: ModalProps['onClose'];
   /**
    * Callback fired before the component is entering.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEnter?: TransitionHandlerProps['onEnter'];
   /**
    * Callback fired when the component has entered.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEntered?: TransitionHandlerProps['onEntered'];
   /**
    * Callback fired when the component is entering.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onEntering?: TransitionHandlerProps['onEntering'];
   /**
    * Callback fired before the component is exiting.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExit?: TransitionHandlerProps['onExit'];
   /**
    * Callback fired when the component has exited.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExited?: TransitionHandlerProps['onExited'];
   /**
    * Callback fired when the component is exiting.
+   * @deprecated Use the `TransitionProps` property instead.
    */
   onExiting?: TransitionHandlerProps['onExiting'];
   /**
