@@ -581,7 +581,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: getOptionDisabled', () => {
-    it('should disable the option but allow focus with disabledItemsFocusable', () => {
+    it('should prevent the disabled option to trigger actions but allow focus with disabledItemsFocusable', () => {
       const handleSubmit = spy();
       const handleChange = spy();
       const { getAllByRole } = render(
