@@ -322,7 +322,7 @@ export function createClientRender(globalOptions = {}) {
       throw error;
     }
 
-    trace('cleanup', cleanup);
+    cleanup();
     profiler.report();
     profiler = null;
   });
@@ -437,7 +437,6 @@ export function act(callback) {
 }
 
 export * from '@testing-library/react/pure';
-// TODO: Trace cleanup
 export { cleanup, fireEvent };
 // We import from `@testing-library/react` and `@testing-library/dom` before creating a JSDOM.
 // At this point a global document isn't available yet. Now it is.
