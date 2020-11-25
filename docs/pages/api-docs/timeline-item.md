@@ -43,7 +43,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">alignLeft</span> | <span class="prop-name">.MuiTimelineItem-alignLeft</span> | Styles applied to the root element if `align="left"`.
 | <span class="prop-name">alignRight</span> | <span class="prop-name">.MuiTimelineItem-alignRight</span> | Styles applied to the root element if `align="right"`.
 | <span class="prop-name">alignAlternate</span> | <span class="prop-name">.MuiTimelineItem-alignAlternate</span> | Styles applied to the root element if `align="alternate"`.
-| <span class="prop-name">missingOppositeContent</span> | <span class="prop-name">.MuiTimelineItem-missingOppositeContent</span> | Styles applied to the root element if no there isn't TimelineOppositeContent provided.
+| <span class="prop-name">missingOppositeContent</span> | <span class="prop-name">.MuiTimelineItem-missingOppositeContent</span> | Styles applied to the root element if TimelineOppositeContent isn't provided.
 | <span class="prop-name">content</span> | <span class="prop-name">.MuiTimelineItem-content</span> | Styles applied to the timeline content node.
 | <span class="prop-name">oppositeContent</span> | <span class="prop-name">.MuiTimelineItem-oppositeContent</span> | Styles applied to the timeline opposite content node.
 
