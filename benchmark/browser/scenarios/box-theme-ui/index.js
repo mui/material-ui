@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Box, ThemeProvider } from 'theme-ui';
 
 const theme = {
+  breakpoints: ['40em', '52em', '64em'],
   fonts: {
     body: 'system-ui, sans-serif',
     heading: '"Avenir Next", sans-serif',
@@ -14,7 +15,7 @@ const theme = {
   },
 };
 
-export default function ThemeUISxPropBox() {
+export default function BoxThemeUI() {
   return (
     <ThemeProvider theme={theme}>
       {new Array(1000).fill().map(() => (
@@ -22,10 +23,9 @@ export default function ThemeUISxPropBox() {
           sx={{
             width: 200,
             height: 200,
-            color: 'primary',
-            backgroundColor: ['primary', 'text', 'background'],
             borderWidth: '3px',
             borderColor: 'white',
+            backgroundColor: ['primary', 'text', 'background'],
             borderStyle: ['dashed', 'solid', 'dotted'],
             ':hover': {
               backgroundColor: (t) => t.colors.text,

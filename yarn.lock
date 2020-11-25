@@ -15909,7 +15909,7 @@ styled-jsx@3.3.2:
     stylis "3.5.4"
     stylis-rule-sheet "0.0.10"
 
-styled-system@^5.1.2, styled-system@^5.1.5:
+styled-system@^5.1.5:
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/styled-system/-/styled-system-5.1.5.tgz#e362d73e1dbb5641a2fd749a6eba1263dc85075e"
   integrity sha512-7VoD0o2R3RKzOzPK0jYrVnS8iJdfkKsQJNiLRDjikOpQVqQHns/DXWaPZOH4tIKkhAT7I6wIsy9FWTWh2X3q+A==

@@ -111,12 +111,10 @@ async function run() {
     await runMeasures(browser, 'Styled SC', './styled-sc/index.js');
     // Test the performance compared to the v4 standard
     await runMeasures(browser, 'makeStyles', './make-styles/index.js');
-    // Test that the sx prop vs props spreaing has no signficiant difference
-    await runMeasures(browser, 'sx Material-UI box', './sx-prop-box-material-ui/index.js');
-    await runMeasures(browser, 'Box Material-UI', './box-material-ui-styles/index.js');
     // Test the Box perf with alternatives
-    await runMeasures(browser, 'sx Theme-UI box', './sx-prop-box-theme-ui/index.js');
-    await runMeasures(browser, 'sx Theme-UI div', './sx-prop-div-theme-ui/index.js');
+    await runMeasures(browser, 'Box Baseline', './box-baseline/index.js');
+    await runMeasures(browser, 'Box Material-UI', './box-material-ui/index.js');
+    await runMeasures(browser, 'Box Theme-UI', './box-theme-ui/index.js');
     await runMeasures(browser, 'Box Chakra-UI', './box-chakra-ui/index.js');
     // Test the system perf difference with alternatives
     await runMeasures(
