@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
+import deprecatedPropType from '../utils/deprecatedPropType';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
@@ -214,17 +215,26 @@ TextareaAutosize.propTypes = {
    * Minimum number of rows to display.
    * @deprecated Use `rowsMin` instead.
    */
-  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rows: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    'Use `rowsMin` instead.',
+  ),
   /**
    * Maximum number of rows to display.
    * @deprecated Use `maxRows` instead.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rowsMax: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    'Use `maxRows` instead.',
+  ),
   /**
    * Minimum number of rows to display.
    * @deprecated Use `minRows` instead.
    */
-  rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rowsMin: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    'Use `minRows` instead.',
+  ),
   /**
    * @ignore
    */
