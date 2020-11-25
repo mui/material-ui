@@ -79,7 +79,7 @@ function AppSettingsDrawer(props) {
       </Box>
       <Divider />
       <Box sx={{ pl: 2, pr: 2 }}>
-        <Typography gutterBottom className={classes.heading}>
+        <Typography gutterBottom id="settings-mode" className={classes.heading}>
           {t('settings.mode')}
         </Typography>
         <ToggleButtonGroup
@@ -87,7 +87,7 @@ function AppSettingsDrawer(props) {
           exclusive
           value={mode}
           onChange={handleChangeThemeMode}
-          aria-label={t('settings.mode')}
+          aria-labelledby="settings-mode"
           className={classes.toggleButtonGroup}
         >
           <ToggleButton
@@ -124,7 +124,7 @@ function AppSettingsDrawer(props) {
             </Box>
           </ToggleButton>
         </ToggleButtonGroup>
-        <Typography gutterBottom className={classes.heading}>
+        <Typography gutterBottom id="settings-direction" className={classes.heading}>
           {t('settings.direction')}
         </Typography>
         <ToggleButtonGroup
@@ -132,7 +132,7 @@ function AppSettingsDrawer(props) {
           exclusive
           value={theme.direction}
           onChange={handleChangeDirection}
-          aria-label={t('settings.mode')}
+          aria-labelledby="settings-direction"
           className={classes.toggleButtonGroup}
         >
           <ToggleButton
@@ -166,7 +166,7 @@ function AppSettingsDrawer(props) {
           data-ga-event-category="settings"
           data-ga-event-action="colors"
         >
-          {t('editWebsiteColors')}
+          {t('settings.editWebsiteColors')}
         </Link>
       </Box>
     </Drawer>
