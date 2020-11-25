@@ -107,7 +107,7 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
       return '';
     });
 
-    if(!skipSx) {
+    if (!skipSx) {
       expressionsWithDefaultTheme.push((props) => {
         const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
         return styleFunctionSx({ ...props, theme });
