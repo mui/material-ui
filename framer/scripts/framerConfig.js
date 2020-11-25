@@ -287,7 +287,7 @@ export const componentSettings = {
       'margin',
       'onChange',
       'rows',
-      'rowsMax',
+      'minRows',
       'select',
       'type',
       'value',

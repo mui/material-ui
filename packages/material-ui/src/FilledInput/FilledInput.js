@@ -251,6 +251,10 @@ FilledInput.propTypes = {
    */
   margin: PropTypes.oneOf(['dense', 'none']),
   /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * If `true`, a textarea element will be rendered.
    */
   multiline: PropTypes.bool,
@@ -282,10 +286,6 @@ FilledInput.propTypes = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Start `InputAdornment` for this component.
    */
