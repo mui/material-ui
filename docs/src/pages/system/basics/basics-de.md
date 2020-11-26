@@ -314,7 +314,7 @@ Der `style()` Helfer kann auch verwendet werden, um Eigenschaften Stilobjekten i
 
 ## CSS-Eigenschaft
 
-If you want to support custom CSS values, you can use the `styleFunctionSx()` helper. It will process the `sx` property.
+Dieser verarbeitet die `css` Eigenshaften. Dieser verarbeitet die `css` Eigenshaften.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
