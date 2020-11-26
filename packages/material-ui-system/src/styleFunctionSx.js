@@ -1,9 +1,6 @@
+import merge from './merge';
 import getThemeValue from './getThemeValue';
-import {
-  handleBreakpoints,
-  createEmptyBreakpointObjectOfArrays,
-  removeUnusedBreakpoints,
-} from './breakpoints';
+import { handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
 import borders from './borders';
 import display from './display';
 import flexbox from './flexbox';
@@ -14,7 +11,6 @@ import shadows from './shadows';
 import sizing from './sizing';
 import spacing from './spacing';
 import typography from './typography';
-import merge from './merge';
 
 const filterProps = [
   ...borders.filterProps,
@@ -27,36 +23,17 @@ const filterProps = [
   ...sizing.filterProps,
   ...spacing.filterProps,
   ...typography.filterProps,
+  'sx',
 ];
 
 function objectsHaveSameKeys(...objects) {
-  const objectsKeysLength = [];
-
-  const allKeys = objects.reduce((keys, object) => {
-    const objectKeys = Object.keys(object);
-
-    objectsKeysLength.push(objectKeys.length);
-    return keys.concat(objectKeys);
-  }, []);
-
+  const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
   const union = new Set(allKeys);
-
-  return objectsKeysLength.every((objectLength) => union.size === objectLength);
+  return objects.every((object) => union.size === Object.keys(object).length);
 }
 
-function isMediaQuery(str) {
-  return str.charAt(0) === '@';
-}
-
-function callable(maybeFn, ...args) {
-  return typeof maybeFn === 'function' ? maybeFn(...args) : maybeFn;
-}
-
-function updateMediaQueries(mediaQueriesValues, key, value) {
-  if (!mediaQueriesValues[key]) {
-    mediaQueriesValues[key] = [];
-  }
-  mediaQueriesValues[key].push(value);
+function callIfFn(maybeFn, arg) {
+  return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
 }
 
 function styleFunctionSx(props) {
@@ -72,62 +49,33 @@ function styleFunctionSx(props) {
     return styles;
   }
 
-  const emptyBreakpoints = createEmptyBreakpointObjectOfArrays(theme.breakpoints);
-  const breakpointsKeys = Object.keys(emptyBreakpoints);
-
-  const mediaQueriesValues = emptyBreakpoints;
-
-  const css = {};
+  let css = {};
 
   Object.keys(styles).forEach((styleKey) => {
-    const value = callable(styles[styleKey], theme);
+    const value = callIfFn(styles[styleKey], theme);
 
-    if (!isMediaQuery(styleKey)) {
-      // simple CSS value
-      if (typeof value === 'object') {
-        // breakpoints object
-        let result = {};
+    if (typeof value === 'object') {
 
-        if (filterProps.indexOf(styleKey) !== -1) {
-          result = getThemeValue(styleKey, value, theme);
-        } else {
-          const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
-            [styleKey]: x,
-          }));
-
-          if (objectsHaveSameKeys(breakpointsValues, value)) {
-            css[styleKey] = styleFunctionSx({ sx: styles[styleKey], theme });
-            return;
-          }
-
-          result = breakpointsValues;
-        }
-
-        Object.keys(result).forEach((breakpointKey) => {
-          updateMediaQueries(mediaQueriesValues, breakpointKey, result[breakpointKey]);
-        });
+      if (filterProps.indexOf(styleKey) !== -1) {
+        css = merge(css, getThemeValue(styleKey, value, theme));
       } else {
-        // simple value no need for deepmerge
-        const result = getThemeValue(styleKey, value, theme);
-        Object.keys(result).forEach((key) => {
-          css[key] = result[key];
-        });
+        const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
+          [styleKey]: x,
+        }));
+
+        if (objectsHaveSameKeys(breakpointsValues, value)) {
+          const transformedValue = styleFunctionSx({ sx: value, theme });
+          css[styleKey] = transformedValue;
+        } else {
+          css = merge(css, breakpointsValues);
+        }
       }
     } else {
-      const resolvedValue = styleFunctionSx(value);
-
-      updateMediaQueries(mediaQueriesValues, styleKey, resolvedValue);
+      css = merge(css, getThemeValue(styleKey, value, theme));
     }
   });
 
-  Object.keys(mediaQueriesValues).forEach((mediaQueryKey) => {
-    css[mediaQueryKey] = mediaQueriesValues[mediaQueryKey].reduce(
-      (acc, next) => merge(acc, next),
-      {},
-    );
-  });
-
-  return removeUnusedBreakpoints(breakpointsKeys, css);
+  return mergeBreakpointsInOrder(theme.breakpoints, css);
 }
 
 styleFunctionSx.filterProps = ['sx'];

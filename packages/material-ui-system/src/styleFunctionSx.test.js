@@ -126,6 +126,7 @@ describe('styleFunctionSx', () => {
             lg: 0.4,
             xl: 0.5,
           },
+          
           border: [1, 2, 3],
           borderColor: (t) => t.palette.secondary.main,
         },

@@ -19,17 +19,6 @@ const defaultBreakpoints = {
   up: (key) => `@media (min-width:${values[key]}px)`,
 };
 
-function containsBreakpoint(styleObject, themeBreakpoints) {
-  const matchValues = themeBreakpoints.values || values;
-  let result = false;
-
-  Object.keys(matchValues).forEach((breakpoint) => {
-    if (styleObject[breakpoint]) result = true;
-  });
-
-  return result;
-}
-
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
   if (process.env.NODE_ENV !== 'production') {
     if (!props.theme) {
@@ -47,23 +36,16 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
 
   if (typeof propValue === 'object') {
     const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
-    if (containsBreakpoint(propValue, themeBreakpoints)) {
-      return Object.keys(propValue).reduce((acc, breakpoint) => {
-        // key is breakpoint
-        if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
-          acc[themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
-        } else {
-          if (process.env.NODE_ENV !== 'production') {
-            console.warn(
-              'Material-UI: Cannot combine breakpoints definition with other CSS properties',
-            );
-          }
-          const cssKey = breakpoint;
-          acc[cssKey] = propValue[cssKey];
-        }
-        return acc;
-      }, {});
-    }
+    return Object.keys(propValue).reduce((acc, breakpoint) => {
+      // key is breakpoint
+      if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
+        acc[themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
+      } else {
+        const cssKey = breakpoint;
+        acc[cssKey] = propValue[cssKey];
+      }
+      return acc;
+    }, {});
   }
 
   const output = styleFromPropValue(propValue);
@@ -108,15 +90,6 @@ export function createEmptyBreakpointObject(breakpointsInput = {}) {
   const breakpointsInOrder = breakpointsInput?.keys?.reduce((acc, key) => {
     const breakpointStyleKey = breakpointsInput.up(key);
     acc[breakpointStyleKey] = {};
-    return acc;
-  }, {});
-  return breakpointsInOrder || {};
-}
-
-export function createEmptyBreakpointObjectOfArrays(breakpointsInput = {}) {
-  const breakpointsInOrder = breakpointsInput?.keys?.reduce((acc, key) => {
-    const breakpointStyleKey = breakpointsInput.up(key);
-    acc[breakpointStyleKey] = [];
     return acc;
   }, {});
   return breakpointsInOrder || {};
