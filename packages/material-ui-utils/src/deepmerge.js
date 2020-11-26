@@ -1,5 +1,15 @@
 export function isPlainObject(item) {
-  return item && typeof item === 'object' && item.constructor === Object;
+  if (item == null || typeof item !== 'object' || Object.prototype.toString.call(item) !== '[object Object]') {
+    return false;
+  }
+  if (Object.getPrototypeOf(item) === null) {
+    return true;
+  }
+  let proto = item
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto);
+  }
+  return Object.getPrototypeOf(item) === proto;
 }
 
 export default function deepmerge(target, source, options = { clone: true }) {
