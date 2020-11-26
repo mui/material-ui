@@ -86,7 +86,7 @@ async function runMeasures(browser, testCaseName, testCase, times = 10) {
       return {
         legacyRenderTime: window.timing.render,
         profilerRenderTime: window.profilerMetrics.actualDuration,
-      }
+      };
     });
 
     measures.push(benchmark.profilerRenderTime);
