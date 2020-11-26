@@ -1,4 +1,4 @@
-import { deepmerge } from '@material-ui/utils';
+import merge from './merge';
 import getThemeValue from './getThemeValue';
 import { handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
 import borders from './borders';
@@ -32,6 +32,10 @@ function objectsHaveSameKeys(...objects) {
   return objects.every((object) => union.size === Object.keys(object).length);
 }
 
+function callIfFn(maybeFn, arg) {
+  return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
+}
+
 function styleFunctionSx(props) {
   const { sx: styles, theme } = props || {};
   if (!styles) return null;
@@ -48,25 +52,25 @@ function styleFunctionSx(props) {
   let css = {};
 
   Object.keys(styles).forEach((styleKey) => {
-    if (typeof styles[styleKey] === 'object') {
+    const value = callIfFn(styles[styleKey], theme);
+
+    if (typeof value === 'object') {
       if (filterProps.indexOf(styleKey) !== -1) {
-        css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
+        css = merge(css, getThemeValue(styleKey, value, theme));
       } else {
-        const breakpointsValues = handleBreakpoints({ theme }, styles[styleKey], (x) => ({
+        const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
           [styleKey]: x,
         }));
 
-        if (objectsHaveSameKeys(breakpointsValues, styles[styleKey])) {
-          const transformedValue = styleFunctionSx({ sx: styles[styleKey], theme });
+        if (objectsHaveSameKeys(breakpointsValues, value)) {
+          const transformedValue = styleFunctionSx({ sx: value, theme });
           css[styleKey] = transformedValue;
         } else {
-          css = deepmerge(css, breakpointsValues);
+          css = merge(css, breakpointsValues);
         }
       }
-    } else if (typeof styles[styleKey] === 'function') {
-      css = deepmerge(css, { [styleKey]: styles[styleKey](theme) });
     } else {
-      css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
+      css = merge(css, getThemeValue(styleKey, value, theme));
     }
   });
 

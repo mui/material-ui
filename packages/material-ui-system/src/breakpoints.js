@@ -96,17 +96,14 @@ function createEmptyBreakpointObject(breakpointsInput = {}) {
 }
 
 function removeUnusedBreakpoints(breakpointKeys, style) {
-  return breakpointKeys.reduce(
-    (acc, key) => {
-      const breakpointOutput = acc[key];
-      const isBreakpointUnused = Object.keys(breakpointOutput).length === 0;
-      if (isBreakpointUnused) {
-        delete acc[key];
-      }
-      return acc;
-    },
-    { ...style },
-  );
+  return breakpointKeys.reduce((acc, key) => {
+    const breakpointOutput = acc[key];
+    const isBreakpointUnused = Object.keys(breakpointOutput).length === 0;
+    if (isBreakpointUnused) {
+      delete acc[key];
+    }
+    return acc;
+  }, style);
 }
 
 export function mergeBreakpointsInOrder(breakpointsInput, ...styles) {
