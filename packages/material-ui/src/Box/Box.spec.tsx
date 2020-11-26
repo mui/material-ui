@@ -11,16 +11,18 @@ function Test(props: TestProps) {
 }
 
 function ResponsiveTest() {
-  <Box p={[2, 3, 4]} />;
-  <Box p={{ xs: 2, sm: 3, md: 4 }} />;
-  // undesired
-  <Box p={{ xs: 2, sm: { you: "are dealing with 'any' here" }, md: 4 }} />;
-  <Box fontSize={[12, 18, 24]}>Array API</Box>;
+  <Box sx={{ p: [2, 3, 4] }} />;
+  <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }} />;
+  // @ts-expect-error value for the breakpoint should be valid
+  <Box sx={{ p: { xs: 2, sm: { you: "are dealing with 'any' here" }, md: 4 } }} />;
+  <Box sx={{ fontSize: [12, 18, 24] }}>Array API</Box>;
   <Box
-    fontSize={{
-      xs: 12,
-      sm: 18,
-      md: 24,
+    sx={{
+      fontSize: {
+        xs: 12,
+        sm: 18,
+        md: 24,
+      },
     }}
   >
     Object API

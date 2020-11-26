@@ -14,42 +14,42 @@ You should use these numbers exclusively for comparing performance between diffe
 
 ```
 noop (baseline):
-mean: 4.79ms, median: 4.75ms
+mean: 4.96ms, median: 4.56ms
 -------------
 React primitives:
-mean: 44.62ms, median: 44.57ms
+mean: 39.20ms, median: 39.14ms
 -------------
 React components:
-mean: 55.43ms, median: 54.68ms
+mean: 48.49ms, median: 47.61ms
 -------------
 Styled Material-UI:
-mean: 80.52ms, median: 80.97ms
+mean: 72.32ms, median: 70.97ms
 -------------
 Styled emotion:
-mean: 74.28ms, median: 75.29ms
+mean: 63.42ms, median: 63.15ms
 -------------
 Styled SC:
-mean: 84.88ms, median: 83.66ms
+mean: 76.47ms, median: 78.22ms
 -------------
 makeStyles:
-mean: 73.70ms, median: 72.37ms
+mean: 62.78ms, median: 61.30ms
 -------------
 Box Baseline:
-mean: 81.75ms, median: 81.18ms
+mean: 78.53ms, median: 76.82ms
 -------------
 Box Material-UI:
-mean: 184.21ms, median: 183.96ms
+mean: 170.02ms, median: 168.28ms
 -------------
 Box Theme-UI:
-mean: 140.85ms, median: 139.90ms
+mean: 150.19ms, median: 150.71ms
 -------------
 Box Chakra-UI:
-mean: 119.57ms, median: 119.28ms
+mean: 124.61ms, median: 123.40ms
 -------------
 styled-components Box + @material-ui/system:
-mean: 157.96ms, median: 158.29ms
+mean: 162.98ms, median: 162.83ms
 -------------
 styled-components Box + styled-system:
-mean: 135.73ms, median: 136.78ms
+mean: 142.03ms, median: 141.56ms
 -------------
 ```
