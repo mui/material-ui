@@ -268,11 +268,7 @@ function AppFrame(props) {
             </Menu>
           </NoSsr>
           <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-            <IconButton
-              color="inherit"
-              onClick={handleSettingsDrawerOpen}
-              className={navIconClassName}
-            >
+            <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
               <SettingsIcon />
             </IconButton>
           </Tooltip>

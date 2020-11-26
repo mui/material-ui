@@ -46,6 +46,10 @@ function AppSettingsDrawer(props) {
   const [mode, setMode] = React.useState(getCookie('paletteMode') || 'system');
 
   const handleChangeThemeMode = (event, paletteMode) => {
+    if (paletteMode === null) {
+      paletteMode = mode;
+    }
+
     if (paletteMode === 'system') {
       setMode('system');
       document.cookie = 'paletteMode=; expires = Thu, 01 Jan 1970 00:00:00 GMT';
@@ -58,6 +62,10 @@ function AppSettingsDrawer(props) {
   };
 
   const handleChangeDirection = (event, direction) => {
+    if (direction === null) {
+      direction = theme.direction;
+    }
+
     changeTheme({ direction });
   };
 
