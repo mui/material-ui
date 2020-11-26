@@ -22,7 +22,7 @@ import { getCookie } from 'docs/src/modules/utils/helpers';
 
 const styles = (theme) => ({
   paper: {
-    width: 240,
+    width: 352,
     backgroundColor: theme.palette.background.level1,
   },
   heading: {
@@ -31,8 +31,11 @@ const styles = (theme) => ({
   toggleButtonGroup: {
     width: '100%',
   },
+  toggleButton: {
+    flexGrow: 1,
+  },
   icon: {
-    margin: '0 8px 0 16px',
+    margin: '0 4px',
   },
 });
 
@@ -91,7 +94,6 @@ function AppSettingsDrawer(props) {
           {t('settings.mode')}
         </Typography>
         <ToggleButtonGroup
-          orientation="vertical"
           exclusive
           value={mode}
           onChange={handleChangeThemeMode}
@@ -103,8 +105,9 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.light')}
             data-ga-event-category="settings"
             data-ga-event-action="light"
+            className={classes.toggleButtonGroup}
           >
-            <Box sx={{ display: 'flex', width: '100%' }}>
+            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <Brightness7Icon className={classes.icon} />
               {t('settings.light')}
             </Box>
@@ -114,8 +117,9 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.system')}
             data-ga-event-category="settings"
             data-ga-event-action="system"
+            className={classes.toggleButtonGroup}
           >
-            <Box sx={{ display: 'flex', width: '100%' }}>
+            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <SettingsBrightnessIcon className={classes.icon} />
               {t('settings.system')}
             </Box>
@@ -125,8 +129,9 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.dark')}
             data-ga-event-category="settings"
             data-ga-event-action="dark"
+            className={classes.toggleButtonGroup}
           >
-            <Box sx={{ display: 'flex', width: '100%' }}>
+            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <Brightness4Icon className={classes.icon} />
               {t('settings.dark')}
             </Box>
@@ -136,7 +141,6 @@ function AppSettingsDrawer(props) {
           {t('settings.direction')}
         </Typography>
         <ToggleButtonGroup
-          orientation="vertical"
           exclusive
           value={theme.direction}
           onChange={handleChangeDirection}
@@ -148,8 +152,9 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.light')}
             data-ga-event-category="settings"
             data-ga-event-action="ltr"
+            className={classes.toggleButtonGroup}
           >
-            <Box sx={{ display: 'flex', width: '100%' }}>
+            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <FormatTextdirectionLToRIcon className={classes.icon} />
               {t('settings.ltr')}
             </Box>
@@ -159,8 +164,9 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.system')}
             data-ga-event-category="settings"
             data-ga-event-action="rtl"
+            className={classes.toggleButtonGroup}
           >
-            <Box sx={{ display: 'flex', width: '100%' }}>
+            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <FormatTextdirectionRToLIcon className={classes.icon} />
               {t('settings.rtl')}
             </Box>
