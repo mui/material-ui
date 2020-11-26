@@ -72,7 +72,7 @@ function AppSettingsDrawer(props) {
       {...other}
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
-        <Typography variant="h5">{t('settings.siteSettings')}</Typography>
+        <Typography variant="h5">{t('settings.settings')}</Typography>
         <IconButton color="inherit" onClick={onClose} edge="end">
           <CloseIcon />
         </IconButton>

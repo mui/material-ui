@@ -85,7 +85,7 @@
     "ltr": "Left to right",
     "mode": "Mode",
     "rtl": "Right to left",
-    "siteSettings": "Site settings",
+    "settings": "Settings",
     "system": "system"
   },
   "showFullSource": "Show the full source",
