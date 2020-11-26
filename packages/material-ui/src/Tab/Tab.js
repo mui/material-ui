@@ -16,9 +16,6 @@ export const styles = (theme) => ({
     minHeight: 48,
     flexShrink: 0,
     padding: '6px 12px',
-    [theme.breakpoints.up('sm')]: {
-      padding: '6px 24px',
-    },
     overflow: 'hidden',
     whiteSpace: 'normal',
     textAlign: 'center',
