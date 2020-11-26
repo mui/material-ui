@@ -7,8 +7,8 @@
 {{"demo": "pages/system/positions/ZIndex.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ zIndex: "tooltip" }}>
-<Box sx={{ zIndex: "modal" }}>
+<Box sx={{ zIndex: 'tooltip' }}>
+<Box sx={{ zIndex: 'modal' }}>
 ```
 
 ## API

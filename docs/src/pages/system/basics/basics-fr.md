@@ -99,7 +99,7 @@ return (
   sx={{
     bgcolor: 'background.paper',
     boxShadow: 1,
-    borderRadius: 'borderRadius',
+    borderRadius: 1,
     p: 2,
     minWidth: 300,
   }}
@@ -168,18 +168,18 @@ Pros:
 
 Cons:
 
-- The runtime performance take a hit.
+- The runtime performance takes a hit.
 
-  | Benchmark case                    | Code snippet               | Time normalized |
-  |:--------------------------------- |:-------------------------- | --------------- |
-  | a. Render 1,000 primitives        | `<div className="">` | 100ms           |
-  | b. Render 1,000 components        | `<Div>`              | 110ms           |
-  | c. Render 1,000 styled components | `<StyledDiv>`        | 160ms           |
-  | d. Render 1,000 Box               | `<Box sx={}>`        | 270ms           |
+  | Benchmark case                    | Code snippet                | Time normalized |
+  |:--------------------------------- |:--------------------------- | --------------- |
+  | a. Render 1,000 primitives        | `<div className="…">` | 100ms           |
+  | b. Render 1,000 components        | `<Div>`               | 110ms           |
+  | c. Render 1,000 styled components | `<StyledDiv>`         | 160ms           |
+  | d. Render 1,000 Box               | `<Box sx={…}>`        | 270ms           |
 
   _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) for a reproduction of these metrics._
 
-  We believe that for most applications, it's **fast enough**. There are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
+  We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
 
 ## Utilisation
 

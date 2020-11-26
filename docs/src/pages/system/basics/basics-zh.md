@@ -99,12 +99,12 @@ return (
   sx={{
     bgcolor: 'background.paper',
     boxShadow: 1,
-    borderRadius: 'borderRadius',
+    borderRadius: 1,
     p: 2,
     minWidth: 300,
   }}
 >
-  <Box sx={{ color: 'text.secondary' }}>会话</Box>
+  <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
   <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}>
     98.3 K
   </Box>
@@ -123,7 +123,7 @@ return (
     18.77%
   </Box>
   <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-    和上周相比
+    vs last week
   </Box>
 </Box>
 ```
@@ -168,18 +168,18 @@ return (
 
 缺点：
 
-- 运行时会造成性能影响：
+- The runtime performance takes a hit.
 
-  | 基准测试              | 代码片段                       | 花费时间  |
-  |:----------------- |:-------------------------- | ----- |
-  | a. 渲染 1,000 个基元   | `<div className="">` | 100ms |
-  | b. 渲染 1,000 个组件   | `<Div>`              | 110ms |
-  | c. 渲染 1,000 个样式组件 | `<StyledDiv>`        | 160ms |
-  | d. 渲染一千个分组（Box）   | `<Box sx={}>`        | 270ms |
+  | 基准测试              | 代码片段                        | 花费时间  |
+  |:----------------- |:--------------------------- | ----- |
+  | a. 渲染 1,000 个基元   | `<div className="…">` | 100ms |
+  | b. 渲染 1,000 个组件   | `<Div>`               | 110ms |
+  | c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
+  | d. 渲染一千个分组（Box）   | `<Box sx={…}>`        | 270ms |
 
   _这里是可复现的 [性能测试文件夹](https://github.com/mui-org/material-ui/tree/next/benchmark/browser)。_
 
-  我们相信对于大多数应用来说，运行速度已经**足够快了**。 当性能变得至关重要时，有一些简单的变通办法。 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
+  We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
 
 ## 使用
 

@@ -327,16 +327,28 @@ const classes = makeStyles(theme => ({
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-###  Box
+### Box 分组
 
 - system 属性在 v5 中已废弃且被 `sx` 属性取代。
 
-```diff
--<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
-+<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
-```
+  ```diff
+  -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
+  +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+  ```
 
 [该编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) 将自动将你的代码更新为新的语法。
+
+- The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit value, in `px`.
+
+  ```diff
+  -<Box sx={{ borderRadius: 'borderRadius' }}>
+  +<Box sx={{ borderRadius: 1 }}>
+  ```
+
+  ```diff
+  -<Box sx={{ borderRadius: 16 }}>
+  +<Box sx={{ borderRadius: '16px' }}>
+  ```
 
 ### Button
 
@@ -604,7 +616,7 @@ const classes = makeStyles(theme => ({
   />
   ```
 
-- 因为属性重复，所以我们移除了 `onEscapeKeyDown`。 Use `onClose` with `reason === "escapeKeyDown"` instead.
+- 因为属性重复，所以我们移除了 `onEscapeKeyDown`。 使用 `onClose` 和 `reason === "escapeKeyDown"` 来代替。
 
   ```diff
   <Modal

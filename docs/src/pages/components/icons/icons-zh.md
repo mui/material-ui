@@ -179,7 +179,7 @@ FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸
 
 ## Icon (Font icons)
 
-对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
+对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 先决条件，你必须要在项目中包含 [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web)。 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -191,7 +191,7 @@ import Icon from '@material-ui/core/Icon';
 
 ### Font Material 图标
 
-`Icon` will by default set the correct base class name for the Material Icons font (filled variant). All you need to do is load the font, for instance, via Google Web Fonts:
+`Icon` 默认情况下将为 Material Icons 字体（填充变体）设置正确的基类名称。 所以你需要加载字体即可，例如使用 Google Web Fonts：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -199,9 +199,9 @@ import Icon from '@material-ui/core/Icon';
 
 {{"demo": "pages/components/icons/Icons.js"}}
 
-### Custom font
+### 自定义字体
 
-For other fonts, you can customize the baseline class name using the `baseClassName` prop. For instance, you can display two-tone icons with Material Design:
+对于其他字体，你可以使用 `baseClassName` 属性来自定义基线类名。 例如，你可以使用 Material Design 显示 two-tone 图标：
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -209,22 +209,22 @@ import Icon from '@material-ui/core/Icon';
 <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
-  // Import the two tones MD variant                           ^^^^^^^^
-/>;
+  // 引入 MD 的 two tones 变体                                   ^^^^^^^^
+/>
 ```
 
 {{"demo": "pages/components/icons/TwoToneIcons.js"}}
 
-#### Global base class name
+#### 全局类名
 
-Modifying the `baseClassName` prop for each component usage is repetitive. You can change the default prop globally with the theme
+为了每个组件的使用都去修改 `baseClassName` 属性是很繁琐的。 你可以在全局范围内使用主题来改变默认属性。
 
 ```js
 const theme = createMuiTheme({
   components: {
     MuiIcon: {
       defaultProps: {
-        // Replace the `material-icons` default value.
+        // 替换 `material-icons` 的默认值。
         baseClassName: 'material-icons-two-tone',
       },
     },
@@ -232,7 +232,7 @@ const theme = createMuiTheme({
 });
 ```
 
-Then, you can use the two-tone font directly:
+然后，你就可以直接使用 two-tone 图标了：
 
 ```jsx
 <Icon>add_circle</Icon>
@@ -309,20 +309,12 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import { visuallyHidden } from '@material-ui/system';
+import { makeStyles } from '@material-ui/core/styles';
+
+const classes = makeStyles({ visuallyHidden })();
 
 // ...
-
-<Icon>add_circle</Icon>
-<Typography variant="srOnly">创建一个用户</Typography>
-
-import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
-
-// ...
-
-<Icon>add_circle</Icon>
-<Typography variant="srOnly">创建一个用户</Typography>
 
 <Icon>add_circle</Icon>
 <span className={classes.visuallyHidden}>创建一个用户</span>

@@ -327,16 +327,28 @@ const classes = makeStyles(theme => ({
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-###  Box
+### Box (Boite)
 
 - The system props have been deprecated in v5, and replaced with the `sx` prop.
 
-```diff
--<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
-+<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
-```
+  ```diff
+  -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
+  +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+  ```
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
+
+- The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit value, in `px`.
+
+  ```diff
+  -<Box sx={{ borderRadius: 'borderRadius' }}>
+  +<Box sx={{ borderRadius: 1 }}>
+  ```
+
+  ```diff
+  -<Box sx={{ borderRadius: 16 }}>
+  +<Box sx={{ borderRadius: '16px' }}>
+  ```
 
 ### Button
 

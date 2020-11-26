@@ -22,7 +22,7 @@
 
 ### 扩展
 
-如果没有明确规定，那么提供给组件的属性会被传播到根元素；例如，`className` 属性就被应用到根元素了。
+Props supplied to a component which are not explicitly documented are spread to the root element; for instance, the `className` prop is applied to the root.
 
 现在，假设您要禁用 `MenuItem` 上的涟漪效果。 您可以使用扩展的行为：
 

@@ -43,7 +43,7 @@ You can also render a divider with content.
 
 ## Vertical divider
 
-You can also render a divider vertically using the `orientation` prop.
+Vous pouvez également rendre un séparateur verticalement en utilisant la propriété `orientation`.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
 

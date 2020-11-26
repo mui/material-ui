@@ -10,13 +10,15 @@
 
 ```js
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     // Style sheet name ⚛️
     MuiButton: {
-      // Name of the rule
-      text: {
-        // Some CSS
-        color: 'white',
+      styleOverrides: {
+        // 规则名
+        textPrimary: {
+          // 一些 CSS
+          color: 'white',
+        },
       },
     },
   },
