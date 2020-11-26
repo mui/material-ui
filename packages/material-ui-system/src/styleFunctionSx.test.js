@@ -128,7 +128,7 @@ describe('styleFunctionSx', () => {
           },
 
           border: [1, 2, 3],
-          borderColor: (t) => t.palette.secondary.main,
+          borderColor: (t) => [t.palette.secondary.main, t.palette.primary.main],
         },
       },
     });
@@ -137,12 +137,19 @@ describe('styleFunctionSx', () => {
       background: 'rgb(0, 0, 255)',
       ':hover': {
         backgroundColor: 'rgb(0, 0, 255)',
-        '@media (min-width:0px)': { opacity: 0.1, border: '1px solid' },
-        '@media (min-width:600px)': { opacity: 0.2, border: '2px solid' },
+        '@media (min-width:0px)': {
+          opacity: 0.1,
+          border: '1px solid',
+          borderColor: 'rgb(0, 255, 0)',
+        },
+        '@media (min-width:600px)': {
+          opacity: 0.2,
+          border: '2px solid',
+          borderColor: 'rgb(0, 0, 255)',
+        },
         '@media (min-width:960px)': { opacity: 0.3, border: '3px solid' },
         '@media (min-width:1280px)': { opacity: 0.4 },
         '@media (min-width:1920px)': { opacity: 0.5 },
-        borderColor: 'rgb(0, 255, 0)',
       },
     });
   });
