@@ -14,14 +14,14 @@ function compose(...styles) {
   //   }, {});
 
   const handlers = styles.reduce((acc, style) => {
-    style.filterProps.forEach(prop => {
+    style.filterProps.forEach((prop) => {
       acc[prop] = style;
     });
 
     return acc;
   }, {});
 
-  const fn = props => {
+  const fn = (props) => {
     return Object.keys(props).reduce((acc, prop) => {
       if (handlers[prop]) {
         return merge(acc, handlers[prop](props));
