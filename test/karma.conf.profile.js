@@ -140,6 +140,7 @@ module.exports = function setKarmaConfig(config) {
           browser: 'chrome',
           browser_version: '84.0',
         },
+        // No accurate performance timings (integer precision instead of double).
         firefox: {
           base: 'BrowserStack',
           os: 'Windows',
@@ -147,6 +148,7 @@ module.exports = function setKarmaConfig(config) {
           browser: 'firefox',
           browser_version: '78.0',
         },
+        // No accurate performance timings (integer precision instead of double).
         safari: {
           base: 'BrowserStack',
           os: 'OS X',
