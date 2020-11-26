@@ -335,63 +335,67 @@ export function createClientRender(globalOptions = {}) {
   };
 }
 
-const originalFireEventKeyDown = rtlFireEvent.keyDown;
-const originalFireEventKeyUp = rtlFireEvent.keyUp;
 /**
  * @type {typeof rtlFireEvent}
  */
 const fireEvent = (target, event, ...args) => {
-  return trace(event.type, () => rtlFireEvent(target, event, ...args));
+  return trace(`firEvent.${event.type}`, () => rtlFireEvent(target, event, ...args));
 };
-// TODO: Trace every event.
-Object.assign(fireEvent, rtlFireEvent, {
-  keyDown(element, options = {}) {
-    // `element` shouldn't be `document` but we catch this later anyway
-    const document = element.ownerDocument || element;
-    const target = document.activeElement || document.body || document.documentElement;
-    if (target !== element) {
-      // see https://www.w3.org/TR/uievents/#keydown
-      const error = new Error(
-        `\`keydown\` events can only be targeted at the active element which is ${prettyDOM(
-          target,
-          undefined,
-          { maxDepth: 1 },
-        )}`,
-      );
-      // We're only interested in the callsite of fireEvent.keyDown
-      error.stack = error.stack
-        .split('\n')
-        .filter((line) => !/at Function.key/.test(line))
-        .join('\n');
-      throw error;
-    }
 
-    trace('keydown', () => originalFireEventKeyDown(element, options));
-  },
-  keyUp(element, options = {}) {
-    // `element` shouldn't be `document` but we catch this later anyway
-    const document = element.ownerDocument || element;
-    const target = document.activeElement || document.body || document.documentElement;
-    if (target !== element) {
-      // see https://www.w3.org/TR/uievents/#keyup
-      const error = new Error(
-        `\`keyup\` events can only be targeted at the active element which is ${prettyDOM(
-          target,
-          undefined,
-          { maxDepth: 1 },
-        )}`,
-      );
-      // We're only interested in the callsite of fireEvent.keyUp
-      error.stack = error.stack
-        .split('\n')
-        .filter((line) => !/at Function.key/.test(line))
-        .join('\n');
-      throw error;
-    }
-
-    trace('keyUp', () => originalFireEventKeyUp(element, options));
-  },
+Object.keys(rtlFireEvent).forEach((eventType) => {
+  fireEvent[eventType] = (...args) =>
+    trace(`firEvent.${eventType}`, () => rtlFireEvent[eventType](...args));
 });
+
+const originalFireEventKeyDown = rtlFireEvent.keyDown;
+fireEvent.keyDown = (element, options = {}) => {
+  // `element` shouldn't be `document` but we catch this later anyway
+  const document = element.ownerDocument || element;
+  const target = document.activeElement || document.body || document.documentElement;
+  if (target !== element) {
+    // see https://www.w3.org/TR/uievents/#keydown
+    const error = new Error(
+      `\`keydown\` events can only be targeted at the active element which is ${prettyDOM(
+        target,
+        undefined,
+        { maxDepth: 1 },
+      )}`,
+    );
+    // We're only interested in the callsite of fireEvent.keyDown
+    error.stack = error.stack
+      .split('\n')
+      .filter((line) => !/at Function.key/.test(line))
+      .join('\n');
+    throw error;
+  }
+
+  trace('fireEvent.keyDown', () => originalFireEventKeyDown(element, options));
+};
+
+const originalFireEventKeyUp = rtlFireEvent.keyUp;
+fireEvent.keyUp = (element, options = {}) => {
+  // `element` shouldn't be `document` but we catch this later anyway
+  const document = element.ownerDocument || element;
+  const target = document.activeElement || document.body || document.documentElement;
+  if (target !== element) {
+    // see https://www.w3.org/TR/uievents/#keyup
+    const error = new Error(
+      `\`keyup\` events can only be targeted at the active element which is ${prettyDOM(
+        target,
+        undefined,
+        { maxDepth: 1 },
+      )}`,
+    );
+    // We're only interested in the callsite of fireEvent.keyUp
+    error.stack = error.stack
+      .split('\n')
+      .filter((line) => !/at Function.key/.test(line))
+      .join('\n');
+    throw error;
+  }
+
+  trace('fireEvent.keyUp', () => originalFireEventKeyUp(element, options));
+};
 
 /**
  *
