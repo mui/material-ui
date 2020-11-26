@@ -80,7 +80,11 @@ const printMeasure = (name, stats, baseline) => {
   console.log(`${name}:`);
 
   if (baseline) {
-    console.log(`  ${Math.round((stats.mean / baseline.mean) * 100)} ±${Math.round((stats.stdDev / baseline.mean) * 100)}%`);
+    console.log(
+      `  ${Math.round((stats.mean / baseline.mean) * 100)} ±${Math.round(
+        (stats.stdDev / baseline.mean) * 100,
+      )}%`,
+    );
   } else {
     console.log(`  ${format(stats.mean)} ±${format(stats.stdDev)}ms`);
   }
