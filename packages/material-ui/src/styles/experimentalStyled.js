@@ -63,6 +63,7 @@ const shouldForwardProp = (prop) => prop !== 'styleProps' && prop !== 'theme' &&
 
 const experimentalStyled = (tag, options, muiOptions = {}) => {
   const name = muiOptions.muiName;
+  const skipSx = muiOptions.skipSx || false;
   const defaultStyledResolver = styled(tag, { shouldForwardProp, label: name, ...options });
   const muiStyledResolver = (styleArg, ...expressions) => {
     const expressionsWithDefaultTheme = expressions
@@ -82,8 +83,8 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
 
     if (Array.isArray(styleArg)) {
       // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles
-      transformedStyleArg = [...styleArg, '', '', ''];
-      transformedStyleArg.raw = [...styleArg.raw, '', '', ''];
+      transformedStyleArg = [...styleArg, ...(skipSx ? ['', ''] : ['', '', ''])];
+      transformedStyleArg.raw = [...styleArg.raw, ...(skipSx ? ['', ''] : ['', '', ''])];
     } else if (typeof styleArg === 'function') {
       // If the type is function, we need to define the default theme
       transformedStyleArg = ({ theme: themeInput, ...rest }) =>
@@ -106,10 +107,12 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
       return '';
     });
 
-    expressionsWithDefaultTheme.push((props) => {
-      const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-      return styleFunctionSx({ ...props, theme });
-    });
+    if (!skipSx) {
+      expressionsWithDefaultTheme.push((props) => {
+        const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+        return styleFunctionSx({ ...props, theme });
+      });
+    }
 
     return defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
   };

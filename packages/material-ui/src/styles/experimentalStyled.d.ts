@@ -182,6 +182,7 @@ export interface StyledOptions {
 interface MuiStyledOptions<Theme extends object = any> {
   muiName: string;
   overridesResolver?: (props: any, styles: string | object, name: string) => string | object;
+  skipSx?: boolean;
 }
 
 export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
