@@ -33,6 +33,6 @@ Dans une liste, vous devez vous assurer que le `Divider` est rendu en tant que `
 
 ## Vertical Dividers
 
-You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
+Vous pouvez également rendre un séparateur verticalement en utilisant la propriété `orientation`. Note the use of the `flexItem` prop to accommodate for the flex container.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
