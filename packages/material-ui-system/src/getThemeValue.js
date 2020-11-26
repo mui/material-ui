@@ -36,7 +36,7 @@ const styleFunctionMapping = {
 };
 
 export const propToStyleFunction = Object.keys(filterPropsMapping).reduce((acc, styleFnName) => {
-  filterPropsMapping[styleFnName].forEach(propName => {
+  filterPropsMapping[styleFnName].forEach((propName) => {
     acc[propName] = styleFunctionMapping[styleFnName];
   });
 
@@ -50,7 +50,7 @@ function getThemeValue(prop, value, theme) {
   };
 
   const styleFunction = propToStyleFunction[prop];
-  return styleFunction ? styleFunction(inputProps): { [prop]: value };
+  return styleFunction ? styleFunction(inputProps) : { [prop]: value };
 }
 
 export default getThemeValue;
