@@ -1283,9 +1283,9 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // three option is added and autocomplete re-renders, two should still be highlighted
+      // three option is added and autocomplete re-renders, reset the highlight
       setProps({ options: ['one', 'two', 'three'] });
-      checkHighlightIs(listbox, 'two');
+      checkHighlightIs(listbox, null);
     });
 
     it('should not select undefined', () => {
@@ -1477,13 +1477,8 @@ describe('<Autocomplete />', () => {
     });
 
     it('should mantain list box open clicking on input when it is not empty', () => {
-      const handleHighlightChange = spy();
       const { getByRole, getAllByRole } = render(
-        <Autocomplete
-          onHighlightChange={handleHighlightChange}
-          options={['one']}
-          renderInput={(params) => <TextField {...params} />}
-        />,
+        <Autocomplete options={['one']} renderInput={(params) => <TextField {...params} />} />,
       );
       const combobox = getByRole('combobox');
       const textbox = getByRole('textbox');
@@ -1501,11 +1496,9 @@ describe('<Autocomplete />', () => {
     });
 
     it('should not toggle list box', () => {
-      const handleHighlightChange = spy();
       const { getByRole } = render(
         <Autocomplete
           value="one"
-          onHighlightChange={handleHighlightChange}
           options={['one']}
           renderInput={(params) => <TextField {...params} />}
         />,
@@ -2066,6 +2059,26 @@ describe('<Autocomplete />', () => {
       expect(handleHighlightChange.args[handleHighlightChange.args.length - 1][1]).to.equal(
         options[2],
       );
+    });
+
+    it('should reset the highlight when the options change', () => {
+      const handleHighlightChange = [];
+      const { getByRole, setProps } = render(
+        <Autocomplete
+          onHighlightChange={(event, option) => {
+            handleHighlightChange.push(option);
+          }}
+          openOnFocus
+          autoHighlight
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      checkHighlightIs(getByRole('listbox'), 'one');
+      setProps({ options: ['four', 'five'] });
+      checkHighlightIs(getByRole('listbox'), 'four');
+      expect(handleHighlightChange).to.deep.equal([null, 'one', 'four']);
     });
   });
 

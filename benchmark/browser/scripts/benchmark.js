@@ -46,39 +46,54 @@ async function createBrowser() {
   };
 }
 
-const getMedian = (measures) => {
-  const length = measures.length;
-  measures.sort();
+function getMedian(values) {
+  const length = values.length;
+  values.sort();
   if (length % 2 === 0) {
-    return (measures[length / 2] + measures[length / 2 - 1]) / 2;
+    return (values[length / 2] + values[length / 2 - 1]) / 2;
   }
-  return measures[parseInt(length / 2, 10)];
-};
+  return values[parseInt(length / 2, 10)];
+}
 
-const printMeasure = (name, measures) => {
-  console.log(`${name}:`);
+function getMean(values) {
+  const sum = values.reduce((acc, value) => acc + value, 0);
+  return sum / values.length;
+}
 
-  let sum = 0;
-  const totalNum = measures.length;
+function getStdDev(values) {
+  const mean = getMean(values);
 
-  measures.forEach((measure) => {
-    sum += measure;
-    // Uncomment for more details
-    // console.log(`${measure.toFixed(2)}ms`);
+  const squareDiffs = values.map((value) => {
+    const diff = value - mean;
+    return diff * diff;
   });
 
-  console.log(
-    `mean: ${Number(sum / totalNum).toFixed(2)}ms, median: ${Number(getMedian(measures)).toFixed(
-      2,
-    )}ms`,
-  );
-  console.log('-------------');
+  return Math.sqrt(getMean(squareDiffs));
+}
+
+function format(time) {
+  const i = Number(`${Math.round(`${time}e2`)}e-2`).toFixed(2);
+  return 10 / i > 1 ? `0${i}` : i;
+}
+
+const printMeasure = (name, stats, baseline) => {
+  console.log(`${name}:`);
+
+  if (baseline) {
+    console.log(
+      `  ${Math.round((stats.mean / baseline.mean) * 100)} ±${Math.round(
+        (stats.stdDev / baseline.mean) * 100,
+      )}%`,
+    );
+  } else {
+    console.log(`  ${format(stats.mean)} ±${format(stats.stdDev)}ms`);
+  }
 };
 
-async function runMeasures(browser, testCaseName, testCase, times = 10) {
-  const measures = [];
+async function runMeasures(browser, testCaseName, testCase, baseline) {
+  const samples = [];
 
-  for (let i = 0; i < times; i += 1) {
+  for (let i = 0; i < 15; i += 1) {
     const url = `http://localhost:${PORT}/?${testCase}`;
     const page = await browser.openPage(url);
 
@@ -86,47 +101,102 @@ async function runMeasures(browser, testCaseName, testCase, times = 10) {
       return window.timing.render;
     });
 
-    measures.push(benchmark);
+    samples.push(benchmark);
     await page.close();
   }
 
-  printMeasure(testCaseName, measures);
+  const sortedSamples = [...samples.concat()].sort();
 
-  return measures;
+  const stats = {
+    samples,
+    sampleCount: samples.length,
+    mean: getMean(samples),
+    median: getMedian(samples),
+    min: sortedSamples[0],
+    max: sortedSamples[sortedSamples.length - 1],
+    stdDev: getStdDev(samples),
+  };
+
+  printMeasure(testCaseName, stats, baseline);
+
+  return stats;
 }
 
 async function run() {
   const [server, browser] = await Promise.all([createServer({ port: PORT }), createBrowser()]);
 
   try {
-    // Test that there no significant offset
-    await runMeasures(browser, 'noop (baseline)', './noop/index.js');
-    // Test the cost of React primitives
-    await runMeasures(browser, 'React primitives', './primitives/index.js');
-    // Test the cost of React components abstraction
-    await runMeasures(browser, 'React components', './components/index.js');
-    // Test that @material-ui/styled-engine doesn't add an signifiant overhead
-    await runMeasures(browser, 'Styled Material-UI', './styled-material-ui/index.js');
-    await runMeasures(browser, 'Styled emotion', './styled-emotion/index.js');
-    await runMeasures(browser, 'Styled SC', './styled-sc/index.js');
-    // Test the performance compared to the v4 standard
-    await runMeasures(browser, 'makeStyles', './make-styles/index.js');
-    // Test the Box perf with alternatives
-    await runMeasures(browser, 'Box Baseline', './box-baseline/index.js');
-    await runMeasures(browser, 'Box Material-UI', './box-material-ui/index.js');
-    await runMeasures(browser, 'Box Theme-UI', './box-theme-ui/index.js');
-    await runMeasures(browser, 'Box Chakra-UI', './box-chakra-ui/index.js');
-    // Test the system perf difference with alternatives
-    await runMeasures(
-      browser,
-      'styled-components Box + @material-ui/system',
-      './styled-components-box-material-ui-system/index.js',
-    );
-    await runMeasures(
-      browser,
-      'styled-components Box + styled-system',
-      './styled-components-box-styled-system/index.js',
-    );
+    const cases = [
+      // Test that there no significant offset
+      {
+        name: 'noop (baseline)',
+        path: './noop/index.js',
+      },
+      // Test the cost of React primitives
+      {
+        name: 'React primitives',
+        path: './primitives/index.js',
+      },
+      // Test the cost of React components abstraction
+      {
+        name: 'React components',
+        path: './components/index.js',
+      },
+      // Test that @material-ui/styled-engine doesn't add an signifiant overhead
+      {
+        name: 'Styled Material-UI',
+        path: './styled-material-ui/index.js',
+      },
+      {
+        name: 'Styled emotion',
+        path: './styled-emotion/index.js',
+      },
+      {
+        name: 'Styled SC',
+        path: './styled-sc/index.js',
+      },
+      // Test the performance compared to the v4 standard
+      {
+        name: 'makeStyles',
+        path: './make-styles/index.js',
+      },
+      // Test the Box perf with alternatives
+      {
+        name: 'Box Baseline',
+        path: './box-baseline/index.js',
+      },
+      {
+        name: 'Box Material-UI',
+        path: './box-material-ui/index.js',
+      },
+      {
+        name: 'Box Theme-UI',
+        path: './box-theme-ui/index.js',
+      },
+      {
+        name: 'Box Chakra-UI',
+        path: './box-chakra-ui/index.js',
+      },
+      // Test the system perf difference with alternatives
+      {
+        name: 'styled-components Box + @material-ui/system',
+        path: './styled-components-box-material-ui-system/index.js',
+      },
+      {
+        name: 'styled-components Box + styled-system',
+        path: './styled-components-box-styled-system/index.js',
+      },
+    ];
+
+    let baseline;
+
+    for (let i = 0; i < cases.length; i += 1) {
+      const stats = await runMeasures(browser, cases[i].name, cases[i].path, baseline);
+
+      if (i === 1) {
+        baseline = stats;
+      }
+    }
   } finally {
     await Promise.all([browser.close(), server.close()]);
   }

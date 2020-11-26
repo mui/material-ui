@@ -232,7 +232,7 @@ export interface StyleOptions<PropKey, Theme extends object> {
    * dot access in `Theme`
    */
   themeKey?: string;
-  transform?: (cssValue: unknown) => number | string | React.CSSProperties;
+  transform?: (cssValue: unknown) => number | string | React.CSSProperties | CSSObject;
 }
 export function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey, Theme>
