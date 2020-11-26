@@ -55,7 +55,6 @@ function styleFunctionSx(props) {
     const value = callIfFn(styles[styleKey], theme);
 
     if (typeof value === 'object') {
-
       if (filterProps.indexOf(styleKey) !== -1) {
         css = merge(css, getThemeValue(styleKey, value, theme));
       } else {
