@@ -33,11 +33,13 @@ function createMatchMedia(width, ref) {
 }
 
 describe('useMediaQuery', () => {
-  // Only run the test on node.
-  // Waiting for https://github.com/facebook/react/issues/14050
-  if (!/jsdom/.test(window.navigator.userAgent)) {
-    return;
-  }
+  before(function beforeHook() {
+    // Only run the test on node.
+    // Waiting for https://github.com/facebook/react/issues/14050
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+  });
 
   const render = createClientRender();
   let values;

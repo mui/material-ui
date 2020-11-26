@@ -41,23 +41,24 @@ function hasRightScrollButton(container) {
 }
 
 describe('<Tabs />', () => {
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = navigator.userAgent === 'node.js';
-
-  // The test fails on Safari with just:
-  //
-  // container.scrollLeft = 200;
-  // expect(container.scrollLeft).to.equal(200); 💥
-  if (isSafari) {
-    return;
-  }
 
   const mount = createMount();
   let classes;
   const render = createClientRender();
 
-  before(() => {
+  before(function beforeHook() {
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    // The test fails on Safari with just:
+    //
+    // container.scrollLeft = 200;
+    // expect(container.scrollLeft).to.equal(200); 💥
+    if (isSafari) {
+      this.skip();
+    }
+
     classes = getClasses(<Tabs value={0} />);
   });
 

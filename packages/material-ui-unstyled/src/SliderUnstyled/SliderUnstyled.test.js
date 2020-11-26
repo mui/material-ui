@@ -4,9 +4,11 @@ import { createMount, createClientRender, describeConformance } from 'test/utils
 import SliderUnstyled from './SliderUnstyled';
 
 describe('<SliderUnstyled />', () => {
-  if (typeof Touch === 'undefined') {
-    return;
-  }
+  before(function beforeHook() {
+    if (typeof Touch === 'undefined') {
+      this.skip();
+    }
+  });
 
   const mount = createMount();
   const render = createClientRender();

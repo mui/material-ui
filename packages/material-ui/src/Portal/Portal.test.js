@@ -9,10 +9,12 @@ describe('<Portal />', () => {
   const render = createClientRender();
 
   describe('server-side', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     it('render nothing on the server', () => {
       const markup1 = serverRender(<div>Bar</div>);
