@@ -1,5 +1,6 @@
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
+import { getPath } from './style';
 import merge from './merge';
 import memoize from './memoize';
 
@@ -79,8 +80,8 @@ const paddingKeys = [
 
 const spacingKeys = [...marginKeys, ...paddingKeys];
 
-export function createUnarySpacing(theme) {
-  const themeSpacing = theme.spacing || 8;
+export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
+  const themeSpacing = getPath(theme, themeKey) || defaultValue;
 
   if (typeof themeSpacing === 'number') {
     return (abs) => {
@@ -91,7 +92,7 @@ export function createUnarySpacing(theme) {
       if (process.env.NODE_ENV !== 'production') {
         if (typeof abs !== 'number') {
           console.error(
-            `Material-UI: Expected spacing argument to be a number or a string, got ${abs}.`,
+            `Material-UI: Expected ${propName} argument to be a number or a string, got ${abs}.`,
           );
         }
       }
@@ -109,8 +110,8 @@ export function createUnarySpacing(theme) {
         if (!Number.isInteger(abs)) {
           console.error(
             [
-              'Material-UI: The `theme.spacing` array type cannot be combined with non integer values.' +
-                'You should either use an integer value that can be used as index, or define the `theme.spacing` as a number.',
+              `Material-UI: The \`theme.${themeKey}\` array type cannot be combined with non integer values.` +
+                `You should either use an integer value that can be used as index, or define the \`theme.${themeKey}\` as a number.`,
             ].join('\n'),
           );
         } else if (abs > themeSpacing.length - 1) {
@@ -135,7 +136,7 @@ export function createUnarySpacing(theme) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(
       [
-        `Material-UI: The \`theme.spacing\` value (${themeSpacing}) is invalid.`,
+        `Material-UI: The \`theme.${themeKey}\` value (${themeSpacing}) is invalid.`,
         'It should be a number, an array or a function.',
       ].join('\n'),
     );
@@ -144,7 +145,11 @@ export function createUnarySpacing(theme) {
   return () => undefined;
 }
 
-function getValue(transformer, propValue) {
+export function createUnarySpacing(theme) {
+  return createUnaryUnit(theme, 'spacing', 8, 'spacing');
+}
+
+export function getValue(transformer, propValue) {
   if (typeof propValue === 'string') {
     return propValue;
   }
@@ -163,7 +168,7 @@ function getValue(transformer, propValue) {
   return `-${transformed}`;
 }
 
-function getStyleFromPropValue(cssProperties, transformer) {
+export function getStyleFromPropValue(cssProperties, transformer) {
   return (propValue) =>
     cssProperties.reduce((acc, cssProperty) => {
       acc[cssProperty] = getValue(transformer, propValue);

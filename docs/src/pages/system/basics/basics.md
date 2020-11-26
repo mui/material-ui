@@ -100,7 +100,7 @@ return (
   sx={{
     bgcolor: 'background.paper',
     boxShadow: 1,
-    borderRadius: 'borderRadius',
+    borderRadius: 1,
     p: 2,
     minWidth: 300,
   }}

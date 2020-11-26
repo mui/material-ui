@@ -1,5 +1,8 @@
+import responsivePropType from './responsivePropType';
 import style from './style';
 import compose from './compose';
+import { createUnaryUnit, getStyleFromPropValue } from './spacing';
+import { handleBreakpoints } from './breakpoints';
 
 function getBorder(value) {
   if (typeof value !== 'number') {
@@ -44,10 +47,30 @@ export const borderColor = style({
   themeKey: 'palette',
 });
 
-export const borderRadius = style({
-  prop: 'borderRadius',
-  themeKey: 'shape',
-});
+function resolveCssProperty(props, prop, transformer) {
+  // Using a hash computation over an array iteration could be faster, but with only 28 items,
+  // it isn’t worth the bundle size.
+  if (prop !== 'borderRadius') {
+    return null;
+  }
+
+  const cssProperties = ['borderRadius'];
+  const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
+
+  const propValue = props[prop];
+  return handleBreakpoints(props, propValue, styleFromPropValue);
+}
+
+export const borderRadius = (props) => {
+  const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
+
+  return props.borderRadius ? resolveCssProperty(props, 'borderRadius', transformer) : {};
+};
+
+borderRadius.propTypes =
+  process.env.NODE_ENV !== 'production' ? { borderRadius: responsivePropType } : {};
+
+borderRadius.filterProps = ['borderRadius'];
 
 const borders = compose(
   border,
