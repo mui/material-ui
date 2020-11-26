@@ -9,8 +9,8 @@
 {{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box component="div" sx={{ display: "inline" }}>inline</Box>
-<Box component="div" sx={{ display: "inline" }}>inline</Box>
+<Box component="div" sx={{ display: 'inline' }}>inline</Box>
+<Box component="div" sx={{ display: 'inline' }}>inline</Box>
 ```
 
 ### Block
@@ -18,8 +18,8 @@
 {{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box component="span" sx={{ display: "block" }}>block</Box>
-<Box component="span" sx={{ display: "block" }}>block</Box>
+<Box component="span" sx={{ display: 'block' }}>block</Box>
+<Box component="span" sx={{ display: 'block' }}>block</Box>
 ```
 
 ## Elemente verstecken
@@ -28,7 +28,7 @@ Verwenden Sie für eine schnellere, mobilere Entwicklung responsive Anzeigeklass
 
 | Bildschirmgröße      | Klasse                                                       |
 |:-------------------- |:------------------------------------------------------------ |
-| Für alle versteckt   | `sx={{ display: "none" }}`                                   |
+| Für alle versteckt   | `sx={{ display: 'none' }}`                                   |
 | Versteckt nur bei xs | `sx={{ display: { xs: 'none', sm: 'block' } }}`              |
 | Versteckt nur bei sm | `sx={{ display: { xs: 'block', sm: 'none', md: 'block' } }}` |
 | Versteckt nur bei md | `sx={{ display: { xs: 'block', md: 'none', lg: 'block' } }}` |
@@ -56,10 +56,10 @@ Verwenden Sie für eine schnellere, mobilere Entwicklung responsive Anzeigeklass
 {{"demo": "pages/system/display/Print.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box sx={{ display: "block", displayPrint: "none" }}>
+<Box sx={{ display: 'block', displayPrint: 'none' }}>
   Nur Bildschirm (Beim Drucken ausgeblendet)
 </Box>
-<Box sx={{ display: "none", displayPrint: "block" }}>
+<Box sx={{ display: 'none', displayPrint: 'block' }}>
   Nur Druck (Auf dem Bildschirm ausgeblendet)
 </Box>
 ```
@@ -69,23 +69,23 @@ Verwenden Sie für eine schnellere, mobilere Entwicklung responsive Anzeigeklass
 {{"demo": "pages/system/display/Overflow.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" sx={{ overflow: "hidden" }}>
+<Box component="div" sx={{ overflow: 'hidden' }}>
   Overflow Hidden
 </Box>
-<Box component="div" sx={{ overflow: "visible" }}>
+<Box component="div" sx={{ overflow: 'visible' }}>
   Overflow visible
 </Box>
 ```
 
-## Text Overflow
+## Text overflow
 
 {{"demo": "pages/system/display/TextOverflow.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" sx={{ textOverflow: "clip" }}>
+<Box component="div" sx={{ textOverflow: 'clip' }}>
   Text Overflow Clip
 </Box>
-<Box component="div" sx={{ textOverflow: "ellipsis" }}>
+<Box component="div" sx={{ textOverflow: 'ellipsis' }}>
   Text Overflow Ellipsis
 </Box>
 ```
@@ -95,23 +95,23 @@ Verwenden Sie für eine schnellere, mobilere Entwicklung responsive Anzeigeklass
 {{"demo": "pages/system/display/Visibility.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" sx={{ visibility: "visible" }}>
+<Box component="div" sx={{ visibility: 'visible' }}>
   Visibility Visible
 </Box>
-<Box component="div" sx={{ visibility: "hidden" }}>
+<Box component="div" sx={{ visibility: 'hidden' }}>
   Visibility Hidden
 </Box>
 ```
 
-## White Space
+## White space
 
 {{"demo": "pages/system/display/WhiteSpace.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" sx={{ whiteSpace: "nowrap" }}>
+<Box component="div" sx={{ whiteSpace: 'nowrap' }}>
   White Space Nowrap
 </Box>
-<Box component="div" sx={{ whiteSpace: "normal" }}>
+<Box component="div" sx={{ whiteSpace: 'normal' }}>
   White Space Normal
 </Box>
 ```

@@ -22,7 +22,7 @@ Além do trade-off da composição acima, aplicamos as seguintes regras:
 
 ### Propagação
 
-Propriedades fornecidas para um componente que não estão explicitamente documentadas, são propagadas para o elemento raiz; por exemplo, a propriedade `className` é aplicada no elemento raiz.
+Props supplied to a component which are not explicitly documented are spread to the root element; for instance, the `className` prop is applied to the root.
 
 Agora, digamos que você queira desabilitar o efeito cascata do `MenuItem`. Você pode aproveitar o comportamento da propagação:
 

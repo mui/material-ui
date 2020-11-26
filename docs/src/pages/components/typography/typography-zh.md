@@ -37,7 +37,10 @@ Material-UI **不会**自动加载 *Roboto* 字体。 开发人员需要自行�
 然后，你可以在开始文件中导入：
 
 ```js
-import 'fontsource-roboto';
+import 'fontsource-roboto/300.css';
+import 'fontsource-roboto/400.css';
+import 'fontsource-roboto/500.css';
+import 'fontsource-roboto/700.css';
 ```
 
 有关更多信息请查看 [Fontsource](https://github.com/fontsource/fontsource)。

@@ -1,15 +1,16 @@
 # Advanced 进阶
 
-<p class="description">Here you can find examples of how you can use the system in your custom components.</p>
+<p class="description">在这里，你可以找到如何在你的自定义组件中使用系统（system）的例子。
+</p>
 
-## Adding the `sx` prop to your custom components
+## 将 `sx` 属性添加到你的自定义组件
 
-The `unstable_styleFunctionSx` utility adds the support for the `sx` to your own components. Normally you would use the `Box` components from `@material-ui/core` at the root of your component tree. If you would like to use the system independently from Material-UI, this utility will give you the same capabilities, while having a smaller bundle size.
+`unstable_styleFunctionSx` 工具集为你自定义的组件添加了 `sx` 的支持。 通常你会在组件树的根部使用 `@material-ui/core` 中的 `Box` 组件。 如果你想独立于 Material-UI 使用系统，这个工具集可以为你提供同样的功能，同时该捆绑包的尺寸会更小。
 
 {{"demo": "pages/system/advanced/StyleFunctionSxDemo.js"}}
 
-## Using standalone system utilities
+## 使用独立的系统工具集
 
-If you only need some elements of the system in your custom components, you can directly use and combine the different style functions available, and access them as component props. You might use this approach if you need smaller bundle size and better performance than using Box, for the price of using a subset of what the `sx` supports, and a different API.
+如果你在自定义组件中只需要系统中的一些元素，你可以直接使用和组合不同的风格功能，并将其作为组件属性访问。 如果你需要比使用 Box 更小的捆绑大小和更好的性能，那么可以使用这种方法，但代价是需要使用 `sx` 支持的子集和不同的 API。
 
 {{"demo": "pages/system/advanced/CombiningStyleFunctionsDemo.js", "defaultCodeOpen": true}}
