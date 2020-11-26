@@ -272,7 +272,7 @@ export function createClientRender(globalOptions = {}) {
 
     if (enableDispatchingProfiler) {
       // new Error().stack is slow in "<Menu> integration" due to `source-map-support`
-      this.timeout(4000);
+      this.timeout(10000);
 
       // TODO windows?
       const filename = new Error().stack
