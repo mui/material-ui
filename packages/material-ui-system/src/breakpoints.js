@@ -86,7 +86,7 @@ function breakpoints(styleFunction) {
   return newStyleFunction;
 }
 
-export function createEmptyBreakpointObject(breakpointsInput = {}) {
+function createEmptyBreakpointObject(breakpointsInput = {}) {
   const breakpointsInOrder = breakpointsInput?.keys?.reduce((acc, key) => {
     const breakpointStyleKey = breakpointsInput.up(key);
     acc[breakpointStyleKey] = {};
