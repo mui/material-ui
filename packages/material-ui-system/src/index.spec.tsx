@@ -41,3 +41,16 @@ function breakpointsTest() {
   // Allows styleFunction props
   styler({ color: 'red' });
 }
+
+function styleTransformTest() {
+  // styles's implementation does support this kind of transform
+  style({
+    prop: 'vSpacing',
+    cssProperty: false,
+    transform: (value) => ({
+      '& > :not(:last-child)': {
+        marginBottom: value as string,
+      },
+    }),
+  });
+}
