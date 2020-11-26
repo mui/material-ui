@@ -83,10 +83,13 @@ async function runMeasures(browser, testCaseName, testCase, times = 10) {
     const page = await browser.openPage(url);
 
     const benchmark = await page.evaluate(() => {
-      return window.timing.render;
+      return {
+        legacyRenderTime: window.timing.render,
+        profilerRenderTime: window.profilerMetrics.actualDuration,
+      }
     });
 
-    measures.push(benchmark);
+    measures.push(benchmark.profilerRenderTime);
     await page.close();
   }
 
