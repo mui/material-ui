@@ -36,7 +36,7 @@ npm install @material-ui/core
 yarn add @material-ui/core
 ```
 
-⚠️ All ongoing work has moved to v5. The support of v4 is limited to security fixes, third-party conflicts when not requiring breaking changes (Chrome, React, etc.), and important bug fixes.
+⚠️ All ongoing work has moved to v5. The support of v4 is limited to security fixes, peer dependencies conflicts when not requiring breaking changes (Chrome, React, TypeScript, etc.), and important bug fixes.
 
 **[Alpha channel v5](https://next.material-ui.com/)**
 
