@@ -41,7 +41,11 @@ function TestViewer(props) {
       if (event.type === 'loading') {
         setReady(false);
       } else if (event.type === 'loadingdone') {
-        setReady(true);
+        // Don't know if there could be multiple loaded events after we started loading multiple times.
+        // So make sure we're only ready if fonts are actually ready.
+        if (document.fonts.status === 'loaded') {
+          setReady(true);
+        }
       }
     }
 
