@@ -16,7 +16,18 @@ function handleReactProfilerResults(event) {
 
 before(function beforeAllHook() {
   if (process.env.TEST_GATE === 'enable-dispatching-profiler') {
-    sourceMapSupport.install();
+    // Edge is so slow that we hit browserstack timeouts.
+    // "User Agent String": https://blogs.windows.com/msedgedev/2019/04/08/microsoft-edge-preview-channel-details/
+    const installSourceMapSupport = !/Edg\/\d+/.test(window.navigator.userAgent);
+    if (installSourceMapSupport) {
+      sourceMapSupport.install();
+      // Trigger init.
+      // The very first access to the stack is very slow.
+      // Since we definitely need it but don't know which test runs first we're initializing it now to control the timeout.
+      this.timeout(10000);
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions -- getter is used
+      new Error().stack;
+    }
   }
 
   mochaHooks.beforeAll.forEach((mochaHook) => {
