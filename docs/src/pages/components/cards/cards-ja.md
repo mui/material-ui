@@ -25,7 +25,7 @@ Set `variant="outlined"` to render an outlined card.
 
 ## 複雑なインタラクション
 
-デスクトップでは、Cardの内容が展開できる可能性があります。 (Click the downward chevron to view the recipe.)
+デスクトップでは、Cardの内容が展開できる可能性があります。
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
