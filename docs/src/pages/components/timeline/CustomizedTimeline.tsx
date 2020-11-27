@@ -47,7 +47,7 @@ export default function CustomizedTimeline() {
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent className={classes.timelineContent}>
-          <Typography variant="h6" component="h1">
+          <Typography variant="h6" component="span">
             Eat
           </Typography>
           <Typography>Because you need strength</Typography>
@@ -69,7 +69,7 @@ export default function CustomizedTimeline() {
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent className={classes.timelineContent}>
-          <Typography variant="h6" component="h1">
+          <Typography variant="h6" component="span">
             Code
           </Typography>
           <Typography>Because it&apos;s awesome!</Typography>
@@ -84,7 +84,7 @@ export default function CustomizedTimeline() {
           <TimelineConnector className={classes.secondaryTail} />
         </TimelineSeparator>
         <TimelineContent className={classes.timelineContent}>
-          <Typography variant="h6" component="h1">
+          <Typography variant="h6" component="span">
             Sleep
           </Typography>
           <Typography>Because you need rest</Typography>
@@ -99,7 +99,7 @@ export default function CustomizedTimeline() {
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent className={classes.timelineContent}>
-          <Typography variant="h6" component="h1">
+          <Typography variant="h6" component="span">
             Repeat
           </Typography>
           <Typography>Because this is the life you love!</Typography>
