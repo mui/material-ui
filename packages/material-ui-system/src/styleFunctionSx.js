@@ -1,30 +1,10 @@
 import merge from './merge';
-import getThemeValue from './getThemeValue';
-import { handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
-import borders from './borders';
-import display from './display';
-import flexbox from './flexbox';
-import grid from './grid';
-import positions from './positions';
-import palette from './palette';
-import shadows from './shadows';
-import sizing from './sizing';
-import spacing from './spacing';
-import typography from './typography';
-
-const filterProps = [
-  ...borders.filterProps,
-  ...display.filterProps,
-  ...flexbox.filterProps,
-  ...grid.filterProps,
-  ...positions.filterProps,
-  ...palette.filterProps,
-  ...shadows.filterProps,
-  ...sizing.filterProps,
-  ...spacing.filterProps,
-  ...typography.filterProps,
-  'sx',
-];
+import getThemeValue, { propToStyleFunction } from './getThemeValue';
+import {
+  handleBreakpoints,
+  createEmptyBreakpointObject,
+  removeUnusedBreakpoints,
+} from './breakpoints';
 
 function objectsHaveSameKeys(...objects) {
   const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
@@ -37,7 +17,7 @@ function callIfFn(maybeFn, arg) {
 }
 
 function styleFunctionSx(props) {
-  const { sx: styles, theme } = props || {};
+  const { sx: styles, theme = {} } = props || {};
   if (!styles) return null;
 
   if (typeof styles === 'function') {
@@ -49,13 +29,16 @@ function styleFunctionSx(props) {
     return styles;
   }
 
-  let css = {};
+  const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
+  const breakpointsKeys = Object.keys(emptyBreakpoints);
+
+  let css = emptyBreakpoints;
 
   Object.keys(styles).forEach((styleKey) => {
     const value = callIfFn(styles[styleKey], theme);
 
     if (typeof value === 'object') {
-      if (filterProps.indexOf(styleKey) !== -1) {
+      if (propToStyleFunction[styleKey]) {
         css = merge(css, getThemeValue(styleKey, value, theme));
       } else {
         const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
@@ -63,8 +46,7 @@ function styleFunctionSx(props) {
         }));
 
         if (objectsHaveSameKeys(breakpointsValues, value)) {
-          const transformedValue = styleFunctionSx({ sx: value, theme });
-          css[styleKey] = transformedValue;
+          css[styleKey] = styleFunctionSx({ sx: value, theme });
         } else {
           css = merge(css, breakpointsValues);
         }
@@ -74,7 +56,7 @@ function styleFunctionSx(props) {
     }
   });
 
-  return mergeBreakpointsInOrder(theme.breakpoints, css);
+  return removeUnusedBreakpoints(breakpointsKeys, css);
 }
 
 styleFunctionSx.filterProps = ['sx'];
