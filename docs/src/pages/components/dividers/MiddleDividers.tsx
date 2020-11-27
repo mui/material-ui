@@ -36,12 +36,12 @@ export default function MiddleDividers() {
       <div className={classes.section1}>
         <Grid container alignItems="center">
           <Grid item xs>
-            <Typography gutterBottom variant="h4">
+            <Typography gutterBottom variant="h4" component="div">
               Toothbrush
             </Typography>
           </Grid>
           <Grid item>
-            <Typography gutterBottom variant="h6">
+            <Typography gutterBottom variant="h6" component="div">
               $4.50
             </Typography>
           </Grid>

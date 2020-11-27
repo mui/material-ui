@@ -14,22 +14,22 @@ export default function Types() {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h1" component="h2" gutterBottom>
+      <Typography variant="h1" component="div" gutterBottom>
         h1. Heading
       </Typography>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant="h2" gutterBottom component="div">
         h2. Heading
       </Typography>
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h3" gutterBottom component="div">
         h3. Heading
       </Typography>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom component="div">
         h4. Heading
       </Typography>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom component="div">
         h5. Heading
       </Typography>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom component="div">
         h6. Heading
       </Typography>
       <Typography variant="subtitle1" gutterBottom>
