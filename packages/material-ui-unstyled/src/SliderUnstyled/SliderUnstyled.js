@@ -11,6 +11,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_useControlled as useControlled,
 } from '@material-ui/utils';
+import isHostComponent from '../utils/isHostComponent';
 import sliderClasses from './sliderClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
@@ -186,7 +187,6 @@ const useSliderClasses = (props) => {
   return utilityClasses;
 };
 
-const isHostComponent = (element) => typeof element === 'string';
 const Forward = ({ children }) => children;
 
 const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
