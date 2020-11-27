@@ -175,6 +175,7 @@ ${headers.components
       const headingHashesFallbackTranslated = {};
       let headingIndex = -1;
 
+      console.log('----');
       const rendered = contents.map((content) => {
         if (/^"(demo|component)": "(.*)"/.test(content)) {
           try {
@@ -250,7 +251,7 @@ ${headers.components
               `<h${level}>`,
               `<a class="anchor-link" id="${hash}"></a>`,
               headingHtml,
-              `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
+              `<a class="anchor-link-style" aria-hidden="true" href="#${hash}">`,
               '<svg><use xlink:href="#anchor-link-icon" /></svg>',
               '</a>',
               `</h${level}>`,
