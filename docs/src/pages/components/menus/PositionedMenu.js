@@ -17,14 +17,14 @@ export default function PositionedMenu() {
   return (
     <div>
       <Button
-        aria-controls="positioned-menu"
+        aria-controls="demo-positioned-menu"
         aria-haspopup="true"
         onClick={handleClick}
       >
         Open Menu
       </Button>
       <Menu
-        id="positioned-menu"
+        id="demo-positioned-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}

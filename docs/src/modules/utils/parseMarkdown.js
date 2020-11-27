@@ -175,7 +175,6 @@ ${headers.components
       const headingHashesFallbackTranslated = {};
       let headingIndex = -1;
 
-      console.log('----');
       const rendered = contents.map((content) => {
         if (/^"(demo|component)": "(.*)"/.test(content)) {
           try {
