@@ -8,12 +8,15 @@ const useStyles = makeStyles((theme) => ({
     width: 20,
     height: 20,
     borderRadius: '50%',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 }));
 
-const SwitchThumb = () => {
+const SwitchThumb = (props) => {
   const classes = useStyles();
-  return <span className={classes.root} />;
+  return <span className={classes.root} {...props} />;
 };
 
 export default SwitchThumb;
