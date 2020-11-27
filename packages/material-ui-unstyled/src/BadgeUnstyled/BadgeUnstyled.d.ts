@@ -26,6 +26,20 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
       Badge?: React.ElementType;
     };
     /**
+     * The props used for each slot inside the Badge.
+     * @default {}
+     */
+    componentsProps?: {
+      root?: {
+        as: React.ElementType;
+        styleProps?: Omit<BadgeUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+      };
+      badge?: {
+        as?: React.ElementType;
+        styleProps?: Omit<BadgeUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+      };
+    };
+    /**
      * Wrapped shape the badge should overlap.
      * @default 'rectangular'
      */
@@ -114,7 +128,6 @@ export interface ExtendBadgeUnstyledTypeMap<M extends OverridableTypeMap> {
 export type ExtendBadgeUnstyled<M extends OverridableTypeMap> = OverridableComponent<
   ExtendBadgeUnstyledTypeMap<M>
 >;
-
 
 export type BadgeUnstyledClassKey = keyof NonNullable<BadgeUnstyledTypeMap['props']['classes']>;
 /**

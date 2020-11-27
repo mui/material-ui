@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '@material-ui/core/styles';
 import { OverridableStringUnion } from '@material-ui/types';
+import { ExtendBadgeUnstyledTypeMap } from '@material-ui/unstyled';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface BadgePropsVariantOverrides {}
@@ -25,6 +26,12 @@ export type BadgeTypeMap<
   defaultComponent: D;
 }>;
 
+type BadgeRootProps = NonNullable<BadgeTypeMap['props']['componentsProps']>['root'];
+type BadgeBadgeProps = NonNullable<BadgeTypeMap['props']['componentsProps']>['badge'];
+
+export const BadgeRoot: React.FC<BadgeRootProps>;
+export const BadgeMark: React.FC<BadgeBadgeProps>;
+
 export type BadgeClassKey = keyof NonNullable<BadgeTypeMap['props']['classes']>;
 /**
  *
@@ -42,6 +49,6 @@ declare const Badge: OverridableComponent<BadgeTypeMap>;
 export type BadgeProps<
   D extends React.ElementType = BadgeTypeMap['defaultComponent'],
   P = {}
-> = OverrideProps<BadgeTypeMap<P, D>, D>;
+> = OverrideProps<BadgeTypeMap<D, P>, D>;
 
 export default Badge;

@@ -40,14 +40,18 @@ describe('<BadgeUnstyled />', () => {
   it('renders children and badgeContent', () => {
     const children = <div id="child" data-testid="child" />;
     const badge = <div id="badge" data-testid="badge" />;
-    const { container, getByTestId } = render(<BadgeUnstyled badgeContent={badge}>{children}</Badge>);
+    const { container, getByTestId } = render(
+      <BadgeUnstyled badgeContent={badge}>{children}</BadgeUnstyled>,
+    );
     expect(container.firstChild).to.contain(getByTestId('child'));
     expect(container.firstChild).to.contain(getByTestId('badge'));
   });
 
   it('renders children and overwrite badge class', () => {
     const badgeClassName = 'testBadgeClassName';
-    const { container } = render(<BadgeUnstyled {...defaultProps} classes={{ badge: badgeClassName }} />);
+    const { container } = render(
+      <BadgeUnstyled {...defaultProps} classes={{ badge: badgeClassName }} />,
+    );
     expect(findBadge(container)).to.have.class(badgeClassName);
   });
 
@@ -120,7 +124,9 @@ describe('<BadgeUnstyled />', () => {
     });
 
     it('should render with the invisible class when false and badgeContent is 0', () => {
-      const { container } = render(<BadgeUnstyled {...defaultProps} badgeContent={0} showZero={false} />);
+      const { container } = render(
+        <BadgeUnstyled {...defaultProps} badgeContent={0} showZero={false} />,
+      );
       expect(findBadge(container)).to.have.class(classes.invisible);
     });
   });
@@ -153,17 +159,23 @@ describe('<BadgeUnstyled />', () => {
     });
 
     it('should cap badgeContent', () => {
-      const { container } = render(<BadgeUnstyled {...defaultProps} badgeContent={1000} max={999} />);
+      const { container } = render(
+        <BadgeUnstyled {...defaultProps} badgeContent={1000} max={999} />,
+      );
       expect(findBadge(container)).to.have.text('999+');
     });
 
     it('should not cap if badgeContent and max are equal', () => {
-      const { container } = render(<BadgeUnstyled {...defaultProps} badgeContent={1000} max={1000} />);
+      const { container } = render(
+        <BadgeUnstyled {...defaultProps} badgeContent={1000} max={1000} />,
+      );
       expect(findBadge(container)).to.have.text('1000');
     });
 
     it('should not cap if badgeContent is lower than max', () => {
-      const { container } = render(<BadgeUnstyled {...defaultProps} badgeContent={50} max={1000} />);
+      const { container } = render(
+        <BadgeUnstyled {...defaultProps} badgeContent={50} max={1000} />,
+      );
       expect(findBadge(container)).to.have.text('50');
     });
   });

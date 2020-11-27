@@ -10,11 +10,13 @@ const defaultProps = {
 
 export default function BadgeMax() {
   return (
-    <Box sx={{
-      '& > *': {
-        margin: 2,
-      },
-    }}>
+    <Box
+      sx={{
+        '& > *': {
+          margin: 2,
+        },
+      }}
+    >
       <Badge badgeContent={99} {...defaultProps} />
       <Badge badgeContent={100} {...defaultProps} />
       <Badge badgeContent={1000} max={999} {...defaultProps} />

@@ -10,11 +10,13 @@ export default function BadgeOverlap() {
   const circle = <Box sx={{ ...shapeStyles, ...shapeCircleStyles }} />;
 
   return (
-    <Box sx={{
-      '& > *': {
-        margin: 1,
-      },
-    }}>
+    <Box
+      sx={{
+        '& > *': {
+          margin: 1,
+        },
+      }}
+    >
       <Badge color="secondary" badgeContent=" ">
         {rectangle}
       </Badge>

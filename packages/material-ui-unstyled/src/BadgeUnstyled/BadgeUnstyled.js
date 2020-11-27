@@ -17,10 +17,7 @@ const useBadgeClasses = (props) => {
   const { color, variant, anchorOrigin, overlap, invisible, classes = {} } = props;
 
   const utilityClasses = {
-    root: clsx(
-      badgeClasses['root'],
-      classes['root'],
-    ),
+    root: clsx(badgeClasses['root'], classes['root']),
     badge: clsx(
       badgeClasses['badge'],
       classes['badge'],
@@ -58,6 +55,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     className,
     color: colorProp = 'default',
     components = {},
+    componentsProps = {},
     invisible: invisibleProp,
     max: maxProp = 99,
     overlap: overlapProp = 'rectangular',
@@ -115,17 +113,21 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
   const classes = useBadgeClasses(stateAndProps);
 
   const Root = components.Root || 'span';
+  const rootProps = componentsProps.root || {};
+
   const Badge = components.Badge || 'span';
+  const badgeProps = componentsProps.badge || {};
 
   return (
     <Root
-      className={clsx(classes.root, className)}
       {...(!isHostComponent(Root) && {
         styleProps: stateAndProps,
         theme,
       })}
       ref={ref}
+      {...rootProps}
       {...other}
+      className={clsx(classes.root, rootProps.className, className)}
     >
       {children}
       <Badge
@@ -133,7 +135,8 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
           styleProps: stateAndProps,
           theme,
         })}
-        className={classes.badge}
+        {...badgeProps}
+        className={clsx(classes.badge, badgeProps.className)}
       >
         {displayValue}
       </Badge>
@@ -179,10 +182,19 @@ BadgeUnstyled.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'error', 'primary', 'secondary']),
   /**
-   * The component used for the root node.
+   * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.
+   * @default {}
    */
-  component: PropTypes.elementType,
+  components: PropTypes.shape({
+    Badge: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Badge.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * If `true`, the badge is invisible.
    */

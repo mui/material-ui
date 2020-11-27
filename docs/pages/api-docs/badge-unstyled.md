@@ -1,28 +1,26 @@
 ---
-filename: /packages/material-ui/src/Badge/Badge.js
+filename: /packages/material-ui-unstyled/src/BadgeUnstyled/BadgeUnstyled.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Badge API
+# BadgeUnstyled API
 
-<p class="description">The API documentation of the Badge React component. Learn more about the props and the CSS customization points.</p>
+<p class="description">The API documentation of the BadgeUnstyled React component. Learn more about the props and the CSS customization points.</p>
 
 ## Import
 
 ```js
-import Badge from '@material-ui/core/Badge';
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
 // or
-import { Badge } from '@material-ui/core';
+import { BadgeUnstyled } from '@material-ui/unstyled';
 ```
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 
 
-## Component name
 
-The `MuiBadge` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
 
 ## Props
 
@@ -39,7 +37,6 @@ The `MuiBadge` name can be used for providing [default props](/customization/glo
 | <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">99</span> | Max count to show. |
 | <span class="prop-name">overlap</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rectangular'</span> | <span class="prop-default">'rectangular'</span> | Wrapped shape the badge should overlap. |
 | <span class="prop-name">showZero</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Controls whether the badge is hidden when `badgeContent` is zero. |
-| <span class="prop-name">sx</span> | <span class="prop-type">object</span> |  | The system prop that allows defining system overrides as well as additional CSS styles. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'dot'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string</span> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
@@ -71,9 +68,4 @@ You can override the style of the component thanks to one of these customization
 
 - With a [global class name](/guides/interoperability/#global-css).
 - With a rule name as part of the component's [`styleOverrides` property](/customization/components/#global-theme-override) in a custom theme.
-
-## Demos
-
-- [Avatars](/components/avatars/)
-- [Badges](/components/badges/)
 

@@ -5,11 +5,13 @@ import MailIcon from '@material-ui/icons/Mail';
 
 export default function ShowZeroBadge() {
   return (
-    <Box sx={{
-      '& > *': {
-        m: 1,
-      },
-    }}>
+    <Box
+      sx={{
+        '& > *': {
+          m: 1,
+        },
+      }}
+    >
       <Badge color="secondary" badgeContent={0}>
         <MailIcon />
       </Badge>

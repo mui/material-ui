@@ -18,16 +18,18 @@ export default function BadgeVisibility() {
   };
 
   return (
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      '& > *': {
-        marginBottom:2,
-      },
-      '& .MuiBadge-root': {
-        marginRight: 4,
-      },
-    }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        '& > *': {
+          marginBottom: 2,
+        },
+        '& .MuiBadge-root': {
+          marginRight: 4,
+        },
+      }}
+    >
       <div>
         <Badge color="secondary" badgeContent={count}>
           <MailIcon />

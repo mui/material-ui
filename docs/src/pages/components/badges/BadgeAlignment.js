@@ -31,14 +31,16 @@ export default function BadgeAlignment() {
 `;
 
   return (
-    <Box sx={{width: '100%'}}>
-      <Box sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        '& fieldset': {
-          margin: 3,
-        }
-      }}>
+    <Box sx={{ width: '100%' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          '& fieldset': {
+            margin: 3,
+          },
+        }}
+      >
         <FormControl component="fieldset">
           <FormLabel component="legend">Vertical</FormLabel>
           <RadioGroup
@@ -62,13 +64,15 @@ export default function BadgeAlignment() {
           </RadioGroup>
         </FormControl>
       </Box>
-      <Box sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        '& > *': {
-          margin: 2,
-        },
-      }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          '& > *': {
+            margin: 2,
+          },
+        }}
+      >
         <Badge
           color="secondary"
           variant="dot"

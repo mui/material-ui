@@ -6,11 +6,13 @@ import Typography from '@material-ui/core/Typography';
 
 export default function DotBadge() {
   return (
-    <Box sx={{
-      '& > *': {
-        m: 1,
-      },
-    }}>
+    <Box
+      sx={{
+        '& > *': {
+          m: 1,
+        },
+      }}
+    >
       <Badge color="secondary" variant="dot">
         <MailIcon />
       </Badge>

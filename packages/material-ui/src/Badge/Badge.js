@@ -24,7 +24,7 @@ const overridesResolver = (props, styles) => {
 
   const styleOverrides = {
     ...styles.root,
-    [`& .${badgeClasses.badge}`]:{
+    [`& .${badgeClasses.badge}`]: {
       ...styles.badge,
       ...styles[variant],
       ...styles[
@@ -44,19 +44,19 @@ const BadgeRoot = styled(
   'span',
   {},
   { muiName: 'MuiBadge', overridesResolver },
- )({
+)({
   position: 'relative',
   display: 'inline-flex',
   // For correct alignment with the text.
   verticalAlign: 'middle',
   flexShrink: 0,
- });
+});
 
- const BadgeBadge = styled(
+const BadgeBadge = styled(
   'span',
   {},
   { muiName: 'MuiBadge', overridesResolver },
- )((props) => ({
+)((props) => ({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -88,85 +88,101 @@ const BadgeRoot = styled(
     minWidth: RADIUS_DOT * 2,
     padding: 0,
   }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' && props.styleProps.anchorOrigin.horizontal === 'right' && props.styleProps.overlap === 'rectangular' && {
-    top: 0,
-    right: 0,
-    transform: 'scale(1) translate(50%, -50%)',
-    transformOrigin: '100% 0%',
-    [`&.${badgeClasses.invisible}`]: {
-      transform: 'scale(0) translate(50%, -50%)',
-    },
-  }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' && props.styleProps.anchorOrigin.horizontal === 'right' && props.styleProps.overlap === 'rectangular' && {
-    bottom: 0,
-    right: 0,
-    transform: 'scale(1) translate(50%, 50%)',
-    transformOrigin: '100% 100%',
-    [`&.${badgeClasses.invisible}`]: {
-      transform: 'scale(0) translate(50%, 50%)',
-    },
-  }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' && props.styleProps.anchorOrigin.horizontal === 'left' && props.styleProps.overlap === 'rectangular' && {
-    top: 0,
-    left: 0,
-    transform: 'scale(1) translate(-50%, -50%)',
-    transformOrigin: '0% 0%',
-    [`&.${badgeClasses.invisible}`]: {
-      transform: 'scale(0) translate(-50%, -50%)',
-    },
-  }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' && props.styleProps.anchorOrigin.horizontal === 'left' && props.styleProps.overlap === 'rectangular' && {
-    bottom: 0,
-    left: 0,
-    transform: 'scale(1) translate(-50%, 50%)',
-    transformOrigin: '0% 100%',
-    [`&.${badgeClasses.invisible}`]: {
-      transform: 'scale(0) translate(-50%, 50%)',
-    },
-  }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' && props.styleProps.anchorOrigin.horizontal === 'right' && props.styleProps.overlap === 'circular' && {
-    top: '14%',
-    right: '14%',
-    transform: 'scale(1) translate(50%, -50%)',
-    transformOrigin: '100% 0%',
-    [`&.${badgeClasses.invisible}`]: {
-      transform: 'scale(0) translate(50%, -50%)',
-    },
-  }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' && props.styleProps.anchorOrigin.horizontal === 'right' && props.styleProps.overlap === 'circular' && {
-    bottom: '14%',
-    right: '14%',
-    transform: 'scale(1) translate(50%, 50%)',
-    transformOrigin: '100% 100%',
-    [`&.${badgeClasses.invisible}`]: {
-      transform: 'scale(0) translate(50%, 50%)',
-    },
-  }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' && props.styleProps.anchorOrigin.horizontal === 'left' && props.styleProps.overlap === 'circular' && {
-    top: '14%',
-    left: '14%',
-    transform: 'scale(1) translate(-50%, -50%)',
-    transformOrigin: '0% 0%',
-    [`&.${badgeClasses.invisible}`]: {
-      transform: 'scale(0) translate(-50%, -50%)',
-    },
-  }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' && props.styleProps.anchorOrigin.horizontal === 'left' && props.styleProps.overlap === 'circular' && {
-    bottom: '14%',
-    left: '14%',
-    transform: 'scale(1) translate(-50%, 50%)',
-    transformOrigin: '0% 100%',
-    [`&.${badgeClasses.invisible}`]: {
-      transform: 'scale(0) translate(-50%, 50%)',
-    },
-  }),
+  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
+    props.styleProps.anchorOrigin.horizontal === 'right' &&
+    props.styleProps.overlap === 'rectangular' && {
+      top: 0,
+      right: 0,
+      transform: 'scale(1) translate(50%, -50%)',
+      transformOrigin: '100% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, -50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
+    props.styleProps.anchorOrigin.horizontal === 'right' &&
+    props.styleProps.overlap === 'rectangular' && {
+      bottom: 0,
+      right: 0,
+      transform: 'scale(1) translate(50%, 50%)',
+      transformOrigin: '100% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, 50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
+    props.styleProps.anchorOrigin.horizontal === 'left' &&
+    props.styleProps.overlap === 'rectangular' && {
+      top: 0,
+      left: 0,
+      transform: 'scale(1) translate(-50%, -50%)',
+      transformOrigin: '0% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, -50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
+    props.styleProps.anchorOrigin.horizontal === 'left' &&
+    props.styleProps.overlap === 'rectangular' && {
+      bottom: 0,
+      left: 0,
+      transform: 'scale(1) translate(-50%, 50%)',
+      transformOrigin: '0% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, 50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
+    props.styleProps.anchorOrigin.horizontal === 'right' &&
+    props.styleProps.overlap === 'circular' && {
+      top: '14%',
+      right: '14%',
+      transform: 'scale(1) translate(50%, -50%)',
+      transformOrigin: '100% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, -50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
+    props.styleProps.anchorOrigin.horizontal === 'right' &&
+    props.styleProps.overlap === 'circular' && {
+      bottom: '14%',
+      right: '14%',
+      transform: 'scale(1) translate(50%, 50%)',
+      transformOrigin: '100% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, 50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
+    props.styleProps.anchorOrigin.horizontal === 'left' &&
+    props.styleProps.overlap === 'circular' && {
+      top: '14%',
+      left: '14%',
+      transform: 'scale(1) translate(-50%, -50%)',
+      transformOrigin: '0% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, -50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
+    props.styleProps.anchorOrigin.horizontal === 'left' &&
+    props.styleProps.overlap === 'circular' && {
+      bottom: '14%',
+      left: '14%',
+      transform: 'scale(1) translate(-50%, 50%)',
+      transformOrigin: '0% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, 50%)',
+      },
+    }),
   [`&.${badgeClasses.invisible}`]: {
     transition: props.theme.transitions.create('transform', {
       easing: props.theme.transitions.easing.easeInOut,
       duration: props.theme.transitions.duration.leavingScreen,
     }),
   },
- }));
+}));
 
 const Badge = React.forwardRef(function Badge(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiBadge' });
@@ -214,19 +230,24 @@ Badge.propTypes = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'default'
    */
   color: PropTypes.oneOf(['default', 'error', 'primary', 'secondary']),
   /**
-   * The component used for the root node.
+   * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.
+   * @default {}
    */
-  component: PropTypes.elementType,
+  components: PropTypes.shape({
+    Badge: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Badge.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * If `true`, the badge is invisible.
    */
@@ -246,6 +267,10 @@ Badge.propTypes = {
    * @default false
    */
   showZero: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The variant to use.
    * @default 'standard'
