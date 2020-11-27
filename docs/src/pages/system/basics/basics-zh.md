@@ -173,9 +173,9 @@ return (
   | 基准测试              | 代码片段                        | 花费时间  |
   |:----------------- |:--------------------------- | ----- |
   | a. 渲染 1,000 个基元   | `<div className="…">` | 100ms |
-  | b. 渲染 1,000 个组件   | `<Div>`               | 110ms |
+  | b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
   | c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
-  | d. 渲染一千个分组（Box）   | `<Box sx={…}>`        | 270ms |
+  | d. 渲染一千个分组（Box）   | `<Box sx={…}>`        | 370ms |
 
   _这里是可复现的 [性能测试文件夹](https://github.com/mui-org/material-ui/tree/next/benchmark/browser)。_
 
