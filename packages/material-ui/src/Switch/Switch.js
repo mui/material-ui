@@ -157,7 +157,7 @@ const Switch = React.forwardRef(function Switch(props, ref) {
     color = 'secondary',
     edge = false,
     size = 'medium',
-    icon = <SwitchThumb />,
+    icon = <SwitchThumb className={classes.thumb} />,
     ...other
   } = props;
 
