@@ -52,18 +52,16 @@ export default class MyDocument extends Document {
           {/* SEO */}
           <link
             rel="canonical"
-            href={`https://material-ui.com${
-              userLanguage === 'en' ? '/' : `/${userLanguage}`
-            }${canonical}`}
+            href={`https://material-ui.com${userLanguage === 'en' ? '' : `/${userLanguage}`
+              }${canonical}`}
           />
           <link rel="alternate" href={`https://material-ui.com${canonical}`} hrefLang="x-default" />
           {LANGUAGES_SSR.map((userLanguage2) => (
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://material-ui.com${
-                userLanguage2 === 'en' ? '/' : `/${userLanguage2}`
-              }${canonical}`}
+              href={`https://material-ui.com${userLanguage2 === 'en' ? '' : `/${userLanguage2}`
+                }${canonical}`}
               hrefLang={userLanguage2}
             />
           ))}
@@ -145,9 +143,14 @@ MyDocument.getInitialProps = async (ctx) => {
       css = cleanCSS.minify(css).styles;
     }
 
+    let url = ctx.req.url;
+    if (url[url.length - 1] !== '/') {
+      url += '/';
+    }
+
     return {
       ...initialProps,
-      canonical: pathnameToLanguage(ctx.req.url).canonical,
+      canonical: pathnameToLanguage(url).canonical,
       userLanguage: ctx.query.userLanguage || 'en',
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [
