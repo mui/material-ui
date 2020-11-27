@@ -1,14 +1,14 @@
-# Material-UI System
+# Sistema Material-UI
 
-<p class="description">CSS utilities for rapidly creating custom design.</p>
+<p class="description">Utilitários CSS para criar rapidamente um design customizado.</p>
 
-Material-UI comes with dozens or **ready-to-use** components in the core. These components are an incredible starting point but when it comes to making your site stand out with a custom design, it can be simpler to start from an unstyled state. Introducing the system:
+Material-UI vem com dezenas de componentes **pronto para uso** em seu package core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
 
-The **system** lets you quickly build custom UI components leveraging the values defined in your theme.
+O **sistema** permite que você crie rapidamente componentes de UI customizados utilizando os valores definidos no seu tema.
 
 ## Demonstração
 
-_(Resize the window to see the responsive breakpoints)_
+_(Redimensione a janela para ver os pontos de quebra responsivos)_
 
 {{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
 
@@ -22,13 +22,13 @@ npm install @material-ui/system
 yarn add @material-ui/system
 ```
 
-## Why use the system?
+## Por que usar o sistema?
 
-Compare how the same stat component can be built with two different APIs.
+Compare como o mesmo componente de estatística pode ser construído com duas APIs diferentes.
 
 {{"demo": "pages/system/basics/Why.js", "bg": true, "defaultCodeOpen": false}}
 
-1. ❌ using the styled-components's API:
+1. ❌ usando a API do styled-components:
 
 ```jsx
 const StatWrapper = styled('div')(
@@ -83,16 +83,16 @@ const StatPrevious = styled('div')(
 
 return (
   <StatWrapper>
-    <StatHeader>Sessions</StatHeader>
+    <StatHeader>Sessões</StatHeader>
     <StatValue>98.3 K</StatValue>
     <StyledTrend />
     <StatDiff>18.77%</StatDiff>
-    <StatPrevious>vs last week</StatPrevious>
+    <StatPrevious>em relação ultima semana</StatPrevious>
   </StatWrapper>
 );
 ```
 
-2. ✅ using the system:
+2. ✅ usando o sistema:
 
 ```jsx
 <Box
@@ -123,36 +123,36 @@ return (
     18.77%
   </Box>
   <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-    vs last week
+    em relação ultima semana
   </Box>
 </Box>
 ```
 
-### Problem solved
+### Problema resolvido
 
-The system focus on solving 3 main problems:
+O sistema foca na resolução de 3 principais problemas:
 
-**1. Switching context wastes time.**
+**1. Mudar de contexto desperdiça tempo.**
 
-There's no need to constantly jump between the usage of the styled components and where they are defined. With the system, those descriptions are right where you need them.
+Não há necessidade de saltar constantemente entre o uso dos componentes customizados e onde eles são definidos. Com o sistema, essas descrições estão corretas onde é necessário estar.
 
-**2. Naming things is hard.**
+**2. Nomear as coisas é difícil.**
 
-Have you ever found yourself struggling to find a good name for a styled component? The system maps the styles directly to the element. All you have to do is worry about actual style properties.
+Você já se encontrou com dificuldades para encontrar um bom nome para um componente customizado? O sistema mapeia os estilos diretamente para o elemento. Tudo o que você precisa fazer é se preocupar com as propriedades de estilo atuais.
 
-**3. Enforcing consistency in UIs is hard.**
+**3. Manter consistência nas UI é difícil.**
 
-This is especially true when more than one person is building the application, as there has to be some coordination amongst members of the team regarding the choice of design tokens and how they are used, what parts of the theme structure should be used with what CSS properties, and so on.
+Isso é especialmente verdadeiro quando mais de uma pessoa está construindo a aplicação, já que tem que haver alguma coordenação entre os membros da equipe sobre a escolha dos tokens de design e como eles são usados, quais partes da estrutura do tema devem ser usadas com quais propriedades CSS e assim por diante.
 
-The system provides direct access to the value in the theme. It makes it easier to design with constraints.
+O sistema oferece acesso direto ao valor no tema. Fica mais fácil de lidar com restrições.
 
-## The `sx` prop
+## A propriedade `sx`
 
-The `sx` prop, as the main part of the system, solves these problems by providing a fast & simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used to create a one-off design.
+A propriedade `sx`, como a parte principal do sistema, resolve esses problemas, fornecendo uma maneira rápida & simples de aplicar os tokens de design corretos para propriedades CSS específicas diretamente a um elemento React. A [demonstração acima](#demo) mostra como ela pode ser usada para criar um design único.
 
-This prop provides a superset of CSS that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
+Esta propriedade fornece um super conjunto de CSS que mapeia valores diretamente do tema, dependendo da propriedade CSS usada. Além disso, permite uma maneira simples de definir valores responsivos que correspondem aos pontos de quebra definidos no tema.
 
-### When to use it?
+### Quando usar ela?
 
 - **styled-components**: the API is great to build components that need to support a wide variety of contexts. These components are used in many different parts of the application and support different combinations of props.
 - **`sx` prop**: the API is great to apply one-off styles. It's called "utility" for this reason.
@@ -173,9 +173,9 @@ Cons:
   | Benchmark case                    | Code snippet                | Time normalized |
   |:--------------------------------- |:--------------------------- | --------------- |
   | a. Render 1,000 primitives        | `<div className="…">` | 100ms           |
-  | b. Render 1,000 components        | `<Div>`               | 110ms           |
+  | b. Render 1,000 components        | `<Div>`               | 120ms           |
   | c. Render 1,000 styled components | `<StyledDiv>`         | 160ms           |
-  | d. Render 1,000 Box               | `<Box sx={…}>`        | 270ms           |
+  | d. Render 1,000 Box               | `<Box sx={…}>`        | 370ms           |
 
   _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) for a reproduction of these metrics._
 
@@ -305,7 +305,7 @@ export default function CustomBreakpoints() {
           },
         }}
       >
-        This box has a responsive width
+        Este box tem uma largura responsiva
       </Box>
     </ThemeProvider>
   );
