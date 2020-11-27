@@ -8,6 +8,7 @@ import withStyles from '../styles/withStyles';
 import { alpha } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
+import SwitchThumb from '../SwitchThumb';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -156,10 +157,9 @@ const Switch = React.forwardRef(function Switch(props, ref) {
     color = 'secondary',
     edge = false,
     size = 'medium',
+    icon = <SwitchThumb />,
     ...other
   } = props;
-
-  const icon = <span className={classes.thumb} />;
 
   return (
     <span
