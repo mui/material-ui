@@ -479,13 +479,6 @@ describe('<ButtonBase />', () => {
   });
 
   describe('focusRipple', () => {
-    before(function beforeHook() {
-      if (/Version\/10\.\d+\.\d+ Safari/.test(window.navigator.userAgent)) {
-        // browserstack quirk
-        this.skip();
-      }
-    });
-
     it('should pulsate the ripple when focusVisible', () => {
       const { getByRole } = render(
         <ButtonBase
@@ -1031,10 +1024,10 @@ describe('<ButtonBase />', () => {
       PropTypes.resetWarningCache();
     });
 
-    it('warns on invalid `component` prop: ref forward', () => {
+    it('warns on invalid `component` prop: ref forward', function test() {
       // Only run the test on node. On the browser the thrown error is not caught
       if (!/jsdom/.test(window.navigator.userAgent)) {
-        return;
+        this.skip();
       }
 
       /**

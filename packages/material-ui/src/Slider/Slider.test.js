@@ -20,10 +20,12 @@ function createTouches(touches) {
 }
 
 describe('<Slider />', () => {
-  // only run in supported browsers
-  if (typeof Touch === 'undefined') {
-    return;
-  }
+  before(function beforeHook() {
+    // only run in supported browsers
+    if (typeof Touch === 'undefined') {
+      this.skip();
+    }
+  });
 
   const mount = createMount();
   const render = createClientRender();
