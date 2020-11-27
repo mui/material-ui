@@ -10,15 +10,9 @@
     "userLanguage": "zh"
   },
   {
-    "id": 50,
+    "id": 51,
     "date": "2020-10-22",
     "title": "Figma",
     "text": "<a style=\"color: inherit;\" target=\"_blank\" href=\"/store/items/figma-react/\">Material-UI for Figma</a>. Not new, but definitely improved – v4.12.0 now available in the store!"
-  },
-  {
-    "id": 51,
-    "date": "2020-11-13",
-    "title": "Pre-launch survey 📣",
-    "text": "Do you need a data grid, calendar, chart, etc.?<br/><a style=\"color: inherit;\" target=\"_blank\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSe-1Hx07hZmWITo3z9FByyXT47sXvJgzmQudyctpdJdZ-NUGw/viewform\">Fill in our survey</a> so that we can build the right one for you, and get a 20% discount."
   }
 ]
