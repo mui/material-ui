@@ -103,7 +103,6 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     invisible,
     max,
     overlap,
-    showZero,
     variant,
   };
 
@@ -134,7 +133,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
           styleProps: stateAndProps,
           theme,
         })}
-        classes={classes.badge}
+        className={classes.badge}
       >
         {displayValue}
       </Badge>
