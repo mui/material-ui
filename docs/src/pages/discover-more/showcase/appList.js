@@ -639,6 +639,16 @@ const appList = [
     similarWebVisits: 534,
     dateAdded: '2020-09-11',
   },
+  {
+    title: 'Memory',
+    description:
+      'Memory offers free learning tools including flashcards.  Front ends built exclusively' +
+      ' upon MUI (with some other packages, e.g. react-spring for the game area) and even uses' +
+      ' MUI for superquick SQL to React adhoc reports.',
+    image: 'https://markdown.memory.com/flags/memory-screenshot.png',
+    link: 'https://www.memory.com',
+    dateAdded: '2020-11-27',
+  },
 ];
 
 export default appList;
