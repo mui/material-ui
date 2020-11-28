@@ -111,8 +111,8 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
       transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
     } else if (typeof styleArg === 'function') {
       // If the type is function, we need to define the default theme
-      transformedStyleArg = ({ theme: themeInput, ...rest }) =>
-        styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...rest });
+      transformedStyleArg = ({ theme: themeInput, ...other }) =>
+        styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...other });
     }
 
     return defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
