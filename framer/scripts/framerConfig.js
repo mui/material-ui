@@ -51,6 +51,7 @@ export const componentSettings = {
       'componentsProps',
       // FIXME: `Union`
       'variant',
+      'sx',
     ],
     propValues: {
       icon: "''",
