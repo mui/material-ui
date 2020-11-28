@@ -30,12 +30,13 @@ You need to update your `package.json` to use the latest version of Material-UI.
 
 Oder führe aus
 
+
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
 oder
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 ## Handling breaking changes

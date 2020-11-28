@@ -31,11 +31,11 @@ Necesitas actualizar tu `package.json` para usar la última versión de Material
 Or run
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
 o
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 ## Handling breaking changes
