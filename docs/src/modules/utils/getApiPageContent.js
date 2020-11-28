@@ -1,6 +1,6 @@
 import marked from 'marked/lib/marked';
 
-export default function mapApiTranslations(req, componentName) {
+function mapApiTranslations(req, componentName) {
   const translations = {};
   req.keys().forEach((filename) => {
     const match = filename.match(new RegExp(`-([a-z]{2}).json$`));
@@ -14,11 +14,24 @@ export default function mapApiTranslations(req, componentName) {
   return translations;
 }
 
-export function parsePropsMarkdown(translations) {
+function parsePropsMarkdown(translations) {
   Object.entries(translations).forEach(([language, props]) => {
     Object.entries(props).forEach(([prop, description]) => {
       translations[language][prop] = marked.parseInline(description);
     });
   });
   return translations;
+}
+
+export default function getApiPageContent({ req1, req2, req3, jsonPageContent, componentName }) {
+  const componentDescription = mapApiTranslations(req1, componentName);
+  const propDescriptions = parsePropsMarkdown(mapApiTranslations(req2, componentName));
+  const classDescriptions = mapApiTranslations(req3, componentName);
+
+  return {
+    ...jsonPageContent,
+    componentDescription,
+    propDescriptions,
+    classDescriptions,
+  };
 }

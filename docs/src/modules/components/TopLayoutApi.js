@@ -255,9 +255,13 @@ import { ${componentName} } from '${source}';`}
           language="jsx"
         />
         <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-        {componentDescription[userLanguage] && (
-          <span dangerouslySetInnerHTML={{ __html: componentDescription[userLanguage] }} />
-        )}
+        {componentDescription[userLanguage] ? (
+          <React.Fragment>
+            <br />
+            <br />
+            <span dangerouslySetInnerHTML={{ __html: componentDescription[userLanguage] }} />
+          </React.Fragment>
+        ) : null}
         {componentStyles.name && (
           <React.Fragment>
             <Heading hash="component-name" />
