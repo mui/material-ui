@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { exactProp } from '@material-ui/utils';
 import Typography from '@material-ui/core/Typography';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
@@ -13,7 +13,7 @@ import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
   const t = useTranslate();
-  const userLanguage = 'en';
+  const userLanguage = useUserLanguage();
 
   return (
     <table>
@@ -77,7 +77,7 @@ PropsTable.propTypes = {
 function ClassesTable(props) {
   const { componentName, componentStyles, classDescriptions } = props;
   const t = useTranslate();
-  const userLanguage = 'en';
+  const userLanguage = useUserLanguage();
 
   return (
     <table>
@@ -161,7 +161,7 @@ Heading.propTypes = {
 function ApiDocs(props) {
   const { pageContent } = props;
   const t = useTranslate();
-  const userLanguage = 'en';
+  const userLanguage = useUserLanguage();
   const {
     classDescriptions,
     componentDescription,

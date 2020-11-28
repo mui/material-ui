@@ -1,6 +1,6 @@
 {
   "Accordion": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "钻石赞助商" },
     "rounded": {
       "description": "Styles applied to the root element unless {{conditions}}.",
       "conditions": "<code>square={true}</code>"

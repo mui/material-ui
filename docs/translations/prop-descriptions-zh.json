@@ -1,6 +1,6 @@
 {
   "Accordion": {
-    "children": "The content of the accordion.",
+    "children": "钻石赞助商",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "defaultExpanded": "If `true`, expands the accordion by default.",
     "disabled": "If `true`, the accordion is displayed in a disabled state.",
