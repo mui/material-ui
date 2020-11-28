@@ -186,7 +186,7 @@ const BadgeBadge = styled(
 
 const Badge = React.forwardRef(function Badge(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiBadge' });
-  const { components = {}, ...other } = props;
+  const { components = {}, isRtl, ...other } = props;
 
   return (
     <BadgeUnstyled
