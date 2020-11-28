@@ -62,19 +62,6 @@ const suggestions = [
     });
   });
 
-  it('should support next dependencies', () => {
-    expect(getDependencies(s1, { reactVersion: 'next' })).to.deep.equal({
-      react: 'next',
-      'react-dom': 'next',
-      '@emotion/react': 'latest',
-      '@emotion/styled': 'latest',
-      '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'next',
-      '@material-ui/unstyled': 'next',
-      'prop-types': 'latest',
-    });
-  });
-
   it('should support direct import', () => {
     const source = `
 import * as React from 'react';
@@ -149,29 +136,6 @@ import lab from '@material-ui/lab';
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
       '@material-ui/lab': 'next',
-    });
-  });
-
-  it('should support the data-grid component', () => {
-    const source = `
-import * as React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
-import { useDemoData } from '@material-ui/x-grid-data-generator';
-    `;
-
-    expect(getDependencies(source, { codeLanguage: 'TS' })).to.deep.equal({
-      react: 'latest',
-      'react-dom': 'latest',
-      '@emotion/react': 'latest',
-      '@emotion/styled': 'latest',
-      '@material-ui/core': 'next',
-      '@material-ui/lab': 'next',
-      '@material-ui/icons': 'next',
-      '@material-ui/data-grid': 'latest',
-      '@material-ui/x-grid-data-generator': 'latest',
-      '@types/react': 'latest',
-      '@types/react-dom': 'latest',
-      typescript: 'latest',
     });
   });
 

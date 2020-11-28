@@ -85,29 +85,23 @@ function addTypeDeps(deps) {
 }
 
 function includePeerDependencies(deps, versions) {
-  Object.assign(deps, {
+  let newDeps = {
+    ...deps,
     'react-dom': versions['react-dom'],
     react: versions.react,
     '@emotion/react': versions['@emotion/react'],
     '@emotion/styled': versions['@emotion/styled'],
-  });
+  };
 
-  if (
-    deps['@material-ui/lab'] ||
-    deps['@material-ui/x'] ||
-    deps['@material-ui/x-grid'] ||
-    deps['@material-ui/x-pickers'] ||
-    deps['@material-ui/x-tree-view'] ||
-    deps['@material-ui/data-grid']
-  ) {
-    deps['@material-ui/core'] = versions['@material-ui/core'];
+  if (newDeps['@material-ui/lab']) {
+    newDeps['@material-ui/core'] = versions['@material-ui/core'];
   }
 
-  if (deps['@material-ui/x-grid-data-generator']) {
-    deps['@material-ui/core'] = versions['@material-ui/core'];
-    deps['@material-ui/icons'] = versions['@material-ui/icons'];
-    deps['@material-ui/lab'] = versions['@material-ui/lab'];
+  if (window.muiDocConfig) {
+    newDeps = window.muiDocConfig.csbIncludePeerDependencies(newDeps, { versions });
   }
+
+  return newDeps;
 }
 
 /**
@@ -125,33 +119,19 @@ function getMuiPackageVersion(packageName, commitRef) {
 }
 
 /**
- * @param {string} packageName - The name of a package living inside this repository.
- * @param {string} [commitRef]
- * @return string - A valid version for a dependency entry in a package.json
- */
-function getMuiXPackageVersion(packageName, commitRef) {
-  if (commitRef === undefined || SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui-x') {
-    return 'latest';
-  }
-  const shortSha = commitRef.slice(0, 8);
-  return `https://pkg.csb.dev/mui-org/material-ui-x/commit/${shortSha}/@material-ui/${packageName}`;
-}
-
-/**
  * @param {string} raw - ES6 source with es module imports
  * @param {object} options
  * @param {'JS' | 'TS'} [options.codeLanguage] -
  * @param {string} [options.muiCommitRef] - If specified use `@material-ui/*` packages from a specific commit.
- * @param {'next' | 'latest'} [options.reactVersion]
  * @returns {Record<string, 'latest'>} map of packages with their required version
  */
 function getDependencies(raw, options = {}) {
-  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef, reactVersion = 'latest' } = options;
+  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef } = options;
 
-  const deps = {};
-  const versions = {
-    react: reactVersion,
-    'react-dom': reactVersion,
+  let deps = {};
+  let versions = {
+    react: 'latest',
+    'react-dom': 'latest',
     '@emotion/react': 'latest',
     '@emotion/styled': 'latest',
     '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
@@ -163,14 +143,11 @@ function getDependencies(raw, options = {}) {
     '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
     '@material-ui/unstyled': getMuiPackageVersion('unstyled', muiCommitRef),
     '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
-    '@material-ui/data-grid': getMuiXPackageVersion('data-grid', muiCommitRef),
-    '@material-ui/x-grid': getMuiXPackageVersion('x-grid', muiCommitRef),
-    '@material-ui/x-license': getMuiXPackageVersion('x-license', muiCommitRef),
-    '@material-ui/x-grid-data-generator': getMuiXPackageVersion(
-      'x-grid-data-generator',
-      muiCommitRef,
-    ),
   };
+
+  if (window.muiDocConfig) {
+    versions = window.muiDocConfig.csbGetVersions(versions, { muiCommitRef });
+  }
 
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
   let m;
@@ -203,7 +180,7 @@ function getDependencies(raw, options = {}) {
     }
   }
 
-  includePeerDependencies(deps, versions);
+  deps = includePeerDependencies(deps, versions);
 
   if (codeLanguage === CODE_VARIANTS.TS) {
     addTypeDeps(deps);
