@@ -40,10 +40,10 @@ yarn add @material-ui/core
 
 ```sh
 // with npm
-npm install @material-ui/core@next
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/core@next
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 <details>
