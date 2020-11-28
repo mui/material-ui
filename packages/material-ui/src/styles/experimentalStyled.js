@@ -102,16 +102,13 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
       });
     }
 
-    if (Array.isArray(styleArg)) {
+    const numOfCustomFnsApplied = expressionsWithDefaultTheme.length - expressions.length;
+
+    if (Array.isArray(styleArg) && numOfCustomFnsApplied > 0) {
+      const placeholders = new Array(numOfCustomFnsApplied).fill('');
       // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles
-      transformedStyleArg = [
-        ...styleArg,
-        ...new Array(expressionsWithDefaultTheme.length).fill(''),
-      ];
-      transformedStyleArg.raw = [
-        ...styleArg.raw,
-        ...new Array(expressionsWithDefaultTheme.length).fill(''),
-      ];
+      transformedStyleArg = [...styleArg, ...placeholders];
+      transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
     } else if (typeof styleArg === 'function') {
       // If the type is function, we need to define the default theme
       transformedStyleArg = ({ theme: themeInput, ...rest }) =>
