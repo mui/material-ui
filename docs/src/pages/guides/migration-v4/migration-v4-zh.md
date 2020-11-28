@@ -31,11 +31,11 @@
 或者运行
 
 ```sh
-npm install @material-ui/core@next @emotion/react @emotion/styled
+npm install @material-ui/core@next
 
 或者
 
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+yarn add @material-ui/core@next
 ```
 
 ## 处理变化带来的系统崩溃
