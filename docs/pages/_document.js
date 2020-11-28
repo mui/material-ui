@@ -145,6 +145,8 @@ MyDocument.getInitialProps = async (ctx) => {
       css = cleanCSS.minify(css).styles;
     }
 
+    // All the URLs should have a leading /.
+    // This is missing in the Next.js static export.
     let url = ctx.req.url;
     if (url[url.length - 1] !== '/') {
       url += '/';
