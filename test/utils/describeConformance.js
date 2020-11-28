@@ -79,10 +79,20 @@ function testClassName(element, getOptions) {
  */
 function testComponentProp(element, getOptions) {
   describe('prop: component', () => {
-    it('can render another root component with the `component` prop', () => {
-      const { classes, mount, testComponentPropWith: component = 'em' } = getOptions();
+    it('can render another root component with the `component`/`components` prop', () => {
+      const {
+        classes,
+        mount,
+        testComponentPropWith: component = 'em',
+        componentsProp,
+      } = getOptions();
 
-      const wrapper = mount(React.cloneElement(element, { component }));
+      const wrapper = mount(
+        React.cloneElement(
+          element,
+          componentsProp ? { components: { Root: component } } : { component },
+        ),
+      );
 
       expect(findRootComponent(wrapper, { classes, component }).exists()).to.equal(true);
     });

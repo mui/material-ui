@@ -5,6 +5,7 @@ export const getUtilityClass = (name) => {
 const badgeClasses = {
   root: getUtilityClass('root'),
   badge: getUtilityClass('badge'),
+  dot: getUtilityClass('dot'),
   anchorOriginTopLeftCircular: getUtilityClass('anchorOriginTopLeftCircular'),
   anchorOriginTopLeftRectangular: getUtilityClass('anchorOriginTopLeftRectangular'),
   anchorOriginTopRightCircular: getUtilityClass('anchorOriginTopRightCircular'),

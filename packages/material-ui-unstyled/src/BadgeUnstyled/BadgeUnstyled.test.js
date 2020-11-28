@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformance } from 'test/utils';
 import BadgeUnstyled from './BadgeUnstyled';
+import classes from './badgeClasses';
 
 function findBadge(container) {
   return container.firstChild.querySelector('span');
@@ -9,7 +10,6 @@ function findBadge(container) {
 
 describe('<BadgeUnstyled />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
   const defaultProps = {
     children: (
@@ -19,10 +19,6 @@ describe('<BadgeUnstyled />', () => {
     ),
     badgeContent: 10,
   };
-
-  before(() => {
-    classes = getClasses(<BadgeUnstyled {...defaultProps} />);
-  });
 
   describeConformance(
     <BadgeUnstyled>
@@ -34,6 +30,7 @@ describe('<BadgeUnstyled />', () => {
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
+      componentsProp: true,
     }),
   );
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Badge from './Badge';
+import { createMount, createClientRender, describeConformance } from 'test/utils';
+import Badge, { badgeClasses as classes } from './Badge';
 
 function findBadge(container) {
   return container.firstChild.querySelector('span');
@@ -9,7 +9,6 @@ function findBadge(container) {
 
 describe('<Badge />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
   const defaultProps = {
     children: (
@@ -20,20 +19,17 @@ describe('<Badge />', () => {
     badgeContent: 10,
   };
 
-  before(() => {
-    classes = getClasses(<Badge {...defaultProps} />);
-  });
-
   describeConformance(
     <Badge>
       <div />
     </Badge>,
     () => ({
-      classes,
+      classes: {},
       inheritComponent: 'span',
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
+      componentsProp: true,
     }),
   );
 

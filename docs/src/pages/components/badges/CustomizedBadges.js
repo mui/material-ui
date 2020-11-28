@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Badge, { badgeClasses } from '@material-ui/core/Badge';
+import Badge from '@material-ui/core/Badge';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
