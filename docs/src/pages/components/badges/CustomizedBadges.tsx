@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Badge from '@material-ui/core/Badge';
+import Badge, { BadgeProps } from '@material-ui/core/Badge';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
     top: 13,
