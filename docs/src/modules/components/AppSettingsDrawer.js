@@ -37,10 +37,7 @@ const styles = (theme) => ({
     color: theme.palette.text.secondary,
     '&$toggleButtonSelected': {
       color: `${theme.palette.primary.main}`,
-      backgroundColor: `${alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity,
-      )}`,
+      backgroundColor: `${alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)}`,
     },
   },
   toggleButtonSelected: {},
