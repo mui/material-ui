@@ -17,8 +17,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SwitchThumb = (props) => {
+  const { classes: propClasses, className, ...restProps } = props;
   const classes = useStyles();
-  return <span className={clsx(classes.root, props.classes?.root, props.className)} {...props} />;
+  return <span className={clsx(classes.root, propClasses?.root, className)} {...restProps} />;
 };
 
 SwitchThumb.propTypes = {

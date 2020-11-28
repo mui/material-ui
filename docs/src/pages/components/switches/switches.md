@@ -32,6 +32,12 @@ However, you are encouraged to use [Checkboxes](/components/checkboxes/) instead
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
+## Customized switch thumbs
+
+Here are some examples of customizing the thumb part of a switch.
+
+{{"demo": "pages/components/switches/CustomizedSwitchThumbs.js"}}
+
 ## Customized switches
 
 Here are some examples of customizing the component. You can learn more about this in the
