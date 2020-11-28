@@ -154,16 +154,16 @@ Esta propriedade fornece um super conjunto de CSS que mapeia valores diretamente
 
 ### Quando usar ela?
 
-- **styled-components**: the API is great to build components that need to support a wide variety of contexts. These components are used in many different parts of the application and support different combinations of props.
-- **`sx` prop**: the API is great to apply one-off styles. It's called "utility" for this reason.
+- **styled-components**: a API é excelente para construir componentes que precisam suportar uma ampla variedade de contextos. Estes componentes são usados em diversos locais da aplicação e suportam diferentes combinações de propriedades.
+- **propriedade `sx`**: a API é excelente para aplicar estilos pontuais. É chamado de "utilitário" por esse motivo.
 
-### Performance tradeoff
+### Desempenho
 
-The system relies on CSS-in-JS. It works with both emotion and styled-components.
+O sistema depende do CSS-in-JS. Funciona com ambos, emotion e styled-components.
 
-Pros:
+Prós:
 
-- 📚 It allows a lot of flexibility in the API. The `sx` prop supports a superset of CSS. There is **no need to learn CSS twice**. You are set once you have learn the standardized CSS syntax, it's safe, it hasn't changed for a decade. Then, you can **optionally** learn the shorthands if you value the save of time they bring.
+- 📚 Permite uma grande flexibilidade na API. A propriedade `sx` suporta um super conjunto de CSS. Não há **nenhuma necessidade de aprender CSS duas vezes**. You are set once you have learn the standardized CSS syntax, it's safe, it hasn't changed for a decade. Then, you can **optionally** learn the shorthands if you value the save of time they bring.
 - 📦 Auto-purge. Only the used CSS on the page is sent to the client. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties. You pay the cost of [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) and [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). It cost around ~15 kB gzipped. If you are already using the core components, it comes with no extra overhead.
 
 Cons:
