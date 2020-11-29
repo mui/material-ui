@@ -20,10 +20,12 @@
 
 ### 升级 Material-UI 的版本
 
-若想要使用最新版本的 Material-UI，您必须更新 `package.json`。
+你需要更新你的 `package.json`，以使用最新版本的 Material-UI 和它相关的依赖。
 
 ```json
 "dependencies": {
+  "@emotion/react": "^11.0.0",
+  "@emotion/styled": "^11.0.0",
   "@material-ui/core": "^5.0.0"
 }
 ```
@@ -31,11 +33,11 @@
 或者运行
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
-或者
+或者使用
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 ## 处理变化带来的系统崩溃
