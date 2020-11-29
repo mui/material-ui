@@ -19,7 +19,7 @@ Uma linha do tempo básica mostrando a lista de eventos.
 
 {{"demo": "pages/components/timeline/BasicTimeline.js"}}
 
-## Linha do tempo alinhada à direita
+## Right-aligned timeline
 
 A linha do tempo pode ser posicionada no lado direito dos eventos.
 
