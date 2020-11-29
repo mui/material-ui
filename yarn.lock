@@ -11170,9 +11170,9 @@ map-visit@^1.0.0:
     object-visit "^1.0.0"
 
 markdown-to-jsx@^7.0.0:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.0.1.tgz#7b3be496f30701f09e9308c4efabf0177ecd9251"
-  integrity sha512-0agsmQtnoAzGt2fO8jgoFL5wvDUbpjoIfQffErQZmP66BxaWMBGifsAo0RRuye+2Ydlp7csX6X6HpF2xaL6J1w==
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.1.0.tgz#6f9b3be27560fab3f240ae253e63e52d811eb027"
+  integrity sha512-f0LxzbmLfInOSmTC/BaMB44RVmPN2cQom9D4pQzp6c5pOmO0yjxWMDJs78JSSLmncn+bi0Qy0VlJjsRVk8AUpg==
 
 marked@^1.0.0:
   version "1.2.3"
