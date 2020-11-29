@@ -401,6 +401,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-hidden
         onChange={handleChange}
         tabIndex={-1}
+        disabled={disabled}
         className={classes.nativeInput}
         autoFocus={autoFocus}
         {...other}
