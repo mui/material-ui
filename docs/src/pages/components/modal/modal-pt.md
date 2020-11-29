@@ -31,6 +31,8 @@ Se você está criando um diálogo modal, você provavelmente quer usar o compon
 
 ## Modal simples
 
+This demo stacks Modals, but it is strongly discouraged to do so in practice.
+
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
 Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CSS `outline: 0`.
