@@ -762,49 +762,51 @@ async function buildDocs(options: {
 
   classDescriptions[reactAPI.name] = reactAPI.styles.descriptions;
 
+  const componentProps = _.fromPairs(
+    Object.entries(reactAPI.props).map(([propName, propData]) => {
+      let description = propData.description;
+
+      if (description === '@ignore') {
+        return [propName, propData];
+      }
+
+      if (propName === 'classes') {
+        description += ' See <a href="#css">CSS API</a> below for more details.';
+      }
+
+      propDescriptions[name] = {
+        ...propDescriptions[name],
+        [propName]: description && description.replace(/\n@default.*$/, ''),
+      };
+
+      // Only keep `default` for bool props if it isn't "false"#
+      let defaultValue: string | undefined;
+      if (propData.type.name !== 'bool' || propData.jsdocDefaultValue?.value !== 'false') {
+        defaultValue = propData.jsdocDefaultValue?.value;
+      }
+
+      const propTypeDescription = generatePropTypeDescription(propData.type);
+      return [
+        propName,
+        {
+          type: {
+            name: propData.type.name,
+            description:
+              propTypeDescription !== propData.type.name ? propTypeDescription : undefined,
+          },
+          default: defaultValue,
+          // undefined values are not serialized => saving some bytes
+          required: propData.required ? true : undefined,
+        },
+      ];
+    }),
+  );
+
   /**
-   * Minimize the data to that needed for an API page.
+   * Gather the metadata needed for the component's API page.
    */
   const pageContent = {
-    props: _.fromPairs(
-      Object.entries(reactAPI.props).map(([propName, propData]) => {
-        let description = propData.description;
-
-        if (description === '@ignore') {
-          return [propName, propData];
-        }
-
-        if (propName === 'classes') {
-          description += ' See <a href="#css">CSS API</a> below for more details.';
-        }
-
-        propDescriptions[name] = {
-          ...propDescriptions[name],
-          [propName]: description && description.replace(/\n@default.*$/, ''),
-        };
-
-        // Only keep `default` for bool props if it isn't "false"#
-        let defaultValue: string | undefined;
-        if (propData.type.name !== 'bool' || propData.jsdocDefaultValue?.value !== 'false') {
-          defaultValue = propData.jsdocDefaultValue?.value;
-        }
-
-        const propTypeDescription = generatePropTypeDescription(propData.type);
-        return [
-          propName,
-          {
-            type: {
-              name: propData.type.name,
-              description:
-                propTypeDescription !== propData.type.name ? propTypeDescription : undefined,
-            },
-            default: defaultValue,
-            // undefined values are not serialized => saving some bytes
-            required: propData.required ? true : undefined,
-          },
-        ];
-      }),
-    ),
+    props: componentProps,
     name: reactAPI.name,
     styles: {
       classes: reactAPI.styles.classes,
