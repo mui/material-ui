@@ -28,7 +28,7 @@ The `MuiToolbar` name can be used for providing [default props](/customization/g
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`. The Toolbar is a flex container, allowing flex item properites to be used to lay out the children. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, disables gutter padding. |

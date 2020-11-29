@@ -13123,7 +13123,7 @@ Shout out to @kybarg for the update of the `TextField` in order to better follow
 
 This release introduces an important change in the API and the implementation.
 Each exposed component is wrapped with a `withStyles` Higher-order component.
-This HOC has different responsibilities, the one you gonna be interested in is
+This HOC has different responsibilities, the one you're going to be interested in is
 regarding the `classes` property. Now, we consider the CSS as a public API.
 You now have two way to customize absolutely all the CSS injected by Material-UI.
 Either the instance level with the `classes` property or the class level with the
@@ -13136,8 +13136,9 @@ To learn more about it, have a look at the documentation.
 - [core] Various fixes after using it on a real project (#6882) @oliviertassinari
   Apply the other properties (undocumented) on the root of the Menu.
 - [core] Add a new classes property to all the components #6911 @oliviertassinari
-  If you where using the ref to access the internal of the component or native elements,
-  you gonna have to change your strategy, either use `innerRef` or `inputRef`.
+
+If you were using the ref to access the internals of the component or native elements,
+you're going to have to change your strategy. Either use `innerRef` or `inputRef`.
 
 #### Component Fixes / Enhancements
 
@@ -13574,9 +13575,9 @@ We are now at 93.53%. That's pretty great.
 
 ###### _Feb 7, 2017_
 
-One year from now, we were struggling with removing all the mixins from the project.
-Now, it's about rewriting all our components.
-We gonna try doing frequent alpha releases to keep some intertie. At least once per week would be good.
+One year ago, we were struggling with removing all the mixins from the project.
+Now, it's about rewriting all the components.
+We're going to try doing frequent alpha releases to keep some intertia. At least once per week would be good.
 As always, we are keeping the [documentation](https://material-ui.com) up to date.
 
 #### Component Fixes / Enhancements
