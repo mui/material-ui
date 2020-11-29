@@ -19,7 +19,7 @@ packageName: '@material-ui/lab'
 
 {{"demo": "pages/components/timeline/BasicTimeline.js"}}
 
-## 靠右对齐的时间轴
+## Right-aligned timeline
 
 您也可以将时间轴放置在事件的右侧。
 
