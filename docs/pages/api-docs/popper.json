@@ -1,5 +1,4 @@
 {
-  "description": "Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.",
   "props": {
     "anchorEl": {
       "type": {

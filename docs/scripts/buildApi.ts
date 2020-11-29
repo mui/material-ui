@@ -760,10 +760,9 @@ async function buildDocs(options: {
   classDescriptions[reactAPI.name] = reactAPI.styles.descriptions;
 
   /**
-   * Minimize the props data to that needed for API page.
+   * Minimize the data to that needed for an API page.
    */
   const pageContent = {
-    description: reactAPI.description.length ? reactAPI.description : undefined,
     props: _.fromPairs(
       Object.entries(reactAPI.props).map(([propName, propData]) => {
         let description = propData.description;
@@ -914,6 +913,7 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
   /**
    * components: Array<{ filename: string }>
+   * e.g.
    * [{ filename: '/Users/user/Projects/material-ui/packages/material-ui/src/Accordion/Accordion.js'}, ...]
    */
   const components = componentDirectories

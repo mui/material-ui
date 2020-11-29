@@ -1,5 +1,4 @@
 {
-  "description": "Responsively hides children based on the selected implementation.",
   "props": {
     "children": { "type": { "name": "node" } },
     "implementation": {

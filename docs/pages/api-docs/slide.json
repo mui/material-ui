@@ -1,5 +1,4 @@
 {
-  "description": "The Slide transition is used by the [Drawer](/components/drawers/) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
     "appear": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "custom", "description": "element" } },

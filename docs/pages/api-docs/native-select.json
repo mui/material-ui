@@ -1,5 +1,4 @@
 {
-  "description": "An alternative to `<Select native />` with a much smaller bundle size footprint.",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },

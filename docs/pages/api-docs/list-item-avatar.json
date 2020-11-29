@@ -1,5 +1,4 @@
 {
-  "description": "A simple wrapper to apply `List` styles to an `Avatar`.",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },

@@ -1,5 +1,4 @@
 {
-  "description": "Must be used as the last child of ListItem to function properly.",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },

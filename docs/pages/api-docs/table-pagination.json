@@ -1,5 +1,4 @@
 {
-  "description": "A `TableCell` based component for placing inside `TableFooter` for pagination.",
   "props": {
     "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
     "backIconButtonProps": { "type": { "name": "object" } },

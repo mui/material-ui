@@ -1,5 +1,4 @@
 {
-  "description": "Listen for click events that occur somewhere in the document, outside of the element itself.\nFor instance, if you need to hide a menu when people click anywhere else on your page.",
   "props": {
     "children": { "type": { "name": "custom", "description": "element" } },
     "disableReactTree": { "type": { "name": "bool" } },

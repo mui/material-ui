@@ -1,5 +1,4 @@
 {
-  "description": "A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },

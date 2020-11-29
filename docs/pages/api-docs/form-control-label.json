@@ -1,5 +1,4 @@
 {
-  "description": "Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.\nUse this component if you want to display an extra label.",
   "props": {
     "checked": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },

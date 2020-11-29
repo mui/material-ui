@@ -1,5 +1,4 @@
 {
-  "description": "Chips represent complex entities in small blocks, such as a contact.",
   "props": {
     "avatar": { "type": { "name": "element" } },
     "children": { "type": { "name": "custom", "description": "unsupportedProp" } },

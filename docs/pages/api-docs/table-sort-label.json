@@ -1,5 +1,4 @@
 {
-  "description": "A button based label for placing inside `TableCell` for column sorting.",
   "props": {
     "active": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },

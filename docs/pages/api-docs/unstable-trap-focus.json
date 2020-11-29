@@ -1,5 +1,4 @@
 {
-  "description": "Utility component that locks focus inside the component.",
   "props": {
     "children": { "type": { "name": "custom", "description": "element" } },
     "disableAutoFocus": { "type": { "name": "bool" } },

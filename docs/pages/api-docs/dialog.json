@@ -1,5 +1,4 @@
 {
-  "description": "Dialogs are overlaid modal paper based components with a backdrop.",
   "props": {
     "aria-describedby": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },

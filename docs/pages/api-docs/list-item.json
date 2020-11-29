@@ -1,5 +1,4 @@
 {
-  "description": "Uses an additional container component if `ListItemSecondaryAction` is the last child.",
   "props": {
     "alignItems": {
       "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },

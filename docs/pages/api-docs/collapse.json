@@ -1,5 +1,4 @@
 {
-  "description": "The Collapse transition is used by the\n[Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },

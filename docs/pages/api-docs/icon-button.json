@@ -1,5 +1,4 @@
 {
-  "description": "Refer to the [Icons](/components/icons/) section of the documentation\nregarding the available icon options.",
   "props": {
     "children": { "type": { "name": "custom", "description": "node" } },
     "classes": { "type": { "name": "object" } },
