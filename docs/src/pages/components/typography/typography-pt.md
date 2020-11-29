@@ -1,6 +1,6 @@
 ---
 title: React Typography component
-components: Tipografia
+components: Typography
 ---
 
 # Tipografia
