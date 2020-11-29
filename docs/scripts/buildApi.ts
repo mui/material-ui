@@ -615,8 +615,8 @@ async function buildDocs(options: {
   };
 
   // styled components does not have the options static
-  const nonJSSComponent = !component?.default?.options;
-  if (nonJSSComponent) {
+  const JSSComponent = component?.default?.options;
+  if (!JSSComponent) {
     await updateStylesDefinition({
       styles,
       component: componentObject,
@@ -868,7 +868,7 @@ Page.getInitialProps = () => {
 
   await annotateComponentDefinition({ api: reactAPI, component: componentObject });
 
-  if (!nonJSSComponent) {
+  if (JSSComponent) {
     await annotateClassesDefinition({
       api: reactAPI,
       component: componentObject,
