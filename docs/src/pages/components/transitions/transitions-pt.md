@@ -6,13 +6,13 @@ githubLabel: 'component: Transition'
 
 # Transições
 
-<p class="description">Transições ajudam a deixar a interface expressiva e fácil de usar.</p>
+<p class="description">Transitions help to make a UI expressive and easy to use.</p>
 
 Material-UI provê um número de transições que podem ser usadas para introduzir algumas [animações](https://material.io/design/motion/) básicas para os componentes de sua aplicação.
 
 [A paleta](/system/palette/) com funções de estilo.
 
-Para um melhor suporte ao server rendering Material-UI provê uma propriedade de `estilo` para o filho de alguns componentes de transição (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
+To better support server rendering, Material-UI provides a `style` prop to the children of some transition components, (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
 
 ```jsx
 // O objeto `props` contém uma propriedade` style`.
@@ -72,7 +72,7 @@ Este exemplo também demonstra como atrasar a transição de entrada.
 
 ## Propriedade TransitionComponent
 
-Os componentes aceitam uma propriedade `TransitionComponent` para customizar as transições padrão. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
+Some Material-UI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
 
 - Aceitar uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
 - Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
