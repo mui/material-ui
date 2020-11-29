@@ -15,7 +15,7 @@ Zu viele Schriftgrößen und -stile gleichzeitig können jedes Layout beeinträc
 
 ## Allgemein
 
-Die *Roboto* Schriftart wird **nicht** automatisch durch Material UI geladen werden. Der Entwickler ist dafür verantwortlich, alle, in seiner Anwendung verwendeten, Schriftarten zu laden. Roboto Font bietet einige einfache Einstiegsmöglichkeiten. Für anspruchsvollere Konfiguration, besuche [den Theme Anpassung Abschnitt](/customization/typography/).
+Die *Roboto* Schriftart wird **nicht** automatisch durch Material UI geladen werden. You are responsible for loading any fonts used in your application. Roboto Font bietet einige einfache Einstiegsmöglichkeiten. Für anspruchsvollere Konfiguration, besuche [den Theme Anpassung Abschnitt](/customization/typography/).
 
 ## Die Roboto Schrift
 
@@ -42,6 +42,8 @@ For more info check out [Fontsource](https://github.com/fontsource/fontsource).
 Fontsource can be configured to load specific subsets, weights and styles. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Komponente
+
+The Typography component makes it easy to apply a default set of font weights and sizes in your application.
 
 {{"demo": "pages/components/typography/Types.js"}}
 
