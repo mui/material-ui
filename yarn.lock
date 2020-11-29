@@ -3003,10 +3003,10 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.165.tgz#74d55d947452e2de0742bad65270433b63a8c30f"
   integrity sha512-tjSSOTHhI5mCHTy/OOXYIhi2Wt1qcbHmuXD1Ha7q70CgI/I71afO4XtLb/cVexki1oVYchpul/TOuu3Arcdxrg==
 
-"@types/luxon@^0.5.2":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-0.5.3.tgz#87c5fb059b881e621620869633023e27b15e1b41"
-  integrity sha512-YiVw0M9q9CeynfRKhZYaX2/aCXlCIBpM4eARlPXdv+XVoGVb5iPFaZIlKiMUJ8eWKOhlqi8U6GvOAn8yhR4//Q==
+"@types/luxon@^1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.25.0.tgz#3d6fe591fac874f48dd225cb5660b2b785a21a05"
+  integrity sha512-iIJp2CP6C32gVqI08HIYnzqj55tlLnodIBMCcMf28q9ckqMfMzocCmIzd9JWI/ALLPMUiTkCu1JGv3FFtu6t3g==
 
 "@types/markdown-to-jsx@^6.11.1":
   version "6.11.3"
