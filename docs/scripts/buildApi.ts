@@ -23,6 +23,9 @@ import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCre
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
+// Only run for Accordion
+const TEST = true;
+
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
 const classDescriptions: { [key: string]: { [key: string]: string } } = {};
@@ -600,6 +603,10 @@ async function buildDocs(options: {
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
 
+  if (TEST && name !== 'Accordion') {
+    return;
+  }
+
   const styles: ReactApi['styles'] = {
     classes: [],
     name: null,
@@ -723,10 +730,6 @@ async function buildDocs(options: {
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
   reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
-
-  // if (reactAPI.name !== 'Accordion') {
-  //   return;
-  // }
 
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
