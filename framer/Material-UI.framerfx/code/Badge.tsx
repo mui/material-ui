@@ -5,8 +5,8 @@ import { Icon } from './Icon';
 
 interface Props {
   badgeContent: string;
-  max: number;
-  showZero: boolean;
+  max?: number;
+  showZero?: boolean;
   icon: string;
   theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   badgeColor: 'default' | 'primary' | 'secondary' | 'error';
@@ -34,8 +34,6 @@ export function Badge(props: Props): JSX.Element {
 
 Badge.defaultProps = {
   badgeContent: '8',
-  max: 99,
-  showZero: false,
   icon: '',
   theme: 'Filled' as 'Filled',
   badgeColor: 'primary' as 'primary',
