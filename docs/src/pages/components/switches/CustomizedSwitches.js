@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { alpha, withStyles } from '@material-ui/core/styles';
+import { alpha, withStyles, styled } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import SwitchThumb from '@material-ui/core/SwitchThumb';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import DoneIcon from '@material-ui/icons/Done';
+import CloseIcon from '@material-ui/icons/Close';
 
 const PurpleSwitch = withStyles((theme) => ({
   switchBase: {
@@ -109,13 +112,75 @@ const AntSwitch = withStyles((theme) => ({
     backgroundColor: theme.palette.common.white,
   },
   checked: {},
+  focusVisible: {},
 }))(Switch);
+
+const SwitchThumbSquare = styled(SwitchThumb)({
+  borderRadius: 4,
+  width: 20,
+  height: 20,
+});
+
+const SquareIconSwitch = withStyles((theme) => ({
+  root: {
+    width: 50,
+    height: 29,
+    padding: 0,
+    margin: theme.spacing(1),
+  },
+  switchBase: {
+    padding: 4,
+    '&$checked': {
+      transform: 'translateX(22px)',
+      color: theme.palette.common.white,
+      '& + $track': {
+        backgroundColor: '#215bff',
+        opacity: 1,
+        border: 'none',
+      },
+    },
+  },
+  track: {
+    borderRadius: 4,
+    backgroundColor: '#b3c4ff',
+    opacity: 1,
+    transition: theme.transitions.create(['background-color']),
+  },
+  checked: {},
+  focusVisible: {},
+}))(({ classes, ...props }) => {
+  return (
+    <Switch
+      focusVisibleClassName={classes.focusVisible}
+      disableRipple
+      classes={{
+        root: classes.root,
+        switchBase: classes.switchBase,
+        thumb: classes.thumb,
+        track: classes.track,
+        checked: classes.checked,
+      }}
+      icon={
+        <SwitchThumbSquare style={{ backgroundColor: '#fff' }}>
+          <CloseIcon style={{ color: '#215bff', opacity: 0.4 }} />
+        </SwitchThumbSquare>
+      }
+      checkedIcon={
+        <SwitchThumbSquare>
+          <DoneIcon style={{ color: '#215bff' }} />
+        </SwitchThumbSquare>
+      }
+      {...props}
+    />
+  );
+});
 
 export default function CustomizedSwitches() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
     checkedC: true,
+    checkedD: true,
   });
 
   const handleChange = (event) => {
@@ -160,6 +225,17 @@ export default function CustomizedSwitches() {
           <Grid item>On</Grid>
         </Grid>
       </Typography>
+
+      <FormControlLabel
+        control={
+          <SquareIconSwitch
+            checked={state.checkedD}
+            onChange={handleChange}
+            name="checkedD"
+          />
+        }
+        label="Custom shape with icon"
+      />
     </FormGroup>
   );
 }
