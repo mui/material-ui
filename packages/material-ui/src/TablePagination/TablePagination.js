@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import clsx from 'clsx';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -239,18 +240,13 @@ TablePagination.propTypes = {
    */
   nextIconButtonText: PropTypes.string,
   /**
-   * Callback fired when the page is changed.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {number} page The page selected.
-   *
-   * @deprecated Will be removed in v5. Use the onPageChange prop instead.
-   */
-  onChangePage: chainPropTypes(PropTypes.func, () => {
-    return new Error(
-      'Warning: Failed props type: Material-UI onChangePage was deprecated. Use onPageChange instead',
-    );
-  }),
+    * Callback fired when the page is changed.
+    *
+    * @param {object} event The event source of the callback.
+    * @param {number} page The page selected.
+    * @deprecated Use the onPageChange prop instead.
+    */
+  onChangePage: deprecatedPropType(PropTypes.func, 'Use the `onPageChange` prop instead.'),
   /**
    * Callback fired when the page is changed.
    *
@@ -259,17 +255,12 @@ TablePagination.propTypes = {
    */
   onPageChange: PropTypes.func.isRequired,
   /**
-   * Callback fired when the number of rows per page is changed.
-   *
-   * @param {object} event The event source of the callback.
-   *
-   * @deprecated Will be removed in v5. Use the onRowsPerPageChange prop instead.
-   */
-  onChangeRowsPerPage: chainPropTypes(PropTypes.func, () => {
-    return new Error(
-      'Warning: Failed props type: Material-UI onChangeRowsPerPage was deprecated. Use onRowsPerPageChange instead',
-    );
-  }),
+    * Callback fired when the number of rows per page is changed.
+    *
+    * @param {object} event The event source of the callback.
+    * @deprecated Use the onRowsPerPageChange prop instead.
+    */
+  onChangeRowsPerPage: deprecatedPropType(PropTypes.func, 'Use the `onRowsPerPageChange` prop instead.'),
   /**
    * Callback fired when the number of rows per page is changed.
    *

@@ -332,46 +332,4 @@ describe('<TablePagination />', () => {
       );
     });
   });
-  describe('v5 deprecations', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-      stub(console, 'error');
-    });
-
-    afterEach(() => {
-      console.error.restore();
-    });
-
-    it('issues a warning when onChangePage is used', () => {
-      PropTypes.checkPropTypes(
-        TablePagination.Naked.propTypes,
-        {
-          onChangePage: noop,
-        },
-        'props',
-        'onChangePage',
-      );
-
-      expect(console.error.callCount).to.equal(1);
-      expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed props type: Material-UI onChangePage was deprecated. Use onPageChange instead',
-      );
-    });
-
-    it('issues a warning when onChangeRowsPerPage is used', () => {
-      PropTypes.checkPropTypes(
-        TablePagination.Naked.propTypes,
-        {
-          onChangeRowsPerPage: noop,
-        },
-        'props',
-        'onChangeRowsPerPage',
-      );
-
-      expect(console.error.callCount).to.equal(1);
-      expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed props type: Material-UI onChangeRowsPerPage was deprecated. Use onRowsPerPageChange instead',
-      );
-    });
-  });
 });
