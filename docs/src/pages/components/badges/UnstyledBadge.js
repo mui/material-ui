@@ -11,7 +11,6 @@ const StyledBadge = styled(BadgeUnstyled)`
   color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
   font-variant: tabular-nums;
-  line-height: 1.5715;
   list-style: none;
   font-feature-settings: 'tnum';
   position: relative;
@@ -31,7 +30,6 @@ const StyledBadge = styled(BadgeUnstyled)`
     text-align: center;
     background: #ff4d4f;
     border-radius: 10px;
-    -webkit-box-shadow: 0 0 0 1px #fff;
     box-shadow: 0 0 0 1px #fff;
   }
 
