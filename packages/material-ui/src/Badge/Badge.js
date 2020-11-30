@@ -176,12 +176,12 @@ const BadgeBadge = styled(
         transform: 'scale(0) translate(-50%, 50%)',
       },
     }),
-  [`&.${badgeClasses.invisible}`]: {
+  ...(props.styleProps.invisible && {
     transition: props.theme.transitions.create('transform', {
       easing: props.theme.transitions.easing.easeInOut,
       duration: props.theme.transitions.duration.leavingScreen,
     }),
-  },
+  }),
 }));
 
 const Badge = React.forwardRef(function Badge(inputProps, ref) {
