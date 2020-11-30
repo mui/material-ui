@@ -429,7 +429,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
 
     // We can only have one node at the time claiming ownership for handling the swipe.
-    if (event.muiHandled) {
+    if (event.defaultMuiPrevented) {
       return;
     }
 
@@ -466,7 +466,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       }
     }
 
-    event.muiHandled = true;
+    event.defaultMuiPrevented = true;
     nodeThatClaimedTheSwipe = null;
     swipeInstance.current.startX = currentX;
     swipeInstance.current.startY = currentY;

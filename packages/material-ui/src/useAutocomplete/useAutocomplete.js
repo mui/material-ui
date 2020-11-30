@@ -656,6 +656,14 @@ export default function useAutocomplete(props) {
   };
 
   const handleKeyDown = (other) => (event) => {
+    if (other.onKeyDown) {
+      other.onKeyDown(event);
+    }
+
+    if (event.defaultMuiPrevented) {
+      return;
+    }
+
     if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
       setFocusedTag(-1);
       focusTag(-1);
@@ -723,7 +731,7 @@ export default function useAutocomplete(props) {
             const option = filteredOptions[highlightedIndexRef.current];
             const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
-            // We don't want to validate the form.
+            // Avoid early form validation, let the end-users continue filling the form.
             event.preventDefault();
 
             if (disabled) {
@@ -774,10 +782,6 @@ export default function useAutocomplete(props) {
           break;
         default:
       }
-    }
-
-    if (other.onKeyDown) {
-      other.onKeyDown(event);
     }
   };
 
