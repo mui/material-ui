@@ -45,7 +45,7 @@ export default function ComplexGrid() {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
+                <Typography gutterBottom variant="subtitle1" component="div">
                   Standard license
                 </Typography>
                 <Typography variant="body2" gutterBottom>
@@ -62,7 +62,9 @@ export default function ComplexGrid() {
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">$19.00</Typography>
+              <Typography variant="subtitle1" component="div">
+                $19.00
+              </Typography>
             </Grid>
           </Grid>
         </Grid>

@@ -32,11 +32,11 @@ export default function Types() {
       <Typography variant="h6" gutterBottom component="div">
         h6. Heading
       </Typography>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography variant="subtitle1" gutterBottom component="div">
         subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
         blanditiis tenetur
       </Typography>
-      <Typography variant="subtitle2" gutterBottom>
+      <Typography variant="subtitle2" gutterBottom component="div">
         subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
         blanditiis tenetur
       </Typography>
