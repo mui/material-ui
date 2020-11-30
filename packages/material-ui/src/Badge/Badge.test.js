@@ -165,9 +165,11 @@ describe('<Badge />', () => {
   });
 
   it('retains anchorOrigin, content, color, max, overlap and variant when invisible is true for consistent disappearing transition', () => {
-    const wrapper = render(<Badge {...defaultProps} color="secondary" variant="dot" />);
+    const { container, setProps } = render(
+      <Badge {...defaultProps} color="secondary" variant="dot" />,
+    );
 
-    wrapper.setProps({
+    setProps({
       badgeContent: 0,
       color: 'primary',
       variant: 'standard',
@@ -178,9 +180,9 @@ describe('<Badge />', () => {
       },
     });
 
-    expect(findBadge(wrapper.container)).to.have.text('');
-    expect(findBadge(wrapper.container)).to.have.class(classes.colorSecondary);
-    expect(findBadge(wrapper.container)).to.have.class(classes.dot);
-    expect(findBadge(wrapper.container)).to.have.class(classes.anchorOriginTopRightRectangular);
+    expect(findBadge(container)).to.have.text('');
+    expect(findBadge(container)).to.have.class(classes.colorSecondary);
+    expect(findBadge(container)).to.have.class(classes.dot);
+    expect(findBadge(container)).to.have.class(classes.anchorOriginTopRightRectangular);
   });
 });

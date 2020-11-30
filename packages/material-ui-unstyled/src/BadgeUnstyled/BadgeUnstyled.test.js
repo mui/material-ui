@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformance } from 'test/utils';
-import BadgeUnstyled from './BadgeUnstyled';
-import classes from './badgeClasses';
+import BadgeUnstyled, { badgeClasses as classes } from '@material-ui/unstyled/BadgeUnstyled';
 
 function findBadge(container) {
   return container.firstChild.querySelector('span');
@@ -178,9 +177,11 @@ describe('<BadgeUnstyled />', () => {
   });
 
   it('retains anchorOrigin, content, color, max, overlap and variant when invisible is true for consistent disappearing transition', () => {
-    const wrapper = render(<BadgeUnstyled {...defaultProps} color="secondary" variant="dot" />);
+    const { container, setProps } = render(
+      <BadgeUnstyled {...defaultProps} color="secondary" variant="dot" />,
+    );
 
-    wrapper.setProps({
+    setProps({
       badgeContent: 0,
       color: 'primary',
       variant: 'standard',
@@ -191,9 +192,9 @@ describe('<BadgeUnstyled />', () => {
       },
     });
 
-    expect(findBadge(wrapper.container)).to.have.text('');
-    expect(findBadge(wrapper.container)).to.have.class(classes.colorSecondary);
-    expect(findBadge(wrapper.container)).to.have.class(classes.dot);
-    expect(findBadge(wrapper.container)).to.have.class(classes.anchorOriginTopRightRectangular);
+    expect(findBadge(container)).to.have.text('');
+    expect(findBadge(container)).to.have.class(classes.colorSecondary);
+    expect(findBadge(container)).to.have.class(classes.dot);
+    expect(findBadge(container)).to.have.class(classes.anchorOriginTopRightRectangular);
   });
 });
