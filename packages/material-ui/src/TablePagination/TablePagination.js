@@ -88,14 +88,20 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     labelRowsPerPage = 'Rows per page:',
     nextIconButtonProps,
     nextIconButtonText = 'Next page',
-    onChangePage,
-    onChangeRowsPerPage,
+    onChangePage: onChangePageProp,
+    onPageChange: onPageChangeProp,
+    onChangeRowsPerPage: onChangeRowsPerPageProp,
+    onRowsPerPageChange: onRowsPerPageChangeProp,
     page,
     rowsPerPage,
     rowsPerPageOptions = defaultRowsPerPageOptions,
     SelectProps = {},
     ...other
   } = props;
+
+  const onChangePage = onChangePageProp || onPageChangeProp;
+  const onChangeRowsPerPage = onChangeRowsPerPageProp || onRowsPerPageChangeProp;
+
   let colSpan;
 
   if (Component === TableCell || Component === 'td') {
@@ -237,14 +243,39 @@ TablePagination.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * @param {number} page The page selected.
+   *
+   * @deprecated Will be removed in v5. Use the onPageChange prop instead.
    */
-  onChangePage: PropTypes.func.isRequired,
+  onChangePage: chainPropTypes(PropTypes.func, () => {
+    return new Error(
+      'Warning: Failed props type: Material-UI onChangePage was deprecated. Use onPageChange instead',
+    );
+  }),
+  /**
+   * Callback fired when the page is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {number} page The page selected.
+   */
+  onPageChange: PropTypes.func.isRequired,
+  /**
+   * Callback fired when the number of rows per page is changed.
+   *
+   * @param {object} event The event source of the callback.
+   *
+   * @deprecated Will be removed in v5. Use the onRowsPerPageChange prop instead.
+   */
+  onChangeRowsPerPage: chainPropTypes(PropTypes.func, () => {
+    return new Error(
+      'Warning: Failed props type: Material-UI onChangeRowsPerPage was deprecated. Use onRowsPerPageChange instead',
+    );
+  }),
   /**
    * Callback fired when the number of rows per page is changed.
    *
    * @param {object} event The event source of the callback.
    */
-  onChangeRowsPerPage: PropTypes.func,
+  onRowsPerPageChange: PropTypes.func,
   /**
    * The zero-based index of the current page.
    */
