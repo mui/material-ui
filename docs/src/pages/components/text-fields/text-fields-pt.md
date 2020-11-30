@@ -233,7 +233,7 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 
 Para situações de uso mais avançadas, você pode tirar proveito com:
 
-- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
+- [react-hook-form](https://react-hook-form.com/): React hook for form validation.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
