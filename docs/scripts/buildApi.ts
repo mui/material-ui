@@ -18,19 +18,15 @@ import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
-import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
-import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
+import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
+import getStylesCreator from '@material-ui/styles/getStylesCreator';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
-// Only run for Accordion
+// Only run for ButtonBase
 const TEST = true;
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
-
-const classDescriptions: { [key: string]: { [key: string]: string } } = {};
-const componentDescriptions: { [key: string]: string } = {};
-const propDescriptions: { [key: string]: { [key: string]: string | undefined } } = {};
 
 const generateClassName = createGenerateClassName();
 
@@ -509,27 +505,23 @@ async function annotateClassesDefinition(context: {
 /**
  * Substitute CSS class description conditions with placeholder
  */
-function extractClassConditions() {
-  const classConditions: any = {};
+function extractClassConditions(descriptions: any) {
+  const classConditions: { [key: string]: { 'description': string, 'conditions'?: string } } = {};
   const stylesRegex = /(if |unless )(`.*)./;
 
-  Object.entries(classDescriptions).forEach(([componentName, descriptions]: [string, object]) => {
-    classConditions[componentName] = {};
+  Object.entries(descriptions).forEach(([className, classDescription]: any) => {
+    if (className) {
+      const conditions = classDescription.match(stylesRegex);
 
-    Object.entries(descriptions).forEach(([className, classDescription]: [string, string]) => {
-      if (className) {
-        const conditions = classDescription.match(stylesRegex);
-
-        if (conditions) {
-          classConditions[componentName][className] = {
-            description: classDescription.replace(stylesRegex, '$1{{conditions}}.'),
-            conditions: conditions[2].replace(/`(.*?)`/g, '<code>$1</code>'),
-          };
-        } else {
-          classConditions[componentName][className] = { description: classDescription };
-        }
+      if (conditions) {
+        classConditions[className] = {
+          description: classDescription.replace(stylesRegex, '$1{{conditions}}.'),
+          conditions: conditions[2].replace(/`(.*?)`/g, '<code>$1</code>'),
+        };
+      } else {
+        classConditions[className] = { description: classDescription };
       }
-    });
+    }
   });
   return classConditions;
 }
@@ -561,16 +553,6 @@ function normalizePath(filepath: string): string {
   return filepath.replace(/\\/g, '/');
 }
 
-function sortObject(object: any) {
-  const orderedData: any = {};
-  Object.keys(object)
-    .sort()
-    .forEach((key) => {
-      orderedData[key] = object[key];
-    });
-  return orderedData;
-}
-
 async function buildDocs(options: {
   component: { filename: string };
   pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
@@ -587,6 +569,7 @@ async function buildDocs(options: {
     prettierConfigPath,
     theme,
   } = options;
+
   if (componentObject.filename.indexOf('internal') !== -1) {
     return;
   }
@@ -603,9 +586,19 @@ async function buildDocs(options: {
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
 
-  if (TEST && name !== 'Accordion') {
+  if (TEST && name !== 'ButtonBase') {
     return;
   }
+
+  const componentApi: {
+    description: string,
+    props: {[key: string]: string | undefined},
+    classes: {[key: string]: { 'description': string, 'conditions'?: string }},
+  } = {
+    description: '',
+    props: {},
+    classes: {},
+  };
 
   const styles: ReactApi['styles'] = {
     classes: [],
@@ -615,8 +608,8 @@ async function buildDocs(options: {
   };
 
   // styled components does not have the options static
-  const JSSComponent = component?.default?.options;
-  if (!JSSComponent) {
+  const JssComponent = component?.default?.options;
+  if (!JssComponent) {
     await updateStylesDefinition({
       styles,
       component: componentObject,
@@ -675,9 +668,9 @@ async function buildDocs(options: {
     }
   }
 
-  let reactAPI: ReactApi;
+  let reactApi: ReactApi;
   try {
-    reactAPI = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
       filename: componentObject.filename,
     });
   } catch (err) {
@@ -707,16 +700,16 @@ async function buildDocs(options: {
 
     Object.keys(unstyledReactAPI.props).forEach((prop) => {
       if (unstyledReactAPI.props[prop].defaultValue) {
-        reactAPI.props[prop] = unstyledReactAPI.props[prop];
+        reactApi.props[prop] = unstyledReactAPI.props[prop];
       }
     });
   }
 
-  reactAPI.name = name;
-  reactAPI.styles = styles;
-  reactAPI.pagesMarkdown = pagesMarkdown;
-  reactAPI.spread = spread;
-  reactAPI.EOL = getLineFeed(src);
+  reactApi.name = name;
+  reactApi.styles = styles;
+  reactApi.pagesMarkdown = pagesMarkdown;
+  reactApi.spread = spread;
+  reactApi.EOL = getLineFeed(src);
 
   // styled components does not have the options static
   const styledComponent = !component?.default?.options;
@@ -729,14 +722,14 @@ async function buildDocs(options: {
 
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
-  reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
+  reactApi.forwardsRefTo = testInfo.forwardsRefTo;
 
   // Relative location in the file system.
-  reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
-  reactAPI.inheritance = getInheritance(testInfo, src);
+  reactApi.filename = componentObject.filename.replace(workspaceRoot, '');
+  reactApi.inheritance = getInheritance(testInfo, src);
 
-  if (reactAPI.styles.classes) {
-    reactAPI.styles.globalClasses = reactAPI.styles.classes.reduce((acc, key) => {
+  if (reactApi.styles.classes) {
+    reactApi.styles.globalClasses = reactApi.styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
         // @ts-expect-error
         {
@@ -754,16 +747,24 @@ async function buildDocs(options: {
   }
 
   try {
-    checkProps(reactAPI);
+    checkProps(reactApi);
   } catch (err) {
     console.error('Error checking props for', componentObject.filename);
     throw err;
   }
 
-  classDescriptions[reactAPI.name] = reactAPI.styles.descriptions;
+  /**
+   * Component description.
+   */
+  if (reactApi.description.length) {
+    componentApi.description = reactApi.description;
+  }
 
+  /**
+   * Prop descriptiohs.
+   */
   const componentProps = _.fromPairs(
-    Object.entries(reactAPI.props).map(([propName, propData]) => {
+    Object.entries(reactApi.props).map(([propName, propData]) => {
       let description = propData.description;
 
       if (description === '@ignore') {
@@ -774,12 +775,12 @@ async function buildDocs(options: {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       }
 
-      propDescriptions[name] = {
-        ...propDescriptions[name],
+      componentApi.props = {
+        ...componentApi.props,
         [propName]: description && description.replace(/\n@default.*$/, ''),
       };
 
-      // Only keep `default` for bool props if it isn't "false"#
+      // Only keep `default` for bool props if it isn't 'false'.
       let defaultValue: string | undefined;
       if (propData.type.name !== 'bool' || propData.jsdocDefaultValue?.value !== 'false') {
         defaultValue = propData.jsdocDefaultValue?.value;
@@ -803,45 +804,62 @@ async function buildDocs(options: {
   );
 
   /**
+   * CSS class descriptiohs.
+   */
+  componentApi.classes = extractClassConditions(reactApi.styles.descriptions);
+
+  mkdirSync(path.resolve(outputDirectory, kebabCase(reactApi.name)), {
+    mode: 0o777,
+    recursive: true,
+  });
+
+  writePrettifiedFile(
+    path.resolve(
+      outputDirectory,
+      kebabCase(reactApi.name),
+      `${kebabCase(reactApi.name)}.json`,
+    ),
+    JSON.stringify(componentApi),
+    prettierConfigPath,
+  );
+
+  /**
    * Gather the metadata needed for the component's API page.
    */
   const pageContent = {
     props: componentProps,
-    name: reactAPI.name,
+    name: reactApi.name,
     styles: {
-      classes: reactAPI.styles.classes,
+      classes: reactApi.styles.classes,
       globalClasses: _.fromPairs(
-        Object.entries(reactAPI.styles.globalClasses).filter(([className, globalClassName]) => {
+        Object.entries(reactApi.styles.globalClasses).filter(([className, globalClassName]) => {
           // Only keep "non-standard" global classnames
-          return globalClassName !== `Mui${reactAPI.name}-${className}`;
+          return globalClassName !== `Mui${reactApi.name}-${className}`;
         }),
       ),
     },
-    spread: reactAPI.spread,
-    forwardsRefTo: reactAPI.forwardsRefTo,
-    filename: normalizePath(reactAPI.filename),
-    inheritance: reactAPI.inheritance,
-    demos: generateDemoList(reactAPI),
+    spread: reactApi.spread,
+    forwardsRefTo: reactApi.forwardsRefTo,
+    filename: normalizePath(reactApi.filename),
+    inheritance: reactApi.inheritance,
+    demos: generateDemoList(reactApi),
     styledComponent,
   };
 
-  if (reactAPI.description.length) {
-    componentDescriptions[reactAPI.name] = reactAPI.description;
-  }
-
   // docs/pages/component-name.json
   writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.json`),
+    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
     prettierConfigPath,
   );
 
+  // docs/pages/component-name.js
   writeFileSync(
-    path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.js`),
+    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
     `import * as React from 'react';
 import TopLayoutApi from 'docs/src/modules/components/TopLayoutApi';
 import getApiPageContent from 'docs/src/modules/utils/getApiPageContent';
-import jsonPageContent from './${kebabCase(reactAPI.name)}.json';
+import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
 export default function Page({ pageContent }) {
   return <TopLayoutApi pageContent={pageContent} />;
@@ -858,21 +876,21 @@ Page.getInitialProps = () => {
       req2,
       req3,
       jsonPageContent,
-      componentName: '${reactAPI.name}',
+      componentName: '${reactApi.name}',
     }),
   };
 };
-`.replace(/\r?\n/g, reactAPI.EOL),
+`.replace(/\r?\n/g, reactApi.EOL),
   );
 
   // eslint-disable-next-line no-console
-  console.log('Built API docs for', reactAPI.name);
+  console.log('Built API docs for', reactApi.name);
 
-  await annotateComponentDefinition({ api: reactAPI, component: componentObject });
+  await annotateComponentDefinition({ api: reactApi, component: componentObject });
 
-  if (JSSComponent) {
+  if (JssComponent) {
     await annotateClassesDefinition({
-      api: reactAPI,
+      api: reactApi,
       component: componentObject,
       prettierConfigPath,
     });
@@ -959,24 +977,6 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
   });
 
   Promise.all(componentBuilds).then((builds) => {
-    writePrettifiedFile(
-      path.resolve('docs/translations', 'component-descriptions.json'),
-      JSON.stringify(sortObject(componentDescriptions)),
-      prettierConfigPath,
-    );
-
-    writePrettifiedFile(
-      path.resolve('docs/translations', 'prop-descriptions.json'),
-      JSON.stringify(sortObject(propDescriptions)),
-      prettierConfigPath,
-    );
-
-    writePrettifiedFile(
-      path.resolve('docs/translations', 'class-descriptions.json'),
-      JSON.stringify(sortObject(extractClassConditions())),
-      prettierConfigPath,
-    );
-
     const fails = builds.filter(
       (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',
     );
