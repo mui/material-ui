@@ -20,7 +20,7 @@ A primeira coisa que você precisa fazer é atualizar suas dependências.
 
 ### Atualize a versão do Material-UI
 
-You need to update your `package.json` to use the latest version of Material-UI and its peer dependencies.
+Você precisa atualizar seu `package.json` para usar a versão mais recente do Material-UI e suas dependências de pares.
 
 ```json
 "dependencies": {
@@ -35,7 +35,7 @@ Ou execute
 ```sh
 npm install @material-ui/core@next @emotion/react @emotion/styled
 
-or
+ou
 
 yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
