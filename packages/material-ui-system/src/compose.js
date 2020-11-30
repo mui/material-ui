@@ -1,18 +1,6 @@
 import merge from './merge';
 
 function compose(...styles) {
-  // Alternative approach that doesn't yield any performance gain.
-  // const fn = (props) =>
-  //   styles.reduce((acc, style) => {
-  //     const output = style(props);
-
-  //     if (output) {
-  //       return merge(acc, output);
-  //     }
-
-  //     return acc;
-  //   }, {});
-
   const handlers = styles.reduce((acc, style) => {
     style.filterProps.forEach((prop) => {
       acc[prop] = style;
