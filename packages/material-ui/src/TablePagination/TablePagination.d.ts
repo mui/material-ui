@@ -34,11 +34,11 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       onChangePage?: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
       onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
       /**
-         * Callback fired when the number of rows per page is changed.
-         *
-         * @param {object} event The event source of the callback.
-         * @deprecated Use the onRowsPerPageChange prop instead.
-         */
+       * Callback fired when the number of rows per page is changed.
+       *
+       * @param {object} event The event source of the callback.
+       * @deprecated Use the onRowsPerPageChange prop instead.
+       */
       onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
       onRowsPerPageChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
       page: number;
