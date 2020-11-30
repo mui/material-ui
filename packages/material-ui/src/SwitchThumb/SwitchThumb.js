@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import withStyles from '../styles/withStyles';
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   root: {
     boxShadow: theme.shadows[1],
     backgroundColor: 'currentColor',
@@ -14,13 +14,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-}));
+});
 
-const SwitchThumb = (props) => {
-  const { classes: propClasses, className, ...restProps } = props;
-  const classes = useStyles();
-  return <span className={clsx(classes.root, propClasses?.root, className)} {...restProps} />;
-};
+function SwitchThumb(props) {
+  const { classes, className, component: Component = 'span', ...restProps } = props;
+  return <Component className={clsx(classes.root, className)} {...restProps} />;
+}
 
 SwitchThumb.propTypes = {
   // ----------------------------- Warning --------------------------------
@@ -32,13 +31,19 @@ SwitchThumb.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.oneOf(['root']),
+  classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
 };
 
-export default SwitchThumb;
+export default withStyles(styles, { name: 'MuiSwitchThumb' })(SwitchThumb);
