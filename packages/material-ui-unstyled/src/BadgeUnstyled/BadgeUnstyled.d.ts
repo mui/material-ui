@@ -118,7 +118,7 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
 }
 
 /**
- * Utility to create component types that inherit props from SliderUnstyled.
+ * Utility to create component types that inherit props from BadgeUnstyled.
  */
 export interface ExtendBadgeUnstyledTypeMap<M extends OverridableTypeMap> {
   props: M['props'] & BadgeUnstyledTypeMap['props'];
@@ -130,6 +130,7 @@ export type ExtendBadgeUnstyled<M extends OverridableTypeMap> = OverridableCompo
 >;
 
 export type BadgeUnstyledClassKey = keyof NonNullable<BadgeUnstyledTypeMap['props']['classes']>;
+
 /**
  *
  * Demos:
