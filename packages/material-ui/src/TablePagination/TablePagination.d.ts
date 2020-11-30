@@ -28,7 +28,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        * Deprecated. Will be removed in v5. Please use the onPageChange prop instead.
        * @deprecated
        */
-      onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+      onChangePage?: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
       onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
       /**
        * Deprecated. Will be removed in v5. Please use the onRowsPerPageChange prop instead.
