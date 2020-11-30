@@ -1,6 +1,6 @@
 # Transições
 
-<p class="description">The theme key enables you to customize the durations and easings of the various transitions used across Material-UI components, and offers a utility for creating custom transitions.</p>
+<p class="description">A chave do tema permite que você customize as durações e atenuações das várias transições usadas entre componentes do Material-UI, e oferece um utilitário para criar transições customizadas.</p>
 
 ## API
 
@@ -8,12 +8,12 @@
 
 #### Argumentos
 
-1. `props` (_String_ | _String[]_): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
-2. `options` (*Object* [opcional]):
+1. `props` (_String_ | _String[]_): Padrão `['all']`. Fornece uma propriedade CSS, ou uma lista de propriedades CSS que devem ser transicionadas.
+2. `options` (_Object_ [opcional]):
 
-- `options.duration` (_String_ | _Number_ [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.
-- `options.easing` (_String_ [optional]): Defaults to `theme.transitions.easing.easeInOut`. Provides the easing for the transition.
-- `options.delay` (_String_ | _Number_ [optional]): Defaults to `0`. Provides the delay for the transition.
+- `options.duration` (_String_ | _Number_ [opcional]): Padrão `theme.transitions.duration.standard`. Fornece a duração da transição.
+- `options.easing` (_String_ [opcional]): Padrão `theme.transitions.easing.easeInOut`. Fornece a atenuação para a transição.
+- `options.delay` (_String_ | _Number_ [opcional]): Padrão `0`. Fornece o atraso para a transição.
 
 #### Retornos
 
