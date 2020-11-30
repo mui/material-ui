@@ -221,6 +221,33 @@ describe('<SwitchBase />', () => {
       expect(handleChange.firstCall.returnValue).to.equal(!checked);
     });
 
+    it('should not change checkbox state when event is default prevented', () => {
+      const handleChange = spy((event) => event.target.checked);
+      const handleClick = spy((event) => event.preventDefault());
+      const { container, getByRole } = render(
+        <SwitchBase
+          icon="checkbox"
+          checkedIcon="checkbox"
+          type="checkbox"
+          defaultChecked
+          onChange={handleChange}
+          onClick={handleClick}
+        />,
+      );
+      const checkbox = getByRole('checkbox');
+
+      expect(container.firstChild).to.have.class(classes.checked);
+      expect(checkbox).to.have.property('checked', true);
+
+      act(() => {
+        checkbox.click();
+      });
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(container.firstChild).to.have.class(classes.checked);
+      expect(checkbox).to.have.property('checked', true);
+    });
+
     describe('prop: inputProps', () => {
       it('should be able to add aria', () => {
         const { getByLabelText } = render(
