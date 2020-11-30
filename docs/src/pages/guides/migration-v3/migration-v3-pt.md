@@ -164,7 +164,7 @@ yarn add @material-ui/styles
 
 ### TypeScript
 
-#### `value` type
+#### Tipo `value`
 
 Tipo da propriedade `value` normalizado para os componentes de entrada utilizarem `unknown`. Isso afeta `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
 
