@@ -1,5 +1,5 @@
 diff --git a/node_modules/argos-cli/lib/index.js b/node_modules/argos-cli/lib/index.js
-index 9260e62..c0c80bc 100644
+index 3a56364..49754e4 100644
 --- a/node_modules/argos-cli/lib/index.js
 +++ b/node_modules/argos-cli/lib/index.js
 @@ -51,7 +51,12 @@ _commander.default.command('upload <directory>').description('Upload screenshots
