@@ -165,7 +165,8 @@
     "**/@babel/runtime": "^7.10.2",
     "**/@babel/types": "^7.10.2",
     "**/hoist-non-react-statics": "^3.3.2",
-    "**/next/terser": "^4.1.2"
+    "**/next/terser": "^4.1.2",
+    "**/react-is": "^16.13.1"
   },
   "nyc": {
     "include": [
