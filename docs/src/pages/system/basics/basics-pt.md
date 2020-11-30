@@ -163,33 +163,33 @@ O sistema depende do CSS-in-JS. Funciona com ambos, emotion e styled-components.
 
 Prós:
 
-- 📚 Permite uma grande flexibilidade na API. A propriedade `sx` suporta um super conjunto de CSS. Não há **nenhuma necessidade de aprender CSS duas vezes**. You are set once you have learn the standardized CSS syntax, it's safe, it hasn't changed for a decade. Then, you can **optionally** learn the shorthands if you value the save of time they bring.
-- 📦 Auto-purge. Only the used CSS on the page is sent to the client. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties. You pay the cost of [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) and [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). It cost around ~15 kB gzipped. If you are already using the core components, it comes with no extra overhead.
+- 📚 Permite uma grande flexibilidade na API. A propriedade `sx` suporta um super conjunto de CSS. Não há **nenhuma necessidade de aprender CSS duas vezes**. Uma vez que você aprendeu a sintaxe padronizada do CSS, é seguro pois, não mudou durante uma década. Então, você pode **opcionalmente** aprender os atalhos, se você valoriza a economia de tempo que eles trazem.
+- 📦 Auto-purge. Somente o CSS usado na página é enviado para o cliente. O custo inicial do tamanho do pacote é **fixo**. Ele não aumenta com o número de propriedades CSS usadas. Você paga o custo de [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) e [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). Custa cerca de ~15 kB gzipped. Se você já está usando os componentes principais, eles não vêm com sobrecarga extra.
 
-Cons:
+Contras:
 
-- The runtime performance takes a hit.
+- O desempenho em tempo de execução é impactado.
 
-  | Benchmark case                    | Code snippet                | Time normalized |
-  |:--------------------------------- |:--------------------------- | --------------- |
-  | a. Render 1,000 primitives        | `<div className="…">` | 100ms           |
-  | b. Render 1,000 components        | `<Div>`               | 120ms           |
-  | c. Render 1,000 styled components | `<StyledDiv>`         | 160ms           |
-  | d. Render 1,000 Box               | `<Box sx={…}>`        | 370ms           |
+  | Benchmark                             | Fragmento de código         | Tempo normalizado |
+  |:------------------------------------- |:--------------------------- | ----------------- |
+  | a. Renderizar 1.000 primitivos        | `<div className="…">` | 100ms             |
+  | b. Renderizar 1.000 componentes       | `<Div>`               | 120ms             |
+  | c. Renderizar 1,000 styled components | `<StyledDiv>`         | 160ms             |
+  | d. Renderizar 1.000 Box               | `<Box sx={…}>`        | 370ms             |
 
-  _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) for a reproduction of these metrics._
+  _Vá até a [pasta de benchmark](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) para uma reprodução dessas métricas._
 
-  We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
+  Nós acreditamos que para a maioria das situações é **rápido o suficiente**, mas há soluções alternativas simples onde a performance se torna crítica. Por exemplo, ao renderizar uma lista com muitos itens, você pode usar um seletor filho CSS para ter um único ponto de "injeção de estilo" (usando d. para o wrapper e a. para cada item).
 
 ## Uso
 
-### Design tokens in the theme
+### Tokens de design no tema
 
-You can explore the [System properties](/system/properties/) page to discover how the different CSS (and custom) properties are mapped to the theme keys.
+Você pode explorar a página de [Propriedades do sistema](/system/properties/) para descobrir como as diferentes propriedades do CSS (e customizadas) são mapeadas para a chaves do tema.
 
-### Shorthands
+### Abreviações
 
-There are lots of shorthands available for the CSS properties. These are documented in the next pages, for instance, [the spacing](/system/spacing/). Here is an example leveraging them:
+Existem muitas abreviações disponíveis para as propriedades do CSS. Estas são documentadas nas próximas paginas, por exemplo, [o espaçamento](/system/spacing/). Aqui está um exemplo demonstrando-as:
 
 ```jsx
 <Box
@@ -205,13 +205,13 @@ There are lots of shorthands available for the CSS properties. These are documen
 >
 ```
 
-These shorthands are **optional**, they are great to save time when writing styles but it can be overwhelming to learn new custom APIs. You might want to skip this part and bet on CSS, it has been standardized for decades, head to the [next section](#superset-of-css).
+Estas abreviações são **opcionais**, elas são ótimas para economizar tempo quando escrevemos estilos, mas pode ser frustrante aprender novas APIs customizadas. Talvez você queira pular essa parte e apostar em CSS, ele está padronizado há décadas, vá para a [próxima seção](#superset-of-css).
 
-### Superset of CSS
+### Super conjunto de CSS
 
-As part of the prop, you can use any regular CSS too: child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples:
+Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos:
 
-- Using pseudo selectors:
+- Usando pseudo seletores:
 
   ```jsx
   <Box
@@ -224,7 +224,7 @@ As part of the prop, you can use any regular CSS too: child or pseudo-selectors,
   >
   ```
 
-- Using media queries:
+- Usando consultas de mídia:
 
   ```jsx
   <Box
@@ -237,7 +237,7 @@ As part of the prop, you can use any regular CSS too: child or pseudo-selectors,
   >
   ```
 
-- Using nested selector:
+- Usando seletor aninhado:
 
   ```jsx
   <Box
@@ -250,33 +250,33 @@ As part of the prop, you can use any regular CSS too: child or pseudo-selectors,
   >
   ```
 
-### Responsive values
+### Valores responsivos
 
-If you would like to have responsive values for a CSS property, you can use the breakpoints shorthand syntax. There are two ways of defining the breakpoints:
+Se você quiser ter valores responsivos para uma propriedade CSS, você pode usar a sintaxe abreviada de pontos de quebra. Há duas maneiras de definir os pontos de quebra:
 
-#### 1. Breakpoints as an object
+#### 1. Pontos de quebra como um objeto
 
-The first option for defining breakpoints is to define them as an object, using the breakpoints as keys. Here is the previous example again, using the object syntax.
+A primeira opção para definir pontos de quebra é defini-los como um objeto, usando os pontos de quebra como chaves. Aqui está o exemplo anterior novamente, usando a sintaxe do objeto.
 
 {{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 
-#### 2. Breakpoints as an array
+#### 2. Pontos de quebra como um array
 
-The second option is to define your breakpoints as an array, from the smallest to the largest breakpoint.
+A segunda opção é definir seus pontos de quebra como um array, do menor ao maior ponto de quebra.
 
 {{"demo": "pages/system/basics/BreakpointsAsArray.js"}}
 
-> ⚠️ This option is only recommended when the theme has a limited number of breakpoints, e.g. 3.<br /> Prefer the object API if you have more breakpoints. For instance, the default theme of Material-UI has 5.
+> ⚠️ Esta opção só é recomendada quando o tema tem um número limitado de pontos de quebra, p. ex. 3.<br /> Prefira a API de objeto se você tiver mais pontos de quebra. Por exemplo, o tema padrão do Material-UI tem 5.
 
-You can skip breakpoints with the `null` value:
+Você pode ignorar pontos de quebra usando o valor como `null`:
 
 ```jsx
-<Box sx={{ width: [null, null, 300] }}>This box has a responsive width.</Box>
+<Box sx={{ width: [null, null, 300] }}>Este box tem uma largura responsiva.</Box>
 ```
 
 ### Pontos de quebra customizados
 
-You can also specify your own custom breakpoints, and use them as keys when defining the breakpoints object. Here is an example of how to do that.
+Você também pode especificar seus próprios pontos de quebras customizados, e usá-los como chaves ao definir o objeto de pontos de quebra. Aqui esta um exemplo de como o fazer.
 
 ```jsx
 import * as React from 'react';
@@ -312,7 +312,7 @@ export default function CustomBreakpoints() {
 }
 ```
 
-If you are using TypeScript, you will also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
 ```ts
 declare module "@material-ui/core/styles/createBreakpoints" {
@@ -329,27 +329,27 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 }
 ```
 
-### Theme getter
+### Recuperando o tema
 
-If you wish to use the theme for a CSS property that is not supported natively by the system, you can use a function as the value, in which you can access the theme object.
+Se você deseja usar o tema para uma propriedade CSS que não é suportada nativamente pelo sistema, você pode usar uma função como valor, no qual você pode acessar o objeto do tema.
 
 {{"demo": "pages/system/basics/ValueAsFunction.js"}}
 
 ## Implementações
 
-The `sx` prop can be used in four different locations:
+A propriedade `sx` pode ser usada em quatro locais diferentes:
 
-### 1. Core components
+### 1. Componentes do core
 
-All core Material-UI components will support the `sx` prop.
+Todos os componentes Material-UI do core suportarão a propriedade `sx`.
 
 ### 2. Box
 
-[`Box`](/components/box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components. It renders a `<div>` element by default.
+[`Box`](/components/box/) é um componente leve que dá acesso a propriedade `sx`, e pode ser usado como um componente utilitário, e como um encapsulador para outros componentes. Ele renderiza um elemento `<div>` por padrão.
 
-### 3. Custom components
+### 3. Componentes customizados
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `experimentalStyled` utility from `@material-ui/core/styles`.
+Além dos componentes de Material-UI, você também pode adicionar a propriedade `sx` para seus componentes customizados, usando o utilitário `experimentalStyled` de `@material-ui/core/styles`.
 
 ```jsx
 import { experimentalStyled as styled } from '@material-ui/core/styles';
@@ -357,6 +357,6 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 const Div = styled('div')``;
 ```
 
-### 4. Any element with the babel plugin
+### 4. Qualquer elemento com o plugin babel
 
-TODO [#23220](https://github.com/mui-org/material-ui/issues/23220).
+A fazer [#23220](https://github.com/mui-org/material-ui/issues/23220).
