@@ -731,7 +731,7 @@ export default function useAutocomplete(props) {
             const option = filteredOptions[highlightedIndexRef.current];
             const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
-            // We don't want to validate the form.
+            // Avoid early form validation, let the end-users continue filling the form.
             event.preventDefault();
 
             if (disabled) {
