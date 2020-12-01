@@ -9,9 +9,8 @@ import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 
-// Translate the node so he can't be seen on the screen.
-// Later, we gonna translate back the node to his original location
-// with `none`.`
+// Translate the node so it can't be seen on the screen.
+// Later, we're going to translate the node back to its original location with `none`.
 function getTranslateValue(direction, node) {
   const rect = node.getBoundingClientRect();
   const containerWindow = ownerWindow(node);

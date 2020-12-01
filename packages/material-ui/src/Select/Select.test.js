@@ -424,6 +424,12 @@ describe('<Select />', () => {
       expect(getByRole('button')).to.have.attribute('aria-disabled', 'true');
     });
 
+    it('sets disabled attribute in input when component is disabled', () => {
+      const { container } = render(<Select disabled value="" />);
+
+      expect(container.querySelector('input')).to.have.property('disabled', true);
+    });
+
     specify('aria-disabled is not present if component is not disabled', () => {
       const { getByRole } = render(<Select disabled={false} value="" />);
 

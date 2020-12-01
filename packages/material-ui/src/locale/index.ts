@@ -1537,35 +1537,35 @@ export const jaJP: Localization = {
 
 export const koKR: Localization = {
   components: {
-    // MuiBreadcrumbs: {
-    //   defaultProps: {
-    //     expandText: 'Show path',
-    //   },
-    // },
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: '경로 보기',
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return '첫 번째 페이지로 이동';
+          }
+          if (type === 'last') {
+            return '마지막 페이지로 이동';
+          }
+          if (type === 'next') {
+            return '다음 페이지로 이동';
+          }
+          // if (type === 'previous') {
+          return '이전 페이지로 이동';
+        },
         labelRowsPerPage: '페이지 당 행:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
+          `${from}-${to} / ${count !== -1 ? count : `${to}개 이상`}`,
       },
     },
     MuiRating: {
       defaultProps: {
         getLabelText: (value) => `${value} 점`,
-        // emptyLabelText: 'Empty',
+        emptyLabelText: '빈 텍스트',
       },
     },
     MuiAutocomplete: {
@@ -1577,32 +1577,32 @@ export const koKR: Localization = {
         openText: '열기',
       },
     },
-    // MuiAlert: {
-    //   defaultProps: {
-    //     closeText: 'Close',
-    //   },
-    // },
-    // MuiPagination: {
-    //   defaultProps: {
-    //     'aria-label': 'Pagination navigation',
-    //     getItemAriaLabel: (type, page, selected) => {
-    //       if (type === 'page') {
-    //         return `${selected ? '' : 'Go to '}page ${page}`;
-    //       }
-    //       if (type === 'first') {
-    //         return 'Go to first page';
-    //       }
-    //       if (type === 'last') {
-    //         return 'Go to last page';
-    //       }
-    //       if (type === 'next') {
-    //         return 'Go to next page';
-    //       }
-    //       // if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     },
-    //   },
-    // },
+    MuiAlert: {
+      defaultProps: {
+        closeText: '닫기',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': '페이지네이션 네비게이션',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${page} 번째 페이지${selected ? '' : '로 이동'}`;
+          }
+          if (type === 'first') {
+            return '첫 번째 페이지로 이동';
+          }
+          if (type === 'last') {
+            return '마지막 페이지로 이동';
+          }
+          if (type === 'next') {
+            return '다음 페이지로 이동';
+          }
+          // if (type === 'previous') {
+          return '이전 페이지로 이동';
+        },
+      },
+    },
   },
 };
 
