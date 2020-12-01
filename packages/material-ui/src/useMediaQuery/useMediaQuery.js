@@ -2,7 +2,7 @@ import * as React from 'react';
 import { getThemeProps, useTheme } from '@material-ui/styles';
 
 const useEnhancedEffect =
-  typeof window !== 'undefined' && process.env.NODE_ENV != 'test'
+  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
     ? React.useLayoutEffect
     : React.useEffect
 
