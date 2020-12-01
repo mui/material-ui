@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils/createClientRender';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import { createClientRender, getClasses, describeConformance, createMount } from 'test/utils';
 import SwitchThumb from './SwitchThumb';
 
 describe('<SwitchThumb />', () => {
