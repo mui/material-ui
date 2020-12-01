@@ -1,4 +1,4 @@
-function mapApiTranslations(req) {
+export default function mapApiPageTranslations(req) {
   const translations = {};
   req.keys().forEach((filename) => {
     const match = filename.match(new RegExp(`-([a-z]{2}).json$`));
@@ -10,11 +10,4 @@ function mapApiTranslations(req) {
     }
   });
   return translations;
-}
-
-export default function getApiPageContent({ req, jsonPageContent }) {
-  return {
-    ...mapApiTranslations(req),
-    ...jsonPageContent,
-  };
 }

@@ -850,54 +850,24 @@ async function buildDocs(options: {
   writeFileSync(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
     `import * as React from 'react';
-    import ApiPage from 'docs/src/modules/components/ApiPage';
-    import getApiPageContent from 'docs/src/modules/utils/getApiPageContent';
-    import jsonPageContent from './button-base.json';
-    
-    export default function Page({ pageContent }) {
-      return <ApiPage pageContent={pageContent} />;
-    }
-    
-    Page.getInitialProps = () => {
-      const req = require.context('docs/pages/api-docs/${kebabCase(
-        reactApi.name,
-      )}', false, /${kebabCase(reactApi.name)}.*.json$/);
-    
-      console.log('REQ.keys()', req.keys());
-    
-      return {
-        pageContent: getApiPageContent({
-          req,
-          jsonPageContent,
-        }),
-      };
-    };
-    
-    
-    
-    
-    import * as React from 'react';
-import TopLayoutApi from 'docs/src/modules/components/TopLayoutApi';
-import getApiPageContent from 'docs/src/modules/utils/getApiPageContent';
+import ApiPage from 'docs/src/modules/components/ApiPage';
+import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
 export default function Page({ pageContent }) {
-  return <TopLayoutApi pageContent={pageContent} />;
+  return <ApiPage pageContent={pageContent} />;
 }
 
 Page.getInitialProps = () => {
-  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
-  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
-  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
+  const req = require.context('docs/pages/api-docs/${kebabCase(
+    reactApi.name,
+  )}', false, /${kebabCase(reactApi.name)}.*.json$/);
 
   return {
-    pageContent: getApiPageContent({
-      req1,
-      req2,
-      req3,
-      jsonPageContent,
-      componentName: '${reactApi.name}',
-    }),
+    pageContent: {
+      ...mapApiPageTranslations(req),
+      ...jsonPageContent,
+    },
   };
 };
 `.replace(/\r?\n/g, reactApi.EOL),
