@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { getThemeProps, useTheme } from '@material-ui/styles';
-
-const useEnhancedEffect =
-  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
-    ? React.useLayoutEffect
-    : React.useEffect;
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 export default function useMediaQuery(queryInput, options = {}) {
   const theme = useTheme();
