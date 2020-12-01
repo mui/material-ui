@@ -4,7 +4,7 @@ import { getThemeProps, useTheme } from '@material-ui/styles';
 const useEnhancedEffect =
   typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
     ? React.useLayoutEffect
-    : React.useEffect
+    : React.useEffect;
 
 export default function useMediaQuery(queryInput, options = {}) {
   const theme = useTheme();

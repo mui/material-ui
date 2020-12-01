@@ -89,6 +89,7 @@ describe('MyTests', () => {
   });
 });
 ```
+
 ## Client-side only rendering
 
 In order to perform the server-side reconciliation, the hook needs to render twice.
@@ -111,6 +112,7 @@ const theme = createMuiTheme({
   },
 });
 ```
+
 ## Server-side rendering
 
 > ⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
