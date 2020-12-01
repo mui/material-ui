@@ -55,7 +55,7 @@ const BadgeRoot = styled(
 const BadgeBadge = styled(
   'span',
   {},
-  { muiName: 'MuiBadge', overridesResolver },
+  { muiName: 'MuiBadge-badge', overridesResolver },
 )((props) => ({
   display: 'flex',
   flexDirection: 'row',
