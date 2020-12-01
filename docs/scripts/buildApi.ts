@@ -506,7 +506,7 @@ async function annotateClassesDefinition(context: {
  * Substitute CSS class description conditions with placeholder
  */
 function extractClassConditions(descriptions: any) {
-  const classConditions: { [key: string]: { 'description': string, 'conditions'?: string } } = {};
+  const classConditions: { [key: string]: { description: string; conditions?: string } } = {};
   const stylesRegex = /(if |unless )(`.*)./;
 
   Object.entries(descriptions).forEach(([className, classDescription]: any) => {
@@ -591,13 +591,13 @@ async function buildDocs(options: {
   }
 
   const componentApi: {
-    description: string,
-    props: {[key: string]: string | undefined},
-    classes: {[key: string]: { 'description': string, 'conditions'?: string }},
+    componentDescription: string;
+    propDescriptions: { [key: string]: string | undefined };
+    classDescriptions: { [key: string]: { description: string; conditions?: string } };
   } = {
-    description: '',
-    props: {},
-    classes: {},
+    componentDescription: '',
+    propDescriptions: {},
+    classDescriptions: {},
   };
 
   const styles: ReactApi['styles'] = {
@@ -757,12 +757,9 @@ async function buildDocs(options: {
    * Component description.
    */
   if (reactApi.description.length) {
-    componentApi.description = reactApi.description;
+    componentApi.componentDescription = reactApi.description;
   }
 
-  /**
-   * Prop descriptiohs.
-   */
   const componentProps = _.fromPairs(
     Object.entries(reactApi.props).map(([propName, propData]) => {
       let description = propData.description;
@@ -775,8 +772,8 @@ async function buildDocs(options: {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       }
 
-      componentApi.props = {
-        ...componentApi.props,
+      componentApi.propDescriptions = {
+        ...componentApi.propDescriptions,
         [propName]: description && description.replace(/\n@default.*$/, ''),
       };
 
@@ -806,7 +803,7 @@ async function buildDocs(options: {
   /**
    * CSS class descriptiohs.
    */
-  componentApi.classes = extractClassConditions(reactApi.styles.descriptions);
+  componentApi.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
 
   mkdirSync(path.resolve(outputDirectory, kebabCase(reactApi.name)), {
     mode: 0o777,
@@ -814,11 +811,7 @@ async function buildDocs(options: {
   });
 
   writePrettifiedFile(
-    path.resolve(
-      outputDirectory,
-      kebabCase(reactApi.name),
-      `${kebabCase(reactApi.name)}.json`,
-    ),
+    path.resolve(outputDirectory, kebabCase(reactApi.name), `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(componentApi),
     prettierConfigPath,
   );
@@ -857,6 +850,33 @@ async function buildDocs(options: {
   writeFileSync(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
     `import * as React from 'react';
+    import ApiPage from 'docs/src/modules/components/ApiPage';
+    import getApiPageContent from 'docs/src/modules/utils/getApiPageContent';
+    import jsonPageContent from './button-base.json';
+    
+    export default function Page({ pageContent }) {
+      return <ApiPage pageContent={pageContent} />;
+    }
+    
+    Page.getInitialProps = () => {
+      const req = require.context('docs/pages/api-docs/${kebabCase(
+        reactApi.name,
+      )}', false, /${kebabCase(reactApi.name)}.*.json$/);
+    
+      console.log('REQ.keys()', req.keys());
+    
+      return {
+        pageContent: getApiPageContent({
+          req,
+          jsonPageContent,
+        }),
+      };
+    };
+    
+    
+    
+    
+    import * as React from 'react';
 import TopLayoutApi from 'docs/src/modules/components/TopLayoutApi';
 import getApiPageContent from 'docs/src/modules/utils/getApiPageContent';
 import jsonPageContent from './${kebabCase(reactApi.name)}.json';

@@ -13,7 +13,6 @@ import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
   const t = useTranslate();
-  const userLanguage = useUserLanguage();
 
   return (
     <table>
@@ -57,7 +56,7 @@ function PropsTable(props) {
                 <td
                   align="left"
                   dangerouslySetInnerHTML={{
-                    __html: propDescriptions[userLanguage][propName] || '',
+                    __html: propDescriptions[propName] || '',
                   }}
                 />
               </tr>
@@ -77,7 +76,6 @@ PropsTable.propTypes = {
 function ClassesTable(props) {
   const { componentName, componentStyles, classDescriptions } = props;
   const t = useTranslate();
-  const userLanguage = useUserLanguage();
 
   return (
     <table>
@@ -103,10 +101,10 @@ function ClassesTable(props) {
               align="left"
               dangerouslySetInnerHTML={{
                 __html:
-                  classDescriptions[userLanguage][className] &&
-                  classDescriptions[userLanguage][className].description.replace(
+                  classDescriptions[className] &&
+                  classDescriptions[className].description.replace(
                     /{{conditions}}/,
-                    classDescriptions[userLanguage][className].conditions,
+                    classDescriptions[className].conditions,
                   ),
               }}
             />
@@ -163,14 +161,12 @@ function ApiDocs(props) {
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const {
-    classDescriptions,
-    componentDescription,
+    [userLanguage]: { componentDescription, classDescriptions, propDescriptions },
     demos,
     filename,
     forwardsRefTo,
     inheritance,
     name: componentName,
-    propDescriptions,
     props: componentProps,
     spread,
     styledComponent,
@@ -255,11 +251,11 @@ import { ${componentName} } from '${source}';`}
           language="jsx"
         />
         <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-        {componentDescription[userLanguage] ? (
+        {componentDescription ? (
           <React.Fragment>
             <br />
             <br />
-            <span dangerouslySetInnerHTML={{ __html: componentDescription[userLanguage] }} />
+            <span dangerouslySetInnerHTML={{ __html: componentDescription }} />
           </React.Fragment>
         ) : null}
         {componentStyles.name && (

@@ -1,6 +1,6 @@
 {
-  "description": "`ButtonBase` contains as few styles as possible.\nIt aims to be a simple building block for creating a button.\nIt contains a load of style reset and some focus/ripple logic.",
-  "props": {
+  "componentDescription": "`ButtonBase` contains as few styles as possible.\nIt aims to be a simple building block for creating a button.\nIt contains a load of style reset and some focus/ripple logic.",
+  "propDescriptions": {
     "action": "A ref for imperative actions.\nIt currently only supports `focusVisible()` action.",
     "buttonRef": "@ignore\n\nUse that prop to pass a ref to the native button component.\n@deprecated Use `ref` instead.",
     "centerRipple": "If `true`, the ripples are centered.\nThey won't start at the cursor interaction position.",
@@ -16,7 +16,7 @@
     "tabIndex": "@default 0",
     "TouchRippleProps": "Props applied to the `TouchRipple` element."
   },
-  "classes": {
+  "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "disabled": {
       "description": "Pseudo-class applied to the root element if {{conditions}}.",

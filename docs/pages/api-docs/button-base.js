@@ -1,24 +1,19 @@
 import * as React from 'react';
-import TopLayoutApi from 'docs/src/modules/components/TopLayoutApi';
+import ApiPage from 'docs/src/modules/components/ApiPage';
 import getApiPageContent from 'docs/src/modules/utils/getApiPageContent';
 import jsonPageContent from './button-base.json';
 
 export default function Page({ pageContent }) {
-  return <TopLayoutApi pageContent={pageContent} />;
+  return <ApiPage pageContent={pageContent} />;
 }
 
 Page.getInitialProps = () => {
-  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
-  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
-  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
+  const req = require.context('docs/pages/api-docs/button-base', false, /button-base.*.json$/);
 
   return {
     pageContent: getApiPageContent({
-      req1,
-      req2,
-      req3,
+      req,
       jsonPageContent,
-      componentName: 'ButtonBase',
     }),
   };
 };
