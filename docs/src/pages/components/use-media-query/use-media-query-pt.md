@@ -158,7 +158,7 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 #### Argumentos
 
 1. `query` (*String* | *Function*): Uma string representando a consulta de mídia a ser manipulada ou uma função de retorno de chamada aceitando o tema (no contexto) que retorna uma string.
-2. `options` (*Object* [opcional]):
+2. `options` (_Object_ [opcional]):
 
 - `options.defaultMatches` (*Boolean* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
 - `options.matchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia*. Isso pode ser usado para manipular uma janela iframe com conteúdo.
