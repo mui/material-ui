@@ -22,7 +22,7 @@ function testComponentsProp(element, getOptions) {
       const {
         classes,
         mount,
-        testComponentPropWith: component = 'em',
+        testComponentsRootPropWith: component = 'em',
         componentsProp,
       } = getOptions();
 

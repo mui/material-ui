@@ -6,6 +6,7 @@ import { createMount, describeConformanceV5, act, createClientRender, fireEvent 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Slider, { sliderClasses as classes } from './Slider';
+import { SliderUnstyled } from '@material-ui/unstyled';
 
 function createTouches(touches) {
   return {
@@ -32,10 +33,9 @@ describe('<Slider />', () => {
 
   describeConformanceV5(<Slider value={0} />, () => ({
     classes: {},
-    inheritComponent: 'span',
+    inheritComponent: SliderUnstyled,
     mount,
     refInstanceof: window.HTMLSpanElement,
-    testComponentPropWith: 'span',
   }));
 
   it('should call handlers', () => {
