@@ -5,6 +5,7 @@
   "compilerOptions": {
     "composite": true,
     "declaration": true,
+    "noEmit": false,
     "emitDeclarationOnly": true,
     "outDir": "build",
     "rootDir": "./src"
