@@ -265,9 +265,9 @@ In case you missed something, [we have a real example that can be used as a summ
 
 ## How can I use a change that wasn't released yet?
 
-The projet uses [Codesandbox CI](https://codesandbox.io/docs/ci) to publish a working version of the packages for each pull request, "a preview".
+[Codesandbox CI](https://codesandbox.io/docs/ci) is used to publish a working version of the packages for each pull request, "a preview".
 
-In practice, you can check the Codesandbox CI status of a pull request to get the URL to install these preview packages:
+In practice, you can check the Codesandbox CI status of a pull request to get the URL needed to install these preview packages:
 
 ```diff
 diff --git a//package.json b//package.json
@@ -283,7 +283,7 @@ index 791a7da1f4..a5db13b414 100644
      "@material-ui/system": "^5.0.0-alpha.16",
 ```
 
-Alternatively, you can open the Netlify preview and open any demo in Codesandbox. The documentation automatically configures the dependencies to use the preview packages.
+Alternatively, you can open the Netlify preview of the documentation, and open any demo in Codesandbox. The documentation automatically configures the dependencies to use the preview packages.
 
 ## Translations
 
