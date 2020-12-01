@@ -11,20 +11,6 @@ Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what
 
 There are [many ways](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project) to contribute to Material-UI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
 
-## Trying changes on the documentation site
-
-The documentation site is built with Material-UI and contains examples of all the components.
-This is a great place to experiment with your changes.
-
-To get started:
-
-```sh
-yarn start
-```
-
-You can now access the documentation site [locally](http://localhost:3000).
-Changes to the docs will hot reload the site.
-
 ## Your first Pull Request
 
 Working on your first Pull Request? You can learn how from this free video series:
@@ -85,6 +71,20 @@ git push -u origin HEAD
 7. Go to [the repository](https://github.com/mui-org/material-ui) and make a Pull Request.
 
 The core team is monitoring for Pull Requests. We will review your Pull Request and either merge it, request changes to it, or close it with an explanation.
+
+### Trying changes on the documentation site
+
+The documentation site is built with Material-UI and contains examples of all the components.
+This is a great place to experiment with your changes.
+
+To get started:
+
+```sh
+yarn start
+```
+
+You can now access the documentation site [locally](http://localhost:3000).
+Changes to the docs will hot reload the site.
 
 ### How to increase the chance of being accepted?
 
