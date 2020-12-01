@@ -23,7 +23,6 @@ function testComponentsProp(element, getOptions) {
         classes,
         mount,
         testComponentsRootPropWith: component = 'em',
-        componentsProp,
       } = getOptions();
 
       const wrapper = mount(React.cloneElement(element, { components: { Root: component } }));
