@@ -112,7 +112,6 @@ const AntSwitch = withStyles((theme) => ({
     backgroundColor: theme.palette.common.white,
   },
   checked: {},
-  focusVisible: {},
 }))(Switch);
 
 const SwitchThumbSquare = styled(SwitchThumb)({
