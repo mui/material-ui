@@ -1,7 +1,6 @@
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface SwitchThumbProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, SwitchThumbClassKey> {
+export interface SwitchThumbProps extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
   /**
    * the thumb contents. For example, icons can be passed in here to decorate the thumb.
    */
