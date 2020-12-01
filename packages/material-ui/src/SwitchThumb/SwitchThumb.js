@@ -16,10 +16,10 @@ const styles = (theme) => ({
   },
 });
 
-function SwitchThumb(props) {
+const SwitchThumb = React.forwardRef((props, ref) => {
   const { classes, className, component: Component = 'span', ...restProps } = props;
-  return <Component className={clsx(classes.root, className)} {...restProps} />;
-}
+  return <Component className={clsx(classes.root, className)} ref={ref} {...restProps} />;
+});
 
 SwitchThumb.propTypes = {
   // ----------------------------- Warning --------------------------------
