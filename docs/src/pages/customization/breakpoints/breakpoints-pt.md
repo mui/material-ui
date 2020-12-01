@@ -236,7 +236,7 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
 
 #### Argumentos
 
-1. `options` (*Object* [opcional]):
+1. `options` (_Object_ [opcional]):
 
 - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
 - `options.noSSR` (*Boolean* [opcional]): Padrão `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. A interface do usuário pode piscar. Você pode definir esse sinalizador para `true` se você não estiver fazendo a renderização do lado do servidor.
