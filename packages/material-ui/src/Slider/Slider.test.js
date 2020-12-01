@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Slider, { sliderClasses as classes } from './Slider';
@@ -30,7 +30,7 @@ describe('<Slider />', () => {
   const mount = createMount();
   const render = createClientRender();
 
-  describeConformance(<Slider value={0} />, () => ({
+  describeConformanceV5(<Slider value={0} />, () => ({
     classes: {},
     inheritComponent: 'span',
     mount,

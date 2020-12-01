@@ -39,7 +39,7 @@ function testRef(element, mount, onRef = assertDOMNode) {
  * @param {object} options
  * @param {import('react').ElementType} component
  */
-function findRootComponent(wrapper, { component }) {
+export function findRootComponent(wrapper, { component }) {
   const outermostHostElement = findOutermostIntrinsic(wrapper).getElement();
 
   return wrapper.find(component).filterWhere((componentWrapper) => {
@@ -57,7 +57,7 @@ function randomStringValue() {
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-function testClassName(element, getOptions) {
+export function testClassName(element, getOptions) {
   it('applies the className to the root component', () => {
     const { mount } = getOptions();
     const className = randomStringValue();
@@ -95,7 +95,7 @@ function testComponentProp(element, getOptions) {
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-function testPropsSpread(element, getOptions) {
+export function testPropsSpread(element, getOptions) {
   it(`spreads props to the root component`, () => {
     // type def in ConformanceOptions
     const { classes, inheritComponent, mount } = getOptions();
@@ -117,7 +117,7 @@ function testPropsSpread(element, getOptions) {
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-function describeRef(element, getOptions) {
+export function describeRef(element, getOptions) {
   describe('ref', () => {
     it(`attaches the ref`, () => {
       // type def in ConformanceOptions
@@ -140,7 +140,7 @@ function describeRef(element, getOptions) {
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-function testRootClass(element, getOptions) {
+export function testRootClass(element, getOptions) {
   it('applies the root class to the root component if it has this class', () => {
     const { classes, mount } = getOptions();
     if (classes.root == null) {
@@ -164,7 +164,7 @@ function testRootClass(element, getOptions) {
  * This is important for snapshot testing with Jest (even if we don't encourage it).
  * @param {React.ReactElement} element
  */
-function testReactTestRenderer(element) {
+export function testReactTestRenderer(element) {
   it('should render without errors in ReactTestRenderer', () => {
     ReactTestRenderer.act(() => {
       ReactTestRenderer.create(element, {
