@@ -67,7 +67,7 @@ export default function MenuAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} component="div">
             Photos
           </Typography>
           {auth && (

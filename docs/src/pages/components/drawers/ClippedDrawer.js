@@ -46,7 +46,7 @@ export default function ClippedDrawer() {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap component="div">
             Clipped drawer
           </Typography>
         </Toolbar>

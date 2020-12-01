@@ -49,7 +49,7 @@ export default function PermanentDrawerRight() {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap component="div">
             Permanent drawer
           </Typography>
         </Toolbar>

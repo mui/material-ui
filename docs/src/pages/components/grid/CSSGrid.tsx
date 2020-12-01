@@ -30,7 +30,7 @@ export default function CSSGrid() {
 
   return (
     <div>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography variant="subtitle1" gutterBottom component="div">
         Material-UI Grid:
       </Typography>
       <Grid container spacing={3}>
@@ -54,7 +54,7 @@ export default function CSSGrid() {
         </Grid>
       </Grid>
       <Divider className={classes.divider} />
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography variant="subtitle1" gutterBottom component="div">
         CSS Grid Layout:
       </Typography>
       <div className={classes.container}>

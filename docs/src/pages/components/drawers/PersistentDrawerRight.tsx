@@ -102,7 +102,7 @@ export default function PersistentDrawerRight() {
         })}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap className={classes.title}>
+          <Typography variant="h6" noWrap className={classes.title} component="div">
             Persistent drawer
           </Typography>
           <IconButton
