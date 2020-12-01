@@ -270,6 +270,22 @@ Suche innerhalb von 10.000 zufällig generierten Optionen. Die Liste ist virtual
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
+## Events
+
+If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+
+```jsx
+<Autocomplete
+  onKeyDown={(event) => {
+    if (event.key === 'Enter') {
+      // Prevent's default 'Enter' behavior.
+      event.defaultMuiPrevented = false;
+      // your handler code
+    }
+  }}
+/>
+```
+
 ## Einschränkungen
 
 ### autocomplete/autofill
