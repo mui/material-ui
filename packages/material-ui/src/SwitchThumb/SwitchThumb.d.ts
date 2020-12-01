@@ -10,8 +10,16 @@ export interface SwitchThumbProps extends StandardProps<React.HTMLAttributes<HTM
    * Either a string to use a HTML element or a component.
    */
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
 }
 
-export type SwitchThumbClassKey = 'root';
+export type SwitchThumbClassKey = keyof NonNullable<SwitchThumbProps['classes']>;
 
 export default function SwitchThumb(props: SwitchThumbProps): JSX.Element;
