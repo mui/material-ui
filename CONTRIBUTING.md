@@ -11,6 +11,20 @@ Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what
 
 There are [many ways](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project) to contribute to Material-UI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
 
+## Trying changes on the documentation site
+
+The documentation site is built with Material-UI and contains examples of all the components.
+This is a great place to experiment with your changes.
+
+To get started:
+
+```sh
+yarn start
+```
+
+You can now access the documentation site [locally](http://localhost:3000).
+Changes to the docs will hot reload the site.
+
 ## Your first Pull Request
 
 Working on your first Pull Request? You can learn how from this free video series:
@@ -179,25 +193,6 @@ that in almost all cases including or excluding elements from a query-set depend
 on their a11y-tree membership makes no difference. The queries where this does
 make a difference explicitly include this check e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
 To see if your test (`test:browser` or `test:unit`) behaves the same between CI and local environment, set the environment variable `CI` to `'true'`.
-
-### Trying the changes on the documentation site
-
-The documentation site is built with Material-UI and contains examples of all the components.
-This is a great place to experiment with your changes.
-
-To get started:
-
-```sh
-yarn
-yarn docs:dev
-```
-
-You can now access the documentation site [locally](http://localhost:3000).
-Changes to the docs will hot reload the site. If you make changes to TypeScript files
-in the docs run `yarn docs:typescript --watch` in a separate terminal.
-
-Where possible, please add tests for any changes you make.
-Tests can be run with `yarn test`.
 
 ### Updating the component API documentation
 
