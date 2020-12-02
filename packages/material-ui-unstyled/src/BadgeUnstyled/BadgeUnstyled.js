@@ -1,27 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_capitalize as capitalize } from '@material-ui/utils';
+import { unstable_capitalize as capitalize, usePreviousProps } from '@material-ui/utils';
 import isHostComponent from '../utils/isHostComponent';
-import badgeClasses, { getUtilityClass } from './badgeClasses';
+import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 
-const usePreviousProps = (value) => {
-  const ref = React.useRef({});
-  React.useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
-
-const useBadgeClasses = (props) => {
-  const { color, variant, anchorOrigin, overlap, invisible, classes = {} } = props;
+const useBadgeClasses = (props, extendClasses) => {
+  const classes = (extendClasses ? extendClasses(props) : props.classes) || {};
+  const { variant, anchorOrigin, overlap, invisible } = props;
 
   const utilityClasses = {
     root: clsx(badgeClasses['root'], classes['root']),
     badge: clsx(
       badgeClasses['badge'],
       classes['badge'],
-      getUtilityClass(variant),
+      getBadgeUtilityClass(variant),
       badgeClasses[
         `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
           anchorOrigin.horizontal,
@@ -33,8 +26,6 @@ const useBadgeClasses = (props) => {
         )}${capitalize(overlap)}`
       ],
       {
-        [badgeClasses[`color${capitalize(color)}`]]: color !== 'default',
-        [classes[`color${capitalize(color)}`]]: color !== 'default',
         [badgeClasses['invisible']]: invisible,
         [classes.invisible]: invisible,
       },
@@ -53,7 +44,6 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     badgeContent: badgeContentProp,
     children,
     className,
-    color: colorProp = 'default',
     components = {},
     componentsProps = {},
     invisible: invisibleProp,
@@ -61,6 +51,8 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     overlap: overlapProp = 'rectangular',
     showZero = false,
     variant: variantProp = 'standard',
+    styleProps: stylePropsProp = {},
+    extendClasses,
     /* eslint-disable react/prop-types */
     theme,
     ...other
@@ -69,10 +61,10 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
   const prevProps = usePreviousProps({
     anchorOrigin: anchorOriginProp,
     badgeContent: badgeContentProp,
-    color: colorProp,
     max: maxProp,
     overlap: overlapProp,
     variant: variantProp,
+    styleProps: stylePropsProp,
   });
 
   let invisible = invisibleProp;
@@ -87,17 +79,16 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
   const {
     anchorOrigin = anchorOriginProp,
     badgeContent,
-    color = colorProp,
     max = maxProp,
     overlap = overlapProp,
     variant = variantProp,
+    styleProps = stylePropsProp,
   } = invisible ? prevProps : props;
 
   const stateAndProps = {
     ...props,
     anchorOrigin,
     badgeContent,
-    color,
     invisible,
     max,
     overlap,
@@ -110,7 +101,9 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     displayValue = badgeContent > max ? `${max}+` : badgeContent;
   }
 
-  const classes = useBadgeClasses(stateAndProps);
+  const classes = useBadgeClasses(stateAndProps, extendClasses);
+
+  const extendedStyleProps = { ...stateAndProps, ...styleProps };
 
   const Root = components.Root || 'span';
   const rootProps = componentsProps.root || {};
@@ -121,7 +114,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
   return (
     <Root
       {...(!isHostComponent(Root) && {
-        styleProps: stateAndProps,
+        styleProps: extendedStyleProps,
         theme,
       })}
       ref={ref}
@@ -132,7 +125,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
       {children}
       <Badge
         {...(!isHostComponent(Badge) && {
-          styleProps: stateAndProps,
+          styleProps: extendedStyleProps,
           theme,
         })}
         {...badgeProps}
@@ -176,11 +169,6 @@ BadgeUnstyled.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'default'
-   */
-  color: PropTypes.oneOf(['default', 'error', 'primary', 'secondary']),
   /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.

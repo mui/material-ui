@@ -52,9 +52,6 @@ Any other props supplied will be provided to the root element ([BadgeUnstyled](/
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiBadge-root</span> | Styles applied to the root element.
 | <span class="prop-name">badge</span> | <span class="prop-name">.MuiBadge-badge</span> | Styles applied to the badge `span` element.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiBadge-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiBadge-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">colorError</span> | <span class="prop-name">.MuiBadge-colorError</span> | Styles applied to the root element if `color="error"`.
 | <span class="prop-name">dot</span> | <span class="prop-name">.MuiBadge-dot</span> | Styles applied to the root element if `variant="dot"`.
 | <span class="prop-name">standard</span> | <span class="prop-name">.MuiBadge-standard</span> | Styles applied to the root element if `variant="standard"`.
 | <span class="prop-name">anchorOriginTopRightRectangular</span> | <span class="prop-name">.MuiBadge-anchorOriginTopRightRectangular</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`.
@@ -66,6 +63,9 @@ Any other props supplied will be provided to the root element ([BadgeUnstyled](/
 | <span class="prop-name">anchorOriginTopLeftCircular</span> | <span class="prop-name">.MuiBadge-anchorOriginTopLeftCircular</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`.
 | <span class="prop-name">anchorOriginBottomLeftCircular</span> | <span class="prop-name">.MuiBadge-anchorOriginBottomLeftCircular</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`.
 | <span class="prop-name">invisible</span> | <span class="prop-name">.MuiBadge-invisible</span> | Pseudo-class to the badge `span` element if `invisible={true}`.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiBadge-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiBadge-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorError</span> | <span class="prop-name">.MuiBadge-colorError</span> | Styles applied to the root element if `color="error"`.
 
 You can override the style of the component thanks to one of these customization points:
 

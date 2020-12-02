@@ -1,4 +1,4 @@
-interface BadgeClasses {
+export interface BadgeClasses {
   root: string;
   badge: string;
   anchorOriginTopLeftCircular: string;
@@ -9,11 +9,10 @@ interface BadgeClasses {
   anchorOriginBottomLeftRectangular: string;
   anchorOriginBottomRightCircular: string;
   anchorOriginBottomRightRectangular: string;
-  colorError: string;
-  colorPrimary: string;
-  colorSecondary: string;
   invisible: string;
 }
+
+export const getBadgeUtilityClass: (part: string) => string;
 
 declare const badgeClasses: BadgeClasses;
 

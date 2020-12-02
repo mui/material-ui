@@ -1,9 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { BadgeUnstyled, badgeClasses } from '@material-ui/unstyled';
+import clsx from 'clsx';
+import { usePreviousProps } from '@material-ui/utils';
+import {
+  BadgeUnstyled,
+  badgeClasses as unstyledBadgeClasses,
+  getBadgeUtilityClass,
+} from '@material-ui/unstyled';
 import styled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
+
+const badgeClasses = {
+  ...unstyledBadgeClasses,
+  colorError: getBadgeUtilityClass('colorError'),
+  colorPrimary: getBadgeUtilityClass('colorPrimary'),
+  colorSecondary: getBadgeUtilityClass('colorSecondary'),
+};
 
 export { badgeClasses };
 
@@ -184,9 +197,24 @@ const BadgeBadge = styled(
   }),
 }));
 
+const extendBadgeClasses = (props) => {
+  const {
+    styleProps: { color = 'default' },
+    classes = {},
+  } = props;
+
+  return {
+    ...classes,
+    badge: clsx(classes.badge, {
+      [getBadgeUtilityClass(`color${capitalize(color)}`)]: color !== 'default',
+      [classes[`color${capitalize(color)}`]]: color !== 'default',
+    }),
+  };
+};
+
 const Badge = React.forwardRef(function Badge(inputProps, ref) {
   const { isRtl, ...props } = useThemeProps({ props: inputProps, name: 'MuiBadge' });
-  const { components = {}, ...other } = props;
+  const { components = {}, color = 'default', ...other } = props;
 
   return (
     <BadgeUnstyled
@@ -196,6 +224,8 @@ const Badge = React.forwardRef(function Badge(inputProps, ref) {
         Badge: BadgeBadge,
         ...components,
       }}
+      styleProps={{ color }}
+      extendClasses={extendBadgeClasses}
       ref={ref}
     />
   );

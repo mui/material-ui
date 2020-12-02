@@ -60,12 +60,6 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
       root?: string;
       /** Styles applied to the badge `span` element. */
       badge?: string;
-      /** Styles applied to the root element if `color="primary"`. */
-      colorPrimary?: string;
-      /** Styles applied to the root element if `color="secondary"`. */
-      colorSecondary?: string;
-      /** Styles applied to the root element if `color="error"`. */
-      colorError?: string;
       /** Styles applied to the root element if `variant="dot"`. */
       dot?: string;
       /** Styles applied to the root element if `variant="standard"`. */
@@ -89,11 +83,6 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
       /** Pseudo-class to the badge `span` element if `invisible={true}`. */
       invisible?: string;
     };
-    /**
-     * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'default'
-     */
-    color?: 'primary' | 'secondary' | 'default' | 'error';
     /**
      * If `true`, the badge is invisible.
      */

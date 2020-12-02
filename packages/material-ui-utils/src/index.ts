@@ -29,3 +29,4 @@ export {
   detectScrollType as unstable_detectScrollType,
   getNormalizedScrollLeft as unstable_getNormalizedScrollLeft,
 } from './scrollLeft';
+export { default as usePreviousProps } from './usePreviousProps';
