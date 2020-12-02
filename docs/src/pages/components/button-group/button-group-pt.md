@@ -1,5 +1,5 @@
 ---
-title: React ButtonGroup component
+title: Componente React para Grupo de botões
 components: Button, ButtonGroup
 githubLabel: 'component: ButtonGroup'
 ---
@@ -12,19 +12,19 @@ githubLabel: 'component: ButtonGroup'
 
 ## Grupo de botões básico
 
-The standard Button variants are supported.
+As variações padrão de botão são suportadas.
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
 ## Tamanhos e cores
 
-The `size` and `color` props can be used to control the appearance of the ButtonGroup.
+As propriedades `size` e `color` podem ser usadas para controlar a aparência do ButtonGroup.
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
 ## Grupo vertical
 
-The ButtonGroup can be displayed veritcally using the `orientation` prop.
+O ButtonGroup pode ser exibido verticalmente usando a propriedade `orientation`.
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
