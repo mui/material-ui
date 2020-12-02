@@ -55,6 +55,10 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 - [DatePicker] Found one prop that was renamed (#23676) @oliviertassinari
 - [DateRangePicker] Allow same date selection (#23701) @hmaddisb
 
+### `@material-ui/styled-engine@v5.0.0-alpha.18`/`@material-ui/styled-engine-sc@v5.0.0-alpha.18`
+
+- [styled-engine] Fix tagged template syntax with multiple expressions (#23269) @eps1lon
+
 ### Docs
 
 - [docs] Add settings panel to allow system mode (#23722) @mbrookes
