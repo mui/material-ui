@@ -168,7 +168,7 @@ MyDocument.getInitialProps = async (ctx) => {
         <style
           id="emotion-server-side"
           key="emotion-server-side"
-          data-emotion-css={emotionStyles.ids.join(' ')}
+          data-emotion={`css ${emotionStyles.ids.join(' ')}`}
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: emotionStyles.css }}
         />,
