@@ -1,21 +1,21 @@
 ---
-title: React Transition component
+title: Componentes React para Transição
 components: Collapse, Fade, Grow, Slide, Zoom
 githubLabel: 'component: Transition'
 ---
 
 # Transições
 
-<p class="description">Transitions help to make a UI expressive and easy to use.</p>
+<p class="description">Transições ajudam a deixar a interface expressiva e fácil de usar.</p>
 
 Material-UI provê um número de transições que podem ser usadas para introduzir algumas [animações](https://material.io/design/motion/) básicas para os componentes de sua aplicação.
 
 [A paleta](/system/palette/) com funções de estilo.
 
-To better support server rendering, Material-UI provides a `style` prop to the children of some transition components, (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
+Para um melhor suporte a renderização no servidor, Material-UI provê uma propriedade `style` para o elemento filho de alguns componentes de transição, (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
 
 ```jsx
-// O objeto `props` contém uma propriedade` style`.
+// O objeto `props` contém uma propriedade `style`.
 // Você precisa fornecê-lo ao elemento `div` como mostrado aqui.
 function MyComponent(props) {
   return (
@@ -36,7 +36,7 @@ export default Main() {
 
 ## Collapse
 
-Expandir para fora partindo do centro do elemento filho. Use the `orientation` prop if you need a horizontal collapse. A propriedade `collapsedHeight` pode ser usada para definir a altura mínima quando não expandida.
+Expandir para fora partindo do centro do elemento filho. Use a propriedade `orientation` se você precisar de um colapso na horizontal. A propriedade `collapsedHeight` pode ser usada para definir a altura mínima quando não expandida.
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
@@ -72,13 +72,13 @@ Este exemplo também demonstra como atrasar a transição de entrada.
 
 ## Propriedade TransitionComponent
 
-Some Material-UI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
+Alguns componentes do Material-UI usam essas transições internamente. Estas aceitam uma propriedade `TransitionComponent` para customizar a transição padrão. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
 
 - Aceitar uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
 - Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
 - Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem desmontar os elementos filhos quando em estado fechado e totalmente transitados.
 
-Para obter maiores informações sobre como criar transações customizadas, visite a [documentação de transições do React Transition Group](http://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
+Para obter maiores informações sobre como criar transações customizadas, visite a [documentação de transições do React Transition Group](http://reactcommunity.org/react-transition-group/transition). Você também pode visitar as seções dedicadas de alguns dos componentes:
 
 - [Modal](/components/modal/#transitions)
 - [Dialog](/components/dialogs/#transitions)
