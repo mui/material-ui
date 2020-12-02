@@ -2,6 +2,9 @@ import * as React from 'react';
 import { getThemeProps, useTheme } from '@material-ui/styles';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 
+const useEnhancedEffectNoTests =
+  process.env.NODE_ENV !== 'test' ? useEnhancedEffect : React.useEffect;
+
 export default function useMediaQuery(queryInput, options = {}) {
   const theme = useTheme();
   const props = getThemeProps({
@@ -55,7 +58,7 @@ export default function useMediaQuery(queryInput, options = {}) {
     return defaultMatches;
   });
 
-  useEnhancedEffect(() => {
+  useEnhancedEffectNoTests(() => {
     let active = true;
 
     if (!supportMatchMedia) {
