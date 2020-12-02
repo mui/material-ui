@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import clsx from 'clsx';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -88,14 +89,20 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     labelRowsPerPage = 'Rows per page:',
     nextIconButtonProps,
     nextIconButtonText = 'Next page',
-    onChangePage,
-    onChangeRowsPerPage,
+    onChangePage: onChangePageProp,
+    onPageChange: onPageChangeProp,
+    onChangeRowsPerPage: onChangeRowsPerPageProp,
+    onRowsPerPageChange: onRowsPerPageChangeProp,
     page,
     rowsPerPage,
     rowsPerPageOptions = defaultRowsPerPageOptions,
     SelectProps = {},
     ...other
   } = props;
+
+  const onChangePage = onChangePageProp || onPageChangeProp;
+  const onChangeRowsPerPage = onChangeRowsPerPageProp || onRowsPerPageChangeProp;
+
   let colSpan;
 
   if (Component === TableCell || Component === 'td') {
@@ -160,7 +167,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             'aria-label': nextIconButtonText,
             ...nextIconButtonProps,
           }}
-          onChangePage={onChangePage}
+          onPageChange={onChangePage}
           page={page}
           rowsPerPage={rowsPerPage}
         />
@@ -237,14 +244,32 @@ TablePagination.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * @param {number} page The page selected.
+   * @deprecated Use the onPageChange prop instead.
    */
-  onChangePage: PropTypes.func.isRequired,
+  onChangePage: deprecatedPropType(PropTypes.func, 'Use the `onPageChange` prop instead.'),
+  /**
+   * Callback fired when the number of rows per page is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * @deprecated Use the onRowsPerPageChange prop instead.
+   */
+  onChangeRowsPerPage: deprecatedPropType(
+    PropTypes.func,
+    'Use the `onRowsPerPageChange` prop instead.',
+  ),
+  /**
+   * Callback fired when the page is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {number} page The page selected.
+   */
+  onPageChange: PropTypes.func.isRequired,
   /**
    * Callback fired when the number of rows per page is changed.
    *
    * @param {object} event The event source of the callback.
    */
-  onChangeRowsPerPage: PropTypes.func,
+  onRowsPerPageChange: PropTypes.func,
   /**
    * The zero-based index of the current page.
    */

@@ -24,8 +24,23 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       labelRowsPerPage?: React.ReactNode;
       nextIconButtonProps?: Partial<IconButtonProps>;
       nextIconButtonText?: string;
-      onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+      /**
+       * Callback fired when the page is changed.
+       *
+       * @param {object} event The event source of the callback.
+       * @param {number} page The page selected.
+       * @deprecated Use the onPageChange prop instead.
+       */
+      onChangePage?: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+      onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+      /**
+       * Callback fired when the number of rows per page is changed.
+       *
+       * @param {object} event The event source of the callback.
+       * @deprecated Use the onRowsPerPageChange prop instead.
+       */
       onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+      onRowsPerPageChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
       page: number;
       rowsPerPage: number;
       rowsPerPageOptions?: Array<number | { value: number; label: string }>;
