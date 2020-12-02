@@ -1,5 +1,5 @@
 ---
-title: React Tooltip component
+title: Componente React para Dicas
 components: Tooltip
 ---
 
