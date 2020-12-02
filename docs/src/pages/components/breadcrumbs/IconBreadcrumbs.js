@@ -10,9 +10,9 @@ import GrainIcon from '@material-ui/icons/Grain';
 const useStyles = makeStyles((theme) => ({
   link: {
     display: 'flex',
+    alignItems: 'center',
   },
   icon: {
-    alignItems: 'center',
     marginRight: theme.spacing(0.5),
     width: 20,
     height: 20,
