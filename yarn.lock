@@ -6276,10 +6276,10 @@ cssesc@^3.0.0:
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
-cssjanus@^1.3.0:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/cssjanus/-/cssjanus-1.3.2.tgz#7c23d39be92f63e1557a75c015f61d95009bd6b3"
-  integrity sha512-5pM/C1MIfoqhXa7k9PqSnrjj1SSZDakfyB1DZhdYyJoDUH+evGbsUg6/bpQapTJeSnYaj0rdzPUMeM33CvB0vw==
+cssjanus@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/cssjanus/-/cssjanus-2.0.1.tgz#e0fe6e805b3ad960245a5ab81295609480d040dd"
+  integrity sha512-jYvhjWiID0AVlHHcmk1cOycfAjVCbx4oIsjgvw4VdpqBfxy2IaqIRm66cA4xqqKzQWmdTdzevUusdL8TO+FR9g==
 
 cssnano-preset-simple@1.2.0:
   version "1.2.0"
@@ -15979,12 +15979,12 @@ stylelint@^13.7.2:
     v8-compile-cache "^2.2.0"
     write-file-atomic "^3.0.3"
 
-stylis-plugin-rtl@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/stylis-plugin-rtl/-/stylis-plugin-rtl-1.1.0.tgz#028d72419ccc47eeaaec684f3e192534f2c57ece"
-  integrity sha512-FPoSxP+gbBLJRUXDRDFNBhqy/eToquDLn7ZrjIVBRfXaZ9bunwNnDtDm2qW1EoU0c93krm1Dy+8iVmJpjRGsKw==
+stylis-plugin-rtl@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/stylis-plugin-rtl/-/stylis-plugin-rtl-2.0.1.tgz#f6cd2d445f41c06565b2ace2b5fdc5cd8b527ca3"
+  integrity sha512-yHinsc2vQCkIKWW+PrlfcRZi0wt6y8C5eVEkc4FWkc+kX4vQgztO0Ah7Yj8UCVJUNnS2U2++6pepwd7wDuDVLg==
   dependencies:
-    cssjanus "^1.3.0"
+    cssjanus "^2.0.1"
 
 stylis-rule-sheet@0.0.10:
   version "0.0.10"
