@@ -160,6 +160,7 @@ function ApiDocs(props) {
   const { pageContent } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
+
   const {
     [userLanguage]: { componentDescription, classDescriptions, propDescriptions },
     demos,
@@ -172,6 +173,7 @@ function ApiDocs(props) {
     styledComponent,
     styles: componentStyles,
   } = pageContent;
+
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
   const source = filename

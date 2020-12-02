@@ -9,6 +9,7 @@ import * as prettier from 'prettier';
 import * as recast from 'recast';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
+import marked from 'marked/lib/marked';
 import * as yargs from 'yargs';
 import { defaultHandlers, parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
@@ -757,12 +758,12 @@ async function buildDocs(options: {
    * Component description.
    */
   if (reactApi.description.length) {
-    componentApi.componentDescription = reactApi.description;
+    componentApi.componentDescription = marked.parseInline(reactApi.description);
   }
 
   const componentProps = _.fromPairs(
     Object.entries(reactApi.props).map(([propName, propData]) => {
-      let description = propData.description;
+      let description = marked.parseInline(propData.description);
 
       if (description === '@ignore') {
         return [propName, propData];
