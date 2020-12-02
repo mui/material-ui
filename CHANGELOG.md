@@ -29,7 +29,7 @@ You can expect similar releases like this one in the coming months.
 ###### _Dec 2 2020_
 
 This release widens the peer dependency scope of React to accept ^17.0.0.
-The change makes it easier for developers to upgrade React independently from Material-UI. The best support for React 17 will be found on Material-UI v5.
+The change makes it easier for developers to upgrade React independently from Material-UI. The best support for React 17 will be found in Material-UI v5.
 
 This is a reminder that all ongoing work has moved to v5. This means a feature freeze on v4. The development of v4 is limited to important bug fixes, security patches and easing the upgrade path to v5.
 
