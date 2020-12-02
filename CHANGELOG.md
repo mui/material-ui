@@ -57,6 +57,10 @@ This is a reminder that all ongoing work has moved to v5. This means a feature f
 
 - [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
 
+### `@material-ui/lab@v4.0.0-alpha.57`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
 ## 4.11.1
 ###### _Nov 24 2020_
 
