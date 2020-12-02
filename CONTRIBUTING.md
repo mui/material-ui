@@ -258,6 +258,28 @@ If you are not familiar with that language, write the demo in JavaScript, a core
 
 In case you missed something, [we have a real example that can be used as a summary report](https://github.com/mui-org/material-ui/pull/19582/files).
 
+## How can I use a change that wasn't released yet?
+
+[Codesandbox CI](https://codesandbox.io/docs/ci) is used to publish a working version of the packages for each pull request, "a preview".
+
+In practice, you can check the Codesandbox CI status of a pull request to get the URL needed to install these preview packages:
+
+```diff
+diff --git a//package.json b//package.json
+index 791a7da1f4..a5db13b414 100644
+--- a/package.json
++++ b/package.json
+@@ -61,7 +61,7 @@
+   "dependencies": {
+     "@babel/runtime": "^7.4.4",
+     "@material-ui/styled-engine": "^5.0.0-alpha.16",
+-    "@material-ui/core": "^5.0.0-alpha.15",
++    "@material-ui/core": "https://pkg.csb.dev/mui-org/material-ui/commit/371c952b/@material-ui/core",
+     "@material-ui/system": "^5.0.0-alpha.16",
+```
+
+Alternatively, you can open the Netlify preview of the documentation, and open any demo in Codesandbox. The documentation automatically configures the dependencies to use the preview packages.
+
 ## Translations
 
 Translations are handled via [Crowdin](https://translate.material-ui.com).
