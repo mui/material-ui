@@ -15,7 +15,6 @@ import Brightness7Icon from '@material-ui/icons/Brightness7';
 import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@material-ui/icons/FormatTextdirectionRToL';
-import RtlContext from 'docs/src/modules/utils/RtlContext';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
@@ -57,7 +56,6 @@ function AppSettingsDrawer(props) {
   const [mode, setMode] = React.useState(getCookie('paletteMode') || 'system');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
-  const { rtl, setRtl } = React.useContext(RtlContext);
 
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {
@@ -80,8 +78,6 @@ function AppSettingsDrawer(props) {
       direction = theme.direction;
     }
 
-    setRtl(!rtl);
-    // TODO: remove in v5 after the style engine is moved to emotion
     changeTheme({ direction });
   };
 
