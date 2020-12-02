@@ -287,9 +287,6 @@ function AppWrapper(props) {
     initRedux({ options: { userLanguage: pageProps.userLanguage } }),
   );
 
-  const [rtl, setRtl] = React.useState(false);
-  const rtlContextValue = { rtl, setRtl };
-
   React.useEffect(() => {
     loadDependencies();
     registerServiceWorker();

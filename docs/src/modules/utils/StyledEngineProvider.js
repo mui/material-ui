@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheetManager } from 'styled-components';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -26,6 +27,10 @@ const StyledEngineProvider = (props) => {
       <CacheProvider value={rtl ? cacheRtl : cacheLtr}>{props.children}</CacheProvider>
     </StyleSheetManager>
   );
+};
+
+StyledEngineProvider.proptypes = {
+  children: PropTypes.node,
 };
 
 export default StyledEngineProvider;
