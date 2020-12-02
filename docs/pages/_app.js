@@ -312,6 +312,11 @@ function AppWrapper(props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
+
+    const emotionStyles = document.querySelector('#emotion-server-side');
+    if (emotionStyles) {
+      emotionStyles.parentElement.removeChild(emotionStyles);
+    }
   }, []);
 
   const activePage = findActivePage(pages, router.pathname);
