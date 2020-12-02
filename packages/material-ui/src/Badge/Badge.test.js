@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { BadgeUnstyled } from '@material-ui/unstyled';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Badge, { badgeClasses as classes } from './Badge';
-import { BadgeUnstyled } from '@material-ui/unstyled';
 
 function findBadge(container) {
   return container.firstChild.querySelector('span');
