@@ -18,12 +18,12 @@ Note that this component is the [DatePicker](/components/date-picker/) and [Time
 
 ## Requisitos
 
-This component relies on the date management library of your choice. It supports [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) and any other library via a public `dateAdapter` interface.
+Este componente depende da biblioteca de gerenciamento de datas da sua escolha. Ele suporta [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) e qualquer outra biblioteca através da interface publica `dateAdapter`.
 
-Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
+Por favor, instale qualquer uma destas bibliotecas e configure corretamente o mecanismo de data encapsulando na raiz dos componentes (ou o nível mais alto que você deseja que os seletores estejam disponíveis) com `LocalizationProvider`:
 
 ```jsx
-// or @material-ui/lab/Adapter{DayJS,Luxon,Moment} or any valid date-io adapter
+// ou @material-ui/lab/Adapter{DayJS,Luxon,Moment} ou qualquer adaptador válido de date-io
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
@@ -34,20 +34,20 @@ function App() {
 }
 ```
 
-## Basic usage
+## Utilização Básica
 
 Allows choosing date then time. There are 4 steps available (year, date, hour and minute), so tabs are required to visually distinguish date/time steps.
 
 {{"demo": "pages/components/date-time-picker/BasicDateTimePicker.js"}}
 
-## Responsiveness
+## Responsividade
 
 The `DateTimePicker` component is designed and optimized for the device it runs on.
 
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
+- A versão "móvel" funciona melhor para dispositivos de toque e telas pequenas.
+- A versão "desktop" funciona melhor para dispositivos com mouse e telas grandes.
 
-By default, the `DateTimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use. This can be customized with the `desktopModeMediaQuery` prop.
+By default, the `DateTimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
 
