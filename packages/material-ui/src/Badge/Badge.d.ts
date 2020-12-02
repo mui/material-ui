@@ -43,6 +43,7 @@ export type BadgeClassKey = keyof NonNullable<BadgeTypeMap['props']['classes']>;
  * API:
  *
  * - [Badge API](https://material-ui.com/api/badge/)
+ * - inherits [BadgeUnstyled API](https://material-ui.com/api/badge-unstyled/)
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 

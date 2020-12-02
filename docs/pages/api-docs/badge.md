@@ -44,7 +44,7 @@ The `MuiBadge` name can be used for providing [default props](/customization/glo
 
 The `ref` is forwarded to the root element.
 
-Any other props supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element ([BadgeUnstyled](/api/badge-unstyled/)).
 
 ## CSS
 
@@ -71,6 +71,11 @@ You can override the style of the component thanks to one of these customization
 
 - With a [global class name](/guides/interoperability/#global-css).
 - With a rule name as part of the component's [`styleOverrides` property](/customization/components/#global-theme-override) in a custom theme.
+
+## Inheritance
+
+The props of the [BadgeUnstyled](/api/badge-unstyled/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 

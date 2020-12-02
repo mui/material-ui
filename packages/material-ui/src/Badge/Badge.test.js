@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Badge, { badgeClasses as classes } from './Badge';
+import { BadgeUnstyled } from '@material-ui/unstyled';
 
 function findBadge(container) {
   return container.firstChild.querySelector('span');
@@ -19,17 +20,15 @@ describe('<Badge />', () => {
     badgeContent: 10,
   };
 
-  describeConformance(
+  describeConformanceV5(
     <Badge>
       <div />
     </Badge>,
     () => ({
       classes: {},
-      inheritComponent: 'span',
+      inheritComponent: BadgeUnstyled,
       mount,
       refInstanceof: window.HTMLSpanElement,
-      testComponentPropWith: 'div',
-      componentsProp: true,
     }),
   );
 
