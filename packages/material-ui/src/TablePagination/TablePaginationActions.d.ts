@@ -5,7 +5,7 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   backIconButtonProps?: Partial<IconButtonProps>;
   count: number;
   nextIconButtonProps?: Partial<IconButtonProps>;
-  onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   page: number;
   rowsPerPage: number;
 }

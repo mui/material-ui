@@ -33,7 +33,7 @@ export default function Locales() {
           rowsPerPage={10}
           page={1}
           component="div"
-          onChangePage={() => {}}
+          onPageChange={() => {}}
         />
         <Pagination count={2000} color="primary" />
         <Rating defaultValue={4} name="locales" />
