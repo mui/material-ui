@@ -2,10 +2,10 @@ import * as React from 'react';
 import { getThemeProps, useTheme } from '@material-ui/styles';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 
-// useEnhacedEffect does nothing on server side, so when the unit test
-// is executed it appears a warning
-// To pass the test we add a validation where useEnhacedEffect is used
-// in any environment but 'test'
+// useEnhacedEffect does nothing on server side, so when
+// the unit test is executed it appears a warning
+// To pass the test we add a validation where
+// useEnhacedEffect is used in any environment but 'test'
 const useEnhancedEffectNoTests =
   process.env.NODE_ENV !== 'test' ? useEnhancedEffect : React.useEffect;
 
