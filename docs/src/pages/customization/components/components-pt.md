@@ -292,7 +292,7 @@ const theme = createMuiTheme({
 
 Agora você pode se beneficiar com a chave `variants`, na seção components do `tema`, para adicionar novas variantes aos componentes do Material-UI. Essas novas variantes, podem especificar quais estilos o componente deve ter, se as propriedades específicas forem definidas em conjunto.
 
-As definições são especificadas em um array, sob o nome do componente. Para cada uma delas uma classe é adicionada no cabeçalho. The order is **important**, so make sure that the styles that should win will be specified lastly.
+As definições são especificadas em um array, sob o nome do componente. Para cada uma delas uma classe é adicionada no cabeçalho. A ordem **importa**, então certifique-se de que os estilos que devem prevalecer sejam especificados por último.
 
 ```jsx
 const theme = createMuiTheme({
@@ -318,7 +318,7 @@ const theme = createMuiTheme({
 });
 ```
 
-If you are using TypeScript, you will need to specify your new variants/colors, using module augmentation.
+Se você estiver usando TypeScript, você precisará especificar suas novas variantes/cores, usando a extensão de módulos.
 
 ```tsx
 declare module '@material-ui/core/Button/Button' {
