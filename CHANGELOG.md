@@ -25,6 +25,38 @@ You can expect similar releases like this one in the coming months.
 - [Popover] Deprecate transition onX props (#22202) @mbrookes
 - [Snackbar] Deprecate transition onX props (#22206) @mbrookes
 
+## 4.11.2
+###### _Dec 2 2020_
+
+This release widens the peer dependency scope of React to accept ^17.0.0.
+The change makes it easier for developers to upgrade React independently from Material-UI. The best support for React 17 will be found in Material-UI v5.
+
+This is a reminder that all ongoing work has moved to v5. This means a feature freeze on v4. The development of v4 is limited to important bug fixes, security patches and easing the upgrade path to v5.
+
+### `@material-ui/core@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/icons@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/lab@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/styles@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/system@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/utils@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
 ## 4.11.1
 ###### _Nov 24 2020_
 
