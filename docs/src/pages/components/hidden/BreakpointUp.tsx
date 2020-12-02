@@ -30,7 +30,9 @@ function BreakpointUp(props: WithWidth) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subtitle1">Current width: {width}</Typography>
+      <Typography variant="subtitle1" component="div">
+        Current width: {width}
+      </Typography>
       <div className={classes.container}>
         <Hidden xsUp>
           <Paper className={classes.paper}>xsUp</Paper>

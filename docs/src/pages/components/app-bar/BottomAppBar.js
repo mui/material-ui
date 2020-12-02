@@ -104,7 +104,12 @@ export default function BottomAppBar() {
     <React.Fragment>
       <CssBaseline />
       <Paper square className={classes.paper}>
-        <Typography className={classes.text} variant="h5" gutterBottom>
+        <Typography
+          className={classes.text}
+          variant="h5"
+          gutterBottom
+          component="div"
+        >
           Inbox
         </Typography>
         <List className={classes.list}>

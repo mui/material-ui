@@ -52,10 +52,10 @@ export default function FontAwesomeSvgIconDemo() {
 
   return (
     <div className={classes.root}>
-      <IconButton>
+      <IconButton aria-label="Example">
         <FontAwesomeIcon icon={faEllipsisV} />
       </IconButton>
-      <IconButton>
+      <IconButton aria-label="Example">
         <FontAwesomeSvgIcon icon={faEllipsisV} />
       </IconButton>
       <Button variant="contained" startIcon={<FontAwesomeIcon icon={faInfo} />}>

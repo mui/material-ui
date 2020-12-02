@@ -13381,9 +13381,9 @@ prepend-http@^2.0.0:
   integrity sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
 
 prettier@^2.0.1, prettier@^2.0.5:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.2.0.tgz#8a03c7777883b29b37fb2c4348c66a78e980418b"
-  integrity sha512-yYerpkvseM4iKD/BXLYUkQV5aKt4tQPqaGW6EsZjzyu0r7sVZZNPJW4Y8MyKmicp6t42XUPcBVA+H6sB3gqndw==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.2.1.tgz#795a1a78dd52f073da0cd42b21f9c91381923ff5"
+  integrity sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
 
 pretty-error@^2.1.1:
   version "2.1.2"

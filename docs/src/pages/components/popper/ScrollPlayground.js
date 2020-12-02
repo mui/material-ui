@@ -258,7 +258,9 @@ export default function ScrollPlayground() {
       <Grid container spacing={2}>
         <Grid container item xs={12}>
           <Grid item xs={12}>
-            <Typography variant="h6">Appearance</Typography>
+            <Typography variant="h6" component="div">
+              Appearance
+            </Typography>
           </Grid>
           <Grid item xs={6}>
             <TextField
@@ -314,7 +316,9 @@ export default function ScrollPlayground() {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h6">Modifiers (options from Popper.js)</Typography>
+          <Typography variant="h6" component="div">
+            Modifiers (options from Popper.js)
+          </Typography>
         </Grid>
         <Grid container item xs={12} spacing={1}>
           <Grid item xs={6}>
