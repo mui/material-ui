@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
     },
     icon: {
+      alignItems: 'center',
       marginRight: theme.spacing(0.5),
       width: 20,
       height: 20,
