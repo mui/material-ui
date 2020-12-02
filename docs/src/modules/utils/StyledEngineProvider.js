@@ -29,7 +29,7 @@ const StyledEngineProvider = (props) => {
   );
 };
 
-StyledEngineProvider.proptypes = {
+StyledEngineProvider.propTypes = {
   children: PropTypes.node,
 };
 
