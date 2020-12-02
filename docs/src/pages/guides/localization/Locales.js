@@ -1,6 +1,7 @@
 import * as React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import Autocomplete from '@material-ui/core/Autocomplete';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import * as locales from '@material-ui/core/locale';
@@ -9,7 +10,7 @@ export default function Locales() {
   const [locale, setLocale] = React.useState('zhCN');
 
   return (
-    <div>
+    <Box sx={{ width: '100%' }}>
       <ThemeProvider
         theme={(outerTheme) => createMuiTheme(outerTheme, locales[locale])}
       >
@@ -34,6 +35,6 @@ export default function Locales() {
           onPageChange={() => {}}
         />
       </ThemeProvider>
-    </div>
+    </Box>
   );
 }
