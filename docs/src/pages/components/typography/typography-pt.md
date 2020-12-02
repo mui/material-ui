@@ -1,5 +1,5 @@
 ---
-title: React Typography component
+title: Componente React de Tipografia
 components: Tipografia
 githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
@@ -15,7 +15,7 @@ O uso de diferentes tamanhos e estilos de uma só vez pode estragar qualquer lei
 
 ## Geral
 
-A fonte *Roboto* **não** será carregada automaticamente pelo Material-UI. You are responsible for loading any fonts used in your application. A fonte Roboto possui algumas maneiras fáceis de ser carregada. Para uma abordagem mais avançada, dê uma olhada na [seção de customização de temas](/customization/typography/).
+A fonte *Roboto* **não** será carregada automaticamente pelo Material-UI. Você é responsável por carregar quaisquer fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de ser carregada. Para uma abordagem mais avançada, dê uma olhada na [seção de customização de temas](/customization/typography/).
 
 ## Fonte Roboto via CDN
 
@@ -43,7 +43,7 @@ Fontsource pode ser configurado para carregar subconjuntos, pesos e estilos espe
 
 ## Componente
 
-The Typography component makes it easy to apply a default set of font weights and sizes in your application.
+O componente tipografia facilita a aplicação de um conjunto padrão de pesos e tamanhos de fonte na sua aplicação.
 
 {{"demo": "pages/components/typography/Types.js"}}
 
