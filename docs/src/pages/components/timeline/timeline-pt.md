@@ -1,5 +1,5 @@
 ---
-title: React Timeline component
+title: Componente React para Linha do tempo
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 githubLabel: 'component: Timeline'
 packageName: '@material-ui/lab'
@@ -19,7 +19,7 @@ Uma linha do tempo básica mostrando a lista de eventos.
 
 {{"demo": "pages/components/timeline/BasicTimeline.js"}}
 
-## Right-aligned timeline
+## Linha do tempo alinhada à direita
 
 A linha do tempo pode ser posicionada no lado direito dos eventos.
 
