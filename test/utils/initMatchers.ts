@@ -415,9 +415,14 @@ chai.use((chaiAPI, utils) => {
     // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
     if (process.env.NODE_ENV !== 'production') {
       (this as any).to.throw(expectedDevMessage);
-      // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
     } else {
-      (this as any).to.throw('Minified Material-UI error');
+      utils.flag(
+        this,
+        'message',
+        "Looks like the error was not minified. This can happen if the error code hasn't been generated yet. Run `yarn extract-error-codes` and try again.",
+      );
+      // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+      (this as any).to.throw('Minified Material-UI error', 'helper');
     }
   });
 });
