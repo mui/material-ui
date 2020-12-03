@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
+import { SOURCE_CODE_REPO } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { exactProp } from '@material-ui/utils';
@@ -78,7 +78,7 @@ function MarkdownDocs(props) {
             }}
             disableAd={disableAd}
             demoOptions={renderedMarkdownOrDemo}
-            githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+            githubLocation={`${SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/docs/src/${name}`}
           />
         );
       })}

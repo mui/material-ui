@@ -4,9 +4,11 @@
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=test babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
     "deduplicate": "node scripts/deduplicate.js",
-    "argos": "node ./scripts/pushArgos.js",
     "benchmark:browser": "yarn workspace benchmark browser",
+    "build:release": "lerna run --parallel --scope \"@material-ui/*\" build",
     "build:codesandbox": "lerna run --parallel --scope \"@material-ui/*\" build",
+    "release": "yarn build:release && lerna publish --no-changelog --dist-tag next --contents build",
+    "publish:dry-run": "lerna publish --no-changelog --dist-tag next --contents build --no-git-tag-version --no-push --registry=\"http://localhost:4873/\"",
     "docs:api": "rimraf ./docs/pages/api-docs && yarn docs:api:build",
     "docs:api:build": "cross-env BABEL_ENV=test __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/buildApi.ts  ./docs/pages/api-docs ./packages/material-ui-unstyled/src ./packages/material-ui/src ./packages/material-ui-lab/src",
     "docs:build": "yarn workspace docs build",
@@ -49,6 +51,7 @@
     "test:umd": "node packages/material-ui/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
     "test:watch": "yarn test:unit --watch",
+    "test:argos": "node ./scripts/pushArgos.js",
     "typescript": "lerna run --no-bail --parallel typescript"
   },
   "devDependencies": {
