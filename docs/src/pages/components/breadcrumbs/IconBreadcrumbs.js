@@ -10,11 +10,10 @@ import GrainIcon from '@material-ui/icons/Grain';
 const useStyles = makeStyles((theme) => ({
   link: {
     display: 'flex',
+    alignItems: 'center',
   },
   icon: {
     marginRight: theme.spacing(0.5),
-    width: 20,
-    height: 20,
   },
 }));
 
@@ -29,7 +28,7 @@ export default function IconBreadcrumbs() {
   return (
     <Breadcrumbs aria-label="breadcrumb">
       <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
-        <HomeIcon className={classes.icon} />
+        <HomeIcon fontSize="inherit" className={classes.icon} />
         Material-UI
       </Link>
       <Link
@@ -38,11 +37,11 @@ export default function IconBreadcrumbs() {
         onClick={handleClick}
         className={classes.link}
       >
-        <WhatshotIcon className={classes.icon} />
+        <WhatshotIcon fontSize="inherit" className={classes.icon} />
         Core
       </Link>
       <Typography color="textPrimary" className={classes.link}>
-        <GrainIcon className={classes.icon} />
+        <GrainIcon fontSize="inherit" className={classes.icon} />
         Breadcrumb
       </Typography>
     </Breadcrumbs>
