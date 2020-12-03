@@ -218,7 +218,7 @@
     "/components/pickers": "Introdução",
     "/components/date-picker": "Seletor de data",
     "/components/date-range-picker": "Date Range Picker ⚡️",
-    "/components/date-time-picker": "Date Time Picker",
+    "/components/date-time-picker": "Seletor de data e hora",
     "/components/time-picker": "Seletor de hora",
     "/components/timeline": "Linha do tempo",
     "/components/trap-focus": "Capturar foco",
