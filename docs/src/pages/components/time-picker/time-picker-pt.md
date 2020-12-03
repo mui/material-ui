@@ -59,7 +59,7 @@ By default, the `TimePicker` component uses a `@media (pointer: fine)` media que
 
 {{"demo": "pages/components/time-picker/TimeValidationTimePicker.js"}}
 
-## Static mode
+## Modo estático
 
 It's possible to render any picker inline. This will enable building custom popover/modal containers.
 
