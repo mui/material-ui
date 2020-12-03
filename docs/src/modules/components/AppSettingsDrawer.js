@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, useTheme } from '@material-ui/core/styles';
+import { alpha, withStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -15,7 +16,6 @@ import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@material-ui/icons/FormatTextdirectionRToL';
 import Link from 'docs/src/modules/components/Link';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -32,10 +32,19 @@ const styles = (theme) => ({
     width: '100%',
   },
   toggleButton: {
-    flexGrow: 1,
+    width: '100%',
+    color: theme.palette.text.secondary,
+    '&$toggleButtonSelected': {
+      color: `${theme.palette.primary.main}`,
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&:hover': {
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      },
+    },
   },
+  toggleButtonSelected: {},
   icon: {
-    margin: '0 4px',
+    marginRight: 8,
   },
 });
 
@@ -44,9 +53,9 @@ function AppSettingsDrawer(props) {
   const t = useTranslate();
   const theme = useTheme();
   const changeTheme = useChangeTheme();
+  const [mode, setMode] = React.useState(getCookie('paletteMode') || 'system');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
-  const [mode, setMode] = React.useState(getCookie('paletteMode') || 'system');
 
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {
@@ -105,7 +114,7 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.light')}
             data-ga-event-category="settings"
             data-ga-event-action="light"
-            className={classes.toggleButtonGroup}
+            classes={{ root: classes.toggleButton, selected: classes.toggleButtonSelected }}
           >
             <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <Brightness7Icon className={classes.icon} />
@@ -117,7 +126,7 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.system')}
             data-ga-event-category="settings"
             data-ga-event-action="system"
-            className={classes.toggleButtonGroup}
+            classes={{ root: classes.toggleButton, selected: classes.toggleButtonSelected }}
           >
             <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <SettingsBrightnessIcon className={classes.icon} />
@@ -129,7 +138,7 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.dark')}
             data-ga-event-category="settings"
             data-ga-event-action="dark"
-            className={classes.toggleButtonGroup}
+            classes={{ root: classes.toggleButton, selected: classes.toggleButtonSelected }}
           >
             <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <Brightness4Icon className={classes.icon} />
@@ -152,7 +161,7 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.light')}
             data-ga-event-category="settings"
             data-ga-event-action="ltr"
-            className={classes.toggleButtonGroup}
+            classes={{ root: classes.toggleButton, selected: classes.toggleButtonSelected }}
           >
             <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <FormatTextdirectionLToRIcon className={classes.icon} />
@@ -164,7 +173,7 @@ function AppSettingsDrawer(props) {
             aria-label={t('settings.system')}
             data-ga-event-category="settings"
             data-ga-event-action="rtl"
-            className={classes.toggleButtonGroup}
+            classes={{ root: classes.toggleButton, selected: classes.toggleButtonSelected }}
           >
             <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
               <FormatTextdirectionRToLIcon className={classes.icon} />

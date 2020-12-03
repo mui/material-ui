@@ -81,7 +81,9 @@ export default function SimpleDialogDemo() {
 
   return (
     <div>
-      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+      <Typography variant="subtitle1" component="div">
+        Selected: {selectedValue}
+      </Typography>
       <br />
       <Button variant="outlined" onClick={handleClickOpen}>
         Open simple dialog

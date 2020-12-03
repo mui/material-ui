@@ -43,10 +43,10 @@ export default function MediaControlCard() {
     <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
+          <Typography component="div" variant="h5">
             Live From Space
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography variant="subtitle1" color="textSecondary" component="div">
             Mac Miller
           </Typography>
         </CardContent>

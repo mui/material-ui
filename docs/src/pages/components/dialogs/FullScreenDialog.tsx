@@ -68,7 +68,7 @@ export default function FullScreenDialog() {
             >
               <CloseIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" className={classes.title} component="div">
               Sound
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
