@@ -29,7 +29,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">anchorOrigin</span> | <span class="prop-type">{ horizontal: 'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }</span> | <span class="prop-default">{  vertical: 'top',  horizontal: 'right',}</span> | The anchor of the badge. |
 | <span class="prop-name">badgeContent</span> | <span class="prop-type">node</span> |  | The content rendered within the badge. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The badge will be added relative to this node. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Override or extend the styles applied to the component. |
 | <span class="prop-name">components</span> | <span class="prop-type">{ Badge?: elementType, Root?: elementType }</span> | <span class="prop-default">{}</span> | The components used for each slot inside the Badge. Either a string to use a HTML element or a component. |
 | <span class="prop-name">componentsProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | The props used for each slot inside the Badge. |
 | <span class="prop-name">invisible</span> | <span class="prop-type">bool</span> |  | If `true`, the badge is invisible. |

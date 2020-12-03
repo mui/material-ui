@@ -54,6 +54,7 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
     children?: React.ReactNode;
     /**
      * Override or extend the styles applied to the component.
+     * @default {}
      */
     classes?: {
       /** Styles applied to the root element. */

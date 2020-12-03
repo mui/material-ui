@@ -19,6 +19,7 @@ export type BadgeTypeMap<
   props: P & {
     /**
      * Override or extend the styles applied to the component.
+     * @default {}
      */
     classes?: BadgeUnstyledTypeMap['props']['classes'] & {
       /** Styles applied to the root element if `color="primary"`. */

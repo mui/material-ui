@@ -5,9 +5,8 @@ import { unstable_capitalize as capitalize, usePreviousProps } from '@material-u
 import isHostComponent from '../utils/isHostComponent';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 
-const useBadgeClasses = (props, extendClasses) => {
-  const classes = (extendClasses ? extendClasses(props) : props.classes) || {};
-  const { variant, anchorOrigin, overlap, invisible } = props;
+const useBadgeClasses = (props) => {
+  const { variant, anchorOrigin, overlap, invisible, classes = {} } = props;
 
   const utilityClasses = {
     root: clsx(badgeClasses['root'], classes['root']),
@@ -41,6 +40,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
       vertical: 'top',
       horizontal: 'right',
     },
+    classes: classesProp = {},
     badgeContent: badgeContentProp,
     children,
     className,
@@ -51,8 +51,6 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     overlap: overlapProp = 'rectangular',
     showZero = false,
     variant: variantProp = 'standard',
-    styleProps: stylePropsProp = {},
-    extendClasses,
     /* eslint-disable react/prop-types */
     theme,
     ...other
@@ -64,7 +62,6 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     max: maxProp,
     overlap: overlapProp,
     variant: variantProp,
-    styleProps: stylePropsProp,
   });
 
   let invisible = invisibleProp;
@@ -82,7 +79,6 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     max = maxProp,
     overlap = overlapProp,
     variant = variantProp,
-    styleProps = stylePropsProp,
   } = invisible ? prevProps : props;
 
   const stateAndProps = {
@@ -101,9 +97,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     displayValue = badgeContent > max ? `${max}+` : badgeContent;
   }
 
-  const classes = useBadgeClasses(stateAndProps, extendClasses);
-
-  const extendedStyleProps = { ...stateAndProps, ...styleProps };
+  const classes = useBadgeClasses(stateAndProps);
 
   const Root = components.Root || 'span';
   const rootProps = componentsProps.root || {};
@@ -113,22 +107,22 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
 
   return (
     <Root
+      {...rootProps}
       {...(!isHostComponent(Root) && {
-        styleProps: extendedStyleProps,
+        styleProps: { ...stateAndProps, ...rootProps.styleProps },
         theme,
       })}
       ref={ref}
-      {...rootProps}
       {...other}
       className={clsx(classes.root, rootProps.className, className)}
     >
       {children}
       <Badge
+        {...badgeProps}
         {...(!isHostComponent(Badge) && {
-          styleProps: extendedStyleProps,
+          styleProps: { ...stateAndProps, ...badgeProps.styleProps },
           theme,
         })}
-        {...badgeProps}
         className={clsx(classes.badge, badgeProps.className)}
       >
         {displayValue}
@@ -163,6 +157,7 @@ BadgeUnstyled.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes: PropTypes.object,
   /**

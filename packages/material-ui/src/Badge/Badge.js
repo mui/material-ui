@@ -198,10 +198,7 @@ const BadgeBadge = styled(
 }));
 
 const extendBadgeClasses = (props) => {
-  const {
-    styleProps: { color = 'default' },
-    classes = {},
-  } = props;
+  const { color, classes = {} } = props;
 
   return {
     ...classes,
@@ -214,7 +211,32 @@ const extendBadgeClasses = (props) => {
 
 const Badge = React.forwardRef(function Badge(inputProps, ref) {
   const { isRtl, ...props } = useThemeProps({ props: inputProps, name: 'MuiBadge' });
-  const { components = {}, color = 'default', ...other } = props;
+  const {
+    components = {},
+    color: colorProp = 'default',
+    invisible: invisibleProp,
+    badgeContent: badgeContentProp,
+    showZero = false,
+    variant: variantProp = 'standard',
+    ...other
+  } = props;
+
+  const prevProps = usePreviousProps({
+    color: colorProp,
+  });
+
+  let invisible = invisibleProp;
+
+  if (
+    invisibleProp == null &&
+    ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
+  ) {
+    invisible = true;
+  }
+
+  const { color = colorProp } = invisible ? prevProps : props;
+
+  const classes = extendBadgeClasses({ ...props, invisible, color });
 
   return (
     <BadgeUnstyled
@@ -224,8 +246,11 @@ const Badge = React.forwardRef(function Badge(inputProps, ref) {
         Badge: BadgeBadge,
         ...components,
       }}
-      styleProps={{ color }}
-      extendClasses={extendBadgeClasses}
+      componentsProps={{
+        root: { styleProps: { color } },
+        badge: { styleProps: { color } },
+      }}
+      classes={classes}
       ref={ref}
     />
   );
@@ -257,6 +282,7 @@ Badge.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes: PropTypes.object,
   /**
