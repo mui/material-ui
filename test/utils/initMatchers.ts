@@ -107,6 +107,11 @@ declare global {
        * @example expect(() => render()).toErrorDev(['first warning', 'then the second'])
        */
       toErrorDev(messages?: string | string[]): void;
+      /**
+       * Asserts that the given callback throws an error matching the given message in development (process.env.NODE_ENV !== 'production').
+       * In production it expects a minified error.
+       */
+      toThrowMinified(message: string): void;
     }
   }
 }
@@ -404,6 +409,16 @@ chai.use((chaiAPI, utils) => {
     // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
     utils.transferFlags(this as any, assertion, false);
     assertion.to.equal(expectedDate.toISOString());
+  });
+
+  chai.Assertion.addMethod('toThrowMinified', function toThrowMinified(expectedDevMessage) {
+    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+    if (process.env.NODE_ENV !== 'production') {
+      (this as any).to.throw(expectedDevMessage);
+      // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+    } else {
+      (this as any).to.throw('Minified Material-UI error');
+    }
   });
 });
 
