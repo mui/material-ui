@@ -1,5 +1,95 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.18
+
+Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- Fix most of the issues with the system (#23716, #23635, #23737, #23733, #23700, #23688) @mnajdova.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.18`
+
+#### Breaking changes
+
+- [Box] Remove deprecated props (#23716) @mnajdova
+  All props are now available under the `sx` prop. A deprecation will be landing in v4.
+  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#box-sx-prop).
+
+  ```diff
+  -<Box p={2} bgColor="primary.main">
+  +<Box sx={{ p: 2, bgColor: 'primary.main' }}>
+  ```
+
+#### Changes
+
+- [Autocomplete] Add ability to override key down events handlers (#23487) @hessaam
+- [Autocomplete] Better isolate test case (#23704) @oliviertassinari
+- [Autocomplete] Fix highlight change event (#23718) @TakumaKira
+- [Box] Fix TypeScript issue when component prop is used (#23686) @mnajdova
+- [experimentalStyled] Make sx style fn optional (#23714) @mnajdova
+- [l10n] Improve Brazilian (pt-BR) locale (#23707) @m4rcelofs
+- [l10n] Improve Korean (ko-KR) locale (#23794) @sujinleeme
+- [Select] Add disabled attribute in input element when disabled (#23778) @praveenkumar-kalidass
+- [Switch] Add preventDefault check for state change (#23786) @praveenkumar-kalidass
+- [Tabs] Remove duplicate styles (#23561) @cmfcmf
+
+### `@material-ui/system@v5.0.0-alpha.18`
+
+- [system] Allow values to use shorter string when the prop name is contained in the value (#23635) @mnajdova
+- [system] Another round of perf improvements (#23737) @mnajdova
+- [system] Fix transform return value to support CSSObject (#23733) @mnajdova
+- [system] Make borderRadius multiply a theme's design token (#23700) @mnajdova
+- [system] Various perf gain experiments (#23688) @mnajdova
+
+### `@material-ui/styles@v5.0.0-alpha.18`
+
+- [styles] Small performance gain (#23749) @oliviertassinari
+- [styles] Update mergeClasses types to more closely match its implementation (#23705) @etrepum
+
+### `@material-ui/utils@v5.0.0-alpha.18`
+
+- [system] Another round of perf improvements (#23737) @mnajdova
+
+### `@material-ui/lab@v5.0.0-alpha.18`
+
+- [DatePicker] Found one prop that was renamed (#23676) @oliviertassinari
+- [DateRangePicker] Allow same date selection (#23701) @hmaddisb
+
+### `@material-ui/styled-engine@v5.0.0-alpha.18`/`@material-ui/styled-engine-sc@v5.0.0-alpha.18`
+
+- [styled-engine] Fix tagged template syntax with multiple expressions (#23269) @eps1lon
+
+### Docs
+
+- [docs] Add settings panel to allow system mode (#23722) @mbrookes
+- [docs] Add v5 peer dependencies in README (#23751) @johnrichardrinehart
+- [docs] Document using codesandbox-ci (#23800) @brorlarsnicklas
+- [docs] Fix link name for canadacasino (#23799) @eps1lon
+- [docs] Fix various a11y issues reported by lighthouse (#23791) @eps1lon
+- [docs] Improve prop descriptions (#23723) @oliviertassinari
+- [docs] Improve SEO structure (#23748) @oliviertassinari
+- [docs] Improve settings toggle button styling (#23754) @mbrookes
+- [docs] Misc fixes (#23756) @mbrookes
+- [docs] Move instructions for starting the docs earlier in the file (#23801) @brorlarsnicklas
+- [docs] Prepare v5.0.0-alpha.17 (#23680) @oliviertassinari
+- [docs] Remove unused abstraction (#23724) @oliviertassinari
+- [docs] Sync translations (#23682) @l10nbot
+
+### Core
+
+- [benchmark] Improve printed results (#23729) @oliviertassinari
+- [benchmark] Test styleFunctionSx vs. @styled-system/css (#23702) @mnajdova
+- [benchmark] Update with latest (#23694) @oliviertassinari
+- [core] Batch small changes (#23678) @oliviertassinari
+- [core] Fix ci @oliviertassinari
+- [core] Fix error handling on upload (#23734) @eps1lon
+- [core] Fully clear composite TypeScript project state (#23805) @eps1lon
+- [core] Remove unused classes (#23473) @jens-ox
+- [test] Add conformance test suite for v5 (#23798) @mnajdova
+- [test] Cleanup skipped tests (#23732) @eps1lon
+- [test] Misc improvements to experimental and browser test runner (#23699) @eps1lon
+- [test] Stay busy until document.fonts is ready (#23736) @eps1lon
+
 ## 5.0.0-alpha.17
 
 ###### _Nov 23 2020_

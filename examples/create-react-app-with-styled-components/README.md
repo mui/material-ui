@@ -5,8 +5,8 @@
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2 material-ui-next/examples/create-react-app-styled-components
-cd create-react-app-styled-components
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2 material-ui-next/examples/create-react-app-with-styled-components
+cd create-react-app-with-styled-components
 ```
 
 Install it and run:

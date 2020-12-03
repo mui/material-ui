@@ -680,8 +680,9 @@ Autocomplete.propTypes = {
    */
   getOptionLabel: PropTypes.func,
   /**
-   * Used to determine if an option is selected, considering the current value.
+   * Used to determine if an option is selected, considering the current value(s).
    * Uses strict equality by default.
+   * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {T} option The option to test.
    * @param {T} value The value to test against.
