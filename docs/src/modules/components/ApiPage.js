@@ -157,12 +157,11 @@ Heading.propTypes = {
 };
 
 function ApiDocs(props) {
-  const { pageContent } = props;
+  const { descriptions, pageContent } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
   const {
-    [userLanguage]: { componentDescription, classDescriptions, propDescriptions },
     demos,
     filename,
     forwardsRefTo,
@@ -174,6 +173,7 @@ function ApiDocs(props) {
     styles: componentStyles,
   } = pageContent;
 
+  const { componentDescription, classDescriptions, propDescriptions } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
   const source = filename
@@ -332,6 +332,7 @@ import { ${componentName} } from '${source}';`}
 }
 
 ApiDocs.propTypes = {
+  descriptions: PropTypes.object.isRequired,
   pageContent: PropTypes.object.isRequired,
 };
 

@@ -765,8 +765,8 @@ async function buildDocs(options: {
     Object.entries(reactApi.props).map(([propName, propData]) => {
       let description = marked.parseInline(propData.description);
 
-      if (description === '@ignore') {
-        return [propName, propData];
+      if (description.startsWith('@ignore')) {
+        return [];
       }
 
       if (propName === 'classes') {
@@ -855,20 +855,20 @@ import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
-export default function Page({ pageContent }) {
-  return <ApiPage pageContent={pageContent} />;
+export default function Page(props) {
+  const { descriptions, pageContent } = props;
+  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
 }
 
 Page.getInitialProps = () => {
   const req = require.context('docs/pages/api-docs/${kebabCase(
     reactApi.name,
   )}', false, /${kebabCase(reactApi.name)}.*.json$/);
+  const descriptions = mapApiPageTranslations(req);
 
   return {
-    pageContent: {
-      ...mapApiPageTranslations(req),
-      ...jsonPageContent,
-    },
+    descriptions,
+    pageContent: jsonPageContent,
   };
 };
 `.replace(/\r?\n/g, reactApi.EOL),
