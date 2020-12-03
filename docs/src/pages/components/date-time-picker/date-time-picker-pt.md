@@ -1,18 +1,18 @@
 ---
-title: React Date Time Picker component
+title: Componente React Seletor de data e hora
 components: DateTimePicker
 githubLabel: 'component: DateTimePicker'
 packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
-# Date Time Picker
+# Seletor de data e hora
 
-<p class="description">Combined date & time picker.</p>
+<p class="description">Seletor de data & hora combinados.</p>
 
-This component combines the date & time pickers. It allows the user to select both date and time with the same control.
+Este componente combina os seletores de data & hora. Ele permite que o usuário selecione data e hora com o mesmo controle.
 
-Note that this component is the [DatePicker](/components/date-picker/) and [TimePicker](/components/time-picker/) component combined, so any of these components' props can be passed to the DateTimePicker.
+Note que este componente é cobinação dos componentes [DatePicker](/components/date-picker/) e[TimePicker](/components/time-picker/), então qualquer uma das propriedades desses componentes pode ser passada para o DateTimePicker.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -36,32 +36,32 @@ function App() {
 
 ## Utilização Básica
 
-Allows choosing date then time. There are 4 steps available (year, date, hour and minute), so tabs are required to visually distinguish date/time steps.
+Permite escolher a data e hora. Existem 4 etapas disponíveis (ano, data, hora e minuto), então as abas são necessárias para distinguir visualmente os passos de data/hora.
 
 {{"demo": "pages/components/date-time-picker/BasicDateTimePicker.js"}}
 
 ## Responsividade
 
-The `DateTimePicker` component is designed and optimized for the device it runs on.
+O componente `DateTimePicker` é projetado e otimizado para o dispositivo em que ele é executado.
 
 - A versão "móvel" funciona melhor para dispositivos de toque e telas pequenas.
 - A versão "desktop" funciona melhor para dispositivos com mouse e telas grandes.
 
-By default, the `DateTimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
+Por padrão, o componente `DateTimePicker` usa uma consulta de mídia `@media (pointer: fine)` para determinar qual versão usar. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
 
-## Date and time validation
+## Validação de data e hora
 
-It is possible to restrict date and time selection in two ways:
+É possível restringir a seleção de data e hora de duas maneiras:
 
-- by using `minDateTime`/`maxDateTime` its possible to restrict time selection to before or after a particular moment in time
-- using `minTime`/`maxTime`, you can disable selecting times before or after a certain time each day respectively
+- por meio de `minDateTime`/`maxDateTime` é possível restringir a seleção de tempo para antes ou após um determinado momento no tempo
+- usando `minTime`/`maxTime`, você pode desabilitar selecionar horas antes ou depois de um certo tempo a cada dia, respectivamente
 
 {{"demo": "pages/components/date-time-picker/DateTimeValidation.js"}}
 
 ## Customização
 
-Here are some examples of heavily customized date & time pickers:
+Aqui estão alguns exemplos de seletores de data & hora fortemente customizados:
 
 {{"demo": "pages/components/date-time-picker/CustomDateTimePicker.js"}}
