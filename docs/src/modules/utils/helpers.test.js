@@ -56,16 +56,6 @@ const suggestions = [
     });
   });
 
-  it('should support next dependencies', () => {
-    expect(getDependencies(s1, { reactVersion: 'next' })).to.deep.equal({
-      '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'latest',
-      'prop-types': 'latest',
-      'react-dom': 'next',
-      react: 'next',
-    });
-  });
-
   it('should support direct import', () => {
     const source = `
 import 'date-fns';
@@ -133,27 +123,6 @@ import lab from '@material-ui/lab';
       '@material-ui/lab': 'latest',
       react: 'latest',
       'react-dom': 'latest',
-    });
-  });
-
-  it('should support the data-grid component', () => {
-    const source = `
-import * as React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
-import { useDemoData } from '@material-ui/x-grid-data-generator';
-    `;
-
-    expect(getDependencies(source, { codeLanguage: 'TS' })).to.deep.equal({
-      '@material-ui/core': 'latest',
-      '@material-ui/lab': 'latest',
-      '@material-ui/icons': 'latest',
-      '@material-ui/data-grid': 'latest',
-      '@material-ui/x-grid-data-generator': 'latest',
-      '@types/react': 'latest',
-      '@types/react-dom': 'latest',
-      react: 'latest',
-      'react-dom': 'latest',
-      typescript: 'latest',
     });
   });
 
