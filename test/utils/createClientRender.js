@@ -11,6 +11,7 @@ import {
   prettyDOM,
   within,
 } from '@testing-library/react/pure';
+import userEvent from './user-event';
 
 // holes are *All* selectors which aren't necessary for id selectors
 const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
@@ -272,7 +273,7 @@ export function fireTouchChangedEvent(target, type, options) {
 }
 
 export * from '@testing-library/react/pure';
-export { act, cleanup, fireEvent };
+export { act, cleanup, fireEvent, userEvent };
 // We import from `@testing-library/react` and `@testing-library/dom` before creating a JSDOM.
 // At this point a global document isn't available yet. Now it is.
 export const screen = within(document.body);
