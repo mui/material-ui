@@ -44,7 +44,8 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)****
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)
+- **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
   - [Types:](https://material.io/design/components/lists.html#types) 
     - **Single line ✓**
@@ -55,11 +56,11 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - Thumbnail
   - **Controls ✓** 
     - **Checkbox ✓**
-    - **Expand/collapse ✓** (bzw. Verschachtelt)
+    - **Text field dropdown menu ✓** (Select)
     - **Switch ✓**
     - Reorder
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
-  - **** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)** 
+  - [Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓ 
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
     - **Text field dropdown menu ✓** (Select)
@@ -77,7 +78,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Veraltetes Material v1*)
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista) 
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
