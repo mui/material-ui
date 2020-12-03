@@ -25,7 +25,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
 // Only run for ButtonBase
-const TEST = true;
+const TEST = false;
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 

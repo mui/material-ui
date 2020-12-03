@@ -1,0 +1,21 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "anchorEl": "A HTML element, or a function that returns it.\nIt&#39;s used to set the position of the menu.",
+    "autoFocus": "If <code>true</code> (Default) will focus the <code>[role=&quot;menu&quot;]</code> if no focusable child is found. Disabled\nchildren are not focusable. If you set this prop to <code>false</code> focus will be placed\non the parent modal container. This has severe accessibility implications\nand should only be considered if you manage focus otherwise.",
+    "children": "Menu contents, normally <code>MenuItem</code>s.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "disableAutoFocusItem": "When opening the menu will not focus the active item but the <code>[role=&quot;menu&quot;]</code>\nunless <code>autoFocus</code> is also set to <code>false</code>. Not using the default means not\nfollowing WAI-ARIA authoring practices. Please be considerate about possible\naccessibility implications.",
+    "MenuListProps": "Props applied to the <a href=\"/api/menu-list/\"><code>MenuList</code></a> element.",
+    "onClose": "Callback fired when the component requests to be closed.\n\n@param {object} event The event source of the callback.\n@param {string} reason Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>, <code>&quot;tabKeyDown&quot;</code>.",
+    "open": "If <code>true</code>, the menu is visible.",
+    "PopoverClasses": "<code>classes</code> prop applied to the <a href=\"/api/popover/\"><code>Popover</code></a> element.",
+    "transitionDuration": "The length of the transition in <code>ms</code>, or &#39;auto&#39;",
+    "TransitionProps": "Props applied to the transition element.\nBy default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component.",
+    "variant": "The variant to use. Use <code>menu</code> to prevent selected items from impacting the initial focus\nand the vertical alignment relative to the anchor element."
+  },
+  "classDescriptions": {
+    "paper": { "description": "Styles applied to the `Paper` component." },
+    "list": { "description": "Styles applied to the `List` component via `MenuList`." }
+  }
+}

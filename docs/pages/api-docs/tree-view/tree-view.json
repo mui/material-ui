@@ -1,0 +1,23 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the component.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "defaultCollapseIcon": "The default icon used to collapse the node.",
+    "defaultEndIcon": "The default icon displayed next to a end node. This is applied to all\ntree nodes and can be overridden by the TreeItem <code>icon</code> prop.",
+    "defaultExpanded": "Expanded node ids. (Uncontrolled)",
+    "defaultExpandIcon": "The default icon used to expand the node.",
+    "defaultParentIcon": "The default icon displayed next to a parent node. This is applied to all\nparent nodes and can be overridden by the TreeItem <code>icon</code> prop.",
+    "defaultSelected": "Selected node ids. (Uncontrolled)\nWhen <code>multiSelect</code> is true this takes an array of strings; when false (default) a string.",
+    "disabledItemsFocusable": "If <code>true</code>, will allow focus on disabled items.",
+    "disableSelection": "If <code>true</code> selection is disabled.",
+    "expanded": "Expanded node ids. (Controlled)",
+    "id": "This prop is used to help implement the accessibility logic.\nIf you don&#39;t provide this prop. It falls back to a randomly generated id.",
+    "multiSelect": "If true <code>ctrl</code> and <code>shift</code> will trigger multiselect.",
+    "onNodeFocus": "Callback fired when tree items are focused.\n\n@param {object} event The event source of the callback <strong>Warning</strong>: This is a generic event not a focus event.\n@param {string} value of the focused node.",
+    "onNodeSelect": "Callback fired when tree items are selected/unselected.\n\n@param {object} event The event source of the callback\n@param {(array|string)} value of the selected nodes. When <code>multiSelect</code> is true\nthis is an array of strings; when false (default) a string.",
+    "onNodeToggle": "Callback fired when tree items are expanded/collapsed.\n\n@param {object} event The event source of the callback.\n@param {array} nodeIds The ids of the expanded nodes.",
+    "selected": "Selected node ids. (Controlled)\nWhen <code>multiSelect</code> is true this takes an array of strings; when false (default) a string."
+  },
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
+}
