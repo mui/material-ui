@@ -848,7 +848,7 @@ async function buildDocs(options: {
   );
 
   // docs/pages/component-name.js
-  writeFileSync(
+  writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
     `import * as React from 'react';
 import ApiPage from 'docs/src/modules/components/ApiPage';
@@ -874,6 +874,7 @@ Page.getInitialProps = () => {
   };
 };
 `.replace(/\r?\n/g, reactApi.EOL),
+    prettierConfigPath,
   );
 
   // eslint-disable-next-line no-console

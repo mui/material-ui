@@ -9,11 +9,7 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context(
-    'docs/pages/api-docs/dialog-title',
-    false,
-    /dialog-title.*.json$/,
-  );
+  const req = require.context('docs/pages/api-docs/dialog-title', false, /dialog-title.*.json$/);
   const descriptions = mapApiPageTranslations(req);
 
   return {
