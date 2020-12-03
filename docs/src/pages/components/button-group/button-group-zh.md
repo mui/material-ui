@@ -12,19 +12,19 @@ githubLabel: '组件：按钮组'
 
 ## Basic button group 基本的按钮组
 
-The standard Button variants are supported.
+支持基本的按钮变量。
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
 ## 大小和颜色
 
-The `size` and `color` props can be used to control the appearance of the ButtonGroup.
+`size` 和 `color` 属性可以用于控制按钮组的外观。
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
 ## Vertical group 垂直组
 
-The ButtonGroup can be displayed veritcally using the `orientation` prop.
+按钮组可以使用 `orientation` 属性来垂直显示。
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
