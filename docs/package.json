@@ -44,7 +44,6 @@
     "@types/css-mediaquery": "^0.1.0",
     "@types/json2mq": "^0.2.0",
     "@types/markdown-to-jsx": "^6.11.1",
-    "@types/marked": "^1.2.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.0",
     "@types/react-swipeable-views": "^0.13.0",
@@ -123,6 +122,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.8.3",
     "@babel/preset-typescript": "^7.7.4",
+    "@types/marked": "^1.2.0",
     "@types/recharts": "^1.8.14",
     "babel-plugin-unwrap-createstyles": "^4.1.0",
     "cpy-cli": "^3.0.0",
