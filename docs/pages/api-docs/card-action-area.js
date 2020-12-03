@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/pages/api-docs/card-action-area', false, /card-action-area.*.json$/);
+  const req = require.context(
+    'docs/pages/api-docs/card-action-area',
+    false,
+    /card-action-area.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

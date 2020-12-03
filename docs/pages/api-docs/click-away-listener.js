@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/pages/api-docs/click-away-listener', false, /click-away-listener.*.json$/);
+  const req = require.context(
+    'docs/pages/api-docs/click-away-listener',
+    false,
+    /click-away-listener.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

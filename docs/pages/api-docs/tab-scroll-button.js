@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/pages/api-docs/tab-scroll-button', false, /tab-scroll-button.*.json$/);
+  const req = require.context(
+    'docs/pages/api-docs/tab-scroll-button',
+    false,
+    /tab-scroll-button.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

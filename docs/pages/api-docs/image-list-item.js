@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/pages/api-docs/image-list-item', false, /image-list-item.*.json$/);
+  const req = require.context(
+    'docs/pages/api-docs/image-list-item',
+    false,
+    /image-list-item.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

@@ -27,7 +27,7 @@
     "getLimitTagsText": "The label to display when the tags are truncated (<code>limitTags</code>).\n\n@param {number} more The number of truncated tags.\n@returns {ReactNode}",
     "getOptionDisabled": "Used to determine the disabled state for a given option.\n\n@param {T} option The option to test.\n@returns {boolean}",
     "getOptionLabel": "Used to determine the string value for a given option.\nIt&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).\n\n@param {T} option\n@returns {string}",
-    "getOptionSelected": "Used to determine if an option is selected, considering the current value.\nUses strict equality by default.\n\n@param {T} option The option to test.\n@param {T} value The value to test against.\n@returns {boolean}",
+    "getOptionSelected": "Used to determine if an option is selected, considering the current value(s).\nUses strict equality by default.\n⚠️ Both arguments need to be handled, an option can only match with one value.\n\n@param {T} option The option to test.\n@param {T} value The value to test against.\n@returns {boolean}",
     "groupBy": "If provided, the options will be grouped under the returned string.\nThe groupBy value is also used as the text for group headings when <code>renderGroup</code> is not provided.\n\n@param {T} options The options to group.\n@returns {string}",
     "handleHomeEndKeys": "If <code>true</code>, the component handles the &quot;Home&quot; and &quot;End&quot; keys when the popup is open.\nIt should move focus to the first option and last option, respectively.",
     "id": "This prop is used to help implement the accessibility logic.\nIf you don&#39;t provide this prop. It falls back to a randomly generated id.",

@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/pages/api-docs/scoped-css-baseline', false, /scoped-css-baseline.*.json$/);
+  const req = require.context(
+    'docs/pages/api-docs/scoped-css-baseline',
+    false,
+    /scoped-css-baseline.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

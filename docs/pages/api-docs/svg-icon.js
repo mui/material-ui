@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/pages/api-docs/svg-icon', false, /svg-icon.*.json$/);
+  const req = require.context(
+    'docs/pages/api-docs/svg-icon',
+    false,
+    /svg-icon.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

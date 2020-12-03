@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/pages/api-docs/timeline-content', false, /timeline-content.*.json$/);
+  const req = require.context(
+    'docs/pages/api-docs/timeline-content',
+    false,
+    /timeline-content.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {

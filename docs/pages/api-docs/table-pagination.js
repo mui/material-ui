@@ -9,7 +9,11 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const req = require.context('docs/pages/api-docs/table-pagination', false, /table-pagination.*.json$/);
+  const req = require.context(
+    'docs/pages/api-docs/table-pagination',
+    false,
+    /table-pagination.*.json$/,
+  );
   const descriptions = mapApiPageTranslations(req);
 
   return {
