@@ -365,14 +365,16 @@ describe('<Select />', () => {
       });
 
       it('warns when the value is not present in any option', () => {
-        render(
-          <Select value={20}>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>,
-        );
-        expect(console.warn.callCount).to.equal(2); // strict mode renders twice
-        expect(console.warn.args[0][0]).to.include(
+        expect(() =>
+          render(
+            <Select value={20}>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>,
+          ),
+        ).toWarnDev(
+          'Material-UI: You have provided an out-of-range value `20` for the select component.',
+          // strict mode renders twice
           'Material-UI: You have provided an out-of-range value `20` for the select component.',
         );
       });
@@ -874,6 +876,10 @@ describe('<Select />', () => {
         }
 
         const errorRef = React.createRef();
+        const expectedErrorMessage =
+          process.env.NODE_ENV !== 'production'
+            ? 'Material-UI: The `value` prop must be an array'
+            : 'Minified Material-UI error';
         expect(() => {
           render(
             <ErrorBoundary ref={errorRef}>
@@ -885,14 +891,14 @@ describe('<Select />', () => {
             </ErrorBoundary>,
           );
         }).toErrorDev([
-          'Material-UI: The `value` prop must be an array',
+          expectedErrorMessage,
           'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },
         } = errorRef;
         expect(errors).to.have.length(1);
-        expect(errors[0].toString()).to.include('Material-UI: The `value` prop must be an array');
+        expect(errors[0].toString()).to.include(expectedErrorMessage);
       });
     });
 

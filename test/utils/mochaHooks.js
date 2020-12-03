@@ -2,6 +2,47 @@ const formatUtil = require('format-util');
 
 const isKarma = Boolean(process.env.KARMA);
 
+/**
+ * From https://github.com/facebook/react/blob/e23673b511a2eab6ddcb848a4150105c954f289a/scripts/jest/shouldIgnoreConsoleError.js#L3
+ * @param {*} format
+ * @param {*} args
+ */
+function shouldIgnoreConsoleError(format, args) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (typeof format === 'string') {
+      if (format.indexOf('Error: Uncaught [') === 0) {
+        // This looks like an uncaught error from invokeGuardedCallback() wrapper
+        // in development that is reported by jsdom. Ignore because it's noisy.
+        return true;
+      }
+      if (format.indexOf('The above error occurred') === 0) {
+        // This looks like an error addendum from ReactFiberErrorLogger.
+        // Ignore it too.
+        return true;
+      }
+    }
+  } else {
+    if (
+      format != null &&
+      typeof format.message === 'string' &&
+      typeof format.stack === 'string' &&
+      args.length === 0
+    ) {
+      // In production, ReactFiberErrorLogger logs error objects directly.
+      // They are noisy too so we'll try to ignore them.
+      return true;
+    }
+    if (format.indexOf('act(...) is not supported in production builds of React') === 0) {
+      // React does yet support act() for prod builds, and warn for it.
+      // But we'd like to use act() ourselves for prod builds.
+      // Let's ignore the warning and #yolo.
+      return true;
+    }
+  }
+  // Looks legit
+  return false;
+}
+
 function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher) {
   const mochaHooks = {
     beforeAll: [],
@@ -13,14 +54,11 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
   const stackTraceFilter = Mocha.utils.stackTraceFilter();
 
   function logUnexpectedConsoleCalls(format, ...args) {
-    const message = formatUtil(format, ...args);
-
-    if (process.env.NODE_ENV === 'production') {
-      // TODO: mock scheduler
-      if (message.indexOf('act(...) is not supported in production builds of React') !== -1) {
-        return;
-      }
+    if (methodName === 'error' && shouldIgnoreConsoleError(format, args)) {
+      return;
     }
+
+    const message = formatUtil(format, ...args);
 
     // Safe stack so that test dev can track where the unexpected console message was created.
     const { stack } = new Error();
@@ -98,6 +136,31 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
   return mochaHooks;
 }
 
+/**
+ * full titles of tests that are not applicable to production.
+ */
+const devOnlyTests = new Set([
+  // .propTypes tests
+  '<Accordion /> prop: children first child requires at least one child',
+  '<Accordion /> prop: children first child needs a valid element as the first child',
+  '<CardMedia /> warnings warns when neither `children`, nor `image`, nor `src`, nor `component` are provided',
+  '<IconButton /> should raise a warning about onClick in children because of Firefox',
+  '<ListItem /> secondary action warnings warns if it cant detect the secondary action properly',
+  '<Popover /> warnings should warn if anchorEl is not valid',
+  '<Popover /> warnings warns if a component for the Paper is used that cant hold a ref',
+  '<TablePagination /> warnings should raise a warning if the page prop is out of range',
+  '<TreeItem /> warnings should warn if an onFocus callback is supplied',
+  '<TreeItem /> warnings should warn if an `ContentComponent` that does not hold a ref is used',
+]);
+/**
+ * @this {import('mocha').Context}
+ */
+function skipDevOnlyTestsInProd() {
+  if (devOnlyTests.has(this.currentTest?.fullTitle())) {
+    this.skip();
+  }
+}
+
 function createMochaHooks(Mocha) {
   const warnHooks = createUnexpectedConsoleMessagesHooks(Mocha, 'warn', 'toWarnDev');
   const errorHooks = createUnexpectedConsoleMessagesHooks(Mocha, 'error', 'toErrorDev');
@@ -105,7 +168,7 @@ function createMochaHooks(Mocha) {
   return {
     beforeAll: [...warnHooks.beforeAll, ...errorHooks.beforeAll],
     afterAll: [...warnHooks.afterAll, ...errorHooks.afterAll],
-    beforeEach: [...warnHooks.beforeEach, ...errorHooks.beforeEach],
+    beforeEach: [skipDevOnlyTestsInProd, ...warnHooks.beforeEach, ...errorHooks.beforeEach],
     afterEach: [...warnHooks.afterEach, ...errorHooks.afterEach],
   };
 }
