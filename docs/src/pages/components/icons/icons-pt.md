@@ -31,9 +31,9 @@ npm install @material-ui/icons
 yarn add @material-ui/icons
 ```
 
-These components use the Material-UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@materialui/core`.
+Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@materialui/core`.
 
-If you aren't already using Material-UI in your project, you can add it with:
+Se você ainda não estiver usando Material-UI no seu projeto, você pode adicioná-lo com:
 
 ```sh
 // usando npm
@@ -60,9 +60,9 @@ Importe ícones usando uma destas duas opções:
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest for bundle size is Option 1, but some developers prefer Option 2. Certifique-se de seguir o guia [minimizando o tamanho do pacote](/guides/minimizing-bundle-size/#option-2) antes de usar a segunda abordagem.
+O mais seguro para o tamanho do pacote é a opção 1, mas alguns desenvolvedores preferem a opção 2. Certifique-se de seguir o guia [minimizando o tamanho do pacote](/guides/minimizing-bundle-size/#option-2) antes de usar a segunda abordagem.
 
-Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. Por exemplo, para usar o ícone `@material-ui/icons/Delete`, temos:
+Cada ícone Material também tem um "tema": Filled (padrão), Outlined, Rounded, Two-tone, e Sharp. Para importar o componente de ícone com um tema diferente do padrão, acrescente o nome do tema ao nome do ícone. Por exemplo, para usar o ícone `@material-ui/icons/Delete`, temos:
 
 - Tema Filled (preenchido que é o padrão) é exportado como `@material-ui/icons/Delete`,
 - Tema Outlined (contornado) é exportado como `@material-ui/icons/DeleteOutlined`,
@@ -76,13 +76,13 @@ Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-
 
 ### Testando
 
-For testing purposes, each icon exposed from `@material-ui/icons` has a `data-testid` attribute with the name of the icon. Por exemplo:
+Para fins de teste, cada ícone exposto do `@material-ui/icons` tem um atributo `data-testid` com o nome do ícone. Por exemplo:
 
 ```jsx
 import DeleteIcon from '@material-ui/icons/Delete';
 ```
 
-has the following attribute once mounted:
+tem o seguinte atributo assim que montado:
 
 ```html
 <svg data-testid="DeleteIcon"></svg>
@@ -90,10 +90,10 @@ has the following attribute once mounted:
 
 ## SvgIcon
 
-If you need a custom SVG icon (not available in the [Material Icons](/components/material-icons/)) you can use the `SvgIcon` wrapper. Este componente estende o elemento nativo `<svg>`:
+Se você precisa de um ícone SVG customizado (não disponível nos [ícones Material](/components/material-icons/)) você pode usar encapsular com `SvgIcon`. Este componente estende o elemento nativo `<svg>`:
 
 - Ele vem internamente com a acessibilidade.
-- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other Material-UI components that use icons. (Isso pode ser customizado com o atributo `viewBox`).
+- Os elementos SVG devem ser dimensionados para uma visualização de 24x24px, de modo que o ícone resultante possa ser usado como está, ou incluído como filho para outros componentes de Material-UI que usam ícones. (Isso pode ser customizado com o atributo `viewBox`).
 - Por padrão, o componente herda a cor atual. Opcionalmente, você pode aplicar uma das cores do tema usando a propriedade `color`.
 
 ```jsx
@@ -131,7 +131,7 @@ import StarIcon from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-Também é possível usá-lo com "url-loader" ou "file-loader". This is the approach used by Create React App.
+Também é possível usá-lo com "url-loader" ou "file-loader". Esta é a abordagem usada pelo Create React App.
 
 ```jsx
 // webpack.config.js
@@ -148,7 +148,7 @@ import { ReactComponent as StarIcon } from './star.svg';
 
 ### createSvgIcon
 
-The `createSvgIcon` utility component is used to create the [Material icons](#material-icons). It can be used to wrap an SVG path with an SvgIcon component.
+O componente utilitário `createSvgIcon` é usado para criar [ícones Material](#material-icons). Ele pode ser usado para encapsular um caminho SVG com um componente SvgIcon.
 
 ```jsx
 const HomeIcon = createSvgIcon(
@@ -161,7 +161,7 @@ const HomeIcon = createSvgIcon(
 
 ### Fonte Awesome
 
-If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you can try passing the Font Awesome SVG data directly to SvgIcon.
+Se você descobrir que há problemas de leiaute ao usar FontAwesomeIcon de `@fortawesome/react-fontawesome`, você pode tentar passar os dados SVG da Font Awesome diretamente para SvgIcon.
 
 [Fonte Awesome](https://fontawesome.com/icons) pode ser usada com o componente `Icon` da seguinte forma:
 

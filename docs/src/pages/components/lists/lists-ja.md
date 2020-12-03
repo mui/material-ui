@@ -87,7 +87,9 @@ Switchは補助的なアクションであり異なるターゲットです。
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## 差し込み
+## Inset List Item
+
+The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 

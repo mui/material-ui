@@ -85,7 +85,7 @@ Quando renderizando, vamos encapsular `App`, o componente raiz, dentro de um [`S
 
 A etapa principal na renderização do lado do servidor, é renderizar o HTML inicial do componente **antes** de enviarmos para o lado do cliente. Para fazer isso, usamos [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-Em seguida, obtemos o CSS das `folhas` usando `sheets.toString()`. As we are also using emotion as our default styled engine, we need to extract the styles from the emotion instance as well. For this we need to share the same cache definition for both the client and server:
+Em seguida, obtemos o CSS das `folhas` usando `sheets.toString()`. Uma vez que também estamos usando emotion como nosso motor padrão de estilos, precisamos extrair os estilos também da instância do emotion. Para isso, precisamos compartilhar a mesma definição de cache tanto para o cliente quanto para o servidor:
 
 `cache.js`
 
@@ -97,7 +97,7 @@ const cache = createCache({ key: 'css' });
 export default cache;
 ```
 
-With this we are creating new Emotion server instance and using this to extract the critical styles for the html as well.
+Com isto estamos criando uma nova instância do servidor Emotion e usando isto para extrair os estilos críticos para o html também.
 
 Vamos ver como isso é passado na função `renderFullPage`.
 
@@ -116,7 +116,7 @@ const { extractCritical } = createEmotionServer(cache);
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
+  // Renderiza o componente para uma string.
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <CacheProvider value={cache}>
@@ -127,13 +127,13 @@ function handleRender(req, res) {
     ),
   );
 
-  // Grab the CSS from the sheets.
+  // Pegue o CSS das folhas.
   const css = sheets.toString();
 
-  // Grab the CSS from emotion
+  // Pegue o CSS do emotion
   const styles = extractCritical(html);
 
-  // Send the rendered page back to the client.
+  // Envie a página renderizada de volta para o cliente.
   res.send(renderFullPage(html, `${css} ${styles.css}`));
 }
 
@@ -141,7 +141,7 @@ const app = express();
 
 app.use('/build', express.static('build'));
 
-// This is fired every time the server-side receives a request.
+// Isso é acionado toda vez que o servidor recebe uma requisição.
 app.use(handleRender);
 
 const port = 3000;
@@ -210,7 +210,7 @@ Nós hospedamos diferentes implementações de referência que você pode encont
 
 - [A implementação de referência deste tutorial](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- https://github.com/mui-org/material-ui/tree/master/examples/nextjs
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([Versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
 
 ## Resolução de problemas
 

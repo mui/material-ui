@@ -20,10 +20,12 @@
 
 ### 升级 Material-UI 的版本
 
-若想要使用最新版本的 Material-UI，您必须更新 `package.json`。
+你需要更新你的 `package.json`，以使用最新版本的 Material-UI 和它相关的依赖。
 
 ```json
 "dependencies": {
+  "@emotion/react": "^11.0.0",
+  "@emotion/styled": "^11.0.0",
   "@material-ui/core": "^5.0.0"
 }
 ```
@@ -31,11 +33,11 @@
 或者运行
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
-或者
+或者使用
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 ## 处理变化带来的系统崩溃
@@ -338,7 +340,7 @@ const classes = makeStyles(theme => ({
 
 [该编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) 将自动将你的代码更新为新的语法。
 
-- The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit value, in `px`.
+- `borderRadius` 系统属性值转换已被更改。 如果它收到一个数字，它就会将这个值与 `theme.shape.borderRadius` 的值相乘。 也可以使用字符串来提供一个明确的值，单位是 `px`。
 
   ```diff
   -<Box sx={{ borderRadius: 'borderRadius' }}>
