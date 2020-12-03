@@ -64,6 +64,7 @@ const blacklist = [
   'docs-components-grid/InteractiveGrid.png', // Redux isolation
   'docs-components-grid/SpacingGrid.png', // Needs interaction
   'docs-components-hidden', // Need to dynamically resize to test
+  'docs-components-icons/FontAwesomeIconSize.png', // Relies on cascading network requests
   'docs-components-image-list', // Image don't load
   'docs-components-material-icons/synonyms.png', // No component
   'docs-components-menus', // Need interaction
