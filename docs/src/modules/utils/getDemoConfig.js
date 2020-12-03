@@ -79,7 +79,7 @@ function getLanguageConfig(demoData) {
   }
 }
 
-export default function getDemo(demoData) {
+export default function getDemoConfig(demoData) {
   const baseConfig = {
     title: demoData.title,
     description: demoData.githubLocation,
