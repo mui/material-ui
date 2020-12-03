@@ -236,18 +236,6 @@ const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
   const stop = React.useCallback((event, cb) => {
     clearTimeout(startTimer.current);
 
-    // The touch interaction occurs too quickly.
-    // We still want to show ripple effect.
-    if (event.type === 'touchend' && startTimerCommit.current) {
-      event.persist();
-      startTimerCommit.current();
-      startTimerCommit.current = null;
-      startTimer.current = setTimeout(() => {
-        stop(event, cb);
-      });
-      return;
-    }
-
     startTimerCommit.current = null;
 
     setRipples((oldRipples) => {

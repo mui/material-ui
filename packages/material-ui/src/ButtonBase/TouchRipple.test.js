@@ -221,7 +221,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(1);
     });
 
-    it('should trigger the ripple for short touch interactions', () => {
+    it('should not trigger the ripple for short touch interactions', () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
@@ -245,15 +245,8 @@ describe('<TouchRipple />', () => {
         instance.stop({ type: 'touchend', persist: () => {} }, cb);
       });
 
-      expect(queryAllActiveRipples()).to.have.lengthOf(1);
-      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
-
-      act(() => {
-        clock.tick(1);
-      });
-
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
-      expect(queryAllStoppingRipples()).to.have.lengthOf(1);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(0);
     });
 
     it('should interrupt the ripple schedule', () => {
