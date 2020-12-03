@@ -11,7 +11,7 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
 };
-function TopLayoutDocs(props) {
+function MarkdownDocs(props) {
   const { disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
 
   const userLanguage = useUserLanguage();
@@ -86,7 +86,7 @@ function TopLayoutDocs(props) {
   );
 }
 
-TopLayoutDocs.propTypes = {
+MarkdownDocs.propTypes = {
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
@@ -95,7 +95,7 @@ TopLayoutDocs.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  TopLayoutDocs.propTypes = exactProp(TopLayoutDocs.propTypes);
+  MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
 }
 
-export default TopLayoutDocs;
+export default MarkdownDocs;

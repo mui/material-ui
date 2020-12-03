@@ -1,6 +1,6 @@
 import React from 'react';
 import sortedUniqBy from 'lodash/sortedUniqBy';
-import TopLayoutDocs from 'docs/src/modules/components/TopLayoutDocs';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'versions';
@@ -8,7 +8,7 @@ const requireDemo = require.context('docs/src/pages/versions/', false, /\.(js|ts
 const requireRaw = require.context('!raw-loader!../src/pages/versions', false, /\.(js|md|tsx)$/);
 
 export default function Page({ demos, docs }) {
-  return <TopLayoutDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 
 function formatVersion(version) {
