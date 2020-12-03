@@ -213,6 +213,7 @@ const Badge = React.forwardRef(function Badge(inputProps, ref) {
   const { isRtl, ...props } = useThemeProps({ props: inputProps, name: 'MuiBadge' });
   const {
     components = {},
+    componentsProps = {},
     color: colorProp = 'default',
     invisible: invisibleProp,
     badgeContent: badgeContentProp,
@@ -240,15 +241,22 @@ const Badge = React.forwardRef(function Badge(inputProps, ref) {
 
   return (
     <BadgeUnstyled
-      {...other}
+      {...{
+        color: colorProp,
+        invisible: invisibleProp,
+        badgeContent: badgeContentProp,
+        showZero,
+        variant: variantProp,
+        ...other
+      }}
       components={{
         Root: BadgeRoot,
         Badge: BadgeBadge,
         ...components,
       }}
       componentsProps={{
-        root: { styleProps: { color } },
-        badge: { styleProps: { color } },
+        root: { ...componentsProps.root, styleProps: { ...componentsProps.root?.styleProps, color } },
+        badge: { ...componentsProps.badge, styleProps: { ...componentsProps.badge?.styleProps, color } },
       }}
       classes={classes}
       ref={ref}
