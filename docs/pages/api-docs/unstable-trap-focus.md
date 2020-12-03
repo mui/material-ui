@@ -31,7 +31,6 @@ Utility component that locks focus inside the component.
 | <span class="prop-name">disableEnforceFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the trap focus will not prevent focus from leaving the trap focus while open.<br>Generally this should never be set to `true` as it makes the trap focus less accessible to assistive technologies, like screen readers. |
 | <span class="prop-name">disableRestoreFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the trap focus will not restore focus to previously focused element once trap focus is hidden. |
 | <span class="prop-name required">getDoc<abbr title="required">*</abbr></span> | <span class="prop-type">func</span> |  | Return the document to consider. We use it to implement the restore focus between different browser documents. |
-| <span class="prop-name">getTabbable</span> | <span class="prop-type">func</span> |  | Returns an array of ordered tabbable nodes (i.e. in tab order) within the root. For instance, you can provide the "tabbable" npm dependency.<br><br>**Signature:**<br>`function(root: HTMLElement) => void`<br> |
 | <span class="prop-name required">isEnabled<abbr title="required">*</abbr></span> | <span class="prop-type">func</span> |  | Do we still want to enforce the focus? This prop helps nesting TrapFocus elements. |
 | <span class="prop-name required">open<abbr title="required">*</abbr></span> | <span class="prop-type">bool</span> |  | If `true`, focus is locked. |
 
