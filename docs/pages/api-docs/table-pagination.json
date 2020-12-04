@@ -17,7 +17,7 @@
     "nextIconButtonProps": { "type": { "name": "object" } },
     "onPageChange": { "type": { "name": "func" }, "required": true },
     "onRowsPerPageChange": { "type": { "name": "func" } },
-    "page": { "type": { "name": "custom", "description": "number" } },
+    "page": { "type": { "name": "custom", "description": "number" }, "required": true },
     "rowsPerPage": { "type": { "name": "number" }, "required": true },
     "rowsPerPageOptions": {
       "type": {

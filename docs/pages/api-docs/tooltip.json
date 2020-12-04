@@ -1,7 +1,7 @@
 {
   "props": {
     "arrow": { "type": { "name": "bool" } },
-    "children": { "type": { "name": "custom", "description": "element" } },
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "classes": { "type": { "name": "object" } },
     "describeChild": { "type": { "name": "bool" } },
     "disableFocusListener": { "type": { "name": "bool" } },

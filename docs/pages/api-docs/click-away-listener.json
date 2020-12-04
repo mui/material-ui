@@ -1,6 +1,6 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "element" } },
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "disableReactTree": { "type": { "name": "bool" } },
     "mouseEvent": {
       "type": {

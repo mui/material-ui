@@ -12,7 +12,13 @@ import remarkVisit from 'unist-util-visit';
 import marked from 'marked/lib/marked';
 import * as yargs from 'yargs';
 import * as doctrine from 'doctrine';
-import { defaultHandlers, parse as docgenParse, PropDescriptor, PropTypeDescriptor, ReactDocgenApi } from 'react-docgen';
+import {
+  defaultHandlers,
+  parse as docgenParse,
+  PropDescriptor,
+  PropTypeDescriptor,
+  ReactDocgenApi,
+} from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
@@ -953,7 +959,7 @@ async function buildDocs(options: {
 
       let description = generatePropDescription(prop, propName);
       description = marked.parseInline(description);
-      
+
       if (propName === 'classes') {
         // TODO: Dedupe this for l10n
         description += ' See <a href="#css">CSS API</a> below for more details.';
@@ -966,11 +972,21 @@ async function buildDocs(options: {
 
       // Only keep `default` for bool props if it isn't 'false'.
       let defaultValue: string | undefined;
-      if (propDescriptor.type.name !== 'bool' || propDescriptor.jsdocDefaultValue?.value !== 'false') {
+      if (
+        propDescriptor.type.name !== 'bool' ||
+        propDescriptor.jsdocDefaultValue?.value !== 'false'
+      ) {
         defaultValue = propDescriptor.jsdocDefaultValue?.value;
       }
 
       const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
+      const chainedPropType = getChained(prop.type);
+
+      const requiredProp =
+        prop.required ||
+        /\.isRequired/.test(prop.type.raw) ||
+        (chainedPropType !== false && chainedPropType.required);
+
       return [
         propName,
         {
@@ -981,7 +997,7 @@ async function buildDocs(options: {
           },
           default: defaultValue,
           // undefined values are not serialized => saving some bytes
-          required: propDescriptor.required ? true : undefined,
+          required: requiredProp || undefined,
         },
       ];
     }),

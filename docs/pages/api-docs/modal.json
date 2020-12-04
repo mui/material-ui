@@ -2,7 +2,7 @@
   "props": {
     "BackdropComponent": { "type": { "name": "elementType" }, "default": "SimpleBackdrop" },
     "BackdropProps": { "type": { "name": "object" } },
-    "children": { "type": { "name": "custom", "description": "element" } },
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "closeAfterTransition": { "type": { "name": "bool" } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disableAutoFocus": { "type": { "name": "bool" } },
