@@ -104,8 +104,8 @@ describe('<Popper />', () => {
         </Popper>,
       );
       expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom']]);
-      await act(() => {
-        return popperRef.current.setOptions({ placement: 'top' });
+      await act(async () => {
+        await popperRef.current.setOptions({ placement: 'top' });
       });
       expect(renderSpy.args).to.deep.equal([
         ['bottom'],
