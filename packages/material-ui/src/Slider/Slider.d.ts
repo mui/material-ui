@@ -5,7 +5,7 @@ import {
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
   SliderUnstyledClasses,
-} from '@material-ui/unstyled/SliderUnstyled';
+} from '@material-ui/unstyled';
 import { Theme } from '@material-ui/core/styles';
 import { OverrideProps } from '../OverridableComponent';
 
