@@ -11,7 +11,7 @@
     }
   },
   "name": "MenuList",
-  "styles": { "classes": [], "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/material-ui/src/MenuList/MenuList.js",

@@ -5,7 +5,7 @@
     "value": { "type": { "name": "string" }, "required": true }
   },
   "name": "TabPanel",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTabPanel" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/TabPanel/TabPanel.js",

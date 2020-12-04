@@ -14,7 +14,8 @@
       "content",
       "oppositeContent"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiTimelineItem"
   },
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",

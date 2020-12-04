@@ -12,7 +12,8 @@
   "name": "ListItemText",
   "styles": {
     "classes": ["root", "multiline", "dense", "inset", "primary", "secondary"],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiListItemText"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

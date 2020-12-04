@@ -18,7 +18,8 @@
   "name": "ToggleButton",
   "styles": {
     "classes": ["root", "disabled", "selected", "label", "sizeSmall", "sizeLarge"],
-    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" }
+    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" },
+    "name": "MuiToggleButton"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

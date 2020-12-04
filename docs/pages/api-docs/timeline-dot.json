@@ -30,7 +30,8 @@
       "filledSecondary",
       "outlinedSecondary"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiTimelineDot"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

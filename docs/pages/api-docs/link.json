@@ -36,7 +36,8 @@
       "button",
       "focusVisible"
     ],
-    "globalClasses": { "focusVisible": "Mui-focusVisible" }
+    "globalClasses": { "focusVisible": "Mui-focusVisible" },
+    "name": "MuiLink"
   },
   "spread": true,
   "forwardsRefTo": "HTMLAnchorElement",

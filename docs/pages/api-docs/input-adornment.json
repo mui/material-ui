@@ -24,7 +24,8 @@
       "hiddenLabel",
       "marginDense"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiInputAdornment"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

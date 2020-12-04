@@ -40,7 +40,8 @@
       "anchorOriginTopLeft",
       "anchorOriginBottomLeft"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiSnackbar"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

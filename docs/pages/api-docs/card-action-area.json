@@ -6,7 +6,8 @@
   "name": "CardActionArea",
   "styles": {
     "classes": ["root", "focusVisible", "focusHighlight"],
-    "globalClasses": { "focusVisible": "Mui-focusVisible" }
+    "globalClasses": { "focusVisible": "Mui-focusVisible" },
+    "name": "MuiCardActionArea"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

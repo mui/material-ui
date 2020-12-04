@@ -7,7 +7,11 @@
     "rows": { "type": { "name": "number" }, "default": "1" }
   },
   "name": "ImageListItem",
-  "styles": { "classes": ["root", "img", "standard", "woven"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "img", "standard", "woven"],
+    "globalClasses": {},
+    "name": "MuiImageListItem"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/material-ui/src/ImageListItem/ImageListItem.js",

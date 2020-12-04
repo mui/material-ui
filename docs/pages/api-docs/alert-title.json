@@ -4,7 +4,7 @@
     "classes": { "type": { "name": "object" } }
   },
   "name": "AlertTitle",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAlertTitle" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/AlertTitle/AlertTitle.js",

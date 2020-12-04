@@ -57,7 +57,8 @@
       "message",
       "action"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiAlert"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

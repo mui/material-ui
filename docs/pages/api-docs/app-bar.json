@@ -32,7 +32,8 @@
       "colorInherit",
       "colorTransparent"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiAppBar"
   },
   "spread": true,
   "forwardsRefTo": "HTMLElement",

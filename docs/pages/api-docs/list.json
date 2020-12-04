@@ -8,7 +8,11 @@
     "subheader": { "type": { "name": "node" } }
   },
   "name": "List",
-  "styles": { "classes": ["root", "padding", "dense", "subheader"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "padding", "dense", "subheader"],
+    "globalClasses": {},
+    "name": "MuiList"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/material-ui/src/List/List.js",

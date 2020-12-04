@@ -19,7 +19,7 @@
     }
   },
   "name": "ClickAwayListener",
-  "styles": { "classes": [], "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "filename": "/packages/material-ui/src/ClickAwayListener/ClickAwayListener.js",
   "inheritance": null,

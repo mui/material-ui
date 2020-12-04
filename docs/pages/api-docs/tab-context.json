@@ -4,7 +4,7 @@
     "value": { "type": { "name": "string" }, "required": true }
   },
   "name": "TabContext",
-  "styles": { "classes": [], "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "filename": "/packages/material-ui-lab/src/TabContext/TabContext.js",
   "inheritance": null,

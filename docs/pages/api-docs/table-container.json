@@ -5,7 +5,7 @@
     "component": { "type": { "name": "elementType" } }
   },
   "name": "TableContainer",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableContainer" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/TableContainer/TableContainer.js",

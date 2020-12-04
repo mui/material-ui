@@ -33,7 +33,8 @@
       "disabled": "Mui-disabled",
       "focused": "Mui-focused",
       "required": "Mui-required"
-    }
+    },
+    "name": "MuiFormHelperText"
   },
   "spread": true,
   "forwardsRefTo": "HTMLParagraphElement",

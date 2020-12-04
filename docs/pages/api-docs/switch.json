@@ -47,7 +47,8 @@
       "thumb",
       "track"
     ],
-    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" }
+    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
+    "name": "MuiSwitch"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

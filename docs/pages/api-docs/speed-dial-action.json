@@ -28,7 +28,8 @@
       "tooltipPlacementLeft",
       "tooltipPlacementRight"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiSpeedDialAction"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

@@ -5,7 +5,7 @@
     "disableSpacing": { "type": { "name": "bool" } }
   },
   "name": "DialogActions",
-  "styles": { "classes": ["root", "spacing"], "globalClasses": {} },
+  "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiDialogActions" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/DialogActions/DialogActions.js",

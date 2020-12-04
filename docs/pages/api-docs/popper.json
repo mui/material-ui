@@ -35,7 +35,7 @@
     "transition": { "type": { "name": "bool" } }
   },
   "name": "Popper",
-  "styles": { "classes": [], "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Popper/Popper.js",

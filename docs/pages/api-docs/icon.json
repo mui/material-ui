@@ -32,7 +32,8 @@
       "fontSizeSmall",
       "fontSizeLarge"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiIcon"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

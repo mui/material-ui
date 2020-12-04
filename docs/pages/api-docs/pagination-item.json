@@ -62,7 +62,8 @@
       "focusVisible": "Mui-focusVisible",
       "disabled": "Mui-disabled",
       "selected": "Mui-selected"
-    }
+    },
+    "name": "MuiPaginationItem"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

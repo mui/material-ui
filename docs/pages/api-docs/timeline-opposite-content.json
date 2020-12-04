@@ -4,7 +4,11 @@
     "classes": { "type": { "name": "object" } }
   },
   "name": "TimelineOppositeContent",
-  "styles": { "classes": ["root", "alignRight"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "alignRight"],
+    "globalClasses": {},
+    "name": "MuiTimelineOppositeContent"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/TimelineOppositeContent/TimelineOppositeContent.js",

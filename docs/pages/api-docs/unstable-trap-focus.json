@@ -9,7 +9,7 @@
     "open": { "type": { "name": "bool" }, "required": true }
   },
   "name": "Unstable_TrapFocus",
-  "styles": { "classes": [], "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "filename": "/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js",
   "inheritance": null,

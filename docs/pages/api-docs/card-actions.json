@@ -5,7 +5,7 @@
     "disableSpacing": { "type": { "name": "bool" } }
   },
   "name": "CardActions",
-  "styles": { "classes": ["root", "spacing"], "globalClasses": {} },
+  "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiCardActions" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/CardActions/CardActions.js",

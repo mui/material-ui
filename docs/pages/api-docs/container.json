@@ -24,7 +24,8 @@
       "maxWidthLg",
       "maxWidthXl"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiContainer"
   },
   "spread": true,
   "forwardsRefTo": "HTMLElement",

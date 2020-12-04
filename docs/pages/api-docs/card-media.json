@@ -7,7 +7,7 @@
     "src": { "type": { "name": "string" } }
   },
   "name": "CardMedia",
-  "styles": { "classes": ["root", "media", "img"], "globalClasses": {} },
+  "styles": { "classes": ["root", "media", "img"], "globalClasses": {}, "name": "MuiCardMedia" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/CardMedia/CardMedia.js",

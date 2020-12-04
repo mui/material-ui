@@ -73,7 +73,8 @@
       "displayInline",
       "displayBlock"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiTypography"
   },
   "spread": true,
   "forwardsRefTo": "HTMLParagraphElement",

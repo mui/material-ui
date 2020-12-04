@@ -5,7 +5,7 @@
     "dividers": { "type": { "name": "bool" } }
   },
   "name": "DialogContent",
-  "styles": { "classes": ["root", "dividers"], "globalClasses": {} },
+  "styles": { "classes": ["root", "dividers"], "globalClasses": {}, "name": "MuiDialogContent" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/DialogContent/DialogContent.js",

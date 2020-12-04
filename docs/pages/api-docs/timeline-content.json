@@ -4,7 +4,11 @@
     "classes": { "type": { "name": "object" } }
   },
   "name": "TimelineContent",
-  "styles": { "classes": ["root", "alignRight"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "alignRight"],
+    "globalClasses": {},
+    "name": "MuiTimelineContent"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/TimelineContent/TimelineContent.js",

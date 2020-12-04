@@ -4,7 +4,11 @@
     "classes": { "type": { "name": "object" } }
   },
   "name": "ListItemIcon",
-  "styles": { "classes": ["root", "alignItemsFlexStart"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "alignItemsFlexStart"],
+    "globalClasses": {},
+    "name": "MuiListItemIcon"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/ListItemIcon/ListItemIcon.js",

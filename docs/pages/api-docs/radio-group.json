@@ -12,7 +12,7 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "RadioGroup",
-  "styles": { "classes": [], "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/RadioGroup/RadioGroup.js",

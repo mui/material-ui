@@ -27,7 +27,7 @@
     }
   },
   "name": "TreeView",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTreeView" },
   "spread": true,
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/material-ui-lab/src/TreeView/TreeView.js",

@@ -135,7 +135,8 @@
       "grid-xs-11",
       "grid-xs-12"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiGrid"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

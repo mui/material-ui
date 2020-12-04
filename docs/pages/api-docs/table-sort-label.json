@@ -13,7 +13,8 @@
   "name": "TableSortLabel",
   "styles": {
     "classes": ["root", "active", "icon", "iconDirectionDesc", "iconDirectionAsc"],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiTableSortLabel"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

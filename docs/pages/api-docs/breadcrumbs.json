@@ -10,7 +10,11 @@
     "separator": { "type": { "name": "node" }, "default": "'/'" }
   },
   "name": "Breadcrumbs",
-  "styles": { "classes": ["root", "ol", "li", "separator"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "ol", "li", "separator"],
+    "globalClasses": {},
+    "name": "MuiBreadcrumbs"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js",

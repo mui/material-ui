@@ -37,7 +37,8 @@
       "sizeSmall",
       "label"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" }
+    "globalClasses": { "disabled": "Mui-disabled" },
+    "name": "MuiIconButton"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

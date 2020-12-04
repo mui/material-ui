@@ -59,7 +59,8 @@
       "scrollButtonsHideMobile",
       "indicator"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiTabs"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

@@ -33,7 +33,8 @@
       "dotActive",
       "progress"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiMobileStepper"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

@@ -23,7 +23,8 @@
       "alternativeLabel",
       "labelContainer"
     ],
-    "globalClasses": { "error": "Mui-error", "disabled": "Mui-disabled" }
+    "globalClasses": { "error": "Mui-error", "disabled": "Mui-disabled" },
+    "name": "MuiStepLabel"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

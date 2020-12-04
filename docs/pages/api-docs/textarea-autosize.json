@@ -7,7 +7,7 @@
     }
   },
   "name": "TextareaAutosize",
-  "styles": { "classes": [], "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLTextAreaElement",
   "filename": "/packages/material-ui/src/TextareaAutosize/TextareaAutosize.js",

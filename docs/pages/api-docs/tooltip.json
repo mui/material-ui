@@ -46,7 +46,8 @@
       "tooltipPlacementTop",
       "tooltipPlacementBottom"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiTooltip"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

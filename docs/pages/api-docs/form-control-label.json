@@ -26,7 +26,8 @@
       "disabled",
       "label"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" }
+    "globalClasses": { "disabled": "Mui-disabled" },
+    "name": "MuiFormControlLabel"
   },
   "spread": true,
   "forwardsRefTo": "HTMLLabelElement",

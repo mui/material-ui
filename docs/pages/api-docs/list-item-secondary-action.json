@@ -4,7 +4,11 @@
     "classes": { "type": { "name": "object" } }
   },
   "name": "ListItemSecondaryAction",
-  "styles": { "classes": ["root", "disableGutters"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "disableGutters"],
+    "globalClasses": {},
+    "name": "MuiListItemSecondaryAction"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAction.js",

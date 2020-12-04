@@ -14,7 +14,8 @@
       "lineHorizontal",
       "lineVertical"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" }
+    "globalClasses": { "disabled": "Mui-disabled" },
+    "name": "MuiStepConnector"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

@@ -46,7 +46,8 @@
       "paperAnchorDockedBottom",
       "modal"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiDrawer"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

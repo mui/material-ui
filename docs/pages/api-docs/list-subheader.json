@@ -17,7 +17,8 @@
   "name": "ListSubheader",
   "styles": {
     "classes": ["root", "colorPrimary", "colorInherit", "gutters", "inset", "sticky"],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiListSubheader"
   },
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",

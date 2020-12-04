@@ -39,7 +39,8 @@
       "actions",
       "actionsClosed"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiSpeedDial"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

@@ -13,7 +13,8 @@
   "name": "CardHeader",
   "styles": {
     "classes": ["root", "avatar", "action", "content", "title", "subheader"],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiCardHeader"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

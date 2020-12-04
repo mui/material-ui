@@ -29,7 +29,7 @@
     "xsUp": { "type": { "name": "bool" } }
   },
   "name": "Hidden",
-  "styles": { "classes": [], "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "filename": "/packages/material-ui/src/Hidden/Hidden.js",
   "inheritance": null,

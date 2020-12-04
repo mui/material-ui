@@ -12,7 +12,8 @@
       "expanded": "Mui-expanded",
       "focusVisible": "Mui-focusVisible",
       "disabled": "Mui-disabled"
-    }
+    },
+    "name": "MuiAccordionSummary"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

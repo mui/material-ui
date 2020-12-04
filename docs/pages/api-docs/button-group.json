@@ -64,7 +64,8 @@
       "groupedContainedPrimary",
       "groupedContainedSecondary"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" }
+    "globalClasses": { "disabled": "Mui-disabled" },
+    "name": "MuiButtonGroup"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

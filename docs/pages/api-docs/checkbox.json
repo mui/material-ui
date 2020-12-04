@@ -29,7 +29,8 @@
   "name": "Checkbox",
   "styles": {
     "classes": ["root", "checked", "disabled", "indeterminate", "colorPrimary", "colorSecondary"],
-    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" }
+    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
+    "name": "MuiCheckbox"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

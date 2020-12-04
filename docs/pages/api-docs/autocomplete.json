@@ -101,7 +101,8 @@
       "groupLabel",
       "groupUl"
     ],
-    "globalClasses": { "focused": "Mui-focused" }
+    "globalClasses": { "focused": "Mui-focused" },
+    "name": "MuiAutocomplete"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

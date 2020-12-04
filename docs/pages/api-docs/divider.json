@@ -43,7 +43,8 @@
       "wrapper",
       "wrapperVertical"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiDivider"
   },
   "spread": true,
   "forwardsRefTo": "HTMLHRElement",

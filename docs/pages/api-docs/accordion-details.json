@@ -4,7 +4,7 @@
     "classes": { "type": { "name": "object" } }
   },
   "name": "AccordionDetails",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAccordionDetails" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/AccordionDetails/AccordionDetails.js",

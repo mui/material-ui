@@ -4,7 +4,7 @@
     "classes": { "type": { "name": "object" } }
   },
   "name": "DialogContentText",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogContentText" },
   "spread": true,
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/material-ui/src/DialogContentText/DialogContentText.js",

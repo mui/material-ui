@@ -5,7 +5,7 @@
     "component": { "type": { "name": "elementType" } }
   },
   "name": "TableFooter",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableFooter" },
   "spread": true,
   "forwardsRefTo": "HTMLTableSectionElement",
   "filename": "/packages/material-ui/src/TableFooter/TableFooter.js",

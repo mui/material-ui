@@ -106,7 +106,8 @@
       "markLabel",
       "markLabelActive"
     ],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
+    "name": "MuiSlider"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

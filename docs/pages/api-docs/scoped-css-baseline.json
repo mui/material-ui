@@ -4,7 +4,7 @@
     "classes": { "type": { "name": "object" } }
   },
   "name": "ScopedCssBaseline",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/ScopedCssBaseline/ScopedCssBaseline.js",

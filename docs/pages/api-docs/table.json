@@ -17,7 +17,7 @@
     "stickyHeader": { "type": { "name": "bool" } }
   },
   "name": "Table",
-  "styles": { "classes": ["root", "stickyHeader"], "globalClasses": {} },
+  "styles": { "classes": ["root", "stickyHeader"], "globalClasses": {}, "name": "MuiTable" },
   "spread": true,
   "forwardsRefTo": "HTMLTableElement",
   "filename": "/packages/material-ui/src/Table/Table.js",

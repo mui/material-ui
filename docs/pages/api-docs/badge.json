@@ -53,7 +53,8 @@
       "anchorOriginBottomLeftCircular",
       "invisible"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiBadge"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

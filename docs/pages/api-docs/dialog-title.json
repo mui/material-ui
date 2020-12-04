@@ -5,7 +5,7 @@
     "disableTypography": { "type": { "name": "bool" } }
   },
   "name": "DialogTitle",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogTitle" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/DialogTitle/DialogTitle.js",

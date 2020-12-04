@@ -65,7 +65,8 @@
       "deleteIconOutlinedColorSecondary",
       "focusVisible"
     ],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
+    "name": "MuiChip"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

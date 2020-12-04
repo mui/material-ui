@@ -44,7 +44,8 @@
       "alignJustify",
       "stickyHeader"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiTableCell"
   },
   "spread": true,
   "forwardsRefTo": "HTMLTableCellElement",

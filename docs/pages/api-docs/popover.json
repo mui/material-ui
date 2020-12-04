@@ -49,7 +49,7 @@
     "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
   "name": "Popover",
-  "styles": { "classes": ["root", "paper"], "globalClasses": {} },
+  "styles": { "classes": ["root", "paper"], "globalClasses": {}, "name": "MuiPopover" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Popover/Popover.js",

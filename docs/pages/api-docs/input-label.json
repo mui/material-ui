@@ -38,7 +38,8 @@
       "disabled": "Mui-disabled",
       "error": "Mui-error",
       "required": "Mui-required"
-    }
+    },
+    "name": "MuiInputLabel"
   },
   "spread": true,
   "forwardsRefTo": "HTMLLabelElement",

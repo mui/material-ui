@@ -39,7 +39,8 @@
       "focusVisible": "Mui-focusVisible",
       "disabled": "Mui-disabled",
       "selected": "Mui-selected"
-    }
+    },
+    "name": "MuiListItem"
   },
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",

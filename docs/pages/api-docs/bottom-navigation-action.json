@@ -10,7 +10,8 @@
   "name": "BottomNavigationAction",
   "styles": {
     "classes": ["root", "selected", "iconOnly", "wrapper", "label"],
-    "globalClasses": { "selected": "Mui-selected" }
+    "globalClasses": { "selected": "Mui-selected" },
+    "name": "MuiBottomNavigationAction"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

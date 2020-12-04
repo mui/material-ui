@@ -16,7 +16,8 @@
   "name": "ButtonBase",
   "styles": {
     "classes": ["root", "disabled", "focusVisible"],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
+    "name": "MuiButtonBase"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

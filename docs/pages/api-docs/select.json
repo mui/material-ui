@@ -45,7 +45,8 @@
       "iconOutlined",
       "nativeInput"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" }
+    "globalClasses": { "disabled": "Mui-disabled" },
+    "name": "MuiSelect"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

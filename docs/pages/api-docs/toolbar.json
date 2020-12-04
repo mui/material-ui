@@ -13,7 +13,11 @@
     }
   },
   "name": "Toolbar",
-  "styles": { "classes": ["root", "gutters", "regular", "dense"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "gutters", "regular", "dense"],
+    "globalClasses": {},
+    "name": "MuiToolbar"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Toolbar/Toolbar.js",

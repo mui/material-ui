@@ -20,7 +20,8 @@
   "name": "ToggleButtonGroup",
   "styles": {
     "classes": ["root", "vertical", "grouped", "groupedHorizontal", "groupedVertical"],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiToggleButtonGroup"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

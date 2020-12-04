@@ -15,7 +15,8 @@
   "name": "TabScrollButton",
   "styles": {
     "classes": ["root", "vertical", "disabled"],
-    "globalClasses": { "disabled": "Mui-disabled" }
+    "globalClasses": { "disabled": "Mui-disabled" },
+    "name": "MuiTabScrollButton"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

@@ -4,7 +4,7 @@
     "classes": { "type": { "name": "object" } }
   },
   "name": "TimelineConnector",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTimelineConnector" },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/material-ui-lab/src/TimelineConnector/TimelineConnector.js",

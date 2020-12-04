@@ -23,7 +23,8 @@
   "name": "Collapse",
   "styles": {
     "classes": ["root", "horizontal", "entered", "hidden", "wrapper", "wrapperInner"],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiCollapse"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

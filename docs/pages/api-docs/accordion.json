@@ -13,7 +13,8 @@
   "name": "Accordion",
   "styles": {
     "classes": ["root", "rounded", "expanded", "disabled", "region"],
-    "globalClasses": { "expanded": "Mui-expanded", "disabled": "Mui-disabled" }
+    "globalClasses": { "expanded": "Mui-expanded", "disabled": "Mui-disabled" },
+    "name": "MuiAccordion"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

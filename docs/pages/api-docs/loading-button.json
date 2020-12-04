@@ -29,7 +29,8 @@
       "startIconPendingStart",
       "labelPendingCenter"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiLoadingButton"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

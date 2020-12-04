@@ -5,7 +5,7 @@
     "row": { "type": { "name": "bool" } }
   },
   "name": "FormGroup",
-  "styles": { "classes": ["root", "row"], "globalClasses": {} },
+  "styles": { "classes": ["root", "row"], "globalClasses": {}, "name": "MuiFormGroup" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/FormGroup/FormGroup.js",

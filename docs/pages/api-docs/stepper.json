@@ -14,7 +14,8 @@
   "name": "Stepper",
   "styles": {
     "classes": ["root", "horizontal", "vertical", "alternativeLabel"],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiStepper"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

@@ -7,7 +7,8 @@
   "name": "SpeedDialIcon",
   "styles": {
     "classes": ["root", "icon", "iconOpen", "iconWithOpenIconOpen", "openIcon", "openIconOpen"],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiSpeedDialIcon"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

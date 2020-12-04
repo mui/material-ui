@@ -13,7 +13,8 @@
   "name": "Timeline",
   "styles": {
     "classes": ["root", "alignLeft", "alignRight", "alignAlternate"],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiTimeline"
   },
   "spread": true,
   "forwardsRefTo": "HTMLUListElement",

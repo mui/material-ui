@@ -5,7 +5,7 @@
     "component": { "type": { "name": "elementType" } }
   },
   "name": "CardContent",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCardContent" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/CardContent/CardContent.js",

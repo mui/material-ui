@@ -28,7 +28,8 @@
   "name": "Radio",
   "styles": {
     "classes": ["root", "checked", "disabled", "colorPrimary", "colorSecondary"],
-    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" }
+    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
+    "name": "MuiRadio"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

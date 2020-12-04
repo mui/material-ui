@@ -46,7 +46,8 @@
       "inputMultiline",
       "inputTypeSearch"
     ],
-    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" },
+    "name": "MuiInput"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

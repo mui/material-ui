@@ -19,7 +19,8 @@
   "name": "Avatar",
   "styles": {
     "classes": ["root", "colorDefault", "circular", "rounded", "square", "img", "fallback"],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiAvatar"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

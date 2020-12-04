@@ -36,7 +36,8 @@
       "selected": "Mui-selected",
       "focused": "Mui-focused",
       "disabled": "Mui-disabled"
-    }
+    },
+    "name": "MuiTreeItem"
   },
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",

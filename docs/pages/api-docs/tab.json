@@ -24,7 +24,8 @@
       "wrapped",
       "wrapper"
     ],
-    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" }
+    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" },
+    "name": "MuiTab"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

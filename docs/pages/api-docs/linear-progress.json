@@ -37,7 +37,8 @@
       "bar2Indeterminate",
       "bar2Buffer"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiLinearProgress"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

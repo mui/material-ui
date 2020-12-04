@@ -46,7 +46,8 @@
       "elevation23",
       "elevation24"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiPaper"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

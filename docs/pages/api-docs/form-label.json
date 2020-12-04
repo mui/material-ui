@@ -27,7 +27,8 @@
       "disabled": "Mui-disabled",
       "error": "Mui-error",
       "required": "Mui-required"
-    }
+    },
+    "name": "MuiFormLabel"
   },
   "spread": true,
   "forwardsRefTo": "HTMLLabelElement",

@@ -9,7 +9,8 @@
   "name": "TableRow",
   "styles": {
     "classes": ["root", "selected", "hover", "head", "footer"],
-    "globalClasses": { "selected": "Mui-selected" }
+    "globalClasses": { "selected": "Mui-selected" },
+    "name": "MuiTableRow"
   },
   "spread": true,
   "forwardsRefTo": "HTMLTableRowElement",

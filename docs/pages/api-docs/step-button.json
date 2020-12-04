@@ -6,7 +6,11 @@
     "optional": { "type": { "name": "node" } }
   },
   "name": "StepButton",
-  "styles": { "classes": ["root", "horizontal", "vertical", "touchRipple"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "horizontal", "vertical", "touchRipple"],
+    "globalClasses": {},
+    "name": "MuiStepButton"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/material-ui/src/StepButton/StepButton.js",

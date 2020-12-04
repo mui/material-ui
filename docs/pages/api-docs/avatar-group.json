@@ -19,7 +19,7 @@
     }
   },
   "name": "AvatarGroup",
-  "styles": { "classes": ["root", "avatar"], "globalClasses": {} },
+  "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/AvatarGroup/AvatarGroup.js",

@@ -1019,7 +1019,7 @@ async function buildDocs(options: {
     recursive: true,
   });
 
-  // docs/pages/omponent-name/component-name.json
+  // docs/translations/api-docs/component-name/component-name.json
   writePrettifiedFile(
     path.resolve(
       'docs',
@@ -1032,7 +1032,7 @@ async function buildDocs(options: {
     prettierConfigPath,
   );
 
-  var index = LANGUAGES.indexOf('en');
+  const index = LANGUAGES.indexOf('en');
   if (index !== -1) {
     LANGUAGES.splice(index, 1);
   }
@@ -1069,6 +1069,7 @@ async function buildDocs(options: {
           return globalClassName !== `Mui${reactApi.name}-${className}`;
         }),
       ),
+      name: reactApi.styles.name,
     },
     spread: reactApi.spread,
     forwardsRefTo: reactApi.forwardsRefTo,

@@ -126,7 +126,8 @@
       "markActive": "MuiSlider-markActive",
       "markLabel": "MuiSlider-markLabel",
       "markLabelActive": "MuiSlider-markLabelActive"
-    }
+    },
+    "name": null
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

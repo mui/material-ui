@@ -44,7 +44,8 @@
       "sizeSmall",
       "sizeMedium"
     ],
-    "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" }
+    "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" },
+    "name": "MuiFab"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",

@@ -5,7 +5,7 @@
     "raised": { "type": { "name": "bool" } }
   },
   "name": "Card",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCard" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Card/Card.js",

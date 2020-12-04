@@ -1,7 +1,7 @@
 {
   "props": { "children": { "type": { "name": "node" }, "default": "null" } },
   "name": "CssBaseline",
-  "styles": { "classes": [], "globalClasses": {} },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiCssBaseline" },
   "spread": false,
   "filename": "/packages/material-ui/src/CssBaseline/CssBaseline.js",
   "inheritance": null,

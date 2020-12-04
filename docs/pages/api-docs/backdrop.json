@@ -12,7 +12,7 @@
     }
   },
   "name": "Backdrop",
-  "styles": { "classes": ["root", "invisible"], "globalClasses": {} },
+  "styles": { "classes": ["root", "invisible"], "globalClasses": {}, "name": "MuiBackdrop" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",

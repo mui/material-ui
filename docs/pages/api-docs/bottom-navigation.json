@@ -8,7 +8,7 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "BottomNavigation",
-  "styles": { "classes": ["root"], "globalClasses": {} },
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiBottomNavigation" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/BottomNavigation/BottomNavigation.js",

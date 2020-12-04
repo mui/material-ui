@@ -1,6 +1,7 @@
 {
   "adblock": "If you don't mind-tech related ads (no tracking or remarketing), and want to keep us running, please whitelist Material-UI in your blocker.",
   "api-docs": {
+    "componentName": "Component name",
     "default": "Default",
     "demos": "Demos",
     "description": "Description",
@@ -21,7 +22,7 @@
     "refRootElement": "The <code>ref</code> is forwarded to the root element.",
     "ruleName": "Rule name",
     "spreadHint": "Any other props supplied will be provided to the root element ({{spreadHintElement}}).",
-    "styleOverrides": "The name <code>{{pageStyles.name}}</code> can be used when providing <a href=\"/customization/globals/#default-props\">default props</a> or <a href=\"/customization/globals/#css\">style overrides</a> in the theme.",
+    "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href=\"/customization/globals/#default-props\">default props</a> or <a href=\"/customization/globals/#css\">style overrides</a> in the theme.",
     "type": "Type"
   },
   "albumDescr": "A responsive album / gallery page layout with a hero unit and footer.",

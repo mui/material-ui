@@ -34,7 +34,8 @@
       "circleIndeterminate",
       "circleDisableShrink"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiCircularProgress"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

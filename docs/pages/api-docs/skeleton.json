@@ -33,7 +33,8 @@
       "fitContent",
       "heightAuto"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiSkeleton"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",

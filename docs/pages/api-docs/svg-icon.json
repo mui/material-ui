@@ -35,7 +35,8 @@
       "fontSizeSmall",
       "fontSizeLarge"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiSvgIcon"
   },
   "spread": true,
   "forwardsRefTo": "SVGSVGElement",

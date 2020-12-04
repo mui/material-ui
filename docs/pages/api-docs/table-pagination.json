@@ -44,7 +44,8 @@
       "menuItem",
       "actions"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiTablePagination"
   },
   "spread": true,
   "forwardsRefTo": "HTMLTableCellElement",

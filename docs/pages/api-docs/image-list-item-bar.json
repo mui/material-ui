@@ -32,7 +32,8 @@
       "actionIcon",
       "actionIconActionPosLeft"
     ],
-    "globalClasses": {}
+    "globalClasses": {},
+    "name": "MuiImageListItemBar"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",

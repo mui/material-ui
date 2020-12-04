@@ -18,7 +18,11 @@
     }
   },
   "name": "ImageList",
-  "styles": { "classes": ["root", "masonry", "quilted", "standard", "woven"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "masonry", "quilted", "standard", "woven"],
+    "globalClasses": {},
+    "name": "MuiImageList"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/material-ui/src/ImageList/ImageList.js",

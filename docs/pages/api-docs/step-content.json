@@ -13,7 +13,11 @@
     "TransitionProps": { "type": { "name": "object" } }
   },
   "name": "StepContent",
-  "styles": { "classes": ["root", "last", "transition"], "globalClasses": {} },
+  "styles": {
+    "classes": ["root", "last", "transition"],
+    "globalClasses": {},
+    "name": "MuiStepContent"
+  },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/StepContent/StepContent.js",
