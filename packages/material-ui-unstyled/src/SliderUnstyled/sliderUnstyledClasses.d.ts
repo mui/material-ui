@@ -23,6 +23,6 @@ export interface SliderUnstyledClasses {
 
 declare const sliderUnstyledClasses: SliderUnstyledClasses;
 
-export const getSliderUtilityClass: (part: string) => string;
+export function getSliderUtilityClass(part: string): string;
 
 export default sliderUnstyledClasses;

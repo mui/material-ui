@@ -1,4 +1,4 @@
-export const getSliderUtilityClass = (name) => {
+export function getSliderUtilityClass(name) {
   return `MuiSlider-${name}`;
 };
 
