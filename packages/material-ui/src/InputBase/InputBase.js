@@ -202,6 +202,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     size,
     ...other
   } = props;
+
   const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
 
@@ -397,6 +398,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       muiFormControl.setAdornedStart(Boolean(startAdornment));
     }
   }, [muiFormControl, startAdornment]);
+
   return (
     <div
       className={clsx(

@@ -28,4 +28,10 @@ describe('<OutlinedInput />', () => {
 
     expect(container.querySelector('.notched-outlined')).not.to.equal(null);
   });
+
+  it('should add the classes when size is small', () => {
+    const { container } = render(<OutlinedInput size="small" id="smInput" />);
+
+    expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
+  });
 });
