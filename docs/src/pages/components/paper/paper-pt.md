@@ -1,5 +1,5 @@
 ---
-title: React Paper component
+title: Componente React Paper
 components: Paper
 ---
 
