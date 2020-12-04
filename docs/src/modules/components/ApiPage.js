@@ -304,7 +304,7 @@ import { ${componentName} } from '${source}';`}
             />
           </React.Fragment>
         )}
-        {componentStyles.classes ? (
+        {Object.keys(componentStyles.classes).length ? (
           <React.Fragment>
             <Heading hash="css" />
             <ClassesTable
