@@ -21,13 +21,16 @@ export const TypographyRoot = experimentalStyled(
 )((props) => ({
   margin: 0,
   ...(props.styleProps.variant && props.theme.typography[props.styleProps.variant]),
-  ...(props.styleProps.textAlign && {
-    textAlign: props.styleProps.textAlign,
+  ...(props.styleProps.align !== 'inherit' && {
+    textAlign: props.styleProps.align,
   }),
   ...(props.styleProps.noWrap && {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+  }),
+  ...(props.styleProps.gutterBottom && {
+    marginBottom: '0.35em',
   }),
   ...(props.styleProps.paragraph && {
     marginBottom: 16,
@@ -35,7 +38,7 @@ export const TypographyRoot = experimentalStyled(
   ...(props.styleProps.color && {
     color: getTextColor(props.styleProps.color, props.theme.palette),
   }),
-  ...(props.styleProps.display && {
+  ...(props.styleProps.display !== 'initial' && {
     display: props.styleProps.display,
   }),
 }));
