@@ -1032,7 +1032,10 @@ async function buildDocs(options: {
     prettierConfigPath,
   );
 
-  LANGUAGES.shift();
+  var index = LANGUAGES.indexOf('en');
+  if (index !== -1) {
+    LANGUAGES.splice(index, 1);
+  }
   LANGUAGES.forEach((language) => {
     try {
       writePrettifiedFile(

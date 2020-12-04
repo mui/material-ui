@@ -1,0 +1,60 @@
+{
+  "componentDescription": "Uses an additional container component if <code>ListItemSecondaryAction</code> is the last child.",
+  "propDescriptions": {
+    "alignItems": "Defines the <code>align-items</code> style property.",
+    "autoFocus": "If <code>true</code>, the list item is focused during the first mount. Focus will also be triggered if the value changes from false to true.",
+    "button": "If <code>true</code>, the list item is a button (using <code>ButtonBase</code>). Props intended for <code>ButtonBase</code> can then be applied to <code>ListItem</code>.",
+    "children": "The content of the component. If a <code>ListItemSecondaryAction</code> is used it must be the last child.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
+    "ContainerComponent": "The container component used when a <code>ListItemSecondaryAction</code> is the last child.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+    "ContainerProps": "Props applied to the container component if used.",
+    "dense": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used. The prop defaults to the value inherited from the parent List component.",
+    "disabled": "If <code>true</code>, the list item is disabled.",
+    "disableGutters": "If <code>true</code>, the left and right padding is removed.",
+    "divider": "If <code>true</code>, a 1px light border is added to the bottom of the list item.",
+    "selected": "Use to apply selected styling."
+  },
+  "classDescriptions": {
+    "root": {
+      "description": "Styles applied to the (normally root) `component` element. May be wrapped by a `container`."
+    },
+    "container": {
+      "description": "Styles applied to the `container` element if {{conditions}}.",
+      "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
+    },
+    "focusVisible": {
+      "description": "Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if {{conditions}}.",
+      "conditions": "<code>button={true}</code>"
+    },
+    "dense": { "description": "Styles applied to the `component` element if dense." },
+    "alignItemsFlexStart": {
+      "description": "Styles applied to the `component` element if {{conditions}}.",
+      "conditions": "<code>alignItems=\"flex-start\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the inner `component` element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "divider": {
+      "description": "Styles applied to the inner `component` element if {{conditions}}.",
+      "conditions": "<code>divider={true}</code>"
+    },
+    "gutters": {
+      "description": "Styles applied to the inner `component` element unless {{conditions}}.",
+      "conditions": "<code>disableGutters={true}</code>"
+    },
+    "button": {
+      "description": "Styles applied to the inner `component` element if {{conditions}}.",
+      "conditions": "<code>button={true}</code>"
+    },
+    "secondaryAction": {
+      "description": "Styles applied to the `component` element if {{conditions}}.",
+      "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
+    },
+    "selected": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>selected={true}</code>"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "align": "The position where the timeline&#39;s content should appear.",
+    "children": "The content of the component.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "alignLeft": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"left\"</code>"
+    },
+    "alignRight": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"right\"</code>"
+    },
+    "alignAlternate": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>align=\"alternate\"</code>"
+    }
+  }
+}

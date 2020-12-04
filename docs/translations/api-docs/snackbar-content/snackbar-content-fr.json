@@ -1,0 +1,17 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "action": "The action to display. It renders after the message, at the end of the snackbar.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "message": "The message to display.",
+    "role": "The ARIA role attribute of the element."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "message": { "description": "Styles applied to the message wrapper element." },
+    "action": {
+      "description": "Styles applied to the action wrapper element if {{conditions}}.",
+      "conditions": "<code>action</code> is provided"
+    }
+  }
+}

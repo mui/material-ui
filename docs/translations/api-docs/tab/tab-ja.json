@@ -1,0 +1,46 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "disabled": "If <code>true</code>, the tab is disabled.",
+    "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
+    "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>focusVisibleClassName</code>.",
+    "icon": "The icon element.",
+    "label": "The label element.",
+    "value": "You can provide your own value. Otherwise, we fallback to the child position index.",
+    "wrapped": "Tab labels appear in a single row. They can use a second line if needed."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "labelIcon": {
+      "description": "Styles applied to the root element if both `icon` and `label` are provided."
+    },
+    "textColorInherit": {
+      "description": "Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor=\"inherit\"`."
+    },
+    "textColorPrimary": {
+      "description": "Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor=\"primary\"`."
+    },
+    "textColorSecondary": {
+      "description": "Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor=\"secondary\"`."
+    },
+    "selected": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>selected={true}</code> (controlled by the Tabs component)"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code> (controlled by the Tabs component)"
+    },
+    "fullWidth": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>fullWidth={true}</code> (controlled by the Tabs component)"
+    },
+    "wrapped": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>wrapped={true}</code>"
+    },
+    "wrapper": { "description": "Styles applied to the `icon` and `label`'s wrapper element." }
+  }
+}
