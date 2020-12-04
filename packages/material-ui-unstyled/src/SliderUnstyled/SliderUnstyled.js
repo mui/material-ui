@@ -8,7 +8,6 @@ import {
   unstable_ownerDocument as ownerDocument,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_capitalize as capitalize,
   unstable_useControlled as useControlled,
 } from '@material-ui/utils';
 import sliderClasses from './sliderClasses';
@@ -183,6 +182,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
     className,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: classesProps = {},
     defaultValue,
     disabled = false,

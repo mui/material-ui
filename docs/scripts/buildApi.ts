@@ -284,9 +284,9 @@ async function updateStylesDefinition(context: {
             .types;
 
           if (types) {
-            types.forEach((node) => {
-              if (node.type === 'TSTypeLiteral') {
-                classesDeclarationNode = node;
+            types.forEach((n) => {
+              if (n.type === 'TSTypeLiteral') {
+                classesDeclarationNode = n;
               }
             });
           }

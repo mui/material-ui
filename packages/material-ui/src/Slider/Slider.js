@@ -18,7 +18,7 @@ export const sliderClasses = {
   colorPrimary: getSliderUtilityClass('colorPrimary'),
   colorSecondary: getSliderUtilityClass('colorSecondary'),
   thumbColorPrimary: getSliderUtilityClass('thumbColorPrimary'),
-  thumbColorPrimary: getSliderUtilityClass('thumbColorPrimary'),
+  thumbColorSecondary: getSliderUtilityClass('thumbColorSecondary'),
 };
 
 const overridesResolver = (props, styles) => {
@@ -366,6 +366,8 @@ const extendSliderClasses = (props) => {
   };
 };
 
+const isHostComponent = (element) => typeof element === 'string';
+
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
   const { components = {}, componentsProps = {}, color = 'primary', ...other } = props;
@@ -389,11 +391,11 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         ...componentsProps,
         root: {
           ...componentsProps.root,
-          styleProps: { ...componentsProps.root?.styleProps, color },
+          ...((!components.Root || !isHostComponent(components.Root)) && { styleProps: { ...componentsProps.root?.styleProps, color }}),
         },
         thumb: {
           ...componentsProps.thumb,
-          styleProps: { ...componentsProps.thumb?.styleProps, color },
+          ...((!components.Thumb || !isHostComponent(components.Thumb)) && {styleProps: { ...componentsProps.thumb?.styleProps, color }}),
         },
       }}
       classes={classes}
