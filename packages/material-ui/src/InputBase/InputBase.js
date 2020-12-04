@@ -203,7 +203,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     ...other
   } = props;
 
-
   const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
 
