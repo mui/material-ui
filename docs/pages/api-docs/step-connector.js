@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/step-connector',
+    'docs/translations/api-docs/step-connector',
     false,
     /step-connector.*.json$/,
   );

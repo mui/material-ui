@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/table-container',
+    'docs/translations/api-docs/table-container',
     false,
     /table-container.*.json$/,
   );

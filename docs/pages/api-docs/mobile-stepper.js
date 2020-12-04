@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/mobile-stepper',
+    'docs/translations/api-docs/mobile-stepper',
     false,
     /mobile-stepper.*.json$/,
   );

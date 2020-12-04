@@ -34,7 +34,11 @@ function PropsTable(props) {
                 <td align="left">
                   <span className={clsx('prop-name', propData.required ? 'required' : null)}>
                     {propName}
-                    {propData.required ? <sup><abbr title="required">*</abbr></sup> : null}
+                    {propData.required ? (
+                      <sup>
+                        <abbr title="required">*</abbr>
+                      </sup>
+                    ) : null}
                   </span>
                 </td>
                 <td align="left">

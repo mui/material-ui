@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/speed-dial-icon',
+    'docs/translations/api-docs/speed-dial-icon',
     false,
     /speed-dial-icon.*.json$/,
   );

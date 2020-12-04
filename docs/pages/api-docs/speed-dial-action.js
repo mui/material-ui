@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/speed-dial-action',
+    'docs/translations/api-docs/speed-dial-action',
     false,
     /speed-dial-action.*.json$/,
   );

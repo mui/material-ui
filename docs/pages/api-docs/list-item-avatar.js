@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/list-item-avatar',
+    'docs/translations/api-docs/list-item-avatar',
     false,
     /list-item-avatar.*.json$/,
   );

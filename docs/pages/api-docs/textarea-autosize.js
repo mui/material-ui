@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/textarea-autosize',
+    'docs/translations/api-docs/textarea-autosize',
     false,
     /textarea-autosize.*.json$/,
   );

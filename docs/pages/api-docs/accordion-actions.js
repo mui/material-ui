@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/accordion-actions',
+    'docs/translations/api-docs/accordion-actions',
     false,
     /accordion-actions.*.json$/,
   );

@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/timeline-opposite-content',
+    'docs/translations/api-docs/timeline-opposite-content',
     false,
     /timeline-opposite-content.*.json$/,
   );

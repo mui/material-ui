@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/table-sort-label',
+    'docs/translations/api-docs/table-sort-label',
     false,
     /table-sort-label.*.json$/,
   );

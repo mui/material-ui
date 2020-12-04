@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/dialog-actions',
+    'docs/translations/api-docs/dialog-actions',
     false,
     /dialog-actions.*.json$/,
   );

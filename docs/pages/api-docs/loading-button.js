@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/loading-button',
+    'docs/translations/api-docs/loading-button',
     false,
     /loading-button.*.json$/,
   );

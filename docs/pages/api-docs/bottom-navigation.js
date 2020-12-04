@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/bottom-navigation',
+    'docs/translations/api-docs/bottom-navigation',
     false,
     /bottom-navigation.*.json$/,
   );

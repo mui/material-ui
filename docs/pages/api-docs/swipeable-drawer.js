@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/swipeable-drawer',
+    'docs/translations/api-docs/swipeable-drawer',
     false,
     /swipeable-drawer.*.json$/,
   );

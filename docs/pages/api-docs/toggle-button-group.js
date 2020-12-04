@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/toggle-button-group',
+    'docs/translations/api-docs/toggle-button-group',
     false,
     /toggle-button-group.*.json$/,
   );

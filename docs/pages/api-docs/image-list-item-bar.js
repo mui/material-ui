@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/image-list-item-bar',
+    'docs/translations/api-docs/image-list-item-bar',
     false,
     /image-list-item-bar.*.json$/,
   );

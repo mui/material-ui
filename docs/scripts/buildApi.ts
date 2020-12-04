@@ -29,6 +29,7 @@ import createGenerateClassName from '@material-ui/styles/createGenerateClassName
 import getStylesCreator from '@material-ui/styles/getStylesCreator';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
+import { LANGUAGES } from 'docs/src/modules/constants';
 
 // Only run for ButtonBase
 const TEST = false;
@@ -367,7 +368,12 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
   return `${deprecated}${jsDocText}${signature}${notes}`;
 }
 
-function writePrettifiedFile(filename: string, data: string, prettierConfigPath: string) {
+function writePrettifiedFile(
+  filename: string,
+  data: string,
+  prettierConfigPath: string,
+  options: object = {},
+) {
   const prettierConfig = prettier.resolveConfig.sync(filename, {
     config: prettierConfigPath,
   });
@@ -379,6 +385,7 @@ function writePrettifiedFile(filename: string, data: string, prettierConfigPath:
 
   writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
     encoding: 'utf8',
+    ...options,
   });
 }
 
@@ -1008,16 +1015,43 @@ async function buildDocs(options: {
    */
   componentApi.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
 
-  mkdirSync(path.resolve(outputDirectory, kebabCase(reactApi.name)), {
+  mkdirSync(path.resolve('docs', 'translations', 'api-docs', kebabCase(reactApi.name)), {
     mode: 0o777,
     recursive: true,
   });
 
+  // docs/pages/omponent-name/component-name.json
   writePrettifiedFile(
-    path.resolve(outputDirectory, kebabCase(reactApi.name), `${kebabCase(reactApi.name)}.json`),
+    path.resolve(
+      'docs',
+      'translations',
+      'api-docs',
+      kebabCase(reactApi.name),
+      `${kebabCase(reactApi.name)}.json`,
+    ),
     JSON.stringify(componentApi),
     prettierConfigPath,
   );
+
+  LANGUAGES.shift();
+  LANGUAGES.forEach((language) => {
+    try {
+      writePrettifiedFile(
+        path.resolve(
+          'docs',
+          'translations',
+          'api-docs',
+          kebabCase(reactApi.name),
+          `${kebabCase(reactApi.name)}-${language}.json`,
+        ),
+        JSON.stringify(componentApi),
+        prettierConfigPath,
+        { flag: 'wx' },
+      );
+    } catch (error) {
+      // File exists
+    }
+  });
 
   /**
    * Gather the metadata needed for the component's API page.
@@ -1064,7 +1098,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/${kebabCase(reactApi.name)}',
+    'docs/translations/api-docs/${kebabCase(reactApi.name)}',
     false,
     /${kebabCase(reactApi.name)}.*.json$/,
   );

@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/timeline-separator',
+    'docs/translations/api-docs/timeline-separator',
     false,
     /timeline-separator.*.json$/,
   );

@@ -1,0 +1,15 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the component.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "disableSpacing": "If <code>true</code>, the actions do not have additional margin."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "spacing": {
+      "description": "Styles applied to the root element unless {{conditions}}.",
+      "conditions": "<code>disableSpacing={true}</code>"
+    }
+  }
+}

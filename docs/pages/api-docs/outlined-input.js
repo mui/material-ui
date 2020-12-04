@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/outlined-input',
+    'docs/translations/api-docs/outlined-input',
     false,
     /outlined-input.*.json$/,
   );

@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/input-adornment',
+    'docs/translations/api-docs/input-adornment',
     false,
     /input-adornment.*.json$/,
   );

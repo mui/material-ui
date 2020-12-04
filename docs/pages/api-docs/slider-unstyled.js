@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/pages/api-docs/slider-unstyled',
+    'docs/translations/api-docs/slider-unstyled',
     false,
     /slider-unstyled.*.json$/,
   );
