@@ -165,8 +165,6 @@ export const styles = (theme) => {
  * It contains a load of style reset and some state logic.
  */
 const InputBase = React.forwardRef(function InputBase(props, ref) {
-  console.log("input base props", props) 
-  console.log("size input base propd", props.size)
   const {
     'aria-describedby': ariaDescribedby,
     autoComplete,
@@ -204,7 +202,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     size,
     ...other
   } = props;
-  console.log("props input base", props)
   const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
 
@@ -400,8 +397,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       muiFormControl.setAdornedStart(Boolean(startAdornment));
     }
   }, [muiFormControl, startAdornment]);
-  console.log( "size inputbase", size)
-  console.log( size === 'small')
   return (
     <div
       className={clsx(
@@ -413,7 +408,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           [classes.fullWidth]: fullWidth,
           [classes.focused]: fcs.focused,
           [classes.formControl]: muiFormControl,
-          [classes.marginDense]: (fcs.margin === 'dense' || size === 'small'),
+          [classes.marginDense]: fcs.margin === 'dense' || size === 'small',
           [classes.multiline]: multiline,
           [classes.adornedStart]: startAdornment,
           [classes.adornedEnd]: endAdornment,
@@ -453,7 +448,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
               [classes.disabled]: fcs.disabled,
               [classes.inputTypeSearch]: type === 'search',
               [classes.inputMultiline]: multiline,
-              [classes.inputMarginDense]: (fcs.margin === 'dense' || size === 'small'),
+              [classes.inputMarginDense]: fcs.margin === 'dense' || size === 'small',
               [classes.inputHiddenLabel]: fcs.hiddenLabel,
               [classes.inputAdornedStart]: startAdornment,
               [classes.inputAdornedEnd]: endAdornment,
