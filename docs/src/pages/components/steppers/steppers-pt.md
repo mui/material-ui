@@ -20,7 +20,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 ## Assistente horizontal
 
-Horizontal steppers are ideal when the contents of one step depend on an earlier step.
+Assistente horizontal é ideal quando o conteúdo de uma etapa depende de uma etapa anterior.
 
 {{"demo": "pages/components/steppers/HorizontalLinearStepper.js", "bg": true}}
 
