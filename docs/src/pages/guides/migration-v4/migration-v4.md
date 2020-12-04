@@ -826,20 +826,6 @@ const classes = makeStyles(theme => ({
   +<Slider components={{ Thumb: CustomThumb }} />
   ```
 
-- The `component` prop is removed. You should prefer using the `componentsProps`' `root` object.
-
-  ```diff
-  -<Slider component="div" />
-  +<Slider componentsProps={{ root: { as: "div" } }} />
-  ```
-
-  If you would like to complitelly replace the `Root` component, you may use the `Root` directly:
-
-  ```diff
-  -<Slider component="div" />
-  +<Slider components={{ Root: "div" }} />
-  ```
-
 ### Snackbar
 
 - The notification now displays at the bottom left on large screens.

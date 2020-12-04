@@ -25,4 +25,4 @@ const sliderUnstyledClasses = {
   valueLabelLabel: getSliderUtilityClass('valueLabelLabel'),
 };
 
-export default sliderClasses;
+export default sliderUnstyledClasses;

@@ -54,6 +54,7 @@ The `MuiSlider` name can be used for providing [default props](/customization/gl
 | <span class="prop-name">value</span> | <span class="prop-type">Array&lt;number&gt;<br>&#124;&nbsp;number</span> |  | The value of the slider. For ranged sliders, provide an array with two values. |
 | <span class="prop-name">valueLabelDisplay</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on'</span> | <span class="prop-default">'off'</span> | Controls when the value label is displayed:<br>- `auto` the value label will display when the thumb is hovered or focused. - `on` will display persistently. - `off` will never display. |
 | <span class="prop-name">valueLabelFormat</span> | <span class="prop-type">func<br>&#124;&nbsp;string</span> | <span class="prop-default">(x) => x</span> | The format function the value label's value.<br>When a function is provided, it should have the following signature:<br>- {number} value The value label's value to format - {number} index The value label's index to format |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 
 The `ref` is forwarded to the root element.
 

@@ -182,6 +182,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
     className,
+    component: Component = 'span',
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: classesProps = {},
     defaultValue,
@@ -577,6 +578,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const Root = components.Root || 'span';
   const rootProps = componentsProps.root || {};
+  rootProps.as = Component;
 
   const Rail = components.Rail || 'span';
   const railProps = componentsProps.rail || {};
@@ -812,6 +814,11 @@ SliderUnstyled.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The components used for each slot inside the Slider.
    * Either a string to use a HTML element or a component.
