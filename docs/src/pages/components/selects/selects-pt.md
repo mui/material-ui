@@ -1,5 +1,5 @@
 ---
-title: React Select component
+title: Componente React Seleção
 components: Select, NativeSelect
 githubLabel: 'component: Select'
 ---
@@ -24,19 +24,19 @@ Se você estiver procurando por recursos mais avançados, como combobox, seleç�
 
 ## Propriedades
 
-### Filled and outlined variants
+### Variantes filled e outlined
 
-{{"demo": "pages/components/selects/NativeSelects.js"}}
+{{"demo": "pages/components/selects/SelectVariants.js"}}
 
-### Labels and helper text
+### Rótulos e texto de ajuda
 
 {{"demo": "pages/components/selects/SelectLabels.js"}}
 
-### Auto width
+### Largura automática
 
 {{"demo": "pages/components/selects/SelectAutoWidth.js"}}
 
-### Other props
+### Outras propriedades
 
 {{"demo": "pages/components/selects/SelectOtherProps.js"}}
 
@@ -70,27 +70,27 @@ Como na seleção única, você pode extrair o novo valor acessando `event.targe
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-### Checkmarks
+### Marcações
 
 {{"demo": "pages/components/selects/MultipleSelectCheckmarks.js"}}
 
 ### Chip
 
-Alternativamente, um `TextField` com `id` e `label` cria a marcação adequada e ids para você:
+{{"demo": "pages/components/selects/MultipleSelectChip.js"}}
 
 ### Placeholder
 
-Para uma [seleção nativa](#native-select), você deve utilizar um rótulo fornecendo o atributo `id` do elemento de seleção para o atributo `htmlFor` do `InputLabel`:
+{{"demo": "pages/components/selects/MultipleSelectPlaceholder.js"}}
 
-### Native
+### Nativo
 
 {{"demo": "pages/components/selects/MultipleSelectNative.js"}}
 
-## Com uma caixa de Diálogo
+## Seleção aberta controlada
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## Agrupando
+## Com um diálogo
 
 Embora não seja recomendado pela especificação do Material Design, você pode usar uma seleção dentro de um diálogo.
 
