@@ -108,8 +108,8 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
     labelWidth = 0,
     multiline = false,
     notched,
-    type = 'text',
     size,
+    type = 'text',
     ...other
   } = props;
 

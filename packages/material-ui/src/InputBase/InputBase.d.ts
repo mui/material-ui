@@ -179,6 +179,10 @@ export interface InputBaseProps
    */
   minRows?: string | number;
   /**
+   * The size of the text field.
+   */
+  size?: 'small' | 'medium';
+  /**
    * Start `InputAdornment` for this component.
    */
   startAdornment?: React.ReactNode;
@@ -191,10 +195,6 @@ export interface InputBaseProps
    * The value of the `input` element, required for a controlled component.
    */
   value?: unknown;
-  /**
-   * The size of the text field.
-   */
-  size?: 'small' | 'medium';
 }
 
 export interface InputBaseComponentProps

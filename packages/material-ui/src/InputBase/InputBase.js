@@ -196,10 +196,10 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     readOnly,
     renderSuffix,
     rows,
+    size,
     startAdornment,
     type = 'text',
     value: valueProp,
-    size,
     ...other
   } = props;
 
