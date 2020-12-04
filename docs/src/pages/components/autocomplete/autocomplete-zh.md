@@ -264,6 +264,22 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
+## 事件
+
+如果你不想要浏览器自动填充密钥，那么你可以将事件的 `defaultMuiPrevented` 属性设置为 `true`。
+
+```jsx
+<Autocomplete
+  onKeyDown={(event) => {
+    if (event.key === 'Enter') {
+      // 阻止默认的“Enter”行为。
+      event.defaultMuiPrevented = false;
+      // 你的处理器代码
+    }
+  }}
+/>
+```
+
 ## 设计局限
 
 ### autocomplete/autofill

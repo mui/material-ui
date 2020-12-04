@@ -31,6 +31,8 @@ Si vous créez une boîte de dialogue modale, vous voudrez probablement utiliser
 
 ## Modal simple
 
+This demo stacks Modals, but it is strongly discouraged to do so in practice.
+
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
 Notez que vous pouvez désactiver le contour (souvent bleu ou or) avec la propriété `outline : 0` CSS .

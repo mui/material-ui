@@ -77,7 +77,7 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 </Box>
 ```
 
-## Text overflow
+## Estouro de texto
 
 {{"demo": "pages/system/display/TextOverflow.js", "defaultCodeOpen": false}}
 
@@ -103,7 +103,7 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 </Box>
 ```
 
-## White space
+## Espaço em branco
 
 {{"demo": "pages/system/display/WhiteSpace.js", "defaultCodeOpen": false}}
 

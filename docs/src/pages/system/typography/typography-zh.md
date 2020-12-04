@@ -2,7 +2,7 @@
 
 <p class="description">用于控制对齐（alignment），封装（wrapping），以及字体权重（weight）等等的常用文本实用辅助工具的文档和示例。</p>
 
-## Variant
+## 变体
 
 {{"demo": "pages/system/typography/Variant.js", "defaultCodeOpen": false}}
 
@@ -44,7 +44,7 @@
 <Box sx={{ fontSize: 16 }}>…
 ```
 
-## Font style
+## 字体
 
 {{"demo": "pages/system/typography/FontStyle.js", "defaultCodeOpen": false}}
 
@@ -63,7 +63,7 @@
 <Box sx={{ fontFamily: 'Monospace' }}>…
 ```
 
-## Letter spacing
+## 字母间距
 
 {{"demo": "pages/system/typography/LetterSpacing.js", "defaultCodeOpen": false}}
 
@@ -72,7 +72,7 @@
 <Box sx={{ letterSpacing: 10 }}>…
 ```
 
-## Line height
+## 行高
 
 {{"demo": "pages/system/typography/LineHeight.js", "defaultCodeOpen": false}}
 

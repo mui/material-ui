@@ -1,30 +1,30 @@
 ---
-title: React Date Picker component
+title: Componente React Seletor de data
 components: DatePicker, PickersDay
 githubLabel: 'component: DatePicker'
 packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
-# Date Picker
+# Seletor de data
 
-<p class="description">Date pickers let the user select a date.</p>
+<p class="description">Seletores de data permitem que o usuário selecione uma data.</p>
 
-Date pickers let the user select a date. Date pickers are displayed with:
+Seletores de data permitem que o usuário selecione uma data. Seletores de data são exibidos com:
 
-- Dialogs on mobile
-- Text field dropdowns on desktop
+- Diálogos em dispositivos móveis
+- Menu suspenso com campo de texto em desktop
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Requisitos
 
-This component relies on the date management library of your choice. It supports [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) and any other library via a public `dateAdapter` interface.
+Este componente depende da biblioteca de gerenciamento de datas da sua escolha. Ele suporta [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) e qualquer outra biblioteca através da interface publica `dateAdapter`.
 
-Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
+Por favor, instale qualquer uma destas bibliotecas e configure corretamente o mecanismo de data encapsulando na raiz dos componentes (ou o nível mais alto que você deseja que os seletores estejam disponíveis) com `LocalizationProvider`:
 
 ```jsx
-// or @material-ui/lab/Adapter{DayJS,Luxon,Moment} or any valid date-io adapter
+// ou @material-ui/lab/Adapter{DayJS,Luxon,Moment} ou qualquer adaptador válido de date-io
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
@@ -35,67 +35,67 @@ function App() {
 }
 ```
 
-## Basic usage
+## Utilização Básica
 
-The date picker will be rendered as a modal dialog on mobile, and a textfield with a popover on desktop.
+O seletor de data será renderizado como um diálogo modal no dispositivo móvel, e um campo de texto com um popover no desktop.
 
 {{"demo": "pages/components/date-picker/BasicDatePicker.js"}}
 
-## Responsiveness
+## Responsividade
 
-The date picker component is designed and optimized for the device it runs on.
+O componente seletor de data é projetado e otimizado para o dispositivo em que ele é executado.
 
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
+- A versão "móvel" funciona melhor para dispositivos de toque e telas pequenas.
+- A versão "desktop" funciona melhor para dispositivos com mouse e telas grandes.
 
-By default, the `DatePicker` component uses a `@media (pointer: fine)` media query to determine which version to use. This can be customized with the `desktopModeMediaQuery` prop.
+Por padrão, o componente `DatePicker` usa uma consulta de mídia `@media (pointer: fine)` para determinar qual versão usar. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
 
 {{"demo": "pages/components/date-picker/ResponsiveDatePickers.js"}}
 
 ## Localização
 
-Use `LocalizationProvider` to change the date-engine locale that is used to render the date picker. Here is an example of changing the locale for the `date-fns` adapter:
+Use `LocalizationProvider` para alterar a date-engine de localização que é usada para renderizar o seletor de data. Aqui esta um exemplo de alteração da localidade com o adaptador `date-fns`:
 
 {{"demo": "pages/components/date-picker/LocalizedDatePicker.js"}}
 
-## Views playground
+## Exemplos de exibições
 
-It's possible to combine `year`, `month`, and `date` selection views. Views will appear in the order they're included in the `views` array.
+É possível combinar `year`, `month`, e `date` para seleção na exibição. As exibições aparecerão na ordem em que estão incluídas no array `views`.
 
 {{"demo": "pages/components/date-picker/ViewsDatePicker.js"}}
 
-## Static mode
+## Modo estático
 
-It's possible to render any picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.
+É possível renderizar qualquer seletor sem usar um modal/popover e campos de texto. Isso pode ser útil na construção de containers customizados de popover/modal.
 
 {{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
 
-## Landscape orientation
+## Orientação paisagem
 
-For ease of use the date picker will automatically change the layout between portrait and landscape by subscription to the `window.orientation` change. You can force a specific layout using the `orientation` prop.
+Para ter seu uso facilitado, o seletor de data irá automaticamente alterar o leiaute entre retrato e paisagem devido a subscrição de alterações com o evento `window.orientation`. Você pode forçar um leiaute específico usando a propriedade `orientation`.
 
 {{"demo": "pages/components/date-picker/StaticDatePickerLandscape.js", "bg": true}}
 
-## Sub-components
+## Subcomponentes
 
-Some lower level sub-components (`DayPicker`, `MonthPicker` and `YearPicker`) are also exported. These are rendered without a wrapper or outer logic (masked input, date values parsing and validation, etc.).
+Alguns subcomponentes de nível mais baixo (`DayPicker`, `MonthPicker` e `YearPicker`) também são exportados. Estes são renderizados sem estar encapsulado ou  lógica exterior (campo com mascara, valores de data e validação, etc.).
 
 {{"demo": "pages/components/date-picker/InternalPickers.js"}}
 
-## Custom input component
+## Componente de entrada customizado
 
-You can customize rendering of the input with the `renderInput` prop. Make sure to spread `ref` and `inputProps` correctly to the custom input component.
+É possível customizar a renderização do campo de entrada com a propriedade  `renderInput`. Certifique-se de encaminhar `ref` e `inputProps` corretamente para o componente de entrada customizado.
 
 {{"demo": "pages/components/date-picker/CustomInput.js"}}
 
-## Customized day rendering
+## Renderização customizada do dia
 
-The displayed days are customizable with the `renderDay` function prop. You can take advantage of the internal [PickersDay](/api/pickers-day) component.
+Os dias exibidos são customizados com uma função na propriedade `renderDay`. Você pode tirar vantagem do componente interno [PickersDay](/api/pickers-day).
 
 {{"demo": "pages/components/date-picker/CustomDay.js"}}
 
-## Dynamic data
+## Dados dinâmicos
 
-Sometimes it may be necessary to display additional info right in the calendar. Here's an example of prefetching and displaying server-side data using the `onMonthChange`, `loading`, and `renderDay` props.
+Às vezes, pode ser necessário exibir informação adicional diretamente no calendário. Aqui está um exemplo de pré-busca e exibição de dados do servidor usando as propriedades `onMonthChange`, `loading`, e `renderDay`.
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}

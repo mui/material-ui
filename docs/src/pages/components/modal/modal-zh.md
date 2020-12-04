@@ -31,6 +31,8 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## 简单的模态框
 
+这个演示可以堆叠模态框，但强烈不建议在实际操作中这样做。
+
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
 请注意，您可以通过 `outline: 0` 属性来禁用模态框的边缘（通常为蓝色或金色）。

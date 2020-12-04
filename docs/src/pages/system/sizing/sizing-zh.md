@@ -9,9 +9,9 @@ Sizing 样式函数支持不同的属性输入类型：
 {{"demo": "pages/system/sizing/Values.js", "defaultCodeOpen": false}}
 
 ```jsx
-// Numbers in [0,1] are multiplied by 100 and converted to % values.
+// 在 [0,1] 中的数字乘以 100 并转换为 % 值。
 <Box sx={{ width: 1/4 }}>
-<Box sx={{ width: 300 }}> // Numbers are converted to pixel values.
+<Box sx={{ width: 300 }}> // 讲数字转换为像素值。
 <Box sx={{ width: '75%' }}> // 字符串的值作为原始的 CSS 使用。
 <Box sx={{ width: 1 }}> // 100%
 ```

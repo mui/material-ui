@@ -1,27 +1,27 @@
 ---
-title: React Time Picker component
+title: Componente React Seletor de hora
 components: TimePicker
 githubLabel: 'component: TimePicker'
 packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/time-pickers
 ---
 
-# Time Picker
+# Seletor de hora
 
-<p class="description">Time pickers allow the user to select a single time.</p>
+<p class="description">Seletores de horário permitem que o usuário selecione um horário.</p>
 
-Time pickers allow the user to select a single time (in the hours:minutes format). The selected time is indicated by the filled circle at the end of the clock hand.
+Seletores de hora permitem que o usuário selecione um horário simples (no formato de horas:minutos). O horário selecionado é indicado pelo círculo preenchido no final do ponteiro do relógio.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Requisitos
 
-This component relies on the date management library of your choice. It supports [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) and any other library via a public `dateAdapter` interface.
+Este componente depende da biblioteca de gerenciamento de datas da sua escolha. Ele suporta [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) e qualquer outra biblioteca através da interface publica `dateAdapter`.
 
-Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
+Por favor, instale qualquer uma destas bibliotecas e configure corretamente o mecanismo de data encapsulando na raiz dos componentes (ou o nível mais alto que você deseja que os seletores estejam disponíveis) com `LocalizationProvider`:
 
 ```jsx
-// or @material-ui/lab/Adapter{DayJS,Luxon,Moment} or any valid date-io adapter
+// ou @material-ui/lab/Adapter{DayJS,Luxon,Moment} ou qualquer adaptador válido de date-io
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
@@ -32,7 +32,7 @@ function App() {
 }
 ```
 
-## Basic usage
+## Utilização Básica
 
 The time picker will automatically adjust to the locale's time setting, i.e. the 12-hour or 24-hour format. This can be controlled with `ampm` prop.
 
@@ -44,14 +44,14 @@ Use `LocalizationProvider` to change the date-engine locale that is used to rend
 
 {{"demo": "pages/components/time-picker/LocalizedTimePicker.js"}}
 
-## Responsiveness
+## Responsividade
 
 The time picker component is designed and optimized for the device it runs on.
 
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
+- A versão "móvel" funciona melhor para dispositivos de toque e telas pequenas.
+- A versão "desktop" funciona melhor para dispositivos com mouse e telas grandes.
 
-By default, the `TimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use. This can be customized with the `desktopModeMediaQuery` prop.
+By default, the `TimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
 
 {{"demo": "pages/components/time-picker/ResponsiveTimePickers.js"}}
 
@@ -59,7 +59,7 @@ By default, the `TimePicker` component uses a `@media (pointer: fine)` media que
 
 {{"demo": "pages/components/time-picker/TimeValidationTimePicker.js"}}
 
-## Static mode
+## Modo estático
 
 It's possible to render any picker inline. This will enable building custom popover/modal containers.
 

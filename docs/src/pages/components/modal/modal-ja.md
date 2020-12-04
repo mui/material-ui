@@ -31,6 +31,8 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## Simple modal
 
+This demo stacks Modals, but it is strongly discouraged to do so in practice.
+
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
 `アウトライン：0` CSSプロパティでアウトライン（多くの場合、青または金）を無効にできることに注意してください。

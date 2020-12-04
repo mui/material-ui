@@ -270,6 +270,22 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
+## Events
+
+If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+
+```jsx
+<Autocomplete
+  onKeyDown={(event) => {
+    if (event.key === 'Enter') {
+      // Prevent's default 'Enter' behavior.
+      event.defaultMuiPrevented = false;
+      // your handler code
+    }
+  }}
+/>
+```
+
 ## Ограничения
 
 ### autocomplete/autofill

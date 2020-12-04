@@ -22,7 +22,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### 3. Install the rtl plugin
+### 3. Instale o plugin rtl
 
 Você precisa deste plugin JSS para inverter os estilos: [jss-rtl](https://github.com/alitaheri/jss-rtl).
 
@@ -30,7 +30,7 @@ Você precisa deste plugin JSS para inverter os estilos: [jss-rtl](https://githu
 npm install jss-rtl
 ```
 
-If you are using `emotion` or `styled-components`, you need this stylis plugin to flip the styles: [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl).
+Se você estiver usando `emotion` ou `styled-components`, você precisa deste plugin de estilo para inverter os estilos: [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl).
 
 ```sh
 import { create } from 'jss';
@@ -49,11 +49,11 @@ function RTL(props) {
 }
 ```
 
-Note: both `emotion` and `styled-components` currently work with the v1 of the plugin.
+Nota: tanto `emotion` e `styled-components` funcionam atualmente com a v1 do plugin.
 
-Having installed the plugin in your project, Material-UI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
+Tendo instalado o plugin em seu projeto, os componentes do Material-UI ainda exigem que ele seja carregado pela instância do motor de estilo que você usa. Encontre guias abaixo de como você pode carregá-lo.
 
-### 3. Load the rtl plugin
+### 3. Carregando o plugin rtl
 
 #### 3.1 JSS
 
@@ -100,7 +100,7 @@ function RTL(props) {
 
 #### 3.3 styled-components
 
-If you use `styled-components` as your style engine, you can use the [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) and provide the stylis-plugin-rtl as an item in the `stylisPlugins` property:
+Se você usar `styled-components` como seu motor de estilo, você pode usar o [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) e fornecer a propriedade stylis-plugin-rtl como um item da propriedade `stylisPlugins`:
 
 ```jsx
 import { StyleSheetManager } from 'styled-components';
@@ -133,7 +133,7 @@ _Use o botão de alternância de direção no canto superior direito para ver o 
 
 ### emotion & styled-components
 
-You have to use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to disable right-to-left styles.
+Você precisa a sintaxe de template literal e adicionar a diretiva `/* @noflip */` antes da regra ou propriedade para a qual você deseja desativar os estilos da direita para a esquerda.
 
 _Use o botão de alternância de direção no canto superior direito para ver o efeito._
 

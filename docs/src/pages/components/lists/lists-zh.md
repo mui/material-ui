@@ -85,7 +85,9 @@ function ListItemLink(props) {
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## 嵌入列表
+## 对齐列表项
+
+`inset` 属性可以让没有前导（leading）图标或头像的列表项与有前导图标或头像的项正确对齐。
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
