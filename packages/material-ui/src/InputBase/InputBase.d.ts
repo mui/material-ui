@@ -191,6 +191,10 @@ export interface InputBaseProps
    * The value of the `input` element, required for a controlled component.
    */
   value?: unknown;
+  /**
+   * The size of the text field.
+   */
+  size?: 'small' | 'medium';
 }
 
 export interface InputBaseComponentProps

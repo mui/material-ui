@@ -100,6 +100,7 @@ export const styles = (theme) => {
 };
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
+  console.log('props outline input',props, props.classes, 'size', props.size)
   const {
     classes,
     fullWidth = false,
@@ -109,9 +110,11 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
     multiline = false,
     notched,
     type = 'text',
+    size,
+    // margin = (size === 'small' ? 'dense' : undefined),
     ...other
   } = props;
-
+  
   return (
     <InputBase
       renderSuffix={(state) => (
@@ -136,6 +139,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
       multiline={multiline}
       ref={ref}
       type={type}
+      size={size}
       {...other}
     />
   );
@@ -270,6 +274,10 @@ OutlinedInput.propTypes = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The size of the outlined input field.
+   */
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * Start `InputAdornment` for this component.
    */

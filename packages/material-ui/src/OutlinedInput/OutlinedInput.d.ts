@@ -53,6 +53,10 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
    * If `true`, the outline is notched to accommodate the label.
    */
   notched?: boolean;
+  /**
+   * The size of the outlined input field.
+   */
+  size?: 'small' | 'medium';
 }
 
 export type OutlinedInputClassKey = keyof NonNullable<OutlinedInputProps['classes']>;
