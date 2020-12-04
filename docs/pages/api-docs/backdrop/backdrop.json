@@ -3,9 +3,9 @@
   "propDescriptions": {
     "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "invisible": "If <code>true</code>, the backdrop is invisible.\nIt can be used when rendering a popover or a custom select component.",
+    "invisible": "If <code>true</code>, the backdrop is invisible. It can be used when rendering a popover or a custom select component.",
     "open": "If <code>true</code>, the backdrop is open.",
-    "transitionDuration": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object."
+    "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

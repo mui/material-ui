@@ -1,8 +1,8 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "activeStep": "Set the active step (zero based index).\nSet to -1 to disable all the steps.",
-    "alternativeLabel": "If set to &#39;true&#39; and orientation is horizontal,\nthen the step label will be positioned under the icon.",
+    "activeStep": "Set the active step (zero based index). Set to -1 to disable all the steps.",
+    "alternativeLabel": "If set to &#39;true&#39; and orientation is horizontal, then the step label will be positioned under the icon.",
     "children": "Two or more <code>&lt;Step /&gt;</code> components.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "connector": "An element to be placed between each step.",

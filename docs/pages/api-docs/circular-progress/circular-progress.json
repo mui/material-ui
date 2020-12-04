@@ -3,11 +3,11 @@
   "propDescriptions": {
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
-    "disableShrink": "If <code>true</code>, the shrink animation is disabled.\nThis only works if variant is <code>indeterminate</code>.",
-    "size": "The size of the circle.\nIf using a number, the pixel unit is assumed.\nIf using a string, you need to provide the CSS unit, e.g &#39;3rem&#39;.",
+    "disableShrink": "If <code>true</code>, the shrink animation is disabled. This only works if variant is <code>indeterminate</code>.",
+    "size": "The size of the circle. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, e.g &#39;3rem&#39;.",
     "thickness": "The thickness of the circle.",
-    "value": "The value of the progress indicator for the determinate variant.\nValue between 0 and 100.",
-    "variant": "The variant to use.\nUse indeterminate when there is no progress value."
+    "value": "The value of the progress indicator for the determinate variant. Value between 0 and 100.",
+    "variant": "The variant to use. Use indeterminate when there is no progress value."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

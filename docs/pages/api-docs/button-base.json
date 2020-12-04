@@ -11,10 +11,6 @@
     "focusRipple": { "type": { "name": "bool" } },
     "focusVisibleClassName": { "type": { "name": "string" } },
     "onFocusVisible": { "type": { "name": "func" } },
-    "tabIndex": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "default": "0"
-    },
     "TouchRippleProps": { "type": { "name": "object" } }
   },
   "name": "ButtonBase",

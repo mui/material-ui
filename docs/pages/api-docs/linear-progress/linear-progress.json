@@ -3,9 +3,9 @@
   "propDescriptions": {
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
-    "value": "The value of the progress indicator for the determinate and buffer variants.\nValue between 0 and 100.",
-    "valueBuffer": "The value for the buffer variant.\nValue between 0 and 100.",
-    "variant": "The variant to use.\nUse indeterminate or query when there is no progress value."
+    "value": "The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.",
+    "valueBuffer": "The value for the buffer variant. Value between 0 and 100.",
+    "variant": "The variant to use. Use indeterminate or query when there is no progress value."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

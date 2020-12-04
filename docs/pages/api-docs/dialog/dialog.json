@@ -7,17 +7,17 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "disableEscapeKeyDown": "If <code>true</code>, hitting escape will not fire the <code>onClose</code> callback.",
     "fullScreen": "If <code>true</code>, the dialog is full-screen.",
-    "fullWidth": "If <code>true</code>, the dialog stretches to <code>maxWidth</code>.\n\nNotice that the dialog width grow is limited by the default margin.",
-    "maxWidth": "Determine the max-width of the dialog.\nThe dialog width grows with the size of the screen.\nSet to <code>false</code> to disable <code>maxWidth</code>.",
+    "fullWidth": "If <code>true</code>, the dialog stretches to <code>maxWidth</code>.<br>Notice that the dialog width grow is limited by the default margin.",
+    "maxWidth": "Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to <code>false</code> to disable <code>maxWidth</code>.",
     "onBackdropClick": "Callback fired when the backdrop is clicked.",
-    "onClose": "Callback fired when the component requests to be closed.\n\n@param {object} event The event source of the callback.\n@param {string} reason Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>.",
+    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>reason:</em> Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>.",
     "open": "If <code>true</code>, the Dialog is open.",
     "PaperComponent": "The component used to render the body of the dialog.",
     "PaperProps": "Props applied to the <a href=\"/api/paper/\"><code>Paper</code></a> element.",
     "scroll": "Determine the container for scrolling the dialog.",
-    "TransitionComponent": "The component used for the transition.\n<a href=\"/components/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
-    "transitionDuration": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
-    "TransitionProps": "Props applied to the transition element.\nBy default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
+    "TransitionComponent": "The component used for the transition. <a href=\"/components/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
+    "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
+    "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

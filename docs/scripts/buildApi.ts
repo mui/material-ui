@@ -11,9 +11,9 @@ import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import marked from 'marked/lib/marked';
 import * as yargs from 'yargs';
-import { defaultHandlers, parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
+import * as doctrine from 'doctrine';
+import { defaultHandlers, parse as docgenParse, PropDescriptor, PropTypeDescriptor, ReactDocgenApi } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
-import checkProps, { ReactApi } from 'docs/src/modules/utils/checkProps';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
@@ -28,6 +28,29 @@ import { getLineFeed, getUnstyledFilename } from './helpers';
 const TEST = false;
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
+
+interface ReactApi extends ReactDocgenApi {
+  EOL: string;
+  filename: string;
+  forwardsRefTo: string | undefined;
+  inheritance: { component: string; pathname: string } | null;
+  name: string;
+  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
+  spread: boolean;
+  src: string;
+  styles: {
+    classes: string[];
+    globalClasses: Record<string, string>;
+    name: string | null;
+    descriptions: Record<string, string>;
+  };
+}
+interface DescribeablePropDescriptor {
+  annotation: doctrine.Annotation;
+  defaultValue: string | null;
+  required: boolean;
+  type: PropTypeDescriptor;
+}
 
 const generateClassName = createGenerateClassName();
 
@@ -169,6 +192,173 @@ function generatePropTypeDescription(type: PropTypeDescriptor): string | undefin
     default:
       return type.name;
   }
+}
+
+/**
+ * Returns `null` if the prop should be ignored.
+ * Throws if it is invalid.
+ * @param prop
+ * @param propName
+ */
+function createDescribeableProp(
+  prop: PropDescriptor,
+  propName: string,
+): DescribeablePropDescriptor | null {
+  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
+
+  const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
+  const renderDefaultValue = Boolean(
+    renderedDefaultValue &&
+      // Ignore "large" default values that would break the table layout.
+      renderedDefaultValue.length <= 150,
+  );
+
+  if (description === undefined) {
+    throw new Error(`The "${propName}" prop is missing a description.`);
+  }
+
+  const annotation = doctrine.parse(description, {
+    sloppy: true,
+  });
+
+  if (
+    annotation.description.trim() === '' ||
+    annotation.tags.some((tag) => tag.title === 'ignore')
+  ) {
+    return null;
+  }
+
+  if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
+    throw new Error(
+      `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
+    );
+  } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
+    const shouldHaveDefaultAnnotation =
+      // Discriminator for polymorphism which is not documented at the component level.
+      // The documentation of `component` does not know in which component it is used.
+      propName !== 'component';
+
+    if (shouldHaveDefaultAnnotation) {
+      throw new Error(`JSDOC @default annotation not found for '${propName}'.`);
+    }
+  } else if (jsdocDefaultValue !== undefined) {
+    // `defaultValue` can't be undefined or we would've thrown earlier.
+    if (jsdocDefaultValue.value !== defaultValue!.value) {
+      throw new Error(
+        `Expected JSDOC @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+      );
+    }
+  }
+
+  return {
+    annotation,
+    defaultValue: renderDefaultValue ? renderedDefaultValue! : null,
+    required: Boolean(required),
+    type,
+  };
+}
+
+function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
+  if (type.type === 'AllLiteral') {
+    return 'any';
+  }
+
+  if (type.type === 'VoidLiteral') {
+    return 'void';
+  }
+
+  if (type.type === 'TypeApplication') {
+    const arrayTypeName = resolveType(type.applications[0]);
+    return `${arrayTypeName}[]`;
+  }
+
+  if (type.type === 'UnionType') {
+    return type.elements.map((t) => resolveType(t)).join(' \\| ');
+  }
+
+  if ('name' in type) {
+    return type.name;
+  }
+  throw new TypeError(`resolveType for '${type.type}' not implemented`);
+}
+
+function generatePropDescription(prop: DescribeablePropDescriptor, propName: string): string {
+  const { annotation } = prop;
+  const type = prop.type;
+  let deprecated = '';
+
+  if (type.name === 'custom') {
+    const deprecatedInfo = getDeprecatedInfo(type);
+    if (deprecatedInfo) {
+      deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
+    }
+  }
+
+  // Two new lines result in a newline in the table.
+  // All other new lines must be eliminated to prevent markdown mayhem.
+  const jsDocText = escapeCell(annotation.description)
+    .replace(/(\r?\n){2}/g, '<br>')
+    .replace(/\r?\n/g, ' ');
+
+  let signature = '';
+
+  // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
+  // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
+  const parsedArgs: doctrine.Tag[] = annotation.tags.filter((tag) => tag.title === 'param');
+  let parsedReturns:
+    | { description?: string | null; type?: doctrine.Type | null }
+    | undefined = annotation.tags.find((tag) => tag.title === 'returns');
+  if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
+    parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
+
+    // Remove new lines from tag descriptions to avoid markdown errors.
+    annotation.tags.forEach((tag) => {
+      if (tag.description) {
+        tag.description = tag.description.replace(/\r*\n/g, ' ');
+      }
+    });
+
+    signature += '<br><br>**Signature:**<br>`function(';
+    signature += parsedArgs
+      .map((tag, index) => {
+        if (tag.type != null && tag.type.type === 'OptionalType') {
+          return `${tag.name}?: ${(tag.type.expression as any).name}`;
+        }
+
+        if (tag.type === undefined) {
+          throw new TypeError(
+            `In function signature for prop '${propName}' Argument #${index} has no type.`,
+          );
+        }
+        return `${tag.name}: ${resolveType(tag.type!)}`;
+      })
+      .join(', ');
+
+    const returnType = parsedReturns.type;
+    if (returnType == null) {
+      throw new TypeError(
+        `Function signature for prop '${propName}' has no return type. Try \`@returns void\`. Otherwise it might be a bug with doctrine.`,
+      );
+    }
+
+    const returnTypeName = resolveType(returnType);
+
+    signature += `) => ${returnTypeName}\`<br>`;
+    signature += parsedArgs
+      .filter((tag) => tag.description)
+      .map((tag) => `*${tag.name}:* ${tag.description}`)
+      .join('<br>');
+    if (parsedReturns.description) {
+      signature += `<br> *returns* (${returnTypeName}): ${parsedReturns.description}`;
+    }
+  }
+
+  let notes = '';
+  if (isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type)) {
+    notes += '<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs).';
+  }
+
+  return `${deprecated}${jsDocText}${signature}${notes}`;
 }
 
 function writePrettifiedFile(filename: string, data: string, prettierConfigPath: string) {
@@ -747,13 +937,6 @@ async function buildDocs(options: {
     }, {} as Record<string, string>);
   }
 
-  try {
-    checkProps(reactApi);
-  } catch (err) {
-    console.error('Error checking props for', componentObject.filename);
-    throw err;
-  }
-
   /**
    * Component description.
    */
@@ -762,14 +945,17 @@ async function buildDocs(options: {
   }
 
   const componentProps = _.fromPairs(
-    Object.entries(reactApi.props).map(([propName, propData]) => {
-      let description = marked.parseInline(propData.description);
-
-      if (description.startsWith('@ignore')) {
+    Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
+      const prop = createDescribeableProp(propDescriptor, propName);
+      if (prop === null) {
         return [];
       }
 
+      let description = generatePropDescription(prop, propName);
+      description = marked.parseInline(description);
+      
       if (propName === 'classes') {
+        // TODO: Dedupe this for l10n
         description += ' See <a href="#css">CSS API</a> below for more details.';
       }
 
@@ -780,22 +966,22 @@ async function buildDocs(options: {
 
       // Only keep `default` for bool props if it isn't 'false'.
       let defaultValue: string | undefined;
-      if (propData.type.name !== 'bool' || propData.jsdocDefaultValue?.value !== 'false') {
-        defaultValue = propData.jsdocDefaultValue?.value;
+      if (propDescriptor.type.name !== 'bool' || propDescriptor.jsdocDefaultValue?.value !== 'false') {
+        defaultValue = propDescriptor.jsdocDefaultValue?.value;
       }
 
-      const propTypeDescription = generatePropTypeDescription(propData.type);
+      const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
       return [
         propName,
         {
           type: {
-            name: propData.type.name,
+            name: propDescriptor.type.name,
             description:
-              propTypeDescription !== propData.type.name ? propTypeDescription : undefined,
+              propTypeDescription !== propDescriptor.type.name ? propTypeDescription : undefined,
           },
           default: defaultValue,
           // undefined values are not serialized => saving some bytes
-          required: propData.required ? true : undefined,
+          required: propDescriptor.required ? true : undefined,
         },
       ];
     }),
