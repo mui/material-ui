@@ -72,7 +72,9 @@ describe('<Popper />', () => {
         out: 'top',
       },
     ].forEach((test) => {
-      it(`should flip ${test.in} when direction=rtl is used`, () => {
+      it(`should ${test.in === test.out ? 'not' : ''}flip ${
+        test.in
+      } when direction=rtl is used`, () => {
         const renderSpy = spy();
         render(
           <ThemeProvider theme={rtlTheme}>
