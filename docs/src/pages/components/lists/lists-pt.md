@@ -1,5 +1,5 @@
 ---
-title: React List component
+title: Componente React Lista
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 githubLabel: 'component: List'
 materialDesign: https://material.io/components/lists
@@ -87,15 +87,15 @@ Esse recurso depende do posicionamento fixo do CSS. Infelizmente, [não é imple
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## Inset List Item
+## Item de lista encaixado
 
-The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
+A propriedade `inset` habilita um item de lista, que não tenha um ícone principal ou um avatar, para alinhar corretamente os itens que possuem.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
-## Lista Virtualizada
+## Lista sem espaçamentos
 
-When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+Ao renderizar uma lista dentro de um componente que define seus próprios espaços, o espaçamento do `ListItem` pode ser desabilitado com `disableGutters`.
 
 {{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
