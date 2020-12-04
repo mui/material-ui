@@ -5,7 +5,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import {
   SliderUnstyled,
   SliderValueLabelUnstyled,
-  sliderClasses as sliderUnstyledClasses,
+  sliderUnstyledClasses,
   getSliderUtilityClass,
 } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -391,11 +391,15 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         ...componentsProps,
         root: {
           ...componentsProps.root,
-          ...((!components.Root || !isHostComponent(components.Root)) && { styleProps: { ...componentsProps.root?.styleProps, color }}),
+          ...((!components.Root || !isHostComponent(components.Root)) && {
+            styleProps: { ...componentsProps.root?.styleProps, color },
+          }),
         },
         thumb: {
           ...componentsProps.thumb,
-          ...((!components.Thumb || !isHostComponent(components.Thumb)) && {styleProps: { ...componentsProps.thumb?.styleProps, color }}),
+          ...((!components.Thumb || !isHostComponent(components.Thumb)) && {
+            styleProps: { ...componentsProps.thumb?.styleProps, color },
+          }),
         },
       }}
       classes={classes}

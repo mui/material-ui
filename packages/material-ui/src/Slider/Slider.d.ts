@@ -4,7 +4,7 @@ import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
-  SliderClasses,
+  SliderUnstyledClasses,
 } from '@material-ui/unstyled/SliderUnstyled';
 import { Theme } from '@material-ui/core/styles';
 import { OverrideProps } from '../OverridableComponent';
@@ -77,11 +77,13 @@ export type SliderProps<
   P = {}
 > = OverrideProps<SliderTypeMap<D, P>, D>;
 
-export declare const badgeClasses: SliderClasses & {
+export interface SliderClasses extends SliderUnstyledClasses {
   colorPrimary: string;
   colorSecondary: string;
   thumbPrimary: string;
   thumbSecondary: string;
-};
+}
+
+export const sliderClasses: SliderClasses;
 
 export default Slider;

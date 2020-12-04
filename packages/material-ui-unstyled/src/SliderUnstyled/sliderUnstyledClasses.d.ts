@@ -1,4 +1,4 @@
-export interface SliderClasses {
+export interface SliderUnstyledClasses {
   root: string;
   active: string;
   focusVisible: string;
@@ -21,7 +21,7 @@ export interface SliderClasses {
   valueLabelLabel: string;
 }
 
-declare const sliderClasses: SliderClasses;
+declare const sliderUnstyledClasses: SliderUnstyledClasses;
 
 export declare const getSliderUtilityClass: (part: string) => string;
 

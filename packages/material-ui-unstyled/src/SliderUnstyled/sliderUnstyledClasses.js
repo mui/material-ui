@@ -2,7 +2,7 @@ export const getSliderUtilityClass = (name) => {
   return `MuiSlider-${name}`;
 };
 
-const sliderClasses = {
+const sliderUnstyledClasses = {
   root: getSliderUtilityClass('root'),
   active: 'Mui-active',
   focusVisible: 'Mui-focusVisible',

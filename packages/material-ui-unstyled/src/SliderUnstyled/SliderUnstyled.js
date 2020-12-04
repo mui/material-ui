@@ -10,7 +10,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@material-ui/utils';
-import sliderClasses from './sliderClasses';
+import sliderUnstyledClasses from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
 function asc(a, b) {
@@ -148,25 +148,25 @@ const useSliderClasses = (props) => {
   const { disabled, marked, orientation, track, classes = {} } = props;
 
   const utilityClasses = {
-    root: clsx(sliderClasses['root'], classes['root'], {
-      [sliderClasses['disabled']]: disabled,
-      [sliderClasses['marked']]: marked,
+    root: clsx(sliderUnstyledClasses['root'], classes['root'], {
+      [sliderUnstyledClasses['disabled']]: disabled,
+      [sliderUnstyledClasses['marked']]: marked,
       [classes['marked']]: marked,
-      [sliderClasses['vertical']]: orientation === 'vertical',
+      [sliderUnstyledClasses['vertical']]: orientation === 'vertical',
       [classes['vertical']]: orientation === 'vertical',
-      [sliderClasses['trackInverted']]: track === 'inverted',
+      [sliderUnstyledClasses['trackInverted']]: track === 'inverted',
       [classes['trackInverted']]: track === 'inverted',
-      [sliderClasses['trackFalse']]: track === false,
+      [sliderUnstyledClasses['trackFalse']]: track === false,
       [classes['trackFalse']]: track === false,
     }),
-    rail: clsx(sliderClasses['rail'], classes['rail']),
-    track: clsx(sliderClasses['track'], classes['track']),
-    mark: clsx(sliderClasses['mark'], classes['mark']),
-    markLabel: clsx(sliderClasses['markLabel'], classes['markLabel']),
-    valueLabel: clsx(sliderClasses['valueLabel'], classes['valueLabel']),
-    thumb: clsx(sliderClasses['thumb'], classes['thumb'], {
-      [sliderClasses['disabled']]: disabled,
-      [sliderClasses['vertical']]: orientation === 'vertical',
+    rail: clsx(sliderUnstyledClasses['rail'], classes['rail']),
+    track: clsx(sliderUnstyledClasses['track'], classes['track']),
+    mark: clsx(sliderUnstyledClasses['mark'], classes['mark']),
+    markLabel: clsx(sliderUnstyledClasses['markLabel'], classes['markLabel']),
+    valueLabel: clsx(sliderUnstyledClasses['valueLabel'], classes['valueLabel']),
+    thumb: clsx(sliderUnstyledClasses['thumb'], classes['thumb'], {
+      [sliderUnstyledClasses['disabled']]: disabled,
+      [sliderUnstyledClasses['vertical']]: orientation === 'vertical',
     }),
   };
 
@@ -676,7 +676,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               })}
               style={{ ...style, ...markProps.style }}
               className={clsx(utilityClasses.mark, markProps.className, {
-                [sliderClasses['markActive']]: markActive,
+                [sliderUnstyledClasses['markActive']]: markActive,
               })}
             />
             {mark.label != null ? (
@@ -690,7 +690,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 })}
                 style={{ ...style, ...markLabelProps.style }}
                 className={clsx(utilityClasses.markLabel, markLabelProps.className, {
-                  [sliderClasses['markLabelActive']]: markActive,
+                  [sliderUnstyledClasses['markLabelActive']]: markActive,
                 })}
               >
                 {mark.label}
@@ -745,9 +745,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               onMouseLeave={handleMouseLeave}
               {...thumbProps}
               className={clsx(utilityClasses.thumb, thumbProps.className, {
-                [sliderClasses['active']]: active === index,
-                [sliderClasses['disabled']]: disabled,
-                [sliderClasses['focusVisible']]: focusVisible === index,
+                [sliderUnstyledClasses['active']]: active === index,
+                [sliderUnstyledClasses['disabled']]: disabled,
+                [sliderUnstyledClasses['focusVisible']]: focusVisible === index,
               })}
               {...(!isHostComponent(Thumb) && {
                 styleProps: { ...stateAndProps, ...thumbProps.styleProps },
