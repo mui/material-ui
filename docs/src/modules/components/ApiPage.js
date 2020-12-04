@@ -42,17 +42,10 @@ function PropsTable(props) {
                   </span>
                 </td>
                 <td align="left">
-                  {typeDescription.length > 100 ? (
-                    <details className="prop-type">
-                      <summary>{propData.type.name}</summary>
-                      <span dangerouslySetInnerHTML={{ __html: typeDescription }} />
-                    </details>
-                  ) : (
-                    <span
-                      className="prop-type"
-                      dangerouslySetInnerHTML={{ __html: typeDescription }}
-                    />
-                  )}
+                  <span
+                    className="prop-type"
+                    dangerouslySetInnerHTML={{ __html: typeDescription }}
+                  />
                 </td>
                 <td align="left">
                   {propDefault && <span className="prop-default">{propDefault}</span>}
