@@ -141,7 +141,7 @@ function getTransaltedHeader(t, header) {
 function Heading(props) {
   const { hash, level: Level = 'h2' } = props;
   const t = useTranslate();
-  const kebabCaseHash = hash === 'componentName' ? 'component-name' : `${hash}`
+  const kebabCaseHash = hash === 'componentName' ? 'component-name' : `${hash}`;
 
   return (
     <Level>

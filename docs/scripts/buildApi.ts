@@ -1032,26 +1032,25 @@ async function buildDocs(options: {
     prettierConfigPath,
   );
 
-  const index = LANGUAGES.indexOf('en');
-  if (index !== -1) {
-    LANGUAGES.splice(index, 1);
-  }
+  // docs/translations/api-docs/component-name/component-name-xx.json
   LANGUAGES.forEach((language) => {
-    try {
-      writePrettifiedFile(
-        path.resolve(
-          'docs',
-          'translations',
-          'api-docs',
-          kebabCase(reactApi.name),
-          `${kebabCase(reactApi.name)}-${language}.json`,
-        ),
-        JSON.stringify(componentApi),
-        prettierConfigPath,
-        { flag: 'wx' },
-      );
-    } catch (error) {
-      // File exists
+    if (language !== 'en') {
+      try {
+        writePrettifiedFile(
+          path.resolve(
+            'docs',
+            'translations',
+            'api-docs',
+            kebabCase(reactApi.name),
+            `${kebabCase(reactApi.name)}-${language}.json`,
+          ),
+          JSON.stringify(componentApi),
+          prettierConfigPath,
+          { flag: 'wx' },
+        );
+      } catch (error) {
+        // File exists
+      }
     }
   });
 
