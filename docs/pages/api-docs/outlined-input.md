@@ -54,7 +54,6 @@ The `MuiOutlinedInput` name can be used for providing [default props](/customiza
 | <span class="prop-name">readOnly</span> | <span class="prop-type">bool</span> |  | It prevents the user from changing the value of the field (not from interacting with the field). |
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element is required. The prop defaults to the value (`false`) inherited from the parent FormControl component. |
 | <span class="prop-name">rows</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Number of rows to display when multiline option is set to true. |
-| <span class="prop-name">size</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'</span> |  | The size of the outlined input field. |
 | <span class="prop-name">startAdornment</span> | <span class="prop-type">node</span> |  | Start `InputAdornment` for this component. |
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> | <span class="prop-default">'text'</span> | Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types). |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the `input` element, required for a controlled component. |
@@ -74,11 +73,11 @@ Any other props supplied will be provided to the root element ([InputBase](/api/
 | <span class="prop-name">adornedStart</span> | <span class="prop-name">.MuiOutlinedInput-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
 | <span class="prop-name">adornedEnd</span> | <span class="prop-name">.MuiOutlinedInput-adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
 | <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
-| <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiOutlinedInput-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiOutlinedInput-sizeSmall</span> | Styles applied to the `input` element if `size="small"`.
 | <span class="prop-name">multiline</span> | <span class="prop-name">.MuiOutlinedInput-multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">notchedOutline</span> | <span class="prop-name">.MuiOutlinedInput-notchedOutline</span> | Styles applied to the `NotchedOutline` element.
 | <span class="prop-name">input</span> | <span class="prop-name">.MuiOutlinedInput-input</span> | Styles applied to the `input` element.
-| <span class="prop-name">inputMarginDense</span> | <span class="prop-name">.MuiOutlinedInput-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">inputSizeSmall</span> | <span class="prop-name">.MuiOutlinedInput-inputSizeSmall</span> | Styles applied to the `input` element if `size="small"`.
 | <span class="prop-name">inputMultiline</span> | <span class="prop-name">.MuiOutlinedInput-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
 | <span class="prop-name">inputAdornedStart</span> | <span class="prop-name">.MuiOutlinedInput-inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
 | <span class="prop-name">inputAdornedEnd</span> | <span class="prop-name">.MuiOutlinedInput-inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.

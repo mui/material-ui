@@ -19,8 +19,8 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
       disablePointerEvents?: string;
       /** Styles applied if the adornment is used inside <FormControl hiddenLabel />. */
       hiddenLabel?: string;
-      /** Styles applied if the adornment is used inside <FormControl margin="dense" />. */
-      marginDense?: string;
+      /** Styles applied if the adornment is used inside <FormControl size="small" />. */
+      sizeSmall?: string;
     };
     /**
      * The content of the component, normally an `IconButton` or string.

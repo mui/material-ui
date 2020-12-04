@@ -99,12 +99,12 @@ export const styles = (theme) => {
     },
     /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    marginDense: {},
+    /* Styles applied to the `input` element if `size="small"`. */
+    sizeSmall: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '25px 12px 8px',
-      '&$marginDense': {
+      '&$sizeSmall': {
         paddingTop: 21,
         paddingBottom: 4,
       },
@@ -126,8 +126,8 @@ export const styles = (theme) => {
         borderTopRightRadius: 'inherit',
       },
     },
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: {
+    /* Styles applied to the `input` element if `size="small"`. */
+    inputSizeSmall: {
       paddingTop: 21,
       paddingBottom: 4,
     },
@@ -135,7 +135,7 @@ export const styles = (theme) => {
     inputHiddenLabel: {
       paddingTop: 16,
       paddingBottom: 17,
-      '&$inputMarginDense': {
+      '&$inputSizeSmall': {
         paddingTop: 8,
         paddingBottom: 9,
       },

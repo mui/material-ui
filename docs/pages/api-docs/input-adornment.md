@@ -50,7 +50,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">positionEnd</span> | <span class="prop-name">.MuiInputAdornment-positionEnd</span> | Styles applied to the root element if `position="end"`.
 | <span class="prop-name">disablePointerEvents</span> | <span class="prop-name">.MuiInputAdornment-disablePointerEvents</span> | Styles applied to the root element if `disablePointerEvents=true`.
 | <span class="prop-name">hiddenLabel</span> | <span class="prop-name">.MuiInputAdornment-hiddenLabel</span> | Styles applied if the adornment is used inside &lt;FormControl hiddenLabel />.
-| <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiInputAdornment-marginDense</span> | Styles applied if the adornment is used inside &lt;FormControl margin="dense" />.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiInputAdornment-sizeSmall</span> | Styles applied if the adornment is used inside &lt;FormControl size="small" />.
 
 You can override the style of the component thanks to one of these customization points:
 

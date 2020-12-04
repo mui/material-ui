@@ -65,12 +65,12 @@ export const styles = (theme) => {
     adornedEnd: {},
     /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    marginDense: {},
+    /* Styles applied to the `input` element if `size="small"`. */
+    sizeSmall: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '4px 0 5px',
-      '&$marginDense': {
+      '&$sizeSmall': {
         paddingTop: 1,
       },
     },
@@ -134,8 +134,8 @@ export const styles = (theme) => {
         animationName: 'mui-auto-fill',
       },
     },
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: {
+    /* Styles applied to the `input` element if `size="small"`. */
+    inputSizeSmall: {
       paddingTop: 1,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
@@ -241,7 +241,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['color', 'disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
+    states: ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
   });
 
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
@@ -410,7 +410,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           [classes.fullWidth]: fullWidth,
           [classes.focused]: fcs.focused,
           [classes.formControl]: muiFormControl,
-          [classes.marginDense]: fcs.margin === 'dense' || size === 'small',
+          [classes.sizeSmall]: fcs.size === 'small',
           [classes.multiline]: multiline,
           [classes.adornedStart]: startAdornment,
           [classes.adornedEnd]: endAdornment,
@@ -450,7 +450,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
               [classes.disabled]: fcs.disabled,
               [classes.inputTypeSearch]: type === 'search',
               [classes.inputMultiline]: multiline,
-              [classes.inputMarginDense]: fcs.margin === 'dense' || size === 'small',
+              [classes.inputSizeSmall]: fcs.size === 'small',
               [classes.inputHiddenLabel]: fcs.hiddenLabel,
               [classes.inputAdornedStart]: startAdornment,
               [classes.inputAdornedEnd]: endAdornment,

@@ -80,16 +80,16 @@ export const styles = (theme) => {
     },
     /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    marginDense: {},
+    /* Styles applied to the `input` element if `size="small"`. */
+    sizeSmall: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {},
     /* Styles applied to the root element if `fullWidth={true}`. */
     fullWidth: {},
     /* Styles applied to the `input` element. */
     input: {},
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: {},
+    /* Styles applied to the `input` element if `size="small"`. */
+    inputSizeSmall: {},
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {},
     /* Styles applied to the `input` element if `type="search"`. */

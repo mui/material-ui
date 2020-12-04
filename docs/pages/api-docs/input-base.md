@@ -74,13 +74,13 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">adornedStart</span> | <span class="prop-name">.MuiInputBase-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
 | <span class="prop-name">adornedEnd</span> | <span class="prop-name">.MuiInputBase-adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
 | <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
-| <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiInputBase-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiInputBase-sizeSmall</span> | Styles applied to the `input` element if `size="small"`.
 | <span class="prop-name">multiline</span> | <span class="prop-name">.MuiInputBase-multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiInputBase-colorSecondary</span> | Styles applied to the root element if the color is secondary.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiInputBase-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 | <span class="prop-name">hiddenLabel</span> | <span class="prop-name">.MuiInputBase-hiddenLabel</span> | Styles applied to the root element if `hiddenLabel={true}`.
 | <span class="prop-name">input</span> | <span class="prop-name">.MuiInputBase-input</span> | Styles applied to the `input` element.
-| <span class="prop-name">inputMarginDense</span> | <span class="prop-name">.MuiInputBase-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">inputSizeSmall</span> | <span class="prop-name">.MuiInputBase-inputSizeSmall</span> | Styles applied to the `input` element if `size="small"`.
 | <span class="prop-name">inputMultiline</span> | <span class="prop-name">.MuiInputBase-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
 | <span class="prop-name">inputTypeSearch</span> | <span class="prop-name">.MuiInputBase-inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
 | <span class="prop-name">inputAdornedStart</span> | <span class="prop-name">.MuiInputBase-inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.

@@ -55,12 +55,12 @@ export const styles = (theme) => {
     },
     /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    marginDense: {},
+    /* Styles applied to the `input` element if `size="small"`. */
+    sizeSmall: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '16.5px 14px',
-      '&$marginDense': {
+      '&$sizeSmall': {
         paddingTop: 10.5,
         paddingBottom: 10.5,
       },
@@ -79,8 +79,8 @@ export const styles = (theme) => {
         borderRadius: 'inherit',
       },
     },
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: {
+    /* Styles applied to the `input` element if `size="small"`. */
+    inputSizeSmall: {
       paddingTop: 8.5,
       paddingBottom: 8.5,
     },
@@ -108,7 +108,6 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
     labelWidth = 0,
     multiline = false,
     notched,
-    size,
     type = 'text',
     ...other
   } = props;
@@ -137,7 +136,6 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
       multiline={multiline}
       ref={ref}
       type={type}
-      size={size}
       {...other}
     />
   );
@@ -272,10 +270,6 @@ OutlinedInput.propTypes = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * The size of the outlined input field.
-   */
-  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * Start `InputAdornment` for this component.
    */
