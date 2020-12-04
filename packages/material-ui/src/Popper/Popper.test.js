@@ -2,7 +2,14 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
-import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import {
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Grow from '../Grow';
 import Popper from './Popper';
@@ -39,14 +46,12 @@ describe('<Popper />', () => {
     it('should have top placement', () => {
       const renderSpy = spy();
       render(
-        <ThemeProvider theme={rtlTheme}>
-          <Popper {...defaultProps} placement="top">
-            {({ placement }) => {
-              renderSpy(placement);
-              return null;
-            }}
-          </Popper>
-        </ThemeProvider>,
+        <Popper {...defaultProps} placement="top">
+          {({ placement }) => {
+            renderSpy(placement);
+            return null;
+          }}
+        </Popper>,
       );
       expect(renderSpy.callCount).to.equal(2); // strict mode renders twice
       expect(renderSpy.args[0][0]).to.equal('top');
@@ -74,50 +79,43 @@ describe('<Popper />', () => {
         out: 'top',
       },
     ].forEach((test) => {
-      it(`should flip ${test.in} when direction=rtl is used`, () => {
-        const renderSpy = spy();
+      it(`should ${test.in === test.out ? 'not' : ''}flip ${
+        test.in
+      } when direction=rtl is used`, () => {
         render(
           <ThemeProvider theme={rtlTheme}>
             <Popper {...defaultProps} placement={test.in}>
               {({ placement }) => {
-                renderSpy(placement);
-                return null;
+                return <div data-testid="placement">{placement}</div>;
               }}
             </Popper>
             ,
           </ThemeProvider>,
         );
-        expect(renderSpy.callCount).to.equal(2);
-        expect(renderSpy.args[0][0]).to.equal(test.out);
+        expect(screen.getByTestId('placement')).to.have.text(test.out);
       });
     });
 
-    it('should flip placement when edge is reached', async () => {
-      const renderSpy = spy();
+    it('should flip placement when edge is reached', async function test() {
+      // JSDOM has no layout engine so PopperJS doesn't know that it should flip the placement.
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
       const popperRef = React.createRef();
       render(
-        <ThemeProvider theme={rtlTheme}>
-          <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
-            {({ placement }) => {
-              renderSpy(placement);
-              return null;
-            }}
-          </Popper>
-          ,
-        </ThemeProvider>,
+        <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
+          {({ placement }) => {
+            return <div data-testid="placement">{placement}</div>;
+          }}
+        </Popper>,
       );
-      expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom']]);
-      await act(() => {
-        return popperRef.current.setOptions({ placement: 'top' });
+      expect(screen.getByTestId('placement')).to.have.text('bottom');
+
+      await act(async () => {
+        await popperRef.current.setOptions({ placement: 'top' });
       });
-      expect(renderSpy.args).to.deep.equal([
-        ['bottom'],
-        ['bottom'],
-        ['top'],
-        ['top'],
-        ['top'],
-        ['top'],
-      ]);
+
+      expect(screen.getByTestId('placement')).to.have.text('bottom');
     });
   });
 
