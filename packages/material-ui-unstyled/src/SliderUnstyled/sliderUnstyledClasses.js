@@ -1,6 +1,6 @@
 export function getSliderUtilityClass(name) {
   return `MuiSlider-${name}`;
-};
+}
 
 const sliderUnstyledClasses = {
   root: getSliderUtilityClass('root'),
