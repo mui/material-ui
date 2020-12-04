@@ -20,7 +20,7 @@ import {
   ReactDocgenApi,
 } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
-import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
@@ -29,7 +29,6 @@ import createGenerateClassName from '@material-ui/styles/createGenerateClassName
 import getStylesCreator from '@material-ui/styles/getStylesCreator';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
-import { LANGUAGES } from 'docs/src/modules/constants';
 
 // Only run for ButtonBase
 const TEST = false;
