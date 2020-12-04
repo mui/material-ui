@@ -22,7 +22,7 @@ export const TypographyRoot = experimentalStyled(
   margin: 0,
   ...(props.styleProps.variant && props.theme.typography[props.styleProps.variant]),
   ...(props.styleProps.textAlign && {
-    textAlign: props.styleProps.textAlign
+    textAlign: props.styleProps.textAlign,
   }),
   ...(props.styleProps.noWrap && {
     overflow: 'hidden',
@@ -90,14 +90,7 @@ const Typography = React.forwardRef(function Typography(props, ref) {
     (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) ||
     'span';
 
-  return (
-    <TypographyRoot
-      as={Component}
-      ref={ref}
-      styleProps={stateAndProps}
-      {...other}
-    />
-  );
+  return <TypographyRoot as={Component} ref={ref} styleProps={stateAndProps} {...other} />;
 });
 
 Typography.propTypes = {
