@@ -1,5 +1,5 @@
 ---
-title: React Slider component
+title: Componente React Slider
 components: Slider, SliderUnstyled
 githubLabel: 'component: Slider'
 materialDesign: https://material.io/components/sliders
@@ -96,11 +96,11 @@ A faixa pode ser invertida com `track="inverted"`.
 
 Você pode usar a propriedade `scale` para representar o `value` em uma escala diferente.
 
-In the following demo, the value _x_ represents the value _2^x_. Increasing _x_ by one increases the represented value by factor _2_.
+Na seguinte demonstração, o valor _x_ representa o valor _2^x_. Acrescentar em _x_ aumenta o valor representado por fator de  _2_.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
-## Unstyled slider
+## Slider sem estilo
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}
 
