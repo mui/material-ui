@@ -32,6 +32,6 @@ describe('<OutlinedInput />', () => {
   it('should add the inputMarginDense class when size is small', () => {
     const { container } = render(<OutlinedInput size="small" />);
 
-    expect(container.firstChild).to.have.class(classes.inputMarginDense);
+    expect(container.firstChild).to.have.class(classes.marginDense);
   });
 });
