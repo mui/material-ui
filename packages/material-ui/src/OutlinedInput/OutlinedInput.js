@@ -110,7 +110,6 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
     notched,
     type = 'text',
     size,
-    // margin = (size === 'small' ? 'dense' : undefined),
     ...other
   } = props;
 
