@@ -268,7 +268,7 @@ const classes = makeStyles(theme => ({
   />
   ```
 
-- Rename `closeIcon` prop with `clearIcon` to avoid confusion.
+- 为了避免混淆，我们将 `closeIcon` 属性更名为 `clearIcon`。
 
   ```diff
   -<Autocomplete closeIcon={defaultClearIcon} />
