@@ -78,7 +78,7 @@ module.exports = function setKarmaConfig(config) {
       plugins: [
         new webpack.DefinePlugin({
           // TODO: profile in production
-          'process.env.NODE_ENV': JSON.stringify('test'),
+          'process.env.NODE_ENV': JSON.stringify('production'),
           'process.env.CI': JSON.stringify(process.env.CI),
           'process.env.KARMA': JSON.stringify(true),
           'process.env.TEST_GATE': JSON.stringify('enable-dispatching-profiler'),
