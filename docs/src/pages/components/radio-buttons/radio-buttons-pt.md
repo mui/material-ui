@@ -50,7 +50,7 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ## `useRadioGroup`
 
-For advanced customization use cases, a `useRadioGroup()` hook is exposed. It returns the context value of the parent radio group. The Radio component uses this hook internally.
+Para situações de uso avançadas de customização, um hook `useRadioGroup()` é exposto. Ele retorna o valor do contexto do grupo de botões de opção pai. O componente de botões de opção usa este hook internamente.
 
 ### API
 
@@ -62,9 +62,9 @@ import { useRadioGroup } from '@material-ui/core/RadioGroup';
 
 `value` (_Object_):
 
-- `value.name` (_String_ [optional]): The name used to reference the value of the control.
-- `value.onChange` (_Void_ [optional]): Callback fired when a radio button is selected.
-- `value.value` (_Any_ [optional]): Value of the selected radio button.
+- `value.name` (_String_ [opcional]): O nome usado para fazer referência ao valor do controle.
+- `value.onChange` (_Void_ [opcional]): Callback disparado quando um botão de opção é selecionado.
+- `value.value` (_Any_ [opcional]): Valor do botão de opção selecionado.
 
 #### Exemplo
 
