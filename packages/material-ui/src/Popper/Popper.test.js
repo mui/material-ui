@@ -39,14 +39,12 @@ describe('<Popper />', () => {
     it('should have top placement', () => {
       const renderSpy = spy();
       render(
-        <ThemeProvider theme={rtlTheme}>
-          <Popper {...defaultProps} placement="top">
-            {({ placement }) => {
-              renderSpy(placement);
-              return null;
-            }}
-          </Popper>
-        </ThemeProvider>,
+        <Popper {...defaultProps} placement="top">
+          {({ placement }) => {
+            renderSpy(placement);
+            return null;
+          }}
+        </Popper>,
       );
       expect(renderSpy.callCount).to.equal(2); // strict mode renders twice
       expect(renderSpy.args[0][0]).to.equal('top');
@@ -96,15 +94,12 @@ describe('<Popper />', () => {
       const renderSpy = spy();
       const popperRef = React.createRef();
       render(
-        <ThemeProvider theme={rtlTheme}>
-          <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
-            {({ placement }) => {
-              renderSpy(placement);
-              return null;
-            }}
-          </Popper>
-          ,
-        </ThemeProvider>,
+        <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
+          {({ placement }) => {
+            renderSpy(placement);
+            return null;
+          }}
+        </Popper>,
       );
       expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom']]);
       await act(() => {
