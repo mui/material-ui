@@ -2,8 +2,7 @@
 
 <p class="description">Eine sorgfältig kuratierte Liste von Bibliotheken, die einen Blick wert sind.</p>
 
-Da der Umfang der Probleme, die Material-UI löst, begrenzt ist, versuchen wir, mit anderen Bibliotheken gut zusammen zu arbeiten.
-Fühl dich frei, eine Pull-Request einzureichen, um ein anderes Projekt hinzuzufügen; sie wird angenommen, wenn das Projekt geeignet ist.
+Da der Umfang der Probleme, die Material-UI löst, begrenzt ist, versuchen wir, mit anderen Bibliotheken gut zusammen zu arbeiten. Fühlen Sie sich frei, einen Pull-Request einzureichen, um ein anderes Projekt hinzuzufügen; er wird angenommen, wenn das Projekt geeignet ist.
 
 ## Design-Ressourcen
 
@@ -12,25 +11,24 @@ Fühl dich frei, eine Pull-Request einzureichen, um ein anderes Projekt hinzuzuf
 
 Dies ist eine Sammlung von Drittanbieterprojekten, die Material-UI erweitern.
 
-- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Ein großes UI-Kit mit über 600 handgemachten Material-UI-Symbolen 💎.
-- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Ein großes UI-Kit mit über 600 handgemachten Material-UI-Symbolen 🎨.
-- [Framer](https://packages.framer.com/package/material-ui/material-ui) — Ein kleine, MIT-lizenzierte UI-Kit-Vorschau handgemachter Material-UI-Komponenten.
+- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 600 handcrafted Material-UI's symbols 💎.
+- **Figma**: [Figma for Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 600 handcrafted Material-UI's components 🎨.
+- **Framer**: [Framer for Material-UI](https://packages.framer.com/package/material-ui/material-ui) — A small MIT UI kit preview of handcrafted Material-UI's component.
 
 ## Bilder und Illustrationen
 
 - [Unsplash](https://unsplash.com): 📷 Eine großartige Ressource, um schöne, hochauflösende, kostenlose Fotos zu finden, die du in deinen Projekten verwenden kannst.
 - [unDraw](https://undraw.co/): 📐 Wie Unsplash, aber für großartige Vektor-Illustrationen.
-- [Simple Icons](https://simpleicons.org/): Über 1000 kostenlose SVG-Icons bekannter Marken.
+- [Simple Icons](https://simpleicons.org/): Over 1000 Free SVG icons for popular brands.
 
-## Anwendungs-Frameworks
+## Application frameworks
 
-- [react-admin](https://github.com/marmelab/react-admin): Frontend-Framework um B2B-Anwendungen zu bauen, die im Browser laufen und REST/GraphQL-APIs verwenden.
+- [react-admin](https://github.com/marmelab/react-admin): A frontend Framework for building B2B applications running in the browser on top of REST/GraphQL APIs.
 
 ## IDE tools
 
-- [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets) VSCode-Erweiterung für Snippets.
-- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) VSCode-Erweiterung für Codemods.
-- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint-Plugin um ungenutzte Styling-Klassen zu detektieren.
+- [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets) VSCode extension providing snippets.
+- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) VSCode extension providing codemods.
 
 ## Komponenten
 
@@ -40,56 +38,56 @@ Dies ist eine Sammlung von Drittanbieterprojekten, die Material-UI erweitern.
 
 - [@mui-treasury/layout](https://mui-treasury.com/layout): Komponenten für das grundlegende Layout einer Seite. Sie können ein paar Beispiele finden, z. B. [ein reactjs.org-Klon](https://mui-treasury.com/layout/clones/reactjs).
 
-### Benachrichtigungen
+### Notification
 
 - [notistack](https://github.com/iamhosseindhv/notistack): Ermöglicht die einfache Anzeige von Snackbars (damit Sie sich nicht mit dem Öffnen/Schließen von Snackbars herumschlagen müssen).
 
 ### Upload
 
-- [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Auf react-dropzone aufgebaut.
+- [notistack](https://github.com/iamhosseindhv/notistack): Ermöglicht die einfache Anzeige von Snackbars (damit Sie sich nicht mit dem Öffnen/Schließen von Snackbars herumschlagen müssen).
 
-### Formulare
+### Form
 
-- [react-hook-form](https://react-hook-form.com/): React-Hook zur Formularvalidierung.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings um Material-UI mit [formik](https://jaredpalmer.com/formik) zu verwenden.
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings um Material-UI mit [Redux Form](https://redux-form.com/) zu verwenden.
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings um Material-UI mit [React Final Form](https://final-form.org/react) zu verwenden.
-- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings um Material-UI mit [UI Schema](https://github.com/ui-schema/ui-schema) zu verwenden, kompatibel mit JSONßSchema
+- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
 
-### Karussell
+### Carousel
 
-- [material-auto-rotating-carousel](https://mui.wertarbyte.com/#material-auto-rotating-carousel): Zur Einführung neuer nutzer in eine App.
+- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
 
-### Bilder
+### Image
 
-- [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Bilder sind hässlich solange sie nicht geladen sind. Mit material-ui-image lässt sich das verbessern, indem Bilder sanft eingeblendet werden, wie es die Material Design-Pattern vorschlägt.
+- [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Images are ugly until they're loaded. Materialize it with material image! It will fade in like the material image loading pattern suggests.
 
-### Pagination
+### Paginierung
 
-- [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination): Eine Flat Design-Komponente für Pagination.
+- [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination): A flat design pagination component for Material-UI.
 
-### Kalender
+### Scheduler/Calendar
 
-- [dx-react-scheduler-material-ui](https://devexpress.github.io/devextreme-reactive/react/scheduler/): Eine Kalender-Komponente für Material-UI mit mehreren Kalender-Views, Bearbeitungsmodus, wiederkehrenden Terminen und Navigationsfeatures ([kommerziell](https://js.devexpress.com/licensing/)).
+- [dx-react-scheduler-material-ui](https://devexpress.github.io/devextreme-reactive/react/scheduler/): A scheduler/calendar component for Material-UI with multiple calendar views, editing, recurrence appointments and date navigation features ([paid license](https://js.devexpress.com/licensing/)).
 
-### Charts
+### Chart
 
-- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Charts für Material-UI, die Daten anhand verschiedener Visualisierungstypen darstellen, beispielsweise Bar-, Linien-, Flächen-, Scatter- und Kuchen-Charts ([kommerziell](https://js.devexpress.com/licensing/)).
+- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Charts for Material-UI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([paid license](https://js.devexpress.com/licensing/)).
 
-### Dialoge
+### Dialog
 
-- [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm): Einfache Bestätigungsdialoge um Nutzer-Interaktionen bestätigen zu können.
+- [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm): Provides easy to use confirmation dialogs to simplify confirming user actions without writing boilerplate code.
 
-### Farbauswähler
+### Color picker
 
-- [material-ui-color](https://github.com/mikbry/material-ui-color): Kollektion an Komponenten um mit Farben in Material-UI zu arbeiten. Keine Abhängigkeiten, klein, anpassbar und mit Theme-Support!
+- [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for material-ui. No dependencies, small, highly customizable and theming support!
 
 ## Blocks
 
-- [components-extra](https://github.com/alexandre-lelain/components-extra): Stellt ein Set an Komponenten auf "Molekül"-Ebene bereit, die auf Material-UI aufbauen, beispielsweise Footer und Cookie-Banner.
+- [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of Material-UI like a Footer, a CookiesBanner, a BackToTop button and other complex elements highly customizable to help devs build the macro parts of their UI very quickly. Those components are often duplicated across sites - this library solves this exact problem.
 
 ## Theming
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Online-Werkzeug zum Erstellen von Material-UI-Themes.
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Werkzeug zum Erstellen von Material-UI-Themes. Live-Vorschau verfügbar, es müssen lediglich Farben ausgewählt werden.
-- [Material palette generator](https://material.io/inline-tools/color/): Mit dem Material-Palettengenerator kann eine Palette für jede eingegebene Farbe erstellt werden.
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): An online tool for creating Material-UI themes via Material Design Color Tool.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
+- [Material palette generator](https://material.io/inline-tools/color/): Mit dem Material-Palettengenerator können Sie eine Palette für jede von Ihnen eingegebene Farbe erstellen.
