@@ -3,6 +3,8 @@ import { SxProps } from '@material-ui/system';
 import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
+  SliderUnstyledTypeMap,
+  SliderClasses,
 } from '@material-ui/unstyled/SliderUnstyled';
 import { Theme } from '@material-ui/core/styles';
 import { OverrideProps } from '../OverridableComponent';
@@ -12,6 +14,25 @@ export type SliderTypeMap<
   P = {}
 > = ExtendSliderUnstyledTypeMap<{
   props: P & {
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'primary'
+     */
+    color?: 'primary' | 'secondary';
+    /**
+     * Override or extend the styles applied to the component.
+     * @default {}
+     */
+    classes?: SliderUnstyledTypeMap['props']['classes'] & {
+      /** Class name applied to the root element if `color="primary"`. */
+      colorPrimary?: string;
+      /** Class name applied to the root element if `color="secondary"`. */
+      colorSecondary?: string;
+      /** Class name applied to the thumb element if `color="primary"`. */
+      thumbColorPrimary?: string;
+      /** Class name applied to the thumb element if `color="secondary"`. */
+      thumbColorSecondary?: string;
+    };
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -55,5 +76,12 @@ export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
   P = {}
 > = OverrideProps<SliderTypeMap<D, P>, D>;
+
+export declare const badgeClasses: SliderClasses & {
+  colorPrimary: string;
+  colorSecondary: string;
+  thumbPrimary: string;
+  thumbSecondary: string;
+};
 
 export default Slider;
