@@ -22,6 +22,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import * as mui from '@material-ui/icons';
 import synonyms from './synonyms';
 
@@ -229,13 +230,36 @@ let DialogDetails = (props) => {
   const classes = useDialogStyles();
   const { open, selectedIcon, handleClose } = props;
 
-  const handleClick = async (event) => {
+  const t = useTranslate();
+  const [open1, setOpen1] = React.useState(false);
+  const timeout1 = React.useRef();
+  const [open2, setOpen2] = React.useState(false);
+  const timeout2 = React.useRef();
+
+  const handleClick = (tooltip) => async (event) => {
     try {
       await copy(event.currentTarget.textContent);
+      const setOpen = tooltip === 1 ? setOpen1 : setOpen2;
+      const timeout = tooltip === 1 ? timeout1 : timeout2;
+
+      setOpen(true);
+      clearTimeout(timeout.current);
+      timeout.current = setTimeout(() => {
+        setOpen(false);
+      }, 2000);
     } finally {
       // Ok
     }
   };
+
+  React.useEffect(() => {
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      clearTimeout(timeout1.current);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      clearTimeout(timeout2.current);
+    };
+  }, []);
 
   return (
     <Dialog
@@ -248,22 +272,22 @@ let DialogDetails = (props) => {
       {selectedIcon ? (
         <React.Fragment>
           <DialogTitle disableTypography>
-            <Tooltip placement="right" title="Copy">
+            <Tooltip placement="right" title={t('copied')} open={open1}>
               <Typography
                 component="h2"
                 variant="h6"
                 className={classes.title}
                 id="icon-dialog-title"
-                onClick={handleClick}
+                onClick={handleClick(1)}
               >
                 {selectedIcon.importName}
               </Typography>
             </Tooltip>
           </DialogTitle>
-          <Tooltip placement="top" title="Copy">
+          <Tooltip placement="top" title={t('copied')} open={open2}>
             <HighlightedCode
               className={classes.markdown}
-              onClick={handleClick}
+              onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@material-ui/icons/${selectedIcon.importName}';`}
               language="js"
             />
