@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { usePreviousProps } from '@material-ui/utils';
 import {
   BadgeUnstyled,
-  badgeClasses as unstyledBadgeClasses,
+  badgeUnstyledClasses,
   getBadgeUtilityClass,
 } from '@material-ui/unstyled';
 import styled from '../styles/experimentalStyled';
@@ -12,7 +12,7 @@ import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 
 const badgeClasses = {
-  ...unstyledBadgeClasses,
+  ...badgeUnstyledClasses,
   colorError: getBadgeUtilityClass('colorError'),
   colorPrimary: getBadgeUtilityClass('colorPrimary'),
   colorSecondary: getBadgeUtilityClass('colorSecondary'),

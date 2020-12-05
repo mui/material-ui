@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize, usePreviousProps } from '@material-ui/utils';
 import isHostComponent from '../utils/isHostComponent';
-import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
+import badgeUnstyledClasses, { getBadgeUtilityClass } from './badgeUnstyledClasses';
 
 const useBadgeClasses = (props) => {
   const { variant, anchorOrigin, overlap, invisible, classes = {} } = props;
 
   const utilityClasses = {
-    root: clsx(badgeClasses['root'], classes['root']),
+    root: clsx(badgeUnstyledClasses['root'], classes['root']),
     badge: clsx(
-      badgeClasses['badge'],
+      badgeUnstyledClasses['badge'],
       classes['badge'],
       getBadgeUtilityClass(variant),
-      badgeClasses[
+      badgeUnstyledClasses[
         `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
           anchorOrigin.horizontal,
         )}${capitalize(overlap)}`
@@ -25,7 +25,7 @@ const useBadgeClasses = (props) => {
         )}${capitalize(overlap)}`
       ],
       {
-        [badgeClasses['invisible']]: invisible,
+        [badgeUnstyledClasses['invisible']]: invisible,
         [classes.invisible]: invisible,
       },
     ),

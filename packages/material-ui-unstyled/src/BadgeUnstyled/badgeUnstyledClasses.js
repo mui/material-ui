@@ -2,7 +2,7 @@ export const getBadgeUtilityClass = (name) => {
   return `MuiBadge-${name}`;
 };
 
-const badgeClasses = {
+const badgeUnstyledClasses = {
   root: getBadgeUtilityClass('root'),
   badge: getBadgeUtilityClass('badge'),
   dot: getBadgeUtilityClass('dot'),
@@ -17,4 +17,4 @@ const badgeClasses = {
   invisible: getBadgeUtilityClass('invisible'),
 };
 
-export default badgeClasses;
+export default badgeUnstyledClasses;

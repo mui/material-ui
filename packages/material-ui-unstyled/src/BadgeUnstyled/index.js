@@ -1,2 +1,2 @@
 export { default } from './BadgeUnstyled';
-export { default as badgeClasses, getBadgeUtilityClass } from './badgeClasses';
+export { default as badgeUnstyledClasses, getBadgeUtilityClass } from './badgeUnstyledClasses';

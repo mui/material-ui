@@ -5,7 +5,7 @@ import { OverridableStringUnion } from '@material-ui/types';
 import {
   ExtendBadgeUnstyledTypeMap,
   BadgeUnstyledTypeMap,
-  BadgeClasses,
+  BadgeUnstyledClasses,
 } from '@material-ui/unstyled';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
@@ -68,11 +68,12 @@ export type BadgeClassKey = keyof NonNullable<BadgeTypeMap['props']['classes']>;
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 
-export const badgeClasses: BadgeClasses & {
+export interface BadgeClasses extends BadgeUnstyledClasses {
   primaryColor: string;
   secondaryColor: string;
   errorColor: string;
-};
+}
+export const badgeClasses: BadgeClasses;
 
 export type BadgeProps<
   D extends React.ElementType = BadgeTypeMap['defaultComponent'],

@@ -1,4 +1,4 @@
-export interface BadgeClasses {
+export interface BadgeUnstyledClasses {
   root: string;
   badge: string;
   anchorOriginTopLeftCircular: string;
@@ -14,6 +14,6 @@ export interface BadgeClasses {
 
 export const getBadgeUtilityClass: (part: string) => string;
 
-declare const badgeClasses: BadgeClasses;
+declare const badgeUnstyledClasses: BadgeUnstyledClasses;
 
-export default badgeClasses;
+export default badgeUnstyledClasses;
