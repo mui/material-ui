@@ -7,10 +7,10 @@ type Props = {
 };
 
 export default function Foo(props: Props) {
-  const { foo, ...rest } = props;
+  const { foo, ...other } = props;
 
   return (
-    <div className={props.bar} {...rest}>
+    <div className={props.bar} {...other}>
       {foo}
     </div>
   );
