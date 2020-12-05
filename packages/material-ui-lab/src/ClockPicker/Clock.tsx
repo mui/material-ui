@@ -135,14 +135,14 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     onChange(newValue, isFinish);
   };
 
-  const setTime = (e: any, isFinish: PickerSelectionState) => {
-    let { offsetX, offsetY } = e;
+  const setTime = (event: any, isFinish: PickerSelectionState) => {
+    let { offsetX, offsetY } = event;
 
     if (typeof offsetX === 'undefined') {
-      const rect = e.target.getBoundingClientRect();
+      const rect = event.target.getBoundingClientRect();
 
-      offsetX = e.changedTouches[0].clientX - rect.left;
-      offsetY = e.changedTouches[0].clientY - rect.top;
+      offsetX = event.changedTouches[0].clientX - rect.left;
+      offsetY = event.changedTouches[0].clientY - rect.top;
     }
 
     const newSelectedValue =
@@ -153,37 +153,37 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     handleValueChange(newSelectedValue, isFinish);
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleTouchMove = (event: React.TouchEvent) => {
     isMoving.current = true;
-    setTime(e, 'shallow');
+    setTime(event, 'shallow');
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const handleTouchEnd = (event: React.TouchEvent) => {
     if (isMoving.current) {
-      setTime(e, 'finish');
+      setTime(event, 'finish');
       isMoving.current = false;
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
     // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
     const isButtonPressed =
       // tslint:disable-next-line deprecation
-      typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
+      typeof event.buttons === 'undefined' ? event.nativeEvent.which === 1 : event.buttons === 1;
 
     if (isButtonPressed) {
-      setTime(e.nativeEvent, 'shallow');
+      setTime(event.nativeEvent, 'shallow');
     }
   };
 
-  const handleMouseUp = (e: React.MouseEvent) => {
+  const handleMouseUp = (event: React.MouseEvent) => {
     if (isMoving.current) {
       isMoving.current = false;
     }
 
-    setTime(e.nativeEvent, 'finish');
+    setTime(event.nativeEvent, 'finish');
   };
 
   const hasSelected = React.useMemo(() => {

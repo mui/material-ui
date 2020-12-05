@@ -123,9 +123,9 @@ const AvatarTest = () => (
       ref={(elem) => {
         expectType<HTMLButtonElement | null, typeof elem>(elem);
       }}
-      onClick={(e) => {
+      onClick={(event) => {
         expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
-        log(e);
+        log(event);
       }}
       alt="Image Alt"
       src="example.jpg"
@@ -133,7 +133,7 @@ const AvatarTest = () => (
     <Avatar
       component="button"
       ref={(elem: HTMLButtonElement) => {}}
-      onClick={(e: React.MouseEvent<HTMLButtonElement>) => log(e)}
+      onClick={(event: React.MouseEvent<HTMLButtonElement>) => log(e)}
       alt="Image Alt"
       src="example.jpg"
     />

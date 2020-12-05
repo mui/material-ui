@@ -15,6 +15,7 @@ export default function ResponsiveTimePickers() {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <div style={{ width: 300 }}>
         <MobileTimePicker
+          open
           label="For mobile"
           value={value}
           onChange={(newValue) => {

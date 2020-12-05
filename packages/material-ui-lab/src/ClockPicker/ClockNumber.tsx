@@ -52,6 +52,8 @@ export const styles = (theme: Theme) => {
   return createStyles({
     root: {
       outline: 0,
+      marginLeft: '1.5px',
+      marginBottom: '10px',
       width: size,
       height: size,
       userSelect: 'none',
