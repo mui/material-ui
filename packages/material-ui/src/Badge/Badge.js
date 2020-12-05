@@ -6,6 +6,7 @@ import {
   BadgeUnstyled,
   badgeUnstyledClasses,
   getBadgeUtilityClass,
+  isHostComponent,
 } from '@material-ui/unstyled';
 import styled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -247,7 +248,7 @@ const Badge = React.forwardRef(function Badge(inputProps, ref) {
         badgeContent: badgeContentProp,
         showZero,
         variant: variantProp,
-        ...other
+        ...other,
       }}
       components={{
         Root: BadgeRoot,
@@ -255,8 +256,18 @@ const Badge = React.forwardRef(function Badge(inputProps, ref) {
         ...components,
       }}
       componentsProps={{
-        root: { ...componentsProps.root, styleProps: { ...componentsProps.root?.styleProps, color } },
-        badge: { ...componentsProps.badge, styleProps: { ...componentsProps.badge?.styleProps, color } },
+        root: {
+          ...componentsProps.root,
+          ...((!components.Root || !isHostComponent(components.Root)) && {
+            styleProps: { ...componentsProps.root?.styleProps, color },
+          }),
+        },
+        badge: {
+          ...componentsProps.badge,
+          ...((!components.Thumb || !isHostComponent(components.Thumb)) && {
+            styleProps: { ...componentsProps.badge?.styleProps, color },
+          }),
+        },
       }}
       classes={classes}
       ref={ref}

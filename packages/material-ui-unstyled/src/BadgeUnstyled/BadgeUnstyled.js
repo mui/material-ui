@@ -40,8 +40,10 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
       vertical: 'top',
       horizontal: 'right',
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: classesProp = {},
     badgeContent: badgeContentProp,
+    component: Component = 'span',
     children,
     className,
     components = {},
@@ -109,6 +111,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     <Root
       {...rootProps}
       {...(!isHostComponent(Root) && {
+        as: Component,
         styleProps: { ...stateAndProps, ...rootProps.styleProps },
         theme,
       })}
@@ -164,6 +167,11 @@ BadgeUnstyled.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.

@@ -1,4 +1,4 @@
-export const getBadgeUtilityClass = (name) => {
+export function getBadgeUtilityClass(name) {
   return `MuiBadge-${name}`;
 };
 
