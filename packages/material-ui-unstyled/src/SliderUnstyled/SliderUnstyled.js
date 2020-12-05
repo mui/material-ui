@@ -623,6 +623,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       onMouseDown={handleMouseDown}
       {...rootProps}
       {...(!isHostComponent(Root) && {
+        as: Component,
         styleProps: { ...stateAndProps, ...rootProps.styleProps },
         theme,
       })}
