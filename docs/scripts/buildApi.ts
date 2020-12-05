@@ -9,7 +9,7 @@ import * as prettier from 'prettier';
 import * as recast from 'recast';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
-import marked from 'marked/lib/marked';
+import marked from 'marked';
 import * as yargs from 'yargs';
 import * as doctrine from 'doctrine';
 import {
