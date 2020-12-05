@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import copy from 'clipboard-copy';
 import clsx from 'clsx';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
@@ -148,7 +149,26 @@ Icons.propTypes = {
 Icons = React.memo(Icons);
 
 const useDialogStyles = makeStyles((theme) => ({
+  title: {
+    display: 'inline-block',
+    cursor: 'pointer',
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      backgroundColor: '#96c6fd80',
+    },
+  },
   markdown: {
+    cursor: 'pointer',
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      '& code': {
+        backgroundColor: '#96c6fd80',
+      },
+    },
     '& pre': {
       borderRadius: 0,
       margin: 0,
@@ -209,11 +229,12 @@ let DialogDetails = (props) => {
   const classes = useDialogStyles();
   const { open, selectedIcon, handleClose } = props;
 
-  const handleClick = (event) => {
-    selectNode(event.currentTarget);
-
-    // Copies the selected import to clipboard!
-    document.execCommand('copy');
+  const handleClick = async (event) => {
+    try {
+      await copy(event.currentTarget.textContent);
+    } finally {
+      // Ok
+    }
   };
 
   return (
@@ -226,15 +247,27 @@ let DialogDetails = (props) => {
     >
       {selectedIcon ? (
         <React.Fragment>
-          <DialogTitle id="icon-dialog-title" onClick={handleClick}>
-            {selectedIcon.importName}
+          <DialogTitle disableTypography>
+            <Tooltip placement="right" title="Copy">
+              <Typography
+                component="h2"
+                variant="h6"
+                className={classes.title}
+                id="icon-dialog-title"
+                onClick={handleClick}
+              >
+                {selectedIcon.importName}
+              </Typography>
+            </Tooltip>
           </DialogTitle>
-          <HighlightedCode
-            className={classes.markdown}
-            onClick={handleClick}
-            code={`import ${selectedIcon.importName}Icon from '@material-ui/icons/${selectedIcon.importName}';`}
-            language="js"
-          />
+          <Tooltip placement="top" title="Copy">
+            <HighlightedCode
+              className={classes.markdown}
+              onClick={handleClick}
+              code={`import ${selectedIcon.importName}Icon from '@material-ui/icons/${selectedIcon.importName}';`}
+              language="js"
+            />
+          </Tooltip>
           <Link
             className={classes.import}
             color="textSecondary"
