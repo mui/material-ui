@@ -20,10 +20,11 @@ A set of reusable components for design tools is available, designed to match th
 - [Unsplash](https://unsplash.com): 📷 A great resource for finding beautiful, high-resolution, free photos that you can use in your projects.
 - [unDraw](https://undraw.co/): 📐 Like Unsplash but for amazing vector illustrations.
 
-## IDE Tools
+## IDE tools
 
 - [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets) VSCode extension providing snippets.
 - [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) VSCode extension providing codemods.
+- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@material-ui/styles`.
 
 ## Composants
 
