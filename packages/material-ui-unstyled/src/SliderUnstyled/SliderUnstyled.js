@@ -578,7 +578,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const Root = components.Root || 'span';
   const rootProps = componentsProps.root || {};
-  rootProps.as = Component;
 
   const Rail = components.Rail || 'span';
   const railProps = componentsProps.rail || {};
