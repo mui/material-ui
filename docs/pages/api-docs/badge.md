@@ -41,6 +41,7 @@ The `MuiBadge` name can be used for providing [default props](/customization/glo
 | <span class="prop-name">showZero</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Controls whether the badge is hidden when `badgeContent` is zero. |
 | <span class="prop-name">sx</span> | <span class="prop-type">object</span> |  | The system prop that allows defining system overrides as well as additional CSS styles. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'dot'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string</span> | <span class="prop-default">'standard'</span> | The variant to use. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 
 The `ref` is forwarded to the root element.
 

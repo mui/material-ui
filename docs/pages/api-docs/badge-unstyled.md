@@ -30,6 +30,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">badgeContent</span> | <span class="prop-type">node</span> |  | The content rendered within the badge. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The badge will be added relative to this node. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Override or extend the styles applied to the component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">components</span> | <span class="prop-type">{ Badge?: elementType, Root?: elementType }</span> | <span class="prop-default">{}</span> | The components used for each slot inside the Badge. Either a string to use a HTML element or a component. |
 | <span class="prop-name">componentsProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | The props used for each slot inside the Badge. |
 | <span class="prop-name">invisible</span> | <span class="prop-type">bool</span> |  | If `true`, the badge is invisible. |

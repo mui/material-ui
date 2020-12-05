@@ -1,6 +1,6 @@
 export function getBadgeUtilityClass(name) {
   return `MuiBadge-${name}`;
-};
+}
 
 const badgeUnstyledClasses = {
   root: getBadgeUtilityClass('root'),
