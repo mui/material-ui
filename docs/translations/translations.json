@@ -21,8 +21,6 @@
   "checkoutTitle": "Checkout",
   "close": "Close",
   "codesandbox": "Edit in CodeSandbox",
-  "clickToCopy": "Click to copy",
-  "copied": "Copied",
   "copiedSource": "The source code has been copied to your clipboard.",
   "copiedSourceLink": "Link to the source code has been copied to your clipboard.",
   "copySource": "Copy the source",
@@ -77,6 +75,12 @@
   "resetDemo": "Reset demo",
   "resetDensity": "Reset density",
   "resetFocus": "Reset focus to test keyboard navigation",
+  "searchIcons": {
+    "clickToCopy": "Click to copy",
+    "close": "Close",
+    "copied": "Copied",
+    "learnMore": "Learn more about the import"
+  },
   "seeMore": "See more",
   "settings": {
     "color": "Color",

@@ -30,13 +30,14 @@ import synonyms from './synonyms';
 if (process.env.NODE_ENV !== 'production') {
   Object.keys(synonyms).forEach((icon) => {
     if (!mui[icon]) {
-      throw new Error(`The icon ${icon} does no longer exist.`);
+      throw new Error(`The icon ${icon} no longer exists.`);
     }
   });
 }
 
-// Working on the logic? Uncomment these imports.
-// It will be x10 faster than working with all of the icons.
+// If you're working on the logic, uncomment these imports
+// and comment `import * as mui`, and the `if` block above.
+// It will be much faster than working with all of the icons.
 
 // import Menu from '@material-ui/icons/Menu';
 // import MenuOutlined from '@material-ui/icons/MenuOutlined';
@@ -180,9 +181,6 @@ const useDialogStyles = makeStyles((theme) => ({
     textAlign: 'right',
     padding: theme.spacing(0.5, 1),
   },
-  container: {
-    marginBottom: theme.spacing(5),
-  },
   canvas: {
     fontSize: 210,
     marginTop: theme.spacing(2),
@@ -232,15 +230,15 @@ let DialogDetails = (props) => {
   const { open, selectedIcon, handleClose } = props;
 
   const t = useTranslate();
-  const [open1, setOpen1] = React.useState(false);
+  const [copied1, setCopied1] = React.useState(false);
   const timeout1 = React.useRef();
-  const [open2, setOpen2] = React.useState(false);
+  const [copied2, setCopied2] = React.useState(false);
   const timeout2 = React.useRef();
 
   const handleClick = (tooltip) => async (event) => {
     try {
       await copy(event.currentTarget.textContent);
-      const setOpen = tooltip === 1 ? setOpen1 : setOpen2;
+      const setOpen = tooltip === 1 ? setCopied1 : setCopied2;
       const timeout = tooltip === 1 ? timeout1 : timeout2;
 
       setOpen(true);
@@ -275,7 +273,9 @@ let DialogDetails = (props) => {
           <DialogTitle disableTypography>
             <Tooltip
               placement="right"
-              title={open1 ? t('copied') : t('clickToCopy')}
+              title={
+                copied1 ? t('searchIcons.copied') : t('searchIcons.clickToCopy')
+              }
               TransitionComponent={Zoom}
               arrow
             >
@@ -292,7 +292,7 @@ let DialogDetails = (props) => {
           </DialogTitle>
           <Tooltip
             placement="top"
-            title={open2 ? t('copied') : t('clickToCopy')}
+            title={copied2 ? t('searchIcons.copied') : t('searchIcons.clickToCopy')}
             TransitionComponent={Zoom}
             arrow
           >
@@ -309,11 +309,11 @@ let DialogDetails = (props) => {
             href="/components/icons/"
             variant="caption"
           >
-            Learn more about the import
+            {t('searchIcons.learnMore')}
           </Link>
           <DialogContent>
-            <Grid container className={classes.container}>
-              <Grid item xs={12} sm="auto">
+            <Grid container>
+              <Grid item xs>
                 <Grid container justifyContent="center">
                   <selectedIcon.Component className={classes.canvas} />
                 </Grid>
@@ -376,7 +376,7 @@ let DialogDetails = (props) => {
             </Grid>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Close</Button>
+            <Button onClick={handleClose}>{t('searchIcons.close')}</Button>
           </DialogActions>
         </React.Fragment>
       ) : (
