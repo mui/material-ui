@@ -294,7 +294,6 @@ let DialogDetails = (props) => {
             placement="top"
             title={copied2 ? t('searchIcons.copied') : t('searchIcons.clickToCopy')}
             TransitionComponent={Zoom}
-            arrow
           >
             <HighlightedCode
               className={classes.markdown}
