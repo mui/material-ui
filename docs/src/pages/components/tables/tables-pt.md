@@ -1,5 +1,5 @@
 ---
-title: React Table component
+title: Componente React Tabela
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
@@ -23,11 +23,11 @@ Um exemplo simples sem frescuras.
 
 Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes das colunas, seguidas pelas linhas dos dados.
 
-## Classificando & Selecionando
+## Tabela de dados
 
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+O componente `Table` tem um mapeamento próximo dos elementos nativos de `<table>`. Este requisito torna a construção de tabelas de dados ricas e desafiadora.
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
+O [componente `DataGrid`](/components/data-grid/) é projetado para situações de uso que focam em torno da manipulação de uma grande quantidade de dados tabulares. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
 
 {{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
