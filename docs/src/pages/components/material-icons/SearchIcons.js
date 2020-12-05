@@ -15,7 +15,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import Zoom from '@material-ui/core/Zoom';
 import Button from '@material-ui/core/Button';
 import FlexSearch from 'flexsearch';
 import SearchIcon from '@material-ui/icons/Search';
