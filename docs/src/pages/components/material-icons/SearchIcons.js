@@ -211,6 +211,9 @@ let DialogDetails = (props) => {
 
   const handleClick = (event) => {
     selectNode(event.currentTarget);
+
+    // Copies the selected import to clipboard!
+    document.execCommand('copy');
   };
 
   return (
