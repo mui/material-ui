@@ -273,11 +273,7 @@ let DialogDetails = (props) => {
           <DialogTitle disableTypography>
             <Tooltip
               placement="right"
-              title={
-                copied1 ? t('searchIcons.copied') : t('searchIcons.clickToCopy')
-              }
-              TransitionComponent={Zoom}
-              arrow
+              title={copied1 ? t('copied') : t('clickToCopy')}
             >
               <Typography
                 component="h2"
@@ -290,11 +286,7 @@ let DialogDetails = (props) => {
               </Typography>
             </Tooltip>
           </DialogTitle>
-          <Tooltip
-            placement="top"
-            title={copied2 ? t('searchIcons.copied') : t('searchIcons.clickToCopy')}
-            TransitionComponent={Zoom}
-          >
+          <Tooltip placement="top" title={copied2 ? t('copied') : t('clickToCopy')}>
             <HighlightedCode
               className={classes.markdown}
               onClick={handleClick(2)}
@@ -375,7 +367,7 @@ let DialogDetails = (props) => {
             </Grid>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>{t('searchIcons.close')}</Button>
+            <Button onClick={handleClose}>{t('close')}</Button>
           </DialogActions>
         </React.Fragment>
       ) : (
