@@ -15,6 +15,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 import Button from '@material-ui/core/Button';
 import FlexSearch from 'flexsearch';
 import SearchIcon from '@material-ui/icons/Search';
@@ -272,7 +273,12 @@ let DialogDetails = (props) => {
       {selectedIcon ? (
         <React.Fragment>
           <DialogTitle disableTypography>
-            <Tooltip placement="right" title={t('copied')} open={open1}>
+            <Tooltip
+              placement="right"
+              title={open1 ? t('copied') : t('clickToCopy')}
+              TransitionComponent={Zoom}
+              arrow
+            >
               <Typography
                 component="h2"
                 variant="h6"
@@ -284,7 +290,12 @@ let DialogDetails = (props) => {
               </Typography>
             </Tooltip>
           </DialogTitle>
-          <Tooltip placement="top" title={t('copied')} open={open2}>
+          <Tooltip
+            placement="top"
+            title={open2 ? t('copied') : t('clickToCopy')}
+            TransitionComponent={Zoom}
+            arrow
+          >
             <HighlightedCode
               className={classes.markdown}
               onClick={handleClick(2)}
