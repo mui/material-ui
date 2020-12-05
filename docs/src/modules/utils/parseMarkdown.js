@@ -1,4 +1,4 @@
-import marked from 'marked/lib/marked';
+import marked from 'marked';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import kebabCase from 'lodash/kebabCase';
 import textToHash from 'docs/src/modules/utils/textToHash';
