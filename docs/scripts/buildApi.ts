@@ -20,7 +20,6 @@ import createGenerateClassName from '../../packages/material-ui-styles/src/creat
 import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
 import { getLineFeed, getUnstyledFilename } from './helpers';
-import { CssBaseline } from '@material-ui/core';
 
 const generateClassName = createGenerateClassName();
 
