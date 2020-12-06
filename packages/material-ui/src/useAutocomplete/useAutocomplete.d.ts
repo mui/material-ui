@@ -321,5 +321,5 @@ export default function useAutocomplete<
   /**
    * The options to render. It's either `T[]` or `AutocompleteGroupedOption<T>[]` if the grouping feature is enabled.
    */
-  groupedOptions: T[] | AutocompleteGroupedOption<T>[];
+  groupedOptions: T[] | Array<AutocompleteGroupedOption<T>>;
 };
