@@ -62,7 +62,7 @@ export interface FormControlLabelProps
 export type FormControlLabelClassKey = keyof NonNullable<FormControlLabelProps['classes']>;
 
 /**
- * Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
+ * Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.
  * Use this component if you want to display an extra label.
  * Demos:
  *
