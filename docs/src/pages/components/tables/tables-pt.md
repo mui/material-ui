@@ -1,16 +1,16 @@
 ---
-title: React Table component
+title: Componente React Tabela
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
-# Table
+# Tabela
 
 <p class="description">Tabelas exibem conjuntos de dados. Elas podem ser totalmente customizadas.</p>
 
-[Tabelas](https://material.io/design/components/data-tables.html) apresentam informações de uma forma fácil de visualizar, de modo que os usuários podem procurar por padrões e percepções. Elas podem ser incorporadas no conteúdo principal, assim como cartões. They can include:
+[Tabelas](https://material.io/design/components/data-tables.html) apresentam informações de uma forma fácil de visualizar, de modo que os usuários podem procurar por padrões e percepções. Elas podem ser incorporadas no conteúdo principal, assim como cartões. Elas podem incluir:
 
 - Uma visualização correspondente
 - Navegação
@@ -24,11 +24,11 @@ Um exemplo simples sem frescuras.
 
 Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes das colunas, seguidas pelas linhas dos dados.
 
-## Classificando & Selecionando
+## Tabela de dados
 
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+O componente `Table` tem um mapeamento próximo dos elementos nativos de `<table>`. Este requisito torna a construção de tabelas de dados ricas e desafiadora.
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
+O [componente `DataGrid`](/components/data-grid/) é projetado para situações de uso que focam em torno da manipulação de uma grande quantidade de dados tabulares. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
 
 ## Tabela Simples
 
@@ -74,13 +74,13 @@ A propriedade `Action` do componente `TablePagination` permite a implementação
 
 ## Cabeçalho fixo
 
-Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. It leverages the `stickyHeader` prop.<br /> (⚠️ no IE11 support)
+Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. Ela se aproveita da propriedade `stickyHeader`.<br /> (⚠️ sem suporte no IE11)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## Column grouping
+## Agrupando colunas
 
-You can group column headers by rendering multiple table rows inside a table head:
+Você pode agrupar cabeçalhos de coluna renderizando várias linhas de tabela dentro de um cabeçalho de tabela:
 
 ```jsx
 <TableHead>
