@@ -52,7 +52,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 #### 已提供
 
 - Fab 有 `aria-haspopup`，`aria-expanded` 和 `aria-controls` 属性。
-- The speed dial actions container has `role="menu"` and `aria-orientation` set according to the direction.
+- 快速拨号操作容器根据方向设置了 `role="menu"` 和 `aria-orientation`。
 - 快速拨号操作具有 `role="menuitem"` 和引用相关工具提示的 `aria-describedby` 属性。
 
 ### 键盘输入
