@@ -193,7 +193,6 @@ const DayPicker = React.forwardRef(function DayPicker<
       <FadeTransitionGroup
         reduceAnimations={reduceAnimations}
         className={classes.viewTransitionContainer}
-        transKey={openView}
       >
         <div>
           {openView === 'year' && (

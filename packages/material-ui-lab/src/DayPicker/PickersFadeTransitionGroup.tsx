@@ -4,7 +4,6 @@ import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/s
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 interface FadeTransitionProps {
-  transKey: React.Key;
   className?: string;
   reduceAnimations: boolean;
   children: React.ReactElement;
@@ -48,7 +47,6 @@ const FadeTransitionGroup: React.FC<FadeTransitionProps & WithStyles<typeof styl
   children,
   className,
   reduceAnimations,
-  transKey,
 }) => {
   if (reduceAnimations) {
     return children;
@@ -73,7 +71,6 @@ const FadeTransitionGroup: React.FC<FadeTransitionProps & WithStyles<typeof styl
       <CSSTransition
         mountOnEnter
         unmountOnExit
-        key={transKey}
         timeout={{ appear: animationDuration, enter: animationDuration / 2, exit: 0 }}
         classNames={transitionClasses}
       >
