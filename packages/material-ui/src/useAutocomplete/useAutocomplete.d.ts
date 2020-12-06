@@ -319,7 +319,7 @@ export default function useAutocomplete<
   setAnchorEl: () => void;
   focusedTag: number;
   /**
-   * The options to render. It's either `T[]` or `AutocompleteGroupedOption<T>[]` if the grouping feature is enabled.
+   * The options to render. It's either `T[]` or `AutocompleteGroupedOption<T>[]` if the groupBy prop is provided.
    */
   groupedOptions: T[] | Array<AutocompleteGroupedOption<T>>;
 };
