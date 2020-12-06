@@ -86,15 +86,15 @@ describe('MeusTestes', () => {
 });
 ```
 
-## Client-side only rendering
+## Renderização somente do lado do cliente
 
-To perform the server-side hydration, the hook needs to render twice. A first time with `false`, the value of the server, and a second time with the resolved value. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. You can set the `noSsr` option to `true` if you are doing **client-side only** rendering.
+Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir a opção `noSsr` para `true` se você estiver fazendo renderização **somente no lado cliente**.
 
 ```js
 const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
 ```
 
-or it can turn it on globally with the theme:
+ou pode ativar globalmente com o tema:
 
 ```js
 const theme = createMuiTheme({
@@ -184,7 +184,7 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 
 - `options.defaultMatches` (*Boolean* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
 - `options.matchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia*. Isso pode ser usado para manipular uma janela iframe com conteúdo.
-- `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. To perform the server-side hydration, the hook needs to render twice. A first time with `false`, the value of the server, and a second time with the resolved value. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. You can set this option to `true` if you are doing **client-side only** rendering.
+- `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
 - `options.ssrMatchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia* em um [contexto de renderização do lado do servidor](#server-side-rendering).
 
 Nota: Você pode alterar as opções padrão usando [`propriedades padrão`](/customization/globals/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
