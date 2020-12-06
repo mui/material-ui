@@ -63,7 +63,7 @@ export default function UseAutocomplete() {
       </div>
       {groupedOptions.length > 0 ? (
         <ul className={classes.listbox} {...getListboxProps()}>
-          {groupedOptions.map((option, index) => (
+          {(groupedOptions as typeof top100Films).map((option, index) => (
             <li {...getOptionProps({ option, index })}>{option.title}</li>
           ))}
         </ul>
