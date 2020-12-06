@@ -6,7 +6,7 @@ import { Icon } from './Icon';
 interface Props {
   badgeContent: string;
   max?: number;
-  showZero?: boolean;
+  showZero: boolean;
   icon: string;
   theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   badgeColor: 'default' | 'primary' | 'secondary' | 'error';
@@ -30,10 +30,11 @@ export function Badge(props: Props): JSX.Element {
     );
 
   return <MuiBadge badgeContent={content} color={color} style={style} {...other} />;
-}
+};
 
 Badge.defaultProps = {
   badgeContent: '8',
+  showZero: false,
   icon: '',
   theme: 'Filled' as 'Filled',
   badgeColor: 'primary' as 'primary',
@@ -42,30 +43,30 @@ Badge.defaultProps = {
 };
 
 addPropertyControls(Badge, {
-  badgeContent: {
-    type: ControlType.String,
-    title: 'Badge content',
-  },
-  max: {
-    type: ControlType.Number,
-    title: 'Max',
-  },
-  showZero: {
-    type: ControlType.Boolean,
-    title: 'Show zero',
-  },
-  icon: {
-    type: ControlType.String,
-    title: 'Icon',
-  },
-  theme: {
-    type: ControlType.Enum,
-    title: 'Theme',
-    options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
-  },
-  badgeColor: {
-    type: ControlType.Enum,
-    title: 'Badge color',
-    options: ['default', 'primary', 'secondary', 'error'],
-  },
+badgeContent: {
+  type: ControlType.String,
+  title: 'Badge content',
+},
+max: {
+  type: ControlType.Number,
+  title: 'Max',
+},
+showZero: {
+  type: ControlType.Boolean,
+  title: 'Show zero',
+},
+icon: {
+  type: ControlType.String,
+  title: 'Icon',
+},
+theme: {
+  type: ControlType.Enum,
+  title: 'Theme',
+  options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
+},
+badgeColor: {
+  type: ControlType.Enum,
+  title: 'Badge color',
+  options: ['default', 'primary', 'secondary', 'error'],
+},
 });
