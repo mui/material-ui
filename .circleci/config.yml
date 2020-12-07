@@ -238,7 +238,7 @@ jobs:
           command: xvfb-run yarn test:regressions
       - run:
           name: Upload screenshots to Argos CI
-          command: yarn argos
+          command: yarn test:argos
 workflows:
   version: 2
   pipeline:

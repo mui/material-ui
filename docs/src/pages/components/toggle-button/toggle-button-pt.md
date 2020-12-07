@@ -15,15 +15,15 @@ Para enfatizar grupos de [botões de alternância](https://material.io/component
 
 ## Seleção exclusiva
 
-With exclusive selection, selecting one option deselects any other.
+Com seleção exclusiva, selecionar uma opção desseleciona qualquer outra.
 
-In this example text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.
+Neste exemplo de justificativa de texto, temos opções de alternar os botões para a esquerda, centralizada, direita e texto totalmente justificado (desativado), com apenas um item disponível para seleção de cada vez.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
 ## Seleção múltipla
 
-Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected.
+Múltipla seleção permite que opções logicamente agrupadas, como negrito, itálico e sublinhado, tenham várias opções selecionadas.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
@@ -35,13 +35,13 @@ Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 ## Botões verticais
 
-The buttons can be stacked vertically with the `orientation` prop set to "vertical".
+Os botões podem ser empilhados verticalmente com a propriedade `orientation` definida para "vertical".
 
 {{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
 ## Forçar valor definido
 
-If you want to enforce that at least one button must be active, you can adapt your handleChange function.
+Se você deseja forçar que pelo menos um botão esteja ativo, você pode adaptar sua função handleChange.
 
 ```jsx
 const handleFormat = (event, newFormats) => {
@@ -78,4 +78,4 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ### Teclado
 
-At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.
+Até o momento, os botões de alternância estão na ordem DOM. Navegue entre eles com a tecla tab. O comportamento dos botões segue a semântica padrão do teclado.

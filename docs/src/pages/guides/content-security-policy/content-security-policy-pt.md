@@ -1,10 +1,10 @@
 # Política de segurança de conteúdo (CSP)
 
-<p class="description">This section covers the details of setting up a CSP.</p>
+<p class="description">Esta seção abrange os detalhes da criação de um CSP.</p>
 
 ## O que é CSP e por que é útil?
 
-CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. Esta lista é retornada como um cabeçalho do servidor. Por exemplo, digamos que você tenha um site hospedado em `https://example.com` o cabeçalho CSP `default-src: 'self';` permitirá todos os assets localizados em `https://example.com/*` e negar todos os outros. Se houver uma seção do seu site que é vulnerável ao XSS, onde a entrada do usuário de unescaped é exibida, um invasor pode inserir algo como:
+CSP reduz os ataques de cross-site scripting (XSS) exigindo que os desenvolvedores incluam na whitelist as fontes de onde seus assets são recuperados. Esta lista é retornada como um cabeçalho do servidor. Por exemplo, digamos que você tenha um site hospedado em `https://example.com` o cabeçalho CSP `default-src: 'self';` permitirá todos os assets localizados em `https://example.com/*` e negar todos os outros. Se houver uma seção do seu site que é vulnerável ao XSS, onde a entrada do usuário de unescaped é exibida, um invasor pode inserir algo como:
 
 ```html
 <script>
@@ -18,9 +18,9 @@ Você pode ler mais sobre o CSP no [MDN Web Docs](https://developer.mozilla.org/
 
 ## Como se implementa o CSP?
 
-### Server-Side Rendering (SSR)
+### Renderização do lado do Servidor (SSR)
 
-To use CSP with Material-UI (and JSS), you need to use a nonce. Um nonce é uma string gerada aleatoriamente que é usada apenas uma vez, portanto, você precisa adicionar um middleware de servidor para gerar um em cada solicitação. JSS tem um [ótimo tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) sobre como conseguir isso com Express and React Helmet. Para um resumo básico, continue lendo.
+Para usar o CSP com Material-UI (e JSS), você precisa usar um nonce. Um nonce é uma string gerada aleatoriamente que é usada apenas uma vez, portanto, você precisa adicionar um middleware de servidor para gerar um em cada solicitação. JSS tem um [ótimo tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) sobre como conseguir isso com Express and React Helmet. Para um resumo básico, continue lendo.
 
 Um nonce CSP é uma string codificada na Base 64. Você pode gerar um assim:
 
@@ -30,7 +30,7 @@ import uuidv4 from 'uuid/v4';
 const nonce = new Buffer(uuidv4()).toString('base64');
 ```
 
-You must use UUID version 4, as it generates an **unpredictable** string. Em seguida, você aplica esse nonce ao cabeçalho do CSP. Um cabeçalho CSP pode ser assim com o nonce aplicado:
+Você deve usar o UUID versão 4, pois ele gera uma string **imprevisível**. Em seguida, você aplica esse nonce ao cabeçalho do CSP. Um cabeçalho CSP pode ser assim com o nonce aplicado:
 
 ```js
 header('Content-Security-Policy').set(
@@ -38,7 +38,7 @@ header('Content-Security-Policy').set(
 );
 ```
 
-You should pass the nonce in the `<style>` tag on the server.
+Você deve passar o nonce na tag `<style>` no servidor.
 
 ```jsx
 <style
@@ -64,6 +64,6 @@ Aqui está um exemplo de como um cabeçalho fictício poderia parecer:
 
 ### Create React App (CRA)
 
-According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default. This will require a new hash to be set in your CSP during each deployment.
+De acordo com [a documentação de Create React App](https://create-react-app.dev/docs/advanced-configuration/), uma aplicação de Create React App incorporará dinamicamente o script de tempo de execução em index.html durante a compilação de produção por padrão. Isto exigirá que um novo hash seja definido em seu CSP durante cada implantação.
 
-To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build. This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+Para usar um CSP com um projeto inicializado como um Create React App, você precisará definir a variável `INLINE_RUNTIME_CHUNK=false` no arquivo `.env` usado para sua compilação de produção. Isto irá importar o script de execução como de costume em vez de incorporá-lo, evitando a necessidade de definir um novo hash durante cada implantação.

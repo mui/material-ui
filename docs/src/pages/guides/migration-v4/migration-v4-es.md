@@ -20,10 +20,12 @@ Lo primero que necesitará hacer es actualizar sus dependencias.
 
 ### Actualizar versión de Material-UI
 
-Necesitas actualizar tu `package.json` para usar la última versión de Material-UI.
+You need to update your `package.json` to use the latest version of Material-UI and its peer dependencies.
 
 ```json
 "dependencies": {
+  "@emotion/react": "^11.0.0",
+  "@emotion/styled": "^11.0.0",
   "@material-ui/core": "^5.0.0"
 }
 ```
@@ -31,11 +33,11 @@ Necesitas actualizar tu `package.json` para usar la última versión de Material
 Or run
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
-o
+or
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 ## Handling breaking changes

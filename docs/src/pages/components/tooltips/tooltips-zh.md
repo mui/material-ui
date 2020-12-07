@@ -93,7 +93,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 <Tooltip title="您没有足够的操作权限">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
-      A disabled button
+      一个禁用的按钮
     </button>
   </span>
 </Tooltip>

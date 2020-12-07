@@ -1,12 +1,12 @@
 ---
-title: React Tooltip component
+title: Componente React para Dicas
 components: Tooltip
 githubLabel: 'component: Tooltip'
 materialDesign: https://material.io/components/tooltips
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
-# Tooltip
+# Dicas
 
 <p class="description">Dicas exibem texto informativo quando os usuários passam o mouse, focalizam ou tocam em um elemento.</p>
 
@@ -18,7 +18,7 @@ Quando ativada, [dicas](https://material.io/design/components/tooltips.html) exi
 
 {{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 
-## Positioned tooltips
+## Dicas posicionadas
 
 O `Tooltip` tem 12 **posicionamentos** para ser escolhido. Eles não têm setas direcionais; em vez disso, eles dependem do movimento que emana da fonte para transmitir direção.
 
@@ -30,7 +30,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Arrow tooltips
+## Dicas com seta
 
 Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a qual elemento se refere.
 
@@ -61,13 +61,13 @@ Você pode definir os tipos de eventos que fazem com que uma dica seja exibida.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Controlled tooltips
+## Dicas controladas
 
 Você pode usas as propriedades `open`, `onOpen` e `onClose` para controlar o comportamento da dica.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Variable width
+## Largura variável
 
 A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
@@ -75,11 +75,11 @@ A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
 ## Interativo
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+Dicas são interativas por padrão ([WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire. Você pode desativar esse comportamento (assim falhando o critério de sucesso que é necessário para alcançar AA) passando `disableInteractive`.
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## Disabled elements
+## Elementos desabilitados
 
 Por padrão os elementos desabilitados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, como passar o mouse. Para acomodar elementos desabilitados, adicione um elemento encapsulador simples, como um `span`.
 
@@ -93,7 +93,7 @@ Por padrão os elementos desabilitados como `<button>` não disparam interaçõe
 <Tooltip title="Você não tem permissão para esta tarefa">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
-      A disabled button
+      Um botão desabilitado
     </button>
   </span>
 </Tooltip>
@@ -105,15 +105,15 @@ Use uma transição diferente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
-## Segue o cursor
+## Seguir o cursor
 
-You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+Você pode habilitar a dica para seguir o cursor definindo `followCursor={true}`.
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
-## Virtual element
+## Elemento virtual
 
-In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+No caso de você precisar implementar um posicionamento customizado, você pode usar a propriedade `anchorEl`: O valor da propriedade `anchorEl` pode ser referência para um elemento DOM falso. Você precisa criar um objeto com a estrutura definida como  [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
@@ -129,12 +129,12 @@ No celular, a dica é exibida quando o usuário pressiona longamente o elemento 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 
-By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. Por exemplo, em:
+Por padrão, a dica apenas rotula seu elemento filho. Isso é notavelmente diferente de `title` que pode rotular **ou** descrever seu elemento filho, dependendo se o filho já tem um rótulo. Por exemplo, em:
 
 ```html
-<button title="some more information">A button</button>
+<button title="alguma informação a mais">Um botão</button>
 ```
 
-the `title` acts as an accessible description. If you want the tooltip to act as an accessible description you can pass `describeChild`. Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+o `title` atua como uma descrição acessível. Se você quer que a dica aja como uma descrição acessível, você pode passar `describeChild`. Observe que você não deveria usar `describeChild` se a dica fornece somente um rótulo visual. Caso contrário, um elemento filho não teria um nome acessível e a dica violaria [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
 
 {{"demo": "pages/components/tooltips/AccessibilityTooltips.js"}}

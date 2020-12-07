@@ -22,7 +22,7 @@ Além do trade-off da composição acima, aplicamos as seguintes regras:
 
 ### Propagação
 
-Props supplied to a component which are not explicitly documented are spread to the root element; for instance, the `className` prop is applied to the root.
+Propriedades fornecidas para um componente que não estão explicitamente documentadas são propagadas para o elemento raiz; por exemplo, a propriedade `className` é aplicada no elemento raiz.
 
 Agora, digamos que você queira desabilitar o efeito cascata do `MenuItem`. Você pode aproveitar o comportamento da propagação:
 
@@ -80,7 +80,7 @@ O nome de uma propriedade booleana deve ser escolhido com base no **valor padrã
 
 ### Componentes controlados
 
-A maior parte de componentes controlados, é controlado pelas propriedades `value` e `onChange`, no entanto, o `open` / `onClose` / `onOpen` é uma combinação usada para o estado relacionado à exibição. In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
+A maior parte de componentes controlados, é controlado pelas propriedades `value` e `onChange`, no entanto, o `open` / `onClose` / `onOpen` é uma combinação usada para o estado relacionado à exibição. Nos casos em que há mais eventos, colocamos o substantivo em primeiro lugar e depois o verbo, por exemplo: `onPageChange`, `onRowsChange`.
 
 ### booleano vs enumerador
 

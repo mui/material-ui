@@ -15,7 +15,7 @@ Trop de types de formats et de styles à la fois peuvent gâcher n'importe quell
 
 ## Général
 
-La police *Roboto* ne sera **pas** automatiquement chargée par Material-UI. Le développeur est responsable du chargement de toutes les polices utilisées dans leur application. Roboto Font a quelques moyens faciles pour commencer. Pour une configuration plus avancée, consultez [la section de personnalisation du thème](/customization/typography/).
+La police *Roboto* ne sera **pas** automatiquement chargée par Material-UI. You are responsible for loading any fonts used in your application. Roboto Font a quelques moyens faciles pour commencer. Pour une configuration plus avancée, consultez [la section de personnalisation du thème](/customization/typography/).
 
 ## Roboto Font CDN
 
@@ -42,6 +42,8 @@ For more info check out [Fontsource](https://github.com/fontsource/fontsource).
 Fontsource can be configured to load specific subsets, weights and styles. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Composant
+
+The Typography component makes it easy to apply a default set of font weights and sizes in your application.
 
 {{"demo": "pages/components/typography/Types.js"}}
 

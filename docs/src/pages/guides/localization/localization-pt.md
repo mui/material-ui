@@ -31,7 +31,7 @@ const theme = createMuiTheme({
 
 | Localidade              | Etiqueta do idioma BCP 47 | Nome da importação |
 |:----------------------- |:------------------------- |:------------------ |
-| Arabic (Egypt)          | ar-EG                     | `arEG`             |
+| Árabe (Egito)           | ar-EG                     | `arEG`             |
 | Armênio                 | hy-AM                     | `hyAM`             |
 | Azerbaijano             | az-AZ                     | `azAZ`             |
 | Búlgaro                 | bg-BG                     | `bgBG`             |
@@ -52,7 +52,7 @@ const theme = createMuiTheme({
 | Indonésio               | id-ID                     | `idID`             |
 | Italiano                | it-IT                     | `itIT`             |
 | Japonês                 | ja-JP                     | `jaJP`             |
-| Kazakh                  | kz-KZ                     | `kzKZ`             |
+| Cazaque                 | kz-KZ                     | `kzKZ`             |
 | Coreano                 | ko-KR                     | `koKR`             |
 | Persa                   | fa-IR                     | `faIR`             |
 | Polonês                 | pl-PL                     | `plPL`             |
@@ -74,7 +74,7 @@ Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/next/
 
 Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
-Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. However, Material-UI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
+Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, Material-UI visa suportar [100 mais comuns](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [localidades](https://www.ethnologue.com/guides/ethnologue200), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
 
 ## Suporte RTL
 

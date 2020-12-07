@@ -104,7 +104,7 @@ return (
     minWidth: 300,
   }}
 >
-  <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
+  <Box sx={{ color: 'text.secondary' }}>会话数</Box>
   <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}>
     98.3 K
   </Box>
@@ -123,7 +123,7 @@ return (
     18.77%
   </Box>
   <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-    vs last week
+    与上周相比
   </Box>
 </Box>
 ```
@@ -173,13 +173,13 @@ return (
   | 基准测试              | 代码片段                        | 花费时间  |
   |:----------------- |:--------------------------- | ----- |
   | a. 渲染 1,000 个基元   | `<div className="…">` | 100ms |
-  | b. 渲染 1,000 个组件   | `<Div>`               | 110ms |
+  | b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
   | c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
-  | d. 渲染一千个分组（Box）   | `<Box sx={…}>`        | 270ms |
+  | d. 渲染一千个分组（Box）   | `<Box sx={…}>`        | 370ms |
 
   _这里是可复现的 [性能测试文件夹](https://github.com/mui-org/material-ui/tree/next/benchmark/browser)。_
 
-  We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
+  我们相信，对于大多数用途来说，它已经足够快了****，但当性能变得至关重要时，也有一些简单的解决方法。 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
 
 ## 使用
 

@@ -83,7 +83,7 @@ const theme = createMuiTheme({
 
 O tamanho da fonte computada pelo navegador segue esta equação matemática:
 
-<img src="/static/images/font-size.png" alt="font size calculation" style="width: 458px;" />
+<img src="/static/images/font-size.png" alt="cálculo do tamanho da fonte" style="width: 458px;" />
 
 <!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 

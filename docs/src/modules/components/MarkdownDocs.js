@@ -8,7 +8,7 @@ import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
-import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
+import { SOURCE_CODE_REPO } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -134,7 +134,7 @@ function MarkdownDocs(props) {
                   }}
                   disableAd={disableAd}
                   demoOptions={renderedMarkdownOrDemo}
-                  githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+                  githubLocation={`${SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/docs/src/${name}`}
                 />
               );
             })}

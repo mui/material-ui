@@ -38,7 +38,7 @@
 
 ### 付费的资源
 
-- **Implement high fidelity designs**：在设计与开发之间架起一座桥梁。 Break down detailed designs and bring them to life with Material-UI and React.
+- **Implement high fidelity designs**：在设计与开发之间架起一座桥梁。 将详细的设计一点点分解，并使用 Material-UI 和 React 来将其在现实生活中实现。
 
   - 💻 [The Course](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
 
