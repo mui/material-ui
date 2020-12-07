@@ -40,4 +40,12 @@ function genericValueTest() {
     {/* Whoops. The value in onChange won't be a string */}
     <MenuItem value={2} />
   </Select>;
+
+  <Select
+    MenuProps={{
+      MenuListProps: {
+        component: 'div',
+      },
+    }}
+  />;
 }
