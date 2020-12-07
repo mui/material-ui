@@ -11,7 +11,10 @@ describe('@material-ui/envinfo', () => {
     });
   }
 
-  it('includes info about the environment relevant to Material-UI', () => {
+  it('includes info about the environment relevant to Material-UI', function test() {
+    // Need more time to download packages
+    this.timeout(10000);
+
     const envinfoJSON = execEnvinfo(['--json']);
 
     const envinfo = JSON.parse(envinfoJSON);
