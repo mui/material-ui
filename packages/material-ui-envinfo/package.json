@@ -7,6 +7,10 @@
   "dependencies": {
     "envinfo": "^7.7.3"
   },
+  "author": "Material-UI Team",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui",
