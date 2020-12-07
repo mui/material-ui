@@ -5,7 +5,6 @@ import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
-  padding: 0,
   '& .MuiBadge-badge': {
     right: -3,
     top: 13,
