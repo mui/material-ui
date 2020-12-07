@@ -720,8 +720,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             index={index}
             open={open === index || active === index || valueLabelDisplay === 'on'}
             disabled={disabled}
-            className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
             {...valueLabelProps}
+            className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
             {...(!isHostComponent(ValueLabel) && {
               styleProps: { ...stateAndProps, ...valueLabelProps.styleProps },
               theme,
