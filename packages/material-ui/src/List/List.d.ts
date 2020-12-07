@@ -51,9 +51,20 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  *
  * - [List API](https://material-ui.com/api/list/)
  */
-declare const List: OverridableComponent<ListTypeMap>;
+declare const List: OverridableList;
+
+export interface OverridableList extends OverridableComponent<ListTypeMap> {
+  <D extends React.ElementType = ListTypeMap['defaultComponent'], P = {}>(
+    props: ListPropsWithComponent<D, P>
+  ): JSX.Element;
+}
 
 export type ListClassKey = keyof NonNullable<ListTypeMap['props']['classes']>;
+
+export type ListPropsWithComponent<
+  D extends React.ElementType = ListTypeMap['defaultComponent'],
+  P = {}
+> = { component?: D } & ListProps<D, P>;
 
 export type ListProps<
   D extends React.ElementType = ListTypeMap['defaultComponent'],
