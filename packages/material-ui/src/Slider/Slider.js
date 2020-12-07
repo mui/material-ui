@@ -1,13 +1,26 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import { SliderUnstyled, SliderValueLabelUnstyled, sliderClasses } from '@material-ui/unstyled';
+import {
+  SliderUnstyled,
+  SliderValueLabelUnstyled,
+  sliderUnstyledClasses,
+  getSliderUtilityClass,
+  isHostComponent,
+} from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { alpha, lighten, darken } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 
-export { sliderClasses };
+export const sliderClasses = {
+  ...sliderUnstyledClasses,
+  colorPrimary: getSliderUtilityClass('colorPrimary'),
+  colorSecondary: getSliderUtilityClass('colorSecondary'),
+  thumbColorPrimary: getSliderUtilityClass('thumbColorPrimary'),
+  thumbColorSecondary: getSliderUtilityClass('thumbColorSecondary'),
+};
 
 const overridesResolver = (props, styles) => {
   const {
@@ -336,9 +349,34 @@ SliderRoot.propTypes = {
   }),
 };
 
+const extendSliderClasses = (props) => {
+  const { color, classes = {} } = props;
+
+  return {
+    ...classes,
+    root: clsx(
+      classes.root,
+      getSliderUtilityClass[`color${capitalize(color)}`],
+      sliderClasses[`color${capitalize(color)}`],
+    ),
+    thumb: clsx(
+      classes.thumb,
+      getSliderUtilityClass[`thumbColor${capitalize(color)}`],
+      sliderClasses[`thumbColor${capitalize(color)}`],
+    ),
+  };
+};
+
+const shouldSpreadStyleProps = (Component) => {
+  return !Component || !isHostComponent(Component);
+};
+
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
-  const { components = {}, ...other } = props;
+  const { components = {}, componentsProps = {}, color = 'primary', ...other } = props;
+
+  const classes = extendSliderClasses({ ...props, color });
+
   return (
     <SliderUnstyled
       {...other}
@@ -352,6 +390,22 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         MarkLabel: SliderMarkLabel,
         ...components,
       }}
+      componentsProps={{
+        ...componentsProps,
+        root: {
+          ...componentsProps.root,
+          ...(shouldSpreadStyleProps(components.Root) && {
+            styleProps: { ...componentsProps.root?.styleProps, color },
+          }),
+        },
+        thumb: {
+          ...componentsProps.thumb,
+          ...(shouldSpreadStyleProps(components.Thumb) && {
+            styleProps: { ...componentsProps.thumb?.styleProps, color },
+          }),
+        },
+      }}
+      classes={classes}
       ref={ref}
     />
   );
@@ -400,6 +454,7 @@ Slider.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes: PropTypes.object,
   /**

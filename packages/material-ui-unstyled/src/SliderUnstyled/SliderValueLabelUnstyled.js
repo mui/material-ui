@@ -1,16 +1,16 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import sliderClasses from './sliderClasses';
+import sliderUnstyledClasses from './sliderUnstyledClasses';
 
 const useValueLabelClasses = (props) => {
   const { open } = props;
 
   const utilityClasses = {
-    offset: clsx(sliderClasses.valueLabel, sliderClasses.valueLabelOffset, {
-      [sliderClasses.valueLabelOpen]: open,
+    offset: clsx(sliderUnstyledClasses.valueLabel, sliderUnstyledClasses.valueLabelOffset, {
+      [sliderUnstyledClasses.valueLabelOpen]: open,
     }),
-    circle: sliderClasses.valueLabelCircle,
-    label: sliderClasses.valueLabelLabel,
+    circle: sliderUnstyledClasses.valueLabelCircle,
+    label: sliderUnstyledClasses.valueLabelLabel,
   };
 
   return utilityClasses;
