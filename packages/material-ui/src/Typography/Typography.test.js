@@ -41,19 +41,30 @@ describe('<Typography />', () => {
 
     expect(container.firstChild).to.have.class(classes.alignCenter);
   });
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'body2', 'body1', 'caption', 'button', 'overline'].forEach(
-    (variant) => {
-      it(`should render ${variant} text`, () => {
-        // @ts-ignore literal/tuple type widening
-        const { container } = render(<Typography variant={variant}>Hello</Typography>);
+  [
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'subtitle1',
+    'body2',
+    'body1',
+    'caption',
+    'button',
+    'overline',
+  ].forEach((variant) => {
+    it(`should render ${variant} text`, () => {
+      // @ts-ignore literal/tuple type widening
+      const { container } = render(<Typography variant={variant}>Hello</Typography>);
 
-        // @ts-ignore
-        expect(classes[variant] != null).to.equal(true);
-        // @ts-ignore
-        expect(container.firstChild).to.have.class(classes[variant]);
-      });
-    },
-  );
+      // @ts-ignore
+      expect(classes[variant] != null).to.equal(true);
+      // @ts-ignore
+      expect(container.firstChild).to.have.class(classes[variant]);
+    });
+  });
 
   [
     ['primary', 'colorPrimary'],

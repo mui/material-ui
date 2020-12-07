@@ -125,7 +125,15 @@ const Typography = React.forwardRef(function Typography(props, ref) {
 
   const classes = useTypographyClasses(stateAndProps);
 
-  return <TypographyRoot as={Component} ref={ref} styleProps={stateAndProps} className={clsx(classes.root, className)} {...other} />;
+  return (
+    <TypographyRoot
+      as={Component}
+      ref={ref}
+      styleProps={stateAndProps}
+      className={clsx(classes.root, className)}
+      {...other}
+    />
+  );
 });
 
 Typography.propTypes = {

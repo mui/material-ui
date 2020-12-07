@@ -1,6 +1,6 @@
 export function getTypographyUtilityClass(name) {
   return `MuiTypography-${name}`;
-};
+}
 
 const typographyClasses = {
   root: getTypographyUtilityClass('root'),
@@ -18,7 +18,7 @@ const typographyClasses = {
   button: getTypographyUtilityClass('button'),
   caption: getTypographyUtilityClass('caption'),
   overline: getTypographyUtilityClass('overline'),
-  alignLeft: getTypographyUtilityClass('alignLeft'), 
+  alignLeft: getTypographyUtilityClass('alignLeft'),
   alignRight: getTypographyUtilityClass('alignRight'),
   alignCenter: getTypographyUtilityClass('alignCenter'),
   alignJustify: getTypographyUtilityClass('alignJustify'),
