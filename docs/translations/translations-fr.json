@@ -19,8 +19,10 @@
   "cdn": "ou utilisez un CDN.",
   "checkoutDescr": "Un layout étape par étape de la commande. Adaptez le nombre d'étapes à vos besoins ou faites-en des étapes facultatives.",
   "checkoutTitle": "Paiement final",
+  "clickToCopy": "Click to copy",
   "close": "Fermer",
   "codesandbox": "Modifier dans CodeSandbox",
+  "copied": "Copied",
   "copiedSource": "The source code has been copied to your clipboard.",
   "copiedSourceLink": "Link to the source code has been copied to your clipboard.",
   "copySource": "Copier la source",
@@ -75,6 +77,9 @@
   "resetDemo": "Réinitialiser la démo",
   "resetDensity": "Réinitialiser la densité",
   "resetFocus": "Réinitialiser le focus pour tester la navigation au clavier",
+  "searchIcons": {
+    "learnMore": "Learn more about the import"
+  },
   "seeMore": "Voir plus",
   "settings": {
     "color": "Couleur",
