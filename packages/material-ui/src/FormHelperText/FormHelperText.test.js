@@ -62,23 +62,23 @@ describe('<FormHelperText />', () => {
       });
     });
 
-    describe('margin', () => {
-      describe('dense margin FormControl', () => {
-        it('should have the dense class', () => {
+    describe('size', () => {
+      describe('small margin FormControl', () => {
+        it('should have the small class', () => {
           const { getByText } = render(
-            <FormControl margin="dense">
+            <FormControl size="small">
               <FormHelperText>Foo</FormHelperText>
             </FormControl>,
           );
 
-          expect(getByText(/Foo/)).to.have.class(classes.marginDense);
+          expect(getByText(/Foo/)).to.have.class(classes.sizeSmall);
         });
       });
 
       it('should be overridden by props', () => {
         function FormHelperTextInFormControl(props) {
           return (
-            <FormControl dense="none">
+            <FormControl size="medium">
               <FormHelperText {...props}>Foo</FormHelperText>
             </FormControl>
           );
@@ -88,9 +88,9 @@ describe('<FormHelperText />', () => {
           <FormHelperTextInFormControl>Foo</FormHelperTextInFormControl>,
         );
 
-        expect(getByText(/Foo/)).not.to.have.class(classes.marginDense);
-        setProps({ margin: 'dense' });
-        expect(getByText(/Foo/)).to.have.class(classes.marginDense);
+        expect(getByText(/Foo/)).not.to.have.class(classes.sizeSmall);
+        setProps({ size: 'small' });
+        expect(getByText(/Foo/)).to.have.class(classes.sizeSmall);
       });
     });
   });

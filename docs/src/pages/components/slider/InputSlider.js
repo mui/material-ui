@@ -49,7 +49,7 @@ export default function InputSlider() {
         <Grid item>
           <Input
             value={value}
-            margin="dense"
+            size="small"
             onChange={handleInputChange}
             onBlur={handleBlur}
             inputProps={{
