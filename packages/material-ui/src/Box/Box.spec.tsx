@@ -6,8 +6,8 @@ interface TestProps {
 }
 
 function Test(props: TestProps) {
-  const { test, ...rest } = props;
-  return <span {...rest}>{test}</span>;
+  const { test, ...other } = props;
+  return <span {...other}>{test}</span>;
 }
 
 function ResponsiveTest() {

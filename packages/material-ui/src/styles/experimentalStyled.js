@@ -70,10 +70,10 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
     const expressionsWithDefaultTheme = expressions
       ? expressions.map((stylesArg) => {
           return typeof stylesArg === 'function'
-            ? ({ theme: themeInput, ...rest }) => {
+            ? ({ theme: themeInput, ...other }) => {
                 return stylesArg({
                   theme: isEmpty(themeInput) ? defaultTheme : themeInput,
-                  ...rest,
+                  ...other,
                 });
               }
             : stylesArg;

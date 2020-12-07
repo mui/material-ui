@@ -187,9 +187,9 @@ async function worker({ svgPath, options, renameFilter, template }) {
   const destPath = renameFilter(svgPathObj, innerPath, options);
 
   const outputFileDir = path.dirname(path.join(options.outputDir, destPath));
-  const exists2 = await fse.exists(outputFileDir);
+  const pathExists = await fse.pathExists(outputFileDir);
 
-  if (!exists2) {
+  if (!pathExists) {
     console.log(`Making dir: ${outputFileDir}`);
     fse.mkdirpSync(outputFileDir);
   }
@@ -237,8 +237,8 @@ export async function main(options) {
     if (typeof renameFilter !== 'function') {
       throw Error('renameFilter must be a function');
     }
-    const exists1 = await fse.exists(options.outputDir);
-    if (!exists1) {
+    const pathExists = await fse.pathExists(options.outputDir);
+    if (!pathExists) {
       await fse.mkdir(options.outputDir);
     }
 

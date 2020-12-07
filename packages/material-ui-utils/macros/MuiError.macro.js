@@ -161,10 +161,10 @@ function muiError({ references, babel, config, source }) {
 
     // Outputs:
     // formatMuiErrorMessage(ERROR_CODE, adj, noun)
-    const prodMessage = babel.types.callExpression(formatMuiErrorMessageIdentifier, [
-      babel.types.numericLiteral(errorCode),
-      ...errorMessageExpressions,
-    ]);
+    const prodMessage = babel.types.callExpression(
+      babel.types.cloneDeep(formatMuiErrorMessageIdentifier),
+      [babel.types.numericLiteral(errorCode), ...errorMessageExpressions],
+    );
 
     // Outputs:
     // new Error(

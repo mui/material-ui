@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 function Foo(props) {
-  const { foo, ...rest } = props;
+  const { foo, ...other } = props;
   return (
-    <div className={props.bar} {...rest}>
+    <div className={props.bar} {...other}>
       {foo}
     </div>
   );

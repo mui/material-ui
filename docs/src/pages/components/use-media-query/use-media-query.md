@@ -90,6 +90,31 @@ describe('MyTests', () => {
 });
 ```
 
+## Client-side only rendering
+
+To perform the server-side hydration, the hook needs to render twice.
+A first time with `false`, the value of the server, and a second time with the resolved value.
+This double pass rendering cycle comes with a drawback. It's slower.
+You can set the `noSsr` option to `true` if you are doing **client-side only** rendering.
+
+```js
+const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
+```
+
+or it can turn it on globally with the theme:
+
+```js
+const theme = createMuiTheme({
+  components: {
+    MuiUseMediaQuery: {
+      defaultProps: {
+        noSsr: true,
+      },
+    },
+  },
+});
+```
+
 ## Server-side rendering
 
 > ⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
@@ -174,10 +199,10 @@ You can reproduce the same behavior with a `useWidth` hook:
   we return a default matches during the first mount. The default value is `false`.
 - `options.matchMedia` (_Function_ [optional]): You can provide your own implementation of _matchMedia_. This can be used for handling an iframe content window.
 - `options.noSsr` (_Boolean_ [optional]): Defaults to `false`.
-  In order to perform the server-side rendering reconciliation, it needs to render twice.
-  A first time with nothing and a second time with the children.
+  To perform the server-side hydration, the hook needs to render twice.
+  A first time with `false`, the value of the server, and a second time with the resolved value.
   This double pass rendering cycle comes with a drawback. It's slower.
-  You can set this flag to `true` if you are **not doing server-side rendering**.
+  You can set this option to `true` if you are doing **client-side only** rendering.
 - `options.ssrMatchMedia` (_Function_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.

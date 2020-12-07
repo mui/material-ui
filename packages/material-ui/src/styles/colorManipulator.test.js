@@ -220,7 +220,7 @@ describe('utils/colorManipulator', () => {
     it('throw on invalid colors', () => {
       expect(() => {
         getLuminance('black');
-      }).to.throw('Material-UI: Unsupported `black` color');
+      }).toThrowMinified('Material-UI: Unsupported `black` color');
     });
   });
 
@@ -278,7 +278,7 @@ describe('utils/colorManipulator', () => {
     it('throw on invalid colors', () => {
       expect(() => {
         alpha('white', 0.4);
-      }).to.throw('Material-UI: Unsupported `white` color');
+      }).toThrowMinified('Material-UI: Unsupported `white` color');
     });
   });
 
