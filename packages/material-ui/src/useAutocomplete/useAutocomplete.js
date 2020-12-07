@@ -103,7 +103,6 @@ export default function useAutocomplete(props) {
 
   let getOptionLabel = getOptionLabelProp;
 
-
   getOptionLabel = (option) => {
     const optionLabel = getOptionLabelProp(option);
     if (typeof optionLabel !== 'string') {
@@ -116,7 +115,7 @@ export default function useAutocomplete(props) {
           )}.`,
         );
       }
-      return String (optionLabel);
+      return String(optionLabel);
     }
     return optionLabel;
   };
