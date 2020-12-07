@@ -1170,7 +1170,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           freeSolo
           onChange={handleChange}
-          options={[{ name: 'one' }, { name: 'two ' }]}
+          options={[{ name: 'one' }, {}]}
           getOptionLabel={(option) => option.name}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -1183,6 +1183,9 @@ describe('<Autocomplete />', () => {
       }).toErrorDev([
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         // strict mode renders twice
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        // strict mode renders twice
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
