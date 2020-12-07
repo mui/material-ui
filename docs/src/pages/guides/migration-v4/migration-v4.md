@@ -999,6 +999,10 @@ const classes = makeStyles(theme => ({
   ```
 
 - Rename `marginDense` and `inputMarginDense` classes to `sizeSmall` and `inputSizeSmall` to match the prop.
+```diff
+-<Input margin="dense" />
++<Input size="small" />
+```
 
 ### TextareaAutosize
 
