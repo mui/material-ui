@@ -2,6 +2,13 @@ const { expect } = require('chai');
 const { execFileSync } = require('child_process');
 
 describe('@material-ui/envinfo', () => {
+  before(function beforeHook() {
+    // only run in node
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+  });
+
   function execEnvinfo(args) {
     const packagePath = __dirname;
 
