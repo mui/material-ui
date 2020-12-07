@@ -19,8 +19,10 @@
   "cdn": "или используйте CDN.",
   "checkoutDescr": "Макет пошаговой страницы оформления заказа. Измените количество шагов по своему усмотрению или сделайте их опциональными.",
   "checkoutTitle": "Страница оформления заказа",
+  "clickToCopy": "Click to copy",
   "close": "Закрыть",
   "codesandbox": "Редактировать в CodeSandbox",
+  "copied": "Copied",
   "copiedSource": "Исходный код скопирован в буфер обмена.",
   "copiedSourceLink": "Ссылка на исходный код скопирована в буфер обмена.",
   "copySource": "Копировать исходник",
@@ -75,6 +77,9 @@
   "resetDemo": "Сбросить демо",
   "resetDensity": "Сбросить плотность",
   "resetFocus": "Reset focus to test keyboard navigation",
+  "searchIcons": {
+    "learnMore": "Learn more about the import"
+  },
   "seeMore": "Ещё",
   "settings": {
     "color": "Цвет",
