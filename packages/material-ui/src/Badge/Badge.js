@@ -242,14 +242,11 @@ const Badge = React.forwardRef(function Badge(inputProps, ref) {
 
   return (
     <BadgeUnstyled
-      {...{
-        color: colorProp,
-        invisible: invisibleProp,
-        badgeContent: badgeContentProp,
-        showZero,
-        variant: variantProp,
-        ...other,
-      }}
+      invisible={invisibleProp}
+      badgeContent={badgeContentProp}
+      showZero={showZero}
+      variant={variantProp}
+      {...other}
       components={{
         Root: BadgeRoot,
         Badge: BadgeBadge,
