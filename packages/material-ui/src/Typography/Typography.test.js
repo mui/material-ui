@@ -41,7 +41,7 @@ describe('<Typography />', () => {
 
     expect(container.firstChild).to.have.class(classes.alignCenter);
   });
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'body2', 'body1', 'caption', 'button'].forEach(
+  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'body2', 'body1', 'caption', 'button', 'overline'].forEach(
     (variant) => {
       it(`should render ${variant} text`, () => {
         // @ts-ignore literal/tuple type widening
