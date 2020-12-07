@@ -369,7 +369,7 @@ const extendSliderClasses = (props) => {
 
 const shouldSpreadStyleProps = (Component) => {
   return !Component || !isHostComponent(Component);
-}
+};
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
