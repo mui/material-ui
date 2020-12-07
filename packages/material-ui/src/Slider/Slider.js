@@ -7,6 +7,7 @@ import {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
   getSliderUtilityClass,
+  isHostComponent,
 } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
@@ -366,7 +367,9 @@ const extendSliderClasses = (props) => {
   };
 };
 
-const isHostComponent = (element) => typeof element === 'string';
+const shouldSpreadStyleProps = (Component) => {
+  return !Component || !isHostComponent(Component);
+}
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
@@ -391,13 +394,13 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         ...componentsProps,
         root: {
           ...componentsProps.root,
-          ...((!components.Root || !isHostComponent(components.Root)) && {
+          ...(shouldSpreadStyleProps(components.Root) && {
             styleProps: { ...componentsProps.root?.styleProps, color },
           }),
         },
         thumb: {
           ...componentsProps.thumb,
-          ...((!components.Thumb || !isHostComponent(components.Thumb)) && {
+          ...(shouldSpreadStyleProps(components.Thumb) && {
             styleProps: { ...componentsProps.thumb?.styleProps, color },
           }),
         },
