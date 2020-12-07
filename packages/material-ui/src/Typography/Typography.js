@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import typographyClasses, { getTypographyUtilityClass } from './typographyClasses';
 
@@ -89,7 +90,9 @@ const useTypographyClasses = (props) => {
   return utilityClasses;
 };
 
-const Typography = React.forwardRef(function Typography(props, ref) {
+const Typography = React.forwardRef(function Typography(inputProps, ref) {
+  const props = useThemeProps({ props: inputProps, name: 'MuiTypography' });
+
   const {
     align = 'inherit',
     className,
