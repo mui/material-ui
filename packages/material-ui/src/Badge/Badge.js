@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { usePreviousProps } from '@material-ui/utils';
+import { usePreviousProps, deepmerge } from '@material-ui/utils';
 import {
   BadgeUnstyled,
   badgeUnstyledClasses,
@@ -36,8 +36,7 @@ const overridesResolver = (props, styles) => {
     overlap = 'rectangular',
   } = props;
 
-  const styleOverrides = {
-    ...styles.root,
+  const styleOverrides = deepmerge(styles.root, {
     [`& .${badgeClasses.badge}`]: {
       ...styles.badge,
       ...styles[variant],
@@ -49,7 +48,7 @@ const overridesResolver = (props, styles) => {
       ...(color !== 'default' && styles[`color${capitalize(color)}`]),
       ...(invisible && styles.invisible),
     },
-  };
+  });
 
   return styleOverrides;
 };
