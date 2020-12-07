@@ -1,29 +1,20 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformance } from 'test/utils';
 import Typography from './Typography';
+import classes from './typographyClasses';
 
 describe('<Typography />', () => {
   /**
    * @type {ReturnType<typeof createMount>}
    */
   const mount = createMount();
-  /**
-   * // we test at runtime that this is equal to
-   * Record<import('./Typography').TypographyClassKey, string>
-   * @type {Record<string, string>}
-   */
-  let classes;
 
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Typography />);
-  });
-
   describeConformance(<Typography />, () => ({
-    classes,
+    classes: {},
     inheritComponent: 'p',
     mount,
     refInstanceof: window.HTMLParagraphElement,
@@ -56,7 +47,9 @@ describe('<Typography />', () => {
         // @ts-ignore literal/tuple type widening
         const { container } = render(<Typography variant={variant}>Hello</Typography>);
 
+        // @ts-ignore
         expect(classes[variant] != null).to.equal(true);
+        // @ts-ignore
         expect(container.firstChild).to.have.class(classes[variant]);
       });
     },
@@ -73,7 +66,9 @@ describe('<Typography />', () => {
       // @ts-ignore literal/tuple type widening
       const { container } = render(<Typography color={color}>Hello</Typography>);
 
+      // @ts-ignore
       expect(classes[className] != null).to.equal(true);
+      // @ts-ignore
       expect(container.firstChild).to.have.class(classes[className]);
     });
   });

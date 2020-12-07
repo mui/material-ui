@@ -18,8 +18,8 @@ const NextComposed = React.forwardRef(function NextComposed(props, ref) {
 });
 
 NextComposed.propTypes = {
-  linkAs: PropTypes.string,
   href: PropTypes.string,
+  linkAs: PropTypes.string,
 };
 
 // A styled version of the Next.js Link component:

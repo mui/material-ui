@@ -1,18 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Typography from '../Typography';
+import Typography, { typographyClasses } from '../Typography';
 import ListItemText from './ListItemText';
 
 describe('<ListItemText />', () => {
   const mount = createMount();
   const render = createClientRender();
   let classes;
-  let typographyClasses;
 
   before(() => {
     classes = getClasses(<ListItemText />);
-    typographyClasses = getClasses(<Typography />);
   });
 
   describeConformance(<ListItemText />, () => ({

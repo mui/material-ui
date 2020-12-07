@@ -1,6 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import experimentalStyled from '../styles/experimentalStyled';
+import capitalize from '../utils/capitalize';
+import typographyClasses, { getTypographyUtilityClass } from './typographyClasses';
 
 const getTextColor = (color, palette) => {
   if (color === 'textPrimary' || color === 'textSecondary') {
@@ -57,10 +60,38 @@ const defaultVariantMapping = {
   inherit: 'p',
 };
 
+const useTypographyClasses = (props) => {
+  const { align, color, display, gutterBottom, noWrap, paragraph, variant, classes = {} } = props;
+
+  const utilityClasses = {
+    root: clsx(
+      typographyClasses['root'],
+      classes['root'],
+      getTypographyUtilityClass(`color${capitalize(color)}`),
+      classes[`color${capitalize(color)}`],
+      typographyClasses[`align${capitalize(align)}`],
+      classes[`align${capitalize(align)}`],
+      typographyClasses[`display${capitalize(display)}`],
+      classes[`display${capitalize(display)}`],
+      getTypographyUtilityClass(variant),
+      classes[variant],
+      {
+        [typographyClasses['gutterBottom']]: gutterBottom,
+        [classes['gutterBottom']]: gutterBottom,
+        [typographyClasses['noWrap']]: noWrap,
+        [classes['noWrap']]: noWrap,
+        [typographyClasses['paragraph']]: paragraph,
+        [classes['paragraph']]: paragraph,
+      },
+    ),
+  };
+
+  return utilityClasses;
+};
+
 const Typography = React.forwardRef(function Typography(props, ref) {
   const {
     align = 'inherit',
-    classes,
     className,
     color = 'initial',
     component,
@@ -76,7 +107,6 @@ const Typography = React.forwardRef(function Typography(props, ref) {
   const stateAndProps = {
     ...props,
     align,
-    classes,
     className,
     color,
     component,
@@ -93,7 +123,9 @@ const Typography = React.forwardRef(function Typography(props, ref) {
     (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) ||
     'span';
 
-  return <TypographyRoot as={Component} ref={ref} styleProps={stateAndProps} {...other} />;
+  const classes = useTypographyClasses(stateAndProps);
+
+  return <TypographyRoot as={Component} ref={ref} styleProps={stateAndProps} className={clsx(classes.root, className)} {...other} />;
 });
 
 Typography.propTypes = {
