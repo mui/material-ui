@@ -1,0 +1,15 @@
+{
+  "name": "@material-ui/envinfo",
+  "license": "MIT",
+  "description": "Logs infos about the environment relevant to @material-ui/*",
+  "version": "1.0.0",
+  "bin": "./index.js",
+  "dependencies": {
+    "envinfo": "^7.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui",
+    "directory": "packages/material-ui-envinfo"
+  }
+}
