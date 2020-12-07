@@ -19,8 +19,10 @@
   "cdn": "或者您也可以使用 CDN。",
   "checkoutDescr": "这是一个逐步建立的支付页面布局。您可以根据具体需求来调整步骤，或者只采用部分步骤。",
   "checkoutTitle": "支付",
+  "clickToCopy": "Click to copy",
   "close": "关闭",
   "codesandbox": "在 CodeSandbox 中编辑",
+  "copied": "Copied",
   "copiedSource": "源代码已被复制到你的剪贴板。\n",
   "copiedSourceLink": "源代码的链接已被复制到你的剪贴板。\n",
   "copySource": "复制源代码",
@@ -75,6 +77,9 @@
   "resetDemo": "重置 demo",
   "resetDensity": "重置密度",
   "resetFocus": "重置焦点以测试键盘导航功能",
+  "searchIcons": {
+    "learnMore": "Learn more about the import"
+  },
   "seeMore": "查看更多",
   "settings": {
     "color": "Color 颜色",
