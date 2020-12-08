@@ -12,6 +12,8 @@ You should use these numbers exclusively for comparing performance between diffe
 
 ## Output
 
+For compareable results ask a maintainer to approve the CircleCI job `benchmark`.
+
 ```
 noop (baseline):
   04.77 ±00.96ms

@@ -239,6 +239,17 @@ jobs:
       - run:
           name: Upload screenshots to Argos CI
           command: yarn test:argos
+  benchmark:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - prepare_chrome_headless
+      - run:
+          name: yarn benchmark:browser
+          command: yarn benchmark:browser
+      - store_artifacts:
+          path: ./tmp/benchmarks
 workflows:
   version: 2
   pipeline:
@@ -262,6 +273,8 @@ workflows:
             - test_static
             - test_types
             - test_browser
+      - benchmark:
+          type: approval
   react-next:
     triggers:
       - schedule:
