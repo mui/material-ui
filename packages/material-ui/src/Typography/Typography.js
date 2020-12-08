@@ -20,6 +20,7 @@ const getTextColor = (color, palette) => {
 
 const overridesResolver = (props, styles) => {
   const { styleProps = {} } = props;
+
   const styleOverrides = {
     ...styles.root,
     ...(styleProps.variant && styles[styleProps.variant]),
@@ -30,6 +31,7 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.gutterBottom && styles.gutterBottom),
     ...(styleProps.paragraph && styles.paragraph),
   };
+
   return styleOverrides;
 };
 
