@@ -18,10 +18,18 @@ const getTextColor = (color, palette) => {
   return palette[color].main;
 };
 
+const overridesResolver = (props, styles) => {
+  const styleOverrides = {
+    ...styles.root,
+  }
+
+  return styleOverrides;
+};
+
 export const TypographyRoot = experimentalStyled(
   'span',
   {},
-  { muiName: 'MuiTypography' },
+  { muiName: 'MuiTypography', overridesResolver },
 )((props) => ({
   margin: 0,
   ...(props.styleProps.variant && props.theme.typography[props.styleProps.variant]),
