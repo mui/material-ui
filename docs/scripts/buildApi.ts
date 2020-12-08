@@ -358,7 +358,6 @@ async function updateStylesDefinition(context: {
   }
 
   styles.classes = Array.from(new Set(styles.classes));
-
 }
 
 async function annotateClassesDefinition(context: {
