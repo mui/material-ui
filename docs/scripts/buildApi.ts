@@ -532,10 +532,6 @@ async function buildDocs(options: {
     }
   }
 
-  if (componentObject.filename.indexOf('Typography') > -1) {
-    console.log(styles);
-  }
-
   let reactAPI: ReactApi;
   try {
     reactAPI = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
