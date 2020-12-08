@@ -81,11 +81,8 @@ Any other props supplied will be provided to the root element (native element).
 
 You can override the style of the component thanks to one of these customization points:
 
-- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
-- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
-- With a theme and an [`overrides` property](/customization/globals/#css).
-
-If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Typography/Typography.js) for more detail.
+- With a [global class name](/guides/interoperability/#global-css).
+- With a rule name as part of the component's [`styleOverrides` property](/customization/components/#global-theme-override) in a custom theme.
 
 ## Demos
 

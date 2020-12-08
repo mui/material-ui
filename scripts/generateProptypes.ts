@@ -135,6 +135,7 @@ const useExternalDocumentation: Record<string, '*' | string[]> = {
   ],
   Tab: ['disableRipple'],
   ToggleButton: ['disableRipple'],
+  Typography: ['className', 'component'],
 };
 const transitionCallbacks = [
   'onEnter',

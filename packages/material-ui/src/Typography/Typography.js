@@ -158,6 +158,10 @@ Typography.propTypes = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'initial'
    */
@@ -170,6 +174,11 @@ Typography.propTypes = {
     'textPrimary',
     'textSecondary',
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * Controls the display type
    * @default 'initial'
