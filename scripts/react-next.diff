@@ -71,9 +71,12 @@ index 92a2ce6ebf..742df9b951 100644
          fireEvent.change(textbox, { target: { value: 'a' } });
          fireEvent.keyDown(textbox, { key: 'Enter' });
        }).toErrorDev([
--        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
--        // strict mode renders twice
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+-        // strict mode renders twice
+-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+-        // strict mode renders twice
+-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
 @@ -1223,9 +1221,6 @@ describe('<Autocomplete />', () => {
