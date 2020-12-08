@@ -36,6 +36,10 @@ describe('<Slider />', () => {
     inheritComponent: SliderUnstyled,
     mount,
     refInstanceof: window.HTMLSpanElement,
+    muiName: 'MuiSlider',
+    ThemeProvider,
+    createMuiTheme,
+    testVariantProps: { color: 'primary', orientation: 'vertical' },
   }));
 
   it('should call handlers', () => {

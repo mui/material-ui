@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
+import { createClientRender } from './createClientRender';
 import {
   testClassName,
   testPropsSpread,
@@ -28,6 +29,91 @@ function testComponentsProp(element, getOptions) {
   });
 }
 
+/**
+ * Material-UI theme has a components section that allows specifying default props, overrides and variants
+ * Components from @inheritComponent
+ * @param {React.ReactElement} element
+ * @param {() => ConformanceOptions} getOptions
+ */
+function testThemeComponents(element, getOptions) {
+  const render = createClientRender();
+
+  describe('theme: components', () => {
+    it("respect theme's defaultProps", () => {
+      const {
+        muiName,
+        testThemeComponentsDefaultPropWith: testProp = 'id',
+        createMuiTheme,
+        ThemeProvider,
+      } = getOptions();
+      const theme = createMuiTheme({
+        components: {
+          [muiName]: {
+            defaultProps: {
+              [testProp]: 'testProp',
+            },
+          },
+        },
+      });
+
+      const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+
+      expect(container.firstChild[testProp]).to.equal('testProp');
+    });
+
+    it("respect theme's styleOverrides", () => {
+      const { muiName, createMuiTheme, ThemeProvider } = getOptions();
+
+      const testStyle = {
+        marginTop: '13px',
+      };
+
+      const theme = createMuiTheme({
+        components: {
+          [muiName]: {
+            styleOverrides: {
+              root: testStyle,
+            },
+          },
+        },
+      });
+
+      const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+
+      expect(container.firstChild).to.toHaveComputedStyle(testStyle);
+    });
+
+    it("respect theme's variants", () => {
+      const { muiName, testVariantProps = {}, createMuiTheme, ThemeProvider } = getOptions();
+
+      const testStyle = {
+        marginTop: '13px',
+      };
+
+      const theme = createMuiTheme({
+        components: {
+          [muiName]: {
+            variants: [
+              {
+                props: testVariantProps,
+                style: testStyle,
+              },
+            ],
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          {React.cloneElement(element, testVariantProps)}
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).to.toHaveComputedStyle(testStyle);
+    });
+  });
+}
+
 const fullSuite = {
   componentsProp: testComponentsProp,
   mergeClassName: testClassName,
@@ -35,6 +121,7 @@ const fullSuite = {
   refForwarding: describeRef,
   rootClass: testRootClass,
   reactTestRenderer: testReactTestRenderer,
+  themeComponents: testThemeComponents,
 };
 
 /**
