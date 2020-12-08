@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles';
 import { exactProp } from '@material-ui/utils';
-import { ThemeContext as StyledEngineThemeContext, StylesProvider } from '@material-ui/styled-engine';
+import {
+  ThemeContext as StyledEngineThemeContext,
+  StylesProvider,
+} from '@material-ui/styled-engine';
 import useTheme from './useTheme';
 
 function InnerThemeProvider(props) {
