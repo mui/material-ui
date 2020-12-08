@@ -946,7 +946,7 @@ const classes = makeStyles(theme => ({
   +<TextField minRows={2} maxRows={5} />
   ```
 
-- Change ref forwarding expections on custom `inputComponent`. The component should forward the `ref` prop instead of the `inputRef` prop.
+- Change ref forwarding expectations on custom `inputComponent`. The component should forward the `ref` prop instead of the `inputRef` prop.
 
   ```diff
   -function NumberFormatCustom(props) {
@@ -962,6 +962,13 @@ const classes = makeStyles(theme => ({
         {...other}
   -     getInputRef={inputRef}
   +     getInputRef={ref}
+  ```
+
+- Rename `marginDense` and `inputMarginDense` classes to `sizeSmall` and `inputSizeSmall` to match the prop.
+
+  ```diff
+  -<Input margin="dense" />
+  +<Input size="small" />
   ```
 
 ### TextareaAutosize
