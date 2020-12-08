@@ -35,12 +35,11 @@ variables:
     REACT_DIST_TAG: 'stable'
     # Preserve this path structure since it is locked in various tooling
     S3_ARTIFACTS_PATH_PERMA: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)/'
-  command: 'sizeSnapshot'
 
 jobs:
   - job: sizeSnapshot
     displayName: 'Bundle size monitoring'
-    condition: eq(variables.command, 'sizeSnapshot')
+    condition: eq($[variables.command], 'sizeSnapshot')
     steps:
       - task: NodeTool@0
         inputs:
@@ -161,7 +160,7 @@ jobs:
 
   - job: benchmark
     displayName: 'Performance monitoring'
-    condition: eq(variables.command, 'benchmark')
+    condition: eq($[variables.command], 'benchmark')
     steps:
       - task: NodeTool@0
         inputs:
