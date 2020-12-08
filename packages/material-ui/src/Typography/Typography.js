@@ -47,7 +47,7 @@ export const TypographyRoot = experimentalStyled(
   ...(props.styleProps.paragraph && {
     marginBottom: 16,
   }),
-  ...(props.styleProps.color && {
+  ...(props.styleProps.color && props.styleProps.color !== 'initial' && {
     color: getTextColor(props.styleProps.color, props.theme.palette),
   }),
   ...(props.styleProps.display !== 'initial' && {
