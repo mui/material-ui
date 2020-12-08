@@ -35,7 +35,7 @@ variables:
     REACT_DIST_TAG: 'stable'
     # Preserve this path structure since it is locked in various tooling
     S3_ARTIFACTS_PATH_PERMA: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)/'
-  - name: command
+  command: 'none'
 
 jobs:
   - job: size-snapshot
