@@ -23,7 +23,7 @@
   },
   "files": [],
   "scripts": {
-    "build": "tar xfz $(npm pack) && mv package build",
+    "build": "tar --transform 's,package/,build/,' -xzf $(npm pack)",
     "prebuild": "rimraf build"
   }
 }
