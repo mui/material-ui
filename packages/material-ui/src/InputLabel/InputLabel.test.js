@@ -49,14 +49,14 @@ describe('<InputLabel />', () => {
       expect(getByTestId('root')).to.have.class(classes.formControl);
     });
 
-    it('should have the labelDense class when margin is dense', () => {
+    it('should have the small class', () => {
       const { getByTestId } = render(
-        <FormControl margin="dense">
+        <FormControl size="small">
           <InputLabel data-testid="root" />
         </FormControl>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.marginDense);
+      expect(getByTestId('root')).to.have.class(classes.sizeSmall);
     });
 
     describe('filled', () => {

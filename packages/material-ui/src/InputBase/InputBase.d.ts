@@ -40,8 +40,8 @@ export interface InputBaseProps
     adornedEnd?: string;
     /** Pseudo-class applied to the root element if `error={true}`. */
     error?: string;
-    /** Styles applied to the `input` element if `margin="dense"`. */
-    marginDense?: string;
+    /** Styles applied to the `input` element if `size="small"`. */
+    sizeSmall?: string;
     /** Styles applied to the root element if `multiline={true}`. */
     multiline?: string;
     /** Styles applied to the root element if the color is secondary. */
@@ -52,8 +52,8 @@ export interface InputBaseProps
     hiddenLabel?: string;
     /** Styles applied to the `input` element. */
     input?: string;
-    /** Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense?: string;
+    /** Styles applied to the `input` element if `size="small"`. */
+    inputSizeSmall?: string;
     /** Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline?: string;
     /** Styles applied to the `input` element if `type="search"`. */
@@ -178,6 +178,10 @@ export interface InputBaseProps
    * Minimum number of rows to display when multiline option is set to true.
    */
   minRows?: string | number;
+  /**
+   * The size of the text field.
+   */
+  size?: 'small' | 'medium';
   /**
    * Start `InputAdornment` for this component.
    */

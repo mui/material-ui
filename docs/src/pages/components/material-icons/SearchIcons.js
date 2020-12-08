@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import copy from 'clipboard-copy';
 import clsx from 'clsx';
 import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
@@ -21,19 +22,21 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import * as mui from '@material-ui/icons';
 import synonyms from './synonyms';
 
 if (process.env.NODE_ENV !== 'production') {
   Object.keys(synonyms).forEach((icon) => {
     if (!mui[icon]) {
-      throw new Error(`The icon ${icon} does no longer exist.`);
+      throw new Error(`The icon ${icon} no longer exists.`);
     }
   });
 }
 
-// Working on the logic? Uncomment these imports.
-// It will be x10 faster than working with all of the icons.
+// If you're working on the logic, uncomment these imports
+// and comment `import * as mui`, and the `if` block above.
+// It will be much faster than working with all of the icons.
 
 // import Menu from '@material-ui/icons/Menu';
 // import MenuOutlined from '@material-ui/icons/MenuOutlined';
@@ -148,7 +151,26 @@ Icons.propTypes = {
 Icons = React.memo(Icons);
 
 const useDialogStyles = makeStyles((theme) => ({
+  title: {
+    display: 'inline-block',
+    cursor: 'pointer',
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      backgroundColor: '#96c6fd80',
+    },
+  },
   markdown: {
+    cursor: 'pointer',
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      '& code': {
+        backgroundColor: '#96c6fd80',
+      },
+    },
     '& pre': {
       borderRadius: 0,
       margin: 0,
@@ -157,9 +179,6 @@ const useDialogStyles = makeStyles((theme) => ({
   import: {
     textAlign: 'right',
     padding: theme.spacing(0.5, 1),
-  },
-  container: {
-    marginBottom: theme.spacing(5),
   },
   canvas: {
     fontSize: 210,
@@ -209,9 +228,36 @@ let DialogDetails = (props) => {
   const classes = useDialogStyles();
   const { open, selectedIcon, handleClose } = props;
 
-  const handleClick = (event) => {
-    selectNode(event.currentTarget);
+  const t = useTranslate();
+  const [copied1, setCopied1] = React.useState(false);
+  const timeout1 = React.useRef();
+  const [copied2, setCopied2] = React.useState(false);
+  const timeout2 = React.useRef();
+
+  const handleClick = (tooltip) => async (event) => {
+    try {
+      await copy(event.currentTarget.textContent);
+      const setOpen = tooltip === 1 ? setCopied1 : setCopied2;
+      const timeout = tooltip === 1 ? timeout1 : timeout2;
+
+      setOpen(true);
+      clearTimeout(timeout.current);
+      timeout.current = setTimeout(() => {
+        setOpen(false);
+      }, 2000);
+    } finally {
+      // Ok
+    }
   };
+
+  React.useEffect(() => {
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      clearTimeout(timeout1.current);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      clearTimeout(timeout2.current);
+    };
+  }, []);
 
   return (
     <Dialog
@@ -223,26 +269,41 @@ let DialogDetails = (props) => {
     >
       {selectedIcon ? (
         <React.Fragment>
-          <DialogTitle id="icon-dialog-title" onClick={handleClick}>
-            {selectedIcon.importName}
+          <DialogTitle disableTypography>
+            <Tooltip
+              placement="right"
+              title={copied1 ? t('copied') : t('clickToCopy')}
+            >
+              <Typography
+                component="h2"
+                variant="h6"
+                className={classes.title}
+                id="icon-dialog-title"
+                onClick={handleClick(1)}
+              >
+                {selectedIcon.importName}
+              </Typography>
+            </Tooltip>
           </DialogTitle>
-          <HighlightedCode
-            className={classes.markdown}
-            onClick={handleClick}
-            code={`import ${selectedIcon.importName}Icon from '@material-ui/icons/${selectedIcon.importName}';`}
-            language="js"
-          />
+          <Tooltip placement="top" title={copied2 ? t('copied') : t('clickToCopy')}>
+            <HighlightedCode
+              className={classes.markdown}
+              onClick={handleClick(2)}
+              code={`import ${selectedIcon.importName}Icon from '@material-ui/icons/${selectedIcon.importName}';`}
+              language="js"
+            />
+          </Tooltip>
           <Link
             className={classes.import}
             color="textSecondary"
             href="/components/icons/"
             variant="caption"
           >
-            Learn more about the import
+            {t('searchIcons.learnMore')}
           </Link>
           <DialogContent>
-            <Grid container className={classes.container}>
-              <Grid item xs={12} sm="auto">
+            <Grid container>
+              <Grid item xs>
                 <Grid container justifyContent="center">
                   <selectedIcon.Component className={classes.canvas} />
                 </Grid>
@@ -305,7 +366,7 @@ let DialogDetails = (props) => {
             </Grid>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Close</Button>
+            <Button onClick={handleClose}>{t('close')}</Button>
           </DialogActions>
         </React.Fragment>
       ) : (

@@ -18,7 +18,7 @@ import { FormControlLabel } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
-Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
+Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.
 Use this component if you want to display an extra label.
 
 ## Component name
