@@ -19,10 +19,17 @@ const getTextColor = (color, palette) => {
 };
 
 const overridesResolver = (props, styles) => {
+  const { styleProps = {} } = props;
   const styleOverrides = {
     ...styles.root,
-  }
-
+    ...(styleProps.variant && styles[styleProps.variant]),
+    ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
+    ...(styleProps.align && styles[`align${capitalize(styleProps.align)}`]),
+    ...(styleProps.display && styles[`display${capitalize(styleProps.display)}`]),
+    ...(styleProps.noWrap && styles.noWrap),
+    ...(styleProps.gutterBottom && styles.gutterBottom),
+    ...(styleProps.paragraph && styles.paragraph),
+  };
   return styleOverrides;
 };
 
@@ -47,9 +54,10 @@ export const TypographyRoot = experimentalStyled(
   ...(props.styleProps.paragraph && {
     marginBottom: 16,
   }),
-  ...(props.styleProps.color && props.styleProps.color !== 'initial' && {
-    color: getTextColor(props.styleProps.color, props.theme.palette),
-  }),
+  ...(props.styleProps.color &&
+    props.styleProps.color !== 'initial' && {
+      color: getTextColor(props.styleProps.color, props.theme.palette),
+    }),
   ...(props.styleProps.display !== 'initial' && {
     display: props.styleProps.display,
   }),
