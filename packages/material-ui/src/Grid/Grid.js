@@ -120,14 +120,14 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `direction="column"`. */
   'direction-xs-column': {
     flexDirection: 'column',
-    '& $item': {
+    '& > $item': {
       maxWidth: 'none',
     },
   },
   /* Styles applied to the root element if `direction="column-reverse"`. */
   'direction-xs-column-reverse': {
     flexDirection: 'column-reverse',
-    '& $item': {
+    '& > $item': {
       maxWidth: 'none',
     },
   },
