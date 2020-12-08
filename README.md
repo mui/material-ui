@@ -36,6 +36,8 @@ npm install @material-ui/core
 yarn add @material-ui/core
 ```
 
+⚠️ All ongoing work has moved to v5. The development of v4 is limited to important bug fixes, security patches and easing the upgrade path to v5.
+
 **[Alpha channel v5](https://next.material-ui.com/)**
 
 ```sh

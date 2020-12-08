@@ -61,6 +61,7 @@ const rows = [
 const useStyles = makeStyles({
   root: {
     width: '100%',
+    overflow: 'hidden',
   },
   container: {
     maxHeight: 440,

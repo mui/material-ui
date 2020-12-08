@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps, PropTypes } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
 import { InputBaseProps } from '../InputBase';
@@ -93,7 +93,7 @@ export interface BaseTextFieldProps
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
-  margin?: PropTypes.Margin;
+  margin?: 'none' | 'dense' | 'normal';
   /**
    * If `true`, a `textarea` element is rendered.instead of an input.
    * @default false

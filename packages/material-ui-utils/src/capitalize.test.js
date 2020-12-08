@@ -9,6 +9,6 @@ describe('capitalize', () => {
   it('should throw when not used correctly', () => {
     expect(() => {
       capitalize();
-    }).to.throw(/expects a string argument/);
+    }).toThrowMinified(/expects a string argument/);
   });
 });

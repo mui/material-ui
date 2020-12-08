@@ -34,8 +34,8 @@ export const styles = {
   },
   /* Styles applied if the adornment is used inside <FormControl hiddenLabel />. */
   hiddenLabel: {},
-  /* Styles applied if the adornment is used inside <FormControl margin="dense" />. */
-  marginDense: {},
+  /* Styles applied if the adornment is used inside <FormControl size="small" />. */
+  sizeSmall: {},
 };
 
 const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
@@ -79,7 +79,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
             [classes.positionStart]: position === 'start',
             [classes.positionEnd]: position === 'end',
             [classes.disablePointerEvents]: disablePointerEvents,
-            [classes.marginDense]: muiFormControl.margin === 'dense',
+            [classes.sizeSmall]: muiFormControl.size === 'small',
             [classes.hiddenLabel]: muiFormControl.hiddenLabel,
           },
           className,

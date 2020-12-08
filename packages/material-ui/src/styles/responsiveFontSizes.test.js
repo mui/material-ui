@@ -65,7 +65,10 @@ describe('responsiveFontSizes', () => {
       });
       expect(() => {
         responsiveFontSizes(theme);
-      }).to.throw();
+      }).toThrowMinified(
+        'Material-UI: Unsupported non-unitless line height with grid alignment.\n' +
+          'Use unitless line heights instead.',
+      );
     });
   });
 });

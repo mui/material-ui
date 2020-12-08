@@ -227,7 +227,6 @@ async function updateStylesDefinition(context: {
   const unstyledFileName = getUnstyledFilename(typesFilename, true);
 
   try {
-    // If the JSON file doesn't exists try extracting the info from the TS definition
     const typesSource = readFileSync(unstyledFileName, { encoding: 'utf8' });
     const typesAST = await babel.parseAsync(typesSource, {
       configFile: false,
@@ -249,6 +248,52 @@ async function updateStylesDefinition(context: {
         const possiblyPropName = (node.key as babel.types.Identifier).name;
         if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
           const members = (node.typeAnnotation.typeAnnotation as babel.types.TSTypeLiteral).members;
+
+          if (members) {
+            styles.descriptions = styles.descriptions || {};
+            members.forEach((member) => {
+              const className = ((member as babel.types.TSPropertySignature)
+                .key as babel.types.Identifier).name;
+              styles.classes.push(className);
+              if (member.leadingComments) {
+                styles.descriptions[className] = trimComment(member.leadingComments[0].value);
+              }
+            });
+          }
+        }
+      },
+    });
+
+    const source = readFileSync(typesFilename, { encoding: 'utf8' });
+    const sourceAST = await babel.parseAsync(source, {
+      configFile: false,
+      filename: typesFilename,
+      presets: [require.resolve('@babel/preset-typescript')],
+    });
+    if (sourceAST === null) {
+      throw new Error('No AST returned from babel.');
+    }
+
+    traverse(sourceAST, {
+      TSPropertySignature(babelPath) {
+        const { node } = babelPath;
+        const possiblyPropName = (node.key as babel.types.Identifier).name;
+        if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
+          let classesDeclarationNode = null;
+          const types = (node.typeAnnotation.typeAnnotation as babel.types.TSIntersectionType)
+            .types;
+
+          if (types) {
+            types.forEach((n) => {
+              if (n.type === 'TSTypeLiteral') {
+                classesDeclarationNode = n;
+              }
+            });
+          }
+
+          const members = classesDeclarationNode
+            ? (classesDeclarationNode as babel.types.TSTypeLiteral).members
+            : [];
 
           if (members) {
             styles.descriptions = styles.descriptions || {};
@@ -311,6 +356,9 @@ async function updateStylesDefinition(context: {
       // Do nothing as not every components has an unstyled version
     }
   }
+
+  styles.classes = Array.from(new Set(styles.classes));
+
 }
 
 async function annotateClassesDefinition(context: {

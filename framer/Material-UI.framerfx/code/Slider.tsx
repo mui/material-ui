@@ -3,7 +3,7 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiSlider from '@material-ui/core/Slider';
 
 interface Props {
-  color?: 'primary' | 'secondary';
+  color: 'primary' | 'secondary';
   disabled?: boolean;
   max?: number;
   min?: number;
@@ -21,6 +21,7 @@ export function Slider(props: Props): JSX.Element {
 }
 
 Slider.defaultProps = {
+  color: 'primary' as 'primary',
   width: 160,
   height: 24,
 };

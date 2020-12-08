@@ -1,9 +1,7 @@
-interface SliderClasses {
+export interface SliderUnstyledClasses {
   root: string;
   active: string;
   focusVisible: string;
-  colorPrimary: string;
-  colorSecondary: string;
   disabled: string;
   marked: string;
   vertical: string;
@@ -16,8 +14,6 @@ interface SliderClasses {
   markLabel: string;
   markLabelActive: string;
   thumb: string;
-  thumbPrimary: string;
-  thumbSecondary: string;
   valueLabel: string;
   valueLabelOffset: string;
   valueLabelOpen: string;
@@ -25,6 +21,8 @@ interface SliderClasses {
   valueLabelLabel: string;
 }
 
-declare const sliderClasses: SliderClasses;
+declare const sliderUnstyledClasses: SliderUnstyledClasses;
 
-export default sliderClasses;
+export function getSliderUtilityClass(part: string): string;
+
+export default sliderUnstyledClasses;

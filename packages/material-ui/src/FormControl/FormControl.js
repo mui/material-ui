@@ -69,12 +69,12 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     component: Component = 'div',
     disabled = false,
     error = false,
-    fullWidth = false,
     focused: visuallyFocused,
+    fullWidth = false,
     hiddenLabel = false,
     margin = 'none',
     required = false,
-    size,
+    size = 'medium',
     variant = 'standard',
     ...other
   } = props;
@@ -166,7 +166,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     focused,
     fullWidth,
     hiddenLabel,
-    margin: (size === 'small' ? 'dense' : undefined) || margin,
+    size,
     onBlur: () => {
       setFocused(false);
     },
@@ -265,6 +265,7 @@ FormControl.propTypes = {
   required: PropTypes.bool,
   /**
    * The size of the text field.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**
