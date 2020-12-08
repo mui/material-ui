@@ -54,18 +54,16 @@ import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const theme = createMuiTheme({
-  /* v1.x 的主题 */
+  /* theme for v1.x */
 });
 const themeV0 = getMuiTheme({
-  /* v0.x 的主题 */
+  /* theme for v0.x */
 });
 
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <V0MuiThemeProvider muiTheme={themeV0}>
-        {/*组件*/}
-      </V0MuiThemeProvider>
+      <V0MuiThemeProvider muiTheme={themeV0}>{/*Components*/}</V0MuiThemeProvider>
     </MuiThemeProvider>
   );
 }
