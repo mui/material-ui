@@ -34,15 +34,18 @@ async function createModulePackages({ from, to }) {
         main: path.join('../node', directoryPackage, 'index.js'),
         types: './index.d.ts',
       };
+
       const packageJsonPath = path.join(to, directoryPackage, 'package.json');
 
+      const typingsPath = path.join(to, directoryPackage, 'index.d.ts');
+
       const [typingsExist] = await Promise.all([
-        fse.exists(path.join(to, directoryPackage, 'index.d.ts')),
+        fse.pathExists(typingsPath),
         fse.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2)),
       ]);
 
       if (!typingsExist) {
-        throw new Error(`index.d.ts for ${directoryPackage} is missing`);
+        throw new Error(`index.d.ts for ${directoryPackage} is missing. Path: '${typingsPath}'`);
       }
 
       return packageJsonPath;
@@ -51,7 +54,7 @@ async function createModulePackages({ from, to }) {
 }
 
 async function typescriptCopy({ from, to }) {
-  if (!(await fse.exists(to))) {
+  if (!(await fse.pathExists(to))) {
     console.warn(`path ${to} does not exists`);
     return [];
   }
@@ -66,6 +69,7 @@ async function createPackageFile() {
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } = JSON.parse(
     packageData,
   );
+
   const newPackageData = {
     ...packageDataOther,
     private: false,
@@ -81,6 +85,7 @@ async function createPackageFile() {
       : {}),
     types: './index.d.ts',
   };
+
   const targetPath = path.resolve(buildPath, './package.json');
 
   await fse.writeFile(targetPath, JSON.stringify(newPackageData, null, 2), 'utf8');

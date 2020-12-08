@@ -14,6 +14,13 @@ export interface FilterOptionsState<T> {
   getOptionLabel: (option: T) => string;
 }
 
+export interface AutocompleteGroupedOption<T = string> {
+  key: number;
+  index: number;
+  group: string;
+  options: T[];
+}
+
 export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>
 ): (options: T[], state: FilterOptionsState<T>) => T[];
@@ -311,5 +318,8 @@ export default function useAutocomplete<
   anchorEl: null | HTMLElement;
   setAnchorEl: () => void;
   focusedTag: number;
-  groupedOptions: T[];
+  /**
+   * The options to render. It's either `T[]` or `AutocompleteGroupedOption<T>[]` if the groupBy prop is provided.
+   */
+  groupedOptions: T[] | Array<AutocompleteGroupedOption<T>>;
 };

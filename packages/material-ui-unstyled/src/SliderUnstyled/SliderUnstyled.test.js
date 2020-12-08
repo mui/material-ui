@@ -26,10 +26,10 @@ describe('<SliderUnstyled />', () => {
     let theme = null;
 
     const Root = React.forwardRef(
-      ({ styleProps: stylePropsProp, theme: themeProp, ...rest }, ref) => {
+      ({ styleProps: stylePropsProp, theme: themeProp, ...other }, ref) => {
         styleProps = stylePropsProp;
         theme = themeProp;
-        return <span ref={ref} {...rest} />;
+        return <span ref={ref} {...other} />;
       },
     );
 

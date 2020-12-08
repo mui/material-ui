@@ -28,14 +28,11 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     'aria-valuetext'?: string;
     /**
      * Override or extend the styles applied to the component.
+     * @default {}
      */
     classes?: {
       /** Class name applied to the root element. */
       root?: string;
-      /** Class name applied to the root element if `color="primary"`. */
-      colorPrimary?: string;
-      /** Class name applied to the root element if `color="secondary"`. */
-      colorSecondary?: string;
       /** Class name applied to the root element if `marks` is provided with at least one label. */
       marked?: string;
       /** Class name applied to the root element if `orientation="vertical"`. */
@@ -52,10 +49,6 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
       trackInverted?: string;
       /** Class name applied to the thumb element. */
       thumb?: string;
-      /** Class name applied to the thumb element if `color="primary"`. */
-      thumbColorPrimary?: string;
-      /** Class name applied to the thumb element if `color="secondary"`. */
-      thumbColorSecondary?: string;
       /** Pseudo-class applied to the thumb element if it's active. */
       active?: string;
       /** Pseudo-class applied to the thumb element if keyboard focused. */
@@ -71,11 +64,6 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
       /** Class name applied to the mark label element if active (depending on the value). */
       markLabelActive?: string;
     };
-    /**
-     * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'primary'
-     */
-    color?: 'primary' | 'secondary';
     /**
      * The components used for each slot inside the Slider.
      * Either a string to use a HTML element or a component.
