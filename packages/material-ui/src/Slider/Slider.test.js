@@ -37,8 +37,6 @@ describe('<Slider />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSlider',
-    ThemeProvider,
-    createMuiTheme,
     testVariantProps: { color: 'primary', orientation: 'vertical' },
   }));
 

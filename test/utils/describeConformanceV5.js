@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { createClientRender } from './createClientRender';
 import {
   testClassName,
@@ -43,8 +44,6 @@ function testThemeComponents(element, getOptions) {
       const {
         muiName,
         testThemeComponentsDefaultPropWith: testProp = 'id',
-        createMuiTheme,
-        ThemeProvider,
       } = getOptions();
       const theme = createMuiTheme({
         components: {
@@ -62,7 +61,7 @@ function testThemeComponents(element, getOptions) {
     });
 
     it("respect theme's styleOverrides", () => {
-      const { muiName, createMuiTheme, ThemeProvider } = getOptions();
+      const { muiName } = getOptions();
 
       const testStyle = {
         marginTop: '13px',
@@ -84,7 +83,7 @@ function testThemeComponents(element, getOptions) {
     });
 
     it("respect theme's variants", () => {
-      const { muiName, testVariantProps = {}, createMuiTheme, ThemeProvider } = getOptions();
+      const { muiName, testVariantProps = {} } = getOptions();
 
       const testStyle = {
         marginTop: '13px',
