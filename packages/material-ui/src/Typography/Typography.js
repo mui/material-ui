@@ -7,7 +7,7 @@ import capitalize from '../utils/capitalize';
 import typographyClasses, { getTypographyUtilityClass } from './typographyClasses';
 
 const getTextColor = (color, palette) => {
-  if (color.startsWith('text')) {
+  if (color.indexOf('text')) {
     return palette.text[color.split('text').pop().toLowerCase()];
   }
 
