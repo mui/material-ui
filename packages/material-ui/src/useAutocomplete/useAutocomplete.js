@@ -103,10 +103,10 @@ export default function useAutocomplete(props) {
 
   let getOptionLabel = getOptionLabelProp;
 
-  if (process.env.NODE_ENV !== 'production') {
-    getOptionLabel = (option) => {
-      const optionLabel = getOptionLabelProp(option);
-      if (typeof optionLabel !== 'string') {
+  getOptionLabel = (option) => {
+    const optionLabel = getOptionLabelProp(option);
+    if (typeof optionLabel !== 'string') {
+      if (process.env.NODE_ENV !== 'production') {
         const erroneousReturn =
           optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
         console.error(
@@ -115,9 +115,10 @@ export default function useAutocomplete(props) {
           )}.`,
         );
       }
-      return optionLabel;
-    };
-  }
+      return String(optionLabel);
+    }
+    return optionLabel;
+  };
 
   const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
