@@ -179,10 +179,7 @@ module.exports = {
     if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
-      // traverse(pages, 'en');
-      LANGUAGES_SSR.forEach((userLanguage) => {
-        traverse(pages, userLanguage);
-      });
+      traverse(pages, 'en');
     } else {
       // eslint-disable-next-line no-console
       console.log('Considering various locales for SSR');
