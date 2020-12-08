@@ -38,11 +38,11 @@
       "colorSecondary",
       "underline",
       "error",
-      "marginDense",
+      "sizeSmall",
       "multiline",
       "fullWidth",
       "input",
-      "inputMarginDense",
+      "inputSizeSmall",
       "inputMultiline",
       "inputTypeSearch"
     ],

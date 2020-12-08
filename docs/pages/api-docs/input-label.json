@@ -27,7 +27,7 @@
       "required",
       "asterisk",
       "formControl",
-      "marginDense",
+      "sizeSmall",
       "shrink",
       "animated",
       "filled",

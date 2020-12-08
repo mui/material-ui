@@ -22,7 +22,7 @@
       "positionEnd",
       "disablePointerEvents",
       "hiddenLabel",
-      "marginDense"
+      "sizeSmall"
     ],
     "globalClasses": {},
     "name": "MuiInputAdornment"

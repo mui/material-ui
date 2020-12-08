@@ -40,11 +40,11 @@
       "adornedStart",
       "adornedEnd",
       "error",
-      "marginDense",
+      "sizeSmall",
       "multiline",
       "notchedOutline",
       "input",
-      "inputMarginDense",
+      "inputSizeSmall",
       "inputMultiline",
       "inputAdornedStart",
       "inputAdornedEnd"

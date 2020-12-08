@@ -22,9 +22,9 @@
       "description": "Pseudo-class applied to the root element if {{conditions}}.",
       "conditions": "<code>disabled={true}</code>"
     },
-    "marginDense": {
+    "sizeSmall": {
       "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>margin=\"dense\"</code>"
+      "conditions": "<code>size=\"small\"</code>"
     },
     "contained": {
       "description": "Styles applied to the root element if {{conditions}}.",

@@ -20,7 +20,10 @@
       "default": "'none'"
     },
     "required": { "type": { "name": "bool" } },
-    "size": { "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" } },
+    "size": {
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "default": "'medium'"
+    },
     "variant": {
       "type": {
         "name": "enum",

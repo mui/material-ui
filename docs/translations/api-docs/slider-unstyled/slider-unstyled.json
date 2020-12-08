@@ -5,7 +5,6 @@
     "aria-labelledby": "The id of the element containing a label for the slider.",
     "aria-valuetext": "A string value that provides a user-friendly name for the current value of the slider.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "components": "The components used for each slot inside the Slider. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Slider.",
@@ -30,14 +29,6 @@
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },
-    "colorPrimary": {
-      "description": "Class name applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "colorSecondary": {
-      "description": "Class name applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code>"
-    },
     "marked": {
       "description": "Class name applied to the root element if {{conditions}}.",
       "conditions": "<code>marks</code> is provided with at least one label"
@@ -61,14 +52,6 @@
       "conditions": "<code>track=\"inverted\"</code>"
     },
     "thumb": { "description": "Class name applied to the thumb element." },
-    "thumbColorPrimary": {
-      "description": "Class name applied to the thumb element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "thumbColorSecondary": {
-      "description": "Class name applied to the thumb element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code>"
-    },
     "active": { "description": "Pseudo-class applied to the thumb element if it's active." },
     "focusVisible": {
       "description": "Pseudo-class applied to the thumb element if keyboard focused."

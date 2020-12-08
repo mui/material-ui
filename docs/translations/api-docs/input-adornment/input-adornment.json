@@ -30,8 +30,8 @@
     "hiddenLabel": {
       "description": "Styles applied if the adornment is used inside <FormControl hiddenLabel />."
     },
-    "marginDense": {
-      "description": "Styles applied if the adornment is used inside <FormControl margin=\"dense\" />."
+    "sizeSmall": {
+      "description": "Styles applied if the adornment is used inside <FormControl size=\"small\" />."
     }
   }
 }

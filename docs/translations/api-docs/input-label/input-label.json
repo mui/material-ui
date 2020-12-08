@@ -35,9 +35,9 @@
     "formControl": {
       "description": "Styles applied to the root element if the component is a descendant of `FormControl`."
     },
-    "marginDense": {
+    "sizeSmall": {
       "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>margin=\"dense\"</code>"
+      "conditions": "<code>size=\"small\"</code>"
     },
     "shrink": {
       "description": "Styles applied to the `input` element if {{conditions}}.",

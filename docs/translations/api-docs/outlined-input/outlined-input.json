@@ -53,9 +53,9 @@
       "description": "Pseudo-class applied to the root element if {{conditions}}.",
       "conditions": "<code>error={true}</code>"
     },
-    "marginDense": {
+    "sizeSmall": {
       "description": "Styles applied to the `input` element if {{conditions}}.",
-      "conditions": "<code>margin=\"dense\"</code>"
+      "conditions": "<code>size=\"small\"</code>"
     },
     "multiline": {
       "description": "Styles applied to the root element if {{conditions}}.",
@@ -63,9 +63,9 @@
     },
     "notchedOutline": { "description": "Styles applied to the `NotchedOutline` element." },
     "input": { "description": "Styles applied to the `input` element." },
-    "inputMarginDense": {
+    "inputSizeSmall": {
       "description": "Styles applied to the `input` element if {{conditions}}.",
-      "conditions": "<code>margin=\"dense\"</code>"
+      "conditions": "<code>size=\"small\"</code>"
     },
     "inputMultiline": {
       "description": "Styles applied to the `input` element if {{conditions}}.",

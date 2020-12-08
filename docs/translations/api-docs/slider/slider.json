@@ -31,14 +31,6 @@
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },
-    "colorPrimary": {
-      "description": "Class name applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "colorSecondary": {
-      "description": "Class name applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code>"
-    },
     "marked": {
       "description": "Class name applied to the root element if {{conditions}}.",
       "conditions": "<code>marks</code> is provided with at least one label"
@@ -62,14 +54,6 @@
       "conditions": "<code>track=\"inverted\"</code>"
     },
     "thumb": { "description": "Class name applied to the thumb element." },
-    "thumbColorPrimary": {
-      "description": "Class name applied to the thumb element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code>"
-    },
-    "thumbColorSecondary": {
-      "description": "Class name applied to the thumb element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code>"
-    },
     "active": { "description": "Pseudo-class applied to the thumb element if it's active." },
     "focusVisible": {
       "description": "Pseudo-class applied to the thumb element if keyboard focused."
@@ -82,6 +66,22 @@
     "markLabel": { "description": "Class name applied to the mark label element." },
     "markLabelActive": {
       "description": "Class name applied to the mark label element if active (depending on the value)."
+    },
+    "colorPrimary": {
+      "description": "Class name applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorSecondary": {
+      "description": "Class name applied to the root element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
+    },
+    "thumbColorPrimary": {
+      "description": "Class name applied to the thumb element if {{conditions}}.",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "thumbColorSecondary": {
+      "description": "Class name applied to the thumb element if {{conditions}}.",
+      "conditions": "<code>color=\"secondary\"</code>"
     }
   }
 }
