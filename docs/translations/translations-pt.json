@@ -19,10 +19,10 @@
   "cdn": "ou use uma CDN.",
   "checkoutDescr": "Um leiaute de etapas de página de checkout. Adapte o número de etapas para atender às suas necessidades ou torne as etapas opcionais.",
   "checkoutTitle": "Checkout",
-  "clickToCopy": "Click to copy",
+  "clickToCopy": "Clique para copiar",
   "close": "Fechar",
   "codesandbox": "Edite no CodeSandbox",
-  "copied": "Copied",
+  "copied": "Copiado",
   "copiedSource": "O código fonte foi copiado para a sua área de transferência.",
   "copiedSourceLink": "Link para o código fonte foi copiado para sua área de transferência.",
   "copySource": "Copiar código fonte",
@@ -78,7 +78,7 @@
   "resetDensity": "Repor densidade",
   "resetFocus": "Resetar foco para testar a navegação por teclado",
   "searchIcons": {
-    "learnMore": "Learn more about the import"
+    "learnMore": "Saiba mais sobre a importação"
   },
   "seeMore": "Ver mais",
   "settings": {
