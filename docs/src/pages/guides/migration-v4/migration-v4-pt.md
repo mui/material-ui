@@ -946,7 +946,7 @@ const classes = makeStyles(theme => ({
   +<TextField minRows={2} maxRows={5} />
   ```
 
-- Change ref forwarding expectations on custom `inputComponent`. O componente deve encaminhar a propriedade `ref` em vez da propriedade `inputRef`.
+- Altere o que é esperado no encaminhamento de ref no componente customizado `inputComponent`. O componente deve encaminhar a propriedade `ref` em vez da propriedade `inputRef`.
 
   ```diff
   -function NumberFormatCustom(props) {
@@ -964,7 +964,7 @@ const classes = makeStyles(theme => ({
   +     getInputRef={ref}
   ```
 
-- Rename `marginDense` and `inputMarginDense` classes to `sizeSmall` and `inputSizeSmall` to match the prop.
+- Renomeie as classes `marginDense` e `inputMarginDense` para `sizeSmall` e `inputSizeSmall` para corresponder com a propriedade.
 
   ```diff
   -<Input margin="dense" />
