@@ -11,10 +11,10 @@ function jsDemo(demoData) {
       'index.js': `
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styled-engine';
+import { StyledEngineProvider } from '@material-ui/core';
 import Demo from './demo';
 
-ReactDOM.render(<StylesProvider injectFirst><Demo /></StylesProvider>, document.querySelector('#root'));
+ReactDOM.render(<StyledEngineProvider injectFirst><Demo /></StyledEngineProvider>, document.querySelector('#root'));
     `.trim(),
     },
   };
@@ -31,10 +31,10 @@ function tsDemo(demoData) {
       'index.tsx': `
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styled-engine';
+import { StyledEngineProvider } from '@material-ui/core';
 import Demo from './demo';
 
-ReactDOM.render(<StylesProvider injectFirst><Demo /></StylesProvider>, document.querySelector('#root'));
+ReactDOM.render(<StyledEngineProvider injectFirst><Demo /></StyledEngineProvider>, document.querySelector('#root'));
     `.trim(),
       'tsconfig.json': `{
   "compilerOptions": {

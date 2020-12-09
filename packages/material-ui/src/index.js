@@ -400,3 +400,5 @@ export * from './Zoom';
 
 // createFilterOptions is exported from Autocomplete
 export { default as useAutocomplete } from './useAutocomplete';
+
+export { StylesProvider as StyledEngineProvider } from '@material-ui/styled-engine';
