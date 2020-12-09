@@ -54,10 +54,10 @@ import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const theme = createMuiTheme({
-  /* theme for v1.x */
+  /* tema para v1.x */
 });
 const themeV0 = getMuiTheme({
-  /* theme for v0.x */
+  /* tema para v0.x */
 });
 
 function App() {
