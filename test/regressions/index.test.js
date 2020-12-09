@@ -11,7 +11,7 @@ async function main(options) {
   const supportedBrowsers = ['chromium', 'firefox'];
   if (supportedBrowsers.indexOf(browserName) === -1) {
     throw new TypeError(
-      `Unable to find a browser name '${browserName}'. Only the following browsers are supported: ${supportedBrowsers.join(
+      `Unable to find a browser named '${browserName}'. Only the following browsers are supported: ${supportedBrowsers.join(
         ',',
       )}`,
     );
