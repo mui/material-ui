@@ -10,6 +10,8 @@ describe('@material-ui/envinfo', () => {
       this.skip();
     }
 
+    // Building might take some time
+    this.timeout(10000);
     execFileSync('yarn', ['build'], { cwd: packagePath, stdio: 'pipe' });
   });
 
