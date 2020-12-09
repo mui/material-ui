@@ -11,18 +11,10 @@ function jsDemo(demoData) {
       'index.js': `
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-// TODO: Replace this with just StyleProvider with injectFirst prop
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { StylesProvider } from '@material-ui/styled-engine';
 import Demo from './demo';
 
-const theme = createMuiTheme();
-
-ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Demo />
-  </ThemeProvider>,
-  document.querySelector("#root")
-);
+ReactDOM.render(<StylesProvider injectFirst><Demo /></StylesProvider>, document.querySelector('#root'));
     `.trim(),
     },
   };
@@ -39,18 +31,10 @@ function tsDemo(demoData) {
       'index.tsx': `
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-// TODO: Replace this with just StyleProvider with injectFirst prop
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { StylesProvider } from '@material-ui/styled-engine';
 import Demo from './demo';
 
-const theme = createMuiTheme();
-
-ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Demo />
-  </ThemeProvider>,
-  document.querySelector("#root")
-);
+ReactDOM.render(<StylesProvider injectFirst><Demo /></StylesProvider>, document.querySelector('#root'));
     `.trim(),
       'tsconfig.json': `{
   "compilerOptions": {
