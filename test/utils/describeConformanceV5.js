@@ -99,13 +99,15 @@ function testThemeComponents(element, getOptions) {
         },
       });
 
-      const { container } = render(
+      const { getByTestId } = render(
         <ThemeProvider theme={theme}>
-          {React.cloneElement(element, testVariantProps)}
+          {React.cloneElement(element, { ...testVariantProps, 'data-testid': 'with-props' })}
+          {React.cloneElement(element, { 'data-testid': 'without-props' })}
         </ThemeProvider>,
       );
 
-      expect(container.firstChild).to.toHaveComputedStyle(testStyle);
+      expect(getByTestId('with-props')).to.toHaveComputedStyle(testStyle);
+      expect(getByTestId('without-props')).not.to.toHaveComputedStyle(testStyle);
     });
   });
 }
