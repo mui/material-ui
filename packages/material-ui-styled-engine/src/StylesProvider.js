@@ -6,9 +6,9 @@ import createCache from '@emotion/cache';
 // Cache with option to prepend emotion's style tag
 export const cache = createCache({ key: 'css', prepend: true });
 
-export function StylesProvider({ injectFirst }) {
+export function StylesProvider({ injectFirst, children }) {
   return injectFirst ? (
-    <CacheProvider value={cache}>{props.children}</CacheProvider>
+    <CacheProvider value={cache}>{children}</CacheProvider>
   ) : (
     props.children
   );
