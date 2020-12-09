@@ -1,39 +1,402 @@
-/* eslint-disable no-console */
-import * as babel from '@babel/core';
-import traverse from '@babel/traverse';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
+import * as babel from '@babel/core';
+import traverse from '@babel/traverse';
+import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import uniqBy from 'lodash/uniqBy';
 import * as prettier from 'prettier';
-import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import * as recast from 'recast';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
+import marked from 'marked';
 import * as yargs from 'yargs';
+import * as doctrine from 'doctrine';
+import {
+  defaultHandlers,
+  parse as docgenParse,
+  PropDescriptor,
+  PropTypeDescriptor,
+  ReactDocgenApi,
+} from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
-import generateMarkdown, { ReactApi } from 'docs/src/modules/utils/generateMarkdown';
+import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
-import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
-import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
+import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
+import getStylesCreator from '@material-ui/styles/getStylesCreator';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
+
+// Only run for ButtonBase
+const TEST = false;
+
+const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
+
+interface ReactApi extends ReactDocgenApi {
+  EOL: string;
+  filename: string;
+  forwardsRefTo: string | undefined;
+  inheritance: { component: string; pathname: string } | null;
+  name: string;
+  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
+  spread: boolean;
+  src: string;
+  styles: {
+    classes: string[];
+    globalClasses: Record<string, string>;
+    name: string | null;
+    descriptions: Record<string, string>;
+  };
+}
+interface DescribeablePropDescriptor {
+  annotation: doctrine.Annotation;
+  defaultValue: string | null;
+  required: boolean;
+  type: PropTypeDescriptor;
+}
 
 const generateClassName = createGenerateClassName();
 
-const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
+function getDeprecatedInfo(type: PropTypeDescriptor) {
+  const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
+  const match = type.raw.match(marker);
+  const startIndex = type.raw.search(marker);
+  if (match) {
+    const offset = match[0].length;
+
+    return {
+      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
+      explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
+    };
+  }
+
+  return false;
+}
+
+function getChained(type: PropTypeDescriptor) {
+  if (type.raw) {
+    const marker = 'chainPropTypes';
+    const indexStart = type.raw.indexOf(marker);
+
+    if (indexStart !== -1) {
+      const parsed = docgenParse(
+        `
+        import PropTypes from 'prop-types';
+        const Foo = () => <div />
+        Foo.propTypes = {
+          bar: ${recast.print(recast.parse(type.raw).program.body[0].expression.arguments[0]).code}
+        }
+        export default Foo
+      `,
+        null,
+        null,
+        // helps react-docgen pickup babel.config.js
+        { filename: './' },
+      );
+      return {
+        type: parsed.props.bar.type,
+        required: parsed.props.bar.required,
+      };
+    }
+  }
+
+  return false;
+}
+
+function escapeCell(value: string): string {
+  // As the pipe is use for the table structure
+  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
+}
+
+function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
+  return type.raw === 'elementTypeAcceptingRef';
+}
+
+function isRefType(type: PropTypeDescriptor): boolean {
+  return type.raw === 'refType';
+}
+
+function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
+  return /^elementAcceptingRef/.test(type.raw);
+}
+
+function generatePropTypeDescription(type: PropTypeDescriptor): string | undefined {
+  switch (type.name) {
+    case 'custom': {
+      if (isElementTypeAcceptingRefProp(type)) {
+        return `element type`;
+      }
+      if (isElementAcceptingRefProp(type)) {
+        return `element`;
+      }
+      if (isRefType(type)) {
+        return `ref`;
+      }
+      if (type.raw === 'HTMLElementType') {
+        return `HTML element`;
+      }
+
+      const deprecatedInfo = getDeprecatedInfo(type);
+      if (deprecatedInfo !== false) {
+        return generatePropTypeDescription({
+          // eslint-disable-next-line react/forbid-foreign-prop-types
+          name: deprecatedInfo.propTypes,
+        } as any);
+      }
+
+      const chained = getChained(type);
+      if (chained !== false) {
+        return generatePropTypeDescription(chained.type);
+      }
+
+      return type.raw;
+    }
+
+    case 'shape':
+      return `{ ${Object.keys(type.value)
+        .map((subValue) => {
+          const subType = type.value[subValue];
+          return `${subValue}${subType.required ? '' : '?'}: ${generatePropTypeDescription(
+            subType,
+          )}`;
+        })
+        .join(', ')} }`;
+
+    case 'union':
+      return (
+        type.value
+          .map((type2) => {
+            return generatePropTypeDescription(type2);
+          })
+          // Display one value per line as it's better for visibility.
+          .join('<br>&#124;&nbsp;')
+      );
+    case 'enum':
+      return (
+        type.value
+          .map((type2) => {
+            return escapeCell(type2.value);
+          })
+          // Display one value per line as it's better for visibility.
+          .join('<br>&#124;&nbsp;')
+      );
+
+    case 'arrayOf': {
+      return `Array&lt;${generatePropTypeDescription(type.value)}&gt;`;
+    }
+
+    case 'instanceOf': {
+      if (type.value.startsWith('typeof')) {
+        return /typeof (.*) ===/.exec(type.value)![1];
+      }
+      return type.value;
+    }
+
+    default:
+      return type.name;
+  }
+}
+
+/**
+ * Returns `null` if the prop should be ignored.
+ * Throws if it is invalid.
+ * @param prop
+ * @param propName
+ */
+function createDescribeableProp(
+  prop: PropDescriptor,
+  propName: string,
+): DescribeablePropDescriptor | null {
+  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
+
+  const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
+  const renderDefaultValue = Boolean(
+    renderedDefaultValue &&
+      // Ignore "large" default values that would break the table layout.
+      renderedDefaultValue.length <= 150,
+  );
+
+  if (description === undefined) {
+    throw new Error(`The "${propName}" prop is missing a description.`);
+  }
+
+  const annotation = doctrine.parse(description, {
+    sloppy: true,
+  });
+
+  if (
+    annotation.description.trim() === '' ||
+    annotation.tags.some((tag) => tag.title === 'ignore')
+  ) {
+    return null;
+  }
+
+  if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
+    throw new Error(
+      `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
+    );
+  } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
+    const shouldHaveDefaultAnnotation =
+      // Discriminator for polymorphism which is not documented at the component level.
+      // The documentation of `component` does not know in which component it is used.
+      propName !== 'component';
+
+    if (shouldHaveDefaultAnnotation) {
+      throw new Error(`JSDOC @default annotation not found for '${propName}'.`);
+    }
+  } else if (jsdocDefaultValue !== undefined) {
+    // `defaultValue` can't be undefined or we would've thrown earlier.
+    if (jsdocDefaultValue.value !== defaultValue!.value) {
+      throw new Error(
+        `Expected JSDOC @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+      );
+    }
+  }
+
+  return {
+    annotation,
+    defaultValue: renderDefaultValue ? renderedDefaultValue! : null,
+    required: Boolean(required),
+    type,
+  };
+}
+
+function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
+  if (type.type === 'AllLiteral') {
+    return 'any';
+  }
+
+  if (type.type === 'VoidLiteral') {
+    return 'void';
+  }
+
+  if (type.type === 'TypeApplication') {
+    const arrayTypeName = resolveType(type.applications[0]);
+    return `${arrayTypeName}[]`;
+  }
+
+  if (type.type === 'UnionType') {
+    return type.elements.map((t) => resolveType(t)).join(' \\| ');
+  }
+
+  if ('name' in type) {
+    return type.name;
+  }
+  throw new TypeError(`resolveType for '${type.type}' not implemented`);
+}
+
+function generatePropDescription(prop: DescribeablePropDescriptor, propName: string): string {
+  const { annotation } = prop;
+  const type = prop.type;
+  let deprecated = '';
+
+  if (type.name === 'custom') {
+    const deprecatedInfo = getDeprecatedInfo(type);
+    if (deprecatedInfo) {
+      deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
+    }
+  }
+
+  // Two new lines result in a newline in the table.
+  // All other new lines must be eliminated to prevent markdown mayhem.
+  const jsDocText = escapeCell(annotation.description)
+    .replace(/(\r?\n){2}/g, '<br>')
+    .replace(/\r?\n/g, ' ');
+
+  let signature = '';
+
+  // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
+  // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
+  const parsedArgs: doctrine.Tag[] = annotation.tags.filter((tag) => tag.title === 'param');
+  let parsedReturns:
+    | { description?: string | null; type?: doctrine.Type | null }
+    | undefined = annotation.tags.find((tag) => tag.title === 'returns');
+  if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
+    parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
+
+    // Remove new lines from tag descriptions to avoid markdown errors.
+    annotation.tags.forEach((tag) => {
+      if (tag.description) {
+        tag.description = tag.description.replace(/\r*\n/g, ' ');
+      }
+    });
+
+    signature += '<br><br>**Signature:**<br>`function(';
+    signature += parsedArgs
+      .map((tag, index) => {
+        if (tag.type != null && tag.type.type === 'OptionalType') {
+          return `${tag.name}?: ${(tag.type.expression as any).name}`;
+        }
+
+        if (tag.type === undefined) {
+          throw new TypeError(
+            `In function signature for prop '${propName}' Argument #${index} has no type.`,
+          );
+        }
+        return `${tag.name}: ${resolveType(tag.type!)}`;
+      })
+      .join(', ');
+
+    const returnType = parsedReturns.type;
+    if (returnType == null) {
+      throw new TypeError(
+        `Function signature for prop '${propName}' has no return type. Try \`@returns void\`. Otherwise it might be a bug with doctrine.`,
+      );
+    }
+
+    const returnTypeName = resolveType(returnType);
+
+    signature += `) => ${returnTypeName}\`<br>`;
+    signature += parsedArgs
+      .filter((tag) => tag.description)
+      .map((tag) => `*${tag.name}:* ${tag.description}`)
+      .join('<br>');
+    if (parsedReturns.description) {
+      signature += `<br> *returns* (${returnTypeName}): ${parsedReturns.description}`;
+    }
+  }
+
+  let notes = '';
+  if (isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type)) {
+    notes += '<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs).';
+  }
+
+  return `${deprecated}${jsDocText}${signature}${notes}`;
+}
+
+function writePrettifiedFile(
+  filename: string,
+  data: string,
+  prettierConfigPath: string,
+  options: object = {},
+) {
+  const prettierConfig = prettier.resolveConfig.sync(filename, {
+    config: prettierConfigPath,
+  });
+  if (prettierConfig === null) {
+    throw new Error(
+      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
+    );
+  }
+
+  writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
+    encoding: 'utf8',
+    ...options,
+  });
+}
 
 /**
  * Receives a component's test information and source code and return's an object
- * containing the inherited component's name and pathname
- * @param testInfo Information retrieved from the component's describeConformance() in its test.js file
- * @param src The component's source code
+ * containing the inherited component's name and pathname.
+ * @param testInfo Information retrieved from the component's describeConformance() in its test.js file.
+ * @param src The component's source code.
  */
 function getInheritance(
   testInfo: {
-    /** The name of the component functionality is inherited from */
+    /** The name of the component functionality is inherited from. */
     inheritComponent: string | undefined;
   },
   src: string,
@@ -41,7 +404,7 @@ function getInheritance(
   let inheritedComponentName = testInfo.inheritComponent;
 
   if (inheritedComponentName == null) {
-    const match = src.match(inheritedComponentRegexp);
+    const match = src.match(/\/\/ @inheritedComponent (.*)/);
     if (match !== null) {
       inheritedComponentName = match[1];
     }
@@ -97,6 +460,18 @@ function computeApiDescription(api: ReactApi, options: { host: string }): Promis
   });
 }
 
+/**
+ * Add demos & API comment block to type definitions, e.g.:
+ * /**
+ *  * Demos:
+ *  *
+ *  * - [Icons](https://material-ui.com/components/icons/)
+ *  * - [Material Icons](https://material-ui.com/components/material-icons/)
+ *  *
+ *  * API:
+ *  *
+ *  * - [Icon API](https://material-ui.com/api/icon/)
+ */
 async function annotateComponentDefinition(context: {
   component: { filename: string };
   api: ReactApi;
@@ -316,6 +691,9 @@ async function updateStylesDefinition(context: {
   styles.classes = Array.from(new Set(styles.classes));
 }
 
+/**
+ * Add class descriptions to type definitions
+ */
 async function annotateClassesDefinition(context: {
   api: ReactApi;
   component: { filename: string };
@@ -371,22 +749,58 @@ async function annotateClassesDefinition(context: {
   const typesSourceNew =
     typesSource.slice(0, start) + classesDefinitionSource + typesSource.slice(end);
 
-  const prettierConfig = prettier.resolveConfig.sync(typesFilename, {
-    config: prettierConfigPath,
+  writePrettifiedFile(typesFilename, typesSourceNew, prettierConfigPath);
+}
+
+/**
+ * Substitute CSS class description conditions with placeholder
+ */
+function extractClassConditions(descriptions: any) {
+  const classConditions: { [key: string]: { description: string; conditions?: string } } = {};
+  const stylesRegex = /(if |unless )(`.*)./;
+
+  Object.entries(descriptions).forEach(([className, classDescription]: any) => {
+    if (className) {
+      const conditions = classDescription.match(stylesRegex);
+
+      if (conditions) {
+        classConditions[className] = {
+          description: classDescription.replace(stylesRegex, '$1{{conditions}}.'),
+          conditions: conditions[2].replace(/`(.*?)`/g, '<code>$1</code>'),
+        };
+      } else {
+        classConditions[className] = { description: classDescription };
+      }
+    }
   });
-  if (prettierConfig === null) {
-    throw new Error(
-      `Could not resolve config for '${typesFilename}' using prettier config path '${prettierConfigPath}'.`,
+  return classConditions;
+}
+
+/**
+ * Generate list of component demos
+ */
+function generateDemoList(reactAPI: ReactApi): string {
+  const pagesMarkdown = reactAPI.pagesMarkdown.filter((page) => {
+    return (
+      !DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)
     );
+  });
+
+  if (pagesMarkdown.length === 0) {
+    return '';
   }
 
-  writeFileSync(
-    typesFilename,
-    prettier.format(typesSourceNew, { ...prettierConfig, filepath: typesFilename }),
-    {
-      encoding: 'utf8',
-    },
-  );
+  return `<ul>${pagesMarkdown
+    .map((page) => `<li><a href="${page.pathname}/">${pageToTitle(page)}</a></li>`)
+    .join('\n')}</ul>`;
+}
+
+/**
+ * Replaces backslashes with slashes
+ * TODO: Why not using node's path.normalize?
+ */
+function normalizePath(filepath: string): string {
+  return filepath.replace(/\\/g, '/');
 }
 
 async function buildDocs(options: {
@@ -405,6 +819,7 @@ async function buildDocs(options: {
     prettierConfigPath,
     theme,
   } = options;
+
   if (componentObject.filename.indexOf('internal') !== -1) {
     return;
   }
@@ -421,6 +836,20 @@ async function buildDocs(options: {
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
 
+  if (TEST && name !== 'ButtonBase') {
+    return;
+  }
+
+  const componentApi: {
+    componentDescription: string;
+    propDescriptions: { [key: string]: string | undefined };
+    classDescriptions: { [key: string]: { description: string; conditions?: string } };
+  } = {
+    componentDescription: '',
+    propDescriptions: {},
+    classDescriptions: {},
+  };
+
   const styles: ReactApi['styles'] = {
     classes: [],
     name: null,
@@ -429,8 +858,8 @@ async function buildDocs(options: {
   };
 
   // styled components does not have the options static
-  const nonJSSComponent = !component?.default?.options;
-  if (nonJSSComponent) {
+  const JssComponent = component?.default?.options;
+  if (!JssComponent) {
     await updateStylesDefinition({
       styles,
       component: componentObject,
@@ -446,9 +875,7 @@ async function buildDocs(options: {
     styles.globalClasses = styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
         // @ts-expect-error
-        {
-          key,
-        },
+        { key },
         {
           options: {
             name: styles.name,
@@ -474,8 +901,11 @@ async function buildDocs(options: {
     /**
      * Collect classes comments from the source
      */
-    const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*};[\r\n][\r\n]/;
-    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*(\w*)/g;
+    // Match the styles definition in the source
+    const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*?}\){0,1};[\r\n][\r\n]/;
+    // Match the class name & description
+    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*'*(.*?)'*?[:,]/g;
+
     // Extract the styles section from the source
     const stylesSrc = stylesRegexp.exec(styleSrc);
 
@@ -488,13 +918,13 @@ async function buildDocs(options: {
     }
   }
 
-  let reactAPI: ReactApi;
+  let reactApi: ReactApi;
   try {
-    reactAPI = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
       filename: componentObject.filename,
     });
   } catch (err) {
-    console.log('Error parsing src for', componentObject.filename);
+    console.error('Error parsing src for', componentObject.filename);
     throw err;
   }
 
@@ -520,28 +950,36 @@ async function buildDocs(options: {
 
     Object.keys(unstyledReactAPI.props).forEach((prop) => {
       if (unstyledReactAPI.props[prop].defaultValue) {
-        reactAPI.props[prop] = unstyledReactAPI.props[prop];
+        reactApi.props[prop] = unstyledReactAPI.props[prop];
       }
     });
   }
 
-  reactAPI.name = name;
-  reactAPI.styles = styles;
-  reactAPI.pagesMarkdown = pagesMarkdown;
-  reactAPI.src = src;
-  reactAPI.spread = spread;
-  reactAPI.EOL = getLineFeed(src);
+  reactApi.name = name;
+  reactApi.styles = styles;
+  reactApi.pagesMarkdown = pagesMarkdown;
+  reactApi.spread = spread;
+  reactApi.EOL = getLineFeed(src);
+
+  // styled components does not have the options static
+  const styledComponent = !component?.default?.options;
+  if (styledComponent) {
+    await updateStylesDefinition({
+      styles,
+      component: componentObject,
+    });
+  }
 
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
-  reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
+  reactApi.forwardsRefTo = testInfo.forwardsRefTo;
 
   // Relative location in the file system.
-  reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
-  reactAPI.inheritance = getInheritance(testInfo, src);
+  reactApi.filename = componentObject.filename.replace(workspaceRoot, '');
+  reactApi.inheritance = getInheritance(testInfo, src);
 
-  if (reactAPI.styles.classes) {
-    reactAPI.styles.globalClasses = reactAPI.styles.classes.reduce((acc, key) => {
+  if (reactApi.styles.classes) {
+    reactApi.styles.globalClasses = reactApi.styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
         // @ts-expect-error
         {
@@ -558,45 +996,180 @@ async function buildDocs(options: {
     }, {} as Record<string, string>);
   }
 
-  let markdown;
-  try {
-    markdown = generateMarkdown(reactAPI, nonJSSComponent);
-  } catch (err) {
-    console.log('Error generating markdown for', componentObject.filename);
-    throw err;
+  /**
+   * Component description.
+   */
+  if (reactApi.description.length) {
+    componentApi.componentDescription = marked.parseInline(reactApi.description);
   }
 
-  writeFileSync(
-    path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.md`),
-    markdown.replace(/\r?\n/g, reactAPI.EOL),
+  const componentProps = _.fromPairs(
+    Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
+      const prop = createDescribeableProp(propDescriptor, propName);
+      if (prop === null) {
+        return [];
+      }
+
+      let description = generatePropDescription(prop, propName);
+      description = marked.parseInline(description);
+
+      if (propName === 'classes') {
+        // TODO: Dedupe this for l10n
+        description += ' See <a href="#css">CSS API</a> below for more details.';
+      }
+
+      componentApi.propDescriptions = {
+        ...componentApi.propDescriptions,
+        [propName]: description && description.replace(/\n@default.*$/, ''),
+      };
+
+      // Only keep `default` for bool props if it isn't 'false'.
+      let defaultValue: string | undefined;
+      if (
+        propDescriptor.type.name !== 'bool' ||
+        propDescriptor.jsdocDefaultValue?.value !== 'false'
+      ) {
+        defaultValue = propDescriptor.jsdocDefaultValue?.value;
+      }
+
+      const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
+      const chainedPropType = getChained(prop.type);
+
+      const requiredProp =
+        prop.required ||
+        /\.isRequired/.test(prop.type.raw) ||
+        (chainedPropType !== false && chainedPropType.required);
+
+      return [
+        propName,
+        {
+          type: {
+            name: propDescriptor.type.name,
+            description:
+              propTypeDescription !== propDescriptor.type.name ? propTypeDescription : undefined,
+          },
+          default: defaultValue,
+          // undefined values are not serialized => saving some bytes
+          required: requiredProp || undefined,
+        },
+      ];
+    }),
   );
-  writeFileSync(
-    path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.js`),
-    `import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'api/${kebabCase(reactAPI.name)}';
-const requireRaw = require.context('!raw-loader!./', false, /\\/${kebabCase(reactAPI.name)}\\.md$/);
+  /**
+   * CSS class descriptiohs.
+   */
+  componentApi.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
 
-export default function Page({ docs }) {
-  return <MarkdownDocs docs={docs} />;
+  mkdirSync(path.resolve('docs', 'translations', 'api-docs', kebabCase(reactApi.name)), {
+    mode: 0o777,
+    recursive: true,
+  });
+
+  // docs/translations/api-docs/component-name/component-name.json
+  writePrettifiedFile(
+    path.resolve(
+      'docs',
+      'translations',
+      'api-docs',
+      kebabCase(reactApi.name),
+      `${kebabCase(reactApi.name)}.json`,
+    ),
+    JSON.stringify(componentApi),
+    prettierConfigPath,
+  );
+
+  // docs/translations/api-docs/component-name/component-name-xx.json
+  LANGUAGES.forEach((language) => {
+    if (language !== 'en') {
+      try {
+        writePrettifiedFile(
+          path.resolve(
+            'docs',
+            'translations',
+            'api-docs',
+            kebabCase(reactApi.name),
+            `${kebabCase(reactApi.name)}-${language}.json`,
+          ),
+          JSON.stringify(componentApi),
+          prettierConfigPath,
+          { flag: 'wx' },
+        );
+      } catch (error) {
+        // File exists
+      }
+    }
+  });
+
+  /**
+   * Gather the metadata needed for the component's API page.
+   */
+  const pageContent = {
+    props: componentProps,
+    name: reactApi.name,
+    styles: {
+      classes: reactApi.styles.classes,
+      globalClasses: _.fromPairs(
+        Object.entries(reactApi.styles.globalClasses).filter(([className, globalClassName]) => {
+          // Only keep "non-standard" global classnames
+          return globalClassName !== `Mui${reactApi.name}-${className}`;
+        }),
+      ),
+      name: reactApi.styles.name,
+    },
+    spread: reactApi.spread,
+    forwardsRefTo: reactApi.forwardsRefTo,
+    filename: normalizePath(reactApi.filename),
+    inheritance: reactApi.inheritance,
+    demos: generateDemoList(reactApi),
+    styledComponent,
+  };
+
+  // docs/pages/component-name.json
+  writePrettifiedFile(
+    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
+    JSON.stringify(pageContent),
+    prettierConfigPath,
+  );
+
+  // docs/pages/component-name.js
+  writePrettifiedFile(
+    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
+    `import * as React from 'react';
+import ApiPage from 'docs/src/modules/components/ApiPage';
+import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+import jsonPageContent from './${kebabCase(reactApi.name)}.json';
+
+export default function Page(props) {
+  const { descriptions, pageContent } = props;
+  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
 }
 
 Page.getInitialProps = () => {
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
-  return { demos, docs };
+  const req = require.context(
+    'docs/translations/api-docs/${kebabCase(reactApi.name)}',
+    false,
+    /${kebabCase(reactApi.name)}.*.json$/,
+  );
+  const descriptions = mapApiPageTranslations(req);
+
+  return {
+    descriptions,
+    pageContent: jsonPageContent,
+  };
 };
-`.replace(/\r?\n/g, reactAPI.EOL),
+`.replace(/\r?\n/g, reactApi.EOL),
+    prettierConfigPath,
   );
 
-  console.log('Built markdown docs for', reactAPI.name);
+  // eslint-disable-next-line no-console
+  console.log('Built API docs for', reactApi.name);
 
-  await annotateComponentDefinition({ api: reactAPI, component: componentObject });
+  await annotateComponentDefinition({ api: reactApi, component: componentObject });
 
-  if (!nonJSSComponent) {
+  if (JssComponent) {
     await annotateClassesDefinition({
-      api: reactAPI,
+      api: reactApi,
       component: componentObject,
       prettierConfigPath,
     });
@@ -620,6 +1193,16 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
   const theme = createMuiTheme();
 
+  /**
+   * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>
+   *
+   * e.g.:
+   * [{
+   *   pathname: '/components/accordion',
+   *   filename: '/Users/user/Projects/material-ui/docs/src/pages/components/badges/accordion-ja.md',
+   *   components: [ 'Accordion', 'AccordionActions', 'AccordionDetails', 'AccordionSummary' ]
+   * }, ...]
+   */
   const pagesMarkdown = findPagesMarkdown()
     .map((markdown) => {
       const markdownSource = readFileSync(markdown.filename, 'utf8');
@@ -629,6 +1212,12 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
       };
     })
     .filter((markdown) => markdown.components.length > 0);
+
+  /**
+   * components: Array<{ filename: string }>
+   * e.g.
+   * [{ filename: '/Users/user/Projects/material-ui/packages/material-ui/src/Accordion/Accordion.js'}, ...]
+   */
   const components = componentDirectories
     .reduce((directories, componentDirectory) => {
       return directories.concat(findComponents(componentDirectory));
@@ -642,6 +1231,12 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
   const componentBuilds = components.map((component) => {
     // use Promise.allSettled once we switch to node 12
+
+    // Don't document ThmeProvider API
+    if (component.filename.includes('ThemeProvider')) {
+      return { status: 'fulfilled' };
+    }
+
     return buildDocs({
       component,
       outputDirectory,
@@ -681,7 +1276,7 @@ yargs
     builder: (command) => {
       return command
         .positional('outputDirectory', {
-          description: 'directory where the markdown is written to',
+          description: 'directory where the files are written to',
           type: 'string',
         })
         .positional('componentDirectories', {
@@ -691,7 +1286,7 @@ yargs
         })
         .option('grep', {
           description:
-            'Only generate markdown for component filenames matching the pattern. The string is treated as a RegExp.',
+            'Only generate files for component filenames matching the pattern. The string is treated as a RegExp.',
           type: 'string',
         });
     },

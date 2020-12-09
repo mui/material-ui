@@ -1,0 +1,43 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the button.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "disabled": "If <code>true</code>, the button is disabled.",
+    "pending": "If <code>true</code>, the pending indicator is shown.",
+    "pendingIndicator": "Element placed before the children if the button is in pending state.",
+    "pendingPosition": "The pending indicator can be positioned on the start, end, or the center of the button."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "pending": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>pending={true}</code>"
+    },
+    "pendingIndicator": { "description": "Styles applied to the pendingIndicator element." },
+    "pendingIndicatorCenter": {
+      "description": "Styles applied to the pendingIndicator element if {{conditions}}.",
+      "conditions": "<code>pendingPosition=\"center\"</code>"
+    },
+    "pendingIndicatorStart": {
+      "description": "Styles applied to the pendingIndicator element if {{conditions}}.",
+      "conditions": "<code>pendingPosition=\"start\"</code>"
+    },
+    "pendingIndicatorEnd": {
+      "description": "Styles applied to the pendingIndicator element if {{conditions}}.",
+      "conditions": "<code>pendingPosition=\"end\"</code>"
+    },
+    "endIconPendingEnd": {
+      "description": "Styles applied to the endIcon element if {{conditions}}.",
+      "conditions": "<code>pending={true}</code> and <code>pendingPosition=\"end\"</code>"
+    },
+    "startIconPendingStart": {
+      "description": "Styles applied to the startIcon element if {{conditions}}.",
+      "conditions": "<code>pending={true}</code> and <code>pendingPosition=\"start\"</code>"
+    },
+    "labelPendingCenter": {
+      "description": "Styles applied to the label element if {{conditions}}.",
+      "conditions": "<code>pending={true}</code> and <code>pendingPosition=\"center\"</code>"
+    }
+  }
+}
