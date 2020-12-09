@@ -1,0 +1,15 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } }
+  },
+  "name": "TableFooter",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableFooter" },
+  "spread": true,
+  "forwardsRefTo": "HTMLTableSectionElement",
+  "filename": "/packages/material-ui/src/TableFooter/TableFooter.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
+  "styledComponent": false
+}

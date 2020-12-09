@@ -1,0 +1,25 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "icon": "The icon to display in the SpeedDial Floating Action Button.",
+    "openIcon": "The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "icon": { "description": "Styles applied to the icon component." },
+    "iconOpen": {
+      "description": "Styles applied to the icon component if {{conditions}}.",
+      "conditions": "<code>open={true}</code>"
+    },
+    "iconWithOpenIconOpen": {
+      "description": "Styles applied to the icon when an `openIcon` is provided and if {{conditions}}.",
+      "conditions": "<code>open={true}</code>"
+    },
+    "openIcon": { "description": "Styles applied to the `openIcon` if provided." },
+    "openIconOpen": {
+      "description": "Styles applied to the `openIcon` if provided and if {{conditions}}.",
+      "conditions": "<code>open={true}</code>"
+    }
+  }
+}

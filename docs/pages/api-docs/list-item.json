@@ -1,0 +1,51 @@
+{
+  "props": {
+    "alignItems": {
+      "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
+      "default": "'center'"
+    },
+    "autoFocus": { "type": { "name": "bool" } },
+    "button": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "custom", "description": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "ContainerComponent": {
+      "type": { "name": "custom", "description": "element type" },
+      "default": "'li'"
+    },
+    "ContainerProps": { "type": { "name": "object" }, "default": "{}" },
+    "dense": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableGutters": { "type": { "name": "bool" } },
+    "divider": { "type": { "name": "bool" } },
+    "selected": { "type": { "name": "bool" } }
+  },
+  "name": "ListItem",
+  "styles": {
+    "classes": [
+      "root",
+      "container",
+      "focusVisible",
+      "dense",
+      "alignItemsFlexStart",
+      "disabled",
+      "divider",
+      "gutters",
+      "button",
+      "secondaryAction",
+      "selected"
+    ],
+    "globalClasses": {
+      "focusVisible": "Mui-focusVisible",
+      "disabled": "Mui-disabled",
+      "selected": "Mui-selected"
+    },
+    "name": "MuiListItem"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui/src/ListItem/ListItem.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
+  "styledComponent": false
+}

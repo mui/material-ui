@@ -7,12 +7,13 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { useTheme } from '@material-ui/core/styles';
 
 // Cache for the ltr version of the styles
-export const cacheLtr = createCache({ key: 'css' });
+export const cacheLtr = createCache({ key: 'css', prepend: true });
 cacheLtr.compat = true;
 
 // Cache for the rtl version of the styles
 const cacheRtl = createCache({
   key: 'rtl',
+  prepend: true,
   stylisPlugins: [rtlPlugin],
 });
 cacheRtl.compat = true;

@@ -1,0 +1,26 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } }
+  },
+  "name": "TimelineItem",
+  "styles": {
+    "classes": [
+      "root",
+      "alignLeft",
+      "alignRight",
+      "alignAlternate",
+      "missingOppositeContent",
+      "content",
+      "oppositeContent"
+    ],
+    "globalClasses": {},
+    "name": "MuiTimelineItem"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui-lab/src/TimelineItem/TimelineItem.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
+  "styledComponent": false
+}

@@ -55,12 +55,12 @@ export const styles = (theme) => {
     },
     /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    marginDense: {},
+    /* Styles applied to the `input` element if `size="small"`. */
+    sizeSmall: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '16.5px 14px',
-      '&$marginDense': {
+      '&$sizeSmall': {
         paddingTop: 10.5,
         paddingBottom: 10.5,
       },
@@ -79,8 +79,8 @@ export const styles = (theme) => {
         borderRadius: 'inherit',
       },
     },
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: {
+    /* Styles applied to the `input` element if `size="small"`. */
+    inputSizeSmall: {
       paddingTop: 8.5,
       paddingBottom: 8.5,
     },

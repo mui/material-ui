@@ -1,0 +1,36 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "disableGutters": { "type": { "name": "bool" } },
+    "fixed": { "type": { "name": "bool" } },
+    "maxWidth": {
+      "type": {
+        "name": "enum",
+        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
+      },
+      "default": "'lg'"
+    }
+  },
+  "name": "Container",
+  "styles": {
+    "classes": [
+      "root",
+      "disableGutters",
+      "fixed",
+      "maxWidthXs",
+      "maxWidthSm",
+      "maxWidthMd",
+      "maxWidthLg",
+      "maxWidthXl"
+    ],
+    "globalClasses": {},
+    "name": "MuiContainer"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/material-ui/src/Container/Container.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/container/\">Container</a></li></ul>",
+  "styledComponent": false
+}

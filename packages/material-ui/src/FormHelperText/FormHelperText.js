@@ -24,8 +24,8 @@ export const styles = (theme) => ({
   error: {},
   /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
-  /* Styles applied to the root element if `margin="dense"`. */
-  marginDense: {
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
     marginTop: 4,
   },
   /* Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
@@ -61,7 +61,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['variant', 'margin', 'disabled', 'error', 'filled', 'focused', 'required'],
+    states: ['variant', 'size', 'disabled', 'error', 'filled', 'focused', 'required'],
   });
 
   return (
@@ -70,7 +70,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
         classes.root,
         {
           [classes.contained]: fcs.variant === 'filled' || fcs.variant === 'outlined',
-          [classes.marginDense]: fcs.margin === 'dense',
+          [classes.sizeSmall]: fcs.size === 'small',
           [classes.disabled]: fcs.disabled,
           [classes.error]: fcs.error,
           [classes.filled]: fcs.filled,
