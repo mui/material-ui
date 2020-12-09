@@ -54,7 +54,7 @@ function MyComponent() {
 }
 ```
 
-⚠️  由于这个方法 **没有默认的** 主题支持，所以你必须将它注入到父级主题提供者（parent theme provider）中。
+⚠️  由于这个方法**没有默认的**主题支持，所以你必须将它注入到父级主题提供者（parent theme provider）中。
 
 ## 使用 JavaScript 的语法
 
@@ -90,13 +90,13 @@ describe('MyTests', () => {
 
 ## 仅在客户端渲染
 
-To perform the server-side hydration, the hook needs to render twice. 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要**客户端渲染**，那么你可以设置 `noSsr` 选项为 `true`。
+要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要**客户端渲染**，那么你可以设置 `noSsr` 选项为 `true`。
 
 ```js
 const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
 ```
 
-or it can turn it on globally with the theme:
+或者你可以通过全局主题设置来启用它：
 
 ```js
 const theme = createMuiTheme({
@@ -186,7 +186,7 @@ function handleRender(req, res) {
 
 - `options.defaultMatches` （*布尔值* [optional]）： 作为 `window.matchMedia()` 在服务器上不可用， 我们在第一次安装时返回默认匹配。 默认值为 `false`。
 - `options.matchMedia` (_Function_ [optional])：你可以提供你自己的 _matchMedia_ 实现。 用其您可以处理一个 iframe 内容窗口。
-- `options.noSsr` (*Boolean* [optional]): 默认值为 `false`。 To perform the server-side hydration, the hook needs to render twice. 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 You can set this option to `true` if you are doing **client-side only** rendering.
+- `options.noSsr` (*Boolean* [optional]): 默认值为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
 - `options.ssrMatchMedia` (_Function_ [optional])：你可以在 [服务器端渲染上下文](#server-side-rendering) 中提供你自己的 _matchMedia_ 实现。
 
 注意：你可以使用主题的 [`默认属性`](/customization/globals/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。
