@@ -41,7 +41,7 @@ function testThemeComponents(element, getOptions) {
 
   describe('theme: components', () => {
     it("respect theme's defaultProps", () => {
-      const { muiName, testThemeComponentsDefaultPropWith: testProp = 'id' } = getOptions();
+      const { muiName, testThemeComponentsDefaultPropName: testProp = 'id' } = getOptions();
       const theme = createMuiTheme({
         components: {
           [muiName]: {
