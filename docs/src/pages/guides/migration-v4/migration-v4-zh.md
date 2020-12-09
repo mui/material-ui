@@ -946,7 +946,7 @@ const classes = makeStyles(theme => ({
   +<TextField minRows={2} maxRows={5} />
   ```
 
-- Change ref forwarding expectations on custom `inputComponent`. 该组件应该转发 `ref` 属性，而不是 `inputRef` 属性。
+- 改变自定义 `inputComponent` 组件的的 ref 转发期望值。 该组件应该转发 `ref` 属性，而不是 `inputRef` 属性。
 
   ```diff
   -function NumberFormatCustom(props) {
@@ -964,7 +964,7 @@ const classes = makeStyles(theme => ({
   +     getInputRef={ref}
   ```
 
-- Rename `marginDense` and `inputMarginDense` classes to `sizeSmall` and `inputSizeSmall` to match the prop.
+- 为了匹配属性，我们将 `marginDense` 和 `inputMarginDense` 类名重命名为 `sizeSmall` 和 `inputSizeSmall`。
 
   ```diff
   -<Input margin="dense" />
