@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.shortest,
     }),
     '&:hover': {
-      color: theme.palette.text.primary,
       backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
     },
     '&.Mui-focusVisible': {
@@ -55,9 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
   open: {},
   link: {
-    color: theme.palette.text.secondary,
     '&.app-drawer-active': {
-      color: theme.palette.primary.main,
       backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       '&:hover': {
         backgroundColor: alpha(
