@@ -10,7 +10,7 @@ export function StylesProvider({ injectFirst, children }) {
   return injectFirst ? (
     <CacheProvider value={cache}>{children}</CacheProvider>
   ) : (
-    props.children
+    children
   );
 }
 
