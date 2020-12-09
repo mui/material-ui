@@ -7,11 +7,15 @@ import createCache from '@emotion/cache';
 export const cache = createCache({ key: 'css', prepend: true });
 
 export function StylesProvider({ injectFirst }) {
-  return injectFirst ? <CacheProvider value={cache}>{props.children}</CacheProvider> : props.children;
+  return injectFirst ? (
+    <CacheProvider value={cache}>{props.children}</CacheProvider>
+  ) : (
+    props.children
+  );
 }
 
 StylesProvider.propTypes = {
-    /**
+  /**
    * Your component tree.
    */
   children: PropTypes.node,
