@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-await-in-loop */
+const fse = require('fs-extra');
 const path = require('path');
 const puppeteer = require('puppeteer');
 const handler = require('serve-handler');
@@ -123,7 +124,22 @@ async function runMeasures(browser, testCaseName, testCase, baseline) {
 }
 
 async function run() {
-  const [server, browser] = await Promise.all([createServer({ port: PORT }), createBrowser()]);
+  const workspaceRoot = path.resolve(__dirname, '../../../');
+  const outputDir = path.join(workspaceRoot, 'tmp', 'benchmarks');
+  const [server, browser] = await Promise.all([
+    createServer({ port: PORT }),
+    createBrowser(),
+    fse.mkdirp(outputDir),
+  ]);
+
+  const outputFile = fse.createWriteStream(path.join(outputDir, 'browser.log'));
+  // `node benchmark.js | tee outputFile`
+  // `process.stdout.pipe(outputFile)` keeps the process hanging.
+  const stdoutWrite = process.stdout.write;
+  process.stdout.write = function writePiped(...args) {
+    stdoutWrite.apply(this, args);
+    outputFile.write(...args);
+  };
 
   try {
     const cases = [
