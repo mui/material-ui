@@ -2,11 +2,25 @@ import * as fse from 'fs-extra';
 import * as path from 'path';
 import * as playwright from 'playwright';
 
-async function main() {
+/**
+ * @param {object} options
+ * @param {'chromium' | 'firefox'} options.browser
+ */
+async function main(options) {
+  const { browser: browserName } = options;
+  const supportedBrowsers = ['chromium', 'firefox'];
+  if (supportedBrowsers.indexOf(browserName) === -1) {
+    throw new TypeError(
+      `Unable to find a browser name '${browserName}'. Only the following browsers are supported: ${supportedBrowsers.join(
+        ',',
+      )}`,
+    );
+  }
+
   const baseUrl = 'http://localhost:5000';
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
-  const browser = await playwright.chromium.launch({
+  const browser = await playwright[browserName].launch({
     args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
@@ -84,7 +98,10 @@ async function main() {
   run();
 }
 
-main().catch((error) => {
+const browserArgOffset = process.argv.indexOf('--browser');
+main({
+  browser: browserArgOffset === -1 ? 'chromium' : process.argv[browserArgOffset + 1],
+}).catch((error) => {
   // error during setup.
   // Throwing lets mocha hang.
   console.error(error);
