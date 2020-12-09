@@ -54,7 +54,7 @@ function testThemeComponents(element, getOptions) {
 
       const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
-      expect(container.firstChild[testProp]).to.equal('testProp');
+      expect(container.firstChild).to.have.attribute(testProp, 'testProp');
     });
 
     it("respect theme's styleOverrides", () => {
