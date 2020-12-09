@@ -56,10 +56,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
-const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
-  props,
-  ref,
-) {
+const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, ref) {
   const { onChange, ...other } = props;
 
   return (
@@ -103,9 +100,7 @@ export default function FormattedInputs() {
   return (
     <div className={classes.root}>
       <FormControl>
-        <InputLabel htmlFor="formatted-text-mask-input">
-          react-text-mask
-        </InputLabel>
+        <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
         <Input
           value={values.textmask}
           onChange={handleChange}

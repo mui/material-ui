@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  alpha,
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { alpha, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -195,7 +190,7 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} variant="h6" noWrap component="div">
             Material-UI
           </Typography>
           <div className={classes.search}>

@@ -81,11 +81,7 @@ export default function CustomizedButtons() {
           Theme Provider
         </Button>
       </ThemeProvider>
-      <BootstrapButton
-        variant="contained"
-        disableRipple
-        className={classes.margin}
-      >
+      <BootstrapButton variant="contained" disableRipple className={classes.margin}>
         Bootstrap
       </BootstrapButton>
     </div>

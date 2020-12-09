@@ -51,19 +51,9 @@ _Synthetic benchmark_
 ```sh
 yarn server:system
 
-colors @material-ui/system  x 333,431 ops/sec ±2.02% (171 runs sampled)
-colors styled-system x 304,604 ops/sec ±3.21% (179 runs sampled)
-spaces @material-ui/system x 271,556 ops/sec ±1.49% (184 runs sampled)
-spaces styled-system x 263,736 ops/sec ±1.46% (184 runs sampled)
-compose @material-ui/system x 37,278 ops/sec ±6.57% (171 runs sampled)
-compose styled-system x 61,762 ops/sec ±3.30% (179 runs sampled)
-@material-ui/core all-inclusive x 42,120 ops/sec ±1.24% (183 runs sampled)
-styled-components Box + @material-ui/system x 11,337 ops/sec ±4.52% (174 runs sampled)
-styled-components Box + styled-system x 13,114 ops/sec ±2.47% (180 runs sampled)
-Box emotion x 18,773 ops/sec ±2.08% (182 runs sampled)
-Box @material-ui/styles x 5,605 ops/sec ±4.45% (183 runs sampled)
-Box styled-components x 11,857 ops/sec ±1.04% (186 runs sampled)
-Naked styled-components x 19,036 ops/sec ±0.88% (189 runs sampled)
+@styled-system/css x 64,606 ops/sec ±0.45% (188 runs sampled)
+@chakra-ui/system/css x 126,272 ops/sec ±0.21% (191 runs sampled)
+@material-ui/system styleFunctionSx x 40,867 ops/sec ±0.50% (191 runs sampled)
 ```
 
 ## Real-world benchmark

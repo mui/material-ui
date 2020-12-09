@@ -9,7 +9,7 @@ import * as yargs from 'yargs';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
-  getUnstyledDefinitionFilename,
+  getUnstyledFilename,
 } from '../docs/scripts/helpers';
 
 enum GenerateResult {
@@ -231,7 +231,7 @@ async function generateProptypes(
 
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
-  const unstyledFile = getUnstyledDefinitionFilename(tsFile);
+  const unstyledFile = getUnstyledFilename(tsFile, true);
 
   const result = ttp.inject(proptypes, sourceContent, {
     disableTypescriptPropTypesValidation: tsTodo,

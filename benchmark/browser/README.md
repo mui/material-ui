@@ -12,49 +12,33 @@ You should use these numbers exclusively for comparing performance between diffe
 
 ## Output
 
-```
-yarn benchmark:browser
+For compareable results ask a maintainer to approve the CircleCI job `benchmark`.
 
+```
 noop (baseline):
-mean: 4.70ms, median: 4.72ms
--------------
+  05.82 ±00.29ms
 React primitives:
-mean: 68.89ms, median: 64.02ms
--------------
+  42.62 ±03.55ms
 React components:
-mean: 74.38ms, median: 74.46ms
--------------
+  128 ±4%
 Styled Material-UI:
-mean: 109.73ms, median: 109.46ms
--------------
+  192 ±8%
 Styled emotion:
-mean: 102.59ms, median: 104.28ms
--------------
+  179 ±8%
 Styled SC:
-mean: 104.06ms, median: 102.67ms
--------------
+  224 ±13%
 makeStyles:
-mean: 93.81ms, median: 92.90ms
--------------
-sx Material-UI box:
-mean: 187.98ms, median: 188.77ms
--------------
+  184 ±9%
+Box Baseline:
+  213 ±11%
 Box Material-UI:
-mean: 159.24ms, median: 157.90ms
--------------
-sx Theme-UI box:
-mean: 164.22ms, median: 164.16ms
--------------
-sx Theme-UI div:
-mean: 153.10ms, median: 152.77ms
--------------
+  501 ±23%
+Box Theme-UI:
+  447 ±20%
 Box Chakra-UI:
-mean: 154.95ms, median: 153.89ms
--------------
+  364 ±17%
 styled-components Box + @material-ui/system:
-mean: 176.82ms, median: 176.60ms
--------------
+  506 ±22%
 styled-components Box + styled-system:
-mean: 155.18ms, median: 154.63ms
--------------
+  388 ±12%
 ```

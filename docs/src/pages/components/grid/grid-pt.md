@@ -1,11 +1,11 @@
 ---
-title: React Grid component
+title: Componente React Grade
 components: Grid
 githubLabel: 'component: Grid'
 materialDesign: https://material.io/design/layout/understanding-layout.html
 ---
 
-# Grid
+# Grade
 
 <p class="description">O leiaute responsivo da grade do Material Design se adapta ao tamanho e orientação da tela, garantindo a consistência entre leiautes.</p>
 
@@ -24,7 +24,7 @@ O sistema de grade é implementado com o componente `Grid`:
 - Larguras de itens são definidas em porcentagens, então elas são sempre fluidas e dimensionadas em relação ao elemento pai.
 - Itens têm preenchimento para criar o espaçamento entre itens individuais.
 - Existem cinco pontos de quebra (breakpoints) na grade: xs, sm, md, lg e xl.
-- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint contraints](/customization/breakpoints/#default-breakpoints).
+- Valores inteiros podem ser dados para cada ponto de quebra,  indicando quantas das 12 colunas disponíveis são ocupadas pelo componente quando a largura da área de exibição satisfaz as [restrições de ponto de quebra](/customization/breakpoints/#default-breakpoints).
 
 Se você é **novo ou não está familiarizado com o flexbox**, nós recomendamos você a ler este [guia do Flexbox CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
@@ -42,17 +42,17 @@ As grades fluídas usam colunas que dimensionam e redimensionam o conteúdo. O l
 
 ### Grade básica
 
-Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
+A largura das colunas são valores inteiros entre 1 e 12; eles se aplicam em qualquer ponto de quebra e indicam a quantidade de colunas ocupadas pelo componente.
 
-A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
+Um valor dado a um ponto de quebra, aplica-se a todos os outros pontos de quebra mais amplos do que ele (a menos que substituído, como você pode ler mais tarde nesta página). Por exemplo, `xs={12}` dimensiona o componente para ocupar toda a largura da área de exibição independente do seu tamanho.
 
 {{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### Grade com pontos de quebra
 
-Algumas colunas têm várias larguras definidas, fazendo com que o leiaute seja alterado no ponto de interrupção definido. Width values given to larger breakpoints override those given to smaller breakpoints.
+Algumas colunas têm várias larguras definidas, fazendo com que o leiaute seja alterado no ponto de interrupção definido. Os valores de largura dados para pontos de quebra maiores, substituem aqueles dados a pontos de quebra menores.
 
-For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
+Por exemplo, `xs={12} sm={6}` dimensiona o componente para ocupar metade da área de exibição (6 colunas), quando a largura da área de exibição é de [600 ou mais pixels](/customization/breakpoints/#default-breakpoints). Para áreas de exibição menores, o componente preenche todas as 12 colunas disponíveis.
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
@@ -125,9 +125,9 @@ Para que o item permaneça dentro do contêiner, você precisa definir `min-widt
 
 ### direction: column | column-reverse
 
-The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
+As propriedades `xs`, `sm`, `md`, `lg`, e `xl`  **não são suportadas** com containers `direction="column"` e `direction="column-reverse"`.
 
-They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers. If used, these props may have undesirable effects on the height of the `Grid` item elements.
+Elas definem o número de grades que o componente usará para um determinado ponto de quebra. Elas destinam-se a controlar a **largura** usando `flex-basis` em contêineres `row`, mas elas irão impactar a altura em contêineres `column`. Se usadas, essas propriedades podem ter efeitos indesejáveis na altura dos elementos do item `Grid`.
 
 ## Leiaute de Grade CSS
 

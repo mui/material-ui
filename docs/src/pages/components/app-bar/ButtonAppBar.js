@@ -34,7 +34,7 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} component="div">
             News
           </Typography>
           <Button color="inherit">Login</Button>

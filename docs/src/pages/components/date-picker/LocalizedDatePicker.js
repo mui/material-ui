@@ -33,10 +33,7 @@ export default function LocalizedDatePicker() {
   };
 
   return (
-    <LocalizationProvider
-      dateAdapter={AdapterDateFns}
-      locale={localeMap[locale]}
-    >
+    <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[locale]}>
       <div style={{ width: 300 }}>
         <DatePicker
           mask={maskMap[locale]}

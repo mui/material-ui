@@ -46,8 +46,8 @@ export default function DraggableDialog() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            To subscribe to this website, please enter your email address here. We
+            will send updates occasionally.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

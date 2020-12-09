@@ -103,10 +103,10 @@ export default function useAutocomplete(props) {
 
   let getOptionLabel = getOptionLabelProp;
 
-  if (process.env.NODE_ENV !== 'production') {
-    getOptionLabel = (option) => {
-      const optionLabel = getOptionLabelProp(option);
-      if (typeof optionLabel !== 'string') {
+  getOptionLabel = (option) => {
+    const optionLabel = getOptionLabelProp(option);
+    if (typeof optionLabel !== 'string') {
+      if (process.env.NODE_ENV !== 'production') {
         const erroneousReturn =
           optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
         console.error(
@@ -115,9 +115,10 @@ export default function useAutocomplete(props) {
           )}.`,
         );
       }
-      return optionLabel;
-    };
-  }
+      return String(optionLabel);
+    }
+    return optionLabel;
+  };
 
   const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
@@ -470,8 +471,7 @@ export default function useAutocomplete(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     // Only sync the highlighted index when the option switch between empty and not
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    filteredOptions.length === 0,
+    filteredOptions.length,
     // Don't sync the highlighted index with the value when multiple
     // eslint-disable-next-line react-hooks/exhaustive-deps
     multiple ? false : value,
@@ -657,6 +657,14 @@ export default function useAutocomplete(props) {
   };
 
   const handleKeyDown = (other) => (event) => {
+    if (other.onKeyDown) {
+      other.onKeyDown(event);
+    }
+
+    if (event.defaultMuiPrevented) {
+      return;
+    }
+
     if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
       setFocusedTag(-1);
       focusTag(-1);
@@ -724,7 +732,7 @@ export default function useAutocomplete(props) {
             const option = filteredOptions[highlightedIndexRef.current];
             const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
-            // We don't want to validate the form.
+            // Avoid early form validation, let the end-users continue filling the form.
             event.preventDefault();
 
             if (disabled) {
@@ -775,10 +783,6 @@ export default function useAutocomplete(props) {
           break;
         default:
       }
-    }
-
-    if (other.onKeyDown) {
-      other.onKeyDown(event);
     }
   };
 

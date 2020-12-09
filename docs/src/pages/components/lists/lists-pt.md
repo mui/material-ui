@@ -87,7 +87,9 @@ Esse recurso depende do posicionamento fixo do CSS. Infelizmente, [não é imple
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## Lista de inclusão
+## Inset List Item
+
+The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 

@@ -1,5 +1,5 @@
 ---
-title: React Button component
+title: Componente React para Botão
 components: Button, IconButton, ButtonBase
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: Button'
@@ -91,9 +91,9 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/button).
 
-## Botões complexos
+## Botões de progresso
 
-The loading buttons can show pending state and disable interactions.
+Os botões de progresso podem mostrar o estado pendente e desativar as interações.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 

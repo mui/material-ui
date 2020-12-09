@@ -10,10 +10,10 @@ Um die Abhängigkeit zu ihrer `package.json` hinzuzufügen, führen Sie folgende
 
 ```sh
 // with npm
-npm install @material-ui/core@next @emotion/core @emotion/styled
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/core@next @emotion/core @emotion/styled
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 Beachten Sie, dass [react](https://www.npmjs.com/package/react) >= 16.8.0 und [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 Abhängigkeiten in Ihrem Projekt sein müssen.

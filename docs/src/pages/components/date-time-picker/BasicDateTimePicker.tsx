@@ -5,9 +5,7 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateTimePicker from '@material-ui/lab/DateTimePicker';
 
 export default function BasicDateTimePicker() {
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(
-    new Date(),
-  );
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

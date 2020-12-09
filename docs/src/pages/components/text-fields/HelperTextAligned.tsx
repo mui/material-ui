@@ -15,10 +15,16 @@ export default function HelperTextAligned() {
     <div className={classes.root}>
       <TextField
         helperText="Please enter your name"
+        id="demo-helper-text-aligned"
         label="Name"
         variant="standard"
       />
-      <TextField helperText=" " label="Name" variant="standard" />
+      <TextField
+        helperText=" "
+        id="demo-helper-text-aligned-no-helper"
+        label="Name"
+        variant="standard"
+      />
     </div>
   );
 }

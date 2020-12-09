@@ -35,19 +35,16 @@ export default function DialogSelect() {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleClose = (event, reason) => {
+    if (reason !== 'backdropClick') {
+      setOpen(false);
+    }
   };
 
   return (
     <div>
       <Button onClick={handleClickOpen}>Open select dialog</Button>
-      <Dialog
-        disableBackdropClick
-        disableEscapeKeyDown
-        open={open}
-        onClose={handleClose}
-      >
+      <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
         <DialogTitle>Fill the form</DialogTitle>
         <DialogContent>
           <form className={classes.container}>

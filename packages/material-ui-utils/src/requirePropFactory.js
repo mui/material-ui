@@ -15,7 +15,7 @@ export default function requirePropFactory(componentNameInError) {
     if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
       return new Error(
         `The prop \`${propFullNameSafe}\` of ` +
-          `\`${componentNameInError}\` must be used on \`${requiredProp}\`.`,
+          `\`${componentNameInError}\` can only be used together with the \`${requiredProp}\` prop.`,
       );
     }
 

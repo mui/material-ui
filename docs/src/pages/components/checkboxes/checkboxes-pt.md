@@ -1,5 +1,5 @@
 ---
-title: React Checkbox component
+title: Componente React para Caixa de seleção
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
 githubLabel: 'component: Checkbox'
@@ -22,7 +22,7 @@ Se você tem várias opções aparecendo em uma lista, você pode economizar esp
 
 ## Caixa de seleção com FormControlLabel
 
-A checkbox input can only have two states in a form: checked or unchecked. It either submits its value or doesn't. Visually, there are actually three states a checkbox can be in: checked, unchecked, or indeterminate.
+Uma caixa de seleção só pode ter dois estados em um formulário: marcado ou desmarcado. Ou submete o seu valor ou não. Visualmente, existem na verdade três estados em que a caixa de seleção pode estar em: marcada, desmarcada ou indeterminada.
 
 {{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
 

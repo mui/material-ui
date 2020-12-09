@@ -57,22 +57,14 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? (
-          <KeyboardArrowRight />
-        ) : (
-          <KeyboardArrowLeft />
-        )}
+        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? (
-          <KeyboardArrowLeft />
-        ) : (
-          <KeyboardArrowRight />
-        )}
+        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}

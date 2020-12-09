@@ -27,23 +27,23 @@ function fixLineEndings(source, target) {
 /**
  * Converts styled or regular component d.ts file to unstyled d.ts
  *
- * @param {string} tsFile - the definition file of the styled or regular mui component
+ * @param {string} filename - the file of the styled or regular mui component
  */
-function getUnstyledDefinitionFilename(tsFile) {
-  if (tsFile.indexOf('Unstyled') > -1) {
-    return tsFile;
+function getUnstyledFilename(filename, definitionFile = false) {
+  if (filename.indexOf('Unstyled') > -1) {
+    return filename;
   }
   let unstyledFile = '';
 
-  const separator = tsFile.indexOf('/') > -1 ? '/' : '\\';
+  const separator = filename.indexOf('/') > -1 ? '/' : '\\';
 
-  if (tsFile.endsWith('.d.ts') && tsFile.indexOf('material-ui-unstyled') === -1) {
-    unstyledFile = tsFile;
+  if (filename.indexOf('material-ui-unstyled') === -1) {
+    unstyledFile = filename.replace('.d.ts', '').replace('.ts', '').replace('.js', '');
     unstyledFile = unstyledFile.replace(/Styled/g, '');
 
     const pathParts = unstyledFile.split(separator);
 
-    const componentName = pathParts[pathParts.length - 1].replace('.d.ts', '');
+    const componentName = pathParts[pathParts.length - 1];
     const directoryName = pathParts[pathParts.length - 2];
 
     const componentNameReg = new RegExp(componentName, 'g');
@@ -68,12 +68,12 @@ function getUnstyledDefinitionFilename(tsFile) {
     }
   }
 
-  return unstyledFile;
+  return definitionFile ? `${unstyledFile}.d.ts` : `${unstyledFile}.js`;
 }
 
 module.exports = {
   getLineFeed,
   fixBabelGeneratorIssues,
   fixLineEndings,
-  getUnstyledDefinitionFilename,
+  getUnstyledFilename,
 };

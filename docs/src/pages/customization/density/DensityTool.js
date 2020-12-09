@@ -70,10 +70,7 @@ export default function DensityTool() {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton
-            aria-label={t('increaseSpacing')}
-            onClick={decreaseSpacing}
-          >
+          <IconButton aria-label={t('increaseSpacing')} onClick={decreaseSpacing}>
             <DecreaseIcon />
           </IconButton>
           <Input
@@ -88,10 +85,7 @@ export default function DensityTool() {
               'aria-labelledby': 'input-slider',
             }}
           />
-          <IconButton
-            aria-label={t('decreaseSpacing')}
-            onClick={increaseSpacing}
-          >
+          <IconButton aria-label={t('decreaseSpacing')} onClick={increaseSpacing}>
             <IncreaseIcon />
           </IconButton>
         </Grid>

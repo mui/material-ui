@@ -10,10 +10,10 @@ Pour installer et enregistrer dans vos dépendances `package.json` , exécutez:
 
 ```sh
 // with npm
-npm install @material-ui/core@next @emotion/core @emotion/styled
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/core@next @emotion/core @emotion/styled
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 Veuillez noter que [react](https://www.npmjs.com/package/react) >= 16.8.0 et [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 sont des dépendances.

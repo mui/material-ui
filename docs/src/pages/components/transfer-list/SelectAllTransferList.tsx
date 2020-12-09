@@ -65,8 +65,7 @@ export default function TransferList() {
     setChecked(newChecked);
   };
 
-  const numberOfChecked = (items: number[]) =>
-    intersection(checked, items).length;
+  const numberOfChecked = (items: number[]) => intersection(checked, items).length;
 
   const handleToggleAll = (items: number[]) => () => {
     if (numberOfChecked(items) === items.length) {
@@ -95,12 +94,9 @@ export default function TransferList() {
         avatar={
           <Checkbox
             onClick={handleToggleAll(items)}
-            checked={
-              numberOfChecked(items) === items.length && items.length !== 0
-            }
+            checked={numberOfChecked(items) === items.length && items.length !== 0}
             indeterminate={
-              numberOfChecked(items) !== items.length &&
-              numberOfChecked(items) !== 0
+              numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0
             }
             disabled={items.length === 0}
             inputProps={{

@@ -221,11 +221,9 @@ In order for the text field to be accessible, **the input should be linked to th
 
 ```jsx
 <FormControl>
-  <InputLabel htmlFor="my-input">Email address</InputLabel>
-  <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">
-    We'll never share your email.
-  </FormHelperText>
+  <InputLabel htmlFor="mi-campo">Email</InputLabel>
+  <Input id="mi-campo" aria-describedby="mi-texto-de-ayuda" />
+  <FormHelperText id="mi-texto-de-ayuda">Nunca compartiremos tu email.</FormHelperText>
 </FormControl>
 ```
 

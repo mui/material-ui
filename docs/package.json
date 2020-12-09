@@ -44,7 +44,7 @@
     "@types/css-mediaquery": "^0.1.0",
     "@types/json2mq": "^0.2.0",
     "@types/markdown-to-jsx": "^6.11.1",
-    "@types/react-dom": "^16.9.1",
+    "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.0",
     "@types/react-swipeable-views": "^0.13.0",
     "@types/react-swipeable-views-utils": "^0.13.0",
@@ -114,7 +114,7 @@
     "rimraf": "^3.0.0",
     "styled-components": "^5.0.0",
     "stylis": "^4.0.3",
-    "stylis-plugin-rtl": "^1.0.0",
+    "stylis-plugin-rtl": "^2.0.1",
     "webfontloader": "^1.6.28",
     "webpack": "^4.41.0",
     "webpack-bundle-analyzer": "^4.1.0"
@@ -122,6 +122,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.8.3",
     "@babel/preset-typescript": "^7.7.4",
+    "@types/marked": "^1.2.1",
     "@types/recharts": "^1.8.14",
     "babel-plugin-unwrap-createstyles": "^4.1.0",
     "cpy-cli": "^3.0.0",

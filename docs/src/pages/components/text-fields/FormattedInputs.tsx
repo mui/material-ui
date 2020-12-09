@@ -65,30 +65,29 @@ interface NumberFormatCustomProps {
   name: string;
 }
 
-const NumberFormatCustom = React.forwardRef<
-  NumberFormat,
-  NumberFormatCustomProps
->(function NumberFormatCustom(props, ref) {
-  const { onChange, ...other } = props;
+const NumberFormatCustom = React.forwardRef<NumberFormat, NumberFormatCustomProps>(
+  function NumberFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
 
-  return (
-    <NumberFormat
-      {...other}
-      getInputRef={ref}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-      thousandSeparator
-      isNumericString
-      prefix="$"
-    />
-  );
-});
+    return (
+      <NumberFormat
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        isNumericString
+        prefix="$"
+      />
+    );
+  },
+);
 
 interface State {
   textmask: string;
@@ -112,9 +111,7 @@ export default function FormattedInputs() {
   return (
     <div className={classes.root}>
       <FormControl>
-        <InputLabel htmlFor="formatted-text-mask-input">
-          react-text-mask
-        </InputLabel>
+        <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
         <Input
           value={values.textmask}
           onChange={handleChange}

@@ -15,7 +15,7 @@ materialDesign: https://material.io/design/typography/the-type-system.html
 
 ## Основное
 
-The *Roboto* font will **not** be automatically loaded by Material-UI. Разработчик отвечает за загрузку всех шрифтов, используемых в его приложении. Есть несколько простых способов начать использование шрифта Roboto. Для более продвинутой конфигурации ознакомьтесь с [разделом настроек темы](/customization/typography/).
+The *Roboto* font will **not** be automatically loaded by Material-UI. You are responsible for loading any fonts used in your application. Есть несколько простых способов начать использование шрифта Roboto. Для более продвинутой конфигурации ознакомьтесь с [разделом настроек темы](/customization/typography/).
 
 ## Шрифт Roboto через CDN
 
@@ -42,6 +42,8 @@ For more info check out [Fontsource](https://github.com/DecliningLotus/fontsourc
 Fontsource может быть настроен на загрузку определенных подмножеств, жирности и стилей. Стандартная конфигурация оформления в стиле Material-UI зависит только от жирности шрифта: 300, 400, 500 и 700.
 
 ## Компоненты
+
+The Typography component makes it easy to apply a default set of font weights and sizes in your application.
 
 {{"demo": "pages/components/typography/Types.js"}}
 

@@ -29,7 +29,6 @@ export function makeWrapperComponent<TWrapper extends SomeWrapper = any>(
     const {
       disableCloseOnSelect,
       cancelText,
-      children,
       clearable,
       clearText,
       DateInputProps,
@@ -46,7 +45,7 @@ export function makeWrapperComponent<TWrapper extends SomeWrapper = any>(
       todayText,
       value,
       wrapperProps,
-      ...restPropsForTextField
+      ...other
     } = props;
 
     const TypedWrapper = Wrapper as SomeWrapper;
@@ -65,10 +64,8 @@ export function makeWrapperComponent<TWrapper extends SomeWrapper = any>(
         PureDateInputComponent={PureDateInputComponent}
         displayStaticWrapperAs={displayStaticWrapperAs}
         {...wrapperProps}
-        {...restPropsForTextField}
-      >
-        {children}
-      </TypedWrapper>
+        {...other}
+      />
     );
   }
 

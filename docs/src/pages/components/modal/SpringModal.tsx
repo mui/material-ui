@@ -2,7 +2,8 @@ import * as React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE11 support
+// web.cjs is required for IE11 support
+import { useSpring, animated } from 'react-spring/web.cjs';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,10 +28,7 @@ interface FadeProps {
   onExited?: () => {};
 }
 
-const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
-  props,
-  ref,
-) {
+const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
   const { in: open, children, onEnter, onExited, ...other } = props;
   const style = useSpring({
     from: { opacity: 0 },

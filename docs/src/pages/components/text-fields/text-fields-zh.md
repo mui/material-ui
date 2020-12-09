@@ -223,9 +223,7 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 <FormControl>
   <InputLabel htmlFor="my-input">电子邮件</InputLabel>
   <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">
-    我们绝不会分享您的邮件地址。
-  </FormHelperText>
+  <FormHelperText id="my-helper-text">我们绝不会分享您的邮件地址。</FormHelperText>
 </FormControl>
 ```
 

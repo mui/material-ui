@@ -34,7 +34,7 @@
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSlider.css';
 
 export default function PlainCssSlider() {
@@ -53,24 +53,18 @@ export default function PlainCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const head = document.getElementsByTagName('head')[0];
-
-const emotionContainer = head.insertBefore(
-  document.createElement('STYLE'),
-  head.firstChild,
-);
-
 const cache = createCache({
-  container: emotionContainer,
+  key: 'css',
+  prepend: true,
 });
 
 export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* 你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
+      {/* 这里是你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
     </CacheProvider>
   );
 }
@@ -104,7 +98,7 @@ export default function PlainCssPriority() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSliderDeep1.css';
 
 export default function PlainCssSliderDeep1() {
@@ -139,7 +133,7 @@ export default function PlainCssSliderDeep1() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSliderDeep2.css';
 
 export default function PlainCssSliderDeep2() {
@@ -178,7 +172,7 @@ export default function PlainCssSliderDeep2() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './GlobalCssSlider.css';
 
 export default function GlobalCssSlider() {
@@ -192,24 +186,18 @@ export default function GlobalCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const head = document.getElementsByTagName('head')[0];
-
-const emotionContainer = head.insertBefore(
-  document.createElement('STYLE'),
-  head.firstChild,
-);
-
 const cache = createCache({
-  container: emotionContainer,
+  key: 'css',
+  prepend: true,
 });
 
 export default function GlobalCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* 你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
+      {/* 这里编写你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
     </CacheProvider>
   );
 }
@@ -243,7 +231,7 @@ export default function GlobalCssPriority() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import './GlobalCssSliderDeep.css';
 
 export default function GlobalCssSliderDeep() {
@@ -267,7 +255,7 @@ export default function GlobalCssSliderDeep() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
@@ -293,7 +281,7 @@ export default function StyledComponents() {
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
@@ -323,7 +311,7 @@ export default function StyledComponentsDeep1() {
 ```jsx
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 const CustomizedSlider = styled((props) => (
   <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
@@ -401,8 +389,8 @@ const CustomizedSlider = styled(Slider)(
 
 ```jsx
 import React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
-// webpack，parcel 或者其他的打包程序将把 CSS 注入到页面中。
+import Slider from '@material-ui/core/Slider';
+// webpack，parcel 或者其他工具将会把 CSS 注入到该页面
 import styles from './CssModulesSlider.module.css';
 
 export default function CssModulesSlider() {
@@ -421,24 +409,18 @@ export default function CssModulesSlider() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-const head = document.getElementsByTagName('head')[0];
-
-const emotionContainer = head.insertBefore(
-  document.createElement('STYLE'),
-  head.firstChild,
-);
-
 const cache = createCache({
-  container: emotionContainer,
+  key: 'css',
+  prepend: true,
 });
 
 export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* 你的组件树 现在你可以覆盖 Material-UI 的样式。 */}
+      {/* 这里编写你的组件 现在你可以覆盖 Material-UI 的样式。 */}
     </CacheProvider>
   );
 }
@@ -472,9 +454,9 @@ export default function CssModulesPriority() {
 
 ```jsx
 import React from 'react';
-// webpack，parcel 或者其他的打包程序将把 CSS 注入到页面中。
+// webpack，parcel 或者其他工具将会把 CSS 注入到该页面
 import styles from './CssModulesSliderDeep1.module.css';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 export default function CssModulesSliderDeep1() {
   return (
@@ -508,9 +490,9 @@ export default function CssModulesSliderDeep1() {
 
 ```jsx
 import React from 'react';
-// webpack，parcel 或者其他的打包程序将把 CSS 注入到页面中。
+// webpack，parcel 或者其他工具将会把 CSS 注入到该页面
 import styles from './CssModulesSliderDeep2.module.css';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 
 export default function CssModulesSliderDeep2() {
   return (
@@ -540,8 +522,8 @@ Emotion 的 **css()** 方法与 Material-UI 无缝协作。
 
 ```jsx
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import Slider from '@material-ui/lab/SliderStyled';
+import { jsx, css } from '@emotion/react';
+import Slider from '@material-ui/core/Slider';
 
 export default function EmotionCSS() {
   return (

@@ -188,19 +188,14 @@ export function ThemeProvider(props) {
   React.useEffect(() => {
     if (process.browser) {
       const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-      const nextPaletteType = getCookie('paletteMode');
+      const nextPaletteMode = getCookie('paletteMode') || preferredMode;
 
       dispatch({
         type: 'CHANGE',
-        payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteType },
+        payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteMode },
       });
     }
-  }, []);
-
-  // persist paletteMode
-  React.useEffect(() => {
-    document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
-  }, [paletteMode]);
+  }, [preferredMode]);
 
   useEnhancedEffect(() => {
     document.body.dir = direction;

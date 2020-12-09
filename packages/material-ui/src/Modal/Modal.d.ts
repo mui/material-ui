@@ -42,11 +42,6 @@ export interface ModalProps
    */
   disableAutoFocus?: boolean;
   /**
-   * If `true`, clicking the backdrop will not fire `onClose`.
-   * @default false
-   */
-  disableBackdropClick?: boolean;
-  /**
    * If `true`, the modal will not prevent focus from leaving the modal while open.
    *
    * Generally this should never be set to `true` as it makes the modal less

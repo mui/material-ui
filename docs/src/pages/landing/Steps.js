@@ -69,15 +69,6 @@ const useStyles = makeStyles(
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(2),
     },
-    link: {
-      marginTop: theme.spacing(1),
-      display: 'block',
-    },
-    img: {
-      maxWidth: 500,
-      width: '100%',
-      height: 'auto',
-    },
   }),
   { name: 'Steps' },
 );
@@ -89,12 +80,7 @@ function HomeSteps() {
   return (
     <Container disableGutters className={classes.root}>
       <Grid container>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          className={clsx(classes.step, classes.leftStep)}
-        >
+        <Grid item xs={12} md={6} className={clsx(classes.step, classes.leftStep)}>
           <div className={classes.stepTitle}>
             <FileDownloadIcon className={classes.stepIcon} />
             <Typography variant="h6" component="h2">
@@ -128,12 +114,7 @@ function HomeSteps() {
           <Divider className={classes.divider} />
           <Button component={InstallationLink}>{t('installButton')}</Button>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          className={clsx(classes.step, classes.rightStep)}
-        >
+        <Grid item xs={12} md={6} className={clsx(classes.step, classes.rightStep)}>
           <div className={classes.stepTitle}>
             <BuildIcon className={classes.stepIcon} />
             <Typography variant="h6" component="h2">

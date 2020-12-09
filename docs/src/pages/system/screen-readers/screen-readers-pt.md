@@ -1,13 +1,13 @@
-# Screen readers
+# Leitores de tela
 
-<p class="description">Collection of utilities for improving accessibility with screen readers.</p>
+<p class="description">Coleção de utilitários para melhorar a acessibilidade com leitores de tela.</p>
 
-## Visually hidden elements
+## Elementos ocultos visualmente
 
-The visually hidden style utility provides a common mechanism for hidings elements visually, but making them available for the assistive technology.
+O utilitário de estilo visualmente oculto fornece um mecanismo comum para ocultar elementos visualmente, mas disponibilizando-os para a tecnologia de assistência.
 
 ### Uso
 
-The visually hidden style utility can help provide context to read more links.
+O utilitário de estilo visualmente oculto pode ajudar a fornecer o contexto para ler mais links.
 
 {{"demo": "pages/system/screen-readers/VisuallyHiddenUsage.js"}}

@@ -66,7 +66,7 @@ export default function InteractiveList() {
       </FormGroup>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} component="div">
             Text only
           </Typography>
           <div className={classes.demo}>
@@ -83,7 +83,7 @@ export default function InteractiveList() {
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} component="div">
             Icon with text
           </Typography>
           <div className={classes.demo}>
@@ -105,7 +105,7 @@ export default function InteractiveList() {
       </Grid>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} component="div">
             Avatar with text
           </Typography>
           <div className={classes.demo}>
@@ -127,7 +127,7 @@ export default function InteractiveList() {
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} component="div">
             Avatar with text and icon
           </Typography>
           <div className={classes.demo}>

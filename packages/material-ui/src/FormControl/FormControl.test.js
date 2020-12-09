@@ -38,7 +38,7 @@ describe('<FormControl />', () => {
       const root = container.firstChild;
 
       expect(root).not.to.have.class(classes.marginNormal);
-      expect(root).not.to.have.class(classes.marginDense);
+      expect(root).not.to.have.class(classes.sizeSmall);
     });
 
     it('can have the margin normal class', () => {
@@ -46,7 +46,7 @@ describe('<FormControl />', () => {
       const root = container.firstChild;
 
       expect(root).to.have.class(classes.marginNormal);
-      expect(root).not.to.have.class(classes.marginDense);
+      expect(root).not.to.have.class(classes.sizeSmall);
     });
 
     it('can have the margin dense class', () => {
@@ -232,10 +232,10 @@ describe('<FormControl />', () => {
         const formControlRef = React.createRef();
         const { setProps } = render(<FormControlled ref={formControlRef} />);
 
-        expect(formControlRef.current).to.have.property('margin', 'none');
+        expect(formControlRef.current).to.have.property('size', 'medium');
 
-        setProps({ margin: 'dense' });
-        expect(formControlRef.current).to.have.property('margin', 'dense');
+        setProps({ size: 'small' });
+        expect(formControlRef.current).to.have.property('size', 'small');
       });
 
       it('should have the fullWidth prop from the instance', () => {

@@ -29,7 +29,7 @@ const productionPlugins = [
 ];
 
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['legacy', 'modern', 'stable']);
+  const useESModules = api.env(['legacy', 'modern', 'stable', 'rollup']);
 
   const presets = [
     [

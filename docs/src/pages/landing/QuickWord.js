@@ -28,8 +28,7 @@ const backers = [
     title: 'Octopus - Repeatable, reliable deployments',
   },
   {
-    href:
-      'https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral',
+    href: 'https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral',
     alt: 'doit-intl',
     title: 'DoiT - Management Platform for Google Cloud and AWS',
   },

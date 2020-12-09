@@ -84,6 +84,11 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
   };
 
   const handleInputChange = (event) => {
+    // Workaround for https://github.com/facebook/react/issues/9023
+    if (event.nativeEvent.defaultPrevented) {
+      return;
+    }
+
     const newChecked = event.target.checked;
 
     setCheckedState(newChecked);

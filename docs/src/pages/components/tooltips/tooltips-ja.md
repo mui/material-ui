@@ -92,8 +92,7 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 ```jsx
 <Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}
-    >
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
       A disabled button
     </button>
   </span>

@@ -57,11 +57,13 @@ describe('focus-visible polyfill', () => {
   });
 
   describe('focus inside shadowRoot', () => {
-    // Only run on HeadlessChrome which has native shadowRoot support.
-    // And jsdom which has limited support for shadowRoot (^12.0.0).
-    if (!/HeadlessChrome|jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
+    before(function beforeHook() {
+      // Only run on HeadlessChrome which has native shadowRoot support.
+      // And jsdom which has limited support for shadowRoot (^12.0.0).
+      if (!/HeadlessChrome|jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     let rootElement;
 

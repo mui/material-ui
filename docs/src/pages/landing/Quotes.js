@@ -124,12 +124,6 @@ const useStyles = makeStyles(
       marginTop: theme.spacing(5),
       marginBottom: theme.spacing(5),
     },
-    img: {
-      margin: theme.spacing(1.5, 3),
-    },
-    button: {
-      margin: theme.spacing(2, 0, 0),
-    },
   }),
   { name: 'Quotes' },
 );
@@ -212,11 +206,7 @@ function Quote(props) {
               >
                 {name}
               </Typography>
-              <Typography
-                component="div"
-                variant="subtitle2"
-                color="textSecondary"
-              >
+              <Typography component="div" variant="subtitle2" color="textSecondary">
                 {userName}
               </Typography>
             </Grid>

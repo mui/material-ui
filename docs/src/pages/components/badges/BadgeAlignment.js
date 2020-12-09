@@ -58,11 +58,7 @@ export default function BadgeAlignment() {
             onChange={handleVerticalChange}
           >
             <FormControlLabel value="top" control={<Radio />} label="Top" />
-            <FormControlLabel
-              value="bottom"
-              control={<Radio />}
-              label="Bottom"
-            />
+            <FormControlLabel value="bottom" control={<Radio />} label="Bottom" />
           </RadioGroup>
         </FormControl>
         <FormControl component="fieldset" className={classes.formControl}>

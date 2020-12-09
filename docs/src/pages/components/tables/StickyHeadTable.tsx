@@ -82,6 +82,7 @@ const rows = [
 const useStyles = makeStyles({
   root: {
     width: '100%',
+    overflow: 'hidden',
   },
   container: {
     maxHeight: 440,
@@ -97,9 +98,7 @@ export default function StickyHeadTable() {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };

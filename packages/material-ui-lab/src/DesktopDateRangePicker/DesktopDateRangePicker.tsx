@@ -330,6 +330,4 @@ const DesktopDateRangePicker = makeDateRangePicker(
 
 export type DesktopDateRangePickerProps = React.ComponentProps<typeof DesktopDateRangePicker>;
 
-export type DateRange<T> = import('../DateRangePicker/RangeTypes').DateRange<T>;
-
 export default DesktopDateRangePicker;

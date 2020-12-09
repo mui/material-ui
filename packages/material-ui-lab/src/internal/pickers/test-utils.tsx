@@ -3,8 +3,8 @@ import { parseISO } from 'date-fns';
 import { createClientRender, fireEvent, screen } from 'test/utils';
 import { queryHelpers, Matcher, MatcherOptions } from '@testing-library/react/pure';
 import { TransitionProps } from '@material-ui/core/transitions';
-import AdapterDateFns from '../../AdapterDateFns';
-import LocalizationProvider from '../../LocalizationProvider';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 // TODO make possible to pass here any utils using cli
 /**

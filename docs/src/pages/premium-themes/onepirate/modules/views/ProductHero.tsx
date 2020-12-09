@@ -48,12 +48,7 @@ function ProductHero(props: WithStyles<typeof styles>) {
       <Typography color="inherit" align="center" variant="h2" marked="center">
         Upgrade your Sundays
       </Typography>
-      <Typography
-        color="inherit"
-        align="center"
-        variant="h5"
-        className={classes.h5}
-      >
+      <Typography color="inherit" align="center" variant="h5" className={classes.h5}>
         Enjoy secret offers up to -70% off the best luxury hotels every Sunday.
       </Typography>
       <Button

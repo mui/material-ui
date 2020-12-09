@@ -44,9 +44,7 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     preventSelection(event);
   };
 

@@ -179,15 +179,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 
 ## Icon (Font icons)
 
-`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
-
-```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-```
-
-`Icon` will set the correct class name for the Material Icons font. `Icon` will set the correct class name for the Material icon font.
-
-アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
+`Icon` will set the correct class name for the Material icon font. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -199,7 +191,52 @@ import Icon from '@material-ui/core/Icon';
 
 ### Font Material icons
 
+`Icon` will by default set the correct base class name for the Material Icons font (filled variant). All you need to do is load the font, for instance, via Google Web Fonts:
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+```
+
 {{"demo": "pages/components/icons/Icons.js"}}
+
+### Custom font
+
+For other fonts, you can customize the baseline class name using the `baseClassName` prop. For instance, you can display two-tone icons with Material Design:
+
+```jsx
+import Icon from '@material-ui/core/Icon';
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
+  // Import the two tones MD variant                           ^^^^^^^^
+/>;
+```
+
+{{"demo": "pages/components/icons/TwoToneIcons.js"}}
+
+#### Global base class name
+
+Modifying the `baseClassName` prop for each component usage is repetitive. You can change the default prop globally with the theme
+
+```js
+const theme = createMuiTheme({
+  components: {
+    MuiIcon: {
+      defaultProps: {
+        // Replace the `material-icons` default value.
+        baseClassName: 'material-icons-two-tone',
+      },
+    },
+  },
+});
+```
+
+Then, you can use the two-tone font directly:
+
+```jsx
+<Icon>add_circle</Icon>
+```
 
 ### Font Awesome
 
@@ -209,7 +246,7 @@ import Icon from '@material-ui/core/Icon';
 
 Note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos). The fa icons are cropped to use all the space available. You can adjust for this with a global override:
 
-```jsx
+```js
 const theme = createMuiTheme({
   components: {
     MuiIcon: {
@@ -228,7 +265,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/components/icons/FontAwesomeIconSize.js"}}
 
-## Font vs SVG どのアプローチを使用しますか？ どのアプローチを使用しますか？ どのアプローチを使用しますか？
+## Font vs SVG どのアプローチを使用しますか？ どのアプローチを使用しますか？ どのアプローチを使用しますか？ どのアプローチを使用しますか？
 
 Both approaches work fine, however there are some subtle differences, especially in terms of performance and rendering quality. Whenever possible SVG is preferred as it allows code splitting, supports more icons, and renders faster and better.
 

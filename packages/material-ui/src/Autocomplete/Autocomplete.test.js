@@ -533,17 +533,22 @@ describe('<Autocomplete />', () => {
 
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
-    const { setProps } = render(
-      <Autocomplete
-        options={['one', 'two']}
+    const Test = (props) => (
+      <div
         onKeyDown={(event) => {
           if (!event.defaultPrevented && event.key === 'Enter') {
             handleSubmit();
           }
         }}
-        renderInput={(props2) => <TextField {...props2} autoFocus />}
-      />,
+      >
+        <Autocomplete
+          options={['one', 'two']}
+          renderInput={(props2) => <TextField {...props2} autoFocus />}
+          {...props}
+        />
+      </div>
     );
+    const { setProps } = render(<Test />);
     let textbox = screen.getByRole('textbox');
 
     fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -576,23 +581,26 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: getOptionDisabled', () => {
-    it('should disable the option but allow focus with disabledItemsFocusable', () => {
+    it('should prevent the disabled option to trigger actions but allow focus with disabledItemsFocusable', () => {
       const handleSubmit = spy();
       const handleChange = spy();
       const { getAllByRole } = render(
-        <Autocomplete
-          disabledItemsFocusable
-          getOptionDisabled={(option) => option === 'two'}
+        <div
           onKeyDown={(event) => {
             if (!event.defaultPrevented && event.key === 'Enter') {
               handleSubmit();
             }
           }}
-          onChange={handleChange}
-          openOnFocus
-          options={['one', 'two', 'three']}
-          renderInput={(props2) => <TextField {...props2} autoFocus />}
-        />,
+        >
+          <Autocomplete
+            disabledItemsFocusable
+            getOptionDisabled={(option) => option === 'two'}
+            onChange={handleChange}
+            openOnFocus
+            options={['one', 'two', 'three']}
+            renderInput={(props2) => <TextField {...props2} autoFocus />}
+          />
+        </div>,
       );
 
       let options;
@@ -1162,7 +1170,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           freeSolo
           onChange={handleChange}
-          options={[{ name: 'one' }, { name: 'two ' }]}
+          options={[{ name: 'one' }, {}]}
           getOptionLabel={(option) => option.name}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -1175,6 +1183,9 @@ describe('<Autocomplete />', () => {
       }).toErrorDev([
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         // strict mode renders twice
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        // strict mode renders twice
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
@@ -1283,9 +1294,9 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // three option is added and autocomplete re-renders, two should still be highlighted
+      // three option is added and autocomplete re-renders, reset the highlight
       setProps({ options: ['one', 'two', 'three'] });
-      checkHighlightIs(listbox, 'two');
+      checkHighlightIs(listbox, null);
     });
 
     it('should not select undefined', () => {
@@ -1477,13 +1488,8 @@ describe('<Autocomplete />', () => {
     });
 
     it('should mantain list box open clicking on input when it is not empty', () => {
-      const handleHighlightChange = spy();
       const { getByRole, getAllByRole } = render(
-        <Autocomplete
-          onHighlightChange={handleHighlightChange}
-          options={['one']}
-          renderInput={(params) => <TextField {...params} />}
-        />,
+        <Autocomplete options={['one']} renderInput={(params) => <TextField {...params} />} />,
       );
       const combobox = getByRole('combobox');
       const textbox = getByRole('textbox');
@@ -1501,11 +1507,9 @@ describe('<Autocomplete />', () => {
     });
 
     it('should not toggle list box', () => {
-      const handleHighlightChange = spy();
       const { getByRole } = render(
         <Autocomplete
           value="one"
-          onHighlightChange={handleHighlightChange}
           options={['one']}
           renderInput={(params) => <TextField {...params} />}
         />,
@@ -2067,6 +2071,26 @@ describe('<Autocomplete />', () => {
         options[2],
       );
     });
+
+    it('should reset the highlight when the options change', () => {
+      const handleHighlightChange = [];
+      const { getByRole, setProps } = render(
+        <Autocomplete
+          onHighlightChange={(event, option) => {
+            handleHighlightChange.push(option);
+          }}
+          openOnFocus
+          autoHighlight
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      checkHighlightIs(getByRole('listbox'), 'one');
+      setProps({ options: ['four', 'five'] });
+      checkHighlightIs(getByRole('listbox'), 'four');
+      expect(handleHighlightChange).to.deep.equal([null, 'one', 'four']);
+    });
   });
 
   it('should filter options when new input value matches option', () => {
@@ -2098,5 +2122,38 @@ describe('<Autocomplete />', () => {
     fireEvent.change(textbox, { target: { value: 'one' } });
 
     expect(getAllByRole('option')).to.have.length(1);
+  });
+
+  it('should prevent the default event handlers', () => {
+    const handleChange = spy();
+    const handleSubmit = spy();
+    const Test = () => (
+      <div
+        onKeyDown={(event) => {
+          if (!event.defaultPrevented && event.key === 'Enter') {
+            handleSubmit();
+          }
+        }}
+      >
+        <Autocomplete
+          options={['one', 'two']}
+          onChange={handleChange}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              event.persist();
+              event.defaultMuiPrevented = true;
+            }
+          }}
+          renderInput={(params) => <TextField autoFocus {...params} />}
+        />
+      </div>
+    );
+    render(<Test />);
+    const textbox = screen.getByRole('textbox');
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'Enter' });
+    expect(handleChange.callCount).to.equal(0);
+    expect(handleSubmit.callCount).to.equal(1);
   });
 });

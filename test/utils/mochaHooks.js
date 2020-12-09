@@ -17,6 +17,13 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
     // Safe stack so that test dev can track where the unexpected console message was created.
     const { stack } = new Error();
 
+    if (process.env.NODE_ENV === 'production') {
+      // TODO: mock scheduler
+      if (message.indexOf('act(...) is not supported in production builds of React') !== -1) {
+        return;
+      }
+    }
+
     unexpectedCalls.push([
       // first line includes the (empty) error message
       // i.e. Remove the `Error:` line

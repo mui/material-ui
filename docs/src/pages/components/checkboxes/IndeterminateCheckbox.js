@@ -32,21 +32,13 @@ export default function IndeterminateCheckbox() {
       <FormControlLabel
         label="Child 1"
         control={
-          <Checkbox
-            checked={checked[0]}
-            color="primary"
-            onChange={handleChange2}
-          />
+          <Checkbox checked={checked[0]} color="primary" onChange={handleChange2} />
         }
       />
       <FormControlLabel
         label="Child 2"
         control={
-          <Checkbox
-            checked={checked[1]}
-            color="primary"
-            onChange={handleChange3}
-          />
+          <Checkbox checked={checked[1]} color="primary" onChange={handleChange3} />
         }
       />
     </div>

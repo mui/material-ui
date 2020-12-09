@@ -1,6 +1,6 @@
 # Transições
 
-<p class="description">The theme key enables you to customize the durations and easings of the various transitions used across Material-UI components, and offers a utility for creating custom transitions.</p>
+<p class="description">A chave do tema permite que você customize as durações e atenuações das várias transições usadas entre componentes do Material-UI, e oferece um utilitário para criar transições customizadas.</p>
 
 ## API
 
@@ -8,18 +8,18 @@
 
 #### Argumentos
 
-1. `props` (_String_ | _String[]_): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
-2. `options` (*Object* [opcional]):
+1. `props` (_String_ | _String[]_): Padrão `['all']`. Fornece uma propriedade CSS, ou uma lista de propriedades CSS que devem ser transicionadas.
+2. `options` (_Object_ [opcional]):
 
-- `options.duration` (_String_ | _Number_ [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.
-- `options.easing` (_String_ [optional]): Defaults to `theme.transitions.easing.easeInOut`. Provides the easing for the transition.
-- `options.delay` (_String_ | _Number_ [optional]): Defaults to `0`. Provides the delay for the transition.
+- `options.duration` (_String_ | _Number_ [opcional]): Padrão `theme.transitions.duration.standard`. Fornece a duração da transição.
+- `options.easing` (_String_ [opcional]): Padrão `theme.transitions.easing.easeInOut`. Fornece a atenuação para a transição.
+- `options.delay` (_String_ | _Number_ [opcional]): Padrão `0`. Fornece o atraso para a transição.
 
 #### Retornos
 
-`transition`: A CSS transition value, which composes all CSS properties that should be transitioned, together with the defined duration, easing and delay.
+`transition`: Um valor CSS de transição, que compõe todas as propriedades CSS que devem ser transitadas juntamente com duração, atenuação e atraso definidos.
 
-Use the <code>theme.transitions.create()</code> helper to create consistent transitions for the elements of your UI.</p>
+Use o utilitário <code>theme.transitions.create()</code> para criar transições consistentes para os elementos da sua UI.</p>
 
 ```js
 theme.transitions.create(['background-color', 'transform']);
@@ -33,15 +33,15 @@ theme.transitions.create(['background-color', 'transform']);
 
 #### Argumentos
 
-1. `height` (_Number_): The height of the component.
+1. `height` (_Number_): A altura do componente.
 
 #### Retornos
 
-`duration`: The calculated duration based on the height.
+`duration`: A duração calculada baseada na altura.
 
-## Durations
+## Durações
 
-You can change some or all of the duration values, or provide your own (for use in the `create()` helper). This example shows all the default values (in milliseconds), but you only need to provide the keys you wish to change or add.
+Você pode alterar alguns ou todos os valores de duração, ou fornecer valores próprios (para usar com o utilitário `create()`). Este exemplo mostra todos os valores padrão (em milissegundos), mas você só precisa fornecer as chaves que deseja alterar ou adicionar.
 
 ```js
 const theme = createMuiTheme({
@@ -50,41 +50,41 @@ const theme = createMuiTheme({
       shortest: 150,
       shorter: 200,
       short: 250,
-      // most basic recommended timing
+      // mais básico recomendado periodicidade
       standard: 300,
-      // this is to be used in complex animations
+      // isto é para ser utilizado em animações complexas
       complex: 375,
-      // recommended when something is entering screen
+      // recomendado quando algo esta entrando na tela
       enteringScreen: 225,
-      // recommended when something is leaving screen
+      // recomendado quando algo esta deixando a tela
       leavingScreen: 195,
     },
   },
 });
 ```
 
-## Easings
+## Atenuações
 
-You can change some or all of the easing values, or provide your own, by providing a custom CSS <code>transition-timing-function</code> value.
+Você pode alterar alguns ou todos os valores de atenuação, ou fornecer valores próprios, fornecendo um valor customizado de CSS <code>transition-timing-function</code>.
 
 ```js
 const theme = createMuiTheme({
   transitions: {
     easing: {
-      // This is the most common easing curve.
+      // Esta é a curva de atenuação mais comum.
       easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
-      // Objects enter the screen at full velocity from off-screen and
-      // slowly decelerate to a resting point.
+      // Objetos que entram na tela na velocidade total e
+      // lentamente desaceleram até um ponto de repouso.
       easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
-      // Objects leave the screen at full velocity. They do not decelerate when off-screen.
+      // Objetos deixam a tela em velocidade máxima. Não desaceleram quando estão fora da tela.
       easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
-      // The sharp curve is used by objects that may return to the screen at any time.
+      // A atenuação de curva sharp é usada por objetos que podem retornar a tela a qualquer momento.
       sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
     },
   },
 });
 ```
 
-## References
+## Referências
 
-Check out the [Transitions](/components/transitions/) page to explore the transition components that are included with Material-UI.
+Confira a página de [Transições](/components/transitions/) para explorar os componentes de transição que estão incluídos com o Material-UI.

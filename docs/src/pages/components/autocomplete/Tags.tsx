@@ -59,11 +59,7 @@ export default function Tags() {
         freeSolo
         renderTags={(value: string[], getTagProps) =>
           value.map((option: string, index: number) => (
-            <Chip
-              variant="outlined"
-              label={option}
-              {...getTagProps({ index })}
-            />
+            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
           ))
         }
         renderInput={(params) => (
@@ -149,8 +145,7 @@ const top100Films = [
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
   {
-    title:
-      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { title: 'The Great Dictator', year: 1940 },

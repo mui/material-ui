@@ -252,9 +252,11 @@ export const componentSettings = {
   },
   Slider: {
     ignoredProps: [
+      'components',
       'defaultValue',
       'getAriaLabel',
       'getAriaValueText',
+      'isRtl',
       'onChange',
       'onChangeCommitted',
       'scale',
@@ -263,6 +265,7 @@ export const componentSettings = {
       'ValueLabelComponent',
       'valueLabelFormat',
       'marks',
+      'sx',
     ],
     propValues: {
       width: 160,

@@ -20,9 +20,7 @@ function fakeFetch(date: Date, { signal }: { signal: AbortSignal }) {
   return new Promise<{ daysToHighlight: number[] }>((resolve, reject) => {
     const timeout = setTimeout(() => {
       const daysInMonth = getDaysInMonth(date);
-      const daysToHighlight = [1, 2, 3].map(() =>
-        getRandomNumber(1, daysInMonth),
-      );
+      const daysToHighlight = [1, 2, 3].map(() => getRandomNumber(1, daysInMonth));
 
       resolve({ daysToHighlight });
     }, 500);

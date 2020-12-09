@@ -424,6 +424,12 @@ describe('<Select />', () => {
       expect(getByRole('button')).to.have.attribute('aria-disabled', 'true');
     });
 
+    it('sets disabled attribute in input when component is disabled', () => {
+      const { container } = render(<Select disabled value="" />);
+
+      expect(container.querySelector('input')).to.have.property('disabled', true);
+    });
+
     specify('aria-disabled is not present if component is not disabled', () => {
       const { getByRole } = render(<Select disabled={false} value="" />);
 
@@ -1085,5 +1091,22 @@ describe('<Select />', () => {
     setProps({ value: 'france' });
     fireEvent.click(container.querySelector('button[type=submit]'));
     expect(handleSubmit.callCount).to.equal(1);
+  });
+
+  it('should programmatically focus the select', () => {
+    const { getByRole } = render(
+      <Select
+        value={1}
+        inputRef={(input) => {
+          if (input !== null) {
+            input.focus();
+          }
+        }}
+      >
+        <MenuItem value={1}>1</MenuItem>
+        <MenuItem value={2}>2</MenuItem>
+      </Select>,
+    );
+    expect(document.activeElement).to.equal(getByRole('button'));
   });
 });

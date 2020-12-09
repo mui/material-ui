@@ -8,10 +8,7 @@ import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 export default function VerticalToggleButtons() {
   const [view, setView] = React.useState('list');
 
-  const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
-    nextView: string,
-  ) => {
+  const handleChange = (event: React.MouseEvent<HTMLElement>, nextView: string) => {
     setView(nextView);
   };
 

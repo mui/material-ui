@@ -16,13 +16,7 @@ describe('<TextareaAutosize />', () => {
   }));
 
   describe('layout', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
-
     const getComputedStyleStub = {};
-
     function setLayout(
       input,
       shadow,
@@ -39,7 +33,12 @@ describe('<TextareaAutosize />', () => {
       });
     }
 
-    before(() => {
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       stub(window, 'getComputedStyle').value((node) => getComputedStyleStub[node] || {});
     });
 

@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useFakeTimers } from 'sinon';
-import vrtest from 'vrtest-mui/client';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
 // Get all the tests specifically written for preventing regressions.
-const requireRegression = require.context('./tests', true, /(js|ts|tsx)$/);
+const requireRegression = require.context('./tests', true, /\.(js|ts|tsx)$/);
 const regressions = requireRegression.keys().reduce((res, path) => {
   const [suite, name] = path
     .replace('./', '')
@@ -65,6 +64,7 @@ const blacklist = [
   'docs-components-grid/InteractiveGrid.png', // Redux isolation
   'docs-components-grid/SpacingGrid.png', // Needs interaction
   'docs-components-hidden', // Need to dynamically resize to test
+  'docs-components-icons/FontAwesomeIconSize.png', // Relies on cascading network requests
   'docs-components-image-list', // Image don't load
   'docs-components-material-icons/synonyms.png', // No component
   'docs-components-menus', // Need interaction
@@ -164,8 +164,6 @@ const unusedBlacklistPatterns = new Set(blacklist);
 
 function excludeTest(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
-    // eslint-disable-next-line no-console
-    console.log('ignoring premium themes pages');
     return true;
   }
 
@@ -173,14 +171,12 @@ function excludeTest(suite, name) {
     if (typeof pattern === 'string') {
       if (pattern === suite) {
         unusedBlacklistPatterns.delete(pattern);
-        // eslint-disable-next-line no-console
-        console.log(`suite exact match: ignoring '${suite}/${name}'`);
+
         return true;
       }
       if (pattern === `${suite}/${name}.png`) {
         unusedBlacklistPatterns.delete(pattern);
-        // eslint-disable-next-line no-console
-        console.log(`suite+name exact match: ignoring '${suite}/${name}'`);
+
         return true;
       }
 
@@ -190,8 +186,6 @@ function excludeTest(suite, name) {
     // assume regex
     if (pattern.test(suite)) {
       unusedBlacklistPatterns.delete(pattern);
-      // eslint-disable-next-line no-console
-      console.log(`suite matches pattern '${pattern}': ignoring '${suite}/${name}'`);
       return true;
     }
     return false;
@@ -207,8 +201,6 @@ const demos = requireDemos.keys().reduce((res, path) => {
   if (excludeTest(suite, name)) {
     return res;
   }
-  // eslint-disable-next-line no-console
-  console.log(`testing ${suite}/${name}`);
 
   res.push({
     path,
@@ -220,15 +212,41 @@ const demos = requireDemos.keys().reduce((res, path) => {
   return res;
 }, []);
 
-const rootEl = document.createElement('div');
-rootEl.style.display = 'inline-block';
+const tests = regressions.concat(demos);
 
-vrtest.before(() => {
-  if (document && document.body) {
-    document.body.appendChild(rootEl);
+if (unusedBlacklistPatterns.size > 0) {
+  console.warn(
+    `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
+      .map((pattern) => `- ${pattern}`)
+      .join('\n')}`,
+  );
+}
+
+function App() {
+  function computeIsDev() {
+    if (window.location.hash === '#dev') {
+      return true;
+    }
+    if (window.location.hash === '#no-dev') {
+      return false;
+    }
+    return process.env.NODE_ENV === 'development';
   }
+  const [isDev, setDev] = React.useState(computeIsDev);
+  React.useEffect(() => {
+    function handleHashChange() {
+      setDev(computeIsDev());
+    }
+    window.addEventListener('hashchange', handleHashChange);
 
-  return new Promise((resolve, reject) => {
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  // Using <link rel="stylesheet" /> does not apply the google Roboto font in chromium headless/headfull.
+  const [fontState, setFontState] = React.useState('pending');
+  React.useEffect(() => {
     webfontloader.load({
       google: {
         families: ['Roboto:300,400,500,700', 'Material+Icons'],
@@ -239,50 +257,67 @@ vrtest.before(() => {
       },
       timeout: 20000,
       active: () => {
-        resolve('webfontloader: active');
+        setFontState('active');
       },
       inactive: () => {
-        reject(new Error('webfontloader: inactive'));
+        setFontState('inactive');
       },
     });
-  });
-});
+  }, []);
 
-let suite;
+  const testPrepared = fontState !== 'pending';
 
-const tests = regressions.concat(demos);
-tests.forEach((test) => {
-  if (!suite || suite.name !== test.suite) {
-    suite = vrtest.createSuite(test.suite);
+  function computePath(test) {
+    return `/${test.suite}/${test.name}`;
   }
 
-  const TestCase = test.case;
+  return (
+    <Router>
+      <Switch>
+        {tests.map((test) => {
+          const path = computePath(test);
+          const TestCase = test.case;
+          if (TestCase === undefined) {
+            console.warn('Missing test.case for ', test);
+            return null;
+          }
 
-  if (!TestCase) {
-    return;
-  }
-
-  suite.createTest(test.name, () => {
-    // Use a "real timestamp" so that we see a useful date instead of "00:00"
-    const clock = useFakeTimers(new Date('Mon Aug 18 14:11:54 2014 -0500'));
-
-    try {
-      ReactDOM.render(
-        <TestViewer>
-          <TestCase />
-        </TestViewer>,
-        rootEl,
-      );
-    } finally {
-      clock.restore();
-    }
-  });
-});
-
-if (unusedBlacklistPatterns.size > 0) {
-  console.warn(
-    `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
-      .map((pattern) => `- ${pattern}`)
-      .join('\n')}`,
+          return (
+            <Route key={path} exact path={path}>
+              {testPrepared && (
+                <TestViewer>
+                  <TestCase />
+                </TestViewer>
+              )}
+            </Route>
+          );
+        })}
+      </Switch>
+      <div hidden={!isDev}>
+        <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
+        <p>
+          Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
+          appending <code>#no-dev</code>.
+        </p>
+        <a href="#no-dev">Hide devtools</a>
+        <details>
+          <summary id="my-test-summary">nav for all tests</summary>
+          <nav id="tests">
+            <ol>
+              {tests.map((test) => {
+                const path = computePath(test);
+                return (
+                  <li key={path}>
+                    <Link to={path}>{path}</Link>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+        </details>
+      </div>
+    </Router>
   );
 }
+
+ReactDOM.render(<App />, document.getElementById('react-root'));

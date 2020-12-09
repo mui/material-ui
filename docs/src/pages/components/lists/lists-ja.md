@@ -87,7 +87,9 @@ Switchは補助的なアクションであり異なるターゲットです。
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## 差し込み
+## Inset List Item
+
+The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
@@ -103,7 +105,7 @@ When rendering a list within a component that defines its own gutters, `ListItem
 
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
-このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
+このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 
 ## カスタマイズ
 

@@ -86,27 +86,24 @@ function breakpoints(styleFunction) {
   return newStyleFunction;
 }
 
-function createEmptyBreakpointObject(breakpointsInput) {
-  const breakpointsInOrder = breakpointsInput.keys.reduce((acc, key) => {
+export function createEmptyBreakpointObject(breakpointsInput = {}) {
+  const breakpointsInOrder = breakpointsInput?.keys?.reduce((acc, key) => {
     const breakpointStyleKey = breakpointsInput.up(key);
     acc[breakpointStyleKey] = {};
     return acc;
   }, {});
-  return breakpointsInOrder;
+  return breakpointsInOrder || {};
 }
 
-function removeUnusedBreakpoints(breakpointKeys, style) {
-  return breakpointKeys.reduce(
-    (acc, key) => {
-      const breakpointOutput = acc[key];
-      const isBreakpointUnused = Object.keys(breakpointOutput).length === 0;
-      if (isBreakpointUnused) {
-        delete acc[key];
-      }
-      return acc;
-    },
-    { ...style },
-  );
+export function removeUnusedBreakpoints(breakpointKeys, style) {
+  return breakpointKeys.reduce((acc, key) => {
+    const breakpointOutput = acc[key];
+    const isBreakpointUnused = Object.keys(breakpointOutput).length === 0;
+    if (isBreakpointUnused) {
+      delete acc[key];
+    }
+    return acc;
+  }, style);
 }
 
 export function mergeBreakpointsInOrder(breakpointsInput, ...styles) {

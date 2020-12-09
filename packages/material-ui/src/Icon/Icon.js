@@ -54,6 +54,7 @@ export const styles = (theme) => ({
 
 const Icon = React.forwardRef(function Icon(props, ref) {
   const {
+    baseClassName = 'material-icons',
     classes,
     className,
     color = 'inherit',
@@ -65,7 +66,7 @@ const Icon = React.forwardRef(function Icon(props, ref) {
   return (
     <Component
       className={clsx(
-        'material-icons',
+        baseClassName,
         // Prevent the translation of the text content.
         // The font relies on the exact text content to render the icon.
         'notranslate',
@@ -88,6 +89,12 @@ Icon.propTypes = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
+   * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
+   * @default 'material-icons'
+   */
+  baseClassName: PropTypes.string,
   /**
    * The name of the icon font ligature.
    */

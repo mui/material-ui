@@ -78,8 +78,7 @@ export default function FixedBottomNavigation() {
 const messageExamples = [
   {
     primary: 'Brunch this week?',
-    secondary:
-      "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
     person: '/static/images/avatar/5.jpg',
   },
   {
@@ -90,8 +89,7 @@ const messageExamples = [
   },
   {
     primary: 'Recipe to try',
-    secondary:
-      'I am try out this new BBQ recipe, I think this might be amazing',
+    secondary: 'I am try out this new BBQ recipe, I think this might be amazing',
     person: '/static/images/avatar/2.jpg',
   },
   {
@@ -101,8 +99,7 @@ const messageExamples = [
   },
   {
     primary: "Doctor's Appointment",
-    secondary:
-      'My appointment for the doctor was rescheduled for next Saturday.',
+    secondary: 'My appointment for the doctor was rescheduled for next Saturday.',
     person: '/static/images/avatar/4.jpg',
   },
   {

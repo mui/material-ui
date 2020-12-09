@@ -64,11 +64,7 @@ export default function SpeedDials() {
     <div className={classes.root}>
       <FormControlLabel
         control={
-          <Switch
-            checked={hidden}
-            onChange={handleHiddenChange}
-            color="primary"
-          />
+          <Switch checked={hidden} onChange={handleHiddenChange} color="primary" />
         }
         label="Hidden"
       />

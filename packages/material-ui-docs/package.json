@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-lab",
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern &&yarn build:node && yarn build:stable && yarn build:copy-files",
+    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
     "build:legacy": "node ../../scripts/build legacy",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build node",

@@ -8,9 +8,10 @@ import {
   unstable_ownerDocument as ownerDocument,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_capitalize as capitalize,
   unstable_useControlled as useControlled,
 } from '@material-ui/utils';
+import isHostComponent from '../utils/isHostComponent';
+import sliderUnstyledClasses from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
 function asc(a, b) {
@@ -144,52 +145,35 @@ function doesSupportTouchActionNone() {
   return cachedSupportsTouchActionNone;
 }
 
-const getUtilityClass = (name) => {
-  return `MuiSlider-${name}`;
-};
-
 const useSliderClasses = (props) => {
-  const { color, disabled, marked, orientation, track, classes = {} } = props;
+  const { disabled, marked, orientation, track, classes = {} } = props;
 
   const utilityClasses = {
-    root: clsx(
-      getUtilityClass('root'),
-      classes['root'],
-      getUtilityClass(`color${capitalize(color)}`),
-      classes[`color${capitalize(color)}`],
-      {
-        'Mui-disabled': disabled,
-        [getUtilityClass('marked')]: marked,
-        [classes['marked']]: marked,
-        [getUtilityClass('vertical')]: orientation === 'vertical',
-        [classes['vertical']]: orientation === 'vertical',
-        [getUtilityClass('trackInverted')]: track === 'inverted',
-        [classes['trackInverted']]: track === 'inverted',
-        [getUtilityClass('trackFalse')]: track === false,
-        [classes['trackFalse']]: track === false,
-      },
-    ),
-    rail: clsx(getUtilityClass('rail'), classes['rail']),
-    track: clsx(getUtilityClass('track'), classes['track']),
-    mark: clsx(getUtilityClass('mark'), classes['mark']),
-    markLabel: clsx(getUtilityClass('markLabel'), classes['markLabel']),
-    valueLabel: clsx(getUtilityClass('valueLabel'), classes['valueLabel']),
-    thumb: clsx(
-      getUtilityClass('thumb'),
-      classes['thumb'],
-      getUtilityClass(`thumbColor${capitalize(color)}`),
-      classes[`thumbColor${capitalize(color)}`],
-      {
-        'Mui-disabled': disabled,
-        [getUtilityClass('vertical')]: orientation === 'vertical',
-      },
-    ),
+    root: clsx(sliderUnstyledClasses['root'], classes['root'], {
+      [sliderUnstyledClasses['disabled']]: disabled,
+      [sliderUnstyledClasses['marked']]: marked,
+      [classes['marked']]: marked,
+      [sliderUnstyledClasses['vertical']]: orientation === 'vertical',
+      [classes['vertical']]: orientation === 'vertical',
+      [sliderUnstyledClasses['trackInverted']]: track === 'inverted',
+      [classes['trackInverted']]: track === 'inverted',
+      [sliderUnstyledClasses['trackFalse']]: track === false,
+      [classes['trackFalse']]: track === false,
+    }),
+    rail: clsx(sliderUnstyledClasses['rail'], classes['rail']),
+    track: clsx(sliderUnstyledClasses['track'], classes['track']),
+    mark: clsx(sliderUnstyledClasses['mark'], classes['mark']),
+    markLabel: clsx(sliderUnstyledClasses['markLabel'], classes['markLabel']),
+    valueLabel: clsx(sliderUnstyledClasses['valueLabel'], classes['valueLabel']),
+    thumb: clsx(sliderUnstyledClasses['thumb'], classes['thumb'], {
+      [sliderUnstyledClasses['disabled']]: disabled,
+      [sliderUnstyledClasses['vertical']]: orientation === 'vertical',
+    }),
   };
 
   return utilityClasses;
 };
 
-const isHostComponent = (element) => typeof element === 'string';
 const Forward = ({ children }) => children;
 
 const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
@@ -198,8 +182,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
     className,
-    color = 'primary',
     component: Component = 'span',
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    classes: classesProps = {},
     defaultValue,
     disabled = false,
     getAriaLabel,
@@ -591,7 +576,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     ...axisProps[axis].leap(trackLeap),
   };
 
-  const Root = components.Root || Component;
+  const Root = components.Root || 'span';
   const rootProps = componentsProps.root || {};
 
   const Rail = components.Rail || 'span';
@@ -617,7 +602,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const stateAndProps = {
     ...props,
     classes: {},
-    color,
     disabled,
     max,
     min,
@@ -637,18 +621,19 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     <Root
       ref={handleRef}
       onMouseDown={handleMouseDown}
+      {...rootProps}
       {...(!isHostComponent(Root) && {
-        styleProps: stateAndProps,
+        as: Component,
+        styleProps: { ...stateAndProps, ...rootProps.styleProps },
         theme,
       })}
-      {...rootProps}
       {...other}
       className={clsx(utilityClasses.root, rootProps.className, className)}
     >
       <Rail
         {...railProps}
         {...(!isHostComponent(Rail) && {
-          styleProps: stateAndProps,
+          styleProps: { ...stateAndProps, ...railProps.styleProps },
           theme,
         })}
         className={clsx(utilityClasses.rail, railProps.className)}
@@ -656,7 +641,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       <Track
         {...trackProps}
         {...(!isHostComponent(Track) && {
-          styleProps: stateAndProps,
+          styleProps: { ...stateAndProps, ...trackProps.styleProps },
           theme,
         })}
         className={clsx(utilityClasses.track, trackProps.className)}
@@ -688,12 +673,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               data-index={index}
               {...markProps}
               {...(!isHostComponent(Mark) && {
-                styleProps: stateAndProps,
+                styleProps: { ...stateAndProps, ...markProps.styleProps },
                 theme,
               })}
               style={{ ...style, ...markProps.style }}
               className={clsx(utilityClasses.mark, markProps.className, {
-                [getUtilityClass('markActive')]: markActive,
+                [sliderUnstyledClasses['markActive']]: markActive,
               })}
             />
             {mark.label != null ? (
@@ -702,12 +687,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 data-index={index}
                 {...markLabelProps}
                 {...(!isHostComponent(MarkLabel) && {
-                  styleProps: stateAndProps,
+                  styleProps: { ...stateAndProps, ...markLabelProps.styleProps },
                   theme,
                 })}
                 style={{ ...style, ...markLabelProps.style }}
                 className={clsx(utilityClasses.markLabel, markLabelProps.className, {
-                  [getUtilityClass('markLabelActive')]: markActive,
+                  [sliderUnstyledClasses['markLabelActive']]: markActive,
                 })}
               >
                 {mark.label}
@@ -732,30 +717,19 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 ? valueLabelFormat(scale(value), index)
                 : valueLabelFormat
             }
-            {...(!isHostComponent(ValueLabel) && {
-              styleProps: stateAndProps,
-              theme,
-            })}
             index={index}
             open={open === index || active === index || valueLabelDisplay === 'on'}
             disabled={disabled}
             {...valueLabelProps}
             className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
+            {...(!isHostComponent(ValueLabel) && {
+              styleProps: { ...stateAndProps, ...valueLabelProps.styleProps },
+              theme,
+            })}
           >
             <Thumb
-              {...thumbProps}
-              className={clsx(utilityClasses.thumb, thumbProps.className, {
-                'Mui-active': active === index,
-                'Mui-disabled': disabled,
-                'Mui-focusVisible': focusVisible === index,
-              })}
-              {...(!isHostComponent(Thumb) && {
-                styleProps: stateAndProps,
-                theme,
-              })}
               tabIndex={disabled ? null : 0}
               role="slider"
-              style={{ ...style, ...thumbProps.style }}
               data-index={index}
               aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
               aria-labelledby={ariaLabelledby}
@@ -771,6 +745,17 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               onBlur={handleBlur}
               onMouseOver={handleMouseOver}
               onMouseLeave={handleMouseLeave}
+              {...thumbProps}
+              className={clsx(utilityClasses.thumb, thumbProps.className, {
+                [sliderUnstyledClasses['active']]: active === index,
+                [sliderUnstyledClasses['disabled']]: disabled,
+                [sliderUnstyledClasses['focusVisible']]: focusVisible === index,
+              })}
+              {...(!isHostComponent(Thumb) && {
+                styleProps: { ...stateAndProps, ...thumbProps.styleProps },
+                theme,
+              })}
+              style={{ ...style, ...thumbProps.style }}
             />
           </ValueLabelComponent>
         );
@@ -822,17 +807,13 @@ SliderUnstyled.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
-   */
-  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

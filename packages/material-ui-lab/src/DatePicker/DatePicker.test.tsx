@@ -23,10 +23,7 @@ import {
 describe('<DatePicker />', () => {
   const render = createPickerRender({ strict: false });
 
-  it('render proper month', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('render proper month', () => {
     render(
       <StaticDatePicker
         value={adapterToUse.date('2019-01-01T00:00:00.000')}
@@ -40,10 +37,7 @@ describe('<DatePicker />', () => {
     expect(getAllByMuiTest('day')).to.have.length(31);
   });
 
-  it('desktop Mode – Accepts date on day button click', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('desktop Mode – Accepts date on day button click', () => {
     const onChangeMock = spy();
 
     render(
@@ -63,10 +57,7 @@ describe('<DatePicker />', () => {
     expect(screen.queryByRole('dialog')).to.equal(null);
   });
 
-  it('mobile mode – Accepts date on `OK` button click', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('mobile mode – Accepts date on `OK` button click', () => {
     const onChangeMock = spy();
     render(
       <MobileDatePicker
@@ -89,10 +80,7 @@ describe('<DatePicker />', () => {
     expect(screen.queryByRole('dialog')).to.equal(null);
   });
 
-  it('switches between months', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('switches between months', () => {
     render(
       <StaticDatePicker
         reduceAnimations
@@ -114,10 +102,7 @@ describe('<DatePicker />', () => {
     expect(getByMuiTest('calendar-month-text')).to.have.text('December');
   });
 
-  it('selects the closest enabled date if selected date is disabled', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('selects the closest enabled date if selected date is disabled', () => {
     const onChangeMock = spy();
 
     render(
@@ -155,10 +140,7 @@ describe('<DatePicker />', () => {
     expect(onChangeMock.callCount).to.equal(1);
   });
 
-  it('allows to select edge years from list', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('allows to select edge years from list', () => {
     render(
       <MobileDatePicker
         open
@@ -176,10 +158,7 @@ describe('<DatePicker />', () => {
     expect(getByMuiTest('datepicker-toolbar-date')).to.have.text('Fri, Jan 1');
   });
 
-  it("doesn't close picker on selection in Mobile mode", function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it("doesn't close picker on selection in Mobile mode", () => {
     render(
       <MobileDatePicker
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
@@ -194,10 +173,7 @@ describe('<DatePicker />', () => {
     expect(screen.queryByRole('dialog')).toBeVisible();
   });
 
-  it('closes picker on selection in Desktop mode', async function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('closes picker on selection in Desktop mode', async () => {
     render(
       <DesktopDatePicker
         TransitionComponent={FakeTransitionComponent}
@@ -234,10 +210,7 @@ describe('<DatePicker />', () => {
     expect(screen.queryByRole('dialog')).to.equal(null);
   });
 
-  it("prop `disableCloseOnSelect` – if `true` doesn't close picker", function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it("prop `disableCloseOnSelect` – if `true` doesn't close picker", () => {
     render(
       <DesktopDatePicker
         TransitionComponent={FakeTransitionComponent}
@@ -254,10 +227,7 @@ describe('<DatePicker />', () => {
     expect(screen.queryByRole('dialog')).toBeVisible();
   });
 
-  it('does not call onChange if same date selected', async function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('does not call onChange if same date selected', async () => {
     const onChangeMock = spy();
 
     render(
@@ -345,10 +315,7 @@ describe('<DatePicker />', () => {
     expect(getByMuiTest('picker-toolbar-title').textContent).to.equal('Default label');
   });
 
-  it('prop `toolbarFormat` – should format toolbar according to passed format', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('prop `toolbarFormat` – should format toolbar according to passed format', () => {
     render(
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}
@@ -514,10 +481,7 @@ describe('<DatePicker />', () => {
     expect(screen.getAllByTestId('test-day')).to.have.length(31);
   });
 
-  it('prop `defaultCalendarMonth` – opens on provided month if date is `null`', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('prop `defaultCalendarMonth` – opens on provided month if date is `null`', () => {
     render(
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}

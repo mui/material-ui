@@ -31,6 +31,8 @@ If you are creating a modal dialog, you probably want to use the [Dialog](/compo
 
 ## Modal simple
 
+This demo stacks Modals, but it is strongly discouraged to do so in practice.
+
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.

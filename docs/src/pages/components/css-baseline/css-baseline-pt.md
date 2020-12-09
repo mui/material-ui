@@ -61,9 +61,9 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 
 - `box-sizing` é definido globalmente no elemento `<html>` para `border-box`. Todos elementos—incluindo `*::before` e `*::after` são declarados para herdar essa propriedade, que garante que a largura declarada do elemento nunca seja excedida devido ao preenchimento da borda.
 
-### Scrollbars
+### Barras de rolagem
 
-In dark mode, the colors of the scrollbars are customized to provide a better contrast.
+No modo escuro, as cores das barras de rolagem são personalizadas para fornecer uma contraste melhor.
 
 ### Tipografia
 

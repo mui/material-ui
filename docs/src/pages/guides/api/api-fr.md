@@ -22,7 +22,7 @@ Outre le compromis de composition ci-dessus, nous appliquons les règles suivant
 
 ### La propagation
 
-Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
+Props supplied to a component which are not explicitly documented are spread to the root element; for instance, the `className` prop is applied to the root.
 
 Maintenant, supposons que vous vouliez désactiver les ondulations sur le `MenuItem`. Vous pouvez tirer parti du comportement de propagation :
 

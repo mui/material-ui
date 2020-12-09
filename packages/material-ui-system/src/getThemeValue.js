@@ -9,43 +9,48 @@ import sizing from './sizing';
 import spacing from './spacing';
 import typography from './typography';
 
+const filterPropsMapping = {
+  borders: borders.filterProps,
+  display: display.filterProps,
+  flexbox: flexbox.filterProps,
+  grid: grid.filterProps,
+  positions: positions.filterProps,
+  palette: palette.filterProps,
+  shadows: shadows.filterProps,
+  sizing: sizing.filterProps,
+  spacing: spacing.filterProps,
+  typography: typography.filterProps,
+};
+
+const styleFunctionMapping = {
+  borders,
+  display,
+  flexbox,
+  grid,
+  positions,
+  palette,
+  shadows,
+  sizing,
+  spacing,
+  typography,
+};
+
+export const propToStyleFunction = Object.keys(filterPropsMapping).reduce((acc, styleFnName) => {
+  filterPropsMapping[styleFnName].forEach((propName) => {
+    acc[propName] = styleFunctionMapping[styleFnName];
+  });
+
+  return acc;
+}, {});
+
 function getThemeValue(prop, value, theme) {
   const inputProps = {
     [prop]: value,
     theme,
   };
 
-  if (borders.filterProps.indexOf(prop) !== -1) {
-    return borders(inputProps);
-  }
-  if (display.filterProps.indexOf(prop) !== -1) {
-    return display(inputProps);
-  }
-  if (flexbox.filterProps.indexOf(prop) !== -1) {
-    return flexbox(inputProps);
-  }
-  if (grid.filterProps.indexOf(prop) !== -1) {
-    return grid(inputProps);
-  }
-  if (positions.filterProps.indexOf(prop) !== -1) {
-    return positions(inputProps);
-  }
-  if (palette.filterProps.indexOf(prop) !== -1) {
-    return palette(inputProps);
-  }
-  if (shadows.filterProps.indexOf(prop) !== -1) {
-    return shadows(inputProps);
-  }
-  if (sizing.filterProps.indexOf(prop) !== -1) {
-    return sizing(inputProps);
-  }
-  if (spacing.filterProps.indexOf(prop) !== -1) {
-    return spacing(inputProps);
-  }
-  if (typography.filterProps.indexOf(prop) !== -1) {
-    return typography(inputProps);
-  }
-  return { [prop]: value };
+  const styleFunction = propToStyleFunction[prop];
+  return styleFunction ? styleFunction(inputProps) : { [prop]: value };
 }
 
 export default getThemeValue;

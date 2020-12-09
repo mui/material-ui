@@ -1,5 +1,243 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.18
+
+Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- Fix most of the issues with the system (#23716, #23635, #23737, #23733, #23700, #23688) @mnajdova.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.18`
+
+#### Breaking changes
+
+- [Box] Remove deprecated props (#23716) @mnajdova
+  All props are now available under the `sx` prop. A deprecation will be landing in v4.
+  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#box-sx-prop).
+
+  ```diff
+  -<Box p={2} bgColor="primary.main">
+  +<Box sx={{ p: 2, bgColor: 'primary.main' }}>
+  ```
+
+#### Changes
+
+- [Autocomplete] Add ability to override key down events handlers (#23487) @hessaam
+- [Autocomplete] Better isolate test case (#23704) @oliviertassinari
+- [Autocomplete] Fix highlight change event (#23718) @TakumaKira
+- [Box] Fix TypeScript issue when component prop is used (#23686) @mnajdova
+- [experimentalStyled] Make sx style fn optional (#23714) @mnajdova
+- [l10n] Improve Brazilian (pt-BR) locale (#23707) @m4rcelofs
+- [l10n] Improve Korean (ko-KR) locale (#23794) @sujinleeme
+- [Select] Add disabled attribute in input element when disabled (#23778) @praveenkumar-kalidass
+- [Switch] Add preventDefault check for state change (#23786) @praveenkumar-kalidass
+- [Tabs] Remove duplicate styles (#23561) @cmfcmf
+
+### `@material-ui/system@v5.0.0-alpha.18`
+
+- [system] Allow values to use shorter string when the prop name is contained in the value (#23635) @mnajdova
+- [system] Another round of perf improvements (#23737) @mnajdova
+- [system] Fix transform return value to support CSSObject (#23733) @mnajdova
+- [system] Make borderRadius multiply a theme's design token (#23700) @mnajdova
+- [system] Various perf gain experiments (#23688) @mnajdova
+
+### `@material-ui/styles@v5.0.0-alpha.18`
+
+- [styles] Small performance gain (#23749) @oliviertassinari
+- [styles] Update mergeClasses types to more closely match its implementation (#23705) @etrepum
+
+### `@material-ui/utils@v5.0.0-alpha.18`
+
+- [system] Another round of perf improvements (#23737) @mnajdova
+
+### `@material-ui/lab@v5.0.0-alpha.18`
+
+- [DatePicker] Found one prop that was renamed (#23676) @oliviertassinari
+- [DateRangePicker] Allow same date selection (#23701) @hmaddisb
+
+### `@material-ui/styled-engine@v5.0.0-alpha.18`/`@material-ui/styled-engine-sc@v5.0.0-alpha.18`
+
+- [styled-engine] Fix tagged template syntax with multiple expressions (#23269) @eps1lon
+
+### Docs
+
+- [docs] Add settings panel to allow system mode (#23722) @mbrookes
+- [docs] Add v5 peer dependencies in README (#23751) @johnrichardrinehart
+- [docs] Document using codesandbox-ci (#23800) @brorlarsnicklas
+- [docs] Fix link name for canadacasino (#23799) @eps1lon
+- [docs] Fix various a11y issues reported by lighthouse (#23791) @eps1lon
+- [docs] Improve prop descriptions (#23723) @oliviertassinari
+- [docs] Improve SEO structure (#23748) @oliviertassinari
+- [docs] Improve settings toggle button styling (#23754) @mbrookes
+- [docs] Misc fixes (#23756) @mbrookes
+- [docs] Move instructions for starting the docs earlier in the file (#23801) @brorlarsnicklas
+- [docs] Prepare v5.0.0-alpha.17 (#23680) @oliviertassinari
+- [docs] Remove unused abstraction (#23724) @oliviertassinari
+- [docs] Sync translations (#23682) @l10nbot
+
+### Core
+
+- [benchmark] Improve printed results (#23729) @oliviertassinari
+- [benchmark] Test styleFunctionSx vs. @styled-system/css (#23702) @mnajdova
+- [benchmark] Update with latest (#23694) @oliviertassinari
+- [core] Batch small changes (#23678) @oliviertassinari
+- [core] Fix ci @oliviertassinari
+- [core] Fix error handling on upload (#23734) @eps1lon
+- [core] Fully clear composite TypeScript project state (#23805) @eps1lon
+- [core] Remove unused classes (#23473) @jens-ox
+- [test] Add conformance test suite for v5 (#23798) @mnajdova
+- [test] Cleanup skipped tests (#23732) @eps1lon
+- [test] Misc improvements to experimental and browser test runner (#23699) @eps1lon
+- [test] Stay busy until document.fonts is ready (#23736) @eps1lon
+
+## 5.0.0-alpha.17
+
+###### _Nov 23 2020_
+
+Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 📚 Improve the IntelliSense support for the `sx` prop (#23599) @mnajdova.
+  You should now get a description for each property of the system. For instance with `mx`:
+
+  ![system TypeScript](https://user-images.githubusercontent.com/3165635/99920493-20f60a00-2d24-11eb-8748-c5dd7fe85cbd.png)
+
+- 💅 Migrate the first core component to the v5 styling architecture (#23308) @mnajdova.
+  We have spent the last few months iterating on the new styling approach in the lab, and are confident enough in the new approach to move it to the core, so we have migrated the Slider. We will wait a week or two to collect feedback on it, before scaling it to the rest of the codebase.
+- 📅 Fix the first few issues on the date picker components since the migration in the lab.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.17`
+
+#### Breaking changes
+
+- [Autocomplete] Rename `closeIcon` prop with `clearIcon` to avoid confusion (#23617) @akhilmhdh.
+
+  ```diff
+  -<Autocomplete closeIcon={icon} />
+  +<Autocomplete clearIcon={icon} />
+  ```
+
+- [Dialog] Remove the `disableBackdropClick` prop. It's redundant with the `reason` argument (#23607) @eps1lon.
+
+  ```diff
+  <Dialog
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
+  />
+  ```
+
+- [Modal] Remove the `disableBackdropClick` prop. It's redundant with the `reason` argument (#23607) @eps1lon.
+
+  ```diff
+  <Modal
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
+  />
+  ```
+
+- [Modal] Remove the `onEscapeKeyDown` prop. It's redundant with the `reason` argument. (#23571) @eps1lon
+
+  ```diff
+  <Modal
+  -  onEscapeKeyDown={handleEscapeKeyDown}
+  +  onClose={(event, reason) => {
+  +    if (reason === "escapeKeyDown") {
+  +      handleEscapeKeyDown(event);
+  +    }
+  +  }}
+  />;
+  ```
+
+#### Changes
+
+- [CircularProgress][linearprogress] Change components from div to span (#23587) @bruno-azzi
+- [Grid] Improve warning when a prop is missing (#23630) @udayRedI
+- [Icon] Allow customizing the 'material-icons' base class name (#23613) @rart
+- [Select] Fix focus() call on ref (#23302) @reedanders
+- [Slider] Add test case for triggering a specific value (#23642) @Thehambalamba
+- [Slider] Replace core Slider with SliderStyled (#23308) @mnajdova
+- [Slider] General cleanup and add classes prop for unstyled (#23569) @mnajdova
+- [styles] Add support for TypeScript 4.1 (#23633) @eps1lon
+
+### `@material-ui/codemod@v5.0.0-alpha.17`
+
+- [codemod] Add moved-lab-modules (#23588) @eps1lon
+  This codemod is part of our effort to make the migration from v4 to v5 as painless as possible.
+
+### `@material-ui/utils@v5.0.0-alpha.17`
+
+- [Grid] Improve warning when a prop is missing (#23630) @udayRedI
+
+### `@material-ui/system@v5.0.0-alpha.17`
+
+- [system] Improve the `sx` prop IntelliSense (#23599) @mnajdova
+
+### `@material-ui/unstyled@v5.0.0-alpha.17`
+
+- [Slider] Replace core Slider with SliderStyled (#23308) @mnajdova
+
+### `@material-ui/lab@v5.0.0-alpha.17`
+
+#### Breaking changes
+
+- [DatePicker] Change the import path of the date adapters (#23568) @eps1lon.
+  It better fits with the current import convention.
+
+  ```diff
+  -import AdapterDateFns from '@material-ui/lab/dateAdapter/date-fns';
+  +import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+  ```
+
+#### Changes
+
+- [DatePicker] Add missing exports (#23621) @havgry
+- [DatePicker] Add missing TypeScript definitions (#23560) @mbrookes
+- [DatePicker] Fix false-positive when validating mask in Safari (#23602) @eps1lon
+- [DatePicker] Fix missing manifest for typescript packages (#23564) @eps1lon
+- [TimePicker] Prevent scroll when interacting with the clock (#23563) @knightss27
+
+### Docs
+
+- [docs] Add advanced page for the system (#23596) @mnajdova
+- [docs] Add docs for typography in system (#23510) @oliviertassinari
+- [docs] API pages i18n (#23214) @mbrookes
+- [docs] Create pickers migration guide (#23605) @dmtrKovalenko
+- [docs] Enable TS language service for docs/src (#23576) @eps1lon
+- [docs] Explain the information listed on the system properties page (#23566) @mnajdova
+- [docs] Fix /api client-side routing (#23586) @eps1lon
+- [docs] Fix the Box section title on migration-v4 guide (#23679) @claudioldf
+- [docs] Generate default values for docs from the unstyled components (#23614) @mnajdova
+- [docs] Increase printWidth from 80 to 85(#23512) @eps1lon
+- [docs] Prevent layout jumps from img loading in system demo (#23504) @eps1lon
+- [docs] Remove controlled Tooltip example in Slider (#23625) @micsidoruk
+- [docs] Remove dead demos in the system basics page (#23565) @mnajdova
+- [docs] Replace emotion-server packages with @emotion/server (#23557) @numToStr
+- [docs] Sync translations (#23648) @l10nbot
+
+### Core
+
+- [core] Add support for TypeScript 4.1 (#23633) @eps1lon
+- [core] Batch small changes (#23554) @oliviertassinari
+- [core] Cleanup emotion dependencies (#23556) @eps1lon
+- [core] Fix formatting (#23567) @eps1lon
+- [core] Fix tracked component size regression (#23516) @eps1lon
+- [core] Fix transpilation target of UMD bundle (#23618) @eps1lon
+- [test] Create chunks for Argos (#23518) @oliviertassinari
+- [test] Debug argos-cli upload failures (#23623) @eps1lon
+- [test] Enable experimental-timezone tests (#23595) @eps1lon
+- [test] Misc visual regression flakiness improvements (#23619) @eps1lon
+- [test] Use playwright instead of vrtest (#23500) @eps1lon
+
 ## 5.0.0-alpha.16
 
 ###### _Nov 14 2020_
@@ -12975,7 +13213,7 @@ Shout out to @kybarg for the update of the `TextField` in order to better follow
 
 This release introduces an important change in the API and the implementation.
 Each exposed component is wrapped with a `withStyles` Higher-order component.
-This HOC has different responsibilities, the one you gonna be interested in is
+This HOC has different responsibilities, the one you're going to be interested in is
 regarding the `classes` property. Now, we consider the CSS as a public API.
 You now have two way to customize absolutely all the CSS injected by Material-UI.
 Either the instance level with the `classes` property or the class level with the
@@ -12988,8 +13226,9 @@ To learn more about it, have a look at the documentation.
 - [core] Various fixes after using it on a real project (#6882) @oliviertassinari
   Apply the other properties (undocumented) on the root of the Menu.
 - [core] Add a new classes property to all the components #6911 @oliviertassinari
-  If you where using the ref to access the internal of the component or native elements,
-  you gonna have to change your strategy, either use `innerRef` or `inputRef`.
+
+If you were using the ref to access the internals of the component or native elements,
+you're going to have to change your strategy. Either use `innerRef` or `inputRef`.
 
 #### Component Fixes / Enhancements
 
@@ -13426,9 +13665,9 @@ We are now at 93.53%. That's pretty great.
 
 ###### _Feb 7, 2017_
 
-One year from now, we were struggling with removing all the mixins from the project.
-Now, it's about rewriting all our components.
-We gonna try doing frequent alpha releases to keep some intertie. At least once per week would be good.
+One year ago, we were struggling with removing all the mixins from the project.
+Now, it's about rewriting all the components.
+We're going to try doing frequent alpha releases to keep some intertia. At least once per week would be good.
 As always, we are keeping the [documentation](https://material-ui.com) up to date.
 
 #### Component Fixes / Enhancements

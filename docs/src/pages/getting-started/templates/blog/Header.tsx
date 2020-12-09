@@ -57,11 +57,7 @@ export default function Header(props: HeaderProps) {
           Sign up
         </Button>
       </Toolbar>
-      <Toolbar
-        component="nav"
-        variant="dense"
-        className={classes.toolbarSecondary}
-      >
+      <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
         {sections.map((section) => (
           <Link
             color="inherit"

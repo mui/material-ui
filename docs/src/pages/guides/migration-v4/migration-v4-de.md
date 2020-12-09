@@ -20,10 +20,12 @@ The very first thing you will need to do is to update your dependencies.
 
 ### Update Material-UI version
 
-You need to update your `package.json` to use the latest version of Material-UI.
+You need to update your `package.json` to use the latest version of Material-UI and its peer dependencies.
 
 ```json
 "dependencies": {
+  "@emotion/react": "^11.0.0",
+  "@emotion/styled": "^11.0.0",
   "@material-ui/core": "^5.0.0"
 }
 ```
@@ -31,11 +33,11 @@ You need to update your `package.json` to use the latest version of Material-UI.
 Oder führe aus
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
-oder
+or
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 ## Handling breaking changes
@@ -229,6 +231,8 @@ const classes = makeStyles(theme => ({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 ### Autovervollständigung (Autocomplete)
 
 - Move the component from the lab to the core. The component is now stable.
@@ -239,6 +243,8 @@ const classes = makeStyles(theme => ({
   +import Autocomplete from '@material-ui/core/Autocomplete';
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
+
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
 - `renderOption` should now return the full DOM structure of the option. It makes customizations easier. You can recover from the change with:
@@ -260,6 +266,13 @@ const classes = makeStyles(theme => ({
   +   </li>
     )}
   />
+  ```
+
+- Rename `closeIcon` prop with `clearIcon` to avoid confusion.
+
+  ```diff
+  -<Autocomplete closeIcon={defaultClearIcon} />
+  +<Autocomplete clearIcon={defaultClearIcon} />
   ```
 
 ### Avatar
@@ -316,17 +329,28 @@ const classes = makeStyles(theme => ({
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-
-  ###  Box
+### Box
 
 - The system props have been deprecated in v5, and replaced with the `sx` prop.
 
-```diff
--<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
-+<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
-```
+  ```diff
+  -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
+  +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+  ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
+
+- The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit value, in `px`.
+
+  ```diff
+  -<Box sx={{ borderRadius: 'borderRadius' }}>
+  +<Box sx={{ borderRadius: 1 }}>
+  ```
+
+  ```diff
+  -<Box sx={{ borderRadius: 16 }}>
+  +<Box sx={{ borderRadius: '16px' }}>
+  ```
 
 ### Button
 
@@ -390,6 +414,20 @@ const classes = makeStyles(theme => ({
   +    onExited,
   +    onExiting,
   +  }}
+  />
+  ```
+
+- Remove the `disableBackdropClick` prop because redundant. Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
+
+  ```diff
+  <Dialog
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
   />
   ```
 
@@ -566,6 +604,33 @@ const classes = makeStyles(theme => ({
 
 ### Modal
 
+- Remove the `disableBackdropClick` prop because redundant. Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
+
+  ```diff
+  <Modal
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
+  />
+  ```
+
+- Remove the `onEscapeKeyDown` prop because redundant. Use `onClose` with `reason === "escapeKeyDown"` instead.
+
+  ```diff
+  <Modal
+  - onEscapeKeyDown={handleEscapeKeyDown}
+  + onClose={(event, reason) => {
+  +   if (reason === 'escapeKeyDown') {
+  +     handleEscapeKeyDown(event);
+  +   }
+  + }}
+  />
+  ```
+
 - Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
 ### Paginierung
@@ -580,6 +645,8 @@ const classes = makeStyles(theme => ({
   +import PaginationItem from '@material-ui/core/PaginationItem';
   +import usePagination from '@material-ui/core/usePagination';
   ```
+
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
 
@@ -651,6 +718,8 @@ const classes = makeStyles(theme => ({
   +import Rating from '@material-ui/core/Rating';
   ```
 
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 - Change the default empty icon to improve accessibility. If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
 
   ```diff
@@ -691,6 +760,8 @@ const classes = makeStyles(theme => ({
   +import Skeleton from '@material-ui/core/Skeleton';
   ```
 
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
 
   ```diff
@@ -709,6 +780,20 @@ const classes = makeStyles(theme => ({
   ```diff
   -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  ```
+
+- The `ValueLabelComponent` prop is now part of the `components` prop.
+
+  ```diff
+  -<Slider ValueLabelComponent={CustomValueLabel} />
+  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  ```
+
+- The `ThumbComponent` prop is not part of the `components` prop.
+
+  ```diff
+  -<Slider ThumbComponent={CustomThumb} />
+  +<Slider components={{ Thumb: CustomThumb }} />
   ```
 
 ### Snackbar
@@ -753,6 +838,8 @@ const classes = makeStyles(theme => ({
   +import SpeedDialAction from '@material-ui/core/SpeedDialAction';
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
+
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Stepper
 
@@ -834,18 +921,29 @@ const classes = makeStyles(theme => ({
 
 ### TextField
 
-- Better isolate the fixed textarea height behavior to the dynamic one. You need to use the `minRows` prop in the following case:
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
 
   ```diff
-  -<TextField rows={2} maxRows={5} />
-  +<TextField minRows={2} maxRows={5} />
+  -<TextField value="Standard" />
+  -<TextField value="Outlined" variant="outlined" />
+  +<TextField value="Standard" variant="standard" />
+  +<TextField value="Outlined" />
   ```
+
+[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#textfield-variant-prop) will automatically update your code.
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
   ```diff
   -<TextField rowsMax={6}>
   +<TextField maxRows={6}>
+  ```
+
+- Better isolate the fixed textarea height behavior to the dynamic one. You need to use the `minRows` prop in the following case:
+
+  ```diff
+  -<TextField rows={2} maxRows={5} />
+  +<TextField minRows={2} maxRows={5} />
   ```
 
 - Change ref forwarding expections on custom `inputComponent`. The component should forward the `ref` prop instead of the `inputRef` prop.
@@ -899,6 +997,8 @@ const classes = makeStyles(theme => ({
   +import ToggleButton from '@material-ui/core/ToggleButton';
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
+
+  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Tooltip
 

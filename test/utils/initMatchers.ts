@@ -107,6 +107,11 @@ declare global {
        * @example expect(() => render()).toErrorDev(['first warning', 'then the second'])
        */
       toErrorDev(messages?: string | string[]): void;
+      /**
+       * Asserts that the given callback throws an error matching the given message in development (process.env.NODE_ENV !== 'production').
+       * In production it expects a minified error.
+       */
+      toThrowMinified(message: string): void;
     }
   }
 }
@@ -274,34 +279,37 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
-  chai.Assertion.addMethod('toHaveAccessibleDescription', function hasAccessibleDescription(
-    expectedDescription,
-  ) {
-    const root = utils.flag(this, 'object');
-    // make sure it's an Element
-    new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);
+  chai.Assertion.addMethod(
+    'toHaveAccessibleDescription',
+    function hasAccessibleDescription(expectedDescription) {
+      const root = utils.flag(this, 'object');
+      // make sure it's an Element
+      new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(
+        1,
+      );
 
-    const actualDescription = computeAccessibleDescription(root, {
-      // in local development we pretend to be visible. full getComputedStyle is
-      // expensive and reserved for CI
-      getComputedStyle: process.env.CI ? undefined : pretendVisibleGetComputedStyle,
-    });
+      const actualDescription = computeAccessibleDescription(root, {
+        // in local development we pretend to be visible. full getComputedStyle is
+        // expensive and reserved for CI
+        getComputedStyle: process.env.CI ? undefined : pretendVisibleGetComputedStyle,
+      });
 
-    const possibleDescriptionComputationMessage = root.hasAttribute('title')
-      ? ' computeAccessibleDescription can be misleading when a `title` attribute is used. This might be a bug in `dom-accessibility-api`.'
-      : '';
-    this.assert(
-      actualDescription === expectedDescription,
-      `expected \n${elementToString(
-        root,
-      )} to have accessible description #{exp} but got #{act} instead.${possibleDescriptionComputationMessage}`,
-      `expected \n${elementToString(
-        root,
-      )} not to have accessible description #{exp}.${possibleDescriptionComputationMessage}`,
-      expectedDescription,
-      actualDescription,
-    );
-  });
+      const possibleDescriptionComputationMessage = root.hasAttribute('title')
+        ? ' computeAccessibleDescription can be misleading when a `title` attribute is used. This might be a bug in `dom-accessibility-api`.'
+        : '';
+      this.assert(
+        actualDescription === expectedDescription,
+        `expected \n${elementToString(
+          root,
+        )} to have accessible description #{exp} but got #{act} instead.${possibleDescriptionComputationMessage}`,
+        `expected \n${elementToString(
+          root,
+        )} not to have accessible description #{exp}.${possibleDescriptionComputationMessage}`,
+        expectedDescription,
+        actualDescription,
+      );
+    },
+  );
 
   /**
    * Correct name for `to.be.visible`
@@ -363,34 +371,36 @@ chai.use((chaiAPI, utils) => {
     }
   }
 
-  chai.Assertion.addMethod('toHaveInlineStyle', function toHaveInlineStyle(
-    expectedStyleUnnormalized: Record<string, string>,
-  ) {
-    const element = utils.flag(this, 'object') as HTMLElement;
-    if (element?.nodeType !== 1) {
-      // Same pre-condition for negated and unnegated  assertion
-      throw new AssertionError(`Expected an Element but got ${String(element)}`);
-    }
+  chai.Assertion.addMethod(
+    'toHaveInlineStyle',
+    function toHaveInlineStyle(expectedStyleUnnormalized: Record<string, string>) {
+      const element = utils.flag(this, 'object') as HTMLElement;
+      if (element?.nodeType !== 1) {
+        // Same pre-condition for negated and unnegated  assertion
+        throw new AssertionError(`Expected an Element but got ${String(element)}`);
+      }
 
-    assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
-      styleTypeHint: 'inline',
-    });
-  });
+      assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
+        styleTypeHint: 'inline',
+      });
+    },
+  );
 
-  chai.Assertion.addMethod('toHaveComputedStyle', function toHaveComputedStyle(
-    expectedStyleUnnormalized: Record<string, string>,
-  ) {
-    const element = utils.flag(this, 'object') as HTMLElement;
-    if (element?.nodeType !== 1) {
-      // Same pre-condition for negated and unnegated  assertion
-      throw new AssertionError(`Expected an Element but got ${String(element)}`);
-    }
-    const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
+  chai.Assertion.addMethod(
+    'toHaveComputedStyle',
+    function toHaveComputedStyle(expectedStyleUnnormalized: Record<string, string>) {
+      const element = utils.flag(this, 'object') as HTMLElement;
+      if (element?.nodeType !== 1) {
+        // Same pre-condition for negated and unnegated  assertion
+        throw new AssertionError(`Expected an Element but got ${String(element)}`);
+      }
+      const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
 
-    assertMatchingStyles.call(this, computedStyle, expectedStyleUnnormalized, {
-      styleTypeHint: 'computed',
-    });
-  });
+      assertMatchingStyles.call(this, computedStyle, expectedStyleUnnormalized, {
+        styleTypeHint: 'computed',
+      });
+    },
+  );
 
   chai.Assertion.addMethod('toEqualDateTime', function toEqualDateTime(expectedDate, message) {
     // eslint-disable-next-line no-underscore-dangle
@@ -399,6 +409,21 @@ chai.use((chaiAPI, utils) => {
     // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
     utils.transferFlags(this as any, assertion, false);
     assertion.to.equal(expectedDate.toISOString());
+  });
+
+  chai.Assertion.addMethod('toThrowMinified', function toThrowMinified(expectedDevMessage) {
+    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+    if (process.env.NODE_ENV !== 'production') {
+      (this as any).to.throw(expectedDevMessage);
+    } else {
+      utils.flag(
+        this,
+        'message',
+        "Looks like the error was not minified. This can happen if the error code hasn't been generated yet. Run `yarn extract-error-codes` and try again.",
+      );
+      // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+      (this as any).to.throw('Minified Material-UI error', 'helper');
+    }
   });
 });
 

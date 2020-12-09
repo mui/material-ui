@@ -30,9 +30,7 @@ const names = [
 export default function MultipleSelectNative() {
   const classes = useStyles();
   const [personName, setPersonName] = React.useState<string[]>([]);
-  const handleChangeMultiple = (
-    event: React.ChangeEvent<{ value: unknown }>,
-  ) => {
+  const handleChangeMultiple = (event: React.ChangeEvent<{ value: unknown }>) => {
     const { options } = event.target as HTMLSelectElement;
     const value: string[] = [];
     for (let i = 0, l = options.length; i < l; i += 1) {

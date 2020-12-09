@@ -60,7 +60,7 @@ githubLabel: 'component: Skeleton'
 当您在排版的时候会得心应手，因为它的高度是用 `em` 单位设置的。
 
 ```jsx
-<Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography> <Skeleton /> : 'h1'}</Typography>
+<Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography>
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}

@@ -4,11 +4,11 @@
 
 ## Espaço do usuário
 
-It's generally recommended to test your application without tying the tests too closely to Material-UI. This is how Material-UI components are tested internally. A library that has a first-class API for this approach is [`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro).
+Geralmente é recomendado testar sua aplicação sem vincular os testes ao Material-UI. É assim que os componentes do Material-UI são testados internamente. Uma biblioteca que tem uma API de primeira classe para esta abordagem é [`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro).
 
-For example, when rendering a `TextField` your test should not need to query for the specific Material-UI instance of the `TextField` but rather for the `input`, or `[role="textbox"]`.
+Por exemplo, ao renderizar um `TextField` seu teste não precisa consultar a instância específica do Material-UI do `TextField`, mas sim um `input`, ou `[role="textbox"]`.
 
-By not relying on the React component tree you make your test more robust against internal changes in Material-UI or, if you need snapshot testing, adding additional wrapper components such as context providers. We don't recommend snapshot testing though. ["Effective snapshot testing" by Kent C. Dodds](https://kentcdodds.com/blog/effective-snapshot-testing) goes into more details why snapshot testing might be misleading for React component tests.
+Ao não depender da árvore de componentes React você torna seu teste mais robusto contra mudanças internas no Material-UI ou se você precisar de testes de snapshot, adicione componentes encapsulados adicionais como provedores de contexto. No entanto, não recomendamos teste de snapshot. ["Effective snapshot testing" por Kent C. Dodds](https://kentcdodds.com/blog/effective-snapshot-testing) entra em mais detalhes do porque testes de snapshot podem induzir em erro para testes de componentes React.
 
 ## Interno
 

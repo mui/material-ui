@@ -1,4 +1,4 @@
-import marked from 'marked/lib/marked';
+import marked from 'marked';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import kebabCase from 'lodash/kebabCase';
 import textToHash from 'docs/src/modules/utils/textToHash';
@@ -250,7 +250,7 @@ ${headers.components
               `<h${level}>`,
               `<a class="anchor-link" id="${hash}"></a>`,
               headingHtml,
-              `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
+              `<a class="anchor-link-style" aria-hidden="true" href="#${hash}">`,
               '<svg><use xlink:href="#anchor-link-icon" /></svg>',
               '</a>',
               `</h${level}>`,

@@ -14,7 +14,7 @@ githubLabel: 'component: Select'
 
 Меню располагаются над вызвавшими их элементами таким образом, чтобы элемент меню, выбранный в данный момент, перекрывал вызывающий элемент.
 
-Компонент Select взаимозаменяем с нативным элементом `<select>`.
+{{"demo": "pages/components/selects/BasicSelect.js"}}
 
 ## Расширенные возможности
 
@@ -26,7 +26,7 @@ githubLabel: 'component: Select'
 
 ### Filled and outlined variants
 
-{{"demo": "pages/components/selects/NativeSelects.js"}}
+{{"demo": "pages/components/selects/SelectVariants.js"}}
 
 ### Labels and helper text
 

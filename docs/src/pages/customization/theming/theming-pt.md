@@ -42,7 +42,7 @@ Ao usar o tema do Material-UI com a [solução de estilo](/styles/basics/) ou [q
 
 Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
 
-- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo. Includes basic site templates to show various components and how they are affected by the theme
+- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
 - [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
 
@@ -108,7 +108,7 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 #### Argumentos
 
 1. `theme` (*Object*): O objeto de tema a ser aplicado as alterações.
-2. `options` (*Object* [opcional]):
+2. `options` (_Object_ [opcional]):
 
 - `breakpoints` (*Array\<String\>* [opcional]): Padrão `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
 - `disableAlign` (*Boolean* [opcional]): Padrão `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
@@ -136,7 +136,7 @@ Gera um tema que reduz a quantidade de avisos dentro de [`React.StrictMode`](htt
 
 #### Requisitos
 
-Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
+Atualmente `unstable_createMuiStrictModeTheme` não adiciona requisitos adicionais.
 
 #### Argumentos
 

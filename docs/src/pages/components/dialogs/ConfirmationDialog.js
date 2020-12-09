@@ -61,8 +61,6 @@ function ConfirmationDialogRaw(props) {
 
   return (
     <Dialog
-      disableBackdropClick
-      disableEscapeKeyDown
       maxWidth="xs"
       TransitionProps={{ onEntering: handleEntering }}
       aria-labelledby="confirmation-dialog-title"
@@ -150,10 +148,7 @@ export default function ConfirmationDialog() {
           <ListItemText primary="Phone ringtone" secondary={value} />
         </ListItem>
         <ListItem button divider disabled>
-          <ListItemText
-            primary="Default notification ringtone"
-            secondary="Tethys"
-          />
+          <ListItemText primary="Default notification ringtone" secondary="Tethys" />
         </ListItem>
         <ConfirmationDialogRaw
           classes={{

@@ -71,12 +71,7 @@ export default function Playground() {
         {...flatProps}
         id="flat-demo"
         renderInput={(params) => (
-          <TextField
-            {...params}
-            label="flat"
-            margin="normal"
-            variant="standard"
-          />
+          <TextField {...params} label="flat" margin="normal" variant="standard" />
         )}
       />
       <Autocomplete
@@ -305,8 +300,7 @@ const top100Films = [
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
   {
-    title:
-      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { title: 'The Great Dictator', year: 1940 },

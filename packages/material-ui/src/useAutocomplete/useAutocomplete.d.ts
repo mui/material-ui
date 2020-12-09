@@ -14,6 +14,13 @@ export interface FilterOptionsState<T> {
   getOptionLabel: (option: T) => string;
 }
 
+export interface AutocompleteGroupedOption<T = string> {
+  key: number;
+  index: number;
+  group: string;
+  options: T[];
+}
+
 export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>
 ): (options: T[], state: FilterOptionsState<T>) => T[];
@@ -133,8 +140,9 @@ export interface UseAutocompleteProps<
    */
   getOptionLabel?: (option: T) => string;
   /**
-   * Used to determine if an option is selected, considering the current value.
+   * Used to determine if an option is selected, considering the current value(s).
    * Uses strict equality by default.
+   * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {T} option The option to test.
    * @param {T} value The value to test against.
@@ -310,5 +318,8 @@ export default function useAutocomplete<
   anchorEl: null | HTMLElement;
   setAnchorEl: () => void;
   focusedTag: number;
-  groupedOptions: T[];
+  /**
+   * The options to render. It's either `T[]` or `AutocompleteGroupedOption<T>[]` if the groupBy prop is provided.
+   */
+  groupedOptions: T[] | Array<AutocompleteGroupedOption<T>>;
 };

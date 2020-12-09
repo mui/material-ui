@@ -18,11 +18,7 @@ export default function FadeMenu() {
 
   return (
     <div>
-      <Button
-        aria-controls="fade-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
+      <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
         Open with fade transition
       </Button>
       <Menu

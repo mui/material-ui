@@ -22,11 +22,7 @@ export default function LabelBottomNavigation() {
   };
 
   return (
-    <BottomNavigation
-      value={value}
-      onChange={handleChange}
-      className={classes.root}
-    >
+    <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
       <BottomNavigationAction
         label="Recents"
         value="recents"
@@ -42,11 +38,7 @@ export default function LabelBottomNavigation() {
         value="nearby"
         icon={<LocationOnIcon />}
       />
-      <BottomNavigationAction
-        label="Folder"
-        value="folder"
-        icon={<FolderIcon />}
-      />
+      <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
     </BottomNavigation>
   );
 }

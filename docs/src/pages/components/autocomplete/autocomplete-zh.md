@@ -253,8 +253,7 @@ const filterOptions = createFilterOptions({
 ```jsx
 import matchSorter from 'match-sorter';
 
-const filterOptions = (options, { inputValue }) =>
-  matchSorter(options, inputValue);
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
 <Autocomplete filterOptions={filterOptions} />;
 ```
@@ -264,6 +263,22 @@ const filterOptions = (options, { inputValue }) =>
 在 10000 个随机生成的选项中搜索。 多亏了[react-window](https://github.com/bvaughn/react-window)，这个列表得以可视化。
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
+
+## 事件
+
+如果你不想要浏览器自动填充密钥，那么你可以将事件的 `defaultMuiPrevented` 属性设置为 `true`。
+
+```jsx
+<Autocomplete
+  onKeyDown={(event) => {
+    if (event.key === 'Enter') {
+      // 阻止默认的“Enter”行为。
+      event.defaultMuiPrevented = false;
+      // 你的处理器代码
+    }
+  }}
+/>
+```
 
 ## 设计局限
 

@@ -121,10 +121,12 @@ describe('<ToggleButton />', () => {
   });
 
   describe('server-side', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
 

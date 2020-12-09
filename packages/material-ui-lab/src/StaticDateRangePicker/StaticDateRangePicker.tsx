@@ -324,6 +324,4 @@ const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', S
 
 export type StaticDateRangePickerProps = React.ComponentProps<typeof StaticDateRangePicker>;
 
-export type DateRange<T> = import('../DateRangePicker/RangeTypes').DateRange<T>;
-
 export default StaticDateRangePicker;

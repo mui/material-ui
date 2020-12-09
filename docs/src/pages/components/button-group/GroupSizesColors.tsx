@@ -26,10 +26,7 @@ export default function GroupSizesColors() {
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-      <ButtonGroup
-        color="secondary"
-        aria-label="outlined secondary button group"
-      >
+      <ButtonGroup color="secondary" aria-label="outlined secondary button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>

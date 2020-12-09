@@ -196,7 +196,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 ### Input personalizado
 
-El apoyo `renderInput` te permite personalizar la entrada renderizada. El primer argumento de este apoyo renderizado contiene apoyos que necesitas para avanzar. Ponga atención específica a las claves  `red` y `inputProps`.
+El apoyo `renderInput` te permite personalizar la entrada renderizada. El primer argumento de este apoyo renderizado contiene apoyos que necesitas para avanzar. Ponga atención específica a las claves `red` y `inputProps`.
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
@@ -259,8 +259,7 @@ Para mecanismos de filtrado más completos, como la coincidencia aproximada, se 
 ```jsx
 import matchSorter from 'match-sorter';
 
-const filterOptions = (options, { inputValue }) =>
-  matchSorter(options, inputValue);
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
 <Autocomplete filterOptions={filterOptions} />;
 ```
@@ -270,6 +269,22 @@ const filterOptions = (options, { inputValue }) =>
 Buscar entre 10.000 opciones generadas al azar. La lista está virtualizada gracias a [react-window](https://github.com/bvaughn/react-window).
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
+
+## Events
+
+If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+
+```jsx
+<Autocomplete
+  onKeyDown={(event) => {
+    if (event.key === 'Enter') {
+      // Prevent's default 'Enter' behavior.
+      event.defaultMuiPrevented = false;
+      // your handler code
+    }
+  }}
+/>
+```
 
 ## Limitaciones
 
@@ -300,7 +315,7 @@ VoiceOver en iOS Safari no soporta el atributo `aria-owns` especialmente bien. P
 
 ### ListboxComponent
 
-Si proporciona un apoyo personalizado `ListboxComponent`, usted necesita asegurarse de que  el contedenedor de desplazamiento destinado tiene el atributo  `role`  esta configurado `listbox`.  Esto asegura el comportamiento correcto del desplazamiento, por ejemplo cuando usas el teclado para navegar.
+Si proporciona un apoyo personalizado `ListboxComponent`, usted necesita asegurarse de que el contedenedor de desplazamiento destinado tiene el atributo `role` esta configurado `listbox`. Esto asegura el comportamiento correcto del desplazamiento, por ejemplo cuando usas el teclado para navegar.
 
 ## Accesibilidad
 

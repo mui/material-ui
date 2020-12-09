@@ -7,9 +7,7 @@ import MobileDateTimePicker from '@material-ui/lab/MobileDateTimePicker';
 import DesktopDateTimePicker from '@material-ui/lab/DesktopDateTimePicker';
 
 export default function ResponsiveDateTimePickers() {
-  const [value, setValue] = React.useState(
-    new Date('2018-01-01T00:00:00.000Z'),
-  );
+  const [value, setValue] = React.useState(new Date('2018-01-01T00:00:00.000Z'));
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

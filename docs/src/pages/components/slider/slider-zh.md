@@ -1,6 +1,6 @@
 ---
 title: React Slider（滑块）组件
-components: Slider
+components: Slider, SliderUnstyled
 githubLabel: 'component: Slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
@@ -99,6 +99,10 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 在下面的演示中，_x_ 代表 _2^x_。 将 _x_ 增加 1 会使表示的值增加 _2_。
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
+
+## 无样式的滑块
+
+{{"demo": "pages/components/slider/UnstyledSlider.js"}}
 
 ## 无障碍设计
 

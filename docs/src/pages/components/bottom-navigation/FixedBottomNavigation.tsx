@@ -27,8 +27,7 @@ const useStyles = makeStyles({
 });
 
 function refreshMessages(): MessageExample[] {
-  const getRandomInt = (max: number) =>
-    Math.floor(Math.random() * Math.floor(max));
+  const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
 
   return Array.from(new Array(50)).map(
     () => messageExamples[getRandomInt(messageExamples.length)],
@@ -85,8 +84,7 @@ interface MessageExample {
 const messageExamples: MessageExample[] = [
   {
     primary: 'Brunch this week?',
-    secondary:
-      "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
     person: '/static/images/avatar/5.jpg',
   },
   {
@@ -97,8 +95,7 @@ const messageExamples: MessageExample[] = [
   },
   {
     primary: 'Recipe to try',
-    secondary:
-      'I am try out this new BBQ recipe, I think this might be amazing',
+    secondary: 'I am try out this new BBQ recipe, I think this might be amazing',
     person: '/static/images/avatar/2.jpg',
   },
   {
@@ -108,8 +105,7 @@ const messageExamples: MessageExample[] = [
   },
   {
     primary: "Doctor's Appointment",
-    secondary:
-      'My appointment for the doctor was rescheduled for next Saturday.',
+    secondary: 'My appointment for the doctor was rescheduled for next Saturday.',
     person: '/static/images/avatar/4.jpg',
   },
   {

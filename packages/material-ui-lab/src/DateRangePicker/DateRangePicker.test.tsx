@@ -4,7 +4,8 @@ import { spy } from 'sinon';
 import { isWeekend } from 'date-fns';
 import { screen, fireEvent } from 'test/utils';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
-import DesktopDateRangePicker, { DateRange } from '@material-ui/lab/DesktopDateRangePicker';
+import { DateRange } from '@material-ui/lab/DateRangePicker';
+import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
 import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
 import {
   createPickerRender,
@@ -58,6 +59,22 @@ describe('<DateRangePicker />', () => {
     expect(getAllByMuiTest('DateRangeHighlight')).to.have.length(24);
   });
 
+  it('allows a single day range', () => {
+    render(
+      <DesktopDateRangePicker
+        renderInput={defaultRangeRenderInput}
+        onChange={() => {}}
+        value={[
+          adapterToUse.date('2018-01-01T00:00:00.000'),
+          adapterToUse.date('2018-01-01T00:00:00.000'),
+        ]}
+      />,
+    );
+    const textboxes = screen.getAllByRole('textbox');
+    expect(textboxes[0]).to.have.attribute('aria-invalid', 'false');
+    expect(textboxes[1]).to.have.attribute('aria-invalid', 'false');
+  });
+
   it('highlights the selected range of dates', () => {
     render(
       <DesktopDateRangePicker
@@ -65,8 +82,8 @@ describe('<DateRangePicker />', () => {
         renderInput={defaultRangeRenderInput}
         onChange={() => {}}
         value={[
-          adapterToUse.date(adapterToUse.date('2018-01-01T00:00:00.000')),
-          adapterToUse.date(adapterToUse.date('2018-01-31T00:00:00.000')),
+          adapterToUse.date('2018-01-01T00:00:00.000'),
+          adapterToUse.date('2018-01-31T00:00:00.000'),
         ]}
       />,
     );
@@ -251,10 +268,7 @@ describe('<DateRangePicker />', () => {
         calendars={3}
         onChange={() => {}}
         TransitionComponent={FakeTransitionComponent}
-        value={[
-          adapterToUse.date(adapterToUse.date(NaN)),
-          adapterToUse.date('2018-01-31T00:00:00.000'),
-        ]}
+        value={[adapterToUse.date(NaN), adapterToUse.date('2018-01-31T00:00:00.000')]}
       />,
     );
 

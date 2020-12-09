@@ -79,9 +79,21 @@ function findComponents(directory, components = []) {
 const jsRegex = /\.js$/;
 const blackList = ['/.eslintrc', '/_document', '/_app'];
 
-// Returns the Next.js pages available in a nested format.
-// The output is in the next.js format.
-// Each pathname is a route you can navigate to.
+/**
+ * @typedef {object} NextJSPage
+ * @property {string} pathname
+ * @property {NextJSPage[]} [children]
+ */
+
+/**
+ * Returns the Next.js pages available in a nested format.
+ * The output is in the next.js format.
+ * Each pathname is a route you can navigate to.
+ * @param {{ front: true }} [options]
+ * @param {string} [directory]
+ * @param {NextJSPage[]} pages
+ * @returns {NextJSPage[]}
+ */
 function findPages(
   options = {},
   directory = path.resolve(__dirname, '../../../pages'),

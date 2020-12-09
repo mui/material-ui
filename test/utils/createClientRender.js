@@ -131,9 +131,29 @@ function clientRender(element, options = {}) {
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
-  // save stack to re-use in async afterEach
+  // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
-  afterEach(async () => {
+
+  /**
+   * Flag whether `createClientRender` was called in a suite i.e. describe() block.
+   * For legacy reasons `createClientRender` might accidentally be called in a before(Each) hook.
+   */
+  let wasCalledInSuite = false;
+  before(() => {
+    wasCalledInSuite = true;
+  });
+
+  beforeEach(() => {
+    if (!wasCalledInSuite) {
+      const error = new Error(
+        'Unable to run `before` hook for `createClientRender`. This usually indicates that `createClientRender` was called in a `before` hook instead of in a `describe()` block.',
+      );
+      error.stack = createClientRenderStack;
+      throw error;
+    }
+  });
+
+  afterEach(() => {
     if (setTimeout.hasOwnProperty('clock')) {
       const error = Error(
         "Can't cleanup before fake timers are restored.\n" +

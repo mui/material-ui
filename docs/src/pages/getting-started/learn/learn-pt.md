@@ -22,27 +22,27 @@ Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de
 
 ### Grátis
 
-- **Introduction to Material-UI**: a series of videos covering all the important Material-UI components.
+- **Introduction to Material-UI**: uma série de vídeos cobrindo todos os componentes importantes do Material-UI.
   - 📹 [The videos](https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr)
 - **Apply Google Material Design**: Este curso ensina os fundamentos do Google Material Design e como desenvolver uma pesquisa e aplicação de reserva de voo de ponta a ponta usando Material-UI e React.
   - 📹 [The videos](https://www.youtube.com/watch?v=bDkB3LoQKxs)
-- **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI.
+- **Meet Material-UI — your new favorite user interface library**: uma postagem de blog que o guia na construção de um Todo MVC enquanto aborda alguns conceitos importantes de Material-UI.
   - 📝 [The blog post](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **Learn React & Material-UI**: a series of videos covering all the important Material-UI components.
+- **Learn React & Material-UI**: uma série de vídeos cobrindo todos os componentes importantes do Material-UI.
   - 📹 [The videos](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Getting Started With Material-UI For React**: a blog post that guides you in building a simple card list.
+- **Getting Started With Material-UI For React**: uma postagem de blog que orienta na criação de uma lista de cartões simples.
   - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [The video](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts.
+- **Elegant UX in React with Material-UI**: uma postagem de blog que cobre alguns conceitos importantes de Material-UI.
   - 📝 [The blog post](https://alligator.io/react/material-ui/)
 
 ### Pago
 
-- **Implement high fidelity designs**: Ponte entre a lacuna de Design & Desenvolvimento. Break down detailed designs and bring them to life with Material-UI and React.
+- **Implement high fidelity designs**: Ponte entre a lacuna de Design & Desenvolvimento. Divida os projetos detalhadamente e os traga a vida com Material-UI e React.
 
   - 💻 [The Course](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
 
-- **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
+- **Apply Google Material Design**: Este curso ensina os fundamentos do Google Material Design e como desenvolver uma pesquisa e aplicação de reserva de voo de ponta a ponta usando Material-UI e React.
 
   - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
   - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)

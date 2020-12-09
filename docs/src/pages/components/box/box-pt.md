@@ -1,5 +1,5 @@
 ---
-title: React Box component
+title: Componente React Box
 githubLabel: 'component: Box'
 ---
 
@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">O componente Box serve como um componente encapsulador (wrapper) para a auxiliar na maioria das necessidades de uso com CSS.</p>
 
-O component Box compõe [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas no `@material-ui/system`. It's created using the `experimentalStyled()` function of `@material-ui/core/styles`.
+O component Box compõe [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas no `@material-ui/system`. É criado usando a função `experimentalStyled()` de `@material-ui/core/styles`.
 
 [A paleta](/system/palette/) com funções de estilo.
 
@@ -15,9 +15,9 @@ O component Box compõe [todas as funções de estilo](/system/basics/#all-inclu
 
 [A paleta](/system/palette/) com funções de estilo.
 
-## The sx prop
+## A propriedade sx
 
-All system properties are available via the `sx` prop. In addition, this prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
+Todas as propriedades do sistema estão disponíveis através da propriedade `sx`. Além disso, esta propriedade permite que você especifique quaisquer outras regras CSS que você possa precisar. Aqui está um exemplo de como você pode usá-la:
 
 {{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 
@@ -29,7 +29,7 @@ O componente Box envolve seu componente. Ele cria um novo elemento DOM, uma `<di
 
 Isso funciona muito bem quando as alterações precisam ser isoladas em um novo elemento DOM. Note no exemplo, a forma que você alterou a margem.
 
-No entanto, às vezes, você precisa modificar o elemento DOM subjacente. For instance, you want to change the border of the Button. The Button component defines its own styles. A herança por CSS não irá ajudar nesse caso. Para contornar o problema, você tem duas opções:
+No entanto, às vezes, você precisa modificar o elemento DOM subjacente. Por exemplo, você quer mudar a borda do botão. O componente botão define seus próprios estilos. A herança por CSS não irá ajudar nesse caso. Para contornar o problema, você tem duas opções:
 
 1. Usar [`React.cloneElement()`](https://pt-br.reactjs.org/docs/react-api.html#cloneelement)
 
@@ -56,4 +56,4 @@ import Box from '@material-ui/core/Box';
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br>&nbsp;func<br></span>                                     |                                         | Função de renderização do Box ou nó.                                                                 |
 | <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                                           | <span class="prop-default">false</span> | Se `true`, o box irá recriar seu elemento DOM filho. Ele irá usar `React.cloneElement` internamente. |
 | <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | O componente usado como nó raiz. Ou uma string para usar um elemento DOM ou componente.              |
-| <span class="prop-name">sx</span>                       | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | Accepts all system properties, as well as any valid CSS properties.                                  |
+| <span class="prop-name">sx</span>                       | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | Aceita todas as propriedades do sistema, bem como quaisquer propriedades CSS válidas.                |

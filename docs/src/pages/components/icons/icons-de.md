@@ -179,15 +179,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 
 ## Icon (Font icons)
 
-Die `Symbol-` Komponente zeigt ein Symbol aus einer beliebigen Symbolschriftart an, die Ligaturen unterstützt. Voraussetzung ist, dass Sie eine, beispielsweise die [Material Icon-Schriftart](https://google.github.io/material-design-icons/#icon-font-for-the-web) in Ihr Projekt einfügen, beispielsweise über Google Web Fonts:
-
-```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-```
-
-`Icon` will set the correct class name for the Material Icons font. `Icon` will set the correct class name for the Material icon font.
-
-Um ein Symbol zu verwenden, wickeln Sie einfach das Symbol Namen (Schrift Ligatur) mit der `Icon` Komponente zum Beispiel:
+Die `Symbol-` Komponente zeigt ein Symbol aus einer beliebigen Symbolschriftart an, die Ligaturen unterstützt. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. Um ein Symbol zu verwenden, wickeln Sie einfach das Symbol Namen (Schrift Ligatur) mit der `Icon` Komponente zum Beispiel:
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -199,7 +191,52 @@ Standardmäßig erbt ein Symbol die aktuelle Textfarbe. Optional können Sie die
 
 ### Schriftart Material icons
 
+`Icon` will by default set the correct base class name for the Material Icons font (filled variant). All you need to do is load the font, for instance, via Google Web Fonts:
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+```
+
 {{"demo": "pages/components/icons/Icons.js"}}
+
+### Custom font
+
+For other fonts, you can customize the baseline class name using the `baseClassName` prop. For instance, you can display two-tone icons with Material Design:
+
+```jsx
+import Icon from '@material-ui/core/Icon';
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
+  // Import the two tones MD variant                           ^^^^^^^^
+/>;
+```
+
+{{"demo": "pages/components/icons/TwoToneIcons.js"}}
+
+#### Global base class name
+
+Modifying the `baseClassName` prop for each component usage is repetitive. You can change the default prop globally with the theme
+
+```js
+const theme = createMuiTheme({
+  components: {
+    MuiIcon: {
+      defaultProps: {
+        // Replace the `material-icons` default value.
+        baseClassName: 'material-icons-two-tone',
+      },
+    },
+  },
+});
+```
+
+Then, you can use the two-tone font directly:
+
+```jsx
+<Icon>add_circle</Icon>
+```
 
 ### Font Awesome
 
@@ -209,7 +246,7 @@ Standardmäßig erbt ein Symbol die aktuelle Textfarbe. Optional können Sie die
 
 Note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos). The fa icons are cropped to use all the space available. You can adjust for this with a global override:
 
-```jsx
+```js
 import IconButton from '@material-ui/core/IconButton';
 import SvgIcon from '@material-ui/core/SvgIcon';
 

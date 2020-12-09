@@ -169,7 +169,7 @@ const styles = (theme) => ({
     },
     '& a, & a code': {
       // Style taken from the Link component
-      color: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
       textDecoration: 'none',
       '&:hover': {
         textDecoration: 'underline',

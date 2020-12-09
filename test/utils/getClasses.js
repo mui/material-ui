@@ -9,7 +9,7 @@ const shallow = createShallow();
  * @returns {Record<string, string>}
  */
 export default function getClasses(element) {
-  const { useStyles } = element.type;
+  const { useStyles = () => null } = element.type;
 
   let classes;
   function Listener() {

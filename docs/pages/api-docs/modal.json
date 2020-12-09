@@ -1,0 +1,28 @@
+{
+  "props": {
+    "BackdropComponent": { "type": { "name": "elementType" }, "default": "SimpleBackdrop" },
+    "BackdropProps": { "type": { "name": "object" } },
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "closeAfterTransition": { "type": { "name": "bool" } },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disableAutoFocus": { "type": { "name": "bool" } },
+    "disableEnforceFocus": { "type": { "name": "bool" } },
+    "disableEscapeKeyDown": { "type": { "name": "bool" } },
+    "disablePortal": { "type": { "name": "bool" } },
+    "disableRestoreFocus": { "type": { "name": "bool" } },
+    "disableScrollLock": { "type": { "name": "bool" } },
+    "hideBackdrop": { "type": { "name": "bool" } },
+    "keepMounted": { "type": { "name": "bool" } },
+    "onBackdropClick": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" }, "required": true }
+  },
+  "name": "Modal",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Modal/Modal.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/modal/\">Modal</a></li></ul>",
+  "styledComponent": true
+}

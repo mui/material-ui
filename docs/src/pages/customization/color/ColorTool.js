@@ -101,8 +101,7 @@ function ColorTool(props) {
     const isRgb = (string) =>
       /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
 
-    const isHex = (string) =>
-      /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
+    const isHex = (string) => /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
 
     let {
       target: { value: color },
@@ -212,12 +211,7 @@ function ColorTool(props) {
 
     return (
       <Grid item xs={12} sm={6} md={4}>
-        <Typography
-          component="label"
-          gutterBottom
-          htmlFor={intent}
-          variant="h6"
-        >
+        <Typography component="label" gutterBottom htmlFor={intent} variant="h6">
           {capitalize(intent)}
         </Typography>
         <Input
@@ -258,10 +252,7 @@ function ColorTool(props) {
                   name={intent}
                   aria-labelledby={`tooltip-${intent}-${hue}`}
                   icon={
-                    <div
-                      className={classes.radioIcon}
-                      style={{ backgroundColor }}
-                    />
+                    <div className={classes.radioIcon} style={{ backgroundColor }} />
                   }
                   checkedIcon={
                     <div

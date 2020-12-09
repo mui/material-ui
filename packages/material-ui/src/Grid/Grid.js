@@ -120,10 +120,16 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `direction="column"`. */
   'direction-xs-column': {
     flexDirection: 'column',
+    '& > $item': {
+      maxWidth: 'none',
+    },
   },
   /* Styles applied to the root element if `direction="column-reverse"`. */
   'direction-xs-column-reverse': {
     flexDirection: 'column-reverse',
+    '& > $item': {
+      maxWidth: 'none',
+    },
   },
   /* Styles applied to the root element if `direction="row-reverse"`. */
   'direction-xs-row-reverse': {

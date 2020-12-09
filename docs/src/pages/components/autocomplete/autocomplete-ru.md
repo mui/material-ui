@@ -259,8 +259,7 @@ For richer filtering mechanisms, like fuzzy matching, it's recommended to look a
 ```jsx
 import matchSorter from 'match-sorter';
 
-const filterOptions = (options, { inputValue }) =>
-  matchSorter(options, inputValue);
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
 <Autocomplete filterOptions={filterOptions} />;
 ```
@@ -270,6 +269,22 @@ const filterOptions = (options, { inputValue }) =>
 Поиск в 10000 случайно сгенерированных опций. Список виртуализирован благодаря [реагирующему окну](https://github.com/bvaughn/react-window).
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
+
+## Events
+
+If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+
+```jsx
+<Autocomplete
+  onKeyDown={(event) => {
+    if (event.key === 'Enter') {
+      // Prevent's default 'Enter' behavior.
+      event.defaultMuiPrevented = false;
+      // your handler code
+    }
+  }}
+/>
+```
 
 ## Ограничения
 

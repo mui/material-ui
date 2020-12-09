@@ -26,19 +26,14 @@ const maskMap = {
 
 export default function LocalizedDatePicker() {
   const [locale, setLocale] = React.useState<keyof typeof maskMap>('ru');
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(
-    new Date(),
-  );
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   const selectLocale = (newLocale: any) => {
     setLocale(newLocale);
   };
 
   return (
-    <LocalizationProvider
-      dateAdapter={AdapterDateFns}
-      locale={localeMap[locale]}
-    >
+    <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[locale]}>
       <div style={{ width: 300 }}>
         <DatePicker
           mask={maskMap[locale]}

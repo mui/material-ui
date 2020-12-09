@@ -25,11 +25,7 @@ export default function TextFieldSizes() {
           defaultValue="Small"
           size="small"
         />
-        <TextField
-          label="Size"
-          id="outlined-size-normal"
-          defaultValue="Normal"
-        />
+        <TextField label="Size" id="outlined-size-normal" defaultValue="Normal" />
       </div>
       <div>
         <TextField

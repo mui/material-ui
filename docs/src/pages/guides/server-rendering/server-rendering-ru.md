@@ -57,9 +57,9 @@ The following is the outline for what the server-side is going to look like. We 
 `server.js`
 
 ```js
-import express from 'express';
+const css = sheets.toString();
 
-// We are going to fill these out in the sections to follow.
+  // Send the rendered page back to the client.
 function renderFullPage(html, css) {
   /* ... */
 }
@@ -89,7 +89,7 @@ We then get the CSS from the `sheets` using `sheets.toString()`. As we are also 
 ```js
 import createCache from '@emotion/cache';
 
-const cache = createCache();
+const cache = createCache({ key: 'css' });
 
 export default cache;
 ```
@@ -103,7 +103,7 @@ import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
-import createEmotionServer from 'create-emotion-server';
+import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
 import cache from './cache';
@@ -178,7 +178,7 @@ The client side is straightforward. All we need to do is remove the server-side 
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';
 import cache from './cache';

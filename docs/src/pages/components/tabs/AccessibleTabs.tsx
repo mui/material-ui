@@ -52,11 +52,7 @@ function DemoTabs(props: DemoTabsProps) {
       >
         <Tab label="Item One" aria-controls="a11y-tabpanel-0" id="a11y-tab-0" />
         <Tab label="Item Two" aria-controls="a11y-tabpanel-1" id="a11y-tab-1" />
-        <Tab
-          label="Item Three"
-          aria-controls="a11y-tabpanel-2"
-          id="a11y-tab-2"
-        />
+        <Tab label="Item Three" aria-controls="a11y-tabpanel-2" id="a11y-tab-2" />
       </Tabs>
     </AppBar>
   );

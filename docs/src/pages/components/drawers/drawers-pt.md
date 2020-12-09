@@ -1,5 +1,5 @@
 ---
-title: React Drawer component
+title: Componente React Drawer
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: Drawer'
 materialDesign: https://material.io/components/navigation-drawer
@@ -42,9 +42,9 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
-### Keep mounted
+### Manter montado
 
-To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
+Para garantir que um drawer temporário não seja desmontado, especifique a propriedade `ModalProps` como:
 
 ```jsx
 <Drawer
@@ -55,7 +55,7 @@ To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop lik
 />
 ```
 
-More details in the [Modal performance section](/components/modal/#performance).
+Mais detalhes na [seção de desempenho Modal](/components/modal/#performance).
 
 ## Drawer responsivo
 

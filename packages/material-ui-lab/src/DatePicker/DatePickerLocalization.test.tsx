@@ -12,10 +12,7 @@ import { adapterToUse, getByMuiTest, createPickerRender } from '../internal/pick
 describe('<DatePicker /> localization', () => {
   const render = createPickerRender({ strict: false, locale: fr });
 
-  it('datePicker localized format for year view', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('datePicker localized format for year view', () => {
     render(
       <MobileDatePicker
         renderInput={(params) => <TextField {...params} />}
@@ -31,11 +28,7 @@ describe('<DatePicker /> localization', () => {
     expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('2018');
   });
 
-  it('datePicker localized format for year+month view', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
-
+  it('datePicker localized format for year+month view', () => {
     const value = adapterToUse.date(`2018-01-01T00:00:00.000`);
     render(
       <MobileDatePicker
@@ -52,10 +45,7 @@ describe('<DatePicker /> localization', () => {
     expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('janvier');
   });
 
-  it('datePicker localized format for year+month+date view', function test() {
-    if (process.env.TEST_GATE !== 'experimental-timezones') {
-      this.skip();
-    }
+  it('datePicker localized format for year+month+date view', () => {
     render(
       <MobileDatePicker
         onChange={() => {}}

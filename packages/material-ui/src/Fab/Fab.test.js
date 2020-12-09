@@ -157,11 +157,14 @@ describe('<Fab />', () => {
   });
 
   describe('server-side', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
     const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     it('should server-side render', () => {
       const markup = serverRender(<Fab>Fab</Fab>);

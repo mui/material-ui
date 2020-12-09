@@ -15,7 +15,7 @@ Too many type sizes and styles at once can spoil any layout. A [typographic scal
 
 ## General
 
-The *Roboto* font will **not** be automatically loaded by Material-UI. El desarrollador es responsable de cargar todas las fuentes utilizadas en su aplicación. Roboto tiene algunas maneras fáciles de empezar. For more advanced configuration, check out [the theme customization section](/customization/typography/).
+The *Roboto* font will **not** be automatically loaded by Material-UI. You are responsible for loading any fonts used in your application. Roboto tiene algunas maneras fáciles de empezar. For more advanced configuration, check out [the theme customization section](/customization/typography/).
 
 ## Roboto Font CDN
 
@@ -42,6 +42,8 @@ For more info check out [Fontsource](https://github.com/DecliningLotus/fontsourc
 Fontsource can be configured to load specific subsets, weights and styles. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Componente
+
+The Typography component makes it easy to apply a default set of font weights and sizes in your application.
 
 {{"demo": "pages/components/typography/Types.js"}}
 

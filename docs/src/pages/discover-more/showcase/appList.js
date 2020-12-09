@@ -359,8 +359,7 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title:
-      'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
+    title: 'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
     description:
       "Cryptoverview is a responsive webapp that displays a user's Bittrex portfolio, " +
       'trending currencies and market caps. It provides some fancy charts, ' +
@@ -499,8 +498,7 @@ const appList = [
   },
   {
     title: 'Typekev',
-    description:
-      'The personal site of Kevin Gonzalez, featuring his witty chatbot.',
+    description: 'The personal site of Kevin Gonzalez, featuring his witty chatbot.',
     image: 'typekev.jpg',
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
@@ -652,8 +650,7 @@ const appList = [
   },
   {
     title: 'LightyearVPN',
-    description:
-      'LightyearVPN is a simple to use, fast and secure VPN software.',
+    description: 'LightyearVPN is a simple to use, fast and secure VPN software.',
     image: 'lightyearvpn.jpg',
     link: 'https://lightyearvpn.com',
     similarWebVisits: 534,

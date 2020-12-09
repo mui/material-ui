@@ -54,9 +54,7 @@ export default function ListRouter() {
       <div className={classes.root}>
         <Route>
           {({ location }) => (
-            <Typography gutterBottom>
-              Current route: {location.pathname}
-            </Typography>
+            <Typography gutterBottom>Current route: {location.pathname}</Typography>
           )}
         </Route>
         <Paper elevation={0}>

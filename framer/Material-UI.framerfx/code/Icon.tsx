@@ -5,6 +5,7 @@ import { SvgIconProps } from '@material-ui/core/SvgIcon';
 import { pascalCase } from './utils';
 
 interface Props extends SvgIconProps {
+  baseClassName: string;
   color: 'action' | 'disabled' | 'error' | 'inherit' | 'primary' | 'secondary';
   icon: string;
   theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
@@ -23,6 +24,7 @@ export function Icon(props: Props): JSX.Element | null {
 }
 
 Icon.defaultProps = {
+  baseClassName: 'material-icons',
   color: 'inherit' as 'inherit',
   icon: 'add',
   theme: 'Filled' as 'Filled',
@@ -31,6 +33,10 @@ Icon.defaultProps = {
 };
 
 addPropertyControls(Icon, {
+  baseClassName: {
+    type: ControlType.String,
+    title: 'Base class name',
+  },
   color: {
     type: ControlType.Enum,
     title: 'Color',

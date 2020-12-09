@@ -128,7 +128,7 @@ export const isRangeValid = <TDate>(
   utils: MuiPickersAdapter<TDate>,
   range: DateRange<TDate> | null,
 ): range is NonEmptyDateRange<TDate> => {
-  return Boolean(range && range[0] && range[1] && utils.isBefore(range[0], range[1]));
+  return Boolean(range && range[0] && range[1] && !utils.isBefore(range[1], range[0]));
 };
 
 export const isWithinRange = <TDate>(

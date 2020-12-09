@@ -25,10 +25,12 @@ The very first thing you will need to do is to update your dependencies.
 
 ### Update Material-UI version
 
-You need to update your `package.json` to use the latest version of Material-UI.
+You need to update your `package.json` to use the latest version of Material-UI and its peer dependencies.
 
 ```json
 "dependencies": {
+  "@emotion/react": "^11.0.0",
+  "@emotion/styled": "^11.0.0",
   "@material-ui/core": "^5.0.0"
 }
 ```
@@ -36,11 +38,11 @@ You need to update your `package.json` to use the latest version of Material-UI.
 Or run
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
 or
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 ## Handling breaking changes
@@ -281,6 +283,13 @@ const classes = makeStyles(theme => ({
   />
   ```
 
+- Rename `closeIcon` prop with `clearIcon` to avoid confusion.
+
+  ```diff
+  -<Autocomplete closeIcon={defaultClearIcon} />
+  +<Autocomplete clearIcon={defaultClearIcon} />
+  ```
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -335,16 +344,28 @@ const classes = makeStyles(theme => ({
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-### Box
+### Box
 
 - The system props have been deprecated in v5, and replaced with the `sx` prop.
 
-```diff
--<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
-+<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
-```
+  ```diff
+  -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
+  +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+  ```
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
+
+- The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit value, in `px`.
+
+  ```diff
+  -<Box sx={{ borderRadius: 'borderRadius' }}>
+  +<Box sx={{ borderRadius: 1 }}>
+  ```
+
+  ```diff
+  -<Box sx={{ borderRadius: 16 }}>
+  +<Box sx={{ borderRadius: '16px' }}>
+  ```
 
 ### Button
 
@@ -409,6 +430,21 @@ const classes = makeStyles(theme => ({
   +    onExited,
   +    onExiting,
   +  }}
+  />
+  ```
+
+- Remove the `disableBackdropClick` prop because redundant.
+  Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
+
+  ```diff
+  <Dialog
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
   />
   ```
 
@@ -589,6 +625,35 @@ const classes = makeStyles(theme => ({
 
 ### Modal
 
+- Remove the `disableBackdropClick` prop because redundant.
+  Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
+
+  ```diff
+  <Modal
+  - disableBackdropClick
+  - onClose={handleClose}
+  + onClose={(event, reason) => {
+  +   if (reason !== 'backdropClick') {
+  +     onClose(event, reason);
+  +   }
+  + }}
+  />
+  ```
+
+- Remove the `onEscapeKeyDown` prop because redundant.
+  Use `onClose` with `reason === "escapeKeyDown"` instead.
+
+  ```diff
+  <Modal
+  - onEscapeKeyDown={handleEscapeKeyDown}
+  + onClose={(event, reason) => {
+  +   if (reason === 'escapeKeyDown') {
+  +     handleEscapeKeyDown(event);
+  +   }
+  + }}
+  />
+  ```
+
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
@@ -747,6 +812,20 @@ const classes = makeStyles(theme => ({
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
+- The `ValueLabelComponent` prop is now part of the `components` prop.
+
+  ```diff
+  -<Slider ValueLabelComponent={CustomValueLabel} />
+  +<Slider components={{ ValueLabel: CustomValueLabel }} />
+  ```
+
+- The `ThumbComponent` prop is not part of the `components` prop.
+
+  ```diff
+  -<Slider ThumbComponent={CustomThumb} />
+  +<Slider components={{ Thumb: CustomThumb }} />
+  ```
+
 ### Snackbar
 
 - The notification now displays at the bottom left on large screens.
@@ -900,7 +979,7 @@ const classes = makeStyles(theme => ({
   +<TextField minRows={2} maxRows={5} />
   ```
 
-- Change ref forwarding expections on custom `inputComponent`.
+- Change ref forwarding expectations on custom `inputComponent`.
   The component should forward the `ref` prop instead of the `inputRef` prop.
 
   ```diff
@@ -917,6 +996,13 @@ const classes = makeStyles(theme => ({
         {...other}
   -     getInputRef={inputRef}
   +     getInputRef={ref}
+  ```
+
+- Rename `marginDense` and `inputMarginDense` classes to `sizeSmall` and `inputSizeSmall` to match the prop.
+
+  ```diff
+  -<Input margin="dense" />
+  +<Input size="small" />
   ```
 
 ### TextareaAutosize

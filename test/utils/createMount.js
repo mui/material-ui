@@ -57,6 +57,28 @@ export default function createMount(options = {}) {
     return titles.filter(Boolean).reverse().join(' -> ');
   }
 
+  // save stack to re-use in test-hooks
+  const { stack: createMountStack } = new Error();
+
+  /**
+   * Flag whether `createMount` was called in a suite i.e. describe() block.
+   * For legacy reasons `createMount` might accidentally be called in a before(Each) hook.
+   */
+  let wasCalledInSuite = false;
+  before(() => {
+    wasCalledInSuite = true;
+  });
+
+  beforeEach(() => {
+    if (!wasCalledInSuite) {
+      const error = new Error(
+        'Unable to run `before` hook for `createMount`. This usually indicates that `createMount` was called in a `before` hook instead of in a `describe()` block.',
+      );
+      error.stack = createMountStack;
+      throw error;
+    }
+  });
+
   beforeEach(function beforeEachMountTest() {
     container = document.createElement('div');
     container.setAttribute('data-test', computeTestName(this.currentTest));

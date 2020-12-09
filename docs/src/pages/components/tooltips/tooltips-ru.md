@@ -92,8 +92,7 @@ By default disabled elements like `<button>` do not trigger user interactions so
 ```jsx
 <Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}
-    >
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
       A disabled button
     </button>
   </span>

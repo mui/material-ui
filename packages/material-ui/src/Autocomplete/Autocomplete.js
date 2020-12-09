@@ -8,7 +8,7 @@ import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
 import IconButton from '../IconButton';
 import Chip from '../Chip';
-import CloseIcon from '../internal/svg-icons/Close';
+import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 
@@ -69,7 +69,7 @@ export const styles = (theme) => ({
         padding: '6px 0',
       },
     },
-    '&[class*="MuiInput-root"][class*="MuiInput-marginDense"]': {
+    '&[class*="MuiInput-root"][class*="MuiInput-sizeSmall"]': {
       '& $input': {
         padding: '2px 4px 3px',
       },
@@ -95,7 +95,7 @@ export const styles = (theme) => ({
         right: 9,
       },
     },
-    '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-marginDense"]': {
+    '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-sizeSmall"]': {
       padding: 6,
       '& $input': {
         padding: '2.5px 4px',
@@ -117,7 +117,7 @@ export const styles = (theme) => ({
         right: 9,
       },
     },
-    '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-marginDense"]': {
+    '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-sizeSmall"]': {
       paddingBottom: 1,
       '& $input': {
         padding: '2.5px 4px',
@@ -264,10 +264,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     ChipProps,
     classes,
     className,
+    clearIcon = <ClearIcon fontSize="small" />,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     clearText = 'Clear',
-    closeIcon = <CloseIcon fontSize="small" />,
     closeText = 'Close',
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
@@ -438,7 +438,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                     title={clearText}
                     className={classes.clearIndicator}
                   >
-                    {closeIcon}
+                    {clearIcon}
                   </IconButton>
                 ) : null}
 
@@ -561,6 +561,11 @@ Autocomplete.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The icon to display in place of the default clear icon.
+   * @default <ClearIcon fontSize="small" />
+   */
+  clearIcon: PropTypes.node,
+  /**
    * If `true`, the input's text is cleared on blur if no value is selected.
    *
    * Set to `true` if you want to help the user enter a new value.
@@ -580,11 +585,6 @@ Autocomplete.propTypes = {
    * @default 'Clear'
    */
   clearText: PropTypes.string,
-  /**
-   * The icon to display in place of the default close icon.
-   * @default <CloseIcon fontSize="small" />
-   */
-  closeIcon: PropTypes.node,
   /**
    * Override the default text for the *close popup* icon button.
    *
@@ -680,8 +680,9 @@ Autocomplete.propTypes = {
    */
   getOptionLabel: PropTypes.func,
   /**
-   * Used to determine if an option is selected, considering the current value.
+   * Used to determine if an option is selected, considering the current value(s).
    * Uses strict equality by default.
+   * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {T} option The option to test.
    * @param {T} value The value to test against.

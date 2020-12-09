@@ -167,7 +167,7 @@ Precisa de inspiração? A equipe do Material Design construiu uma [ferramenta d
 
 ## Modo escuro
 
-O Material-UI vem com dois tipos de paletas, claro (o padrão) e escuro. You can make the theme dark by setting `mode: 'dark'`. Embora seja apenas uma alteração no valor de uma propriedade única, internamente ela modifica vários valores da paleta.
+O Material-UI vem com dois tipos de paletas, claro (o padrão) e escuro. Você pode deixar o tema escuro definindo `mode: 'dark'`. Embora seja apenas uma alteração no valor de uma propriedade única, internamente ela modifica vários valores da paleta.
 
 ```js
 const darkTheme = createMuiTheme({

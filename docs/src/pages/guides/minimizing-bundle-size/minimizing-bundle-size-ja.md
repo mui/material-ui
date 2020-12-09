@@ -24,7 +24,7 @@ import { Button, TextField } from '@material-ui/core';
 
 ### 選択肢 1
 
-パス指定インポートを利用して、使用していないモジュールのインポートを避けることができます。 例えば： 例えば：
+パス指定インポートを利用して、使用していないモジュールのインポートを避けることができます。 例えば： 例えば： 例えば：
 
 ```js
 // 🚀 早い! import Button from '@material-ui/core/Button';
@@ -59,7 +59,7 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 3rd level
 ```
 
-`eslint`を使用している場合、 [`no-restricted-imports` ルール](https://eslint.org/docs/rules/no-restricted-imports)で問題のあるインポートを検知可能です。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。
+`eslint`を使用している場合、 [`no-restricted-imports` ルール](https://eslint.org/docs/rules/no-restricted-imports)で問題のあるインポートを検知可能です。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。
 
 ```json
 {

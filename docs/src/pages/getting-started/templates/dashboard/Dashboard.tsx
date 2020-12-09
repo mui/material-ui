@@ -142,10 +142,7 @@ export default function Dashboard() {
             color="inherit"
             aria-label="open drawer"
             onClick={toggleDrawer}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden,
-            )}
+            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
           </IconButton>

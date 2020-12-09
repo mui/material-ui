@@ -63,7 +63,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     closeAfterTransition = false,
     container,
     disableAutoFocus = false,
-    disableBackdropClick = false,
     disableEnforceFocus = false,
     disableEscapeKeyDown = false,
     disablePortal = false,
@@ -172,7 +171,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
       onBackdropClick(event);
     }
 
-    if (!disableBackdropClick && onClose) {
+    if (onClose) {
       onClose(event, 'backdropClick');
     }
   };
@@ -296,11 +295,6 @@ Modal.propTypes = {
    * @default false
    */
   disableAutoFocus: PropTypes.bool,
-  /**
-   * If `true`, clicking the backdrop will not fire `onClose`.
-   * @default false
-   */
-  disableBackdropClick: PropTypes.bool,
   /**
    * If `true`, the modal will not prevent focus from leaving the modal while open.
    *

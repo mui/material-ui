@@ -1,0 +1,57 @@
+{
+  "props": {
+    "autoComplete": { "type": { "name": "string" } },
+    "autoFocus": { "type": { "name": "bool" } },
+    "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "default": "'primary'"
+    },
+    "defaultValue": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "FormHelperTextProps": { "type": { "name": "object" } },
+    "fullWidth": { "type": { "name": "bool" } },
+    "helperText": { "type": { "name": "node" } },
+    "id": { "type": { "name": "string" } },
+    "InputLabelProps": { "type": { "name": "object" } },
+    "inputProps": { "type": { "name": "object" } },
+    "InputProps": { "type": { "name": "object" } },
+    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "label": { "type": { "name": "node" } },
+    "margin": {
+      "type": {
+        "name": "enum",
+        "description": "'dense'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
+      }
+    },
+    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "multiline": { "type": { "name": "bool" } },
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "placeholder": { "type": { "name": "string" } },
+    "required": { "type": { "name": "bool" } },
+    "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "select": { "type": { "name": "bool" } },
+    "SelectProps": { "type": { "name": "object" } },
+    "size": { "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" } },
+    "type": { "type": { "name": "string" } },
+    "value": { "type": { "name": "any" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      },
+      "default": "'outlined'"
+    }
+  },
+  "name": "TextField",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTextField" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/TextField/TextField.js",
+  "inheritance": { "component": "FormControl", "pathname": "/api/form-control/" },
+  "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/components/pickers/\">Pickers</a></li>\n<li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
+  "styledComponent": false
+}

@@ -15,12 +15,6 @@ import {
 describe('<MenuList> integration', () => {
   const render = createClientRender();
 
-  if (/Chrome\/49\.0/.test(window.navigator.userAgent)) {
-    // fails repeatedly on chrome 49 in karma but works when manually testing
-    // the same component tree (-TrackCommitCountMenuItem) in isolation in browserstack
-    return;
-  }
-
   specify('the MenuItems have the `menuitem` role', () => {
     const { getAllByRole } = render(
       <MenuList>

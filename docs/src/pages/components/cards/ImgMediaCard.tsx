@@ -26,7 +26,7 @@ export default function ImgMediaCard() {
         title="Contemplative Reptile"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
+        <Typography gutterBottom variant="h5" component="div">
           Lizard
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">

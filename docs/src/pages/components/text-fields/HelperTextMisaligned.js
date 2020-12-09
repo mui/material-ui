@@ -15,10 +15,15 @@ export default function HelperTextMisaligned() {
     <div className={classes.root}>
       <TextField
         helperText="Please enter your name"
+        id="demo-helper-text-misaligned"
         label="Name"
         variant="standard"
       />
-      <TextField label="Name" variant="standard" />
+      <TextField
+        id="demo-helper-text-misaligned-no-helper"
+        label="Name"
+        variant="standard"
+      />
     </div>
   );
 }

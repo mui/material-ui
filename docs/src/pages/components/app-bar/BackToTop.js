@@ -69,7 +69,9 @@ export default function BackToTop(props) {
       <CssBaseline />
       <AppBar>
         <Toolbar>
-          <Typography variant="h6">Scroll to see button</Typography>
+          <Typography variant="h6" component="div">
+            Scroll to see button
+          </Typography>
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
