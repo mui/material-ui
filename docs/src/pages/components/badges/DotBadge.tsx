@@ -1,24 +1,30 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 import Typography from '@material-ui/core/Typography';
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+  }),
+);
+
 export default function DotBadge() {
+  const classes = useStyles();
+
   return (
-    <Box
-      sx={{
-        '& > *': {
-          m: 1,
-        },
-      }}
-    >
+    <div className={classes.root}>
       <Badge color="secondary" variant="dot">
         <MailIcon />
       </Badge>
       <Badge color="secondary" variant="dot">
         <Typography>Typography</Typography>
       </Badge>
-    </Box>
+    </div>
   );
 }

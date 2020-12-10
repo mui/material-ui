@@ -5,11 +5,28 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
 import MailIcon from '@material-ui/icons/Mail';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  formControl: {
+    margin: theme.spacing(3),
+  },
+  row: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  margin: {
+    margin: theme.spacing(2),
+  },
+}));
+
 export default function BadgeAlignment() {
+  const classes = useStyles();
   const [horizontal, setHorizontal] = React.useState('right');
   const [vertical, setVertical] = React.useState('top');
 
@@ -31,17 +48,9 @@ export default function BadgeAlignment() {
 `;
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          '& fieldset': {
-            margin: 3,
-          },
-        }}
-      >
-        <FormControl component="fieldset">
+    <div className={classes.root}>
+      <div className={classes.row}>
+        <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Vertical</FormLabel>
           <RadioGroup
             name="vertical"
@@ -52,7 +61,7 @@ export default function BadgeAlignment() {
             <FormControlLabel value="bottom" control={<Radio />} label="Bottom" />
           </RadioGroup>
         </FormControl>
-        <FormControl component="fieldset">
+        <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Horizontal</FormLabel>
           <RadioGroup
             name="horizontal"
@@ -63,16 +72,8 @@ export default function BadgeAlignment() {
             <FormControlLabel value="left" control={<Radio />} label="Left" />
           </RadioGroup>
         </FormControl>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          '& > *': {
-            margin: 2,
-          },
-        }}
-      >
+      </div>
+      <div className={classes.row}>
         <Badge
           color="secondary"
           variant="dot"
@@ -81,6 +82,7 @@ export default function BadgeAlignment() {
             horizontal,
             vertical,
           }}
+          className={classes.margin}
         >
           <MailIcon />
         </Badge>
@@ -91,6 +93,7 @@ export default function BadgeAlignment() {
             horizontal,
             vertical,
           }}
+          className={classes.margin}
         >
           <MailIcon />
         </Badge>
@@ -101,6 +104,7 @@ export default function BadgeAlignment() {
             horizontal,
             vertical,
           }}
+          className={classes.margin}
         >
           <MailIcon />
         </Badge>
@@ -111,6 +115,7 @@ export default function BadgeAlignment() {
             horizontal,
             vertical,
           }}
+          className={classes.margin}
         >
           <MailIcon />
         </Badge>
@@ -122,11 +127,12 @@ export default function BadgeAlignment() {
             horizontal,
             vertical,
           }}
+          className={classes.margin}
         >
           <MailIcon />
         </Badge>
-      </Box>
+      </div>
       <HighlightedCode code={jsx} language="jsx" />
-    </Box>
+    </div>
   );
 }
