@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface StylesProviderProps { 
+export interface StylesProviderProps {
   children?: React.ReactNode;
   injectFirst?: boolean;
 }
