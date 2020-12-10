@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { act, createMount, fireEvent, createClientRender, describeConformance } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import Drawer from '../Drawer';
-import SwipeableDrawer, { reset } from './SwipeableDrawer';
+import SwipeableDrawer from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
 import useForkRef from '../utils/useForkRef';
 
@@ -45,13 +45,16 @@ function fireSwipeAreaMouseEvent(wrapper, name, properties = {}) {
 }
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
+  const { style, ...other } = props;
   const paperRef = React.useRef(null);
   const handleRef = useForkRef(ref, paperRef);
 
   React.useEffect(() => {
-    // For jsdom
-    Object.defineProperty(paperRef.current, 'clientWidth', { value: 250 });
-    Object.defineProperty(paperRef.current, 'clientHeight', { value: 250 });
+    // JSDOM has no layout
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      Object.defineProperty(paperRef.current, 'clientWidth', { value: 250 });
+      Object.defineProperty(paperRef.current, 'clientHeight', { value: 250 });
+    }
   });
 
   return (
@@ -59,10 +62,11 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
       tabIndex={-1}
       ref={handleRef}
       style={{
-        width: 250,
-        height: 250,
+        ...style,
+        width: '250px',
+        height: '250px',
       }}
-      {...props}
+      {...other}
     />
   );
 });
@@ -136,25 +140,6 @@ describe('<SwipeableDrawer />', () => {
   }
 
   describe('swipe to open', () => {
-    let container;
-
-    beforeEach(() => {
-      container = render(
-        <SwipeableDrawer
-          onOpen={() => {}}
-          onClose={() => {}}
-          open={false}
-          PaperProps={{ component: FakePaper }}
-        >
-          <h1>SwipeableDrawer</h1>
-        </SwipeableDrawer>,
-      );
-    });
-
-    afterEach(() => {
-      reset();
-    });
-
     const bodyWidth = document.body.offsetWidth;
     const windowHeight = window.innerHeight;
     const tests = [
@@ -223,10 +208,19 @@ describe('<SwipeableDrawer />', () => {
     tests.forEach((params) => {
       describe(`anchor=${params.anchor}`, () => {
         it('should open and close when swiping', () => {
-          // mock the internal setPosition function that moves the drawer while swiping
-          // simulate open swipe
+          const handleClose = spy();
           const handleOpen = spy();
-          container.setProps({ onOpen: handleOpen, anchor: params.anchor });
+          const { setProps } = render(
+            <SwipeableDrawer
+              anchor={params.anchor}
+              onOpen={handleOpen}
+              onClose={handleClose}
+              open={false}
+              PaperProps={{ component: FakePaper }}
+            >
+              <h1>SwipeableDrawer</h1>
+            </SwipeableDrawer>,
+          );
 
           const swipeArea = document.querySelector('[class*=PrivateSwipeArea-root]');
 
@@ -246,8 +240,7 @@ describe('<SwipeableDrawer />', () => {
           });
           expect(handleOpen.callCount).to.equal(1);
 
-          const handleClose = spy();
-          container.setProps({ open: true, onClose: handleClose, anchor: params.anchor });
+          setProps({ open: true });
 
           const h1 = document.querySelector('h1');
 
@@ -269,7 +262,17 @@ describe('<SwipeableDrawer />', () => {
         it('should stay closed when not swiping far enough', () => {
           // simulate open swipe that doesn't swipe far enough
           const handleOpen = spy();
-          container.setProps({ onOpen: handleOpen, anchor: params.anchor });
+          render(
+            <SwipeableDrawer
+              acnhor={params.anchor}
+              onOpen={handleOpen}
+              onClose={() => {}}
+              open={false}
+              PaperProps={{ component: FakePaper }}
+            >
+              <h1>SwipeableDrawer</h1>
+            </SwipeableDrawer>,
+          );
 
           const swipeArea = document.querySelector('[class*=PrivateSwipeArea-root]');
 
@@ -290,7 +293,17 @@ describe('<SwipeableDrawer />', () => {
         it('should stay opened when not swiping far enough', () => {
           // simulate close swipe that doesn't swipe far enough
           const handleClose = spy();
-          container.setProps({ open: true, onClose: handleClose, anchor: params.anchor });
+          render(
+            <SwipeableDrawer
+              anchor={params.anchor}
+              onOpen={() => {}}
+              onClose={handleClose}
+              open
+              PaperProps={{ component: FakePaper }}
+            >
+              <h1>SwipeableDrawer</h1>
+            </SwipeableDrawer>,
+          );
 
           const h1 = document.querySelector('h1');
 
@@ -309,7 +322,17 @@ describe('<SwipeableDrawer />', () => {
         it('should slide in a bit when touching near the edge', () => {
           const handleOpen = spy();
           const handleClose = spy();
-          container.setProps({ onOpen: handleOpen, onClose: handleClose, anchor: params.anchor });
+          render(
+            <SwipeableDrawer
+              anchor={params.anchor}
+              onOpen={handleOpen}
+              onClose={handleClose}
+              open={false}
+              PaperProps={{ component: FakePaper }}
+            >
+              <h1>SwipeableDrawer</h1>
+            </SwipeableDrawer>,
+          );
 
           const swipeArea = document.querySelector('[class*=PrivateSwipeArea-root]');
 
@@ -330,12 +353,18 @@ describe('<SwipeableDrawer />', () => {
         it('should let user scroll the page', () => {
           const handleOpen = spy();
           const handleClose = spy();
-          container.setProps({
-            disableDiscovery: true,
-            onOpen: handleOpen,
-            onClose: handleClose,
-            anchor: params.anchor,
-          });
+          render(
+            <SwipeableDrawer
+              anchor={params.anchor}
+              disableDiscovery
+              onOpen={handleOpen}
+              onClose={handleClose}
+              open={false}
+              PaperProps={{ component: FakePaper }}
+            >
+              <h1>SwipeableDrawer</h1>
+            </SwipeableDrawer>,
+          );
 
           const swipeArea = document.querySelector('[class*=PrivateSwipeArea-root]');
 
@@ -355,10 +384,16 @@ describe('<SwipeableDrawer />', () => {
 
     it('should abort when the SwipeableDrawer is closed', () => {
       const handleClose = spy();
-      container.setProps({
-        open: true,
-        onClose: handleClose,
-      });
+      const { setProps } = render(
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={handleClose}
+          open
+          PaperProps={{ component: FakePaper }}
+        >
+          <h1>SwipeableDrawer</h1>
+        </SwipeableDrawer>,
+      );
       const h1 = document.querySelector('h1');
 
       fireEvent.touchStart(h1, {
@@ -367,9 +402,8 @@ describe('<SwipeableDrawer />', () => {
       fireEvent.touchMove(h1, {
         touches: [new Touch({ identifier: 0, target: h1, pageX: 180, clientY: 0 })],
       });
-      container.setProps({
+      setProps({
         open: false,
-        onClose: handleClose,
       });
       fireEvent.touchEnd(h1, {
         changedTouches: [new Touch({ identifier: 0, target: h1, pageX: 10, clientY: 0 })],
@@ -378,6 +412,17 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('removes event listeners on unmount', () => {
+      const container = render(
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          PaperProps={{ component: FakePaper }}
+        >
+          <h1>SwipeableDrawer</h1>
+        </SwipeableDrawer>,
+      );
+
       const swipeArea = document.querySelector('[class*=PrivateSwipeArea-root]');
       fireEvent.touchStart(swipeArea, {
         touches: [new Touch({ identifier: 0, target: swipeArea, pageX: 250, clientY: 0 })],
@@ -394,11 +439,22 @@ describe('<SwipeableDrawer />', () => {
     });
 
     it('toggles swipe handling when the variant is changed', () => {
+      const { setProps } = render(
+        <SwipeableDrawer
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          PaperProps={{ component: FakePaper }}
+        >
+          <h1>SwipeableDrawer</h1>
+        </SwipeableDrawer>,
+      );
+
       // variant is 'temporary' by default
       expect(document.querySelector('[class*=PrivateSwipeArea-root]')).to.not.equal(null);
-      container.setProps({ variant: 'persistent' });
+      setProps({ variant: 'persistent' });
       expect(document.querySelector('[class*=PrivateSwipeArea-root]')).to.equal(null);
-      container.setProps({ variant: 'temporary' });
+      setProps({ variant: 'temporary' });
       expect(document.querySelector('[class*=PrivateSwipeArea-root]')).to.not.equal(null);
     });
   });
