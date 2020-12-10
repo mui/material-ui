@@ -1,0 +1,56 @@
+import * as React from 'react';
+import { expect } from 'chai';
+import { createMount, createClientRender, describeConformance } from 'test/utils';
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+
+describe('<BadgeUnstyled />', () => {
+  const mount = createMount();
+  const render = createClientRender();
+
+  describeConformance(
+    <BadgeUnstyled>
+      <div />
+    </BadgeUnstyled>,
+    () => ({
+      classes: {},
+      inheritComponent: 'span',
+      mount,
+      refInstanceof: window.HTMLSpanElement,
+      testComponentPropWith: 'div',
+    }),
+  );
+
+  it('forwards style props on the Root component', () => {
+    let styleProps = null;
+    let theme = null;
+
+    const Root = React.forwardRef(
+      ({ styleProps: stylePropsProp, theme: themeProp, ...rest }, ref) => {
+        styleProps = stylePropsProp;
+        theme = themeProp;
+        return <span ref={ref} {...rest} />;
+      },
+    );
+
+    render(<BadgeUnstyled components={{ Root }} />);
+
+    expect(styleProps).not.to.equal(null);
+    expect(theme).not.to.equal(null);
+  });
+
+  it('does not forward style props as DOM attributes if component slot is primitive', () => {
+    const elementRef = React.createRef();
+    render(
+      <BadgeUnstyled
+        components={{
+          Root: 'span',
+        }}
+        ref={elementRef}
+      />,
+    );
+
+    const { current: element } = elementRef;
+    expect(element.getAttribute('styleProps')).to.equal(null);
+    expect(element.getAttribute('theme')).to.equal(null);
+  });
+});

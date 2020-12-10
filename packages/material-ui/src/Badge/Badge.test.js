@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Badge from './Badge';
+import { BadgeUnstyled } from '@material-ui/unstyled';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import Badge, { badgeClasses as classes } from './Badge';
 
 function findBadge(container) {
   return container.firstChild.querySelector('span');
@@ -9,7 +10,6 @@ function findBadge(container) {
 
 describe('<Badge />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
   const defaultProps = {
     children: (
@@ -20,20 +20,16 @@ describe('<Badge />', () => {
     badgeContent: 10,
   };
 
-  before(() => {
-    classes = getClasses(<Badge {...defaultProps} />);
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <Badge>
       <div />
     </Badge>,
     () => ({
-      classes,
-      inheritComponent: 'span',
+      classes: {},
+      inheritComponent: BadgeUnstyled,
       mount,
       refInstanceof: window.HTMLSpanElement,
-      testComponentPropWith: 'div',
+      testVariantProps: { color: 'secondary', variant: 'dot' },
     }),
   );
 
@@ -169,9 +165,11 @@ describe('<Badge />', () => {
   });
 
   it('retains anchorOrigin, content, color, max, overlap and variant when invisible is true for consistent disappearing transition', () => {
-    const wrapper = render(<Badge {...defaultProps} color="secondary" variant="dot" />);
+    const { container, setProps } = render(
+      <Badge {...defaultProps} color="secondary" variant="dot" />,
+    );
 
-    wrapper.setProps({
+    setProps({
       badgeContent: 0,
       color: 'primary',
       variant: 'standard',
@@ -182,9 +180,9 @@ describe('<Badge />', () => {
       },
     });
 
-    expect(findBadge(wrapper.container)).to.have.text('');
-    expect(findBadge(wrapper.container)).to.have.class(classes.colorSecondary);
-    expect(findBadge(wrapper.container)).to.have.class(classes.dot);
-    expect(findBadge(wrapper.container)).to.have.class(classes.anchorOriginTopRightRectangular);
+    expect(findBadge(container)).to.have.text('');
+    expect(findBadge(container)).to.have.class(classes.colorSecondary);
+    expect(findBadge(container)).to.have.class(classes.dot);
+    expect(findBadge(container)).to.have.class(classes.anchorOriginTopRightRectangular);
   });
 });
