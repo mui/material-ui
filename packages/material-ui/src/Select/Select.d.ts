@@ -149,7 +149,6 @@ export interface SelectProps<T = unknown>
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
    * The `input` value. Providing an empty string will select no options.
-   * This prop is required when the `native` prop is `false` (default).
    * Set to an empty string `''` if you don't want any of the available options to be selected.
    *
    * If the value is an object it must have reference equality with the option in order to be selected.
