@@ -29,6 +29,7 @@ describe('<Badge />', () => {
       inheritComponent: BadgeUnstyled,
       mount,
       refInstanceof: window.HTMLSpanElement,
+      muiName: 'MuiBadge',
       testVariantProps: { color: 'secondary', variant: 'dot' },
     }),
   );
