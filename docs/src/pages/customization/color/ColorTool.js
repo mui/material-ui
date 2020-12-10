@@ -67,6 +67,9 @@ const styles = (theme) => ({
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
   },
+  intentShade: {
+    width: 50,
+  },
   colorBar: {
     marginTop: theme.spacing(2),
   },
@@ -110,6 +113,7 @@ function ColorTool(props) {
     setState((prevState) => ({
       ...prevState,
       [`${name}Input`]: color,
+      [`${name}Shade`]: null,
     }));
 
     let isValidColor = false;
@@ -210,7 +214,7 @@ function ColorTool(props) {
     const color = state[`${intent}`];
 
     return (
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid item xs={12} md={6}>
         <Typography component="label" gutterBottom htmlFor={intent} variant="h6">
           {capitalize(intent)}
         </Typography>
@@ -231,7 +235,9 @@ function ColorTool(props) {
             onChange={handleChangeShade(intent)}
             aria-labelledby={`${intent}ShadeSliderLabel`}
           />
-          <Typography>{shades[intentShade]}</Typography>
+          <Typography className={classes.intentShade}>
+            {shades[intentShade]}
+          </Typography>
         </div>
         <div className={classes.swatch}>
           {hues.map((hue) => {
@@ -276,8 +282,8 @@ function ColorTool(props) {
     <Grid container spacing={5} className={classes.root}>
       {colorPicker('primary')}
       {colorPicker('secondary')}
-      <Grid item xs={12} sm={6} md={4}>
-        <ColorDemo data={state} />
+      <Grid item xs={12} md={6}>
+        <ColorDemo data={state} shades={shades} />
       </Grid>
       <Grid item xs={12}>
         <Button variant="contained" onClick={handleChangeDocsColors}>

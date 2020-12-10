@@ -38,28 +38,32 @@ const styles = (theme) => ({
 });
 
 function ColorDemo(props) {
-  const { classes, data } = props;
+  const { classes, data, shades } = props;
   const theme = useTheme();
   const primary = theme.palette.augmentColor({
     color: {
       main: data.primary,
       output:
-        data.primaryShade === 4
-          ? `${data.primaryHue}`
+        data.primaryShade !== null
+          ? `{
+            main: ${data.primaryHue}[${shades[data.primaryShade]}],
+        }`
           : `{
-        main: '${data.primary}',
-      }`,
+            main: '${data.primary}',
+        }`,
     },
   });
   const secondary = theme.palette.augmentColor({
     color: {
       main: data.secondary,
       output:
-        data.secondaryShade === 11
-          ? `${data.secondaryHue}`
+        data.secondaryShade !== null
+          ? `{
+            main: ${data.secondaryHue}[${shades[data.secondaryShade]}],
+        }`
           : `{
-        main: '${data.secondary}',
-      }`,
+            main: '${data.secondary}',
+        }`,
     },
   });
 
@@ -87,10 +91,10 @@ function ColorDemo(props) {
         </AppBar>
         <pre className={classes.code}>
           {`{
-  palette: {
-    primary: ${primary.output},
-    secondary: ${secondary.output},
-  },
+    palette: {
+        primary: ${primary.output},
+        secondary: ${secondary.output},
+    },
 }`}
         </pre>
         <Fab
@@ -108,6 +112,7 @@ function ColorDemo(props) {
 ColorDemo.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
+  shades: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ColorDemo);
