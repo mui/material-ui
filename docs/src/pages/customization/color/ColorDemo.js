@@ -46,11 +46,11 @@ function ColorDemo(props) {
       output:
         data.primaryShade !== null
           ? `{
-            main: ${data.primaryHue}[${shades[data.primaryShade]}],
-        }`
+      main: ${data.primaryHue}[${shades[data.primaryShade]}],
+    }`
           : `{
-            main: '${data.primary}',
-        }`,
+      main: '${data.primary}',
+    }`,
     },
   });
   const secondary = theme.palette.augmentColor({
@@ -59,11 +59,11 @@ function ColorDemo(props) {
       output:
         data.secondaryShade !== null
           ? `{
-            main: ${data.secondaryHue}[${shades[data.secondaryShade]}],
-        }`
+      main: ${data.secondaryHue}[${shades[data.secondaryShade]}],
+    }`
           : `{
-            main: '${data.secondary}',
-        }`,
+      main: '${data.secondary}',
+    }`,
     },
   });
 
@@ -91,10 +91,10 @@ function ColorDemo(props) {
         </AppBar>
         <pre className={classes.code}>
           {`{
-    palette: {
-        primary: ${primary.output},
-        secondary: ${secondary.output},
-    },
+  palette: {
+    primary: ${primary.output},
+    secondary: ${secondary.output},
+  },
 }`}
         </pre>
         <Fab

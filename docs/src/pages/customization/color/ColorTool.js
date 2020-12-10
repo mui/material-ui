@@ -53,9 +53,6 @@ const styles = (theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  swatch: {
-    width: 192,
-  },
   sliderContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -239,7 +236,7 @@ function ColorTool(props) {
             {shades[intentShade]}
           </Typography>
         </div>
-        <div className={classes.swatch}>
+        <div>
           {hues.map((hue) => {
             const shade =
               intent === 'primary'
@@ -279,7 +276,7 @@ function ColorTool(props) {
   };
 
   return (
-    <Grid container spacing={5} className={classes.root}>
+    <Grid container spacing={4} className={classes.root}>
       {colorPicker('primary')}
       {colorPicker('secondary')}
       <Grid item xs={12} md={6}>
