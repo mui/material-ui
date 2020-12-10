@@ -283,7 +283,6 @@ function ColorTool(props) {
       {colorPicker('primary')}
       {colorPicker('secondary')}
       <Grid item xs={12} md={6}>
-        {/* {console.log(typeof shades)} */}
         <ColorDemo data={state} shades={shades} />
       </Grid>
       <Grid item xs={12}>
