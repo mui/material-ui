@@ -14,9 +14,9 @@
     "fontSize": {
       "type": {
         "name": "enum",
-        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;'small'"
+        "description": "'inherit'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
-      "default": "'default'"
+      "default": "'medium'"
     }
   },
   "name": "Icon",
