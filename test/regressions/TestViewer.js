@@ -76,7 +76,7 @@ function TestViewer(props) {
       <div aria-busy={!ready} data-testid="testcase" className={classes.root}>
         {children}
       </div>
-    </StyledEngineProvider>
+    </StylesProvider>
   );
 }
 
