@@ -83,24 +83,11 @@ export const styles = (theme) => {
   };
 };
 
-const Accordion = React.forwardRef(function Accordion(props, ref) {
-  const {
-    children: childrenProp,
-    classes,
-    className,
-    defaultExpanded = false,
-    disabled = false,
-    expanded: expandedProp,
-    onChange,
-    square = false,
-    TransitionComponent = Collapse,
-    TransitionProps,
-    ...other
-  } = props;
-
+function useAccordion(props) {
+  const { onChange, disabled } = props;
   const [expanded, setExpandedState] = useControlled({
-    controlled: expandedProp,
-    default: defaultExpanded,
+    controlled: props.expanded,
+    default: props.defaultExpanded ?? false,
     name: 'Accordion',
     state: 'expanded',
   });
@@ -108,45 +95,55 @@ const Accordion = React.forwardRef(function Accordion(props, ref) {
   const handleChange = React.useCallback(
     (event) => {
       setExpandedState(!expanded);
-
-      if (onChange) {
-        onChange(event, !expanded);
-      }
+      onChange?.(event, !expanded);
     },
     [expanded, onChange, setExpandedState],
   );
 
-  const [summary, ...children] = React.Children.toArray(childrenProp);
+  const [summary, ...children] = React.Children.toArray(props.children);
   const contextValue = React.useMemo(() => ({ expanded, disabled, toggle: handleChange }), [
     expanded,
     disabled,
     handleChange,
   ]);
 
+  return {
+    contextValue,
+    summary,
+    children,
+  };
+}
+
+const Accordion = React.forwardRef(function Accordion(props, ref) {
+  const TransitionComponent = props.TransitionComponent ??  Collapse
+  const square =  props.square ?? false;
+  const controller = useAccordion(props);
+
   return (
     <Paper
       className={clsx(
-        classes.root,
+        props.classes.root,
         {
-          [classes.expanded]: expanded,
-          [classes.disabled]: disabled,
-          [classes.rounded]: !square,
+          [props.classes.expanded]: controller.expanded,
+          [props.classes.disabled]: props.disabled ?? false,
+          [props.classes.rounded]: !square,
         },
-        className,
+        props.className,
       )}
       ref={ref}
       square={square}
-      {...other}
     >
-      <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
-      <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
+      <AccordionContext.Provider value={controller.contextValue}>
+        {controller.summary}
+      </AccordionContext.Provider>
+      <TransitionComponent in={controller.expanded} timeout="auto" {...props.TransitionProps}>
         <div
-          aria-labelledby={summary.props.id}
-          id={summary.props['aria-controls']}
+          aria-labelledby={controller.summary.props.id}
+          id={controller.summary.props['aria-controls']}
           role="region"
-          className={classes.region}
+          className={props.classes.region}
         >
-          {children}
+          {controller.children}
         </div>
       </TransitionComponent>
     </Paper>
