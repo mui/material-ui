@@ -1,8 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { chainPropTypes } from '@material-ui/utils';
 import capitalize from '../utils/capitalize';
+import withStyles from '../styles/withStyles';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -104,7 +105,17 @@ Icon.propTypes = {
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
-  fontSize: PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
+  fontSize: chainPropTypes(PropTypes.oneOf(['inherit', 'large', 'medium', 'small']), (props) => {
+    const { variant } = props;
+
+    if (variant === 'default') {
+      throw new Error(
+        'Material-UI: `variant="default"` is deprecated. Use `variant="medium"` instead.',
+      );
+    }
+
+    return null;
+  }),
 };
 
 Icon.muiName = 'Icon';
