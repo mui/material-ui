@@ -112,7 +112,7 @@ function ColorDemo(props) {
 ColorDemo.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  shades: PropTypes.object.isRequired,
+  shades: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(ColorDemo);
