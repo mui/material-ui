@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 let injectFirstNode;
 
 export function StylesProvider({ injectFirst, children }) {
-
   React.useEffect(() => {
     if (injectFirst && !injectFirstNode) {
       const head = document.head;
       injectFirstNode = document.createElement('style');
       injectFirstNode.setAttribute('data-styled', 'active');
-      injectFirstNode.setAttribute('data-styled-version', "5.2.1")
+      injectFirstNode.setAttribute('data-styled-version', '5.2.1');
       head.insertBefore(injectFirstNode, head.firstChild);
     }
-  
   }, [injectFirst]);
 
   return children;
