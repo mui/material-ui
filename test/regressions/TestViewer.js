@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useFakeTimers } from 'sinon';
-import { StyledEngineProvider } from '@material-ui/core';
+import { StylesProvider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
