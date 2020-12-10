@@ -25,3 +25,5 @@ or:
 This is an alternative example to [`/examples/gatsby`](https://github.com/mui-org/material-ui/tree/next/examples/gatsby) leveraging [gatsby-theme-material-ui](https://github.com/hupe1980/gatsby-theme-material-ui/tree/next/packages/gatsby-theme-material-ui).
 The example bundles different Gatsby plugins into a single Gatsby theme.
 It trades less freedom for fewer boilerplate.
+
+Additionally, it adds `@material-ui/core` and it's peer dependencies.

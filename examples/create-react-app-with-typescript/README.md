@@ -22,4 +22,4 @@ or:
 
 ## The idea behind the example
 
-This example demonstrates how you can use [Create React App](https://github.com/facebookincubator/create-react-app) with [TypeScript](https://github.com/Microsoft/TypeScript).
+This example demonstrates how you can use [Create React App](https://github.com/facebookincubator/create-react-app) with [TypeScript](https://github.com/Microsoft/TypeScript). Additionally, it adds `@material-ui/core` and it's peer dependencies.
