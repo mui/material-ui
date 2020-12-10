@@ -59,7 +59,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
     className,
     color = 'inherit',
     component: Component = 'svg',
-    fontSize = 'default',
+    fontSize = 'medium',
     htmlColor,
     titleAccess,
     viewBox = '0 0 24 24',
@@ -72,7 +72,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
+          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'medium',
         },
         className,
       )}
@@ -121,7 +121,7 @@ SvgIcon.propTypes = {
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
-  fontSize: PropTypes.oneOf(['default', 'inherit', 'large', 'small']),
+  fontSize: PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
   /**
    * Applies a color attribute to the SVG element.
    */
