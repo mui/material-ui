@@ -71,6 +71,10 @@ Fancy smaller inputs? Use the `size` prop.
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
+The `filled` variant input height can be further reduced by rendering the label outside of it.
+
+{{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
+
 ## Layout
 
 `margin` prop can be used to alter the vertical spacing of inputs.
