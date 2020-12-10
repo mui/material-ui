@@ -24,4 +24,4 @@ or:
 
 [Next.js](https://github.com/zeit/next.js) is a framework for server-rendered React apps.
 
-Additionally, the template project adds `@material-ui/core` and it's peer dependencies. As `@emotion` is used as a style engine in `@material-ui/core`, the necessary setup for it was done in the example project.
+Additionally, it adds `@material-ui/core` and it's peer dependencies.
