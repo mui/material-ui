@@ -59,55 +59,51 @@ export const styles = (theme) => {
   };
 };
 
-const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) {
-  const {
-    children,
-    classes,
-    className,
-    expandIcon,
-    focusVisibleClassName,
-    onClick,
-    ...other
-  } = props;
-
+function useAccordionSummary(props) {
   const { disabled = false, expanded, toggle } = React.useContext(AccordionContext);
   const handleChange = (event) => {
     if (toggle) {
       toggle(event);
     }
-    if (onClick) {
-      onClick(event);
-    }
+    props.onClick?.(event);
   };
+
+  return {
+    disabled,expanded,handleChange
+  }
+}
+
+const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) {
+  const controller = useAccordionSummary(props);
 
   return (
     <ButtonBase
       focusRipple={false}
       disableRipple
-      disabled={disabled}
+      disabled={controller.disabled}
       component="div"
-      aria-expanded={expanded}
+      aria-expanded={controller.expanded}
       className={clsx(
-        classes.root,
+        props.classes.root,
         {
-          [classes.disabled]: disabled,
-          [classes.expanded]: expanded,
+          [props.classes.disabled]: controller.disabled,
+          [props.classes.expanded]: controller.expanded,
         },
-        className,
+        props.className,
       )}
-      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-      onClick={handleChange}
+      focusVisibleClassName={clsx(props.classes.focusVisible, props.focusVisibleClassName)}
+      onClick={controller.handleChange}
       ref={ref}
-      {...other}
+      {...props}
     >
-      <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
-      {expandIcon && (
+      <div className={clsx(props.classes.content, { [props.classes.expanded]: controller.expanded })}>{props.children}</div>
+      {props.expandIcon && (
         <div
-          className={clsx(classes.expandIconWrapper, {
-            [classes.expanded]: expanded,
+          className={clsx(props.classes.expandIconWrapper, {
+            [props.classes.expanded]: controller.expanded,
           })}
         >
-          {expandIcon}
+          {props.expandIcon}
         </div>
       )}
     </ButtonBase>
