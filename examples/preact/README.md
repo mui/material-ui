@@ -24,6 +24,6 @@ or:
 
 [Preact](https://github.com/developit/preact) is a fast 3kB alternative to React with the same modern API.
 
-This example uses CRA with `react-app-rewired` for adding webpack aliases for preact. 
+This example uses CRA with `react-app-rewired` for adding webpack aliases for preact.
 
 Additionally, it adds `@material-ui/core` and it's peer dependencies.
