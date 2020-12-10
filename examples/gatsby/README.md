@@ -22,7 +22,8 @@ or:
 
 ## The idea behind the example
 
-[Gatsby](https://github.com/gatsbyjs/gatsby) is a static site generator for React. The project template adds `@material-ui/core` and it's peer dependencies.
+[Gatsby](https://github.com/gatsbyjs/gatsby) is a static site generator for React.
+Additionally, it adds `@material-ui/core` and it's peer dependencies.
 
 ## gatsby-theme-material-ui
 
