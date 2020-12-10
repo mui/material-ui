@@ -9,7 +9,7 @@ import Copyright from '../components/Copyright';
 export default function Index() {
   return (
     <Container maxWidth="sm">
-      <Box my={4}>
+      <Box sx={{ my: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
           Gatsby v5-alpha example
         </Typography>
