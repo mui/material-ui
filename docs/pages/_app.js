@@ -11,6 +11,7 @@ import { create } from 'jss';
 import jssRtl from 'jss-rtl';
 import { useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StyledEngineProvider as CoreStyledEngineProvider } from '@material-ui/core';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -318,11 +319,13 @@ function AppWrapper(props) {
       </NextHead>
       <ReduxProvider store={redux}>
         <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
-          <StylesProvider jss={jss}>
-            <ThemeProvider>
-              <StyledEngineProvider>{children}</StyledEngineProvider>
-            </ThemeProvider>
-          </StylesProvider>
+          <CoreStyledEngineProvider injectFirst>
+            <StylesProvider jss={jss}>
+              <ThemeProvider>
+                <StyledEngineProvider>{children}</StyledEngineProvider>
+              </ThemeProvider>
+            </StylesProvider>
+          </CoreStyledEngineProvider>
         </PageContext.Provider>
         <LanguageNegotiation />
         <Analytics />

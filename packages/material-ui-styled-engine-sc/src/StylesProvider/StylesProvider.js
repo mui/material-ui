@@ -1,8 +1,22 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
-// Dumb component that does nothin, but complies with the API exported from @material-ui/styled-engine
-export function StylesProvider({ chlidren }) {
-  return chlidren;
+let injectFirstNode;
+
+export function StylesProvider({ injectFirst, children }) {
+
+  React.useEffect(() => {
+    if (injectFirst && !injectFirstNode) {
+      const head = document.head;
+      injectFirstNode = document.createElement('style');
+      injectFirstNode.setAttribute('data-styled', 'active');
+      injectFirstNode.setAttribute('data-styled-version', "5.2.1")
+      head.insertBefore(injectFirstNode, head.firstChild);
+    }
+  
+  }, [injectFirst]);
+
+  return children;
 }
 
 StylesProvider.propTypes = {
