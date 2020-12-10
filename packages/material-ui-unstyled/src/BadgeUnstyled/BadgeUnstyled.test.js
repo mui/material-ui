@@ -17,7 +17,6 @@ describe('<BadgeUnstyled />', () => {
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
-      componentsProp: true,
     }),
   );
 

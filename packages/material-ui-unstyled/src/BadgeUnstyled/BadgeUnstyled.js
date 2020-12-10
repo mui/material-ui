@@ -101,7 +101,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
 
   const classes = useBadgeClasses(stateAndProps);
 
-  const Root = components.Root || 'span';
+  const Root = components.Root || Component;
   const rootProps = componentsProps.root || {};
 
   const Badge = components.Badge || 'span';
