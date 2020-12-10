@@ -14,7 +14,12 @@ import ReactDOM from 'react-dom';
 import { StyledEngineProvider } from '@material-ui/core';
 import Demo from './demo';
 
-ReactDOM.render(<StyledEngineProvider injectFirst><Demo /></StyledEngineProvider>, document.querySelector('#root'));
+ReactDOM.render(
+  <StyledEngineProvider injectFirst>
+    <Demo />
+  </StyledEngineProvider>,
+  document.querySelector("#root")
+);
     `.trim(),
     },
   };
@@ -34,7 +39,12 @@ import ReactDOM from 'react-dom';
 import { StyledEngineProvider } from '@material-ui/core';
 import Demo from './demo';
 
-ReactDOM.render(<StyledEngineProvider injectFirst><Demo /></StyledEngineProvider>, document.querySelector('#root'));
+ReactDOM.render(
+  <StyledEngineProvider injectFirst>
+    <Demo />
+  </StyledEngineProvider>,
+  document.querySelector("#root")
+);
     `.trim(),
       'tsconfig.json': `{
   "compilerOptions": {
