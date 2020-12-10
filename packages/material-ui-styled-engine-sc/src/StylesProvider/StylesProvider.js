@@ -1,20 +1,26 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { StyleSheetManager } from 'styled-components';
 
 let injectFirstNode;
 
-export function StylesProvider({ injectFirst, children }) {
+export function StylesProvider(props) {
+  const { injectFirst, children } = props;
+
   React.useEffect(() => {
     if (injectFirst && !injectFirstNode) {
       const head = document.head;
       injectFirstNode = document.createElement('style');
       injectFirstNode.setAttribute('data-styled', 'active');
-      injectFirstNode.setAttribute('data-styled-version', '5.2.1');
       head.insertBefore(injectFirstNode, head.firstChild);
     }
   }, [injectFirst]);
 
-  return children;
+  return injectFirst ? (
+    <StyleSheetManager target={injectFirstNode}>{children}</StyleSheetManager>
+  ) : (
+    children
+  );
 }
 
 StylesProvider.propTypes = {
