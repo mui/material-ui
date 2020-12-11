@@ -192,7 +192,7 @@ In the previous versions, we supported the system properties as first class prop
 
 In order to support the system on all core components, having the system under one prop, allows avoiding collision with the props, that may already exist on the components, like `color`.
 
-Finally, having the props under one property, helps to easily differentiate the component's prop versus the props defined for the sole purpose of styling.
+Finally, having the system under one prop helps to easily differentiate the props defined for the sole purpose of CSS utilities vs. for component business logic.
 
 ## Usage
 
