@@ -153,7 +153,7 @@ The system provides direct access to the value in the theme. It makes it easier 
 
 The `sx` prop, as the main part of the system, solves these problems by providing a fast & simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used to create a one-off design.
 
-This prop provides a superset of CSS that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
 
 ### When to use it?
 
@@ -185,6 +185,14 @@ Cons:
   _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) for a reproduction of these metrics._
 
   We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
+
+### API tradeoff
+
+In the previous versions, we supported the system properties as first class properties on the `Box` component. However, as we are extending the system to be a superset of CSS (contains all CSS properties/selectors in addition to custom ones) it's no longer an option to support all properties as first class props. This is the main reason why, we decided to support all system properties under one prop - `sx`, which in addition allows developers to define other CSS definitions.
+
+As we are working on supporting the `sx` on all core components, having the system under one prop, helps us in order to avoid collision with the properties, that may already exists on the components, like `color`.
+
+Finally, having the props under one property, helps to easily differentiate the component's prop versus the props defined for the sole purpose of styling.
 
 ## Usage
 
