@@ -1,6 +1,6 @@
 # Properties
 
-<p class="description">This page lists all of the custom system properties, how are they linked with the theme, and which CSS properties they compute.</p>
+<p class="description">This page lists all of the custom system properties, how are they linked with the theme, and which CSS properties they compute. All other regular CSS properties and selectors are supported too.</p>
 
 ## Legend
 
