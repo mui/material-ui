@@ -55,3 +55,7 @@ BadgeContentが0の場合、バッジは自動的に非表示になります。 
 `anchorOrigin` プロパティを使用して、バッジをラップされた要素の隅に移動できます。
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled badge
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}
