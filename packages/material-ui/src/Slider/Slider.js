@@ -68,7 +68,7 @@ const overridesResolver = (props, styles) => {
 export const SliderRoot = experimentalStyled(
   'span',
   {},
-  { muiName: 'MuiSlider', overridesResolver },
+  { displayName: 'SliderRoot', muiName: 'MuiSlider', className: 'MuiSlider-root', overridesResolver },
 )((props) => ({
   height: 2,
   width: '100%',
@@ -131,7 +131,7 @@ export const SliderRoot = experimentalStyled(
 export const SliderRail = experimentalStyled(
   'span',
   {},
-  { muiName: 'MuiSlider-rail' },
+  { displayName: 'SliderRail', className: 'MuiSlider-rail' },
 )((props) => ({
   display: 'block',
   position: 'absolute',
@@ -152,7 +152,7 @@ export const SliderRail = experimentalStyled(
 export const SliderTrack = experimentalStyled(
   'span',
   {},
-  { muiName: 'MuiSlider-track' },
+  { displayName: 'SliderTrack', className: 'MuiSlider-track' },
 )((props) => ({
   display: 'block',
   position: 'absolute',
@@ -177,7 +177,7 @@ export const SliderTrack = experimentalStyled(
 export const SliderThumb = experimentalStyled(
   'span',
   {},
-  { muiName: 'MuiSlider-thumb' },
+  { displayName: 'SliderThumb', className: 'MuiSlider-thumb' },
 )((props) => ({
   position: 'absolute',
   width: 12,
@@ -240,7 +240,7 @@ export const SliderThumb = experimentalStyled(
   }),
 }));
 
-export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled)((props) => ({
+export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled, {}, { displayName: 'SliderValueLabel', className: 'MuiSlider-valueLabel' })((props) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
   [`&.${sliderClasses.valueLabelOpen}`]: {
@@ -262,7 +262,7 @@ export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled)((pr
 export const SliderMark = experimentalStyled(
   'span',
   {},
-  { muiName: 'MuiSlider-mark' },
+  { displayName: 'SliderMark', className: 'MuiSlider-mark' },
 )((props) => ({
   position: 'absolute',
   width: 2,
@@ -278,7 +278,7 @@ export const SliderMark = experimentalStyled(
 export const SliderMarkLabel = experimentalStyled(
   'span',
   {},
-  { muiName: 'MuiSlider-markLabel' },
+  { displayName: 'SliderMarkLabel', className: 'MuiSlider-markLabel' },
 )((props) => ({
   ...props.theme.typography.body2,
   color: props.theme.palette.text.secondary,

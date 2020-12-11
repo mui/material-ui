@@ -63,9 +63,11 @@ const shouldForwardProp = (prop) =>
   prop !== 'styleProps' && prop !== 'theme' && prop !== 'isRtl' && prop !== 'sx' && prop !== 'as';
 
 const experimentalStyled = (tag, options, muiOptions = {}) => {
+  const displayName = muiOptions.displayName;
   const name = muiOptions.muiName;
+  const className = muiOptions.className;
   const skipSx = muiOptions.skipSx || false;
-  const defaultStyledResolver = styled(tag, { shouldForwardProp, label: name, ...options });
+  const defaultStyledResolver = styled(tag, { shouldForwardProp, label: className || name, ...options });
   const muiStyledResolver = (styleArg, ...expressions) => {
     const expressionsWithDefaultTheme = expressions
       ? expressions.map((stylesArg) => {
@@ -116,7 +118,10 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
         styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...other });
     }
 
-    return defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
+    const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
+    Component.displayName = displayName || name;
+
+    return Component;
   };
   return muiStyledResolver;
 };
