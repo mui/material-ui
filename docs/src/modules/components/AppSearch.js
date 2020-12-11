@@ -125,9 +125,11 @@ export default function AppSearch() {
   React.useEffect(() => {
     const handleKeyDown = (nativeEvent) => {
       if (
-        ['/', 's'].indexOf(nativeEvent.key) !== -1 &&
-        document.activeElement.nodeName === 'BODY' &&
-        document.activeElement !== inputRef.current
+        ((nativeEvent.ctrlKey && ['k'].indexOf(nativeEvent.key) !== -1) ||
+          ['/', 's'].indexOf(nativeEvent.key) !== -1) &&
+        (document.activeElement.tagName !== 'INPUT' ||
+          document.activeElement.tagName !== 'SELECT' ||
+          document.activeElement.tagName !== 'TEXTAREA')
       ) {
         nativeEvent.preventDefault();
         inputRef.current.focus();
