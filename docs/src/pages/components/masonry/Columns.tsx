@@ -8,7 +8,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
-import { itemData } from './demoData';
+import itemData from './demoData';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import { toArray } from 'lodash';
 
@@ -58,30 +57,16 @@ const Masonry: React.FC<MasonryProps & WithStyles<typeof styles>> = (props) => {
     </div>
   );
 };
-
-Masonry.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  columns: PropTypes.number,
-  /**
-   * @ignore
-   */
-  spacing: PropTypes.number,
-};
-
+/**
+ *
+ * Demos:
+ *
+ * - [Masonry](https://material-ui.com/components/masonry/)
+ *
+ * API:
+ *
+ * - [Masonry API](https://material-ui.com/api/masonry/)
+ */
 export default withStyles(styles, {
   name: 'Masonry',
 })(Masonry) as (props: MasonryProps) => JSX.Element;

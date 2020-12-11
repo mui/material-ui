@@ -8,7 +8,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
-import { itemData } from './demoData';
+import itemData from './demoData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,7 +46,7 @@ function MasonryColumns() {
   return (
     <div className={classes.root}>
       <div className={classes.masonryContainer}>
-        <Masonry spacing={2} columns={columns}>
+        <Masonry columns={columns}>
           {itemData.map((item, index) => (
             <Card key={`masonry-item-${index}`} className={classes.card}>
               <CardMedia

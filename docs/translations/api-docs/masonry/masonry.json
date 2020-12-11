@@ -1,0 +1,8 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {},
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "column": { "description": "Style applied to each column" }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "props": {},
+  "name": "Masonry",
+  "styles": {
+    "classes": ["root", "column"],
+    "globalClasses": { "root": "root-3", "column": "column-4" },
+    "name": "Masonry"
+  },
+  "spread": true,
+  "filename": "/packages/material-ui-lab/src/Masonry/Masonry.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/masonry/\">Masonry</a></li></ul>",
+  "styledComponent": false
+}

@@ -1,4 +1,4 @@
-export const itemData = [
+const itemData = [
   {
     img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
     title: 'Bed',
@@ -79,3 +79,5 @@ export const itemData = [
     content: '12.- Ut nisi eiusmod proident eiusmod duis fugiat voluptate non.',
   },
 ];
+
+export default itemData;
