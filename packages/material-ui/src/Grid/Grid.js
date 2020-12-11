@@ -81,7 +81,7 @@ function generateGutter(theme, breakpoint) {
     }
 
     styles[`spacing-${breakpoint}-${spacing}`] = {
-      margin: `-${getOffset(themeSpacing, 2)}`,
+      margin: `calc(0% - ${getOffset(themeSpacing, 2)})`,
       width: `calc(100% + ${getOffset(themeSpacing)})`,
       '& > $item': {
         padding: getOffset(themeSpacing, 2),
