@@ -18,6 +18,7 @@ export function StylesProvider(props) {
     return () => {
       const head = document.head;
       head.removeChild(injectFirstNode);
+      injectFirstNode = null;
     };
   }, [injectFirst]);
 
