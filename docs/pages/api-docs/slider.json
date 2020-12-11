@@ -1,0 +1,98 @@
+{
+  "props": {
+    "aria-label": { "type": { "name": "custom", "description": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
+    "classes": { "type": { "name": "object" }, "default": "{}" },
+    "color": {
+      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "default": "'primary'"
+    },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ Mark?: elementType, MarkLabel?: elementType, Rail?: elementType, Root?: elementType, Thumb?: elementType, Track?: elementType, ValueLabel?: elementType }"
+      },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "defaultValue": {
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+    },
+    "disabled": { "type": { "name": "bool" } },
+    "getAriaLabel": { "type": { "name": "func" } },
+    "getAriaValueText": { "type": { "name": "func" } },
+    "isRtl": { "type": { "name": "bool" } },
+    "marks": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;{ label?: node, value: number }&gt;<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
+    "max": { "type": { "name": "number" }, "default": "100" },
+    "min": { "type": { "name": "number" }, "default": "0" },
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "onChangeCommitted": { "type": { "name": "func" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "scale": { "type": { "name": "func" }, "default": "(x) => x" },
+    "step": { "type": { "name": "number" }, "default": "1" },
+    "sx": { "type": { "name": "object" } },
+    "track": {
+      "type": {
+        "name": "enum",
+        "description": "'inverted'<br>&#124;&nbsp;'normal'<br>&#124;&nbsp;false"
+      },
+      "default": "'normal'"
+    },
+    "value": {
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+    },
+    "valueLabelDisplay": {
+      "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on'" },
+      "default": "'off'"
+    },
+    "valueLabelFormat": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
+      "default": "(x) => x"
+    },
+    "component": { "type": { "name": "elementType" } }
+  },
+  "name": "Slider",
+  "styles": {
+    "classes": [
+      "root",
+      "marked",
+      "vertical",
+      "disabled",
+      "rail",
+      "track",
+      "trackFalse",
+      "trackInverted",
+      "thumb",
+      "active",
+      "focusVisible",
+      "valueLabel",
+      "mark",
+      "markActive",
+      "markLabel",
+      "markLabelActive",
+      "colorPrimary",
+      "colorSecondary",
+      "thumbColorPrimary",
+      "thumbColorSecondary"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
+    "name": "MuiSlider"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Slider/Slider.js",
+  "inheritance": { "component": "SliderUnstyled", "pathname": "/api/slider-unstyled/" },
+  "demos": "<ul><li><a href=\"/components/slider/\">Slider</a></li></ul>",
+  "styledComponent": true
+}

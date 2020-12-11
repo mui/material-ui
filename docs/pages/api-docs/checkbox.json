@@ -1,0 +1,41 @@
+{
+  "props": {
+    "checked": { "type": { "name": "bool" } },
+    "checkedIcon": { "type": { "name": "node" }, "default": "<CheckBoxIcon />" },
+    "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+      },
+      "default": "'secondary'"
+    },
+    "disabled": { "type": { "name": "bool" } },
+    "disableRipple": { "type": { "name": "bool" } },
+    "icon": { "type": { "name": "node" }, "default": "<CheckBoxOutlineBlankIcon />" },
+    "id": { "type": { "name": "string" } },
+    "indeterminate": { "type": { "name": "bool" } },
+    "indeterminateIcon": { "type": { "name": "node" }, "default": "<IndeterminateCheckBoxIcon />" },
+    "inputProps": { "type": { "name": "object" } },
+    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "onChange": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" } },
+    "size": {
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "default": "'medium'"
+    },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "Checkbox",
+  "styles": {
+    "classes": ["root", "checked", "disabled", "indeterminate", "colorPrimary", "colorSecondary"],
+    "globalClasses": { "checked": "Mui-checked", "disabled": "Mui-disabled" },
+    "name": "MuiCheckbox"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/Checkbox/Checkbox.js",
+  "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
+  "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
+  "styledComponent": false
+}

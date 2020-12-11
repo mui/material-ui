@@ -1,18 +1,23 @@
 const { expect } = require('chai');
 const { execFileSync } = require('child_process');
+const path = require('path');
 
 describe('@material-ui/envinfo', () => {
+  const packagePath = __dirname;
   before(function beforeHook() {
     // only run in node
     if (!/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
+
+    // Building might take some time
+    this.timeout(10000);
+    execFileSync('yarn', ['build'], { cwd: packagePath, stdio: 'pipe' });
   });
 
   function execEnvinfo(args) {
-    const packagePath = __dirname;
-
-    return execFileSync('npx', ['--package', packagePath, 'envinfo', ...args], {
+    const buildPath = path.resolve(packagePath, 'build');
+    return execFileSync('npx', ['--package', buildPath, 'envinfo', ...args], {
       encoding: 'utf-8',
       stdio: 'pipe',
     });

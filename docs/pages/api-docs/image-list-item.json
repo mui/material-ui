@@ -1,0 +1,21 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "cols": { "type": { "name": "number" }, "default": "1" },
+    "component": { "type": { "name": "elementType" } },
+    "rows": { "type": { "name": "number" }, "default": "1" }
+  },
+  "name": "ImageListItem",
+  "styles": {
+    "classes": ["root", "img", "standard", "woven"],
+    "globalClasses": {},
+    "name": "MuiImageListItem"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/material-ui/src/ImageListItem/ImageListItem.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/image-list/\">Image List</a></li></ul>",
+  "styledComponent": false
+}

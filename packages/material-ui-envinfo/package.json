@@ -15,9 +15,15 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
+  "homepage": "https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-envinfo",
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui",
     "directory": "packages/material-ui-envinfo"
+  },
+  "files": [],
+  "scripts": {
+    "build": "npm pack && tar --transform 's,package/,build/,' -xzf material-ui-envinfo-*.tgz",
+    "prebuild": "rimraf build"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } }
+  },
+  "name": "TimelineOppositeContent",
+  "styles": {
+    "classes": ["root", "alignRight"],
+    "globalClasses": {},
+    "name": "MuiTimelineOppositeContent"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/TimelineOppositeContent/TimelineOppositeContent.js",
+  "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
+  "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
+  "styledComponent": false
+}

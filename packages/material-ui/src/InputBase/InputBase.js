@@ -50,7 +50,6 @@ export const styles = (theme) => {
       '&$disabled': {
         color: theme.palette.text.disabled,
         cursor: 'default',
-        WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
       },
     },
     /* Styles applied to the root element if the component is a descendant of `FormControl`. */
@@ -128,6 +127,7 @@ export const styles = (theme) => {
       },
       '&$disabled': {
         opacity: 1, // Reset iOS opacity
+        WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
       },
       '&:-webkit-autofill': {
         animationDuration: '5000s',
