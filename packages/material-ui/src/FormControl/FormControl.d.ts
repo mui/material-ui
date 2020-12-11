@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { PropTypes } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -56,7 +55,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
      * @default 'none'
      */
-    margin?: PropTypes.Margin;
+    margin?: 'dense' | 'normal' | 'none';
     /**
      * If `true`, the label will indicate that the `input` is required.
      * @default false
@@ -64,6 +63,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     required?: boolean;
     /**
      * The size of the text field.
+     * @default 'medium'
      */
     size?: 'small' | 'medium';
     /**

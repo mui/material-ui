@@ -69,7 +69,7 @@ export const styles = (theme) => ({
         padding: '6px 0',
       },
     },
-    '&[class*="MuiInput-root"][class*="MuiInput-marginDense"]': {
+    '&[class*="MuiInput-root"][class*="MuiInput-sizeSmall"]': {
       '& $input': {
         padding: '2px 4px 3px',
       },
@@ -95,7 +95,7 @@ export const styles = (theme) => ({
         right: 9,
       },
     },
-    '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-marginDense"]': {
+    '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-sizeSmall"]': {
       padding: 6,
       '& $input': {
         padding: '2.5px 4px',
@@ -117,7 +117,7 @@ export const styles = (theme) => ({
         right: 9,
       },
     },
-    '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-marginDense"]': {
+    '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-sizeSmall"]': {
       paddingBottom: 1,
       '& $input': {
         padding: '2.5px 4px',
@@ -762,6 +762,7 @@ Autocomplete.propTypes = {
    * @param {object} event The event source of the callback.
    * @param {T|T[]} value The new value of the component.
    * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
+   * @param {string} [details]
    */
   onChange: PropTypes.func,
   /**

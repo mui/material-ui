@@ -60,7 +60,7 @@ const variantsResolver = (props, styles, theme, name) => {
 };
 
 const shouldForwardProp = (prop) =>
-  prop !== 'styleProps' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
+  prop !== 'styleProps' && prop !== 'theme' && prop !== 'isRtl' && prop !== 'sx' && prop !== 'as';
 
 const experimentalStyled = (tag, options, muiOptions = {}) => {
   const name = muiOptions.muiName;

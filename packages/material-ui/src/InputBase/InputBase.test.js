@@ -41,6 +41,11 @@ describe('<InputBase />', () => {
     expect(input).not.to.have.attribute('required');
   });
 
+  it('should add the right class when size is small', () => {
+    const { container } = render(<InputBase size="small" />);
+    expect(container.firstChild).to.have.class(classes.sizeSmall);
+  });
+
   describe('multiline', () => {
     it('should render an <TextareaAutosize /> when passed the multiline prop', () => {
       const { container } = render(<InputBase multiline />);
@@ -315,29 +320,29 @@ describe('<InputBase />', () => {
       });
     });
 
-    describe('margin', () => {
-      it('should have the inputMarginDense class in a dense context', () => {
+    describe('size', () => {
+      it('should have the inputSizeSmall class in a dense context', () => {
         const { container } = render(
-          <FormControl margin="dense">
+          <FormControl size="small">
             <InputBase />
           </FormControl>,
         );
-        expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
+        expect(container.querySelector('input')).to.have.class(classes.inputSizeSmall);
       });
 
       it('should be overridden by props', () => {
         function InputBaseInFormWithMargin(props) {
           return (
-            <FormControl margin="none">
+            <FormControl size="medium">
               <InputBase {...props} />
             </FormControl>
           );
         }
         const { container, setProps } = render(<InputBaseInFormWithMargin />);
-        expect(container.querySelector('input')).not.to.have.class(classes.inputMarginDense);
+        expect(container.querySelector('input')).not.to.have.class(classes.inputSizeSmall);
 
-        setProps({ margin: 'dense' });
-        expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
+        setProps({ size: 'small' });
+        expect(container.querySelector('input')).to.have.class(classes.inputSizeSmall);
       });
 
       it('has an inputHiddenLabel class to further reduce margin', () => {

@@ -1,0 +1,59 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The contents of the <code>InputLabel</code>.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "disableAnimation": "If <code>true</code>, the transition animation is disabled.",
+    "disabled": "If <code>true</code>, apply disabled class.",
+    "error": "If <code>true</code>, the label is displayed in an error state.",
+    "focused": "If <code>true</code>, the <code>input</code> of this label is focused.",
+    "margin": "If <code>dense</code>, will adjust vertical spacing. This is normally obtained via context from FormControl.",
+    "required": "if <code>true</code>, the label will indicate that the <code>input</code> is required.",
+    "shrink": "If <code>true</code>, the label is shrunk.",
+    "variant": "The variant to use."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "focused": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>focused={true}</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "error": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>error={true}</code>"
+    },
+    "required": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>required={true}</code>"
+    },
+    "asterisk": { "description": "Pseudo-class applied to the asterisk element." },
+    "formControl": {
+      "description": "Styles applied to the root element if the component is a descendant of `FormControl`."
+    },
+    "sizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code>"
+    },
+    "shrink": {
+      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "conditions": "<code>shrink={true}</code>"
+    },
+    "animated": {
+      "description": "Styles applied to the `input` element unless {{conditions}}.",
+      "conditions": "<code>disableAnimation={true}</code>"
+    },
+    "filled": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"filled\"</code>"
+    },
+    "outlined": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    }
+  }
+}

@@ -73,7 +73,7 @@ MyDocument.getInitialProps = async (ctx) => {
       sheets.getStyleElement(),
       <style
         key="emotion-style-tag"
-        data-emotion-css={styles.ids.join(' ')}
+        data-emotion={`css ${styles.ids.join(' ')}`}
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: styles.css }}
       />,
