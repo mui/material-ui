@@ -11,15 +11,19 @@ Let's take the following row from [the table below](#properties-reference-table)
 | [`spacing`](/system/spacing/) | `mb`, `marginBottom` | `margin-bottom`         | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
 ### System style function
+
 The <b>System style function</b> column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@material-ui/system`. You can see an example of using the style functions on the [advanced page](/system/advanced/#using-standalone-system-utilities). The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
 
 ### System keys
+
 The <b>System keys</b> column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
 
 ### CSS properties
+
 The <b>CSS property</b> column describes which CSS property will be generated when this system property is used.
 
 ### Theme mapping
+
 And lastly, the <b>Theme key</b> column tells you how this property is wired with the theme – with this example, whatever value you might use will be used as input to the `theme.spacing` helper.
 
 Let's take a look at an example:
