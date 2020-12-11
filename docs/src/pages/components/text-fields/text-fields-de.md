@@ -65,6 +65,10 @@ Fancy smaller inputs? Verwenden Sie die `size` Prop.
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
+The `filled` variant input height can be further reduced by rendering the label outside of it.
+
+{{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
+
 ## Layout
 
 `dense` and `normal` alter other styles to meet the specification. `margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
