@@ -71,11 +71,11 @@ const styles = (theme) => ({
     marginTop: theme.spacing(2),
   },
   colorSquare: {
+    width: 64,
     height: 64,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexGrow: 4,
   },
   button: {
     marginLeft: theme.spacing(1),
