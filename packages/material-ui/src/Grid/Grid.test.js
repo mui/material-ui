@@ -97,12 +97,12 @@ describe('<Grid />', () => {
       });
 
       expect(styles(remTheme)['spacing-xs-2']).to.deep.equal({
-        margin: '-0.25rem',
+        margin: 'calc(0% - 0.25rem)',
         width: 'calc(100% + 0.5rem)',
         '& > $item': { padding: '0.25rem' },
       });
       expect(styles(defaultTheme)['spacing-xs-2']).to.deep.equal({
-        margin: '-8px',
+        margin: 'calc(0% - 8px)',
         width: 'calc(100% + 16px)',
         '& > $item': { padding: '8px' },
       });
