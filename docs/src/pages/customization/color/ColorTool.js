@@ -110,7 +110,6 @@ function ColorTool(props) {
     setState((prevState) => ({
       ...prevState,
       [`${name}Input`]: color,
-      [`${name}Shade`]: null,
     }));
 
     let isValidColor = false;
