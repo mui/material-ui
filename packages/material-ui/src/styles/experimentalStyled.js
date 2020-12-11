@@ -67,7 +67,11 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
   const name = muiOptions.muiName;
   const className = muiOptions.className;
   const skipSx = muiOptions.skipSx || false;
-  const defaultStyledResolver = styled(tag, { shouldForwardProp, label: className || name, ...options });
+  const defaultStyledResolver = styled(tag, {
+    shouldForwardProp,
+    label: className || name || displayName,
+    ...options,
+  });
   const muiStyledResolver = (styleArg, ...expressions) => {
     const expressionsWithDefaultTheme = expressions
       ? expressions.map((stylesArg) => {

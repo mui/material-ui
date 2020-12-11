@@ -68,7 +68,12 @@ const overridesResolver = (props, styles) => {
 export const SliderRoot = experimentalStyled(
   'span',
   {},
-  { displayName: 'SliderRoot', muiName: 'MuiSlider', className: 'MuiSlider-root', overridesResolver },
+  {
+    displayName: 'SliderRoot',
+    muiName: 'MuiSlider',
+    className: 'MuiSlider-root',
+    overridesResolver,
+  },
 )((props) => ({
   height: 2,
   width: '100%',
@@ -240,7 +245,11 @@ export const SliderThumb = experimentalStyled(
   }),
 }));
 
-export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled, {}, { displayName: 'SliderValueLabel', className: 'MuiSlider-valueLabel' })((props) => ({
+export const SliderValueLabel = experimentalStyled(
+  SliderValueLabelUnstyled,
+  {},
+  { displayName: 'SliderValueLabel', className: 'MuiSlider-valueLabel' },
+)((props) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
   [`&.${sliderClasses.valueLabelOpen}`]: {
