@@ -81,5 +81,5 @@
   "filename": "/packages/material-ui/src/Typography/Typography.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/breadcrumbs/\">Breadcrumbs</a></li>\n<li><a href=\"/components/typography/\">Typography</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true
 }
