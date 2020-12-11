@@ -49,8 +49,6 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
-  },
-  drawerPaper: {
     boxSizing: 'border-box',
   },
   drawerOpen: {

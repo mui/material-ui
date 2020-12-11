@@ -50,8 +50,6 @@ const useStyles = makeStyles((theme: Theme) =>
       width: drawerWidth,
       flexShrink: 0,
       whiteSpace: 'nowrap',
-    },
-    drawerPaper: {
       boxSizing: 'border-box',
     },
     drawerOpen: {
