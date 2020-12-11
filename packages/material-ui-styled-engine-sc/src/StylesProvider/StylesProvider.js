@@ -14,6 +14,11 @@ export function StylesProvider(props) {
       injectFirstNode.setAttribute('data-styled', 'active');
       head.insertBefore(injectFirstNode, head.firstChild);
     }
+
+    return () => {
+      const head = document.head;
+      head.removeChild(injectFirstNode);
+    }
   }, [injectFirst]);
 
   return injectFirst ? (
