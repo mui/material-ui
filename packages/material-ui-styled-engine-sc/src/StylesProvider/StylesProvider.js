@@ -18,7 +18,7 @@ export function StylesProvider(props) {
     return () => {
       const head = document.head;
       head.removeChild(injectFirstNode);
-    }
+    };
   }, [injectFirst]);
 
   return injectFirst ? (
