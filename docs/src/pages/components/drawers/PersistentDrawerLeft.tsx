@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerPaper: {
       width: drawerWidth,
+      boxSizing: 'border-box',
     },
     drawerHeader: {
       display: 'flex',
