@@ -3,7 +3,7 @@
   "propDescriptions": {
     "ariaLabel": "The aria-label of the button element. Also used to provide the <code>id</code> for the <code>SpeedDial</code> element and its children.",
     "children": "SpeedDialActions to display when the SpeedDial is <code>open</code>.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
     "direction": "The direction the actions open relative to the floating action button.",
     "FabProps": "Props applied to the <a href=\"/api/fab/\"><code>Fab</code></a> element.",
     "hidden": "If <code>true</code>, the SpeedDial is hidden.",

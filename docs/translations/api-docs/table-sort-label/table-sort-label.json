@@ -3,7 +3,7 @@
   "propDescriptions": {
     "active": "If <code>true</code>, the label will have the active styling (should be true for the sorted column).",
     "children": "Label contents, the arrow will be appended automatically.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
     "direction": "The current sort direction.",
     "hideSortIcon": "Hide sort icon when active is false.",
     "IconComponent": "Sort icon to use."

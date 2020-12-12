@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "boundaryCount": "Number of always visible pages at the beginning and end.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
     "color": "The active color.",
     "count": "The total number of pages.",
     "defaultPage": "The page selected by default when the component is uncontrolled.",

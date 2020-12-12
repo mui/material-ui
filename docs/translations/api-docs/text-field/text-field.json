@@ -3,7 +3,7 @@
   "propDescriptions": {
     "autoComplete": "This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it&#39;s more like an autofill. You can learn more about it <a href=\"https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill\">following the specification</a>.",
     "autoFocus": "If <code>true</code>, the <code>input</code> element is focused during the first mount.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "defaultValue": "The default value of the <code>input</code> element.",
     "disabled": "If <code>true</code>, the <code>input</code> element is disabled.",

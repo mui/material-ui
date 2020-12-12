@@ -2,7 +2,7 @@
   "componentDescription": "An alternative to <code>&lt;Select native /&gt;</code> with a much smaller bundle size footprint.",
   "propDescriptions": {
     "children": "The option elements to populate the select with. Can be some <code>&lt;option&gt;</code> elements.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
     "IconComponent": "The icon that displays the arrow.",
     "input": "An <code>Input</code> element; does not have to be a material-ui specific <code>Input</code>.",
     "inputProps": "Attributes applied to the <code>select</code> element.",

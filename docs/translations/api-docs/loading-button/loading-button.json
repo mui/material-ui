@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": "The content of the button.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
     "disabled": "If <code>true</code>, the button is disabled.",
     "pending": "If <code>true</code>, the pending indicator is shown.",
     "pendingIndicator": "Element placed before the children if the button is in pending state.",

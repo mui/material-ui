@@ -5,7 +5,7 @@
     "anchorOrigin": "The anchor of the <code>Snackbar</code>. On smaller screens, the component grows to occupy all the available width, the horizontal alignment is ignored.",
     "autoHideDuration": "The number of milliseconds to wait before automatically calling the <code>onClose</code> function. <code>onClose</code> should then set the state of the <code>open</code> prop to hide the Snackbar. This behavior is disabled by default with the <code>null</code> value.",
     "children": "Replace the <code>SnackbarContent</code> component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
     "ClickAwayListenerProps": "Props applied to the <code>ClickAwayListener</code> element.",
     "ContentProps": "Props applied to the <a href=\"/api/snackbar-content/\"><code>SnackbarContent</code></a> element.",
     "disableWindowBlurListener": "If <code>true</code>, the <code>autoHideDuration</code> timer will expire even if the window is not focused.",
