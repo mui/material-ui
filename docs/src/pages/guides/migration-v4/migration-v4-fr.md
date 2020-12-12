@@ -363,6 +363,15 @@ const classes = makeStyles(theme => ({
   +<Button />
   ```
 
+
+  ### Chip
+
+- Rename `default` variant to `filled` for consistency.
+  ```diff
+  -<Chip variant="default">
+  +<Chip variant="filled">
+  ```
+
 ### Barres de progression groupées
 
 - The `static` variant has been merged into the `determinate` variant, with the latter assuming the appearance of the former. The removed variant was rarely useful. It was an exception to Material Design, and was removed from the specification.
@@ -529,14 +538,6 @@ const classes = makeStyles(theme => ({
   +<Fab variant="circular">
   ```
 
-### Chip
-
-- Rename `default` variant to `filled` for consistency.
-  ```diff
-  -<Chip variant="default">
-  +<Chip variant="filled">
-  ```
-
 ### Grid
 
 - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
@@ -555,29 +556,38 @@ const classes = makeStyles(theme => ({
 - Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
 - Use CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
-```diff
--import GridList from '@material-ui/core/GridList';
--import GridListTile from '@material-ui/core/GridListTile';
--import GridListTileBar from '@material-ui/core/GridListTileBar';
-+import ImageList from '@material-ui/core/ImageList';
-+import ImageListItem from '@material-ui/core/ImageListItem';
-+import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+  ```diff
+  -import GridList from '@material-ui/core/GridList';
+  -import GridListTile from '@material-ui/core/GridListTile';
+  -import GridListTileBar from '@material-ui/core/GridListTileBar';
+  +import ImageList from '@material-ui/core/ImageList';
+  +import ImageListItem from '@material-ui/core/ImageListItem';
+  +import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
--<GridList spacing={8} cellHeight={200}>
--  <GridListTile>
-+<ImageList gap={8} rowHeight={200}>
-+  <ImageListItem>
-     <img src="file.jpg" alt="Image title" />
--    <GridListTileBar
-+    <ImageListItemBar
-       title="Title"
-       subtitle="Subtitle"
-     />
--  </GridListTile>
--</GridList>
-+  </ImageListItem>
-+</ImageList>
-```
+  -<GridList spacing={8} cellHeight={200}>
+  -  <GridListTile>
+  +<ImageList gap={8} rowHeight={200}>
+  +  <ImageListItem>
+      <img src="file.jpg" alt="Image title" />
+  -    <GridListTileBar
+  +    <ImageListItemBar
+        title="Title"
+        subtitle="Subtitle"
+      />
+  -  </GridListTile>
+  -</GridList>
+  +  </ImageListItem>
+  +</ImageList>
+  ```
+
+### Icon
+
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
+
+  ```diff
+  -<Icon fontSize="default">icon-name</Icon>
+  +<Icon>icon-name</Icon>
+  ```
 
 ### Menu
 
@@ -873,6 +883,17 @@ const classes = makeStyles(theme => ({
   +    <StepLabel>Hello world</StepLabel>
   +  </Step>
   +</Stepper>
+  ```
+
+### SvgIcon
+
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
+
+  ```diff
+  -<SvgIcon fontSize="default">
+  +<SvgIcon>
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+  </SvgIcon>
   ```
 
 ### Table (Tableaux)
