@@ -50,10 +50,10 @@ yarn add @material-ui/core@next
 
 <details>
   <summary>Older versions</summary>
-  
+
   - **[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
   - **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
-  
+
 </details>
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
@@ -83,6 +83,12 @@ via [OpenCollective](https://opencollective.com/material-ui)
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="textemall" href="https://www.text-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/a6946da/logo/96.png" srcset="https://images.opencollective.com/callemall/a6946da/logo/192.png 2x" alt="call-em-all" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="canadacasino" href="https://www.canadacasino.ca/" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/canadacasino/5b19004/logo/96.png" srcset="https://images.opencollective.com/canadacasino/5b19004/logo/192.png 2x" alt="bitsrc" title="" loading="lazy" /></a>
+</p>
+
+Direct
+
+<p style="display: flex; justify-content: center; flex-wrap: wrap;">
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="elevator" href="https://www.elevatormag.com/" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://material-ui.com/static/sponsors/elevator.png" alt="elevator" title="The dopest new hip hop, upcoming artsits, music news, culture, and style" height="57" width="191" loading="lazy"></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to Material-UI.
