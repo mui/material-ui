@@ -24,7 +24,7 @@ The <b>CSS property</b> column describes which CSS property will be generated wh
 
 ### Theme mapping
 
-And lastly, the <b>Theme key</b> column tells you how this property is wired with the theme – with this example, whatever value you might use will be used as input to the `theme.spacing` helper.
+Lastly, the <b>Theme key</b> column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
 
 Let's take a look at an example:
 
