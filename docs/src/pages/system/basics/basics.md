@@ -190,7 +190,7 @@ Cons:
 
 In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components,  and so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`.
 
-Finally, having the system under one prop helps to easily differentiate the props defined for the sole purpose of CSS utilities vs. for component business logic.
+Additionally, having the system under one prop helps to easily differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
 
 ## Usage
 
