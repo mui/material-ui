@@ -26,4 +26,4 @@ The project uses [Preact](https://github.com/developit/preact), which is a fast 
 
 This example uses CRA with `react-app-rewired` for adding webpack aliases for preact.
 
-It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components) instead.
+It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).
