@@ -56,6 +56,6 @@ githubLabel: 'component: Badge'
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
 
-## Unstyled badge
+## 无样式的徽章
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
