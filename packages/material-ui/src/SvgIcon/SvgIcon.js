@@ -123,7 +123,7 @@ SvgIcon.propTypes = {
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
   fontSize: chainPropTypes(PropTypes.oneOf(['inherit', 'large', 'medium', 'small']), (props) => {
-    const { variant } = props;
+    const { fontSize } = props;
 
     if (variant === 'default') {
       throw new Error(
