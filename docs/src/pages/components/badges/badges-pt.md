@@ -56,6 +56,6 @@ Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer 
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
 
-## Unstyled badge
+## Emblema sem estilo
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
