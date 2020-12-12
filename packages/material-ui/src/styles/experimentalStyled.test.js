@@ -176,7 +176,7 @@ describe('experimentalStyled', () => {
       Test = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+        { name: 'Test', slot: 'Root', overridesResolver: testOverridesResolver },
       )`
         width: 200px;
         height: 300px;
@@ -185,7 +185,7 @@ describe('experimentalStyled', () => {
       TestObj = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+        { name: 'Test', slot: 'Root', overridesResolver: testOverridesResolver },
       )({
         width: '200px',
         height: '300px',
@@ -363,7 +363,7 @@ describe('experimentalStyled', () => {
       const TestNoSx = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { muiName: 'MuiTest', overridesResolver: testOverridesResolver, skipSx: true },
+        { name: 'Test', slot: 'Root', overridesResolver: testOverridesResolver, skipSx: true },
       )(({ sx = {} }) => ({
         ...(sx.mt && {
           marginTop: `${sx.mt * -1}px`,
@@ -384,7 +384,7 @@ describe('experimentalStyled', () => {
       const TestWithSx = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+        { name: 'Test', slot: 'Root', overridesResolver: testOverridesResolver },
       )(({ sx = {} }) => ({
         ...(sx.mt && {
           marginTop: `${sx.m * -1}px`,
@@ -407,75 +407,56 @@ describe('experimentalStyled', () => {
       const Component = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { displayName: 'Component', muiName: 'MuiComponent' },
+        { name: 'Component' },
       )`
         width: 200px;
         height: 300px;
       `;
 
-      expect(Component.displayName).to.equal("Component");
+      expect(Component.displayName).to.equal('Component');
     });
 
-    it('should set displayName as muiName if displayName is not specified', () => {
+    it('should set displayName as name + slot if both are specified', () => {
       const Component = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { muiName: 'MuiComponent' },
+        { name: 'Component', slot: 'Root' },
       )`
         width: 200px;
         height: 300px;
       `;
 
-      expect(Component.displayName).to.equal("MuiComponent");
+      expect(Component.displayName).to.equal('ComponentRoot');
     });
 
-    it('should use className when generating the classes', () => {
+    it('should set the className when generating the classes', () => {
       const Component = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { displayName: 'Component', muiName: 'MuiComponent', className: 'MuiComponent-root' },
+        { name: 'Component', slot: 'Slot' },
       )`
         width: 200px;
         height: 300px;
       `;
 
-      const { container } = render(
-        <Component>Test</Component>,
+      const { container } = render(<Component>Test</Component>);
+
+      expect(container.firstChild.getAttribute('class').includes('MuiComponent-slot')).to.equal(
+        true,
       );
-
-      expect(container.firstChild.getAttribute('class').includes('MuiComponent-root')).to.equal(true);
     });
 
-    it('should use muiName as className when generating the classes if className is not defined', () => {
+    it('should use name as className when slot is not specified', () => {
       const Component = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { displayName: 'Component', muiName: 'MuiComponent' },
+        { name: 'Component' },
       )`
         width: 200px;
         height: 300px;
       `;
 
-      const { container } = render(
-        <Component>Test</Component>,
-      );
-
-      expect(container.firstChild.getAttribute('class').includes('MuiComponent')).to.equal(true);
-    });
-
-    it('should use displayName as className when generating the classes if className and muiName are not defined', () => {
-      const Component = styled(
-        'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { displayName: 'Component' },
-      )`
-        width: 200px;
-        height: 300px;
-      `;
-
-      const { container } = render(
-        <Component>Test</Component>,
-      );
+      const { container } = render(<Component>Test</Component>);
 
       expect(container.firstChild.getAttribute('class').includes('Component')).to.equal(true);
     });

@@ -69,9 +69,8 @@ export const SliderRoot = experimentalStyled(
   'span',
   {},
   {
-    displayName: 'SliderRoot',
-    muiName: 'MuiSlider',
-    className: 'MuiSlider-root',
+    name: 'Slider',
+    slot: 'Root',
     overridesResolver,
   },
 )((props) => ({
@@ -136,7 +135,7 @@ export const SliderRoot = experimentalStyled(
 export const SliderRail = experimentalStyled(
   'span',
   {},
-  { displayName: 'SliderRail', className: 'MuiSlider-rail' },
+  { name: 'Slider', slot: 'Rail' },
 )((props) => ({
   display: 'block',
   position: 'absolute',
@@ -157,7 +156,7 @@ export const SliderRail = experimentalStyled(
 export const SliderTrack = experimentalStyled(
   'span',
   {},
-  { displayName: 'SliderTrack', className: 'MuiSlider-track' },
+  { name: 'Slider', slot: 'Track' },
 )((props) => ({
   display: 'block',
   position: 'absolute',
@@ -182,7 +181,7 @@ export const SliderTrack = experimentalStyled(
 export const SliderThumb = experimentalStyled(
   'span',
   {},
-  { displayName: 'SliderThumb', className: 'MuiSlider-thumb' },
+  { name: 'Slider', slot: 'Thumb' },
 )((props) => ({
   position: 'absolute',
   width: 12,
@@ -248,7 +247,7 @@ export const SliderThumb = experimentalStyled(
 export const SliderValueLabel = experimentalStyled(
   SliderValueLabelUnstyled,
   {},
-  { displayName: 'SliderValueLabel', className: 'MuiSlider-valueLabel' },
+  { name: 'Slider', slot: 'ValueLabel' },
 )((props) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
@@ -271,7 +270,7 @@ export const SliderValueLabel = experimentalStyled(
 export const SliderMark = experimentalStyled(
   'span',
   {},
-  { displayName: 'SliderMark', className: 'MuiSlider-mark' },
+  { name: 'Slider', slot: 'Mark' },
 )((props) => ({
   position: 'absolute',
   width: 2,
@@ -287,7 +286,7 @@ export const SliderMark = experimentalStyled(
 export const SliderMarkLabel = experimentalStyled(
   'span',
   {},
-  { displayName: 'SliderMarkLabel', className: 'MuiSlider-markLabel' },
+  { name: 'Slider', slot: 'MarkLabel' },
 )((props) => ({
   ...props.theme.typography.body2,
   color: props.theme.palette.text.secondary,
