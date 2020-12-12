@@ -106,11 +106,11 @@ Icon.propTypes = {
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
   fontSize: chainPropTypes(PropTypes.oneOf(['inherit', 'large', 'medium', 'small']), (props) => {
-    const { variant } = props;
+    const { fontSize } = props;
 
-    if (variant === 'default') {
+    if (fontSize === 'default') {
       throw new Error(
-        'Material-UI: `variant="default"` is deprecated. Use `variant="medium"` instead.',
+        'Material-UI: `fontSize="default"` is deprecated. Use `fontSize="medium"` instead.',
       );
     }
 
