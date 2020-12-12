@@ -441,12 +441,20 @@ describe('experimentalStyled', () => {
 
       const { container } = render(<Component>Test</Component>);
 
-      expect(container.firstChild.getAttribute('class').includes('MuiComponent-slot')).to.equal(
-        true,
-      );
+      const classList = Array.from(container.firstChild.classList);
+      const regExp = new RegExp(`.*-MuiComponent-slot$`);
+      let containsValidClass = false;
+
+      classList.forEach((className) => {
+        if (regExp.test(className)) {
+          containsValidClass = true;
+        }
+      });
+
+      expect(containsValidClass).to.equal(true);
     });
 
-    it('should use name as className when slot is not specified', () => {
+    it('should set the className as root if no slot is specified', () => {
       const Component = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
@@ -458,7 +466,17 @@ describe('experimentalStyled', () => {
 
       const { container } = render(<Component>Test</Component>);
 
-      expect(container.firstChild.getAttribute('class').includes('Component')).to.equal(true);
+      const classList = Array.from(container.firstChild.classList);
+      const regExp = new RegExp(`.*-MuiComponent-root$`);
+      let containsValidClass = false;
+
+      classList.forEach((className) => {
+        if (regExp.test(className)) {
+          containsValidClass = true;
+        }
+      });
+
+      expect(containsValidClass).to.equal(true);
     });
   });
 });
