@@ -1020,7 +1020,8 @@ async function buildDocs(options: {
 
       if (propName === 'sx') {
         // TODO: Dedupe this for l10n
-        description += ' See the <a href="/system/basics/#the-sx-prop">`sx` page</a> for more details.';
+        description +=
+          ' See the <a href="/system/basics/#the-sx-prop">`sx` page</a> for more details.';
       }
 
       componentApi.propDescriptions = {
