@@ -2,7 +2,7 @@
 /* eslint-disable no-await-in-loop */
 const fse = require('fs-extra');
 const path = require('path');
-const puppeteer = require('puppeteer');
+const playwright = require('playwright');
 const handler = require('serve-handler');
 const http = require('http');
 
@@ -34,7 +34,7 @@ function createServer(options) {
 }
 
 async function createBrowser() {
-  const browser = await puppeteer.launch();
+  const browser = await playwright.chromium.launch();
 
   return {
     openPage: async (url) => {
@@ -91,6 +91,12 @@ const printMeasure = (name, stats, baseline) => {
   }
 };
 
+/**
+ * @param {{ openPage: (url: any) => Promise<import('playwright').Page>}} browser
+ * @param {string} testCaseName
+ * @param {string} testCase
+ * @param {*} baseline
+ */
 async function runMeasures(browser, testCaseName, testCase, baseline) {
   const samples = [];
 
