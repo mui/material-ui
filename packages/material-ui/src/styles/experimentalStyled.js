@@ -71,7 +71,9 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
   const componentSlot = muiOptions.slot;
   const skipSx = muiOptions.skipSx || false;
 
-  let displayName, name, className;
+  let displayName;
+  let name;
+  let className;
 
   if (componentName && componentSlot) {
     displayName = `${componentName}${componentSlot}`;

@@ -180,8 +180,8 @@ export interface StyledOptions {
 }
 
 interface MuiStyledOptions<Theme extends object = any> {
-  name: string;
-  slot: string;
+  name?: string;
+  slot?: string;
   overridesResolver?: (props: any, styles: string | object, name: string) => string | object;
   skipSx?: boolean;
 }

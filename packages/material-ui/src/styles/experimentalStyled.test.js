@@ -363,7 +363,7 @@ describe('experimentalStyled', () => {
       const TestNoSx = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'Test', slot: 'Root', overridesResolver: testOverridesResolver, skipSx: true },
+        { overridesResolver: testOverridesResolver, skipSx: true },
       )(({ sx = {} }) => ({
         ...(sx.mt && {
           marginTop: `${sx.mt * -1}px`,
@@ -384,7 +384,7 @@ describe('experimentalStyled', () => {
       const TestWithSx = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'Test', slot: 'Root', overridesResolver: testOverridesResolver },
+        { overridesResolver: testOverridesResolver },
       )(({ sx = {} }) => ({
         ...(sx.mt && {
           marginTop: `${sx.m * -1}px`,
