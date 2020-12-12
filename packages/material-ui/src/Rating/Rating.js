@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { visuallyHidden } from '@material-ui/system';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, visuallyHidden } from '@material-ui/utils';
 import { useTheme, withStyles } from '../styles';
 import {
   capitalize,

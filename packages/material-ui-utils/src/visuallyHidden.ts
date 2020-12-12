@@ -1,4 +1,6 @@
-const visuallyHidden = {
+import type { CSSProperties } from 'react';
+
+const visuallyHidden: CSSProperties = {
   border: 0,
   clip: 'rect(0 0 0 0)',
   height: 1,
