@@ -75,7 +75,7 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
   let name;
   let className;
 
-  if (componentName && componentSlot) {
+  if (componentName) {
     displayName = `${componentName}${componentSlot || ''}`;
     name = !componentSlot || componentSlot === 'Root' ? `Mui${componentName}` : null;
     className = `Mui${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
