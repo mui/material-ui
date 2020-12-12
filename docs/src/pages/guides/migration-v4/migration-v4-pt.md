@@ -363,6 +363,15 @@ const classes = makeStyles(theme => ({
   +<Button />
   ```
 
+
+  ### Chip
+
+- Renomeie a variante `default` para `filled` por uma questão de consistência.
+  ```diff
+  -<Chip variant="default">
+  +<Chip variant="filled">
+  ```
+
 ### CircularProgress
 
 - A variante `static` foi mesclada na variante `determinate`, assumindo a última a aparência da primeira. A variante removida raramente foi útil. Era uma exceção para Material Design, e foi removida da especificação.
@@ -529,14 +538,6 @@ const classes = makeStyles(theme => ({
   +<Fab variant="circular">
   ```
 
-### Chip
-
-- Renomeie a variante `default` para `filled` por uma questão de consistência.
-  ```diff
-  -<Chip variant="default">
-  +<Chip variant="filled">
-  ```
-
 ### Grid
 
 - Renomeie a propriedade `justify` para `justifyContent` para ter conformidade com o nome da propriedade CSS.
@@ -553,31 +554,40 @@ const classes = makeStyles(theme => ({
 - Renomeie no GridList a propriedade `cellHeight` para `rowHieght`.
 - Adicione a propriedade `variant` para o GridList.
 - Renomeie no GridListItemBar a propriedade `actionPosition` para `position`. (Observe também as alterações de nome de classe relacionadas.)
-- Use CSS object-fit. Para suporte ao IE11 use um polyfill como https://www.npmjs.com/package/object-fit-images, ou continue usando o componente da v4.
+- Use CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
-```diff
--import GridList from '@material-ui/core/GridList';
--import GridListTile from '@material-ui/core/GridListTile';
--import GridListTileBar from '@material-ui/core/GridListTileBar';
-+import ImageList from '@material-ui/core/ImageList';
-+import ImageListItem from '@material-ui/core/ImageListItem';
-+import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+  ```diff
+  -import GridList from '@material-ui/core/GridList';
+  -import GridListTile from '@material-ui/core/GridListTile';
+  -import GridListTileBar from '@material-ui/core/GridListTileBar';
+  +import ImageList from '@material-ui/core/ImageList';
+  +import ImageListItem from '@material-ui/core/ImageListItem';
+  +import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
--<GridList spacing={8} cellHeight={200}>
--  <GridListTile>
-+<ImageList gap={8} rowHeight={200}>
-+  <ImageListItem>
-     <img src="file.jpg" alt="Image title" />
--    <GridListTileBar
-+    <ImageListItemBar
-       title="Title"
-       subtitle="Subtitle"
-     />
--  </GridListTile>
--</GridList>
-+  </ImageListItem>
-+</ImageList>
-```
+  -<GridList spacing={8} cellHeight={200}>
+  -  <GridListTile>
+  +<ImageList gap={8} rowHeight={200}>
+  +  <ImageListItem>
+      <img src="file.jpg" alt="Image title" />
+  -    <GridListTileBar
+  +    <ImageListItemBar
+        title="Title"
+        subtitle="Subtitle"
+      />
+  -  </GridListTile>
+  -</GridList>
+  +  </ImageListItem>
+  +</ImageList>
+  ```
+
+### Icon
+
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
+
+  ```diff
+  -<Icon fontSize="default">icon-name</Icon>
+  +<Icon>icon-name</Icon>
+  ```
 
 ### Menu
 
@@ -875,6 +885,17 @@ const classes = makeStyles(theme => ({
   +</Stepper>
   ```
 
+### SvgIcon
+
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
+
+  ```diff
+  -<SvgIcon fontSize="default">
+  +<SvgIcon>
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+  </SvgIcon>
+  ```
+
 ### Table
 
 - A customização dos rótulos das ações da paginação da tabela deve ser feita com a propriedade `getItemAriaLabel`. Isso aumenta a consistência com o componente `Paginação`.
@@ -901,8 +922,8 @@ const classes = makeStyles(theme => ({
 - TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
 
   ```diff
-  -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
-  +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  -<Tabs onChange={(event: React. ChangeEvent<{}>, value: unknown) => {}} />
+  +<Tabs onChange={(event: React. SyntheticEvent, value: unknown) => {}} />
   ```
 
 - A API que controla os botões de rolagem foi dividida em duas propriedades.
