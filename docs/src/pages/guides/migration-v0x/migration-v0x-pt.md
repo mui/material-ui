@@ -49,28 +49,26 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 
 ```jsx
 import * as React from 'react';
-  import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
-  import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
-  import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
+import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-  const theme = createMuiTheme({
-    /* tema para v1.x */
-  });
-  const themeV0 = getMuiTheme({
-    /* tema para v0.x */
-  });
+const theme = createMuiTheme({
+  /* tema para v1.x */
+});
+const themeV0 = getMuiTheme({
+  /* tema para v0.x */
+});
 
-  function App() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <V0MuiThemeProvider muiTheme={themeV0}>
-          {/*Components*/}
-        </V0MuiThemeProvider>
-      </MuiThemeProvider>
-    );
-  }
+function App() {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <V0MuiThemeProvider muiTheme={themeV0}>{/*Components*/}</V0MuiThemeProvider>
+    </MuiThemeProvider>
+  );
+}
 
-  export default App;
+export default App;
 ```
 
 4. Depois disso, você está livre para migrar uma instância de componente por vez.

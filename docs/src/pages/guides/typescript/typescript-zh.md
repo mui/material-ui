@@ -202,13 +202,11 @@ interface Props extends WithStyles<typeof styles> {
 将 `withStyles(styles)` 作为函数来如期使用：
 
 ```tsx
-const DecoratedSFC = withStyles(styles)(
-  ({ text, type, color, classes }: Props) => (
-    <Typography variant={type} color={color} classes={classes}>
-      {text}
-    </Typography>
-  ),
-);
+const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
+  <Typography variant={type} color={color} classes={classes}>
+    {text}
+  </Typography>
+));
 
 const DecoratedClass = withStyles(styles)(
   class extends React.Component<Props> {

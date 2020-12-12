@@ -16,7 +16,7 @@ packageName: '@material-ui/lab'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## React components
+## Componentes React
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 

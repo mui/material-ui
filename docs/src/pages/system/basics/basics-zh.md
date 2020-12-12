@@ -168,7 +168,7 @@ return (
 
 缺点：
 
-- The runtime performance takes a hit.
+- 运行时会造成性能影响：
 
   | 基准测试              | 代码片段                        | 花费时间  |
   |:----------------- |:--------------------------- | ----- |
@@ -198,7 +198,7 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
     color: 'primary.main', // theme.palette.primary.main
     m: 1, // margin: theme.spacing(1)
     p: {
-      sx: 1, // [theme.breakpoints.up('sx')]: : { padding: theme.spacing(1) }
+      xs: 1, // [theme.breakpoints.up('xs')]: : { padding: theme.spacing(1) }
     },
     zIndex: 'tooltip', // theme.zIndex.tooltip
   }}

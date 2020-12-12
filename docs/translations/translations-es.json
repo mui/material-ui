@@ -19,8 +19,10 @@
   "cdn": "o use un CDN.",
   "checkoutDescr": "Diseño de página de pagos paso a paso. Adapte el número de pasos para que se ajuste a sus necesidades, o haga los pasos opcionales.",
   "checkoutTitle": "Pagar",
+  "clickToCopy": "Click to copy",
   "close": "Cerrar",
   "codesandbox": "Editar en CodeSandbox",
+  "copied": "Copied",
   "copiedSource": "Se ha copiado el código al portapapeles.",
   "copiedSourceLink": "El enlace al código fuente ha sido copiado al portapapeles.",
   "copySource": "Copiar el código fuente",
@@ -75,6 +77,9 @@
   "resetDemo": "Restablecer demostración",
   "resetDensity": "Restablecer densidad",
   "resetFocus": "Restablecer foco para probar la navegación vía teclado",
+  "searchIcons": {
+    "learnMore": "Learn more about the import"
+  },
   "seeMore": "Ver más",
   "settings": {
     "color": "Color",

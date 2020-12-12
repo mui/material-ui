@@ -34,7 +34,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 ## パフォーマンス
 
-Accordionsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+Accordionsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 パネルの中で高価なコンポーネント ツリーをレンダリングしたり、単に多くのパネルをレンダリングする場合は、`TransitionProps` の `unmountOnExit` を有効にして、このデフォルトの動作を変更するのが良いでしょう。
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />
