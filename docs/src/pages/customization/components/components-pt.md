@@ -318,7 +318,7 @@ const theme = createMuiTheme({
 });
 ```
 
-Se você estiver usando TypeScript, você precisará especificar suas novas variantes/cores, usando a extensão de módulos.
+If you are using TypeScript, you will need to specify your new variants/colors, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
 ```tsx
 declare module '@material-ui/core/Button/Button' {
