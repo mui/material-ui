@@ -185,7 +185,7 @@ describe('experimentalStyled', () => {
       TestObj = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'Test', slot: 'Root', overridesResolver: testOverridesResolver },
+        { name: 'Test', overridesResolver: testOverridesResolver },
       )({
         width: '200px',
         height: '300px',
