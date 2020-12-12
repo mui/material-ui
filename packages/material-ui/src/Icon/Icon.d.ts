@@ -44,9 +44,9 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
     color?: Exclude<PropTypes.Color, 'default'> | 'action' | 'disabled' | 'error';
     /**
      * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
-     * @default 'default'
+     * @default 'medium'
      */
-    fontSize?: 'inherit' | 'default' | 'small' | 'large';
+    fontSize?: 'inherit' | 'large' | 'medium' | 'small';
   };
   defaultComponent: D;
 }
