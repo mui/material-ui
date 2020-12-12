@@ -78,7 +78,7 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
   if (componentName && componentSlot) {
     displayName = `${componentName}${componentSlot}`;
     name = componentSlot === 'Root' ? `Mui${componentName}` : null;
-    className = `Mui${componentName}-${lowercaseFirstLetter(componentSlot)}`;
+    className = `Mui${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
   }
 
   const defaultStyledResolver = styled(tag, {
