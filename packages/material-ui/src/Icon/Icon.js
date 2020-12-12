@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
+import capitalize from '../utils/capitalize';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -68,7 +68,8 @@ const Icon = React.forwardRef(function Icon(props, ref) {
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'medium',
+          [classes[`fontSize${capitalize(fontSize)}`]]:
+            fontSize !== 'default' && fontSize !== 'medium',
         },
         className,
       )}
@@ -105,17 +106,20 @@ Icon.propTypes = {
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
-  fontSize: chainPropTypes(PropTypes.oneOf(['inherit', 'large', 'medium', 'small']), (props) => {
-    const { fontSize } = props;
+  fontSize: chainPropTypes(
+    PropTypes.oneOf(['default', 'inherit', 'large', 'medium', 'small']),
+    (props) => {
+      const { fontSize } = props;
 
-    if (fontSize === 'default') {
-      throw new Error(
-        'Material-UI: `fontSize="default"` is deprecated. Use `fontSize="medium"` instead.',
-      );
-    }
+      if (fontSize === 'default') {
+        throw new Error(
+          'Material-UI: `fontSize="default"` is deprecated. Use `fontSize="medium"` instead.',
+        );
+      }
 
-    return null;
-  }),
+      return null;
+    },
+  ),
 };
 
 Icon.muiName = 'Icon';

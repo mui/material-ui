@@ -5,7 +5,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     color?: PropTypes.Color | 'action' | 'disabled' | 'error';
-    fontSize?: 'default' | 'inherit' | 'large' | 'medium' | 'small' 
+    fontSize?: 'default' | 'inherit' | 'large' | 'medium' | 'small';
   };
   defaultComponent: D;
   classKey: IconClassKey;
