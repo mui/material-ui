@@ -67,7 +67,7 @@ Gosta mais de campos de texto menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
-The `filled` variant input height can be further reduced by rendering the label outside of it.
+A altura do campo na variante `filled` pode ser reduzida ainda mais ao renderizar o rótulo fora dele.
 
 {{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
 
