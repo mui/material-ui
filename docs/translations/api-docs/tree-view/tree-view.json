@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "defaultCollapseIcon": "The default icon used to collapse the node.",
     "defaultEndIcon": "The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem <code>icon</code> prop.",
     "defaultExpanded": "Expanded node ids. (Uncontrolled)",

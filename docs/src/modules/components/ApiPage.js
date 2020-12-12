@@ -14,12 +14,6 @@ function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
   const t = useTranslate();
 
-  Object.entries(propDescriptions).forEach(([prop, description]) => {
-    propDescriptions[prop] = description
-      .replace(/{{seeCssApi}}/, t('api-docs.seeCssApi'))
-      .replace(/{{seeSxPage}}/, t('api-docs.seeSxPage'));
-  });
-
   return (
     <table>
       <thead>

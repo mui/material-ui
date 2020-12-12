@@ -3,7 +3,7 @@
   "propDescriptions": {
     "activeStep": "Set the active step (zero based index). Defines which dot is highlighted when the variant is &#39;dots&#39;.",
     "backButton": "A back button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "LinearProgressProps": "Props applied to the <code>LinearProgress</code> element.",
     "nextButton": "A next button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>.",
     "position": "Set the positioning type.",

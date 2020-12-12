@@ -3,7 +3,7 @@
   "propDescriptions": {
     "checked": "If <code>true</code>, the component is checked.",
     "checkedIcon": "The icon to display when the component is checked.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "disabled": "If <code>true</code>, the checkbox is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.",

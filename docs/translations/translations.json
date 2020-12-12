@@ -21,8 +21,6 @@
     "refNotHeld": "The component cannot hold a ref.",
     "refRootElement": "The <code>ref</code> is forwarded to the root element.",
     "ruleName": "Rule name",
-    "seeCssApi": "See <a href=\"#css\">CSS API</a> below for more details.",
-    "seeSxPage": "See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "spreadHint": "Any other props supplied will be provided to the root element ({{spreadHintElement}}).",
     "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href=\"/customization/globals/#default-props\">default props</a> or <a href=\"/customization/globals/#css\">style overrides</a> in the theme.",
     "type": "Type"

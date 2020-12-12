@@ -2,7 +2,7 @@
   "componentDescription": "Refer to the <a href=\"/components/icons/\">Icons</a> section of the documentation\nregarding the available icon options.",
   "propDescriptions": {
     "children": "The icon element.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "disabled": "If <code>true</code>, the button is disabled.",
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",

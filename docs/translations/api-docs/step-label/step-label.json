@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": "In most cases will simply be a string containing a title for the label.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "error": "Mark the step as failed.",
     "icon": "Override the default label of the step icon.",
     "optional": "The optional node to display.",

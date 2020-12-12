@@ -6,7 +6,7 @@
     "autoSelect": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.",
     "blurOnSelect": "Control if the input should be blurred when an option is selected:<br>- <code>false</code> the input is not blurred. - <code>true</code> the input is always blurred. - <code>touch</code> the input is blurred after a touch event. - <code>mouse</code> the input is blurred after a mouse event.",
     "ChipProps": "Props applied to the <a href=\"/api/chip/\"><code>Chip</code></a> element.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "clearIcon": "The icon to display in place of the default clear icon.",
     "clearOnBlur": "If <code>true</code>, the input&#39;s text is cleared on blur if no value is selected.<br>Set to <code>true</code> if you want to help the user enter a new value. Set to <code>false</code> if you want to help the user resume his search.",
     "clearOnEscape": "If <code>true</code>, clear all values when the user presses escape and the popup is closed.",

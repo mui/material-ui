@@ -3,7 +3,7 @@
   "propDescriptions": {
     "actionIcon": "An IconButton element to be used as secondary action target (primary action target is the item itself).",
     "actionPosition": "Position of secondary action IconButton.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "position": "Position of the title bar.",
     "subtitle": "String or element serving as subtitle (support text).",
     "title": "Title to be displayed."

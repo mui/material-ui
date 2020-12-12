@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "direction": "Which direction should the button indicate?",
     "disabled": "If <code>true</code>, the element is disabled.",
     "orientation": "The tabs orientation (layout flow direction)."

@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": "The content of the accordion.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "defaultExpanded": "If <code>true</code>, expands the accordion by default.",
     "disabled": "If <code>true</code>, the accordion is displayed in a disabled state.",
     "expanded": "If <code>true</code>, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion.",

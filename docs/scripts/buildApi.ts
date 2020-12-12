@@ -1014,9 +1014,14 @@ async function buildDocs(options: {
       description = marked.parseInline(description);
 
       if (propName === 'classes') {
-        description += ' {{seeCssApi}}';
-      } else if (propName === 'sx') {
-        description += ' {{seeSxPage}}';
+        // TODO: Dedupe this for l10n
+        description += ' See <a href="#css">CSS API</a> below for more details.';
+      }
+
+      if (propName === 'sx') {
+        // TODO: Dedupe this for l10n
+        description +=
+          ' See the <a href="/system/basics/#the-sx-prop">`sx` page</a> for more details.';
       }
 
       componentApi.propDescriptions = {

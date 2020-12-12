@@ -2,7 +2,7 @@
   "componentDescription": "The Collapse transition is used by the\n<a href=\"/components/steppers/#vertical-stepper\">Vertical Stepper</a> StepContent component.\nIt uses <a href=\"https://github.com/reactjs/react-transition-group\">react-transition-group</a> internally.",
   "propDescriptions": {
     "children": "The content node to be collapsed.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "collapsedSize": "The width (horizontal) or height (vertical) of the container when collapsed.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "in": "If <code>true</code>, the component will transition in.",

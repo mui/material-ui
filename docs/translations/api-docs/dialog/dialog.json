@@ -4,7 +4,7 @@
     "aria-describedby": "The id(s) of the element(s) that describe the dialog.",
     "aria-labelledby": "The id(s) of the element(s) that label the dialog.",
     "children": "Dialog children, usually the included sub-components.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "disableEscapeKeyDown": "If <code>true</code>, hitting escape will not fire the <code>onClose</code> callback.",
     "fullScreen": "If <code>true</code>, the dialog is full-screen.",
     "fullWidth": "If <code>true</code>, the dialog stretches to <code>maxWidth</code>.<br>Notice that the dialog width grow is limited by the default margin.",

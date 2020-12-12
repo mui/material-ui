@@ -3,7 +3,7 @@
   "propDescriptions": {
     "action": "The action to display. It renders after the message, at the end of the alert.",
     "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. {{seeCssApi}}",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "closeText": "Override the default label for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/guides/localization/\">translations</a>.",
     "color": "The main color for the alert. Unless provided, the value is taken from the <code>severity</code> prop.",
     "icon": "Override the icon displayed before the children. Unless provided, the icon is mapped to the value of the <code>severity</code> prop.",
