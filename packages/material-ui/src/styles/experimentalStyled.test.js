@@ -402,5 +402,82 @@ describe('experimentalStyled', () => {
         marginTop: '8px',
       });
     });
+
+    it('should set displayName properly', () => {
+      const Component = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { displayName: 'Component', muiName: 'MuiComponent' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      expect(Component.displayName).to.equal("Component");
+    });
+
+    it('should set displayName as muiName if displayName is not specified', () => {
+      const Component = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { muiName: 'MuiComponent' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      expect(Component.displayName).to.equal("MuiComponent");
+    });
+
+    it('should use className when generating the classes', () => {
+      const Component = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { displayName: 'Component', muiName: 'MuiComponent', className: 'MuiComponent-root' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container } = render(
+        <Component>Test</Component>,
+      );
+
+      expect(container.firstChild.getAttribute('class').includes('MuiComponent-root')).to.equal(true);
+    });
+
+    it('should use muiName as className when generating the classes if className is not defined', () => {
+      const Component = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { displayName: 'Component', muiName: 'MuiComponent' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container } = render(
+        <Component>Test</Component>,
+      );
+
+      expect(container.firstChild.getAttribute('class').includes('MuiComponent')).to.equal(true);
+    });
+
+    it('should use displayName as className when generating the classes if className and muiName are not defined', () => {
+      const Component = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { displayName: 'Component' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container } = render(
+        <Component>Test</Component>,
+      );
+
+      expect(container.firstChild.getAttribute('class').includes('Component')).to.equal(true);
+    });
   });
 });
