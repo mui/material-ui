@@ -322,7 +322,7 @@ const theme = createMuiTheme({
 });
 ```
 
-如果你正在使用 TypeScript，那么你需要使用模块增强功能来指定你的新变量/颜色。
+If you are using TypeScript, you will need to specify your new variants/colors, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
 ```tsx
 declare module '@material-ui/core/Button/Button' {
