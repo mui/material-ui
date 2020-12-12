@@ -188,7 +188,7 @@ Cons:
 
 ### API tradeoff
 
-In the previous versions, we supported the system properties as props on the `Box` component. However, the system is a superset of CSS (contains all CSS properties/selectors in addition to custom ones) and selectors cannot be efficiently mapped to props without potential conflicts. This is the main reason why, we decided to support all system properties under one prop - `sx`, which in addition allows developers to define other CSS definitions.
+In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components,  and so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`.
 
 In order to support the system on all core components, having the system under one prop, allows avoiding collision with the props, that may already exist on the components, like `color`.
 
