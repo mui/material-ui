@@ -15,7 +15,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
     /**
      * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
      */
-    fontSize?: 'inherit' | 'default' | 'small' | 'large';
+    fontSize?: 'default' | 'inherit' | 'large' | 'medium' | 'small';
     /**
      * Applies a color attribute to the SVG element.
      */
