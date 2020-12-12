@@ -1,5 +1,6 @@
 import * as React from 'react';
 import url from 'url';
+import clsx from 'clsx';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { alpha, useTheme, makeStyles } from '@material-ui/core/styles';
@@ -104,6 +105,22 @@ const useStyles = makeStyles(
     inputInput: {
       padding: theme.spacing(1, 1, 1, 9),
     },
+    shortcut: {
+      color: alpha(theme.palette.common.white, 0.8),
+      border: `1px solid ${alpha(theme.palette.common.white, 0.45)}`,
+      padding: theme.spacing(0, 0.5),
+      position: 'absolute',
+      right: theme.spacing(1),
+      height: 23,
+      top: 'calc(50% - 11px)',
+      borderRadius: theme.shape.borderRadius,
+      transition: theme.transitions.create('opacity', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '&.Mui-focused': {
+        opacity: 0,
+      },
+    },
   }),
   { name: 'AppSearch' },
 );
@@ -116,6 +133,7 @@ const useStyles = makeStyles(
 export default function AppSearch() {
   const classes = useStyles();
   const inputRef = React.useRef(null);
+  const [focused, setFocused] = React.useState(false);
   const theme = useTheme();
   const userLanguage = useUserLanguage();
   const t = useTranslate();
@@ -124,15 +142,27 @@ export default function AppSearch() {
 
   React.useEffect(() => {
     const handleKeyDown = (nativeEvent) => {
-      if (
-        ((nativeEvent.ctrlKey && ['k'].indexOf(nativeEvent.key) !== -1) ||
-          ['/', 's'].indexOf(nativeEvent.key) !== -1) &&
-        (document.activeElement.tagName !== 'INPUT' ||
-          document.activeElement.tagName !== 'SELECT' ||
-          document.activeElement.tagName !== 'TEXTAREA')
-      ) {
-        nativeEvent.preventDefault();
-        inputRef.current.focus();
+      if (nativeEvent.key === 'Escape' && document.activeElement === inputRef.current) {
+        inputRef.current.blur();
+        return;
+      }
+
+      // Match shortcuts of GitHub and DocSearch
+      const matchKey =
+        ((nativeEvent.ctrlKey || nativeEvent.metaKey) && nativeEvent.key === 'k') ||
+        nativeEvent.key === '/' ||
+        nativeEvent.key === 's';
+
+      if (matchKey) {
+        // Ignore nodes that display a virtual keyboard.
+        const matchNode =
+          ['INPUT', 'SELECT', 'TEXTAREA'].indexOf(document.activeElement.tagName) === -1 &&
+          !document.activeElement.isContentEditable;
+
+        if (matchNode) {
+          nativeEvent.preventDefault();
+          inputRef.current.focus();
+        }
       }
     };
 
@@ -221,11 +251,19 @@ export default function AppSearch() {
         type="search"
         id="docsearch-input"
         inputRef={inputRef}
+        onFocus={() => {
+          setFocused(true);
+        }}
+        onBlur={() => {
+          setFocused(false);
+        }}
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
       />
+      {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+      <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>/</div>
     </div>
   );
 }
