@@ -22,6 +22,4 @@ or:
 
 ## The idea behind the example
 
-[Next.js](https://github.com/zeit/next.js) is a framework for server-rendered React apps.
-
-Additionally, it adds `@material-ui/core` and it's peer dependencies.
+The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps. It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).
