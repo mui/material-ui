@@ -23,7 +23,8 @@ yarn release
 1. **git**. Push the release git commit and git tag to master (e.g. "v5.0.0-alpha.17"):
 
 ```
-git push
+git commit -am "v5.0.0-alpha.17"
+git push upstream
 git push --tag
 ```
 

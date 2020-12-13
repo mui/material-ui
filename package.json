@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-alpha.18",
+  "version": "5.0.0-alpha.19",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=test babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -7,8 +7,8 @@
     "benchmark:browser": "yarn workspace benchmark browser",
     "build:release": "lerna run --parallel --scope \"@material-ui/*\" build",
     "build:codesandbox": "lerna run --parallel --scope \"@material-ui/*\" build",
-    "release": "lerna version --exact --no-changelog --no-push --no-git-tag-version && yarn build:release && lerna publish from-git --dist-tag next --contents build",
-    "publish:dry-run": "lerna version --exact --no-changelog --no-push --no-git-tag-version && lerna publish from-git --dist-tag next --contents build --registry=\"http://localhost:4873/\"",
+    "release": "lerna version --exact --no-changelog --no-push --no-git-tag-version && yarn build:release && lerna publish from-package --dist-tag next --contents build",
+    "publish:dry-run": "lerna version --exact --no-changelog --no-push --no-git-tag-version && yarn build:release && lerna publish from-package --dist-tag next --contents build --registry=\"http://localhost:4873/\"",
     "docs:api": "rimraf ./docs/pages/api-docs && yarn docs:api:build",
     "docs:api:build": "cross-env BABEL_ENV=test __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/buildApi.ts  ./docs/pages/api-docs ./packages/material-ui-unstyled/src ./packages/material-ui/src ./packages/material-ui-lab/src",
     "docs:build": "yarn workspace docs build",
