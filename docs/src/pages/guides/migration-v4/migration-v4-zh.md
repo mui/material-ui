@@ -363,8 +363,7 @@ const classes = makeStyles(theme => ({
   +<Button />
   ```
 
-
-  ### Chip
+### Chip
 
 - 为保持一致性，我们将 `visuallyhidden` 重命名为 `visuallyHidden`：
   ```diff
