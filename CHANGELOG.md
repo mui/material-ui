@@ -18,8 +18,8 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
   In the unlikey event that you were using the value `default`, the prop can be removed:
 
   ```diff
-  -<SvgIcon fontSize="default">icon-name</SvgIcon>
-  +<SvgIcon>icon-name</SvgIcon>
+  -<SvgIcon fontSize="default">{iconPath}</SvgIcon>
+  +<SvgIcon>{iconPath}</SvgIcon>
   ```
 
 - [TextField] Add size prop for outlined and filled input (#23832) @mayralgr
