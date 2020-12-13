@@ -363,8 +363,7 @@ const classes = makeStyles(theme => ({
   +<Button />
   ```
 
-
-  ### Chip
+### Chip
 
 - Переименовываем вариант `default` на `filled` для единообразия.
   ```diff
