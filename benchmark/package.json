@@ -27,7 +27,7 @@
     "react-is": "^16.13.1",
     "react-jss": "^10.3.0",
     "theme-ui": "^0.3.1",
-    "webpack": "^4.41.0",
+    "webpack": "^5.10.1",
     "webpack-cli": "^4.0.0"
   }
 }
