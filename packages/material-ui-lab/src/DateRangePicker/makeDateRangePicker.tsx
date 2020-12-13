@@ -69,6 +69,8 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
     calendars,
     value,
     onChange,
+    monthRangeBegin,
+    monthRangeEnd,
     mask = '__/__/____',
     startText = 'Start',
     endText = 'End',
@@ -90,8 +92,12 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
       ...other,
       value,
       onChange,
+      monthRangeBegin,
+      monthRangeEnd,
       inputFormat: passedInputFormat || utils.formats.keyboardDate,
     };
+
+    console.log(monthRangeBegin, monthRangeEnd);
 
     const restProps = {
       ...other,

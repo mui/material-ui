@@ -178,6 +178,14 @@ const MobileDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', M
    */
   minDate: PropTypes.any,
   /**
+   * @ignore
+   */
+  monthRangeBegin: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
+  /**
+   * @ignore
+   */
+  monthRangeEnd: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
+  /**
    * "OK" button text.
    * @default "OK"
    */

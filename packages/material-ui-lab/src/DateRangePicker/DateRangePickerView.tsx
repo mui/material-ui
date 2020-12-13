@@ -61,6 +61,8 @@ export function DateRangePickerView<TDate>(props: DateRangePickerViewProps<TDate
     isMobileKeyboardViewOpen,
     maxDate,
     minDate,
+    monthRangeBegin,
+    monthRangeEnd,
     onDateChange,
     onMonthChange,
     open,
@@ -99,6 +101,7 @@ export function DateRangePickerView<TDate>(props: DateRangePickerViewProps<TDate
   });
 
   const toShowToolbar = showToolbar ?? wrapperVariant !== 'desktop';
+  console.log(monthRangeBegin, monthRangeEnd);
 
   const scrollToDayIfNeeded = (day: TDate | null) => {
     if (!day || !utils.isValid(day) || isDateDisabled(day)) {
@@ -183,6 +186,8 @@ export function DateRangePickerView<TDate>(props: DateRangePickerViewProps<TDate
       disablePast,
       minDate,
       maxDate,
+      monthRangeBegin,
+      monthRangeEnd,
       ...calendarState,
       ...other,
     };

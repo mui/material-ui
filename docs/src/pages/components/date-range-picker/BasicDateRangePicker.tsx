@@ -14,6 +14,8 @@ export default function BasicDateRangePicker() {
         startText="Check-in"
         endText="Check-out"
         value={value}
+        monthRangeBegin={3}
+        monthRangeEnd={11}
         onChange={(newValue) => {
           setValue(newValue);
         }}

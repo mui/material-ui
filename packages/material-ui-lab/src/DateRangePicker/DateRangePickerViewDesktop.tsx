@@ -27,6 +27,9 @@ export interface ExportedDesktopDateRangeCalendarProps<TDate> {
    * @default 2
    */
   calendars?: 1 | 2 | 3;
+  monthRangeBegin?:  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11; 
+  monthRangeEnd?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 ; 
+  
   /**
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
    * @example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />
@@ -107,6 +110,8 @@ function DateRangePickerViewDesktop<TDate>(
     maxDate: __maxDate,
     currentlySelectingRangeEnd,
     currentMonth,
+    monthRangeBegin,
+    monthRangeEnd,
     renderDay = (_, dateRangeProps) => <DateRangeDay {...dateRangeProps} />,
     ...other
   } = props;
@@ -150,12 +155,32 @@ function DateRangePickerViewDesktop<TDate>(
     [],
   );
 
+  const getNextMonthInRange = (): void => {
+    console.log(monthRangeEnd);
+    if (monthRangeBegin && utils.getMonth(currentMonth) === monthRangeEnd) {
+      const diff = 11 - Math.abs(monthRangeEnd - monthRangeBegin); 
+      changeMonth(utils.addMonths(currentMonth, -diff));
+    } else {
+      changeMonth(utils.getNextMonth(currentMonth));
+    }
+    console.log(utils.getMonth(currentMonth));
+  }
+
+  const getPrevMonthInRange = (): void => {
+    if (monthRangeEnd && utils.getMonth(currentMonth) === monthRangeBegin) {
+      const diff = 11 - Math.abs(monthRangeEnd - monthRangeBegin); 
+      changeMonth(utils.addMonths(currentMonth, diff));
+    } else {
+      changeMonth(utils.getPreviousMonth(currentMonth));
+    }
+  }
+
   const selectNextMonth = React.useCallback(() => {
-    changeMonth(utils.getNextMonth(currentMonth));
+    getNextMonthInRange();
   }, [changeMonth, currentMonth, utils]);
 
   const selectPreviousMonth = React.useCallback(() => {
-    changeMonth(utils.getPreviousMonth(currentMonth));
+    getPrevMonthInRange();
   }, [changeMonth, currentMonth, utils]);
 
   return (
