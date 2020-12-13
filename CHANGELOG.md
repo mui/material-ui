@@ -12,7 +12,7 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 #### Breaking changes
 
-- [Icon][SvgIcon] Change default fontSize from default to medium (#23950) @mbrookes
+- [Icon][svgicon] Change default fontSize from default to medium (#23950) @mbrookes
 
   The default value of `fontSize` was changed from `default` to `medium` for consistency.
   In the unlikey event that you were using the value `default`, the prop can be removed:
@@ -42,13 +42,26 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 - [TextField] Add documentation for hidden label (#23915) @Fredestrik
 - [TextField] Fix the color leak of the textbox (#23912) @szabgab
 - [useMediaQuery] Fix a false return at the first call (#23806) @marthaerm
-- [utils] Fix minified errors throwing with _formatMuiErrorMessage (#23828) @eps1lon
+- [utils] Fix minified errors throwing with \_formatMuiErrorMessage (#23828) @eps1lon
 
 ### `@material-ui/unstyled@v5.0.0-alpha.19`
 
 - [core] Use Lerna to publish (#23793) @oliviertassinari
 
 ### `@material-ui/system@v5.0.0-alpha.19`
+
+#### Breaking changes
+
+- [system] Move visually hidden helper to utils
+
+  Only applies if you've installed v5.0.0-alpha.1
+
+  ```diff
+  -import { visuallyHidden } from '@material-ui/system';
+  +import { visuallyHidden } from '@material-ui/utils';
+  ```
+
+#### Changes
 
 - [core] Use Lerna to publish (#23793) @oliviertassinari
 
