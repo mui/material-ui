@@ -45,8 +45,8 @@ export interface PickersCalendarHeaderProps<TDate>
   reduceAnimations: boolean;
   onViewChange?: (view: DatePickerView) => void;
   onMonthChange: (date: TDate, slideDirection: SlideDirection) => void;
-  dropDownArrowCustom: React.ReactNode,
-  dropDownArrowCustomIcon: React.ReactNode,
+  dropDownArrowCustom?: React.ReactNode,
+  dropDownArrowCustomIcon?: React.ReactNode,
 }
 
 export const styles = (theme: Theme) =>

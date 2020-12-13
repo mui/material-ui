@@ -129,8 +129,8 @@ const PickersArrowSwitcher = React.forwardRef<
           [classes.hidden]: isRightHidden,
         })}
       >
-      {rightArrowCustomIcon ? rightArrowCustomIcon : (isRtl ? leftArrowIcon : rightArrowIcon)}
-    </IconButton> }
+        {rightArrowCustomIcon ? rightArrowCustomIcon : (isRtl ? leftArrowIcon : rightArrowIcon)}
+      </IconButton> }
 
       
     </div>
