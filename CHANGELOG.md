@@ -10,6 +10,24 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 ### `@material-ui/core@v5.0.0-alpha.19`
 
+#### Breaking changes
+
+- [Icon][SvgIcon] Change default fontSize from default to medium (#23950) @mbrookes
+
+  The default value of `fontSize` was changed from `default` to `medium` for consistency.
+  In the unlikey event that you were using the value `default`, the prop can be removed:
+
+  ```diff
+  -<SvgIcon fontSize="default">icon-name</SvgIcon>
+  +<SvgIcon>icon-name</SvgIcon>
+  ```
+
+- [TextField] Add size prop for outlined and filled input (#23832) @mayralgr
+
+  Rename `marginDense` and `inputMarginDense` classes to `sizeSmall` and `inputSizeSmall` to match the prop.
+
+#### Changes
+
 - [Autocomplete] Document onChange last `details` param (#23942) @natac13
 - [Autocomplete] Fix useAutocomplete groupedOptions type (#23854) @ZachCMP
 - [Autocomplete] Improve DX/UX when getOptionLabel is not configured correctly (#23884) @marianayap
@@ -17,13 +35,11 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 - [Badge] Create unstyled component & move to emotion (#23745) @mnajdova
 - [Grid] Improve support for nested grid (#23913) @gbrochar
 - [Grid] Fix side effects when direction="column" and xs={} is used (#23900) @Kai-W
-- [Icons] Change default fontSize from default to medium (#23950) @mbrookes
 - [Select] Fix description, value is not required (#23940) @natac13
 - [Slider] Remove color prop in unstyled (#23840) @mnajdova
 - [Slider] Replaced inlined isHostComponent with the utils (#23880) @mnajdova
 - [SwipeableDrawer] Refactor internals (#23944) @eps1lon
 - [TextField] Add documentation for hidden label (#23915) @Fredestrik
-- [TextField] Add size prop for outlined and filled input (#23832) @mayralgr
 - [TextField] Fix the color leak of the textbox (#23912) @szabgab
 - [useMediaQuery] Fix a false return at the first call (#23806) @marthaerm
 - [utils] Fix minified errors throwing with _formatMuiErrorMessage (#23828) @eps1lon

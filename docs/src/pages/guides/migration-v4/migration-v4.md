@@ -378,7 +378,7 @@ const classes = makeStyles(theme => ({
   +<Button />
   ```
 
-  ### Chip
+### Chip
 
 - Rename `default` variant to `filled` for consistency.
   ```diff
