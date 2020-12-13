@@ -1,5 +1,131 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.19
+
+Big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 Migrate the Badge to emotion (#23745) @mnajdova.
+- 🌏 Add infrastructure to translate the API pages (#23852) @mbrookes.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.19`
+
+#### Breaking changes
+
+- [Icon][svgicon] Change default fontSize from default to medium (#23950) @mbrookes
+
+  The default value of `fontSize` was changed from `default` to `medium` for consistency.
+  In the unlikey event that you were using the value `default`, the prop can be removed:
+
+  ```diff
+  -<SvgIcon fontSize="default">{iconPath}</SvgIcon>
+  +<SvgIcon>{iconPath}</SvgIcon>
+  ```
+
+- [TextField] Add size prop for outlined and filled input (#23832) @mayralgr
+
+  Rename `marginDense` and `inputMarginDense` classes to `sizeSmall` and `inputSizeSmall` to match the prop.
+
+#### Changes
+
+- [Autocomplete] Document onChange last `details` param (#23942) @natac13
+- [Autocomplete] Fix useAutocomplete groupedOptions type (#23854) @ZachCMP
+- [Autocomplete] Improve DX/UX when getOptionLabel is not configured correctly (#23884) @marianayap
+- [Autocomplete] Improve getOptionSelected description (#23817) @smartshivkat
+- [Badge] Create unstyled component & move to emotion (#23745) @mnajdova
+- [Grid] Improve support for nested grid (#23913) @gbrochar
+- [Grid] Fix side effects when direction="column" and xs={} is used (#23900) @Kai-W
+- [Select] Fix description, value is not required (#23940) @natac13
+- [Slider] Remove color prop in unstyled (#23840) @mnajdova
+- [Slider] Replaced inlined isHostComponent with the utils (#23880) @mnajdova
+- [SwipeableDrawer] Refactor internals (#23944) @eps1lon
+- [TextField] Add documentation for hidden label (#23915) @Fredestrik
+- [TextField] Fix the color leak of the textbox (#23912) @szabgab
+- [useMediaQuery] Fix a false return at the first call (#23806) @marthaerm
+- [utils] Fix minified errors throwing with \_formatMuiErrorMessage (#23828) @eps1lon
+
+### `@material-ui/unstyled@v5.0.0-alpha.19`
+
+- [core] Use Lerna to publish (#23793) @oliviertassinari
+
+### `@material-ui/system@v5.0.0-alpha.19`
+
+#### Breaking changes
+
+- [system] Move visually hidden helper to utils (#23974) @eps1lon
+
+  Only applies if you've installed v5.0.0-alpha.1
+
+  ```diff
+  -import { visuallyHidden } from '@material-ui/system';
+  +import { visuallyHidden } from '@material-ui/utils';
+  ```
+
+#### Changes
+
+- [core] Use Lerna to publish (#23793) @oliviertassinari
+
+### `@material-ui/lab@v5.0.0-alpha.19`
+
+- [core] Use Lerna to publish (#23793) @oliviertassinari
+
+### `@material-ui/utils@v5.0.0-alpha.19`
+
+- [core] Use Lerna to publish (#23793) @oliviertassinari
+
+### `@material-ui/styles@v5.0.0-alpha.19`
+
+- [core] Use Lerna to publish (#23793) @oliviertassinari
+
+### Docs
+
+- [example] Change Box to new sx prop (#23937) @natac13
+- [example] Explain package choice (#23938, #23958) @mnajdova
+- [example] Update nextjs examples to fix hydration (#23936) @mnajdova
+- [docs] Add API tradeoff section for the sx prop (#23962) @mnajdova
+- [docs] Add ELEVATOR to backers (#23977) @mbrookes
+- [docs] Add eslint rule to docs (#23843) @jens-ox
+- [docs] Add infrastructure to translate API pages (#23852) @mbrookes
+- [docs] Add link to the sx docs page in the API description (#23967) @mnajdova
+- [docs] Add prepend option on emotion caches to allow JSS style overrides (#23892) @mnajdova
+- [docs] Add Vercel deploy config (#23910) @eps1lon
+- [docs] Allow codesandbox deploy for demos in X (#23644) @oliviertassinari
+- [docs] Copy icons to clipboard (#23850) @CodeWithGuruji
+- [docs] Fix breakpoints typos (#23893) @mnajdova
+- [docs] Fix color contrast of code within links (#23819) @eps1lon
+- [docs] Fix duplicated styles generated from emotion (#23809) @mnajdova
+- [docs] Fix icon alignment in /components/breadcrumbs (#23818) @eps1lon
+- [docs] Fix production deploy (#23963) @eps1lon
+- [docs] Fix source on Github links (#23821) @praveenkumar-kalidass
+- [docs] Fix StickyHeaderTable round borders (#23882) @antoniopacheco
+- [docs] Fix typo in date picker dayjs adapter name (#23935) @andresmrm
+- [docs] Improve system properties page (#23961) @mnajdova
+- [docs] Link module augmentation in TypeScript @oliviertassinari
+- [docs] Make stable width of localization example (#23820) @sujinleeme
+- [docs] Mention Adobe XD (#23978) @oliviertassinari
+- [docs] Prefer system shorthands (#23970) @oliviertassinari
+- [docs] Remove 'TODO' comment from buildApi script (#23973) @mbrookes
+- [docs] Sync translations (#23742, #23842) @l10nbot
+- [docs] Update Badge examples to use Box instead of makeStyles (#23927) @mnajdova
+
+### Core
+
+- [test] Add conformance tests for testing the `theme.components` options for the v5 components (#23896) @mnajdova
+- [test] Include type path mappings in language server (#23905) @eps1lon
+- [test] Make Popper tests StrictMode agnostic (#23838) @eps1lon
+- [test] Run benchmarks in Azure Pipelines when approved (#23895) @eps1lon
+- [test] Skip tests with cascading network requests (#23823) @eps1lon
+- [core] All packages are published from /build (#23886) @oliviertassinari
+- [core] Batch small changes (#23853) @oliviertassinari
+- [core] Fix failing CI on HEAD (#23947) @oliviertassinari
+- [core] Force LF for text files (#23932) @eps1lon
+- [core] Improve envinfo instructions (#23918) @eps1lon
+- [core] Replace fs-extra deprecated function (exists) (#23848) @leonardopliski
+- [core] Use Lerna to publish (#23793) @oliviertassinari
+- [core] Use playwright instead of puppeteer (#23906) @eps1lon
+- [core] Add envinfo --json flag (#23883) @eps1lon
+- [core] Ask for output from envinfo in issues (#23881) @eps1lon
+
 ## 5.0.0-alpha.18
 
 Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
