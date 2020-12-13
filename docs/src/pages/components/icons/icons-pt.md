@@ -309,7 +309,10 @@ Você precisa fornecer um texto alternativo que só seja visível para tecnologi
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import { visuallyHidden } from '@material-ui/utils';
+import { makeStyles } from '@material-ui/core/styles';
+
+const classes = makeStyles({ visuallyHidden })();
 
 // ...
 
