@@ -23,7 +23,6 @@
   },
   "files": [],
   "scripts": {
-    "build": "npm pack && tar --transform 's,package/,build/,' -xzf material-ui-envinfo-*.tgz",
-    "prebuild": "rimraf build"
+    "build": "node scripts/build"
   }
 }
