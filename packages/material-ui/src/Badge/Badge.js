@@ -56,7 +56,7 @@ const overridesResolver = (props, styles) => {
 const BadgeRoot = styled(
   'span',
   {},
-  { muiName: 'MuiBadge', overridesResolver },
+  { name: 'Badge', slot: 'Root', overridesResolver },
 )({
   position: 'relative',
   display: 'inline-flex',
@@ -68,7 +68,7 @@ const BadgeRoot = styled(
 const BadgeBadge = styled(
   'span',
   {},
-  { muiName: 'MuiBadge-badge', overridesResolver },
+  { name: 'Badge', slot: 'Badge', overridesResolver },
 )((props) => ({
   display: 'flex',
   flexDirection: 'row',

@@ -62,10 +62,30 @@ const variantsResolver = (props, styles, theme, name) => {
 const shouldForwardProp = (prop) =>
   prop !== 'styleProps' && prop !== 'theme' && prop !== 'isRtl' && prop !== 'sx' && prop !== 'as';
 
+const lowercaseFirstLetter = (string) => {
+  return string.charAt(0).toLowerCase() + string.slice(1);
+};
+
 const experimentalStyled = (tag, options, muiOptions = {}) => {
-  const name = muiOptions.muiName;
+  const componentName = muiOptions.name;
+  const componentSlot = muiOptions.slot;
   const skipSx = muiOptions.skipSx || false;
-  const defaultStyledResolver = styled(tag, { shouldForwardProp, label: name, ...options });
+
+  let displayName;
+  let name;
+  let className;
+
+  if (componentName) {
+    displayName = `${componentName}${componentSlot || ''}`;
+    name = !componentSlot || componentSlot === 'Root' ? `Mui${componentName}` : null;
+    className = `Mui${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
+  }
+
+  const defaultStyledResolver = styled(tag, {
+    shouldForwardProp,
+    label: className || componentName || '',
+    ...options,
+  });
   const muiStyledResolver = (styleArg, ...expressions) => {
     const expressionsWithDefaultTheme = expressions
       ? expressions.map((stylesArg) => {
@@ -116,7 +136,13 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
         styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...other });
     }
 
-    return defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
+    const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
+
+    if (displayName || name) {
+      Component.displayName = displayName || name;
+    }
+
+    return Component;
   };
   return muiStyledResolver;
 };
