@@ -2247,7 +2247,7 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
 
   ```diff
   -import Typography from '@material-ui/core/Typography';
-  +import { visuallyHidden } from '@material-ui/system';
+  +import { visuallyHidden } from '@material-ui/utils';
   +import styled from 'styled-component';
 
   +const Span = styled('span')(visuallyHidden);

@@ -331,7 +331,7 @@ You need to provide a text alternative that is only visible to assistive technol
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import { visuallyHidden } from '@material-ui/system';
+import { visuallyHidden } from '@material-ui/utils';
 import { makeStyles } from '@material-ui/core/styles';
 
 const classes = makeStyles({ visuallyHidden })();
