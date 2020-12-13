@@ -3178,9 +3178,9 @@
     csstype "^3.0.2"
 
 "@types/recharts@^1.8.14":
-  version "1.8.16"
-  resolved "https://registry.yarnpkg.com/@types/recharts/-/recharts-1.8.16.tgz#3ac3f5513ed61152910f2e828157b21a2761df22"
-  integrity sha512-xBXjOsSJJVP2xGtq/kML4rHGyKxA4x8ZqIU7iwbmWrperpSXzoQ1PWjqf4cBdmcLAWaidDHPJxUVHkZr3R/PEA==
+  version "1.8.18"
+  resolved "https://registry.yarnpkg.com/@types/recharts/-/recharts-1.8.18.tgz#dc7f2a27441ebc902b30ae7cd1d1af50381161db"
+  integrity sha512-wohEYbFZJDY+WbTdJKv/Z2y5T0qckZ40yUJhx+Pfbj5WynBhkBForFmGCigEFa0bIcaeoSeTNuCi9udGy2CeJQ==
   dependencies:
     "@types/d3-shape" "^1"
     "@types/react" "*"
