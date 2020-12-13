@@ -19,6 +19,7 @@ import {
   useNextMonthDisabled,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { DatePickerView } from '../internal/pickers/typings/Views';
+// import ArrowLeftIcon from '../internal/svg-icons/ArrowLeft'; 
 
 export type ExportedCalendarHeaderProps<TDate> = Pick<
   PickersCalendarHeaderProps<TDate>,
@@ -44,6 +45,8 @@ export interface PickersCalendarHeaderProps<TDate>
   reduceAnimations: boolean;
   onViewChange?: (view: DatePickerView) => void;
   onMonthChange: (date: TDate, slideDirection: SlideDirection) => void;
+  dropDownArrowCustom: React.ReactNode,
+  dropDownArrowCustomIcon: React.ReactNode,
 }
 
 export const styles = (theme: Theme) =>
@@ -109,6 +112,8 @@ function PickersCalendarHeader<TDate>(
     leftArrowButtonProps,
     leftArrowButtonText = 'previous month',
     leftArrowIcon,
+    dropDownArrowCustom,
+    dropDownArrowCustomIcon,
     maxDate,
     minDate,
     onMonthChange,
@@ -174,19 +179,28 @@ function PickersCalendarHeader<TDate>(
             </Typography>
           </FadeTransitionGroup>
           {views.length > 1 && (
-            <IconButton
+            dropDownArrowCustom 
+              ? dropDownArrowCustom 
+              : 
+              <IconButton
               size="small"
               data-mui-test="calendar-view-switcher"
               onClick={toggleView}
               className={classes.yearSelectionSwitcher}
               aria-label={getViewSwitchingButtonText(currentView)}
-            >
-              <ArrowDropDownIcon
+              >
+
+                {dropDownArrowCustomIcon ? dropDownArrowCustomIcon :
+                
+                <ArrowDropDownIcon
                 className={clsx(classes.switchViewDropdown, {
                   [classes.switchViewDropdownDown]: currentView === 'year',
                 })}
               />
-            </IconButton>
+              
+              }
+                
+              </IconButton>
           )}
         </div>
         <Fade in={currentView === 'date'}>
@@ -196,9 +210,9 @@ function PickersCalendarHeader<TDate>(
             leftArrowButtonText={leftArrowButtonText}
             rightArrowButtonText={rightArrowButtonText}
             leftArrowIcon={leftArrowIcon}
-            rightArrowIcon={rightArrowIcon}
+            rightArrowIcon={rightArrowIcon} 
             onLeftClick={selectPreviousMonth}
-            onRightClick={selectNextMonth}
+            onRightClick={selectNextMonth} 
             isLeftDisabled={isPreviousMonthDisabled}
             isRightDisabled={isNextMonthDisabled}
           />
