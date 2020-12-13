@@ -52,7 +52,7 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 #### Breaking changes
 
-- [system] Move visually hidden helper to utils
+- [system] Move visually hidden helper to utils (#23974) @eps1lon
 
   Only applies if you've installed v5.0.0-alpha.1
 
