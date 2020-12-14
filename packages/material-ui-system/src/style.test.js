@@ -122,7 +122,7 @@ describe('style', () => {
     prop: 'vSpacing',
     cssProperty: false,
     themeKey: 'spacing',
-    transform: value => ({
+    transform: (value) => ({
       '& > :not(:last-child)': {
         marginBottom: value,
       },
@@ -132,7 +132,7 @@ describe('style', () => {
   it('should transform the property correctly using theme', () => {
     const output = vSpacingWithTheme({
       theme: {
-        spacing: value => value * 2,
+        spacing: (value) => value * 2,
       },
       vSpacing: 8,
     });
