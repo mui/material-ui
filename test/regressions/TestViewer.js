@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useFakeTimers } from 'sinon';
+import { StylesProvider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
@@ -71,9 +72,11 @@ function TestViewer(props) {
   }, []);
 
   return (
-    <div aria-busy={!ready} data-testid="testcase" className={classes.root}>
-      {children}
-    </div>
+    <StylesProvider injectFirst>
+      <div aria-busy={!ready} data-testid="testcase" className={classes.root}>
+        {children}
+      </div>
+    </StylesProvider>
   );
 }
 

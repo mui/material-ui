@@ -1,5 +1,5 @@
 ---
-title: React Modal component
+title: Componente React Modal
 components: Modal
 githubLabel: 'component: Modal'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
@@ -31,7 +31,7 @@ Se você está criando um diálogo modal, você provavelmente quer usar o compon
 
 ## Modal simples
 
-This demo stacks Modals, but it is strongly discouraged to do so in practice.
+Esta demonstração acumula modais, mas é fortemente desencorajado a fazer isso na prática.
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
@@ -56,7 +56,7 @@ Como alternativa, você pode usar [react-spring](https://github.com/react-spring
 
 ## Performance
 
-The content of modal is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to change this default behavior by enabling the `keepMounted` prop:
+O conteúdo do modal é desmontado quando fechado. Se você precisa disponibilizar o conteúdo para mecanismos de busca ou renderizar árvores de componentes grandes dentro do seu modal enquanto otimiza interação responsiva, pode ser uma boa ideia mudar este comportamento padrão ativando a propriedade `keepMounted`:
 
 ```jsx
 <Modal keepMounted />

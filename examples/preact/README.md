@@ -22,8 +22,8 @@ or:
 
 ## The idea behind the example
 
-[Preact](https://github.com/developit/preact) is a fast 3kB alternative to React with the same modern API.
+The project uses [Preact](https://github.com/developit/preact), which is a fast 3kB alternative to React with the same modern API.
 
 This example uses CRA with `react-app-rewired` for adding webpack aliases for preact.
 
-Additionally, it adds `@material-ui/core` and it's peer dependencies.
+It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).

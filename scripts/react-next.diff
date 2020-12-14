@@ -1,5 +1,5 @@
 diff --git a/babel.config.js b/babel.config.js
-index b5b77d8501..d6ea102689 100644
+index 658f4724f9..338d8c46a9 100644
 --- a/babel.config.js
 +++ b/babel.config.js
 @@ -42,7 +42,13 @@ module.exports = function getBabelConfig(api) {
@@ -18,10 +18,10 @@ index b5b77d8501..d6ea102689 100644
    ];
  
 diff --git a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
-index 197b2f77a3..f1ead08079 100644
+index cab486d9db..3107739555 100644
 --- a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
 +++ b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
-@@ -127,11 +127,7 @@ describe('ThemeProvider', () => {
+@@ -122,11 +122,7 @@ describe('ThemeProvider', () => {
              <div />
            </ThemeProvider>,
          );
@@ -34,7 +34,7 @@ index 197b2f77a3..f1ead08079 100644
      });
  
      it('should warn about wrong theme function', () => {
-@@ -144,11 +140,7 @@ describe('ThemeProvider', () => {
+@@ -139,11 +135,7 @@ describe('ThemeProvider', () => {
              ,
            </ThemeProvider>,
          );
@@ -64,22 +64,21 @@ index 2ab151c6c8..6db6326d77 100644
          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
 diff --git a/packages/material-ui/src/Autocomplete/Autocomplete.test.js b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
-index 92a2ce6ebf..742df9b951 100644
+index cd02208b63..f3beebd4bc 100644
 --- a/packages/material-ui/src/Autocomplete/Autocomplete.test.js
 +++ b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
-@@ -1169,8 +1169,6 @@ describe('<Autocomplete />', () => {
+@@ -1181,10 +1181,6 @@ describe('<Autocomplete />', () => {
          fireEvent.change(textbox, { target: { value: 'a' } });
          fireEvent.keyDown(textbox, { key: 'Enter' });
        }).toErrorDev([
-         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
 -        // strict mode renders twice
 -        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
 -        // strict mode renders twice
--        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-@@ -1223,9 +1221,6 @@ describe('<Autocomplete />', () => {
+         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+@@ -1238,9 +1234,6 @@ describe('<Autocomplete />', () => {
            />,
          );
        }).toWarnDev([
@@ -89,7 +88,7 @@ index 92a2ce6ebf..742df9b951 100644
          'None of the options match with `"not a good value"`',
          'None of the options match with `"not a good value"`',
        ]);
-@@ -1251,11 +1246,7 @@ describe('<Autocomplete />', () => {
+@@ -1266,11 +1259,7 @@ describe('<Autocomplete />', () => {
              groupBy={(option) => option.group}
            />,
          );
@@ -115,10 +114,10 @@ index d5c5735ecf..86a4ebdece 100644
      expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
      expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');
 diff --git a/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js b/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
-index 4e4895ed53..eee7a05f0b 100644
+index fe9020d480..52d53b4bea 100644
 --- a/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
 +++ b/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
-@@ -133,8 +133,7 @@ describe('<ClickAwayListener />', () => {
+@@ -160,8 +160,7 @@ describe('<ClickAwayListener />', () => {
        expect(handleClickAway.callCount).to.equal(0);
  
        fireEvent.click(getByText('Stop inside a portal'));
@@ -129,10 +128,10 @@ index 4e4895ed53..eee7a05f0b 100644
  
      it('should not be called during the same event that mounted the ClickAwayListener', () => {
 diff --git a/packages/material-ui/src/Tabs/Tabs.test.js b/packages/material-ui/src/Tabs/Tabs.test.js
-index d629210cde..f53f50970f 100644
+index 50e4f67d73..70e07d3da7 100644
 --- a/packages/material-ui/src/Tabs/Tabs.test.js
 +++ b/packages/material-ui/src/Tabs/Tabs.test.js
-@@ -90,9 +90,6 @@ describe('<Tabs />', () => {
+@@ -91,9 +91,6 @@ describe('<Tabs />', () => {
        expect(() => {
          render(<Tabs value={0} centered variant="scrollable" />);
        }).toErrorDev([
@@ -143,10 +142,10 @@ index d629210cde..f53f50970f 100644
          'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
        ]);
 diff --git a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
-index 73c99e5367..8097806a24 100644
+index cca7f0ee6c..5a878b6462 100644
 --- a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
 +++ b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
-@@ -287,12 +287,7 @@ describe('<TextareaAutosize />', () => {
+@@ -286,12 +286,7 @@ describe('<TextareaAutosize />', () => {
  
          expect(() => {
            forceUpdate();
@@ -161,10 +160,10 @@ index 73c99e5367..8097806a24 100644
      });
    });
 diff --git a/packages/material-ui/src/internal/SwitchBase.test.js b/packages/material-ui/src/internal/SwitchBase.test.js
-index 8c8f59a9d8..657a5e57bc 100644
+index 3f26a11e1b..3732eb2e9a 100644
 --- a/packages/material-ui/src/internal/SwitchBase.test.js
 +++ b/packages/material-ui/src/internal/SwitchBase.test.js
-@@ -366,7 +366,7 @@ describe('<SwitchBase />', () => {
+@@ -393,7 +393,7 @@ describe('<SwitchBase />', () => {
          setProps({ checked: true });
          global['didWarnControlledToUncontrolled'] = true;
        }).toErrorDev([
@@ -173,7 +172,7 @@ index 8c8f59a9d8..657a5e57bc 100644
          'Material-UI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
        ]);
      });
-@@ -387,7 +387,7 @@ describe('<SwitchBase />', () => {
+@@ -414,7 +414,7 @@ describe('<SwitchBase />', () => {
          setProps({ checked: undefined });
          global['didWarnControlledToUncontrolled'] = true;
        }).toErrorDev([
@@ -183,10 +182,10 @@ index 8c8f59a9d8..657a5e57bc 100644
        ]);
      });
 diff --git a/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js b/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
-index 25dc48c4c1..b33af6309c 100644
+index 20476d13cf..01dc0f8226 100644
 --- a/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
 +++ b/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
-@@ -277,11 +277,7 @@ describe('useMediaQuery', () => {
+@@ -283,11 +283,7 @@ describe('useMediaQuery', () => {
  
        expect(() => {
          render(<MyComponent />);

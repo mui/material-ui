@@ -268,7 +268,7 @@ const classes = makeStyles(theme => ({
   />
   ```
 
-- Rename `closeIcon` prop with `clearIcon` to avoid confusion.
+- 为了避免混淆，我们将 `closeIcon` 属性更名为 `clearIcon`。
 
   ```diff
   -<Autocomplete closeIcon={defaultClearIcon} />
@@ -946,7 +946,7 @@ const classes = makeStyles(theme => ({
   +<TextField minRows={2} maxRows={5} />
   ```
 
-- 更改自定义 `inputComponent` 中的 ref 转发期望值 该组件应该转发 `ref` 属性，而不是 `inputRef` 属性。
+- 改变自定义 `inputComponent` 组件的的 ref 转发期望值。 该组件应该转发 `ref` 属性，而不是 `inputRef` 属性。
 
   ```diff
   -function NumberFormatCustom(props) {
@@ -962,6 +962,13 @@ const classes = makeStyles(theme => ({
         {...other}
   -     getInputRef={inputRef}
   +     getInputRef={ref}
+  ```
+
+- 为了匹配属性，我们将 `marginDense` 和 `inputMarginDense` 类名重命名为 `sizeSmall` 和 `inputSizeSmall`。
+
+  ```diff
+  -<Input margin="dense" />
+  +<Input size="small" />
   ```
 
 ### TextareaAutosize

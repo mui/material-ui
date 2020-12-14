@@ -1,5 +1,5 @@
 ---
-title: React Tabs component
+title: Componente React Abas
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 githubLabel: 'component: Tabs'
 materialDesign: https://material.io/components/tabs
@@ -58,11 +58,11 @@ Botões de rolagem para a esquerda e para a direita serão automaticamente apres
 
 ### Botões de rolagem forçados
 
-Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons={true}` `allowScrollButtonsMobile`:
+Botões de rolagem esquerda e direita são apresentados (espaço reserva) independente da largura de exibição com `scrollButtons={true}` `allowScrollButtonsMobile`:
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
-If you want to make sure the buttons are always visible, you should customize the opacity.
+Se você quiser certificar-se de que os botões são sempre visíveis, você deve customizar a opacidade.
 
 ```css
 .MuiTabs-scrollButtons.Mui-disabled {
@@ -74,7 +74,7 @@ If you want to make sure the buttons are always visible, you should customize th
 
 ### Impedir botões de rolagem
 
-Left and right scroll buttons are never be presented with `scrollButtons={false}`. Toda rolagem deve ser iniciada por meio de mecanismos de rolagem do agente do usuário (por exemplo, deslizar para a esquerda/direita, rolar scroll do mouse, etc.)
+Botões de rolagem da esquerda e direita nunca serão apresentados com `scrollButtons={false}`. Toda rolagem deve ser iniciada por meio de mecanismos de rolagem do agente do usuário (por exemplo, deslizar para a esquerda/direita, rolar scroll do mouse, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
@@ -92,7 +92,7 @@ O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
 
 {{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
 
-Note that you can restore the scrollbar with `visibleScrollbar`.
+Note que você pode restaurar a barra de rolagem com `visibleScrollbar`.
 
 ## Abas de navegação
 

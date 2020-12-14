@@ -34,43 +34,43 @@ function App() {
 
 ## Utilização Básica
 
-The time picker will automatically adjust to the locale's time setting, i.e. the 12-hour or 24-hour format. This can be controlled with `ampm` prop.
+O seletor de hora ajustará automaticamente à configuração de horário da localidade, ou seja, ao formato 12 horas ou 24 horas. Isso pode ser controlado com a propriedade `ampm`.
 
 {{"demo": "pages/components/time-picker/BasicTimePicker.js"}}
 
 ## Localização
 
-Use `LocalizationProvider` to change the date-engine locale that is used to render the time picker. Note that `am/pm` setting is switched automatically:
+Use `LocalizationProvider` para alterar a date-engine de localização que é usada para renderizar o seletor de hora. Observe que a configuração `am/pm` é trocada automaticamente:
 
 {{"demo": "pages/components/time-picker/LocalizedTimePicker.js"}}
 
 ## Responsividade
 
-The time picker component is designed and optimized for the device it runs on.
+O componente seletor de hora é projetado e otimizado para o dispositivo em que ele é executado.
 
 - A versão "móvel" funciona melhor para dispositivos de toque e telas pequenas.
 - A versão "desktop" funciona melhor para dispositivos com mouse e telas grandes.
 
-By default, the `TimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
+Por padrão, o componente `TimePicker` usa uma consulta de mídia `@media (pointer: fine)` para determinar qual versão usar. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
 
 {{"demo": "pages/components/time-picker/ResponsiveTimePickers.js"}}
 
-## Time validation
+## Validação de hora
 
 {{"demo": "pages/components/time-picker/TimeValidationTimePicker.js"}}
 
 ## Modo estático
 
-It's possible to render any picker inline. This will enable building custom popover/modal containers.
+É possível renderizar qualquer seletor em linha. Isto permitirá construir contêineres customizados de popover/modal.
 
 {{"demo": "pages/components/time-picker/StaticTimePickerDemo.js", "bg": true}}
 
-## Landscape
+## Paisagem
 
 {{"demo": "pages/components/time-picker/StaticTimePickerLandscape.js", "bg": true}}
 
-## Seconds
+## Segundos
 
-The seconds input can be used for selection of a precise time point.
+O campo de segundos pode ser usado para seleção de um ponto de tempo exato.
 
 {{"demo": "pages/components/time-picker/SecondsTimePicker.js"}}

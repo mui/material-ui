@@ -12,3 +12,5 @@ export default function styled(tag, options) {
 }
 
 export { ThemeContext } from 'styled-components';
+
+export { default as StylesProvider } from './StylesProvider';

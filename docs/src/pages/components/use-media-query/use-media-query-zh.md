@@ -54,7 +54,7 @@ function MyComponent() {
 }
 ```
 
-⚠️  由于这个方法 **没有默认的** 主题支持，所以你必须将它注入到父级主题提供者（parent theme provider）中。
+⚠️  由于这个方法**没有默认的**主题支持，所以你必须将它注入到父级主题提供者（parent theme provider）中。
 
 ## 使用 JavaScript 的语法
 
@@ -88,6 +88,28 @@ describe('MyTests', () => {
 });
 ```
 
+## 仅在客户端渲染
+
+要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要**客户端渲染**，那么你可以设置 `noSsr` 选项为 `true`。
+
+```js
+const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
+```
+
+或者你可以通过全局主题设置来启用它：
+
+```js
+const theme = createMuiTheme({
+  components: {
+    MuiUseMediaQuery: {
+      defaultProps: {
+        noSsr: true,
+      },
+    },
+  },
+});
+```
+
 ## 服务端渲染
 
 > ⚠️ 从根本上来看，服务端渲染和客户端的媒体查询是矛盾的。 所以你需要在其中取舍。 支持只能是部分的。
@@ -103,7 +125,7 @@ describe('MyTests', () => {
 首先，你需要从服务端上猜测客户端请求的特征。 你可以选择使用：
 
 - **用户代理（User agent）**。 解析客户端上用户代理的字符串来提取信息。 我们推荐使用 [ua-parser-js](https://github.com/faisalman/ua-parser-js) 来解析用户代理信息。
-- **Client hints**. Read the hints the client is sending to the server. Be aware that this feature is [not supported everywhere](https://caniuse.com/#search=client%20hint). 读取客户端向服务器发送的提示。 读取客户端向服务器发送的提示。 请注意，[并不是所有浏览器都会支持](https://caniuse.com/#search=client%20hint) 此功能。
+- **客户端提示（Client hints）**。 读取客户端向服务器发送的提示。 请注意，[并不是所有浏览器都会支持](https://caniuse.com/#search=client%20hint) 此功能。
 
 最后，你需要为 `useMediaQuery` 提供一个具有预先猜测特征的 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) 来实现。 我们建议使用 [css-mediaquery](https://github.com/ericf/css-mediaquery) 来模拟 matchMedia 环境。
 
@@ -138,6 +160,8 @@ function handleRender(req, res) {
       <App />
     </ThemeProvider>,
   );
+
+  // …
 }
 ```
 
@@ -162,7 +186,7 @@ function handleRender(req, res) {
 
 - `options.defaultMatches` （*布尔值* [optional]）： 作为 `window.matchMedia()` 在服务器上不可用， 我们在第一次安装时返回默认匹配。 默认值为 `false`。
 - `options.matchMedia` (_Function_ [optional])：你可以提供你自己的 _matchMedia_ 实现。 用其您可以处理一个 iframe 内容窗口。
-- `options.noSsr` (*Boolean* [optional]): 默认值为 `false`。 为了呈现服务器端渲染的协调性，我们需要将它渲染两次。 第一次什么也没渲染，第二次与子组件一起渲染。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你 **不需要服务端渲染**，那么可以将此标志设置为 `true`。
+- `options.noSsr` (*Boolean* [optional]): 默认值为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
 - `options.ssrMatchMedia` (_Function_ [optional])：你可以在 [服务器端渲染上下文](#server-side-rendering) 中提供你自己的 _matchMedia_ 实现。
 
 注意：你可以使用主题的 [`默认属性`](/customization/globals/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。

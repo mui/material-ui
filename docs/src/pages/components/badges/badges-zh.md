@@ -55,3 +55,7 @@ githubLabel: 'component: Badge'
 你可以使用 `anchorOrigin` 属性移把徽章组件移动到封装的元素的任何角落。
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled badge
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}

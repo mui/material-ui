@@ -59,7 +59,7 @@ const Icon = React.forwardRef(function Icon(props, ref) {
     className,
     color = 'inherit',
     component: Component = 'span',
-    fontSize = 'default',
+    fontSize = 'medium',
     ...other
   } = props;
 
@@ -73,7 +73,7 @@ const Icon = React.forwardRef(function Icon(props, ref) {
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
+          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'medium',
         },
         className,
       )}
@@ -119,9 +119,9 @@ Icon.propTypes = {
   component: PropTypes.elementType,
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
-   * @default 'default'
+   * @default 'medium'
    */
-  fontSize: PropTypes.oneOf(['default', 'inherit', 'large', 'small']),
+  fontSize: PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
 };
 
 Icon.muiName = 'Icon';

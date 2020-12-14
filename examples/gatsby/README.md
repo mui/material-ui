@@ -22,8 +22,7 @@ or:
 
 ## The idea behind the example
 
-[Gatsby](https://github.com/gatsbyjs/gatsby) is a static site generator for React.
-Additionally, it adds `@material-ui/core` and it's peer dependencies.
+The project uses [Gatsby](https://github.com/gatsbyjs/gatsby), which is a static site generator for React. It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).
 
 ## gatsby-theme-material-ui
 

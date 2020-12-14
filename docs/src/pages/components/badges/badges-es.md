@@ -55,3 +55,7 @@ Usted puede usar la propiedad `anchorOrigin` para mover el Badge a cualquier esq
 Puede usar la propiedad `overlap` para colocar la insignia relativa a la esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled badge
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}

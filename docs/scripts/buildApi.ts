@@ -1058,8 +1058,10 @@ async function buildDocs(options: {
       description = marked.parseInline(description);
 
       if (propName === 'classes') {
-        // TODO: Dedupe this for l10n
         description += ' See <a href="#css">CSS API</a> below for more details.';
+      } else if (propName === 'sx') {
+        description +=
+          ' See the <a href="/system/basics/#the-sx-prop">`sx` page</a> for more details.';
       }
 
       componentApi.propDescriptions = {

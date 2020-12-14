@@ -86,6 +86,28 @@ describe('MyTests', () => {
 });
 ```
 
+## Рендеринг лишь на стороне клиента
+
+Для выполнения гидратации на стороне сервера хук должен рендерится дважды. Первый раз с `false`, значение сервера и второй раз с разрешенным значением. This double pass rendering cycle comes with a drawback. It's slower. Вы можете установить опцию `noSsr` как `true` если вы делаете рендеринг **лишь на стороне клиента**.
+
+```js
+const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
+```
+
+или он может включить его глобально с помощью темы:
+
+```js
+const theme = createMuiTheme({
+  components: {
+    MuiUseMediaQuery: {
+      defaultProps: {
+        noSsr: true,
+      },
+    },
+  },
+});
+```
+
 ## Server-side rendering
 
 > ⚠️ Server-side rendering and client-side media queries are fundamentally at odds. Be aware of the tradeoff. The support can only be partial.
@@ -152,7 +174,7 @@ The `withWidth()` higher-order component injects the screen width of the page. Y
 
 - `options.defaultMatches` (*Boolean* [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. The default value is `false`.
 - `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
-- `options.noSsr` (*Boolean* [optional]): По умолчанию - `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. It's slower. You can set this flag to `true` if you are **not doing server-side rendering**.
+- `options.noSsr` (*Boolean* [optional]): По умолчанию - `false`. Для выполнения гидратации на стороне сервера хук должен рендерится дважды. Первый раз с `false`, значение сервера и второй раз с разрешенным значением. This double pass rendering cycle comes with a drawback. It's slower. Вы можете установить опцию `noSsr` как `true` если вы делаете рендеринг **лишь на стороне клиента**.
 - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.

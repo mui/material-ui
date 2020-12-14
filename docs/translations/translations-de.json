@@ -19,8 +19,10 @@
   "cdn": "oder benutzen Sie ein CDN.",
   "checkoutDescr": "Ein schrittweises Checkout-Seitenlayout. Die Anzahl der Schritte ist anpassbar oder gar komplett optional.",
   "checkoutTitle": "Check Out",
+  "clickToCopy": "Click to copy",
   "close": "Schließen",
   "codesandbox": "In CodeSandbox bearbeiten",
+  "copied": "Copied",
   "copiedSource": "The source code has been copied to your clipboard.",
   "copiedSourceLink": "Link to the source code has been copied to your clipboard.",
   "copySource": "Quellcode kopieren",
@@ -75,6 +77,9 @@
   "resetDemo": "Reset demo",
   "resetDensity": "Dichte zurücksetzen",
   "resetFocus": "Reset focus to test keyboard navigation",
+  "searchIcons": {
+    "learnMore": "Learn more about the import"
+  },
   "seeMore": "Mehr anzeigen",
   "settings": {
     "color": "Farbe (Color)",

@@ -58,7 +58,7 @@ function App() {
 
 {{"demo": "pages/components/date-picker/LocalizedDatePicker.js"}}
 
-## Views playground
+## 试玩例子
 
 你可以将 `year`，`month` 和 `date` 进行组合显示。 视图的显示顺序是由被包含在 `views` 数组的顺序来决定的。
 

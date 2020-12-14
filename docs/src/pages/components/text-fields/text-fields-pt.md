@@ -25,7 +25,7 @@ Os atributos são suportados pelo `TextField`, como por exemplo `required`, `dis
 
 ## Propriedades de formulário
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+Atributos padrão de formulário são suportados, por exemplo,  `required`, `disabled`, `type`, etc. bem como `helperText` que é usado para dar contexto sobre o campo de texto, tal como, ele deve ser usado.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
@@ -66,6 +66,10 @@ A forma principal é utilizando um componente `InputAdornment`. Estes podem ser 
 Gosta mais de campos de texto menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
+
+The `filled` variant input height can be further reduced by rendering the label outside of it.
+
+{{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
 
 ## Leiaute
 
@@ -137,28 +141,28 @@ O rótulo flutuante está absolutamente posicionado, não afetará o leiaute da 
 
 ### type="number"
 
-Inputs of type="number" have potential usability issues:
+Campos com type="number" tem problemas potenciais de usabilidade:
 
-- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others and silently discarding others
-- Se você está compondo o componente:
+- Permitindo certos caracteres não numéricos ('e', '+', '-', '.') e silenciosamente descartando outros
+- A funcionalidade de rolagem para incrementar/decrementar o número, pode causar alterações acidentais difíceis de notar
 
-and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
+e muito mais - consulte [este artigo](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) da equipe GOV.UK Design System para obter uma explicação mais detalhada.
 
-For number validation, one viable alternative is to use the default input type="text" with the _pattern_ attribute, for example:
+Para validação de número, uma alternativa viável é usar o padão de campo, type="text", com o atributo _pattern_, por exemplo:
 
 ```jsx
 <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
 ```
 
-In the future, we might provide a [number input component](https://github.com/mui-org/material-ui/issues/19154).
+No futuro, pretendemos fornecer um [componente de campo número](https://github.com/mui-org/material-ui/issues/19154).
 
-### Helper text
+### Texto auxiliar
 
-The helper text prop affects the height of the text field. If two text fields are placed side by side, one with a helper text and one without, they will have different heights. Por exemplo:
+A propriedade de texto auxiliar afeta a altura do campo de texto. Se dois campos de texto forem colocados lado a lado, um com um texto auxiliar e outro sem ele, terão alturas diferentes. Por exemplo:
 
 Para usos mais avançados, você pode tirar vantagem com:
 
-This can be fixed by passing a space character to the `helperText` prop:
+Isso pode ser corrigido passando um caractere de espaço para a propriedade `helperText`:
 
 {{"demo": "pages/components/text-fields/HelperTextAligned.js"}}
 
@@ -170,7 +174,7 @@ A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.co
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-The provided input component should expose a ref with a value that implements the following interface:
+O componente de entrada fornecido deve expor um ref com um valor que implemente a seguinte interface:
 
 ```ts
 interface InputElement {
@@ -183,19 +187,19 @@ interface InputElement {
 const MyInputComponent = React.forwardRef((props, ref) => {
   const { component: Component, ...other } = props;
 
-  // implement `InputElement` interface
+  // implemente a interface`InputElement`
   React.useImperativeHandle(ref, () => ({
     focus: () => {
-      // logic to focus the rendered component from 3rd party belongs here
+      // lógica para focar o componente de terceiro renderizado deve ser feita aqui
     },
-    // hiding the value e.g. react-stripe-elements
+    // ocultando o valor, por exemplo, react-stripe-elements
   }));
 
-  // `Component` will be your `SomeThirdPartyComponent` from below
+  // O `Component` abaixo será seu `AlgumComponenteDeTerceiro`
   return <Component {...other} />;
 });
 
-// usage
+// uso
 <TextField
   InputProps={{
     inputComponent: MyInputComponent,
@@ -233,7 +237,7 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 
 Para situações de uso mais avançadas, você pode tirar proveito com:
 
-- [react-hook-form](https://react-hook-form.com/): React hook for form validation.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings para usar Material-UI com [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).

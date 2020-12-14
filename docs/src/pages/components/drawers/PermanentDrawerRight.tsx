@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerPaper: {
       width: drawerWidth,
+      boxSizing: 'border-box',
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,

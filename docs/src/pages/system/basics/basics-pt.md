@@ -198,7 +198,7 @@ Existem muitas abreviações disponíveis para as propriedades do CSS. Estas sã
     color: 'primary.main', // theme.palette.primary.main
     m: 1, // margin: theme.spacing(1)
     p: {
-      sx: 1, // [theme.breakpoints.up('sx')]: : { padding: theme.spacing(1) }
+      xs: 1, // [theme.breakpoints.up('xs')]: : { padding: theme.spacing(1) }
     },
     zIndex: 'tooltip', // theme.zIndex.tooltip
   }}
