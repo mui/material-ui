@@ -136,7 +136,8 @@ describe('style', () => {
       },
       vSpacing: 8,
     });
-    assert.deepEqual(output1, {
+
+    expect(output).to.deep.equal({
       '& > :not(:last-child)': {
         marginBottom: 16,
       },
