@@ -188,7 +188,6 @@ function AppSettingsDrawer(props) {
           href="/customization/color/#playground"
           data-ga-event-category="settings"
           data-ga-event-action="colors"
-          variant="body1"
         >
           {t('settings.editWebsiteColors')}
         </Link>
