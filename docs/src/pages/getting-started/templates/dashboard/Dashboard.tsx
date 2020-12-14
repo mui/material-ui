@@ -84,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    boxSizing: 'border-box',
   },
   drawerPaperClose: {
     overflowX: 'hidden',
