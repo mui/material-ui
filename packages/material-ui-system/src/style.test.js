@@ -118,6 +118,31 @@ describe('style', () => {
     });
   });
 
+  const vSpacingWithTheme = style({
+    prop: 'vSpacing',
+    cssProperty: false,
+    themeKey: 'spacing',
+    transform: value => ({
+      '& > :not(:last-child)': {
+        marginBottom: value,
+      },
+    }),
+  });
+
+  it('should transform the property correctly using theme', () => {
+    const output1 = vSpacingWithTheme({
+      theme: {
+        spacing: value => value * 2,
+      },
+      vSpacing: 8,
+    });
+    assert.deepEqual(output1, {
+      '& > :not(:last-child)': {
+        marginBottom: 16,
+      },
+    });
+  });
+
   it('should fallback to composed theme keys', () => {
     const fontWeight = style({
       prop: 'fontWeight',
