@@ -22,10 +22,4 @@ or:
 
 ## The idea behind the example
 
-[Next.js](https://github.com/zeit/next.js) is a framework for server-rendered React apps.
-
-## Troubleshooting
-
-### `Warning: Prop className did not match.`
-
-If you get this warning, please make sure that you configure `getInitialProps` in `pages/_document.tsx` correctly. Check the code in this example for more details.
+The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps. It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).

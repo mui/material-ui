@@ -1,9 +1,9 @@
-const puppeteer = require('puppeteer');
+const playwright = require('playwright');
 const fse = require('fs-extra');
 const http = require('http');
 const path = require('path');
 const express = require('express');
-const expect = require('expect-puppeteer');
+const { expect } = require('chai');
 
 const port = 3090;
 const host = '0.0.0.0';
@@ -89,7 +89,7 @@ function App() {
 async function startBrowser() {
   // eslint-disable-next-line no-console
   console.info('browser: start');
-  const browser = await puppeteer.launch({
+  const browser = await playwright.chromium.launch({
     args: [
       '--single-process', // Solve mono-thread issue on CircleCI
       // https://github.com/GoogleChrome/puppeteer/blob/5d6535ca0c82efe2ca50450818d5fb20aa015658/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
@@ -122,8 +122,10 @@ async function run() {
     closeBrowser = close;
 
     await page.goto(`http://${host}:${port}`);
-    await expect(page).toClick('button', { text: 'Super Secret Password' });
-    await expect(page).toMatch('1-2-3-4-5');
+    const button = await page.$('button');
+    expect(await button.textContent()).to.equal('Super Secret Password');
+    await button.click();
+    expect(await page.textContent('body')).to.include('1-2-3-4-5');
   } finally {
     await Promise.all([closeBrowser(), server.close()]);
   }

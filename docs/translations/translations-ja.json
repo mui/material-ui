@@ -19,8 +19,10 @@
   "cdn": "または、CDNを使用します。",
   "checkoutDescr": "段階的な購入手続きページのレイアウト。必要に合わせてステップ数が変化し、また任意でステップを追加できます。",
   "checkoutTitle": "確認する",
+  "clickToCopy": "Click to copy",
   "close": "閉じる",
   "codesandbox": "CodeSandboxで編集する",
+  "copied": "Copied",
   "copiedSource": "ソースコードがクリップボードにコピーされました。",
   "copiedSourceLink": "ソースコードへのリンクがクリップボードにコピーされました。",
   "copySource": "ソースコードをコピーする",
@@ -75,6 +77,9 @@
   "resetDemo": "デモをリセット",
   "resetDensity": "密度をリセット",
   "resetFocus": "キーボードナビゲーションをテストするためにフォーカスを外す",
+  "searchIcons": {
+    "learnMore": "Learn more about the import"
+  },
   "seeMore": "もっと見る",
   "settings": {
     "color": "カラー",

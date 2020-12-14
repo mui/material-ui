@@ -1,0 +1,34 @@
+{
+  "componentDescription": "Drop in replacement of the <code>Radio</code>, <code>Switch</code> and <code>Checkbox</code> component.\nUse this component if you want to display an extra label.",
+  "propDescriptions": {
+    "checked": "If <code>true</code>, the component appears selected.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "control": "A control element. For instance, it can be a <code>Radio</code>, a <code>Switch</code> or a <code>Checkbox</code>.",
+    "disabled": "If <code>true</code>, the control is disabled.",
+    "inputRef": "Pass a ref to the <code>input</code> element.",
+    "label": "The text to be used in an enclosing label element.",
+    "labelPlacement": "The position of the label.",
+    "onChange": "Callback fired when the state is changed.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean).",
+    "value": "The value of the component."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "labelPlacementStart": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>labelPlacement=\"start\"</code>"
+    },
+    "labelPlacementTop": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>labelPlacement=\"top\"</code>"
+    },
+    "labelPlacementBottom": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>labelPlacement=\"bottom\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "label": { "description": "Styles applied to the label's Typography component." }
+  }
+}

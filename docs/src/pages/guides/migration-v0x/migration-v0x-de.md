@@ -49,28 +49,26 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 
 ```jsx
 import * as React from 'react';
-  import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
-  import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
-  import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
+import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-  const theme = createMuiTheme({
-    /* theme for v1.x */
-  });
-  const themeV0 = getMuiTheme({
-    /* theme for v0.x */
-  });
+const theme = createMuiTheme({
+  /* theme for v1.x */
+});
+const themeV0 = getMuiTheme({
+  /* theme for v0.x */
+});
 
-  function App() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <V0MuiThemeProvider muiTheme={themeV0}>
-          {/*Components*/}
-        </V0MuiThemeProvider>
-      </MuiThemeProvider>
-    );
-  }
+function App() {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <V0MuiThemeProvider muiTheme={themeV0}>{/*Components*/}</V0MuiThemeProvider>
+    </MuiThemeProvider>
+  );
+}
 
-  export default App;
+export default App;
 ```
 
 4. Danach können Sie jeweils eine Komponenteninstanz migrieren.
@@ -79,7 +77,7 @@ import * as React from 'react';
 
 ### Autovervollständigung (Autocomplete)
 
-Die Material-UI bietet keine übergeordnete API zur Lösung dieses Problems an. You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
+Die Material-UI bietet keine übergeordnete API zur Lösung dieses Problems an. Dafür müssen Sie die Lösungen zu erkunden, die [die React-Community entwickelt hat](/components/autocomplete/).
 
 In Zukunft werden wir versuchen, eine einfache Komponente bereitzustellen, um die einfachen Anwendungsfälle zu lösen: [#9997](https://github.com/mui-org/material-ui/issues/9997).
 

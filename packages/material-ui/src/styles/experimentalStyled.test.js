@@ -176,7 +176,7 @@ describe('experimentalStyled', () => {
       Test = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+        { name: 'Test', slot: 'Root', overridesResolver: testOverridesResolver },
       )`
         width: 200px;
         height: 300px;
@@ -185,7 +185,7 @@ describe('experimentalStyled', () => {
       TestObj = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+        { name: 'Test', overridesResolver: testOverridesResolver },
       )({
         width: '200px',
         height: '300px',
@@ -363,7 +363,7 @@ describe('experimentalStyled', () => {
       const TestNoSx = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { muiName: 'MuiTest', overridesResolver: testOverridesResolver, skipSx: true },
+        { overridesResolver: testOverridesResolver, skipSx: true },
       )(({ sx = {} }) => ({
         ...(sx.mt && {
           marginTop: `${sx.mt * -1}px`,
@@ -384,7 +384,7 @@ describe('experimentalStyled', () => {
       const TestWithSx = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+        { overridesResolver: testOverridesResolver },
       )(({ sx = {} }) => ({
         ...(sx.mt && {
           marginTop: `${sx.m * -1}px`,
@@ -401,6 +401,82 @@ describe('experimentalStyled', () => {
       expect(containerSxProp.firstChild).toHaveComputedStyle({
         marginTop: '8px',
       });
+    });
+
+    it('should set displayName properly', () => {
+      const Component = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { name: 'Component' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      expect(Component.displayName).to.equal('Component');
+    });
+
+    it('should set displayName as name + slot if both are specified', () => {
+      const Component = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { name: 'Component', slot: 'Root' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      expect(Component.displayName).to.equal('ComponentRoot');
+    });
+
+    it('should set the className when generating the classes', () => {
+      const Component = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { name: 'Component', slot: 'Slot' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container } = render(<Component>Test</Component>);
+
+      const classList = Array.from(container.firstChild.classList);
+      const regExp = new RegExp(`.*-MuiComponent-slot$`);
+      let containsValidClass = false;
+
+      classList.forEach((className) => {
+        if (regExp.test(className)) {
+          containsValidClass = true;
+        }
+      });
+
+      expect(containsValidClass).to.equal(true);
+    });
+
+    it('should set the className as root if no slot is specified', () => {
+      const Component = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
+        { name: 'Component' },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { container } = render(<Component>Test</Component>);
+
+      const classList = Array.from(container.firstChild.classList);
+      const regExp = new RegExp(`.*-MuiComponent-root$`);
+      let containsValidClass = false;
+
+      classList.forEach((className) => {
+        if (regExp.test(className)) {
+          containsValidClass = true;
+        }
+      });
+
+      expect(containsValidClass).to.equal(true);
     });
   });
 });

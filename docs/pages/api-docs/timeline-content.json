@@ -1,0 +1,18 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } }
+  },
+  "name": "TimelineContent",
+  "styles": {
+    "classes": ["root", "alignRight"],
+    "globalClasses": {},
+    "name": "MuiTimelineContent"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/TimelineContent/TimelineContent.js",
+  "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
+  "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
+  "styledComponent": false
+}

@@ -1,0 +1,25 @@
+{
+  "props": {
+    "align": {
+      "type": {
+        "name": "enum",
+        "description": "'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
+      },
+      "default": "'left'"
+    },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } }
+  },
+  "name": "Timeline",
+  "styles": {
+    "classes": ["root", "alignLeft", "alignRight", "alignAlternate"],
+    "globalClasses": {},
+    "name": "MuiTimeline"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/material-ui-lab/src/Timeline/Timeline.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
+  "styledComponent": false
+}

@@ -123,13 +123,13 @@ export default function ComponentLinkHeader(props) {
               component="a"
               variant="outlined"
               rel="nofollow"
-              href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-              icon={<SketchIcon />}
+              href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+              icon={<FigmaIcon />}
               data-ga-event-category="ComponentLinkHeader"
               data-ga-event-action="click"
-              data-ga-event-label="Sketch"
+              data-ga-event-label="Figma"
               data-ga-event-split="0.1"
-              label="Sketch"
+              label="Figma"
             />
           </li>
           <li>
@@ -139,13 +139,13 @@ export default function ComponentLinkHeader(props) {
               component="a"
               variant="outlined"
               rel="nofollow"
-              href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-              icon={<FigmaIcon />}
+              href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+              icon={<SketchIcon />}
               data-ga-event-category="ComponentLinkHeader"
               data-ga-event-action="click"
-              data-ga-event-label="Figma"
+              data-ga-event-label="Sketch"
               data-ga-event-split="0.1"
-              label="Figma"
+              label="Sketch"
             />
           </li>
         </React.Fragment>

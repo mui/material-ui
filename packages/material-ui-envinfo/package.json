@@ -6,7 +6,7 @@
   },
   "license": "MIT",
   "description": "Logs infos about the environment relevant to @material-ui/*",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "bin": "./envinfo.js",
   "dependencies": {
     "envinfo": "^7.7.3"
@@ -15,9 +15,14 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
+  "homepage": "https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-envinfo",
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui",
     "directory": "packages/material-ui-envinfo"
+  },
+  "files": [],
+  "scripts": {
+    "build": "node scripts/build"
   }
 }

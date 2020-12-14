@@ -1,5 +1,5 @@
 ---
-title: React Badge component
+title: React Badge Komponente
 components: Badge
 githubLabel: 'component: Badge'
 ---
@@ -55,3 +55,7 @@ You can use the `overlap` property to place the badge relative to the corner of 
 You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled badge
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}

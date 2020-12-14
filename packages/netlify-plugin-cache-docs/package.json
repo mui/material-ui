@@ -1,6 +1,6 @@
 {
   "name": "netlify-plugin-cache-docs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "author": "Material-UI Team",
   "description": "Alternative to netlify-plugin-cache-nextjs",
@@ -15,7 +15,6 @@
   "dependencies": {
     "fs-extra": "^9.0.1"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=10.0.0"
   }
