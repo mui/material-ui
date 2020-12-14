@@ -130,7 +130,7 @@ describe('style', () => {
   });
 
   it('should transform the property correctly using theme', () => {
-    const output1 = vSpacingWithTheme({
+    const output = vSpacingWithTheme({
       theme: {
         spacing: value => value * 2,
       },
