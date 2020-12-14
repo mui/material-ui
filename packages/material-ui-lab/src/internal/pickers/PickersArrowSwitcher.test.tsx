@@ -88,6 +88,23 @@ describe('<PickersArrowSwitcher />', () => {
     expect(screen.getByTestId('customIcon')).not.to.equal(null);
   });
 
+  it('leftArrowCustomIcon and rightArrowCustomIcon -> put in a custom icon for the left and right scroll arrow', () => {
+    render(
+      <ArrowSwitcher
+        onChange={() => {}}
+        leftArrowCustomIcon={<ClockIcon data-testid="customIconLeft"/>}
+        rightArrowCustomIcon={<ClockIcon data-testid="customIconRight"/>}
+        onLeftClick={() => {}}
+        onRightClick={() => {}} 
+        isLeftDisabled={false}
+        isRightDisabled={false}
+      />,
+    );
+
+    expect(screen.getByTestId('customIconLeft')).not.to.equal(null);
+    expect(screen.getByTestId('customIconRight')).not.to.equal(null);
+  });
+
   it('leftArrowCustom and leftArrowCustomIcon -> custom component takes precedence over icon swap', () => {
     render(
       <ArrowSwitcher
