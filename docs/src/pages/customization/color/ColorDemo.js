@@ -87,10 +87,10 @@ function ColorDemo(props) {
         </AppBar>
         <pre className={classes.code}>
           {`{
-  palette: {
-    primary: ${primary.output},
-    secondary: ${secondary.output},
-  },
+ palette: {
+  primary: ${primary.output},
+  secondary: ${secondary.output},
+ },
 }`}
         </pre>
         <Fab
