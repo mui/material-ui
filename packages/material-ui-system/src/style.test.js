@@ -118,18 +118,18 @@ describe('style', () => {
     });
   });
 
-  const vSpacingWithTheme = style({
-    prop: 'vSpacing',
-    cssProperty: false,
-    themeKey: 'spacing',
-    transform: (value) => ({
-      '& > :not(:last-child)': {
-        marginBottom: value,
-      },
-    }),
-  });
-
   it('should transform the property correctly using theme', () => {
+    const vSpacingWithTheme = style({
+      prop: 'vSpacing',
+      cssProperty: false,
+      themeKey: 'spacing',
+      transform: (value) => ({
+        '& > :not(:last-child)': {
+          marginBottom: value,
+        },
+      }),
+    });
+
     const output = vSpacingWithTheme({
       theme: {
         spacing: (value) => value * 2,
