@@ -8,10 +8,11 @@ import ClockIcon from '../internal/svg-icons/Clock';
 
 describe('<PickersCalendarHeader />', () => {
   const render = createPickerRender({ strict: false });
-  const utils = useUtils<Date>();
-  const now = useNow<Date>();
-  const currentMonth = utils.getMonth(now);
+  
   it('dropDownArrowCustom -> put in a custom component for the drop down arrow', () => {
+    const utils = useUtils<Date>();
+    const now = useNow<Date>();
+    const currentMonth = utils.getMonth(now);
     render(
       <PickersCalendarHeader
         onMonthChange={() => {}}
@@ -28,6 +29,9 @@ describe('<PickersCalendarHeader />', () => {
   });
 
   it('dropDownArrowCustomIcon -> put in a custom Icon for the drop down arrow', () => {
+    const utils = useUtils<Date>();
+    const now = useNow<Date>();
+    const currentMonth = utils.getMonth(now);
     render(
       <PickersCalendarHeader
         onMonthChange={() => {}}
@@ -43,6 +47,9 @@ describe('<PickersCalendarHeader />', () => {
   });
 
   it('dropDownArrowCustom and dropDownArrowCustomIcon -> custom component takes precedence over icon swap', () => {
+    const utils = useUtils<Date>();
+    const now = useNow<Date>();
+    const currentMonth = utils.getMonth(now);
     render(
       <PickersCalendarHeader
         onMonthChange={() => {}}
@@ -57,7 +64,5 @@ describe('<PickersCalendarHeader />', () => {
 
     expect(screen.getByText('customDropDown')).toBeVisible();
   });
-
- 
 
 });
