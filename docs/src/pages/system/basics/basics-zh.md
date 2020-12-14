@@ -181,7 +181,7 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
   我们相信，对于大多数用途来说，它已经足够快了****，但当性能变得至关重要时，也有一些简单的解决方法。 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
 
-### API tradeoff
+### API 权衡
 
 In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components, so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`.
 
