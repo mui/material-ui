@@ -10,16 +10,13 @@ describe('<PickersCalendarHeader />', () => {
   const render = createPickerRender({ strict: false });
   
   it('dropDownArrowCustom -> put in a custom component for the drop down arrow', () => {
-    const utils = useUtils<Date>();
-    const now = useNow<Date>();
-    const currentMonth = utils.getMonth(now);
     render(
       <PickersCalendarHeader
         onMonthChange={() => {}}
         reduceAnimations={false}
         openView={"date"}
         views={["date"]}
-        currentMonth={currentMonth}
+        currentMonth={1}
         dropDownArrowCustom = {<button>customDropDown</button>}
         //dropDownArrowCustomIcon
       />,
@@ -29,16 +26,16 @@ describe('<PickersCalendarHeader />', () => {
   });
 
   it('dropDownArrowCustomIcon -> put in a custom Icon for the drop down arrow', () => {
-    const utils = useUtils<Date>();
-    const now = useNow<Date>();
-    const currentMonth = utils.getMonth(now);
+    // const utils = useUtils<Date>();
+    // const now = useNow<Date>();
+    // const currentMonth = utils.getMonth(now);
     render(
       <PickersCalendarHeader
         onMonthChange={() => {}}
         reduceAnimations={false}
         openView={"date"}
         views={["date"]}
-        currentMonth={currentMonth}
+        currentMonth={1}
         dropDownArrowCustomIcon = {<ClockIcon data-testid="customIcon"/>}
       />,
     );
@@ -47,16 +44,13 @@ describe('<PickersCalendarHeader />', () => {
   });
 
   it('dropDownArrowCustom and dropDownArrowCustomIcon -> custom component takes precedence over icon swap', () => {
-    const utils = useUtils<Date>();
-    const now = useNow<Date>();
-    const currentMonth = utils.getMonth(now);
     render(
       <PickersCalendarHeader
         onMonthChange={() => {}}
         reduceAnimations={false}
         openView={"date"}
         views={["date"]}
-        currentMonth={currentMonth}
+        currentMonth={1}
         dropDownArrowCustom = {<button>customDropDown</button>}
         dropDownArrowCustomIcon = {<ClockIcon data-testid="customIcon"/>}
       />,
