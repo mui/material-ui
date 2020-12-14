@@ -1,8 +1,8 @@
 # 属性
 
-<p class="description">本页列出了所有的自定义系统属性，解释了它们是如何与主题链接的，以及它们所计算的 CSS 属性。 All other regular CSS properties and selectors are supported too.</p>
+<p class="description">本页列出了所有的自定义系统属性，解释了它们是如何与主题链接的，以及它们所计算的 CSS 属性。 所有其他常规的 CSS 属性和选择器也被支持。</p>
 
-## Legend
+## 图例
 
 以 [下面表](#properties-reference-table) 中的一行为例：
 
@@ -45,7 +45,7 @@ Lastly, the <b>Theme key</b> column tells you how this property is wired with th
 
 ## 属性参考表
 
-Note that this table only lists custom properties, all other regular CSS properties and selectors are supported.
+请注意，此表仅列出自定义属性，支持所有其他常规的 CSS 属性和选择器。
 
 | 系统样式函数                                                | 系统键                   | CSS 属性                                                                                       | 主题映射                                                                                    |
 |:----------------------------------------------------- |:--------------------- |:-------------------------------------------------------------------------------------------- |:--------------------------------------------------------------------------------------- |
