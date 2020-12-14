@@ -84,7 +84,7 @@ const useStyles = makeStyles(
       },
       '& $inputInput': {
         transition: theme.transitions.create('width'),
-        width: 120,
+        width: 140,
         '&:focus': {
           width: 170,
         },
@@ -106,8 +106,11 @@ const useStyles = makeStyles(
       padding: theme.spacing(1, 1, 1, 9),
     },
     shortcut: {
+      fontSize: theme.typography.pxToRem(13),
+      lineHeight: '21px',
       color: alpha(theme.palette.common.white, 0.8),
-      border: `1px solid ${alpha(theme.palette.common.white, 0.45)}`,
+      border: `1px solid ${alpha(theme.palette.common.white, 0.4)}`,
+      backgroundColor: alpha(theme.palette.common.white, 0.1),
       padding: theme.spacing(0, 0.5),
       position: 'absolute',
       right: theme.spacing(1),
@@ -142,27 +145,28 @@ export default function AppSearch() {
 
   React.useEffect(() => {
     const handleKeyDown = (nativeEvent) => {
+      if (nativeEvent.defaultPrevented) {
+        return;
+      }
+
       if (nativeEvent.key === 'Escape' && document.activeElement === inputRef.current) {
         inputRef.current.blur();
         return;
       }
 
-      // Match shortcuts of GitHub and DocSearch
-      const matchKey =
-        ((nativeEvent.ctrlKey || nativeEvent.metaKey) && nativeEvent.key === 'k') ||
-        nativeEvent.key === '/' ||
-        nativeEvent.key === 's';
+      const matchMainShortcut =
+        (nativeEvent.ctrlKey || nativeEvent.metaKey) && nativeEvent.key === 'k';
+      const matchNonkeyboardNode =
+        ['INPUT', 'SELECT', 'TEXTAREA'].indexOf(document.activeElement.tagName) === -1 &&
+        !document.activeElement.isContentEditable;
+      const matchMainContainers = ['BODY', 'MAIN'].indexOf(document.activeElement.tagName) !== -1;
 
-      if (matchKey) {
-        // Ignore nodes that display a virtual keyboard.
-        const matchNode =
-          ['INPUT', 'SELECT', 'TEXTAREA'].indexOf(document.activeElement.tagName) === -1 &&
-          !document.activeElement.isContentEditable;
-
-        if (matchNode) {
-          nativeEvent.preventDefault();
-          inputRef.current.focus();
-        }
+      if (
+        (matchMainShortcut && matchNonkeyboardNode) ||
+        ((nativeEvent.key === '/' || nativeEvent.key === 's') && matchMainContainers)
+      ) {
+        nativeEvent.preventDefault();
+        inputRef.current.focus();
       }
     };
 
@@ -237,6 +241,8 @@ export default function AppSearch() {
     }
   }, [desktop, userLanguage]);
 
+  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+
   return (
     <div className={classes.root} style={{ display: desktop ? 'flex' : 'none' }}>
       <div className={classes.search}>
@@ -262,8 +268,10 @@ export default function AppSearch() {
           input: classes.inputInput,
         }}
       />
-      {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-      <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>/</div>
+      <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>
+        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+        {macOS ? '⌘' : 'Ctrl'}K
+      </div>
     </div>
   );
 }
