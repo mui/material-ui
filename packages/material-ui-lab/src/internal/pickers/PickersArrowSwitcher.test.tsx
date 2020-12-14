@@ -37,7 +37,7 @@ describe('<PickersArrowSwitcher />', () => {
     expect(screen.getByText('leftCustom')).toBeVisible();
   });
 
-  it('rightArrowCustom -> put in a custom component for the left scroll arrow', () => {
+  it('rightArrowCustom -> put in a custom component for the right scroll arrow', () => {
     render(
       <ArrowSwitcher
         onChange={() => {}}
@@ -66,7 +66,7 @@ describe('<PickersArrowSwitcher />', () => {
     expect(screen.getByTestId('customIcon')).not.to.equal(null);
   });
 
-  it('rightArrowCustomIcon -> put in a custom icon for the left scroll arrow', () => {
+  it('rightArrowCustomIcon -> put in a custom icon for the right scroll arrow', () => {
     render(
       <ArrowSwitcher
         onChange={() => {}}
@@ -81,8 +81,38 @@ describe('<PickersArrowSwitcher />', () => {
     expect(screen.getByTestId('customIcon')).not.to.equal(null);
   });
 
-  // Add when both are included TODO
+  it('leftArrowCustom and leftArrowCustomIcon -> custom component takes precedence over icon swap', () => {
+    render(
+      <ArrowSwitcher
+        onChange={() => {}}
+        leftArrowCustom={<button>leftCustom</button>}
+        leftArrowCustomIcon={<ClockIcon id="customIcon"/>}
+        onLeftClick={() => console.log("")}
+        onRightClick={() => console.log("")} 
+        isLeftDisabled={false}
+        isRightDisabled={false}
+      />,
+    );
 
+    expect(screen.getByText('leftCustom')).toBeVisible();
+    expect(screen.getByTestId('customIcon')).to.equal(null);
+  });
 
+  it('rightArrowCustom and rightArrowCustomIcon -> custom component takes precedence over icon swap', () => {
+    render(
+      <ArrowSwitcher
+        onChange={() => {}}
+        rightArrowCustom={<button>rightCustom</button>}
+        rightArrowCustomIcon={<ClockIcon id="customIcon"/>}
+        onLeftClick={() => console.log("")}
+        onRightClick={() => console.log("")} 
+        isLeftDisabled={false}
+        isRightDisabled={false}
+      />,
+    );
+
+    expect(screen.getByText('rightCustom')).toBeVisible();
+    expect(screen.getByTestId('customIcon')).to.equal(null);
+  });
 
 });
