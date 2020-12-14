@@ -102,7 +102,6 @@ describe('<PickersArrowSwitcher />', () => {
     );
 
     expect(screen.getByText('leftCustom')).toBeVisible();
-    expect(screen.getByTestId('customIcon')).to.equal(null);
   });
 
   it('rightArrowCustom and rightArrowCustomIcon -> custom component takes precedence over icon swap', () => {
@@ -119,7 +118,6 @@ describe('<PickersArrowSwitcher />', () => {
     );
 
     expect(screen.getByText('rightCustom')).toBeVisible();
-    expect(screen.getByTestId('customIcon')).to.equal(null);
   });
 
 });
