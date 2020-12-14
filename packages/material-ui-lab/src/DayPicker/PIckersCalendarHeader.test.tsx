@@ -1,15 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
 import PickersCalendarHeader, { PickersCalendarHeaderProps } from './PickersCalendarHeader';
 
 import { createPickerRender } from '../internal/pickers/test-utils'
 import { screen } from 'test/utils';
-import ArrowRightIcon from '../internal/svg-icons/ArrowRight';
-import CalendarIcon from '../internal/svg-icons/Calendar';
 import ClockIcon from '../internal/svg-icons/Clock';
-import PenIcon from '../internal/svg-icons/Pen';
-// import { DatePickerView } from '../internal/pickers/typings/Views';
 
 describe('<PickersArrowSwitcher />', () => {
   const render = createPickerRender({ strict: false });
@@ -38,7 +33,7 @@ describe('<PickersArrowSwitcher />', () => {
         openView={"date"}
         views={["date"]}
         currentMonth={"January"}
-        dropDownArrowCustomIcon = {<ClockIcon id="customIcon"/>}
+        dropDownArrowCustomIcon = {<ClockIcon data-testid="customIcon"/>}
       />,
     );
 
@@ -54,7 +49,7 @@ describe('<PickersArrowSwitcher />', () => {
         views={["date"]}
         currentMonth={"January"}
         dropDownArrowCustom = {<button>customDropDown</button>}
-        dropDownArrowCustomIcon = {<ClockIcon id="customIcon"/>}
+        dropDownArrowCustomIcon = {<ClockIcon data-testid="customIcon"/>}
       />,
     );
 

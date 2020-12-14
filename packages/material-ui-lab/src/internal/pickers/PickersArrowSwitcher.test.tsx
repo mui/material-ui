@@ -6,12 +6,8 @@ import ArrowSwitcher, {
 } from './PickersArrowSwitcher';
 
 import { createPickerRender } from './test-utils'
-import { fireEvent, screen, waitFor } from 'test/utils';
-import ArrowLeftIcon from '../svg-icons/ArrowLeft';
-import ArrowRightIcon from '../svg-icons/ArrowRight';
-import CalendarIcon from '../svg-icons/Calendar';
+import { screen } from 'test/utils';
 import ClockIcon from '../svg-icons/Clock';
-import PenIcon from '../svg-icons/Pen';
 
 describe('<PickersArrowSwitcher />', () => {
   const render = createPickerRender({ strict: false });
@@ -21,14 +17,8 @@ describe('<PickersArrowSwitcher />', () => {
       <ArrowSwitcher
         onChange={() => {}}
         leftArrowCustom={<button>leftCustom</button>}
-        // leftArrowButtonProps={leftArrowButtonProps}
-        // rightArrowButtonProps={rightArrowButtonProps}
-        // leftArrowButtonText={leftArrowButtonText}
-        // rightArrowButtonText={rightArrowButtonText}
-        // leftArrowIcon={leftArrowIcon}
-        // rightArrowIcon={rightArrowIcon} 
-        onLeftClick={() => console.log("")}
-        onRightClick={() => console.log("")} 
+        onLeftClick={() => {}}
+        onRightClick={() => {}} 
         isLeftDisabled={false}
         isRightDisabled={false}
       />,
@@ -42,8 +32,8 @@ describe('<PickersArrowSwitcher />', () => {
       <ArrowSwitcher
         onChange={() => {}}
         rightArrowCustom={<button>rightCustom</button>}
-        onLeftClick={() => console.log("")}
-        onRightClick={() => console.log("")} 
+        onLeftClick={() => {}}
+        onRightClick={() => {}} 
         isLeftDisabled={false}
         isRightDisabled={false}
       />,
@@ -51,13 +41,30 @@ describe('<PickersArrowSwitcher />', () => {
     expect(screen.getByText('rightCustom')).toBeVisible();
   });
 
+  it('leftArrowCustom and rightArrowCustom -> put in a custom components for the left and right scroll arrows', () => {
+    render(
+      <ArrowSwitcher
+        onChange={() => {}}
+        leftArrowCustom={<button>leftCustom</button>}
+        rightArrowCustom={<button>rightCustom</button>}
+        onLeftClick={() => {}}
+        onRightClick={() => {}} 
+        isLeftDisabled={false}
+        isRightDisabled={false}
+      />,
+    );
+
+    expect(screen.getByText('leftCustom')).toBeVisible();
+    expect(screen.getByText('rightCustom')).toBeVisible();
+  });
+
   it('leftArrowCustomIcon -> put in a custom icon for the left scroll arrow', () => {
     render(
       <ArrowSwitcher
         onChange={() => {}}
-        leftArrowCustomIcon={<ClockIcon id="customIcon"/>}
-        onLeftClick={() => console.log("")}
-        onRightClick={() => console.log("")} 
+        leftArrowCustomIcon={<ClockIcon data-testid="customIcon"/>}
+        onLeftClick={() => {}}
+        onRightClick={() => {}} 
         isLeftDisabled={false}
         isRightDisabled={false}
       />,
@@ -70,9 +77,9 @@ describe('<PickersArrowSwitcher />', () => {
     render(
       <ArrowSwitcher
         onChange={() => {}}
-        rightArrowCustomIcon={<ClockIcon id="customIcon"/>}
-        onLeftClick={() => console.log("")}
-        onRightClick={() => console.log("")} 
+        rightArrowCustomIcon={<ClockIcon data-testid="customIcon"/>}
+        onLeftClick={() => {}}
+        onRightClick={() => {}} 
         isLeftDisabled={false}
         isRightDisabled={false}
       />,
@@ -86,9 +93,9 @@ describe('<PickersArrowSwitcher />', () => {
       <ArrowSwitcher
         onChange={() => {}}
         leftArrowCustom={<button>leftCustom</button>}
-        leftArrowCustomIcon={<ClockIcon id="customIcon"/>}
-        onLeftClick={() => console.log("")}
-        onRightClick={() => console.log("")} 
+        leftArrowCustomIcon={<ClockIcon data-testid="customIcon"/>}
+        onLeftClick={() => {}}
+        onRightClick={() => {}} 
         isLeftDisabled={false}
         isRightDisabled={false}
       />,
@@ -103,9 +110,9 @@ describe('<PickersArrowSwitcher />', () => {
       <ArrowSwitcher
         onChange={() => {}}
         rightArrowCustom={<button>rightCustom</button>}
-        rightArrowCustomIcon={<ClockIcon id="customIcon"/>}
-        onLeftClick={() => console.log("")}
-        onRightClick={() => console.log("")} 
+        rightArrowCustomIcon={<ClockIcon data-testid="customIcon"/>}
+        onLeftClick={() => {}}
+        onRightClick={() => {}} 
         isLeftDisabled={false}
         isRightDisabled={false}
       />,
