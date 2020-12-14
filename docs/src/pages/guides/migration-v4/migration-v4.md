@@ -433,7 +433,7 @@ const classes = makeStyles(theme => ({
   });
   ```
 
-(Note that this will also affect use of the Typography component with the default `body1` variant).
+  (Note that this will also affect use of the Typography component with the default `body1` variant).
 
 ### Dialog
 
