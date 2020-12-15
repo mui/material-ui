@@ -22,16 +22,16 @@ const useStyles = makeStyles({
 const successVars = {
   '--color': '#4caf50',
   '--box-shadow': 'rgb(76, 175, 80, .16)',
-};
+} as React.CSSProperties;
 
 const defaultVars = {
   '--color': '#1976d2',
   '--box-shadow': 'rgb(25, 118, 210, .16)',
-};
+} as React.CSSProperties;
 
 export default function DynamicCSSVariables() {
   const classes = useStyles();
-  const [vars, setVars] = React.useState(defaultVars);
+  const [vars, setVars] = React.useState<React.CSSProperties>(defaultVars);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setVars(event.target.checked ? successVars : defaultVars);
