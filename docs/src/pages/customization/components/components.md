@@ -23,17 +23,22 @@ You may can see on the previous example, that you may use global class selectors
 
 Next you'll see how you can easily identify the classes which are available to you for each of the states and slots in the component.
 
-### Use the dev tools to identify the slots global classes
+### Overriding nested slots
 
-The browser dev tools can save you a lot of time.
-Material-UI's class names [follow a simple pattern](/styles/advanced/#class-names) in development mode:
-`Mui[component name]-[style rule name]-[UUID]`.
+You can use the browser dev tools to identify the slot you want to override. It can save you a lot of time.
+The style injected in the DOM by Material-UI relies on class names that [follow a simple pattern](/styles/advanced/#class-names):
+`[hash]-Mui[Component name]-[name of the slot]`.
+
+⚠️ These class names can't be used as CSS selectors because unstable.
+However, Material-UI applies global class names using a consistent convention: `Mui[Component name]-[name of the slot]`.
 
 Let's go back to the above demo. How can you override the slider's thumb?
 
-![dev-tools](/static/images/customization/dev-tools.png)
+<img src="/static/images/customization/dev-tools.png" alt="dev-tools" width="406" />
 
-Using the dev tools, now you know that you need to target the `MuiSlider-thumb` className for overriding the look of the thumb slot:
+In this example, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` so the name of the component is `Slider` and the name of the slot is `thumb`.
+
+Using the dev tools, now you know that you need to target the `.MuiSlider-thumb` class name for overriding the look of the thumb slot:
 
 {{"demo": "pages/customization/components/DevTools.js"}}
 
