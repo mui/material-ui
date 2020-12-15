@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
   sliderSuccess: {
     color: theme.palette.success.main,
     '& .MuiSlider-thumb': {
-      [`&:hover, &.Mui-focusVisible`]: {
+      '&:hover, &.Mui-focusVisible': {
         boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
       },
-      [`&.Mui-active`]: {
+      '&.Mui-active': {
         boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
       },
     },
