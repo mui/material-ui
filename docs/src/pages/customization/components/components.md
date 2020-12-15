@@ -14,7 +14,7 @@ As components can be used in different contexts, there are several approaches to
 
 You might need to change the style of a component for a specific implementation, for which you have the following solutions available:
 
-### Use the `sx` prop available on all Material-UI components
+### Use the `sx` prop
 
 The easiest way to add style overrides for a one-time situation is to use the `sx` prop available on all Material-UI components. Here is an example of it:
 

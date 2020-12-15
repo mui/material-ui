@@ -1,16 +1,14 @@
 import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
 
-function SxProp() {
+export default function SxProp() {
   return (
     <Slider
       defaultValue={30}
       sx={{
         width: 300,
-        color: (theme) => theme.palette.success.main,
+        color: 'success.main',
       }}
     />
   );
 }
-
-export default SxProp;
