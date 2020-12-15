@@ -5,7 +5,7 @@ import { makeDateRangePicker } from './makeDateRangePicker';
 /**
  * @ignore - do not document.
  */
-/* @GeneratePropTypes */
+/* @typescript-to-proptypes-generate */
 const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', ResponsiveTooltipWrapper);
 
 (DateRangePicker as any).propTypes = {

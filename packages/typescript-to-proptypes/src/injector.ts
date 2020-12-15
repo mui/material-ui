@@ -314,14 +314,16 @@ function plugin(
         if (!babelTypes.isIdentifier(node.declarations[0].id)) return;
         const nodeName = node.declarations[0].id.name;
 
-        // Handle any variable with /* @GeneratePropTypes */
+        // Handle any variable with /* @typescript-to-proptypes-generate */
         if (
           node.leadingComments &&
-          node.leadingComments.some((comment) => comment.value.includes('@GeneratePropTypes'))
+          node.leadingComments.some((comment) =>
+            comment.value.includes('@typescript-to-proptypes-generate'),
+          )
         ) {
           if (!propTypes.body.some((prop) => prop.name === nodeName)) {
             console.warn(
-              `It looks like the variable at ${node.loc} with /* @GeneratePropTypes */ is not a component, or props can not be inferred from typescript definitions.`,
+              `It looks like the variable at ${node.loc} with /* @typescript-to-proptypes-generate */ is not a component, or props can not be inferred from typescript definitions.`,
             );
           }
 

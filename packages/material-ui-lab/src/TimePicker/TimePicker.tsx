@@ -81,7 +81,7 @@ export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = <TDate>(
 /**
  * @ignore - do not document.
  */
-/* @GeneratePropTypes */
+/* @typescript-to-proptypes-generate */
 const TimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(ResponsiveWrapper, {
   name: 'MuiTimePicker',
   ...timePickerConfig,

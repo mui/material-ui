@@ -5,7 +5,7 @@ import StaticWrapper from '../internal/pickers/wrappers/StaticWrapper';
 /**
  * @ignore - do not document.
  */
-/* @GeneratePropTypes */
+/* @typescript-to-proptypes-generate */
 const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', StaticWrapper);
 
 (StaticDateRangePicker as any).propTypes = {
