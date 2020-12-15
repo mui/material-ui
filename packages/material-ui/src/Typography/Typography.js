@@ -108,8 +108,8 @@ const useTypographyClasses = (props) => {
   return utilityClasses;
 };
 
-const Typography = React.forwardRef(function Typography(inputProps, ref) {
-  const props = useThemeProps({ props: inputProps, name: 'MuiTypography' });
+const Typography = React.forwardRef(function Typography(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTypography' });
 
   const {
     align = 'inherit',
