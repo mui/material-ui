@@ -5,7 +5,7 @@
 ## Default props
 
 You can change the default props of all the Material-UI components.
-A `deafaultProps` key is exposed in the `theme`'s components key for this use case.
+A `defaultProps` key is exposed in the `theme`'s components key for this use case.
 
 To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 

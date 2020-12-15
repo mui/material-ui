@@ -14,12 +14,10 @@ const theme = createMuiTheme({
   },
 });
 
-function DefaultProps() {
+export default function DefaultProps() {
   return (
     <ThemeProvider theme={theme}>
       <Button>Change default props</Button>
     </ThemeProvider>
   );
 }
-
-export default DefaultProps;
