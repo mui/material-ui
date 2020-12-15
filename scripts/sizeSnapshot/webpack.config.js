@@ -80,6 +80,10 @@ async function getWebpackEntries() {
       path: 'packages/material-ui/build/useScrollTrigger/index.js',
     },
     {
+      name: '@material-ui/unstyled',
+      path: 'packages/material-ui-unstyled/build/index.js',
+    },
+    {
       name: '@material-ui/utils',
       path: 'packages/material-ui-utils/build/esm/index.js',
     },
