@@ -113,11 +113,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 
 If you see yourself needing the same overrides on multiple places across your application, you can use the `experimentalStyled()` utility for creating a reusable component:
 
-```js
-import { experimentalStyled() as styled } from `@mateial-ui/core/styles`;
-```
-
-{{"demo": "pages/customization/components/StyledCustomization.js"}}
+{{"demo": "pages/customization/components/StyledCustomization.js", "defaultCodeOpen": true}}
 
 You have with it access to all components props to dynamically style the component.
 
