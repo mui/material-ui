@@ -125,7 +125,7 @@ Here are five alternatives; each has its pros and cons.
 
 ### Dynamic CSS
 
-{{"demo": "pages/customization/components/DynamicCSS.js"}}
+{{"demo": "pages/customization/components/DynamicCSS.js", "defaultCodeOpen": false}}
 
 ### Class name branch
 
