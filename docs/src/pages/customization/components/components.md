@@ -6,7 +6,7 @@ As components can be used in different contexts, there are several approaches to
 
 1. [One-time customization](#1-one-time-customization)
 1. [Reusable style overrides](#2-reusable-style-overrides)
-1. [Dynamic variation for a one-time situation](#3-dynamic-variation-for-a-one-time-situation)
+1. [Dynamic variation](#3-dynamic-variation)
 1. [Global theme variation](#5-global-theme-variation)
 
 ## 1. Specific variation for a one-time situation
