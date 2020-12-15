@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
 const StyledSlider = experimentalStyled(Slider, {
-  shouldForwardProp: (prop) => prop != 'success',
+  shouldForwardProp: (prop) => prop !== 'success',
 })(({ success, theme }) => ({
   width: 300,
   ...(success && {

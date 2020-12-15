@@ -9,7 +9,7 @@ type StyledSliderProps = SliderProps & {
 };
 
 const StyledSlider = experimentalStyled(Slider, {
-  shouldForwardProp: (prop) => prop != 'success',
+  shouldForwardProp: (prop) => prop !== 'success',
 })<StyledSliderProps>(({ success, theme }) => ({
   width: 300,
   ...(success && {
