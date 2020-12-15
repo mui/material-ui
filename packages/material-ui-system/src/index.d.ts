@@ -282,7 +282,9 @@ export interface CSSProperties
 /**
  * Map of all CSS pseudo selectors (`:hover`, `:focus`, ...).
  */
-export type CSSPseudoSelectorProps<Theme extends object = {}> = { [K in CSS.Pseudos]?: SystemStyleObject<Theme> };
+export type CSSPseudoSelectorProps<Theme extends object = {}> = {
+  [K in CSS.Pseudos]?: SystemStyleObject<Theme>;
+};
 
 /**
  * CSS as a plain object that is compatible with CSS-in-JS libraries.

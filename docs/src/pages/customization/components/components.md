@@ -25,13 +25,13 @@ Next you'll see how you can easily identify the classes which are available to y
 
 ### Use the dev tools to identify the slots global classes
 
-The browser dev tools can save you a lot of time.	
-Material-UI's class names [follow a simple pattern](/styles/advanced/#class-names) in development mode:	
-`Mui[component name]-[style rule name]-[UUID]`.	
+The browser dev tools can save you a lot of time.
+Material-UI's class names [follow a simple pattern](/styles/advanced/#class-names) in development mode:
+`Mui[component name]-[style rule name]-[UUID]`.
 
 Let's go back to the above demo. How can you override the slider's thumb?
 
-![dev-tools](/static/images/customization/dev-tools.png)	
+![dev-tools](/static/images/customization/dev-tools.png)
 
 Using the dev tools, now you know that you need to target the `MuiSlider-thumb` className for overriding the look of the thumb slot:
 
@@ -134,10 +134,6 @@ Here are five alternatives; each has its pros and cons.
 
 {{"demo": "pages/customization/components/DynamicCSSVariables.js"}}
 
-### Inline-styles
-
-{{"demo": "pages/customization/components/DynamicInlineStyle.js"}}
-
 ### Theme nesting
 
 {{"demo": "pages/customization/components/DynamicThemeNesting.js"}}
@@ -146,107 +142,4 @@ Here are five alternatives; each has its pros and cons.
 
 In order to promote consistency between components, and manage the user interface appearance as a whole, Material-UI provides a mechanism to apply global changes.
 
-The demos of this section covers how to the change the button's font size.
-
-### Theme variables
-
-You can adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
-
-```jsx
-const theme = createMuiTheme({
-  typography: {
-    button: {
-      fontSize: '1rem',
-    },
-  },
-});
-```
-
-{{"demo": "pages/customization/components/ThemeVariables.js"}}
-
-### Global CSS override
-
-You can also customize all instances of a component with CSS.
-Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this.
-It's very similar to how you would customize Bootstrap.
-
-```jsx
-const GlobalCss = withStyles({
-  // @global is handled by jss-plugin-global.
-  '@global': {
-    // You should target [class*="MuiButton-root"] instead if you nest themes.
-    '.MuiButton-root': {
-      fontSize: '1rem',
-    },
-  },
-})(() => null);
-
-// …
-
-<GlobalCss />;
-```
-
-{{"demo": "pages/customization/components/GlobalCssOverride.js", "iframe": true, "height": 70}}
-
-### Global theme override
-
-You can take advantage of the `overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM.
-Learn more about it in the [themes section](/customization/globals/#css) of the documentation.
-
-```jsx
-const theme = createMuiTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          fontSize: '1rem',
-        },
-      },
-    },
-  },
-});
-```
-
-{{"demo": "pages/customization/components/GlobalThemeOverride.js"}}
-
-### Adding new component variants
-
-You can take advantage of the `variants` key in the `theme`'s components section to add new variants to Material-UI components. These new variants, can specify which styles the component should have, if specific props are defined together.
-
-The definitions are specified in an array, under the component's name. For every one of them a class is added in the head. The order is **important**, so make sure that the styles that should win will be specified lastly.
-
-```jsx
-const theme = createMuiTheme({
-  components: {
-    MuiButton: {
-      variants: [
-        {
-          props: { variant: 'dashed' },
-          style: {
-            textTransform: 'none',
-            border: `2px dashed grey${blue[500]}`,
-          },
-        },
-        {
-          props: { variant: 'dashed', color: 'secondary' },
-          style: {
-            border: `4px dashed ${red[500]}`,
-          },
-        },
-      ],
-    },
-  },
-});
-```
-
-If you are using TypeScript, you will need to specify your new variants/colors, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
-
-```tsx
-declare module '@material-ui/core/Button/Button' {
-  interface ButtonPropsVariantOverrides {
-    dashed: true;
-  }
-}
-```
-
-{{"demo": "pages/customization/components/GlobalThemeVariants.js"}}
+Please take a look on the [theme's global page](/customization/globals/) for more details.
