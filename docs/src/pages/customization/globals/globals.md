@@ -7,8 +7,6 @@
 You can change the default props of all the Material-UI components.
 A `defaultProps` key is exposed in the `theme`'s components key for this use case.
 
-To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
-
 ```js
 const theme = createMuiTheme({
   components: {
@@ -24,6 +22,8 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/globals/DefaultProps.js"}}
+
+To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 
 ## Theme variables
 
@@ -96,8 +96,6 @@ return (
 You can take advantage of the `overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM.
 Learn more about it in the [themes section](/customization/globals/#css) of the documentation.
 
-To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
-
 ```jsx
 const theme = createMuiTheme({
   components: {
@@ -119,6 +117,8 @@ const theme = createMuiTheme({
 
 The list of these customization points for each component is documented under the **Component API** section.
 For instance, you can have a look at the [Button](/api/button/#css).
+
+To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 
 ## Adding new component variants
 
