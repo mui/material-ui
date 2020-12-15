@@ -87,6 +87,8 @@ export default function PlainCssPriority() {
 }
 ```
 
+**Note:** If you are using styled-components and have `StyleSheetManager` with custom `target`, make sure that the `target` will be the first element in the `head` of your app. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+
 ### Deeper elements
 
 If you attempt to style the Slider,
@@ -237,6 +239,8 @@ export default function GlobalCssPriority() {
   );
 }
 ```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with custom `target`, make sure that the `target` will be the first element in the `head` of your app. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### Deeper elements
 
@@ -489,6 +493,8 @@ export default function CssModulesPriority() {
   );
 }
 ```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with custom `target`, make sure that the `target` will be the first element in the `head` of your app. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### Deeper elements
 

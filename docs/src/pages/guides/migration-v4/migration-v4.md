@@ -110,6 +110,8 @@ export default function PlainCssPriority() {
 }
 ```
 
+**Note:** If you are using styled-components and have `StyleSheetManager` with custom `target`, make sure that the `target` will be the first element in the `head` of your app. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+
 ### Theme
 
 - Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive).
