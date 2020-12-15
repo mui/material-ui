@@ -66,7 +66,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
