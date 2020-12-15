@@ -22,7 +22,7 @@ The easiest way to add style overrides for a one-time situation is to use the `s
 
 You may see in the examples, that you may use global class selectors as well for accessing slots inside the component, as well as theme callback for getting access to the theme.
 
-### Overriding styles with classes
+### Overriding styles with class names
 
 If you would like to override the styles of the components using classes, you can use the `className` property available on each component. For overriding the styles of the slots inside the component, you may use the global classes available for each slot, or you may add custom classes using the `componentsProps` API.
 
