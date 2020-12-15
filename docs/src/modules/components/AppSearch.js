@@ -159,12 +159,8 @@ export default function AppSearch() {
       const matchNonkeyboardNode =
         ['INPUT', 'SELECT', 'TEXTAREA'].indexOf(document.activeElement.tagName) === -1 &&
         !document.activeElement.isContentEditable;
-      const matchMainContainers = ['BODY', 'MAIN'].indexOf(document.activeElement.tagName) !== -1;
 
-      if (
-        (matchMainShortcut && matchNonkeyboardNode) ||
-        ((nativeEvent.key === '/' || nativeEvent.key === 's') && matchMainContainers)
-      ) {
+      if (matchMainShortcut && matchNonkeyboardNode) {
         nativeEvent.preventDefault();
         inputRef.current.focus();
       }
