@@ -89,7 +89,7 @@ return (
 );
 ```
 
-{{"demo": "pages/customization/globals/GlobalCssOverride.js", "iframe": true, "height": 70}}
+{{"demo": "pages/customization/globals/GlobalCssOverride.js", "iframe": true, "height": 100}}
 
 ## Global theme override
 
