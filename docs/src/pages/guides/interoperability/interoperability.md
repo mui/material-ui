@@ -219,7 +219,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -240,7 +240,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with custom `target`, make sure that the `target` will be the first element in the `head` of your app. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### Deeper elements
 
@@ -473,7 +473,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -494,7 +494,7 @@ export default function CssModulesPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with custom `target`, make sure that the `target` will be the first element in the `head` of your app. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### Deeper elements
 
