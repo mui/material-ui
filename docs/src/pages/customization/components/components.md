@@ -60,6 +60,7 @@ Here is an example with the _disable_ state and the button component using a **p
 .Slider {
   color: black;
 }
+
 /* Increase the specificity */
 .Slider:disabled {
   color: white;
@@ -78,6 +79,7 @@ You can use the `.Mui-selected` global class name to customize the special state
 .MenuItem {
   color: black;
 }
+
 /* Increase the specificity */
 .MenuItem.Mui-selected {
   color: blue;
