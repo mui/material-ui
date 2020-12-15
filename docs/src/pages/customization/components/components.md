@@ -5,7 +5,7 @@
 As components can be used in different contexts, there are several approaches to this. Going from the narrowest use-case to the broadest, these are:
 
 1. [One-time customization](#1-one-time-customization)
-1. [Specific variations for reusable style overrides](#2-specific-variations-for-reusable-style-overrides)
+1. [Reusable style overrides](#2-reusable-style-overrides)
 1. [Dynamic variation for a one-time situation](#3-dynamic-variation-for-a-one-time-situation)
 1. [Material Design variations](#4-material-design-variations) such as with the button component
 1. [Global theme variation](#5-global-theme-variation)
