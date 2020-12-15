@@ -19,31 +19,27 @@ The easiest way to add style overrides for a one-time situation is to use the `s
 
 {{"demo": "pages/customization/components/SxProp.js"}}
 
-You may see in the example, that you may use global class selectors as well for accessing slots inside the component, as well as theme callback for getting access to the theme.
+You may can see on the previous example, that you may use global class selectors for accessing slots inside the component, as well as theme callback for getting access to the theme.
 
-```jsx
-<Slider
-  defaultValue={30}
-  sx={{
-    width: 300,
-    color: 'success.main',
-    '& .MuiSlider-thumb': {
-      '&:hover, &.Mui-focusVisible': {
-        boxShadow: (theme) =>
-          `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
-      },
-      '&.Mui-active': {
-        boxShadow: (theme) =>
-          `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
-      },
-    },
-  }}
-/>
-```
+Next you'll see how you can easily identify the classes which are available to you for each of the states and slots in the component.
+
+### Use the dev tools to identify the slots global classes
+
+The browser dev tools can save you a lot of time.	
+Material-UI's class names [follow a simple pattern](/styles/advanced/#class-names) in development mode:	
+`Mui[component name]-[style rule name]-[UUID]`.	
+
+Let's go back to the above demo. How can you override the slider's thumb?
+
+![dev-tools](/static/images/customization/dev-tools.png)	
+
+Using the dev tools, now you know that you need to target the `MuiSlider-thumb` className for overriding the look of the thumb slot:
+
+{{"demo": "pages/customization/components/DevTools.js"}}
 
 ### Overriding styles with class names
 
-If you would like to override the styles of the components using classes, you can use the `className` property available on each component. For overriding the styles of the slots inside the component, you may use the global classes available for each slot, or you may add custom classes using the `componentsProps` API.
+If you would like to override the styles of the components using classes, you can use the `className` property available on each component. For overriding the styles of the slots inside the component, you may use the global classes available for each slot, as described in the previous section.
 
 You may find different interoperability examples on the [Styles library interoperability](/guides/interoperability/) guide.
 
