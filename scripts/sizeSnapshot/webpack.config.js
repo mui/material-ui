@@ -81,7 +81,7 @@ async function getWebpackEntries() {
     },
     {
       name: '@material-ui/unstyled',
-      path: 'packages/material-ui-unstyled/build/esm/index.js',
+      path: 'packages/material-ui-unstyled/build/index.js',
     },
     {
       name: '@material-ui/utils',
