@@ -62,8 +62,8 @@ describe('<Typography />', () => {
       // @ts-ignore literal/tuple type widening
       const { container } = render(<Typography variant={variant}>Hello</Typography>);
 
-      // @ts-ignore
-      expect(classes[variant] != null).to.equal(true);
+      expect(classes).to.have.property(variant);
+      
       // @ts-ignore
       expect(container.firstChild).to.have.class(classes[variant]);
     });
