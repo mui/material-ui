@@ -108,17 +108,6 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 | expanded     | Mui-expanded      |
 | selected     | Mui-selected      |
 
-### Overriding with inline-styles
-
-The second way to override the style of a component is to use the **inline-style** approach.
-Every component provides a `style` prop. These props are always applied to the root element.
-
-You don't have to worry about CSS specificity as the inline-style takes precedence over the regular CSS.
-
-{{"demo": "pages/customization/components/InlineStyle.js"}}
-
-[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-css)
-
 ## 2. Reusable style overrides
 
 If you see yourself needing the same overrides on multiple places across your application, you can use the `experimentalStyled()` utility for creating a reusable component:
