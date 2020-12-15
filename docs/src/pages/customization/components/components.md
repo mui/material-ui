@@ -114,7 +114,11 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 ## 2. Specific variations for reusable style overrides
 
-If you see yourself needing the same overrides on multiple places across your application, you can use the `experimentalStyled()` utility from `@mateial-ui/core/styles` for creating a reusable component.
+If you see yourself needing the same overrides on multiple places across your application, you can use the `experimentalStyled()` utility for creating a reusable component:
+
+```js
+import { experimentalStyled() as styled } from `@mateial-ui/core/styles`;
+```
 
 {{"demo": "pages/customization/components/StyledCustomization.js"}}
 
