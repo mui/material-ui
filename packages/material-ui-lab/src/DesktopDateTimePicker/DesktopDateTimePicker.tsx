@@ -10,7 +10,7 @@ import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
 /**
  * @ignore - do not document.
  */
-/* @GeneratePropTypes */
+/* @typescript-to-proptypes-generate */
 const DesktopDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unknown>>(
   DesktopWrapper,
   {

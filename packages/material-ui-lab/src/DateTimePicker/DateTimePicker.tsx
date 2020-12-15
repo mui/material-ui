@@ -132,7 +132,7 @@ export type DateTimePickerGenericComponent<TWrapper extends SomeWrapper> = <TDat
 /**
  * @ignore - do not document.
  */
-/* @GeneratePropTypes */
+/* @typescript-to-proptypes-generate */
 const DateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unknown>>(
   ResponsiveWrapper,
   {
