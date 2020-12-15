@@ -21,11 +21,18 @@ import {
 function testComponentsProp(element, getOptions) {
   describe('prop: components', () => {
     it('can render another root component with the `components` prop', () => {
-      const { classes, mount, testComponentsRootPropWith: component = 'em' } = getOptions();
+      const {
+        classes,
+        mount,
+        testComponentsRootPropWith: component = 'em',
+        skipComponentsProp,
+      } = getOptions();
 
-      const wrapper = mount(React.cloneElement(element, { components: { Root: component } }));
+      if (!skipComponentsProp) {
+        const wrapper = mount(React.cloneElement(element, { components: { Root: component } }));
 
-      expect(findRootComponent(wrapper, { classes, component }).exists()).to.equal(true);
+        expect(findRootComponent(wrapper, { classes, component }).exists()).to.equal(true);
+      }
     });
   });
 }

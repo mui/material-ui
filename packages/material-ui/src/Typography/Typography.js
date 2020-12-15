@@ -38,7 +38,7 @@ const overridesResolver = (props, styles) => {
 export const TypographyRoot = experimentalStyled(
   'span',
   {},
-  { muiName: 'MuiTypography', overridesResolver },
+  { name: 'Typography', slot: 'Root', overridesResolver },
 )((props) => ({
   margin: 0,
   ...(props.styleProps.variant && props.theme.typography[props.styleProps.variant]),

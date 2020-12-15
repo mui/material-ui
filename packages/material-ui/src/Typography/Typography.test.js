@@ -1,7 +1,7 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Typography from './Typography';
 import classes from './typographyClasses';
 
@@ -13,11 +13,14 @@ describe('<Typography />', () => {
 
   const render = createClientRender();
 
-  describeConformance(<Typography />, () => ({
+  describeConformanceV5(<Typography />, () => ({
     classes: {},
     inheritComponent: 'p',
+    skipComponentsProp: true,
     mount,
     refInstanceof: window.HTMLParagraphElement,
+    muiName: 'MuiTypography',
+    testVariantProps: { color: 'secondary', variant: 'dot' },
   }));
 
   it('should render the text', () => {
