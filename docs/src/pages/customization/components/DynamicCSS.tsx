@@ -8,22 +8,22 @@ type StyledSliderProps = SliderProps & {
   success?: boolean;
 };
 
-const StyledSlider = experimentalStyled(Slider)<StyledSliderProps>(
-  ({ success, theme }) => ({
-    width: 300,
-    ...(success && {
-      color: theme.palette.success.main,
-      '& .MuiSlider-thumb': {
-        [`&:hover, &.Mui-focusVisible`]: {
-          boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
-        },
-        [`&.Mui-active`]: {
-          boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
-        },
+const StyledSlider = experimentalStyled(Slider, {
+  shouldForwardProp: (prop) => prop != 'success',
+})<StyledSliderProps>(({ success, theme }) => ({
+  width: 300,
+  ...(success && {
+    color: theme.palette.success.main,
+    '& .MuiSlider-thumb': {
+      [`&:hover, &.Mui-focusVisible`]: {
+        boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
       },
-    }),
+      [`&.Mui-active`]: {
+        boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
+      },
+    },
   }),
-);
+}));
 
 export default function DynamicCSS() {
   const [success, setSuccess] = React.useState(false);
