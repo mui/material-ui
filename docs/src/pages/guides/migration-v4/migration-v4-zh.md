@@ -402,6 +402,22 @@ const classes = makeStyles(theme => ({
   +<Collapse classes={{ root: 'collapse' }}>
   ```
 
+###  CssBaseline
+
+- The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`). To return to the previous size, you can override it in the theme:
+
+  ```js
+  const theme = createMuiTheme({
+    typography: {
+      body1: {
+        fontSize: '0.875rem',
+      },
+    },
+  });
+  ```
+
+  (Note that this will also affect use of the Typography component with the default `body1` variant).
+
 ### Dialog
 
 - onE\* 过渡属性已被删除。 请使用 TransitionProps 来代替它。
