@@ -40,10 +40,12 @@ module.exports = {
    */
   rules: {
     'consistent-this': ['error', 'self'],
-    // just as bad as "max components per file"
+    // Just as bad as "max components per file"
     'max-classes-per-file': 'off',
     // Too interruptive
     'no-alert': 'error',
+    // Stylistic opinion
+    'arrow-body-style': 'off',
     // Allow warn and error for dev environments
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-param-reassign': 'off', // It's fine.
