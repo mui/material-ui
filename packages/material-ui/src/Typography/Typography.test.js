@@ -63,7 +63,7 @@ describe('<Typography />', () => {
       const { container } = render(<Typography variant={variant}>Hello</Typography>);
 
       expect(classes).to.have.property(variant);
-      
+
       // @ts-ignore
       expect(container.firstChild).to.have.class(classes[variant]);
     });
