@@ -16,11 +16,11 @@ describe('<Typography />', () => {
   describeConformanceV5(<Typography />, () => ({
     classes: {},
     inheritComponent: 'p',
-    skipComponentsProp: true,
     mount,
     refInstanceof: window.HTMLParagraphElement,
     muiName: 'MuiTypography',
     testVariantProps: { color: 'secondary', variant: 'dot' },
+    skip: ['componentsProp'],
   }));
 
   it('should render the text', () => {
