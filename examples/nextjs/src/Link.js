@@ -8,7 +8,7 @@ import MuiLink from '@material-ui/core/Link';
 
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
   // eslint-disable-next-line react/prop-types
-  const { linkAs, href, replace, scroll, passHref, shallow, prefetch, ...other } = props;
+  const { href, linkAs, replace, scroll, passHref, shallow, prefetch, ...other } = props;
 
   return (
     <NextLink
@@ -54,10 +54,10 @@ function Link(props) {
 
 Link.propTypes = {
   activeClassName: PropTypes.string,
-  linkAs: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   className: PropTypes.string,
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  linkAs: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   naked: PropTypes.bool,
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,
