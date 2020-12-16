@@ -1,20 +1,18 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { experimentalStyled } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const useStyles = makeStyles({
-  slider: {
-    width: 300,
-    color: 'var(--color)',
-    '& .MuiSlider-thumb': {
-      [`&:hover, &.Mui-focusVisible`]: {
-        boxShadow: '0px 0px 0px 8px var(--box-shadow)',
-      },
-      [`&.Mui-active`]: {
-        boxShadow: '0px 0px 0px 14px var(--box-shadow)',
-      },
+const CustomSlider = experimentalStyled(Slider)({
+  width: 300,
+  color: 'var(--color)',
+  '& .MuiSlider-thumb': {
+    [`&:hover, &.Mui-focusVisible`]: {
+      boxShadow: '0px 0px 0px 8px var(--box-shadow)',
+    },
+    [`&.Mui-active`]: {
+      boxShadow: '0px 0px 0px 14px var(--box-shadow)',
     },
   },
 });
@@ -30,7 +28,6 @@ const defaultVars = {
 } as React.CSSProperties;
 
 export default function DynamicCSSVariables() {
-  const classes = useStyles();
   const [vars, setVars] = React.useState<React.CSSProperties>(defaultVars);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,12 +47,7 @@ export default function DynamicCSSVariables() {
         }
         label="Success"
       />
-      <Slider
-        className={classes.slider}
-        style={vars}
-        defaultValue={30}
-        sx={{ mt: 1 }}
-      />
+      <CustomSlider style={vars} defaultValue={30} sx={{ mt: 1 }} />
     </React.Fragment>
   );
 }

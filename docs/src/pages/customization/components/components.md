@@ -19,9 +19,7 @@ The easiest way to add style overrides for a one-time situation is to use the `s
 
 {{"demo": "pages/customization/components/SxProp.js"}}
 
-Notice in the previous example that you can use global class selectors for accessing slots inside the component, as well as a theme callback for accessing the theme.
-
-Next you'll see how you can easily identify the classes which are available to you for each of the states and slots in the component.
+Next you'll see how you can you can use global class selectors for accessing slots inside the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component.
 
 ### Overriding nested slots
 
@@ -29,7 +27,7 @@ You can use the browser dev tools to identify the slot you want to override. It 
 The style injected in the DOM by Material-UI relies on class names that [follow a simple pattern](/styles/advanced/#class-names):
 `[hash]-Mui[Component name]-[name of the slot]`.
 
-⚠️ These class names can't be used as CSS selectors because unstable.
+⚠️ These class names can't be used as CSS selectors because they are unstable.
 However, Material-UI applies global class names using a consistent convention: `Mui[Component name]-[name of the slot]`.
 
 Let's go back to the above demo. How can you override the slider's thumb?
@@ -57,18 +55,18 @@ In order to override the components special states, **you need to increase speci
 Here is an example with the _disable_ state and the button component using a **pseudo-class** (`:disabled`):
 
 ```css
-.Slider {
+.Button {
   color: black;
 }
 
 /* Increase the specificity */
-.Slider:disabled {
+.Button:disabled {
   color: white;
 }
 ```
 
 ```jsx
-<Slider disabled className="Slider">
+<Button disabled className="Button">
 ```
 
 Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the platform.
@@ -114,7 +112,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 > ⚠️ Never style these pseudo-class class names directly:
 
 ```css
-/* ❌ KO, impact all the components with unclear side-effects */
+/* ❌ NOT OK, impact all the components with unclear side-effects */
 .Mui-error {
   color: red;
 }
@@ -137,7 +135,7 @@ You have with it access to all components props to dynamically style the compone
 
 You have learned how to override the style of a Material-UI component in the previous section.
 Now, let's see how we can make these overrides dynamic.
-Here are five alternatives; each has its pros and cons.
+Here are four alternatives; each has its pros and cons.
 
 ### Dynamic CSS
 
