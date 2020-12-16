@@ -19,7 +19,7 @@ The easiest way to add style overrides for a one-time situation is to use the `s
 
 {{"demo": "pages/customization/components/SxProp.js"}}
 
-You may can see on the previous example, that you may use global class selectors for accessing slots inside the component, as well as theme callback for getting access to the theme.
+Notice in the previous example that you can use global class selectors for accessing slots inside the component, as well as a theme callback for accessing the theme.
 
 Next you'll see how you can easily identify the classes which are available to you for each of the states and slots in the component.
 
