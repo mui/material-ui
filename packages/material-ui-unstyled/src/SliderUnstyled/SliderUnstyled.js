@@ -761,7 +761,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 [utilityClasses['focusVisible']]: focusVisible === index,
               })}
               {...(!isHostComponent(Thumb) && {
-                styleProps: { ...stateAndProps, ...thumbProps.styleProps, actve: active === index },
+                styleProps: { ...stateAndProps, ...thumbProps.styleProps },
                 theme,
               })}
               style={{ ...style, ...thumbProps.style }}
