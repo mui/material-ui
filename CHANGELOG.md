@@ -2,6 +2,8 @@
 
 ## 5.0.0-alpha.19
 
+###### _Dec 13, 2020_
+
 Big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Badge to emotion (#23745) @mnajdova.
@@ -128,6 +130,8 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 ## 5.0.0-alpha.18
 
+###### _Dec 3, 2020_
+
 Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - Fix most of the issues with the system (#23716, #23635, #23737, #23733, #23700, #23688) @mnajdova.
@@ -218,7 +222,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 
 ## 5.0.0-alpha.17
 
-###### _Nov 23 2020_
+###### _Nov 23, 2020_
 
 Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
@@ -366,7 +370,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 ## 5.0.0-alpha.16
 
-###### _Nov 14 2020_
+###### _Nov 14, 2020_
 
 Big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
 
@@ -470,7 +474,7 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 
 ## 5.0.0-alpha.15
 
-###### _Nov 4 2020_
+###### _Nov 4, 2020_
 
 Big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
 
@@ -582,7 +586,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 
 ## 5.0.0-alpha.14
 
-###### _Oct 23 2020_
+###### _Oct 23, 2020_
 
 Big thanks to the 23 contributors who made this release possible.
 Here are some highlights ✨:
@@ -753,7 +757,7 @@ Here are some highlights ✨:
 
 ## 5.0.0-alpha.13
 
-###### _Oct 17 2020_
+###### _Oct 17, 2020_
 
 Big thanks to the 25 contributors who made this release possible.
 Here are some highlights ✨:
