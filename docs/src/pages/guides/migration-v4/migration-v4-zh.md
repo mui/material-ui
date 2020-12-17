@@ -63,6 +63,46 @@ yarn add @material-ui/core@next @emotion/react @emotion/styled
 
 对 `component` 属性中的非转发（non-ref-forwarding）类组件或作为直接 `子类（children）` 的支持已被放弃。 如果你使用了 `unstable_createStrictModeTheme` 或者在 `React.StrictMode` 中没有看到任何与 `findDOMNode` 相关的任何警告，那么你不需要做任何事情。 否则请查看我们指南中的 [“注意事项与参考文献”部分](/guides/composition/#caveat-with-refs) 来了解如何迁移。 这个变化几乎影响了所有使用 `component` 属性的组件或者将 `children` 传递给要求 `children` 作为元素的组件（例如 `<MenuList><CustomMenuItem /></MenuList>`）
 
+### Styled engine
+
+The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migration from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
+
+```jsx
+import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
+    </StylesProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例：
+
+```jsx
+import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function PlainCssPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+
 ### 主题
 
 - 断点现在被当作值而不是范围来处理。 `down(key)` 的行为已更改为定义的媒体查询小于使用相应断点定义的值（不包含当前值）。 `between(start, end)` 也已更新，定义了媒体查询 start（包含）和 end（不包含）实际值之间的数值。 当使用 `down()`断点工具集时，你需要向上一步更新断点键。 当使用  `between(start, end)` 时，结束断点也应向上一步更新。 使用 `Hidden` 组件时也应该这样做。 下面列出了变动影响的例子：
@@ -216,7 +256,7 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
-### AppBar 应用栏
+### 一个突出的应用栏。
 
 - [AppBar] 当 position 为 static 和 relative 时，z-index 将会被移除。
 
