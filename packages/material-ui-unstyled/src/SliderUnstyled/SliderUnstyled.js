@@ -151,6 +151,7 @@ const useSliderClasses = (props) => {
   const utilityClasses = {
     root: clsx(sliderUnstyledClasses['root'], classes['root'], {
       [sliderUnstyledClasses['disabled']]: disabled,
+      [classes['disabled']]: disabled,
       [sliderUnstyledClasses['marked']]: marked,
       [classes['marked']]: marked,
       [sliderUnstyledClasses['vertical']]: orientation === 'vertical',
@@ -168,9 +169,13 @@ const useSliderClasses = (props) => {
     markLabelActive: clsx(sliderUnstyledClasses['markLabelActive'], classes['markLabelActive']),
     valueLabel: clsx(sliderUnstyledClasses['valueLabel'], classes['valueLabel']),
     thumb: clsx(sliderUnstyledClasses['thumb'], classes['thumb'], {
+      [classes['disabled']]: disabled,
       [sliderUnstyledClasses['disabled']]: disabled,
       [sliderUnstyledClasses['vertical']]: orientation === 'vertical',
     }),
+    active: clsx(sliderUnstyledClasses['active'], classes['active']),
+    disabled: clsx(sliderUnstyledClasses['disabled'], classes['disabled']),
+    focusVisible: clsx(sliderUnstyledClasses['focusVisible'], classes['focusVisible']),
   };
 
   return utilityClasses;
@@ -753,8 +758,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               {...thumbProps}
               className={clsx(utilityClasses.thumb, thumbProps.className, {
                 [utilityClasses['active']]: active === index,
-                [sliderUnstyledClasses['disabled']]: disabled,
-                [sliderUnstyledClasses['focusVisible']]: focusVisible === index,
+                [utilityClasses['focusVisible']]: focusVisible === index,
               })}
               {...(!isHostComponent(Thumb) && {
                 styleProps: { ...stateAndProps, ...thumbProps.styleProps, actve: active === index },
