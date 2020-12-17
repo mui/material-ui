@@ -209,13 +209,13 @@ describe('<TextField />', () => {
     });
 
     it('renders a combobox with the appropriate accessible description', () => {
-      const { getDescriptionOf, getByRole } = render(
+      const { getByRole } = render(
         <TextField select id="aria-test" helperText="Foo bar" value="10">
           <MenuItem value={10}>Ten</MenuItem>
         </TextField>,
       );
 
-      expect(getDescriptionOf(getByRole('button'))).to.have.text('Foo bar');
+      expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
     });
   });
 });
