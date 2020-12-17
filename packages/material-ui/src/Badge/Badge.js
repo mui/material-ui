@@ -101,100 +101,100 @@ const BadgeBadge = styled(
     minWidth: RADIUS_DOT * 2,
     padding: 0,
   }),
+  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
+    props.styleProps.anchorOrigin.horizontal === 'right' &&
+    props.styleProps.overlap === 'rectangular' && {
+      top: 0,
+      right: 0,
+      transform: 'scale(1) translate(50%, -50%)',
+      transformOrigin: '100% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, -50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
+    props.styleProps.anchorOrigin.horizontal === 'right' &&
+    props.styleProps.overlap === 'rectangular' && {
+      bottom: 0,
+      right: 0,
+      transform: 'scale(1) translate(50%, 50%)',
+      transformOrigin: '100% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, 50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
+    props.styleProps.anchorOrigin.horizontal === 'left' &&
+    props.styleProps.overlap === 'rectangular' && {
+      top: 0,
+      left: 0,
+      transform: 'scale(1) translate(-50%, -50%)',
+      transformOrigin: '0% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, -50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
+    props.styleProps.anchorOrigin.horizontal === 'left' &&
+    props.styleProps.overlap === 'rectangular' && {
+      bottom: 0,
+      left: 0,
+      transform: 'scale(1) translate(-50%, 50%)',
+      transformOrigin: '0% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, 50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
+    props.styleProps.anchorOrigin.horizontal === 'right' &&
+    props.styleProps.overlap === 'circular' && {
+      top: '14%',
+      right: '14%',
+      transform: 'scale(1) translate(50%, -50%)',
+      transformOrigin: '100% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, -50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
+    props.styleProps.anchorOrigin.horizontal === 'right' &&
+    props.styleProps.overlap === 'circular' && {
+      bottom: '14%',
+      right: '14%',
+      transform: 'scale(1) translate(50%, 50%)',
+      transformOrigin: '100% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, 50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
+    props.styleProps.anchorOrigin.horizontal === 'left' &&
+    props.styleProps.overlap === 'circular' && {
+      top: '14%',
+      left: '14%',
+      transform: 'scale(1) translate(-50%, -50%)',
+      transformOrigin: '0% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, -50%)',
+      },
+    }),
+  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
+    props.styleProps.anchorOrigin.horizontal === 'left' &&
+    props.styleProps.overlap === 'circular' && {
+      bottom: '14%',
+      left: '14%',
+      transform: 'scale(1) translate(-50%, 50%)',
+      transformOrigin: '0% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, 50%)',
+      },
+    }),
   ...(props.styleProps.invisible && {
     transition: props.theme.transitions.create('transform', {
       easing: props.theme.transitions.easing.easeInOut,
       duration: props.theme.transitions.duration.leavingScreen,
     }),
   }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
-    props.styleProps.anchorOrigin.horizontal === 'right' &&
-    props.styleProps.overlap === 'rectangular' && {
-      top: 0,
-      right: 0,
-      transform: 'scale(1) translate(50%, -50%)',
-      transformOrigin: '100% 0%',
-      ...(props.styleProps.invisible && {
-        transform: 'scale(0) translate(50%, -50%)',
-      }),
-    }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
-    props.styleProps.anchorOrigin.horizontal === 'right' &&
-    props.styleProps.overlap === 'rectangular' && {
-      bottom: 0,
-      right: 0,
-      transform: 'scale(1) translate(50%, 50%)',
-      transformOrigin: '100% 100%',
-      ...(props.styleProps.invisible && {
-        transform: 'scale(0) translate(50%, 50%)',
-      }),
-    }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
-    props.styleProps.anchorOrigin.horizontal === 'left' &&
-    props.styleProps.overlap === 'rectangular' && {
-      top: 0,
-      left: 0,
-      transform: 'scale(1) translate(-50%, -50%)',
-      transformOrigin: '0% 0%',
-      ...(props.styleProps.invisible && {
-        transform: 'scale(0) translate(-50%, -50%)',
-      }),
-    }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
-    props.styleProps.anchorOrigin.horizontal === 'left' &&
-    props.styleProps.overlap === 'rectangular' && {
-      bottom: 0,
-      left: 0,
-      transform: 'scale(1) translate(-50%, 50%)',
-      transformOrigin: '0% 100%',
-      ...(props.styleProps.invisible && {
-        transform: 'scale(0) translate(-50%, 50%)',
-      }),
-    }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
-    props.styleProps.anchorOrigin.horizontal === 'right' &&
-    props.styleProps.overlap === 'circular' && {
-      top: '14%',
-      right: '14%',
-      transform: 'scale(1) translate(50%, -50%)',
-      transformOrigin: '100% 0%',
-      ...(props.styleProps.invisible && {
-        transform: 'scale(0) translate(50%, -50%)',
-      }),
-    }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
-    props.styleProps.anchorOrigin.horizontal === 'right' &&
-    props.styleProps.overlap === 'circular' && {
-      bottom: '14%',
-      right: '14%',
-      transform: 'scale(1) translate(50%, 50%)',
-      transformOrigin: '100% 100%',
-      ...(props.styleProps.invisible && {
-        transform: 'scale(0) translate(50%, 50%)',
-      }),
-    }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
-    props.styleProps.anchorOrigin.horizontal === 'left' &&
-    props.styleProps.overlap === 'circular' && {
-      top: '14%',
-      left: '14%',
-      transform: 'scale(1) translate(-50%, -50%)',
-      transformOrigin: '0% 0%',
-      ...(props.styleProps.invisible && {
-        transform: 'scale(0) translate(-50%, -50%)',
-      }),
-    }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
-    props.styleProps.anchorOrigin.horizontal === 'left' &&
-    props.styleProps.overlap === 'circular' && {
-      bottom: '14%',
-      left: '14%',
-      transform: 'scale(1) translate(-50%, 50%)',
-      transformOrigin: '0% 100%',
-      ...(props.styleProps.invisible && {
-        transform: 'scale(0) translate(-50%, 50%)',
-      }),
-    }),
 }));
 
 const extendBadgeClasses = (props) => {
