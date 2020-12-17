@@ -548,6 +548,19 @@ describe('<Select />', () => {
 
       expect(getByRole('listbox')).to.have.attribute('aria-labelledby', 'select-label');
     });
+
+    it('should have appropriate accessible description when provided in props', () => {
+      const { getByRole } = render(
+        <React.Fragment>
+          <Select aria-describedby="select-helper-text" value="" />
+          <span id="select-helper-text">Helper text content</span>
+        </React.Fragment>,
+      );
+
+      const target = getByRole('button');
+      expect(target).to.have.attribute('aria-describedby', 'select-helper-text');
+      expect(target).toHaveAccessibleDescription('Helper text content');
+    });
   });
 
   describe('prop: readOnly', () => {

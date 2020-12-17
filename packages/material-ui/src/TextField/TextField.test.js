@@ -207,5 +207,15 @@ describe('<TextField />', () => {
       expect(input).not.to.have.attribute('id');
       expect(input).not.to.have.attribute('aria-describedby');
     });
+
+    it('renders a combobox with the appropriate accessible description', () => {
+      const { getByRole } = render(
+        <TextField select id="aria-test" helperText="Foo bar" value="10">
+          <MenuItem value={10}>Ten</MenuItem>
+        </TextField>,
+      );
+
+      expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
+    });
   });
 });

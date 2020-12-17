@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function MultilineTextFields() {
+export default function SelectTextFields() {
   const classes = useStyles();
   const [currency, setCurrency] = React.useState('EUR');
 
