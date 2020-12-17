@@ -59,7 +59,7 @@ const StyledBadge: React.FC<StyledBadgeProps> = styled(BadgeUnstyled)`
   }
 `;
 
-const BadgeContent = () => {
+function BadgeContent() {
   return (
     <Box
       sx={{
@@ -72,7 +72,7 @@ const BadgeContent = () => {
       }}
     />
   );
-};
+}
 
 export default function UnstyledBadge() {
   return (
