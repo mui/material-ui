@@ -277,10 +277,10 @@ export const SliderMark = experimentalStyled(
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
-  [`&.${sliderClasses.markActive}`]: {
+  ...(props.styleProps.markActive && {
     backgroundColor: props.theme.palette.background.paper,
     opacity: 0.8,
-  },
+  }),
 }));
 
 export const SliderMarkLabel = experimentalStyled(
@@ -305,9 +305,9 @@ export const SliderMarkLabel = experimentalStyled(
       left: 31,
     }),
   },
-  [`&.${sliderClasses.markLabelActive}`]: {
+  ...(props.styleProps.markLabelActive && {
     color: props.theme.palette.text.primary,
-  },
+  }),
 }));
 
 SliderRoot.propTypes = {

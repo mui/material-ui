@@ -25,7 +25,7 @@ describe('<Badge />', () => {
       <div />
     </Badge>,
     () => ({
-      classes: {},
+      classes,
       inheritComponent: BadgeUnstyled,
       mount,
       refInstanceof: window.HTMLSpanElement,

@@ -32,7 +32,7 @@ describe('<Slider />', () => {
   const render = createClientRender();
 
   describeConformanceV5(<Slider value={0} />, () => ({
-    classes: {},
+    classes,
     inheritComponent: SliderUnstyled,
     mount,
     refInstanceof: window.HTMLSpanElement,
