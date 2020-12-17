@@ -22,11 +22,11 @@ export type BadgeTypeMap<
      * @default {}
      */
     classes?: BadgeUnstyledTypeMap['props']['classes'] & {
-      /** Styles applied to the root element if `color="primary"`. */
+      /** Styles applied to the badge `span` element if `color="primary"`. */
       colorPrimary?: string;
-      /** Styles applied to the root element if `color="secondary"`. */
+      /** Styles applied to the badge `span` element if `color="secondary"`. */
       colorSecondary?: string;
-      /** Styles applied to the root element if `color="error"`. */
+      /** Styles applied to the badge `span` element if `color="error"`. */
       colorError?: string;
     };
     /**
