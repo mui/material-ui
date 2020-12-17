@@ -63,6 +63,46 @@ Não há mais o suporte para o IE 11. Se você precisar do suporte para o IE 11,
 
 O suporte para componentes de classe, sem o encaminhamento de refs, na propriedade `component` ou como um elemento `children` imediato foi removido. Se você estava usando `unstable_createStrictModeTheme` ou não recebeu quaisquer avisos relacionados a `findDOMNode` no `React. StrictMode`, então você não precisa fazer nada. Caso contrário, confira a seção ["Advertência com refs" em nosso guia de composição](/guides/composition/#caveat-with-refs) para descobrir como migrar. Esta alteração afeta quase todos os componentes no qual você está usando a propriedade `component` ou passando diretamente um  `children` para componentes que requerem `children` como elemento (ou seja, `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Styled engine
+
+The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migration from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
+
+```jsx
+import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. Agora você pode sobrescrever os estilos do Material-UI. */}
+    </StylesProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Aqui está um exemplo:
+
+```jsx
+import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function PlainCssPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Sua árvore de componentes. Agora você pode sobrescrever os estilos do Material-UI. */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+
 ### Tema
 
 - Pontos de quebra agora são tratados como valores, em vez de intervalos. O comportamento de `down(key)` foi modificado para definir uma consulta de mídia menor do que o valor definido como ponto de quebra correspondente (de forma exclusiva). O `between(start, end)` também foi atualizado para definir uma consulta de mídia para os valores reais entre o início (de forma inclusiva) e fim (de forma exclusiva). Ao usar o utilitário de pontos de quebra `down()`, você precisa atualizar a chave de ponto de quebra em um passo. Ao usar o `between(start, end)`, o ponto de quebra de fim também deve ser atualizado em um passo. O mesmo deve ser feito ao usar o componente `Hidden`. Observe exemplos das definições de mudanças necessárias abaixo:
@@ -96,7 +136,7 @@ O suporte para componentes de classe, sem o encaminhamento de refs, na proprieda
 
 #### Utilitário para atualização
 
-Para uma transição mais suave, o utilitário `adaptV4Theme` permite que você atualize de forma iterativa algumas das alterações do tema para a nova estrutura do tema.
+For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure.
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
@@ -216,7 +256,7 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
-### AppBar
+### Uma barra de aplicativos proeminente.
 
 - [AppBar] Remova z-index quando a posição for estática e relativa
 
