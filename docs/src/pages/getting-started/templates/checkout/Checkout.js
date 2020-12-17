@@ -2,6 +2,7 @@ import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
+import Container from '@material-ui/core/Container';
 import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
@@ -30,16 +31,10 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('md')]: {
-      width: 600,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+  main: {
+    marginBottom: theme.spacing(4),
   },
   paper: {
     marginTop: theme.spacing(3),
@@ -94,15 +89,20 @@ export default function Checkout() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="absolute" color="default" className={classes.appBar}>
+      <AppBar
+        position="absolute"
+        color="default"
+        elevation={0}
+        className={classes.appBar}
+      >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
             Company name
           </Typography>
         </Toolbar>
       </AppBar>
-      <main className={classes.layout}>
-        <Paper className={classes.paper}>
+      <Container component="main" className={classes.main} maxWidth="sm">
+        <Paper className={classes.paper} variant="outlined">
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
@@ -148,7 +148,7 @@ export default function Checkout() {
           </React.Fragment>
         </Paper>
         <Copyright />
-      </main>
+      </Container>
     </React.Fragment>
   );
 }
