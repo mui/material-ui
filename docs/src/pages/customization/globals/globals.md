@@ -124,7 +124,7 @@ To override lab components styles with TypeScript, check [this documentation](/c
 
 You can take advantage of the `variants` key in the `theme`'s components section to add new variants to Material-UI components. These new variants, can specify which styles the component should have, if specific props are defined together.
 
-The definitions are specified in an array, under the component's name. For every one of them a class is added in the head. The order is **important**, so make sure that the styles that should win will be specified lastly.
+The definitions are specified in an array, under the component's name. For each of them a class is added in the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
 
 ```jsx
 const theme = createMuiTheme({
