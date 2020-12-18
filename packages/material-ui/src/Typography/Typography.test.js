@@ -14,7 +14,7 @@ describe('<Typography />', () => {
   const render = createClientRender();
 
   describeConformanceV5(<Typography />, () => ({
-    classes: {},
+    classes,
     inheritComponent: 'p',
     mount,
     refInstanceof: window.HTMLParagraphElement,
