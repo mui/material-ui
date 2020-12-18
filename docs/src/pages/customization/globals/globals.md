@@ -116,7 +116,7 @@ const theme = createMuiTheme({
 
 The list of each component's classes is documented under the **CSS** section of each component's API page.
 
-To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
+To override a lab component's styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 
 ## Adding new component variants
 
