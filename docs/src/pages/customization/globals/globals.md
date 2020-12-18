@@ -1,6 +1,6 @@
 # Globals
 
-<p class="description">The `theme.components` key enables you to customize the appearance of all instances of a component type, enables you to change the default value(s) of a component's props and allows you to add custom variants to your components.</p>
+<p class="description">With the `theme.components` key you can customize the appearance of all instances of a component; change the default value(s) of a component's props; and add custom variants to your components.</p>
 
 ## Default props
 
