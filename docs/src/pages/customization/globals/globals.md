@@ -92,7 +92,7 @@ return (
 
 ## Global theme override
 
-You can use the theme's `overrides` key  to potentially change every single style injected by Material-UI into the DOM.
+You can use the theme's `styleOverrides` key  to potentially change every single style injected by Material-UI into the DOM.
 Learn more about it in the [themes section](/customization/globals/#css) of the documentation.
 
 ```jsx
