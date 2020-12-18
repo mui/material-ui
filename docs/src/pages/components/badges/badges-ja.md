@@ -1,6 +1,6 @@
 ---
 title: React バッジコンポーネント
-components: Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
