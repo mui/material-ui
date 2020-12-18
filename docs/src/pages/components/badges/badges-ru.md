@@ -1,6 +1,6 @@
 ---
 title: Компонент React Badge
-components: Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
