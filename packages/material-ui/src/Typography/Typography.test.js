@@ -1,32 +1,26 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Typography from './Typography';
+import classes from './typographyClasses';
 
 describe('<Typography />', () => {
   /**
    * @type {ReturnType<typeof createMount>}
    */
   const mount = createMount();
-  /**
-   * // we test at runtime that this is equal to
-   * Record<import('./Typography').TypographyClassKey, string>
-   * @type {Record<string, string>}
-   */
-  let classes;
 
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Typography />);
-  });
-
-  describeConformance(<Typography />, () => ({
+  describeConformanceV5(<Typography />, () => ({
     classes,
     inheritComponent: 'p',
     mount,
     refInstanceof: window.HTMLParagraphElement,
+    muiName: 'MuiTypography',
+    testVariantProps: { color: 'secondary', variant: 'dot' },
+    skip: ['componentsProp'],
   }));
 
   it('should render the text', () => {
@@ -50,17 +44,30 @@ describe('<Typography />', () => {
 
     expect(container.firstChild).to.have.class(classes.alignCenter);
   });
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'body2', 'body1', 'caption', 'button'].forEach(
-    (variant) => {
-      it(`should render ${variant} text`, () => {
-        // @ts-ignore literal/tuple type widening
-        const { container } = render(<Typography variant={variant}>Hello</Typography>);
+  [
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'subtitle1',
+    'body2',
+    'body1',
+    'caption',
+    'button',
+    'overline',
+  ].forEach((variant) => {
+    it(`should render ${variant} text`, () => {
+      // @ts-ignore literal/tuple type widening
+      const { container } = render(<Typography variant={variant}>Hello</Typography>);
 
-        expect(classes[variant] != null).to.equal(true);
-        expect(container.firstChild).to.have.class(classes[variant]);
-      });
-    },
-  );
+      expect(classes).to.have.property(variant);
+
+      // @ts-ignore
+      expect(container.firstChild).to.have.class(classes[variant]);
+    });
+  });
 
   [
     ['primary', 'colorPrimary'],
@@ -73,7 +80,9 @@ describe('<Typography />', () => {
       // @ts-ignore literal/tuple type widening
       const { container } = render(<Typography color={color}>Hello</Typography>);
 
+      // @ts-ignore
       expect(classes[className] != null).to.equal(true);
+      // @ts-ignore
       expect(container.firstChild).to.have.class(classes[className]);
     });
   });

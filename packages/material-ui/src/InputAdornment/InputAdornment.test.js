@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Typography from '../Typography';
+import { typographyClasses } from '../Typography';
 import InputAdornment from './InputAdornment';
 import TextField from '../TextField';
 import FormControl from '../FormControl';
@@ -26,7 +26,6 @@ describe('<InputAdornment />', () => {
 
   it('should wrap text children in a Typography', () => {
     const { container } = render(<InputAdornment position="start">foo</InputAdornment>);
-    const typographyClasses = getClasses(<Typography />);
     const typography = container.querySelector(`.${typographyClasses.root}`);
 
     expect(typography).not.to.equal(null);
@@ -161,7 +160,6 @@ describe('<InputAdornment />', () => {
         foo
       </InputAdornment>,
     );
-    const typographyClasses = getClasses(<Typography />);
 
     expect(container.querySelector(`.${typographyClasses.root}`)).to.equal(null);
   });

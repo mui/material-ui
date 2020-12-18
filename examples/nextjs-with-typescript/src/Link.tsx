@@ -6,16 +6,16 @@ import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
 
 type NextComposedProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> &
-  NextLinkProps;
+  Omit<NextLinkProps, 'as'> & { linkAs?: NextLinkProps['as'] };
 
 const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>((props, ref) => {
-  const { as, href, replace, scroll, passHref, shallow, prefetch, ...other } = props;
+  const { href, linkAs, replace, scroll, passHref, shallow, prefetch, ...other } = props;
 
   return (
     <NextLink
       href={href}
       prefetch={prefetch}
-      as={as}
+      as={linkAs}
       replace={replace}
       scroll={scroll}
       shallow={shallow}

@@ -8,18 +8,18 @@ import MuiLink from '@material-ui/core/Link';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
-  const { as, href, ...other } = props;
+  const { linkAs, href, ...other } = props;
 
   return (
-    <NextLink href={href} as={as}>
+    <NextLink href={href} as={linkAs}>
       <a ref={ref} {...other} />
     </NextLink>
   );
 });
 
 NextComposed.propTypes = {
-  as: PropTypes.string,
   href: PropTypes.string,
+  linkAs: PropTypes.string,
 };
 
 // A styled version of the Next.js Link component:
@@ -64,7 +64,7 @@ function Link(props) {
   if (naked) {
     return (
       <NextComposed
-        as={linkAs}
+        linkAs={linkAs}
         className={className}
         href={href}
         ref={innerRef}
@@ -76,7 +76,7 @@ function Link(props) {
 
   return (
     <MuiLink
-      as={linkAs}
+      linkAs={linkAs}
       component={NextComposed}
       className={className}
       href={href}

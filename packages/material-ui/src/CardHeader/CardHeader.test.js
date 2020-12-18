@@ -2,16 +2,14 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
 import CardHeader from './CardHeader';
-import Typography from '../Typography';
+import { typographyClasses } from '../Typography';
 
 describe('<CardHeader />', () => {
   const mount = createMount();
   let classes;
-  let typographyClasses;
   const render = createClientRender();
 
   before(() => {
-    typographyClasses = getClasses(<Typography />);
     classes = getClasses(<CardHeader />);
   });
 

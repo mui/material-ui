@@ -10,7 +10,7 @@ import {
   fireEvent,
 } from 'test/utils';
 import Link from './Link';
-import Typography from '../Typography';
+import Typography, { typographyClasses } from '../Typography';
 
 function focusVisible(element) {
   act(() => {
@@ -24,11 +24,9 @@ describe('<Link />', () => {
   const mount = createMount();
   const render = createClientRender();
   let classes;
-  let typographyClasses;
 
   before(() => {
     classes = getClasses(<Link href="/">Home</Link>);
-    typographyClasses = getClasses(<Typography />);
   });
 
   describeConformance(<Link href="/">Home</Link>, () => ({

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createClientRender, createMount, describeConformance } from 'test/utils';
-import Typography from '../Typography';
+import Typography, { typographyClasses } from '../Typography';
 import Stepper from '../Stepper';
 import Step from '../Step';
 import StepIcon from '../StepIcon';
@@ -10,14 +10,12 @@ import StepLabel from './StepLabel';
 describe('<StepLabel />', () => {
   let classes;
   let iconClasses;
-  let typographyClasses;
   const mount = createMount({ strict: true });
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<StepLabel />);
     iconClasses = getClasses(<StepIcon />);
-    typographyClasses = getClasses(<Typography />);
   });
 
   describeConformance(<StepLabel />, () => ({

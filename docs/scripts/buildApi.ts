@@ -688,6 +688,50 @@ async function updateStylesDefinition(context: {
     // Do nothing as not every components has an unstyled version
   }
 
+  // If there is no unstyledFile we need to extract this info from the component's definition file
+  if (typesFilename !== unstyledFileName) {
+    try {
+      const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
+      const typesAST = await babel.parseAsync(typesSource, {
+        configFile: false,
+        filename: typesFilename,
+        presets: [require.resolve('@babel/preset-typescript')],
+      });
+      if (typesAST === null) {
+        throw new Error('No AST returned from babel.');
+      }
+
+      traverse(typesAST, {
+        TSPropertySignature(babelPath) {
+          const { node } = babelPath;
+          const possiblyPropName = (node.key as babel.types.Identifier).name;
+          if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
+            const members = (node.typeAnnotation.typeAnnotation as babel.types.TSTypeLiteral)
+              .members;
+
+            if (members) {
+              styles.descriptions = styles.descriptions || {};
+              members.forEach((member) => {
+                const className = ((member as babel.types.TSPropertySignature)
+                  .key as babel.types.Identifier).name;
+                styles.classes.push(className);
+                if (member.leadingComments) {
+                  styles.descriptions[className] = trimComment(member.leadingComments[0].value);
+                }
+              });
+            }
+          }
+        },
+      });
+
+      if (styles.classes.length > 0) {
+        styles.name = generateMuiName(path.parse(component.filename).name);
+      }
+    } catch (e) {
+      // Do nothing as not every components has an unstyled version
+    }
+  }
+
   styles.classes = Array.from(new Set(styles.classes));
 }
 

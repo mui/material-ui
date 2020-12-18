@@ -270,6 +270,12 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+### Core components
+
+As the core components use emotion as a styled engine, the props used by emotion are not intercepted. The prop `as` in the following codesnippet will not be propagated to the `SomeOtherComponent`.
+
+`<MuiComponent component={SomeOtherComponent} as="button" />`
+
 ### AppBar
 
 - [AppBar] Remove z-index when position static and relative
