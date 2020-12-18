@@ -23,7 +23,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/DefaultProps.js"}}
 
-To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
+To override lab component styles with TypeScript, check [this page](/components/about-the-lab/#typescript).
 
 ## Theme variables
 
