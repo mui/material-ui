@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
       height: theme.spacing(6),
       marginRight: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
+      boxShadow: 'inset 0 2px 4px 0 rgba(0, 0, 0, .06)',
     },
   },
 }));
