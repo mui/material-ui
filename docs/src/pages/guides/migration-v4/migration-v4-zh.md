@@ -256,6 +256,12 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+### 核心组件
+
+As the core components use emotion as a styled engine, the props used by emotion are not intercepted. The prop `as` in the following codesnippet will not be propagated to the `SomeOtherComponent`.
+
+`<MuiComponent component={SomeOtherComponent} as="button" />`
+
 ### 一个突出的应用栏。
 
 - [AppBar] 当 position 为 static 和 relative 时，z-index 将会被移除。
@@ -378,7 +384,7 @@ const classes = makeStyles(theme => ({
   +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
   ```
 
-[该编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) 将自动将你的代码更新为新的语法。
+  [该编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) 将自动将你的代码更新为新的语法。 You can [read this section](/system/basics/#api-tradeoff) for the why behind the change of API.
 
 - `borderRadius` 系统属性值转换已被更改。 如果它收到一个数字，它就会将这个值与 `theme.shape.borderRadius` 的值相乘。 也可以使用字符串来提供一个明确的值，单位是 `px`。
 
