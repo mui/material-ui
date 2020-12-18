@@ -44,7 +44,7 @@ const theme = createMuiTheme({
 ## Global CSS override
 
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
-It's very similar to how you would customize Bootstrap.
+This is very similar to how you would customize Bootstrap.
 
 ```jsx
 const GlobalCss = withStyles({
