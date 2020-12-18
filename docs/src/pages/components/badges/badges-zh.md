@@ -1,6 +1,6 @@
 ---
 title: React Badge（徽章）组件
-components: Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
