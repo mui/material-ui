@@ -115,7 +115,6 @@ const theme = createMuiTheme({
 {{"demo": "pages/customization/globals/GlobalThemeOverride.js"}}
 
 The list of each component's classes is documented under the **CSS** section of each component's API page.
-For instance, you can have a look at the [Button](/api/button/#css).
 
 To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 
