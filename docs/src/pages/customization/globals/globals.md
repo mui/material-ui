@@ -27,7 +27,7 @@ To override lab component styles with TypeScript, check [this page](/components/
 
 ## Theme variables
 
-You can adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
+Another way to override the look of all component instances is to adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
 
 ```jsx
 const theme = createMuiTheme({
