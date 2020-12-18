@@ -101,11 +101,17 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
       };
       mark?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        styleProps?: Omit<
+          SliderUnstyledTypeMap<P, D>['props'],
+          'components' | 'componentsProps'
+        > & { markActive?: boolean };
       };
       markLabel?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        styleProps?: Omit<
+          SliderUnstyledTypeMap<P, D>['props'],
+          'components' | 'componentsProps'
+        > & { markLabelActive?: boolean };
       };
       valueLabel?: {
         as?: React.ElementType;

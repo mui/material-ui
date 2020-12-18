@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformance } from 'test/utils';
-import SliderUnstyled from './SliderUnstyled';
+import SliderUnstyled, {
+  sliderUnstyledClasses as classes,
+} from '@material-ui/unstyled/SliderUnstyled';
 
 describe('<SliderUnstyled />', () => {
   before(function beforeHook() {
@@ -14,7 +16,7 @@ describe('<SliderUnstyled />', () => {
   const render = createClientRender();
 
   describeConformance(<SliderUnstyled value={0} />, () => ({
-    classes: {},
+    classes,
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
