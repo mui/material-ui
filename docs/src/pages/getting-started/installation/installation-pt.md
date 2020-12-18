@@ -71,5 +71,5 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 - [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted Material-UI components.
 - **Sketch**: [Sketch para Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch) — Um kit de interface de usuário grande com mais de 600 símbolos de Material-UI trabalhados à mão 💎.
-- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted Material-UI symbols.
+- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted Material-UI components.
 - **Framer**: [Framer para Material-UI](https://packages.framer.com/package/material-ui/material-ui) — Um pequeno kit MIT de interface de usuário em preview, de componentes de Material-UI trabalhado a mão.
