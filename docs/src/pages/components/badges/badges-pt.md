@@ -1,6 +1,6 @@
 ---
 title: Componente React para emblemas
-components: Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
