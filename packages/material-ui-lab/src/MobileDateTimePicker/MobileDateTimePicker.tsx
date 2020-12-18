@@ -10,7 +10,7 @@ import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
 /**
  * @ignore - do not document.
  */
-/* @GeneratePropTypes */
+/* @typescript-to-proptypes-generate */
 const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unknown>>(
   MobileWrapper,
   {

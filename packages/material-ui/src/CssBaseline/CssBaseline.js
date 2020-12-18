@@ -22,7 +22,7 @@ const scrollBar = {
 
 export const body = (theme) => ({
   color: theme.palette.text.primary,
-  ...theme.typography.body2,
+  ...theme.typography.body1,
   backgroundColor: theme.palette.background.default,
   '@media print': {
     // Save printer ink.

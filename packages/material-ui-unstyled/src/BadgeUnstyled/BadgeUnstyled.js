@@ -40,7 +40,6 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
       vertical: 'top',
       horizontal: 'right',
     },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: classesProp = {},
     badgeContent: badgeContentProp,
     component: Component = 'span',
@@ -99,7 +98,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     displayValue = badgeContent > max ? `${max}+` : badgeContent;
   }
 
-  const classes = useBadgeClasses(stateAndProps);
+  const classes = useBadgeClasses({ ...stateAndProps, classes: classesProp });
 
   const Root = components.Root || Component;
   const rootProps = componentsProps.root || {};

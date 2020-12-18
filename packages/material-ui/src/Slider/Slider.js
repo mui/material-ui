@@ -222,18 +222,18 @@ export const SliderThumb = experimentalStyled(
     height: 8,
     marginLeft: -4,
     marginTop: -3,
+    ...(props.styleProps.orientation === 'vertical' && {
+      marginLeft: -3,
+      marginBottom: -4,
+    }),
     '&:hover': {
       boxShadow: 'none',
     },
   },
-  [`&.${sliderClasses.vertical}`]: {
+  ...(props.styleProps.orientation === 'vertical' && {
     marginLeft: -5,
     marginBottom: -6,
-  },
-  [`&.${sliderClasses.vertical}&.${sliderClasses.disabled}`]: {
-    marginLeft: -3,
-    marginBottom: -4,
-  },
+  }),
   ...(props.styleProps.color === 'secondary' && {
     [`&:hover, &.${sliderClasses.focusVisible}`]: {
       boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
@@ -277,10 +277,10 @@ export const SliderMark = experimentalStyled(
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
-  [`&.${sliderClasses.markActive}`]: {
+  ...(props.styleProps.markActive && {
     backgroundColor: props.theme.palette.background.paper,
     opacity: 0.8,
-  },
+  }),
 }));
 
 export const SliderMarkLabel = experimentalStyled(
@@ -305,9 +305,9 @@ export const SliderMarkLabel = experimentalStyled(
       left: 31,
     }),
   },
-  [`&.${sliderClasses.markLabelActive}`]: {
+  ...(props.styleProps.markLabelActive && {
     color: props.theme.palette.text.primary,
-  },
+  }),
 }));
 
 SliderRoot.propTypes = {

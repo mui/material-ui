@@ -10,7 +10,7 @@ import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
 /**
  * @ignore - do not document.
  */
-/* @GeneratePropTypes */
+/* @typescript-to-proptypes-generate */
 const StaticTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(StaticWrapper, {
   name: 'MuiStaticTimePicker',
   ...timePickerConfig,
