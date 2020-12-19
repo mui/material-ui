@@ -21,7 +21,7 @@ The easiest way to add style overrides for a one-off situation is to use the `sx
 
 Next you'll see how you can you can use global class selectors for accessing slots inside the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component.
 
-### Overriding nested slots
+### Overriding nested component styles
 
 You can use the browser dev tools to identify the slot you want to override. It can save you a lot of time.
 The style injected in the DOM by Material-UI relies on class names that [follow a simple pattern](/styles/advanced/#class-names):
