@@ -10,7 +10,7 @@ A `defaultProps` key is exposed in the theme's `components` key for this use cas
 ```js
 const theme = createMuiTheme({
   components: {
-    // Name of the component ⚛️
+    // Name of the component
     MuiButtonBase: {
       defaultProps: {
         // The props to change the default for.
