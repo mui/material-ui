@@ -105,6 +105,7 @@
     "react-spring": "^8.0.27",
     "react-swipeable-views": "^0.13.9",
     "react-text-mask": "^5.0.2",
+    "react-transition-group": "^4.4.1",
     "react-virtualized": "^9.21.1",
     "react-window": "^1.8.5",
     "recast": "^0.20.2",

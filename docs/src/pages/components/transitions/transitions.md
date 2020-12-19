@@ -81,6 +81,15 @@ This example also demonstrates how to delay the enter transition.
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
 
+## Animate component's mounting and unmounting
+
+To animate a component when it is mounted or unmounted, you can use the `TransitionGroup` component from `react-transition-group`.
+As the components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
+
+More information about the `TransitionGroup` component can be found [here](https://reactcommunity.org/react-transition-group/transition-group).
+
+{{"demo": "pages/components/transitions/TransitionGroupExample.js", "bg": true}}
+
 ## TransitionComponent prop
 
 Some Material-UI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
