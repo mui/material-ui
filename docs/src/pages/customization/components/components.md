@@ -44,7 +44,7 @@ You now know that you need to target the `.MuiSlider-thumb` class name for overr
 
 If you would like to override the styles of the components using classes, you can use the `className` prop available on each component. For overriding the styles of the different parts inside the component, you can use the global classes available for each slot, as described in the previous section.
 
-You can find different interoperability examples in the [Styles library interoperability](/guides/interoperability/) guide.
+You can find examples of this using different styles libraries in the [Styles library interoperability](/guides/interoperability/) guide.
 
 ### Pseudo-classes
 
