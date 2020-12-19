@@ -133,7 +133,7 @@ With it, you have access to all of component's props to dynamically style the co
 
 ## 3. Dynamic variation
 
-You have learned how to override the style of a Material-UI component in the previous section.
+In the previous section, we learned how to override the style of a Material-UI component.
 Now, let's see how we can make these overrides dynamic.
 Here are four alternatives; each has its pros and cons.
 
