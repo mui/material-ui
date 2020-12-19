@@ -69,7 +69,7 @@ Here is an example with the _disable_ state and the button component using a **p
 <Button disabled className="Button">
 ```
 
-Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the platform.
+Sometimes, you can't use a **pseudo-class**, as the state doesn't exist in the web specification.
 Let's take the menu item component and the _selected_ state as an example.
 You can use the `.Mui-selected` global class name to customize the special state of the `MenuItem` component:
 
