@@ -9,7 +9,7 @@ As components can be used in different contexts, there are several approaches to
 1. [Dynamic variation](#3-dynamic-variation)
 1. [Global theme variation](#4-global-theme-variation)
 
-## 1. One-time customization
+## 1. One-off customization
 
 You might need to change the style of a component for a specific implementation, for which you have the following solutions available:
 
