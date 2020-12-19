@@ -23,7 +23,7 @@ Next you'll see how you can you can use global class selectors for accessing slo
 
 ### Overriding nested component styles
 
-You can use the browser dev tools to identify the slot you want to override. It can save you a lot of time.
+You can use the browser dev tools to identify the slot for the component you want to override. It can save you a lot of time.
 The style injected in the DOM by Material-UI relies on class names that [follow a simple pattern](/styles/advanced/#class-names):
 `[hash]-Mui[Component name]-[name of the slot]`.
 
