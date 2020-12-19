@@ -4,7 +4,7 @@
 
 As components can be used in different contexts, there are several approaches to customizing them. Going from the narrowest use-case to the broadest, these are:
 
-1. [One-time customization](#1-one-time-customization)
+1. [One-off customization](#1-one-off-customization)
 1. [Reusable style overrides](#2-reusable-style-overrides)
 1. [Dynamic variation](#3-dynamic-variation)
 1. [Global theme variation](#4-global-theme-variation)
