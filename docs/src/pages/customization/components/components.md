@@ -36,7 +36,7 @@ Let's go back to the above demo. How can you override the slider's thumb?
 
 In this example, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` so the name of the component is `Slider` and the name of the slot is `thumb`.
 
-Using the dev tools, now you know that you need to target the `.MuiSlider-thumb` class name for overriding the look of the thumb slot:
+You now know that you need to target the `.MuiSlider-thumb` class name for overriding the look of the thumb:
 
 {{"demo": "pages/customization/components/DevTools.js"}}
 
