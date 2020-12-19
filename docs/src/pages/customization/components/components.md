@@ -2,7 +2,7 @@
 
 <p class="description">You can easily customize the appearance of a Material-UI component.</p>
 
-As components can be used in different contexts, there are several approaches to this. Going from the narrowest use-case to the broadest, these are:
+As components can be used in different contexts, there are several approaches to customizing them. Going from the narrowest use-case to the broadest, these are:
 
 1. [One-time customization](#1-one-time-customization)
 1. [Reusable style overrides](#2-reusable-style-overrides)
