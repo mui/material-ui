@@ -120,7 +120,7 @@ To override a lab component's styles with TypeScript, check [this section of the
 
 ## Adding new component variants
 
-You can use the `variants` key in the theme's components section to add new variants to Material-UI components. These new variants can specify what styles the component should have when specific props are applied together.
+You can use the `variants` key in the theme's `components` section to add new variants to Material-UI components. These new variants can specify what styles the component should have when specific props are applied together.
 
 The definitions are specified in an array, under the component's name. For each of them a class is added in the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
 
