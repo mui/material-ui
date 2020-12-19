@@ -129,7 +129,7 @@ If you find that you need the same overrides in multiple places across your appl
 
 {{"demo": "pages/customization/components/StyledCustomization.js", "defaultCodeOpen": true}}
 
-You have with it access to all components props to dynamically style the component.
+With it, you have access to all of component's props to dynamically style the component.
 
 ## 3. Dynamic variation
 
