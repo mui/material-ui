@@ -27,7 +27,7 @@ You can use the browser dev tools to identify the slot for the component you wan
 The styles injected into the DOM by Material-UI rely on class names that [follow a simple pattern](/styles/advanced/#class-names):
 `[hash]-Mui[Component name]-[name of the slot]`.
 
-⚠️ These class names can't be used as CSS selectors because they are unstable.
+⚠️ These class names can't be used as CSS selectors because they are unstable,
 However, Material-UI applies global class names using a consistent convention: `Mui[Component name]-[name of the slot]`.
 
 Let's go back to the above demo. How can you override the slider's thumb?
