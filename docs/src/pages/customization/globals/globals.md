@@ -4,7 +4,7 @@
 
 ## Default props
 
-You can change the default props of every Material-UI component.
+You can change the default of every prop of a Material-UI component.
 A `defaultProps` key is exposed in the theme's `components` key for this use case.
 
 ```js
