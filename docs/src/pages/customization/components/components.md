@@ -91,7 +91,7 @@ You can use the `.Mui-selected` global class name to customize the special state
 #### Why do I need to increase specificity to override one component state?
 
 By design, the CSS specification makes the pseudo-classes increase the specificity.
-For consistency, Material-UI increases the specificity of its custom pseudo-classes.
+For consistency with native elements, Material-UI increases the specificity of its custom pseudo-classes.
 This has one important advantage, it allows you to cherry-pick the state you want to customize.
 
 #### What custom pseudo-classes are available in Material-UI?
