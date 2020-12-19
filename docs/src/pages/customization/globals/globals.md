@@ -44,13 +44,11 @@ const theme = createMuiTheme({
 ## Global CSS override
 
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
-This is very similar to how you would customize Bootstrap.
 
 ```jsx
 const GlobalCss = withStyles({
   // @global is handled by jss-plugin-global.
   '@global': {
-    // You should target [class*="MuiButton-root"] instead if you nest themes.
     '.MuiButton-root': {
       fontSize: '1rem',
     },
