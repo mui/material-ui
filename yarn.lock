@@ -1046,7 +1046,7 @@
     "@babel/parser" "^7.12.7"
     "@babel/types" "^7.12.7"
 
-"@babel/traverse@^7.10.4", "@babel/traverse@^7.12.1", "@babel/traverse@^7.12.10", "@babel/traverse@^7.12.5", "@babel/traverse@^7.12.9", "@babel/traverse@^7.4.5", "@babel/traverse@^7.6.2", "@babel/traverse@^7.7.4", "@babel/traverse@^7.8.3":
+"@babel/traverse@^7.10.4", "@babel/traverse@^7.12.1", "@babel/traverse@^7.12.10", "@babel/traverse@^7.12.5", "@babel/traverse@^7.4.5", "@babel/traverse@^7.6.2", "@babel/traverse@^7.7.4", "@babel/traverse@^7.8.3":
   version "7.12.10"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.12.10.tgz#2d1f4041e8bf42ea099e5b2dc48d6a594c00017a"
   integrity sha512-6aEtf0IeRgbYWzta29lePeYSk+YAFIC3kyqESeft8o5CkFlYIMX+EQDDWEiAQ9LHOA3d0oHdgrSsID/CKqXJlg==
@@ -4322,12 +4322,11 @@ babel-plugin-macros@^2.0.0, babel-plugin-macros@^2.2.2, babel-plugin-macros@^2.6
     resolve "^1.12.0"
 
 babel-plugin-macros@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-macros/-/babel-plugin-macros-3.0.0.tgz#de9ad21283f8493b2aa70ba0abe82efafb65f5bd"
-  integrity sha512-KtmdOA0b8gsD8cid2iOdPEPSI45UFkf3wczAWN1FHhfI4UoXMLM6Cdhk72VznDMLPnEC88txqG0101e8MOpsaQ==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-macros/-/babel-plugin-macros-3.0.1.tgz#0d412d68f5b3d1b64358f24ab099bd148724e2a9"
+  integrity sha512-CKt4+Oy9k2wiN+hT1uZzOw7d8zb1anbQpf7KLwaaXRCi/4pzKdFKHf7v5mvoPmjkmxshh7eKZQuRop06r5WP4w==
   dependencies:
     "@babel/runtime" "^7.12.5"
-    "@babel/traverse" "^7.12.9"
     cosmiconfig "^7.0.0"
     resolve "^1.19.0"
 
