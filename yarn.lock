@@ -1287,14 +1287,14 @@
   integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
 
 "@emotion/react@^11.0.0":
-  version "11.1.1"
-  resolved "https://registry.yarnpkg.com/@emotion/react/-/react-11.1.1.tgz#4b304d494af321b0179e6763830e07cf674f0423"
-  integrity sha512-otA0Np8OnOeU9ChkOS9iuLB6vIxiM+bJiU0id33CsQn3R2Pk9ijVHnxevENIKV/P2S7AhrD8cFbUGysEciWlEA==
+  version "11.1.2"
+  resolved "https://registry.yarnpkg.com/@emotion/react/-/react-11.1.2.tgz#a635cfc6bc0974756f690b848c684338183b2593"
+  integrity sha512-zEpxynUhHm2GqjY556RnA12Ijt0v6rYUwV6WliyGoFbQKJKkXFuTzGHGQx4UY2jKUV1I4yjr66Ajj/qoQMVPeQ==
   dependencies:
     "@babel/runtime" "^7.7.2"
     "@emotion/cache" "^11.0.0"
     "@emotion/serialize" "^1.0.0"
-    "@emotion/sheet" "^1.0.0"
+    "@emotion/sheet" "^1.0.1"
     "@emotion/utils" "^1.0.0"
     "@emotion/weak-memoize" "^0.2.5"
     hoist-non-react-statics "^3.3.1"
@@ -1336,10 +1336,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-0.9.4.tgz#894374bea39ec30f489bbfc3438192b9774d32e5"
   integrity sha512-zM9PFmgVSqBw4zL101Q0HrBVTGmpAxFZH/pYx/cjJT5advXguvcgjHFTCaIO3enL/xr89vK2bh0Mfyj9aa0ANA==
 
-"@emotion/sheet@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-1.0.0.tgz#a0ef06080f339477ad4ba7f56e1c931f7ba50822"
-  integrity sha512-cdCHfZtf/0rahPDCZ9zyq+36EqfD/6c0WUqTFZ/hv9xadTUv2lGE5QK7/Z6Dnx2oRxC0usfVM2/BYn9q9B9wZA==
+"@emotion/sheet@^1.0.0", "@emotion/sheet@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-1.0.1.tgz#245f54abb02dfd82326e28689f34c27aa9b2a698"
+  integrity sha512-GbIvVMe4U+Zc+929N1V7nW6YYJtidj31lidSmdYcWozwoBIObXBnaJkKNDjZrLm9Nc0BR+ZyHNaRZxqNZbof5g==
 
 "@emotion/styled-base@^10.0.27":
   version "10.0.31"
