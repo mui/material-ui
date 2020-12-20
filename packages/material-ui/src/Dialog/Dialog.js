@@ -330,19 +330,19 @@ Dialog.propTypes = {
   onClose: PropTypes.func,
   /**
    * Callback fired before the dialog enters.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the dialog has entered.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the dialog is entering.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the escape key is pressed,
    * `disableKeyboard` is false and the modal is in focus.
@@ -350,19 +350,19 @@ Dialog.propTypes = {
   onEscapeKeyDown: PropTypes.func,
   /**
    * Callback fired before the dialog exits.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the dialog has exited.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the dialog is exiting.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
-  onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` property instead.'),
+  onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * If `true`, the Dialog is open.
    */

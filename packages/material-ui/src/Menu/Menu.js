@@ -219,32 +219,32 @@ Menu.propTypes = {
   onClose: PropTypes.func,
   /**
    * Callback fired before the Menu enters.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the Menu has entered.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the Menu is entering.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired before the Menu exits.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the Menu has exited.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the Menu is exiting.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
