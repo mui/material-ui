@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-function StableVersions(props) {
+function ReleasedVersions(props) {
   const { classes } = props;
   const { versions } = React.useContext(PageContext);
 
@@ -41,7 +41,8 @@ function StableVersions(props) {
                 </Link>
               </TableCell>
               <TableCell>
-                {doc.version.length >= 6 ? (
+                {doc.version.length >= 6 &&
+                doc.version.indexOf('pre-release') === -1 ? (
                   <Link
                     variant="body2"
                     color="secondary"
@@ -60,8 +61,8 @@ function StableVersions(props) {
   );
 }
 
-StableVersions.propTypes = {
+ReleasedVersions.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(StableVersions);
+export default withStyles(styles)(ReleasedVersions);
