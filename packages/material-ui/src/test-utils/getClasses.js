@@ -3,7 +3,7 @@ import createShallow from './createShallow';
 
 const shallow = createShallow();
 
-let warnOnce = false;
+let warnedOnce = false;
 
 // Helper function to extract the classes from a styleSheet.
 export default function getClasses(element) {
