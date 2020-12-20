@@ -67,6 +67,7 @@ class RootRef extends React.Component {
   render() {
     if (process.env.NODE_ENV !== 'production') {
       if (!warnedOnce && process.env.INTERNAL !== 'true') {
+        warnedOnce = true;
         console.warn(
           [
             'Material-UI: The RootRef component is deprecated.',

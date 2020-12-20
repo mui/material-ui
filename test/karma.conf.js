@@ -55,6 +55,7 @@ module.exports = function setKarmaConfig(config) {
           'process.env': {
             NODE_ENV: JSON.stringify('test'),
             CI: JSON.stringify(process.env.CI),
+            INTERNAL: JSON.stringify(process.env.INTERNAL),
           },
         }),
       ],
