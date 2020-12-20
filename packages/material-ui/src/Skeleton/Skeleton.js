@@ -64,7 +64,7 @@ export const styles = (theme) => {
       position: 'relative',
       overflow: 'hidden',
       // Fix bug in Safari https://bugs.webkit.org/show_bug.cgi?id=68196
-+      WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+      WebkitMaskImage: '-webkit-radial-gradient(white, black)',
       '&::after': {
         animation: '$wave 1.6s linear 0.5s infinite',
         background: `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`,
