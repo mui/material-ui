@@ -1,83 +1,81 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import { Collapse, Grid, IconButton, TextField } from '@material-ui/core';
+import {
+  Button,
+  Collapse,
+  IconButton,
+  List,
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
 import { TransitionGroup } from 'react-transition-group';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    marginBottom: theme.spacing(2),
-  },
-  itemText: {
-    marginLeft: theme.spacing(2),
-  },
-  paper: {
-    margin: theme.spacing(0.5, 0),
-  },
-  textField: {
+  root: {
     width: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
+  button: {
+    marginBottom: theme.spacing(2),
   },
 }));
 
 export default function TransitionGroupExample() {
   const classes = useStyles();
-  const [items, setItems] = React.useState(['Apples', 'Bananas', 'Mangoes']);
-  const [newItem, setNewItem] = React.useState('');
+  const predefinedFruits = [
+    'Apples',
+    'Bananas',
+    'Mangoes',
+    'Papaya',
+    'Watermelon',
+    'Coconut',
+  ];
 
-  const handleAddItem = () => {
-    if (!newItem) return;
-    setItems((prev) => [...prev, newItem]);
-    setNewItem('');
+  const [fruitsInBasket, setFruitsInBasket] = React.useState(
+    predefinedFruits.slice(0, 3),
+  );
+
+  const handleAddFruit = () => {
+    const nextHiddenItem = predefinedFruits.find((i) => !fruitsInBasket.includes(i));
+    if (nextHiddenItem) setFruitsInBasket((prev) => [nextHiddenItem, ...prev]);
   };
 
-  const handleRemoveItem = (item) => {
-    setItems((prev) => [...prev.filter((i) => i !== item)]);
+  const handleRemoveFruit = (item) => {
+    setFruitsInBasket((prev) => [...prev.filter((i) => i !== item)]);
   };
 
   return (
     <div>
-      <Grid container alignItems="center" className={classes.container}>
-        <Grid item xs>
-          <TextField
-            label="New item"
-            variant="standard"
-            className={classes.textField}
-            value={newItem}
-            onChange={(e) => setNewItem(e.target.value)}
-          />
-        </Grid>
-        <Grid item>
-          <IconButton aria-label="add" onClick={() => handleAddItem()}>
-            <AddIcon />
-          </IconButton>
-        </Grid>
-      </Grid>
-      <TransitionGroup>
-        {items.map((item) => (
-          <Collapse key={item} in>
-            <Paper className={classes.paper}>
-              <Grid container wrap="nowrap" alignItems="center">
-                <Grid item xs zeroMinWidth>
-                  <Typography noWrap className={classes.itemText}>
-                    {item}
-                  </Typography>
-                </Grid>
-                <Grid item>
+      <Button
+        variant="contained"
+        className={classes.button}
+        disabled={fruitsInBasket.length >= predefinedFruits.length}
+        onClick={handleAddFruit}
+      >
+        Add fruit to basket
+      </Button>
+      <List className={classes.root}>
+        <TransitionGroup>
+          {fruitsInBasket.map((item) => (
+            <Collapse key={item} in>
+              <ListItem>
+                <ListItemText primary={item} />
+                <ListItemSecondaryAction>
                   <IconButton
+                    edge={'end'}
                     aria-label="delete"
-                    onClick={() => handleRemoveItem(item)}
+                    onClick={() => handleRemoveFruit(item)}
                   >
                     <DeleteIcon />
                   </IconButton>
-                </Grid>
-              </Grid>
-            </Paper>
-          </Collapse>
-        ))}
-      </TransitionGroup>
+                </ListItemSecondaryAction>
+              </ListItem>
+            </Collapse>
+          ))}
+        </TransitionGroup>
+      </List>
     </div>
   );
 }
