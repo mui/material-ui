@@ -554,32 +554,32 @@ Popover.propTypes = {
   onClose: PropTypes.func,
   /**
    * Callback fired before the component is entering.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the component has entered.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the component is entering.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired before the component is exiting.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the component has exited.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the component is exiting.
-   * @deprecated Use the `TransitionProps` property instead.
+   * @deprecated Use the `TransitionProps` prop instead.
    */
   onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
