@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import requirePropFactory from '../utils/requirePropFactory';
+import deprecatedPropType from '../utils/deprecatedPropType';
 
 const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -209,6 +210,7 @@ const Grid = React.forwardRef(function Grid(props, ref) {
     container = false,
     direction = 'row',
     item = false,
+    justify,
     justifyContent = 'flex-start',
     lg = false,
     md = false,
@@ -232,7 +234,8 @@ const Grid = React.forwardRef(function Grid(props, ref) {
       [classes[`wrap-xs-${String(wrap)}`]]: wrap !== 'wrap',
       [classes[`align-items-xs-${String(alignItems)}`]]: alignItems !== 'stretch',
       [classes[`align-content-xs-${String(alignContent)}`]]: alignContent !== 'stretch',
-      [classes[`justify-content-xs-${String(justifyContent)}`]]: justifyContent !== 'flex-start',
+      [classes[`justify-content-xs-${String(justify || justifyContent)}`]]:
+        (justify || justifyContent) !== 'flex-start',
       [classes[`grid-xs-${String(xs)}`]]: xs !== false,
       [classes[`grid-sm-${String(sm)}`]]: sm !== false,
       [classes[`grid-md-${String(md)}`]]: md !== false,
@@ -296,6 +299,15 @@ Grid.propTypes = {
    * You should be wrapping *items* with a *container*.
    */
   item: PropTypes.bool,
+  /**
+   * Defines the `justify-content` style property.
+   * It is applied for all screen sizes.
+   * @deprecated Use `justifyContent` instead, the prop was renamed
+   */
+  justify: deprecatedPropType(
+    PropTypes.oneOf(['center', 'flex-end', 'space-between', 'space-around', 'space-evenly']),
+    'Use `justifyContent` instead, the prop was renamed.',
+  ),
   /**
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.

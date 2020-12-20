@@ -111,6 +111,12 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * Defines the `justify-content` style property.
      * It is applied for all screen sizes.
+     * @deprecated Use `justifyContent` instead, the prop was renamed
+     */
+    justify?: GridJustification;
+    /**
+     * Defines the `justify-content` style property.
+     * It is applied for all screen sizes.
      */
     justifyContent?: GridJustification;
     /**
