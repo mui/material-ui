@@ -31,7 +31,7 @@ export const styles = (theme) => ({
       width: 'auto',
     },
   },
-  /* Styles applied to the root element when the transition has exited and `collapsedSize` != 0px. */
+  /* Styles applied to the root element when the transition has exited and `collapsedSize` = 0px. */
   hidden: {
     visibility: 'hidden',
   },
