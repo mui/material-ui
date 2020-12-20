@@ -18,7 +18,12 @@ const FRUITS = [
   '🍉 Watermelon',
 ];
 
-function renderItem({ item, handleRemoveFruit }) {
+interface RenderItemOptions {
+  item: string;
+  handleRemoveFruit: (item: string) => void;
+}
+
+function renderItem({ item, handleRemoveFruit }: RenderItemOptions) {
   return (
     <ListItem>
       <ListItemText primary={item} />
