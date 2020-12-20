@@ -1,35 +1,63 @@
 # 全局样式
 
-<p class="description">styleOverrides 键使你能够自定义组件类型所有实例的外观，而属性（props）键使你能够更改组件属性的默认值。</p>
+<p class="description">With the `theme.components` key you can customize the appearance of all instances of a component; change the default value(s) of a component's props; and add custom variants to your components.</p>
 
-## CSS
+## 默认属性
 
-如果你觉得配置变量的功能不够强大，那么你也可以利用 `theme` 的 `styleOverrides` 键来隐式改变 Material-UI 注入到 DOM 中的 **每一个样式**。 这是一个十分有效的功能。
-
-要用 TypeScript 覆盖实验室组件的样式，请查看 [这个文档](/components/about-the-lab/#typescript)。
+You can change the default of every prop of a Material-UI component. A `defaultProps` key is exposed in the theme's `components` key for this use case.
 
 ```js
 const theme = createMuiTheme({
   components: {
-    // Style sheet name ⚛️
-    MuiButton: {
-      styleOverrides: {
-        // 规则名
-        textPrimary: {
-          // 一些 CSS
-          color: 'white',
-        },
+    // Name of the component
+    MuiButtonBase: {
+      defaultProps: {
+        // The props to change the default for.
+        disableRipple: true, // No more ripple!
       },
     },
   },
 });
 ```
 
-{{"demo": "pages/customization/globals/GlobalCss.js"}}
+{{"demo": "pages/customization/globals/DefaultProps.js"}}
 
-每个组件可自定义的部分都被列在文档的 **Component API**。 例如，您可以参考以下 [Button](/api/button/#css) 组件。
+To override lab component styles with TypeScript, check [this page](/components/about-the-lab/#typescript).
 
-## 全局 CSS
+## 主题变量
+
+Another way to override the look of all component instances is to adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
+
+```jsx
+const theme = createMuiTheme({
+  typography: {
+    button: {
+      fontSize: '1rem',
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/globals/ThemeVariables.js"}}
+
+## 全局 CSS 覆盖
+
+Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
+
+```jsx
+const GlobalCss = withStyles({
+  // @global 由 jss-plugin-global 处理。
+  '@global': {
+    '.MuiButton-root': {
+      fontSize: '1rem',
+    },
+  },
+})(() => null);
+
+// …
+
+<GlobalCss />;
+```
 
 如果您使用 [CssBaseline](/components/css-baseline/) 组件来应用全局重置（global resets），那么也可以将它应用于全局样式。 就像这样：
 
@@ -57,24 +85,73 @@ return (
 );
 ```
 
-## 默认属性
+{{"demo": "pages/customization/globals/GlobalCssOverride.js", "iframe": true, "height": 100}}
 
-您可以更改所有 Material-UI 组件的默认属性。 该用例展示了在 `主题` 中的一个 `props` 键(key)。
+## 全局主题覆盖
 
-要用 TypeScript 覆盖实验室组件的样式，请查看 [这个文档](/components/about-the-lab/#typescript)。
+You can use the theme's `styleOverrides` key to potentially change every single style injected by Material-UI into the DOM. 在[主题部分](/customization/globals/#css)可以了解有关它的更多信息。
 
-```js
+```jsx
 const theme = createMuiTheme({
   components: {
-    // 组件名 ⚛️
-    MuiButtonBase: {
-      defaultProps: {
-        // The default props to change
-        disableRipple: true, // 全局禁用波纹动画 💣!
+    // Style sheet name ⚛️
+    MuiButton: {
+      styleOverrides: {
+        // Name of the rule
+        root: {
+          // Some CSS
+          fontSize: '1rem',
+        },
       },
     },
   },
 });
 ```
 
-{{"demo": "pages/customization/globals/DefaultProps.js"}}
+{{"demo": "pages/customization/globals/GlobalThemeOverride.js"}}
+
+The list of each component's classes is documented under the **CSS** section of each component's API page.
+
+To override a lab component's styles with TypeScript, check [this section of the documentation](/components/about-the-lab/#typescript).
+
+## 添加新的组件变量
+
+You can use the `variants` key in the theme's `components` section to add new variants to Material-UI components. These new variants can specify what styles the component should have when specific props are applied together.
+
+这些定义在组件的名称下由一个数组指定。 For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
+
+```jsx
+const theme = createMuiTheme({
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'dashed' },
+          style: {
+            textTransform: 'none',
+            border: `2px dashed grey${blue[500]}`,
+          },
+        },
+        {
+          props: { variant: 'dashed', color: 'secondary' },
+          style: {
+            border: `4px dashed ${red[500]}`,
+          },
+        },
+      ],
+    },
+  },
+});
+```
+
+If you're using TypeScript, you'll need to specify your new variants/colors, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+
+```tsx
+declare module '@material-ui/core/Button/Button' {
+  interface ButtonPropsVariantOverrides {
+    dashed: true;
+  }
+}
+```
+
+{{"demo": "pages/customization/globals/GlobalThemeVariants.js"}}
