@@ -279,6 +279,7 @@ export default function DemoToolbar(props) {
     form.target = '_blank';
     form.action = 'https://codeSandbox.io/api/v1/sandboxes/define';
     addHiddenInput(form, 'parameters', parameters);
+    addHiddenInput(form, 'query', 'file=/demo.tsx');
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);

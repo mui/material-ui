@@ -19,7 +19,7 @@
       "description": "Styles applied to the root element when the transition has entered."
     },
     "hidden": {
-      "description": "Styles applied to the root element when the transition has exited and `collapsedSize` != 0px."
+      "description": "Styles applied to the root element when the transition has exited and `collapsedSize` = 0px."
     },
     "wrapper": { "description": "Styles applied to the outer wrapper element." },
     "wrapperInner": { "description": "Styles applied to the inner wrapper element." }

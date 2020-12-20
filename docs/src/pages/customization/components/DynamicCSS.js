@@ -1,39 +1,31 @@
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { alpha, experimentalStyled } from '@material-ui/core/styles';
+import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-// Like https://github.com/brunobertolini/styled-by
-const styledBy = (property, mapping) => (props) => mapping[props[property]];
-
-const styles = {
-  root: {
-    background: styledBy('color', {
-      default: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-      blue: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-    }),
-    borderRadius: 3,
-    border: 0,
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-    boxShadow: styledBy('color', {
-      default: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      blue: '0 3px 5px 2px rgba(33, 203, 243, .3)',
-    }),
-  },
-};
-
-const StyledButton = withStyles(styles)(({ classes, color, ...other }) => (
-  <Button className={classes.root} {...other} />
-));
+const StyledSlider = experimentalStyled(Slider, {
+  shouldForwardProp: (prop) => prop !== 'success',
+})(({ success, theme }) => ({
+  width: 300,
+  ...(success && {
+    color: theme.palette.success.main,
+    '& .MuiSlider-thumb': {
+      [`&:hover, &.Mui-focusVisible`]: {
+        boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
+      },
+      [`&.Mui-active`]: {
+        boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
+      },
+    },
+  }),
+}));
 
 export default function DynamicCSS() {
-  const [color, setColor] = React.useState('default');
+  const [success, setSuccess] = React.useState(false);
 
   const handleChange = (event) => {
-    setColor(event.target.checked ? 'blue' : 'default');
+    setSuccess(event.target.checked);
   };
 
   return (
@@ -41,15 +33,15 @@ export default function DynamicCSS() {
       <FormControlLabel
         control={
           <Switch
-            checked={color === 'blue'}
+            checked={success}
             onChange={handleChange}
             color="primary"
             value="dynamic-class-name"
           />
         }
-        label="Blue"
+        label="Success"
       />
-      <StyledButton color={color}>Dynamic CSS</StyledButton>
+      <StyledSlider success={success} defaultValue={30} sx={{ mt: 1 }} />
     </React.Fragment>
   );
 }
