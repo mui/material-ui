@@ -22,23 +22,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const FRUITS = ['Apple', 'Banana', 'Mango', 'Papaya', 'Watermelon', 'Coconut'];
+
 export default function TransitionGroupExample() {
   const classes = useStyles();
-  const predefinedFruits = [
-    'Apples',
-    'Bananas',
-    'Mangoes',
-    'Papaya',
-    'Watermelon',
-    'Coconut',
-  ];
-
-  const [fruitsInBasket, setFruitsInBasket] = React.useState(
-    predefinedFruits.slice(0, 3),
-  );
+  const [fruitsInBasket, setFruitsInBasket] = React.useState(FRUITS.slice(0, 3));
 
   const handleAddFruit = () => {
-    const nextHiddenItem = predefinedFruits.find((i) => !fruitsInBasket.includes(i));
+    const nextHiddenItem = FRUITS.find((i) => !fruitsInBasket.includes(i));
     if (nextHiddenItem) setFruitsInBasket((prev) => [nextHiddenItem, ...prev]);
   };
 
@@ -51,7 +42,7 @@ export default function TransitionGroupExample() {
       <Button
         variant="contained"
         className={classes.button}
-        disabled={fruitsInBasket.length >= predefinedFruits.length}
+        disabled={fruitsInBasket.length >= FRUITS.length}
         onClick={handleAddFruit}
       >
         Add fruit to basket
