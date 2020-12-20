@@ -10,7 +10,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
   children?: React.ReactNode;
   /**
    * The height of the container when collapsed.
-   * @deprecated The prop was renamed to support the vertical orientation, use `collapsedSize` instead.
+   * @deprecated The prop was renamed to support the addition of horizontal orientation, use `collapsedSize` instead.
    */
   collapsedHeight?: string | number;
   /**
