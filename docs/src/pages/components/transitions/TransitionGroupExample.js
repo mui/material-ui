@@ -1,72 +1,79 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  Button,
-  Collapse,
-  IconButton,
-  List,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-} from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { TransitionGroup } from 'react-transition-group';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-  },
-  button: {
-    marginBottom: theme.spacing(2),
-  },
-}));
+const FRUITS = [
+  '🍏 Apple',
+  '🍌 Banana',
+  '🍍 Pineapple',
+  '🥥 Coconut',
+  '🍉 Watermelon',
+];
 
-const FRUITS = ['Apple', 'Banana', 'Mango', 'Papaya', 'Watermelon', 'Coconut'];
+function renderItem({ item, handleRemoveFruit }) {
+  return (
+    <ListItem>
+      <ListItemText primary={item} />
+      <ListItemSecondaryAction>
+        <IconButton
+          edge="end"
+          aria-label="delete"
+          title="Delete"
+          onClick={() => handleRemoveFruit(item)}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </ListItemSecondaryAction>
+    </ListItem>
+  );
+}
 
 export default function TransitionGroupExample() {
-  const classes = useStyles();
   const [fruitsInBasket, setFruitsInBasket] = React.useState(FRUITS.slice(0, 3));
 
   const handleAddFruit = () => {
     const nextHiddenItem = FRUITS.find((i) => !fruitsInBasket.includes(i));
-    if (nextHiddenItem) setFruitsInBasket((prev) => [nextHiddenItem, ...prev]);
+    if (nextHiddenItem) {
+      setFruitsInBasket((prev) => [nextHiddenItem, ...prev]);
+    }
   };
 
   const handleRemoveFruit = (item) => {
     setFruitsInBasket((prev) => [...prev.filter((i) => i !== item)]);
   };
 
+  const addFruitButton = (
+    <Button
+      variant="contained"
+      disabled={fruitsInBasket.length >= FRUITS.length}
+      onClick={handleAddFruit}
+    >
+      Add fruit to basket
+    </Button>
+  );
+
   return (
     <div>
-      <Button
-        variant="contained"
-        className={classes.button}
-        disabled={fruitsInBasket.length >= FRUITS.length}
-        onClick={handleAddFruit}
-      >
-        Add fruit to basket
-      </Button>
-      <List className={classes.root}>
-        <TransitionGroup>
-          {fruitsInBasket.map((item) => (
-            <Collapse key={item} in>
-              <ListItem>
-                <ListItemText primary={item} />
-                <ListItemSecondaryAction>
-                  <IconButton
-                    edge={'end'}
-                    aria-label="delete"
-                    onClick={() => handleRemoveFruit(item)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            </Collapse>
-          ))}
-        </TransitionGroup>
-      </List>
+      {addFruitButton}
+      <Box sx={{ mt: 1 }}>
+        <List>
+          <TransitionGroup>
+            {fruitsInBasket.map((item) => (
+              <Collapse key={item}>
+                {renderItem({ item, handleRemoveFruit })}
+              </Collapse>
+            ))}
+          </TransitionGroup>
+        </List>
+      </Box>
     </div>
   );
 }

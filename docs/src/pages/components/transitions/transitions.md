@@ -81,14 +81,12 @@ This example also demonstrates how to delay the enter transition.
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
 
-## Animate component's mounting and unmounting
+## TransitionGroup
 
-To animate a component when it is mounted or unmounted, you can use the `TransitionGroup` component from `react-transition-group`.
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](https://reactcommunity.org/react-transition-group/transition-group) component from _react-transition-group_.
 As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
 
-More information about the `TransitionGroup` component can be found [here](https://reactcommunity.org/react-transition-group/transition-group).
-
-{{"demo": "pages/components/transitions/TransitionGroupExample.js", "bg": true}}
+{{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
 
 ## TransitionComponent prop
 
@@ -101,7 +99,7 @@ It should respect the following conditions:
 - Call the `onExited` callback prop when the exit transition is completed.
   These two callbacks allow to unmount the children when in a closed state and fully transitioned.
 
-For more information on creating a custom transition, visit the _react-transition-group_ [Transition docs](http://reactcommunity.org/react-transition-group/transition).
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition).
 You can also visit the dedicated sections of some of the components:
 
 - [Modal](/components/modal/#transitions)
