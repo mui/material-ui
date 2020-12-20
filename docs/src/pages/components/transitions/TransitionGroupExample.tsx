@@ -24,20 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const FRUITS = [
-  'Apple',
-  'Banana',
-  'Mango',
-  'Papaya',
-  'Watermelon',
-  'Coconut',
-];
+const FRUITS = ['Apple', 'Banana', 'Mango', 'Papaya', 'Watermelon', 'Coconut'];
 
 export default function TransitionGroupExample() {
   const classes = useStyles();
-  const [fruitsInBasket, setFruitsInBasket] = React.useState(
-    FRUITS.slice(0, 3),
-  );
+  const [fruitsInBasket, setFruitsInBasket] = React.useState(FRUITS.slice(0, 3));
 
   const handleAddFruit = () => {
     const nextHiddenItem = FRUITS.find((i) => !fruitsInBasket.includes(i));
