@@ -2,11 +2,11 @@
 
 <p class="description">You can come back to this page and switch the version of the docs you're reading at any time.</p>
 
-## Stable versions
+## Released versions
 
-The most recent version is recommended in production.
+The most recent stable version (✓) is recommended for use in production.
 
-{{"demo": "pages/versions/StableVersions.js", "hideToolbar": true, "bg": "inline"}}
+{{"demo": "pages/versions/ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Latest versions
 
