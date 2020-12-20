@@ -1,40 +1,37 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { experimentalStyled } from '@material-ui/core/styles';
+import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const useStyles = makeStyles({
-  button: {
-    background:
-      'linear-gradient(45deg, var(--background-start) 30%, var(--background-end) 90%)',
-    borderRadius: 3,
-    border: 0,
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px var(--box-shadow)',
+const CustomSlider = experimentalStyled(Slider)({
+  width: 300,
+  color: 'var(--color)',
+  '& .MuiSlider-thumb': {
+    [`&:hover, &.Mui-focusVisible`]: {
+      boxShadow: '0px 0px 0px 8px var(--box-shadow)',
+    },
+    [`&.Mui-active`]: {
+      boxShadow: '0px 0px 0px 14px var(--box-shadow)',
+    },
   },
 });
 
-const blue = {
-  '--background-start': '#2196F3',
-  '--background-end': '#21CBF3',
-  '--box-shadow': 'rgba(33, 203, 243, .3)',
+const successVars = {
+  '--color': '#4caf50',
+  '--box-shadow': 'rgb(76, 175, 80, .16)',
 };
 
-const defaultColor = {
-  '--background-start': '#FE6B8B',
-  '--background-end': '#FF8E53',
-  '--box-shadow': 'rgba(255, 105, 135, .3)',
+const defaultVars = {
+  '--color': '#1976d2',
+  '--box-shadow': 'rgb(25, 118, 210, .16)',
 };
 
 export default function DynamicCSSVariables() {
-  const classes = useStyles();
-  const [color, setColor] = React.useState(defaultColor);
+  const [vars, setVars] = React.useState(defaultVars);
 
   const handleChange = (event) => {
-    setColor(event.target.checked ? blue : defaultColor);
+    setVars(event.target.checked ? successVars : defaultVars);
   };
 
   return (
@@ -42,17 +39,15 @@ export default function DynamicCSSVariables() {
       <FormControlLabel
         control={
           <Switch
-            checked={color === blue}
+            checked={vars === successVars}
             onChange={handleChange}
             color="primary"
             value="dynamic-class-name"
           />
         }
-        label="Blue"
+        label="Success"
       />
-      <Button className={classes.button} style={color}>
-        CSS variables
-      </Button>
+      <CustomSlider style={vars} defaultValue={30} sx={{ mt: 1 }} />
     </React.Fragment>
   );
 }

@@ -1,32 +1,33 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { makeStyles, alpha } from '@material-ui/core/styles';
+import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const useStyles = makeStyles({
-  button: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    borderRadius: 3,
-    border: 0,
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+const useStyles = makeStyles((theme) => ({
+  slider: {
+    width: 300,
   },
-  buttonBlue: {
-    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-    boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+  sliderSuccess: {
+    color: theme.palette.success.main,
+    '& .MuiSlider-thumb': {
+      '&:hover, &.Mui-focusVisible': {
+        boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
+      },
+      '&.Mui-active': {
+        boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
+      },
+    },
   },
-});
+}));
 
 export default function DynamicClassName() {
   const classes = useStyles();
-  const [color, setColor] = React.useState<string>('default');
+  const [success, setSuccess] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setColor(event.target.checked ? 'blue' : 'default');
+    setSuccess(event.target.checked);
   };
 
   return (
@@ -34,21 +35,21 @@ export default function DynamicClassName() {
       <FormControlLabel
         control={
           <Switch
-            checked={color === 'blue'}
+            checked={success}
             onChange={handleChange}
             color="primary"
             value="dynamic-class-name"
           />
         }
-        label="Blue"
+        label="Success"
       />
-      <Button
-        className={clsx(classes.button, {
-          [classes.buttonBlue]: color === 'blue',
+      <Slider
+        className={clsx(classes.slider, {
+          [classes.sliderSuccess]: success,
         })}
-      >
-        Class name branch
-      </Button>
+        defaultValue={30}
+        sx={{ mt: 1 }}
+      />
     </React.Fragment>
   );
 }

@@ -282,7 +282,9 @@ export interface CSSProperties
 /**
  * Map of all CSS pseudo selectors (`:hover`, `:focus`, ...).
  */
-export type CSSPseudoSelectorProps = { [K in CSS.Pseudos]?: SystemStyleObject };
+export type CSSPseudoSelectorProps<Theme extends object = {}> = {
+  [K in CSS.Pseudos]?: SystemStyleObject<Theme>;
+};
 
 /**
  * CSS as a plain object that is compatible with CSS-in-JS libraries.
@@ -305,8 +307,8 @@ export interface CSSOthersObjectForCSSObject {
 /**
  * Map all nested selectors.
  */
-export interface CSSSelectorObject {
-  [cssSelector: string]: SystemStyleObject;
+export interface CSSSelectorObject<Theme extends object = {}> {
+  [cssSelector: string]: SystemStyleObject<Theme>;
 }
 
 export interface AliasesCSSProperties {
@@ -647,7 +649,7 @@ export type SystemCssProperties<Theme extends object = {}> = {
   [K in keyof AllSystemCSSProperties]:
     | ResponsiveStyleValue<AllSystemCSSProperties[K]>
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>)
-    | SystemStyleObject;
+    | SystemStyleObject<Theme>;
 };
 
 /**
@@ -656,8 +658,8 @@ export type SystemCssProperties<Theme extends object = {}> = {
  */
 export type SystemStyleObject<Theme extends object = {}> =
   | SystemCssProperties<Theme>
-  | CSSPseudoSelectorProps
-  | CSSSelectorObject
+  | CSSPseudoSelectorProps<Theme>
+  | CSSSelectorObject<Theme>
   | null;
 
 export type SxProps<Theme extends object = {}> = SystemStyleObject<Theme>;

@@ -1,48 +1,47 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
+import Slider from '@material-ui/core/Slider';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { blue } from '@material-ui/core/colors';
+import { green } from '@material-ui/core/colors';
 import Switch from '@material-ui/core/Switch';
 
 export default function DynamicThemeNesting() {
-  const [color, setColor] = React.useState('default');
+  const [success, setSuccess] = React.useState(false);
 
   const handleChange = (event) => {
-    setColor(event.target.checked ? 'blue' : 'default');
+    setSuccess(event.target.checked);
   };
 
   const theme = React.useMemo(() => {
-    if (color === 'blue') {
+    if (success) {
       return createMuiTheme({
         palette: {
-          secondary: {
-            main: blue[500],
-            contrastText: '#fff',
+          primary: {
+            light: green[300],
+            main: green[500],
+            dark: green[700],
           },
         },
       });
     }
     return createMuiTheme();
-  }, [color]);
+  }, [success]);
 
   return (
     <React.Fragment>
       <FormControlLabel
         control={
           <Switch
-            checked={color === 'blue'}
+            checked={success}
             onChange={handleChange}
             color="primary"
             value="dynamic-class-name"
           />
         }
-        label="Blue"
+        label="Success"
       />
       <ThemeProvider theme={theme}>
-        <Button variant="contained" color="secondary">
-          Theme nesting
-        </Button>
+        <Slider defaultValue={30} sx={{ width: 300, mt: 1 }} />
       </ThemeProvider>
     </React.Fragment>
   );
