@@ -20,6 +20,7 @@ export interface DialogProps
   children?: React.ReactNode;
   /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
+   * @deprecated Use the onClose prop with the `reason` argument to filter the `backdropClick` events.
    */
   disableBackdropClick?: boolean;
   /**
@@ -44,6 +45,7 @@ export interface DialogProps
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   /**
    * Callback fired when the backdrop is clicked.
+   * @deprecated Use the onClose prop with the `reason` argument to handle the `backdropClick` events.
    */
   onBackdropClick?: ModalProps['onBackdropClick'];
   /**
@@ -71,6 +73,7 @@ export interface DialogProps
   /**
    * Callback fired when the escape key is pressed,
    * `disableKeyboard` is false and the modal is in focus.
+   * @deprecated Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.
    */
   onEscapeKeyDown?: ModalProps['onEscapeKeyDown'];
   /**

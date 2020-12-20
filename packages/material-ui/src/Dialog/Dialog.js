@@ -208,7 +208,11 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         ...BackdropProps,
       }}
       closeAfterTransition
-      disableBackdropClick={disableBackdropClick}
+      {...(disableBackdropClick
+        ? {
+            disableBackdropClick,
+          }
+        : {})}
       disableEscapeKeyDown={disableEscapeKeyDown}
       onEscapeKeyDown={onEscapeKeyDown}
       onClose={onClose}
@@ -295,8 +299,12 @@ Dialog.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
+   * @deprecated Use the onClose prop with the `reason` argument to filter the `backdropClick` events.
    */
-  disableBackdropClick: PropTypes.bool,
+  disableBackdropClick: deprecatedPropType(
+    PropTypes.bool,
+    'Use the onClose prop with the `reason` argument to filter the `backdropClick` events.',
+  ),
   /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    */
@@ -319,8 +327,12 @@ Dialog.propTypes = {
   maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
   /**
    * Callback fired when the backdrop is clicked.
+   * @deprecated Use the onClose prop with the `reason` argument to handle the `backdropClick` events.
    */
-  onBackdropClick: PropTypes.func,
+  onBackdropClick: deprecatedPropType(
+    PropTypes.func,
+    'Use the onClose prop with the `reason` argument to handle the `backdropClick` events.',
+  ),
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -346,8 +358,12 @@ Dialog.propTypes = {
   /**
    * Callback fired when the escape key is pressed,
    * `disableKeyboard` is false and the modal is in focus.
+   * @deprecated Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.
    */
-  onEscapeKeyDown: PropTypes.func,
+  onEscapeKeyDown: deprecatedPropType(
+    PropTypes.func,
+    'Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.',
+  ),
   /**
    * Callback fired before the dialog exits.
    * @deprecated Use the `TransitionProps` prop instead.
