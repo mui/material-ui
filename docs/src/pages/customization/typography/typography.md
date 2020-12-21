@@ -217,7 +217,7 @@ const theme = createMuiTheme({
 
 ## Adding & disabling variants
 
-Apart from the default ones, you can also add custom variants, or disable some of the existing ones. See the [Adding & disabling variants](/components/typography/#adding-amp-disabling-variants) example for more info.
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/components/typography/#adding-amp-disabling-variants) example for more info.
 
 ## Default values
 
