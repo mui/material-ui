@@ -1,5 +1,82 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.20
+
+###### _Dec 21, 2020_
+
+Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 Migrate the Typography to emotion (#23841) @DanailH
+
+  This change allows to add typography variants in the theme and to use them directly:
+
+  ```jsx
+  const theme = createMuiTheme({
+    typography: {
+      poster: {
+        color: 'red',
+      },
+    },
+  });
+  <Typography variant="poster">poster</Typography>;
+  ```
+
+  [A full demo](https://codesandbox.io/s/fontsizetheme-material-demo-forked-l9u05?file=/demo.tsx:725-773)
+
+- 📚 Add a shortcut to open the Algolia search (#23959) @hmaddisb.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.20`/`@material-ui/unstyled@v5.0.0-alpha.20`
+
+#### Breaking changes
+
+- [CssBaseline] Change body font size to body1 (1rem) (#24018) @mbrookes
+
+  The new default matches the variant used by the Typography component. To return to the previous size, you can override it in the theme:
+
+  ```js
+  const theme = createMuiTheme({
+    typography: {
+      body1: {
+        fontSize: '0.875rem',
+      },
+    },
+  });
+  ```
+
+#### Changes
+
+- [Badge] Fix the classes description to reflect the correct component (#24035) @mnajdova
+- [Select] Fix aria-describedby attribute (#24027) @HVish
+- [Skeleton] Fix Circle border radius on Safari (#24054) @anatolzak
+- [Slider][badge] Fix classes prop not working (#24034) @mnajdova
+- [Typography] Migrate styles to emotion (#23841) @DanailH
+
+### `@material-ui/styled-engine@v5.0.0-alpha.20`/`@material-ui/styled-engine-sc@v5.0.0-alpha.20`
+
+- [styled-engine] Add name and slot options (#23964) @mnajdova
+- [styled-engine] Add StylesProvider with injectFirst option (#23934) @mnajdova
+
+### `@material-ui/system@v5.0.0-alpha.20`
+
+- [system] Fix transform not firing when theme provided (#24010) @ZovcIfzm
+
+### Docs
+
+- [docs] Add a shortcut to access the search bar (#23959) @hmaddisb
+- [docs] Animate component's mounting and unmounting (#24049) @cjoecker
+- [docs] Fix collapse API docs description of 'hidden' style condition (#24053) @jaiwanth-v
+- [docs] Improve color demo snippet spacing (#24009) @yukinoda
+- [docs] Improve displayed versions (#24051) @oliviertassinari
+- [docs] Show a better file on codesandbox (#24052) @oliviertassinari
+- [docs] Update customization/components and customization/global pages (#24016) @mnajdova
+- [docs] Update the CSS injection guide (#24020) @mnajdova
+
+### Core
+
+- [core] Batch small changes (#24038) @oliviertassinari
+- [core] Track size of /unstyled (#24021) @eps1lon
+- [core] Use consistent naming scheme for ttp annotations (#24022) @eps1lon
 ## 5.0.0-alpha.19
 
 ###### _Dec 13, 2020_
