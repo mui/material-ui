@@ -153,15 +153,14 @@ declare module '@material-ui/core/Typography/Typography' {
 
 **Step 3. You can now use the new variant**
 
+{{"demo": "pages/components/typography/TypographyCustomVariant.js", "hideToolbar": true}}
+
 ```jsx
 <Typography variant="poster">poster</Typography>;
-{
-  /* This variant is no longer supported! */
-}
+
+/* This variant is no longer supported */
 <Typography variant="h3">h3</Typography>;
 ```
-
-{{"demo": "pages/components/typography/TypographyCustomVariant.js", "hideToolbar": true}}
 
 ## Accessibility
 
