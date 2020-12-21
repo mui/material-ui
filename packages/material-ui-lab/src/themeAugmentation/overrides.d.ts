@@ -38,7 +38,6 @@ import { YearPickerClassKey } from '../YearPicker';
 
 // prettier-ignore
 export interface LabComponentNameToClassKey {
-  MuiAvatarGroup: AvatarGroupClassKey;
   MuiClock: ClockClassKey;
   MuiClockNumber: ClockNumberClassKey;
   MuiClockPointer: ClockPointerClassKey;
