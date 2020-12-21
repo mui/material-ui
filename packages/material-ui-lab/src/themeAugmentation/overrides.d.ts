@@ -5,6 +5,7 @@ import { DatePickerToolbarClassKey } from '../DatePicker/DatePickerToolbar';
 import { DateTimePickerTabsClassKey } from '../DateTimePicker/DateTimePickerTabs';
 import { DateTimePickerToolbarClassKey } from '../DateTimePicker/DateTimePickerToolbar';
 import { DayPickerClassKey } from '../DayPicker';
+import { LoadingButtonClassKey } from '../LoadingButton';
 import { MonthPickerClassKey } from '../MonthPicker';
 import { PickerClassKey } from '../internal/pickers/Picker/Picker';
 import { PickersArrowSwitcherClassKey } from '../internal/pickers/PickersArrowSwitcher';
@@ -44,6 +45,7 @@ export interface LabComponentNameToClassKey {
   MuiDateTimePickerTabs: DateTimePickerTabsClassKey;
   MuiDateTimePickerToolbar: DateTimePickerToolbarClassKey;
   MuiDayPicker: DayPickerClassKey;
+  MuiLoadingButton: LoadingButtonClassKey;
   MuiMonthPicker: MonthPickerClassKey;
   MuiPicker: PickerClassKey;
   MuiPickersArrowSwitcher: PickersArrowSwitcherClassKey;
