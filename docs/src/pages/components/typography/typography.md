@@ -126,7 +126,7 @@ const theme = createMuiTheme({
 
 **Step 2. Update the necessary typings (if you are using TypeScript)**
 
-> If you are not using TypeScript you should skip this step.
+> If you aren't using TypeScript you should skip this step.
 
 You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
 
