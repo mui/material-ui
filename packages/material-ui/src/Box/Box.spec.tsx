@@ -29,7 +29,6 @@ function ResponsiveTest() {
   </Box>;
 }
 
-
 function ComponentPropTest() {
   <Box component="img" src="https://material-ui.com/" alt="Material UI" />;
   <Box component={Test} test="Test string" />;
