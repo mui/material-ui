@@ -99,7 +99,7 @@ export const styles = (theme) => ({
     opacity: 0,
     pointerEvents: 'none',
     width: '100%',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
   },
 });
 
