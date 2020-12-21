@@ -50,7 +50,7 @@ export default function SimpleCollapse() {
             </svg>
           </Paper>
         </Collapse>
-        <Collapse in={checked} collapsedHeight={40}>
+        <Collapse in={checked} collapsedSize={40}>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
               <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
