@@ -251,25 +251,23 @@ describe('<Collapse />', () => {
     });
   });
 
-  describe('prop: collapsedHeight', () => {
-    const collapsedHeight = '10px';
+  describe('prop: collapsedSize', () => {
+    const collapsedSize = '10px';
 
     it('should work when closed', () => {
-      const { container } = render(
-        <Collapse {...defaultProps} collapsedHeight={collapsedHeight} />,
-      );
+      const { container } = render(<Collapse {...defaultProps} collapsedSize={collapsedSize} />);
       const collapse = container.firstChild;
-      expect(collapse.style.minHeight).to.equal(collapsedHeight);
+      expect(collapse.style.minHeight).to.equal(collapsedSize);
     });
 
     it('should be taken into account in handleExiting', () => {
       const handleExiting = spy();
       const { setProps } = render(
-        <Collapse {...defaultProps} collapsedHeight={collapsedHeight} onExiting={handleExiting} />,
+        <Collapse {...defaultProps} collapsedSize={collapsedSize} onExiting={handleExiting} />,
       );
       setProps({ in: false });
 
-      expect(handleExiting.args[0][0].style.height).to.equal(collapsedHeight);
+      expect(handleExiting.args[0][0].style.height).to.equal(collapsedSize);
     });
   });
 
