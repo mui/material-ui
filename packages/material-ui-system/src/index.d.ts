@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as CSS from 'csstype';
+import { CSSProperties } from './CSSProperties';
 // disable automatic export
 export {};
 
@@ -268,14 +269,6 @@ export function unstable_getThemeValue(prop: string, value: any, theme: object):
  * will also works.
  */
 export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
-
-/**
- * All non-vendor-prefixed CSS properties. (Also allows `number` in order to support CSS-in-JS libs,
- * since they are converted to `px`.)
- */
-export interface CSSProperties
-  extends CSS.StandardProperties<number | string>,
-    CSS.SvgProperties<number | string> {}
 
 /**
  * CSS as a plain object that is compatible with CSS-in-JS libraries.

@@ -1,5 +1,5 @@
 import * as CSS from 'csstype';
-import { StandardCSSProperties } from './StandardCssProperties';
+import { CSSProperties } from '../CSSProperties';
 import { AliasesCSSProperties } from './AliasesCSSProperties';
 import { OverwriteCSSProperties } from './OverwriteCSSProperties';
 
@@ -30,7 +30,7 @@ export interface CSSSelectorObject<Theme extends object = {}> {
  * theme function or nested) in `SystemCssProperties`.
  */
 export interface AllSystemCSSProperties
-  extends Omit<StandardCSSProperties, keyof OverwriteCSSProperties>,
+  extends Omit<CSSProperties, keyof OverwriteCSSProperties>,
     AliasesCSSProperties,
     OverwriteCSSProperties {}
 

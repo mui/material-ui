@@ -29,21 +29,6 @@ function ResponsiveTest() {
   </Box>;
 }
 
-function GapTest() {
-  return (
-    <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        flex: "1 0",
-        gap: (theme) => theme.spacing(2),
-      }}
-    >
-      Gap
-    </Box>
-  );
-}
 
 function ComponentPropTest() {
   <Box component="img" src="https://material-ui.com/" alt="Material UI" />;
