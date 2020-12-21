@@ -32,7 +32,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 
 - [CssBaseline] Change body font size to body1 (1rem) (#24018) @mbrookes
 
-  To return to the previous size, you can override it in the theme:
+  The new default matches the variant used by the Typography component. To return to the previous size, you can override it in the theme:
 
   ```js
   const theme = createMuiTheme({
