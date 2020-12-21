@@ -106,6 +106,12 @@ const theme = createMuiTheme({
 });
 ```
 
+## Adding & disabling variants
+
+Apart from the default variants supported, you can add custom variants to use with the `Typography` component, or disable some existing ones:
+
+{{"demo": "pages/components/typography/TypographyCustomVariant.js"}}
+
 ## Accessibility
 
 A few key factors to follow for an accessible typography:
