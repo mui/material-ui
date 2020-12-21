@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { chainPropTypes } from '@material-ui/utils';
 import { Transition } from 'react-transition-group';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
@@ -9,18 +10,18 @@ import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
 
 export const styles = (theme) => ({
-  /* Styles applied to the container element. */
-  container: {
+  /* Styles applied to the root element. */
+  root: {
     height: 0,
     overflow: 'hidden',
     transition: theme.transitions.create('height'),
   },
-  /* Styles applied to the container element when the transition has entered. */
+  /* Styles applied to the root element when the transition has entered. */
   entered: {
     height: 'auto',
     overflow: 'visible',
   },
-  /* Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px. */
+  /* Styles applied to the root element when the transition has exited and `collapsedHeight` != 0px. */
   hidden: {
     visibility: 'hidden',
   },
@@ -196,6 +197,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
       {(state, childProps) => (
         <Component
           className={clsx(
+            classes.root,
             classes.container,
             {
               [classes.entered]: state === 'entered',
@@ -232,7 +234,17 @@ Collapse.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object,
+  classes: chainPropTypes(PropTypes.object, (props) => {
+    if (props.classes && props.classes.container) {
+      throw new Error([
+        'Material-UI: the classes.container key is deprecated.',
+        'Use `classes.root` instead',
+        'The name of the pseudo-class was changed for consistency.',
+      ]).join('\n');
+    }
+
+    return null;
+  }),
   /**
    * @ignore
    */
