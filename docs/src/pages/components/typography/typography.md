@@ -118,7 +118,7 @@ const theme = createMuiTheme({
     poster: {
       color: 'red',
     },
-    // Disable v3 variant
+    // Disable h3 variant
     h3: undefined,
   },
 });
