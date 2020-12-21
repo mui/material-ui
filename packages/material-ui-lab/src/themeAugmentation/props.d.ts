@@ -29,7 +29,6 @@ import { YearPickerProps } from '../YearPicker';
 import { LoadingButtonProps } from '../LoadingButton';
 
 export interface LabComponentsPropsList {
-  MuiAvatarGroup: AvatarGroupProps;
   MuiClockPicker: ClockPickerProps<unknown>;
   MuiDatePicker: DatePickerProps;
   MuiDateTimePicker: DateTimePickerProps;

@@ -1,6 +1,30 @@
 import { ComponentsProps, ComponentsOverrides, ComponentsVariants } from '@material-ui/core';
 
 export interface LabComponents {
+  MuiClockPicker?: {
+    defaultProps?: ComponentsProps['MuiClockPicker'];
+  };
+  MuiDatePicker?: {
+    defaultProps?: ComponentsProps['MuiDatePicker'];
+  };
+  MuiDateTimePicker?: {
+    defaultProps?: ComponentsProps['MuiDateTimePicker'];
+  };
+  MuiDesktopDateTimePicker?: {
+    defaultProps?: ComponentsProps['MuiDesktopDateTimePicker'];
+  };
+  MuiDesktopTimePicker?: {
+    defaultProps?: ComponentsProps['MuiDesktopTimePicker'];
+  };
+  MuiMobileDatePicker?: {
+    defaultProps?: ComponentsProps['MuiMobileDatePicker'];
+  };
+  MuiMobileDateTimePicker?: {
+    defaultProps?: ComponentsProps['MuiMobileDateTimePicker'];
+  };
+  MuiMobileTimePicker?: {
+    defaultProps?: ComponentsProps['MuiMobileTimePicker'];
+  };
   MuiTabList?: {
     defaultProps?: ComponentsProps['MuiTabList'];
     styleOverrides?: ComponentsOverrides['MuiTabList'];
@@ -37,6 +61,9 @@ export interface LabComponents {
   MuiTimelineSeparator?: {
     defaultProps?: ComponentsProps['MuiTimelineSeparator'];
     styleOverrides?: ComponentsOverrides['MuiTimelineSeparator'];
+  };
+  MuiTimePicker?: {
+    defaultProps?: ComponentsProps['MuiTimePicker'];
   };
   MuiTimePickerToolbar?: {
     defaultProps?: ComponentsProps['MuiTimePickerToolbar'];
@@ -109,6 +136,15 @@ export interface LabComponents {
   MuiPickersDay?: {
     defaultProps?: ComponentsProps['MuiPickersDay'];
     styleOverrides?: ComponentsOverrides['MuiPickersDay'];
+  };
+  MuiStaticDatePicker?: {
+    defaultProps?: ComponentsProps['MuiStaticDatePicker'];
+  };
+  MuiStaticDateTimePicker?: {
+    defaultProps?: ComponentsProps['MuiStaticDateTimePicker'];
+  };
+  MuiStaticTimePicker?: {
+    defaultProps?: ComponentsProps['MuiStaticTimePicker'];
   };
   MuiPickersFadeTransition?: {
     defaultProps?: ComponentsProps['MuiPickersFadeTransition'];
