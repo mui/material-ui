@@ -38,6 +38,10 @@ export interface LabComponents {
     defaultProps?: ComponentsProps['MuiTimelineSeparator'];
     styleOverrides?: ComponentsOverrides['MuiTimelineSeparator'];
   };
+  MuiTimePickerToolbar?: {
+    defaultProps?: ComponentsProps['MuiTimePickerToolbar'];
+    styleOverrides?: ComponentsOverrides['MuiTimePickerToolbar'];
+  };
   MuiTreeItem?: {
     defaultProps?: ComponentsProps['MuiTreeItem'];
     styleOverrides?: ComponentsOverrides['MuiTreeItem'];
