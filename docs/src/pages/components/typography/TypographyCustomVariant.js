@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 const theme = createMuiTheme({
   typography: {
+    // @ts-ignore
     poster: {
       color: 'red',
     },
@@ -17,9 +18,8 @@ export default function FontSizeTheme() {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ '& > *': { display: 'block' } }}>
-        {/* A new variant */}
+        {/* @ts-ignore */}
         <Typography variant="poster">poster</Typography>
-        {/* @ts-expect-error Variant h3 is no longer supported*/}
         <Typography variant="h3">h3</Typography>
       </Box>
     </ThemeProvider>
