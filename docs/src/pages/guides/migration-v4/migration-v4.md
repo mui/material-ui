@@ -273,6 +273,7 @@ const classes = makeStyles(theme => ({
 ### System
 
 - The following system functions (and properties) were renamed, because they are considered deprecated CSS:
+
 1. `gridGap` to `gap`
 2. `gridColumnGap` to `columnGap`
 3. `gridRowGap` to `rowGap`
@@ -422,19 +423,20 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```
 
 - The following properties were renamed, because they are considered deprecated CSS proeprties:
+
 1. `gridGap` to `gap`
 2. `gridColumnGap` to `columnGap`
 3. `gridRowGap` to `rowGap`
 
-  ```diff
-  -<Box gridGap='10px'>
-  +<Box sx={{ gap: '10px' }}>
-  ```
+```diff
+-<Box gridGap='10px'>
++<Box sx={{ gap: '10px' }}>
+```
 
-  ```diff
-  -<Box gridColumnGap='10px' gridRowGap='20px'>
-  +<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
-  ```
+```diff
+-<Box gridColumnGap='10px' gridRowGap='20px'>
++<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
+```
 
 ### Button
 
