@@ -1,10 +1,10 @@
-import merge from './merge';
-import getThemeValue, { propToStyleFunction } from './getThemeValue';
+import merge from '../merge';
+import getThemeValue, { propToStyleFunction } from '../getThemeValue';
 import {
   handleBreakpoints,
   createEmptyBreakpointObject,
   removeUnusedBreakpoints,
-} from './breakpoints';
+} from '../breakpoints';
 
 function objectsHaveSameKeys(...objects) {
   const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);

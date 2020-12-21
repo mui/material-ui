@@ -1,8 +1,8 @@
 import style from './style';
 import compose from './compose';
 
-export const gridGap = style({
-  prop: 'gridGap',
+export const gap = style({
+  prop: 'gap',
 });
 
 export const gridColumnGap = style({
@@ -50,7 +50,7 @@ export const gridArea = style({
 });
 
 const grid = compose(
-  gridGap,
+  gap,
   gridColumnGap,
   gridRowGap,
   gridColumn,
