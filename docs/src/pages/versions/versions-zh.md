@@ -2,11 +2,11 @@
 
 <p class="description">你可以随时回到本页来切换你在查阅的不同版本的文档。</p>
 
-## 稳定版本
+## Released versions
 
-我们推荐在生产开发中使用最新版本。
+The most recent stable version (✓) is recommended for use in production.
 
-{{"demo": "pages/versions/StableVersions.js", "hideToolbar": true, "bg": "inline"}}
+{{"demo": "pages/versions/ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## 最新的版本
 
