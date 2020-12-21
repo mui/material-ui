@@ -5,6 +5,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import { Transition } from 'react-transition-group';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
@@ -21,7 +22,7 @@ export const styles = (theme) => ({
     height: 'auto',
     overflow: 'visible',
   },
-  /* Styles applied to the root element when the transition has exited and `collapsedHeight` != 0px. */
+  /* Styles applied to the root element when the transition has exited and `collapsedSize` != 0px. */
   hidden: {
     visibility: 'hidden',
   },
@@ -46,7 +47,8 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     children,
     classes,
     className,
-    collapsedHeight: collapsedHeightProp = '0px',
+    collapsedHeight,
+    collapsedSize: collapsedSizeProp = '0px',
     component: Component = 'div',
     disableStrictModeCompat = false,
     in: inProp,
@@ -66,8 +68,10 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   const timer = React.useRef();
   const wrapperRef = React.useRef(null);
   const autoTransitionDuration = React.useRef();
-  const collapsedHeight =
-    typeof collapsedHeightProp === 'number' ? `${collapsedHeightProp}px` : collapsedHeightProp;
+  const collapsedSize =
+    typeof (collapsedHeight || collapsedSizeProp) === 'number'
+      ? `${collapsedHeight || collapsedSizeProp}px`
+      : collapsedHeight || collapsedSizeProp;
 
   React.useEffect(() => {
     return () => {
@@ -95,7 +99,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   };
 
   const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
-    node.style.height = collapsedHeight;
+    node.style.height = collapsedSize;
 
     if (onEnter) {
       onEnter(node, isAppearing);
@@ -166,7 +170,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
         typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
     }
 
-    node.style.height = collapsedHeight;
+    node.style.height = collapsedSize;
 
     if (onExiting) {
       onExiting(node);
@@ -201,12 +205,12 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
             classes.container,
             {
               [classes.entered]: state === 'entered',
-              [classes.hidden]: state === 'exited' && !inProp && collapsedHeight === '0px',
+              [classes.hidden]: state === 'exited' && !inProp && collapsedSize === '0px',
             },
             className,
           )}
           style={{
-            minHeight: collapsedHeight,
+            minHeight: collapsedSize,
             ...style,
           }}
           ref={handleRef}
@@ -251,8 +255,16 @@ Collapse.propTypes = {
   className: PropTypes.string,
   /**
    * The height of the container when collapsed.
+   * @deprecated The prop was renamed to support the addition of horizontal orientation, use `collapsedSize` instead.
    */
-  collapsedHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  collapsedHeight: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    'The prop was renamed to support the vertical orientation, use `collapsedSize` instead',
+  ),
+  /**
+   * The height of the container when collapsed.
+   */
+  collapsedSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
