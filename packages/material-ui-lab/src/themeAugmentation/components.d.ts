@@ -82,6 +82,10 @@ export interface LabComponents {
     defaultProps?: ComponentsProps['MuiMonthPicker'];
     styleOverrides?: ComponentsOverrides['MuiMonthPicker'];
   };
+  MuiLoadingButton?: {
+    defaultProps?: ComponentsProps['MuiLoadingButton'];
+    styleOverrides?: ComponentsOverrides['MuiLoadingButton'];
+  };
   MuiPicker?: {
     defaultProps?: ComponentsProps['MuiPicker'];
     styleOverrides?: ComponentsOverrides['MuiPicker'];

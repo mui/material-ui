@@ -6,6 +6,7 @@ import { DateTimePickerTabsClassKey } from '../DateTimePicker/DateTimePickerTabs
 import { DateTimePickerToolbarClassKey } from '../DateTimePicker/DateTimePickerToolbar';
 import { DayPickerClassKey } from '../DayPicker';
 import { MonthPickerClassKey } from '../MonthPicker';
+import { LoadingButtonClassKey } from '../LoadingButton';
 import { PickerClassKey } from '../internal/pickers/Picker/Picker';
 import { PickersArrowSwitcherClassKey } from '../internal/pickers/PickersArrowSwitcher';
 import { PickersCalendarClassKey } from '../DayPicker/PickersCalendar';
@@ -37,6 +38,7 @@ import { YearPickerClassKey } from '../YearPicker';
 
 // prettier-ignore
 export interface LabComponentNameToClassKey {
+  MuiAvatarGroup: AvatarGroupClassKey;
   MuiClock: ClockClassKey;
   MuiClockNumber: ClockNumberClassKey;
   MuiClockPointer: ClockPointerClassKey;
@@ -45,6 +47,7 @@ export interface LabComponentNameToClassKey {
   MuiDateTimePickerToolbar: DateTimePickerToolbarClassKey;
   MuiDayPicker: DayPickerClassKey;
   MuiMonthPicker: MonthPickerClassKey;
+  MuiLoadingButton: LoadingButtonClassKey;
   MuiPicker: PickerClassKey;
   MuiPickersArrowSwitcher: PickersArrowSwitcherClassKey;
   MuiPickersCalendar: PickersCalendarClassKey;
