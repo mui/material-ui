@@ -124,11 +124,11 @@ const theme = createMuiTheme({
 });
 ```
 
-**Step 2. Update the necessary typings if you are using Typescript**
+**Step 2. Update the necessary typings (if you are using TypeScript)**
 
-**Note:** If you are not using `Typescript` you should skip this step.
+> If you are not using TypeScript you should skip this step.
 
-You will need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
+You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
 
 ```ts
 declare module '@material-ui/core/styles/createTypography' {
