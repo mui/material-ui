@@ -110,7 +110,7 @@ const theme = createMuiTheme({
 
 Apart from the default variants supported, you can add custom variants to use with the `Typography` component, or disable some existing ones. Here is what you need to do:
 
-### Step 1. Update the theme's typography object
+**Step 1. Update the theme's typography object**
 
 ```js
 const theme = createMuiTheme({
@@ -124,7 +124,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### Step 2. Update the necessary typings if you are using Typescript
+**Step 2. Update the necessary typings if you are using Typescript**
 
 **Note:** If you are not using `Typescript` you should skip this step.
 
@@ -151,7 +151,7 @@ declare module '@material-ui/core/Typography/Typography' {
 }
 ```
 
-### Step 3. You can now use the new variant
+**Step 3. You can now use the new variant**
 
 ```jsx
 <Typography variant="poster">poster</Typography>;
