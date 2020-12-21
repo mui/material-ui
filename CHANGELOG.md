@@ -18,7 +18,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
     },
   });
 
-  <Typography variant="poster">poster</Typography>
+  <Typography variant="poster">poster</Typography>;
   ```
 
   [A full demo](https://codesandbox.io/s/fontsizetheme-material-demo-forked-l9u05?file=/demo.tsx:725-773)
@@ -49,12 +49,12 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [Badge] Fix the classes description to reflect the correct component (#24035) @mnajdova
 - [Select] Fix aria-describedby attribute (#24027) @HVish
 - [Skeleton] Fix Circle border radius on Safari (#24054) @anatolzak
-- [Slider][Badge] Fix classes prop not working (#24034) @mnajdova
+- [Slider][badge] Fix classes prop not working (#24034) @mnajdova
 - [Typography] Migrate styles to emotion (#23841) @DanailH
 
 ### `@material-ui/styled-engine@v5.0.0-alpha.20`/`@material-ui/styled-engine-sc@v5.0.0-alpha.20`
 
-- [styled-engine] Add name and slot options  (#23964) @mnajdova
+- [styled-engine] Add name and slot options (#23964) @mnajdova
 - [styled-engine] Add StylesProvider with injectFirst option (#23934) @mnajdova
 
 ### `@material-ui/system@v5.0.0-alpha.20`
