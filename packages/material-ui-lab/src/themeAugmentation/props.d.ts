@@ -1,9 +1,11 @@
+import { AvatarGroupProps } from '../AvatarGroup';
 import { ClockPickerProps } from '../ClockPicker';
 import { DatePickerProps } from '../DatePicker';
 import { DateTimePickerProps } from '../DateTimePicker';
 import { DayPickerProps } from '../DayPicker';
 import { DesktopDateTimePickerProps } from '../DesktopDateTimePicker';
 import { DesktopTimePickerProps } from '../DesktopTimePicker';
+import { LoadingButtonProps } from '../LoadingButton';
 import { MobileDatePickerProps } from '../MobileDatePicker';
 import { MobileDateTimePickerProps } from '../MobileDateTimePicker';
 import { MobileTimePickerProps } from '../MobileTimePicker';
@@ -26,20 +28,20 @@ import { TimePickerProps } from '../TimePicker';
 import { TreeItemProps } from '../TreeItem';
 import { TreeViewProps } from '../TreeView';
 import { YearPickerProps } from '../YearPicker';
-import { LoadingButtonProps } from '../LoadingButton';
 
 export interface LabComponentsPropsList {
+  MuiAvatarGroup: AvatarGroupProps;
   MuiClockPicker: ClockPickerProps<unknown>;
   MuiDatePicker: DatePickerProps;
   MuiDateTimePicker: DateTimePickerProps;
   MuiDayPicker: DayPickerProps<unknown>;
   MuiDesktopDateTimePicker: DesktopDateTimePickerProps;
   MuiDesktopTimePicker: DesktopTimePickerProps;
+  MuiLoadingButton: LoadingButtonProps;
   MuiMobileDatePicker: MobileDatePickerProps;
   MuiMobileDateTimePicker: MobileDateTimePickerProps;
   MuiMobileTimePicker: MobileTimePickerProps;
   MuiMonthPicker: MonthPickerProps<unknown>;
-  MuiLoadingButton: LoadingButtonProps;
   MuiPickersCalendarSkeleton: PickersCalendarSkeletonProps;
   MuiPickersDay: PickersDayProps<unknown>;
   MuiStaticDatePicker: StaticDatePickerProps;
