@@ -14,7 +14,7 @@ const theme = createMuiTheme({
   },
 });
 
-export default function FontSizeTheme() {
+export default function TypographyCustomVariant() {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ '& > *': { display: 'block' } }}>
