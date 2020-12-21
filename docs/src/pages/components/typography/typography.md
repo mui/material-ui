@@ -108,7 +108,7 @@ const theme = createMuiTheme({
 
 ## Adding & disabling variants
 
-Apart from the default variants supported, you can add custom variants to use with the `Typography` component, or disable some existing ones. Here is what you need to do:
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
 
 **Step 1. Update the theme's typography object**
 
