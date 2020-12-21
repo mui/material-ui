@@ -7,6 +7,7 @@
 Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Typography to emotion (#23841) @DanailH
+
   This change allows to add typography variants in the theme and to use them directly:
 
   ```jsx
