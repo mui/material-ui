@@ -91,9 +91,9 @@ export type FlexboxProps = PropsFor<typeof flexbox>;
 
 // grid.js
 export const grid: SimpleStyleFunction<
-  | 'gridGap'
-  | 'gridColumnGap'
-  | 'gridRowGap'
+  | 'gap'
+  | 'columnGap'
+  | 'rowGap'
   | 'gridColumn'
   | 'gridRow'
   | 'gridAutoFlow'

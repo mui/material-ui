@@ -1,16 +1,16 @@
 import style from './style';
 import compose from './compose';
 
-export const gridGap = style({
-  prop: 'gridGap',
+export const gap = style({
+  prop: 'gap',
 });
 
-export const gridColumnGap = style({
-  prop: 'gridColumnGap',
+export const columnGap = style({
+  prop: 'columnGap',
 });
 
-export const gridRowGap = style({
-  prop: 'gridRowGap',
+export const rowGap = style({
+  prop: 'rowGap',
 });
 
 export const gridColumn = style({
@@ -50,9 +50,9 @@ export const gridArea = style({
 });
 
 const grid = compose(
-  gridGap,
-  gridColumnGap,
-  gridRowGap,
+  gap,
+  columnGap,
+  rowGap,
   gridColumn,
   gridRow,
   gridAutoFlow,
