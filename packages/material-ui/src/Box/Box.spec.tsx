@@ -36,7 +36,7 @@ function GapTest() {
       display: 'flex',
       alignItems: 'center',
       flex: '1 0',
-      gap: (theme) => theme.spacing(2),
+      gridGap: (theme) => theme.spacing(2),
     }}
   >
     Gap
