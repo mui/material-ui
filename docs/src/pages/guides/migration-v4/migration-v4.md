@@ -428,15 +428,15 @@ As the core components use emotion as a styled engine, the props used by emotion
 2. `gridColumnGap` to `columnGap`
 3. `gridRowGap` to `rowGap`
 
-  ```diff
-  -<Box gridGap="10px">
-  +<Box sx={{ gap: '10px' }}>
-  ```
+```diff
+-<Box gridGap="10px">
++<Box sx={{ gap: '10px' }}>
+```
 
-  ```diff
-  -<Box gridColumnGap="10px" gridRowGap="20px">
-  +<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
-  ```
+```diff
+-<Box gridColumnGap="10px" gridRowGap="20px">
++<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
+```
 
 ### Button
 
