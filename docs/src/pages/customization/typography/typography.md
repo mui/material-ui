@@ -215,6 +215,8 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
 
+## Adding & disabling variants
+
 Apart from the default ones, you can also add custom variants, or disable some of the existing ones. See the [Adding & disabling variants](/components/typography/#adding-amp-disabling-variants) example for more info.
 
 ## Default values
