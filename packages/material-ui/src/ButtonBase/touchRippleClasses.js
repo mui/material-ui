@@ -1,11 +1,15 @@
+export function getTouchRippleUtilityClass(name) {
+  return `MuiTouchRipple-${name}`;
+}
+
 const touchRippleClasses = {
-  root: 'MuiTouchRipple-root',
-  ripple: 'MuiToucRipple-ripple',
-  rippleVisible: 'MuiTouchRipple-rippleVisible',
-  ripplePulsate: 'MuiTouchRipple-ripplePulsate',
-  child: 'MuiTouchRipple-rippleChild',
-  childLeavinge: 'MuiTouchRipple-rippleChildLeavinge',
-  childPulsate: 'MuiTouchRipple-rippleChildPulsate',
+  root: getTouchRippleUtilityClass('root'),
+  ripple: getTouchRippleUtilityClass('ripple'),
+  rippleVisible: getTouchRippleUtilityClass('rippleVisible'),
+  ripplePulsate: getTouchRippleUtilityClass('ripplePulsate'),
+  child: getTouchRippleUtilityClass('child'),
+  childLeavinge: getTouchRippleUtilityClass('childLeavinge'),
+  childPulsate: getTouchRippleUtilityClass('childPulsate'),
 };
 
 export default touchRippleClasses;

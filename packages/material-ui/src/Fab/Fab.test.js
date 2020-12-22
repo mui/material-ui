@@ -10,9 +10,8 @@ import {
   fireEvent,
 } from 'test/utils';
 import Fab from './Fab';
-import ButtonBase from '../ButtonBase';
+import ButtonBase, { touchRippleClasses } from '../ButtonBase';
 import Icon from '../Icon';
-import touchRippleClasses from '../ButtonBase/touchRippleClasses';
 
 describe('<Fab />', () => {
   const mount = createMount();
