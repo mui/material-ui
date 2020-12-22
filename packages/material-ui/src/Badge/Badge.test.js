@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { stub } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Badge from './Badge';
 
 function findBadge(container) {

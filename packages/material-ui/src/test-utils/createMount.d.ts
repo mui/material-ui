@@ -5,6 +5,10 @@ export interface MountOptions {
   strict: boolean;
 }
 
+/**
+ * @deprecated
+ * @param options
+ */
 export default function createMount(
   options?: Partial<MountOptions>
 ): typeof mount & {

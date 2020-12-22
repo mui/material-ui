@@ -2,7 +2,7 @@ import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { expect } from 'chai';
 import { stub } from 'sinon';
-import { createShallow } from '@material-ui/core/test-utils';
+import { createShallow } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import mediaQuery from 'css-mediaquery';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';

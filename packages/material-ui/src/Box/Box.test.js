@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Box from './Box';
 
 describe('<Box />', () => {

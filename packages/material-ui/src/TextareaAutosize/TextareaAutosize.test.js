@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TextareaAutosize from './TextareaAutosize';
 

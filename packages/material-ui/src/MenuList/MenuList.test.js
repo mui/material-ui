@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import MenuList from './MenuList';
 import getScrollbarSize from '../utils/getScrollbarSize';
