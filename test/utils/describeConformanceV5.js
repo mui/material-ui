@@ -85,7 +85,7 @@ function testThemeComponents(element, getOptions) {
       const testStyle = {
         marginTop: '13px',
       };
-      console.log(testVariantProps);
+
       const theme = createMuiTheme({
         components: {
           [muiName]: {

@@ -66,6 +66,7 @@ Ripple.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
   /**
    * @ignore - injected from TransitionGroup
    */

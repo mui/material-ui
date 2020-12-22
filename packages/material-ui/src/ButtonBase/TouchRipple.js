@@ -2,10 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
-import experimentalStyled from '../styles/experimentalStyled';
 import { keyframes } from '@material-ui/styled-engine';
+import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Ripple from './Ripple';
+import touchRippleClasses from './touchRippleClasses';
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
@@ -65,15 +66,15 @@ export const TouchRippleRipple = experimentalStyled(
 )(({ theme }) => ({
   opacity: 0,
   position: 'absolute',
-  '&.MuiTouchRipple-rippleVisible': {
+  [`&.${touchRippleClasses.rippleVisible}`]: {
     opacity: 0.3,
     transform: 'scale(1)',
     animation: `${enterKeyframe} ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
-  '&.MuiTouchRipple-ripplePulsate': {
+  [`&.${touchRippleClasses.ripplePulsate}`]: {
     animationDuration: `${theme.transitions.duration.shorter}ms`,
   },
-  '& .MuiTouchRipple-rippleChild': {
+  [`& .${touchRippleClasses.rippleChild}`]: {
     opacity: 1,
     display: 'block',
     width: '100%',
@@ -81,11 +82,11 @@ export const TouchRippleRipple = experimentalStyled(
     borderRadius: '50%',
     backgroundColor: 'currentColor',
   },
-  '& .MuiTouchRipple-rippleChildLeaving': {
+  [`& .${touchRippleClasses.rippleChildLeaving}`]: {
     opacity: 0,
     animation: `${exitKeyframe} ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
-  '& .MuiTouchRipple-rippleChildPulsate': {
+  [`& .${touchRippleClasses.rippleChildPulsate}`]: {
     position: 'absolute',
     left: 0,
     top: 0,
@@ -138,12 +139,12 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
         <TouchRippleRipple
           key={nextKey.current}
           classes={{
-            ripple: clsx(classes.ripple, 'MuiToucRipple-ripple'),
-            rippleVisible: clsx(classes.rippleVisible, 'MuiTouchRipple-rippleVisible'),
-            ripplePulsate: clsx(classes.ripplePulsate, 'MuiTouchRipple-ripplePulsate'),
-            child: clsx(classes.child, 'MuiTouchRipple-rippleChild'),
-            childLeaving: clsx(classes.childLeaving, 'MuiTouchRipple-rippleChildLeavinge'),
-            childPulsate: clsx(classes.childPulsate, 'MuiTouchRipple-rippleChildPulsate'),
+            ripple: clsx(classes.ripple, touchRippleClasses.ripple),
+            rippleVisible: clsx(classes.rippleVisible, touchRippleClasses.rippleVisible),
+            ripplePulsate: clsx(classes.ripplePulsate, touchRippleClasses.ripplePulsate),
+            child: clsx(classes.child, touchRippleClasses.rippleChild),
+            childLeaving: clsx(classes.childLeaving, touchRippleClasses.rippleChildLeavinge),
+            childPulsate: clsx(classes.childPulsate, touchRippleClasses.rippleChildPulsate),
           }}
           timeout={DURATION}
           pulsate={pulsate}
@@ -285,7 +286,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
 
   return (
     <TouchRippleRoot
-      className={clsx(classes.root, 'MuiTouchRipple-root', className)}
+      className={clsx(classes.root, touchRippleClasses.root, className)}
       ref={container}
       {...other}
     >
@@ -306,7 +307,7 @@ TouchRipple.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
