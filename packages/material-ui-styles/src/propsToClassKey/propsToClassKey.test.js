@@ -33,8 +33,6 @@ describe('propsToClassKey', () => {
   });
 
   it('should work with non string properties', () => {
-    expect(propsToClassKey({ disabled: true, valid: false })).to.equal(
-      'disabledTrueValidFalse',
-    );
+    expect(propsToClassKey({ disabled: true, valid: false })).to.equal('disabledTrueValidFalse');
   });
 });

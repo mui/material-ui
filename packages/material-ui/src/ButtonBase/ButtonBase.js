@@ -20,12 +20,12 @@ const overridesResolver = (props, styles) => {
   };
 
   return styleOverrides;
-}
+};
 
 export const ButtonBaseRoot = experimentalStyled(
   'button',
   {},
-  { name: 'ButtonBase', slot: 'Root', overridesResolver }
+  { name: 'ButtonBase', slot: 'Root', overridesResolver },
 )({
   display: 'inline-flex',
   alignItems: 'center',
@@ -61,24 +61,20 @@ export const ButtonBaseRoot = experimentalStyled(
 });
 
 const useButtonBaseClasses = (props) => {
-  const { disabled, focusVisible, focusVisibleClassName, classes = {},  } = props;
+  const { disabled, focusVisible, focusVisibleClassName, classes = {} } = props;
 
   const utilityClasses = {
-    root: clsx(
-      buttonBaseClasses['root'],
-      classes['root'],
-      {
-        [buttonBaseClasses['disabled']]: disabled,
-        [classes['disabled']]: disabled,
-        [buttonBaseClasses['focusVisible']]: focusVisible,
-        [classes['focusVisible']]: focusVisible,
-        [focusVisibleClassName]: focusVisible
-      },
-    ),
+    root: clsx(buttonBaseClasses['root'], classes['root'], {
+      [buttonBaseClasses['disabled']]: disabled,
+      [classes['disabled']]: disabled,
+      [buttonBaseClasses['focusVisible']]: focusVisible,
+      [classes['focusVisible']]: focusVisible,
+      [focusVisibleClassName]: focusVisible,
+    }),
   };
 
   return utilityClasses;
-}
+};
 
 /**
  * `ButtonBase` contains as few styles as possible.
@@ -349,7 +345,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     focusRipple,
     tabIndex,
     focusVisible,
-  }
+  };
 
   const classes = useButtonBaseClasses(stateAndProps);
 

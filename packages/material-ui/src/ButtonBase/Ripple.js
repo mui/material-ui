@@ -9,6 +9,7 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
  */
 function Ripple(props) {
   const {
+    className,
     classes,
     pulsate = false,
     rippleX,
@@ -20,7 +21,7 @@ function Ripple(props) {
   } = props;
   const [leaving, setLeaving] = React.useState(false);
 
-  const rippleClassName = clsx(classes.ripple, classes.rippleVisible, {
+  const rippleClassName = clsx(className, classes.ripple, classes.rippleVisible, {
     [classes.ripplePulsate]: pulsate,
   });
 
