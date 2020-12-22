@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getThemeProps, useTheme } from '@material-ui/styles';
 import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import Portal from '../Portal';
 import createChainedFunction from '../utils/createChainedFunction';
 import useForkRef from '../utils/useForkRef';
@@ -359,9 +360,9 @@ Modal.propTypes = {
    * Callback fired once the children has been mounted into the `container`.
    * It signals that the `open={true}` prop took effect.
    *
-   * This prop will be deprecated and removed in v5, the ref can be used instead.
+   * This prop will be removed in v5, the ref can be used instead.
    */
-  onRendered: PropTypes.func,
+  onRendered: deprecatedPropType(PropTypes.func, 'Use the ref instead.'),
   /**
    * If `true`, the modal is open.
    */

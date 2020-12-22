@@ -21,7 +21,8 @@ export interface PortalProps {
   /**
    * Callback fired once the children has been mounted into the `container`.
    *
-   * This prop will be deprecated and removed in v5, the ref can be used instead.
+   * This prop will be removed in v5, the ref can be used instead.
+   * @deprecated Use the ref instead.
    */
   onRendered?: () => void;
 }
