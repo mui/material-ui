@@ -641,7 +641,7 @@ export interface OverwriteCSSProperties {
  * theme function or nested) in `SystemCssProperties`.
  */
 export interface AllSystemCSSProperties
-  extends Omit<CSSProperties, keyof OverwriteCSSProperties>,
+  extends Omit<StandardCSSProperties, keyof OverwriteCSSProperties>,
     AliasesCSSProperties,
     OverwriteCSSProperties {}
 
