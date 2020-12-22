@@ -216,8 +216,9 @@ Fab.propTypes = {
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The variant to use.
+   * 'round' is deprecated, use 'circular' instead.
    */
-  variant: chainPropTypes(PropTypes.oneOf(['extended', 'circular']), (props) => {
+  variant: chainPropTypes(PropTypes.oneOf(['extended', 'circular', 'round']), (props) => {
     if (props.variant === 'round') {
       throw new Error(
         'Material-UI: variant="round" was renamed variant="circular" for consistency.',
