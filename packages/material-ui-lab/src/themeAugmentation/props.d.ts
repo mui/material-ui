@@ -1,9 +1,11 @@
+import { AvatarGroupProps } from '../AvatarGroup';
 import { ClockPickerProps } from '../ClockPicker';
 import { DatePickerProps } from '../DatePicker';
 import { DateTimePickerProps } from '../DateTimePicker';
 import { DayPickerProps } from '../DayPicker';
 import { DesktopDateTimePickerProps } from '../DesktopDateTimePicker';
 import { DesktopTimePickerProps } from '../DesktopTimePicker';
+import { LoadingButtonProps } from '../LoadingButton';
 import { MobileDatePickerProps } from '../MobileDatePicker';
 import { MobileDateTimePickerProps } from '../MobileDateTimePicker';
 import { MobileTimePickerProps } from '../MobileTimePicker';
@@ -35,6 +37,7 @@ export interface LabComponentsPropsList {
   MuiDayPicker: DayPickerProps<unknown>;
   MuiDesktopDateTimePicker: DesktopDateTimePickerProps;
   MuiDesktopTimePicker: DesktopTimePickerProps;
+  MuiLoadingButton: LoadingButtonProps;
   MuiMobileDatePicker: MobileDatePickerProps;
   MuiMobileDateTimePicker: MobileDateTimePickerProps;
   MuiMobileTimePicker: MobileTimePickerProps;
