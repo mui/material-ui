@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import PropTypes from 'prop-types';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -76,10 +78,32 @@ describe('<Grid />', () => {
     });
   });
 
-  describe('prop: justify', () => {
-    it('should apply the justify class', () => {
-      const wrapper = shallow(<Grid justify="space-evenly" container />);
-      expect(wrapper.hasClass(classes['justify-xs-space-evenly'])).to.equal(true);
+  describe('v5 deprecations', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    describe('prop: justify', () => {
+      it('should apply the justify-content class', () => {
+        const wrapper = shallow(<Grid justify="space-evenly" container />);
+        expect(wrapper.hasClass(classes['justify-content-xs-space-evenly'])).to.equal(true);
+        expect(console.error.callCount).to.equal(1);
+        expect(console.error.firstCall.args[0]).to.contain(
+          'The prop `justify` of `ForwardRef(Grid)` is deprecated. Use `justifyContent` instead',
+        );
+      });
+    });
+  });
+
+  describe('prop: justifyContent', () => {
+    it('should apply the justify-content class', () => {
+      const wrapper = shallow(<Grid justifyContent="space-evenly" container />);
+      expect(wrapper.hasClass(classes['justify-content-xs-space-evenly'])).to.equal(true);
     });
   });
 
