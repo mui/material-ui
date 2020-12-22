@@ -37,7 +37,7 @@ function StressGrid(props) {
             <Paper className={classes.paper}>last</Paper>
           </Grid>
         </Grid>
-        <Grid container item spacing={1} justify="space-between">
+        <Grid container item spacing={1} justifyContent="space-between">
           <Grid item xs={3}>
             <Paper className={classes.paper}>space</Paper>
           </Grid>
