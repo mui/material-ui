@@ -29,7 +29,9 @@ export default function propsToClassKey(props) {
       if (key === 'color') {
         classKey += isEmpty(classKey) ? props[key] : capitalize(props[key]);
       } else {
-        classKey += `${isEmpty(classKey) ? key : capitalize(key)}${capitalize(props[key])}`;
+        classKey += `${isEmpty(classKey) ? key : capitalize(key)}${capitalize(
+          props[key].toString(),
+        )}`;
       }
     });
 
