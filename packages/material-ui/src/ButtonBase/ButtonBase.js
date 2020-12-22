@@ -43,8 +43,8 @@ export const ButtonBaseRoot = experimentalStyled(
   cursor: 'pointer',
   userSelect: 'none',
   verticalAlign: 'middle',
-  'MozAppearance': 'none', // Reset
-  'WebkitAppearance': 'none', // Reset
+  MozAppearance: 'none', // Reset
+  WebkitAppearance: 'none', // Reset
   textDecoration: 'none',
   // So we take precedent over the style of a native <a /> element.
   color: 'inherit',

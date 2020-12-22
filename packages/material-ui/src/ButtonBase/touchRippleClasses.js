@@ -6,6 +6,6 @@ const touchRippleClasses = {
   child: 'MuiTouchRipple-rippleChild',
   childLeavinge: 'MuiTouchRipple-rippleChildLeavinge',
   childPulsate: 'MuiTouchRipple-rippleChildPulsate',
-}
+};
 
 export default touchRippleClasses;
