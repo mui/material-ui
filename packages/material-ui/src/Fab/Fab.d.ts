@@ -36,8 +36,9 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
     size?: 'small' | 'medium' | 'large';
     /**
      * The variant to use.
+     * 'round' is deprecated, use 'circular' instead.
      */
-    variant?: 'round' | 'extended';
+    variant?: 'circular' | 'extended' | 'round';
   };
   defaultComponent: D;
   classKey: FabClassKey;

@@ -6,4 +6,8 @@ export interface ShallowOptions extends ShallowRendererProps {
   untilSelector: EnzymeSelector;
 }
 
+/**
+ * @deprecated
+ * @param options
+ */
 export default function createShallow(options?: Partial<ShallowOptions>): typeof shallow;
