@@ -74,7 +74,7 @@ export const TouchRippleRipple = experimentalStyled(
   [`&.${touchRippleClasses.ripplePulsate}`]: {
     animationDuration: `${theme.transitions.duration.shorter}ms`,
   },
-  [`& .${touchRippleClasses.rippleChild}`]: {
+  [`& .${touchRippleClasses.child}`]: {
     opacity: 1,
     display: 'block',
     width: '100%',
@@ -82,11 +82,11 @@ export const TouchRippleRipple = experimentalStyled(
     borderRadius: '50%',
     backgroundColor: 'currentColor',
   },
-  [`& .${touchRippleClasses.rippleChildLeaving}`]: {
+  [`& .${touchRippleClasses.childLeaving}`]: {
     opacity: 0,
     animation: `${exitKeyframe} ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
-  [`& .${touchRippleClasses.rippleChildPulsate}`]: {
+  [`& .${touchRippleClasses.childPulsate}`]: {
     position: 'absolute',
     left: 0,
     top: 0,
@@ -142,9 +142,9 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
             ripple: clsx(classes.ripple, touchRippleClasses.ripple),
             rippleVisible: clsx(classes.rippleVisible, touchRippleClasses.rippleVisible),
             ripplePulsate: clsx(classes.ripplePulsate, touchRippleClasses.ripplePulsate),
-            child: clsx(classes.child, touchRippleClasses.rippleChild),
-            childLeaving: clsx(classes.childLeaving, touchRippleClasses.rippleChildLeavinge),
-            childPulsate: clsx(classes.childPulsate, touchRippleClasses.rippleChildPulsate),
+            child: clsx(classes.child, touchRippleClasses.child),
+            childLeaving: clsx(classes.childLeaving, touchRippleClasses.childLeaving),
+            childPulsate: clsx(classes.childPulsate, touchRippleClasses.childPulsate),
           }}
           timeout={DURATION}
           pulsate={pulsate}

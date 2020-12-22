@@ -4,7 +4,7 @@ const touchRippleClasses = {
   rippleVisible: 'MuiTouchRipple-rippleVisible',
   ripplePulsate: 'MuiTouchRipple-ripplePulsate',
   child: 'MuiTouchRipple-rippleChild',
-  childLeaving: 'MuiTouchRipple-rippleChildLeavinge',
+  childLeavinge: 'MuiTouchRipple-rippleChildLeavinge',
   childPulsate: 'MuiTouchRipple-rippleChildPulsate',
 }
 
