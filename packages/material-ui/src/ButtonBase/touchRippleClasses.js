@@ -8,7 +8,7 @@ const touchRippleClasses = {
   rippleVisible: getTouchRippleUtilityClass('rippleVisible'),
   ripplePulsate: getTouchRippleUtilityClass('ripplePulsate'),
   child: getTouchRippleUtilityClass('child'),
-  childLeavinge: getTouchRippleUtilityClass('childLeavinge'),
+  childLeaving: getTouchRippleUtilityClass('childLeaving'),
   childPulsate: getTouchRippleUtilityClass('childPulsate'),
 };
 
