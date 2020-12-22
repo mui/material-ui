@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import PropTypes from 'prop-types';
 import createServerRender from 'test/utils/createServerRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -177,21 +178,36 @@ describe('<Portal />', () => {
     expect(document.querySelector('#test3').parentElement.nodeName).to.equal('BODY');
   });
 
-  it('should call onRendered', () => {
-    const ref = React.createRef();
-    const handleRendered = spy();
-    render(
-      <Portal
-        ref={ref}
-        onRendered={() => {
-          handleRendered();
-          expect(ref.current !== null).to.equal(true);
-        }}
-      >
-        <div />
-      </Portal>,
-    );
-    expect(handleRendered.callCount).to.equal(1);
+  describe('v5 deprecations', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should call onRendered', () => {
+      const ref = React.createRef();
+      const handleRendered = spy();
+      render(
+        <Portal
+          ref={ref}
+          onRendered={() => {
+            handleRendered();
+            expect(ref.current !== null).to.equal(true);
+          }}
+        >
+          <div />
+        </Portal>,
+      );
+      expect(handleRendered.callCount).to.equal(1);
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.contain(
+        'The prop `onRendered` of `ForwardRef(Portal)` is deprecated. Use the ref instead',
+      );
+    });
   });
 
   it('should call ref after child effect', () => {
