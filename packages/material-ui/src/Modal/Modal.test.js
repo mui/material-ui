@@ -527,8 +527,17 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('prop: onRendered', () => {
-    it('should fire', () => {
+  describe('v5 deprecations', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should call onRendered', () => {
       const handleRendered = spy();
 
       render(
@@ -538,6 +547,10 @@ describe('<Modal />', () => {
       );
 
       expect(handleRendered).to.have.property('callCount', 1);
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.contain(
+        'The prop `onRendered` of `ForwardRef(Modal)` is deprecated. Use the ref instead',
+      );
     });
   });
 

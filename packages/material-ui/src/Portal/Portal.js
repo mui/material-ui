@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { exactProp, HTMLElementType } from '@material-ui/utils';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
 
@@ -86,9 +87,10 @@ Portal.propTypes = {
   /**
    * Callback fired once the children has been mounted into the `container`.
    *
-   * This prop will be deprecated and removed in v5, the ref can be used instead.
+   * This prop will be removed in v5, the ref can be used instead.
+   * @deprecated Use the ref instead.
    */
-  onRendered: PropTypes.func,
+  onRendered: deprecatedPropType(PropTypes.func, 'Use the ref instead.'),
 };
 
 if (process.env.NODE_ENV !== 'production') {
