@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
@@ -130,7 +131,7 @@ const Fab = React.forwardRef(function Fab(props, ref) {
     disableFocusRipple = false,
     focusVisibleClassName,
     size = 'large',
-    variant = 'round',
+    variant = 'circular',
     ...other
   } = props;
 
@@ -215,8 +216,17 @@ Fab.propTypes = {
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The variant to use.
+   * 'round' is deprecated, use 'circular' instead.
    */
-  variant: PropTypes.oneOf(['extended', 'round']),
+  variant: chainPropTypes(PropTypes.oneOf(['extended', 'circular', 'round']), (props) => {
+    if (props.variant === 'round') {
+      throw new Error(
+        'Material-UI: variant="round" was renamed variant="circular" for consistency.',
+      );
+    }
+
+    return null;
+  }),
 };
 
 export default withStyles(styles, { name: 'MuiFab' })(Fab);
