@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { exactProp, refType } from '@material-ui/utils';
 import setRef from '../utils/setRef';
 
+let warnedOnce = false;
+
 /**
  * ⚠️⚠️⚠️
  * If you want the DOM element of a Material-UI component check out
@@ -35,6 +37,8 @@ import setRef from '../utils/setRef';
  *   );
  * }
  * ```
+ *
+ * @deprecated
  */
 class RootRef extends React.Component {
   componentDidMount() {
@@ -61,6 +65,19 @@ class RootRef extends React.Component {
   }
 
   render() {
+    if (process.env.NODE_ENV !== 'production') {
+      if (!warnedOnce) {
+        warnedOnce = true;
+        console.warn(
+          [
+            'Material-UI: The RootRef component is deprecated.',
+            'The component relies on the ReactDOM.findDOMNode API which is deprecated in React.StrictMode.',
+            'Instead, you can get a reference to the underlying DOM node of the components via the `ref` prop.',
+          ].join('/n'),
+        );
+      }
+    }
+
     return this.props.children;
   }
 }
