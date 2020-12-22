@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from 'test/utils';
 import TabIndicator from './TabIndicator';
 
 describe('<TabIndicator />', () => {

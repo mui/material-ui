@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { act, createClientRender, fireEvent, queries } from 'test/utils/createClientRender';
 import ListItemText from '../ListItemText';

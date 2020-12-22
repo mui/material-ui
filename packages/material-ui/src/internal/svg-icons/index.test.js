@@ -2,14 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow } from '../../test-utils';
+import { createClientRender, screen } from 'test/utils';
 
 describe('svg-icons', () => {
-  let shallow;
-
-  before(() => {
-    shallow = createShallow();
-  });
+  const render = createClientRender();
 
   it('should be able to render all of them', (done) => {
     // This test can only be run on the node env
@@ -37,8 +33,9 @@ describe('svg-icons', () => {
         }
 
         const Icon = fileLoaded.default;
-        const wrapper = shallow(<Icon className="foo" />);
-        expect(wrapper.hasClass('foo')).to.equal(true);
+        const testId = `icon-${file}`;
+        render(<Icon className="foo" data-testid={testId} />);
+        expect(screen.getByTestId(testId)).to.have.class('foo');
       });
 
       done();

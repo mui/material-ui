@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { stub } from 'sinon';
 import createMount from 'test/utils/createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 
@@ -19,6 +20,18 @@ describe('findOutermostIntrinsic', () => {
     }
   };
   const Headless = ({ children }) => children;
+
+  before(() => {
+    // Trigger deprecation warning.
+    try {
+      stub(console, 'warn');
+      findOutermostIntrinsic();
+    } catch (error) {
+      // ignore
+    } finally {
+      console.warn.restore();
+    }
+  });
 
   it('returns immediate DOM nodes', () => {
     expectIntrinsic(<div>Hello, World!</div>, 'div');
