@@ -36,6 +36,8 @@ export interface RootRefProps<T = any> {
  *   );
  * }
  * ```
+ *
+ * @deprecated
  * API:
  *
  * - [RootRef API](https://material-ui.com/api/root-ref/)

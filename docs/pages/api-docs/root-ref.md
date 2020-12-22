@@ -49,6 +49,8 @@ function MyComponent() {
 }
 ```
 
+@deprecated
+
 
 
 ## Props
