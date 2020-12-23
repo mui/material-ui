@@ -64,7 +64,7 @@ For example, if your site prompts for potential subscribers to fill in their ema
 ## Customized dialogs
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+[overrides documentation page](/customization/how-to-customize/).
 
 The dialog has a close button added to aide usability.
 

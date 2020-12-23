@@ -2,14 +2,14 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'customization/components';
+const pageFilename = 'customization/how-to-customize';
 const requireDemo = require.context(
-  'docs/src/pages/customization/components',
+  'docs/src/pages/customization/how-to-customize',
   false,
   /\.(js|tsx)$/,
 );
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/customization/components',
+  '!raw-loader!../../src/pages/customization/how-to-customize',
   false,
   /\.(js|md|tsx)$/,
 );
