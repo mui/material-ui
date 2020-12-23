@@ -103,7 +103,7 @@ materialDesign: https://material.io/components/text-fields
 
 ## 自定义输入
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
