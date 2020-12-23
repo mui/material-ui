@@ -268,7 +268,13 @@ describe('<Button />', () => {
   });
 
   it('should render a button with startIcon', () => {
-    const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
+    let getByRole;
+
+    expect(() => {
+      const { getByRole: getByRoleLocal } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
+      getByRole = getByRoleLocal;
+    }).toErrorDev('The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".')
+
     const button = getByRole('button');
     const label = button.querySelector(`.${classes.label}`);
 
