@@ -20,7 +20,7 @@ export const styles = (theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'center',
       cursor: 'pointer',
-      outline: 'none',
+      outline: 0,
       height: 64,
       transition: theme.transitions.create('font-size', { duration: '100ms' }),
       '&:focus': {

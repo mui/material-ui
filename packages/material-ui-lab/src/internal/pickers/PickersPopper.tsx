@@ -10,7 +10,6 @@ import { useForkRef, setRef, useEventCallback } from '@material-ui/core/utils';
 import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import { TransitionProps as MuiTransitionProps } from '@material-ui/core/transitions';
 import { useGlobalKeyDown, keycode } from './hooks/useKeyDown';
-import { IS_TOUCH_DEVICE_MEDIA } from './constants/dimensions';
 import { executeInTheNextEventLoopTick } from './utils';
 
 export interface ExportedPickerPopperProps {
@@ -41,11 +40,7 @@ export const styles = (theme: Theme) =>
     },
     paper: {
       transformOrigin: 'top center',
-      '&:focus': {
-        [IS_TOUCH_DEVICE_MEDIA]: {
-          outline: 0,
-        },
-      },
+      outline: 0,
     },
     topTransition: {
       transformOrigin: 'bottom center',
