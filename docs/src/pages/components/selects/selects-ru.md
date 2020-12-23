@@ -52,7 +52,7 @@ githubLabel: 'component: Select'
 
 ## Кастомизированные списки
 
-Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 Чтобы правильно подписать ваш элемент `Select`, вам потребуется дополнительный элемент со свойством `id`. После стилизации, вы можете использовать компонент напрямую как текстовое поле, либо передать его в компонент `Select`, свойством `input`.
 
