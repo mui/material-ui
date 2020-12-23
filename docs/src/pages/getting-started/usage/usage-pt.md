@@ -54,4 +54,4 @@ Agora que você tem uma ideia da configuração básica, é hora de aprender mai
 
 - Como aplicar [a fonte e a tipografia do Material Design](/components/typography/).
 - Como tirar proveito da [solução de tema](/customization/theming/).
-- Como [customizar](/customization/components/) o visual e a aparência dos componentes.
+- Como [customizar](/customization/how-to-customize/) o visual e a aparência dos componentes.
