@@ -256,6 +256,14 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+### Sistema
+
+- The following system functions (and properties) were renamed, because they are considered deprecated CSS:
+
+1. `gridGap` to `gap`
+2. `gridColumnGap` to `columnGap`
+3. `gridRowGap` to `rowGap`
+
 ### Componentes do core
 
 As the core components use emotion as a styled engine, the props used by emotion are not intercepted. The prop `as` in the following codesnippet will not be propagated to the `SomeOtherComponent`.
@@ -368,11 +376,11 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### BottomNavigation
 
-- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
+- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`.
 
   ```diff
-  -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
-  +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
+  -<BottomNavigation onChange={(event: React. ChangeEvent<{}>) => {}} />
+  +<BottomNavigation onChange={(event: React. SyntheticEvent) => {}} />
   ```
 
 ### Box
@@ -397,6 +405,22 @@ As the core components use emotion as a styled engine, the props used by emotion
   -<Box sx={{ borderRadius: 16 }}>
   +<Box sx={{ borderRadius: '16px' }}>
   ```
+
+- The following properties were renamed, because they are considered deprecated CSS proeprties:
+
+1. `gridGap` to `gap`
+2. `gridColumnGap` to `columnGap`
+3. `gridRowGap` to `rowGap`
+
+```diff
+-<Box gridGap="10px">
++<Box sx={{ gap: '10px' }}>
+```
+
+```diff
+-<Box gridColumnGap="10px" gridRowGap="20px">
++<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
+```
 
 ### Button
 
@@ -569,7 +593,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +</Accordion>
   ```
 
-- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
+- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`.
 
   ```diff
   -<Accordion onChange={(event: React. ChangeEvent<{}>, expanded: boolean) => {}} />
@@ -854,7 +878,7 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 ### Slider
 
-- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`. 
+- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`. 
   
   
 
@@ -1032,7 +1056,7 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 ### Abas
 
-- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`. 
+- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`. 
   
   
 
