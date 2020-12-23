@@ -223,7 +223,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   function handleFocus(event) {
     // DOM focus stays on the tree which manages focus with aria-activedescendant
     if (event.target === event.currentTarget) {
-      ownerDocument(event.target).getElementById(treeId).focus();
+      ownerDocument(event.target).getElementById(treeId).focus({ preventScroll: true });
     }
 
     const unfocusable = !disabledItemsFocusable && disabled;
