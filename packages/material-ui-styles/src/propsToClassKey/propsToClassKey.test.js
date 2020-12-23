@@ -26,9 +26,13 @@ describe('propsToClassKey', () => {
     );
   });
 
-  it('should not capitalize the first prop ', () => {
+  it('should not capitalize the first prop', () => {
     expect(propsToClassKey({ size: 'large', zIndex: 'toolbar' })).to.equal(
       'sizeLargeZIndexToolbar',
     );
+  });
+
+  it('should work with non string properties', () => {
+    expect(propsToClassKey({ disabled: true, valid: false })).to.equal('disabledTrueValidFalse');
   });
 });
