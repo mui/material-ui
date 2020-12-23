@@ -59,7 +59,7 @@ Los diálogos de formulario permiten a los usuarios llenar campos dentro de un c
 
 ## Diálogos personalizados
 
-He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
 The dialog has a close button added to aide usability.
 
