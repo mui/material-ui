@@ -38,7 +38,7 @@ Evitamos documentar propriedades nativas suportadas pelo DOM como [`className`](
 
 ### Classes CSS
 
-Todos os componentes aceitam uma propriedade [`classes`](/customization/components/#overriding-styles-with-classes) para customizar os estilos. O design de classes responde a duas restrições: para tornar a estrutura das classes o mais simples possível, enquanto que faz a implementação da especificação do Material Design.
+Todos os componentes aceitam uma propriedade [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) para customizar os estilos. O design de classes responde a duas restrições: para tornar a estrutura das classes o mais simples possível, enquanto que faz a implementação da especificação do Material Design.
 
 - A classe aplicada ao elemento raiz é sempre chamada de `root`.
 - Todos os estilos padrão são agrupados em uma única classe.
