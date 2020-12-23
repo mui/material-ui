@@ -82,17 +82,17 @@ const useButtonClasses = (props) => {
 
 const commonIconStyles = (props) => ({
   ...(props.styleProps.size === 'small' && {
-    '& > *:first-child': {
+    '& > *:nth-of-type(1)': {
       fontSize: 18,
     },
   }),
   ...(props.styleProps.size === 'medium' && {
-    '& > *:first-child': {
+    '& > *:nth-of-type(1)': {
       fontSize: 20,
     },
   }),
   ...(props.styleProps.size === 'large' && {
-    '& > *:first-child': {
+    '& > *:nth-of-type(1)': {
       fontSize: 22,
     },
   }),

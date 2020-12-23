@@ -268,17 +268,7 @@ describe('<Button />', () => {
   });
 
   it('should render a button with startIcon', () => {
-    let getByRole;
-
-    expect(() => {
-      const { getByRole: getByRoleLocal } = render(
-        <Button startIcon={<span>icon</span>}>Hello World</Button>,
-      );
-      getByRole = getByRoleLocal;
-    }).toErrorDev(
-      'The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".',
-    );
-
+    const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
     const button = getByRole('button');
     const label = button.querySelector(`.${classes.label}`);
 
@@ -289,17 +279,7 @@ describe('<Button />', () => {
   });
 
   it('should render a button with endIcon', () => {
-    let getByRole;
-
-    expect(() => {
-      const { getByRole: getByRoleLocal } = render(
-        <Button startIcon={<span>icon</span>}>Hello World</Button>,
-      );
-      getByRole = getByRoleLocal;
-    }).toErrorDev(
-      'The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".',
-    );
-
+    const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
     const button = getByRole('button');
     const label = button.querySelector(`.${classes.label}`);
 
