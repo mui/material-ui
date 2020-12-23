@@ -4,9 +4,6 @@ export function getButtonUtilityClass(name) {
 
 const buttonClasses = {
   root: getButtonUtilityClass('root'),
-  active: 'Mui-active',
-  focusVisible: 'Mui-focusVisible',
-  disabled: 'Mui-disabled',
   label: getButtonUtilityClass('label'),
   text: getButtonUtilityClass('text'),
   textInherit: getButtonUtilityClass('textInherit'),

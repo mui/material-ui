@@ -26,7 +26,6 @@ const overridesResolver = (props, styles) => {
     ...(color === 'inherit' && styles.colorInherit),
     ...(disableElevation && styles.disableElevation),
     ...(fullWidth && styles.fullWidth),
-    
     [`&.${buttonClasses.label}`]: styles.label,
     [`&.${buttonClasses.startIcon}`]: {
       ...styles.startIcon,
@@ -49,23 +48,33 @@ const useButtonClasses = (props) => {
       buttonClasses['root'],
       classes['root'],
       getButtonUtilityClass(variant),
-      classes[variant], 
+      classes[variant],
       getButtonUtilityClass(`${variant}${capitalize(color)}`),
-      classes[[`${variant}${capitalize(color)}`]], 
+      classes[[`${variant}${capitalize(color)}`]],
       getButtonUtilityClass(`size${capitalize(size)}`),
       classes[`size${capitalize(size)}`],
       getButtonUtilityClass(`${variant}Size${capitalize(size)}`),
-      classes[`${variant}Size${capitalize(size)}`], {
+      classes[`${variant}Size${capitalize(size)}`],
+      {
         [buttonClasses['colorInherit']]: color === 'inherit',
         [classes['colorInherit']]: color === 'inherit',
         [buttonClasses['disableElevation']]: disableElevation,
         [classes['disableElevation']]: disableElevation,
         [buttonClasses['fullWidth']]: fullWidth,
         [classes['fullWidth']]: fullWidth,
-    }),
+      },
+    ),
     label: clsx(buttonClasses['label'], classes['label']),
-    startIcon: clsx(buttonClasses['startIcon'], classes['startIcon'], getButtonUtilityClass(`iconSize${capitalize(size)}`)),
-    endIcon: clsx(buttonClasses['endIcon'], classes['endIcon'], getButtonUtilityClass(`iconSize${capitalize(size)}`)),
+    startIcon: clsx(
+      buttonClasses['startIcon'],
+      classes['startIcon'],
+      getButtonUtilityClass(`iconSize${capitalize(size)}`),
+    ),
+    endIcon: clsx(
+      buttonClasses['endIcon'],
+      classes['endIcon'],
+      getButtonUtilityClass(`iconSize${capitalize(size)}`),
+    ),
   };
 
   return utilityClasses;
@@ -156,7 +165,6 @@ const ButtonRoot = experimentalStyled(
       duration: props.theme.transitions.duration.short,
     },
   ),
-
   '&:hover': {
     textDecoration: 'none',
     backgroundColor: alpha(
@@ -167,7 +175,6 @@ const ButtonRoot = experimentalStyled(
     '@media (hover: none)': {
       backgroundColor: 'transparent',
     },
-
     ...(props.styleProps.variant === 'text' &&
       props.styleProps.color !== 'inherit' && {
         backgroundColor: alpha(
@@ -179,7 +186,6 @@ const ButtonRoot = experimentalStyled(
           backgroundColor: 'transparent',
         },
       }),
-
     ...(props.styleProps.variant === 'outlined' &&
       props.styleProps.color !== 'inherit' && {
         border: `1px solid ${props.theme.palette[props.styleProps.color].main}`,
@@ -192,7 +198,6 @@ const ButtonRoot = experimentalStyled(
           backgroundColor: 'transparent',
         },
       }),
-
     ...(props.styleProps.variant === 'contained' && {
       backgroundColor: props.theme.palette.grey.A100,
       boxShadow: props.theme.shadows[4],
@@ -202,7 +207,6 @@ const ButtonRoot = experimentalStyled(
         backgroundColor: props.theme.palette.grey[300],
       },
     }),
-
     ...(props.styleProps.variant === 'contained' &&
       props.styleProps.color !== 'inherit' && {
         backgroundColor: props.theme.palette[props.styleProps.color].dark,
@@ -211,12 +215,10 @@ const ButtonRoot = experimentalStyled(
           backgroundColor: props.theme.palette[props.styleProps.color].main,
         },
       }),
-
     ...(props.styleProps.disableElevation && {
       boxShadow: 'none',
     }),
   },
-
   '&:active': {
     ...(props.styleProps.variant === 'contained' && {
       boxShadow: props.theme.shadows[8],
@@ -225,7 +227,6 @@ const ButtonRoot = experimentalStyled(
       boxShadow: 'none',
     }),
   },
-
   '&.Mui-focusVisible': {
     ...(props.styleProps.variant === 'contained' && {
       boxShadow: props.theme.shadows[6],
@@ -234,7 +235,6 @@ const ButtonRoot = experimentalStyled(
       boxShadow: 'none',
     }),
   },
-
   '&.Mui-disabled': {
     color: props.theme.palette.action.disabled,
     ...(props.styleProps.variant === 'outlined' && {
@@ -253,7 +253,6 @@ const ButtonRoot = experimentalStyled(
       boxShadow: 'none',
     }),
   },
-
   ...(props.styleProps.variant === 'text' && {
     padding: '6px 8px',
   }),
@@ -261,7 +260,6 @@ const ButtonRoot = experimentalStyled(
     props.styleProps.color !== 'inherit' && {
       color: props.theme.palette[props.styleProps.color].main,
     }),
-
   ...(props.styleProps.variant === 'outlined' && {
     padding: '5px 15px',
     border: `1px solid ${
@@ -273,7 +271,6 @@ const ButtonRoot = experimentalStyled(
       color: props.theme.palette[props.styleProps.color].main,
       border: `1px solid ${alpha(props.theme.palette[props.styleProps.color].main, 0.5)}`,
     }),
-
   ...(props.styleProps.variant === 'contained' && {
     color: props.theme.palette.getContrastText(props.theme.palette.grey[300]),
     backgroundColor: props.theme.palette.grey[300],
@@ -284,16 +281,13 @@ const ButtonRoot = experimentalStyled(
       color: props.theme.palette[props.styleProps.color].contrastText,
       backgroundColor: props.theme.palette[props.styleProps.color].main,
     }),
-
   ...(props.styleProps.disableElevation && {
     boxShadow: 'none',
   }),
-
   ...(props.styleProps.color === 'inherit' && {
     color: 'inherit',
     borderColor: 'currentColor',
   }),
-
   ...(props.styleProps.size === 'small' &&
     props.styleProps.variant === 'text' && {
       padding: '4px 5px',
@@ -304,7 +298,6 @@ const ButtonRoot = experimentalStyled(
       padding: '8px 11px',
       fontSize: props.theme.typography.pxToRem(15),
     }),
-
   ...(props.styleProps.size === 'small' &&
     props.styleProps.variant === 'outlined' && {
       padding: '3px 9px',
@@ -315,7 +308,6 @@ const ButtonRoot = experimentalStyled(
       padding: '7px 21px',
       fontSize: props.theme.typography.pxToRem(15),
     }),
-
   ...(props.styleProps.size === 'small' &&
     props.styleProps.variant === 'contained' && {
       padding: '4px 10px',
@@ -326,7 +318,6 @@ const ButtonRoot = experimentalStyled(
       padding: '8px 22px',
       fontSize: props.theme.typography.pxToRem(15),
     }),
-
   ...(props.styleProps.fullWidth && {
     width: '100%',
   }),
@@ -369,11 +360,11 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const classes = useButtonClasses(stateAndProps);
 
   const startIcon = startIconProp && (
-    <ButtonStartIcon styleProps={stateAndProps}>{startIconProp}</ButtonStartIcon>
+    <ButtonStartIcon className={classes.startIcon} styleProps={stateAndProps}>{startIconProp}</ButtonStartIcon>
   );
 
   const endIcon = endIconProp && (
-    <ButtonEndIcon styleProps={stateAndProps}>{endIconProp}</ButtonEndIcon>
+    <ButtonEndIcon className={classes.endIcon} styleProps={stateAndProps}>{endIconProp}</ButtonEndIcon>
   );
 
   return (
@@ -394,7 +385,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
        * https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9
        * TODO v5: evaluate if still required for the supported browsers.
        */}
-      <ButtonLabel>
+      <ButtonLabel className={classes.label}>
         {startIcon}
         {children}
         {endIcon}
