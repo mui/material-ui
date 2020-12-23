@@ -158,12 +158,13 @@ describe('<Modal />', () => {
     });
 
     it('should let the user disable backdrop click triggering onClose', () => {
-      const onClose = spy();
+      const onClose = [];
       const { getByTestId } = render(
         <Modal
-          onClose={onClose}
+          onClose={(event, reason) => {
+            onClose.push(reason);
+          }}
           open
-          disableBackdropClick
           BackdropProps={{ 'data-testid': 'backdrop' }}
         >
           <div />
@@ -172,20 +173,7 @@ describe('<Modal />', () => {
 
       getByTestId('backdrop').click();
 
-      expect(onClose).to.have.property('callCount', 0);
-    });
-
-    it('should call through to the user specified onBackdropClick callback', () => {
-      const onBackdropClick = spy();
-      const { getByTestId } = render(
-        <Modal onBackdropClick={onBackdropClick} open BackdropProps={{ 'data-testid': 'backdrop' }}>
-          <div />
-        </Modal>,
-      );
-
-      getByTestId('backdrop').click();
-
-      expect(onBackdropClick).to.have.property('callCount', 1);
+      expect(onClose).to.deep.equal(['backdropClick']);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
@@ -196,16 +184,16 @@ describe('<Modal />', () => {
           </div>
         );
       }
-      const onBackdropClick = spy();
+      const onClose = spy();
       const { getByTestId } = render(
-        <Modal onBackdropClick={onBackdropClick} open BackdropComponent={CustomBackdrop}>
+        <Modal onClose={onClose} open BackdropComponent={CustomBackdrop}>
           <div />
         </Modal>,
       );
 
       getByTestId('inner').click();
 
-      expect(onBackdropClick).to.have.property('callCount', 0);
+      expect(onClose).to.have.property('callCount', 0);
     });
 
     // Test case for https://github.com/mui-org/material-ui/issues/12831
@@ -247,10 +235,9 @@ describe('<Modal />', () => {
 
   describe('handleKeyDown()', () => {
     it('when mounted, TopModal and event not esc should not call given functions', () => {
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
-        <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+        <Modal open onClose={onCloseSpy}>
           <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
@@ -260,17 +247,15 @@ describe('<Modal />', () => {
         key: 'j', // Not escape
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 0);
       expect(onCloseSpy).to.have.property('callCount', 0);
     });
 
     it('should call onEscapeKeyDown and onClose', () => {
       const handleKeyDown = spy();
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
-          <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+          <Modal open onClose={onCloseSpy}>
             <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
@@ -281,23 +266,16 @@ describe('<Modal />', () => {
         key: 'Escape',
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 1);
       expect(onCloseSpy).to.have.property('callCount', 1);
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
     it('should not call onChange when `disableEscapeKeyDown=true`', () => {
       const handleKeyDown = spy();
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
-          <Modal
-            open
-            disableEscapeKeyDown
-            onEscapeKeyDown={onEscapeKeyDownSpy}
-            onClose={onCloseSpy}
-          >
+          <Modal open disableEscapeKeyDown onClose={onCloseSpy}>
             <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
@@ -308,7 +286,6 @@ describe('<Modal />', () => {
         key: 'Escape',
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 1);
       expect(onCloseSpy).to.have.property('callCount', 0);
       expect(handleKeyDown).to.have.property('callCount', 1);
     });
