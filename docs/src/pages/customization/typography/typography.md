@@ -215,6 +215,62 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
 
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
+
+**Step 1. Update the theme's typography object**
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    poster: {
+      color: 'red',
+    },
+    // Disable h3 variant
+    h3: undefined,
+  },
+});
+```
+
+**Step 2. Update the necessary typings (if you are using TypeScript)**
+
+> If you aren't using TypeScript you should skip this step.
+
+You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
+
+```ts
+declare module '@material-ui/core/styles/createTypography' {
+  interface Typography {
+    poster: React.CSSProperties;
+  }
+
+  // allow configuration using `createMuiTheme`
+  interface TypographyOptions {
+    poster?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@material-ui/core/Typography/Typography' {
+  interface TypographyPropsVariantOverrides {
+    poster: true;
+    h3: false;
+  }
+}
+```
+
+**Step 3. You can now use the new variant**
+
+{{"demo": "pages/customization/typography/TypographyCustomVariant.js", "hideToolbar": true}}
+
+```jsx
+<Typography variant="poster">poster</Typography>;
+
+/* This variant is no longer supported */
+<Typography variant="h3">h3</Typography>;
+```
+
 ## Default values
 
 You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).

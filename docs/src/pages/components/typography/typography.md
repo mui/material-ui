@@ -106,6 +106,10 @@ const theme = createMuiTheme({
 });
 ```
 
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
+
 ## Accessibility
 
 A few key factors to follow for an accessible typography:
