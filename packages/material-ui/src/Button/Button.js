@@ -90,7 +90,7 @@ const commonIconStyles = (props) => ({
 });
 
 const ButtonStartIcon = experimentalStyled(
-  ButtonBase,
+  'span',
   {},
   {
     name: 'Button',
@@ -107,7 +107,7 @@ const ButtonStartIcon = experimentalStyled(
 }));
 
 const ButtonEndIcon = experimentalStyled(
-  ButtonBase,
+  'span',
   {},
   {
     name: 'Button',
@@ -124,7 +124,7 @@ const ButtonEndIcon = experimentalStyled(
 }));
 
 const ButtonLabel = experimentalStyled(
-  ButtonBase,
+  'span',
   {},
   {
     name: 'Button',
