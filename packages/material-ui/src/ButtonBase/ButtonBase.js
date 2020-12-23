@@ -2,51 +2,78 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
-import withStyles from '../styles/withStyles';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
+import buttonBaseClasses from './buttonBaseClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    boxSizing: 'border-box',
-    WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent', // Reset default value
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-    border: 0,
-    margin: 0, // Remove the margin in Safari
-    borderRadius: 0,
-    padding: 0, // Remove the padding in Firefox
-    cursor: 'pointer',
-    userSelect: 'none',
-    verticalAlign: 'middle',
-    '-moz-appearance': 'none', // Reset
-    '-webkit-appearance': 'none', // Reset
-    textDecoration: 'none',
-    // So we take precedent over the style of a native <a /> element.
-    color: 'inherit',
-    '&::-moz-focus-inner': {
-      borderStyle: 'none', // Remove Firefox dotted outline.
-    },
-    '&$disabled': {
-      pointerEvents: 'none', // Disable link interactions
-      cursor: 'default',
-    },
-    '@media print': {
-      colorAdjust: 'exact',
-    },
+const overridesResolver = (props, styles) => {
+  const { disabled, focusVisible } = props;
+
+  const styleOverrides = {
+    ...styles.root,
+    ...(disabled && styles.disabled),
+    ...(focusVisible && styles.focusVisible),
+  };
+
+  return styleOverrides;
+};
+
+export const ButtonBaseRoot = experimentalStyled(
+  'button',
+  {},
+  { name: 'ButtonBase', slot: 'Root', overridesResolver },
+)({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
+  boxSizing: 'border-box',
+  WebkitTapHighlightColor: 'transparent',
+  backgroundColor: 'transparent', // Reset default value
+  // We disable the focus ring for mouse, touch and keyboard users.
+  outline: 0,
+  border: 0,
+  margin: 0, // Remove the margin in Safari
+  borderRadius: 0,
+  padding: 0, // Remove the padding in Firefox
+  cursor: 'pointer',
+  userSelect: 'none',
+  verticalAlign: 'middle',
+  MozAppearance: 'none', // Reset
+  WebkitAppearance: 'none', // Reset
+  textDecoration: 'none',
+  // So we take precedent over the style of a native <a /> element.
+  color: 'inherit',
+  '&::-moz-focus-inner': {
+    borderStyle: 'none', // Remove Firefox dotted outline.
   },
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if keyboard focused. */
-  focusVisible: {},
+  '&.Mui-disabled': {
+    pointerEvents: 'none', // Disable link interactions
+    cursor: 'default',
+  },
+  '@media print': {
+    colorAdjust: 'exact',
+  },
+});
+
+const useButtonBaseClasses = (props) => {
+  const { disabled, focusVisible, focusVisibleClassName, classes = {} } = props;
+
+  const utilityClasses = {
+    root: clsx(buttonBaseClasses['root'], classes['root'], {
+      [buttonBaseClasses['disabled']]: disabled,
+      [classes['disabled']]: disabled,
+      [buttonBaseClasses['focusVisible']]: focusVisible,
+      [classes['focusVisible']]: focusVisible,
+      [focusVisibleClassName]: focusVisible,
+    }),
+  };
+
+  return utilityClasses;
 };
 
 /**
@@ -54,13 +81,14 @@ export const styles = {
  * It aims to be a simple building block for creating a button.
  * It contains a load of style reset and some focus/ripple logic.
  */
-const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
+const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiButtonBase' });
+
   const {
     action,
     buttonRef: buttonRefProp,
     centerRipple = false,
     children,
-    classes,
     className,
     component = 'button',
     disabled = false,
@@ -307,17 +335,25 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }, [enableTouchRipple]);
   }
 
+  const stateAndProps = {
+    ...props,
+    centerRipple,
+    component,
+    disabled,
+    disableRipple,
+    disableTouchRipple,
+    focusRipple,
+    tabIndex,
+    focusVisible,
+  };
+
+  const classes = useButtonBaseClasses(stateAndProps);
+
   return (
-    <ComponentProp
-      className={clsx(
-        classes.root,
-        {
-          [classes.disabled]: disabled,
-          [classes.focusVisible]: focusVisible,
-          [focusVisibleClassName]: focusVisible,
-        },
-        className,
-      )}
+    <ButtonBaseRoot
+      as={ComponentProp}
+      className={clsx(classes.root, className)}
+      styleProps={stateAndProps}
       onBlur={handleBlur}
       onClick={onClick}
       onFocus={handleFocus}
@@ -340,7 +376,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
         /* TouchRipple is only needed client-side, x2 boost on the server. */
         <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
       ) : null}
-    </ComponentProp>
+    </ButtonBaseRoot>
   );
 });
 
@@ -487,4 +523,4 @@ ButtonBase.propTypes = {
   type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
 };
 
-export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
+export default ButtonBase;

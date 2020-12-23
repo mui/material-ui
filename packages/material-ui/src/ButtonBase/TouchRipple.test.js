@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};
 
 describe('<TouchRipple />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
@@ -44,20 +43,16 @@ describe('<TouchRipple />', () => {
     };
   }
 
-  before(() => {
-    classes = getClasses(<TouchRipple />);
-  });
-
-  describeConformance(<TouchRipple />, () => ({
-    classes,
+  describeConformanceV5(<TouchRipple />, () => ({
+    classes: {},
     inheritComponent: 'span',
     mount,
     refInstanceof: Object,
-    skip: ['componentProp', 'refForwarding'],
+    skip: ['componentsProp', 'refForwarding', 'themeComponents'],
   }));
 
   describe('prop: center', () => {
-    it('should should compute the right ripple dimensions', () => {
+    it('should compute the right ripple dimensions', () => {
       const { instance, queryRipple } = renderTouchRipple({ center: true });
 
       act(() => {
