@@ -38,7 +38,7 @@
 
 ### CSS classes
 
-为了自定义样式，所有组件都接受 [`classes`](/customization/components/#overriding-styles-with-classes) 属性。 类的设计解决了两个约束：使类的结构尽可能简单，同时足以实现 Material Design 的规范。
+为了自定义样式，所有组件都接受 [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) 属性。 类的设计解决了两个约束：使类的结构尽可能简单，同时足以实现 Material Design 的规范。
 
 - 应用于根元素的类始终称为 `root`。
 - 所有默认样式都分组在单个类中。
