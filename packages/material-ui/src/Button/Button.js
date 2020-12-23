@@ -360,11 +360,15 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const classes = useButtonClasses(stateAndProps);
 
   const startIcon = startIconProp && (
-    <ButtonStartIcon className={classes.startIcon} styleProps={stateAndProps}>{startIconProp}</ButtonStartIcon>
+    <ButtonStartIcon className={classes.startIcon} styleProps={stateAndProps}>
+      {startIconProp}
+    </ButtonStartIcon>
   );
 
   const endIcon = endIconProp && (
-    <ButtonEndIcon className={classes.endIcon} styleProps={stateAndProps}>{endIconProp}</ButtonEndIcon>
+    <ButtonEndIcon className={classes.endIcon} styleProps={stateAndProps}>
+      {endIconProp}
+    </ButtonEndIcon>
   );
 
   return (
