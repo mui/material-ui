@@ -28,7 +28,7 @@ Um snackbar básico que tem como objetivo reproduzir o comportamento do Google K
 
 ## Snackbars customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
