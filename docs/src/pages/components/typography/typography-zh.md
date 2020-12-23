@@ -99,6 +99,10 @@ const theme = createMuiTheme({
 });
 ```
 
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
+
 ## 无障碍设计
 
 考虑到文字铸排的无障碍设计，需要遵循以下几个关键点：
