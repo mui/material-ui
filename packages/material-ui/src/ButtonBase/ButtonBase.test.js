@@ -3,9 +3,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -16,6 +15,7 @@ import {
 } from 'test/utils';
 import PropTypes from 'prop-types';
 import ButtonBase from './ButtonBase';
+import classes from './buttonBaseClasses';
 
 describe('<ButtonBase />', () => {
   const render = createClientRender();
@@ -23,15 +23,11 @@ describe('<ButtonBase />', () => {
    * @type {ReturnType<typeof createMount>}
    */
   const mount = createMount();
-  /**
-   * @type {Record<string, string>}
-   */
-  let classes;
+
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
   let canFireDragEvents = true;
 
   before(() => {
-    classes = getClasses(<ButtonBase />);
     // browser testing config
     try {
       const EventConstructor = window.DragEvent || window.Event;
@@ -42,12 +38,15 @@ describe('<ButtonBase />', () => {
     }
   });
 
-  describeConformance(<ButtonBase />, () => ({
+  describeConformanceV5(<ButtonBase />, () => ({
     classes,
     inheritComponent: 'button',
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'a',
+    muiName: 'MuiButtonBase',
+    testVariantProps: { disabled: true },
+    skip: ['componentsProp'],
   }));
 
   describe('root node', () => {
@@ -1040,8 +1039,8 @@ describe('<ButtonBase />', () => {
 
       expect(() => {
         PropTypes.checkPropTypes(
-          // @ts-ignore `Naked` is internal
-          ButtonBase.Naked.propTypes,
+          // @ts-expect-error ExtendButtonBase<ButtonBaseTypeMap<{}, "button">> does not contain the property 'propTypes'.
+          ButtonBase.propTypes,
           { classes: {}, component: Component },
           'prop',
           'MockedName',

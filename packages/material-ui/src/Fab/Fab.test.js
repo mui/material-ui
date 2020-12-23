@@ -10,9 +10,8 @@ import {
   fireEvent,
 } from 'test/utils';
 import Fab from './Fab';
-import ButtonBase from '../ButtonBase';
+import ButtonBase, { touchRippleClasses } from '../ButtonBase';
 import Icon from '../Icon';
-import TouchRipple from '../ButtonBase/TouchRipple';
 
 describe('<Fab />', () => {
   const mount = createMount();
@@ -92,14 +91,12 @@ describe('<Fab />', () => {
   });
 
   it('should have a ripple by default', () => {
-    const touchRippleClasses = getClasses(<TouchRipple />);
     const { container } = render(<Fab>Fab</Fab>);
 
     expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(null);
   });
 
   it('should pass disableRipple to ButtonBase', () => {
-    const touchRippleClasses = getClasses(<TouchRipple />);
     const { container } = render(<Fab disableRipple>Fab</Fab>);
 
     expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
