@@ -59,40 +59,55 @@ export const TouchRippleRoot = experimentalStyled(
   borderRadius: 'inherit',
 });
 
+// This `styled()` function invokes keyframes. `styled-components` only supports keyframes
+// in string templates. Do not convert these styles in JS object as it will break.
 export const TouchRippleRipple = experimentalStyled(
   Ripple,
   {},
   { name: 'TouchRipple', slot: 'Ripple' },
-)(({ theme }) => ({
-  opacity: 0,
-  position: 'absolute',
-  [`&.${touchRippleClasses.rippleVisible}`]: {
-    opacity: 0.3,
-    transform: 'scale(1)',
-    animation: `${enterKeyframe} ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
-  },
-  [`&.${touchRippleClasses.ripplePulsate}`]: {
-    animationDuration: `${theme.transitions.duration.shorter}ms`,
-  },
-  [`& .${touchRippleClasses.child}`]: {
-    opacity: 1,
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    borderRadius: '50%',
-    backgroundColor: 'currentColor',
-  },
-  [`& .${touchRippleClasses.childLeaving}`]: {
-    opacity: 0,
-    animation: `${exitKeyframe} ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
-  },
-  [`& .${touchRippleClasses.childPulsate}`]: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    animation: `${pulsateKeyframe} 2500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
-  },
-}));
+)`
+  opacity: 0;
+  position: absolute;
+
+  &.${touchRippleClasses.rippleVisible} {
+    opacity: 0.3;
+    transform: scale(1);
+    animation-name: ${enterKeyframe};
+    animation-duration: ${DURATION}ms;
+    animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
+  }
+
+  &.${touchRippleClasses.ripplePulsate} {
+    animation-duration: ${({ theme }) => theme.transitions.duration.shorter}ms;
+  }
+
+  & .${touchRippleClasses.child} {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+
+  & .${touchRippleClasses.childLeaving} {
+    opacity: 0;
+    animation-name: ${exitKeyframe};
+    animation-duration: ${DURATION}ms;
+    animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
+  }
+
+  & .${touchRippleClasses.childPulsate} {
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation-name: ${pulsateKeyframe};
+    animation-duration: 2500ms;
+    animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
+    animation-iteration-count: infinite;
+    animation-delay: 200ms;
+  }
+`;
 
 /**
  * @ignore - internal component.

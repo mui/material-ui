@@ -7,22 +7,14 @@ let injectFirstNode;
 export function StylesProvider(props) {
   const { injectFirst, children } = props;
 
-  React.useEffect(() => {
-    if (injectFirst && !injectFirstNode) {
+    if (injectFirst && !injectFirstNode && typeof window !== 'undefined') {
       const head = document.head;
       injectFirstNode = document.createElement('style');
       injectFirstNode.setAttribute('data-styled', 'active');
       head.insertBefore(injectFirstNode, head.firstChild);
     }
 
-    return () => {
-      const head = document.head;
-      head.removeChild(injectFirstNode);
-      injectFirstNode = null;
-    };
-  }, [injectFirst]);
-
-  return injectFirst ? (
+  return injectFirst && injectFirstNode ? (
     <StyleSheetManager target={injectFirstNode}>{children}</StyleSheetManager>
   ) : (
     children
