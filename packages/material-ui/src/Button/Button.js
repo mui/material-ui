@@ -1,67 +1,151 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useThemeVariants } from '@material-ui/styles';
-import withStyles from '../styles/withStyles';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
+import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the startIcon element if supplied. */
-  startIcon: {
-    display: 'inherit',
-    marginRight: 8,
-    marginLeft: -4,
-    '&$iconSizeSmall': {
-      marginLeft: -2,
+const overridesResolver = (props, styles) => {
+  const {
+    color = 'primary',
+    disableElevation = false,
+    fullWidth = false,
+    size = 'medium',
+    variant = 'text',
+  } = props;
+
+  const styleOverrides = {
+    ...styles.root,
+    ...styles[variant],
+    ...styles[`${variant}${capitalize(color)}`],
+    ...styles[`size${capitalize(size)}`],
+    ...styles[`${variant}Size${capitalize(size)}`],
+    ...(color === 'inherit' && styles.colorInherit),
+    ...(disableElevation && styles.disableElevation),
+    ...(fullWidth && styles.fullWidth),
+    
+    [`&.${buttonClasses.label}`]: styles.label,
+    [`&.${buttonClasses.startIcon}`]: {
+      ...styles.startIcon,
+      ...styles[`iconSize${capitalize(size)}`],
     },
-  },
-  /* Styles applied to the endIcon element if supplied. */
-  endIcon: {
-    display: 'inherit',
-    marginRight: -4,
-    marginLeft: 8,
-    '&$iconSizeSmall': {
-      marginRight: -2,
+    [`&.${buttonClasses.endIcon}`]: {
+      ...styles.endIcon,
+      ...styles[`iconSize${capitalize(size)}`],
     },
-  },
-  /* Styles applied to the icon element if supplied and `size="small"`. */
-  iconSizeSmall: {
+  };
+
+  return styleOverrides;
+};
+
+const useButtonClasses = (props) => {
+  const { color, disableElevation, fullWidth, size, variant, classes = {} } = props;
+
+  const utilityClasses = {
+    root: clsx(
+      buttonClasses['root'],
+      classes['root'],
+      getButtonUtilityClass(variant),
+      classes[variant], 
+      getButtonUtilityClass(`${variant}${capitalize(color)}`),
+      classes[[`${variant}${capitalize(color)}`]], 
+      getButtonUtilityClass(`size${capitalize(size)}`),
+      classes[`size${capitalize(size)}`],
+      getButtonUtilityClass(`${variant}Size${capitalize(size)}`),
+      classes[`${variant}Size${capitalize(size)}`], {
+        [buttonClasses['colorInherit']]: color === 'inherit',
+        [classes['colorInherit']]: color === 'inherit',
+        [buttonClasses['disableElevation']]: disableElevation,
+        [classes['disableElevation']]: disableElevation,
+        [buttonClasses['fullWidth']]: fullWidth,
+        [classes['fullWidth']]: fullWidth,
+    }),
+    label: clsx(buttonClasses['label'], classes['label']),
+    startIcon: clsx(buttonClasses['startIcon'], classes['startIcon'], getButtonUtilityClass(`iconSize${capitalize(size)}`)),
+    endIcon: clsx(buttonClasses['endIcon'], classes['endIcon'], getButtonUtilityClass(`iconSize${capitalize(size)}`)),
+  };
+
+  return utilityClasses;
+};
+
+const commonIconStyles = (props) => ({
+  ...(props.styleProps.size === 'small' && {
     '& > *:first-child': {
       fontSize: 18,
     },
-  },
-  /* Styles applied to the icon element if supplied and `size="medium"`. */
-  iconSizeMedium: {
+  }),
+  ...(props.styleProps.size === 'medium' && {
     '& > *:first-child': {
       fontSize: 20,
     },
-  },
-  /* Styles applied to the icon element if supplied and `size="large"`. */
-  iconSizeLarge: {
+  }),
+  ...(props.styleProps.size === 'large' && {
     '& > *:first-child': {
       fontSize: 22,
     },
-  },
+  }),
 });
 
-const ButtonLabel = experimentalStyled(ButtonBase, {}, {
-  name: 'Button',
-  slot: 'Label',
-  overridesResolver
-})({
+const ButtonStartIcon = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'Button',
+    slot: 'StartIcon',
+  },
+)((props) => ({
+  display: 'inherit',
+  marginRight: 8,
+  marginLeft: -4,
+  ...(props.styleProps.size === 'small' && {
+    marginLeft: -2,
+  }),
+  ...commonIconStyles(props),
+}));
+
+const ButtonEndIcon = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'Button',
+    slot: 'EndIcon',
+  },
+)((props) => ({
+  display: 'inherit',
+  marginRight: -4,
+  marginLeft: 8,
+  ...(props.styleProps.size === 'small' && {
+    marginRight: -2,
+  }),
+  ...commonIconStyles(props),
+}));
+
+const ButtonLabel = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'Button',
+    slot: 'Label',
+  },
+)({
   width: '100%', // Ensure the correct width for iOS Safari
   display: 'inherit',
   alignItems: 'inherit',
   justifyContent: 'inherit',
 });
 
-const ButtonRoot = experimentalStyled(ButtonBase, {}, {
-  name: 'Button',
-  slot: 'Root',
-  overridesResolver
-})((props) => ({
+const ButtonRoot = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'Button',
+    slot: 'Root',
+    overridesResolver,
+  },
+)((props) => ({
   ...props.theme.typography.button,
   minWidth: 64,
   padding: '6px 16px',
@@ -75,28 +159,39 @@ const ButtonRoot = experimentalStyled(ButtonBase, {}, {
 
   '&:hover': {
     textDecoration: 'none',
-    backgroundColor: alpha(props.theme.palette.text.primary, props.theme.palette.action.hoverOpacity),
+    backgroundColor: alpha(
+      props.theme.palette.text.primary,
+      props.theme.palette.action.hoverOpacity,
+    ),
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
     },
 
-    ...(props.styleProps.variant === 'text' && props.styleProps.color !== 'inherit' && {
-      backgroundColor: alpha(props.theme.palette[props.styleProps.color].main, props.theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    }),
+    ...(props.styleProps.variant === 'text' &&
+      props.styleProps.color !== 'inherit' && {
+        backgroundColor: alpha(
+          props.theme.palette[props.styleProps.color].main,
+          props.theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      }),
 
-    ...(props.styleProps.variant === 'outlined' && props.styleProps.color !== 'inherit' && {
-      border: `1px solid ${props.theme.palette[props.styleProps.color].main}`,
-      backgroundColor: alpha(props.theme.palette[props.styleProps.color].main, props.theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    }),
+    ...(props.styleProps.variant === 'outlined' &&
+      props.styleProps.color !== 'inherit' && {
+        border: `1px solid ${props.theme.palette[props.styleProps.color].main}`,
+        backgroundColor: alpha(
+          props.theme.palette[props.styleProps.color].main,
+          props.theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      }),
 
     ...(props.styleProps.variant === 'contained' && {
       backgroundColor: props.theme.palette.grey.A100,
@@ -108,13 +203,14 @@ const ButtonRoot = experimentalStyled(ButtonBase, {}, {
       },
     }),
 
-    ...(props.styleProps.variant === 'contained' && props.styleProps.color !== 'inherit' && {
-      backgroundColor: theme.palette[props.styleProps.color].dark,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette[props.styleProps.color].main,
-      },
-    }),
+    ...(props.styleProps.variant === 'contained' &&
+      props.styleProps.color !== 'inherit' && {
+        backgroundColor: props.theme.palette[props.styleProps.color].dark,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: props.theme.palette[props.styleProps.color].main,
+        },
+      }),
 
     ...(props.styleProps.disableElevation && {
       boxShadow: 'none',
@@ -144,9 +240,10 @@ const ButtonRoot = experimentalStyled(ButtonBase, {}, {
     ...(props.styleProps.variant === 'outlined' && {
       border: `1px solid ${props.theme.palette.action.disabledBackground}`,
     }),
-    ...(props.styleProps.variant === 'outlined' && props.styleProps.color !== 'inherit' && {
-      border: `1px solid ${theme.palette.action.disabled}`,
-    }),
+    ...(props.styleProps.variant === 'outlined' &&
+      props.styleProps.color !== 'inherit' && {
+        border: `1px solid ${props.theme.palette.action.disabled}`,
+      }),
     ...(props.styleProps.variant === 'contained' && {
       color: props.theme.palette.action.disabled,
       boxShadow: props.theme.shadows[0],
@@ -157,32 +254,37 @@ const ButtonRoot = experimentalStyled(ButtonBase, {}, {
     }),
   },
 
-
   ...(props.styleProps.variant === 'text' && {
     padding: '6px 8px',
   }),
-  ...(props.styleProps.variant === 'text' && props.styleProps.color !== 'inherit' && {
-    color: props.theme.palette[props.styleProps.color].main,
-  }),
+  ...(props.styleProps.variant === 'text' &&
+    props.styleProps.color !== 'inherit' && {
+      color: props.theme.palette[props.styleProps.color].main,
+    }),
+
   ...(props.styleProps.variant === 'outlined' && {
     padding: '5px 15px',
     border: `1px solid ${
       props.theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
   }),
-  ...(props.styleProps.variant === 'outlined' && props.styleProps.color !== 'inherit' && {
-    color: props.theme.palette[props.styleProps.color].main,
-    border: `1px solid ${alpha(props.theme.palette[props.styleProps.color].main, 0.5)}`,
-  }),
+  ...(props.styleProps.variant === 'outlined' &&
+    props.styleProps.color !== 'inherit' && {
+      color: props.theme.palette[props.styleProps.color].main,
+      border: `1px solid ${alpha(props.theme.palette[props.styleProps.color].main, 0.5)}`,
+    }),
+
   ...(props.styleProps.variant === 'contained' && {
-    color: props.theme.palette.getContrastText(theme.palette.grey[300]),
+    color: props.theme.palette.getContrastText(props.theme.palette.grey[300]),
     backgroundColor: props.theme.palette.grey[300],
     boxShadow: props.theme.shadows[2],
   }),
-  ...(props.styleProps.variant === 'contained' && props.styleProps.color !== 'inherit' && {
-    color: props.theme.palette[props.styleProps.color].contrastText,
-    backgroundColor: theme.palette[props.styleProps.color].main,
-  }),
+  ...(props.styleProps.variant === 'contained' &&
+    props.styleProps.color !== 'inherit' && {
+      color: props.theme.palette[props.styleProps.color].contrastText,
+      backgroundColor: props.theme.palette[props.styleProps.color].main,
+    }),
+
   ...(props.styleProps.disableElevation && {
     boxShadow: 'none',
   }),
@@ -192,46 +294,49 @@ const ButtonRoot = experimentalStyled(ButtonBase, {}, {
     borderColor: 'currentColor',
   }),
 
-  ...(props.styleProps.size === 'small' && props.styleProps.variant === 'text' && {
-    padding: '4px 5px',
-    fontSize: props.theme.typography.pxToRem(13),
-  }),
+  ...(props.styleProps.size === 'small' &&
+    props.styleProps.variant === 'text' && {
+      padding: '4px 5px',
+      fontSize: props.theme.typography.pxToRem(13),
+    }),
+  ...(props.styleProps.size === 'large' &&
+    props.styleProps.variant === 'text' && {
+      padding: '8px 11px',
+      fontSize: props.theme.typography.pxToRem(15),
+    }),
 
-  ...(props.styleProps.size === 'large' && props.styleProps.variant === 'text' && {
-    padding: '8px 11px',
-    fontSize: props.theme.typography.pxToRem(15),
-  }),
+  ...(props.styleProps.size === 'small' &&
+    props.styleProps.variant === 'outlined' && {
+      padding: '3px 9px',
+      fontSize: props.theme.typography.pxToRem(13),
+    }),
+  ...(props.styleProps.size === 'large' &&
+    props.styleProps.variant === 'outlined' && {
+      padding: '7px 21px',
+      fontSize: props.theme.typography.pxToRem(15),
+    }),
 
-  ...(props.styleProps.size === 'small' && props.styleProps.variant === 'outlined' && {
-    padding: '3px 9px',
-    fontSize: props.theme.typography.pxToRem(13),
-  }),
-
-  ...(props.styleProps.size === 'large' && props.styleProps.variant === 'outlined' && {
-    padding: '7px 21px',
-    fontSize: props.theme.typography.pxToRem(15),
-  }),
-
-  ...(props.styleProps.size === 'small' && props.styleProps.variant === 'contained' && {
-    padding: '4px 10px',
-    fontSize: props.theme.typography.pxToRem(13),
-  }),
-
-  ...(props.styleProps.size === 'large' && props.styleProps.variant === 'contained' && {
-    padding: '8px 22px',
-    fontSize: props.theme.typography.pxToRem(15),
-  }),
+  ...(props.styleProps.size === 'small' &&
+    props.styleProps.variant === 'contained' && {
+      padding: '4px 10px',
+      fontSize: props.theme.typography.pxToRem(13),
+    }),
+  ...(props.styleProps.size === 'large' &&
+    props.styleProps.variant === 'contained' && {
+      padding: '8px 22px',
+      fontSize: props.theme.typography.pxToRem(15),
+    }),
 
   ...(props.styleProps.fullWidth && {
     width: '100%',
   }),
 }));
 
+const Button = React.forwardRef(function Button(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiButton' });
 
-const Button = React.forwardRef(function Button(props, ref) {
   const {
     children,
-    classes,
     className,
     color = 'primary',
     component = 'button',
@@ -248,51 +353,33 @@ const Button = React.forwardRef(function Button(props, ref) {
     ...other
   } = props;
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      color,
-      component,
-      disabled,
-      disableElevation,
-      disableFocusRipple,
-      fullWidth,
-      size,
-      type,
-      variant,
-    },
-    'MuiButton',
-  );
+  const stateAndProps = {
+    ...props,
+    color,
+    component,
+    disabled,
+    disableElevation,
+    disableFocusRipple,
+    fullWidth,
+    size,
+    type,
+    variant,
+  };
+
+  const classes = useButtonClasses(stateAndProps);
 
   const startIcon = startIconProp && (
-    <span className={clsx(classes.startIcon, classes[`iconSize${capitalize(size)}`])}>
-      {startIconProp}
-    </span>
+    <ButtonStartIcon styleProps={stateAndProps}>{startIconProp}</ButtonStartIcon>
   );
 
   const endIcon = endIconProp && (
-    <span className={clsx(classes.endIcon, classes[`iconSize${capitalize(size)}`])}>
-      {endIconProp}
-    </span>
+    <ButtonEndIcon styleProps={stateAndProps}>{endIconProp}</ButtonEndIcon>
   );
 
   return (
-    <ButtonBase
-      className={clsx(
-        classes.root,
-        classes[variant],
-        {
-          [classes[`${variant}${capitalize(color)}`]]: color !== 'inherit',
-          [classes[`${variant}Size${capitalize(size)}`]]: size !== 'medium',
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
-          [classes.disableElevation]: disableElevation,
-          [classes.disabled]: disabled,
-          [classes.fullWidth]: fullWidth,
-          [classes.colorInherit]: color === 'inherit',
-        },
-        themeVariantsClasses,
-        className,
-      )}
+    <ButtonRoot
+      className={clsx(classes.root, className)}
+      styleProps={stateAndProps}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
@@ -307,12 +394,12 @@ const Button = React.forwardRef(function Button(props, ref) {
        * https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9
        * TODO v5: evaluate if still required for the supported browsers.
        */}
-      <span className={classes.label}>
+      <ButtonLabel>
         {startIcon}
         {children}
         {endIcon}
-      </span>
-    </ButtonBase>
+      </ButtonLabel>
+    </ButtonRoot>
   );
 });
 
@@ -408,4 +495,4 @@ Button.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiButton' })(Button);
+export default Button;
