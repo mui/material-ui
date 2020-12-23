@@ -31,7 +31,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 ## Anpasster Schalter
 
-Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
