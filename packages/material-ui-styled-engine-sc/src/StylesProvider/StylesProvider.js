@@ -6,7 +6,7 @@ export default function StylesProvider(props) {
   if (injectFirst && typeof window !== 'undefined') {
     const head = document.head;
     if (!head.querySelector('[data-styled="active"]')) {
-      const injectFirstNode = document.createElement('script');
+      const injectFirstNode = document.createElement('style');
       injectFirstNode.setAttribute('data-styled', 'active');
       head.insertBefore(injectFirstNode, head.firstChild);
     }
