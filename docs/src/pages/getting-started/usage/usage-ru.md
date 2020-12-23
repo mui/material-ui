@@ -56,4 +56,4 @@ Material-UI предоставляет опциональный компонен
 
 - Как предоставить [шрифт и оформление Material Design](/components/typography/).
 - Как воспользоваться [механизмом тем](/customization/theming/).
-- Как [переопределить](/customization/components/) внешний вид компонентов.
+- Как [переопределить](/customization/how-to-customize/) внешний вид компонентов.
