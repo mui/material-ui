@@ -241,7 +241,7 @@ const ButtonRoot = experimentalStyled(
       border: `1px solid ${props.theme.palette.action.disabledBackground}`,
     }),
     ...(props.styleProps.variant === 'outlined' &&
-      props.styleProps.color !== 'inherit' && {
+      props.styleProps.color === 'secondary' && {
         border: `1px solid ${props.theme.palette.action.disabled}`,
       }),
     ...(props.styleProps.variant === 'contained' && {
