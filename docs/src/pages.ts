@@ -237,7 +237,7 @@ const pages: MuiPage[] = [
           { pathname: '/customization/transitions' },
         ],
       },
-      { pathname: '/customization/components' },
+      { pathname: '/customization/how-to-customize' },
       { pathname: '/customization/color' },
       { pathname: '/customization/default-theme', title: 'Default Theme' },
     ],

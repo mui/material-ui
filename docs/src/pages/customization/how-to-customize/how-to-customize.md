@@ -17,7 +17,7 @@ You might need to change the style of a component for a specific implementation,
 
 The easiest way to add style overrides for a one-off situation is to use the `sx` prop available on all Material-UI components. Here is an example:
 
-{{"demo": "pages/customization/components/SxProp.js"}}
+{{"demo": "pages/customization/how-to-customize/SxProp.js"}}
 
 Next you'll see how you can you can use global class selectors for accessing slots inside the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component.
 
@@ -38,7 +38,7 @@ In this example, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` so th
 
 You now know that you need to target the `.MuiSlider-thumb` class name for overriding the look of the thumb:
 
-{{"demo": "pages/customization/components/DevTools.js"}}
+{{"demo": "pages/customization/how-to-customize/DevTools.js"}}
 
 ### Overriding styles with class names
 
@@ -127,7 +127,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 
 If you find that you need the same overrides in multiple places across your application, you can use the `experimentalStyled()` utility for creating a reusable component:
 
-{{"demo": "pages/customization/components/StyledCustomization.js", "defaultCodeOpen": true}}
+{{"demo": "pages/customization/how-to-customize/StyledCustomization.js", "defaultCodeOpen": true}}
 
 With it, you have access to all of a component's props to dynamically style the component.
 
@@ -139,19 +139,19 @@ Here are four alternatives; each has its pros and cons.
 
 ### Dynamic CSS
 
-{{"demo": "pages/customization/components/DynamicCSS.js", "defaultCodeOpen": false}}
+{{"demo": "pages/customization/how-to-customize/DynamicCSS.js", "defaultCodeOpen": false}}
 
 ### Class name branch
 
-{{"demo": "pages/customization/components/DynamicClassName.js"}}
+{{"demo": "pages/customization/how-to-customize/DynamicClassName.js"}}
 
 ### CSS variables
 
-{{"demo": "pages/customization/components/DynamicCSSVariables.js"}}
+{{"demo": "pages/customization/how-to-customize/DynamicCSSVariables.js"}}
 
 ### Theme nesting
 
-{{"demo": "pages/customization/components/DynamicThemeNesting.js"}}
+{{"demo": "pages/customization/how-to-customize/DynamicThemeNesting.js"}}
 
 ## 4. Global theme variation
 

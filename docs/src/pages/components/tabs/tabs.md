@@ -83,7 +83,7 @@ All scrolling must be initiated through user agent scrolling mechanisms (e.g. le
 ## Customized tabs
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+[overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 

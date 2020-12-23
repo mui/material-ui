@@ -46,7 +46,7 @@ In general, radio buttons should have a value selected by default. If this is no
 ## Customized radios
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+[overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
