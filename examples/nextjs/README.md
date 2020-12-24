@@ -23,3 +23,28 @@ or:
 ## The idea behind the example
 
 The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps. It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).
+
+## Object URL support
+
+If you want to use URL objects within MUI components you can import NextComposedLink and use it as follows:
+
+```
+import MuiButton from "@material-ui/core/Button";
+import { NextLinkComposed } from "../src/Link";
+
+export default function Index() {
+  return (
+    <div>
+      <MuiButton
+        component={NextLinkComposed}
+        to={{
+          pathname: "/about",
+          query: { name: "test" }
+        }}
+      >
+        MuiButton link
+      </MuiButton>
+    </div>
+  );
+}
+```
