@@ -172,7 +172,7 @@ const DateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unk
    */
   ampmInClock: PropTypes.bool,
   /**
-   * "CANCEL" Text message
+   * Cancel text message
    * @default "CANCEL"
    */
   cancelText: PropTypes.node,
@@ -186,7 +186,7 @@ const DateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unk
    */
   clearable: PropTypes.bool,
   /**
-   * "CLEAR" Text message
+   * Clear text message
    * @default "CLEAR"
    */
   clearText: PropTypes.node,
@@ -213,7 +213,7 @@ const DateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unk
    */
   desktopModeMediaQuery: PropTypes.string,
   /**
-   * Props to be passed directly to material-ui [Dialog](https://material-ui.com/components/dialogs)
+   * Props applied to the [`Dialog`](/api/dialog/) element.
    */
   DialogProps: PropTypes.object,
   /**
@@ -379,7 +379,7 @@ const DateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unk
    */
   minutesStep: PropTypes.number,
   /**
-   * "OK" button text.
+   * Ok button text.
    * @default "OK"
    */
   okText: PropTypes.node,
@@ -509,7 +509,7 @@ const DateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unk
    */
   showDaysOutsideCurrentMonth: PropTypes.bool,
   /**
-   * If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.
+   * If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
    * @default false
    */
   showTodayButton: PropTypes.bool,
@@ -522,7 +522,7 @@ const DateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unk
    */
   timeIcon: PropTypes.node,
   /**
-   * "TODAY" Text message
+   * Today text message
    * @default "TODAY"
    */
   todayText: PropTypes.node,

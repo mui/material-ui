@@ -30,7 +30,7 @@ const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
-   * "CANCEL" Text message
+   * Cancel text message
    * @default "CANCEL"
    */
   cancelText: PropTypes.node,
@@ -44,7 +44,7 @@ const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
    */
   clearable: PropTypes.bool,
   /**
-   * "CLEAR" Text message
+   * Clear text message
    * @default "CLEAR"
    */
   clearText: PropTypes.node,
@@ -56,7 +56,7 @@ const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
    */
   dateAdapter: PropTypes.object,
   /**
-   * Props to be passed directly to material-ui [Dialog](https://material-ui.com/components/dialogs)
+   * Props applied to the [`Dialog`](/api/dialog/) element.
    */
   DialogProps: PropTypes.object,
   /**
@@ -130,7 +130,7 @@ const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
     PropTypes.string,
   ]),
   /**
-   * "OK" button text.
+   * Ok button text.
    * @default "OK"
    */
   okText: PropTypes.node,
@@ -195,7 +195,7 @@ const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
    */
   rifmFormatter: PropTypes.func,
   /**
-   * If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.
+   * If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
    * @default false
    */
   showTodayButton: PropTypes.bool,
@@ -204,7 +204,7 @@ const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
    */
   showToolbar: PropTypes.bool,
   /**
-   * "TODAY" Text message
+   * Today text message
    * @default "TODAY"
    */
   todayText: PropTypes.node,

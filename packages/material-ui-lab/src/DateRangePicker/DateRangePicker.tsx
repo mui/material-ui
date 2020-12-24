@@ -34,7 +34,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   calendars: PropTypes.oneOf([1, 2, 3]),
   /**
-   * "CANCEL" Text message
+   * Cancel text message
    * @default "CANCEL"
    */
   cancelText: PropTypes.node,
@@ -48,7 +48,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   clearable: PropTypes.bool,
   /**
-   * "CLEAR" Text message
+   * Clear text message
    * @default "CLEAR"
    */
   clearText: PropTypes.node,
@@ -71,7 +71,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   desktopModeMediaQuery: PropTypes.string,
   /**
-   * Props to be passed directly to material-ui [Dialog](https://material-ui.com/components/dialogs)
+   * Props applied to the [`Dialog`](/api/dialog/) element.
    */
   DialogProps: PropTypes.object,
   /**
@@ -184,7 +184,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   minDate: PropTypes.any,
   /**
-   * "OK" button text.
+   * Ok button text.
    * @default "OK"
    */
   okText: PropTypes.node,
@@ -312,7 +312,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   showDaysOutsideCurrentMonth: PropTypes.bool,
   /**
-   * If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.
+   * If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
    * @default false
    */
   showTodayButton: PropTypes.bool,
@@ -326,7 +326,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   startText: PropTypes.node,
   /**
-   * "TODAY" Text message
+   * Today text message
    * @default "TODAY"
    */
   todayText: PropTypes.node,
