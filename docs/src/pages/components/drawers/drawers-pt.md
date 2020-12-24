@@ -37,7 +37,7 @@ As seguintes propriedades são usadas neste site de documentação para otimizar
 - O iOS possui um recurso "deslizar para voltar" que interfere com o recurso de descoberta, portanto, a descoberta teve que ser desativada.
 
 ```jsx
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```

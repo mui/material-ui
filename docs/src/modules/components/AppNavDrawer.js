@@ -141,7 +141,7 @@ function reduceChildRoutes(context) {
 // iOS is hosted on high-end devices. We can enable the backdrop transition without
 // dropping frames. The performance will be good enough.
 // So: <SwipeableDrawer disableBackdropTransition={false} />
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 function AppNavDrawer(props) {
   const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
