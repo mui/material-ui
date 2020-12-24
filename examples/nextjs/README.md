@@ -61,7 +61,7 @@ The example provides adapters for usage with Material-UI.
   export default function Index() {
     return (
       <Link
-        to={{
+        href={{
           pathname: '/about',
           query: { name: 'test' },
         }}
