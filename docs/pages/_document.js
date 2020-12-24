@@ -73,11 +73,6 @@ export default class MyDocument extends Document {
             This includes DNS lookups, TLS negotiations, TCP handshakes.
           */}
           <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
-          <style id="material-icon-font" />
-          <style id="font-awesome-css" />
-          <style id="app-search" />
-          <style id="prismjs" />
-          <style id="insertion-point-jss" />
         </Head>
         <body>
           <Main />
@@ -158,13 +153,7 @@ MyDocument.getInitialProps = async (ctx) => {
       userLanguage: ctx.query.userLanguage || 'en',
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [
-        ...React.Children.toArray(initialProps.styles),
-        <style
-          id="jss-server-side"
-          key="jss-server-side"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: css }}
-        />,
+        styledComponentsSheet.getStyleElement(),
         <style
           id="emotion-server-side"
           key="emotion-server-side"
@@ -172,7 +161,18 @@ MyDocument.getInitialProps = async (ctx) => {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: emotionStyles.css }}
         />,
-        styledComponentsSheet.getStyleElement(),
+        <style
+          id="jss-server-side"
+          key="jss-server-side"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: css }}
+        />,
+        <style id="material-icon-font" key="material-icon-font" />,
+        <style id="font-awesome-css" key="font-awesome-css" />,
+        <style id="app-search" key="app-search" />,
+        <style id="prismjs" key="prismjs" />,
+        <style id="insertion-point-jss" key="insertion-point-jss" />,
+        ...React.Children.toArray(initialProps.styles),
       ],
     };
   } finally {

@@ -1,32 +1,18 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheetManager } from 'styled-components';
 
-let injectFirstNode;
-
-export function StylesProvider(props) {
+export default function StylesProvider(props) {
   const { injectFirst, children } = props;
 
-  React.useEffect(() => {
-    if (injectFirst && !injectFirstNode) {
-      const head = document.head;
-      injectFirstNode = document.createElement('style');
+  if (injectFirst && typeof window !== 'undefined') {
+    const head = document.head;
+    if (!head.querySelector('[data-styled="active"]')) {
+      const injectFirstNode = document.createElement('style');
       injectFirstNode.setAttribute('data-styled', 'active');
       head.insertBefore(injectFirstNode, head.firstChild);
     }
+  }
 
-    return () => {
-      const head = document.head;
-      head.removeChild(injectFirstNode);
-      injectFirstNode = null;
-    };
-  }, [injectFirst]);
-
-  return injectFirst ? (
-    <StyleSheetManager target={injectFirstNode}>{children}</StyleSheetManager>
-  ) : (
-    children
-  );
+  return children;
 }
 
 StylesProvider.propTypes = {
@@ -41,5 +27,3 @@ StylesProvider.propTypes = {
    */
   injectFirst: PropTypes.bool,
 };
-
-export default StylesProvider;
