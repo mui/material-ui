@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'customization/theme-components';
-const requireDemo = require.context('docs/src/pages/customization/theme-components', false, /\.(js|tsx)$/);
+const requireDemo = require.context(
+  'docs/src/pages/customization/theme-components',
+  false,
+  /\.(js|tsx)$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/customization/theme-components',
   false,
