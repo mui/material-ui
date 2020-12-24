@@ -167,11 +167,11 @@ MyDocument.getInitialProps = async (ctx) => {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: css }}
         />,
-        <style id="material-icon-font" />,
-        <style id="font-awesome-css" />,
-        <style id="app-search" />,
-        <style id="prismjs" />,
-        <style id="insertion-point-jss" />,
+        <style id="material-icon-font" key="material-icon-font" />,
+        <style id="font-awesome-css" key="font-awesome-css" />,
+        <style id="app-search" key="app-search" />,
+        <style id="prismjs" key="prismjs" />,
+        <style id="insertion-point-jss" key="insertion-point-jss" />,
         ...React.Children.toArray(initialProps.styles),
       ],
     };
