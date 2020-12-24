@@ -1,4 +1,4 @@
-# Globals
+# Components
 
 <p class="description">With the `theme.components` key you can customize the appearance of all instances of a component; change the default value(s) of a component's props; and add custom variants to your components.</p>
 
@@ -21,7 +21,7 @@ const theme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/globals/DefaultProps.js"}}
+{{"demo": "pages/customization/theme-components/DefaultProps.js"}}
 
 To override lab component styles with TypeScript, check [this page](/components/about-the-lab/#typescript).
 
@@ -39,7 +39,7 @@ const theme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/globals/ThemeVariables.js"}}
+{{"demo": "pages/customization/theme-components/ThemeVariables.js"}}
 
 ## Global CSS override
 
@@ -86,12 +86,12 @@ return (
 );
 ```
 
-{{"demo": "pages/customization/globals/GlobalCssOverride.js", "iframe": true, "height": 100}}
+{{"demo": "pages/customization/theme-components/GlobalCssOverride.js", "iframe": true, "height": 100}}
 
 ## Global theme override
 
 You can use the theme's `styleOverrides` key to potentially change every single style injected by Material-UI into the DOM.
-Learn more about it in the [themes section](/customization/globals/#css) of the documentation.
+Learn more about it in the [themes section](/customization/theme-components/#css) of the documentation.
 
 ```jsx
 const theme = createMuiTheme({
@@ -110,7 +110,7 @@ const theme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/globals/GlobalThemeOverride.js"}}
+{{"demo": "pages/customization/theme-components/GlobalThemeOverride.js"}}
 
 The list of each component's classes is documented under the **CSS** section of each component's API page.
 
@@ -156,4 +156,4 @@ declare module '@material-ui/core/Button/Button' {
 }
 ```
 
-{{"demo": "pages/customization/globals/GlobalThemeVariants.js"}}
+{{"demo": "pages/customization/theme-components/GlobalThemeVariants.js"}}

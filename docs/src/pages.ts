@@ -233,7 +233,7 @@ const pages: MuiPage[] = [
           { pathname: '/customization/breakpoints' },
           { pathname: '/customization/density' },
           { pathname: '/customization/z-index', title: 'z-index' },
-          { pathname: '/customization/globals' },
+          { pathname: '/customization/theme-components', title: 'Components' },
           { pathname: '/customization/transitions' },
         ],
       },
