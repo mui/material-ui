@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -11,21 +10,20 @@ import {
 } from 'test/utils';
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
+import classes from './buttonClasses';
 
 describe('<Button />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Button>Hello World</Button>);
-  });
-
-  describeConformance(<Button>Conformance?</Button>, () => ({
+  describeConformanceV5(<Button>Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
+    muiName: 'MuiButton',
+    testVariantProps: { variant: 'contained', fullWidth: true },
+    skip: ['componentsProp'],
   }));
 
   it('should render with the root, text, and textPrimary classes but no others', () => {

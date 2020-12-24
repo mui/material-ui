@@ -5,6 +5,7 @@
     "disableEnforceFocus": { "type": { "name": "bool" } },
     "disableRestoreFocus": { "type": { "name": "bool" } },
     "getDoc": { "type": { "name": "func" }, "required": true },
+    "getTabbable": { "type": { "name": "func" } },
     "isEnabled": { "type": { "name": "func" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true }
   },

@@ -29,7 +29,7 @@ Extend the default behavior to create an accordion with the `Accordion` componen
 ## Customized accordion
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+[overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 

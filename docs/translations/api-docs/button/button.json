@@ -23,6 +23,10 @@
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>variant=\"text\"</code>"
     },
+    "textInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"inherit\"</code>"
+    },
     "textPrimary": {
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
@@ -35,6 +39,10 @@
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
+    "outlinedInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"inherit\"</code>"
+    },
     "outlinedPrimary": {
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
@@ -46,6 +54,10 @@
     "contained": {
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>variant=\"contained\"</code>"
+    },
+    "containedInherit": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"inherit\"</code>"
     },
     "containedPrimary": {
       "description": "Styles applied to the root element if {{conditions}}.",
@@ -74,6 +86,10 @@
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>size=\"small\"</code> and <code>variant=\"text\"</code>"
     },
+    "textSizeMedium": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"medium\"</code> and <code>variant=\"text\"</code>"
+    },
     "textSizeLarge": {
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>size=\"large\"</code> and <code>variant=\"text\"</code>"
@@ -82,11 +98,19 @@
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>size=\"small\"</code> and <code>variant=\"outlined\"</code>"
     },
+    "outlinedSizeMedium": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"medium\"</code> and <code>variant=\"outlined\"</code>"
+    },
     "outlinedSizeLarge": {
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>size=\"large\"</code> and <code>variant=\"outlined\"</code>"
     },
     "containedSizeSmall": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"small\"</code> and <code>variant=\"contained\"</code>"
+    },
+    "containedSizeMedium": {
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>size=\"small\"</code> and <code>variant=\"contained\"</code>"
     },
@@ -97,6 +121,10 @@
     "sizeSmall": {
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>size=\"small\"</code>"
+    },
+    "sizeMedium": {
+      "description": "Styles applied to the root element if {{conditions}}.",
+      "conditions": "<code>size=\"medium\"</code>"
     },
     "sizeLarge": {
       "description": "Styles applied to the root element if {{conditions}}.",

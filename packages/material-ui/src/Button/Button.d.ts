@@ -24,18 +24,24 @@ export type ButtonTypeMap<
       label?: string;
       /** Styles applied to the root element if `variant="text"`. */
       text?: string;
+      /** Styles applied to the root element if `variant="text"` and `color="inherit"`. */
+      textInherit?: string;
       /** Styles applied to the root element if `variant="text"` and `color="primary"`. */
       textPrimary?: string;
       /** Styles applied to the root element if `variant="text"` and `color="secondary"`. */
       textSecondary?: string;
       /** Styles applied to the root element if `variant="outlined"`. */
       outlined?: string;
+      /** Styles applied to the root element if `variant="outlined"` and `color="inherit"`. */
+      outlinedInherit?: string;
       /** Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
       outlinedPrimary?: string;
       /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
       outlinedSecondary?: string;
       /** Styles applied to the root element if `variant="contained"`. */
       contained?: string;
+      /** Styles applied to the root element if `variant="contained"` and `color="inherit"`. */
+      containedInherit?: string;
       /** Styles applied to the root element if `variant="contained"` and `color="primary"`. */
       containedPrimary?: string;
       /** Styles applied to the root element if `variant="contained"` and `color="secondary"`. */
@@ -50,18 +56,26 @@ export type ButtonTypeMap<
       colorInherit?: string;
       /** Styles applied to the root element if `size="small"` and `variant="text"`. */
       textSizeSmall?: string;
+      /** Styles applied to the root element if `size="medium"` and `variant="text"`. */
+      textSizeMedium?: string;
       /** Styles applied to the root element if `size="large"` and `variant="text"`. */
       textSizeLarge?: string;
       /** Styles applied to the root element if `size="small"` and `variant="outlined"`. */
       outlinedSizeSmall?: string;
+      /** Styles applied to the root element if `size="medium"` and `variant="outlined"`. */
+      outlinedSizeMedium?: string;
       /** Styles applied to the root element if `size="large"` and `variant="outlined"`. */
       outlinedSizeLarge?: string;
       /** Styles applied to the root element if `size="small"` and `variant="contained"`. */
       containedSizeSmall?: string;
+      /** Styles applied to the root element if `size="small"` and `variant="contained"`. */
+      containedSizeMedium?: string;
       /** Styles applied to the root element if `size="large"` and `variant="contained"`. */
       containedSizeLarge?: string;
       /** Styles applied to the root element if `size="small"`. */
       sizeSmall?: string;
+      /** Styles applied to the root element if `size="medium"`. */
+      sizeMedium?: string;
       /** Styles applied to the root element if `size="large"`. */
       sizeLarge?: string;
       /** Styles applied to the root element if `fullWidth={true}`. */
