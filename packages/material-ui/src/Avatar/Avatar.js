@@ -12,6 +12,7 @@ const overridesResolver = (props, styles) => {
   const styleOverrides = {
     ...styles.root,
     ...styles[variant],
+    [`&.${avatarClasses.colorDefault}`]: styles.colorDefault,
     [`&.${avatarClasses.img}`]: styles.img,
     [`&.${avatarClasses.fallback}`]: styles.fallback,
   };
