@@ -132,16 +132,8 @@ const PickersModalDialog: React.FC<PickerModalDialogProps & WithStyles<typeof st
             {todayText}
           </Button>
         )}
-        {cancelText && (
-          <Button onClick={onDismiss}>
-            {cancelText}
-          </Button>
-        )}
-        {okText && (
-          <Button onClick={onAccept}>
-            {okText}
-          </Button>
-        )}
+        {cancelText && <Button onClick={onDismiss}>{cancelText}</Button>}
+        {okText && <Button onClick={onAccept}>{okText}</Button>}
       </DialogActions>
     </Dialog>
   );
