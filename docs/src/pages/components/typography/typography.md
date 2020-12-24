@@ -34,17 +34,17 @@ Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ## Install with npm
 
-You can [install it](https://www.npmjs.com/package/fontsource-roboto) by typing the below command in your terminal:
+You can [install it](https://www.npmjs.com/package/@fontsource/roboto) by typing the below command in your terminal:
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Then, you can import it in your entry-point.
 
 ```js
-import 'fontsource-roboto/300.css';
-import 'fontsource-roboto/400.css';
-import 'fontsource-roboto/500.css';
-import 'fontsource-roboto/700.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 For more info check out [Fontsource](https://github.com/fontsource/fontsource).
