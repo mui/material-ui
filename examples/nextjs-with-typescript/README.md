@@ -24,27 +24,50 @@ or:
 
 The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps. It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).
 
-## Object URL support
+## The link component
 
-If you want to use [URL objects](https://nextjs.org/docs/api-reference/next/link#with-url-object) within MUI components you can import `NextComposedLink` and use it as follows:
+Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
+The example provides adapters for usage with Material-UI.
 
-```js
-import MuiButton from '@material-ui/core/Button';
-import { NextLinkComposed } from '../src/Link';
+- The first version of the adapter is the `NextLinkComposed` component.
+  This component is unstyled and only responsible for handling the navigation.
+  The prop `href` was renamed `to`.
 
-export default function Index() {
-  return (
-    <div>
-      <MuiButton
+  ```tsx
+  import Button from '@material-ui/core/Button';
+  import { NextLinkComposed } from '../src/Link';
+
+  export default function Index() {
+    return (
+      <Button
         component={NextLinkComposed}
         to={{
           pathname: '/about',
           query: { name: 'test' },
         }}
       >
-        MuiButton link
-      </MuiButton>
-    </div>
-  );
-}
-```
+        Button link
+      </Button>
+    );
+  }
+  ```
+
+- The second version of the adapter is the `Link` component.
+  This component is styled, it leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+
+  ```tsx
+  import Link from '../src/Link';
+
+  export default function Index() {
+    return (
+      <Link
+        to={{
+          pathname: '/about',
+          query: { name: 'test' },
+        }}
+      >
+        Link
+      </Link>
+    );
+  }
+  ```
