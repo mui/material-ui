@@ -302,7 +302,7 @@ function AppFrame(props) {
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
-  disableDrawer: PropTypes.boolean,
+  disableDrawer: PropTypes.bool,
 };
 
 export default withStyles(styles)(AppFrame);
