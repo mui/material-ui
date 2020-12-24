@@ -26,7 +26,7 @@ The project uses [Next.js](https://github.com/zeit/next.js), which is a framewor
 
 ## Object URL support
 
-If you want to use URL objects within MUI components you can import `NextComposedLink` and use it as follows:
+If you want to use [URL objects](https://nextjs.org/docs/api-reference/next/link#with-url-object) within MUI components you can import `NextComposedLink` and use it as follows:
 
 ```js
 import MuiButton from '@material-ui/core/Button';
