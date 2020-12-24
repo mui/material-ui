@@ -69,17 +69,53 @@ If you are **new to or unfamiliar with grid**, we encourage you to read this [CS
 
 ### grid-auto-columns
 
+{{"demo": "pages/system/grid/GridAutoColumns.js", "defaultCodeOpen": false, "bg": true}}
+
+```jsx
+<Box sx={{ gridAutoColumns: '60px' }}>…
+```
+
 ### grid-auto-rows
 
-### gird-auto-flow
+{{"demo": "pages/system/grid/GridAutoRows.js", "defaultCodeOpen": false, "bg": true}}
+
+```jsx
+<Box sx={{ gridAutoRows: '20px' }}>…
+```
+
+### grid-auto-flow
+
+{{"demo": "pages/system/grid/GridAutoFlow.js", "defaultCodeOpen": false, "bg": true}}
+
+```jsx
+<Box sx={{ gridAutoFlow: 'row' }}>…
+```
 
 ## Properties for the Children
 
 ### grid-column
 
+The `grid-column` property is a shorthand for `grid-column-start` + `grid-column-end`. You can see how it is used on the [grid-auto-columns example](/system/grid/#grid-auto-columns).
+
+```jsx
+<Box sx={{ gridColumn: '1 / 3' }}>…
+```
+
 ### grid-row
 
+The `grid-row` property is a shorthand for `grid-row-start` + `grid-row-end`. You can see how it is used on the [grid-auto-rows example](/system/grid/#grid-auto-rows).
+
+```jsx
+<Box sx={{ gridRow: '1 / 3' }}>…
+```
+
 ### grid-area
+
+The `grid-area` property allows you to give an item a name so that it can be referenced by a template created with the `grid-template-areas` property. You can see you it is used on the [grid-template-area example](/system/grid/#grid-template-areas).
+
+```jsx
+<Box sx={{ gridArea: 'header' }}>…
+```
 
 ## API
 
