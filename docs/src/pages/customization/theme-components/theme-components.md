@@ -1,6 +1,6 @@
 # Components
 
-<p class="description">The `theme.components` key allows you to customize components without using wrappers. You can change the styles, the default props and more.</p>
+<p class="description">The `theme.components` key allows you to customize components without using wrappers. You can change the styles, the default props, and more.</p>
 
 ## Global style overrides
 
@@ -52,7 +52,7 @@ const theme = createMuiTheme({
 
 To override lab component styles with TypeScript, check [this page](/components/about-the-lab/#typescript).
 
-## New component variants
+## Adding new component variants
 
 You can use the `variants` key in the theme's `components` section to add new variants to Material-UI components. These new variants can specify what styles the component should have when specific props are applied together.
 
