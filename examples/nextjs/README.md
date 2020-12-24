@@ -28,9 +28,9 @@ The project uses [Next.js](https://github.com/zeit/next.js), which is a framewor
 
 If you want to use URL objects within MUI components you can import `NextComposedLink` and use it as follows:
 
-```
-import MuiButton from "@material-ui/core/Button";
-import { NextLinkComposed } from "../src/Link";
+```js
+import MuiButton from '@material-ui/core/Button';
+import { NextLinkComposed } from '../src/Link';
 
 export default function Index() {
   return (
@@ -38,8 +38,8 @@ export default function Index() {
       <MuiButton
         component={NextLinkComposed}
         to={{
-          pathname: "/about",
-          query: { name: "test" }
+          pathname: '/about',
+          query: { name: 'test' },
         }}
       >
         MuiButton link
