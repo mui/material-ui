@@ -42,7 +42,7 @@ const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Mobi
    */
   ampmInClock: PropTypes.bool,
   /**
-   * "CANCEL" Text message
+   * Cancel text message
    * @default "CANCEL"
    */
   cancelText: PropTypes.node,
@@ -56,7 +56,7 @@ const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Mobi
    */
   clearable: PropTypes.bool,
   /**
-   * "CLEAR" Text message
+   * Clear text message
    * @default "CLEAR"
    */
   clearText: PropTypes.node,
@@ -68,7 +68,7 @@ const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Mobi
    */
   dateAdapter: PropTypes.object,
   /**
-   * Props to be passed directly to material-ui [Dialog](https://material-ui.com/components/dialogs)
+   * Props applied to the [`Dialog`](/api/dialog/) element.
    */
   DialogProps: PropTypes.object,
   /**
@@ -157,7 +157,7 @@ const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Mobi
    */
   minutesStep: PropTypes.number,
   /**
-   * "OK" button text.
+   * Ok button text.
    * @default "OK"
    */
   okText: PropTypes.node,
@@ -231,7 +231,7 @@ const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Mobi
    */
   shouldDisableTime: PropTypes.func,
   /**
-   * If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.
+   * If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
    * @default false
    */
   showTodayButton: PropTypes.bool,
@@ -240,7 +240,7 @@ const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Mobi
    */
   showToolbar: PropTypes.bool,
   /**
-   * "TODAY" Text message
+   * Today text message
    * @default "TODAY"
    */
   todayText: PropTypes.node,

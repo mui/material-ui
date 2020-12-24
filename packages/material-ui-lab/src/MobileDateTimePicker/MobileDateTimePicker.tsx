@@ -50,7 +50,7 @@ const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPro
    */
   ampmInClock: PropTypes.bool,
   /**
-   * "CANCEL" Text message
+   * Cancel text message
    * @default "CANCEL"
    */
   cancelText: PropTypes.node,
@@ -64,7 +64,7 @@ const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPro
    */
   clearable: PropTypes.bool,
   /**
-   * "CLEAR" Text message
+   * Clear text message
    * @default "CLEAR"
    */
   clearText: PropTypes.node,
@@ -85,7 +85,7 @@ const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPro
    */
   defaultCalendarMonth: PropTypes.any,
   /**
-   * Props to be passed directly to material-ui [Dialog](https://material-ui.com/components/dialogs)
+   * Props applied to the [`Dialog`](/api/dialog/) element.
    */
   DialogProps: PropTypes.object,
   /**
@@ -251,7 +251,7 @@ const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPro
    */
   minutesStep: PropTypes.number,
   /**
-   * "OK" button text.
+   * Ok button text.
    * @default "OK"
    */
   okText: PropTypes.node,
@@ -377,7 +377,7 @@ const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPro
    */
   showDaysOutsideCurrentMonth: PropTypes.bool,
   /**
-   * If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.
+   * If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
    * @default false
    */
   showTodayButton: PropTypes.bool,
@@ -390,7 +390,7 @@ const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPro
    */
   timeIcon: PropTypes.node,
   /**
-   * "TODAY" Text message
+   * Today text message
    * @default "TODAY"
    */
   todayText: PropTypes.node,

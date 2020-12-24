@@ -9,22 +9,22 @@ import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from './constants/dimensions';
 
 export interface ExportedPickerModalProps {
   /**
-   * "OK" button text.
+   * Ok button text.
    * @default "OK"
    */
   okText?: React.ReactNode;
   /**
-   * "CANCEL" Text message
+   * Cancel text message
    * @default "CANCEL"
    */
   cancelText?: React.ReactNode;
   /**
-   * "CLEAR" Text message
+   * Clear text message
    * @default "CLEAR"
    */
   clearText?: React.ReactNode;
   /**
-   * "TODAY" Text message
+   * Today text message
    * @default "TODAY"
    */
   todayText?: React.ReactNode;
@@ -34,12 +34,12 @@ export interface ExportedPickerModalProps {
    */
   clearable?: boolean;
   /**
-   * If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.
+   * If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
    * @default false
    */
   showTodayButton?: boolean;
   /**
-   * Props to be passed directly to material-ui [Dialog](https://material-ui.com/components/dialogs)
+   * Props applied to the [`Dialog`](/api/dialog/) element.
    */
   DialogProps?: Partial<MuiDialogProps>;
 }
@@ -54,33 +54,26 @@ export interface PickerModalDialogProps extends ExportedPickerModalProps {
 }
 
 export const styles = createStyles({
-  dialogRoot: {
+  container: {
+    outline: 0,
+  },
+  paper: {
+    outline: 0,
     minWidth: DIALOG_WIDTH,
   },
-  dialogRootWider: {
+  paperWider: {
     minWidth: DIALOG_WIDTH_WIDER,
   },
-  dialogContainer: {
-    '&:focus > $dialogRoot': {
-      outline: 'auto',
-      '@media (pointer:coarse)': {
-        outline: 0,
-      },
-    },
-  },
-  dialog: {
+  content: {
     '&:first-child': {
       padding: 0,
     },
   },
-  dialogAction: {
-    // requested for overrides
-  },
+  action: {},
   withAdditionalAction: {
     // set justifyContent to default value to fix IE11 layout bug
     // see https://github.com/mui-org/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
-
     '& > *:first-child': {
       marginRight: 'auto',
     },
@@ -93,63 +86,54 @@ const PickersModalDialog: React.FC<PickerModalDialogProps & WithStyles<typeof st
   props,
 ) => {
   const {
-    open,
-    classes,
     cancelText = 'Cancel',
     children,
+    classes,
     clearable = false,
     clearText = 'Clear',
+    DialogProps = {},
     okText = 'OK',
     onAccept,
     onClear,
     onDismiss,
     onSetToday,
+    open,
     showTodayButton = false,
     todayText = 'Today',
     wider,
-    DialogProps,
   } = props;
 
-  const MuiDialogClasses = DialogProps?.classes;
   return (
     <Dialog
       open={open}
       onClose={onDismiss}
-      classes={{
-        container: classes.dialogContainer,
-        paper: clsx(classes.dialogRoot, {
-          [classes.dialogRootWider]: wider,
-        }),
-        ...MuiDialogClasses,
-      }}
       {...DialogProps}
+      classes={{
+        ...DialogProps.classes,
+        container: classes.container,
+        paper: clsx(classes.paper, {
+          [classes.paperWider]: wider,
+        }),
+      }}
     >
-      <DialogContent className={classes.dialog}>{children}</DialogContent>
+      <DialogContent className={classes.content}>{children}</DialogContent>
       <DialogActions
-        className={clsx(classes.dialogAction, {
+        className={clsx(classes.action, {
           [classes.withAdditionalAction]: clearable || showTodayButton,
         })}
       >
         {clearable && (
-          <Button data-mui-test="clear-action-button" color="primary" onClick={onClear}>
+          <Button data-mui-test="clear-action-button" onClick={onClear}>
             {clearText}
           </Button>
         )}
         {showTodayButton && (
-          <Button data-mui-test="today-action-button" color="primary" onClick={onSetToday}>
+          <Button data-mui-test="today-action-button" onClick={onSetToday}>
             {todayText}
           </Button>
         )}
-        {cancelText && (
-          <Button color="primary" onClick={onDismiss}>
-            {cancelText}
-          </Button>
-        )}
-        {okText && (
-          <Button color="primary" onClick={onAccept}>
-            {okText}
-          </Button>
-        )}
+        {cancelText && <Button onClick={onDismiss}>{cancelText}</Button>}
+        {okText && <Button onClick={onAccept}>{okText}</Button>}
       </DialogActions>
     </Dialog>
   );
