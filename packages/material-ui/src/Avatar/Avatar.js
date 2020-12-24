@@ -1,60 +1,105 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useThemeVariants } from '@material-ui/styles';
-import withStyles from '../styles/withStyles';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
+import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-    width: 40,
-    height: 40,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(20),
-    lineHeight: 1,
-    borderRadius: '50%',
-    overflow: 'hidden',
-    userSelect: 'none',
+const overridesResolver = (props, styles) => {
+  const { variant = 'circular' } = props;
+
+  const styleOverrides = {
+    ...styles.root,
+    ...styles[variant],
+    [`&.${avatarClasses.colorDefault}`]: styles.colorDefault,
+    [`&.${avatarClasses.img}`]: styles.img,
+    [`&.${avatarClasses.fallback}`]: styles.fallback,
+  };
+
+  return styleOverrides;
+};
+
+const useAvatarClasses = (props) => {
+  const { classes = {}, variant, colorDefault } = props;
+
+  const utilityClasses = {
+    root: clsx(avatarClasses.root, classes.root, getAvatarUtilityClass(variant), {
+      [avatarClasses.colorDefault]: colorDefault,
+    }),
+    img: clsx(avatarClasses.img, classes.img),
+    fallback: clsx(avatarClasses.fallback, classes.fallback),
+  };
+
+  return utilityClasses;
+};
+
+const AvatarRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'Avatar',
+    slot: 'Root',
+    overridesResolver,
   },
-  /* Styles applied to the root element if not `src` or `srcSet`. */
-  colorDefault: {
-    color: theme.palette.background.default,
-    backgroundColor:
-      theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-  },
-  /* Styles applied to the root element if `variant="circular"`. */
-  circular: {},
-  /* Styles applied to the root element if `variant="rounded"`. */
-  rounded: {
-    borderRadius: theme.shape.borderRadius,
-  },
-  /* Styles applied to the root element if `variant="square"`. */
-  square: {
+)((props) => ({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: 40,
+  height: 40,
+  fontFamily: props.theme.typography.fontFamily,
+  fontSize: props.theme.typography.pxToRem(20),
+  lineHeight: 1,
+  borderRadius: '50%',
+  overflow: 'hidden',
+  userSelect: 'none',
+  ...(props.styleProps.variant === 'rounded' && {
+    borderRadius: props.theme.shape.borderRadius,
+  }),
+  ...(props.styleProps.variant === 'square' && {
     borderRadius: 0,
+  }),
+  ...(props.styleProps.colorDefault && {
+    color: props.theme.palette.background.default,
+    backgroundColor:
+      props.theme.palette.mode === 'light'
+        ? props.theme.palette.grey[400]
+        : props.theme.palette.grey[600],
+  }),
+}));
+
+const AvatarImg = experimentalStyled(
+  'img',
+  {},
+  {
+    name: 'Avatar',
+    slot: 'Img',
   },
-  /* Styles applied to the img element if either `src` or `srcSet` is defined. */
-  img: {
-    width: '100%',
-    height: '100%',
-    textAlign: 'center',
-    // Handle non-square image. The property isn't supported by IE11.
-    objectFit: 'cover',
-    // Hide alt text.
-    color: 'transparent',
-    // Hide the image broken icon, only works on Chrome.
-    textIndent: 10000,
+)({
+  width: '100%',
+  height: '100%',
+  textAlign: 'center',
+  // Handle non-square image. The property isn't supported by IE11.
+  objectFit: 'cover',
+  // Hide alt text.
+  color: 'transparent',
+  // Hide the image broken icon, only works on Chrome.
+  textIndent: 10000,
+});
+
+const AvatarFallback = experimentalStyled(
+  Person,
+  {},
+  {
+    name: 'Avatar',
+    slot: 'Fallback',
   },
-  /* Styles applied to the fallback icon */
-  fallback: {
-    width: '75%',
-    height: '75%',
-  },
+)({
+  width: '75%',
+  height: '75%',
 });
 
 function useLoaded({ src, srcSet }) {
@@ -94,11 +139,12 @@ function useLoaded({ src, srcSet }) {
   return loaded;
 }
 
-const Avatar = React.forwardRef(function Avatar(props, ref) {
+const Avatar = React.forwardRef(function Avatar(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiAvatar' });
+
   const {
     alt,
     children: childrenProp,
-    classes,
     className,
     component: Component = 'div',
     imgProps,
@@ -109,15 +155,6 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     ...other
   } = props;
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      component: Component,
-      variant,
-    },
-    'MuiAvatar',
-  );
-
   let children = null;
 
   // Use a hook instead of onError on the img element to support server-side rendering.
@@ -125,9 +162,17 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
   const hasImg = src || srcSet;
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
+  const stateAndProps = {
+    ...props,
+    variant,
+    colorDefault: !hasImgNotFailing,
+  };
+
+  const classes = useAvatarClasses(stateAndProps);
+
   if (hasImgNotFailing) {
     children = (
-      <img
+      <AvatarImg
         alt={alt}
         src={src}
         srcSet={srcSet}
@@ -141,26 +186,19 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <Person className={classes.fallback} />;
+    children = <AvatarFallback className={classes.fallback} />;
   }
 
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        classes.system,
-        classes[variant],
-        {
-          [classes.colorDefault]: !hasImgNotFailing,
-        },
-        themeVariantsClasses,
-        className,
-      )}
+    <AvatarRoot
+      as={Component}
+      styleProps={stateAndProps}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
       {children}
-    </Component>
+    </AvatarRoot>
   );
 });
 
@@ -220,4 +258,4 @@ Avatar.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);
+export default Avatar;

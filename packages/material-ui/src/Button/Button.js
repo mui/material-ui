@@ -45,8 +45,8 @@ const useButtonClasses = (props) => {
 
   const utilityClasses = {
     root: clsx(
-      buttonClasses['root'],
-      classes['root'],
+      buttonClasses.root,
+      classes.root,
       getButtonUtilityClass(variant),
       classes[variant],
       getButtonUtilityClass(`${variant}${capitalize(color)}`),
@@ -56,23 +56,23 @@ const useButtonClasses = (props) => {
       getButtonUtilityClass(`${variant}Size${capitalize(size)}`),
       classes[`${variant}Size${capitalize(size)}`],
       {
-        [buttonClasses['colorInherit']]: color === 'inherit',
-        [classes['colorInherit']]: color === 'inherit',
-        [buttonClasses['disableElevation']]: disableElevation,
-        [classes['disableElevation']]: disableElevation,
-        [buttonClasses['fullWidth']]: fullWidth,
-        [classes['fullWidth']]: fullWidth,
+        [buttonClasses.colorInherit]: color === 'inherit',
+        [classes.colorInherit]: color === 'inherit',
+        [buttonClasses.disableElevation]: disableElevation,
+        [classes.disableElevation]: disableElevation,
+        [buttonClasses.fullWidth]: fullWidth,
+        [classes.fullWidth]: fullWidth,
       },
     ),
-    label: clsx(buttonClasses['label'], classes['label']),
+    label: clsx(buttonClasses.label, classes.label),
     startIcon: clsx(
-      buttonClasses['startIcon'],
-      classes['startIcon'],
+      buttonClasses.startIcon,
+      classes.startIcon,
       getButtonUtilityClass(`iconSize${capitalize(size)}`),
     ),
     endIcon: clsx(
-      buttonClasses['endIcon'],
-      classes['endIcon'],
+      buttonClasses.endIcon,
+      classes.endIcon,
       getButtonUtilityClass(`iconSize${capitalize(size)}`),
     ),
   };

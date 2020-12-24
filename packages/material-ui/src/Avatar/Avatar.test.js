@@ -1,31 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  createClientRender,
-  fireEvent,
-  getClasses,
-  createMount,
-  describeConformance,
-} from 'test/utils';
+import { createClientRender, fireEvent, createMount, describeConformanceV5 } from 'test/utils';
 import { spy } from 'sinon';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import Avatar from './Avatar';
+import classes from './avatarClasses';
 
 describe('<Avatar />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Avatar />);
-  });
-
-  describeConformance(<Avatar />, () => ({
+  describeConformanceV5(<Avatar />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
+    muiName: 'MuiAvatar',
+    testVariantProps: { variant: 'foo' },
+    skip: ['componentsProp'],
   }));
 
   describe('image avatar', () => {

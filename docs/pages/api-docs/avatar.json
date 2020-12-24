@@ -27,5 +27,5 @@
   "filename": "/packages/material-ui/src/Avatar/Avatar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/avatars/\">Avatars</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true
 }
