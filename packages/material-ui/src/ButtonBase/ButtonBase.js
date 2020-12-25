@@ -455,7 +455,7 @@ ButtonBase.propTypes = {
   /**
    * @ignore
    */
-  href: PropTypes.string,
+  href: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * @ignore
    */
