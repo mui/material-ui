@@ -95,7 +95,7 @@ If you are **new to or unfamiliar with grid**, we encourage you to read this [CS
 
 ### grid-column
 
-The `grid-column` property is a shorthand for `grid-column-start` + `grid-column-end`. You can see how it is used on the [grid-auto-columns example](/system/grid/#grid-auto-columns).
+The `grid-column` property is a shorthand for `grid-column-start` + `grid-column-end`. You can see how it is used in the [grid-auto-columns example](/system/grid/#grid-auto-columns).
 
 ```jsx
 <Box sx={{ gridColumn: '1 / 3' }}>…
