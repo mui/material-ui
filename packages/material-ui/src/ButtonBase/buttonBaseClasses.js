@@ -1,11 +1,11 @@
-export function getButtonBaseUtilityClass(name) {
-  return `MuiButtonBase-${name}`;
+import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
+
+export function getButtonBaseUtilityClass(slot) {
+  return generateUtilityClass('MuiButtonBase', slot);
 }
 
 const buttonBaseClasses = {
-  root: getButtonBaseUtilityClass('root'),
-  disabled: 'Mui-disabled',
-  focusVisible: 'Mui-focusVisible',
+  ...generateUtilityClasses('MuiButtonBase', ['root', 'disabled', 'focusVisible']),
 };
 
 export default buttonBaseClasses;

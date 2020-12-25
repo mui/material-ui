@@ -1,15 +1,17 @@
-export function getAvatarUtilityClass(name) {
-  return `MuiAvatar-${name}`;
+import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
+
+export function getAvatarUtilityClass(slot) {
+  return generateUtilityClass('MuiAvatar', slot);
 }
 
-const avatarClasses = {
-  root: getAvatarUtilityClass('root'),
-  colorDefault: getAvatarUtilityClass('colorDefault'),
-  circular: getAvatarUtilityClass('circular'),
-  rounded: getAvatarUtilityClass('rounded'),
-  square: getAvatarUtilityClass('square'),
-  img: getAvatarUtilityClass('img'),
-  fallback: getAvatarUtilityClass('fallback'),
-};
+const avatarClasses = generateUtilityClasses('MuiAvatar', [
+  'root',
+  'colorDefault',
+  'circular',
+  'rounded',
+  'square',
+  'img',
+  'fallback',
+]);
 
 export default avatarClasses;
