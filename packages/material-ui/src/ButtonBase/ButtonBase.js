@@ -60,8 +60,8 @@ export const ButtonBaseRoot = experimentalStyled(
   },
 });
 
-const useUtilityClasses = (props) => {
-  const { disabled, focusVisible, focusVisibleClassName, classes = {} } = props;
+const useUtilityClasses = (styleProps) => {
+  const { disabled, focusVisible, focusVisibleClassName, classes = {} } = styleProps;
 
   const utilityClasses = {
     root: clsx(buttonBaseClasses['root'], classes['root'], {
@@ -335,7 +335,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }, [enableTouchRipple]);
   }
 
-  const stateAndProps = {
+  const styleProps = {
     ...props,
     centerRipple,
     component,
@@ -347,13 +347,13 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     focusVisible,
   };
 
-  const classes = useUtilityClasses(stateAndProps);
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <ButtonBaseRoot
       as={ComponentProp}
       className={clsx(classes.root, className)}
-      styleProps={stateAndProps}
+      styleProps={styleProps}
       onBlur={handleBlur}
       onClick={onClick}
       onFocus={handleFocus}

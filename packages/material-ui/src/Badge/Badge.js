@@ -197,8 +197,8 @@ const BadgeBadge = styled(
   }),
 }));
 
-const extendBadgeClasses = (props) => {
-  const { color, classes = {} } = props;
+const extendUtilityClasses = (styleProps) => {
+  const { color, classes = {} } = styleProps;
 
   return {
     ...classes,
@@ -237,7 +237,8 @@ const Badge = React.forwardRef(function Badge(inputProps, ref) {
 
   const { color = colorProp } = invisible ? prevProps : props;
 
-  const classes = extendBadgeClasses({ ...props, invisible, color });
+  const styleProps = { ...props, invisible, color };
+  const classes = extendUtilityClasses(styleProps);
 
   return (
     <BadgeUnstyled

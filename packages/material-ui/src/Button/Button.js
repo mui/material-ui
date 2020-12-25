@@ -40,8 +40,8 @@ const overridesResolver = (props, styles) => {
   return styleOverrides;
 };
 
-const useUtilityClasses = (props) => {
-  const { color, disableElevation, fullWidth, size, variant, classes = {} } = props;
+const useUtilityClasses = (styleProps) => {
+  const { color, disableElevation, fullWidth, size, variant, classes = {} } = styleProps;
 
   const utilityClasses = {
     root: clsx(
@@ -341,7 +341,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
 
-  const stateAndProps = {
+  const styleProps = {
     ...props,
     color,
     component,
@@ -354,16 +354,16 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(stateAndProps);
+  const classes = useUtilityClasses(styleProps);
 
   const startIcon = startIconProp && (
-    <ButtonStartIcon className={classes.startIcon} styleProps={stateAndProps}>
+    <ButtonStartIcon className={classes.startIcon} styleProps={styleProps}>
       {startIconProp}
     </ButtonStartIcon>
   );
 
   const endIcon = endIconProp && (
-    <ButtonEndIcon className={classes.endIcon} styleProps={stateAndProps}>
+    <ButtonEndIcon className={classes.endIcon} styleProps={styleProps}>
       {endIconProp}
     </ButtonEndIcon>
   );
@@ -371,7 +371,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       className={clsx(classes.root, className)}
-      styleProps={stateAndProps}
+      styleProps={styleProps}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}

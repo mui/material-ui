@@ -20,8 +20,8 @@ const overridesResolver = (props, styles) => {
   return styleOverrides;
 };
 
-const useUtilityClasses = (props) => {
-  const { classes = {}, variant, colorDefault } = props;
+const useUtilityClasses = (styleProps) => {
+  const { classes = {}, variant, colorDefault } = styleProps;
 
   const utilityClasses = {
     root: clsx(avatarClasses.root, classes.root, getAvatarUtilityClass(variant), {
@@ -160,13 +160,13 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const hasImg = src || srcSet;
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
-  const stateAndProps = {
+  const styleProps = {
     ...props,
     variant,
     colorDefault: !hasImgNotFailing,
   };
 
-  const classes = useUtilityClasses(stateAndProps);
+  const classes = useUtilityClasses(styleProps);
 
   if (hasImgNotFailing) {
     children = (
@@ -190,7 +190,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   return (
     <AvatarRoot
       as={Component}
-      styleProps={stateAndProps}
+      styleProps={styleProps}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
