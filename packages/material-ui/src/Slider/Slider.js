@@ -357,7 +357,7 @@ SliderRoot.propTypes = {
   }),
 };
 
-const extendSliderClasses = (props) => {
+const extendUtilityClasses = (props) => {
   const { color, classes = {} } = props;
 
   return {
@@ -383,7 +383,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
   const { components = {}, componentsProps = {}, color = 'primary', ...other } = props;
 
-  const classes = extendSliderClasses({ ...props, color });
+  const classes = extendUtilityClasses({ ...props, color });
 
   return (
     <SliderUnstyled

@@ -60,7 +60,7 @@ export const ButtonBaseRoot = experimentalStyled(
   },
 });
 
-const useButtonBaseClasses = (props) => {
+const useUtilityClasses = (props) => {
   const { disabled, focusVisible, focusVisibleClassName, classes = {} } = props;
 
   const utilityClasses = {
@@ -347,7 +347,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     focusVisible,
   };
 
-  const classes = useButtonBaseClasses(stateAndProps);
+  const classes = useUtilityClasses(stateAndProps);
 
   return (
     <ButtonBaseRoot

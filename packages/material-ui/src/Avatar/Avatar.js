@@ -20,7 +20,7 @@ const overridesResolver = (props, styles) => {
   return styleOverrides;
 };
 
-const useAvatarClasses = (props) => {
+const useUtilityClasses = (props) => {
   const { classes = {}, variant, colorDefault } = props;
 
   const utilityClasses = {
@@ -166,7 +166,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     colorDefault: !hasImgNotFailing,
   };
 
-  const classes = useAvatarClasses(stateAndProps);
+  const classes = useUtilityClasses(stateAndProps);
 
   if (hasImgNotFailing) {
     children = (

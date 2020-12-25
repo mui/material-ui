@@ -40,7 +40,7 @@ const overridesResolver = (props, styles) => {
   return styleOverrides;
 };
 
-const useButtonClasses = (props) => {
+const useUtilityClasses = (props) => {
   const { color, disableElevation, fullWidth, size, variant, classes = {} } = props;
 
   const utilityClasses = {
@@ -354,7 +354,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
   };
 
-  const classes = useButtonClasses(stateAndProps);
+  const classes = useUtilityClasses(stateAndProps);
 
   const startIcon = startIconProp && (
     <ButtonStartIcon className={classes.startIcon} styleProps={stateAndProps}>

@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize, usePreviousProps } from '@material-u
 import isHostComponent from '../utils/isHostComponent';
 import badgeUnstyledClasses, { getBadgeUtilityClass } from './badgeUnstyledClasses';
 
-const useBadgeClasses = (props) => {
+const useUtilityClasses = (props) => {
   const { variant, anchorOrigin, overlap, invisible, classes = {} } = props;
 
   const utilityClasses = {
@@ -98,7 +98,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     displayValue = badgeContent > max ? `${max}+` : badgeContent;
   }
 
-  const classes = useBadgeClasses({ ...stateAndProps, classes: classesProp });
+  const classes = useUtilityClasses({ ...stateAndProps, classes: classesProp });
 
   const Root = components.Root || Component;
   const rootProps = componentsProps.root || {};

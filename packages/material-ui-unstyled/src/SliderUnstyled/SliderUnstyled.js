@@ -145,7 +145,7 @@ function doesSupportTouchActionNone() {
   return cachedSupportsTouchActionNone;
 }
 
-const useSliderClasses = (props) => {
+const useUtilityClasses = (props) => {
   const { disabled, marked, orientation, track, classes = {} } = props;
 
   const utilityClasses = {
@@ -620,7 +620,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     marked: marks.length > 0 && marks.some((mark) => mark.label),
   };
 
-  const utilityClasses = useSliderClasses({ ...stateAndProps, classes: classesProp });
+  const utilityClasses = useUtilityClasses({ ...stateAndProps, classes: classesProp });
 
   return (
     <Root

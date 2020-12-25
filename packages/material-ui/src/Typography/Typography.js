@@ -79,7 +79,7 @@ const defaultVariantMapping = {
   inherit: 'p',
 };
 
-const useTypographyClasses = (props) => {
+const useUtilityClasses = (props) => {
   const { align, color, display, gutterBottom, noWrap, paragraph, variant, classes = {} } = props;
 
   const utilityClasses = {
@@ -144,7 +144,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) ||
     'span';
 
-  const classes = useTypographyClasses(stateAndProps);
+  const classes = useUtilityClasses(stateAndProps);
 
   return (
     <TypographyRoot
