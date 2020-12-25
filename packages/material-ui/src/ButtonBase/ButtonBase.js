@@ -13,13 +13,11 @@ import buttonBaseClasses from './buttonBaseClasses';
 const overridesResolver = (props, styles) => {
   const { disabled, focusVisible } = props;
 
-  const styleOverrides = {
+  return {
     ...styles.root,
     ...(disabled && styles.disabled),
     ...(focusVisible && styles.focusVisible),
   };
-
-  return styleOverrides;
 };
 
 export const ButtonBaseRoot = experimentalStyled(
@@ -63,7 +61,7 @@ export const ButtonBaseRoot = experimentalStyled(
 const useUtilityClasses = (styleProps) => {
   const { disabled, focusVisible, focusVisibleClassName, classes = {} } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(buttonBaseClasses['root'], classes['root'], {
       [buttonBaseClasses['disabled']]: disabled,
       [classes['disabled']]: disabled,
@@ -72,8 +70,6 @@ const useUtilityClasses = (styleProps) => {
       [focusVisibleClassName]: focusVisible,
     }),
   };
-
-  return utilityClasses;
 };
 
 /**

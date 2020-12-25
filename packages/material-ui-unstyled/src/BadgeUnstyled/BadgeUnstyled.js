@@ -8,7 +8,7 @@ import badgeUnstyledClasses, { getBadgeUtilityClass } from './badgeUnstyledClass
 const useUtilityClasses = (styleProps) => {
   const { variant, anchorOrigin, overlap, invisible, classes = {} } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(badgeUnstyledClasses['root'], classes['root']),
     badge: clsx(
       badgeUnstyledClasses['badge'],
@@ -30,8 +30,6 @@ const useUtilityClasses = (styleProps) => {
       },
     ),
   };
-
-  return utilityClasses;
 };
 
 const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {

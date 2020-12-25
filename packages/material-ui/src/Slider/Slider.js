@@ -42,7 +42,7 @@ const overridesResolver = (props, styles) => {
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-  const styleOverrides = {
+  return {
     ...styles.root,
     ...styles[`color${capitalize(color)}`],
     [`&.${sliderClasses.disabled}`]: styles.disabled,
@@ -61,8 +61,6 @@ const overridesResolver = (props, styles) => {
       [`&.${sliderClasses.disabled}`]: styles.disabled,
     },
   };
-
-  return styleOverrides;
 };
 
 export const SliderRoot = experimentalStyled(

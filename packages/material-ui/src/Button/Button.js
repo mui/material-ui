@@ -17,7 +17,7 @@ const overridesResolver = (props, styles) => {
     variant = 'text',
   } = props;
 
-  const styleOverrides = {
+  return {
     ...styles.root,
     ...styles[variant],
     ...styles[`${variant}${capitalize(color)}`],
@@ -36,14 +36,12 @@ const overridesResolver = (props, styles) => {
       ...styles[`iconSize${capitalize(size)}`],
     },
   };
-
-  return styleOverrides;
 };
 
 const useUtilityClasses = (styleProps) => {
   const { color, disableElevation, fullWidth, size, variant, classes = {} } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(
       buttonClasses.root,
       classes.root,
@@ -76,8 +74,6 @@ const useUtilityClasses = (styleProps) => {
       getButtonUtilityClass(`iconSize${capitalize(size)}`),
     ),
   };
-
-  return utilityClasses;
 };
 
 const commonIconStyles = (styleProps) => ({

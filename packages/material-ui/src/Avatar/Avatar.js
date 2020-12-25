@@ -9,29 +9,25 @@ import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
 const overridesResolver = (props, styles) => {
   const { variant = 'circular' } = props;
 
-  const styleOverrides = {
+  return {
     ...styles.root,
     ...styles[variant],
     [`&.${avatarClasses.colorDefault}`]: styles.colorDefault,
     [`&.${avatarClasses.img}`]: styles.img,
     [`&.${avatarClasses.fallback}`]: styles.fallback,
   };
-
-  return styleOverrides;
 };
 
 const useUtilityClasses = (styleProps) => {
   const { classes = {}, variant, colorDefault } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(avatarClasses.root, classes.root, getAvatarUtilityClass(variant), {
       [avatarClasses.colorDefault]: colorDefault,
     }),
     img: clsx(avatarClasses.img, classes.img),
     fallback: clsx(avatarClasses.fallback, classes.fallback),
   };
-
-  return utilityClasses;
 };
 
 const AvatarRoot = experimentalStyled(

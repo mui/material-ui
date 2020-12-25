@@ -148,7 +148,7 @@ function doesSupportTouchActionNone() {
 const useUtilityClasses = (styleProps) => {
   const { disabled, marked, orientation, track, classes = {} } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(sliderUnstyledClasses['root'], classes['root'], {
       [sliderUnstyledClasses['disabled']]: disabled,
       [classes['disabled']]: disabled,
@@ -176,8 +176,6 @@ const useUtilityClasses = (styleProps) => {
     disabled: clsx(sliderUnstyledClasses['disabled'], classes['disabled']),
     focusVisible: clsx(sliderUnstyledClasses['focusVisible'], classes['focusVisible']),
   };
-
-  return utilityClasses;
 };
 
 const Forward = ({ children }) => children;

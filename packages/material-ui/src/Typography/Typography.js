@@ -21,7 +21,7 @@ const getTextColor = (color, palette) => {
 const overridesResolver = (props, styles) => {
   const { styleProps = {} } = props;
 
-  const styleOverrides = {
+  return {
     ...styles.root,
     ...(styleProps.variant && styles[styleProps.variant]),
     ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
@@ -31,8 +31,6 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.gutterBottom && styles.gutterBottom),
     ...(styleProps.paragraph && styles.paragraph),
   };
-
-  return styleOverrides;
 };
 
 export const TypographyRoot = experimentalStyled(
@@ -82,7 +80,7 @@ const defaultVariantMapping = {
 const useUtilityClasses = (styleProps) => {
   const { align, color, display, gutterBottom, noWrap, paragraph, variant, classes = {} } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(
       typographyClasses['root'],
       classes['root'],
@@ -104,8 +102,6 @@ const useUtilityClasses = (styleProps) => {
       },
     ),
   };
-
-  return utilityClasses;
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
