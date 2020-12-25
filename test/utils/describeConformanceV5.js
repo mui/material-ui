@@ -72,9 +72,9 @@ function testThemeComponents(element, getOptions) {
                 ...testStyle,
                 ...(testDeepOverrides && {
                   [`& .${testDeepOverrides.slotClassName}`]: {
-                    marginBottom: '10px'
-                  }
-                })
+                    marginBottom: '10px',
+                  },
+                }),
               },
               ...(testDeepOverrides && {
                 [testDeepOverrides.slotName]: {
@@ -91,7 +91,9 @@ function testThemeComponents(element, getOptions) {
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
 
       if (testDeepOverrides) {
-        expect(container.firstChild.getElementsByClassName(testDeepOverrides.slotClassName)[0]).to.toHaveComputedStyle({
+        expect(
+          container.firstChild.getElementsByClassName(testDeepOverrides.slotClassName)[0],
+        ).to.toHaveComputedStyle({
           marginBottom: '10px',
           marginTop: '10px',
         });
