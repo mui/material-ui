@@ -111,7 +111,7 @@ The `grid-row` property is a shorthand for `grid-row-start` + `grid-row-end`. Yo
 
 ### grid-area
 
-The `grid-area` property allows you to give an item a name so that it can be referenced by a template created with the `grid-template-areas` property. You can see you it is used on the [grid-template-area example](/system/grid/#grid-template-areas).
+The `grid-area` property allows you to give an item a name so that it can be referenced by a template created with the `grid-template-areas` property. You can see how it is used in the [grid-template-area example](/system/grid/#grid-template-areas).
 
 ```jsx
 <Box sx={{ gridArea: 'header' }}>…
