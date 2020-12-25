@@ -37,9 +37,10 @@ materialDesign: https://material.io/components/navigation-drawer
 - iOS 有一个“滑动回退”功能，它会影响发现功能，所以必须禁用发现功能。
 
 ```jsx
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS =
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
 ### 保持安装（mounted）
