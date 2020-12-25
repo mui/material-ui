@@ -36,7 +36,7 @@ const overridesResolver = (props, styles) => {
     overlap = 'rectangular',
   } = props;
 
-  return deepmerge(styles.root, {
+  return deepmerge(styles.root || {}, {
     [`& .${badgeClasses.badge}`]: {
       ...styles.badge,
       ...styles[variant],

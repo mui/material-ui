@@ -13,7 +13,7 @@ import buttonBaseClasses from './buttonBaseClasses';
 const overridesResolver = (props, styles) => {
   const { disabled, focusVisible } = props;
 
-  return deepmerge(styles.root, {
+  return deepmerge(styles.root || {}, {
     ...(disabled && styles.disabled),
     ...(focusVisible && styles.focusVisible),
   });

@@ -18,7 +18,7 @@ const overridesResolver = (props, styles) => {
     variant = 'text',
   } = props;
 
-  return deepmerge(styles.root, {
+  return deepmerge(styles.root || {}, {
     ...styles[variant],
     ...styles[`${variant}${capitalize(color)}`],
     ...styles[`size${capitalize(size)}`],

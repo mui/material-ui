@@ -42,7 +42,7 @@ const overridesResolver = (props, styles) => {
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-  return deepmerge(styles.root, {
+  return deepmerge(styles.root || {}, {
     ...styles[`color${capitalize(color)}`],
     [`&.${sliderClasses.disabled}`]: styles.disabled,
     ...(marked && styles.marked),

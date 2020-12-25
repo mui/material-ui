@@ -22,7 +22,7 @@ const getTextColor = (color, palette) => {
 const overridesResolver = (props, styles) => {
   const { styleProps = {} } = props;
 
-  return deepmerge(styles.root, {
+  return deepmerge(styles.root || {}, {
     ...(styleProps.variant && styles[styleProps.variant]),
     ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
     ...(styleProps.align && styles[`align${capitalize(styleProps.align)}`]),

@@ -10,7 +10,7 @@ import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
 const overridesResolver = (props, styles) => {
   const { variant = 'circular' } = props;
 
-  return deepmerge(styles.root, {
+  return deepmerge(styles.root || {}, {
     ...styles[variant],
     [`&.${avatarClasses.colorDefault}`]: styles.colorDefault,
     [`& .${avatarClasses.img}`]: styles.img,
