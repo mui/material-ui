@@ -13,6 +13,7 @@ describe('generateUtilityClasses', () => {
     expect(
       generateUtilityClasses('MuiTest', [
         'slot',
+        'active',
         'checked',
         'disabled',
         'error',
@@ -24,6 +25,7 @@ describe('generateUtilityClasses', () => {
       ]),
     ).to.deep.equal({
       slot: 'MuiTest-slot',
+      active: 'Mui-active',
       checked: 'Mui-checked',
       disabled: 'Mui-disabled',
       error: 'Mui-error',

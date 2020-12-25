@@ -7,6 +7,7 @@ describe('generateUtilityClass', () => {
   });
 
   it('should consider if slot should generate pseudo class', () => {
+    expect(generateUtilityClass('MuiTest', 'active')).to.equal('Mui-active');
     expect(generateUtilityClass('MuiTest', 'checked')).to.equal('Mui-checked');
     expect(generateUtilityClass('MuiTest', 'disabled')).to.equal('Mui-disabled');
     expect(generateUtilityClass('MuiTest', 'error')).to.equal('Mui-error');

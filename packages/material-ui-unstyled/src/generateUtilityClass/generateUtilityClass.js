@@ -1,4 +1,5 @@
 const globalPseudoClassesMapping = {
+  active: 'Mui-active',
   checked: 'Mui-checked',
   disabled: 'Mui-disabled',
   error: 'Mui-error',
