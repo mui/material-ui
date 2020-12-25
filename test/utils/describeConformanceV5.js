@@ -98,6 +98,34 @@ function testThemeComponents(element, getOptions) {
           marginTop: '10px',
         });
       }
+
+      const themeWithoutRootOverrides = createMuiTheme({
+        components: {
+          [muiName]: {
+            styleOverrides: {
+              ...(testDeepOverrides && {
+                [testDeepOverrides.slotName]: {
+                  marginTop: '10px',
+                },
+              }),
+            },
+          },
+        },
+      });
+
+      const { container: containerWithoutRootOverrides } = render(
+        <ThemeProvider theme={themeWithoutRootOverrides}>{element}</ThemeProvider>,
+      );
+
+      if (testDeepOverrides) {
+        expect(
+          containerWithoutRootOverrides.firstChild.getElementsByClassName(
+            testDeepOverrides.slotClassName,
+          )[0],
+        ).to.toHaveComputedStyle({
+          marginTop: '10px',
+        });
+      }
     });
 
     it("respect theme's variants", () => {
