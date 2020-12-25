@@ -78,7 +78,16 @@ const defaultVariantMapping = {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { align, color, display, gutterBottom, noWrap, paragraph, variant, classes = {} } = styleProps;
+  const {
+    align,
+    color,
+    display,
+    gutterBottom,
+    noWrap,
+    paragraph,
+    variant,
+    classes = {},
+  } = styleProps;
 
   return {
     root: clsx(
