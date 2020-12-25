@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
+import { deepmerge, elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
@@ -13,13 +13,10 @@ import buttonBaseClasses from './buttonBaseClasses';
 const overridesResolver = (props, styles) => {
   const { disabled, focusVisible } = props;
 
-  const styleOverrides = {
-    ...styles.root,
+  return deepmerge(styles.root, {
     ...(disabled && styles.disabled),
     ...(focusVisible && styles.focusVisible),
-  };
-
-  return styleOverrides;
+  });
 };
 
 export const ButtonBaseRoot = experimentalStyled(

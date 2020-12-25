@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, deepmerge } from '@material-ui/utils';
 import {
   SliderUnstyled,
   SliderValueLabelUnstyled,
@@ -42,8 +42,7 @@ const overridesResolver = (props, styles) => {
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-  const styleOverrides = {
-    ...styles.root,
+  return deepmerge(styles.root, {
     ...styles[`color${capitalize(color)}`],
     [`&.${sliderClasses.disabled}`]: styles.disabled,
     ...(marked && styles.marked),
@@ -60,9 +59,7 @@ const overridesResolver = (props, styles) => {
       ...styles[`thumbColor${capitalize(color)}`],
       [`&.${sliderClasses.disabled}`]: styles.disabled,
     },
-  };
-
-  return styleOverrides;
+  });
 };
 
 export const SliderRoot = experimentalStyled(

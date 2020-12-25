@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
@@ -9,15 +10,12 @@ import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
 const overridesResolver = (props, styles) => {
   const { variant = 'circular' } = props;
 
-  const styleOverrides = {
-    ...styles.root,
+  return deepmerge(styles.root, {
     ...styles[variant],
     [`&.${avatarClasses.colorDefault}`]: styles.colorDefault,
-    [`&.${avatarClasses.img}`]: styles.img,
-    [`&.${avatarClasses.fallback}`]: styles.fallback,
-  };
-
-  return styleOverrides;
+    [`& .${avatarClasses.img}`]: styles.img,
+    [`& .${avatarClasses.fallback}`]: styles.fallback,
+  });
 };
 
 const useAvatarClasses = (props) => {
