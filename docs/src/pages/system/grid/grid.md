@@ -2,7 +2,7 @@
 
 <p class="description">Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive grid utilities.</p>
 
-If you are **new to or unfamiliar with grid**, we encourage you to read this [CSS-Tricks grid](https://css-tricks.com/snippets/css/complete-guide-grid/) guide.
+If you are **new to or unfamiliar with grid**, you're encourage to read this [CSS-Tricks grid](https://css-tricks.com/snippets/css/complete-guide-grid/) guide.
 
 ## Properties for the Parent
 
@@ -95,7 +95,7 @@ If you are **new to or unfamiliar with grid**, we encourage you to read this [CS
 
 ### grid-column
 
-The `grid-column` property is a shorthand for `grid-column-start` + `grid-column-end`. You can see how it is used in the [grid-auto-columns example](/system/grid/#grid-auto-columns).
+The `grid-column` property is a shorthand for `grid-column-start` + `grid-column-end`. You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns).
 
 ```jsx
 <Box sx={{ gridColumn: '1 / 3' }}>…
@@ -103,7 +103,7 @@ The `grid-column` property is a shorthand for `grid-column-start` + `grid-column
 
 ### grid-row
 
-The `grid-row` property is a shorthand for `grid-row-start` + `grid-row-end`. You can see how it is used in the [grid-auto-rows example](/system/grid/#grid-auto-rows).
+The `grid-row` property is a shorthand for `grid-row-start` + `grid-row-end`. You can see how it's used in the [grid-auto-rows example](/system/grid/#grid-auto-rows).
 
 ```jsx
 <Box sx={{ gridRow: '1 / 3' }}>…
@@ -111,7 +111,7 @@ The `grid-row` property is a shorthand for `grid-row-start` + `grid-row-end`. Yo
 
 ### grid-area
 
-The `grid-area` property allows you to give an item a name so that it can be referenced by a template created with the `grid-template-areas` property. You can see how it is used in the [grid-template-area example](/system/grid/#grid-template-areas).
+The `grid-area` property allows you to give an item a name so that it can be referenced by a template created with the `grid-template-areas` property. You can see how it's used in the [grid-template-area example](/system/grid/#grid-template-areas).
 
 ```jsx
 <Box sx={{ gridArea: 'header' }}>…
