@@ -103,7 +103,7 @@ The `grid-column` property is a shorthand for `grid-column-start` + `grid-column
 
 ### grid-row
 
-The `grid-row` property is a shorthand for `grid-row-start` + `grid-row-end`. You can see how it is used on the [grid-auto-rows example](/system/grid/#grid-auto-rows).
+The `grid-row` property is a shorthand for `grid-row-start` + `grid-row-end`. You can see how it is used in the [grid-auto-rows example](/system/grid/#grid-auto-rows).
 
 ```jsx
 <Box sx={{ gridRow: '1 / 3' }}>…
