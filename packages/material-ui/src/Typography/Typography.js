@@ -39,29 +39,29 @@ export const TypographyRoot = experimentalStyled(
   'span',
   {},
   { name: 'Typography', slot: 'Root', overridesResolver },
-)((props) => ({
+)(({ theme, styleProps }) => ({
   margin: 0,
-  ...(props.styleProps.variant && props.theme.typography[props.styleProps.variant]),
-  ...(props.styleProps.align !== 'inherit' && {
-    textAlign: props.styleProps.align,
+  ...(styleProps.variant && theme.typography[styleProps.variant]),
+  ...(styleProps.align !== 'inherit' && {
+    textAlign: styleProps.align,
   }),
-  ...(props.styleProps.noWrap && {
+  ...(styleProps.noWrap && {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
   }),
-  ...(props.styleProps.gutterBottom && {
+  ...(styleProps.gutterBottom && {
     marginBottom: '0.35em',
   }),
-  ...(props.styleProps.paragraph && {
+  ...(styleProps.paragraph && {
     marginBottom: 16,
   }),
-  ...(props.styleProps.color &&
-    props.styleProps.color !== 'initial' && {
-      color: getTextColor(props.styleProps.color, props.theme.palette),
+  ...(styleProps.color &&
+    styleProps.color !== 'initial' && {
+      color: getTextColor(styleProps.color, theme.palette),
     }),
-  ...(props.styleProps.display !== 'initial' && {
-    display: props.styleProps.display,
+  ...(styleProps.display !== 'initial' && {
+    display: styleProps.display,
   }),
 }));
 
