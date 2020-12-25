@@ -167,10 +167,7 @@ const ButtonRoot = experimentalStyled(
   ),
   '&:hover': {
     textDecoration: 'none',
-    backgroundColor: alpha(
-      theme.palette.text.primary,
-      theme.palette.action.hoverOpacity,
-    ),
+    backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',

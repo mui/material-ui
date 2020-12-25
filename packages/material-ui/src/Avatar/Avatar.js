@@ -65,9 +65,7 @@ const AvatarRoot = experimentalStyled(
   ...(styleProps.colorDefault && {
     color: theme.palette.background.default,
     backgroundColor:
-      theme.palette.mode === 'light'
-        ? theme.palette.grey[400]
-        : theme.palette.grey[600],
+      theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
   }),
 }));
 
