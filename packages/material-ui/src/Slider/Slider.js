@@ -136,7 +136,7 @@ export const SliderRail = experimentalStyled(
   'span',
   {},
   { name: 'Slider', slot: 'Rail' },
-)(({ theme, styleProps }) => ({
+)(({ styleProps }) => ({
   display: 'block',
   position: 'absolute',
   width: '100%',
@@ -248,7 +248,7 @@ export const SliderValueLabel = experimentalStyled(
   SliderValueLabelUnstyled,
   {},
   { name: 'Slider', slot: 'ValueLabel' },
-)(({ theme, styleProps }) => ({
+)(({ theme }) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
   [`&.${sliderClasses.valueLabelOpen}`]: {
