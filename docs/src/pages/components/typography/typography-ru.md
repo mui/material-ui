@@ -27,14 +27,17 @@ The *Roboto* font will **not** be automatically loaded by Material-UI. You are r
 
 ## Установка используя npm
 
-Вы можете [установить его](https://www.npmjs.com/package/fontsource-roboto) набрав команду ниже в терминале:
+Вы можете [установить его](https://www.npmjs.com/package/@fontsource/roboto) набрав команду ниже в терминале:
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Затем вы можете импортировать его в вашу точку входа.
 
 ```js
-import 'fontsource-roboto';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
