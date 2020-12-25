@@ -14,11 +14,11 @@
 
 <b>系统样式函数</b>列列出了生成其他列中显示的属性的函数，以作为你要将此功能添加到自定义组件中的参考。 函数可以从 `@material-ui/system` 导入。 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
 
-### System keys
+### 系统键
 
 <b>系统键</b>一列列出了你可以通过 `sx` 属性（或作为系统函数）使用此属性的键。
 
-### CSS properties
+### CSS 属性
 
 <b>CSS 属性</b>列描述了当使用该系统属性时，将生成哪个CSS属性。
 
