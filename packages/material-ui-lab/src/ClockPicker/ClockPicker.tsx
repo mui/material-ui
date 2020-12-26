@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Clock from './Clock';
 import { pipe } from '../internal/pickers/utils';
 import { useUtils, useNow, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -53,6 +53,13 @@ export interface ClockPickerProps<TDate>
   extends ExportedClockPickerProps<TDate>,
     ExportedArrowSwitcherProps {
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    arrowSwitcher?: string;
+  };
+
+  /**
    * Selected date @DateIOType.
    */
   date: TDate | null;
@@ -80,13 +87,13 @@ export interface ClockPickerProps<TDate>
   showViewSwitcher?: boolean;
 }
 
-export const styles = createStyles({
+export const styles = {
   arrowSwitcher: {
     position: 'absolute',
     right: 12,
     top: 15,
   },
-});
+};
 
 const getDefaultClockLabelText = <TDate extends any>(
   view: 'hours' | 'minutes' | 'seconds',
@@ -103,7 +110,7 @@ const getSecondsAriaText = (seconds: string) => `${seconds} seconds`;
 /**
  * @ignore - do not document.
  */
-function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof styles>) {
+function ClockPicker<TDate>(props: ClockPickerProps<TDate>) {
   const {
     allowKeyboardControl,
     ampm,
@@ -279,7 +286,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
     <React.Fragment>
       {showViewSwitcher && (
         <ArrowSwitcher
-          className={classes.arrowSwitcher}
+          className={classes!.arrowSwitcher}
           leftArrowButtonProps={leftArrowButtonProps}
           rightArrowButtonProps={rightArrowButtonProps}
           leftArrowButtonText={leftArrowButtonText}
@@ -332,9 +339,9 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
    */
   ampmInClock: PropTypes.bool,
   /**
-   * @ignore
+   * Override or extend the styles applied to the component.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * Selected date @DateIOType.
    */
@@ -435,6 +442,6 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
   view: PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiPickersClockView' })(ClockPicker) as <TDate>(
+export default withStyles(styles as any, { name: 'MuiClockPicker' })(ClockPicker) as <TDate>(
   props: ClockPickerProps<TDate>,
 ) => JSX.Element;

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { capitalize } from '@material-ui/core/utils';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import TimelineContext from './TimelineContext';
 
-export const styles = createStyles({
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
@@ -20,9 +20,7 @@ export const styles = createStyles({
   alignRight: {},
   /* Styles applied to the root element if `align="alternate"`. */
   alignAlternate: {},
-});
-
-export type TimelineClassKey = keyof WithStyles<typeof styles>['classes'];
+};
 
 export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
@@ -48,6 +46,8 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
     alignAlternate?: string;
   };
 }
+
+export type TimelineClassKey = keyof NonNullable<TimelineProps['classes']>;
 
 const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Timeline(props, ref) {
   const { align = 'left', classes, className, ...other } = props;
@@ -103,4 +103,6 @@ Timeline.propTypes = {
  *
  * - [Timeline API](https://material-ui.com/api/timeline/)
  */
-export default withStyles(styles, { name: 'MuiTimeline' })(Timeline);
+export default withStyles(styles as any, { name: 'MuiTimeline' })(Timeline) as (
+  props: TimelineProps,
+) => JSX.Element;

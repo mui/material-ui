@@ -1,16 +1,15 @@
 import { createStyles as createStylesOriginal } from '@material-ui/styles';
 
-// let warnOnce = false;
+// let warnedOnce = false;
 
-// To remove in v5
 export default function createStyles(styles) {
   // warning(
-  //   warnOnce,
+  //   warnedOnce,
   //   [
-  //     'Material-UI: createStyles from @material-ui/core/styles is deprecated.',
-  //     'Please use @material-ui/styles/createStyles',
+  //     'Material-UI: Imports of createStyles from `@material-ui/core/styles` is deprecated.',
+  //     'Please use @material-ui/styles',
   //   ].join('\n'),
   // );
-  // warnOnce = true;
+  // warnedOnce = true;
   return createStylesOriginal(styles);
 }
