@@ -8,9 +8,7 @@ export default function VisuallyHiddenUsage() {
     <Link href="#foo">
       Read more
       {/* always visually hidden because the parent is focusable element */}
-      <Box component="span" sx={{ ...visuallyHidden }}>
-        about how to visually hide elements
-      </Box>
+      <Box sx={visuallyHidden}>about how to visually hide elements</Box>
     </Link>
   );
 }
