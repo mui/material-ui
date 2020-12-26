@@ -23,7 +23,7 @@
 - [Spacing](/customization/spacing/)
 - [ブレークポイント](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [グローバル](/customization/globals/)
+- [コンポーネント](/customization/theme-components/)
 - [Transitions](/customization/transitions/)
 
 [既定のテーマセクション](/customization/default-theme/)をチェックアウトすると、既定のテーマをすべて表示できます。
