@@ -146,4 +146,4 @@ In the previous section, we learned how to override the style of a Material-UI c
 
 `theme`の`overrides`キーを利用すると、Material-UIによってDOMに注入されるすべてのスタイルを潜在的に変更できます。 詳細については、ドキュメントの[テーマセクションをご覧ください](/customization/globals/#css)。
 
-Please take a look at the theme's [global overrides page](/customization/globals/) for more details.
+Please take a look at the theme's [global overrides page](/customization/theme-components/) for more details.
