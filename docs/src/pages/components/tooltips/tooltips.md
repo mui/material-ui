@@ -16,7 +16,7 @@ When activated, Tooltips display a text label identifying an element, such as a 
 
 ## Basic tooltip
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
 ## Positioned tooltips
 
