@@ -276,7 +276,7 @@ const appList = [
   {
     title: 'ODIGEO Connect',
     description:
-      'Connect your hotel, B&B and apartment with Europe’s #1 flight OTA ' +
+      "Connect your hotel, B&B and apartment with Europe's #1 flight OTA " +
       'and distribute it to millions of travellers.',
     image: 'odigeo.jpg',
     link: 'https://www.odigeoconnect.com/',
@@ -286,7 +286,7 @@ const appList = [
     title: 'comet',
     description:
       'Comet lets you track code, experiments, and results on ML projects. ' +
-      'It’s fast, simple, and free for open source projects.',
+      "It's fast, simple, and free for open source projects.",
     image: 'comet.jpg',
     link: 'https://www.comet.ml/',
     dateAdded: '2019-01-01',
@@ -303,7 +303,7 @@ const appList = [
   {
     title: 'Oneplanetcrowd',
     description:
-      'Oneplanetcrowd is Europe’s leading sustainable crowdfunding platform for People & Planet.',
+      "Oneplanetcrowd is Europe's leading sustainable crowdfunding platform for People & Planet.",
     image: 'oneplanetcrowd.jpg',
     link: 'https://www.oneplanetcrowd.com/en',
     dateAdded: '2019-01-01',
@@ -427,8 +427,8 @@ const appList = [
   {
     title: 'MetaFact',
     description:
-      'Metafact is a place to verify knowledge via the world’s top experts. ' +
-      'It’s a platform to ask questions, learn the facts and share the truth.',
+      "Metafact is a place to verify knowledge via the world's top experts. " +
+      "It's a platform to ask questions, learn the facts and share the truth.",
     image: 'metafact.jpg',
     link: 'https://metafact.io/',
     dateAdded: '2019-01-01',

@@ -357,7 +357,7 @@ export default function App() {
 
 ## Server-side rendering
 
-This example returns a string of HTML and inlines the critical CSS required, right before it’s used:
+This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';

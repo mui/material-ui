@@ -1,6 +1,6 @@
 # About Us
 
-<p class="description">We’re on a mission to make building UIs with React fun.</p>
+<p class="description">We're on a mission to make building UIs with React fun.</p>
 
 ## Our Mission
 
