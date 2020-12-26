@@ -23,7 +23,7 @@ Das Ändern der Konfigurationsvariablen für das Theme ist der effektivste Weg, 
 - [Abstände](/customization/spacing/)
 - [Haltepunkte](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [Globale Objekte](/customization/globals/)
+- [Komponenten](/customization/theme-components/)
 - [Übergänge](/customization/transitions/)
 
 Sie können den [Standard-Themenbereich](/customization/default-theme/) auschecken, um das Standarddesign vollständig anzuzeigen.
