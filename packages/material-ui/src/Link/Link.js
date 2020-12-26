@@ -19,7 +19,7 @@ export const styles = {
   underlineHover: {
     textDecoration: 'none',
     '&:hover': {
-      textDecoration: 'underline',
+      textDecoration: 'secondary',
     },
   },
   /* Styles applied to the root element if `underline="always"`. */
