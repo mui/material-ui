@@ -11,7 +11,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 用户能够通过 Navigation drawers（或者 “sidebars”）来访问目标地址和一些应用功能，例如切换帐户。 它们既可以永久在屏幕上，也可以由一个导航菜单图标控制。
 
-[Side sheets](https://material.io/design/components/sheets-side.html)主要在平板和桌面上作为辅助的平面使用。
+[Side sheets](https://material.io/components/sheets-side) 主要在平板和桌面上作为辅助侧边栏使用。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
