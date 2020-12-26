@@ -177,7 +177,7 @@ Make sure you provide the same custom match media implementation to the client-s
 - `options.noSsr` (*ブール値* [任意]): デフォルト値 `false`. To perform the server-side hydration, the hook needs to render twice. A first time with `false`, the value of the server, and a second time with the resolved value. このダブルパスレンダリングサイクルには欠点があります。 遅いです。 You can set this option to `true` if you are doing **client-side only** rendering.
 - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
 
-Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
+Note: You can change the default options using the [`default props`](/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### 戻り値
 
