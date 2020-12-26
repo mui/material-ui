@@ -27,7 +27,7 @@ Here are the top priorities:
 
 ## Quarterly roadmap
 
-Our GitHub projects roadmap are where you can learn about what features we're working on, what stage they're in, and when we expect to bring them to you:
+Our GitHub project's roadmap is where you can learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
 - [Material-UI community](https://github.com/mui-org/material-ui/projects/25)
 - [Material-UI X](https://github.com/mui-org/material-ui-x/projects/1)
