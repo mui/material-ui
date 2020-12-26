@@ -21,7 +21,7 @@ const getTextColor = (color, palette) => {
 const overridesResolver = (props, styles) => {
   const { styleProps = {} } = props;
 
-  const styleOverrides = {
+  return {
     ...styles.root,
     ...(styleProps.variant && styles[styleProps.variant]),
     ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
@@ -31,37 +31,35 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.gutterBottom && styles.gutterBottom),
     ...(styleProps.paragraph && styles.paragraph),
   };
-
-  return styleOverrides;
 };
 
 export const TypographyRoot = experimentalStyled(
   'span',
   {},
   { name: 'Typography', slot: 'Root', overridesResolver },
-)((props) => ({
+)(({ theme, styleProps }) => ({
   margin: 0,
-  ...(props.styleProps.variant && props.theme.typography[props.styleProps.variant]),
-  ...(props.styleProps.align !== 'inherit' && {
-    textAlign: props.styleProps.align,
+  ...(styleProps.variant && theme.typography[styleProps.variant]),
+  ...(styleProps.align !== 'inherit' && {
+    textAlign: styleProps.align,
   }),
-  ...(props.styleProps.noWrap && {
+  ...(styleProps.noWrap && {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
   }),
-  ...(props.styleProps.gutterBottom && {
+  ...(styleProps.gutterBottom && {
     marginBottom: '0.35em',
   }),
-  ...(props.styleProps.paragraph && {
+  ...(styleProps.paragraph && {
     marginBottom: 16,
   }),
-  ...(props.styleProps.color &&
-    props.styleProps.color !== 'initial' && {
-      color: getTextColor(props.styleProps.color, props.theme.palette),
+  ...(styleProps.color &&
+    styleProps.color !== 'initial' && {
+      color: getTextColor(styleProps.color, theme.palette),
     }),
-  ...(props.styleProps.display !== 'initial' && {
-    display: props.styleProps.display,
+  ...(styleProps.display !== 'initial' && {
+    display: styleProps.display,
   }),
 }));
 
@@ -79,10 +77,19 @@ const defaultVariantMapping = {
   inherit: 'p',
 };
 
-const useTypographyClasses = (props) => {
-  const { align, color, display, gutterBottom, noWrap, paragraph, variant, classes = {} } = props;
+const useUtilityClasses = (styleProps) => {
+  const {
+    align,
+    color,
+    display,
+    gutterBottom,
+    noWrap,
+    paragraph,
+    variant,
+    classes = {},
+  } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(
       typographyClasses['root'],
       classes['root'],
@@ -104,8 +111,6 @@ const useTypographyClasses = (props) => {
       },
     ),
   };
-
-  return utilityClasses;
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
@@ -125,7 +130,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...other
   } = props;
 
-  const stateAndProps = {
+  const styleProps = {
     ...props,
     align,
     className,
@@ -144,13 +149,13 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) ||
     'span';
 
-  const classes = useTypographyClasses(stateAndProps);
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <TypographyRoot
       as={Component}
       ref={ref}
-      styleProps={stateAndProps}
+      styleProps={styleProps}
       className={clsx(classes.root, className)}
       {...other}
     />

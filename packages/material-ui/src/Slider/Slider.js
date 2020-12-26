@@ -42,7 +42,7 @@ const overridesResolver = (props, styles) => {
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-  const styleOverrides = {
+  return {
     ...styles.root,
     ...styles[`color${capitalize(color)}`],
     [`&.${sliderClasses.disabled}`]: styles.disabled,
@@ -61,8 +61,6 @@ const overridesResolver = (props, styles) => {
       [`&.${sliderClasses.disabled}`]: styles.disabled,
     },
   };
-
-  return styleOverrides;
 };
 
 export const SliderRoot = experimentalStyled(
@@ -73,7 +71,7 @@ export const SliderRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)((props) => ({
+)(({ theme, styleProps }) => ({
   height: 2,
   width: '100%',
   boxSizing: 'content-box',
@@ -82,17 +80,17 @@ export const SliderRoot = experimentalStyled(
   position: 'relative',
   cursor: 'pointer',
   touchAction: 'none',
-  color: props.theme.palette.primary.main,
+  color: theme.palette.primary.main,
   WebkitTapHighlightColor: 'transparent',
-  ...(props.styleProps.color === 'secondary' && {
-    color: props.theme.palette.secondary.main,
+  ...(styleProps.color === 'secondary' && {
+    color: theme.palette.secondary.main,
   }),
   [`&.${sliderClasses.disabled}`]: {
     pointerEvents: 'none',
     cursor: 'default',
-    color: props.theme.palette.grey[400],
+    color: theme.palette.grey[400],
   },
-  ...(props.styleProps.orientation === 'vertical' && {
+  ...(styleProps.orientation === 'vertical' && {
     width: 2,
     height: '100%',
     padding: '0 13px',
@@ -101,16 +99,16 @@ export const SliderRoot = experimentalStyled(
   '@media (pointer: coarse)': {
     // Reach 42px touch target, about ~8mm on screen.
     padding: '20px 0',
-    ...(props.styleProps.orientation === 'vertical' && {
+    ...(styleProps.orientation === 'vertical' && {
       padding: '0 20px',
     }),
   },
   '@media print': {
     colorAdjust: 'exact',
   },
-  ...(props.styleProps.marked && {
+  ...(styleProps.marked && {
     marginBottom: 20,
-    ...(props.styleProps.orientation === 'vertical' && {
+    ...(styleProps.orientation === 'vertical' && {
       marginBottom: 'auto',
       marginRight: 20,
     }),
@@ -126,7 +124,7 @@ export const SliderRoot = experimentalStyled(
     transform: 'rotate(-45deg)',
   },
   [`& .${sliderClasses.valueLabelLabel}`]: {
-    color: props.theme.palette.primary.contrastText,
+    color: theme.palette.primary.contrastText,
     transform: 'rotate(45deg)',
     textAlign: 'center',
   },
@@ -136,7 +134,7 @@ export const SliderRail = experimentalStyled(
   'span',
   {},
   { name: 'Slider', slot: 'Rail' },
-)((props) => ({
+)(({ styleProps }) => ({
   display: 'block',
   position: 'absolute',
   width: '100%',
@@ -144,11 +142,11 @@ export const SliderRail = experimentalStyled(
   borderRadius: 1,
   backgroundColor: 'currentColor',
   opacity: 0.38,
-  ...(props.styleProps.orientation === 'vertical' && {
+  ...(styleProps.orientation === 'vertical' && {
     height: '100%',
     width: 2,
   }),
-  ...(props.styleProps.track === 'inverted' && {
+  ...(styleProps.track === 'inverted' && {
     opacity: 1,
   }),
 }));
@@ -157,24 +155,24 @@ export const SliderTrack = experimentalStyled(
   'span',
   {},
   { name: 'Slider', slot: 'Track' },
-)((props) => ({
+)(({ theme, styleProps }) => ({
   display: 'block',
   position: 'absolute',
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
-  ...(props.styleProps.orientation === 'vertical' && {
+  ...(styleProps.orientation === 'vertical' && {
     width: 2,
   }),
-  ...(props.styleProps.track === false && {
+  ...(styleProps.track === false && {
     display: 'none',
   }),
-  ...(props.styleProps.track === 'inverted' && {
+  ...(styleProps.track === 'inverted' && {
     backgroundColor:
       // Same logic as the LinearProgress track color
-      props.theme.palette.mode === 'light'
-        ? lighten(props.theme.palette.primary.main, 0.62)
-        : darken(props.theme.palette.primary.main, 0.5),
+      theme.palette.mode === 'light'
+        ? lighten(theme.palette.primary.main, 0.62)
+        : darken(theme.palette.primary.main, 0.5),
   }),
 }));
 
@@ -182,7 +180,7 @@ export const SliderThumb = experimentalStyled(
   'span',
   {},
   { name: 'Slider', slot: 'Thumb' },
-)((props) => ({
+)(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 12,
   height: 12,
@@ -195,8 +193,8 @@ export const SliderThumb = experimentalStyled(
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: props.theme.transitions.create(['box-shadow'], {
-    duration: props.theme.transitions.duration.shortest,
+  transition: theme.transitions.create(['box-shadow'], {
+    duration: theme.transitions.duration.shortest,
   }),
   '&::after': {
     position: 'absolute',
@@ -209,20 +207,20 @@ export const SliderThumb = experimentalStyled(
     bottom: -15,
   },
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
-    boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
+    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.primary.main, 0.16)}`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
   },
   [`&.${sliderClasses.active}`]: {
-    boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
+    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.primary.main, 0.16)}`,
   },
   [`&.${sliderClasses.disabled}`]: {
     width: 8,
     height: 8,
     marginLeft: -4,
     marginTop: -3,
-    ...(props.styleProps.orientation === 'vertical' && {
+    ...(styleProps.orientation === 'vertical' && {
       marginLeft: -3,
       marginBottom: -4,
     }),
@@ -230,16 +228,16 @@ export const SliderThumb = experimentalStyled(
       boxShadow: 'none',
     },
   },
-  ...(props.styleProps.orientation === 'vertical' && {
+  ...(styleProps.orientation === 'vertical' && {
     marginLeft: -5,
     marginBottom: -6,
   }),
-  ...(props.styleProps.color === 'secondary' && {
+  ...(styleProps.color === 'secondary' && {
     [`&:hover, &.${sliderClasses.focusVisible}`]: {
-      boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.secondary.main, 0.16)}`,
     },
     [`&.${sliderClasses.active}`]: {
-      boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.secondary.main, 0.16)}`,
     },
   }),
 }));
@@ -248,18 +246,18 @@ export const SliderValueLabel = experimentalStyled(
   SliderValueLabelUnstyled,
   {},
   { name: 'Slider', slot: 'ValueLabel' },
-)((props) => ({
+)(({ theme }) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
   [`&.${sliderClasses.valueLabelOpen}`]: {
     transform: 'scale(1) translateY(-10px)',
   },
   zIndex: 1,
-  ...props.theme.typography.body2,
-  fontSize: props.theme.typography.pxToRem(12),
+  ...theme.typography.body2,
+  fontSize: theme.typography.pxToRem(12),
   lineHeight: 1.2,
-  transition: props.theme.transitions.create(['transform'], {
-    duration: props.theme.transitions.duration.shortest,
+  transition: theme.transitions.create(['transform'], {
+    duration: theme.transitions.duration.shortest,
   }),
   top: -34,
   transformOrigin: 'bottom center',
@@ -271,14 +269,14 @@ export const SliderMark = experimentalStyled(
   'span',
   {},
   { name: 'Slider', slot: 'Mark' },
-)((props) => ({
+)(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 2,
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
-  ...(props.styleProps.markActive && {
-    backgroundColor: props.theme.palette.background.paper,
+  ...(styleProps.markActive && {
+    backgroundColor: theme.palette.background.paper,
     opacity: 0.8,
   }),
 }));
@@ -287,26 +285,26 @@ export const SliderMarkLabel = experimentalStyled(
   'span',
   {},
   { name: 'Slider', slot: 'MarkLabel' },
-)((props) => ({
-  ...props.theme.typography.body2,
-  color: props.theme.palette.text.secondary,
+)(({ theme, styleProps }) => ({
+  ...theme.typography.body2,
+  color: theme.palette.text.secondary,
   position: 'absolute',
   top: 26,
   transform: 'translateX(-50%)',
   whiteSpace: 'nowrap',
-  ...(props.styleProps.orientation === 'vertical' && {
+  ...(styleProps.orientation === 'vertical' && {
     top: 'auto',
     left: 26,
     transform: 'translateY(50%)',
   }),
   '@media (pointer: coarse)': {
     top: 40,
-    ...(props.styleProps.orientation === 'vertical' && {
+    ...(styleProps.orientation === 'vertical' && {
       left: 31,
     }),
   },
-  ...(props.styleProps.markLabelActive && {
-    color: props.theme.palette.text.primary,
+  ...(styleProps.markLabelActive && {
+    color: theme.palette.text.primary,
   }),
 }));
 
@@ -357,8 +355,8 @@ SliderRoot.propTypes = {
   }),
 };
 
-const extendSliderClasses = (props) => {
-  const { color, classes = {} } = props;
+const extendUtilityClasses = (styleProps) => {
+  const { color, classes = {} } = styleProps;
 
   return {
     ...classes,
@@ -383,7 +381,9 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
   const { components = {}, componentsProps = {}, color = 'primary', ...other } = props;
 
-  const classes = extendSliderClasses({ ...props, color });
+  const styleProps = { ...props, color };
+
+  const classes = extendUtilityClasses(styleProps);
 
   return (
     <SliderUnstyled

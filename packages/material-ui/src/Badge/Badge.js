@@ -36,7 +36,7 @@ const overridesResolver = (props, styles) => {
     overlap = 'rectangular',
   } = props;
 
-  const styleOverrides = deepmerge(styles.root, {
+  return deepmerge(styles.root, {
     [`& .${badgeClasses.badge}`]: {
       ...styles.badge,
       ...styles[variant],
@@ -49,8 +49,6 @@ const overridesResolver = (props, styles) => {
       ...(invisible && styles.invisible),
     },
   });
-
-  return styleOverrides;
 };
 
 const BadgeRoot = styled(
@@ -69,7 +67,7 @@ const BadgeBadge = styled(
   'span',
   {},
   { name: 'Badge', slot: 'Badge', overridesResolver },
-)((props) => ({
+)(({ theme, styleProps }) => ({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -78,32 +76,32 @@ const BadgeBadge = styled(
   alignItems: 'center',
   position: 'absolute',
   boxSizing: 'border-box',
-  fontFamily: props.theme.typography.fontFamily,
-  fontWeight: props.theme.typography.fontWeightMedium,
-  fontSize: props.theme.typography.pxToRem(12),
+  fontFamily: theme.typography.fontFamily,
+  fontWeight: theme.typography.fontWeightMedium,
+  fontSize: theme.typography.pxToRem(12),
   minWidth: RADIUS_STANDARD * 2,
   lineHeight: 1,
   padding: '0 6px',
   height: RADIUS_STANDARD * 2,
   borderRadius: RADIUS_STANDARD,
   zIndex: 1, // Render the badge on top of potential ripples.
-  transition: props.theme.transitions.create('transform', {
-    easing: props.theme.transitions.easing.easeInOut,
-    duration: props.theme.transitions.duration.enteringScreen,
+  transition: theme.transitions.create('transform', {
+    easing: theme.transitions.easing.easeInOut,
+    duration: theme.transitions.duration.enteringScreen,
   }),
-  ...(props.styleProps.color !== 'default' && {
-    backgroundColor: props.theme.palette[props.styleProps.color].main,
-    color: props.theme.palette[props.styleProps.color].contrastText,
+  ...(styleProps.color !== 'default' && {
+    backgroundColor: theme.palette[styleProps.color].main,
+    color: theme.palette[styleProps.color].contrastText,
   }),
-  ...(props.styleProps.variant === 'dot' && {
+  ...(styleProps.variant === 'dot' && {
     borderRadius: RADIUS_DOT,
     height: RADIUS_DOT * 2,
     minWidth: RADIUS_DOT * 2,
     padding: 0,
   }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
-    props.styleProps.anchorOrigin.horizontal === 'right' &&
-    props.styleProps.overlap === 'rectangular' && {
+  ...(styleProps.anchorOrigin.vertical === 'top' &&
+    styleProps.anchorOrigin.horizontal === 'right' &&
+    styleProps.overlap === 'rectangular' && {
       top: 0,
       right: 0,
       transform: 'scale(1) translate(50%, -50%)',
@@ -112,9 +110,9 @@ const BadgeBadge = styled(
         transform: 'scale(0) translate(50%, -50%)',
       },
     }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
-    props.styleProps.anchorOrigin.horizontal === 'right' &&
-    props.styleProps.overlap === 'rectangular' && {
+  ...(styleProps.anchorOrigin.vertical === 'bottom' &&
+    styleProps.anchorOrigin.horizontal === 'right' &&
+    styleProps.overlap === 'rectangular' && {
       bottom: 0,
       right: 0,
       transform: 'scale(1) translate(50%, 50%)',
@@ -123,9 +121,9 @@ const BadgeBadge = styled(
         transform: 'scale(0) translate(50%, 50%)',
       },
     }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
-    props.styleProps.anchorOrigin.horizontal === 'left' &&
-    props.styleProps.overlap === 'rectangular' && {
+  ...(styleProps.anchorOrigin.vertical === 'top' &&
+    styleProps.anchorOrigin.horizontal === 'left' &&
+    styleProps.overlap === 'rectangular' && {
       top: 0,
       left: 0,
       transform: 'scale(1) translate(-50%, -50%)',
@@ -134,9 +132,9 @@ const BadgeBadge = styled(
         transform: 'scale(0) translate(-50%, -50%)',
       },
     }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
-    props.styleProps.anchorOrigin.horizontal === 'left' &&
-    props.styleProps.overlap === 'rectangular' && {
+  ...(styleProps.anchorOrigin.vertical === 'bottom' &&
+    styleProps.anchorOrigin.horizontal === 'left' &&
+    styleProps.overlap === 'rectangular' && {
       bottom: 0,
       left: 0,
       transform: 'scale(1) translate(-50%, 50%)',
@@ -145,9 +143,9 @@ const BadgeBadge = styled(
         transform: 'scale(0) translate(-50%, 50%)',
       },
     }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
-    props.styleProps.anchorOrigin.horizontal === 'right' &&
-    props.styleProps.overlap === 'circular' && {
+  ...(styleProps.anchorOrigin.vertical === 'top' &&
+    styleProps.anchorOrigin.horizontal === 'right' &&
+    styleProps.overlap === 'circular' && {
       top: '14%',
       right: '14%',
       transform: 'scale(1) translate(50%, -50%)',
@@ -156,9 +154,9 @@ const BadgeBadge = styled(
         transform: 'scale(0) translate(50%, -50%)',
       },
     }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
-    props.styleProps.anchorOrigin.horizontal === 'right' &&
-    props.styleProps.overlap === 'circular' && {
+  ...(styleProps.anchorOrigin.vertical === 'bottom' &&
+    styleProps.anchorOrigin.horizontal === 'right' &&
+    styleProps.overlap === 'circular' && {
       bottom: '14%',
       right: '14%',
       transform: 'scale(1) translate(50%, 50%)',
@@ -167,9 +165,9 @@ const BadgeBadge = styled(
         transform: 'scale(0) translate(50%, 50%)',
       },
     }),
-  ...(props.styleProps.anchorOrigin.vertical === 'top' &&
-    props.styleProps.anchorOrigin.horizontal === 'left' &&
-    props.styleProps.overlap === 'circular' && {
+  ...(styleProps.anchorOrigin.vertical === 'top' &&
+    styleProps.anchorOrigin.horizontal === 'left' &&
+    styleProps.overlap === 'circular' && {
       top: '14%',
       left: '14%',
       transform: 'scale(1) translate(-50%, -50%)',
@@ -178,9 +176,9 @@ const BadgeBadge = styled(
         transform: 'scale(0) translate(-50%, -50%)',
       },
     }),
-  ...(props.styleProps.anchorOrigin.vertical === 'bottom' &&
-    props.styleProps.anchorOrigin.horizontal === 'left' &&
-    props.styleProps.overlap === 'circular' && {
+  ...(styleProps.anchorOrigin.vertical === 'bottom' &&
+    styleProps.anchorOrigin.horizontal === 'left' &&
+    styleProps.overlap === 'circular' && {
       bottom: '14%',
       left: '14%',
       transform: 'scale(1) translate(-50%, 50%)',
@@ -189,16 +187,16 @@ const BadgeBadge = styled(
         transform: 'scale(0) translate(-50%, 50%)',
       },
     }),
-  ...(props.styleProps.invisible && {
-    transition: props.theme.transitions.create('transform', {
-      easing: props.theme.transitions.easing.easeInOut,
-      duration: props.theme.transitions.duration.leavingScreen,
+  ...(styleProps.invisible && {
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.leavingScreen,
     }),
   }),
 }));
 
-const extendBadgeClasses = (props) => {
-  const { color, classes = {} } = props;
+const extendUtilityClasses = (styleProps) => {
+  const { color, classes = {} } = styleProps;
 
   return {
     ...classes,
@@ -237,7 +235,8 @@ const Badge = React.forwardRef(function Badge(inputProps, ref) {
 
   const { color = colorProp } = invisible ? prevProps : props;
 
-  const classes = extendBadgeClasses({ ...props, invisible, color });
+  const styleProps = { ...props, invisible, color };
+  const classes = extendUtilityClasses(styleProps);
 
   return (
     <BadgeUnstyled

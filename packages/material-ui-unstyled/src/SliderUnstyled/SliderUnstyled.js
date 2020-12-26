@@ -145,10 +145,10 @@ function doesSupportTouchActionNone() {
   return cachedSupportsTouchActionNone;
 }
 
-const useSliderClasses = (props) => {
-  const { disabled, marked, orientation, track, classes = {} } = props;
+const useUtilityClasses = (styleProps) => {
+  const { disabled, marked, orientation, track, classes = {} } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(sliderUnstyledClasses['root'], classes['root'], {
       [sliderUnstyledClasses['disabled']]: disabled,
       [classes['disabled']]: disabled,
@@ -176,8 +176,6 @@ const useSliderClasses = (props) => {
     disabled: clsx(sliderUnstyledClasses['disabled'], classes['disabled']),
     focusVisible: clsx(sliderUnstyledClasses['focusVisible'], classes['focusVisible']),
   };
-
-  return utilityClasses;
 };
 
 const Forward = ({ children }) => children;
@@ -604,7 +602,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the varints
-  const stateAndProps = {
+  const styleProps = {
     ...props,
     classes: {},
     disabled,
@@ -620,7 +618,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     marked: marks.length > 0 && marks.some((mark) => mark.label),
   };
 
-  const utilityClasses = useSliderClasses({ ...stateAndProps, classes: classesProp });
+  const utilityClasses = useUtilityClasses({ ...styleProps, classes: classesProp });
 
   return (
     <Root
@@ -629,7 +627,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       {...rootProps}
       {...(!isHostComponent(Root) && {
         as: Component,
-        styleProps: { ...stateAndProps, ...rootProps.styleProps },
+        styleProps: { ...styleProps, ...rootProps.styleProps },
         theme,
       })}
       {...other}
@@ -638,7 +636,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       <Rail
         {...railProps}
         {...(!isHostComponent(Rail) && {
-          styleProps: { ...stateAndProps, ...railProps.styleProps },
+          styleProps: { ...styleProps, ...railProps.styleProps },
           theme,
         })}
         className={clsx(utilityClasses.rail, railProps.className)}
@@ -646,7 +644,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       <Track
         {...trackProps}
         {...(!isHostComponent(Track) && {
-          styleProps: { ...stateAndProps, ...trackProps.styleProps },
+          styleProps: { ...styleProps, ...trackProps.styleProps },
           theme,
         })}
         className={clsx(utilityClasses.track, trackProps.className)}
@@ -678,7 +676,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               data-index={index}
               {...markProps}
               {...(!isHostComponent(Mark) && {
-                styleProps: { ...stateAndProps, ...markProps.styleProps, markActive },
+                styleProps: { ...styleProps, ...markProps.styleProps, markActive },
                 theme,
               })}
               style={{ ...style, ...markProps.style }}
@@ -693,7 +691,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 {...markLabelProps}
                 {...(!isHostComponent(MarkLabel) && {
                   styleProps: {
-                    ...stateAndProps,
+                    ...styleProps,
                     ...markLabelProps.styleProps,
                     markLabelActive: markActive,
                   },
@@ -732,7 +730,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             {...valueLabelProps}
             className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
             {...(!isHostComponent(ValueLabel) && {
-              styleProps: { ...stateAndProps, ...valueLabelProps.styleProps },
+              styleProps: { ...styleProps, ...valueLabelProps.styleProps },
               theme,
             })}
           >
@@ -760,7 +758,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 [utilityClasses['focusVisible']]: focusVisible === index,
               })}
               {...(!isHostComponent(Thumb) && {
-                styleProps: { ...stateAndProps, ...thumbProps.styleProps },
+                styleProps: { ...styleProps, ...thumbProps.styleProps },
                 theme,
               })}
               style={{ ...style, ...thumbProps.style }}

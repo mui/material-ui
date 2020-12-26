@@ -9,29 +9,25 @@ import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
 const overridesResolver = (props, styles) => {
   const { variant = 'circular' } = props;
 
-  const styleOverrides = {
+  return {
     ...styles.root,
     ...styles[variant],
     [`&.${avatarClasses.colorDefault}`]: styles.colorDefault,
     [`&.${avatarClasses.img}`]: styles.img,
     [`&.${avatarClasses.fallback}`]: styles.fallback,
   };
-
-  return styleOverrides;
 };
 
-const useAvatarClasses = (props) => {
-  const { classes = {}, variant, colorDefault } = props;
+const useUtilityClasses = (styleProps) => {
+  const { classes = {}, variant, colorDefault } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(avatarClasses.root, classes.root, getAvatarUtilityClass(variant), {
       [avatarClasses.colorDefault]: colorDefault,
     }),
     img: clsx(avatarClasses.img, classes.img),
     fallback: clsx(avatarClasses.fallback, classes.fallback),
   };
-
-  return utilityClasses;
 };
 
 const AvatarRoot = experimentalStyled(
@@ -42,7 +38,7 @@ const AvatarRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)((props) => ({
+)(({ theme, styleProps }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -50,24 +46,22 @@ const AvatarRoot = experimentalStyled(
   flexShrink: 0,
   width: 40,
   height: 40,
-  fontFamily: props.theme.typography.fontFamily,
-  fontSize: props.theme.typography.pxToRem(20),
+  fontFamily: theme.typography.fontFamily,
+  fontSize: theme.typography.pxToRem(20),
   lineHeight: 1,
   borderRadius: '50%',
   overflow: 'hidden',
   userSelect: 'none',
-  ...(props.styleProps.variant === 'rounded' && {
-    borderRadius: props.theme.shape.borderRadius,
+  ...(styleProps.variant === 'rounded' && {
+    borderRadius: theme.shape.borderRadius,
   }),
-  ...(props.styleProps.variant === 'square' && {
+  ...(styleProps.variant === 'square' && {
     borderRadius: 0,
   }),
-  ...(props.styleProps.colorDefault && {
-    color: props.theme.palette.background.default,
+  ...(styleProps.colorDefault && {
+    color: theme.palette.background.default,
     backgroundColor:
-      props.theme.palette.mode === 'light'
-        ? props.theme.palette.grey[400]
-        : props.theme.palette.grey[600],
+      theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
   }),
 }));
 
@@ -162,13 +156,13 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const hasImg = src || srcSet;
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
-  const stateAndProps = {
+  const styleProps = {
     ...props,
     variant,
     colorDefault: !hasImgNotFailing,
   };
 
-  const classes = useAvatarClasses(stateAndProps);
+  const classes = useUtilityClasses(styleProps);
 
   if (hasImgNotFailing) {
     children = (
@@ -192,7 +186,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   return (
     <AvatarRoot
       as={Component}
-      styleProps={stateAndProps}
+      styleProps={styleProps}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}

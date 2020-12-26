@@ -17,7 +17,7 @@ const overridesResolver = (props, styles) => {
     variant = 'text',
   } = props;
 
-  const styleOverrides = {
+  return {
     ...styles.root,
     ...styles[variant],
     ...styles[`${variant}${capitalize(color)}`],
@@ -36,14 +36,12 @@ const overridesResolver = (props, styles) => {
       ...styles[`iconSize${capitalize(size)}`],
     },
   };
-
-  return styleOverrides;
 };
 
-const useButtonClasses = (props) => {
-  const { color, disableElevation, fullWidth, size, variant, classes = {} } = props;
+const useUtilityClasses = (styleProps) => {
+  const { color, disableElevation, fullWidth, size, variant, classes = {} } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(
       buttonClasses.root,
       classes.root,
@@ -76,22 +74,20 @@ const useButtonClasses = (props) => {
       getButtonUtilityClass(`iconSize${capitalize(size)}`),
     ),
   };
-
-  return utilityClasses;
 };
 
-const commonIconStyles = (props) => ({
-  ...(props.styleProps.size === 'small' && {
+const commonIconStyles = (styleProps) => ({
+  ...(styleProps.size === 'small' && {
     '& > *:nth-of-type(1)': {
       fontSize: 18,
     },
   }),
-  ...(props.styleProps.size === 'medium' && {
+  ...(styleProps.size === 'medium' && {
     '& > *:nth-of-type(1)': {
       fontSize: 20,
     },
   }),
-  ...(props.styleProps.size === 'large' && {
+  ...(styleProps.size === 'large' && {
     '& > *:nth-of-type(1)': {
       fontSize: 22,
     },
@@ -105,14 +101,14 @@ const ButtonStartIcon = experimentalStyled(
     name: 'Button',
     slot: 'StartIcon',
   },
-)((props) => ({
+)(({ styleProps }) => ({
   display: 'inherit',
   marginRight: 8,
   marginLeft: -4,
-  ...(props.styleProps.size === 'small' && {
+  ...(styleProps.size === 'small' && {
     marginLeft: -2,
   }),
-  ...commonIconStyles(props),
+  ...commonIconStyles(styleProps),
 }));
 
 const ButtonEndIcon = experimentalStyled(
@@ -122,14 +118,14 @@ const ButtonEndIcon = experimentalStyled(
     name: 'Button',
     slot: 'EndIcon',
   },
-)((props) => ({
+)(({ styleProps }) => ({
   display: 'inherit',
   marginRight: -4,
   marginLeft: 8,
-  ...(props.styleProps.size === 'small' && {
+  ...(styleProps.size === 'small' && {
     marginRight: -2,
   }),
-  ...commonIconStyles(props),
+  ...commonIconStyles(styleProps),
 }));
 
 const ButtonLabel = experimentalStyled(
@@ -154,171 +150,168 @@ const ButtonRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)((props) => ({
-  ...props.theme.typography.button,
+)(({ theme, styleProps }) => ({
+  ...theme.typography.button,
   minWidth: 64,
   padding: '6px 16px',
-  borderRadius: props.theme.shape.borderRadius,
-  transition: props.theme.transitions.create(
+  borderRadius: theme.shape.borderRadius,
+  transition: theme.transitions.create(
     ['background-color', 'box-shadow', 'border-color', 'color'],
     {
-      duration: props.theme.transitions.duration.short,
+      duration: theme.transitions.duration.short,
     },
   ),
   '&:hover': {
     textDecoration: 'none',
-    backgroundColor: alpha(
-      props.theme.palette.text.primary,
-      props.theme.palette.action.hoverOpacity,
-    ),
+    backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
     },
-    ...(props.styleProps.variant === 'text' &&
-      props.styleProps.color !== 'inherit' && {
+    ...(styleProps.variant === 'text' &&
+      styleProps.color !== 'inherit' && {
         backgroundColor: alpha(
-          props.theme.palette[props.styleProps.color].main,
-          props.theme.palette.action.hoverOpacity,
+          theme.palette[styleProps.color].main,
+          theme.palette.action.hoverOpacity,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent',
         },
       }),
-    ...(props.styleProps.variant === 'outlined' &&
-      props.styleProps.color !== 'inherit' && {
-        border: `1px solid ${props.theme.palette[props.styleProps.color].main}`,
+    ...(styleProps.variant === 'outlined' &&
+      styleProps.color !== 'inherit' && {
+        border: `1px solid ${theme.palette[styleProps.color].main}`,
         backgroundColor: alpha(
-          props.theme.palette[props.styleProps.color].main,
-          props.theme.palette.action.hoverOpacity,
+          theme.palette[styleProps.color].main,
+          theme.palette.action.hoverOpacity,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent',
         },
       }),
-    ...(props.styleProps.variant === 'contained' && {
-      backgroundColor: props.theme.palette.grey.A100,
-      boxShadow: props.theme.shadows[4],
+    ...(styleProps.variant === 'contained' && {
+      backgroundColor: theme.palette.grey.A100,
+      boxShadow: theme.shadows[4],
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        boxShadow: props.theme.shadows[2],
-        backgroundColor: props.theme.palette.grey[300],
+        boxShadow: theme.shadows[2],
+        backgroundColor: theme.palette.grey[300],
       },
     }),
-    ...(props.styleProps.variant === 'contained' &&
-      props.styleProps.color !== 'inherit' && {
-        backgroundColor: props.theme.palette[props.styleProps.color].dark,
+    ...(styleProps.variant === 'contained' &&
+      styleProps.color !== 'inherit' && {
+        backgroundColor: theme.palette[styleProps.color].dark,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: props.theme.palette[props.styleProps.color].main,
+          backgroundColor: theme.palette[styleProps.color].main,
         },
       }),
-    ...(props.styleProps.disableElevation && {
+    ...(styleProps.disableElevation && {
       boxShadow: 'none',
     }),
   },
   '&:active': {
-    ...(props.styleProps.variant === 'contained' && {
-      boxShadow: props.theme.shadows[8],
+    ...(styleProps.variant === 'contained' && {
+      boxShadow: theme.shadows[8],
     }),
-    ...(props.styleProps.disableElevation && {
+    ...(styleProps.disableElevation && {
       boxShadow: 'none',
     }),
   },
   '&.Mui-focusVisible': {
-    ...(props.styleProps.variant === 'contained' && {
-      boxShadow: props.theme.shadows[6],
+    ...(styleProps.variant === 'contained' && {
+      boxShadow: theme.shadows[6],
     }),
-    ...(props.styleProps.disableElevation && {
+    ...(styleProps.disableElevation && {
       boxShadow: 'none',
     }),
   },
   '&.Mui-disabled': {
-    color: props.theme.palette.action.disabled,
-    ...(props.styleProps.variant === 'outlined' && {
-      border: `1px solid ${props.theme.palette.action.disabledBackground}`,
+    color: theme.palette.action.disabled,
+    ...(styleProps.variant === 'outlined' && {
+      border: `1px solid ${theme.palette.action.disabledBackground}`,
     }),
-    ...(props.styleProps.variant === 'outlined' &&
-      props.styleProps.color === 'secondary' && {
-        border: `1px solid ${props.theme.palette.action.disabled}`,
+    ...(styleProps.variant === 'outlined' &&
+      styleProps.color === 'secondary' && {
+        border: `1px solid ${theme.palette.action.disabled}`,
       }),
-    ...(props.styleProps.variant === 'contained' && {
-      color: props.theme.palette.action.disabled,
-      boxShadow: props.theme.shadows[0],
-      backgroundColor: props.theme.palette.action.disabledBackground,
+    ...(styleProps.variant === 'contained' && {
+      color: theme.palette.action.disabled,
+      boxShadow: theme.shadows[0],
+      backgroundColor: theme.palette.action.disabledBackground,
     }),
-    ...(props.styleProps.disableElevation && {
+    ...(styleProps.disableElevation && {
       boxShadow: 'none',
     }),
   },
-  ...(props.styleProps.variant === 'text' && {
+  ...(styleProps.variant === 'text' && {
     padding: '6px 8px',
   }),
-  ...(props.styleProps.variant === 'text' &&
-    props.styleProps.color !== 'inherit' && {
-      color: props.theme.palette[props.styleProps.color].main,
+  ...(styleProps.variant === 'text' &&
+    styleProps.color !== 'inherit' && {
+      color: theme.palette[styleProps.color].main,
     }),
-  ...(props.styleProps.variant === 'outlined' && {
+  ...(styleProps.variant === 'outlined' && {
     padding: '5px 15px',
     border: `1px solid ${
-      props.theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
   }),
-  ...(props.styleProps.variant === 'outlined' &&
-    props.styleProps.color !== 'inherit' && {
-      color: props.theme.palette[props.styleProps.color].main,
-      border: `1px solid ${alpha(props.theme.palette[props.styleProps.color].main, 0.5)}`,
+  ...(styleProps.variant === 'outlined' &&
+    styleProps.color !== 'inherit' && {
+      color: theme.palette[styleProps.color].main,
+      border: `1px solid ${alpha(theme.palette[styleProps.color].main, 0.5)}`,
     }),
-  ...(props.styleProps.variant === 'contained' && {
-    color: props.theme.palette.getContrastText(props.theme.palette.grey[300]),
-    backgroundColor: props.theme.palette.grey[300],
-    boxShadow: props.theme.shadows[2],
+  ...(styleProps.variant === 'contained' && {
+    color: theme.palette.getContrastText(theme.palette.grey[300]),
+    backgroundColor: theme.palette.grey[300],
+    boxShadow: theme.shadows[2],
   }),
-  ...(props.styleProps.variant === 'contained' &&
-    props.styleProps.color !== 'inherit' && {
-      color: props.theme.palette[props.styleProps.color].contrastText,
-      backgroundColor: props.theme.palette[props.styleProps.color].main,
+  ...(styleProps.variant === 'contained' &&
+    styleProps.color !== 'inherit' && {
+      color: theme.palette[styleProps.color].contrastText,
+      backgroundColor: theme.palette[styleProps.color].main,
     }),
-  ...(props.styleProps.disableElevation && {
+  ...(styleProps.disableElevation && {
     boxShadow: 'none',
   }),
-  ...(props.styleProps.color === 'inherit' && {
+  ...(styleProps.color === 'inherit' && {
     color: 'inherit',
     borderColor: 'currentColor',
   }),
-  ...(props.styleProps.size === 'small' &&
-    props.styleProps.variant === 'text' && {
+  ...(styleProps.size === 'small' &&
+    styleProps.variant === 'text' && {
       padding: '4px 5px',
-      fontSize: props.theme.typography.pxToRem(13),
+      fontSize: theme.typography.pxToRem(13),
     }),
-  ...(props.styleProps.size === 'large' &&
-    props.styleProps.variant === 'text' && {
+  ...(styleProps.size === 'large' &&
+    styleProps.variant === 'text' && {
       padding: '8px 11px',
-      fontSize: props.theme.typography.pxToRem(15),
+      fontSize: theme.typography.pxToRem(15),
     }),
-  ...(props.styleProps.size === 'small' &&
-    props.styleProps.variant === 'outlined' && {
+  ...(styleProps.size === 'small' &&
+    styleProps.variant === 'outlined' && {
       padding: '3px 9px',
-      fontSize: props.theme.typography.pxToRem(13),
+      fontSize: theme.typography.pxToRem(13),
     }),
-  ...(props.styleProps.size === 'large' &&
-    props.styleProps.variant === 'outlined' && {
+  ...(styleProps.size === 'large' &&
+    styleProps.variant === 'outlined' && {
       padding: '7px 21px',
-      fontSize: props.theme.typography.pxToRem(15),
+      fontSize: theme.typography.pxToRem(15),
     }),
-  ...(props.styleProps.size === 'small' &&
-    props.styleProps.variant === 'contained' && {
+  ...(styleProps.size === 'small' &&
+    styleProps.variant === 'contained' && {
       padding: '4px 10px',
-      fontSize: props.theme.typography.pxToRem(13),
+      fontSize: theme.typography.pxToRem(13),
     }),
-  ...(props.styleProps.size === 'large' &&
-    props.styleProps.variant === 'contained' && {
+  ...(styleProps.size === 'large' &&
+    styleProps.variant === 'contained' && {
       padding: '8px 22px',
-      fontSize: props.theme.typography.pxToRem(15),
+      fontSize: theme.typography.pxToRem(15),
     }),
-  ...(props.styleProps.fullWidth && {
+  ...(styleProps.fullWidth && {
     width: '100%',
   }),
 }));
@@ -344,7 +337,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
 
-  const stateAndProps = {
+  const styleProps = {
     ...props,
     color,
     component,
@@ -357,16 +350,16 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
   };
 
-  const classes = useButtonClasses(stateAndProps);
+  const classes = useUtilityClasses(styleProps);
 
   const startIcon = startIconProp && (
-    <ButtonStartIcon className={classes.startIcon} styleProps={stateAndProps}>
+    <ButtonStartIcon className={classes.startIcon} styleProps={styleProps}>
       {startIconProp}
     </ButtonStartIcon>
   );
 
   const endIcon = endIconProp && (
-    <ButtonEndIcon className={classes.endIcon} styleProps={stateAndProps}>
+    <ButtonEndIcon className={classes.endIcon} styleProps={styleProps}>
       {endIconProp}
     </ButtonEndIcon>
   );
@@ -374,7 +367,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       className={clsx(classes.root, className)}
-      styleProps={stateAndProps}
+      styleProps={styleProps}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
