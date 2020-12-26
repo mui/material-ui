@@ -43,7 +43,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 `アイコン` プロパティでは、アラートコンポーネントの先頭にアイコンを追加できます。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。
 
-`iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。
+`iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/theme-components/#default-props)を使用してグローバルに定義することができます。
 
 Setting the icon prop to false will remove the icon altogether.
 
