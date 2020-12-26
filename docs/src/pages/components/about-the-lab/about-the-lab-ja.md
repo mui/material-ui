@@ -39,7 +39,7 @@ yarn add @material-ui/core
 
 ## TypeScript
 
-[CSS overrides](/customization/globals/#css)と[default prop customization](/customization/globals/#default-props)の恩恵を受けるために、TypeScriptユーザーは以下の型をインポートする必要があります 内部的には、[module augmentation](/guides/typescript/#customization-of-theme)を使って、デフォルトのテーマ構造をLabで利用可能なコンポーネントに拡張します 内部的には、[module augmentation](/guides/typescript/#customization-of-theme)を使って、デフォルトのテーマ構造をLabで利用可能なコンポーネントに拡張します  内部的には、[module augmentation](/guides/typescript/#customization-of-theme)を使って、デフォルトのテーマ構造をLabで利用可能なコンポーネントに拡張します
+[CSS overrides](/customization/theme-components/#global-style-overrides)と[default prop customization](/customization/theme-components/#default-props)の恩恵を受けるために、TypeScriptユーザーは以下の型をインポートする必要があります 内部的には、[module augmentation](/guides/typescript/#customization-of-theme)を使って、デフォルトのテーマ構造をLabで利用可能なコンポーネントに拡張します  内部的には、[module augmentation](/guides/typescript/#customization-of-theme)を使って、デフォルトのテーマ構造をLabで利用可能なコンポーネントに拡張します
 
 ```tsx
 import '@material-ui/lab/themeAugmentation';
