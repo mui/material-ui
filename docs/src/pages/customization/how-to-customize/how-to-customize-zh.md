@@ -146,4 +146,4 @@ In the previous section, we learned how to override the style of a Material-UI c
 
 为了提高组件之间的一致性，并整体化管理用户界面外观，Material-UI 提供了一种能够应用全局变更的机制。
 
-Please take a look at the theme's [global overrides page](/customization/globals/) for more details.
+Please take a look at the theme's [global overrides page](/customization/theme-components/) for more details.
