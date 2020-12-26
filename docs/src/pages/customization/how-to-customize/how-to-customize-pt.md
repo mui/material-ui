@@ -146,4 +146,4 @@ In the previous section, we learned how to override the style of a Material-UI c
 
 A fim de promover a consistência entre os componentes e gerenciar a aparência da interface do usuário como um todo, o Material-UI fornece um mecanismo para aplicar mudanças globais.
 
-Please take a look at the theme's [global overrides page](/customization/globals/) for more details.
+Please take a look at the theme's [global overrides page](/customization/theme-components/) for more details.
