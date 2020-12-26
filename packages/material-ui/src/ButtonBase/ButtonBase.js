@@ -57,10 +57,10 @@ export const ButtonBaseRoot = experimentalStyled(
   },
 });
 
-const useButtonBaseClasses = (props) => {
-  const { disabled, focusVisible, focusVisibleClassName, classes = {} } = props;
+const useUtilityClasses = (styleProps) => {
+  const { disabled, focusVisible, focusVisibleClassName, classes = {} } = styleProps;
 
-  const utilityClasses = {
+  return {
     root: clsx(buttonBaseClasses['root'], classes['root'], {
       [buttonBaseClasses['disabled']]: disabled,
       [classes['disabled']]: disabled,
@@ -69,8 +69,6 @@ const useButtonBaseClasses = (props) => {
       [focusVisibleClassName]: focusVisible,
     }),
   };
-
-  return utilityClasses;
 };
 
 /**
@@ -332,7 +330,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }, [enableTouchRipple]);
   }
 
-  const stateAndProps = {
+  const styleProps = {
     ...props,
     centerRipple,
     component,
@@ -344,13 +342,13 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     focusVisible,
   };
 
-  const classes = useButtonBaseClasses(stateAndProps);
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <ButtonBaseRoot
       as={ComponentProp}
       className={clsx(classes.root, className)}
-      styleProps={stateAndProps}
+      styleProps={styleProps}
       onBlur={handleBlur}
       onClick={onClick}
       onFocus={handleFocus}
@@ -452,7 +450,7 @@ ButtonBase.propTypes = {
   /**
    * @ignore
    */
-  href: PropTypes.string,
+  href: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * @ignore
    */

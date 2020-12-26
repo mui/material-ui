@@ -81,7 +81,7 @@ It’s important to realize that the style of a typography component is independ
 </Typography>;
 ```
 
-- You can change the mapping [globally using the theme](/customization/globals/#default-props):
+- You can change the mapping [globally using the theme](/customization/theme-components/#default-props):
 
 ```js
 const theme = createMuiTheme({
