@@ -205,7 +205,7 @@ You can reproduce the same behavior with a `useWidth` hook:
   You can set this option to `true` if you are doing **client-side only** rendering.
 - `options.ssrMatchMedia` (_Function_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
-Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
+Note: You can change the default options using the [`default props`](/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### Returns
 

@@ -2,10 +2,14 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'customization/globals';
-const requireDemo = require.context('docs/src/pages/customization/globals', false, /\.(js|tsx)$/);
+const pageFilename = 'customization/theme-components';
+const requireDemo = require.context(
+  'docs/src/pages/customization/theme-components',
+  false,
+  /\.(js|tsx)$/,
+);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/customization/globals',
+  '!raw-loader!../../src/pages/customization/theme-components',
   false,
   /\.(js|md|tsx)$/,
 );
