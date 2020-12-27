@@ -35,7 +35,7 @@ For larger or smaller ratings use the `size` prop.
 
 ## Customized rating
 
-Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/rating/CustomizedRating.js"}}
 
