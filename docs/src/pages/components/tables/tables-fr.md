@@ -46,7 +46,7 @@ La table a reçu une largeur fixe pour illustrer le défilement horizontal. Afin
 
 ## Tableaux Personnalisés
 
-Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
