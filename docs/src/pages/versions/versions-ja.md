@@ -2,11 +2,11 @@
 
 <p class="description">このページに戻って、読んでいるドキュメントのバージョンをいつでも切り替えることができます。</p>
 
-## 安定バージョン
+## Released versions
 
-本番環境では最新バージョンをお勧めします。
+The most recent stable version (✓) is recommended for use in production.
 
-{{"demo": "pages/versions/StableVersions.js", "hideToolbar": true, "bg": "inline"}}
+{{"demo": "pages/versions/ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## 最新バージョン
 

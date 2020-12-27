@@ -2,11 +2,11 @@
 
 <p class="description">Вы можете в любой момент вернуться на эту страницу и переключить версию документов, которые вы читаете.</p>
 
-## Стабильные версии
+## Released versions
 
-The most recent version is recommended in production.
+The most recent stable version (✓) is recommended for use in production.
 
-{{"demo": "pages/versions/StableVersions.js", "hideToolbar": true, "bg": "inline"}}
+{{"demo": "pages/versions/ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Последние версии
 
