@@ -23,7 +23,7 @@
 - [Spacing 间距](/customization/spacing/)
 - [Breakpoints 断点](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [全局样式](/customization/globals/)
+- [Components 组件](/customization/theme-components/)
 - [过渡动画](/customization/transitions/)
 
 您可以在[默认主题部分](/customization/default-theme/)查看完整的默认样式。
