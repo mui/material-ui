@@ -77,13 +77,13 @@ The component has two states that can be controlled:
 
 Установите для `freeSolo` значение true, чтобы текстовое поле могло содержать любое произвольное значение.
 
-### Search input
+### Ввод для поиска
 
 Вы также можете показать диалоговое окно, если пользователь хочет добавить новое значение.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-### Creatable
+### Создаваемый
 
 If you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
 
@@ -162,7 +162,7 @@ A customized UI for Google Maps Places Autocomplete.
 
 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
 
-> ⚠️ Before you can start using the Google Maps JavaScript API, you must sign up and create a billing account.
+> ⚠️ Перед началом использования API карт Google, JavaScript необходимо зарегистрировать и создать учетную запись для выставления счетов.
 
 ## Множественные значения
 
@@ -208,7 +208,7 @@ This demo reproduces the GitHub's label picker:
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
 
-## Highlights
+## Основные моменты
 
 The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
 
@@ -288,7 +288,7 @@ If you would like to prevent the default key handler behavior, you can set the e
 
 ## Ограничения
 
-### autocomplete/autofill
+### Автозаполнение
 
 The browsers have heuristics to help the users fill the form inputs. However, it can harm the UX of the component.
 
