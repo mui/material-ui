@@ -5,7 +5,7 @@
 ## Visually hidden elements
 
 The visually hidden style utility provides a common mechanism for hidings elements visually, but making them available for assistive technology.
-It's a simple style JavaScript object of type `React.CSSProperties`.
+It's a simple style object of type `React.CSSProperties`.
 
 {{"demo": "pages/system/screen-readers/VisuallyHiddenUsage.js", "defaultCodeOpen": true}}
 
