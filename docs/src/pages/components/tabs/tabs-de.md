@@ -80,7 +80,7 @@ Left and right scroll buttons are never be presented with `scrollButtons={false}
 
 ## Benutzerdefinierte Tabs
 
-Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
