@@ -49,6 +49,6 @@ The timeline can display content on opposite sides.
 
 ## Customized timeline
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}
