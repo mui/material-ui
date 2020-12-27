@@ -56,4 +56,4 @@ Maintenant que vous avez une idée de la configuration de base, il est temps d'e
 
 - Comment fournir [la police et la typographie Material Design](/components/typography/) .
 - Comment tirer parti de la [solution de thème](/customization/theming/).
-- Comment [modifier](/customization/components/), l'apparence des composants.
+- Comment [modifier](/customization/how-to-customize/), l'apparence des composants.
