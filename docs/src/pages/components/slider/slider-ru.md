@@ -68,7 +68,7 @@ In this example an input allows a discrete value to be set.
 
 ## Customized sliders
 
-Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
