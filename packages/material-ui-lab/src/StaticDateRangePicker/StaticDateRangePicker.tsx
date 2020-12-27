@@ -38,6 +38,24 @@ const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', S
    */
   className: PropTypes.string,
   /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    LeftArrowButton: PropTypes.elementType,
+    LeftArrowIcon: PropTypes.elementType,
+    RightArrowButton: PropTypes.elementType,
+    RightArrowIcon: PropTypes.elementType,
+    SwitchViewButton: PropTypes.elementType,
+    SwitchViewIcon: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
    * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
@@ -132,17 +150,9 @@ const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', S
    */
   label: PropTypes.node,
   /**
-   * Props to pass to left arrow button.
-   */
-  leftArrowButtonProps: PropTypes.object,
-  /**
    * Left arrow icon aria-label text.
    */
   leftArrowButtonText: PropTypes.string,
-  /**
-   * Left arrow icon.
-   */
-  leftArrowIcon: PropTypes.node,
   /**
    * If `true` renders `LoadingComponent` in calendar instead of calendar view.
    * Can be used to preload information and show it in calendar.
@@ -257,17 +267,9 @@ const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', S
    */
   rifmFormatter: PropTypes.func,
   /**
-   * Props to pass to right arrow button.
-   */
-  rightArrowButtonProps: PropTypes.object,
-  /**
    * Right arrow icon aria-label text.
    */
   rightArrowButtonText: PropTypes.string,
-  /**
-   * Right arrow icon.
-   */
-  rightArrowIcon: PropTypes.node,
   /**
    * Disable specific date. @DateIOType
    */
