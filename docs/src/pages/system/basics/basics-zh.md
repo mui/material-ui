@@ -2,7 +2,7 @@
 
 <p class="description">用于快速创建自定义设计的 CSS 工具集。</p>
 
-Material-UI 的核心包中带有几十个**即用型**组件。 开始使用这些组件时可能会非常困难，但当涉及到通过定制设计使你的网站脱颖而出时，从这样无风格的状态开始可能更简单。 介绍该系统：
+Material-UI comes with dozens of **ready-to-use** components in the core. 开始使用这些组件时可能会非常困难，但当涉及到通过定制设计使你的网站脱颖而出时，从这样无风格的状态开始可能更简单。 介绍该系统：
 
 **系统**让你可以利用主题中所定义的值来快速构建自定义 UI 组件。
 
@@ -104,8 +104,8 @@ return (
     minWidth: 300,
   }}
 >
-  <Box sx={{ color: 'text.secondary' }}>会话数</Box>
-  <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}>
+  <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
+  <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
     98.3 K
   </Box>
   <Box
@@ -116,14 +116,14 @@ return (
     sx={{
       color: 'success.dark',
       display: 'inline',
-      fontWeight: 'fontWeightMedium',
+      fontWeight: 'medium',
       mx: 0.5,
     }}
   >
     18.77%
   </Box>
   <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-    与上周相比
+    vs last week
   </Box>
 </Box>
 ```
@@ -150,7 +150,7 @@ return (
 
 `sx` 属性作为系统的主要部分，为了解决了这些问题，它提供了一种快速 & 简单的方式，也就是将特定 CSS 属性的正确设计标记直接应用到 React 元素中。 [上面的这个演示](#demo) 展示了如何使用它来创建一次性设计。
 
-该属性提供了一个 CSS 的超集，根据使用的 CSS 属性，直接从主题中映射值。 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。
 
 ### 何时使用？
 
@@ -180,6 +180,12 @@ return (
   _这里是可复现的 [性能测试文件夹](https://github.com/mui-org/material-ui/tree/next/benchmark/browser)。_
 
   我们相信，对于大多数用途来说，它已经足够快了****，但当性能变得至关重要时，也有一些简单的解决方法。 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
+
+### API 权衡
+
+In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components, so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`.
+
+Additionally, having the system under one prop helps to easily differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
 
 ## 使用
 
