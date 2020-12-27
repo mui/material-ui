@@ -74,4 +74,4 @@ No modo escuro, as cores das barras de rolagem são personalizadas para fornecer
 
 ## Customização
 
-Vá até a seção de [customização global](/customization/globals/#global-css) da documentação para alterar o comportamento desses componentes.
+Vá até a seção de [customização global](/customization/theme-components/#global-css-override) da documentação para alterar o comportamento desses componentes.
