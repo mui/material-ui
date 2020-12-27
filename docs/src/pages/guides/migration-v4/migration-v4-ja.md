@@ -63,6 +63,46 @@ It no longer supports IE 11. If you need to support IE 11, check out our [legacy
 
 Support for non-ref-forwarding class components in the `component` prop or as immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything. Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate. This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Styled engine
+
+The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migration from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
+
+```jsx
+import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. Now you can override Material-UI's styles. */}
+    </StylesProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+
+```jsx
+import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function PlainCssPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Your component tree. Now you can override Material-UI's styles. */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+
 ### テーマ
 
 - Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive). The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive). When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
@@ -216,6 +256,20 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
+### システム
+
+- The following system functions (and properties) were renamed, because they are considered deprecated CSS:
+
+1. `gridGap` to `gap`
+2. `gridColumnGap` to `columnGap`
+3. `gridRowGap` to `rowGap`
+
+### Core components
+
+As the core components use emotion as a styled engine, the props used by emotion are not intercepted. The prop `as` in the following codesnippet will not be propagated to the `SomeOtherComponent`.
+
+`<MuiComponent component={SomeOtherComponent} as="button" />`
+
 ### サイド検索バー
 
 - [AppBar] Remove z-index when position static and relative
@@ -338,7 +392,7 @@ const classes = makeStyles(theme => ({
   +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
   ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
+  [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax. You can [read this section](/system/basics/#api-tradeoff) for the why behind the change of API.
 
 - The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit value, in `px`.
 
@@ -352,6 +406,22 @@ const classes = makeStyles(theme => ({
   +<Box sx={{ borderRadius: '16px' }}>
   ```
 
+- The following properties were renamed, because they are considered deprecated CSS proeprties:
+
+1. `gridGap` to `gap`
+2. `gridColumnGap` to `columnGap`
+3. `gridRowGap` to `rowGap`
+
+```diff
+-<Box gridGap="10px">
++<Box sx={{ gap: '10px' }}>
+```
+
+```diff
+-<Box gridColumnGap="10px" gridRowGap="20px">
++<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
+```
+
 ### Button (ボタン)
 
 - The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
@@ -361,6 +431,14 @@ const classes = makeStyles(theme => ({
   -<Button color="default" />
   +<Button />
   +<Button />
+  ```
+
+### Chip
+
+- Rename `default` variant to `filled` for consistency.
+  ```diff
+  -<Chip variant="default">
+  +<Chip variant="filled">
   ```
 
 ### CircularProgress
@@ -393,6 +471,22 @@ const classes = makeStyles(theme => ({
   -<Collapse classes={{ container: 'collapse' }}>
   +<Collapse classes={{ root: 'collapse' }}>
   ```
+
+###  CssBaseline
+
+- The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`). To return to the previous size, you can override it in the theme:
+
+  ```js
+  const theme = createMuiTheme({
+    typography: {
+      body1: {
+        fontSize: '0.875rem',
+      },
+    },
+  });
+  ```
+
+  (Note that this will also affect use of the Typography component with the default `body1` variant).
 
 ### Dialog
 
@@ -529,14 +623,6 @@ const classes = makeStyles(theme => ({
   +<Fab variant="circular">
   ```
 
-### Chip
-
-- Rename `default` variant to `filled` for consistency.
-  ```diff
-  -<Chip variant="default">
-  +<Chip variant="filled">
-  ```
-
 ### Grid
 
 - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
@@ -555,29 +641,38 @@ const classes = makeStyles(theme => ({
 - Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
 - Use CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
-```diff
--import GridList from '@material-ui/core/GridList';
--import GridListTile from '@material-ui/core/GridListTile';
--import GridListTileBar from '@material-ui/core/GridListTileBar';
-+import ImageList from '@material-ui/core/ImageList';
-+import ImageListItem from '@material-ui/core/ImageListItem';
-+import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+  ```diff
+  -import GridList from '@material-ui/core/GridList';
+  -import GridListTile from '@material-ui/core/GridListTile';
+  -import GridListTileBar from '@material-ui/core/GridListTileBar';
+  +import ImageList from '@material-ui/core/ImageList';
+  +import ImageListItem from '@material-ui/core/ImageListItem';
+  +import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
--<GridList spacing={8} cellHeight={200}>
--  <GridListTile>
-+<ImageList gap={8} rowHeight={200}>
-+  <ImageListItem>
-     <img src="file.jpg" alt="Image title" />
--    <GridListTileBar
-+    <ImageListItemBar
-       title="Title"
-       subtitle="Subtitle"
-     />
--  </GridListTile>
--</GridList>
-+  </ImageListItem>
-+</ImageList>
-```
+  -<GridList spacing={8} cellHeight={200}>
+  -  <GridListTile>
+  +<ImageList gap={8} rowHeight={200}>
+  +  <ImageListItem>
+      <img src="file.jpg" alt="Image title" />
+  -    <GridListTileBar
+  +    <ImageListItemBar
+        title="Title"
+        subtitle="Subtitle"
+      />
+  -  </GridListTile>
+  -</GridList>
+  +  </ImageListItem>
+  +</ImageList>
+  ```
+
+### Icon
+
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
+
+  ```diff
+  -<Icon fontSize="default">icon-name</Icon>
+  +<Icon>icon-name</Icon>
+  ```
 
 ### Menu
 
@@ -873,6 +968,17 @@ const classes = makeStyles(theme => ({
   +    <StepLabel>Hello world</StepLabel>
   +  </Step>
   +</Stepper>
+  ```
+
+### SvgIcon
+
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
+
+  ```diff
+  -<SvgIcon fontSize="default">
+  +<SvgIcon>
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+  </SvgIcon>
   ```
 
 ### テーブル
