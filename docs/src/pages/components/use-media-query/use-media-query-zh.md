@@ -189,7 +189,7 @@ function handleRender(req, res) {
 - `options.noSsr` (*Boolean* [optional]): 默认值为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
 - `options.ssrMatchMedia` (_Function_ [optional])：你可以在 [服务器端渲染上下文](#server-side-rendering) 中提供你自己的 _matchMedia_ 实现。
 
-注意：你可以使用主题的 [`默认属性`](/customization/globals/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。
+注意：你可以使用主题的 [`默认属性`](/customization/theme-components/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。
 
 #### 返回结果
 
