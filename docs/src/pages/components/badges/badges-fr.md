@@ -1,6 +1,6 @@
 ---
 title: React Badge component
-components: Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
@@ -18,7 +18,7 @@ Exemples de badges contenant du texte, utilisant les couleurs primaires et secon
 
 ## Badges personnalisés
 
-Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
