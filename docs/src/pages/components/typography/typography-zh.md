@@ -30,17 +30,17 @@ Material-UI **不会**自动加载 *Roboto* 字体。 你负责加载你的应�
 
 ## 通过 npm 安装
 
-通过在终端键入以下命令，你可以这样 [安装字体](https://www.npmjs.com/package/fontsource-roboto)：
+通过在终端键入以下命令，你可以这样 [安装字体](https://www.npmjs.com/package/@fontsource/roboto)：
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 然后，你可以在开始文件中导入：
 
 ```js
-import 'fontsource-roboto/300.css';
-import 'fontsource-roboto/400.css';
-import 'fontsource-roboto/500.css';
-import 'fontsource-roboto/700.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 有关更多信息请查看 [Fontsource](https://github.com/fontsource/fontsource)。
@@ -74,7 +74,7 @@ import 'fontsource-roboto/700.css';
 </Typography>;
 ```
 
-- 您也可以 [使用 theme](/customization/globals/#default-props) 来修改全局字体映射。
+- 您也可以 [使用 theme](/customization/theme-components/#default-props) 来修改全局字体映射。
 
 ```js
 const theme = createMuiTheme({
@@ -98,6 +98,10 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
 
 ## 无障碍设计
 
