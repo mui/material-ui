@@ -37,9 +37,10 @@ The following properties are used in this documentation website for optimal usab
 - iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx
-const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS =
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
 ### Keep mounted
