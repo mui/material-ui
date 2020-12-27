@@ -207,7 +207,7 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
         <div
           role="menu"
           data-mui-test="clock"
-          tabIndex={-1}
+          tabIndex={0}
           className={classes.squareMask}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}

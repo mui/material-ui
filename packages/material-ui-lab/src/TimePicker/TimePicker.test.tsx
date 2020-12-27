@@ -150,8 +150,8 @@ describe('<TimePicker />', () => {
       '13:--': {
         changedTouches: [
           {
-            clientX: 166,
-            clientY: 76,
+            clientX: 150,
+            clientY: 60,
           },
         ],
       },
@@ -166,8 +166,8 @@ describe('<TimePicker />', () => {
       '--:10': {
         changedTouches: [
           {
-            clientX: 220,
-            clientY: 72,
+            clientX: 190,
+            clientY: 60,
           },
         ],
       },

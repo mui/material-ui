@@ -53,8 +53,8 @@ const ClockNumber: React.FC<ClockNumberProps & WithStyles<typeof styles>> = (pro
 
   const angle = ((index % 12) / 12) * Math.PI * 2 - Math.PI / 2;
   const length = ((CLOCK_WIDTH - CLOCK_HOUR_WIDTH - 2) / 2) * (inner ? 0.65 : 1);
-  const x = Math.cos(angle) * length;
-  const y = Math.sin(angle) * length;
+  const x = Math.round(Math.cos(angle) * length);
+  const y = Math.round(Math.sin(angle) * length);
 
   const transformStyle = {
     transform: `translate(${x}px, ${y + (CLOCK_WIDTH - CLOCK_HOUR_WIDTH) / 2}px`,
