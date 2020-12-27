@@ -103,7 +103,7 @@ The `color` prop changes the highlight color of the text field when focused.
 
 ## Кастомизированные поля ввода
 
-Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
