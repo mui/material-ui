@@ -1,6 +1,5 @@
 import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { IS_TOUCH_DEVICE_MEDIA } from '../constants/dimensions';
 import MobileWrapper from './MobileWrapper';
 import DesktopWrapper from './DesktopWrapper';
 import DesktopTooltipWrapper from './DesktopTooltipWrapper';
@@ -28,7 +27,7 @@ export const makeResponsiveWrapper = (
     cancelText,
     clearable,
     clearText,
-    desktopModeMediaQuery = IS_TOUCH_DEVICE_MEDIA,
+    desktopModeMediaQuery = '@media (pointer: fine)',
     DialogProps,
     okText,
     PopperProps,

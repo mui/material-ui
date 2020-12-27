@@ -1,26 +1,21 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { createStyles, WithStyles, withStyles, Theme, alpha } from '@material-ui/core/styles';
+import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import { ExtendMui } from './typings/helpers';
 
-export interface ToolbarTextProps extends ExtendMui<TypographyProps> {
+export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
   selected?: boolean;
   value: React.ReactNode;
 }
 
 export const styles = (theme: Theme) => {
-  const textColor =
-    theme.palette.mode === 'light'
-      ? theme.palette.primary.contrastText
-      : theme.palette.getContrastText(theme.palette.background.default);
-
   return createStyles({
     root: {
       transition: theme.transitions.create('color'),
-      color: alpha(textColor, 0.54),
+      color: theme.palette.text.secondary,
       '&$selected': {
-        color: textColor,
+        color: theme.palette.text.primary,
       },
     },
     selected: {},
@@ -29,7 +24,9 @@ export const styles = (theme: Theme) => {
 
 export type PickersToolbarTextClassKey = keyof WithStyles<typeof styles>['classes'];
 
-const ToolbarText: React.FC<ToolbarTextProps & WithStyles<typeof styles>> = (props) => {
+const PickersToolbarText: React.FC<PickersToolbarTextProps & WithStyles<typeof styles>> = (
+  props,
+) => {
   const { className, classes, selected, value, ...other } = props;
 
   return (
@@ -44,4 +41,4 @@ const ToolbarText: React.FC<ToolbarTextProps & WithStyles<typeof styles>> = (pro
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersToolbarText' })(ToolbarText);
+export default withStyles(styles, { name: 'MuiPickersToolbarText' })(PickersToolbarText);

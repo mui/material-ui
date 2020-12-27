@@ -1,9 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useTheme, createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
-import ToolbarText from '../internal/pickers/PickersToolbarText';
+import PickersToolbarText from '../internal/pickers/PickersToolbarText';
 import ToolbarButton from '../internal/pickers/PickersToolbarButton';
-import PickerToolbar from '../internal/pickers/PickersToolbar';
+import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { arrayIncludes } from '../internal/pickers/utils';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
@@ -78,7 +78,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
     ampm ? utils.format(time, 'hours12h') : utils.format(time, 'hours24h');
 
   const separator = (
-    <ToolbarText
+    <PickersToolbarText
       tabIndex={-1}
       value=":"
       variant={clockTypographyVariant}
@@ -88,7 +88,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
   );
 
   return (
-    <PickerToolbar
+    <PickersToolbar
       landscapeDirection="row"
       toolbarTitle={toolbarTitle}
       isLandscape={isLandscape}
@@ -161,7 +161,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
           />
         </div>
       )}
-    </PickerToolbar>
+    </PickersToolbar>
   );
 };
 

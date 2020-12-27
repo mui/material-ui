@@ -9,7 +9,7 @@ import FadeTransitionGroup from './PickersFadeTransitionGroup';
 import Calendar, { ExportedCalendarProps } from './PickersCalendar';
 import { PickerOnChangeFn, useViews } from '../internal/pickers/hooks/useViews';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
-import CalendarHeader, { ExportedCalendarHeaderProps } from './PickersCalendarHeader';
+import PickersCalendarHeader, { ExportedCalendarHeaderProps } from './PickersCalendarHeader';
 import YearPicker, { ExportedYearPickerProps } from '../YearPicker/YearPicker';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { IsStaticVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
@@ -177,7 +177,7 @@ const DayPicker = React.forwardRef(function DayPicker<
 
   return (
     <PickerView ref={ref} className={clsx(classes.root, className)}>
-      <CalendarHeader
+      <PickersCalendarHeader
         {...other}
         views={views}
         openView={openView}

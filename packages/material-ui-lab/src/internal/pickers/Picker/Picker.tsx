@@ -6,7 +6,6 @@ import ClockPicker from '../../../ClockPicker/ClockPicker';
 import DayPicker from '../../../DayPicker/DayPicker';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { useIsLandscape } from '../hooks/useIsLandscape';
-import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 import { PickerSelectionState } from '../hooks/usePickerState';
 import { BasePickerProps, CalendarAndClockProps } from '../typings/BasePicker';
@@ -45,8 +44,6 @@ export const styles = createStyles({
   },
   pickerView: {
     overflowX: 'hidden',
-    width: DIALOG_WIDTH,
-    maxHeight: VIEW_HEIGHT,
     display: 'flex',
     flexDirection: 'column',
     margin: '0 auto',

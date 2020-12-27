@@ -41,7 +41,8 @@ export const styles = createStyles({
     flexDirection: 'row',
     flexWrap: 'wrap',
     overflowY: 'auto',
-    height: '100%',
+    maxHeight: 250,
+    maxWidth: 250,
     margin: '0 4px',
   },
 });

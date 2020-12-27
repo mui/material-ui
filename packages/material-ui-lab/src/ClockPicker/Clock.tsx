@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { createStyles, WithStyles, Theme, withStyles } from '@material-ui/core/styles';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import { VIEW_HEIGHT } from '../internal/pickers/constants/dimensions';
 import { ClockViewType } from '../internal/pickers/constants/ClockType';
 import { getHours, getMinutes } from '../internal/pickers/time-utils';
 import { useGlobalKeyDown, keycode } from '../internal/pickers/hooks/useKeyDown';
@@ -40,15 +39,15 @@ export const styles = (theme: Theme) =>
     root: {
       display: 'flex',
       justifyContent: 'center',
-      position: 'relative',
-      minHeight: VIEW_HEIGHT,
       alignItems: 'center',
+      margin: theme.spacing(2),
     },
     clock: {
       backgroundColor: 'rgba(0,0,0,.07)',
       borderRadius: '50%',
-      height: 260,
-      width: 260,
+      height: 220,
+      width: 220,
+      flexShrink: 0,
       position: 'relative',
       pointerEvents: 'none',
     },
@@ -109,6 +108,7 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     children: numbersElementsArray,
     classes,
     date,
+    getClockLabelText,
     handleMeridiemChange,
     isTimeDisabled,
     meridiemMode,
@@ -116,7 +116,6 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     onChange,
     type,
     value,
-    getClockLabelText,
   } = props;
 
   const utils = useUtils();

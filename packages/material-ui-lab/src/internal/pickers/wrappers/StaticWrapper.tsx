@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
-import { DIALOG_WIDTH } from '../constants/dimensions';
 import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantContext';
 import { StaticWrapperProps, PrivateWrapperProps } from './WrapperProps';
 
@@ -8,7 +7,6 @@ const styles = (theme: Theme) =>
   createStyles({
     root: {
       overflow: 'hidden',
-      minWidth: DIALOG_WIDTH,
       display: 'flex',
       flexDirection: 'column',
       backgroundColor: theme.palette.background.paper,

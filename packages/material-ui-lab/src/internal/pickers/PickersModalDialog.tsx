@@ -5,7 +5,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Dialog, { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
-import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from './constants/dimensions';
 
 export interface ExportedPickerModalProps {
   /**
@@ -59,10 +58,6 @@ export const styles = createStyles({
   },
   paper: {
     outline: 0,
-    minWidth: DIALOG_WIDTH,
-  },
-  paperWider: {
-    minWidth: DIALOG_WIDTH_WIDER,
   },
   content: {
     '&:first-child': {

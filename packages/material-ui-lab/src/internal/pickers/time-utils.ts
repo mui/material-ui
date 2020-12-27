@@ -33,8 +33,8 @@ export const convertToMeridiem = <TDate>(
 };
 
 const clockCenter = {
-  x: 260 / 2,
-  y: 260 / 2,
+  x: 220 / 2,
+  y: 220 / 2,
 };
 
 const baseClockPoint = {
