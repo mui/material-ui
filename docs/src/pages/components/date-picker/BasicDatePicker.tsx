@@ -15,10 +15,6 @@ export default function BasicDatePicker() {
         onChange={(newValue) => {
           setValue(newValue);
         }}
-        // rightArrowCustom = {
-        //   <button>test</button>
-        // }
-        // rightArrowIconCustom = {"some image"}
         renderInput={(params) => <TextField {...params} variant="standard" />}
       />
     </LocalizationProvider>

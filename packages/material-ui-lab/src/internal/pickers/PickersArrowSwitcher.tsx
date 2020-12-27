@@ -41,10 +41,6 @@ interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps
   onLeftClick: () => void;
   onRightClick: () => void;
   text?: string;
-  leftArrowCustom?: React.ReactNode; 
-  rightArrowCustom?: React.ReactNode; 
-  leftArrowCustomIcon?: React.ReactNode; 
-  rightArrowCustomIcon?: React.ReactNode; 
 }
 
 export const styles = (theme: Theme) =>
@@ -80,11 +76,7 @@ const PickersArrowSwitcher = React.forwardRef<
     leftArrowIcon = <ArrowLeftIcon />,
     onLeftClick,
     onRightClick,
-    leftArrowCustom, 
-    rightArrowCustom, 
-    leftArrowCustomIcon, 
-    rightArrowCustomIcon, 
-    rightArrowButtonProps, 
+    rightArrowButtonProps,
     rightArrowButtonText,
     rightArrowIcon = <ArrowRightIcon />,
     text,
@@ -95,7 +87,6 @@ const PickersArrowSwitcher = React.forwardRef<
 
   return (
     <div className={clsx(classes.root, className)} ref={ref} {...other}>
-      {leftArrowCustom ? leftArrowCustom : 
       <IconButton
         size="small"
         aria-hidden={isLeftHidden}
@@ -108,16 +99,13 @@ const PickersArrowSwitcher = React.forwardRef<
           [classes.previousMonthButtonMargin]: !text,
         })}
       >
-        {leftArrowCustomIcon ? leftArrowCustomIcon : (isRtl ? rightArrowIcon : leftArrowIcon)}
-      </IconButton> }
-
+        {isRtl ? rightArrowIcon : leftArrowIcon}
+      </IconButton>
       {text && (
         <Typography variant="subtitle1" display="inline">
           {text}
         </Typography>
       )}
-
-      {rightArrowCustom ? rightArrowCustom :
       <IconButton
         size="small"
         aria-hidden={isRightHidden}
@@ -129,10 +117,8 @@ const PickersArrowSwitcher = React.forwardRef<
           [classes.hidden]: isRightHidden,
         })}
       >
-        {rightArrowCustomIcon ? rightArrowCustomIcon : (isRtl ? leftArrowIcon : rightArrowIcon)}
-      </IconButton> }
-
-      
+        {isRtl ? leftArrowIcon : rightArrowIcon}
+      </IconButton>
     </div>
   );
 });
