@@ -68,7 +68,7 @@ In this example an input allows a discrete value to be set.
 
 ## Curseurs personnalisés
 
-Here are some examples of customizing the component. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/components/).
+Here are some examples of customizing the component. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/how-to-customize/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
