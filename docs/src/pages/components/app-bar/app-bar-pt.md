@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">A barra de aplicativos exibe informações e ações relacionadas à tela atual.</p>
 
-A [barra de aplicativos superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. Ela é utilizada para a identidade visual, títulos de tela, navegação, e ações.
+A [barra de aplicativos superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. It's used for branding, screen titles, navigation, and actions.
 
 Ela pode se transformar em uma barra de ações contextual ou ser utilizada como uma barra de navegação.
 
