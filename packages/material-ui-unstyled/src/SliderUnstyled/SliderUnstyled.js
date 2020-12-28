@@ -213,7 +213,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     isRtl = false,
     components = {},
     componentsProps = {},
-    /* eslint-disable react/prop-types */
+    /* eslint-disable-next-line react/prop-types */
     theme,
     ...other
   } = props;

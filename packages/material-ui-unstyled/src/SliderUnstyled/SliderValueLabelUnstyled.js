@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import sliderUnstyledClasses from './sliderUnstyledClasses';
 
@@ -31,11 +32,20 @@ function SliderValueLabelUnstyled(props) {
       className: clsx(children.props.className),
     },
     <Root className={clsx(classes.offset, className)} theme={theme} aria-hidden>
+      {children.props.children}
       <span className={classes.circle}>
         <span className={classes.label}>{value}</span>
       </span>
     </Root>,
   );
 }
+
+SliderValueLabelUnstyled.propTypes = {
+  children: PropTypes.element.isRequired,
+  className: PropTypes.string,
+  components: PropTypes.shape({ Root: PropTypes.elementType }),
+  theme: PropTypes.any,
+  value: PropTypes.node,
+};
 
 export default SliderValueLabelUnstyled;

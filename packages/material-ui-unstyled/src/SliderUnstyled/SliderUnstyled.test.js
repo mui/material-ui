@@ -80,4 +80,12 @@ describe('<SliderUnstyled />', () => {
       expect(slider).toHaveComputedStyle({ webkitAppearance: 'slider-vertical' });
     });
   });
+
+  describe('prop: valueLabelDisplay', () => {
+    it('renders a slider', () => {
+      render(<SliderUnstyled value={30} valueLabelDisplay="auto" />);
+
+      expect(screen.getByRole('slider')).to.have.attribute('aria-valuenow', '30');
+    });
+  });
 });
