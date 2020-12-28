@@ -27,7 +27,7 @@ export default function Gap() {
         sx={{
           display: 'grid',
           gap: '8px',
-          gridTemplateColumns: '0.5fr 0.5fr',
+          gridTemplateColumns: '50% 50%',
         }}
       >
         <GridItem>1</GridItem>
