@@ -53,7 +53,7 @@ The `gap: size` property specifies the gap between the different items inside th
 {{"demo": "pages/system/grid/Gap.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gap: '10px', gridTemplateColumns: '50% 50%' }}>
+<Box sx={{ gap: '8px', gridTemplateColumns: '50% 50%' }}>
   <div>1</div>
   <div>2</div>
   ...

@@ -31,7 +31,7 @@ export default function Gap() {
       <Box
         sx={{
           display: 'grid',
-          gap: '10px',
+          gap: '8px',
           gridTemplateColumns: '0.5fr 0.5fr',
         }}
       >
