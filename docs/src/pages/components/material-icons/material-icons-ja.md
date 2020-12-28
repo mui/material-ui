@@ -16,4 +16,4 @@ The following npm package, [@material-ui/icons](https://www.npmjs.com/package/@m
 
 {{"demo": "pages/components/material-icons/SearchIcons.js", "hideToolbar": true, "bg": true}}
 
-ℹ️ The search supports synonyms. Try searching for "hamburger", or "logout".
+ℹ️ 同義語の検索をサポートしています。 "hamburger"や"logout"で検索してみてください。

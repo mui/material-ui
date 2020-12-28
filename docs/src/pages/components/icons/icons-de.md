@@ -305,12 +305,12 @@ You need to provide a text alternative that is only visible to assistive technol
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import { visuallyHidden } from '@material-ui/utils';
+import { makeStyles } from '@material-ui/core/styles';
+
+const classes = makeStyles({ visuallyHidden })();
 
 // ...
-
-<Icon>add_circle</Icon>
-<Typography variant="srOnly">Erstellen Sie einen Benutzer</Typography>
 
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';

@@ -59,7 +59,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 
 ## Индивидуальные диалоги
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 Данный диалог имеет кнопку закрытия, добавленную для удобства использования.
 

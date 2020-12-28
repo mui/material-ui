@@ -46,7 +46,7 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 ## Настраиваемые таблицы
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 

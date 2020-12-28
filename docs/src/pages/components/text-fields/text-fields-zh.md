@@ -65,7 +65,7 @@ materialDesign: https://material.io/components/text-fields
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
-The `filled` variant input height can be further reduced by rendering the label outside of it.
+`filled` 变体的输入高度可以通过在外部渲染标签来降低。
 
 {{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
 
@@ -103,7 +103,7 @@ The `filled` variant input height can be further reduced by rendering the label 
 
 ## 自定义输入
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -139,7 +139,7 @@ The `filled` variant input height can be further reduced by rendering the label 
 
 ### type="number"
 
-type="number" 的输入存在潜在的可用性问题。
+type="number" 的输入存在潜在的可用性问题：
 
 - 这将允许某些非数字字符（'e', '+', '-', '.'） 并且丢失其他字符 并且丢失其他字符
 - 滚动增加/减少数字的功能可能会导致意外和难以察觉的变化。
@@ -154,9 +154,9 @@ type="number" 的输入存在潜在的可用性问题。
 
 以后我们可能会提供 [数字（number）输入组件](https://github.com/mui-org/material-ui/issues/19154)。
 
-### 助手文本
+### 辅助文本
 
-助手文本属性会影响文本字段的高度。 如果两个文本字段并排放置，一个有辅助文本，另一个没有，那么它们的高度就会不同。 例如:
+辅助文本属性会影响文本字段的高度。 如果两个文本字段并排放置，一个有辅助文本，另一个没有，那么它们的高度就会不同。 例如:
 
 {{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
 

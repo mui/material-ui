@@ -85,7 +85,7 @@ Los iconos son también apropiados para botones toggle que permiten marcar o des
 
 ## Botones Personalizados
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -135,7 +135,7 @@ Sin embargo:
 - Debería añadir `pointer-events: none` cuando necesite mostrar [tooltips en elemento deshabilitados](/components/tooltips/#disabled-elements).
 - The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
 
-2. **DOM change**. Puede encapsular el botón:
+2. **Cambio en el DOM**. Puede encapsular el botón:
 
 ```jsx
 <span style={{ cursor: 'not-allowed' }}>

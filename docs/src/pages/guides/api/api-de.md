@@ -38,7 +38,7 @@ Wir vermeiden, die vom DOM unterstützten nativen Eigenschaften wie [`className`
 
 ### CSS-Klassen
 
-All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. Das Design der classes beantwortet zwei Bedingungen: Die Klassenstruktur so einfach wie möglich zu gestalten, aber trotzdem ausreichend, um die Material Design-Spezifikation zu implementieren.
+All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles. Das Design der classes beantwortet zwei Bedingungen: Die Klassenstruktur so einfach wie möglich zu gestalten, aber trotzdem ausreichend, um die Material Design-Spezifikation zu implementieren.
 
 - Die auf das Wurzelelement angewendete Klasse wird immer als `root` bezeichnet.
 - Alle Standardstile sind in einer einzigen Klasse zusammengefasst.

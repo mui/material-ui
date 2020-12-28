@@ -27,14 +27,17 @@ The *Roboto* font will **not** be automatically loaded by Material-UI. You are r
 
 ## Установка используя npm
 
-Вы можете [установить его](https://www.npmjs.com/package/fontsource-roboto) набрав команду ниже в терминале:
+Вы можете [установить его](https://www.npmjs.com/package/@fontsource/roboto) набрав команду ниже в терминале:
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Затем вы можете импортировать его в вашу точку входа.
 
 ```js
-import 'fontsource-roboto';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
@@ -66,7 +69,7 @@ The Typography component uses the `variantMapping` property to associate a UI va
 </Typography>
 ```
 
-- Вы можете изменить сопоставление вариантов [глобально используя тему](/customization/globals/#default-props):
+- Вы можете изменить сопоставление вариантов [глобально используя тему](/customization/theme-components/#default-props):
 
 ```js
 const theme = createMuiTheme({
@@ -88,6 +91,10 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
 
 ## Доступность
 

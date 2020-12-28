@@ -1,6 +1,6 @@
 ---
 title: Componente React para emblemas
-components: Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
@@ -18,7 +18,7 @@ Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O e
 
 ## Emblemas customizados
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -56,6 +56,6 @@ Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer 
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
 
-## Unstyled badge
+## Emblema sem estilo
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}

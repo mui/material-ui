@@ -9,15 +9,15 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 <p class="description">Material-UIでアイコンを使用するためのガイダンスと提案です。</p>
 
-Material-UI provides icons support in three ways:
+Material-UIはアイコンについて、3種類の提供方法をサポートします。
 
-1. Standardized [Material Design icons](#material-icons) exported as React components (SVG icons).
-1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
-1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
+1. 標準の [Material Design icons](#material-icons)を、Ractコンポーネント(SVGアイコン)として、エクスポートする方法
+1. ReactラッパーのカスタムSVGアイコンとして、[SVGアイコン](#svgicon) コンポーネントを利用する方法
+1. Reactラッパーのカスタムフォントアイコンとして、[アイコン](#icon-font-icons)  コンポーネントを利用する方法
 
 ## マテリアルアイコン（Material Icons）
 
-Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
+Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. [これらのアイコンの一覧を検索](/components/material-icons/)することが出来ます。
 
 ### インストール
 
@@ -309,7 +309,10 @@ You need to provide a text alternative that is only visible to assistive technol
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import { visuallyHidden } from '@material-ui/utils';
+import { makeStyles } from '@material-ui/core/styles';
+
+const classes = makeStyles({ visuallyHidden })();
 
 // ...
 

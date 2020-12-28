@@ -63,6 +63,46 @@ Não há mais o suporte para o IE 11. Se você precisar do suporte para o IE 11,
 
 O suporte para componentes de classe, sem o encaminhamento de refs, na propriedade `component` ou como um elemento `children` imediato foi removido. Se você estava usando `unstable_createStrictModeTheme` ou não recebeu quaisquer avisos relacionados a `findDOMNode` no `React. StrictMode`, então você não precisa fazer nada. Caso contrário, confira a seção ["Advertência com refs" em nosso guia de composição](/guides/composition/#caveat-with-refs) para descobrir como migrar. Esta alteração afeta quase todos os componentes no qual você está usando a propriedade `component` ou passando diretamente um  `children` para componentes que requerem `children` como elemento (ou seja, `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Styled engine
+
+The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migration from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
+
+```jsx
+import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. Agora você pode sobrescrever os estilos do Material-UI. */}
+    </StylesProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Aqui está um exemplo:
+
+```jsx
+import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function PlainCssPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Sua árvore de componentes. Agora você pode sobrescrever os estilos do Material-UI. */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+
 ### Tema
 
 - Pontos de quebra agora são tratados como valores, em vez de intervalos. O comportamento de `down(key)` foi modificado para definir uma consulta de mídia menor do que o valor definido como ponto de quebra correspondente (de forma exclusiva). O `between(start, end)` também foi atualizado para definir uma consulta de mídia para os valores reais entre o início (de forma inclusiva) e fim (de forma exclusiva). Ao usar o utilitário de pontos de quebra `down()`, você precisa atualizar a chave de ponto de quebra em um passo. Ao usar o `between(start, end)`, o ponto de quebra de fim também deve ser atualizado em um passo. O mesmo deve ser feito ao usar o componente `Hidden`. Observe exemplos das definições de mudanças necessárias abaixo:
@@ -96,7 +136,7 @@ O suporte para componentes de classe, sem o encaminhamento de refs, na proprieda
 
 #### Utilitário para atualização
 
-Para uma transição mais suave, o utilitário `adaptV4Theme` permite que você atualize de forma iterativa algumas das alterações do tema para a nova estrutura do tema.
+For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure.
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
@@ -216,7 +256,21 @@ const classes = makeStyles(theme => ({
 }));
 ```
 
-### AppBar
+### Sistema
+
+- The following system functions (and properties) were renamed, because they are considered deprecated CSS:
+
+1. `gridGap` to `gap`
+2. `gridColumnGap` to `columnGap`
+3. `gridRowGap` to `rowGap`
+
+### Componentes do core
+
+As the core components use emotion as a styled engine, the props used by emotion are not intercepted. The prop `as` in the following codesnippet will not be propagated to the `SomeOtherComponent`.
+
+`<MuiComponent component={SomeOtherComponent} as="button" />`
+
+### Uma barra de aplicativos proeminente.
 
 - [AppBar] Remova z-index quando a posição for estática e relativa
 
@@ -322,11 +376,11 @@ const classes = makeStyles(theme => ({
 
 ### BottomNavigation
 
-- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
+- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`.
 
   ```diff
-  -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
-  +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
+  -<BottomNavigation onChange={(event: React. ChangeEvent<{}>) => {}} />
+  +<BottomNavigation onChange={(event: React. SyntheticEvent) => {}} />
   ```
 
 ### Box
@@ -338,7 +392,7 @@ const classes = makeStyles(theme => ({
   +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
   ```
 
-[Este codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) atualizará automaticamente seu código para a nova sintaxe.
+  [Este codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) atualizará automaticamente seu código para a nova sintaxe. You can [read this section](/system/basics/#api-tradeoff) for the why behind the change of API.
 
 - O valor de transformação da propriedade de sistema `borderRadius` foi alterado. Se ele receber um número, ele multiplica esse valor pelo valor de `theme.shape.borderRadius`. Use uma string para fornecer um valor explícito, em `px`.
 
@@ -352,6 +406,22 @@ const classes = makeStyles(theme => ({
   +<Box sx={{ borderRadius: '16px' }}>
   ```
 
+- The following properties were renamed, because they are considered deprecated CSS proeprties:
+
+1. `gridGap` to `gap`
+2. `gridColumnGap` to `columnGap`
+3. `gridRowGap` to `rowGap`
+
+```diff
+-<Box gridGap="10px">
++<Box sx={{ gap: '10px' }}>
+```
+
+```diff
+-<Box gridColumnGap="10px" gridRowGap="20px">
++<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
+```
+
 ### Button
 
 - A propriedade  `color` do botão agora é "primary" por padrão, e "default" foi removido. Isto torna o botão mais próximo da especificação do Material Design e simplifica a API.
@@ -363,7 +433,15 @@ const classes = makeStyles(theme => ({
   +<Button />
   ```
 
-### CircularProgress
+### Chip
+
+- Renomeie a variante `default` para `filled` por uma questão de consistência.
+  ```diff
+  -<Chip variant="default">
+  +<Chip variant="filled">
+  ```
+
+### Conjunto de progressos
 
 - A variante `static` foi mesclada na variante `determinate`, assumindo a última a aparência da primeira. A variante removida raramente foi útil. Era uma exceção para Material Design, e foi removida da especificação.
 
@@ -393,6 +471,22 @@ const classes = makeStyles(theme => ({
   -<Collapse classes={{ container: 'collapse' }}>
   +<Collapse classes={{ root: 'collapse' }}>
   ```
+
+###  CssBaseline
+
+- The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`). To return to the previous size, you can override it in the theme:
+
+  ```js
+  const theme = createMuiTheme({
+    typography: {
+      body1: {
+        fontSize: '0.875rem',
+      },
+    },
+  });
+  ```
+
+  (Note that this will also affect use of the Typography component with the default `body1` variant).
 
 ### Dialog
 
@@ -454,7 +548,7 @@ const classes = makeStyles(theme => ({
 - Use cor de borda em vez de cor de fundo. Ela impede a altura inconsistente em telas redimensionadas. Para pessoas personalizando a cor da borda, a alteração requer alterar a propriedade CSS com sobrescrita:
 
   ```diff
-  .MuiDivider-root {
+  . MuiDivider-root {
   - background-color: #f00;
   + border-color: #f00;
   }
@@ -499,7 +593,7 @@ const classes = makeStyles(theme => ({
   +</Accordion>
   ```
 
-- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
+- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`.
 
   ```diff
   -<Accordion onChange={(event: React. ChangeEvent<{}>, expanded: boolean) => {}} />
@@ -529,14 +623,6 @@ const classes = makeStyles(theme => ({
   +<Fab variant="circular">
   ```
 
-### Chip
-
-- Renomeie a variante `default` para `filled` por uma questão de consistência.
-  ```diff
-  -<Chip variant="default">
-  +<Chip variant="filled">
-  ```
-
 ### Grid
 
 - Renomeie a propriedade `justify` para `justifyContent` para ter conformidade com o nome da propriedade CSS.
@@ -553,31 +639,40 @@ const classes = makeStyles(theme => ({
 - Renomeie no GridList a propriedade `cellHeight` para `rowHieght`.
 - Adicione a propriedade `variant` para o GridList.
 - Renomeie no GridListItemBar a propriedade `actionPosition` para `position`. (Observe também as alterações de nome de classe relacionadas.)
-- Use CSS object-fit. Para suporte ao IE11 use um polyfill como https://www.npmjs.com/package/object-fit-images, ou continue usando o componente da v4.
+- Use CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
-```diff
--import GridList from '@material-ui/core/GridList';
--import GridListTile from '@material-ui/core/GridListTile';
--import GridListTileBar from '@material-ui/core/GridListTileBar';
-+import ImageList from '@material-ui/core/ImageList';
-+import ImageListItem from '@material-ui/core/ImageListItem';
-+import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+  ```diff
+  -import GridList from '@material-ui/core/GridList';
+  -import GridListTile from '@material-ui/core/GridListTile';
+  -import GridListTileBar from '@material-ui/core/GridListTileBar';
+  +import ImageList from '@material-ui/core/ImageList';
+  +import ImageListItem from '@material-ui/core/ImageListItem';
+  +import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
--<GridList spacing={8} cellHeight={200}>
--  <GridListTile>
-+<ImageList gap={8} rowHeight={200}>
-+  <ImageListItem>
-     <img src="file.jpg" alt="Image title" />
--    <GridListTileBar
-+    <ImageListItemBar
-       title="Title"
-       subtitle="Subtitle"
-     />
--  </GridListTile>
--</GridList>
-+  </ImageListItem>
-+</ImageList>
-```
+  -<GridList spacing={8} cellHeight={200}>
+  -  <GridListTile>
+  +<ImageList gap={8} rowHeight={200}>
+  +  <ImageListItem>
+      <img src="file.jpg" alt="Image title" />
+  -    <GridListTileBar
+  +    <ImageListItemBar
+        title="Title"
+        subtitle="Subtitle"
+      />
+  -  </GridListTile>
+  -</GridList>
+  +  </ImageListItem>
+  +</ImageList>
+  ```
+
+### Icon
+
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
+
+  ```diff
+  -<Icon fontSize="default">icon-name</Icon>
+  +<Icon>icon-name</Icon>
+  ```
 
 ### Menu
 
@@ -742,27 +837,32 @@ const classes = makeStyles(theme => ({
 
 ### RootRef
 
-- Este componente foi removido. Você pode obter uma referência para o nó DOM subjacente dos nossos componentes através da propriedade  `ref`. O componente baseou-se em [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) ao qual foi [descontinuado em `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
-
-  ```diff
-  -<RootRef rootRef={ref}>
+- Este componente foi removido. Você pode obter uma referência para o nó DOM subjacente dos nossos componentes através da propriedade  `ref`. The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which isdeprecated in `React.
+<pre><code class="diff">  -<RootRef rootRef={ref}>
   -  <Button />
   -</RootRef>
   +<Button ref={ref} />
-  ```
+`</pre></li> </ul> 
+  
+  
 
 ### Skeleton
 
-- Mova o componente do lab para o core. O componente agora é estável.
+- Mova o componente do lab para o core. O componente agora é estável. 
+  
+  
 
   ```diff
   -import Skeleton from '@material-ui/lab/Skeleton';
   +import Skeleton from '@material-ui/core/Skeleton';
   ```
 
-  Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
 
-- Renomeie `circle` para `circular` e `rect` para `rectangular` por uma questão de consistência. Os valores possíveis devem ser adjetivos e não substantivos:
+Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
+
+- Renomeie `circle` para `circular` e `rect` para `rectangular` por uma questão de consistência. Os valores possíveis devem ser adjetivos e não substantivos: 
+  
+  
 
   ```diff
   -<Skeleton variant="circle" />
@@ -773,39 +873,58 @@ const classes = makeStyles(theme => ({
   +<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
   ```
 
+
+
+
 ### Slider
 
-- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
+- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`. 
+  
+  
 
   ```diff
-  -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
-  +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  -<Slider onChange={(event: React. ChangeEvent<{}>, value: unknown) => {}} />
+  +<Slider onChange={(event: React. SyntheticEvent, value: unknown) => {}} />
   ```
 
-- A propriedade `ValueLabelComponent` agora faz parte da propriedade `components`.
+
+- A propriedade `ValueLabelComponent` agora faz parte da propriedade `components`. 
+  
+  
 
   ```diff
   -<Slider ValueLabelComponent={CustomValueLabel} />
   +<Slider components={{ ValueLabel: CustomValueLabel }} />
   ```
 
-- A propriedade `ThumbComponent` agora faz parte da propriedade `components`.
+
+- A propriedade `ThumbComponent` agora faz parte da propriedade `components`. 
+  
+  
 
   ```diff
   -<Slider ThumbComponent={CustomThumb} />
   +<Slider components={{ Thumb: CustomThumb }} />
   ```
 
+
+
+
 ### Snackbar
 
-- A notificação agora é exibida na parte inferior esquerda em telas grandes. Isto corresponde melhor ao comportamento do Gmail, Google Keep, material.io, etc. Você pode reproduzir o comportamento anterior com:
+- A notificação agora é exibida na parte inferior esquerda em telas grandes. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: Você pode reproduzir o comportamento anterior com: 
+  
+  
 
   ```diff
   -<Snackbar />
   +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
 
-- As propriedades de transição onE\* foram removidas. Em vez disso, use TransitionProps.
+
+- As propriedades de transição onE\* foram removidas. Em vez disso, use TransitionProps. 
+  
+  
 
   ```diff
   <Snackbar
@@ -826,9 +945,14 @@ const classes = makeStyles(theme => ({
   />
   ```
 
+
+
+
 ### SpeedDial
 
-- Mova o componente do lab para o core. O componente agora é estável.
+- Mova o componente do lab para o core. O componente agora é estável. 
+  
+  
 
   ```diff
   -import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -839,11 +963,16 @@ const classes = makeStyles(theme => ({
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
 
-  Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
+
+Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
+
+
 
 ### Assistente
 
-- O componente raiz (Paper) foi substituído por um div. Stepper não tem mais elevação, nem herda as propriedades de Paper. Esta alteração destina-se a incentivar a composição.
+- O componente raiz (Paper) foi substituído por um div. Stepper não tem mais elevação, nem herda as propriedades de Paper. Esta alteração destina-se a incentivar a composição. 
+  
+  
 
   ```diff
   -<Stepper elevation={2}>
@@ -860,7 +989,10 @@ const classes = makeStyles(theme => ({
   +<Paper>
   ```
 
-- Remova o padding automático de 24px.
+
+- Remova o padding automático de 24px. 
+  
+  
 
   ```diff
   -<Stepper>
@@ -875,9 +1007,29 @@ const classes = makeStyles(theme => ({
   +</Stepper>
   ```
 
+
+
+
+### SvgIcon
+
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed: 
+  
+
+  ```diff
+  -<SvgIcon fontSize="default">
+  +<SvgIcon>
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+  </SvgIcon>
+  ```
+
+
+
+
 ### Table
 
-- A customização dos rótulos das ações da paginação da tabela deve ser feita com a propriedade `getItemAriaLabel`. Isso aumenta a consistência com o componente `Paginação`.
+- A customização dos rótulos das ações da paginação da tabela deve ser feita com a propriedade `getItemAriaLabel`. Isso aumenta a consistência com o componente `Paginação`. 
+  
+  
 
   ```diff
   <TablePagination
@@ -886,7 +1038,10 @@ const classes = makeStyles(theme => ({
   + getItemAriaLabel={…}
   ```
 
-- Renomeie `onChangeRowsPerPage` para `onRowsPerPageChange` e `onChangePage` para `onPageChange` por questões de consistência da API.
+
+- Renomeie `onChangeRowsPerPage` para `onRowsPerPageChange` e `onChangePage` para `onPageChange` por questões de consistência da API. 
+  
+  
 
   ```diff
   <TablePagination
@@ -896,19 +1051,26 @@ const classes = makeStyles(theme => ({
   + onPageChange={()=>{}}
   ```
 
+
+
+
 ### Abas
 
-- TypeScript: O `event` em `onChange` não é mais tipado como `React.ChangeEvent`, mas sim em `React.SyntheticEvent`.
+- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`. 
+  
+  
 
   ```diff
-  -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
-  +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  -<Tabs onChange={(event: React. ChangeEvent<{}>, value: unknown) => {}} />
+  +<Tabs onChange={(event: React. SyntheticEvent, value: unknown) => {}} />
   ```
 
-- A API que controla os botões de rolagem foi dividida em duas propriedades.
 
-  - A propriedade `scrollButtons` controla quando os botões de rolagem são exibidos dependendo do espaço disponível.
-  - A propriedade `allowScrollButtonsMobile` remove a consulta de mídia CSS que oculta sistematicamente os botões de rolagem no celular.
+- A API que controla os botões de rolagem foi dividida em duas propriedades.
+  
+    - A propriedade `scrollButtons` controla quando os botões de rolagem são exibidos dependendo do espaço disponível.
+  - A propriedade `allowScrollButtonsMobile` remove a consulta de mídia CSS que oculta sistematicamente os botões de rolagem no celular. 
+    
 
   ```diff
   -<Tabs scrollButtons="on" />
@@ -919,9 +1081,13 @@ const classes = makeStyles(theme => ({
   +<Tabs scrollButtons={false} />
   ```
 
+
+
+
 ### TextField
 
-- Altere a variante padrão de `standard` para `outlined`. O padrão foi removido da Diretrizes do Material Design.
+- Altere a variante padrão de `standard` para `outlined`. O padrão foi removido da Diretrizes do Material Design. 
+  
 
   ```diff
   -<TextField value="Standard" />
@@ -930,23 +1096,32 @@ const classes = makeStyles(theme => ({
   +<TextField value="Outlined" />
   ```
 
+
 [Este codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#textfield-variant-prop) atualizará automaticamente seu código.
 
-- Renomeie a propriedade `rowsMax` para `maxRows` por questão de consistência com atributos HTML.
+- Renomeie a propriedade `rowsMax` para `maxRows` por questão de consistência com atributos HTML. 
+  
+  
 
   ```diff
   -<TextField rowsMax={6}>
   +<TextField maxRows={6}>
   ```
 
-- Melhor isolar o comportamento fixo de altura do textarea para o dinâmico. Você precisa usar a propriedade `minRows` da seguinte forma:
+
+- Melhor isolar o comportamento fixo de altura do textarea para o dinâmico. Você precisa usar a propriedade `minRows` da seguinte forma: 
+  
+  
 
   ```diff
   -<TextField rows={2} maxRows={5} />
   +<TextField minRows={2} maxRows={5} />
   ```
 
-- Altere o que é esperado no encaminhamento de ref no componente customizado `inputComponent`. O componente deve encaminhar a propriedade `ref` em vez da propriedade `inputRef`.
+
+- Altere o que é esperado no encaminhamento de ref no componente customizado `inputComponent`. O componente deve encaminhar a propriedade `ref` em vez da propriedade `inputRef`. 
+  
+  
 
   ```diff
   -function NumberFormatCustom(props) {
@@ -964,39 +1139,58 @@ const classes = makeStyles(theme => ({
   +     getInputRef={ref}
   ```
 
-- Renomeie as classes `marginDense` e `inputMarginDense` para `sizeSmall` e `inputSizeSmall` para corresponder com a propriedade.
+
+- Renomeie as classes `marginDense` e `inputMarginDense` para `sizeSmall` e `inputSizeSmall` para corresponder com a propriedade. 
+  
+  
 
   ```diff
   -<Input margin="dense" />
   +<Input size="small" />
   ```
 
+
+
+
 ### TextareaAutosize
 
-- Remova a propriedade `rows`, use `minRows` em vez disso. Esta alteração visa esclarecer o comportamento da propriedade.
+- Remova a propriedade `rows`, use `minRows` em vez disso. Esta alteração visa esclarecer o comportamento da propriedade. 
+  
+  
 
   ```diff
   -<TextareaAutosize rows={2} />
   +<TextareaAutosize minRows={2} />
   ```
 
-- Renomeie a propriedade `rowsMax` para `maxRows` por questão de consistência com atributos HTML.
+
+- Renomeie a propriedade `rowsMax` para `maxRows` por questão de consistência com atributos HTML. 
+  
+  
 
   ```diff
   -<TextareAutosize rowsMax={6}>
   +<TextareAutosize maxRows={6}>
   ```
 
-- Renomeie a propriedade `rowsMin` para `minRows` por questão de consistência com atributos HTML.
+
+- Renomeie a propriedade `rowsMin` para `minRows` por questão de consistência com atributos HTML. 
+  
+  
 
   ```diff
   -<TextareAutosize rowsMin={1}>
   +<TextareAutosize minRows={1}>
   ```
 
+
+
+
 ### ToggleButton
 
-- Mova o componente do lab para o core. O componente agora é estável.
+- Mova o componente do lab para o core. O componente agora é estável. 
+  
+  
 
   ```diff
   -import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -1005,13 +1199,18 @@ const classes = makeStyles(theme => ({
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
-  Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
+
+Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
+
+
 
 ### Tooltip
 
 - Dicas agora estão interativas por padrão.
-
-  O comportamento padrão anterior era falho, como mostra neste artigo, [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). Para refletir o novo valor padrão, a propriedade foi renomeada para `disableInteractive`. Se você quiser reproduzir o comportamento antigo (portanto não chegando ao nível AA), você pode aplicar a seguinte alteração:
+  
+  O comportamento padrão anterior era falho, como mostra neste artigo, [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). Para refletir o novo valor padrão, a propriedade foi renomeada para `disableInteractive`. Se você quiser reproduzir o comportamento antigo (portanto não chegando ao nível AA), você pode aplicar a seguinte alteração: 
+  
+  
 
   ```diff
   -<Tooltip>
@@ -1022,9 +1221,13 @@ const classes = makeStyles(theme => ({
   +<Tooltip>
   ```
 
+
+
+
 ### Tipografia
 
-- Substitua a propriedade `srOnly` para não duplicar as capacidades do  [Sistema](https://material-ui.com/system/basics/):
+- Substitua a propriedade `srOnly` para não duplicar as capacidades do  [Sistema](https://material-ui.com/system/basics/): 
+  
 
   ```diff
   -import Typography from '@material-ui/core/Typography';
@@ -1037,9 +1240,14 @@ const classes = makeStyles(theme => ({
   +<Span>Create a user</Span>
   ```
 
+
+
+
 ### Sistema
 
 - Substitua a propriedade `css` para `sx` para evitar a colisão com as propriedades CSS de styled-components & emotion.
+
+
 
 ```diff
 -<Box css={{ color: 'primary.main' }} />

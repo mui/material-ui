@@ -23,7 +23,7 @@
 - [Интервал](/customization/spacing/)
 - [Контрольные точки](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [Глобальная настройка](/customization/globals/)
+- [Компоненты](/customization/theme-components/)
 - [Переходы](/customization/transitions/)
 
 Вы можете проверить [ раздел "тема по умолчанию" (default theme) ](/customization/default-theme/) для просмотра полной информации о default theme.

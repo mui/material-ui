@@ -38,7 +38,7 @@ Props supplied to a component which are not explicitly documented are spread to 
 
 ### CSS クラス
 
-All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. クラス設計は、次の2つの制約に答えます: Material Design仕様を実装するのに十分なだけで、可能な限りクラス構造を単純にします。
+All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles. クラス設計は、次の2つの制約に答えます: Material Design仕様を実装するのに十分なだけで、可能な限りクラス構造を単純にします。
 
 - ルート要素に適用されるクラスは、常に`root`と呼ばれます。
 - 既定のスタイルはすべて1つのクラスにグループ化されます。
