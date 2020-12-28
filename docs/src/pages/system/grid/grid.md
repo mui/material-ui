@@ -70,7 +70,8 @@ The `row-gap` and `column-gap` gives the possibility for specifying the row and 
 <Box sx={{ columnGap: '10px', rowGap: '20px', gridTemplateColumns: '50% 50%' }}>
   <div>1</div>
   <div>2</div>
-  ...
+  <div>3</div>
+  <div>4</div>
 </Box>
 ```
 
@@ -137,7 +138,8 @@ The `grid-auto-flow` property controls how the auto-placement algorithm works, s
 <Box sx={{ gridAutoFlow: 'row' }}>
   <Box sx={{ gridColumn: '1', gridRow: '1 / 3' }}>1</Box>
   <Box>2</Box>
-  ...
+  <Box>3</Box>
+  <Box>4</Box>
   <Box sx={{ gridColumn: '5', gridRow: '1 / 3'>5</Box>
 </Box>
 ```
