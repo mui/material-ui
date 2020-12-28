@@ -2,13 +2,13 @@
 
 <p class="description">Neu bei der Material-UI? Es ist leichter zu lernen, wenn Sie wissen, wo Sie anfangen sollen! Diese Anleitung hilft Ihnen, schnell loszulegen.</p>
 
-Wie jede unbekannte Technologie hat Material-UI eine Lernkurve. Mit etwas Übung und Geduld werden Sie bald den Dreh raus haben. Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful.
+Wie jede unbekannte Technologie hat Material-UI eine Lernkurve. Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful. Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful.
 
-## Erstes Beispiel
+## First example
 
-Die [Verwendungsseite](/getting-started/usage/#quick-start) enthält ein kleines Material-UI-Beispiel mit einem Live-Editor. Selbst wenn Sie noch nichts über Material-UI wissen, können Sie den Code ändern und sehen Sie, wie er das Ergebnis beeinflusst.
+Die [Verwendungsseite](/getting-started/usage/#quick-start) enthält ein kleines Material-UI-Beispiel mit einem Live-Editor. Even if you don't know anything about Material-UI yet, try changing the code and see how it affects the result.
 
-## Beispielprojekte
+## Example projects
 
 There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
 
