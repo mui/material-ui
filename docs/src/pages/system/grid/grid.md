@@ -111,7 +111,9 @@ The `grid-auto-column` property specifies the size of an implicitly-created grid
 
 You can see on the screenshot below that the third and fifth non-visible columns have width of `20%`.
 
-![grid-auto-column](/static/images/system/grid-auto-column.png)
+<div style="display: flex; justify-content: center;">
+  <img alt="grid-auto-column" src="/static/images/system/grid-auto-column.png" width="669" />
+</div>
 
 ### grid-auto-rows
 
