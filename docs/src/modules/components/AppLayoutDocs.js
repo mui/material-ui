@@ -44,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
       width: 'calc(100% - 175px - 240px)',
     },
   },
+  disableToc: {
+    [theme.breakpoints.up('lg')]: {
+      marginRight: '5%',
+    },
+  },
 }));
 
 function AppLayoutDocs(props) {
@@ -75,6 +80,7 @@ function AppLayoutDocs(props) {
           className={clsx(classes.root, {
             [classes.ad]: !disableAd,
             [classes.toc]: !disableToc,
+            [classes.disableToc]: disableToc,
           })}
         >
           <AppContainer className={classes.container}>

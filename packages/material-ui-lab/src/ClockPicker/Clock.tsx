@@ -57,7 +57,7 @@ export const styles = (theme: Theme) =>
       height: '100%',
       position: 'absolute',
       pointerEvents: 'auto',
-      outline: 'none',
+      outline: 0,
       // Disable scroll capabilities.
       touchAction: 'none',
       userSelect: 'none',

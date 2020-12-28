@@ -17,7 +17,7 @@ export const styles = {
     padding: 0,
     margin: 0,
     listStyle: 'none',
-    outline: 'none',
+    outline: 0,
   },
 };
 

@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       display: 'grid',
       gridTemplateColumns: 'repeat(12, 1fr)',
-      gridGap: theme.spacing(3),
+      gap: theme.spacing(3),
     },
     paper: {
       padding: theme.spacing(1),

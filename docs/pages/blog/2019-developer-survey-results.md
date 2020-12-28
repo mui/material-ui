@@ -55,7 +55,7 @@ We'll make sure that we continue to do more of the things that benefit you the m
 
 We have grouped the answers into different categories.
 The prefix corresponds to the number of times the concern was mentioned.
-It’s sorted descending, with the most important concerns first:
+It's sorted descending, with the most important concerns first:
 
 - 135 **More components:**
 
@@ -174,8 +174,8 @@ It’s sorted descending, with the most important concerns first:
 </figure>
 
 Developers gave Material-UI a [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter)
-(promoters less detractors) of 66%. Given the NPS range of -100 to +100, a “positive” score or NPS
-above 0 is considered “good”, +50 is “Excellent”, and above 70 is considered “world class.”
+(promoters less detractors) of 66%. Given the NPS range of -100 to +100, a "positive" score or NPS
+above 0 is considered "good", +50 is "Excellent", and above 70 is considered "world class."
 
 ## About you
 
@@ -265,7 +265,7 @@ if you're bucking that trend, and have something sparkly to share! And if you're
 components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
 section.
 
-### 15. What “delivery mechanism” are you using?
+### 15. What "delivery mechanism" are you using?
 
 Multiple options were allowed.
 
