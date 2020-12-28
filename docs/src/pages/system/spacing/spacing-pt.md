@@ -1,6 +1,6 @@
 # Espaçamento
 
-<p class="description">Uma ampla variedade de classes de utilitário responsivos de preenchimento e margem, para modificar a aparência de um elemento.</p>
+<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
 ## Notação
 
