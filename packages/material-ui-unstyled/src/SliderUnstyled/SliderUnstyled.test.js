@@ -64,8 +64,8 @@ describe('<SliderUnstyled />', () => {
       const slider = screen.getByRole('slider');
       expect(slider).to.have.attribute('aria-orientation', 'vertical');
 
-      // test workaround for
-      if (/WebKit/.test(window.navigator.userAgent)) {
+      // test workaround for https://bugs.chromium.org/p/chromium/issues/detail?id=1158217
+      if (!/jsdom/.test(window.navigator.userAgent) && /WebKit/.test(window.navigator.userAgent)) {
         expect(slider).to.have.property('tagName', 'INPUT');
         expect(slider).to.have.property('type', 'range');
         // Only relevant if we implement `[role="slider"]` with `input[type="range"]`
