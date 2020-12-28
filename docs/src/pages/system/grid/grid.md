@@ -67,7 +67,7 @@ The `row-gap` and `column-gap` gives the possibility for specifying the row and 
 {{"demo": "pages/system/grid/RowAndColumnGap.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ columnGap: '10px', rowGap: '20px', gridTemplateColumns: '50% 50%' }}>
+<Box sx={{ columnGap: '8px', rowGap: '16px', gridTemplateColumns: '50% 50%' }}>
   <div>1</div>
   <div>2</div>
   <div>3</div>
