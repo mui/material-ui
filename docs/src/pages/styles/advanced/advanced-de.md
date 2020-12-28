@@ -378,7 +378,7 @@ export default function App() {
 
 ## Server-Rendering
 
-In diesem Beispiel wird ein Html-String zurückgegeben und die erforderliche kritische Css direkt vor ihrer Verwendung eingebettet:
+This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
