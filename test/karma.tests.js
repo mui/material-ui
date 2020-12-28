@@ -21,3 +21,10 @@ const labUnitContext = require.context(
   /\.test\.(js|ts|tsx)$/,
 );
 labUnitContext.keys().forEach(labUnitContext);
+
+const unstyledContext = require.context(
+  '../packages/material-ui-unstyled/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+unstyledContext.keys().forEach(unstyledContext);
