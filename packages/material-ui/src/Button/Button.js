@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
@@ -17,8 +18,7 @@ const overridesResolver = (props, styles) => {
     variant = 'text',
   } = props;
 
-  return {
-    ...styles.root,
+  return deepmerge(styles.root || {}, {
     ...styles[variant],
     ...styles[`${variant}${capitalize(color)}`],
     ...styles[`size${capitalize(size)}`],
@@ -26,16 +26,16 @@ const overridesResolver = (props, styles) => {
     ...(color === 'inherit' && styles.colorInherit),
     ...(disableElevation && styles.disableElevation),
     ...(fullWidth && styles.fullWidth),
-    [`&.${buttonClasses.label}`]: styles.label,
-    [`&.${buttonClasses.startIcon}`]: {
+    [`& .${buttonClasses.label}`]: styles.label,
+    [`& .${buttonClasses.startIcon}`]: {
       ...styles.startIcon,
       ...styles[`iconSize${capitalize(size)}`],
     },
-    [`&.${buttonClasses.endIcon}`]: {
+    [`& .${buttonClasses.endIcon}`]: {
       ...styles.endIcon,
       ...styles[`iconSize${capitalize(size)}`],
     },
-  };
+  });
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -98,7 +98,7 @@ const ButtonStartIcon = experimentalStyled(
   'span',
   {},
   {
-    name: 'Button',
+    name: 'MuiButton',
     slot: 'StartIcon',
   },
 )(({ styleProps }) => ({
@@ -115,7 +115,7 @@ const ButtonEndIcon = experimentalStyled(
   'span',
   {},
   {
-    name: 'Button',
+    name: 'MuiButton',
     slot: 'EndIcon',
   },
 )(({ styleProps }) => ({
@@ -132,7 +132,7 @@ const ButtonLabel = experimentalStyled(
   'span',
   {},
   {
-    name: 'Button',
+    name: 'MuiButton',
     slot: 'Label',
   },
 )({
@@ -146,7 +146,7 @@ const ButtonRoot = experimentalStyled(
   ButtonBase,
   {},
   {
-    name: 'Button',
+    name: 'MuiButton',
     slot: 'Root',
     overridesResolver,
   },

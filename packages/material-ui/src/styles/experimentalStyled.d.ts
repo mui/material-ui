@@ -182,7 +182,8 @@ export interface StyledOptions {
 interface MuiStyledOptions<Theme extends object = any> {
   name?: string;
   slot?: string;
-  overridesResolver?: (props: any, styles: string | object, name: string) => string | object;
+  overridesResolver?: (props: any, styles: string | object) => string | object;
+  skipVariantsResolver?: boolean;
   skipSx?: boolean;
 }
 

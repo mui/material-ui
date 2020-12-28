@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
+import { deepmerge, elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
@@ -13,17 +13,16 @@ import buttonBaseClasses from './buttonBaseClasses';
 const overridesResolver = (props, styles) => {
   const { disabled, focusVisible } = props;
 
-  return {
-    ...styles.root,
+  return deepmerge(styles.root || {}, {
     ...(disabled && styles.disabled),
     ...(focusVisible && styles.focusVisible),
-  };
+  });
 };
 
 export const ButtonBaseRoot = experimentalStyled(
   'button',
   {},
-  { name: 'ButtonBase', slot: 'Root', overridesResolver },
+  { name: 'MuiButtonBase', slot: 'Root', overridesResolver },
 )({
   display: 'inline-flex',
   alignItems: 'center',

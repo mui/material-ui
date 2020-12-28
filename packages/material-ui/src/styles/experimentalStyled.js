@@ -8,18 +8,11 @@ function isEmpty(obj) {
 }
 
 const getStyleOverrides = (name, theme) => {
-  let styleOverrides = {};
-
-  if (
-    theme &&
-    theme.components &&
-    theme.components[name] &&
-    theme.components[name].styleOverrides
-  ) {
-    styleOverrides = theme.components[name].styleOverrides;
+  if (theme.components && theme.components[name] && theme.components[name].styleOverrides) {
+    return theme.components[name].styleOverrides;
   }
 
-  return styleOverrides;
+  return null;
 };
 
 const getVariantStyles = (name, theme) => {
@@ -69,6 +62,9 @@ const lowercaseFirstLetter = (string) => {
 const experimentalStyled = (tag, options, muiOptions = {}) => {
   const componentName = muiOptions.name;
   const componentSlot = muiOptions.slot;
+
+  const overridesResolver = muiOptions.overridesResolver;
+  const skipVariantsResolver = muiOptions.skipVariantsResolver || false;
   const skipSx = muiOptions.skipSx || false;
 
   let displayName;
@@ -77,8 +73,8 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
 
   if (componentName) {
     displayName = `${componentName}${componentSlot || ''}`;
-    name = !componentSlot || componentSlot === 'Root' ? `Mui${componentName}` : null;
-    className = `Mui${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
+    name = !componentSlot || componentSlot === 'Root' ? `${componentName}` : null;
+    className = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
   }
 
   const defaultStyledResolver = styled(tag, {
@@ -102,14 +98,20 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
 
     let transformedStyleArg = styleArg;
 
-    if (name && muiOptions.overridesResolver) {
+    if (name && overridesResolver) {
       expressionsWithDefaultTheme.push((props) => {
         const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-        return muiOptions.overridesResolver(props, getStyleOverrides(name, theme), name);
+        const styleOverrides = getStyleOverrides(name, theme);
+
+        if (styleOverrides) {
+          return overridesResolver(props, styleOverrides);
+        }
+
+        return null;
       });
     }
 
-    if (name) {
+    if (name && !skipVariantsResolver) {
       expressionsWithDefaultTheme.push((props) => {
         const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
         return variantsResolver(props, getVariantStyles(name, theme), theme, name);
