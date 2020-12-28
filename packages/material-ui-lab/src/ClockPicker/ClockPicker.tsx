@@ -5,7 +5,7 @@ import Clock from './Clock';
 import { pipe } from '../internal/pickers/utils';
 import { useUtils, useNow, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
-import ArrowSwitcher, {
+import PickersArrowSwitcher, {
   ExportedArrowSwitcherProps,
 } from '../internal/pickers/PickersArrowSwitcher';
 import {
@@ -109,15 +109,15 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
     ampm,
     ampmInClock,
     classes,
+    components,
+    componentsProps,
     date,
     disableIgnoringDatePartForTimeValidation,
     getClockLabelText = getDefaultClockLabelText,
     getHoursClockNumberText = getHoursAriaText,
     getMinutesClockNumberText = getMinutesAriaText,
     getSecondsClockNumberText = getSecondsAriaText,
-    leftArrowButtonProps,
     leftArrowButtonText = 'open previous view',
-    leftArrowIcon,
     maxTime,
     minTime,
     minutesStep = 1,
@@ -126,9 +126,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
     openNextView,
     openPreviousView,
     previousViewAvailable,
-    rightArrowButtonProps,
     rightArrowButtonText = 'open next view',
-    rightArrowIcon,
     shouldDisableTime,
     showViewSwitcher,
     view,
@@ -278,14 +276,12 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
   return (
     <React.Fragment>
       {showViewSwitcher && (
-        <ArrowSwitcher
+        <PickersArrowSwitcher
           className={classes.arrowSwitcher}
-          leftArrowButtonProps={leftArrowButtonProps}
-          rightArrowButtonProps={rightArrowButtonProps}
           leftArrowButtonText={leftArrowButtonText}
           rightArrowButtonText={rightArrowButtonText}
-          leftArrowIcon={leftArrowIcon}
-          rightArrowIcon={rightArrowIcon}
+          components={components}
+          componentsProps={componentsProps}
           onLeftClick={openPreviousView}
           onRightClick={openNextView}
           isLeftDisabled={previousViewAvailable}
@@ -336,6 +332,22 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
    */
   classes: PropTypes.object.isRequired,
   /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    LeftArrowButton: PropTypes.elementType,
+    LeftArrowIcon: PropTypes.elementType,
+    RightArrowButton: PropTypes.elementType,
+    RightArrowIcon: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
    * Selected date @DateIOType.
    */
   date: PropTypes.any,
@@ -362,17 +374,9 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
    */
   getSecondsClockNumberText: PropTypes.func,
   /**
-   * Props to pass to left arrow button.
-   */
-  leftArrowButtonProps: PropTypes.object,
-  /**
    * Left arrow icon aria-label text.
    */
   leftArrowButtonText: PropTypes.string,
-  /**
-   * Left arrow icon.
-   */
-  leftArrowIcon: PropTypes.node,
   /**
    * Max time acceptable time.
    * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
@@ -409,17 +413,9 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
    */
   previousViewAvailable: PropTypes.bool.isRequired,
   /**
-   * Props to pass to right arrow button.
-   */
-  rightArrowButtonProps: PropTypes.object,
-  /**
    * Right arrow icon aria-label text.
    */
   rightArrowButtonText: PropTypes.string,
-  /**
-   * Right arrow icon.
-   */
-  rightArrowIcon: PropTypes.node,
   /**
    * Dynamically check if time is disabled or not.
    * If returns `false` appropriate time point will ot be acceptable.

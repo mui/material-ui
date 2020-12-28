@@ -79,13 +79,6 @@ export const styles = (theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
     },
-    iconButton: {
-      zIndex: 1,
-      backgroundColor: theme.palette.background.paper,
-    },
-    previousMonthButton: {
-      marginRight: 12,
-    },
     daysHeader: {
       display: 'flex',
       justifyContent: 'center',

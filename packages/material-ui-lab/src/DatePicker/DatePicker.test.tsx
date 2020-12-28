@@ -92,12 +92,14 @@ describe('<DatePicker />', () => {
 
     expect(getByMuiTest('calendar-month-text')).to.have.text('January');
 
-    fireEvent.click(screen.getByLabelText('next month'));
-    fireEvent.click(screen.getByLabelText('next month'));
+    const nextMonth = screen.getByLabelText('Next month');
+    const previousMonth = screen.getByLabelText('Previous month');
+    fireEvent.click(nextMonth);
+    fireEvent.click(nextMonth);
 
-    fireEvent.click(screen.getByLabelText('previous month'));
-    fireEvent.click(screen.getByLabelText('previous month'));
-    fireEvent.click(screen.getByLabelText('previous month'));
+    fireEvent.click(previousMonth);
+    fireEvent.click(previousMonth);
+    fireEvent.click(previousMonth);
 
     expect(getByMuiTest('calendar-month-text')).to.have.text('December');
   });
@@ -416,7 +418,7 @@ describe('<DatePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByLabelText('next month'));
+    fireEvent.click(screen.getByLabelText('Next month'));
     expect(onMonthChangeMock.callCount).to.equal(1);
   });
 

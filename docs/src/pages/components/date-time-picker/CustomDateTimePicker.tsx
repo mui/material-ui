@@ -28,8 +28,10 @@ export default function CustomDateTimePicker() {
             setValue(newValue);
           }}
           minDate={new Date('2018-01-01')}
-          leftArrowIcon={<AlarmIcon />}
-          rightArrowIcon={<SnoozeIcon />}
+          components={{
+            LeftArrowIcon: AlarmIcon,
+            RightArrowIcon: SnoozeIcon,
+          }}
           leftArrowButtonText="Open previous month"
           rightArrowButtonText="Open next month"
           openPickerIcon={<ClockIcon />}

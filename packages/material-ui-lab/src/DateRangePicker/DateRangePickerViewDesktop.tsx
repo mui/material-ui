@@ -6,7 +6,7 @@ import { calculateRangePreview } from './date-range-manager';
 import PickersCalendar, { PickersCalendarProps } from '../DayPicker/PickersCalendar';
 import DateRangeDay, { DateRangePickerDayProps } from '../DateRangePickerDay';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
-import ArrowSwitcher, {
+import PickersArrowSwitcher, {
   ExportedArrowSwitcherProps,
 } from '../internal/pickers/PickersArrowSwitcher';
 import {
@@ -88,32 +88,28 @@ function DateRangePickerViewDesktop<TDate>(
   props: DesktopDateRangeCalendarProps<TDate> & WithStyles<typeof styles>,
 ) {
   const {
-    date,
-    classes,
     calendars = 2,
     changeMonth,
-    leftArrowButtonProps,
-    leftArrowButtonText = 'previous month',
-    leftArrowIcon,
-    rightArrowButtonProps,
-    rightArrowButtonText = 'next month',
-    rightArrowIcon,
-    onChange,
-    disableFuture,
-    disablePast,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    minDate: __minDate,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    maxDate: __maxDate,
+    classes,
+    components,
+    componentsProps,
     currentlySelectingRangeEnd,
     currentMonth,
+    date,
+    disableFuture,
+    disablePast,
+    leftArrowButtonText = 'Previous month',
+    maxDate: maxDateProp,
+    minDate: minDateProp,
+    onChange,
     renderDay = (_, dateRangeProps) => <DateRangeDay {...dateRangeProps} />,
+    rightArrowButtonText = 'Next month',
     ...other
   } = props;
 
   const utils = useUtils<TDate>();
-  const minDate = __minDate || utils.date(defaultMinDate);
-  const maxDate = __maxDate || utils.date(defaultMaxDate);
+  const minDate = minDateProp || utils.date(defaultMinDate);
+  const maxDate = maxDateProp || utils.date(defaultMaxDate);
 
   const [rangePreviewDay, setRangePreviewDay] = React.useState<TDate | null>(null);
 
@@ -165,7 +161,7 @@ function DateRangePickerViewDesktop<TDate>(
 
         return (
           <div key={index} className={classes.rangeCalendarContainer}>
-            <ArrowSwitcher
+            <PickersArrowSwitcher
               className={classes.arrowSwitcher}
               onLeftClick={selectPreviousMonth}
               onRightClick={selectNextMonth}
@@ -173,14 +169,13 @@ function DateRangePickerViewDesktop<TDate>(
               isRightHidden={index !== calendars - 1}
               isLeftDisabled={isPreviousMonthDisabled}
               isRightDisabled={isNextMonthDisabled}
-              leftArrowButtonProps={leftArrowButtonProps}
               leftArrowButtonText={leftArrowButtonText}
-              leftArrowIcon={leftArrowIcon}
-              rightArrowButtonProps={rightArrowButtonProps}
+              components={components}
+              componentsProps={componentsProps}
               rightArrowButtonText={rightArrowButtonText}
-              rightArrowIcon={rightArrowIcon}
-              text={utils.format(monthOnIteration, 'monthAndYear')}
-            />
+            >
+              {utils.format(monthOnIteration, 'monthAndYear')}
+            </PickersArrowSwitcher>
             <PickersCalendar<TDate>
               {...other}
               key={index}

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Fade from '@material-ui/core/Fade';
 import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { SlideDirection } from './PickersSlideTransition';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
@@ -11,7 +10,7 @@ import FadeTransitionGroup from './PickersFadeTransitionGroup';
 import { DateValidationProps } from '../internal/pickers/date-utils';
 // tslint:disable-next-line no-relative-import-in-test
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import ArrowSwitcher, {
+import PickersArrowSwitcher, {
   ExportedArrowSwitcherProps,
 } from '../internal/pickers/PickersArrowSwitcher';
 import {
@@ -22,10 +21,8 @@ import { DatePickerView } from '../internal/pickers/typings/Views';
 
 export type ExportedCalendarHeaderProps<TDate> = Pick<
   PickersCalendarHeaderProps<TDate>,
-  | 'leftArrowIcon'
-  | 'rightArrowIcon'
-  | 'leftArrowButtonProps'
-  | 'rightArrowButtonProps'
+  | 'components'
+  | 'componentsProps'
   | 'leftArrowButtonText'
   | 'rightArrowButtonText'
   | 'getViewSwitchingButtonText'
@@ -34,6 +31,22 @@ export type ExportedCalendarHeaderProps<TDate> = Pick<
 export interface PickersCalendarHeaderProps<TDate>
   extends ExportedArrowSwitcherProps,
     Omit<DateValidationProps<TDate>, 'shouldDisableDate'> {
+  /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: ExportedArrowSwitcherProps['components'] & {
+    SwitchViewButton?: React.ElementType;
+    SwitchViewIcon?: React.ElementType;
+  };
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps?: ExportedArrowSwitcherProps['componentsProps'] & {
+    switchViewButton?: any;
+  };
   openView: DatePickerView;
   views: DatePickerView[];
   currentMonth: TDate;
@@ -62,26 +75,26 @@ export const styles = (theme: Theme) =>
     yearSelectionSwitcher: {
       marginRight: 'auto',
     },
-    previousMonthButton: {
-      marginRight: 24,
-    },
-    switchViewDropdown: {
+    switchView: {
       willChange: 'transform',
       transition: theme.transitions.create('transform'),
       transform: 'rotate(0deg)',
     },
-    switchViewDropdownDown: {
+    switchViewActive: {
       transform: 'rotate(180deg)',
     },
-    monthTitleContainer: {
+    label: {
       display: 'flex',
       maxHeight: 30,
       overflow: 'hidden',
+      alignItems: 'center',
       cursor: 'pointer',
       marginRight: 'auto',
+      ...theme.typography.body1,
+      fontWeight: theme.typography.fontWeightMedium,
     },
-    monthText: {
-      marginRight: 4,
+    labelItem: {
+      marginRight: 6,
     },
   });
 
@@ -100,27 +113,29 @@ function PickersCalendarHeader<TDate>(
   props: PickersCalendarHeaderProps<TDate> & WithStyles<typeof styles>,
 ) {
   const {
-    onViewChange,
     classes,
+    components = {},
+    componentsProps = {},
     currentMonth: month,
     disableFuture,
     disablePast,
     getViewSwitchingButtonText = getSwitchingViewAriaText,
-    leftArrowButtonProps,
-    leftArrowButtonText = 'previous month',
-    leftArrowIcon,
+    leftArrowButtonText = 'Previous month',
     maxDate,
     minDate,
     onMonthChange,
-    reduceAnimations,
-    rightArrowButtonProps,
-    rightArrowButtonText = 'next month',
-    rightArrowIcon,
+    onViewChange,
     openView: currentView,
+    reduceAnimations,
+    rightArrowButtonText = 'Next month',
     views,
   } = props;
 
   const utils = useUtils<TDate>();
+
+  const SwitchViewButton = components.SwitchViewButton || IconButton;
+  const switchViewButtonProps = componentsProps.switchViewButton || {};
+  const SwitchViewIcon = components.SwitchViewIcon || ArrowDropDownIcon;
 
   const selectNextMonth = () => onMonthChange(utils.getNextMonth(month), 'left');
   const selectPreviousMonth = () => onMonthChange(utils.getPreviousMonth(month), 'right');
@@ -128,7 +143,7 @@ function PickersCalendarHeader<TDate>(
   const isNextMonthDisabled = useNextMonthDisabled(month, { disableFuture, maxDate });
   const isPreviousMonthDisabled = usePreviousMonthDisabled(month, { disablePast, minDate });
 
-  const toggleView = () => {
+  const handleToggleView = () => {
     if (views.length === 1 || !onViewChange) {
       return;
     }
@@ -145,58 +160,52 @@ function PickersCalendarHeader<TDate>(
   return (
     <React.Fragment>
       <div className={classes.root}>
-        <div role="presentation" className={classes.monthTitleContainer} onClick={toggleView}>
+        <div role="presentation" className={classes.label} onClick={handleToggleView}>
           <FadeTransitionGroup
             reduceAnimations={reduceAnimations}
             transKey={utils.format(month, 'month')}
           >
-            <Typography
+            <div
               aria-live="polite"
               data-mui-test="calendar-month-text"
-              align="center"
-              variant="subtitle1"
-              className={classes.monthText}
+              className={classes.labelItem}
             >
               {utils.format(month, 'month')}
-            </Typography>
+            </div>
           </FadeTransitionGroup>
           <FadeTransitionGroup
             reduceAnimations={reduceAnimations}
             transKey={utils.format(month, 'year')}
           >
-            <Typography
+            <div
               aria-live="polite"
               data-mui-test="calendar-year-text"
-              align="center"
-              variant="subtitle1"
+              className={classes.labelItem}
             >
               {utils.format(month, 'year')}
-            </Typography>
+            </div>
           </FadeTransitionGroup>
           {views.length > 1 && (
-            <IconButton
+            <SwitchViewButton
               size="small"
-              data-mui-test="calendar-view-switcher"
-              onClick={toggleView}
               className={classes.yearSelectionSwitcher}
               aria-label={getViewSwitchingButtonText(currentView)}
+              {...switchViewButtonProps}
             >
-              <ArrowDropDownIcon
-                className={clsx(classes.switchViewDropdown, {
-                  [classes.switchViewDropdownDown]: currentView === 'year',
+              <SwitchViewIcon
+                className={clsx(classes.switchView, {
+                  [classes.switchViewActive]: currentView === 'year',
                 })}
               />
-            </IconButton>
+            </SwitchViewButton>
           )}
         </div>
         <Fade in={currentView === 'date'}>
-          <ArrowSwitcher
-            leftArrowButtonProps={leftArrowButtonProps}
-            rightArrowButtonProps={rightArrowButtonProps}
+          <PickersArrowSwitcher
             leftArrowButtonText={leftArrowButtonText}
             rightArrowButtonText={rightArrowButtonText}
-            leftArrowIcon={leftArrowIcon}
-            rightArrowIcon={rightArrowIcon}
+            components={components}
+            componentsProps={componentsProps}
             onLeftClick={selectPreviousMonth}
             onRightClick={selectNextMonth}
             isLeftDisabled={isPreviousMonthDisabled}
@@ -210,9 +219,7 @@ function PickersCalendarHeader<TDate>(
 
 PickersCalendarHeader.propTypes = {
   leftArrowButtonText: PropTypes.string,
-  leftArrowIcon: PropTypes.node,
   rightArrowButtonText: PropTypes.string,
-  rightArrowIcon: PropTypes.node,
 };
 
 export default withStyles(styles, { name: 'MuiPickersCalendarHeader' })(PickersCalendarHeader) as <
