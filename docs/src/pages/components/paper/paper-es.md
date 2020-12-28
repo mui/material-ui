@@ -8,7 +8,7 @@ githubLabel: 'component: Paper'
 
 <p class="description">En Material Design, las propiedades físicas del papel son trasladadas a la pantalla. </p>
 
-El fondo de una aplicación asemeja la textura plana, opaca de una hoja de papel, y el comportamiento de una aplicación imita la habilidad del papel de ser redimensionado, barajado y agrupado en múltiples hojas.
+The background of an application resembles the flat, opaque texture of a sheet of paper, and an application's behavior mimics paper's ability to be re-sized, shuffled, and bound together in multiple sheets.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
