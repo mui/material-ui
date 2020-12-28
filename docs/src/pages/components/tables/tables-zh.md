@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">表格展示数据组。 它们是完全可以自定义的。</p>
 
-表格以一目了然的方式显示信息，这样一来用户可以寻找其中的规律并得出见解。 表格可以被内嵌在主要内容中，如 卡片（cards）。 它们可以包括：
+Tables display information in a way that's easy to scan, so that users can look for patterns and insights. 表格可以被内嵌在主要内容中，如 卡片（cards）。 它们可以包括：
 
 - 对应的可视化效果
 - 导航
@@ -115,6 +115,6 @@ materialDesign: https://material.io/components/data-tables
 
 ### Caption 字幕
 
-字幕能够充当表格的表头。 大多数屏幕阅读器能够宣读字幕的内容。 字幕能够帮助用户找到一个表格，并且描述这个表格的内容，从而协助用户决定是不是想继续阅读这个表格。
+字幕能够充当表格的表头。 大多数屏幕阅读器能够宣读字幕的内容。 Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}
