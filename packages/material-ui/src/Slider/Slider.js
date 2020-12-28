@@ -7,6 +7,7 @@ import {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
   getSliderUtilityClass,
+  generateUtilityClasses,
   isHostComponent,
 } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -16,10 +17,12 @@ import capitalize from '../utils/capitalize';
 
 export const sliderClasses = {
   ...sliderUnstyledClasses,
-  colorPrimary: getSliderUtilityClass('colorPrimary'),
-  colorSecondary: getSliderUtilityClass('colorSecondary'),
-  thumbColorPrimary: getSliderUtilityClass('thumbColorPrimary'),
-  thumbColorSecondary: getSliderUtilityClass('thumbColorSecondary'),
+  ...generateUtilityClasses('MuiSlider', [
+    'colorPrimary',
+    'colorSecondary',
+    'thumbColorPrimary',
+    'thumbColorSecondary',
+  ]),
 };
 
 const overridesResolver = (props, styles) => {
@@ -362,13 +365,13 @@ const extendUtilityClasses = (styleProps) => {
     ...classes,
     root: clsx(
       classes.root,
-      getSliderUtilityClass[`color${capitalize(color)}`],
-      sliderClasses[`color${capitalize(color)}`],
+      getSliderUtilityClass(`color${capitalize(color)}`),
+      classes[`color${capitalize(color)}`],
     ),
     thumb: clsx(
       classes.thumb,
-      getSliderUtilityClass[`thumbColor${capitalize(color)}`],
-      sliderClasses[`thumbColor${capitalize(color)}`],
+      getSliderUtilityClass(`thumbColor${capitalize(color)}`),
+      classes[`thumbColor${capitalize(color)}`],
     ),
   };
 };

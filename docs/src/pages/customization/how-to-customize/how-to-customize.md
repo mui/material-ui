@@ -100,6 +100,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 
 | State         | Global class name   |
 | :------------ | :------------------ |
+| active        | `.Mui-active`       |
 | checked       | `.Mui-checked`      |
 | disabled      | `.Mui-disabled`     |
 | error         | `.Mui-error`        |

@@ -1,20 +1,23 @@
-export function getBadgeUtilityClass(name) {
-  return `MuiBadge-${name}`;
+import generateUtilityClasses from '../generateUtilityClasses';
+import generateUtilityClass from '../generateUtilityClass';
+
+export function getBadgeUtilityClass(slot) {
+  return generateUtilityClass('MuiBadge', slot);
 }
 
-const badgeUnstyledClasses = {
-  root: getBadgeUtilityClass('root'),
-  badge: getBadgeUtilityClass('badge'),
-  dot: getBadgeUtilityClass('dot'),
-  anchorOriginTopLeftCircular: getBadgeUtilityClass('anchorOriginTopLeftCircular'),
-  anchorOriginTopLeftRectangular: getBadgeUtilityClass('anchorOriginTopLeftRectangular'),
-  anchorOriginTopRightCircular: getBadgeUtilityClass('anchorOriginTopRightCircular'),
-  anchorOriginTopRightRectangular: getBadgeUtilityClass('anchorOriginTopRightRectangular'),
-  anchorOriginBottomLeftCircular: getBadgeUtilityClass('anchorOriginBottomLeftCircular'),
-  anchorOriginBottomLeftRectangular: getBadgeUtilityClass('anchorOriginBottomLeftRectangular'),
-  anchorOriginBottomRightCircular: getBadgeUtilityClass('anchorOriginBottomRightCircular'),
-  anchorOriginBottomRightRectangular: getBadgeUtilityClass('anchorOriginBottomRightRectangular'),
-  invisible: getBadgeUtilityClass('invisible'),
-};
+const badgeUnstyledClasses = generateUtilityClasses('MuiBadge', [
+  'root',
+  'badge',
+  'dot',
+  'anchorOriginTopLeftCircular',
+  'anchorOriginTopLeftRectangular',
+  'anchorOriginTopRightCircular',
+  'anchorOriginTopRightRectangular',
+  'anchorOriginBottomLeftCircular',
+  'anchorOriginBottomLeftRectangular',
+  'anchorOriginBottomRightCircular',
+  'anchorOriginBottomRightRectangular',
+  'invisible',
+]);
 
 export default badgeUnstyledClasses;
