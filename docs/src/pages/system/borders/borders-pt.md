@@ -4,7 +4,7 @@
 
 ## Border
 
-Use os utilitários de borda para adicionar ou remover as bordas de um elemento. Escolha para todas as bordas ou separadamente.
+Use border utilities to add or remove an element's borders. Escolha para todas as bordas ou separadamente.
 
 ### Adicionando
 
