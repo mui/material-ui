@@ -9,7 +9,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 <p class="description">Das responsive Layoutraster von Material Design passt sich der Bildschirmgröße und -ausrichtung an und sorgt für Konsistenz über alle Layouts hinweg.</p>
 
-Das [Grid](https://material.io/design/layout/responsive-layout-grid.html) sorgt für visuelle Konsistenz zwischen Layouts und ermöglicht Flexibilität bei einer Vielzahl von Designs. Die responsive UI von Material Design basiert auf einem 12-Spalten-Rasterlayout.
+Das [Grid](https://material.io/design/layout/responsive-layout-grid.html) sorgt für visuelle Konsistenz zwischen Layouts und ermöglicht Flexibilität bei einer Vielzahl von Designs. Material Design's responsive UI is based on a 12-column grid layout.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -19,9 +19,9 @@ Das [Grid](https://material.io/design/layout/responsive-layout-grid.html) sorgt 
 
 Das Rastersystem wird mit der `Grid-` Komponente implementiert:
 
-- Es verwendet das [CSS Flexible Box - Modul](https://www.w3.org/TR/css-flexbox-1/) für hohe Flexibilität.
+- It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
 - Es gibt zwei Arten von Layouts: *Container* und *Elemente*.
-- Die Elementbreiten werden in Prozent angegeben. Sie sind daher immer fließend und werden in Bezug auf das übergeordnete Element angepasst.
+- Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - Elemente haben einen Abstand, um den Abstand zwischen den einzelnen Elementen zu erstellen.
 - Es gibt fünf Rasterpunkte: xs, sm, md, lg und xl.
 - Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint contraints](/customization/breakpoints/#default-breakpoints).
@@ -38,7 +38,7 @@ Diese Ausgabetransformationsfunktion kann durch [Verwendung des Themes](/customi
 
 ## Fluides Raster
 
-Flüssige Raster verwenden Spalten, die den Inhalt skalieren und verkleinern. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
+Flüssige Raster verwenden Spalten, die den Inhalt skalieren und verkleinern. A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Grundraster
 
