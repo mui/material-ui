@@ -62,7 +62,7 @@ The `gap: size` property specifies the gap between the different items inside th
 
 ### row-gap & column-gap
 
-The `row-gap` and `column-gap` gives the possiblity for specifying the row and column gaps independently.
+The `row-gap` and `column-gap` gives the possibility for specifying the row and column gaps independently.
 
 {{"demo": "pages/system/grid/RowAndColumnGap.js", "defaultCodeOpen": false, "bg": true}}
 
