@@ -140,7 +140,7 @@ The `grid-auto-flow` property controls how the auto-placement algorithm works, s
   <Box>2</Box>
   <Box>3</Box>
   <Box>4</Box>
-  <Box sx={{ gridColumn: '5', gridRow: '1 / 3'>5</Box>
+  <Box sx={{ gridColumn: '5', gridRow: '1 / 3' }}>5</Box>
 </Box>
 ```
 
