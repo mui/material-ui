@@ -1,6 +1,6 @@
 # Espaciado
 
-<p class="description">Una amplia gama de tipos de utilidades de relleno y márgenes receptivos cortos para modificar la apariencia de un elemento.</p>
+<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
 ## Notación
 
