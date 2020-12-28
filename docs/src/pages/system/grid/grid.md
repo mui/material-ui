@@ -24,7 +24,7 @@ The `grid-template-rows` property defines the line names and track sizing functi
 {{"demo": "pages/system/grid/GridTemplateRows.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridTemplateRows: '25% 80px auto' }}>
+<Box sx={{ gridTemplateRows: 'repeat(3, minmax(0, 1fr))' }}>
   <div>1</div>
   <div>2</div>
   <div>3</div>
@@ -38,11 +38,10 @@ The `grid-template-columns` property defines the line names and track sizing fun
 {{"demo": "pages/system/grid/GridTemplateColumns.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridTemplateColumns: '50px 60px auto 60px 50px' }}>
+<Box sx={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
   <div>1</div>
   <div>2</div>
-  ...
-  <div>5</div>
+  <div>3</div>
 </Box>
 ```
 
@@ -56,7 +55,8 @@ The `gap: size` property specifies the gap between the different items inside th
 <Box sx={{ gap: '8px', gridTemplateColumns: '50% 50%' }}>
   <div>1</div>
   <div>2</div>
-  ...
+  <div>3</div>
+  <div>4</div>
 </Box>
 ```
 
