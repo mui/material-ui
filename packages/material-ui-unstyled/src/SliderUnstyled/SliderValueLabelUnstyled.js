@@ -31,12 +31,14 @@ function SliderValueLabelUnstyled(props) {
     {
       className: clsx(children.props.className),
     },
-    <Root className={clsx(classes.offset, className)} theme={theme} aria-hidden>
+    <React.Fragment>
       {children.props.children}
-      <span className={classes.circle}>
-        <span className={classes.label}>{value}</span>
-      </span>
-    </Root>,
+      <Root className={clsx(classes.offset, className)} theme={theme} aria-hidden>
+        <span className={classes.circle}>
+          <span className={classes.label}>{value}</span>
+        </span>
+      </Root>
+    </React.Fragment>,
   );
 }
 
