@@ -34,7 +34,7 @@ export default function GridAutoColumns() {
           p: 1,
           height: '60px',
           gridAutoColumns: '20%',
-          gap: '10px',
+          gap: '8px',
         }}
       >
         <GridItem sx={{ gridRow: '1', gridColumn: '1 / 3' }}>1 / 3</GridItem>
