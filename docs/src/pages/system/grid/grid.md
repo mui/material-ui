@@ -123,8 +123,7 @@ The `grid-auto-rows` property specifies the size of an implicitly-created grid r
 
 ```jsx
 <Box sx={{ gridAutoRows: '40px' }}>
-  {' '}
-  // The third non-visible row has height of 40px
+  {/* The third non-visible row has height of 40px */}
   <Box sx={{ gridColumn: '1', gridRow: '1 / 3' }}>1 / 3</Box>
   <Box sx={{ gridColumn: '1', gridRow: '4 / 5' }}>4 / 5</Box>
 </Box>
