@@ -273,14 +273,14 @@ For more details, take a look at [why GitHub migrated from font icons to SVG ico
 
 ## アクセシビリティ
 
-Icons can convey all sorts of meaningful information, so it’s important to ensure they are accessible where appropriate. 次の2つの使用例を検討してください。
+Icons can convey all sorts of meaningful information, so it's important to ensure they are accessible where appropriate. There are two use cases you'll want to consider:
 
 - **Decorative icons** that are only being used for visual or branding reinforcement. それらがページから削除された場合でも、ユーザーはあなたのページを理解して使用することができます。
-- **Semantic icons** are ones that you’re using to convey meaning, rather than just pure decoration. This includes icons without text next to them that are used as interactive controls — buttons, form elements, toggles, etc.
+- **Semantic icons** are ones that you're using to convey meaning, rather than just pure decoration. This includes icons without text next to them that are used as interactive controls — buttons, form elements, toggles, etc.
 
 ### Decorative icons
 
-`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
+If your icons are purely decorative, you're already done! 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
 
 ### Semantic icons
 
