@@ -9,7 +9,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 <p class="description">Сетка адаптивного макета Material Design адаптируется к размеру экрана и ориентации, обеспечивая согласованность макетов.</p>
 
-[Сетка](https://material.io/design/layout/responsive-layout-grid.html) создает визуальную согласованность между макетами, позволяя гибко адаптироваться к разнообразным дизайнам. Адаптивный пользовательский интерфейс Material Design основан на сетке с 12 колонками.
+[Сетка](https://material.io/design/layout/responsive-layout-grid.html) создает визуальную согласованность между макетами, позволяя гибко адаптироваться к разнообразным дизайнам. Material Design's responsive UI is based on a 12-column grid layout.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -19,9 +19,9 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 Система сетки реализована с помощью компонента `Grid`:
 
-- Она использует [модуль Flexible Box CSS](https://www.w3.org/TR/css-flexbox-1/) для повышеной гибкости.
+- It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
 - Существует два типа макетов: *контейнеры* и *элементы*.
-- Ширина элементов задается в процентах, поэтому они всегда гибко изменяют свой размер относительно родительского элемента.
+- Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - Элементы имеют отступы для создания промежутков между отдельными элементами.
 - Существует пять контрольных точек прерывания сетки: xs, sm, md, lg и xl.
 - Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint contraints](/customization/breakpoints/#default-breakpoints).
@@ -38,7 +38,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ## Адаптивные сетки
 
-Адаптивные сетки используют столбцы, которые меняют свою ширину и масштабируют размер содержимого. Макет с адаптивной сеткой может использовать точки останова (breakpoints), в тех случаях, когда макет должен резко измениться.
+Адаптивные сетки используют столбцы, которые меняют свою ширину и масштабируют размер содержимого. A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Базовая сетка
 
