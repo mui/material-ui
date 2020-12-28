@@ -43,7 +43,7 @@ In Karten helfen Text-Buttons dabei, den Karteninhalt zu betonen.
 
 ## Umrandete Buttons
 
-[Outlined Buttons](https://material.io/design/components/buttons.html#outlined-button) sind Buttons mit mittlerer Betonung. Sie enthalten wichtige Aktionen, aber nicht die primäre Aktion einer Anwendung.
+[Outlined Buttons](https://material.io/design/components/buttons.html#outlined-button) sind Buttons mit mittlerer Betonung. They contain actions that are important, but aren't the primary action in an app.
 
 Umrandete Buttons haben eine geringere Betonung als eigenständige Buttons, aber eine stärkere als Text-Buttons.
 
