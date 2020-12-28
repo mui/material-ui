@@ -8,87 +8,138 @@ If you are **new to or unfamiliar with grid**, you're encourage to read this [CS
 
 ### display
 
+In order to define a `grid` container you must specify the `display` CSS property to have one of the values: `grid` or `inline-grid`.
+
 {{"demo": "pages/system/grid/Display.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ display: 'grid' }}>…
-<Box sx={{ display: 'inline-grid' }}>…
+<Box sx={{ display: 'grid' }}>…</Box>
+<Box sx={{ display: 'inline-grid' }}>…</Box>
 ```
 
 ### grid-template-rows
 
+The `grid-template-rows` property defines the line names and track sizing functions of the grid rows.
+
 {{"demo": "pages/system/grid/GridTemplateRows.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridTemplateRows: '25% 80px auto' }}>…
+<Box sx={{ gridTemplateRows: '25% 80px auto' }}>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</Box>
 ```
 
 ### grid-template-columns
 
+The `grid-template-columns` property defines the line names and track sizing functions of the grid columns.
+
 {{"demo": "pages/system/grid/GridTemplateColumns.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridTemplateColumns: '40px 50px auto 50px 40px' }}>…
-```
-
-### row-gap
-
-{{"demo": "pages/system/grid/RowGap.js", "defaultCodeOpen": false, "bg": true}}
-
-```jsx
-<Box sx={{ rowGap: '10px' }}>…
-```
-
-### column-gap
-
-{{"demo": "pages/system/grid/ColumnGap.js", "defaultCodeOpen": false, "bg": true}}
-
-```jsx
-<Box sx={{ columnGap: '10px' }}>…
+<Box sx={{ gridTemplateColumns: '50px 60px auto 60px 50px' }}>
+  <div>1</div>
+  <div>2</div>
+  ...
+  <div>5</div>
+</Box>
 ```
 
 ### gap
 
+The `gap: size` property specifies the gap between the different items inside the `grid`.
+
 {{"demo": "pages/system/grid/Gap.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gap: '10px' }}>…
+<Box sx={{ gap: '10px', gridTemplateColumns: '50% 50%' }}>
+  <div>1</div>
+  <div>2</div>
+  ...
+</Box>
+```
+
+### row-gap & column-gap
+
+The `row-gap` and `column-gap` gives the possiblity for specifying the row and column gaps independently.
+
+{{"demo": "pages/system/grid/RowAndColumnGap.js", "defaultCodeOpen": false, "bg": true}}
+
+```jsx
+<Box sx={{ columnGap: '10px', rowGap: '20px', gridTemplateColumns: '50% 50%' }}>
+  <div>1</div>
+  <div>2</div>
+  ...
+</Box>
 ```
 
 ### grid-template-areas
 
+The `grid-template-area` property defines a grid template by referencing the names of the grid areas which are specified with the `grid-area` property.
+
 {{"demo": "pages/system/grid/GridTemplateAreas.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridTemplateAreas:
-  `"header header header header"
+<Box
+  sx={{
+    gridTemplateAreas: `"header header header header"
    "main main . sidebar"
-   "footer footer footer footer"`
-}}>…
+   "footer footer footer footer"`,
+  }}
+>
+  <Box sx={{ gridArea: 'header' }} />
+  <Box sx={{ gridArea: 'main' }} />
+  <Box sx={{ gridArea: 'sidebar' }} />
+  <Box sx={{ gridArea: 'footer' }} />
+</Box>
 ```
 
 ### grid-auto-columns
 
+The `grid-auto-column` property specifies the size of an implicitly-created grid column track or pattern of tracks.
+
 {{"demo": "pages/system/grid/GridAutoColumns.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridAutoColumns: '60px' }}>…
+<Box sx={{ gridAutoColumns: '20%' }}>
+  <Box sx={{ gridRow: '1', gridColumn: '1 / 3' }}>1 / 3</GridItem>
+  <Box sx={{ gridRow: '1', gridColumn: '4 / 5' }}>4 / 5</GridItem>
+</Box>
 ```
 
+You can see on the screenshot below that the third and fifth non-visible columns have width of `20%`.
+
+![grid-auto-column](/static/images/system/grid-auto-column.png)
+
 ### grid-auto-rows
+
+The `grid-auto-rows` property specifies the size of an implicitly-created grid row track or pattern of tracks.
 
 {{"demo": "pages/system/grid/GridAutoRows.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridAutoRows: '20px' }}>…
+<Box sx={{ gridAutoRows: '40px' }}>
+  {' '}
+  // The third non-visible row has height of 40px
+  <Box sx={{ gridColumn: '1', gridRow: '1 / 3' }}>1 / 3</Box>
+  <Box sx={{ gridColumn: '1', gridRow: '4 / 5' }}>4 / 5</Box>
+</Box>
 ```
 
 ### grid-auto-flow
 
+The `grid-auto-flow` property controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.
+
 {{"demo": "pages/system/grid/GridAutoFlow.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridAutoFlow: 'row' }}>…
+<Box sx={{ gridAutoFlow: 'row' }}>
+  <Box sx={{ gridColumn: '1', gridRow: '1 / 3' }}>1</Box>
+  <Box>2</Box>
+  ...
+  <Box sx={{ gridColumn: '5', gridRow: '1 / 3'>5</Box>
+</Box>
 ```
 
 ## Properties for the Children

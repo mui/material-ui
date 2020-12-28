@@ -3,11 +3,12 @@ import Box from '@material-ui/core/Box';
 
 export default function GridTemplateAreas() {
   return (
-    <div style={{ width: '100%', height: '120px' }}>
+    <div style={{ width: '100%', height: '140px' }}>
       <Box
         sx={{
           display: 'grid',
           gridTemplateColumns: '80px 80px 80px 80px',
+          gap: '10px',
           gridTemplateRows: 'auto',
           gridTemplateAreas: `"header header header header"
         "main main . sidebar"

@@ -1,12 +1,39 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Box, { BoxProps } from '@material-ui/core/Box';
+
+const GridItem = (props: BoxProps) => {
+  const { sx, ...other } = props;
+  return (
+    <Box
+      sx={{
+        bgcolor: 'primary.main',
+        color: 'white',
+        p: 1,
+        borderRadius: 1,
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        ...sx,
+      }}
+      {...other}
+    />
+  );
+};
 
 export default function GridAutoColumns() {
   return (
     <div style={{ width: '100%' }}>
-      <Box sx={{ display: 'grid', p: 1, height: '60px', gridAutoColumns: '60px' }}>
-        <Box sx={{ gridColumn: '1 / 2', gridRow: '2 / 3', border: 1 }} />
-        <Box sx={{ gridColumn: '5 / 6', gridRow: '2 / 3', border: 1 }} />
+      <Box
+        sx={{
+          display: 'grid',
+          p: 1,
+          height: '60px',
+          gridAutoColumns: '20%',
+          gap: '10px',
+        }}
+      >
+        <GridItem sx={{ gridRow: '1', gridColumn: '1 / 3' }}>1 / 3</GridItem>
+        <GridItem sx={{ gridRow: '1', gridColumn: '4 / 5' }}>4 / 5</GridItem>
       </Box>
     </div>
   );

@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 export default function Display() {
   return (
     <div style={{ width: '100%' }}>
-      <Box sx={{ display: 'grid', p: 1, bgcolor: 'background.paper' }}>
+      <Box sx={{ display: 'grid', p: 1, bgcolor: 'primary.light', color: 'white' }}>
         {"I'm a grid container!"}
       </Box>
     </div>

@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Box, { BoxProps } from '@material-ui/core/Box';
+import PropTypes from 'prop-types';
+import Box from '@material-ui/core/Box';
 
-const GridItem = (props: BoxProps) => {
+const GridItem = (props) => {
   const { sx, ...other } = props;
   return (
     <Box
@@ -9,7 +10,6 @@ const GridItem = (props: BoxProps) => {
         bgcolor: 'primary.main',
         color: 'white',
         p: 1,
-        m: 1,
         borderRadius: 1,
         textAlign: 'center',
         fontSize: 20,
@@ -21,15 +21,25 @@ const GridItem = (props: BoxProps) => {
   );
 };
 
-export default function GridTemplateColumns() {
+GridItem.propTypes = {
+  sx: PropTypes.object,
+};
+
+export default function RowAndColumnGap() {
   return (
     <div style={{ width: '100%' }}>
-      <Box sx={{ display: 'grid', gridTemplateColumns: '50px 60px auto 60px 50px' }}>
+      <Box
+        sx={{
+          display: 'grid',
+          columnGap: '20px',
+          rowGap: '10px',
+          gridTemplateColumns: '0.5fr 0.5fr',
+        }}
+      >
         <GridItem>1</GridItem>
         <GridItem>2</GridItem>
         <GridItem>3</GridItem>
         <GridItem>4</GridItem>
-        <GridItem>5</GridItem>
       </Box>
     </div>
   );
