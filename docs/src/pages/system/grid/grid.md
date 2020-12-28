@@ -24,7 +24,7 @@ The `grid-template-rows` property defines the line names and track sizing functi
 {{"demo": "pages/system/grid/GridTemplateRows.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridTemplateRows: 'repeat(3, minmax(0, 1fr))' }}>
+<Box sx={{ gridTemplateRows: 'repeat(3, 1fr)' }}>
   <div>1</div>
   <div>2</div>
   <div>3</div>
@@ -38,7 +38,7 @@ The `grid-template-columns` property defines the line names and track sizing fun
 {{"demo": "pages/system/grid/GridTemplateColumns.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+<Box sx={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
   <div>1</div>
   <div>2</div>
   <div>3</div>
@@ -52,7 +52,7 @@ The `gap: size` property specifies the gap between the different items inside th
 {{"demo": "pages/system/grid/Gap.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gap: '8px', gridTemplateColumns: '50% 50%' }}>
+<Box sx={{ gap: '8px', gridTemplateColumns: 'repeat(2, 0.5fr)' }}>
   <div>1</div>
   <div>2</div>
   <div>3</div>
@@ -67,7 +67,9 @@ The `row-gap` and `column-gap` gives the possibility for specifying the row and 
 {{"demo": "pages/system/grid/RowAndColumnGap.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ columnGap: '8px', rowGap: '16px', gridTemplateColumns: '50% 50%' }}>
+<Box
+  sx={{ columnGap: '8px', rowGap: '16px', gridTemplateColumns: 'repeat(2, 0.5fr)' }}
+>
   <div>1</div>
   <div>2</div>
   <div>3</div>
@@ -103,13 +105,13 @@ The `grid-auto-column` property specifies the size of an implicitly-created grid
 {{"demo": "pages/system/grid/GridAutoColumns.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ gridAutoColumns: '20%' }}>
+<Box sx={{ gridAutoColumns: '0.2fr' }}>
   <Box sx={{ gridRow: '1', gridColumn: '1 / 3' }}>1 / 3</GridItem>
   <Box sx={{ gridRow: '1', gridColumn: '4 / 5' }}>4 / 5</GridItem>
 </Box>
 ```
 
-You can see on the screenshot below that the third and fifth non-visible columns have width of `20%`.
+You can see on the screenshot below that the third non-visible column have width of `0.2fr`, which is approximately `20%`.
 
 <div style="display: flex; justify-content: center;">
   <img alt="grid-auto-column" src="/static/images/system/grid-auto-column.png" width="669" />

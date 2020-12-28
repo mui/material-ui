@@ -27,8 +27,8 @@ export default function GridAutoFlow() {
         sx={{
           display: 'grid',
           gridAutoFlow: 'row',
-          gridTemplateColumns: '0.2fr 0.2fr 0.2fr 0.2fr 0.2fr',
-          gridTemplateRows: '50px 50px',
+          gridTemplateColumns: 'repeat(5, 0.2fr)',
+          gridTemplateRows: 'repeat(2, 50px)',
           gap: '8px',
         }}
       >

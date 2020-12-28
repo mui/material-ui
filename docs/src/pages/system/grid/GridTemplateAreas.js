@@ -7,7 +7,7 @@ export default function GridTemplateAreas() {
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: '80px 80px 80px 80px',
+          gridTemplateColumns: 'repeat(4, 80px)',
           gap: '8px',
           gridTemplateRows: 'auto',
           gridTemplateAreas: `"header header header header"

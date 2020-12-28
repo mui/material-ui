@@ -27,7 +27,6 @@ export default function GridAutoColumns() {
         sx={{
           display: 'grid',
           p: 1,
-          height: '100%',
           gridAutoRows: '40px',
           gap: '8px',
         }}

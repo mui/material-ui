@@ -28,7 +28,7 @@ export default function RowAndColumnGap() {
           display: 'grid',
           columnGap: '16px',
           rowGap: '8px',
-          gridTemplateColumns: '50% 50%',
+          gridTemplateColumns: 'repeat(2, 0.5fr)',
         }}
       >
         <GridItem>1</GridItem>

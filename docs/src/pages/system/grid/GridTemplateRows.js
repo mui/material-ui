@@ -29,7 +29,7 @@ GridItem.propTypes = {
 export default function GridTemplateRows() {
   return (
     <div style={{ width: '100%' }}>
-      <Box sx={{ display: 'grid', gridTemplateRows: 'repeat(3, minmax(0, 1fr))' }}>
+      <Box sx={{ display: 'grid', gridTemplateRows: 'repeat(3, 1fr)' }}>
         <GridItem>1</GridItem>
         <GridItem>2</GridItem>
         <GridItem>3</GridItem>

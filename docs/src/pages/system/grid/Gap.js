@@ -32,7 +32,7 @@ export default function Gap() {
         sx={{
           display: 'grid',
           gap: '8px',
-          gridTemplateColumns: '50% 50%',
+          gridTemplateColumns: 'repeat(2, 0.5fr)',
         }}
       >
         <GridItem>1</GridItem>

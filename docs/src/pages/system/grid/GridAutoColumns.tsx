@@ -28,7 +28,7 @@ export default function GridAutoColumns() {
           display: 'grid',
           p: 1,
           height: '60px',
-          gridAutoColumns: '20%',
+          gridAutoColumns: '0.2fr',
           gap: '8px',
         }}
       >
