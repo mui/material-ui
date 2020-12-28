@@ -664,22 +664,20 @@ describe('<Slider />', () => {
 
   describe('prop: valueLabelDisplay', () => {
     it('should always display the value label according to on and off', () => {
-      const { getByTestId, setProps } = render(
+      const { setProps } = render(
         <Slider
           valueLabelDisplay="on"
           value={50}
           componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
         />,
       );
-      const thumb = getByTestId('thumb');
-      expect(thumb.firstChild).to.have.class(classes.valueLabelOpen);
+      expect(document.querySelector(`.${classes.valueLabelOpen}`)).not.to.equal(null);
 
       setProps({
         valueLabelDisplay: 'off',
       });
 
-      const newThumb = getByTestId('thumb');
-      expect(newThumb.firstChild).to.equal(null);
+      expect(document.querySelector(`.${classes.valueLabelOpen}`)).to.equal(null);
     });
 
     it('should display the value label only on hover for auto', () => {
@@ -691,11 +689,11 @@ describe('<Slider />', () => {
         />,
       );
       const thumb = getByTestId('thumb');
-      expect(thumb.firstChild).not.to.have.class(classes.valueLabelOpen);
+      expect(document.querySelector(`.${classes.valueLabelOpen}`)).to.equal(null);
 
       fireEvent.mouseOver(thumb);
 
-      expect(thumb.firstChild).to.have.class(classes.valueLabelOpen);
+      expect(document.querySelector(`.${classes.valueLabelOpen}`)).not.to.equal(null);
     });
 
     it('should be respected when using custom value label', () => {
