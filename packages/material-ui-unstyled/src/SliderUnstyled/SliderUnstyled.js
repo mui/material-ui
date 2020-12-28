@@ -688,34 +688,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
         return (
           <React.Fragment key={index}>
-            <input
-              data-index={index}
-              aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
-              aria-labelledby={ariaLabelledby}
-              aria-orientation={orientation}
-              aria-valuemax={scale(max)}
-              aria-valuemin={scale(min)}
-              aria-valuenow={scale(value)}
-              aria-valuetext={
-                getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
-              }
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              name={name}
-              type="range"
-              min={props.min}
-              max={props.max}
-              step={props.step}
-              disabled={disabled}
-              value={values[index]}
-              onChange={handleHiddenInputChange}
-              style={{
-                ...visuallyHidden,
-                direction: isRtl ? 'rtl' : 'ltr',
-                // webkit ignores `aria-orientation`: https://bugs.chromium.org/p/chromium/issues/detail?id=1158217#c7
-                WebkitAppearance: orientation === 'vertical' ? 'slider-vertical' : undefined,
-              }}
-            />
             <ValueLabelComponent
               valueLabelFormat={valueLabelFormat}
               valueLabelDisplay={valueLabelDisplay}
@@ -748,7 +720,39 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   theme,
                 })}
                 style={{ ...style, ...thumbProps.style }}
-              />
+              >
+                <input
+                  data-index={index}
+                  aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+                  aria-labelledby={ariaLabelledby}
+                  aria-orientation={orientation}
+                  aria-valuemax={scale(max)}
+                  aria-valuemin={scale(min)}
+                  aria-valuenow={scale(value)}
+                  aria-valuetext={
+                    getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+                  }
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  name={name}
+                  type="range"
+                  min={props.min}
+                  max={props.max}
+                  step={props.step}
+                  disabled={disabled}
+                  value={values[index]}
+                  onChange={handleHiddenInputChange}
+                  style={{
+                    ...visuallyHidden,
+                    direction: isRtl ? 'rtl' : 'ltr',
+                    // So that VoiceOver's focus indicator matches the thumb's dimensions
+                    width: '100%',
+                    height: '100%',
+                    // webkit ignores `aria-orientation`: https://bugs.chromium.org/p/chromium/issues/detail?id=1158217#c7
+                    WebkitAppearance: orientation === 'vertical' ? 'slider-vertical' : undefined,
+                  }}
+                />
+              </Thumb>
             </ValueLabelComponent>
           </React.Fragment>
         );
