@@ -176,7 +176,7 @@ describe('experimentalStyled', () => {
       Test = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'Test', slot: 'Root', overridesResolver: testOverridesResolver },
+        { name: 'MuiTest', slot: 'Root', overridesResolver: testOverridesResolver },
       )`
         width: 200px;
         height: 300px;
@@ -185,7 +185,7 @@ describe('experimentalStyled', () => {
       TestObj = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'Test', overridesResolver: testOverridesResolver },
+        { name: 'MuiTest', overridesResolver: testOverridesResolver },
       )({
         width: '200px',
         height: '300px',
@@ -407,33 +407,33 @@ describe('experimentalStyled', () => {
       const Component = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'Component' },
+        { name: 'MuiComponent' },
       )`
         width: 200px;
         height: 300px;
       `;
 
-      expect(Component.displayName).to.equal('Component');
+      expect(Component.displayName).to.equal('MuiComponent');
     });
 
     it('should set displayName as name + slot if both are specified', () => {
       const Component = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'Component', slot: 'Root' },
+        { name: 'MuiComponent', slot: 'Root' },
       )`
         width: 200px;
         height: 300px;
       `;
 
-      expect(Component.displayName).to.equal('ComponentRoot');
+      expect(Component.displayName).to.equal('MuiComponentRoot');
     });
 
     it('should set the className when generating the classes', () => {
       const Component = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'Component', slot: 'Slot' },
+        { name: 'MuiComponent', slot: 'Slot' },
       )`
         width: 200px;
         height: 300px;
@@ -458,7 +458,7 @@ describe('experimentalStyled', () => {
       const Component = styled(
         'div',
         { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
-        { name: 'Component' },
+        { name: 'MuiComponent' },
       )`
         width: 200px;
         height: 300px;

@@ -66,7 +66,7 @@ export const SliderRoot = experimentalStyled(
   'span',
   {},
   {
-    name: 'Slider',
+    name: 'MuiSlider',
     slot: 'Root',
     overridesResolver,
   },
@@ -132,7 +132,7 @@ export const SliderRoot = experimentalStyled(
 export const SliderRail = experimentalStyled(
   'span',
   {},
-  { name: 'Slider', slot: 'Rail' },
+  { name: 'MuiSlider', slot: 'Rail' },
 )(({ styleProps }) => ({
   display: 'block',
   position: 'absolute',
@@ -153,7 +153,7 @@ export const SliderRail = experimentalStyled(
 export const SliderTrack = experimentalStyled(
   'span',
   {},
-  { name: 'Slider', slot: 'Track' },
+  { name: 'MuiSlider', slot: 'Track' },
 )(({ theme, styleProps }) => ({
   display: 'block',
   position: 'absolute',
@@ -178,7 +178,7 @@ export const SliderTrack = experimentalStyled(
 export const SliderThumb = experimentalStyled(
   'span',
   {},
-  { name: 'Slider', slot: 'Thumb' },
+  { name: 'MuiSlider', slot: 'Thumb' },
 )(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 12,
@@ -244,7 +244,7 @@ export const SliderThumb = experimentalStyled(
 export const SliderValueLabel = experimentalStyled(
   SliderValueLabelUnstyled,
   {},
-  { name: 'Slider', slot: 'ValueLabel' },
+  { name: 'MuiSlider', slot: 'ValueLabel' },
 )(({ theme }) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
@@ -267,7 +267,7 @@ export const SliderValueLabel = experimentalStyled(
 export const SliderMark = experimentalStyled(
   'span',
   {},
-  { name: 'Slider', slot: 'Mark' },
+  { name: 'MuiSlider', slot: 'Mark' },
 )(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 2,
@@ -283,7 +283,7 @@ export const SliderMark = experimentalStyled(
 export const SliderMarkLabel = experimentalStyled(
   'span',
   {},
-  { name: 'Slider', slot: 'MarkLabel' },
+  { name: 'MuiSlider', slot: 'MarkLabel' },
 )(({ theme, styleProps }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,

@@ -73,8 +73,8 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
 
   if (componentName) {
     displayName = `${componentName}${componentSlot || ''}`;
-    name = !componentSlot || componentSlot === 'Root' ? `Mui${componentName}` : null;
-    className = `Mui${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
+    name = !componentSlot || componentSlot === 'Root' ? `${componentName}` : null;
+    className = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
   }
 
   const defaultStyledResolver = styled(tag, {

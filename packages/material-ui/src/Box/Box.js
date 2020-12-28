@@ -58,4 +58,4 @@ Box.propTypes = {
   sx: PropTypes.object,
 };
 
-export default styled(Box, {}, { muiName: 'Box', skipVariantsResolver: true })``;
+export default styled(Box, {}, { muiName: 'MuiBox', skipVariantsResolver: true })``;

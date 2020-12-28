@@ -34,7 +34,7 @@ const AvatarRoot = experimentalStyled(
   'div',
   {},
   {
-    name: 'Avatar',
+    name: 'MuiAvatar',
     slot: 'Root',
     overridesResolver,
   },
@@ -69,7 +69,7 @@ const AvatarImg = experimentalStyled(
   'img',
   {},
   {
-    name: 'Avatar',
+    name: 'MuiAvatar',
     slot: 'Img',
   },
 )({
@@ -88,7 +88,7 @@ const AvatarFallback = experimentalStyled(
   Person,
   {},
   {
-    name: 'Avatar',
+    name: 'MuiAvatar',
     slot: 'Fallback',
   },
 )({

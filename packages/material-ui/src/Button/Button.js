@@ -98,7 +98,7 @@ const ButtonStartIcon = experimentalStyled(
   'span',
   {},
   {
-    name: 'Button',
+    name: 'MuiButton',
     slot: 'StartIcon',
   },
 )(({ styleProps }) => ({
@@ -115,7 +115,7 @@ const ButtonEndIcon = experimentalStyled(
   'span',
   {},
   {
-    name: 'Button',
+    name: 'MuiButton',
     slot: 'EndIcon',
   },
 )(({ styleProps }) => ({
@@ -132,7 +132,7 @@ const ButtonLabel = experimentalStyled(
   'span',
   {},
   {
-    name: 'Button',
+    name: 'MuiButton',
     slot: 'Label',
   },
 )({
@@ -146,7 +146,7 @@ const ButtonRoot = experimentalStyled(
   ButtonBase,
   {},
   {
-    name: 'Button',
+    name: 'MuiButton',
     slot: 'Root',
     overridesResolver,
   },

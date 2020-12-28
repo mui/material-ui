@@ -22,7 +22,7 @@ const overridesResolver = (props, styles) => {
 export const ButtonBaseRoot = experimentalStyled(
   'button',
   {},
-  { name: 'ButtonBase', slot: 'Root', overridesResolver },
+  { name: 'MuiButtonBase', slot: 'Root', overridesResolver },
 )({
   display: 'inline-flex',
   alignItems: 'center',
