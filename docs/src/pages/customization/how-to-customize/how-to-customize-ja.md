@@ -91,6 +91,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 
 | State         | グローバルクラス名(global class name) |
 |:------------- |:---------------------------- |
+| active        | `.Mui-active`                |
 | checked       | `.Mui-checked`               |
 | disabled      | `.Mui-disabled`              |
 | error         | `.Mui-error`                 |
