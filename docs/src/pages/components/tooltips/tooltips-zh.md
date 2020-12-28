@@ -16,11 +16,11 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## 简单的文字提示
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
 ## 文字提示的位置
 
-`Tooltip` 有 12 个**位置** 选项。 它们没有方向箭头，而是依靠代码指示的移动情况来移动文字提示的出现位置。
+`Tooltip` 有 12 个**位置** 选项。 They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
