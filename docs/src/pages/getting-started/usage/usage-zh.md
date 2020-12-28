@@ -52,4 +52,4 @@ Material-UI 提供了一个可选的 [CssBaseline](/components/css-baseline/) �
 
 - 如何提供 [Material Design 字体和文字铸排](/components/typography/)。
 - 如何使用[主题解决方案](/customization/theming/) 。
-- 如何 [覆盖](/customization/components/) 组件的呈现和观感。
+- 如何 [覆盖](/customization/how-to-customize/) 组件的呈现和观感。

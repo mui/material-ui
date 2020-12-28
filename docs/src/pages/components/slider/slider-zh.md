@@ -68,7 +68,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 
 ## 自定义滑块
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

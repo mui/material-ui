@@ -44,7 +44,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 
 ## Customized radios 自定义单选框
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 

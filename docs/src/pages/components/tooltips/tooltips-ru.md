@@ -26,7 +26,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 ## Настраиваемые подсказки
 
-Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 

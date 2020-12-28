@@ -2,7 +2,7 @@
 
 <p class="description">Utilitários CSS para criar rapidamente um design customizado.</p>
 
-Material-UI vem com dezenas de componentes **pronto para uso** em seu package core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
+Material-UI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
 
 O **sistema** permite que você crie rapidamente componentes de UI customizados utilizando os valores definidos no seu tema.
 
@@ -105,7 +105,7 @@ return (
   }}
 >
   <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
-  <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}>
+  <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
     98.3 K
   </Box>
   <Box
@@ -116,14 +116,14 @@ return (
     sx={{
       color: 'success.dark',
       display: 'inline',
-      fontWeight: 'fontWeightMedium',
+      fontWeight: 'medium',
       mx: 0.5,
     }}
   >
     18.77%
   </Box>
   <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-    em relação ultima semana
+    vs last week
   </Box>
 </Box>
 ```
@@ -150,7 +150,7 @@ O sistema oferece acesso direto ao valor no tema. Fica mais fácil de lidar com 
 
 A propriedade `sx`, como a parte principal do sistema, resolve esses problemas, fornecendo uma maneira rápida & simples de aplicar os tokens de design corretos para propriedades CSS específicas diretamente a um elemento React. A [demonstração acima](#demo) mostra como ela pode ser usada para criar um design único.
 
-Esta propriedade fornece um super conjunto de CSS que mapeia valores diretamente do tema, dependendo da propriedade CSS usada. Além disso, permite uma maneira simples de definir valores responsivos que correspondem aos pontos de quebra definidos no tema.
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Além disso, permite uma maneira simples de definir valores responsivos que correspondem aos pontos de quebra definidos no tema.
 
 ### Quando usar ela?
 
@@ -180,6 +180,12 @@ Contras:
   _Vá até a [pasta de benchmark](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) para uma reprodução dessas métricas._
 
   Nós acreditamos que para a maioria das situações é **rápido o suficiente**, mas há soluções alternativas simples onde a performance se torna crítica. Por exemplo, ao renderizar uma lista com muitos itens, você pode usar um seletor filho CSS para ter um único ponto de "injeção de estilo" (usando d. para o wrapper e a. para cada item).
+
+### API tradeoff
+
+In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components, so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`.
+
+Additionally, having the system under one prop helps to easily differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
 
 ## Uso
 

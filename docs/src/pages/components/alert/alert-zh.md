@@ -43,7 +43,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 使用 `icon` 属性，您可以在警告提示组件开头添加一个图标。 以此来改变不同程度的默认图标。
 
-通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 使用 [自定义主题](/customization/globals/#default-props)，您可以进行全局的设置。
+通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 使用 [自定义主题](/customization/theme-components/#default-props)，您可以进行全局的设置。
 
 把图标属性设置为 `false` 将会移除所有图标。
 

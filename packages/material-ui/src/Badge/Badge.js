@@ -6,6 +6,7 @@ import {
   BadgeUnstyled,
   badgeUnstyledClasses,
   getBadgeUtilityClass,
+  generateUtilityClasses,
   isHostComponent,
 } from '@material-ui/unstyled';
 import styled from '../styles/experimentalStyled';
@@ -14,9 +15,7 @@ import capitalize from '../utils/capitalize';
 
 const badgeClasses = {
   ...badgeUnstyledClasses,
-  colorError: getBadgeUtilityClass('colorError'),
-  colorPrimary: getBadgeUtilityClass('colorPrimary'),
-  colorSecondary: getBadgeUtilityClass('colorSecondary'),
+  ...generateUtilityClasses('MuiBadge', ['colorError', 'colorPrimary', 'colorSecondary']),
 };
 
 export { badgeClasses };

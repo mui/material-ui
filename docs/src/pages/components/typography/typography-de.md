@@ -27,14 +27,17 @@ Unten ist ein Beispiel für ein Link-Markup zum Laden der Roboto-Schriftart von 
 
 ## Mit npm installieren
 
-Sie können [diese installieren](https://www.npmjs.com/package/fontsource-roboto) durch den folgenden Befehl im Terminal:
+Sie können [diese installieren](https://www.npmjs.com/package/@fontsource/roboto) durch den folgenden Befehl im Terminal:
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Dann können Sie es in Ihren Einstiegspunkt importieren.
 
 ```js
-import 'fontsource-roboto';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 For more info check out [Fontsource](https://github.com/fontsource/fontsource).
@@ -66,7 +69,7 @@ Die Komponente Typografie verwendet die Eigenschaft `variantMapping` um eine UI-
 </Typography>
 ```
 
-- Sie können das Mapping [global mit dem Theme](/customization/globals/#default-props) ändern:
+- Sie können das Mapping [global mit dem Theme](/customization/theme-components/#default-props) ändern:
 
 ```js
 const theme = createMuiTheme({
@@ -88,6 +91,10 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
 
 ## Barrierefreiheit
 

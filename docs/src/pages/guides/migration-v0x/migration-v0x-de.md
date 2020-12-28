@@ -12,7 +12,7 @@ Gute Frage! Die Antwort ist nein. Die Kernkonzepte haben sich nicht geändert. Y
 
 Die Material-UI wurde vor [4 Jahren gestartet](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). Das Ökosystem hat sich seitdem stark verändert, wir haben auch viel gelernt. [@nathanmarks](https://github.com/nathanmarks/) begann eine ehrgeizige Aufgabe, Material-UI **von Grund auf ** neu zu erstellen unter Ausnutzung seines Wissen seit langem bestehende Probleme zu lösen. Um einige der wichtigsten Änderungen zu nennen:
 
-- Neue Styling-Lösung mit CSS-in-JS (bessere[ Anpassungsmöglichkeiten](/customization/components/), bessere Leistung)
+- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
 - Neues Theming (Schachteln, selbsttragend usw.)
 - Schnelle Dokumentation dank [Next.js](https://github.com/zeit/next.js)
 - Viel bessere [Testabdeckung](/guides/testing/) (99%+, läuft auf allen gängigen Browsern, [visuelle Regressionstests](https://www.argos-ci.com/mui-org/material-ui))

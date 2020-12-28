@@ -1,38 +1,131 @@
-# グローバル
+# コンポーネント
 
-<p class="description">オーバーライドキーを使用すると、コンポーネントタイプのすべてのインスタンスの外観をカスタマイズでき、プロップキーを使用すると、コンポーネントのプロップのデフォルト値を変更できます。</p>
+<p class="description">The theme's `components` key allows you to customize a component without wrapping it in another component. You can change the styles, the default props, and more.</p>
 
-## CSS
+## Global style overrides
 
-設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。 それは本当に強力な機能です。
-
-To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
+You can use the theme's `styleOverrides` key to potentially change every single style injected by Material-UI into the DOM.
 
 ```js
 const theme = createMuiTheme({
-  overrides: {
-    // Style sheet name ⚛️
+  components: {
+    // Name of the component
     MuiButton: {
-      // Name of the rule
-      text: {
-        // Some CSS
-        color: 'white',
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          fontSize: '1rem',
+        },
       },
     },
   },
 });
-`</pre>
-
-<p spaces-before="0">{{"demo": "pages/customization/globals/GlobalCss.js"}}</p>
-
-<p spaces-before="0">各コンポーネントのカスタマイズポイントの一覧は、 <strong x-id="1">Component API</strong>のセクションに記載されています。
 ```
 
-{{"demo": "pages/customization/globals/GlobalCss.js"}}
+{{"demo": "pages/customization/theme-components/GlobalThemeOverride.js"}}
 
-各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。
+The list of each component's classes is documented under the **CSS** section of its API page.
 
-## Global CSS
+To override a lab component's styles with TypeScript, check [this section of the documentation](/components/about-the-lab/#typescript).
+
+## Default props
+
+You can change the default of every prop of a Material-UI component. A `defaultProps` key is exposed in the theme's `components` key for this use case.
+
+```js
+const theme = createMuiTheme({
+  components: {
+    // Name of the component
+    MuiButtonBase: {
+      defaultProps: {
+        // The props to change the default for.
+        disableRipple: true, // No more ripple!
+      },
+  },
+});
+```
+
+{{"demo": "pages/customization/theme-components/DefaultProps.js"}}
+
+To override lab component styles with TypeScript, check [this page](/components/about-the-lab/#typescript).
+
+## Adding new component variants
+
+You can use the `variants` key in the theme's `components` section to add new variants to Material-UI components. These new variants can specify what styles the component should have when specific props are applied.
+
+The definitions are specified in an array, under the component's name. For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
+
+```js
+const theme = createMuiTheme({
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'dashed' },
+          style: {
+            textTransform: 'none',
+            border: `2px dashed grey${blue[500]}`,
+          },
+        },
+        {
+          props: { variant: 'dashed', color: 'secondary' },
+          style: {
+            border: `4px dashed ${red[500]}`,
+          },
+        },
+      ],
+    },
+  },
+});
+```
+
+If you're using TypeScript, you'll need to specify your new variants/colors, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+
+```tsx
+declare module '@material-ui/core/Button/Button' {
+  interface ButtonPropsVariantOverrides {
+    dashed: true;
+  }
+}
+```
+
+{{"demo": "pages/customization/theme-components/GlobalThemeVariants.js"}}
+
+## テーマ変数
+
+Another way to override the look of all component instances is to adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    button: {
+      fontSize: '1rem',
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/theme-components/ThemeVariables.js"}}
+
+## グローバルCSSのオーバーライド
+
+Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
+
+```jsx
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  '@global': {
+    '.MuiButton-root': {
+      fontSize: '1rem',
+    },
+  },
+})(() => null);
+
+// …
+
+<GlobalCss />
+```
 
 If you are using the [CssBaseline](/components/css-baseline/) component to apply global resets, it can also be used to apply global styles. 例えば：
 
@@ -60,22 +153,4 @@ return (
 );
 ```
 
-## Default props
-
-const theme = createMuiTheme({ props: { // Name of the component ⚛️ MuiButtonBase: { // The default props to change disableRipple: true, // No more ripple, on the whole application 💣! A `props` key is exposed in the `theme` for this use case.
-
-To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
-
-```js
-const theme = createMuiTheme({
-  props: {
-    // Name of the component ⚛️
-    MuiButtonBase: {
-      // The default props to change
-      disableRipple: true, // No more ripple, on the whole application 💣!
-      },
-  },
-});
-```
-
-{{"demo": "pages/customization/globals/DefaultProps.js"}}
+{{"demo": "pages/customization/theme-components/GlobalCssOverride.js", "iframe": true, "height": 100}}

@@ -84,13 +84,13 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
-⚠️ Defining an explicit width to a Grid element that is flex container, flex item, and has spacing at the same time lead to unexpected behavior, avoid doing it:
+⚠️ Definindo uma largura explícita para um elemento de grade que é um contêiner flexível, item flexível e tem espaçamento ao mesmo tempo, tem um comportamento inesperado, evite fazendo isto:
 
 ```jsx
 <Grid spacing={1} container item xs={12}>
 ```
 
-If you need to do such, remove one of the props.
+Se você precisar fazer isso, remova uma das propriedades.
 
 ## Limitações
 

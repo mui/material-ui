@@ -39,7 +39,7 @@ yarn add @material-ui/core
 
 ## TypeScript
 
-De manière à pouvoir [ outrepasser le CSS ](/customization/globals/#css) et [ à customiser les props par défaut ](/customization/globals/#default-props) avec le theme, les utilisateurs de TypeScript devront importés les types suivant. En interne, il utilise [le module d'augmentation](/guides/typescript/#customization-of-theme) pour étendre la structure du thème par défaut avec l'extension de composant disponible dans le laboratoire.
+De manière à pouvoir [ outrepasser le CSS ](/customization/theme-components/#global-style-overrides) et [ à customiser les props par défaut ](/customization/theme-components/#default-props) avec le theme, les utilisateurs de TypeScript devront importés les types suivant. En interne, il utilise [le module d'augmentation](/guides/typescript/#customization-of-theme) pour étendre la structure du thème par défaut avec l'extension de composant disponible dans le laboratoire.
 
 ```tsx
 import '@material-ui/lab/themeAugmentation';

@@ -2,7 +2,7 @@
 
 <p class="description">CSS utilities for rapidly creating custom design.</p>
 
-Material-UI comes with dozens or **ready-to-use** components in the core. These components are an incredible starting point but when it comes to making your site stand out with a custom design, it can be simpler to start from an unstyled state. Introducing the system:
+Material-UI comes with dozens of **ready-to-use** components in the core. These components are an incredible starting point but when it comes to making your site stand out with a custom design, it can be simpler to start from an unstyled state. Introducing the system:
 
 The **system** lets you quickly build custom UI components leveraging the values defined in your theme.
 
@@ -105,7 +105,7 @@ return (
   }}
 >
   <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
-  <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}>
+  <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
     98.3 K
   </Box>
   <Box
@@ -116,7 +116,7 @@ return (
     sx={{
       color: 'success.dark',
       display: 'inline',
-      fontWeight: 'fontWeightMedium',
+      fontWeight: 'medium',
       mx: 0.5,
     }}
   >
@@ -150,7 +150,7 @@ The system provides direct access to the value in the theme. It makes it easier 
 
 The `sx` prop, as the main part of the system, solves these problems by providing a fast & simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used to create a one-off design.
 
-This prop provides a superset of CSS that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
 
 ### When to use it?
 
@@ -180,6 +180,12 @@ Cons:
   _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) for a reproduction of these metrics._
 
   We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
+
+### API tradeoff
+
+In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components, so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`.
+
+Additionally, having the system under one prop helps to easily differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
 
 ## 使い方
 

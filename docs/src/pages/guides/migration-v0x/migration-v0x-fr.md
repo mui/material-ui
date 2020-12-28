@@ -12,7 +12,7 @@ Je suis content que vous ayez demandé! La réponse est non. Les concepts de bas
 
 Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). The ecosystem has evolved a lot since then, we have also learned a lot. [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up** taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
 
-- New styling solution using CSS-in-JS (better [customization](/customization/components/) power, better performance)
+- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
 - New theme handling (nesting, self-supporting, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/zeit/next.js)
 - Way better [test coverage](/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))

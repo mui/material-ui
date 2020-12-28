@@ -56,4 +56,4 @@ Ahora que tienes una idea de la organización básica, es hora de aprender más 
 
 - Cómo proporcionar [la fuente y tipografía de Material Design](/components/typography/).
 - Cómo aprovechar la [solución de plantilla](/customization/theming/).
-- Cómo [reemplazar](/customization/components/) el aspecto de los componentes.
+- Cómo [reemplazar](/customization/how-to-customize/) el aspecto de los componentes.

@@ -23,7 +23,7 @@ Cambiar las variables de configuración del tema es la forma más efectiva de ad
 - [Espaciado](/customization/spacing/)
 - [Separaciones](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [Globales](/customization/globals/)
+- [Componentes](/customization/theme-components/)
 - [Transiciones](/customization/transitions/)
 
 Puede consultar la sección de [Tema predeterminado](/customization/default-theme/) para ver el tema completo.

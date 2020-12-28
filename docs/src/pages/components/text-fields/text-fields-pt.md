@@ -67,7 +67,7 @@ Gosta mais de campos de texto menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
-The `filled` variant input height can be further reduced by rendering the label outside of it.
+A altura do campo na variante `filled` pode ser reduzida ainda mais ao renderizar o rótulo fora dele.
 
 {{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
 
@@ -105,7 +105,7 @@ A propriedade `color` altera a cor do destaque do campo de texto quando focado.
 
 ## Campos customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 

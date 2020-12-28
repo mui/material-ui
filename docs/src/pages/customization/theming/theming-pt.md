@@ -23,7 +23,7 @@ Alterar as variáveis de configuração do tema é a maneira mais eficaz de comb
 - [Espaçamento](/customization/spacing/)
 - [Pontos de quebra](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [Globais](/customization/globals/)
+- [Componentes](/customization/theme-components/)
 - [Transições](/customization/transitions/)
 
 Você pode conferir a [seção de tema padrão](/customization/default-theme/) para visualizar o tema padrão na íntegra.

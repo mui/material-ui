@@ -27,14 +27,17 @@ materialDesign: https://material.io/design/typography/the-type-system.html
 
 ## Install with npm
 
-端末で次のコマンドを入力すると、[インストール](https://www.npmjs.com/package/fontsource-roboto)できます。
+端末で次のコマンドを入力すると、[インストール](https://www.npmjs.com/package/@fontsource/roboto)できます。
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 その後、エントリポイントにインポートできます。
 
 ```js
-import 'fontsource-roboto';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 For more info check out [Fontsource](https://github.com/fontsource/fontsource).
@@ -66,7 +69,7 @@ Typographyコンポーネントは、 `variantMapping` プロパティを使用�
 </Typography>
 ```
 
-- 以下のようにテーマ使用して、[マッピング をグローバルに](/customization/globals/#default-props)変更できます。
+- 以下のようにテーマ使用して、[マッピング をグローバルに](/customization/theme-components/#default-props)変更できます。
 
 ```js
 const theme = createMuiTheme({
@@ -88,6 +91,10 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
 
 ## アクセシビリティ
 

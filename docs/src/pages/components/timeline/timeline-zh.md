@@ -49,6 +49,6 @@ packageName: '@material-ui/lab'
 
 ## 定制的时间轴
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}
