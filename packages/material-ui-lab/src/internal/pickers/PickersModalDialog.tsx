@@ -5,7 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Dialog, { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
-import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from './constants/dimensions';
+import { DIALOG_WIDTH } from './constants/dimensions';
 
 export interface ExportedPickerModalProps {
   /**
@@ -49,7 +49,6 @@ export interface PickerModalDialogProps extends ExportedPickerModalProps {
   onClear: () => void;
   onDismiss: () => void;
   onSetToday: () => void;
-  wider?: boolean;
   open: boolean;
 }
 
@@ -60,9 +59,6 @@ export const styles = createStyles({
   paper: {
     outline: 0,
     minWidth: DIALOG_WIDTH,
-  },
-  paperWider: {
-    minWidth: DIALOG_WIDTH_WIDER,
   },
   content: {
     '&:first-child': {
@@ -100,7 +96,6 @@ const PickersModalDialog: React.FC<PickerModalDialogProps & WithStyles<typeof st
     open,
     showTodayButton = false,
     todayText = 'Today',
-    wider,
   } = props;
 
   return (
@@ -111,9 +106,7 @@ const PickersModalDialog: React.FC<PickerModalDialogProps & WithStyles<typeof st
       classes={{
         ...DialogProps.classes,
         container: classes.container,
-        paper: clsx(classes.paper, {
-          [classes.paperWider]: wider,
-        }),
+        paper: classes.paper,
       }}
     >
       <DialogContent className={classes.content}>{children}</DialogContent>

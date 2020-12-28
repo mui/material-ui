@@ -65,7 +65,7 @@ declare const Foo: OverridableComponent<{
 <Foo
   component="button"
   numberProp={3}
-  onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+  onClick={(event: React.MouseEvent<HTMLButtonElement>) => event.currentTarget.checkValidity()}
 />;
 
 // Can get inferred type for events by providing a component type parameter.
@@ -146,5 +146,5 @@ declare const Foo: OverridableComponent<{
   numberProp={3}
   // event type doesn't match component type
   // @ts-expect-error
-  onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+  onClick={(event: React.MouseEvent<HTMLButtonElement>) => event.currentTarget.checkValidity()}
 />;

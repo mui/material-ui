@@ -158,62 +158,52 @@ function PickersCalendarHeader<TDate>(
   };
 
   return (
-    <React.Fragment>
-      <div className={classes.root}>
-        <div role="presentation" className={classes.label} onClick={handleToggleView}>
-          <FadeTransitionGroup
-            reduceAnimations={reduceAnimations}
-            transKey={utils.format(month, 'month')}
+    <div className={classes.root}>
+      <div role="presentation" className={classes.label} onClick={handleToggleView}>
+        <FadeTransitionGroup
+          reduceAnimations={reduceAnimations}
+          transKey={utils.format(month, 'month')}
+        >
+          <div aria-live="polite" data-mui-test="calendar-month-text" className={classes.labelItem}>
+            {utils.format(month, 'month')}
+          </div>
+        </FadeTransitionGroup>
+        <FadeTransitionGroup
+          reduceAnimations={reduceAnimations}
+          transKey={utils.format(month, 'year')}
+        >
+          <div aria-live="polite" data-mui-test="calendar-year-text" className={classes.labelItem}>
+            {utils.format(month, 'year')}
+          </div>
+        </FadeTransitionGroup>
+        {views.length > 1 && (
+          <SwitchViewButton
+            size="small"
+            className={classes.yearSelectionSwitcher}
+            aria-label={getViewSwitchingButtonText(currentView)}
+            {...switchViewButtonProps}
           >
-            <div
-              aria-live="polite"
-              data-mui-test="calendar-month-text"
-              className={classes.labelItem}
-            >
-              {utils.format(month, 'month')}
-            </div>
-          </FadeTransitionGroup>
-          <FadeTransitionGroup
-            reduceAnimations={reduceAnimations}
-            transKey={utils.format(month, 'year')}
-          >
-            <div
-              aria-live="polite"
-              data-mui-test="calendar-year-text"
-              className={classes.labelItem}
-            >
-              {utils.format(month, 'year')}
-            </div>
-          </FadeTransitionGroup>
-          {views.length > 1 && (
-            <SwitchViewButton
-              size="small"
-              className={classes.yearSelectionSwitcher}
-              aria-label={getViewSwitchingButtonText(currentView)}
-              {...switchViewButtonProps}
-            >
-              <SwitchViewIcon
-                className={clsx(classes.switchView, {
-                  [classes.switchViewActive]: currentView === 'year',
-                })}
-              />
-            </SwitchViewButton>
-          )}
-        </div>
-        <Fade in={currentView === 'date'}>
-          <PickersArrowSwitcher
-            leftArrowButtonText={leftArrowButtonText}
-            rightArrowButtonText={rightArrowButtonText}
-            components={components}
-            componentsProps={componentsProps}
-            onLeftClick={selectPreviousMonth}
-            onRightClick={selectNextMonth}
-            isLeftDisabled={isPreviousMonthDisabled}
-            isRightDisabled={isNextMonthDisabled}
-          />
-        </Fade>
+            <SwitchViewIcon
+              className={clsx(classes.switchView, {
+                [classes.switchViewActive]: currentView === 'year',
+              })}
+            />
+          </SwitchViewButton>
+        )}
       </div>
-    </React.Fragment>
+      <Fade in={currentView === 'date'}>
+        <PickersArrowSwitcher
+          leftArrowButtonText={leftArrowButtonText}
+          rightArrowButtonText={rightArrowButtonText}
+          components={components}
+          componentsProps={componentsProps}
+          onLeftClick={selectPreviousMonth}
+          onRightClick={selectNextMonth}
+          isLeftDisabled={isPreviousMonthDisabled}
+          isRightDisabled={isNextMonthDisabled}
+        />
+      </Fade>
+    </div>
   );
 }
 

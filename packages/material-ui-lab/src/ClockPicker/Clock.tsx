@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { createStyles, WithStyles, Theme, withStyles } from '@material-ui/core/styles';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import { VIEW_HEIGHT } from '../internal/pickers/constants/dimensions';
 import { ClockViewType } from '../internal/pickers/constants/ClockType';
 import { getHours, getMinutes } from '../internal/pickers/time-utils';
 import { useGlobalKeyDown, keycode } from '../internal/pickers/hooks/useKeyDown';
@@ -40,15 +39,15 @@ export const styles = (theme: Theme) =>
     root: {
       display: 'flex',
       justifyContent: 'center',
-      position: 'relative',
-      minHeight: VIEW_HEIGHT,
       alignItems: 'center',
+      margin: theme.spacing(2),
     },
     clock: {
       backgroundColor: 'rgba(0,0,0,.07)',
       borderRadius: '50%',
-      height: 260,
-      width: 260,
+      height: 220,
+      width: 220,
+      flexShrink: 0,
       position: 'relative',
       pointerEvents: 'none',
     },
@@ -109,6 +108,7 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     children: numbersElementsArray,
     classes,
     date,
+    getClockLabelText,
     handleMeridiemChange,
     isTimeDisabled,
     meridiemMode,
@@ -116,7 +116,6 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     onChange,
     type,
     value,
-    getClockLabelText,
   } = props;
 
   const utils = useUtils();
@@ -135,14 +134,14 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     onChange(newValue, isFinish);
   };
 
-  const setTime = (e: any, isFinish: PickerSelectionState) => {
-    let { offsetX, offsetY } = e;
+  const setTime = (event: any, isFinish: PickerSelectionState) => {
+    let { offsetX, offsetY } = event;
 
     if (typeof offsetX === 'undefined') {
-      const rect = e.target.getBoundingClientRect();
+      const rect = event.target.getBoundingClientRect();
 
-      offsetX = e.changedTouches[0].clientX - rect.left;
-      offsetY = e.changedTouches[0].clientY - rect.top;
+      offsetX = event.changedTouches[0].clientX - rect.left;
+      offsetY = event.changedTouches[0].clientY - rect.top;
     }
 
     const newSelectedValue =
@@ -153,37 +152,37 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     handleValueChange(newSelectedValue, isFinish);
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleTouchMove = (event: React.TouchEvent) => {
     isMoving.current = true;
-    setTime(e, 'shallow');
+    setTime(event, 'shallow');
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const handleTouchEnd = (event: React.TouchEvent) => {
     if (isMoving.current) {
-      setTime(e, 'finish');
+      setTime(event, 'finish');
       isMoving.current = false;
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
     // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
     const isButtonPressed =
       // tslint:disable-next-line deprecation
-      typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
+      typeof event.buttons === 'undefined' ? event.nativeEvent.which === 1 : event.buttons === 1;
 
     if (isButtonPressed) {
-      setTime(e.nativeEvent, 'shallow');
+      setTime(event.nativeEvent, 'shallow');
     }
   };
 
-  const handleMouseUp = (e: React.MouseEvent) => {
+  const handleMouseUp = (event: React.MouseEvent) => {
     if (isMoving.current) {
       isMoving.current = false;
     }
 
-    setTime(e.nativeEvent, 'finish');
+    setTime(event.nativeEvent, 'finish');
   };
 
   const hasSelected = React.useMemo(() => {
@@ -208,7 +207,7 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
         <div
           role="menu"
           data-mui-test="clock"
-          tabIndex={-1}
+          tabIndex={0}
           className={classes.squareMask}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}

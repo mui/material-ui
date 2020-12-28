@@ -1,80 +1,47 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import { createStyles, WithStyles, withStyles, Theme, alpha } from '@material-ui/core/styles';
-import { onSpaceOrEnter } from '../internal/pickers/utils';
-import { useCanAutoFocus } from '../internal/pickers/hooks/useCanAutoFocus';
-import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
-
-const positions: Record<number, [number, number]> = {
-  0: [0, 40],
-  1: [55, 19.6],
-  2: [94.4, 59.5],
-  3: [109, 114],
-  4: [94.4, 168.5],
-  5: [54.5, 208.4],
-  6: [0, 223],
-  7: [-54.5, 208.4],
-  8: [-94.4, 168.5],
-  9: [-109, 114],
-  10: [-94.4, 59.5],
-  11: [-54.5, 19.6],
-  12: [0, 5],
-  13: [36.9, 49.9],
-  14: [64, 77],
-  15: [74, 114],
-  16: [64, 151],
-  17: [37, 178],
-  18: [0, 188],
-  19: [-37, 178],
-  20: [-64, 151],
-  21: [-74, 114],
-  22: [-64, 77],
-  23: [-37, 50],
-};
+import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from '../internal/pickers/constants/dimensions';
 
 export interface ClockNumberProps {
   disabled: boolean;
-  getClockNumberText: (currentItemText: string) => string;
   index: number;
-  isInner?: boolean;
+  inner: boolean;
   label: string;
-  onSelect: (isFinish: PickerSelectionState) => void;
   selected: boolean;
+  'aria-label': string;
 }
 
-export const styles = (theme: Theme) => {
-  const size = 32;
-  const clockNumberColor =
-    theme.palette.mode === 'light' ? theme.palette.text.primary : theme.palette.text.secondary;
-
-  return createStyles({
+export const styles = (theme: Theme) =>
+  createStyles({
     root: {
-      outline: 0,
-      width: size,
-      height: size,
-      userSelect: 'none',
+      width: CLOCK_HOUR_WIDTH,
+      height: CLOCK_HOUR_WIDTH,
       position: 'absolute',
-      left: `calc((100% - ${size}px) / 2)`,
+      left: `calc((100% - ${CLOCK_HOUR_WIDTH}px) / 2)`,
       display: 'inline-flex',
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: '50%',
-      color: clockNumberColor,
+      color: theme.palette.text.primary,
       '&:focused': {
         backgroundColor: theme.palette.background.paper,
       },
+      '&$selected': {
+        color: theme.palette.primary.contrastText,
+      },
+      '&$disabled': {
+        pointerEvents: 'none',
+        color: theme.palette.text.disabled,
+      },
     },
-    clockNumberSelected: {
-      color: theme.palette.primary.contrastText,
-    },
-    clockNumberDisabled: {
-      pointerEvents: 'none',
-      color: alpha(clockNumberColor, 0.2),
+    selected: {},
+    disabled: {},
+    inner: {
+      ...theme.typography.body2,
+      color: theme.palette.text.secondary,
     },
   });
-};
 
 export type ClockNumberClassKey = keyof WithStyles<typeof styles>['classes'];
 
@@ -82,54 +49,32 @@ export type ClockNumberClassKey = keyof WithStyles<typeof styles>['classes'];
  * @ignore - internal component.
  */
 const ClockNumber: React.FC<ClockNumberProps & WithStyles<typeof styles>> = (props) => {
-  const {
-    disabled,
-    getClockNumberText,
-    index,
-    isInner,
-    label,
-    onSelect,
-    selected,
-    classes,
-  } = props;
+  const { classes, disabled, index, inner, label, selected, ...other } = props;
 
-  const canAutoFocus = useCanAutoFocus();
-  const ref = React.useRef<HTMLSpanElement>(null);
-  const className = clsx(classes.root, {
-    [classes.clockNumberSelected]: selected,
-    [classes.clockNumberDisabled]: disabled,
-  });
+  const angle = ((index % 12) / 12) * Math.PI * 2 - Math.PI / 2;
+  const length = ((CLOCK_WIDTH - CLOCK_HOUR_WIDTH - 2) / 2) * (inner ? 0.65 : 1);
+  const x = Math.round(Math.cos(angle) * length);
+  const y = Math.round(Math.sin(angle) * length);
 
-  const transformStyle = React.useMemo(() => {
-    const position = positions[index];
-
-    return {
-      transform: `translate(${position[0]}px, ${position[1]}px`,
-    };
-  }, [index]);
-
-  React.useEffect(() => {
-    if (canAutoFocus && selected && ref.current) {
-      ref.current.focus();
-    }
-  }, [canAutoFocus, selected]);
+  const transformStyle = {
+    transform: `translate(${x}px, ${y + (CLOCK_WIDTH - CLOCK_HOUR_WIDTH) / 2}px`,
+  };
 
   return (
-    <ButtonBase
-      focusRipple
-      centerRipple
-      ref={ref}
-      aria-disabled={disabled}
-      tabIndex={disabled ? -1 : 0}
-      component="span"
-      className={className}
+    <span
+      className={clsx(classes.root, {
+        [classes.selected]: selected,
+        [classes.disabled]: disabled,
+        [classes.inner]: inner,
+      })}
       style={transformStyle}
-      aria-label={getClockNumberText(label)}
-      onKeyDown={onSpaceOrEnter(() => onSelect('finish'))}
+      {...other}
     >
-      <Typography variant={isInner ? 'body2' : 'body1'}>{label}</Typography>
-    </ButtonBase>
+      {label}
+    </span>
   );
 };
 
-export default withStyles(styles, { name: 'MuiClockNumber' })(ClockNumber);
+export default withStyles(styles, { name: 'MuiClockNumber' })(ClockNumber) as (
+  props: ClockNumberProps,
+) => JSX.Element;

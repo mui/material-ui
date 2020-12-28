@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import { TypographyProps } from '@material-ui/core/Typography';
-import ToolbarText from './PickersToolbarText';
+import PickersToolbarText from './PickersToolbarText';
 import { ExtendMui } from './typings/helpers';
 
 export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'variant'> {
@@ -45,7 +45,7 @@ const ToolbarButton: React.FunctionComponent<ToolbarButtonProps & WithStyles<typ
       className={clsx(classes.root, className)}
       {...other}
     >
-      <ToolbarText
+      <PickersToolbarText
         align={align}
         className={typographyClassName}
         variant={variant}

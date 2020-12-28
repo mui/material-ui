@@ -191,8 +191,8 @@ describe('<DateTimePicker />', () => {
       />,
     );
 
-    expect(screen.getByLabelText('25 minutes')).to.have.attribute('aria-disabled', 'true');
-    expect(screen.getByLabelText('35 minutes')).to.have.attribute('aria-disabled', 'false');
+    expect(screen.getByLabelText('25 minutes')).to.have.class('Mui-disabled');
+    expect(screen.getByLabelText('35 minutes')).to.not.have.class('Mui-disabled');
   });
 
   it('prop: minDateTime – hours is disabled by date part', () => {
@@ -208,7 +208,7 @@ describe('<DateTimePicker />', () => {
       />,
     );
 
-    expect(screen.getByLabelText('11 hours')).to.have.attribute('aria-disabled', 'true');
+    expect(screen.getByLabelText('11 hours')).to.have.class('Mui-disabled');
   });
 
   it('shows ArrowSwitcher on ClockView disabled and not allows to return back to the date', () => {
