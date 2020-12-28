@@ -709,7 +709,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               disabled={disabled}
               value={values[index]}
               onChange={handleHiddenInputChange}
-              style={{ ...visuallyHidden, direction: isRtl ? 'rtl' : 'ltr' }}
+              style={{
+                ...visuallyHidden,
+                direction: isRtl ? 'rtl' : 'ltr',
+                // webkit ignores `aria-orientation`: https://bugs.chromium.org/p/chromium/issues/detail?id=1158217#c7
+                WebkitAppearance: orientation === 'vertical' ? 'slider-vertical' : undefined,
+              }}
             />
             <ValueLabelComponent
               valueLabelFormat={valueLabelFormat}

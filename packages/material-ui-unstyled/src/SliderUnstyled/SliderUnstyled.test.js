@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformance, screen } from 'test/utils';
 import SliderUnstyled, {
   sliderUnstyledClasses as classes,
 } from '@material-ui/unstyled/SliderUnstyled';
@@ -55,5 +55,22 @@ describe('<SliderUnstyled />', () => {
     const { current: element } = elementRef;
     expect(element.getAttribute('styleProps')).to.equal(null);
     expect(element.getAttribute('theme')).to.equal(null);
+  });
+
+  describe('prop: orientation', () => {
+    it('sets the orientation in accessibility APIs', () => {
+      render(<SliderUnstyled orientation="vertical" />);
+
+      const slider = screen.getByRole('slider');
+      expect(slider).to.have.attribute('aria-orientation', 'vertical');
+
+      // test workaround for
+      if (/WebKit/.test(window.navigator.userAgent)) {
+        expect(slider).to.have.property('tagName', 'INPUT');
+        expect(slider).to.have.property('type', 'range');
+        // Only relevant if we implement `[role="slider"]` with `input[type="range"]`
+        expect(slider).toHaveComputedStyle({ webkitAppearance: 'slider-vertical' });
+      }
+    });
   });
 });

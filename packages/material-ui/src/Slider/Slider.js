@@ -97,7 +97,6 @@ export const SliderRoot = experimentalStyled(
     width: 2,
     height: '100%',
     padding: '0 13px',
-    '-webkit-appearance': 'slider-vertical',
   }),
   // The primary input mechanism of the device includes a pointing device of limited accuracy.
   '@media (pointer: coarse)': {

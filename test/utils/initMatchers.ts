@@ -330,7 +330,12 @@ chai.use((chaiAPI, utils) => {
     // This is closer to actual CSS and required for getPropertyValue anyway.
     const expectedStyle: Record<string, string> = {};
     Object.keys(expectedStyleUnnormalized).forEach((cssProperty) => {
-      expectedStyle[_.kebabCase(cssProperty)] = expectedStyleUnnormalized[cssProperty];
+      const hyphenCasedPropertyName = _.kebabCase(cssProperty);
+      const isVendorPrefixed = /^(moz|ms|o|webkit)-/.test(hyphenCasedPropertyName);
+      const propertyName = isVendorPrefixed
+        ? `-${hyphenCasedPropertyName}`
+        : hyphenCasedPropertyName;
+      expectedStyle[propertyName] = expectedStyleUnnormalized[cssProperty];
     });
 
     const actualStyle: Record<string, string> = {};
