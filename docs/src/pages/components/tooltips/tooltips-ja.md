@@ -16,11 +16,11 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## Simple Tooltips
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
 ## Positioned tooltips
 
-`ツールチップ` は、12 **配置** 選択肢があります。 矢印はありません。その代わりに、方向を伝達するためにソースから発生するモーションに依存します。
+`ツールチップ` は、12 **配置** 選択肢があります。 They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
