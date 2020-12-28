@@ -58,19 +58,26 @@ describe('<SliderUnstyled />', () => {
   });
 
   describe('prop: orientation', () => {
-    it('sets the orientation in accessibility APIs', () => {
+    it('sets the orientation via ARIA', () => {
       render(<SliderUnstyled orientation="vertical" />);
 
       const slider = screen.getByRole('slider');
       expect(slider).to.have.attribute('aria-orientation', 'vertical');
+    });
 
-      // test workaround for https://bugs.chromium.org/p/chromium/issues/detail?id=1158217
-      if (!/jsdom/.test(window.navigator.userAgent) && /WebKit/.test(window.navigator.userAgent)) {
-        expect(slider).to.have.property('tagName', 'INPUT');
-        expect(slider).to.have.property('type', 'range');
-        // Only relevant if we implement `[role="slider"]` with `input[type="range"]`
-        expect(slider).toHaveComputedStyle({ webkitAppearance: 'slider-vertical' });
+    it('sets the orientation via appearance for WebKit browsers', function test() {
+      if (/jsdom/.test(window.navigator.userAgent) || !/WebKit/.test(window.navigator.userAgent)) {
+        this.skip();
       }
+
+      render(<SliderUnstyled orientation="vertical" />);
+
+      const slider = screen.getByRole('slider');
+
+      expect(slider).to.have.property('tagName', 'INPUT');
+      expect(slider).to.have.property('type', 'range');
+      // Only relevant if we implement `[role="slider"]` with `input[type="range"]`
+      expect(slider).toHaveComputedStyle({ webkitAppearance: 'slider-vertical' });
     });
   });
 });
