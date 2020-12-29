@@ -158,7 +158,9 @@ const AirbnbSlider = styled(Slider)({
   },
 });
 
-function AirbnbThumbComponent(props: any) {
+interface AirbnbThumbComponentProps extends React.HTMLAttributes<unknown> {}
+
+function AirbnbThumbComponent(props: AirbnbThumbComponentProps) {
   const { children, ...other } = props;
   return (
     <SliderThumb {...other}>

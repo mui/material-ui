@@ -171,6 +171,10 @@ function AirbnbThumbComponent(props) {
   );
 }
 
+AirbnbThumbComponent.propTypes = {
+  children: PropTypes.node,
+};
+
 export default function CustomizedSlider() {
   return (
     <Root>
