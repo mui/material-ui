@@ -244,6 +244,7 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/guides',
+    title: 'How To Guides',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
