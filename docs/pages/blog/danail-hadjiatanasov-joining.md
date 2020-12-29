@@ -22,4 +22,4 @@ He's now actively working on new features for the data grid.
 
 The enterprise team will continue developing the data grid component, and progressively extend to new advanced components as we grow the team. Here's a quick view of [the enterprise roadmap](https://github.com/mui-org/material-ui-x/projects/1).
 
-We couldn’t be more excited to have Danail on the team! You can follow him on [Twitter](https://twitter.com/danail_h).
+We couldn't be more excited to have Danail on the team! You can follow him on [Twitter](https://twitter.com/danail_h).

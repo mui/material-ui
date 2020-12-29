@@ -17,6 +17,7 @@ describe('<Avatar />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     muiName: 'MuiAvatar',
+    testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
     testVariantProps: { variant: 'foo' },
     skip: ['componentsProp'],
   }));

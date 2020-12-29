@@ -68,7 +68,7 @@ const DateTimePickerTabs: React.FC<DateTimePickerTabsProps & WithStyles<typeof s
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const indicatorColor = theme.palette.mode === 'light' ? 'secondary' : 'primary';
 
-  const handleChange = (e: React.ChangeEvent<{}>, value: DateTimePickerView) => {
+  const handleChange = (event: React.ChangeEvent<{}>, value: DateTimePickerView) => {
     if (value !== viewToTabIndex(view)) {
       onChange(tabIndexToView(value));
     }

@@ -4,7 +4,7 @@
 
 ## Border
 
-Use border utilities to add or remove an element’s borders. Choose from all borders or one at a time.
+Use border utilities to add or remove an element's borders. Choose from all borders or one at a time.
 
 ### Additive
 

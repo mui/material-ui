@@ -1,6 +1,6 @@
 # Sponsors & Backers
 
-<p class="description">Support Material-UI core’s development through crowdfunding.</p>
+<p class="description">Support Material-UI core's development through crowdfunding.</p>
 
 The core of Material-UI is a crowd-funded open-source project, licensed under the permissive MIT license. Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
@@ -80,7 +80,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
 
 The core of Material-UI is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To make Material-UI a project that users can rely on for years to come, it needs to be well directed and financially sustainable.
 
-The absolute best way to support Material-UI’s ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving Material-UI core, which you and other Material-UI users then benefit from.
+The absolute best way to support Material-UI's ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving Material-UI core, which you and other Material-UI users then benefit from.
 
 ### How is sponsorship money spent?
 

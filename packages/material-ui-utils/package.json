@@ -35,8 +35,7 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": "^16.8.0 || ^17.0.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",

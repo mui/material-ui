@@ -49,7 +49,7 @@ export const borderColor = style({
 
 function resolveCssProperty(props, prop, transformer) {
   // Using a hash computation over an array iteration could be faster, but with only 28 items,
-  // it isn’t worth the bundle size.
+  // it isn't worth the bundle size.
   if (prop !== 'borderRadius') {
     return null;
   }

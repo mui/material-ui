@@ -22,6 +22,7 @@ describe('<Button />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testVariantProps: { variant: 'contained', fullWidth: true },
     skip: ['componentsProp'],
   }));

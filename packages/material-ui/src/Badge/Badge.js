@@ -35,7 +35,7 @@ const overridesResolver = (props, styles) => {
     overlap = 'rectangular',
   } = props;
 
-  return deepmerge(styles.root, {
+  return deepmerge(styles.root || {}, {
     [`& .${badgeClasses.badge}`]: {
       ...styles.badge,
       ...styles[variant],
@@ -53,7 +53,7 @@ const overridesResolver = (props, styles) => {
 const BadgeRoot = styled(
   'span',
   {},
-  { name: 'Badge', slot: 'Root', overridesResolver },
+  { name: 'MuiBadge', slot: 'Root', overridesResolver },
 )({
   position: 'relative',
   display: 'inline-flex',
@@ -65,7 +65,7 @@ const BadgeRoot = styled(
 const BadgeBadge = styled(
   'span',
   {},
-  { name: 'Badge', slot: 'Badge', overridesResolver },
+  { name: 'MuiBadge', slot: 'Badge', overridesResolver },
 )(({ theme, styleProps }) => ({
   display: 'flex',
   flexDirection: 'row',

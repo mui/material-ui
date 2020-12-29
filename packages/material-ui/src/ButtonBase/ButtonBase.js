@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
+import { deepmerge, elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
@@ -13,17 +13,16 @@ import buttonBaseClasses from './buttonBaseClasses';
 const overridesResolver = (props, styles) => {
   const { disabled, focusVisible } = props;
 
-  return {
-    ...styles.root,
+  return deepmerge(styles.root || {}, {
     ...(disabled && styles.disabled),
     ...(focusVisible && styles.focusVisible),
-  };
+  });
 };
 
 export const ButtonBaseRoot = experimentalStyled(
   'button',
   {},
-  { name: 'ButtonBase', slot: 'Root', overridesResolver },
+  { name: 'MuiButtonBase', slot: 'Root', overridesResolver },
 )({
   display: 'inline-flex',
   alignItems: 'center',
@@ -440,8 +439,8 @@ ButtonBase.propTypes = {
    */
   focusRipple: PropTypes.bool,
   /**
-   * This prop can help a person know which element has the keyboard focus.
-   * The class name will be applied when the element gain the focus through a keyboard interaction.
+   * This prop can help identify which element has keyboard focus.
+   * The class name will be applied when the element gains the focus through keyboard interaction.
    * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
    * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
    * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components

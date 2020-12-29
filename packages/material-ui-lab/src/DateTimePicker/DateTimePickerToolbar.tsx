@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
-import ToolbarText from '../internal/pickers/PickersToolbarText';
-import PickerToolbar from '../internal/pickers/PickersToolbar';
+import PickersToolbarText from '../internal/pickers/PickersToolbarText';
+import PickersToolbar from '../internal/pickers/PickersToolbar';
 import ToolbarButton from '../internal/pickers/PickersToolbarButton';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
@@ -85,7 +85,7 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
   return (
     <React.Fragment>
       {wrapperVariant !== 'desktop' && (
-        <PickerToolbar
+        <PickersToolbar
           toolbarTitle={toolbarTitle}
           penIconClassName={classes.penIcon}
           className={classes.root}
@@ -114,7 +114,6 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
           </div>
           <div className={classes.timeContainer}>
             <ToolbarButton
-              tabIndex={-1}
               variant="h3"
               data-mui-test="hours"
               onClick={() => setOpenView('hours')}
@@ -122,9 +121,8 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
               value={date ? formatHours(date) : '--'}
               typographyClassName={classes.timeTypography}
             />
-            <ToolbarText variant="h3" value=":" className={classes.separator} />
+            <PickersToolbarText variant="h3" value=":" className={classes.separator} />
             <ToolbarButton
-              tabIndex={-1}
               variant="h3"
               data-mui-test="minutes"
               onClick={() => setOpenView('minutes')}
@@ -133,7 +131,7 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
               typographyClassName={classes.timeTypography}
             />
           </div>
-        </PickerToolbar>
+        </PickersToolbar>
       )}
       {showTabs && (
         <DateTimePickerTabs

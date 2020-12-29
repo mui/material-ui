@@ -1,4 +1,5 @@
 import { ParsableDate } from './constants/prop-types';
+import { CLOCK_WIDTH } from './constants/dimensions';
 import { MuiPickersAdapter } from './hooks/useUtils';
 
 type Meridiem = 'am' | 'pm' | null;
@@ -33,8 +34,8 @@ export const convertToMeridiem = <TDate>(
 };
 
 const clockCenter = {
-  x: 260 / 2,
-  y: 260 / 2,
+  x: CLOCK_WIDTH / 2,
+  y: CLOCK_WIDTH / 2,
 };
 
 const baseClockPoint = {

@@ -22,9 +22,9 @@ If you didn't find a suitable issue you can also follow [@MuiContrib](https://tw
 
 We also have a list of [good to take issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
 
-If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you have started to work on it so other people don’t accidentally duplicate your effort.
+If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you have started to work on it so other people don't accidentally duplicate your effort.
 
-If somebody claims an issue but doesn’t follow up for more than a week, it’s fine to take it over but you should still leave a comment.
+If somebody claims an issue but doesn't follow up for more than a week, it's fine to take it over but you should still leave a comment.
 If there has been no activity on the issue for 7 to 14 days, it is safe to assume that nobody is working on it.
 
 ## Sending a Pull Request

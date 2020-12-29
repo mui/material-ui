@@ -36,25 +36,21 @@ const onlyDateView = ['date'] as ['date'];
 export function DateRangePickerViewMobile<TDate>(props: DesktopDateRangeCalendarProps<TDate>) {
   const {
     changeMonth,
+    components,
+    componentsProps,
     date,
-    leftArrowButtonProps,
     leftArrowButtonText,
-    leftArrowIcon,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    minDate: __minDate,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    maxDate: __maxDate,
+    maxDate: maxDateProp,
+    minDate: minDateProp,
     onChange,
-    rightArrowButtonProps,
-    rightArrowButtonText,
-    rightArrowIcon,
     renderDay = (_, dayProps) => <DateRangeDay<TDate> {...dayProps} />,
+    rightArrowButtonText,
     ...other
   } = props;
 
   const utils = useUtils();
-  const minDate = __minDate || utils.date(defaultMinDate);
-  const maxDate = __maxDate || utils.date(defaultMaxDate);
+  const minDate = minDateProp || utils.date(defaultMinDate);
+  const maxDate = maxDateProp || utils.date(defaultMaxDate);
 
   return (
     <React.Fragment>
@@ -63,11 +59,9 @@ export function DateRangePickerViewMobile<TDate>(props: DesktopDateRangeCalendar
         views={onlyDateView}
         onMonthChange={changeMonth as any}
         leftArrowButtonText={leftArrowButtonText}
-        leftArrowButtonProps={leftArrowButtonProps}
-        leftArrowIcon={leftArrowIcon}
-        rightArrowButtonProps={rightArrowButtonProps}
+        components={components}
+        componentsProps={componentsProps}
         rightArrowButtonText={rightArrowButtonText}
-        rightArrowIcon={rightArrowIcon}
         minDate={minDate}
         maxDate={maxDate}
         {...other}

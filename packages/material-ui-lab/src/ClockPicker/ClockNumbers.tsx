@@ -20,7 +20,6 @@ export const getHourNumbers = ({
   date,
   getClockNumberText,
   isDisabled,
-  onChange,
   utils,
 }: GetHourNumbersOptions) => {
   const currentHours = date ? utils.getHours(date) : null;
@@ -52,17 +51,18 @@ export const getHourNumbers = ({
       label = '00';
     }
 
-    const isInner = !ampm && (hour === 0 || hour > 12);
+    const inner = !ampm && (hour === 0 || hour > 12);
+    label = utils.formatNumber(label);
+
     hourNumbers.push(
       <ClockNumber
         key={hour}
         index={hour}
-        isInner={isInner}
+        inner={inner}
         selected={isSelected(hour)}
         disabled={isDisabled(hour)}
-        label={utils.formatNumber(label)}
-        onSelect={() => onChange(hour, 'finish')}
-        getClockNumberText={getClockNumberText}
+        label={label}
+        aria-label={getClockNumberText(label)}
       />,
     );
   }
@@ -73,7 +73,6 @@ export const getHourNumbers = ({
 export const getMinutesNumbers = ({
   utils,
   value,
-  onChange,
   isDisabled,
   getClockNumberText,
 }: Omit<GetHourNumbersOptions, 'ampm' | 'date'> & { value: number }) => {
@@ -97,10 +96,10 @@ export const getMinutesNumbers = ({
       key={numberValue}
       label={label}
       index={index + 1}
+      inner={false}
       disabled={isDisabled(numberValue)}
       selected={numberValue === value}
-      onSelect={(isFinish) => onChange(numberValue, isFinish)}
-      getClockNumberText={getClockNumberText}
+      aria-label={getClockNumberText(label)}
     />
   ));
 };

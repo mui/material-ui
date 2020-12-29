@@ -22,6 +22,27 @@ const labUnitContext = require.context(
 );
 labUnitContext.keys().forEach(labUnitContext);
 
+const styledEngineContext = require.context(
+  '../packages/material-ui-styled-engine/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+styledEngineContext.keys().forEach(styledEngineContext);
+
+const styledEngineSCContext = require.context(
+  '../packages/material-ui-styled-engine-sc/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+styledEngineSCContext.keys().forEach(styledEngineSCContext);
+
+const systemContext = require.context(
+  '../packages/material-ui-system/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+systemContext.keys().forEach(systemContext);
+
 const unstyledContext = require.context(
   '../packages/material-ui-unstyled/src/',
   true,

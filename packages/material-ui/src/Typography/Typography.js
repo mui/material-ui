@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
@@ -21,8 +22,7 @@ const getTextColor = (color, palette) => {
 const overridesResolver = (props, styles) => {
   const { styleProps = {} } = props;
 
-  return {
-    ...styles.root,
+  return deepmerge(styles.root || {}, {
     ...(styleProps.variant && styles[styleProps.variant]),
     ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
     ...(styleProps.align && styles[`align${capitalize(styleProps.align)}`]),
@@ -30,13 +30,13 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.noWrap && styles.noWrap),
     ...(styleProps.gutterBottom && styles.gutterBottom),
     ...(styleProps.paragraph && styles.paragraph),
-  };
+  });
 };
 
 export const TypographyRoot = experimentalStyled(
   'span',
   {},
-  { name: 'Typography', slot: 'Root', overridesResolver },
+  { name: 'MuiTypography', slot: 'Root', overridesResolver },
 )(({ theme, styleProps }) => ({
   margin: 0,
   ...(styleProps.variant && theme.typography[styleProps.variant]),

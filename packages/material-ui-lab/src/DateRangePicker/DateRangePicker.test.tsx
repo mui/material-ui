@@ -104,7 +104,7 @@ describe('<DateRangePicker />', () => {
 
     fireEvent.click(screen.getByLabelText('Jan 1, 2019'));
     fireEvent.click(
-      screen.getByLabelText('next month', { selector: ':not([aria-hidden="true"])' }),
+      screen.getByLabelText('Next month', { selector: ':not([aria-hidden="true"])' }),
     );
     fireEvent.click(screen.getByLabelText('Mar 19, 2019'));
 

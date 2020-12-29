@@ -58,7 +58,7 @@ function testThemeComponents(element, getOptions) {
     });
 
     it("respect theme's styleOverrides", () => {
-      const { muiName } = getOptions();
+      const { muiName, testDeepOverrides } = getOptions();
 
       const testStyle = {
         marginTop: '13px',
@@ -68,7 +68,19 @@ function testThemeComponents(element, getOptions) {
         components: {
           [muiName]: {
             styleOverrides: {
-              root: testStyle,
+              root: {
+                ...testStyle,
+                ...(testDeepOverrides && {
+                  [`& .${testDeepOverrides.slotClassName}`]: {
+                    marginBottom: '10px',
+                  },
+                }),
+              },
+              ...(testDeepOverrides && {
+                [testDeepOverrides.slotName]: {
+                  marginTop: '10px',
+                },
+              }),
             },
           },
         },
@@ -77,6 +89,43 @@ function testThemeComponents(element, getOptions) {
       const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
+
+      if (testDeepOverrides) {
+        expect(
+          container.firstChild.getElementsByClassName(testDeepOverrides.slotClassName)[0],
+        ).to.toHaveComputedStyle({
+          marginBottom: '10px',
+          marginTop: '10px',
+        });
+      }
+
+      const themeWithoutRootOverrides = createMuiTheme({
+        components: {
+          [muiName]: {
+            styleOverrides: {
+              ...(testDeepOverrides && {
+                [testDeepOverrides.slotName]: {
+                  marginTop: '10px',
+                },
+              }),
+            },
+          },
+        },
+      });
+
+      const { container: containerWithoutRootOverrides } = render(
+        <ThemeProvider theme={themeWithoutRootOverrides}>{element}</ThemeProvider>,
+      );
+
+      if (testDeepOverrides) {
+        expect(
+          containerWithoutRootOverrides.firstChild.getElementsByClassName(
+            testDeepOverrides.slotClassName,
+          )[0],
+        ).to.toHaveComputedStyle({
+          marginTop: '10px',
+        });
+      }
     });
 
     it("respect theme's variants", () => {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, deepmerge } from '@material-ui/utils';
 import {
   SliderUnstyled,
   SliderValueLabelUnstyled,
@@ -45,8 +45,7 @@ const overridesResolver = (props, styles) => {
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-  return {
-    ...styles.root,
+  return deepmerge(styles.root || {}, {
     ...styles[`color${capitalize(color)}`],
     [`&.${sliderClasses.disabled}`]: styles.disabled,
     ...(marked && styles.marked),
@@ -63,14 +62,14 @@ const overridesResolver = (props, styles) => {
       ...styles[`thumbColor${capitalize(color)}`],
       [`&.${sliderClasses.disabled}`]: styles.disabled,
     },
-  };
+  });
 };
 
 export const SliderRoot = experimentalStyled(
   'span',
   {},
   {
-    name: 'Slider',
+    name: 'MuiSlider',
     slot: 'Root',
     overridesResolver,
   },
@@ -136,7 +135,7 @@ export const SliderRoot = experimentalStyled(
 export const SliderRail = experimentalStyled(
   'span',
   {},
-  { name: 'Slider', slot: 'Rail' },
+  { name: 'MuiSlider', slot: 'Rail' },
 )(({ styleProps }) => ({
   display: 'block',
   position: 'absolute',
@@ -157,7 +156,7 @@ export const SliderRail = experimentalStyled(
 export const SliderTrack = experimentalStyled(
   'span',
   {},
-  { name: 'Slider', slot: 'Track' },
+  { name: 'MuiSlider', slot: 'Track' },
 )(({ theme, styleProps }) => ({
   display: 'block',
   position: 'absolute',
@@ -182,7 +181,7 @@ export const SliderTrack = experimentalStyled(
 export const SliderThumb = experimentalStyled(
   'span',
   {},
-  { name: 'Slider', slot: 'Thumb' },
+  { name: 'MuiSlider', slot: 'Thumb' },
 )(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 12,
@@ -248,7 +247,7 @@ export const SliderThumb = experimentalStyled(
 export const SliderValueLabel = experimentalStyled(
   SliderValueLabelUnstyled,
   {},
-  { name: 'Slider', slot: 'ValueLabel' },
+  { name: 'MuiSlider', slot: 'ValueLabel' },
 )(({ theme }) => ({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
@@ -271,7 +270,7 @@ export const SliderValueLabel = experimentalStyled(
 export const SliderMark = experimentalStyled(
   'span',
   {},
-  { name: 'Slider', slot: 'Mark' },
+  { name: 'MuiSlider', slot: 'Mark' },
 )(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 2,
@@ -287,7 +286,7 @@ export const SliderMark = experimentalStyled(
 export const SliderMarkLabel = experimentalStyled(
   'span',
   {},
-  { name: 'Slider', slot: 'MarkLabel' },
+  { name: 'MuiSlider', slot: 'MarkLabel' },
 )(({ theme, styleProps }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,

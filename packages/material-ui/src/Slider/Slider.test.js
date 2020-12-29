@@ -37,6 +37,7 @@ describe('<Slider />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSlider',
+    testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
     testVariantProps: { color: 'primary', orientation: 'vertical' },
   }));
 

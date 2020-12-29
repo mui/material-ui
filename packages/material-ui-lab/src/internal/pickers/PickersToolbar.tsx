@@ -4,26 +4,18 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
-import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
-import { ExtendMui } from './typings/helpers';
 import PenIcon from '../svg-icons/Pen';
 import CalendarIcon from '../svg-icons/Calendar';
 import { ToolbarComponentProps } from './typings/BasePicker';
 
-export const styles = (theme: Theme) => {
-  const toolbarBackground =
-    theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.background.default;
-
-  return createStyles({
+export const styles = (theme: Theme) =>
+  createStyles({
     root: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'flex-start',
       justifyContent: 'space-between',
-      paddingTop: 16,
-      paddingBottom: 16,
-      backgroundColor: toolbarBackground,
-      color: theme.palette.getContrastText(toolbarBackground),
+      padding: theme.spacing(2, 3),
     },
     toolbarLandscape: {
       height: 'auto',
@@ -36,22 +28,19 @@ export const styles = (theme: Theme) => {
       flex: 1,
     },
   });
-};
 
 export type PickersToolbarClassKey = keyof WithStyles<typeof styles>['classes'];
 
 export interface PickersToolbarProps
-  extends ExtendMui<ToolbarProps>,
-    Pick<
-      ToolbarComponentProps,
-      | 'getMobileKeyboardInputViewButtonText'
-      | 'isMobileKeyboardViewOpen'
-      | 'toggleMobileKeyboardView'
-    > {
-  toolbarTitle: React.ReactNode;
-  landscapeDirection?: 'row' | 'column';
+  extends Pick<
+    ToolbarComponentProps,
+    'getMobileKeyboardInputViewButtonText' | 'isMobileKeyboardViewOpen' | 'toggleMobileKeyboardView'
+  > {
+  className?: string;
   isLandscape: boolean;
+  landscapeDirection?: 'row' | 'column';
   penIconClassName?: string;
+  toolbarTitle: React.ReactNode;
 }
 
 function defaultGetKeyboardInputSwitchingButtonText(isKeyboardInputOpen: boolean) {
@@ -60,24 +49,26 @@ function defaultGetKeyboardInputSwitchingButtonText(isKeyboardInputOpen: boolean
     : 'calendar view is open, go to text input view';
 }
 
-const PickerToolbar: React.FC<PickersToolbarProps & WithStyles<typeof styles>> = ({
-  children,
-  classes,
-  className,
-  getMobileKeyboardInputViewButtonText = defaultGetKeyboardInputSwitchingButtonText,
-  isLandscape,
-  isMobileKeyboardViewOpen,
-  landscapeDirection = 'column',
-  penIconClassName,
-  toggleMobileKeyboardView,
-  toolbarTitle,
-}) => {
+const PickerToolbar: React.FC<PickersToolbarProps & WithStyles<typeof styles>> = (props) => {
+  const {
+    children,
+    classes,
+    className,
+    getMobileKeyboardInputViewButtonText = defaultGetKeyboardInputSwitchingButtonText,
+    isLandscape,
+    isMobileKeyboardViewOpen,
+    landscapeDirection = 'column',
+    penIconClassName,
+    toggleMobileKeyboardView,
+    toolbarTitle,
+  } = props;
+
   return (
-    <Toolbar
+    <div
       data-mui-test="picker-toolbar"
       className={clsx(classes.root, { [classes.toolbarLandscape]: isLandscape }, className)}
     >
-      <Typography data-mui-test="picker-toolbar-title" color="inherit" variant="overline">
+      <Typography data-mui-test="picker-toolbar-title" color="textSecondary" variant="overline">
         {toolbarTitle}
       </Typography>
       <Grid
@@ -102,7 +93,7 @@ const PickerToolbar: React.FC<PickersToolbarProps & WithStyles<typeof styles>> =
           )}
         </IconButton>
       </Grid>
-    </Toolbar>
+    </div>
   );
 };
 

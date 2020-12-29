@@ -1,11 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { withStyles, createStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from '../internal/pickers/constants/dimensions';
 import { ClockViewType } from '../internal/pickers/constants/ClockType';
 
 export const styles = (theme: Theme) =>
   createStyles({
-    pointer: {
+    root: {
       width: 2,
       backgroundColor: theme.palette.primary.main,
       position: 'absolute',
@@ -20,11 +21,11 @@ export const styles = (theme: Theme) =>
       width: 4,
       height: 4,
       backgroundColor: theme.palette.primary.contrastText,
-      borderRadius: '100%',
+      borderRadius: '50%',
       position: 'absolute',
       top: -21,
-      left: -15,
-      border: `14px solid ${theme.palette.primary.main}`,
+      left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
+      border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
       boxSizing: 'content-box',
     },
     noPoint: {
@@ -37,10 +38,10 @@ export type ClockPointerClassKey = keyof WithStyles<typeof styles>['classes'];
 export interface ClockPointerProps
   extends React.HTMLProps<HTMLDivElement>,
     WithStyles<typeof styles> {
-  value: number;
   hasSelected: boolean;
   isInner: boolean;
   type: ClockViewType;
+  value: number;
 }
 
 /**
@@ -70,32 +71,30 @@ class ClockPointer extends React.Component<ClockPointerProps> {
     previousType: undefined,
   };
 
-  getAngleStyle = () => {
-    const { value, isInner, type } = this.props;
-
-    const max = type === 'hours' ? 12 : 60;
-    let angle = (360 / max) * value;
-
-    if (type === 'hours' && value > 12) {
-      angle -= 360; // round up angle to max 360 degrees
-    }
-
-    return {
-      height: isInner ? '26%' : '40%',
-      transform: `rotateZ(${angle}deg)`,
-    };
-  };
-
   render() {
     const { classes, hasSelected, isInner, type, value, ...other } = this.props;
 
+    const getAngleStyle = () => {
+      const max = type === 'hours' ? 12 : 60;
+      let angle = (360 / max) * value;
+
+      if (type === 'hours' && value > 12) {
+        angle -= 360; // round up angle to max 360 degrees
+      }
+
+      return {
+        height: Math.round((isInner ? 0.26 : 0.4) * CLOCK_WIDTH),
+        transform: `rotateZ(${angle}deg)`,
+      };
+    };
+
     return (
       <div
-        {...other}
-        style={this.getAngleStyle()}
-        className={clsx(classes.pointer, {
+        style={getAngleStyle()}
+        className={clsx(classes.root, {
           [classes.animateTransform]: this.state.toAnimateTransform,
         })}
+        {...other}
       >
         <div
           className={clsx(classes.thumb, {

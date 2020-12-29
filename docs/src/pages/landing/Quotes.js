@@ -29,7 +29,7 @@ const quotes = [
     username: '@fragileglass',
     tweet: 'https://twitter.com/fragileglass/status/1205256087290753025',
     quote:
-      'It’s a game changer with how nicely it works with React. It’s made working with React so much more enjoyable. Everything is configurable and predictable. Bootstrap was killing me. It was hijacking my whole project.',
+      "It's a game changer with how nicely it works with React. It's made working with React so much more enjoyable. Everything is configurable and predictable. Bootstrap was killing me. It was hijacking my whole project.",
   },
   {
     avatar: 'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',
@@ -61,7 +61,7 @@ const quotes = [
     username: '@SamDurrant_',
     tweet: 'https://twitter.com/SamDurrant_/status/1214741763455209473',
     quote:
-      'Began coding out the front end of my app today. Used <em>@MaterialUI</em> for the first time and love how easy it is to make things look nice. It’s also really cool to see all the hard work building out the backend of my app come to life in the front end!',
+      "Began coding out the front end of my app today. Used <em>@MaterialUI</em> for the first time and love how easy it is to make things look nice. It's also really cool to see all the hard work building out the backend of my app come to life in the front end!",
   },
   {
     avatar: 'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2',
@@ -69,7 +69,7 @@ const quotes = [
     username: '@fragileglass',
     tweet: 'https://twitter.com/fragileglass/status/1255170173226680320',
     quote:
-      'Sometimes a library is so incredibly awesome. You don’t want to use anything else. I absolutely love that I can have the Material look or completely customize <em>@MaterialUI</em> to any look I desire.',
+      "Sometimes a library is so incredibly awesome. You don't want to use anything else. I absolutely love that I can have the Material look or completely customize <em>@MaterialUI</em> to any look I desire.",
   },
   {
     avatar: 'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',

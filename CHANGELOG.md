@@ -77,6 +77,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [core] Batch small changes (#24038) @oliviertassinari
 - [core] Track size of /unstyled (#24021) @eps1lon
 - [core] Use consistent naming scheme for ttp annotations (#24022) @eps1lon
+
 ## 5.0.0-alpha.19
 
 ###### _Dec 13, 2020_
@@ -2390,7 +2391,7 @@ Big thanks to the 16 contributors who made this release possible.
 - [l10n] Update sv-SE locale (#21631) @tbz
 - [Menu] Remove overflow style in MenuItem (#21644) @tj3407
 - [MenuItem] Add types for ListItemClasses (#21654) @eps1lon
-- [Slider] Fix cannot read property ‘focus’ of null (#21653) @mageprincess
+- [Slider] Fix cannot read property 'focus' of null (#21653) @mageprincess
 - [TextField] Fix CSS isolation issue (#21665) @Codetalker777
 - [TrapFocus] Fix portal support (#21610) @mnajdova
 - [TypeScript] Fix version support (#21640) @jakubfiglak
@@ -2717,7 +2718,7 @@ Big thanks to the 21 contributors who made this release possible.
 - [CircularProgress] Fix IE11 wobbling (#21248) @AmirAhrari
 - [l10n] Improve Ukrainian translation (#21239) @goodwin64
 - [LinearProgress] Set aria-valuemin and aria-valuemax (#21195) @eps1lon
-- [List] Add ‘alignItemsFlexStart’ to ListItemIconClassKey #21256) @YoonjiJang
+- [List] Add 'alignItemsFlexStart' to ListItemIconClassKey #21256) @YoonjiJang
 - [Slider] Fix missing type definitions (#21244) @konekoya
 - [Stepper] Add focus ripple to StepButton (#21223) @mnajdova
 - [SvgIcon] Add displayName in react-devtools (#21134) @gndplayground
@@ -4726,7 +4727,7 @@ This is a stability release.
 
 ### `@material-ui/lab@v4.0.0-alpha.27`
 
-- [TreeItem] Use the ‘endIcon’ prop where appropriate (#17488) @Chocolatl
+- [TreeItem] Use the 'endIcon' prop where appropriate (#17488) @Chocolatl
 - [Skeleton] Make default CSS display mode to block (#17406) @ahtcx
 - [SpeedDial] Rework part of the logic (#17301) @hashwin
 
@@ -11200,7 +11201,7 @@ Here are some highlights ✨:
 
 - [core] Revise the theme.palette.primary & secondary approach (#9794) @mbrookes
 
-It's an important simplification of the palette system. You can now directly use the [“official” Color Tool](https://material.io/color/).
+It's an important simplification of the palette system. You can now directly use the "official" Color Tool](https://material.io/color/).
 
 - Instead of using a rich color object of 14 different keys, we rely on an object of 4 different keys: `light`, `main`, `dark` and `contrastText`.
 - Providing the full-color object used to be required. Now, we will provide a nice default to the different values using the `main` value.
@@ -13563,7 +13564,7 @@ Big thanks to the 11 contributors who are pushing the `next` branch forward.
 - [Tabs] Cancel throttled event callbacks (#6715) @shawnmcknight
 - [Tabs] Improve component lifecycle (#6730) @shawnmcknight
 - [material-ui-icons] add making index.js (#6676) @taichi
-- [breakpoints] up(‘xs’) should have a min-width of 0px (#6735) @rosskevin
+- [breakpoints] up('xs') should have a min-width of 0px (#6735) @rosskevin
 
 #### Docs
 
@@ -14672,7 +14673,7 @@ Although we discourage you to use this library like that.
 + const MUI = require('material-ui').default;
 ```
 
-If you used ES modules, you’re already all good:
+If you used ES modules, you're already all good:
 
 ```js
 import MUI from 'material-ui'; // no changes here :D
