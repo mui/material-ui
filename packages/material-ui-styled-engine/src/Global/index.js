@@ -1,1 +1,1 @@
-export { default } from './StylesProvider';
+export { default } from './Global';
