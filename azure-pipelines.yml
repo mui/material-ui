@@ -51,12 +51,6 @@ jobs:
           yarn install
         displayName: 'install dependencies'
 
-      - task: Cache@2
-        inputs:
-          key: 'node-modules-cache | yarn.lock'
-          path: node_modules/.cache
-        displayName: Cache node_modules/.cache
-
       - script: |
           yarn danger ci
         displayName: 'prepare danger on PRs'
@@ -65,6 +59,12 @@ jobs:
           AZURE_BUILD_ID: $(Build.BuildId)
           DANGER_COMMAND: 'prepareBundleSizeReport'
           DANGER_GITHUB_API_TOKEN: $(GITHUB_API_TOKEN)
+
+      - task: Cache@2
+        inputs:
+          key: 'node-modules-cache | yarn.lock'
+          path: node_modules/.cache
+        displayName: Cache node_modules/.cache
 
       - script: |
           yarn lerna run --ignore @material-ui/icons --parallel --scope "@material-ui/*" build
