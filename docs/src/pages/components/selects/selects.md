@@ -140,3 +140,6 @@ For a [native select](#native-select), you should mention a label by giving the 
   <option value="20">Twenty</option>
 </NativeSelect>
 ```
+## Reduce Height of Select Fields
+
+If you are using the `TextField` wrapper component as mentioned above you can take advantage of the size prop to reduce the height of your select field, see the details [in this section](/components/text-fields/#sizes).
