@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 
@@ -20,7 +20,7 @@ export const styles = (theme: Theme) => {
     easing: 'cubic-bezier(0.35, 0.8, 0.4, 1)',
   });
 
-  return createStyles({
+  return {
     root: {
       display: 'block',
       position: 'relative',
@@ -61,7 +61,7 @@ export const styles = (theme: Theme) => {
       transition: slideTransition,
       zIndex: 0,
     },
-  });
+  } as const;
 };
 
 export type PickersSlideTransitionClassKey = keyof WithStyles<typeof styles>['classes'];

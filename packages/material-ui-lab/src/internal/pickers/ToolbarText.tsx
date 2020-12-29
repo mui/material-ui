@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { createStyles, WithStyles, withStyles, Theme, alpha } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme, alpha } from '@material-ui/core/styles';
 import { ExtendMui } from './typings/helpers';
 
 export interface ToolbarTextProps extends ExtendMui<TypographyProps> {
@@ -15,7 +15,7 @@ export const styles = (theme: Theme) => {
       ? theme.palette.primary.contrastText
       : theme.palette.getContrastText(theme.palette.background.default);
 
-  return createStyles({
+  return {
     root: {
       transition: theme.transitions.create('color'),
       color: alpha(textColor, 0.54),
@@ -24,7 +24,7 @@ export const styles = (theme: Theme) => {
       },
     },
     selected: {},
-  });
+  };
 };
 
 const ToolbarText: React.FC<ToolbarTextProps & WithStyles<typeof styles>> = (props) => {

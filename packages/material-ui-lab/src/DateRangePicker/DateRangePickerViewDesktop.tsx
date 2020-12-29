@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles, WithStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import { DateRange } from './RangeTypes';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { calculateRangePreview } from './date-range-manager';
@@ -45,7 +45,7 @@ interface DesktopDateRangeCalendarProps<TDate>
 }
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       display: 'flex',
       flexDirection: 'row',
@@ -65,7 +65,7 @@ export const styles = (theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'space-between',
     },
-  });
+  } as const);
 
 function getCalendarsArray(calendars: ExportedDesktopDateRangeCalendarProps<unknown>['calendars']) {
   switch (calendars) {

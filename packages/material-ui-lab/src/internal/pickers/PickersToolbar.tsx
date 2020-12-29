@@ -3,13 +3,13 @@ import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import PenIcon from '../svg-icons/Pen';
 import CalendarIcon from '../svg-icons/Calendar';
 import { ToolbarComponentProps } from './typings/BasePicker';
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       display: 'flex',
       flexDirection: 'column',
@@ -27,7 +27,7 @@ export const styles = (theme: Theme) =>
     dateTitleContainer: {
       flex: 1,
     },
-  });
+  } as const);
 
 export type PickersToolbarClassKey = keyof WithStyles<typeof styles>['classes'];
 

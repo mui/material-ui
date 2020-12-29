@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, WithStyles, withStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowLeftIcon from '../svg-icons/ArrowLeft';
 import ArrowRightIcon from '../svg-icons/ArrowRight';
@@ -47,7 +47,7 @@ interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps
 }
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       display: 'flex',
     },
@@ -57,7 +57,7 @@ export const styles = (theme: Theme) =>
     hidden: {
       visibility: 'hidden',
     },
-  });
+  } as const);
 
 export type PickersArrowSwitcherClassKey = keyof WithStyles<typeof styles>['classes'];
 

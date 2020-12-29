@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles, WithStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { RangeInput, DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 import { useMaskedInput } from '../internal/pickers/hooks/useMaskedInput';
@@ -9,7 +9,7 @@ import { mergeRefs, executeInTheNextEventLoopTick } from '../internal/pickers/ut
 import { DateInputProps, MuiTextFieldProps } from '../internal/pickers/PureDateInput';
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       display: 'flex',
       alignItems: 'baseline',
@@ -24,7 +24,7 @@ export const styles = (theme: Theme) =>
         margin: '0 16px',
       },
     },
-  });
+  } as const);
 
 export interface ExportedDateRangePickerInputProps {
   /**

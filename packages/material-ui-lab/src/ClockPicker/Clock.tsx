@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, WithStyles, Theme, withStyles } from '@material-ui/core/styles';
+import { WithStyles, Theme, withStyles } from '@material-ui/core/styles';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { ClockViewType } from '../internal/pickers/constants/ClockType';
@@ -35,7 +35,7 @@ export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
 }
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       display: 'flex',
       justifyContent: 'center',
@@ -93,7 +93,7 @@ export const styles = (theme: Theme) =>
         backgroundColor: theme.palette.primary.light,
       },
     },
-  });
+  } as const);
 
 export type ClockClassKey = keyof WithStyles<typeof styles>['classes'];
 

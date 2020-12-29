@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 interface FadeTransitionProps {
@@ -12,7 +12,7 @@ interface FadeTransitionProps {
 
 const animationDuration = 500;
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       display: 'block',
       position: 'relative',
@@ -36,7 +36,7 @@ export const styles = (theme: Theme) =>
         duration: animationDuration / 2,
       }),
     },
-  });
+  } as const);
 
 export type PickersFadeTransitionGroupClassKey = keyof WithStyles<typeof styles>['classes'];
 

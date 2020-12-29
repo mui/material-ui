@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Button, { ButtonProps } from '@material-ui/core/Button';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { WithStyles, withStyles } from '@material-ui/core/styles';
 import { TypographyProps } from '@material-ui/core/Typography';
 import PickersToolbarText from './PickersToolbarText';
 import { ExtendMui } from './typings/helpers';
@@ -14,13 +14,13 @@ export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'va
   variant: TypographyProps['variant'];
 }
 
-export const styles = createStyles({
+export const styles = {
   root: {
     padding: 0,
     minWidth: '16px',
     textTransform: 'none',
   },
-});
+} as const;
 
 export type PickersToolbarButtonClassKey = keyof WithStyles<typeof styles>['classes'];
 

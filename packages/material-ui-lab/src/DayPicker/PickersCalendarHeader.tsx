@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Fade from '@material-ui/core/Fade';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import { SlideDirection } from './PickersSlideTransition';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
@@ -60,7 +60,7 @@ export interface PickersCalendarHeaderProps<TDate>
 }
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       display: 'flex',
       alignItems: 'center',
@@ -96,7 +96,7 @@ export const styles = (theme: Theme) =>
     labelItem: {
       marginRight: 6,
     },
-  });
+  } as const);
 
 export type PickersCalendarHeaderClassKey = keyof WithStyles<typeof styles>['classes'];
 

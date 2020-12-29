@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from '../internal/pickers/constants/dimensions';
 
 export interface ClockNumberProps {
@@ -13,7 +13,7 @@ export interface ClockNumberProps {
 }
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       width: CLOCK_HOUR_WIDTH,
       height: CLOCK_HOUR_WIDTH,
@@ -41,7 +41,7 @@ export const styles = (theme: Theme) =>
       ...theme.typography.body2,
       color: theme.palette.text.secondary,
     },
-  });
+  } as const);
 
 export type ClockNumberClassKey = keyof WithStyles<typeof styles>['classes'];
 

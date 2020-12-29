@@ -7,7 +7,7 @@ import TrapFocus, {
   TrapFocusProps as MuiTrapFocusProps,
 } from '@material-ui/core/Unstable_TrapFocus';
 import { useForkRef, setRef, useEventCallback } from '@material-ui/core/utils';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import { TransitionProps as MuiTransitionProps } from '@material-ui/core/transitions';
 import { useGlobalKeyDown, keycode } from './hooks/useKeyDown';
 import { executeInTheNextEventLoopTick } from './utils';
@@ -34,7 +34,7 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperPr
 }
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       zIndex: theme.zIndex.modal,
     },
@@ -45,7 +45,7 @@ export const styles = (theme: Theme) =>
     topTransition: {
       transformOrigin: 'bottom center',
     },
-  });
+  } as const);
 
 export type PickersPopperClassKey = keyof WithStyles<typeof styles>['classes'];
 

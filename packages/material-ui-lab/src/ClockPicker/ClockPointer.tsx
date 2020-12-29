@@ -1,11 +1,11 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { withStyles, createStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from '../internal/pickers/constants/dimensions';
 import { ClockViewType } from '../internal/pickers/constants/ClockType';
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       width: 2,
       backgroundColor: theme.palette.primary.main,
@@ -31,7 +31,7 @@ export const styles = (theme: Theme) =>
     noPoint: {
       backgroundColor: theme.palette.primary.main,
     },
-  });
+  } as const);
 
 export type ClockPointerClassKey = keyof WithStyles<typeof styles>['classes'];
 

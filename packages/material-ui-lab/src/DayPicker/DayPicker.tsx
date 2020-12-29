@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import { useCalendarState } from './useCalendarState';
@@ -63,7 +63,7 @@ export type ExportedDayPickerProps<TDate> = Omit<
   | 'className'
 >;
 
-export const styles = createStyles({
+export const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -79,7 +79,7 @@ export const styles = createStyles({
     minHeight: (DAY_SIZE + DAY_MARGIN * 4) * 7,
     height: '100%',
   },
-});
+} as const;
 
 export type DayPickerClassKey = keyof WithStyles<typeof styles>['classes'];
 

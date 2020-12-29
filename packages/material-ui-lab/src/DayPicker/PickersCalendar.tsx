@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, WithStyles, withStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PickersDay, { PickersDayProps } from '../PickersDay/PickersDay';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
@@ -61,7 +61,7 @@ export interface PickersCalendarProps<TDate> extends ExportedCalendarProps<TDate
 
 const weeksContainerHeight = (DAY_SIZE + DAY_MARGIN * 4) * 6;
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       minHeight: weeksContainerHeight,
     },
@@ -94,7 +94,7 @@ export const styles = (theme: Theme) =>
       alignItems: 'center',
       color: theme.palette.text.secondary,
     },
-  });
+  } as const);
 
 export type PickersCalendarClassKey = keyof WithStyles<typeof styles>['classes'];
 

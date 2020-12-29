@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import { DIALOG_WIDTH } from '../constants/dimensions';
 import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantContext';
 import { StaticWrapperProps, PrivateWrapperProps } from './WrapperProps';
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       overflow: 'hidden',
       minWidth: DIALOG_WIDTH,
@@ -13,7 +13,7 @@ const styles = (theme: Theme) =>
       flexDirection: 'column',
       backgroundColor: theme.palette.background.paper,
     },
-  });
+  } as const);
 
 const StaticWrapper: React.FC<
   PrivateWrapperProps & StaticWrapperProps & WithStyles<typeof styles>

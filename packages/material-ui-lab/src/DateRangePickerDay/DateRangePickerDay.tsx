@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles, WithStyles, alpha, createStyles, Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles, alpha, Theme } from '@material-ui/core/styles';
 import { DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import PickersDay, { PickersDayProps, areDayPropsEqual } from '../PickersDay/PickersDay';
@@ -26,7 +26,7 @@ const startBorderStyle = {
 };
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       '&:first-child $rangeIntervalDayPreview': {
         ...startBorderStyle,
@@ -92,7 +92,7 @@ const styles = (theme: Theme) =>
     },
     rangeIntervalDayPreviewStart: {},
     rangeIntervalDayPreviewEnd: {},
-  });
+  } as const);
 
 /**
  * @ignore - do not document.

@@ -2,14 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Skeleton from '@material-ui/core/Skeleton';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme } from '@material-ui/core/styles';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import { styles as calendarStyles } from '../DayPicker/PickersCalendar';
 
 export interface PickersCalendarSkeletonProps extends React.HTMLProps<HTMLDivElement> {}
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     ...calendarStyles(theme),
     root: {
       alignSelf: 'start',
@@ -20,7 +20,7 @@ export const styles = (theme: Theme) =>
     hidden: {
       visibility: 'hidden',
     },
-  });
+  } as const);
 
 export type PickersCalendarSkeletonClassKey = keyof WithStyles<typeof styles>['classes'];
 

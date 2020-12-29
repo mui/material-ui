@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
-import { createStyles, WithStyles, withStyles, Theme, alpha } from '@material-ui/core/styles';
+import { WithStyles, withStyles, Theme, alpha } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
@@ -12,7 +12,7 @@ import { useCanAutoFocus } from '../internal/pickers/hooks/useCanAutoFocus';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 
 export const styles = (theme: Theme) =>
-  createStyles({
+  ({
     root: {
       ...theme.typography.caption,
       width: DAY_SIZE,
@@ -67,7 +67,7 @@ export const styles = (theme: Theme) =>
     },
     selected: {},
     disabled: {},
-  });
+  } as const);
 
 export type PickersDayClassKey = keyof WithStyles<typeof styles>['classes'];
 
