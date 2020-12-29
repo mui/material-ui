@@ -159,8 +159,10 @@ const AirbnbSlider = styled(Slider)({
 });
 
 function AirbnbThumbComponent(props: any) {
+  const { children, ...other } = props;
   return (
-    <SliderThumb {...props}>
+    <SliderThumb {...other}>
+      {children}
       <span className="bar" />
       <span className="bar" />
       <span className="bar" />
