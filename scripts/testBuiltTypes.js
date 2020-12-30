@@ -27,7 +27,11 @@ async function main() {
 
       if (importsTypesRelativeToWorkspace) {
         console.error(
-          `${declarationFilePath} possibly imports types that are unreachable once published.`,
+          // readable path for CI while making it clickable locally
+          `${path.relative(
+            process.cwd(),
+            declarationFilePath,
+          )} possibly imports types that are unreachable once published.`,
         );
         process.exitCode = 1;
       }
