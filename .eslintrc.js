@@ -255,7 +255,7 @@ module.exports = {
     },
     // Files used for generating TypeScript declaration files (#ts-source-files)
     {
-      files: ['**/packages/**/src/**/*.tsx'],
+      files: ['packages/*/src/**/*.tsx'],
       excludedFiles: '*.spec.tsx',
       rules: {
         'no-restricted-imports': [
