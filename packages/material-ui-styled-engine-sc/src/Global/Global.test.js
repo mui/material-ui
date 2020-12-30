@@ -7,7 +7,7 @@ import Global from './Global';
 describe('Global', () => {
   const render = createClientRender();
 
-  it('should add global styles', function() {
+  it('should add global styles', function () {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
     const { container } = render(
@@ -22,7 +22,7 @@ describe('Global', () => {
     });
   });
 
-  it('should give presedence to styled()', function() {
+  it('should give presedence to styled()', function () {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
     const Span = styled('span')`

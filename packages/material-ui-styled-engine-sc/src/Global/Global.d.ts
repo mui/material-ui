@@ -4,4 +4,4 @@ export interface GlobalProps {
   styles: string;
 }
 
-export default function Global(props: GlobalProps): React.ReactElement
+export default function Global(props: GlobalProps): React.ReactElement;
