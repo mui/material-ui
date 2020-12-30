@@ -26,7 +26,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 ## Props
 
 The Select component is implemented as a custom `<input>` element on top of the [text field components](/components/text-fields).
-It allows sharing the same style and many of the same props.
+It shares the same styles and many of the same props. Refer to the respective component's API page for details.
 
 ### Filled and outlined variants
 
