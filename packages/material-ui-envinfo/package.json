@@ -23,6 +23,7 @@
   },
   "files": [],
   "scripts": {
-    "build": "node scripts/build"
+    "prebuild": "rimraf build",
+    "build": "cpy . build"
   }
 }

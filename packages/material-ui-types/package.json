@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-types",
   "scripts": {
-    "build": "mkdir build && cp index.d.ts build/ && yarn build:copy-files",
+    "build": "mkdir build && cpy index.d.ts build/ && yarn build:copy-files",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",

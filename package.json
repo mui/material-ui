@@ -103,6 +103,7 @@
     "concurrently": "^5.3.0",
     "confusing-browser-globals": "^1.0.9",
     "core-js": "^2.6.11",
+    "cpy-cli": "^3.1.1",
     "cross-env": "^7.0.0",
     "danger": "^10.0.0",
     "dom-accessibility-api": "^0.5.0",
