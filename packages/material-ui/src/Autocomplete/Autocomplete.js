@@ -880,18 +880,18 @@ Autocomplete.propTypes = {
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
-   value: chainPropTypes(PropTypes.any, (props) => {
+  value: chainPropTypes(PropTypes.any, (props) => {
     if (props.multiple && props.value !== undefined && !Array.isArray(props.value)) {
-   throw new Error(
-       [
-      'Material-UI: The Autocomplete expects the `value` prop to be undefined or an array.',
-        `However, ${props.value} was provided.`,
-       ].join('\n'),    
-       );
-   }
+      throw new Error(
+        [
+          'Material-UI: The Autocomplete expects the `value` prop to be undefined or an array.',
+          `However, ${props.value} was provided.`,
+        ].join('\n'),
+      );
+    }
 
-   return null;
- }),
+    return null;
+  }),
 };
 
 export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);
