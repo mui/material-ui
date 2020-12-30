@@ -201,6 +201,7 @@ const pages: MuiPage[] = [
       { pathname: '/system/borders' },
       { pathname: '/system/display' },
       { pathname: '/system/flexbox' },
+      { pathname: '/system/grid' },
       { pathname: '/system/palette' },
       { pathname: '/system/positions' },
       { pathname: '/system/shadows' },

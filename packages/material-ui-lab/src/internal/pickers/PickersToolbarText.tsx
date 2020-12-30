@@ -34,6 +34,7 @@ const PickersToolbarText: React.FC<PickersToolbarTextProps & WithStyles<typeof s
       className={clsx(classes.root, className, {
         [classes.selected]: selected,
       })}
+      component="span"
       {...other}
     >
       {value}

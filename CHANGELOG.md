@@ -1,5 +1,70 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.21
+
+###### _Dec 30, 2020_
+
+Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 Migrate the Avatar to emotion (#24114) @oliviertassinari
+- 👩‍🎤 Migrate the Button to emotion (#24107, #24100) @mnajdova
+- ♿️ Improve TrapFocus behavior, ignore the container as a tabbable element (#23364) @gregnb
+  In rare cases, an element might not longer be tabbable when looping, e.g. overflow container in Firefox.
+  You can work around the problem by adding a `tabIndex={0}` or customizing the `getTabbable` prop.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.21`/`@material-ui/unstyled@v5.0.0-alpha.21`
+
+- [Avatar] Migrate to emotion (#24114) @oliviertassinari
+- [ButtonBase] Migrate styles to emotion (#24100) @mnajdova
+- [Button] Migrate styles to emotion (#24107) @mnajdova
+- [unstyled] Add utils for generating utility classes (#24126) @mnajdova
+- [TrapFocus] Fix trap to only focus on tabbable elements (#23364) @gregnb
+- [Link] Improve integration with Next.js (#24121) @kelvinsanchez15
+- [Select] Fix overflow showing scrollbar (#24085) @Segebre
+
+### `@material-ui/system@v5.0.0-alpha.21`
+
+- [system] Fix sx prop typings to support grid gap props (#24093) @mnajdova
+- [system] Improve the SxProp typings structure, by splitting them in a separate module. (#24090) @mnajdova
+- [system] Replace grid gap properties (#24094) @mnajdova
+
+### `@material-ui/lab@v5.0.0-alpha.21`
+
+- [DatePicker] Allow to customize icons (#24017) @jackcwu
+- [DatePicker] Fix missing component for theme augmentation (#24092) @rajzik
+- [DatePicker] Hide outline on container (#24108) @oliviertassinari
+- [TimePicker] Improve the design to fit on smaller screens (#23855) @marianayap
+- [TreeView] Add preventScroll for tree focus (#24105) @praveenkumar-kalidass
+
+### `@material-ui/styles@v5.0.0-alpha.21`
+
+- [styles] Fix for supporting non string props in propsToClassKey (#24101) @mnajdova
+
+### `@material-ui/styled-engine@v5.0.0-alpha.21`/`@material-ui/styled-engine-sc@v5.0.0-alpha.21`
+
+- [styled-engine] Fix StylesProvider injectFirst with sc (#24104) @mnajdova
+
+### Docs
+
+- [docs] Add examples for adding and removing Typography variants (#24088) @mnajdova
+- [docs] Fix typo (#24123) @ajonp
+- [docs] Fix warning about wrong prop type (#24117) @mnajdova
+- [docs] Rename "Customization > Theme > Global" to "Customization > Theme > Components" (#24115) @mnajdova
+- [docs] Rename customization/components to customization/how-to-customize (#24089) @mnajdova
+- [docs] Replace process.browser with typeof navigator (#24122) @softshipper
+- [docs] Sync translations (#24152) @l10nbot
+- [docs] Update Fontsource install instructions (#24120) @DecliningLotus
+
+### Core
+
+- [core] Batch small changes (#24131) @oliviertassinari
+- [core] Fix overridesResolver on the core components and added tests (#24125) @mnajdova
+- [core] Reduce number of files included in language server (#24165) @eps1lon
+- [core] Reduce response time of initial PR bot comment (#24168) @eps1lon
+- [core] Refactor styled() components to ease out the migration process (#24124) @mnajdova
+- [test] Add more packages to browser test suite (#24155) @eps1lon
+
 ## 5.0.0-alpha.20
 
 ###### _Dec 21, 2020_
