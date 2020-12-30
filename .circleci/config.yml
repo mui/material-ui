@@ -178,11 +178,6 @@ jobs:
           keys:
             # We assume that the target branch is `next`
             - typescript-declaration-files-next
-          paths:
-            # packages with generated declaration files
-            - packages/material-ui/build
-            - packages/material-ui-lab/build
-            - packages/material-ui-utils/build
 
       - run:
           name: Diff declaration files
