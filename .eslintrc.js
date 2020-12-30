@@ -284,7 +284,7 @@ module.exports = {
       },
     },
     {
-      files: ['packages/material-ui-*/src/**/*{.ts,.tsx,.js}'],
+      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
       excludedFiles: ['*.d.ts', '*.spec.tsx'],
       rules: {
         'no-restricted-imports': [
