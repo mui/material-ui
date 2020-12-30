@@ -283,5 +283,18 @@ module.exports = {
         'no-bitwise': 'off',
       },
     },
+    {
+      files: ['packages/material-ui-*/src/**/*{.ts,.tsx,.js}'],
+      excludedFiles: '*.d.ts',
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            // Prefer one level nested imports to avoid bundling everything in dev mode.
+            paths: ['@material-ui/core', '@material-ui/lab'],
+          },
+        ],
+      },
+    },
   ],
 };
