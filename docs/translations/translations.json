@@ -262,6 +262,7 @@
     "/system/borders": "Borders",
     "/system/display": "Display",
     "/system/flexbox": "Flexbox",
+    "/system/grid": "Grid",
     "/system/palette": "Palette",
     "/system/positions": "Positions",
     "/system/shadows": "Shadows",
