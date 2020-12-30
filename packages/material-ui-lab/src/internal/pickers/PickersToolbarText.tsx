@@ -7,7 +7,7 @@ import { ExtendMui } from './typings/helpers';
 export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
   selected?: boolean;
   value: React.ReactNode;
-  component?: React.ElementType
+  component?: React.ElementType;
 }
 
 export const styles = (theme: Theme) => {
