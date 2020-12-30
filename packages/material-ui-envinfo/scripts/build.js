@@ -16,7 +16,11 @@ async function main() {
   // clean
   await fse.remove(buildDirectory);
 
-  const { stdout: filenames } = await execFile('npm', ['pack'], { cwd: packageRoot });
+  const { stdout: filenames } = await execFile(
+    /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
+    ['pack'],
+    { cwd: packageRoot },
+  );
   const packageTgzPath = path.join(
     packageRoot,
     // https://docs.npmjs.com/cli/v6/commands/npm-pack
