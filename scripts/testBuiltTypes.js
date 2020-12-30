@@ -1,15 +1,9 @@
-const childProcess = require('child_process');
 const glob = require('fast-glob');
 const fse = require('fs-extra');
 const path = require('path');
-const { promisify } = require('util');
-
-const execFile = promisify(childProcess.execFile);
 
 async function main() {
   const workspaceRoot = path.resolve(__dirname, '..');
-
-  await execFile('yarn', ['lerna', 'run', '--parallel', 'build:types'], { cwd: workspaceRoot });
 
   const declarationFiles = await glob('**/build/**/*.d.ts', {
     absolute: true,

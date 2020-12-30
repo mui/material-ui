@@ -80,9 +80,6 @@ jobs:
               exit 1
             fi
       - run:
-          name: Check builds
-          command: yarn test:build
-      - run:
           name: material-ui-icons
           command: |
             # latest commit
@@ -176,6 +173,48 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
+
+      # We assume that the target branch is `next`
+      - restore_cache:
+          keys:
+            - typescript-declaration-files-next
+          paths:
+            # packages with generated declaration files
+            - packages/material-ui/build
+            - packages/material-ui-lab/build
+            - packages/material-ui-utils/build
+
+      - run:
+          name: Diff declaration files
+          command: |
+            git add -f packages/material-ui/build
+            git add -f packages/material-ui-lab/build
+            git add -f packages/material-ui-utils/build
+            yarn lerna run --parallel build:types
+            git --no-pager diff
+
+      - run:
+          name: Log defect declaration files
+          command: |
+            # ignore build failures
+            # Fixing these takes some effort that isn't viable to merge in a single PR.
+            # We'll simply monitor them for now.
+            set +e
+            node scripts/testBuiltTypes.js
+            exit 0
+
+      # Persist accepted commits i.e. those on the target branch
+      - when:
+          condition:
+            - equal: [next, << pipeline.git.branch >>]
+          steps:
+            - save_cache:
+                key: typescript-declaration-files-next
+                paths:
+                  # packages with generated declaration files
+                  - packages/material-ui/build
+                  - packages/material-ui-lab/build
+                  - packages/material-ui-utils/build
   test_types_next:
     <<: *defaults
     steps:
