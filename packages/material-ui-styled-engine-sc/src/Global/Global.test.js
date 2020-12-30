@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-import styled from '../';
+import styled from '..';
 import Global from './Global';
 
 describe('Global', () => {
