@@ -290,8 +290,11 @@ module.exports = {
         'no-restricted-imports': [
           'error',
           {
-            // Prefer one level nested imports to avoid bundling everything in dev mode.
             paths: ['@material-ui/core', '@material-ui/lab'],
+            message: [
+              'Prefer one level nested imports to avoid bundling everything in dev mode',
+              'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
+            ].join('\n'),
           },
         ],
       },
