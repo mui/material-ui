@@ -174,9 +174,9 @@ jobs:
           name: Tests TypeScript definitions
           command: yarn typescript
 
-      # We assume that the target branch is `next`
       - restore_cache:
           keys:
+            # We assume that the target branch is `next`
             - typescript-declaration-files-next
           paths:
             # packages with generated declaration files
@@ -202,19 +202,13 @@ jobs:
             set +e
             node scripts/testBuiltTypes.js
             exit 0
-
-      # Persist accepted commits i.e. those on the target branch
-      - when:
-          condition:
-            - equal: [next, << pipeline.git.branch >>]
-          steps:
-            - save_cache:
-                key: typescript-declaration-files-next
-                paths:
-                  # packages with generated declaration files
-                  - packages/material-ui/build
-                  - packages/material-ui-lab/build
-                  - packages/material-ui-utils/build
+      - save_cache:
+          key: typescript-declaration-files-{{ .Branch }}
+          paths:
+            # packages with generated declaration files
+            - packages/material-ui/build
+            - packages/material-ui-lab/build
+            - packages/material-ui-utils/build
   test_types_next:
     <<: *defaults
     steps:
