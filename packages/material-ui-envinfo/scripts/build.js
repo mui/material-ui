@@ -6,7 +6,6 @@ const { promisify } = require('util');
 const packageRoot = path.resolve(__dirname, '../');
 const buildDirectory = path.join(packageRoot, 'build');
 
-const execFile = promisify(childProcess.execFile);
 const exec = promisify(childProcess.exec);
 
 /**
@@ -28,14 +27,14 @@ async function main() {
   // hardcoded by npm
   const untarDestination = path.join(packageRoot, 'package');
   try {
-    await execFile(
-      'tar',
+    await exec(
       [
+        'tar',
         '-xzf',
         // absolute paths are not interpreted as local files
         // `--force-local` is not available in BSD tar (macOS)
         path.relative(packageRoot, packageTgzPath),
-      ],
+      ].join(' '),
       {
         cwd: packageRoot,
       },
