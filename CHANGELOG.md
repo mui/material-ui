@@ -8,6 +8,9 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 
 - 👩‍🎤 Migrate the Avatar to emotion (#24114) @oliviertassinari
 - 👩‍🎤 Migrate the Button to emotion (#24107, #24100) @mnajdova
+- ♿️ Improve TrapFocus behavior, ignore the container as a tabbable element (#23364) @gregnb
+  In rare cases, an element might not longer be tabbable when looping, e.g. overflow container in Firefox.
+  You can work around the problem by adding a `tabIndex={0}` or customizing the `getTabbable` prop.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v5.0.0-alpha.21`/`@material-ui/unstyled@v5.0.0-alpha.21`
