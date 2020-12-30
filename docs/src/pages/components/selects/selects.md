@@ -25,6 +25,9 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 ## Props
 
+The Select component is implemented as a custom `<input>` element on top of the [text field components](/components/text-fields).
+It allows sharing the same style and many of the same props.
+
 ### Filled and outlined variants
 
 {{"demo": "pages/components/selects/SelectVariants.js"}}
@@ -140,6 +143,3 @@ For a [native select](#native-select), you should mention a label by giving the 
   <option value="20">Twenty</option>
 </NativeSelect>
 ```
-## Reduce Height of Select Fields
-
-If you are using the `TextField` wrapper component as mentioned above you can take advantage of the size prop to reduce the height of your select field, see the details [in this section](/components/text-fields/#sizes).
