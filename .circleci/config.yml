@@ -175,6 +175,7 @@ jobs:
           command: yarn typescript
 
       - restore_cache:
+          name: Restore generated declaration files
           keys:
             # We assume that the target branch is `next`
             - typescript-declaration-files-next
@@ -198,6 +199,7 @@ jobs:
             node scripts/testBuiltTypes.js
             exit 0
       - save_cache:
+          name: Save generated declaration files
           key: typescript-declaration-files-{{ .Branch }}
           paths:
             # packages with generated declaration files
