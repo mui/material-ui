@@ -1,5 +1,10 @@
 const path = require('path');
 
+const forbitTopLevelMessage = [
+  'Prefer one level nested imports to avoid bundling everything in dev mode',
+  'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
+].join('\n');
+
 module.exports = {
   root: true, // So parent files don't get applied
   globals: {
@@ -290,11 +295,16 @@ module.exports = {
         'no-restricted-imports': [
           'error',
           {
-            paths: ['@material-ui/core', '@material-ui/lab'],
-            message: [
-              'Prefer one level nested imports to avoid bundling everything in dev mode',
-              'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
-            ].join('\n'),
+            paths: [
+              {
+                name: '@material-ui/core',
+                message: forbitTopLevelMessage,
+              },
+              {
+                name: '@material-ui/lab',
+                message: forbitTopLevelMessage,
+              },
+            ],
           },
         ],
       },
