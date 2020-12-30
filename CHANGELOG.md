@@ -55,11 +55,12 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [docs] Update Fontsource install instructions (#24120) @DecliningLotus
 
 ### Core
+
 - [core] Batch small changes (#24131) @oliviertassinari
 - [core] Fix overridesResolver on the core components and added tests (#24125) @mnajdova
 - [core] Reduce number of files included in language server (#24165) @eps1lon
 - [core] Reduce response time of initial PR bot comment (#24168) @eps1lon
-- [core] Refactor styled() components to ease out the migration process  (#24124) @mnajdova
+- [core] Refactor styled() components to ease out the migration process (#24124) @mnajdova
 
 ### Tests
 
