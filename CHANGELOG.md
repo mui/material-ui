@@ -7,8 +7,7 @@
 Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Avatar to emotion (#24114) @oliviertassinari
-- 👩‍🎤 Migrate the ButtonBase to emotion (#24100) @mnajdova
-- 👩‍🎤 Migrate the Button to emotion (#24107) @mnajdova
+- 👩‍🎤 Migrate the Button to emotion (#24107, #24100) @mnajdova
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v5.0.0-alpha.21`/`@material-ui/unstyled@v5.0.0-alpha.21`
