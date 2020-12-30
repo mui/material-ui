@@ -80,6 +80,9 @@ jobs:
               exit 1
             fi
       - run:
+          name: Check builds
+          command: yarn test:build
+      - run:
           name: material-ui-icons
           command: |
             # latest commit

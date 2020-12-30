@@ -1,0 +1,41 @@
+const childProcess = require('child_process');
+const glob = require('fast-glob');
+const fse = require('fs-extra');
+const path = require('path');
+const { promisify } = require('util');
+
+const execFile = promisify(childProcess.execFile);
+
+async function main() {
+  const workspaceRoot = path.resolve(__dirname, '..');
+
+  await execFile('yarn', ['lerna', 'run', '--parallel', 'build:types'], { cwd: workspaceRoot });
+
+  const declarationFiles = await glob('**/build/**/*.d.ts', {
+    absolute: true,
+    cwd: workspaceRoot,
+    ignore: 'node_modules',
+  });
+
+  await Promise.all(
+    declarationFiles.map(async (declarationFilePath) => {
+      const declarationFile = await fse.readFile(declarationFilePath, { encoding: 'utf8' });
+      // find occurences of e.g. `import("../../material-ui/src/...")`
+      const importsTypesRelativeToWorkspace = /import\(("|')(\.\.\/)+material-ui/.test(
+        declarationFile,
+      );
+
+      if (importsTypesRelativeToWorkspace) {
+        console.error(
+          `${declarationFilePath} possibly imports types that are unreachable once published.`,
+        );
+        process.exitCode = 1;
+      }
+    }),
+  );
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
