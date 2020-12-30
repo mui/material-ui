@@ -27,7 +27,7 @@ export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
   minutesStep?: number;
   ampmInClock?: boolean;
   allowKeyboardControl?: boolean;
-  getClockLabelText: <TDate>(
+  getClockLabelText: (
     view: 'hours' | 'minutes' | 'seconds',
     time: TDate,
     adapter: MuiPickersAdapter<TDate>,
@@ -118,7 +118,7 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     value,
   } = props;
 
-  const utils = useUtils();
+  const utils = useUtils<TDate>();
   const isStatic = React.useContext(IsStaticVariantContext);
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const isMoving = React.useRef(false);
