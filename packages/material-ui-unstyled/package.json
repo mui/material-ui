@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/unstyled",
-  "version": "5.0.0-alpha.20",
+  "version": "5.0.0-alpha.21",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Unstyled - collection of unstyled React components.",
@@ -45,13 +45,13 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "5.0.0-alpha.20",
+    "@material-ui/utils": "5.0.0-alpha.21",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0 || ^17.0.0"
   },
   "devDependencies": {
-    "@material-ui/types": "5.1.2"
+    "@material-ui/types": "5.1.3"
   },
   "sideEffects": false,
   "publishConfig": {

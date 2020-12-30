@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/system",
-  "version": "5.0.0-alpha.20",
+  "version": "5.0.0-alpha.21",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI System - Design system for Material-UI.",
@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "5.0.0-alpha.20",
+    "@material-ui/utils": "5.0.0-alpha.21",
     "csstype": "^3.0.2",
     "prop-types": "^15.7.2"
   },
