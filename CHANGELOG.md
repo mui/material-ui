@@ -4,7 +4,7 @@
 
 ###### _Dec 30, 2020_
 
-Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Avatar to emotion (#24114) @oliviertassinari
 - 👩‍🎤 Migrate the Button to emotion (#24107, #24100) @mnajdova
@@ -22,6 +22,8 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [TrapFocus] Fix trap to only focus on tabbable elements (#23364) @gregnb
 - [Link] Improve integration with Next.js (#24121) @kelvinsanchez15
 - [Select] Fix overflow showing scrollbar (#24085) @Segebre
+- [Slider] Fix circular type reference in SliderValueLabel (#24190) @eps1lon
+- [Skeleton] Fix default TypeScript component type (#24191) @eps1lon
 
 ### `@material-ui/system@v5.0.0-alpha.21`
 
@@ -34,6 +36,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [DatePicker] Allow to customize icons (#24017) @jackcwu
 - [DatePicker] Fix missing component for theme augmentation (#24092) @rajzik
 - [DatePicker] Hide outline on container (#24108) @oliviertassinari
+- [DatePicker] Fix accessibility issue with heading (#24183) @gracektay
 - [TimePicker] Improve the design to fit on smaller screens (#23855) @marianayap
 - [TreeView] Add preventScroll for tree focus (#24105) @praveenkumar-kalidass
 
@@ -55,6 +58,9 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [docs] Replace process.browser with typeof navigator (#24122) @softshipper
 - [docs] Sync translations (#24152) @l10nbot
 - [docs] Update Fontsource install instructions (#24120) @DecliningLotus
+- [docs] Add system grid page (#24119) @mnajdova
+- [blog] 2020 in review and beyond (#24130) @oliviertassinari
+- [docs] Improve naming and structure of the Customization and Guide pages (#24175) @mnajdova
 
 ### Core
 
@@ -64,6 +70,8 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [core] Reduce response time of initial PR bot comment (#24168) @eps1lon
 - [core] Refactor styled() components to ease out the migration process (#24124) @mnajdova
 - [test] Add more packages to browser test suite (#24155) @eps1lon
+- [core] Monitor progress of fixing type imports (#24188) @eps1lon
+- [core] Fix build on Windows (#24187) @oliviertassinari
 
 ## 5.0.0-alpha.20
 
