@@ -8,8 +8,8 @@ export interface AvatarClasses {
   fallback: string;
 }
 
-declare const AvatarClasses: AvatarClasses;
+declare const avatarClasses: AvatarClasses;
 
 export function getAvatarUtilityClass(slot: string): string;
 
-export default AvatarClasses;
+export default avatarClasses;

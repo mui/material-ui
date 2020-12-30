@@ -121,7 +121,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
   }));
 }
 
-function MyComponent() {
+function PartialTypeInferenceTest() {
   // If any generic is provided, inference breaks.
   // If the proposal https://github.com/Microsoft/TypeScript/issues/26242 goes through, we can fix this.
   const useStyles = makeStyles<Theme>((theme) => ({

@@ -18,12 +18,12 @@ import { blue } from '@material-ui/core/colors';
 import { expectType } from '@material-ui/types';
 
 // Shared types for examples
-interface ComponentProps extends WithStyles<typeof styles> {
+interface SimpleComponentProps extends WithStyles<typeof simpleStyles> {
   text: string;
 }
 
 // Example 1
-const styles = ({ palette, spacing }: Theme) => ({
+const simpleStyles = ({ palette, spacing }: Theme) => ({
   root: {
     padding: spacing(1),
     backgroundColor: palette.background.default,
@@ -31,18 +31,17 @@ const styles = ({ palette, spacing }: Theme) => ({
   },
 });
 
-const StyledExampleOne = withStyles(styles)(({ classes, text }: ComponentProps) => (
+const StyledExampleOne = withStyles(simpleStyles)(({ classes, text }: SimpleComponentProps) => (
   <div className={classes.root}>{text}</div>
 ));
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.FunctionComponent<ComponentProps & WithStyles<typeof styles>> = ({
-  classes,
-  text,
-}) => <div className={classes.root}>{text}</div>;
+const SimpleComponent: React.FunctionComponent<
+  SimpleComponentProps & WithStyles<typeof simpleStyles>
+> = ({ classes, text }) => <div className={classes.root}>{text}</div>;
 
-const StyledExampleTwo = withStyles(styles)(Component);
+const StyledExampleTwo = withStyles(simpleStyles)(SimpleComponent);
 <StyledExampleTwo text="I am styled!" />;
 
 // Example 3
@@ -55,7 +54,7 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof styles>> = ({
+const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof simpleStyles>> = ({
   classes,
   children,
 }) => <div className={classes.root}>{children}</div>;
@@ -74,67 +73,72 @@ const AnotherStyledSFC = withStyles({
   root: { backgroundColor: 'hotpink' },
 })(({ classes }: WithStyles<'root'>) => <div className={classes.root}>Stylish!</div>);
 
-// Overriding styles
-const theme = createMuiTheme({
-  palette: {
-    mode: 'dark',
-    primary: blue,
-    contrastThreshold: 3,
-    tonalOffset: 0.2,
-    common: {
-      white: '#ffffff',
-    },
-  },
-  typography: {
-    h1: {
-      fontSize: 24,
-    },
-    fontSize: 18,
-  },
-  mixins: {
-    toolbar: {
-      backgroundColor: 'red',
-    },
-  },
-  breakpoints: {
-    step: 3,
-  },
-  transitions: {
-    duration: {
-      short: 50,
-    },
-  },
-  spacing: 5,
-  zIndex: {
-    appBar: 42,
-  },
-  components: {
-    MuiButton: {
-      defaultProps: {
-        disabled: true,
+{
+  // Overriding styles
+  const theme = createMuiTheme({
+    palette: {
+      mode: 'dark',
+      primary: blue,
+      contrastThreshold: 3,
+      tonalOffset: 0.2,
+      common: {
+        white: '#ffffff',
       },
-      styleOverrides: {
-        // Name of the styleSheet
-        root: {
-          // Name of the rule
-          background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-          borderRadius: 3,
-          border: 0,
-          color: 'white',
-          height: 48,
-          padding: '0 30px',
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    },
+    typography: {
+      h1: {
+        fontSize: 24,
+      },
+      fontSize: 18,
+    },
+    mixins: {
+      toolbar: {
+        backgroundColor: 'red',
+      },
+    },
+    breakpoints: {
+      step: 3,
+    },
+    transitions: {
+      duration: {
+        short: 50,
+      },
+    },
+    spacing: 5,
+    zIndex: {
+      appBar: 42,
+    },
+    components: {
+      MuiButton: {
+        defaultProps: {
+          disabled: true,
+        },
+        styleOverrides: {
+          // Name of the styleSheet
+          root: {
+            // Name of the rule
+            background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+            borderRadius: 3,
+            border: 0,
+            color: 'white',
+            height: 48,
+            padding: '0 30px',
+            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+          },
+        },
+      },
+      MuiAppBar: {
+        defaultProps: {
+          position: 'fixed',
         },
       },
     },
-    MuiAppBar: {
-      defaultProps: {
-        position: 'fixed',
-      },
-    },
-  },
-});
+  });
 
+  <ThemeProvider theme={theme}>
+    <Button>Overrides</Button>
+  </ThemeProvider>;
+}
 const theme2 = createMuiTheme({
   palette: {
     primary: {
@@ -170,31 +174,23 @@ const t4: string = createMuiTheme().spacing(1, 2, 3, 4);
 // @ts-expect-error
 const t5 = createMuiTheme().spacing(1, 2, 3, 4, 5);
 
-function OverridesTheme() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Button>Overrides</Button>
-    </ThemeProvider>
-  );
-}
-
 // withTheme
-const ComponentWithTheme = withTheme(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);
+const SomeComponentWithTheme = withTheme(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);
 
 const componentWithThemeRef = React.createRef<HTMLDivElement>();
-<ComponentWithTheme ref={componentWithThemeRef} />;
+<SomeComponentWithTheme ref={componentWithThemeRef} />;
 
 // withStyles + withTheme
-type AllTheProps = WithTheme & WithStyles<typeof styles>;
+type AllTheProps = WithTheme & WithStyles<typeof simpleStyles>;
 
-const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => (
+const SimpleStyledComponent = withStyles(simpleStyles)(({ theme, classes }: AllTheProps) => (
   <div className={classes.root}>{theme.palette.text.primary}</div>
 ));
 
 // @ts-expect-error missing prop theme
-<StyledComponent />;
+<SimpleStyledComponent />;
 
-const AllTheComposition = withTheme(StyledComponent);
+const AllTheComposition = withTheme(SimpleStyledComponent);
 
 <AllTheComposition />;
 
@@ -240,8 +236,8 @@ declare const themed: boolean;
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
 // @withStyles(styles)
-const DecoratedComponent = withStyles(styles)(
-  class extends React.Component<ComponentProps & WithStyles<typeof styles>> {
+const DecoratedComponent = withStyles(simpleStyles)(
+  class extends React.Component<SimpleComponentProps & WithStyles<typeof simpleStyles>> {
     render() {
       const { classes, text } = this.props;
       return <div className={classes.root}>{text}</div>;
@@ -404,7 +400,7 @@ withStyles((theme) =>
 
 {
   // https://github.com/mui-org/material-ui/issues/11312
-  withStyles(styles, { name: 'MyComponent', index: 0 })(() => <div />);
+  withStyles(simpleStyles, { name: 'MyComponent', index: 0 })(() => <div />);
 }
 
 {
@@ -419,31 +415,31 @@ withStyles((theme) =>
     classes: number;
   }
 
-  class Component extends React.Component<Props & WithStyles<typeof styles>> {}
+  class Component extends React.Component<Props & WithStyles<typeof simpleStyles>> {}
   // @ts-expect-error
-  const StyledComponent = withStyles(styles)(Component);
+  const StyledComponent = withStyles(simpleStyles)(Component);
 
   // @ts-expect-error implicit FunctionComponent
-  withStyles(styles)((props: Props) => null);
+  withStyles(simpleStyles)((props: Props) => null);
   // @ts-expect-error
-  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null);
+  withStyles(simpleStyles)((props: Props & WithStyles<typeof simpleStyles>) => null);
   // @ts-expect-error
-  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null);
-  withStyles(styles)(
+  withStyles(simpleStyles)((props: Props & { children?: React.ReactNode }) => null);
+  withStyles(simpleStyles)(
     // @ts-expect-error
-    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null,
+    (props: Props & WithStyles<typeof simpleStyles> & { children?: React.ReactNode }) => null,
   );
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
   const StatelessComponent: React.FunctionComponent<Props> = (props) => null;
-  const StatelessComponentWithStyles: React.FunctionComponent<Props & WithStyles<typeof styles>> = (
-    props,
-  ) => null;
+  const StatelessComponentWithStyles: React.FunctionComponent<
+    Props & WithStyles<typeof simpleStyles>
+  > = (props) => null;
   // @ts-expect-error
-  withStyles(styles)(StatelessComponent);
+  withStyles(simpleStyles)(StatelessComponent);
   // @ts-expect-error
-  withStyles(styles)(StatelessComponentWithStyles);
+  withStyles(simpleStyles)(StatelessComponentWithStyles);
 }
 
 {

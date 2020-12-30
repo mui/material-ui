@@ -24,7 +24,11 @@ const InferTest = () => {
   const [date, setDate] = React.useState<Moment | null>(moment());
 
   return (
-    <DatePicker value={date} onChange={(date) => setDate(date)} renderInput={() => <input />} />
+    <DatePicker
+      value={date}
+      onChange={(newDate) => setDate(newDate)}
+      renderInput={() => <input />}
+    />
   );
 };
 
@@ -86,8 +90,7 @@ const InferTest = () => {
 <DatePicker
   value={null}
   onChange={(date) =>
-    // getDate is never
-    // @ts-expect-error
+    // getDate is any
     date?.getDate()
   }
   renderInput={() => <input />}
