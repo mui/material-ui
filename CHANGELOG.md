@@ -63,9 +63,6 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [core] Reduce number of files included in language server (#24165) @eps1lon
 - [core] Reduce response time of initial PR bot comment (#24168) @eps1lon
 - [core] Refactor styled() components to ease out the migration process (#24124) @mnajdova
-
-### Tests
-
 - [test] Add more packages to browser test suite (#24155) @eps1lon
 
 ## 5.0.0-alpha.20
