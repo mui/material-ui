@@ -16,6 +16,10 @@ const authors = {
     name: 'Olivier Tassinari',
     github: 'oliviertassinari',
   },
+  mbrookes: {
+    name: 'Matt Brookes',
+    github: 'mbrookes',
+  },
 };
 
 const styles = (theme) => ({
@@ -61,13 +65,17 @@ const styles = (theme) => ({
     ...theme.typography.body2,
   },
   avatar: {
-    marginTop: theme.spacing(-1),
     display: 'flex',
-    alignItems: 'center',
-    marginBottom: theme.spacing(5),
-    fontWeight: theme.typography.fontWeightMedium,
-    '& .MuiAvatar-root': {
-      marginRight: theme.spacing(1),
+    gap: theme.spacing(3),
+    '& > div': {
+      marginTop: theme.spacing(-1),
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: theme.spacing(5),
+      fontWeight: theme.typography.fontWeightMedium,
+      '& .MuiAvatar-root': {
+        marginRight: theme.spacing(1),
+      },
     },
   },
 });
@@ -113,12 +121,14 @@ function TopLayoutBlog(props) {
               <MarkdownElement>
                 <h1>{headers.title}</h1>
               </MarkdownElement>
-              {headers.authors.map((author) => (
-                <div className={classes.avatar}>
-                  <Avatar src={`https://github.com/${authors[author].github}.png`} />
-                  {authors[author].name}
-                </div>
-              ))}
+              <div className={classes.avatar}>
+                {headers.authors.map((author) => (
+                  <div key={author}>
+                    <Avatar src={`https://github.com/${authors[author].github}.png`} />
+                    {authors[author].name}
+                  </div>
+                ))}
+              </div>
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
