@@ -1,0 +1,17 @@
+name: Issue Mark Duplicate
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  mark-duplicate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: mark-duplicate
+        uses: actions-cool/issues-helper@v1.6
+        with:
+          actions: 'mark-duplicate'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          duplicate-labels: 'duplicate'
+          close-issue: true
