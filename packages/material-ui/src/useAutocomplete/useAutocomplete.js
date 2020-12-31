@@ -186,24 +186,24 @@ export default function useAutocomplete(props) {
 
   const filteredOptions = popupOpen
     ? filterOptions(
-        options.filter((option) => {
-          if (
-            filterSelectedOptions &&
-            (multiple ? value : [value]).some(
-              (value2) => value2 !== null && getOptionSelected(option, value2),
-            )
-          ) {
-            return false;
-          }
-          return true;
-        }),
-        // we use the empty string to manipulate `filterOptions` to not filter any options
-        // i.e. the filter predicate always returns true
-        {
-          inputValue: inputValueIsSelectedValue && inputPristine ? '' : inputValue,
-          getOptionLabel,
-        },
-      )
+      options.filter((option) => {
+        if (
+          filterSelectedOptions &&
+          (multiple ? value : [value]).some(
+            (value2) => value2 !== null && getOptionSelected(option, value2),
+          )
+        ) {
+          return false;
+        }
+        return true;
+      }),
+      // we use the empty string to manipulate `filterOptions` to not filter any options
+      // i.e. the filter predicate always returns true
+      {
+        inputValue: inputValueIsSelectedValue && inputPristine ? '' : inputValue,
+        getOptionLabel,
+      },
+    )
     : [];
 
   const listboxAvailable = open && filteredOptions.length > 0;
@@ -218,10 +218,9 @@ export default function useAutocomplete(props) {
         console.warn(
           [
             `Material-UI: The value provided to ${componentName} is invalid.`,
-            `None of the options match with \`${
-              missingValue.length > 1
-                ? JSON.stringify(missingValue)
-                : JSON.stringify(missingValue[0])
+            `None of the options match with \`${missingValue.length > 1
+              ? JSON.stringify(missingValue)
+              : JSON.stringify(missingValue[0])
             }\`.`,
             'You can use the `getOptionSelected` prop to customize the equality test.',
           ].join('\n'),
@@ -1005,7 +1004,7 @@ export default function useAutocomplete(props) {
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
-        key: index,
+        key: getOptionLabel(option),
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
