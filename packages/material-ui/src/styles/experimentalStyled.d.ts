@@ -12,14 +12,12 @@ export interface SerializedStyles {
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>;
 export type CSSPropertiesWithMultiValues = {
-  [K in keyof CSSProperties]:
-    | CSSProperties[K]
-    | Array<Extract<CSSProperties[K], string>>
-}
-export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
+  [K in keyof CSSProperties]: CSSProperties[K] | Array<Extract<CSSProperties[K], string>>;
+};
+export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject };
 
 export interface CSSOthersObject {
-  [propertiesName: string]: CSSInterpolation
+  [propertiesName: string]: CSSInterpolation;
 }
 export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
 
@@ -29,10 +27,7 @@ export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-export interface CSSObject
-    extends CSSPropertiesWithMultiValues,
-      CSSPseudos,
-      CSSOthersObject {}    
+export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
 export interface ComponentSelector {
   __emotion_styles: any;
@@ -48,29 +43,28 @@ export type Keyframes = {
 export type Equal<A, B, T, F> = A extends B ? (B extends A ? T : F) : F;
 
 export type InterpolationPrimitive =
-| null
-| undefined
-| boolean
-| number
-| string
-| ComponentSelector
-| Keyframes
-| SerializedStyles
-| CSSObject
+  | null
+  | undefined
+  | boolean
+  | number
+  | string
+  | ComponentSelector
+  | Keyframes
+  | SerializedStyles
+  | CSSObject;
 
-export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation
+export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation;
 
 export interface FunctionInterpolation<Props> {
-  (props: Props): Interpolation<Props>
-}  
+  (props: Props): Interpolation<Props>;
+}
 
-export interface ArrayInterpolation<Props>
-  extends Array<Interpolation<Props>> {}
+export interface ArrayInterpolation<Props> extends Array<Interpolation<Props>> {}
 
 export type Interpolation<Props> =
   | InterpolationPrimitive
   | ArrayInterpolation<Props>
-  | FunctionInterpolation<Props>  
+  | FunctionInterpolation<Props>;
 
 /**
  * @desc Utility type for getting props type of React component.
@@ -78,7 +72,7 @@ export type Interpolation<Props> =
  */
 export type PropsOf<
   C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
-> = JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>
+> = JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
 
 export type Omit<T, U> = T extends any ? Pick<T, Exclude<keyof T, U>> : never;
 export type Overwrapped<T, U> = Pick<T, Extract<keyof T, keyof U>>;
@@ -100,9 +94,9 @@ export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
 }
 
 export interface StyledOptions<Props> {
-  label?: string
-  shouldForwardProp?(propName: PropertyKey): boolean
-  target?: string
+  label?: string;
+  shouldForwardProp?(propName: PropertyKey): boolean;
+  target?: string;
 }
 
 interface MuiStyledOptions {
@@ -114,13 +108,10 @@ interface MuiStyledOptions {
 }
 
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
-export interface FilteringStyledOptions<
-  Props,
-  ForwardedProps extends keyof Props = keyof Props
-> {
-  label?: string
-  shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps
-  target?: string
+export interface FilteringStyledOptions<Props, ForwardedProps extends keyof Props = keyof Props> {
+  label?: string;
+  shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps;
+  target?: string;
 }
 
 /**
@@ -138,23 +129,17 @@ export interface CreateStyledComponent<
   <AdditionalProps extends {} = {}>(
     ...styles: Array<
       Interpolation<
-        ComponentProps &
-          SpecificComponentProps &
-          AdditionalProps & { theme: DefaultTheme }
+        ComponentProps & SpecificComponentProps & AdditionalProps & { theme: DefaultTheme }
       >
     >
-  ): StyledComponent<
-    ComponentProps & AdditionalProps,
-    SpecificComponentProps,
-    JSXProps
-  >
+  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
 
   (
     template: TemplateStringsArray,
     ...styles: Array<
       Interpolation<ComponentProps & SpecificComponentProps & { theme: DefaultTheme }>
     >
-  ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>
+  ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>;
 
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
@@ -163,39 +148,31 @@ export interface CreateStyledComponent<
     template: TemplateStringsArray,
     ...styles: Array<
       Interpolation<
-        ComponentProps &
-          SpecificComponentProps &
-          AdditionalProps & { theme: DefaultTheme }
+        ComponentProps & SpecificComponentProps & AdditionalProps & { theme: DefaultTheme }
       >
     >
-  ): StyledComponent<
-    ComponentProps & AdditionalProps,
-    SpecificComponentProps,
-    JSXProps
-  >
+  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
 }
 
 export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<
-      C
-    > = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
     muiOptions?: MuiStyledOptions
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
-      theme?: Theme
-      as?: React.ElementType
-      sx?: SxProps<Theme>
+      theme?: Theme;
+      as?: React.ElementType;
+      sx?: SxProps<Theme>;
     },
     {},
     {
-      ref?: React.Ref<InstanceType<C>>
+      ref?: React.Ref<InstanceType<C>>;
     }
-  >
+  >;
 
   <C extends React.ComponentClass<React.ComponentProps<C>>>(
     component: C,
@@ -203,32 +180,30 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     muiOptions?: MuiStyledOptions
   ): CreateStyledComponent<
     PropsOf<C> & {
-      theme?: Theme
-      as?: React.ElementType
-      sx?: SxProps<Theme> 
+      theme?: Theme;
+      as?: React.ElementType;
+      sx?: SxProps<Theme>;
     },
     {},
     {
-      ref?: React.Ref<InstanceType<C>>
+      ref?: React.Ref<InstanceType<C>>;
     }
-  >
+  >;
 
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<
-      C
-    > = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
     muiOptions?: MuiStyledOptions
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
-      theme?: Theme
-      as?: React.ElementType
-      sx?: SxProps<Theme> 
+      theme?: Theme;
+      as?: React.ElementType;
+      sx?: SxProps<Theme>;
     }
-  >
+  >;
 
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
@@ -236,11 +211,11 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     muiOptions?: MuiStyledOptions
   ): CreateStyledComponent<
     PropsOf<C> & {
-      theme?: Theme
-      as?: React.ElementType
-      sx?: SxProps<Theme> 
+      theme?: Theme;
+      as?: React.ElementType;
+      sx?: SxProps<Theme>;
     }
-  >
+  >;
 
   <
     Tag extends keyof JSX.IntrinsicElements,
@@ -250,18 +225,18 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>,
     muiOptions?: MuiStyledOptions
   ): CreateStyledComponent<
-    { theme?: Theme; as?: React.ElementType; sx?: SxProps<Theme>; },
+    { theme?: Theme; as?: React.ElementType; sx?: SxProps<Theme> },
     Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
-  >
+  >;
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions<JSX.IntrinsicElements[Tag]>,
     muiOptions?: MuiStyledOptions
   ): CreateStyledComponent<
-    { theme?: Theme; as?: React.ElementType; sx?: SxProps<Theme>; },
+    { theme?: Theme; as?: React.ElementType; sx?: SxProps<Theme> },
     JSX.IntrinsicElements[Tag]
-  >
+  >;
 }
 
 /**

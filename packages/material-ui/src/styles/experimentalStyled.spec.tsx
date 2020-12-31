@@ -5,7 +5,6 @@ const Box = styled('div')(({ theme }) => ({
   color: theme.palette.primary.main,
 }));
 
-
 const SimpleBox = styled('div')``;
 
 function SxTestSimpleBox() {
