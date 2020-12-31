@@ -23,6 +23,7 @@ export const componentSettings = {
       'sizes',
       'src',
       'srcSet',
+      'sx',
       // FIXME: `Union`
       'variant',
     ],
@@ -82,6 +83,7 @@ export const componentSettings = {
     ignoredProps: [
       'children',
       'disableFocusRipple',
+      'sx',
       // union not supported by framer ControlType
       // interface, control types and default value need to be hardcoded
       'variant',
@@ -345,6 +347,7 @@ export const componentSettings = {
       'gutterBottom',
       'internalDeprecatedVariant',
       'paragraph',
+      'sx',
       // FIXME: `Union`
       'variant',
       'variantMapping',
