@@ -59,7 +59,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
-    sx?: SxProps<Theme>;    
+    sx?: SxProps<Theme>;
     /**
      * The shape of the avatar.
      * @default 'circular'
