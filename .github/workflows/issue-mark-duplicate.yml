@@ -13,6 +13,5 @@ jobs:
         with:
           actions: 'mark-duplicate'
           token: ${{ secrets.GITHUB_TOKEN }}
-          duplicate-command: '/d'
           duplicate-labels: 'duplicate'
           close-issue: true
