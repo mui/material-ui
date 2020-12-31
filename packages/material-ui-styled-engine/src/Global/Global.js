@@ -4,7 +4,7 @@ import { Global as EmotionGlobal, css } from '@emotion/react';
 
 export default function Global(props) {
   const { styles } = props;
-  return <EmotionGlobal styles={css(styles)} />;
+  return <EmotionGlobal styles={typeof styles === 'string' ? css(styles): styles} />;
 }
 
 Global.propTypes = {

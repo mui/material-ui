@@ -1,6 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
+import { ThemeProvider } from '@emotion/react';
 import styled from '..';
 import Global from './Global';
 
@@ -30,6 +31,21 @@ describe('Global', () => {
         <Global styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
         <span>Blue text</span>
       </div>,
+    );
+
+    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+      color: 'rgb(0, 0, 255)',
+    });
+  });
+
+  it('should add global styles using function', function () {
+    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+
+    const { container } = render(
+      <ThemeProvider theme={{ color: 'rgb(0, 0, 255)' }}>
+        <Global styles={(theme) => ({ span: { color: theme.color } })} />
+        <span>Blue text</span>
+      </ThemeProvider>,
     );
 
     expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({

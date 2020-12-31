@@ -468,4 +468,7 @@ export * from './Zoom';
 export { default as useAutocomplete } from './useAutocomplete';
 export * from './useAutocomplete';
 
+export { default as Global } from './Global';
+export * from './Global';
+
 export { StylesProvider } from '@material-ui/styled-engine';

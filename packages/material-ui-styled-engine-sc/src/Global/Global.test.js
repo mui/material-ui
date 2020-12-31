@@ -1,6 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
+import { ThemeProvider } from 'styled-components';
 import styled from '..';
 import Global from './Global';
 
@@ -36,6 +37,23 @@ describe('Global', () => {
       color: 'rgb(0, 0, 255)',
     });
   });
+
+  it('should add global styles using function', function () {
+    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+
+    // TODO: styled-components provides all props in the callback function, we need to handle this difference
+    const { container } = render(
+      <ThemeProvider theme={{ color: 'rgb(0, 0, 255)' }}>
+        <Global styles={({theme}) => ({ span: { color: theme.color } })} />
+        <span>Blue text</span>
+      </ThemeProvider>,
+    );
+
+    expect(container.getElementsByTagName('span')[0]).toHaveComputedStyle({
+      color: 'rgb(0, 0, 255)',
+    });
+  });
+
 
   it('should give presedence to styled()', function () {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
