@@ -8,5 +8,5 @@ export default function Global(props) {
 }
 
 Global.propTypes = {
-  styles: PropTypes.string,
+  styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
 };

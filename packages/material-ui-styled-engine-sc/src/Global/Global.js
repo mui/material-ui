@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle((props) => {
-  return [...props.styles];
+  if (typeof props.styles === 'string') {
+    return [...props.styles];
+  }
+
+  return props.styles;
 });
 
 function Global(props) {
@@ -14,5 +18,5 @@ function Global(props) {
 export default Global;
 
 Global.propTypes = {
-  styles: PropTypes.string,
+  styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
 };
