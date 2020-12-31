@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+// eslint-disable-next-line no-restricted-imports -- importing types
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { capitalize } from '@material-ui/core/utils';
 import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';

@@ -1,5 +1,10 @@
 const path = require('path');
 
+const forbitTopLevelMessage = [
+  'Prefer one level nested imports to avoid bundling everything in dev mode',
+  'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
+].join('\n');
+
 module.exports = {
   root: true, // So parent files don't get applied
   globals: {
@@ -281,6 +286,27 @@ module.exports = {
       rules: {
         // Working with flags is common in TypeScript compiler
         'no-bitwise': 'off',
+      },
+    },
+    {
+      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
+      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: [
+              {
+                name: '@material-ui/core',
+                message: forbitTopLevelMessage,
+              },
+              {
+                name: '@material-ui/lab',
+                message: forbitTopLevelMessage,
+              },
+            ],
+          },
+        ],
       },
     },
   ],
