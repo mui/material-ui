@@ -44,7 +44,7 @@ describe('Global', () => {
     // TODO: styled-components provides all props in the callback function, we need to handle this difference
     const { container } = render(
       <ThemeProvider theme={{ color: 'rgb(0, 0, 255)' }}>
-        <Global styles={({theme}) => ({ span: { color: theme.color } })} />
+        <Global styles={({ theme }) => ({ span: { color: theme.color } })} />
         <span>Blue text</span>
       </ThemeProvider>,
     );
@@ -53,7 +53,6 @@ describe('Global', () => {
       color: 'rgb(0, 0, 255)',
     });
   });
-
 
   it('should give presedence to styled()', function () {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
