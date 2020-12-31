@@ -11,7 +11,7 @@ import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import { useCanAutoFocus } from '../internal/pickers/hooks/useCanAutoFocus';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 
-export const styles = (theme: Theme) =>
+const styles = (theme: Theme) =>
   ({
     root: {
       ...theme.typography.caption,
