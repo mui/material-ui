@@ -884,7 +884,7 @@ Autocomplete.propTypes = {
     if (props.multiple && props.value !== undefined && !Array.isArray(props.value)) {
       throw new Error(
         [
-          'Material-UI: The Autocomplete expects the `value` prop to be undefined or an array.',
+          'Material-UI: The Autocomplete expects the `value` prop to be an array or undefined.',
           `However, ${props.value} was provided.`,
         ].join('\n'),
       );
