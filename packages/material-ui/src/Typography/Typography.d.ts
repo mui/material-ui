@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant } from '../styles/createTypography';
 
@@ -117,6 +119,10 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
      * @default false
      */
     paragraph?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * Applies the theme typography styles.
      * @default 'body1'

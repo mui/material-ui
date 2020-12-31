@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 
@@ -74,6 +76,10 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * We trigger a `onFocus` callback too.
      */
     onFocusVisible?: React.FocusEventHandler<any>;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     // @types/react is stricter
     /**
      * @default 0

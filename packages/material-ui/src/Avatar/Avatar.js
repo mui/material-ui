@@ -243,6 +243,10 @@ Avatar.propTypes = {
    */
   srcSet: PropTypes.string,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The shape of the avatar.
    * @default 'circular'
    */
