@@ -179,7 +179,7 @@ export interface StyledOptions {
   target?: string;
 }
 
-interface MuiStyledOptions<Theme extends object = any> {
+interface MuiStyledOptions {
   name?: string;
   slot?: string;
   overridesResolver?: (props: any, styles: string | object) => string | object;
@@ -191,13 +191,13 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <Tag extends React.ComponentType<any>, ExtraProps = {}>(
     tag: Tag,
     options?: StyledOptions,
-    muiOptions?: MuiStyledOptions<Theme>
+    muiOptions?: MuiStyledOptions
   ): CreateStyledComponentExtrinsic<Tag, ExtraProps, Theme>;
 
   <Tag extends keyof JSXInEl, ExtraProps = {}>(
     tag: Tag,
     options?: StyledOptions,
-    muiOptions?: MuiStyledOptions<Theme>
+    muiOptions?: MuiStyledOptions
   ): CreateStyledComponentIntrinsic<Tag, ExtraProps, Theme>;
 }
 
