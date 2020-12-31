@@ -72,7 +72,7 @@
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "default": "'medium'"
     },
-    "value": { "type": { "name": "any" } }
+    "value": { "type": { "name": "custom", "description": "any" } }
   },
   "name": "Autocomplete",
   "styles": {
