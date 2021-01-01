@@ -13,8 +13,7 @@ import {
 import { spy } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
-import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
-import Autocomplete from './Autocomplete';
+import Autocomplete, { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
   if (expected) {
