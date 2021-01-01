@@ -41,7 +41,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 如果需要加上标题请:
 
 - 使用明确的问题或声明，并在内容区域对其做出解释，例如：“是否要清除 USB 上的内容？”。
-- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
+- 避免使用道歉、模棱两可的内容或者问题，例如”警告！“或者”你确定吗？“
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
