@@ -157,6 +157,11 @@ function PickersCalendarHeader<TDate>(
     }
   };
 
+  // No need to display more information
+  if (views.length === 1 && views[0] === 'year') {
+    return null;
+  }
+
   return (
     <div className={classes.root}>
       <div role="presentation" className={classes.label} onClick={handleToggleView}>
