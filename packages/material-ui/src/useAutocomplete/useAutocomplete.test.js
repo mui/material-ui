@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createClientRender, screen } from 'test/utils';
 import useAutocomplete, { createFilterOptions } from '@material-ui/core/useAutocomplete';
 
 describe('useAutocomplete', () => {
   const render = createClientRender();
 
-  it('should use unique keys for the option', () => {
-    let keys;
-    const Test = () => {
+  it('should preserve DOM nodes of options when re-ordering', () => {
+    const Test = (props) => {
+      const { options } = props;
       const {
         groupedOptions,
         getRootProps,
@@ -17,11 +17,9 @@ describe('useAutocomplete', () => {
         getListboxProps,
         getOptionProps,
       } = useAutocomplete({
-        options: [{ label: 'foo' }, { label: 'bar' }],
+        options,
         open: true,
       });
-
-      keys = groupedOptions.map((option, index) => getOptionProps({ option, index }).key);
 
       return (
         <div>
@@ -31,17 +29,23 @@ describe('useAutocomplete', () => {
           </div>
           {groupedOptions.length > 0 ? (
             <ul {...getListboxProps()}>
-              {groupedOptions.map((option, index) => (
-                <li {...getOptionProps({ option, index })}>{option.title}</li>
-              ))}
+              {groupedOptions.map((option, index) => {
+                return <li {...getOptionProps({ option, index })}>{option}</li>;
+              })}
             </ul>
           ) : null}
         </div>
       );
     };
 
-    render(<Test />);
-    expect(keys).to.deep.equal(['foo', 'bar']);
+    const { rerender } = render(<Test options={['foo', 'bar']} />);
+    const [fooOptionAsFirst, barOptionAsSecond] = screen.getAllByRole('option');
+    rerender(<Test options={['bar', 'foo']} />);
+    const [barOptionAsFirst, fooOptionAsSecond] = screen.getAllByRole('option');
+
+    // If the DOM nodes are not preserved VO will not read the first option again since it thinks it didn't change.
+    expect(fooOptionAsFirst).to.equal(fooOptionAsSecond);
+    expect(barOptionAsFirst).to.equal(barOptionAsSecond);
   });
 
   describe('createFilterOptions', () => {
