@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as CSS from 'csstype';
+import { SxProps } from '@material-ui/system';
 import { Theme as DefaultTheme } from './createMuiTheme';
 
 export interface SerializedStyles {
@@ -188,13 +189,13 @@ interface MuiStyledOptions {
 }
 
 export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
-  <Tag extends React.ComponentType<any>, ExtraProps = {}>(
+  <Tag extends React.ComponentType<any>, ExtraProps = { sx?: SxProps<Theme> }>(
     tag: Tag,
     options?: StyledOptions,
     muiOptions?: MuiStyledOptions
   ): CreateStyledComponentExtrinsic<Tag, ExtraProps, Theme>;
 
-  <Tag extends keyof JSXInEl, ExtraProps = {}>(
+  <Tag extends keyof JSXInEl, ExtraProps = { sx?: SxProps<Theme> }>(
     tag: Tag,
     options?: StyledOptions,
     muiOptions?: MuiStyledOptions
