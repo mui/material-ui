@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import {
   getClasses,
@@ -1164,6 +1165,10 @@ describe('<Autocomplete />', () => {
   });
 
   describe('warnings', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
+
     it('warn if getOptionLabel do not return a string', () => {
       const handleChange = spy();
       render(
@@ -1274,6 +1279,17 @@ describe('<Autocomplete />', () => {
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
       expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
+    });
+
+    it('warn if the type of the value is wrong', () => {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Autocomplete.Naked.propTypes,
+          { multiple: true, value: null, options: [], renderInput: () => null },
+          'prop',
+          'Autocomplete',
+        );
+      }).toErrorDev('The Autocomplete expects the `value` prop to be an array or undefined.');
     });
   });
 

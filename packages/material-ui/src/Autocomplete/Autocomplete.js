@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import { withStyles } from '../styles';
 import { alpha } from '../styles/colorManipulator';
 import Popper from '../Popper';
@@ -879,7 +880,18 @@ Autocomplete.propTypes = {
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
-  value: PropTypes.any,
+  value: chainPropTypes(PropTypes.any, (props) => {
+    if (props.multiple && props.value !== undefined && !Array.isArray(props.value)) {
+      throw new Error(
+        [
+          'Material-UI: The Autocomplete expects the `value` prop to be an array or undefined.',
+          `However, ${props.value} was provided.`,
+        ].join('\n'),
+      );
+    }
+
+    return null;
+  }),
 };
 
 export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);
