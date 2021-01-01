@@ -14,38 +14,20 @@ export type CSSProperties = CSS.PropertiesFallback<number | string>;
 export type CSSPropertiesWithMultiValues = {
   [K in keyof CSSProperties]: CSSProperties[K] | Array<Extract<CSSProperties[K], string>>;
 };
-/**
- * @desc Following type exists for autocompletion of key.
- */
-export type CSSPseudos<MP> = { [K in CSS.Pseudos]?: ObjectInterpolation<MP> };
-export interface CSSOthersObject<MP> {
-  [propertiesName: string]: Interpolation<MP>;
-}
+export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject };
 
+export interface CSSOthersObject {
+  [propertiesName: string]: CSSInterpolation;
+}
 export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
 
 export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
-
-export type CSSInterpolation =
-  | null
-  | undefined
-  | boolean
-  | number
-  | string
-  | ComponentSelector
-  | Keyframes
-  | SerializedStyles
-  | CSSObject
-  | ArrayCSSInterpolation;
 
 export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-export interface CSSObject
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudosForCSSObject,
-    CSSOthersObjectForCSSObject {}
+export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
 export interface ComponentSelector {
   __emotion_styles: any;
@@ -58,16 +40,9 @@ export type Keyframes = {
   toString: () => string;
 } & string;
 
-export interface ArrayInterpolation<MP> extends Array<Interpolation<MP>> {}
-export interface ObjectInterpolation<MP>
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudos<MP>,
-    CSSOthersObject<MP> {}
-export type FunctionInterpolation<MP> = (mergedProps: MP) => Interpolation<MP>;
-
 export type Equal<A, B, T, F> = A extends B ? (B extends A ? T : F) : F;
 
-export type Interpolation<MP = undefined> =
+export type InterpolationPrimitive =
   | null
   | undefined
   | boolean
@@ -76,26 +51,33 @@ export type Interpolation<MP = undefined> =
   | ComponentSelector
   | Keyframes
   | SerializedStyles
-  | ArrayInterpolation<MP>
-  | ObjectInterpolation<MP>
-  | Equal<MP, undefined, never, FunctionInterpolation<MP>>;
+  | CSSObject;
+
+export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation;
+
+export interface FunctionInterpolation<Props> {
+  (props: Props): Interpolation<Props>;
+}
+
+export interface ArrayInterpolation<Props> extends Array<Interpolation<Props>> {}
+
+export type Interpolation<Props> =
+  | InterpolationPrimitive
+  | ArrayInterpolation<Props>
+  | FunctionInterpolation<Props>;
 
 /**
  * @desc Utility type for getting props type of React component.
+ * It takes `defaultProps` into an account - making props with defaults optional.
  */
 export type PropsOf<
   C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
-> = JSX.LibraryManagedAttributes<C, React.ComponentPropsWithRef<C>>;
+> = JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
 
 export type Omit<T, U> = T extends any ? Pick<T, Exclude<keyof T, U>> : never;
 export type Overwrapped<T, U> = Pick<T, Extract<keyof T, keyof U>>;
 
 type JSXInEl = JSX.IntrinsicElements;
-type ReactClassPropKeys = keyof React.ClassAttributes<any>;
-
-export type WithTheme<P, T> = P extends { theme: infer Theme }
-  ? P & { theme: Exclude<Theme, undefined> }
-  : P & { theme: T };
 
 export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
   extends React.FunctionComponent<InnerProps & StyleProps & { theme?: Theme }>,
@@ -111,72 +93,9 @@ export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
   ): StyledComponent<PropsOf<Tag>, StyleProps, Theme>;
 }
 
-interface CreateStyledComponentBaseThemed<
-  InnerProps,
-  ExtraProps,
-  StyledInstanceTheme extends object
-> {
-  <
-    StyleProps extends Omit<Overwrapped<InnerProps, StyleProps>, ReactClassPropKeys> = Omit<
-      InnerProps & ExtraProps,
-      ReactClassPropKeys
-    >
-  >(
-    ...styles: Array<Interpolation<WithTheme<StyleProps, StyledInstanceTheme>>>
-  ): StyledComponent<InnerProps, StyleProps, StyledInstanceTheme>;
-  <
-    StyleProps extends Omit<Overwrapped<InnerProps, StyleProps>, ReactClassPropKeys> = Omit<
-      InnerProps & ExtraProps,
-      ReactClassPropKeys
-    >
-  >(
-    template: TemplateStringsArray,
-    ...styles: Array<Interpolation<WithTheme<StyleProps, StyledInstanceTheme>>>
-  ): StyledComponent<InnerProps, StyleProps, StyledInstanceTheme>;
-}
-
-interface CreateStyledComponentBaseThemeless<InnerProps, ExtraProps> {
-  <
-    StyleProps extends Omit<Overwrapped<InnerProps, StyleProps>, ReactClassPropKeys> = Omit<
-      InnerProps & ExtraProps,
-      ReactClassPropKeys
-    >,
-    Theme extends object = object
-  >(
-    ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
-  ): StyledComponent<InnerProps, StyleProps, Theme>;
-  <
-    StyleProps extends Omit<Overwrapped<InnerProps, StyleProps>, ReactClassPropKeys> = Omit<
-      InnerProps & ExtraProps,
-      ReactClassPropKeys
-    >,
-    Theme extends object = object
-  >(
-    template: TemplateStringsArray,
-    ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
-  ): StyledComponent<InnerProps, StyleProps, Theme>;
-}
-
-export type CreateStyledComponentBase<InnerProps, ExtraProps, StyledInstanceTheme extends object> =
-  // this "reversed" condition checks if StyledInstanceTheme was already parametrized when using CreateStyled
-  object extends StyledInstanceTheme
-    ? CreateStyledComponentBaseThemeless<InnerProps, ExtraProps>
-    : CreateStyledComponentBaseThemed<InnerProps, ExtraProps, StyledInstanceTheme>;
-
-export type CreateStyledComponentIntrinsic<
-  Tag extends keyof JSXInEl,
-  ExtraProps,
-  Theme extends object
-> = CreateStyledComponentBase<JSXInEl[Tag], ExtraProps, Theme>;
-export type CreateStyledComponentExtrinsic<
-  Tag extends React.ComponentType<any>,
-  ExtraProps,
-  Theme extends object
-> = CreateStyledComponentBase<PropsOf<Tag>, ExtraProps, Theme>;
-
-export interface StyledOptions {
+export interface StyledOptions<Props> {
   label?: string;
-  shouldForwardProp?(propName: string): boolean;
+  shouldForwardProp?(propName: PropertyKey): boolean;
   target?: string;
 }
 
@@ -188,18 +107,136 @@ interface MuiStyledOptions {
   skipSx?: boolean;
 }
 
-export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
-  <Tag extends React.ComponentType<any>, ExtraProps = { sx?: SxProps<Theme> }>(
-    tag: Tag,
-    options?: StyledOptions,
-    muiOptions?: MuiStyledOptions
-  ): CreateStyledComponentExtrinsic<Tag, ExtraProps, Theme>;
+/** Same as StyledOptions but shouldForwardProp must be a type guard */
+export interface FilteringStyledOptions<Props, ForwardedProps extends keyof Props = keyof Props> {
+  label?: string;
+  shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps;
+  target?: string;
+}
 
-  <Tag extends keyof JSXInEl, ExtraProps = { sx?: SxProps<Theme> }>(
-    tag: Tag,
-    options?: StyledOptions,
+/**
+ * @typeparam ComponentProps  Props which will be included when withComponent is called
+ * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
+ */
+export interface CreateStyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {},
+  JSXProps extends {} = {}
+> {
+  /**
+   * @typeparam AdditionalProps  Additional props to add to your styled component
+   */
+  <AdditionalProps extends {} = {}>(
+    ...styles: Array<
+      Interpolation<
+        ComponentProps & SpecificComponentProps & AdditionalProps & { theme: DefaultTheme }
+      >
+    >
+  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
+
+  (
+    template: TemplateStringsArray,
+    ...styles: Array<
+      Interpolation<ComponentProps & SpecificComponentProps & { theme: DefaultTheme }>
+    >
+  ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>;
+
+  /**
+   * @typeparam AdditionalProps  Additional props to add to your styled component
+   */
+  <AdditionalProps extends {}>(
+    template: TemplateStringsArray,
+    ...styles: Array<
+      Interpolation<
+        ComponentProps & SpecificComponentProps & AdditionalProps & { theme: DefaultTheme }
+      >
+    >
+  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
+}
+
+export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
+  <
+    C extends React.ComponentClass<React.ComponentProps<C>>,
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+  >(
+    component: C,
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
     muiOptions?: MuiStyledOptions
-  ): CreateStyledComponentIntrinsic<Tag, ExtraProps, Theme>;
+  ): CreateStyledComponent<
+    Pick<PropsOf<C>, ForwardedProps> & {
+      theme?: Theme;
+      as?: React.ElementType;
+      sx?: SxProps<Theme>;
+    },
+    {},
+    {
+      ref?: React.Ref<InstanceType<C>>;
+    }
+  >;
+
+  <C extends React.ComponentClass<React.ComponentProps<C>>>(
+    component: C,
+    options?: StyledOptions<React.ComponentProps<C>>,
+    muiOptions?: MuiStyledOptions
+  ): CreateStyledComponent<
+    PropsOf<C> & {
+      theme?: Theme;
+      as?: React.ElementType;
+      sx?: SxProps<Theme>;
+    },
+    {},
+    {
+      ref?: React.Ref<InstanceType<C>>;
+    }
+  >;
+
+  <
+    C extends React.ComponentType<React.ComponentProps<C>>,
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+  >(
+    component: C,
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
+    muiOptions?: MuiStyledOptions
+  ): CreateStyledComponent<
+    Pick<PropsOf<C>, ForwardedProps> & {
+      theme?: Theme;
+      as?: React.ElementType;
+      sx?: SxProps<Theme>;
+    }
+  >;
+
+  <C extends React.ComponentType<React.ComponentProps<C>>>(
+    component: C,
+    options?: StyledOptions<React.ComponentProps<C>>,
+    muiOptions?: MuiStyledOptions
+  ): CreateStyledComponent<
+    PropsOf<C> & {
+      theme?: Theme;
+      as?: React.ElementType;
+      sx?: SxProps<Theme>;
+    }
+  >;
+
+  <
+    Tag extends keyof JSX.IntrinsicElements,
+    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag]
+  >(
+    tag: Tag,
+    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>,
+    muiOptions?: MuiStyledOptions
+  ): CreateStyledComponent<
+    { theme?: Theme; as?: React.ElementType; sx?: SxProps<Theme> },
+    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
+  >;
+
+  <Tag extends keyof JSX.IntrinsicElements>(
+    tag: Tag,
+    options?: StyledOptions<JSX.IntrinsicElements[Tag]>,
+    muiOptions?: MuiStyledOptions
+  ): CreateStyledComponent<
+    { theme?: Theme; as?: React.ElementType; sx?: SxProps<Theme> },
+    JSX.IntrinsicElements[Tag]
+  >;
 }
 
 /**
