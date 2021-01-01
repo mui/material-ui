@@ -2,11 +2,11 @@
 
 <p class="description">无论您是否使用了 Material-UI 组件，都可以在应用中使用 Material-UI 的样式方案。</p>
 
-Material-UI 旨在为构建动态的 UI 提供扎实的基础。 Material-UI 旨在为构建动态的 UI 提供扎实的基础。 @material-ui/styles 并不是你唯一的选择，Material-UI 也可以与其他主流样式方案[彼此协作](/guides/interoperability/)。
+Material-UI 旨在为构建动态的 UI 提供扎实的基础。 为了构造更加清晰的结构，**我们单独发布了 Material-UI 组件中使用的样式方案**，它将作为一个 `@material-ui/styles` 的依赖包存在。 @material-ui/styles 并不是你唯一的选择，Material-UI 也可以与其他主流样式方案[彼此协作](/guides/interoperability/)。
 
 ## 为什么要使用 Material-UI 的样式方案呢？
 
-在以前的版本中，Material-UI 曾使用过 LESS，以及而后的自定义内嵌式样式表来编写组件的样式，但是这些方法都有其局限性。 [一个*CSS-in-JS* 的方案](https://github.com/oliviertassinari/a-journey-toward-better-style)突破了那些限制，并**开启了很多强大的功能**（主题嵌套、动态样式、自我支持等等）。
+在以前的版本中，Material-UI 曾使用过 LESS，以及而后的自定义内嵌式样式表来编写组件的样式，但是这些方法都有其局限性。 [_CSS-in-JS_ 方案](https://github.com/oliviertassinari/a-journey-toward-better-style) 突破了这些限制，并**提供了很多强大的功能**（主题嵌套、动态样式、自我支持等等）。
 
 Material-UI 的样式方案来自于许多其他 CSS-in-JS 库的启发，例如 [styled-components](https://www.styled-components.com/) 和 [emotion](https://emotion.sh/)。
 
@@ -14,8 +14,8 @@ Material-UI 的样式方案来自于许多其他 CSS-in-JS 库的启发，例如
 
 <!-- #default-branch-switch -->
 
-- 🚀它的运行[超快的](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles)。
-- 🧩你可以通过一个[插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API 来扩展。
+- 🚀它的运行速度 [非常快](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles)。
+- 🧩你可以通过一个 [插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API 来扩展。
 - ⚡️它使用 [JSS](https://github.com/cssinjs/jss) 为其核心 —— 一个 [高性能的](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript 到 CSS 的编译器，它在运行时和服务器端编译。
 - 📦低于[15KB压缩](https://bundlephobia.com/result?p=@material-ui/styles)；若和 Material-UI 一起使用，将不会有捆绑的尺寸增加。
 
