@@ -1,16 +1,9 @@
 import * as React from 'react';
-import { experimentalStyled as styled, Theme } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
-import BadgeUnstyled, {
-  BadgeUnstyledProps,
-} from '@material-ui/unstyled/BadgeUnstyled';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
 import Box from '@material-ui/core/Box';
 
-interface StyledBadgeProps extends BadgeUnstyledProps {
-  sx?: SxProps<Theme>;
-}
-
-const StyledBadge: React.FC<StyledBadgeProps> = styled(BadgeUnstyled)`
+const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
   margin: 0;
   padding: 0;

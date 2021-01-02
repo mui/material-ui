@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 import { createStyles, WithStyles, withStyles, Theme, alpha } from '@material-ui/core/styles';
-import { useForkRef } from '@material-ui/core';
+import { useForkRef } from '@material-ui/core/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
 import { useUtils } from '../internal/pickers/hooks/useUtils';

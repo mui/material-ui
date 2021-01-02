@@ -173,6 +173,39 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
+
+      - restore_cache:
+          name: Restore generated declaration files
+          keys:
+            # We assume that the target branch is `next`
+            - typescript-declaration-files-next
+
+      - run:
+          name: Diff declaration files
+          command: |
+            git add -f packages/material-ui/build || echo '/core declarations do not exist'
+            git add -f packages/material-ui-lab/build || echo '/lab declarations do not exist'
+            git add -f packages/material-ui-utils/build || echo '/utils declarations do not exist'
+            yarn lerna run --parallel build:types
+            git --no-pager diff
+
+      - run:
+          name: Log defect declaration files
+          command: |
+            # ignore build failures
+            # Fixing these takes some effort that isn't viable to merge in a single PR.
+            # We'll simply monitor them for now.
+            set +e
+            node scripts/testBuiltTypes.js
+            exit 0
+      - save_cache:
+          name: Save generated declaration files
+          key: typescript-declaration-files-{{ .Branch }}
+          paths:
+            # packages with generated declaration files
+            - packages/material-ui/build
+            - packages/material-ui-lab/build
+            - packages/material-ui-utils/build
   test_types_next:
     <<: *defaults
     steps:

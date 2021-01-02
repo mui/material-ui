@@ -294,7 +294,6 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
         ampmInClock={ampmInClock}
         type={view}
         ampm={ampm}
-        // @ts-expect-error TODO figure out this weird error
         getClockLabelText={getClockLabelText}
         minutesStep={minutesStep}
         allowKeyboardControl={allowKeyboardControl}

@@ -25,6 +25,7 @@
       "default": "'medium'"
     },
     "startIcon": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
