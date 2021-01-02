@@ -69,13 +69,13 @@ export default function BrandingFooter() {
               </li>
               <li>
                 {/* TODO: add link */}
-                <Link color="inherit" variant="body2" href="/">
+                <Link color="inherit" variant="body2" href="/x/">
                   Material-UI X
                 </Link>
               </li>
               <li>
                 {/* TODO: add link */}
-                <Link color="inherit" variant="body2" href="/">
+                <Link color="inherit" variant="body2" href="/pricing/">
                   {t1('Pricing')}
                 </Link>
               </li>
@@ -113,43 +113,38 @@ export default function BrandingFooter() {
             {/* TODO: Should se make sections of the Sidebar valid links to target these? */}
             <ul>
               <li>
-                <Link color="inherit" variant="body2" href="/">
+                <Link color="inherit" variant="body2" href="/getting-started/templates/">
                   {t1('Free templates')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/">
+                <Link color="inherit" variant="body2" href="/components/material-icons/">
                   {t1('Material Icons')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/">
+                <Link color="inherit" variant="body2" href="/components/box/">
                   {t1('Components')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/">
+                <Link color="inherit" variant="body2" href="/api/accordion/">
                   {t1('Components API')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/">
-                  {t1('Styles')}
-                </Link>
-              </li>
-              <li>
-                <Link color="inherit" variant="body2" href="/">
+                <Link color="inherit" variant="body2" href="/system/basics/">
                   {t1('System')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/">
+                <Link color="inherit" variant="body2" href="/customization/theming/">
                   {t1('Customization')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/">
-                  {t1('Guides')}
+                <Link color="inherit" variant="body2" href="/guides/api/">
+                  {t1('How To Guides')}
                 </Link>
               </li>
             </ul>
@@ -160,7 +155,7 @@ export default function BrandingFooter() {
             <ul>
               <li>
                 {/* TODO: add link */}
-                <Link color="inherit" variant="body2" href="/">
+                <Link color="inherit" variant="body2" href="/getting-started/installation/">
                   {t1('Docs')}
                 </Link>
               </li>
@@ -176,7 +171,7 @@ export default function BrandingFooter() {
               </li>
               <li>
                 {/* TODO: add link */}
-                <Link color="inherit" variant="body2" href="/">
+                <Link color="inherit" variant="body2" href="/discover-more/related-projects/">
                   {t1('Related Projects')}
                 </Link>
               </li>
@@ -211,36 +206,38 @@ export default function BrandingFooter() {
             </ul>
           </Grid>
           <Grid item xs={12} lg={3} className="BrandingFooter-list">
-            <Typography component="h3" sx={{ maxWidth: { lg: 140 } }}>
-              {t1('Subscribe to our Newsletter')}
-            </Typography>
-            <Box
-              sx={{
-                display: 'flex',
-                backgroundColor: (theme) => theme.palette.greyF3,
-                borderRadius: 1,
-                maxWidth: 300,
-                '& input': {
-                  paddingLeft: 2,
-                  height: 40,
-                  boxSizing: 'border-box',
-                },
-                '& button': {
-                  flexShrink: 0,
-                },
-              }}
-            >
-              <InputBase
-                fullWidth
-                placeholder={t1('Enter your email')}
-                inputProps={{
-                  'aria-label': t1('Enter your email'),
+            <form>
+              <Typography component="h3" sx={{ maxWidth: { lg: 140 } }}>
+                {t1('Subscribe to our Newsletter')}
+              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  backgroundColor: (theme) => theme.palette.greyF3,
+                  borderRadius: 1,
+                  maxWidth: 300,
+                  '& input': {
+                    paddingLeft: 2,
+                    height: 40,
+                    boxSizing: 'border-box',
+                  },
+                  '& button': {
+                    flexShrink: 0,
+                  },
                 }}
-              />
-              <Button variant="contained" color="inherit" size="small">
-                {t1('Subscribe')}
-              </Button>
-            </Box>
+              >
+                <InputBase
+                  fullWidth
+                  placeholder={t1('Enter your email')}
+                  inputProps={{
+                    'aria-label': t1('Enter your email'),
+                  }}
+                />
+                <Button variant="contained" color="inherit" size="small" type="submit">
+                  {t1('Subscribe')}
+                </Button>
+              </Box>
+            </form>
             <Typography sx={{ mt: 1, mb: 3 }} color="textSecondary" variant="body2">
               {t1("We don't spam.")}
             </Typography>

@@ -1,10 +1,7 @@
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import { darken, lighten, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import SearchAppBar from 'docs/src/modules/branding/SearchAppBar';
+import { darken, createMuiTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
+// import SearchAppBar from 'docs/src/modules/branding/SearchAppBar';
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
 interface CustomPalette {
@@ -75,6 +72,7 @@ let theme = createMuiTheme({
     greyF3: '#F3F6F9',
   },
   typography: {
+    fontWeightMedium: undefined,
     fontFamily: [
       'Inter',
       // system-font
@@ -116,7 +114,7 @@ theme = createMuiTheme(theme, {
       letterSpacing: `${round(-2 / 72)}em`,
       lineHeight: 1.111,
       fontSize: 44,
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         fontSize: 68,
       },
       [theme.breakpoints.up('md')]: {
@@ -128,7 +126,7 @@ theme = createMuiTheme(theme, {
       letterSpacing: `${round(-1.5 / 52)}em`,
       lineHeight: 1.154,
       fontSize: 40,
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         fontSize: 48,
       },
       [theme.breakpoints.up('md')]: {
@@ -140,7 +138,7 @@ theme = createMuiTheme(theme, {
       letterSpacing: `${round(-1 / 36)}em`,
       lineHeight: 1.222,
       fontSize: 28,
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         fontSize: 32,
       },
       [theme.breakpoints.up('md')]: {
@@ -167,21 +165,21 @@ theme = createMuiTheme(theme, {
       styleOverrides: {
         root: {
           textTransform: 'initial',
+        },
+        colorInherit: {
+          backgroundColor: theme.palette.greyD7,
           '&.Mui-focusVisible': {
-            ':after': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              borderRadius: '2px',
-              border: `2px solid ${theme.palette.vividBlue}`, // vivid blue outline when focused
+            boxShadow: `0 0 0 0.25rem ${alpha(theme.palette.greyD7, 0.5)}`,
+          },
+          '&:hover': {
+            backgroundColor: darken(theme.palette.greyD7, 0.1),
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: theme.palette.greyD7,
             },
           },
           '&:active': {
-            backgroundColor: darken(theme.palette.grey.A100, 0.2),
+            backgroundColor: darken(theme.palette.greyD7, 0.2),
           },
         },
       },
@@ -189,11 +187,18 @@ theme = createMuiTheme(theme, {
         {
           props: { variant: 'contained', color: 'primary' },
           style: {
+            '&.Mui-focusVisible': {
+              boxShadow: `0 0 0 0.25rem ${alpha(theme.palette.primary.main, 0.5)}`,
+            },
             '&:hover': {
-              backgroundColor: lighten(theme.palette.primary.main, 0.2),
+              backgroundColor: darken(theme.palette.primary.main, 0.15),
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: theme.palette.primary.main,
+              },
             },
             '&:active': {
-              backgroundColor: darken(theme.palette.primary.main, 0.2),
+              backgroundColor: darken(theme.palette.primary.main, 0.3),
             },
           },
         },
@@ -201,11 +206,30 @@ theme = createMuiTheme(theme, {
           props: { variant: 'contained', color: 'secondary' },
           style: {
             '&:hover': {
-              backgroundColor: lighten(theme.palette.secondary.main, 0.2),
+              backgroundColor: darken(theme.palette.secondary.main, 0.15),
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: theme.palette.secondary.main,
+              },
             },
             '&:active': {
-              backgroundColor: darken(theme.palette.secondary.main, 0.2),
+              backgroundColor: darken(theme.palette.secondary.main, 0.3),
             },
+          },
+        },
+        {
+          props: { size: 'small' },
+          style: {
+            padding: '8px 16px',
+            fontSize: 14,
+          },
+        },
+        {
+          props: { size: 'large' },
+          style: {
+            padding: '14px 22px',
+            boxShadow: '0 2px 3px rgba(0, 30, 60, 0.08)',
+            fontSize: 18,
           },
         },
       ],
@@ -213,24 +237,16 @@ theme = createMuiTheme(theme, {
   },
 });
 
-interface PageProps {
+interface BrandingRootProps {
   children?: React.ReactNode;
 }
 
-export default function Page(props: PageProps) {
+export default function BrandingRoot(props: BrandingRootProps) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Grid container>
-        <Grid item xs={12}>
-          <SearchAppBar />
-        </Grid>
-        <Grid item xs={12}>
-          <Box component={Container} disableGutters maxWidth={false} sx={{ overflow: 'hidden' }}>
-            {props.children}
-          </Box>
-        </Grid>
-      </Grid>
+      {/* <SearchAppBar /> */}
+      {props.children}
       <BrandingFooter />
     </ThemeProvider>
   );
