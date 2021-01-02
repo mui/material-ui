@@ -66,13 +66,6 @@ function getDomTreeShapes(element, rootNode) {
     const style = ownerWindow(rootNode).getComputedStyle(element);
 
     if (
-      // Ignore the scroll children if the element is absolute positioned.
-      style.getPropertyValue('position') === 'absolute' ||
-      // Ignore the scroll children if the element has an overflowX hidden
-      style.getPropertyValue('overflow-x') === 'hidden'
-    ) {
-      domTreeShapes = [];
-    } else if (
       (element.clientWidth > 0 && element.scrollWidth > element.clientWidth) ||
       (element.clientHeight > 0 && element.scrollHeight > element.clientHeight)
     ) {
