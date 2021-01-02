@@ -3,8 +3,8 @@
   "version": "5.0.0-alpha.22",
   "private": false,
   "author": "Material-UI Team",
+  "description": "React components for fast & beautiful apps. Build your own design system, or start with Material Design.",
   "main": "./src/index.ts",
-  "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
     "react-component",
