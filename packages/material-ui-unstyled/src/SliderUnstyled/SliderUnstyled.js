@@ -748,8 +748,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                     // So that VoiceOver's focus indicator matches the thumb's dimensions
                     width: '100%',
                     height: '100%',
-                    // webkit ignores `aria-orientation`: https://bugs.chromium.org/p/chromium/issues/detail?id=1158217#c7
-                    WebkitAppearance: orientation === 'vertical' ? 'slider-vertical' : undefined,
                   }}
                 />
               </Thumb>
