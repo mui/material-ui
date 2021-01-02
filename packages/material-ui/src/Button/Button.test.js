@@ -22,7 +22,7 @@ describe('<Button />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',
-    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testDeepOverrides: null,
     testVariantProps: { variant: 'contained', fullWidth: true },
     skip: ['componentsProp'],
   }));
@@ -271,23 +271,21 @@ describe('<Button />', () => {
   it('should render a button with startIcon', () => {
     const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
     const button = getByRole('button');
-    const label = button.querySelector(`.${classes.label}`);
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
-    expect(label.firstChild).not.to.have.class(classes.endIcon);
-    expect(label.firstChild).to.have.class(classes.startIcon);
+    expect(button.querySelector(`.${classes.startIcon}`)).not.to.equal(null);
+    expect(button.querySelector(`.${classes.endIcon}`)).to.equal(null);
   });
 
   it('should render a button with endIcon', () => {
     const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
     const button = getByRole('button');
-    const label = button.querySelector(`.${classes.label}`);
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
-    expect(label.lastChild).not.to.have.class(classes.startIcon);
-    expect(label.lastChild).to.have.class(classes.endIcon);
+    expect(button.querySelector(`.${classes.startIcon}`)).to.equal(null);
+    expect(button.querySelector(`.${classes.endIcon}`)).not.to.equal(null);
   });
 
   it('should have a ripple by default', () => {

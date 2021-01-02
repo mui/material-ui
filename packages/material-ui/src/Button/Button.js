@@ -26,7 +26,6 @@ const overridesResolver = (props, styles) => {
     ...(color === 'inherit' && styles.colorInherit),
     ...(disableElevation && styles.disableElevation),
     ...(fullWidth && styles.fullWidth),
-    [`& .${buttonClasses.label}`]: styles.label,
     [`& .${buttonClasses.startIcon}`]: {
       ...styles.startIcon,
       ...styles[`iconSize${capitalize(size)}`],
@@ -62,7 +61,6 @@ const useUtilityClasses = (styleProps) => {
         [classes.fullWidth]: fullWidth,
       },
     ),
-    label: clsx(buttonClasses.label, classes.label),
     startIcon: clsx(
       buttonClasses.startIcon,
       classes.startIcon,
@@ -127,20 +125,6 @@ const ButtonEndIcon = experimentalStyled(
   }),
   ...commonIconStyles(styleProps),
 }));
-
-const ButtonLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiButton',
-    slot: 'Label',
-  },
-)({
-  width: '100%', // Ensure the correct width for iOS Safari
-  display: 'inherit',
-  alignItems: 'inherit',
-  justifyContent: 'inherit',
-});
 
 const ButtonRoot = experimentalStyled(
   ButtonBase,
@@ -376,17 +360,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       type={type}
       {...other}
     >
-      {/*
-       * The inner <span> is required to vertically align the children.
-       * Browsers don't support `display: flex` on a <button> element.
-       * https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9
-       * TODO v5: evaluate if still required for the supported browsers.
-       */}
-      <ButtonLabel className={classes.label}>
-        {startIcon}
-        {children}
-        {endIcon}
-      </ButtonLabel>
+      {startIcon}
+      {children}
+      {endIcon}
     </ButtonRoot>
   );
 });

@@ -22,8 +22,6 @@ export type ButtonTypeMap<
     classes?: {
       /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the span element that wraps the children. */
-      label?: string;
       /** Styles applied to the root element if `variant="text"`. */
       text?: string;
       /** Styles applied to the root element if `variant="text"` and `color="inherit"`. */
