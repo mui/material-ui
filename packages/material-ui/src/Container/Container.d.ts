@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -45,6 +47,10 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default 'lg'
      */
     maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }
