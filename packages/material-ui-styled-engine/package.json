@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.21",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI Styled - Wrapper package for emotion.",
+  "description": "Styled wrapper package for emotion.",
   "main": "./src/index.js",
   "keywords": [
     "react",
