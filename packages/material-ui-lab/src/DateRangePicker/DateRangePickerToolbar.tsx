@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { withStyles, WithStyles } from '@material-ui/core/styles';
+import { MuiStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import PickersToolbarButton from '../internal/pickers/PickersToolbarButton';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 
-export const styles = {
+export const styles: MuiStyles<'root' | 'penIcon' | 'dateTextContainer'> = {
   root: {},
   penIcon: {
     position: 'relative',
@@ -16,7 +16,7 @@ export const styles = {
   dateTextContainer: {
     display: 'flex',
   },
-} as const;
+};
 
 interface DateRangePickerToolbarProps
   extends CurrentlySelectingRangeEndProps,

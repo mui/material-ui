@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
 
 export interface MonthProps {
@@ -12,7 +12,11 @@ export interface MonthProps {
   value: any;
 }
 
-export const styles = (theme: Theme) => ({
+export type PickersMonthClassKey = 'root' | 'selected';
+
+export const styles: MuiStyles<PickersMonthClassKey> = (
+  theme,
+): StyleRules<PickersMonthClassKey> => ({
   root: {
     flex: '1 0 33.33%',
     display: 'flex',
@@ -37,8 +41,6 @@ export const styles = (theme: Theme) => ({
   },
   selected: {},
 });
-
-export type PickersMonthClassKey = keyof WithStyles<typeof styles>['classes'];
 
 /**
  * @ignore - do not document.

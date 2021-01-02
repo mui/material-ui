@@ -1,7 +1,14 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useForkRef } from '@material-ui/core/utils';
-import { WithStyles, withStyles, Theme, alpha } from '@material-ui/core/styles';
+import {
+  WithStyles,
+  withStyles,
+  Theme,
+  alpha,
+  StyleRules,
+  MuiStyles,
+} from '@material-ui/core/styles';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
 import { useCanAutoFocus } from '../internal/pickers/hooks/useCanAutoFocus';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
@@ -17,7 +24,9 @@ export interface YearProps {
   forwardedRef?: React.Ref<HTMLButtonElement>;
 }
 
-export const styles = (theme: Theme) => ({
+export type PickersYearClassKey = 'root' | 'modeDesktop' | 'yearButton' | 'disabled' | 'selected';
+
+export const styles: MuiStyles<PickersYearClassKey> = (theme): StyleRules<PickersYearClassKey> => ({
   root: {
     flexBasis: '33.3%',
     display: 'flex',
@@ -55,8 +64,6 @@ export const styles = (theme: Theme) => ({
   disabled: {},
   selected: {},
 });
-
-export type PickersYearClassKey = keyof WithStyles<typeof styles>['classes'];
 
 /**
  * @ignore - internal component.

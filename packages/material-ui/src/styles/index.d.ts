@@ -18,6 +18,8 @@ export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export {
   default as withStyles,
+  MuiStyles,
+  Styles,
   WithStyles,
   StyleRules,
   StyleRulesCallback,
