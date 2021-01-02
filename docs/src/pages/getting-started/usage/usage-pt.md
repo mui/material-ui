@@ -30,7 +30,7 @@ Sim, isso é tudo o que você precisa para começar, como você pode ver nesta d
 
 ## Globais
 
-A experiência de uso com o Material-UI pode ser melhorada com algumas configurações globais importantes, das quais você precisa estar ciente.
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### Meta tag para responsividade
 

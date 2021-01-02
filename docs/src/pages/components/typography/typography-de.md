@@ -58,7 +58,7 @@ In einigen Situationen können Sie möglicherweise die Komponente `Typography` n
 
 ## Ändern des semantischen Elements
 
-Die Komponente Typografie verwendet die Eigenschaft `variantMapping` um eine UI-Variante einem semantischen Element zuzuordnen. Es ist wichtig zu wissen, dass der Stil einer Typografie unabhängig von dem zugrunde liegenden semantischen Element ist.
+Die Komponente Typografie verwendet die Eigenschaft `variantMapping` um eine UI-Variante einem semantischen Element zuzuordnen. It's important to realize that the style of a typography component is independent from the semantic underlying element.
 
 - You can change the underlying element for a one time occasion with the `component` property:
 

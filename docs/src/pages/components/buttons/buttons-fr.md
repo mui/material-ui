@@ -43,7 +43,7 @@ Dans les cartes, les boutons de texte aident à maintenir l’accent sur le cont
 
 ## Boutons en surbrillance
 
-[boutons en surbrillance](https://material.io/design/components/buttons.html#outlined-button) sont des boutons à accent moyen. Ils contiennent des actions importantes mais qui ne sont pas l'action principale d'une application.
+[boutons en surbrillance](https://material.io/design/components/buttons.html#outlined-button) sont des boutons à accent moyen. They contain actions that are important, but aren't the primary action in an app.
 
 Les boutons surbrillance sont également une alternative moins importante que les boutons contenus, ou une alternative plus importante aux boutons de texte.
 

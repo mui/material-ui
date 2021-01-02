@@ -130,7 +130,7 @@ To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-> ⚠️ Changing the font size can harm accessibility ♿️. La mayoría de los navegadores concuerdan en el tamaño por defecto de 16px, pero el usuario puede cambiarlo. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+> ⚠️ Changing the font size can harm accessibility ♿️. La mayoría de los navegadores concuerdan en el tamaño por defecto de 16px, pero el usuario puede cambiarlo. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
 La propiedad `theme.typography.htmlFontSize` puede ser utilizada en estos casos, le informa a Material-UI cual es el tamaño de la fuente en el elemento `<html>`. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 

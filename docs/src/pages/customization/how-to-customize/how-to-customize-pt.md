@@ -8,6 +8,7 @@ As components can be used in different contexts, there are several approaches to
 1. [Reusable style overrides](#2-reusable-style-overrides)
 1. [Dynamic variation](#3-dynamic-variation)
 1. [Variação do tema global](#4-global-theme-variation)
+1. [Sobrescrita do CSS Global](#5-global-css-override)
 
 ## 1. One-off customization
 
@@ -91,6 +92,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 
 | State         | Nome da classe global |
 |:------------- |:--------------------- |
+| active        | `.Mui-active`         |
 | checked       | `.Mui-checked`        |
 | disabled      | `.Mui-disabled`       |
 | error         | `.Mui-error`          |
@@ -147,3 +149,48 @@ In the previous section, we learned how to override the style of a Material-UI c
 A fim de promover a consistência entre os componentes e gerenciar a aparência da interface do usuário como um todo, o Material-UI fornece um mecanismo para aplicar mudanças globais.
 
 Please take a look at the theme's [global overrides page](/customization/theme-components/) for more details.
+
+## 5. Sobrescrita do CSS Global
+
+Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
+
+```jsx
+const GlobalCss = withStyles({
+  // @global é manipulado pelo jss-plugin-global.
+  '@global': {
+    '.MuiButton-root': {
+      fontSize: '1rem',
+    },
+  },
+})(() => null);
+
+// …
+
+<GlobalCss />;
+```
+
+Se você estiver usando o componente [CssBaseline](/components/css-baseline/) para aplicar o reset global, ele pode também ser usado para aplicação de estilos globais. Por exemplo:
+
+```jsx
+const theme = createMuiTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        html: {
+          WebkitFontSmoothing: 'auto',
+        },
+      },
+    },
+  },
+});
+
+// ...
+return (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    {children}
+  </ThemeProvider>
+);
+```
+
+{{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}

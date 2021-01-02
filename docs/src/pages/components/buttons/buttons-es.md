@@ -43,7 +43,7 @@ En las tarjetas, los botones de texto ayudan a mantener un énfasis en el conten
 
 ## Botones con Contorno
 
-[Botones con contorno (outlined)](https://material.io/design/components/buttons.html#outlined-button) son de énfasis medio. Contienen acciones que son importantes, pero no primarias en la app.
+[Botones con contorno (outlined)](https://material.io/design/components/buttons.html#outlined-button) son de énfasis medio. They contain actions that are important, but aren't the primary action in an app.
 
 Los botones delineados también son una alternativa de menos énfasis que los botones contenidos, o de mayor énfasis que los botones de texto.
 
