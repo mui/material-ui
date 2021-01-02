@@ -65,7 +65,7 @@ describe('<SliderUnstyled />', () => {
       expect(slider).to.have.attribute('aria-orientation', 'vertical');
     });
 
-    it('does nto set the orientation via appearance for WebKit browsers', function test() {
+    it('does not set the orientation via appearance for WebKit browsers', function test() {
       if (/jsdom/.test(window.navigator.userAgent) || !/WebKit/.test(window.navigator.userAgent)) {
         this.skip();
       }
