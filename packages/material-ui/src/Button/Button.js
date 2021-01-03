@@ -265,7 +265,7 @@ const ButtonRoot = experimentalStyled(
       '&:active': {
         boxShadow: 'none',
       },
-      '&$disabled': {
+      '&.Mui-disabled': {
         boxShadow: 'none',
       },
     },
