@@ -2,6 +2,8 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import { makeStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
@@ -25,13 +27,25 @@ function FramedDemo(props) {
     };
   }, [document]);
 
+  const cache = React.useMemo(
+    () =>
+      createCache({
+        key: 'iframe-demo',
+        prepend: true,
+        container: document.body,
+      }),
+    [document],
+  );
+
   const getWindow = React.useCallback(() => document.defaultView, [document]);
 
   return (
     <StylesProvider jss={jss} sheetsManager={sheetsManager}>
-      {React.cloneElement(children, {
-        window: getWindow,
-      })}
+      <CacheProvider value={cache}>
+        {React.cloneElement(children, {
+          window: getWindow,
+        })}
+      </CacheProvider>
     </StylesProvider>
   );
 }
