@@ -105,6 +105,7 @@ function findPages(
       .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
       .replace(/^.*\/pages/, '')
       .replace('.js', '')
+      .replace('.tsx', '')
       .replace(/^\/index$/, '/') // Replace `index` by `/`.
       .replace(/\/index$/, '');
 
