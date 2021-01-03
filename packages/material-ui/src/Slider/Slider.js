@@ -26,32 +26,26 @@ export const sliderClasses = {
 };
 
 const overridesResolver = (props, styles) => {
-  const {
-    color = 'primary',
-    marks: marksProp = false,
-    max = 100,
-    min = 0,
-    orientation = 'horizontal',
-    step = 1,
-    track = 'normal',
-  } = props;
+  const { styleProps } = props;
 
   const marks =
-    marksProp === true && step !== null
-      ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
-          value: min + step * index,
-        }))
-      : marksProp || [];
+    styleProps.marksProp === true && styleProps.step !== null
+      ? [...Array(Math.floor((styleProps.max - styleProps.min) / styleProps.step) + 1)].map(
+          (_, index) => ({
+            value: styleProps.min + styleProps.step * index,
+          }),
+        )
+      : styleProps.marksProp || [];
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
   return deepmerge(styles.root || {}, {
-    ...styles[`color${capitalize(color)}`],
+    ...styles[`color${capitalize(styleProps.color)}`],
     [`&.${sliderClasses.disabled}`]: styles.disabled,
     ...(marked && styles.marked),
-    ...(orientation === 'vertical' && styles.vertical),
-    ...(track === 'inverted' && styles.trackInverted),
-    ...(track === false && styles.trackFalse),
+    ...(styleProps.orientation === 'vertical' && styles.vertical),
+    ...(styleProps.track === 'inverted' && styles.trackInverted),
+    ...(styleProps.track === false && styles.trackFalse),
     [`& .${sliderClasses.rail}`]: styles.rail,
     [`& .${sliderClasses.track}`]: styles.track,
     [`& .${sliderClasses.mark}`]: styles.mark,
@@ -59,7 +53,7 @@ const overridesResolver = (props, styles) => {
     [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
     [`& .${sliderClasses.thumb}`]: {
       ...styles.thumb,
-      ...styles[`thumbColor${capitalize(color)}`],
+      ...styles[`thumbColor${capitalize(styleProps.color)}`],
       [`&.${sliderClasses.disabled}`]: styles.disabled,
     },
   });

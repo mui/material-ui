@@ -20,7 +20,7 @@ const getTextColor = (color, palette) => {
 };
 
 const overridesResolver = (props, styles) => {
-  const { styleProps = {} } = props;
+  const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
     ...(styleProps.variant && styles[styleProps.variant]),

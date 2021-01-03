@@ -10,30 +10,24 @@ import capitalize from '../utils/capitalize';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
 const overridesResolver = (props, styles) => {
-  const {
-    color = 'primary',
-    disableElevation = false,
-    fullWidth = false,
-    size = 'medium',
-    variant = 'text',
-  } = props;
+  const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...styles[variant],
-    ...styles[`${variant}${capitalize(color)}`],
-    ...styles[`size${capitalize(size)}`],
-    ...styles[`${variant}Size${capitalize(size)}`],
-    ...(color === 'inherit' && styles.colorInherit),
-    ...(disableElevation && styles.disableElevation),
-    ...(fullWidth && styles.fullWidth),
+    ...styles[styleProps.variant],
+    ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
+    ...styles[`size${capitalize(styleProps.size)}`],
+    ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
+    ...(styleProps.color === 'inherit' && styles.colorInherit),
+    ...(styleProps.disableElevation && styles.disableElevation),
+    ...(styleProps.fullWidth && styles.fullWidth),
     [`& .${buttonClasses.label}`]: styles.label,
     [`& .${buttonClasses.startIcon}`]: {
       ...styles.startIcon,
-      ...styles[`iconSize${capitalize(size)}`],
+      ...styles[`iconSize${capitalize(styleProps.size)}`],
     },
     [`& .${buttonClasses.endIcon}`]: {
       ...styles.endIcon,
-      ...styles[`iconSize${capitalize(size)}`],
+      ...styles[`iconSize${capitalize(styleProps.size)}`],
     },
   });
 };

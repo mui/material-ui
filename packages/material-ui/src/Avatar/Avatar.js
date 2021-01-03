@@ -8,11 +8,11 @@ import Person from '../internal/svg-icons/Person';
 import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
 
 const overridesResolver = (props, styles) => {
-  const { colorDefault, variant = 'circular' } = props;
+  const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...styles[variant],
-    ...(colorDefault && styles.colorDefault),
+    ...styles[styleProps.variant],
+    ...(styleProps.colorDefault && styles.colorDefault),
     [`& .${avatarClasses.img}`]: styles.img,
     [`& .${avatarClasses.fallback}`]: styles.fallback,
   });
