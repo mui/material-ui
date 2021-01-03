@@ -92,7 +92,7 @@
     "prismjs": "^1.17.1",
     "prop-types": "^15.7.2",
     "raw-loader": "^1.0.0",
-    "react": "^16.14.0",
+    "react": "^17.0.1",
     "react-docgen": "^5.0.0-beta.1",
     "react-dom": "^16.14.0",
     "react-draggable": "^4.0.3",
