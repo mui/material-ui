@@ -126,7 +126,7 @@ export default function LandingPage(props) {
     <AppFrame>
       <div className={classes.root}>
         <Head />
-        <main id="main-content" tabIndex="-1">
+        <main id="main-content" tabIndex={-1}>
           <div className={classes.hero}>
             <Container maxWidth="md" className={classes.content}>
               <img src="/static/logo_raw.svg" alt="" className={classes.logo} />
