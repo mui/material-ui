@@ -1,14 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useForkRef } from '@material-ui/core/utils';
-import {
-  WithStyles,
-  withStyles,
-  Theme,
-  alpha,
-  StyleRules,
-  MuiStyles,
-} from '@material-ui/core/styles';
+import { WithStyles, withStyles, alpha, StyleRules, MuiStyles } from '@material-ui/core/styles';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
 import { useCanAutoFocus } from '../internal/pickers/hooks/useCanAutoFocus';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
