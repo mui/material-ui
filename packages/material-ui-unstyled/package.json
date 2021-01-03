@@ -3,14 +3,13 @@
   "version": "5.0.0-alpha.21",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Accessible unstyled React components.",
+  "description": "Material-UI Unstyled - collection of unstyled React components.",
   "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
     "material-ui",
-    "unstyled",
-    "a11y"
+    "unstyled"
   ],
   "repository": {
     "type": "git",
