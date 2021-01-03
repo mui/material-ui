@@ -9,7 +9,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 <p class="description">Material Designのレスポンシブレイアウトグリッドは、画面サイズと向きに適応し、レイアウト間の一貫性を保証します。</p>
 
-[grid](https://material.io/design/layout/responsive-layout-grid.html) は、レイアウト間の視覚的な一貫性を実現しながら、さまざまなデザインでの柔軟性を可能にします。 [grid](https://material.io/design/layout/responsive-layout-grid.html) は、レイアウト間の視覚的な一貫性を実現しながら、さまざまなデザインでの柔軟性を可能にします。 Material DesignのレスポンシブUIは12列のグリッドレイアウトに基づいています。 Material DesignのレスポンシブUIは12列のグリッドレイアウトに基づいています。
+[grid](https://material.io/design/layout/responsive-layout-grid.html) は、レイアウト間の視覚的な一貫性を実現しながら、さまざまなデザインでの柔軟性を可能にします。 Material Design's responsive UI is based on a 12-column grid layout.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -19,9 +19,9 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 グリッドシステムは `Grid` コンポーネントで実装されています。
 
-- 高い柔軟性のために [CSSのFlexible Boxモジュール](https://www.w3.org/TR/css-flexbox-1/) を使用します。
+- It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
 - レイアウトには* containers * と * items*の2種類あります 。
-- アイテムの幅はパーセンテージで設定されているので、それらは常に親要素に対して流動的でサイズが決まっています。
+- Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - アイテムには、個々のアイテム間の間隔を空けるための余白があります。
 - xs、sm、md、lg、およびxlの5つのグリッドブレークポイントがあります。
 - Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint contraints](/customization/breakpoints/#default-breakpoints).
@@ -38,7 +38,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ## Fluid grids
 
-Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使用します。 流体グリッドのレイアウトでは、ブレークポイントを使用して、レイアウトを大幅に変更する必要があるかどうかを判断できます。
+Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使用します。 A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Basic grid
 

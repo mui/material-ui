@@ -61,7 +61,7 @@ import '@fontsource/roboto/700.css';
 
 ## 改变语义元素
 
-文字铸排组件通过 `variantMapping` 属性关联了一种 UI 变体和某一种语义元素。 请注意，文字的样式是和最底层的语义元素分开的。
+文字铸排组件通过 `variantMapping` 属性关联了一种 UI 变体和某一种语义元素。 It's important to realize that the style of a typography component is independent from the semantic underlying element.
 
 - 使用 `component` 属性，您可以一次性改变底层元素的样式：
 

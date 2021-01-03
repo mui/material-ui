@@ -32,7 +32,7 @@ Oui, c'est tout ce dont vous avez besoin pour commencer, comme vous pouvez le vo
 
 ## Variables globales
 
-L'expérience d'utilisation de Material-UI peut être améliorée avec une poignée d'importants globaux que vous devez connaître.
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### La balise meta responsive design (vue adaptative)
 

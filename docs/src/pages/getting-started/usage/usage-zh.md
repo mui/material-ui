@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## 全局样式
 
-您能够注意到，有一些重要的全局变量，可以改善 Material-UI 的用户体验。
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### 响应式元标记（meta tag）
 

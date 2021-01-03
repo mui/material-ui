@@ -115,7 +115,6 @@ const useUtilityClasses = (styleProps) => {
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTypography' });
-
   const {
     align = 'inherit',
     className,
@@ -225,6 +224,10 @@ Typography.propTypes = {
    * @default false
    */
   paragraph: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * Applies the theme typography styles.
    * @default 'body1'

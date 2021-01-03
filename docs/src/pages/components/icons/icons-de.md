@@ -269,14 +269,14 @@ For more details, take a look at [why GitHub migrated from font icons to SVG ico
 
 ## Barrierefreiheit
 
-Icons can convey all sorts of meaningful information, so it’s important to ensure they are accessible where appropriate. There are two use cases you’ll want to consider:
+Icons can convey all sorts of meaningful information, so it's important to ensure they are accessible where appropriate. There are two use cases you'll want to consider:
 
 - **Decorative icons** that are only being used for visual or branding reinforcement. Wenn sie von der Seite entfernt würden, könnten Benutzer Ihre Seite trotzdem verstehen und verwenden.
-- **Semantic icons** are ones that you’re using to convey meaning, rather than just pure decoration. This includes icons without text next to them that are used as interactive controls — buttons, form elements, toggles, etc.
+- **Semantic icons** are ones that you're using to convey meaning, rather than just pure decoration. This includes icons without text next to them that are used as interactive controls — buttons, form elements, toggles, etc.
 
 ### Decorative icons
 
-If your icons are purely decorative, you’re already done! The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
+If your icons are purely decorative, you're already done! The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
 
 ### Semantic icons
 

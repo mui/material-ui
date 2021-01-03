@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">La barre d'application affiche des informations et des actions relatives à l'écran actuel.</p>
 
-[La barre d'application](https://material.io/design/components/app-bars-top.html) de la page fournit le contenu et les actions liés à l'écran actuel. Il est utilisé pour la marque, les titres d'écran, la navigation et les actions.
+[La barre d'application](https://material.io/design/components/app-bars-top.html) de la page fournit le contenu et les actions liés à l'écran actuel. It's used for branding, screen titles, navigation, and actions.
 
 Il peut être utilisé en tant que barre d'action contextuel ou en tant que barre de navigation.
 

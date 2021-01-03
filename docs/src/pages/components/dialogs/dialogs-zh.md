@@ -41,7 +41,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 如果需要加上标题请:
 
 - 使用明确的问题或声明，并在内容区域对其做出解释，例如：“是否要清除 USB 上的内容？”。
-- 避免道歉、模棱两可或问一些问题，例如：“警告！” 或 “你确定吗?”
+- 避免使用道歉、模棱两可的内容或者问题，例如”警告！“或者”你确定吗？“
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -94,9 +94,9 @@ function MyComponent() {
 
 ## 确认对话框
 
-确认型对话框明确要求用户在提交选项之前确认他们的选择。 比如说，用户可以听到多种铃声，但只有在点击 “OK” 后才意味着做出了选择。
+确认型对话框明确要求用户在提交选项之前确认他们的选择。 For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-在确认对话框中触摸 "取消"，或按后退，将会导致当前操作的取消，放弃任何更改， 并关闭对话框。
+Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -108,7 +108,7 @@ function MyComponent() {
 
 ## 长内容滚动
 
-考虑到用户有不同的视图大小，并且使用不同的设备，对话框会变得太长，这样的情况下，对话框是可滚动的。
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - 使用 `scroll=paper`，对话框的内容能在 paper 元素中滚动。
 - 使用 `scroll=body`，对话框的内容能在 body 元素中滚动。

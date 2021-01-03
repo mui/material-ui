@@ -1,4 +1,4 @@
-export default function generateUtilityClasses(
+export default function generateUtilityClasses<T extends keyof any>(
   componentName: string,
-  slots: string[]
-): Record<string, string>;
+  slots: T[]
+): Record<T, string>;

@@ -41,7 +41,7 @@ N'utiliser les alertes de la barre de titre que pour les situations à haut risq
 Si un titre est requis:
 
 - Utilisez une question ou une déclaration claire avec une explication dans la zone de contenu, telle que "Effacer le stockage USB?".
-- Évitez les excuses, les ambiguïtés ou les questions telles que "Attention"
+- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -94,9 +94,9 @@ function MyComponent() {
 
 ## Dialogues de confirmation
 
-Les dialogues de confirmation demandent aux utilisateurs de confirmer explicitement leur choix avant la validation d'une option. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK”.
+Les dialogues de confirmation demandent aux utilisateurs de confirmer explicitement leur choix avant la validation d'une option. For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Appuyer sur “Annuler” dans une boîte de dialogue de confirmation ou appuyer sur Retour annule l'action, annule les modifications et ferme la boîte de dialogue.
+Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -108,7 +108,7 @@ Vous pouvez créer une boîte de dialogue déplaçable à l’aide de [react-dra
 
 ## Défiler de longues contenu
 
-Lorsque les boîtes de dialogue deviennent trop longues pour la fenêtre ou le périphérique de l'utilisateur, elles défilent.
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll=paper` le contenu de la boîte de dialogue défile dans l'élément de papier.
 - `scroll=body` le contenu de la boîte de dialogue défile dans l'élément body.

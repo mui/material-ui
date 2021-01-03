@@ -55,15 +55,15 @@ export function DateRangePickerViewMobile<TDate>(props: DesktopDateRangeCalendar
   return (
     <React.Fragment>
       <PickersCalendarHeader
-        openView="date"
-        views={onlyDateView}
-        onMonthChange={changeMonth as any}
-        leftArrowButtonText={leftArrowButtonText}
         components={components}
         componentsProps={componentsProps}
-        rightArrowButtonText={rightArrowButtonText}
-        minDate={minDate}
+        leftArrowButtonText={leftArrowButtonText}
         maxDate={maxDate}
+        minDate={minDate}
+        onMonthChange={changeMonth as any}
+        openView="date"
+        rightArrowButtonText={rightArrowButtonText}
+        views={onlyDateView}
         {...other}
       />
       <PickersCalendar<TDate>

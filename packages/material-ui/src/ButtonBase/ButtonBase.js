@@ -19,6 +19,20 @@ const overridesResolver = (props, styles) => {
   });
 };
 
+const useUtilityClasses = (styleProps) => {
+  const { disabled, focusVisible, focusVisibleClassName, classes = {} } = styleProps;
+
+  return {
+    root: clsx(buttonBaseClasses.root, classes.root, {
+      [buttonBaseClasses.disabled]: disabled,
+      [classes.disabled]: disabled,
+      [buttonBaseClasses.focusVisible]: focusVisible,
+      [classes.focusVisible]: focusVisible,
+      [focusVisibleClassName]: focusVisible,
+    }),
+  };
+};
+
 export const ButtonBaseRoot = experimentalStyled(
   'button',
   {},
@@ -57,20 +71,6 @@ export const ButtonBaseRoot = experimentalStyled(
   },
 });
 
-const useUtilityClasses = (styleProps) => {
-  const { disabled, focusVisible, focusVisibleClassName, classes = {} } = styleProps;
-
-  return {
-    root: clsx(buttonBaseClasses['root'], classes['root'], {
-      [buttonBaseClasses['disabled']]: disabled,
-      [classes['disabled']]: disabled,
-      [buttonBaseClasses['focusVisible']]: focusVisible,
-      [classes['focusVisible']]: focusVisible,
-      [focusVisibleClassName]: focusVisible,
-    }),
-  };
-};
-
 /**
  * `ButtonBase` contains as few styles as possible.
  * It aims to be a simple building block for creating a button.
@@ -78,7 +78,6 @@ const useUtilityClasses = (styleProps) => {
  */
 const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButtonBase' });
-
   const {
     action,
     buttonRef: buttonRefProp,
@@ -504,6 +503,10 @@ ButtonBase.propTypes = {
    * @ignore
    */
   onTouchStart: PropTypes.func,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * @default 0
    */

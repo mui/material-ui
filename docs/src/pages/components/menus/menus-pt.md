@@ -20,7 +20,7 @@ Um menu básico abre sobre o elemento âncora por padrão (esta opção pode ser
 
 Escolhendo uma opção deve confirmar imediatamente a opção e fechar o menu.
 
-**Desambiguação**: Em contraste com menus simples, uma caixa de diálogo simples pode apresentar detalhes adicionais relacionados às opções disponíveis para um item da lista ou fornecer navegação ou ações indiretas relacionada à tarefa principal. Embora possam exibir o mesmo conteúdo, menus simples são preferidos em relação a diálogos simples, pois menus simples são menos prejudiciais ao contexto atual do usuário.
+**Desambiguação**: Em contraste com menus simples, uma caixa de diálogo simples pode apresentar detalhes adicionais relacionados às opções disponíveis para um item da lista ou fornecer navegação ou ações indiretas relacionada à tarefa principal. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 

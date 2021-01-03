@@ -1,6 +1,6 @@
 # Spacing
 
-<p class="description">簡単に要素のmarginとpaddingをレスポンシブに変更するためのユーティリティクラスです。</p>
+<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
 ## 表記
 

@@ -4,9 +4,9 @@
 
 ## Häufig gestellte Fragen
 
-### Woah - die API ist anders! Bedeutet das, dass 1.0 völlig anders ist und ich die Grundlagen noch einmal erlernen muss, und eine Migration wird praktisch unmöglich sein?
+### Woah - die API ist anders! Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-Gute Frage! Die Antwort ist nein. Die Kernkonzepte haben sich nicht geändert. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
+I'm glad you asked! Die Antwort ist nein. The core concepts haven't changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
 ### Was hat zu einer so großen Veränderung geführt?
 

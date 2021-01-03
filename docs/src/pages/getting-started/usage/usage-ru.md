@@ -32,7 +32,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## Глобальная настройка
 
-Опыт использования Material-UI может быть улучшен с помощью ряда важных глобальных настроек, о которых вам нужно знать.
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### Responsive meta tag
 

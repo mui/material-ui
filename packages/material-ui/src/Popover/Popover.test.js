@@ -813,7 +813,7 @@ describe('<Popover />', () => {
     });
 
     it('should not apply the auto prop if not supported', () => {
-      const TransitionComponent = React.forwardRef((_, ref) => <div ref={ref} tabIndex="-1" />);
+      const TransitionComponent = React.forwardRef((_, ref) => <div ref={ref} tabIndex={-1} />);
       const wrapper = mount(
         <Popover {...defaultProps} open TransitionComponent={TransitionComponent}>
           <div />

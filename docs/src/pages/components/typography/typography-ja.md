@@ -58,7 +58,7 @@ The Typography component makes it easy to apply a default set of font weights an
 
 ## セマンティック要素の変更
 
-Typographyコンポーネントは、 `variantMapping` プロパティを使用して、UIバリアントをセマンティック要素に関連付けます。 It’s important to realize that the style of a typography is independent from the semantic underlying element.
+Typographyコンポーネントは、 `variantMapping` プロパティを使用して、UIバリアントをセマンティック要素に関連付けます。 It's important to realize that the style of a typography component is independent from the semantic underlying element.
 
 - You can change the underlying element for a one time occasion with the `component` property:
 

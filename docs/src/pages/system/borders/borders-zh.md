@@ -4,7 +4,7 @@
 
 ## 边框
 
-使用边框的辅助功能来添加或删除一个元素的边框。 选择所有边框或一次选择一个。
+Use border utilities to add or remove an element's borders. 选择所有边框或一次选择一个。
 
 ### 添加
 

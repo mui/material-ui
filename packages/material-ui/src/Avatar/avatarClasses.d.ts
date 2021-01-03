@@ -10,6 +10,6 @@ export interface AvatarClasses {
 
 declare const AvatarClasses: AvatarClasses;
 
-export function getAvatarUtilityClass(part: string): string;
+export function getAvatarUtilityClass(slot: string): string;
 
 export default AvatarClasses;

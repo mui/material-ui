@@ -12,7 +12,7 @@ export interface BadgeUnstyledClasses {
   invisible: string;
 }
 
-export function getBadgeUtilityClass(part: string): string;
+export function getBadgeUtilityClass(slot: string): string;
 
 declare const badgeUnstyledClasses: BadgeUnstyledClasses;
 

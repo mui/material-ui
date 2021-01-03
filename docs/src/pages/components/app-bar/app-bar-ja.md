@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">App Barには、現在の画面に関する情報と操作が表示されます。</p>
 
-[top App Bar](https://material.io/design/components/app-bars-top.html) は、現在の画面に関連するコンテンツとアクションを提供します。 ブランディング、画面タイトル、ナビゲーション、およびアクションに使用されます。
+[top App Bar](https://material.io/design/components/app-bars-top.html) は、現在の画面に関連するコンテンツとアクションを提供します。 It's used for branding, screen titles, navigation, and actions.
 
 アクションバーに変換したり、ナビゲーションバーとして使うことができます。
 

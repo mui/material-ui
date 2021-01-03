@@ -32,7 +32,7 @@ Así es! Esto es todo lo que necesitas para empezar, como podrás comprobar con 
 
 ## Globales
 
-La experiencia de uso de Material-UI puede mejorar con algunas globales importantes que deberás tener en cuenta.
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### Meta tag responsivo
 

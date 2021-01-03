@@ -27,6 +27,7 @@
     "gutterBottom": { "type": { "name": "bool" } },
     "noWrap": { "type": { "name": "bool" } },
     "paragraph": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
