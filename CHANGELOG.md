@@ -15,13 +15,9 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 ### `@material-ui/core@v5.0.0-alpha.21`/`@material-ui/unstyled@v5.0.0-alpha.21`
 
-#### Breaking changes
 - [Avatar] Migrate to emotion (#24114) @oliviertassinari
 - [ButtonBase] Migrate styles to emotion (#24100) @mnajdova
 - [Button] Migrate styles to emotion (#24107) @mnajdova
-
-
-#### Changes
 - [unstyled] Add utils for generating utility classes (#24126) @mnajdova
 - [TrapFocus] Fix trap to only focus on tabbable elements (#23364) @gregnb
 - [Link] Improve integration with Next.js (#24121) @kelvinsanchez15
@@ -395,6 +391,26 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 #### Breaking changes
 
+- [Slider] Migrate to emotion (#23308) @mnajdova
+
+  Emotion injects its style after JSS by default.
+  In order to get the correct CSS injection order until all the components are migrated,
+  you need to wrap the root of your application with:
+
+  ```jsx
+  import * as React from 'react';
+  import ReactDOM from 'react-dom';
+  import { StylesProvider } from '@material-ui/core';
+  import App from './App';
+
+  ReactDOM.render(
+    <StylesProvider injectFirst>
+      <App />
+    </StylesProvider>,
+    document.querySelector('#root'),
+  );
+  ```
+
 - [Autocomplete] Rename `closeIcon` prop with `clearIcon` to avoid confusion (#23617) @akhilmhdh.
 
   ```diff
@@ -450,7 +466,6 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - [Icon] Allow customizing the 'material-icons' base class name (#23613) @rart
 - [Select] Fix focus() call on ref (#23302) @reedanders
 - [Slider] Add test case for triggering a specific value (#23642) @Thehambalamba
-- [Slider] Replace core Slider with SliderStyled (#23308) @mnajdova
 - [Slider] General cleanup and add classes prop for unstyled (#23569) @mnajdova
 - [styles] Add support for TypeScript 4.1 (#23633) @eps1lon
 
