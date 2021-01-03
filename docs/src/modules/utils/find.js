@@ -76,7 +76,7 @@ function findComponents(directory, components = []) {
   return components;
 }
 
-const jsRegex = /\.js$/;
+const pageRegex = /(\.js|\.tsx)$/;
 const blackList = ['/.eslintrc', '/_document', '/_app'];
 
 /**
@@ -130,7 +130,7 @@ function findPages(
       return;
     }
 
-    if (!jsRegex.test(item) || blackList.includes(pathname)) {
+    if (!pageRegex.test(item) || blackList.includes(pathname)) {
       return;
     }
 
