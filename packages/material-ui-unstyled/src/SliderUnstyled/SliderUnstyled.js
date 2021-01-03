@@ -149,32 +149,32 @@ const useUtilityClasses = (styleProps) => {
   const { disabled, marked, orientation, track, classes = {} } = styleProps;
 
   return {
-    root: clsx(sliderUnstyledClasses['root'], classes['root'], {
-      [sliderUnstyledClasses['disabled']]: disabled,
-      [classes['disabled']]: disabled,
-      [sliderUnstyledClasses['marked']]: marked,
-      [classes['marked']]: marked,
-      [sliderUnstyledClasses['vertical']]: orientation === 'vertical',
-      [classes['vertical']]: orientation === 'vertical',
-      [sliderUnstyledClasses['trackInverted']]: track === 'inverted',
-      [classes['trackInverted']]: track === 'inverted',
-      [sliderUnstyledClasses['trackFalse']]: track === false,
-      [classes['trackFalse']]: track === false,
+    root: clsx(sliderUnstyledClasses.root, classes.root, {
+      [sliderUnstyledClasses.disabled]: disabled,
+      [classes.disabled]: disabled,
+      [sliderUnstyledClasses.marked]: marked,
+      [classes.marked]: marked,
+      [sliderUnstyledClasses.vertical]: orientation === 'vertical',
+      [classes.vertical]: orientation === 'vertical',
+      [sliderUnstyledClasses.trackInverted]: track === 'inverted',
+      [classes.trackInverted]: track === 'inverted',
+      [sliderUnstyledClasses.trackFalse]: track === false,
+      [classes.trackFalse]: track === false,
     }),
-    rail: clsx(sliderUnstyledClasses['rail'], classes['rail']),
-    track: clsx(sliderUnstyledClasses['track'], classes['track']),
-    mark: clsx(sliderUnstyledClasses['mark'], classes['mark']),
-    markActive: clsx(sliderUnstyledClasses['markActive'], classes['markActive']),
-    markLabel: clsx(sliderUnstyledClasses['markLabel'], classes['markLabel']),
-    markLabelActive: clsx(sliderUnstyledClasses['markLabelActive'], classes['markLabelActive']),
-    valueLabel: clsx(sliderUnstyledClasses['valueLabel'], classes['valueLabel']),
-    thumb: clsx(sliderUnstyledClasses['thumb'], classes['thumb'], {
-      [classes['disabled']]: disabled,
-      [sliderUnstyledClasses['disabled']]: disabled,
+    rail: clsx(sliderUnstyledClasses.rail, classes.rail),
+    track: clsx(sliderUnstyledClasses.track, classes.track),
+    mark: clsx(sliderUnstyledClasses.mark, classes.mark),
+    markActive: clsx(sliderUnstyledClasses.markActive, classes.markActive),
+    markLabel: clsx(sliderUnstyledClasses.markLabel, classes.markLabel),
+    markLabelActive: clsx(sliderUnstyledClasses.markLabelActive, classes.markLabelActive),
+    valueLabel: clsx(sliderUnstyledClasses.valueLabel, classes.valueLabel),
+    thumb: clsx(sliderUnstyledClasses.thumb, classes.thumb, {
+      [classes.disabled]: disabled,
+      [sliderUnstyledClasses.disabled]: disabled,
     }),
-    active: clsx(sliderUnstyledClasses['active'], classes['active']),
-    disabled: clsx(sliderUnstyledClasses['disabled'], classes['disabled']),
-    focusVisible: clsx(sliderUnstyledClasses['focusVisible'], classes['focusVisible']),
+    active: clsx(sliderUnstyledClasses.active, classes.active),
+    disabled: clsx(sliderUnstyledClasses.disabled, classes.disabled),
+    focusVisible: clsx(sliderUnstyledClasses.focusVisible, classes.focusVisible),
   };
 };
 
@@ -681,7 +681,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               })}
               style={{ ...style, ...markProps.style }}
               className={clsx(utilityClasses.mark, markProps.className, {
-                [utilityClasses['markActive']]: markActive,
+                [utilityClasses.markActive]: markActive,
               })}
             />
             {mark.label != null ? (
@@ -699,7 +699,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 })}
                 style={{ ...style, ...markLabelProps.style }}
                 className={clsx(utilityClasses.markLabel, markLabelProps.className, {
-                  [utilityClasses['markLabelActive']]: markActive,
+                  [utilityClasses.markLabelActive]: markActive,
                 })}
               >
                 {mark.label}
@@ -754,8 +754,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               onMouseLeave={handleMouseLeave}
               {...thumbProps}
               className={clsx(utilityClasses.thumb, thumbProps.className, {
-                [utilityClasses['active']]: active === index,
-                [utilityClasses['focusVisible']]: focusVisible === index,
+                [utilityClasses.active]: active === index,
+                [utilityClasses.focusVisible]: focusVisible === index,
               })}
               {...(!isHostComponent(Thumb) && {
                 styleProps: { ...styleProps, ...thumbProps.styleProps },

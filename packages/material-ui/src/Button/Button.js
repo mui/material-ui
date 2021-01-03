@@ -67,11 +67,13 @@ const useUtilityClasses = (styleProps) => {
       buttonClasses.startIcon,
       classes.startIcon,
       getButtonUtilityClass(`iconSize${capitalize(size)}`),
+      classes[`iconSize${capitalize(size)}`],
     ),
     endIcon: clsx(
       buttonClasses.endIcon,
       classes.endIcon,
       getButtonUtilityClass(`iconSize${capitalize(size)}`),
+      classes[`iconSize${capitalize(size)}`],
     ),
   };
 };
