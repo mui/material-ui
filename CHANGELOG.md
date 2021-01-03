@@ -15,9 +15,13 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 ### `@material-ui/core@v5.0.0-alpha.21`/`@material-ui/unstyled@v5.0.0-alpha.21`
 
+#### Breaking changes
 - [Avatar] Migrate to emotion (#24114) @oliviertassinari
 - [ButtonBase] Migrate styles to emotion (#24100) @mnajdova
 - [Button] Migrate styles to emotion (#24107) @mnajdova
+
+
+#### Changes
 - [unstyled] Add utils for generating utility classes (#24126) @mnajdova
 - [TrapFocus] Fix trap to only focus on tabbable elements (#23364) @gregnb
 - [Link] Improve integration with Next.js (#24121) @kelvinsanchez15
