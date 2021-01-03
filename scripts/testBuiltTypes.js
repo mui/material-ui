@@ -15,17 +15,16 @@ async function main() {
     declarationFiles.map(async (declarationFilePath) => {
       const declarationFile = await fse.readFile(declarationFilePath, { encoding: 'utf8' });
       // find occurences of e.g. `import("../../material-ui/src/...")`
-      const importsTypesRelativeToWorkspace = /import\(("|')(\.\.\/)+material-ui/.test(
-        declarationFile,
+      const typeImportsRelativeToWorkspace = declarationFile.match(
+        /import\(("|')(\.\.\/)+material-ui/g,
       );
 
-      if (importsTypesRelativeToWorkspace) {
+      if (typeImportsRelativeToWorkspace !== null) {
         console.error(
           // readable path for CI while making it clickable locally
-          `${path.relative(
-            process.cwd(),
-            declarationFilePath,
-          )} possibly imports types that are unreachable once published.`,
+          `${path.relative(process.cwd(), declarationFilePath)} possibly imports types ${
+            typeImportsRelativeToWorkspace.length
+          } times that are unreachable once published.`,
         );
         process.exitCode = 1;
       }
