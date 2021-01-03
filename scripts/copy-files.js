@@ -31,7 +31,7 @@ async function createModulePackages({ from, to }) {
       const packageJson = {
         sideEffects: false,
         module: './index.js',
-        main: path.join('../node', directoryPackage, 'index.js'),
+        main: path.posix.join('../node', directoryPackage, 'index.js'),
         types: './index.d.ts',
       };
 
