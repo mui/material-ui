@@ -25,9 +25,12 @@ const useUtilityClasses = (styleProps) => {
       containerClasses.root,
       classes.root,
       getContainerUtilityClass(`maxWidth${capitalize(String(maxWidth))}`),
+      classes[`maxWidth${capitalize(String(maxWidth))}`],
       {
         [containerClasses.fixed]: fixed,
+        [classes.fixed]: fixed,
         [containerClasses.disableGutters]: disableGutters,
+        [classes.disableGutters]: disableGutters,
       },
     ),
   };
