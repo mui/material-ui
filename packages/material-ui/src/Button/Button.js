@@ -94,6 +94,197 @@ const commonIconStyles = (styleProps) => ({
   }),
 });
 
+const ButtonRoot = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'MuiButton',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(
+  ({ theme, styleProps }) => ({
+    ...theme.typography.button,
+    minWidth: 64,
+    padding: '6px 16px',
+    borderRadius: theme.shape.borderRadius,
+    transition: theme.transitions.create(
+      ['background-color', 'box-shadow', 'border-color', 'color'],
+      {
+        duration: theme.transitions.duration.short,
+      },
+    ),
+    '&:hover': {
+      textDecoration: 'none',
+      backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+      ...(styleProps.variant === 'text' &&
+        styleProps.color !== 'inherit' && {
+          backgroundColor: alpha(
+            theme.palette[styleProps.color].main,
+            theme.palette.action.hoverOpacity,
+          ),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
+        }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.color !== 'inherit' && {
+          border: `1px solid ${theme.palette[styleProps.color].main}`,
+          backgroundColor: alpha(
+            theme.palette[styleProps.color].main,
+            theme.palette.action.hoverOpacity,
+          ),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
+        }),
+      ...(styleProps.variant === 'contained' && {
+        backgroundColor: theme.palette.grey.A100,
+        boxShadow: theme.shadows[4],
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          boxShadow: theme.shadows[2],
+          backgroundColor: theme.palette.grey[300],
+        },
+      }),
+      ...(styleProps.variant === 'contained' &&
+        styleProps.color !== 'inherit' && {
+          backgroundColor: theme.palette[styleProps.color].dark,
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: theme.palette[styleProps.color].main,
+          },
+        }),
+    },
+    '&:active': {
+      ...(styleProps.variant === 'contained' && {
+        boxShadow: theme.shadows[8],
+      }),
+    },
+    '&.Mui-focusVisible': {
+      ...(styleProps.variant === 'contained' && {
+        boxShadow: theme.shadows[6],
+      }),
+    },
+    '&.Mui-disabled': {
+      color: theme.palette.action.disabled,
+      ...(styleProps.variant === 'outlined' && {
+        border: `1px solid ${theme.palette.action.disabledBackground}`,
+      }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.color === 'secondary' && {
+          border: `1px solid ${theme.palette.action.disabled}`,
+        }),
+      ...(styleProps.variant === 'contained' && {
+        color: theme.palette.action.disabled,
+        boxShadow: theme.shadows[0],
+        backgroundColor: theme.palette.action.disabledBackground,
+      }),
+    },
+    ...(styleProps.variant === 'text' && {
+      padding: '6px 8px',
+    }),
+    ...(styleProps.variant === 'text' &&
+      styleProps.color !== 'inherit' && {
+        color: theme.palette[styleProps.color].main,
+      }),
+    ...(styleProps.variant === 'outlined' && {
+      padding: '5px 15px',
+      border: `1px solid ${
+        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      }`,
+    }),
+    ...(styleProps.variant === 'outlined' &&
+      styleProps.color !== 'inherit' && {
+        color: theme.palette[styleProps.color].main,
+        border: `1px solid ${alpha(theme.palette[styleProps.color].main, 0.5)}`,
+      }),
+    ...(styleProps.variant === 'contained' && {
+      color: theme.palette.getContrastText(theme.palette.grey[300]),
+      backgroundColor: theme.palette.grey[300],
+      boxShadow: theme.shadows[2],
+    }),
+    ...(styleProps.variant === 'contained' &&
+      styleProps.color !== 'inherit' && {
+        color: theme.palette[styleProps.color].contrastText,
+        backgroundColor: theme.palette[styleProps.color].main,
+      }),
+    ...(styleProps.color === 'inherit' && {
+      color: 'inherit',
+      borderColor: 'currentColor',
+    }),
+    ...(styleProps.size === 'small' &&
+      styleProps.variant === 'text' && {
+        padding: '4px 5px',
+        fontSize: theme.typography.pxToRem(13),
+      }),
+    ...(styleProps.size === 'large' &&
+      styleProps.variant === 'text' && {
+        padding: '8px 11px',
+        fontSize: theme.typography.pxToRem(15),
+      }),
+    ...(styleProps.size === 'small' &&
+      styleProps.variant === 'outlined' && {
+        padding: '3px 9px',
+        fontSize: theme.typography.pxToRem(13),
+      }),
+    ...(styleProps.size === 'large' &&
+      styleProps.variant === 'outlined' && {
+        padding: '7px 21px',
+        fontSize: theme.typography.pxToRem(15),
+      }),
+    ...(styleProps.size === 'small' &&
+      styleProps.variant === 'contained' && {
+        padding: '4px 10px',
+        fontSize: theme.typography.pxToRem(13),
+      }),
+    ...(styleProps.size === 'large' &&
+      styleProps.variant === 'contained' && {
+        padding: '8px 22px',
+        fontSize: theme.typography.pxToRem(15),
+      }),
+    ...(styleProps.fullWidth && {
+      width: '100%',
+    }),
+  }),
+  ({ styleProps }) =>
+    styleProps.disableElevation && {
+      boxShadow: 'none',
+      '&:hover': {
+        boxShadow: 'none',
+      },
+      '&.Mui-focusVisible': {
+        boxShadow: 'none',
+      },
+      '&:active': {
+        boxShadow: 'none',
+      },
+      '&.Mui-disabled': {
+        boxShadow: 'none',
+      },
+    },
+);
+
+const ButtonLabel = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiButton',
+    slot: 'Label',
+  },
+)({
+  width: '100%', // Ensure the correct width for iOS Safari
+  display: 'inherit',
+  alignItems: 'inherit',
+  justifyContent: 'inherit',
+});
+
 const ButtonStartIcon = experimentalStyled(
   'span',
   {},
@@ -126,194 +317,6 @@ const ButtonEndIcon = experimentalStyled(
     marginRight: -2,
   }),
   ...commonIconStyles(styleProps),
-}));
-
-const ButtonLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiButton',
-    slot: 'Label',
-  },
-)({
-  width: '100%', // Ensure the correct width for iOS Safari
-  display: 'inherit',
-  alignItems: 'inherit',
-  justifyContent: 'inherit',
-});
-
-const ButtonRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiButton',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme, styleProps }) => ({
-  ...theme.typography.button,
-  minWidth: 64,
-  padding: '6px 16px',
-  borderRadius: theme.shape.borderRadius,
-  transition: theme.transitions.create(
-    ['background-color', 'box-shadow', 'border-color', 'color'],
-    {
-      duration: theme.transitions.duration.short,
-    },
-  ),
-  '&:hover': {
-    textDecoration: 'none',
-    backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
-    },
-    ...(styleProps.variant === 'text' &&
-      styleProps.color !== 'inherit' && {
-        backgroundColor: alpha(
-          theme.palette[styleProps.color].main,
-          theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      }),
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.color !== 'inherit' && {
-        border: `1px solid ${theme.palette[styleProps.color].main}`,
-        backgroundColor: alpha(
-          theme.palette[styleProps.color].main,
-          theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      }),
-    ...(styleProps.variant === 'contained' && {
-      backgroundColor: theme.palette.grey.A100,
-      boxShadow: theme.shadows[4],
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        boxShadow: theme.shadows[2],
-        backgroundColor: theme.palette.grey[300],
-      },
-    }),
-    ...(styleProps.variant === 'contained' &&
-      styleProps.color !== 'inherit' && {
-        backgroundColor: theme.palette[styleProps.color].dark,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: theme.palette[styleProps.color].main,
-        },
-      }),
-    ...(styleProps.disableElevation && {
-      boxShadow: 'none',
-    }),
-  },
-  '&:active': {
-    ...(styleProps.variant === 'contained' && {
-      boxShadow: theme.shadows[8],
-    }),
-    ...(styleProps.disableElevation && {
-      boxShadow: 'none',
-    }),
-  },
-  '&.Mui-focusVisible': {
-    ...(styleProps.variant === 'contained' && {
-      boxShadow: theme.shadows[6],
-    }),
-    ...(styleProps.disableElevation && {
-      boxShadow: 'none',
-    }),
-  },
-  '&.Mui-disabled': {
-    color: theme.palette.action.disabled,
-    ...(styleProps.variant === 'outlined' && {
-      border: `1px solid ${theme.palette.action.disabledBackground}`,
-    }),
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.color === 'secondary' && {
-        border: `1px solid ${theme.palette.action.disabled}`,
-      }),
-    ...(styleProps.variant === 'contained' && {
-      color: theme.palette.action.disabled,
-      boxShadow: theme.shadows[0],
-      backgroundColor: theme.palette.action.disabledBackground,
-    }),
-    ...(styleProps.disableElevation && {
-      boxShadow: 'none',
-    }),
-  },
-  ...(styleProps.variant === 'text' && {
-    padding: '6px 8px',
-  }),
-  ...(styleProps.variant === 'text' &&
-    styleProps.color !== 'inherit' && {
-      color: theme.palette[styleProps.color].main,
-    }),
-  ...(styleProps.variant === 'outlined' && {
-    padding: '5px 15px',
-    border: `1px solid ${
-      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-    }`,
-  }),
-  ...(styleProps.variant === 'outlined' &&
-    styleProps.color !== 'inherit' && {
-      color: theme.palette[styleProps.color].main,
-      border: `1px solid ${alpha(theme.palette[styleProps.color].main, 0.5)}`,
-    }),
-  ...(styleProps.variant === 'contained' && {
-    color: theme.palette.getContrastText(theme.palette.grey[300]),
-    backgroundColor: theme.palette.grey[300],
-    boxShadow: theme.shadows[2],
-  }),
-  ...(styleProps.variant === 'contained' &&
-    styleProps.color !== 'inherit' && {
-      color: theme.palette[styleProps.color].contrastText,
-      backgroundColor: theme.palette[styleProps.color].main,
-    }),
-  ...(styleProps.disableElevation && {
-    boxShadow: 'none',
-  }),
-  ...(styleProps.color === 'inherit' && {
-    color: 'inherit',
-    borderColor: 'currentColor',
-  }),
-  ...(styleProps.size === 'small' &&
-    styleProps.variant === 'text' && {
-      padding: '4px 5px',
-      fontSize: theme.typography.pxToRem(13),
-    }),
-  ...(styleProps.size === 'large' &&
-    styleProps.variant === 'text' && {
-      padding: '8px 11px',
-      fontSize: theme.typography.pxToRem(15),
-    }),
-  ...(styleProps.size === 'small' &&
-    styleProps.variant === 'outlined' && {
-      padding: '3px 9px',
-      fontSize: theme.typography.pxToRem(13),
-    }),
-  ...(styleProps.size === 'large' &&
-    styleProps.variant === 'outlined' && {
-      padding: '7px 21px',
-      fontSize: theme.typography.pxToRem(15),
-    }),
-  ...(styleProps.size === 'small' &&
-    styleProps.variant === 'contained' && {
-      padding: '4px 10px',
-      fontSize: theme.typography.pxToRem(13),
-    }),
-  ...(styleProps.size === 'large' &&
-    styleProps.variant === 'contained' && {
-      padding: '8px 22px',
-      fontSize: theme.typography.pxToRem(15),
-    }),
-  ...(styleProps.fullWidth && {
-    width: '100%',
-  }),
 }));
 
 const Button = React.forwardRef(function Button(inProps, ref) {
