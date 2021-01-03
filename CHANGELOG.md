@@ -391,6 +391,26 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 #### Breaking changes
 
+- [Slider] Migrate to emotion (#23308) @mnajdova
+
+  By default, emotion injects its style after JSS, this breaks the computed styles. In order to get the correct CSS injection order until all the components are migrated, you need to wrap the root of your application with:
+
+  ```jsx
+  import * as React from 'react';
+  import ReactDOM from 'react-dom';
+  import { StylesProvider } from '@material-ui/core';
+  import App from './App';
+
+  ReactDOM.render(
+    <StylesProvider injectFirst>
+      <App />
+    </StylesProvider>,
+    document.querySelector('#root'),
+  );
+  ```
+
+  This enforces emotion being injected first. [More details](https://next.material-ui.com/guides/interoperability/#css-injection-order) in the documentation.
+
 - [Autocomplete] Rename `closeIcon` prop with `clearIcon` to avoid confusion (#23617) @akhilmhdh.
 
   ```diff
@@ -446,7 +466,6 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - [Icon] Allow customizing the 'material-icons' base class name (#23613) @rart
 - [Select] Fix focus() call on ref (#23302) @reedanders
 - [Slider] Add test case for triggering a specific value (#23642) @Thehambalamba
-- [Slider] Replace core Slider with SliderStyled (#23308) @mnajdova
 - [Slider] General cleanup and add classes prop for unstyled (#23569) @mnajdova
 - [styles] Add support for TypeScript 4.1 (#23633) @eps1lon
 
