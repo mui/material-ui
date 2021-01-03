@@ -5,7 +5,7 @@ import { PaperProps } from '../Paper';
 
 export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   /**
-   * The content of the accordion.
+   * The content of the component.
    */
   children: NonNullable<React.ReactNode>;
   /**

@@ -268,7 +268,7 @@ ButtonGroup.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the button group.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

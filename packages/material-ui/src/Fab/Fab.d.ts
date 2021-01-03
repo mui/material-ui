@@ -9,7 +9,7 @@ export type FabVariantDefaults = Record<'circular' | 'extended', true>;
 export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The content of the button.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**

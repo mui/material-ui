@@ -10,7 +10,7 @@
     "deleteIcon": "Override the default delete icon element. Shown only if <code>onDelete</code> is set.",
     "disabled": "If <code>true</code>, the chip should be displayed in a disabled state.",
     "icon": "Icon element.",
-    "label": "The content of the label.",
+    "label": "The content of the component.",
     "onDelete": "Callback fired when the delete icon is clicked. If set, the delete icon will be shown.",
     "size": "The size of the chip.",
     "variant": "The variant to use."

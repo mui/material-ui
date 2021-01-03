@@ -141,7 +141,7 @@ CardHeader.propTypes = {
    */
   subheaderTypographyProps: PropTypes.object,
   /**
-   * The content of the Card Title.
+   * The content of the component.
    */
   title: PropTypes.node,
   /**

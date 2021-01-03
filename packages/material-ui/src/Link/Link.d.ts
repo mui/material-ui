@@ -7,7 +7,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
     LinkBaseProps & {
       /**
-       * The content of the link.
+       * The content of the component.
        */
       children?: React.ReactNode;
       /**

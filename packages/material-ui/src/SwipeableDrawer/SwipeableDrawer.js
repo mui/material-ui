@@ -585,7 +585,7 @@ SwipeableDrawer.propTypes = {
    */
   anchor: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
-   * The contents of the drawer.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

@@ -4,7 +4,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The table itself, normally `<Table />`.
+     * The content of the component, normally `Table`.
      */
     children?: React.ReactNode;
     /**

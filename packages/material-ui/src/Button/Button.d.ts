@@ -13,7 +13,7 @@ export type ButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The content of the button.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**

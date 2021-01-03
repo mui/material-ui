@@ -501,7 +501,7 @@ Chip.propTypes = {
    */
   icon: PropTypes.element,
   /**
-   * The content of the label.
+   * The content of the component.
    */
   label: PropTypes.node,
   /**

@@ -8,7 +8,7 @@ export type ButtonGroupVariantDefaults = Record<'text' | 'outlined' | 'contained
 export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The content of the button group.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**

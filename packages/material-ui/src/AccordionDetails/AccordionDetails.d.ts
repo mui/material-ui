@@ -3,7 +3,7 @@ import { InternalStandardProps as StandardProps } from '..';
 
 export interface AccordionDetailsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
-   * The content of the accordion details.
+   * The content of the component.
    */
   children?: React.ReactNode;
   /**

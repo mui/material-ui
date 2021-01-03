@@ -4,7 +4,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The contents of the form control.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**

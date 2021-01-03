@@ -8,7 +8,7 @@ export type AccordionSummaryTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The content of the accordion summary.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**

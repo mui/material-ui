@@ -159,7 +159,7 @@ Accordion.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the accordion.
+   * The content of the component.
    */
   children: chainPropTypes(PropTypes.node.isRequired, (props) => {
     const summary = React.Children.toArray(props.children)[0];

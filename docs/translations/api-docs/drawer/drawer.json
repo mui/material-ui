@@ -2,7 +2,7 @@
   "componentDescription": "The props of the <a href=\"/api/modal/\">Modal</a> component are available\nwhen <code>variant=&quot;temporary&quot;</code> is set.",
   "propDescriptions": {
     "anchor": "Side from which the drawer will appear.",
-    "children": "The contents of the drawer.",
+    "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "elevation": "The elevation of the drawer.",
     "ModalProps": "Props applied to the <a href=\"/api/modal/\"><code>Modal</code></a> element.",

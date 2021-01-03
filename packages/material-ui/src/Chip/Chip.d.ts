@@ -113,7 +113,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     icon?: React.ReactElement;
     /**
-     * The content of the label.
+     * The content of the component.
      */
     label?: React.ReactNode;
     /**

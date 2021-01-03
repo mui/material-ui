@@ -55,7 +55,7 @@ export interface CardHeaderTypeMap<
       { component?: SubheaderTypographyComponent }
     >;
     /**
-     * The content of the Card Title.
+     * The content of the component.
      */
     title?: React.ReactNode;
     /**

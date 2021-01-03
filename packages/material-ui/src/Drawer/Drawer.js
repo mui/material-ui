@@ -214,7 +214,7 @@ Drawer.propTypes = {
    */
   BackdropProps: PropTypes.object,
   /**
-   * The contents of the drawer.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

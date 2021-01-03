@@ -4,7 +4,7 @@ import { InternalStandardProps as StandardProps } from '..';
 export interface ToggleButtonGroupProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
   /**
-   * The content of the button.
+   * The content of the component.
    */
   children?: React.ReactNode;
   /**
