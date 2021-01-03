@@ -8,9 +8,11 @@ import { KeyboardDateInput } from '../KeyboardDateInput';
 import { useIsLandscape } from '../hooks/useIsLandscape';
 import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
+import { WrapperVariant } from '../wrappers/Wrapper';
+import { DateInputPropsLike } from '../wrappers/WrapperProps';
 import { PickerSelectionState } from '../hooks/usePickerState';
 import { BasePickerProps, CalendarAndClockProps } from '../typings/BasePicker';
-import { WithViewsProps, SharedPickerProps } from './SharedPickerProps';
+import { WithViewsProps } from './SharedPickerProps';
 import { AllAvailableViews, TimePickerView, DatePickerView } from '../typings/Views';
 import PickerView from './PickerView';
 
@@ -22,11 +24,18 @@ export interface ExportedPickerProps<TView extends AllAvailableViews>
   timeIcon?: React.ReactNode;
 }
 
-export type PickerProps<
-  TView extends AllAvailableViews,
-  TInputValue = any,
-  TDateValue = any
-> = ExportedPickerProps<TView> & SharedPickerProps<TInputValue, TDateValue>;
+export interface PickerProps<TView extends AllAvailableViews, TDateValue = any>
+  extends ExportedPickerProps<TView> {
+  isMobileKeyboardViewOpen: boolean;
+  toggleMobileKeyboardView: () => void;
+  DateInputProps: DateInputPropsLike;
+  date: TDateValue;
+  onDateChange: (
+    date: TDateValue,
+    currentWrapperVariant: WrapperVariant,
+    isFinish?: PickerSelectionState,
+  ) => void;
+}
 
 export const MobileKeyboardInputView = styled('div')(
   {
