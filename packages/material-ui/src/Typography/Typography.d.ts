@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
 import { SxProps } from '@material-ui/system';
-import { Theme } from '@material-ui/core/styles';
+import { Theme } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant } from '../styles/createTypography';
 
