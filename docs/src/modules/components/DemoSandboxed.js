@@ -32,7 +32,7 @@ function FramedDemo(props) {
       createCache({
         key: 'iframe-demo',
         prepend: true,
-        container: document.body,
+        container: document.head,
       }),
     [document],
   );
@@ -68,7 +68,8 @@ const useStyles = makeStyles(
 );
 
 function DemoFrame(props) {
-  const { children, title, ...other } = props;
+  const { children, name, ...other } = props;
+  const title = `${name} demo`;
   const classes = useStyles();
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
@@ -109,7 +110,7 @@ function DemoFrame(props) {
 
 DemoFrame.propTypes = {
   children: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 /**
@@ -119,7 +120,7 @@ DemoFrame.propTypes = {
 function DemoSandboxed(props) {
   const { component: Component, iframe, name, onResetDemoClick, ...other } = props;
   const Sandbox = iframe ? DemoFrame : React.Fragment;
-  const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
+  const sandboxProps = iframe ? { name, ...other } : {};
 
   const t = useTranslate();
 
