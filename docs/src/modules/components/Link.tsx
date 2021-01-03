@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
+import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
 type NextLinkComposedProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> &
   Omit<NextLinkProps, 'href' | 'as'> & {
@@ -44,7 +45,7 @@ export type LinkProps = {
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props, ref) {
   const {
     activeClassName = 'active',
-    as: linkAs,
+    as: linkAsProp,
     className: classNameProps,
     href,
     noLinkStyle,
@@ -63,6 +64,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
   });
 
   const isExternal = href.indexOf('http') === 0 || href.indexOf('mailto:') === 0;
+  const userLanguage = useUserLanguage();
 
   if (isExternal) {
     if (noLinkStyle) {
@@ -74,6 +76,11 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
 
   if (noLinkStyle) {
     return <NextLinkComposed className={className} ref={ref as any} to={href} {...other} />;
+  }
+
+  let linkAs = linkAsProp || (href as string);
+  if (userLanguage !== 'en' && href.indexOf('/') === 0 && href.indexOf('/blog') !== 0) {
+    linkAs = `/${userLanguage}${linkAs}`;
   }
 
   return (
