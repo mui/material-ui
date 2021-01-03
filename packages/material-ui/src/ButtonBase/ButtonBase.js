@@ -78,7 +78,6 @@ const useUtilityClasses = (styleProps) => {
  */
 const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButtonBase' });
-
   const {
     action,
     buttonRef: buttonRefProp,

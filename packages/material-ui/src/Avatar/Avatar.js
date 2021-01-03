@@ -135,7 +135,6 @@ function useLoaded({ src, srcSet }) {
 
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAvatar' });
-
   const {
     alt,
     children: childrenProp,

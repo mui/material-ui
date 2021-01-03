@@ -1,15 +1,17 @@
-export function getTouchRippleUtilityClass(name) {
-  return `MuiTouchRipple-${name}`;
+import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
+
+export function getTouchRippleUtilityClass(slot) {
+  return generateUtilityClass('MuiTouchRipple', slot);
 }
 
-const touchRippleClasses = {
-  root: getTouchRippleUtilityClass('root'),
-  ripple: getTouchRippleUtilityClass('ripple'),
-  rippleVisible: getTouchRippleUtilityClass('rippleVisible'),
-  ripplePulsate: getTouchRippleUtilityClass('ripplePulsate'),
-  child: getTouchRippleUtilityClass('child'),
-  childLeaving: getTouchRippleUtilityClass('childLeaving'),
-  childPulsate: getTouchRippleUtilityClass('childPulsate'),
-};
+const touchRippleClasses = generateUtilityClasses('MuiTouchRipple', [
+  'root',
+  'ripple',
+  'rippleVisible',
+  'ripplePulsate',
+  'child',
+  'childLeaving',
+  'childPulsate',
+]);
 
 export default touchRippleClasses;
