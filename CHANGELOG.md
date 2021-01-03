@@ -409,7 +409,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
   );
   ```
 
-  It enforces emotion to be injected first. [More details](https://next.material-ui.com/guides/interoperability/#css-injection-order) in the documentation.
+  This enforces emotion being injected first. [More details](https://next.material-ui.com/guides/interoperability/#css-injection-order) in the documentation.
 
 - [Autocomplete] Rename `closeIcon` prop with `clearIcon` to avoid confusion (#23617) @akhilmhdh.
 
