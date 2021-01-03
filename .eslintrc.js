@@ -7,7 +7,7 @@ const forbidTopLevelMessage = [
 // This only applies to packages published from this monorepo.
 // If you build a library around `@material-ui/core` you can safely use `createStyles` without running into the same issue as we are.
 const forbidCreateStylesMessage =
-  'Use `Styles<Theme, Props, ClassKey>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
+  'Use `MuiStyles<ClassKey, Props>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
   '`createStyles` will lead to inlined, at-compile-time-resolved type-imports. ' +
   'See https://github.com/microsoft/TypeScript/issues/36097#issuecomment-578324386 for more information';
 
