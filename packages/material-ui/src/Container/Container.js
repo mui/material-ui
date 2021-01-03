@@ -8,12 +8,12 @@ import containerClasses, { getContainerUtilityClass } from './containerClasses';
 import capitalize from '../utils/capitalize';
 
 const overridesResolver = (props, styles) => {
-  const { fixed, disableGutters, maxWidth = 'lg' } = props;
+  const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...styles[`maxWidth${capitalize(String(maxWidth))}`],
-    ...(fixed && styles.fixed),
-    ...(disableGutters && styles.disableGutters),
+    ...styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
+    ...(styleProps.fixed && styles.fixed),
+    ...(styleProps.disableGutters && styles.disableGutters),
   });
 };
 
