@@ -8,7 +8,7 @@ export type PopperPlacementType = Options['placement'];
 export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   ref?: React.Ref<HTMLDivElement>;
   /**
-   * A HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
@@ -28,7 +28,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
         };
       }) => React.ReactNode);
   /**
-   * A HTML element or function that returns one.
+   * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
    * By default, it uses the body of the top-level document object,

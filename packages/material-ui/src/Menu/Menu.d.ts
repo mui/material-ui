@@ -6,7 +6,7 @@ import { TransitionHandlerProps, TransitionProps } from '../transitions/transiti
 
 export interface MenuProps extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>> {
   /**
-   * A HTML element, or a function that returns it.
+   * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.
    */
   anchorEl?: PopoverProps['anchorEl'];

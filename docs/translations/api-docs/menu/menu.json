@@ -1,7 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "anchorEl": "A HTML element, or a function that returns it. It&#39;s used to set the position of the menu.",
+    "anchorEl": "An HTML element, or a function that returns one. It&#39;s used to set the position of the menu.",
     "autoFocus": "If <code>true</code> (Default) will focus the <code>[role=&quot;menu&quot;]</code> if no focusable child is found. Disabled children are not focusable. If you set this prop to <code>false</code> focus will be placed on the parent modal container. This has severe accessibility implications and should only be considered if you manage focus otherwise.",
     "children": "Menu contents, normally <code>MenuItem</code>s.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
