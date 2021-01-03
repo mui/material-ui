@@ -264,7 +264,7 @@ FormControl.propTypes = {
    */
   required: PropTypes.bool,
   /**
-   * The size of the text field.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),

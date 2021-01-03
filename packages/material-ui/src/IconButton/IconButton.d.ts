@@ -58,7 +58,7 @@ export type IconButtonTypeMap<
      */
     edge?: 'start' | 'end' | false;
     /**
-     * The size of the button.
+     * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */

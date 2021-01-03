@@ -122,7 +122,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     onDelete?: React.EventHandler<any>;
     /**
-     * The size of the chip.
+     * The size of the component.
      * @default 'medium'
      */
     size?: 'small' | 'medium';

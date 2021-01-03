@@ -12,7 +12,7 @@
     "icon": "Icon element.",
     "label": "The content of the component.",
     "onDelete": "Callback fired when the delete icon is clicked. If set, the delete icon will be shown.",
-    "size": "The size of the chip.",
+    "size": "The size of the component.",
     "variant": "The variant to use."
   },
   "classDescriptions": {

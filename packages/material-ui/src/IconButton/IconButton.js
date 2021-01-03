@@ -194,7 +194,7 @@ IconButton.propTypes = {
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
   /**
-   * The size of the button.
+   * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */

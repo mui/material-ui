@@ -179,7 +179,7 @@ export interface InputBaseProps
    */
   minRows?: string | number;
   /**
-   * The size of the text field.
+   * The size of the component.
    */
   size?: 'small' | 'medium';
   /**

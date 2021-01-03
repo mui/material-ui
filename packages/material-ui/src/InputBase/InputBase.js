@@ -622,7 +622,7 @@ InputBase.propTypes = {
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * The size of the text field.
+   * The size of the component.
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**

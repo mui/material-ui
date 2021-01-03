@@ -137,7 +137,7 @@ export interface BaseTextFieldProps
    */
   SelectProps?: Partial<SelectProps>;
   /**
-   * The size of the text field.
+   * The size of the component.
    */
   size?: 'small' | 'medium';
   /**

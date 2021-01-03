@@ -224,7 +224,7 @@ Fab.propTypes = {
    */
   href: PropTypes.string,
   /**
-   * The size of the button.
+   * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'large'
    */

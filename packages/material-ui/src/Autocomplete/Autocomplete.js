@@ -870,7 +870,7 @@ Autocomplete.propTypes = {
    */
   selectOnFocus: PropTypes.bool,
   /**
-   * The size of the autocomplete.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),

@@ -51,7 +51,7 @@ export interface SwitchProps
    */
   icon?: React.ReactNode;
   /**
-   * The size of the switch.
+   * The size of the component.
    * `small` is equivalent to the dense switch styling.
    * @default 'medium'
    */

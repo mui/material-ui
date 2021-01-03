@@ -335,7 +335,7 @@ PaginationItem.propTypes = {
    */
   shape: PropTypes.oneOf(['circular', 'rounded']),
   /**
-   * The size of the pagination item.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),

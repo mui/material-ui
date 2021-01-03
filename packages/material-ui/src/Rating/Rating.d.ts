@@ -122,7 +122,7 @@ export interface RatingProps
    */
   readOnly?: boolean;
   /**
-   * The size of the rating.
+   * The size of the component.
    * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';

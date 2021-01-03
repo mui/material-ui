@@ -62,7 +62,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     required?: boolean;
     /**
-     * The size of the text field.
+     * The size of the component.
      * @default 'medium'
      */
     size?: 'small' | 'medium';

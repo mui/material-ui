@@ -9,7 +9,7 @@
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.",
     "href": "The URL to link to when the button is clicked. If defined, an <code>a</code> element will be used as the root node.",
-    "size": "The size of the button. <code>small</code> is equivalent to the dense button styling.",
+    "size": "The size of the component. <code>small</code> is equivalent to the dense button styling.",
     "variant": "The variant to use."
   },
   "classDescriptions": {

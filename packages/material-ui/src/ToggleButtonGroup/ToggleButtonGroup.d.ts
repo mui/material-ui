@@ -42,7 +42,7 @@ export interface ToggleButtonGroupProps
    */
   orientation?: 'horizontal' | 'vertical';
   /**
-   * The size of the buttons.
+   * The size of the component.
    * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';

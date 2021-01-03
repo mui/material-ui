@@ -569,7 +569,7 @@ Rating.propTypes = {
    */
   readOnly: PropTypes.bool,
   /**
-   * The size of the rating.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),

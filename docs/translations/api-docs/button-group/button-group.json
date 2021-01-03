@@ -11,7 +11,7 @@
     "disableRipple": "If <code>true</code>, the button ripple effect is disabled.",
     "fullWidth": "If <code>true</code>, the buttons will take up the full width of its container.",
     "orientation": "The group orientation (layout flow direction).",
-    "size": "The size of the button. <code>small</code> is equivalent to the dense button styling.",
+    "size": "The size of the component. <code>small</code> is equivalent to the dense button styling.",
     "variant": "The variant to use."
   },
   "classDescriptions": {

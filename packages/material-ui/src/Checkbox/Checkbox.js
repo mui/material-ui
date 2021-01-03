@@ -179,7 +179,7 @@ Checkbox.propTypes = {
    */
   required: PropTypes.bool,
   /**
-   * The size of the checkbox.
+   * The size of the component.
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */

@@ -343,7 +343,7 @@ TextField.propTypes = {
    */
   SelectProps: PropTypes.object,
   /**
-   * The size of the text field.
+   * The size of the component.
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**

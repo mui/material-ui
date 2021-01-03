@@ -63,7 +63,7 @@ export interface PaginationProps
    */
   shape?: 'circular' | 'rounded';
   /**
-   * The size of the pagination component.
+   * The size of the component.
    * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';

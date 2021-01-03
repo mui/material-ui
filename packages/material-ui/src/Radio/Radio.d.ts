@@ -37,7 +37,7 @@ export interface RadioProps
    */
   icon?: React.ReactNode;
   /**
-   * The size of the radio.
+   * The size of the component.
    * `small` is equivalent to the dense radio styling.
    * @default 'medium'
    */

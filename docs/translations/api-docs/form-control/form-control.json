@@ -12,7 +12,7 @@
     "hiddenLabel": "If <code>true</code>, the label is hidden. This is used to increase density for a <code>FilledInput</code>. Be sure to add <code>aria-label</code> to the <code>input</code> element.",
     "margin": "If <code>dense</code> or <code>normal</code>, will adjust vertical spacing of this and contained components.",
     "required": "If <code>true</code>, the label will indicate that the <code>input</code> is required.",
-    "size": "The size of the text field.",
+    "size": "The size of the component.",
     "variant": "The variant to use."
   },
   "classDescriptions": {

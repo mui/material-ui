@@ -249,7 +249,7 @@ export interface AutocompleteProps<
    */
   renderTags?: (value: T[], getTagProps: AutocompleteGetTagProps) => React.ReactNode;
   /**
-   * The size of the autocomplete.
+   * The size of the component.
    * @default 'medium'
    */
   size?: 'small' | 'medium';

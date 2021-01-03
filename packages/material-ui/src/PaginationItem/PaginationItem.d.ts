@@ -70,7 +70,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      */
     shape?: 'circular' | 'rounded';
     /**
-     * The size of the pagination item.
+     * The size of the component.
      * @default 'medium'
      */
     size?: 'small' | 'medium' | 'large';

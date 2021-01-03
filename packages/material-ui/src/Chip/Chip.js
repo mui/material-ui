@@ -522,7 +522,7 @@ Chip.propTypes = {
    */
   onKeyUp: PropTypes.func,
   /**
-   * The size of the chip.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
