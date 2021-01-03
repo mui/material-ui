@@ -393,9 +393,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 - [Slider] Migrate to emotion (#23308) @mnajdova
 
-  Emotion injects its style after JSS by default.
-  In order to get the correct CSS injection order until all the components are migrated,
-  you need to wrap the root of your application with:
+  By default, emotion injects its style after JSS, this breaks the computed styles. In order to get the correct CSS injection order until all the components are migrated, you need to wrap the root of your application with:
 
   ```jsx
   import * as React from 'react';
@@ -410,6 +408,8 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
     document.querySelector('#root'),
   );
   ```
+
+  It enforces emotion to be injected first. [More details](https://next.material-ui.com/guides/interoperability/#css-injection-order) in the documentation.
 
 - [Autocomplete] Rename `closeIcon` prop with `clearIcon` to avoid confusion (#23617) @akhilmhdh.
 
