@@ -10,6 +10,6 @@ export interface TouchRippleUnstyledClasses {
 
 declare const touchRippleClasses: TouchRippleUnstyledClasses;
 
-export function getTouchRippleUtilityClass(part: string): string;
+export function getTouchRippleUtilityClass(slot: string): string;
 
 export default touchRippleClasses;

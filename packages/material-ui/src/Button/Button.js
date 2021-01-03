@@ -318,7 +318,6 @@ const ButtonRoot = experimentalStyled(
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButton' });
-
   const {
     children,
     className,
