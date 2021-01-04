@@ -13,7 +13,7 @@ type NextLinkComposedProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>,
   };
 
 export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
-  (props, ref) => {
+  function NextLinkComposed(props, ref) {
     const { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, ...other } = props;
 
     return (
