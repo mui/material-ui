@@ -17,9 +17,6 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - [Autocomplete] Warn when value is invalid (#24202) @Sandeep0695
 - [Button] Fix disableElevation regression (#24251) @oliviertassinari
 - [Container] Migrate to emotion (#24227) @oliviertassinari
-- [DatePicker] Fix year only view, hide the current month (#24205) @hyeonhong
-- [DatePicker] Nested imports for better DX (#24147) @oliviertassinari
-- [DatePicker] Remove unused type parameters (#24257) @eps1lon
 - [Pagination] Fix className forwarding when type is ellipsis (#24256) @andrelmlins
 - [Select] Improve description on how it extends the Input components (#24180) @azza85
 - [TimePicker] Prevent conflicting type parameter in `ClockProps#getClockLabelText` (#24193) @eps1lon
@@ -37,6 +34,12 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - [docs] Fix codesandbox datagrid demo (#24218) @brno32
 - [docs] Fix iframe demos with emotion (#24232) @oliviertassinari
 - [docs] Sync translations (#24161) @l10nbot
+
+### `@material-ui/lab@v5.0.0-alpha.22`
+
+- [DatePicker] Fix year only view, hide the current month (#24205) @hyeonhong
+- [DatePicker] Nested imports for better DX (#24147) @oliviertassinari
+- [DatePicker] Remove unused type parameters (#24257) @eps1lon
 
 ### Core
 
