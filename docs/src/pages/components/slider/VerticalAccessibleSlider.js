@@ -2,19 +2,8 @@ import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  forceWebkitVerticalOrientation: {
-    '& input[type="range"]': {
-      '-webkitAppearance': 'slider-vertical',
-    },
-  },
-});
 
 export default function VerticalSlider() {
-  const classes = useStyles();
-
   function preventHorizontalKeyboardNavigation(event) {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
@@ -28,7 +17,11 @@ export default function VerticalSlider() {
       </Typography>
       <Box sx={{ height: 300 }}>
         <Slider
-          className={classes.forceWebkitVerticalOrientation}
+          sx={{
+            '& input[type="range"]': {
+              WebkitAppearance: 'slider-vertical',
+            },
+          }}
           orientation="vertical"
           defaultValue={30}
           aria-labelledby="vertical-accessible-slider"
