@@ -192,6 +192,7 @@ const styles = (theme) => ({
     '& kbd': {
       // Style taken from GitHub
       padding: '2px 5px',
+      whiteSpace: 'nowrap',
       font: '11px Consolas,Liberation Mono,Menlo,monospace',
       lineHeight: '10px',
       color: '#444d56',
