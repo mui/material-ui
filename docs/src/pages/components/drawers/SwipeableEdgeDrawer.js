@@ -22,8 +22,6 @@ function SwipeableEdgeDrawer(props) {
   // This is used only for the example
   const container = window !== undefined ? () => window().document.body : undefined;
 
-  console.log('container', container);
-
   return (
     <div>
       <CssBaseline />
