@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useForkRef } from '@material-ui/core/utils';
-import { createStyles, WithStyles, withStyles, Theme, alpha } from '@material-ui/core/styles';
+import { WithStyles, withStyles, alpha, StyleRules, MuiStyles } from '@material-ui/core/styles';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
 import { useCanAutoFocus } from '../internal/pickers/hooks/useCanAutoFocus';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
@@ -17,47 +17,46 @@ export interface YearProps {
   forwardedRef?: React.Ref<HTMLButtonElement>;
 }
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      flexBasis: '33.3%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    modeDesktop: {
-      flexBasis: '25%',
-    },
-    yearButton: {
-      color: 'unset',
-      backgroundColor: 'transparent',
-      border: 'none',
-      outline: 0,
-      ...theme.typography.subtitle1,
-      margin: '8px 0',
-      height: 36,
-      width: 72,
-      borderRadius: 16,
-      cursor: 'pointer',
-      '&:focus, &:hover': {
-        backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-      },
-      '&$disabled': {
-        color: theme.palette.text.secondary,
-      },
-      '&$selected': {
-        color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.primary.main,
-        '&:focus, &:hover': {
-          backgroundColor: theme.palette.primary.dark,
-        },
-      },
-    },
-    disabled: {},
-    selected: {},
-  });
+export type PickersYearClassKey = 'root' | 'modeDesktop' | 'yearButton' | 'disabled' | 'selected';
 
-export type PickersYearClassKey = keyof WithStyles<typeof styles>['classes'];
+export const styles: MuiStyles<PickersYearClassKey> = (theme): StyleRules<PickersYearClassKey> => ({
+  root: {
+    flexBasis: '33.3%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modeDesktop: {
+    flexBasis: '25%',
+  },
+  yearButton: {
+    color: 'unset',
+    backgroundColor: 'transparent',
+    border: 'none',
+    outline: 0,
+    ...theme.typography.subtitle1,
+    margin: '8px 0',
+    height: 36,
+    width: 72,
+    borderRadius: 16,
+    cursor: 'pointer',
+    '&:focus, &:hover': {
+      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+    },
+    '&$disabled': {
+      color: theme.palette.text.secondary,
+    },
+    '&$selected': {
+      color: theme.palette.primary.contrastText,
+      backgroundColor: theme.palette.primary.main,
+      '&:focus, &:hover': {
+        backgroundColor: theme.palette.primary.dark,
+      },
+    },
+  },
+  disabled: {},
+  selected: {},
+});
 
 /**
  * @ignore - internal component.

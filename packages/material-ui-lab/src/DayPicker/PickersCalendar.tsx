@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, WithStyles, withStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { StyleRules, WithStyles, withStyles, useTheme, Theme } from '@material-ui/core/styles';
 import PickersDay, { PickersDayProps } from '../PickersDay/PickersDay';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
@@ -59,44 +59,49 @@ export interface PickersCalendarProps<TDate> extends ExportedCalendarProps<TDate
   className?: string;
 }
 
-const weeksContainerHeight = (DAY_SIZE + DAY_MARGIN * 4) * 6;
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      minHeight: weeksContainerHeight,
-    },
-    loadingContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: weeksContainerHeight,
-    },
-    weekContainer: {
-      overflow: 'hidden',
-    },
-    week: {
-      margin: `${DAY_MARGIN}px 0`,
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    daysHeader: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    weekDayLabel: {
-      width: 36,
-      height: 40,
-      margin: '0 2px',
-      textAlign: 'center',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      color: theme.palette.text.secondary,
-    },
-  });
+export type PickersCalendarClassKey =
+  | 'root'
+  | 'loadingContainer'
+  | 'weekContainer'
+  | 'week'
+  | 'daysHeader'
+  | 'weekDayLabel';
 
-export type PickersCalendarClassKey = keyof WithStyles<typeof styles>['classes'];
+const weeksContainerHeight = (DAY_SIZE + DAY_MARGIN * 4) * 6;
+export const styles = (theme: Theme): StyleRules<PickersCalendarClassKey> => ({
+  root: {
+    minHeight: weeksContainerHeight,
+  },
+  loadingContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: weeksContainerHeight,
+  },
+  weekContainer: {
+    overflow: 'hidden',
+  },
+  week: {
+    margin: `${DAY_MARGIN}px 0`,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  daysHeader: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  weekDayLabel: {
+    width: 36,
+    height: 40,
+    margin: '0 2px',
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: theme.palette.text.secondary,
+  },
+});
 
 /**
  * @ignore - do not document.

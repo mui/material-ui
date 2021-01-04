@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles, WithStyles, alpha, createStyles, Theme } from '@material-ui/core/styles';
+import { MuiStyles, withStyles, WithStyles, alpha, StyleRules } from '@material-ui/core/styles';
 import { DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import PickersDay, { PickersDayProps, areDayPropsEqual } from '../PickersDay/PickersDay';
@@ -25,74 +25,89 @@ const startBorderStyle = {
   borderBottomLeftRadius: '50%',
 };
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      '&:first-child $rangeIntervalDayPreview': {
-        ...startBorderStyle,
-        borderLeftColor: theme.palette.divider,
-      },
-      '&:last-child $rangeIntervalDayPreview': {
-        ...endBorderStyle,
-        borderRightColor: theme.palette.divider,
-      },
-    },
-    rangeIntervalDayHighlight: {
-      borderRadius: 0,
-      color: theme.palette.primary.contrastText,
-      backgroundColor: alpha(theme.palette.primary.light, 0.6),
-      '&:first-child': startBorderStyle,
-      '&:last-child': endBorderStyle,
-    },
-    rangeIntervalDayHighlightStart: {
+type DateRangePickerDayClassKey =
+  | 'root'
+  | 'rangeIntervalDayHighlight'
+  | 'rangeIntervalDayHighlightStart'
+  | 'rangeIntervalDayHighlightEnd'
+  | 'day'
+  | 'dayOutsideRangeInterval'
+  | 'dayInsideRangeInterval'
+  | 'notSelectedDate'
+  | 'rangeIntervalPreview'
+  | 'rangeIntervalDayPreview'
+  | 'rangeIntervalDayPreviewStart'
+  | 'rangeIntervalDayPreviewEnd';
+
+const styles: MuiStyles<DateRangePickerDayClassKey> = (
+  theme,
+): StyleRules<DateRangePickerDayClassKey> => ({
+  root: {
+    '&:first-child $rangeIntervalDayPreview': {
       ...startBorderStyle,
-      paddingLeft: 0,
-      marginLeft: DAY_MARGIN / 2,
+      borderLeftColor: theme.palette.divider,
     },
-    rangeIntervalDayHighlightEnd: {
+    '&:last-child $rangeIntervalDayPreview': {
       ...endBorderStyle,
-      paddingRight: 0,
-      marginRight: DAY_MARGIN / 2,
+      borderRightColor: theme.palette.divider,
     },
-    day: {
-      // Required to overlap preview border
-      transform: 'scale(1.1)',
-      '& > *': {
-        transform: 'scale(0.9)',
-      },
+  },
+  rangeIntervalDayHighlight: {
+    borderRadius: 0,
+    color: theme.palette.primary.contrastText,
+    backgroundColor: alpha(theme.palette.primary.light, 0.6),
+    '&:first-child': startBorderStyle,
+    '&:last-child': endBorderStyle,
+  },
+  rangeIntervalDayHighlightStart: {
+    ...startBorderStyle,
+    paddingLeft: 0,
+    marginLeft: DAY_MARGIN / 2,
+  },
+  rangeIntervalDayHighlightEnd: {
+    ...endBorderStyle,
+    paddingRight: 0,
+    marginRight: DAY_MARGIN / 2,
+  },
+  day: {
+    // Required to overlap preview border
+    transform: 'scale(1.1)',
+    '& > *': {
+      transform: 'scale(0.9)',
     },
-    dayOutsideRangeInterval: {
-      '&:hover': {
-        border: `1px solid ${theme.palette.grey[500]}`,
-      },
+  },
+  dayOutsideRangeInterval: {
+    '&:hover': {
+      border: `1px solid ${theme.palette.grey[500]}`,
     },
-    dayInsideRangeInterval: {
-      color: theme.palette.getContrastText(alpha(theme.palette.primary.light, 0.6)),
+  },
+  dayInsideRangeInterval: {
+    color: theme.palette.getContrastText(alpha(theme.palette.primary.light, 0.6)),
+  },
+  notSelectedDate: {
+    backgroundColor: 'transparent',
+  },
+  rangeIntervalPreview: {
+    // replace default day component margin with transparent border to avoid jumping on preview
+    border: '2px solid transparent',
+  },
+  rangeIntervalDayPreview: {
+    borderRadius: 0,
+    border: `2px dashed ${theme.palette.divider}`,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    '&$rangeIntervalDayPreviewStart': {
+      borderLeftColor: theme.palette.divider,
+      ...startBorderStyle,
     },
-    notSelectedDate: {
-      backgroundColor: 'transparent',
+    '&$rangeIntervalDayPreviewEnd': {
+      borderRightColor: theme.palette.divider,
+      ...endBorderStyle,
     },
-    rangeIntervalPreview: {
-      // replace default day component margin with transparent border to avoid jumping on preview
-      border: '2px solid transparent',
-    },
-    rangeIntervalDayPreview: {
-      borderRadius: 0,
-      border: `2px dashed ${theme.palette.divider}`,
-      borderLeftColor: 'transparent',
-      borderRightColor: 'transparent',
-      '&$rangeIntervalDayPreviewStart': {
-        borderLeftColor: theme.palette.divider,
-        ...startBorderStyle,
-      },
-      '&$rangeIntervalDayPreviewEnd': {
-        borderRightColor: theme.palette.divider,
-        ...endBorderStyle,
-      },
-    },
-    rangeIntervalDayPreviewStart: {},
-    rangeIntervalDayPreviewEnd: {},
-  });
+  },
+  rangeIntervalDayPreviewStart: {},
+  rangeIntervalDayPreviewEnd: {},
+});
 
 /**
  * @ignore - do not document.

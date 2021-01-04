@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PickersMonth from './PickersMonth';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
@@ -23,16 +23,16 @@ export interface MonthPickerProps<TDate> {
   onMonthChange?: (date: TDate) => void | Promise<void>;
 }
 
-export const styles = createStyles({
+export type MonthPickerClassKey = 'root';
+
+export const styles: MuiStyles<MonthPickerClassKey> = {
   root: {
     width: 310,
     display: 'flex',
     flexWrap: 'wrap',
     alignContent: 'stretch',
   },
-});
-
-export type MonthPickerClassKey = keyof WithStyles<typeof styles>['classes'];
+};
 
 /**
  * @ignore - do not document.

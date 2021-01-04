@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles, WithStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { DateRange } from './RangeTypes';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { calculateRangePreview } from './date-range-manager';
@@ -44,28 +44,31 @@ interface DesktopDateRangeCalendarProps<TDate>
   currentlySelectingRangeEnd: 'start' | 'end';
 }
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'row',
+type DateRangePickerViewDesktop = 'root' | 'rangeCalendarContainer' | 'calendar' | 'arrowSwitcher';
+
+export const styles: MuiStyles<DateRangePickerViewDesktop> = (
+  theme,
+): StyleRules<DateRangePickerViewDesktop> => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  rangeCalendarContainer: {
+    '&:not(:last-child)': {
+      borderRight: `2px solid ${theme.palette.divider}`,
     },
-    rangeCalendarContainer: {
-      '&:not(:last-child)': {
-        borderRight: `2px solid ${theme.palette.divider}`,
-      },
-    },
-    calendar: {
-      minWidth: 312,
-      minHeight: 288,
-    },
-    arrowSwitcher: {
-      padding: '16px 16px 8px 16px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    },
-  });
+  },
+  calendar: {
+    minWidth: 312,
+    minHeight: 288,
+  },
+  arrowSwitcher: {
+    padding: '16px 16px 8px 16px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+});
 
 function getCalendarsArray(calendars: ExportedDesktopDateRangeCalendarProps<unknown>['calendars']) {
   switch (calendars) {

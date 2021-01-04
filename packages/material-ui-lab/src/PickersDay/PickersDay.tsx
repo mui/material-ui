@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
-import { createStyles, WithStyles, withStyles, Theme, alpha } from '@material-ui/core/styles';
+import { StyleRules, MuiStyles, WithStyles, withStyles, alpha } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
@@ -11,65 +11,72 @@ import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import { useCanAutoFocus } from '../internal/pickers/hooks/useCanAutoFocus';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      ...theme.typography.caption,
-      width: DAY_SIZE,
-      height: DAY_SIZE,
-      borderRadius: '50%',
-      padding: 0,
-      // background required here to prevent collides with the other days when animating with transition group
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.text.primary,
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-      },
-      '&:focus': {
-        backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-        '&$selected': {
-          willChange: 'background-color',
-          backgroundColor: theme.palette.primary.dark,
-        },
-      },
+export type PickersDayClassKey =
+  | 'root'
+  | 'dayWithMargin'
+  | 'dayOutsideMonth'
+  | 'hiddenDaySpacingFiller'
+  | 'today'
+  | 'dayLabel'
+  | 'selected'
+  | 'disabled';
+
+export const styles: MuiStyles<PickersDayClassKey> = (theme): StyleRules<PickersDayClassKey> => ({
+  root: {
+    ...theme.typography.caption,
+    width: DAY_SIZE,
+    height: DAY_SIZE,
+    borderRadius: '50%',
+    padding: 0,
+    // background required here to prevent collides with the other days when animating with transition group
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+    },
+    '&:focus': {
+      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
       '&$selected': {
-        color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.primary.main,
-        fontWeight: theme.typography.fontWeightMedium,
-        transition: theme.transitions.create('background-color', {
-          duration: theme.transitions.duration.short,
-        }),
-        '&:hover': {
-          willChange: 'background-color',
-          backgroundColor: theme.palette.primary.dark,
-        },
-      },
-      '&$disabled': {
-        color: theme.palette.text.secondary,
+        willChange: 'background-color',
+        backgroundColor: theme.palette.primary.dark,
       },
     },
-    dayWithMargin: {
-      margin: `0 ${DAY_MARGIN}px`,
+    '&$selected': {
+      color: theme.palette.primary.contrastText,
+      backgroundColor: theme.palette.primary.main,
+      fontWeight: theme.typography.fontWeightMedium,
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.short,
+      }),
+      '&:hover': {
+        willChange: 'background-color',
+        backgroundColor: theme.palette.primary.dark,
+      },
     },
-    dayOutsideMonth: {
+    '&$disabled': {
       color: theme.palette.text.secondary,
     },
-    hiddenDaySpacingFiller: {
-      visibility: 'hidden',
+  },
+  dayWithMargin: {
+    margin: `0 ${DAY_MARGIN}px`,
+  },
+  dayOutsideMonth: {
+    color: theme.palette.text.secondary,
+  },
+  hiddenDaySpacingFiller: {
+    visibility: 'hidden',
+  },
+  today: {
+    '&:not($selected)': {
+      border: `1px solid ${theme.palette.text.secondary}`,
     },
-    today: {
-      '&:not($selected)': {
-        border: `1px solid ${theme.palette.text.secondary}`,
-      },
-    },
-    dayLabel: {
-      // need for overrides
-    },
-    selected: {},
-    disabled: {},
-  });
-
-export type PickersDayClassKey = keyof WithStyles<typeof styles>['classes'];
+  },
+  dayLabel: {
+    // need for overrides
+  },
+  selected: {},
+  disabled: {},
+});
 
 export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
   /**

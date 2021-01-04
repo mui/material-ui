@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Fade from '@material-ui/core/Fade';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, StyleRules, MuiStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import { SlideDirection } from './PickersSlideTransition';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
@@ -59,46 +59,53 @@ export interface PickersCalendarHeaderProps<TDate>
   onMonthChange: (date: TDate, slideDirection: SlideDirection) => void;
 }
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      alignItems: 'center',
-      marginTop: 16,
-      marginBottom: 8,
-      paddingLeft: 24,
-      paddingRight: 12,
-      // prevent jumping in safari
-      maxHeight: 30,
-      minHeight: 30,
-    },
-    yearSelectionSwitcher: {
-      marginRight: 'auto',
-    },
-    switchView: {
-      willChange: 'transform',
-      transition: theme.transitions.create('transform'),
-      transform: 'rotate(0deg)',
-    },
-    switchViewActive: {
-      transform: 'rotate(180deg)',
-    },
-    label: {
-      display: 'flex',
-      maxHeight: 30,
-      overflow: 'hidden',
-      alignItems: 'center',
-      cursor: 'pointer',
-      marginRight: 'auto',
-      ...theme.typography.body1,
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    labelItem: {
-      marginRight: 6,
-    },
-  });
+export type PickersCalendarHeaderClassKey =
+  | 'root'
+  | 'yearSelectionSwitcher'
+  | 'switchView'
+  | 'switchViewActive'
+  | 'label'
+  | 'labelItem';
 
-export type PickersCalendarHeaderClassKey = keyof WithStyles<typeof styles>['classes'];
+export const styles: MuiStyles<PickersCalendarHeaderClassKey> = (
+  theme,
+): StyleRules<PickersCalendarHeaderClassKey> => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: 16,
+    marginBottom: 8,
+    paddingLeft: 24,
+    paddingRight: 12,
+    // prevent jumping in safari
+    maxHeight: 30,
+    minHeight: 30,
+  },
+  yearSelectionSwitcher: {
+    marginRight: 'auto',
+  },
+  switchView: {
+    willChange: 'transform',
+    transition: theme.transitions.create('transform'),
+    transform: 'rotate(0deg)',
+  },
+  switchViewActive: {
+    transform: 'rotate(180deg)',
+  },
+  label: {
+    display: 'flex',
+    maxHeight: 30,
+    overflow: 'hidden',
+    alignItems: 'center',
+    cursor: 'pointer',
+    marginRight: 'auto',
+    ...theme.typography.body1,
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+  labelItem: {
+    marginRight: 6,
+  },
+});
 
 function getSwitchingViewAriaText(view: DatePickerView) {
   return view === 'year'

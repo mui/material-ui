@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled, createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { MuiStyles, styled, WithStyles, withStyles } from '@material-ui/core/styles';
 import { useViews } from '../hooks/useViews';
 import ClockPicker from '../../../ClockPicker/ClockPicker';
 import DayPicker from '../../../DayPicker/DayPicker';
@@ -44,7 +44,9 @@ export const MobileKeyboardInputView = styled('div')(
   { name: 'MuiPickersMobileKeyboardInputView' },
 );
 
-export const styles = createStyles({
+export type PickerClassKey = 'root' | 'landscape' | 'pickerView';
+
+export const styles: MuiStyles<PickerClassKey> = {
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -60,9 +62,7 @@ export const styles = createStyles({
     flexDirection: 'column',
     margin: '0 auto',
   },
-});
-
-export type PickerClassKey = keyof WithStyles<typeof styles>['classes'];
+};
 
 const MobileKeyboardTextFieldProps = { fullWidth: true };
 

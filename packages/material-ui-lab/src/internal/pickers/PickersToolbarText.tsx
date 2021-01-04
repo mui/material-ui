@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import { ExtendMui } from './typings/helpers';
 
 export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
@@ -9,8 +9,11 @@ export interface PickersToolbarTextProps extends ExtendMui<TypographyProps> {
   value: React.ReactNode;
 }
 
-export const styles = (theme: Theme) => {
-  return createStyles({
+export type PickersToolbarTextClassKey = 'root' | 'selected';
+export const styles: MuiStyles<PickersToolbarTextClassKey> = (
+  theme,
+): StyleRules<PickersToolbarTextClassKey> => {
+  return {
     root: {
       transition: theme.transitions.create('color'),
       color: theme.palette.text.secondary,
@@ -19,10 +22,8 @@ export const styles = (theme: Theme) => {
       },
     },
     selected: {},
-  });
+  };
 };
-
-export type PickersToolbarTextClassKey = keyof WithStyles<typeof styles>['classes'];
 
 const PickersToolbarText: React.FC<PickersToolbarTextProps & WithStyles<typeof styles>> = (
   props,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
+import { MuiStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import { useCalendarState } from './useCalendarState';
@@ -63,7 +63,9 @@ export type ExportedDayPickerProps<TDate> = Omit<
   | 'className'
 >;
 
-export const styles = createStyles({
+export type DayPickerClassKey = 'root' | 'viewTransitionContainer' | 'fullHeightContainer';
+
+export const styles: MuiStyles<DayPickerClassKey> = {
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -79,9 +81,7 @@ export const styles = createStyles({
     minHeight: (DAY_SIZE + DAY_MARGIN * 4) * 7,
     height: '100%',
   },
-});
-
-export type DayPickerClassKey = keyof WithStyles<typeof styles>['classes'];
+};
 
 export const defaultReduceAnimations =
   typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent);

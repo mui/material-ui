@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createStyles, WithStyles, withStyles, useTheme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, useTheme, MuiStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PickersYear from './PickersYear';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
@@ -35,7 +35,9 @@ export interface YearPickerProps<TDate> extends ExportedYearPickerProps<TDate> {
   className?: string;
 }
 
-export const styles = createStyles({
+export type YearPickerClassKey = 'root';
+
+export const styles: MuiStyles<YearPickerClassKey> = {
   root: {
     display: 'flex',
     flexDirection: 'row',
@@ -44,9 +46,7 @@ export const styles = createStyles({
     height: '100%',
     margin: '0 4px',
   },
-});
-
-export type YearPickerClassKey = keyof WithStyles<typeof styles>['classes'];
+};
 
 /**
  * @ignore - do not document.

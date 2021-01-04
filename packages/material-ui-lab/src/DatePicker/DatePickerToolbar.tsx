@@ -1,14 +1,16 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { isYearAndMonthViews, isYearOnlyView } from '../internal/pickers/date-utils';
 import { DatePickerView } from '../internal/pickers/typings/Views';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 
-export const styles = createStyles({
+export type DatePickerToolbarClassKey = 'root' | 'dateTitleLandscape' | 'penIcon';
+
+export const styles: MuiStyles<DatePickerToolbarClassKey> = {
   root: {},
   dateTitleLandscape: {
     margin: 'auto 16px auto auto',
@@ -17,8 +19,7 @@ export const styles = createStyles({
     position: 'relative',
     top: 4,
   },
-});
-export type DatePickerToolbarClassKey = keyof WithStyles<typeof styles>['classes'];
+};
 
 /**
  * @ignore - internal component.

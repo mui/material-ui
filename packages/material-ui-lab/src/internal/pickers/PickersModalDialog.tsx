@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Dialog, { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import { DIALOG_WIDTH } from './constants/dimensions';
 
 export interface ExportedPickerModalProps {
@@ -52,7 +52,14 @@ export interface PickerModalDialogProps extends ExportedPickerModalProps {
   open: boolean;
 }
 
-export const styles = createStyles({
+export type PickersModalDialogClassKey =
+  | 'container'
+  | 'paper'
+  | 'content'
+  | 'action'
+  | 'withAdditionalAction';
+
+export const styles: MuiStyles<PickersModalDialogClassKey> = {
   container: {
     outline: 0,
   },
@@ -74,9 +81,7 @@ export const styles = createStyles({
       marginRight: 'auto',
     },
   },
-});
-
-export type PickersModalDialogClassKey = keyof WithStyles<typeof styles>['classes'];
+};
 
 const PickersModalDialog: React.FC<PickerModalDialogProps & WithStyles<typeof styles>> = (
   props,

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
-import { createStyles, WithStyles, withStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { MuiStyles, WithStyles, withStyles, useTheme, StyleRules } from '@material-ui/core/styles';
 import TimeIcon from '../internal/svg-icons/Time';
 import DateRangeIcon from '../internal/svg-icons/DateRange';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
@@ -32,11 +32,15 @@ export interface DateTimePickerTabsProps {
   view: DateTimePickerView;
 }
 
-export const styles = (theme: Theme) => {
+export type DateTimePickerTabsClassKey = 'root' | 'modeDesktop' | 'tabs';
+
+export const styles: MuiStyles<DateTimePickerTabsClassKey> = (
+  theme,
+): StyleRules<DateTimePickerTabsClassKey> => {
   const tabsBackground =
     theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.background.default;
 
-  return createStyles({
+  return {
     root: {},
     modeDesktop: {
       order: 1,
@@ -45,10 +49,8 @@ export const styles = (theme: Theme) => {
       color: theme.palette.getContrastText(tabsBackground),
       backgroundColor: tabsBackground,
     },
-  });
+  };
 };
-
-export type DateTimePickerTabsClassKey = keyof WithStyles<typeof styles>['classes'];
 
 /**
  * @ignore - internal component.

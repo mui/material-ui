@@ -4,10 +4,12 @@ import clsx from 'clsx';
 // eslint-disable-next-line no-restricted-imports -- importing types
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { capitalize } from '@material-ui/core/utils';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
+import { MuiStyles, withStyles } from '@material-ui/core/styles';
 import TimelineContext from './TimelineContext';
 
-export const styles = createStyles({
+export type TimelineClassKey = 'root' | 'alignLeft' | 'alignRight' | 'alignAlternate';
+
+export const styles: MuiStyles<TimelineClassKey> = {
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
@@ -21,9 +23,7 @@ export const styles = createStyles({
   alignRight: {},
   /* Styles applied to the root element if `align="alternate"`. */
   alignAlternate: {},
-});
-
-export type TimelineClassKey = keyof WithStyles<typeof styles>['classes'];
+};
 
 export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
