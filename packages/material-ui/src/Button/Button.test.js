@@ -24,6 +24,7 @@ describe('<Button />', () => {
     muiName: 'MuiButton',
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testVariantProps: { variant: 'contained', fullWidth: true },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     skip: ['componentsProp'],
   }));
 
