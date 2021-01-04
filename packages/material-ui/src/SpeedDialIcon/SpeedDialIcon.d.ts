@@ -21,7 +21,7 @@ export interface SpeedDialIconProps
     openIconOpen?: string;
   };
   /**
-   * The icon to display in the SpeedDial Floating Action Button.
+   * The icon to display.
    */
   icon?: React.ReactNode;
   /**

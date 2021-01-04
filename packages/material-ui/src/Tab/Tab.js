@@ -204,7 +204,7 @@ Tab.propTypes = {
    */
   disableRipple: PropTypes.bool,
   /**
-   * The icon element.
+   * The icon to display.
    */
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   /**

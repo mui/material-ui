@@ -34,7 +34,7 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
    */
   delay?: number;
   /**
-   * The Icon to display in the SpeedDial Fab.
+   * The icon to display in the SpeedDial Fab.
    */
   icon?: React.ReactNode;
   /**

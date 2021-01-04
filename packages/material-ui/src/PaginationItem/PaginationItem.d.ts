@@ -42,7 +42,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
       disabled?: string;
       /** Pseudo-class applied to the root element if `selected={true}`. */
       selected?: string;
-      /** Styles applied to the icon element. */
+      /** Styles applied to tThe icon to display. */
       icon?: string;
     };
     /**

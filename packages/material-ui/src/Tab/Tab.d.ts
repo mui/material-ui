@@ -45,7 +45,7 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
      */
     disableFocusRipple?: boolean;
     /**
-     * The icon element.
+     * The icon to display.
      */
     icon?: string | React.ReactElement;
     /**

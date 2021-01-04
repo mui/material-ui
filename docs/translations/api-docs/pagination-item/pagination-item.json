@@ -69,6 +69,6 @@
       "description": "Pseudo-class applied to the root element if {{conditions}}.",
       "conditions": "<code>selected={true}</code>"
     },
-    "icon": { "description": "Styles applied to the icon element." }
+    "icon": { "description": "Styles applied to tThe icon to display." }
   }
 }

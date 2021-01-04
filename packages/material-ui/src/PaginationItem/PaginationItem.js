@@ -194,7 +194,7 @@ export const styles = (theme) => ({
   disabled: {},
   /* Pseudo-class applied to the root element if `selected={true}`. */
   selected: {},
-  /* Styles applied to the icon element. */
+  /* Styles applied to tThe icon to display. */
   icon: {
     fontSize: theme.typography.pxToRem(20),
     margin: '0 -8px',

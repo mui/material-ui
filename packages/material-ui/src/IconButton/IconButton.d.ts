@@ -8,7 +8,7 @@ export type IconButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The icon element.
+     * The icon to display.
      */
     children?: React.ReactNode;
     /**

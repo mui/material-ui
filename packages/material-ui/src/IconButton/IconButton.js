@@ -135,7 +135,7 @@ IconButton.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The icon element.
+   * The icon to display.
    */
   children: chainPropTypes(PropTypes.node, (props) => {
     const found = React.Children.toArray(props.children).some(
