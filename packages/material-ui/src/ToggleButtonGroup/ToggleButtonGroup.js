@@ -172,7 +172,7 @@ ToggleButtonGroup.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The group orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),

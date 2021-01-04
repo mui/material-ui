@@ -99,7 +99,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     fullWidth?: boolean;
     /**
-     * The group orientation (layout flow direction).
+     * The component orientation (layout flow direction).
      * @default 'horizontal'
      */
     orientation?: 'vertical' | 'horizontal';

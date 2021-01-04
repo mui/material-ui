@@ -317,7 +317,7 @@ Collapse.propTypes = {
    */
   onExiting: PropTypes.func,
   /**
-   * The collapse transition orientation.
+   * The transition orientation.
    * @default 'vertical'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),

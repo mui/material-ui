@@ -923,7 +923,7 @@ SliderUnstyled.propTypes = {
    */
   onMouseDown: PropTypes.func,
   /**
-   * The slider orientation.
+   * The component orientation.
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),

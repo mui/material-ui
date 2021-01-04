@@ -37,7 +37,7 @@ export interface ToggleButtonGroupProps
    */
   onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
   /**
-   * The group orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation?: 'horizontal' | 'vertical';

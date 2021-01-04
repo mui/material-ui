@@ -185,7 +185,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      */
     onChangeCommitted?: (event: React.SyntheticEvent, value: number | number[]) => void;
     /**
-     * The slider orientation.
+     * The component orientation.
      * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
