@@ -50,7 +50,7 @@ export interface ModalProps
    */
   disableEnforceFocus?: boolean;
   /**
-   * If `true`, hitting escape will not fire `onClose`.
+   * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
   disableEscapeKeyDown?: boolean;

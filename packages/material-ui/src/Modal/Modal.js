@@ -304,7 +304,7 @@ Modal.propTypes = {
    */
   disableEnforceFocus: PropTypes.bool,
   /**
-   * If `true`, hitting escape will not fire `onClose`.
+   * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
   disableEscapeKeyDown: PropTypes.bool,

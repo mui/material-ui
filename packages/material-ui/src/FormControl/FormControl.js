@@ -233,7 +233,7 @@ FormControl.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label should be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    * @default false
    */
   error: PropTypes.bool,
