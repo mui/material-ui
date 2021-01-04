@@ -175,6 +175,8 @@ module.exports = {
             patterns: ['test/utils/*'],
           },
         ],
+        // allows chainable getters when using the chai expected assertion
+        "@typescript-eslint/no-unused-expressions": "off",
 
         'material-ui/disallow-active-element-as-key-event-target': 'error',
 
