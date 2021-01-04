@@ -26,6 +26,12 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - [styles] Fix classes logic (#24250) @oliviertassinari
 - [styles] Improve the classes structure (#24249) @oliviertassinari
 
+### `@material-ui/lab@v5.0.0-alpha.22`
+
+- [DatePicker] Fix year only view, hide the current month (#24205) @hyeonhong
+- [DatePicker] Nested imports for better DX (#24147) @oliviertassinari
+- [DatePicker] Remove unused type parameters (#24257) @eps1lon
+
 ### Docs
 
 - [docs] Accept pages written in TypeScript (#24230) @oliviertassinari
@@ -34,12 +40,6 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - [docs] Fix codesandbox datagrid demo (#24218) @brno32
 - [docs] Fix iframe demos with emotion (#24232) @oliviertassinari
 - [docs] Sync translations (#24161) @l10nbot
-
-### `@material-ui/lab@v5.0.0-alpha.22`
-
-- [DatePicker] Fix year only view, hide the current month (#24205) @hyeonhong
-- [DatePicker] Nested imports for better DX (#24147) @oliviertassinari
-- [DatePicker] Remove unused type parameters (#24257) @eps1lon
 
 ### Core
 
