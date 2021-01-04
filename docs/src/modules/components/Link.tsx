@@ -10,7 +10,7 @@ type NextLinkComposedProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>,
   Omit<NextLinkProps, 'href' | 'as'> & {
     to: NextLinkProps['href'];
     linkAs?: NextLinkProps['as'];
-    href?: any;
+    href?: unknown;
   };
 
 export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
@@ -36,8 +36,9 @@ export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComp
 export type LinkProps = {
   activeClassName?: string;
   as?: NextLinkProps['as'];
+  href: NextLinkProps['href'];
   noLinkStyle?: boolean;
-} & Omit<NextLinkComposedProps, 'to' | 'linkAs'> &
+} & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
   Omit<MuiLinkProps, 'href'>;
 
 // A styled version of the Next.js Link component:
@@ -59,15 +60,16 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
-  const isExternal = href.indexOf('http') === 0 || href.indexOf('mailto:') === 0;
+  const isExternal =
+    typeof href === 'string' && (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0);
   const userLanguage = useUserLanguage();
 
   if (isExternal) {
     if (noLinkStyle) {
-      return <a className={className} href={href} ref={ref as any} {...other} />;
+      return <a className={className} href={href as string} ref={ref as any} {...other} />;
     }
 
-    return <MuiLink className={className} href={href} ref={ref} {...other} />;
+    return <MuiLink className={className} href={href as string} ref={ref} {...other} />;
   }
 
   if (noLinkStyle) {
@@ -75,7 +77,12 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
   }
 
   let linkAs = linkAsProp || (href as string);
-  if (userLanguage !== 'en' && href.indexOf('/') === 0 && href.indexOf('/blog') !== 0) {
+  if (
+    userLanguage !== 'en' &&
+    typeof href === 'string' &&
+    href.indexOf('/') === 0 &&
+    href.indexOf('/blog') !== 0
+  ) {
     linkAs = `/${userLanguage}${linkAs}`;
   }
 

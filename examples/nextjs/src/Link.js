@@ -54,7 +54,8 @@ const Link = React.forwardRef(function Link(props, ref) {
     [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
-  const isExternal = href.indexOf('http') === 0 || href.indexOf('mailto:') === 0;
+  const isExternal =
+    typeof href === 'string' && (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0);
 
   if (isExternal) {
     if (noLinkStyle) {
