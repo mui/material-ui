@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -109,11 +108,13 @@ const useStyles = makeStyles(
   { name: 'LandingPage' },
 );
 
-const GettingStartedLink = React.forwardRef((props, ref) => {
-  return <Link href="/getting-started/installation" naked ref={ref} {...props} />;
-});
+interface LandingPageProps {
+  sponsorsProps: {
+    docs: object;
+  };
+}
 
-export default function LandingPage(props) {
+export default function LandingPage(props: LandingPageProps) {
   const { sponsorsProps } = props;
 
   React.useEffect(() => {
@@ -144,7 +145,9 @@ export default function LandingPage(props) {
                   {t('strapline')}
                 </Typography>
                 <Button
-                  component={GettingStartedLink}
+                  component={Link}
+                  noLinkStyle
+                  href="/getting-started/installation"
                   className={classes.button}
                   variant="outlined"
                 >
@@ -207,10 +210,6 @@ export default function LandingPage(props) {
     </AppFrame>
   );
 }
-
-LandingPage.propTypes = {
-  sponsorsProps: PropTypes.object.isRequired,
-};
 
 LandingPage.getInitialProps = async () => {
   return {

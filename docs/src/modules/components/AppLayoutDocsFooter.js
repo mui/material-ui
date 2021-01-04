@@ -213,7 +213,7 @@ export default function AppLayoutDocsFooter() {
               {prevPage ? (
                 <Button
                   component={Link}
-                  naked
+                  noLinkStyle
                   href={prevPage.pathname}
                   size="large"
                   className={classes.pageLinkButton}
@@ -257,7 +257,7 @@ export default function AppLayoutDocsFooter() {
               {nextPage.displayNav === false ? null : (
                 <Button
                   component={Link}
-                  naked
+                  noLinkStyle
                   href={nextPage.pathname}
                   size="large"
                   className={classes.pageLinkButton}
