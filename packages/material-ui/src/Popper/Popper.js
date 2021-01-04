@@ -306,7 +306,7 @@ Popper.propTypes = {
     PropTypes.func,
   ]),
   /**
-   * The `children` will be inside the DOM hierarchy of the parent component.
+   * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal: PropTypes.bool,
