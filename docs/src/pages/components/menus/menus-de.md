@@ -20,7 +20,7 @@ A basic menu opens over the anchor element by default (this option can be [chang
 
 Durch die Auswahl einer Option wird die Option sofort übernommen und das Menü geschlossen.
 
-**Begriffserklärung**: Im Gegensatz zu einfachen Menüs können einfache Dialogfelder zusätzliche Details in Bezug auf die für ein Listenelement verfügbaren Optionen enthalten oder Navigations- oder orthogonale Aktionen in Bezug auf die primäre Aufgabe bereitstellen. Obwohl sie den gleichen Inhalt anzeigen können, werden einfache Menüs gegenüber einfachen Dialogen bevorzugt, da einfache Menüs den aktuellen Kontext des Benutzers weniger stören.
+**Begriffserklärung**: Im Gegensatz zu einfachen Menüs können einfache Dialogfelder zusätzliche Details in Bezug auf die für ein Listenelement verfügbaren Optionen enthalten oder Navigations- oder orthogonale Aktionen in Bezug auf die primäre Aufgabe bereitstellen. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 

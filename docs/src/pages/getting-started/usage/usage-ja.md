@@ -32,7 +32,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## グローバル
 
-知っておく必要のあるいくつかの重要なことで、Material-UIの使い易さは改善されます。
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### Responsive meta tag
 

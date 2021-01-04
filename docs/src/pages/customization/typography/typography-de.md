@@ -130,7 +130,7 @@ Noch zu tun: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 Möglicherweise möchten Sie die Standardschriftgröße des `<html>` Elements ändern. Zum Beispiel bei der Verwendung der [10px-Vereinfachung](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-> ⚠️ Changing the font size can harm accessibility ♿️. ⚠️ Changing the font size can harm accessibility ♿️. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+> ⚠️ Changing the font size can harm accessibility ♿️. ⚠️ Changing the font size can harm accessibility ♿️. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
 An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 

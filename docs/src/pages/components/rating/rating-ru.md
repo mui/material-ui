@@ -7,7 +7,7 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 # Rating
 
-<p class="description">Рейтинги дают представление о мнении и опыте других и позволяют пользователю дать собственную оценку.</p>
+<p class="description">Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

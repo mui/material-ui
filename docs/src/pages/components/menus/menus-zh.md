@@ -20,7 +20,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 理想状态下，选择一个选项是会立刻执行此选项并且关闭整个菜单。
 
-**解疑**：与简单菜单不同，一个简单的对话框可以提供与列表项可用选项相关的额外细节，或提供与主要任务相关的导航或正交操作。 虽然它们可以显示相同的内容，但和基本对话框相比，我们更倾向于简单菜单，因为它对用户的当前上下文干预更少。
+**解疑**：与简单菜单不同，一个简单的对话框可以提供与列表项可用选项相关的额外细节，或提供与主要任务相关的导航或正交操作。 Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 

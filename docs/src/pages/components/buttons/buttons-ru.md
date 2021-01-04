@@ -43,7 +43,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 ## Контурные кнопки
 
-[Контурные кнопки](https://material.io/design/components/buttons.html#outlined-button) - это кнопки со средним акцентом. Они содержат действия, которые важны, но не являются основными в приложении.
+[Контурные кнопки](https://material.io/design/components/buttons.html#outlined-button) - это кнопки со средним акцентом. They contain actions that are important, but aren't the primary action in an app.
 
 Выделенные кнопки также являются альтернативой выделенным кнопкам или могут использоваться как альтернатива текстовым кнопкам.
 

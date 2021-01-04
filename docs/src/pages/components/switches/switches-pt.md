@@ -9,7 +9,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 <p class="description">Interruptores alternam o estado de uma única configuração ligado ou desligado.</p>
 
-[Interruptores](https://material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. A opção que o interruptor controla, juntamente com o estado atual, deve ser claramente explícita no rótulo em linha correspondente.
+[Interruptores](https://material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

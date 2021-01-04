@@ -24,6 +24,8 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 属性
 
+The Select component is implemented as a custom `<input>` element of the [InputBase](/api/input-base/). It extends the [text field components](/components/text-fields) sub-components, either the [Input](/api/input/), [FilledInput](/api/filled-input/), or [OutlinedInput](/api/outlined-input/), depending on the variant selected. It shares the same styles and many of the same props. Refer to the respective component's API page for details.
+
 ### 填充（Filled）和描边（outlined）变量
 
 {{"demo": "pages/components/selects/SelectVariants.js"}}

@@ -273,14 +273,14 @@ const theme = createMuiTheme({
 
 ## 无障碍设计
 
-图标可以传达各种有意义的信息，所以确保它们的无障碍设计是很重要的。 您可能会注意到这两个用例：
+Icons can convey all sorts of meaningful information, so it's important to ensure they are accessible where appropriate. There are two use cases you'll want to consider:
 
 - **装饰性图标** 仅用于增强视觉或强调品牌。 即使将它们从页面中移除，用户仍然可以理解并能够使用整个界面。
-- **语义图标** 是用来传达其中意义的，而不只是单纯地起装饰作用。 这包含了没有文字辅助说明的图标，这些图标一般被用作在交互式控件中 — 按钮、表单元素、切换按钮等。
+- **Semantic icons** are ones that you're using to convey meaning, rather than just pure decoration. 这包含了没有文字辅助说明的图标，这些图标一般被用作在交互式控件中 — 按钮、表单元素、切换按钮等。
 
 ### 装饰性图标
 
-如果你的图标只是作为纯粹的装饰，那么你已经大功告成啦！ 而添加 `aria-hidden=true` 属性可以让你的图标变成正确的且可访问的（隐形的）。
+If your icons are purely decorative, you're already done! 而添加 `aria-hidden=true` 属性可以让你的图标变成正确的且可访问的（隐形的）。
 
 ### 语义图标
 

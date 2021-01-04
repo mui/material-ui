@@ -9,7 +9,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 <p class="description">O leiaute responsivo da grade do Material Design se adapta ao tamanho e orientação da tela, garantindo a consistência entre leiautes.</p>
 
-Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria consistência visual entre leiautes, enquanto permite flexibilidade em uma ampla variedade de projetos. A UI responsiva do Material Design é baseada em um leiaute de grade com 12 colunas.
+Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria consistência visual entre leiautes, enquanto permite flexibilidade em uma ampla variedade de projetos. Material Design's responsive UI is based on a 12-column grid layout.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -19,9 +19,9 @@ Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria 
 
 O sistema de grade é implementado com o componente `Grid`:
 
-- Ele usa [Box flexível CSS](https://www.w3.org/TR/css-flexbox-1/) para alta flexibilidade.
+- It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
 - Existem dois tipos de leiautes: *contêineres* e *itens*.
-- Larguras de itens são definidas em porcentagens, então elas são sempre fluidas e dimensionadas em relação ao elemento pai.
+- Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - Itens têm preenchimento para criar o espaçamento entre itens individuais.
 - Existem cinco pontos de quebra (breakpoints) na grade: xs, sm, md, lg e xl.
 - Valores inteiros podem ser dados para cada ponto de quebra,  indicando quantas das 12 colunas disponíveis são ocupadas pelo componente quando a largura da área de exibição satisfaz as [restrições de ponto de quebra](/customization/breakpoints/#default-breakpoints).
@@ -38,7 +38,7 @@ Esta função de transformação de saída pode ser customizada [usando o tema](
 
 ## Grades fluídas
 
-As grades fluídas usam colunas que dimensionam e redimensionam o conteúdo. O leiaute de uma grade fluída pode usar pontos de quebra para determinar se o leiaute precisa mudar drasticamente.
+As grades fluídas usam colunas que dimensionam e redimensionam o conteúdo. A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Grade básica
 

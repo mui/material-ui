@@ -9,7 +9,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 <p class="description">Переключатели изменяют состояние одного отдельного параметра между "включено" и "выключено".</p>
 
-[Переключатели](https://material.io/design/components/selection-controls.html#switches) – предпочтительный способ установки параметров на мобильных устройствах. Опция, которую контролирует переключатель, и её состояние должны быть четко описаны в соответствующей метке.
+[Переключатели](https://material.io/design/components/selection-controls.html#switches) – предпочтительный способ установки параметров на мобильных устройствах. The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

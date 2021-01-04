@@ -8,6 +8,7 @@ As components can be used in different contexts, there are several approaches to
 1. [Reusable style overrides](#2-reusable-style-overrides)
 1. [Dynamic variation](#3-dynamic-variation)
 1. [全局化主题变体](#4-global-theme-variation)
+1. [全局 CSS 覆盖](#5-global-css-override)
 
 ## 1. One-off customization
 
@@ -91,6 +92,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 
 | State         | 全局类名                |
 |:------------- |:------------------- |
+| active        | `.Mui-active`       |
 | checked       | `.Mui-checked`      |
 | disabled      | `.Mui-disabled`     |
 | error         | `.Mui-error`        |
@@ -147,3 +149,50 @@ In the previous section, we learned how to override the style of a Material-UI c
 为了提高组件之间的一致性，并整体化管理用户界面外观，Material-UI 提供了一种能够应用全局变更的机制。
 
 Please take a look at the theme's [global overrides page](/customization/theme-components/) for more details.
+
+## 5、 全局 CSS 覆盖
+
+Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
+
+```jsx
+const GlobalCss = withStyles({
+  // @global 由 jss-plugin-global 处理。
+  '@global': {
+    '.MuiButton-root': {
+      fontSize: '1rem',
+    },
+  },
+})(() => null);
+
+// …
+
+<GlobalCss />;
+```
+
+如果您使用 [CssBaseline](/components/css-baseline/) 组件来应用全局重置（global resets），那么也可以将它应用于全局样式。 就像这样：
+
+```jsx
+const theme = createMuiTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        '@global': {
+          html: {
+            WebkitFontSmoothing: 'auto',
+          },
+        },
+      },
+    },
+  },
+});
+
+// ...
+return (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    {children}
+  </ThemeProvider>
+);
+```
+
+{{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}

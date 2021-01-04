@@ -39,6 +39,6 @@ export interface ButtonClasses {
 
 declare const buttonClasses: ButtonClasses;
 
-export function getButtonUtilityClass(part: string): string;
+export function getButtonUtilityClass(slot: string): string;
 
 export default buttonClasses;

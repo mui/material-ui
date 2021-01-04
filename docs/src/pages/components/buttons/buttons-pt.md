@@ -43,7 +43,7 @@ Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cart�
 
 ## Botões Delineados
 
-[Botões delineados](https://material.io/design/components/buttons.html#outlined-button) são botões com ênfase média. Eles contém ações que são importantes, mas não são as ações primárias de um aplicativo.
+[Botões delineados](https://material.io/design/components/buttons.html#outlined-button) são botões com ênfase média. They contain actions that are important, but aren't the primary action in an app.
 
 Botões delineados são uma alternativa de menor ênfase comparado com botões contidos, ou uma uma alternativa de maior ênfase comparado com botões de texto.
 

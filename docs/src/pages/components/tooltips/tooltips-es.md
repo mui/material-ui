@@ -16,11 +16,11 @@ When activated, [Tooltips](https://material.io/design/components/tooltips.html) 
 
 ## Simple Tooltips
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
 ## Positioned tooltips
 
-El `Tooltip` tiene 12 **posiciones** para elegir. No tienen flechas direccionales; en cambio, dependen del movimiento que emana de la fuente para transmitir la dirección.
+El `Tooltip` tiene 12 **posiciones** para elegir. They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 

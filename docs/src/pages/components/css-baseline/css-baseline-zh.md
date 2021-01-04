@@ -74,4 +74,4 @@ export default function MyApp() {
 
 ## Customization 个性化
 
-前往文档中的 [全局自定义](/customization/theme-components/#global-css-override) 部分来改变这些组件的输出。
+前往文档中的 [全局自定义](/customization/how-to-customize/#5-global-css-override) 部分来改变这些组件的输出。

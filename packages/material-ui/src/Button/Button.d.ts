@@ -1,6 +1,6 @@
 import { OverridableStringUnion } from '@material-ui/types';
 import { SxProps } from '@material-ui/system';
-import { Theme } from '@material-ui/core/styles';
+import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 

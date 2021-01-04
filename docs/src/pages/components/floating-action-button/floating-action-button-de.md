@@ -11,7 +11,7 @@ materialDesign: https://material.io/components/buttons-floating-action-button
 
 A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) appears in front of all screen content, typically as a circular shape with an icon in its center. Es gibt zwei Arten von FABs: normal und erweitert.
 
-Verwenden Sie eine FAB nur, wenn dies für die Darstellung der Hauptaktion eines Bildschirms am besten geeignet ist. Verwenden Sie eine FAB nur, wenn dies für die Darstellung der Hauptaktion eines Bildschirms am besten geeignet ist.
+Only use a FAB if it is the most suitable way to present a screen's primary action. Verwenden Sie eine FAB nur, wenn dies für die Darstellung der Hauptaktion eines Bildschirms am besten geeignet ist.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

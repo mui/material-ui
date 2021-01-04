@@ -354,7 +354,7 @@ export default function App() {
 
 ## Renderização do lado servidor
 
-Este exemplo retorna uma string de HTML e insere o CSS crítico necessário, logo antes de ser usado:
+This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';

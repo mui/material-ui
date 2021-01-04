@@ -20,7 +20,7 @@ A basic menu opens over the anchor element by default (this option can be [chang
 
 Le choix d'une option doit idéalement être validé immédiatement et fermer le menu.
 
-**Désambiguïsation**: Contrairement aux menus simples, les boîtes de dialogue simples peuvent présenter des détails supplémentaires relatifs aux options disponibles pour un élément de la liste ou proposer des actions de navigation ou orthogonales liées à la tâche principale. Bien qu'ils puissent afficher le même contenu, les menus simples sont préférables aux simples dialogues, car les menus simples perturbent moins le contexte actuel de l'utilisateur.
+**Désambiguïsation**: Contrairement aux menus simples, les boîtes de dialogue simples peuvent présenter des détails supplémentaires relatifs aux options disponibles pour un élément de la liste ou proposer des actions de navigation ou orthogonales liées à la tâche principale. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 

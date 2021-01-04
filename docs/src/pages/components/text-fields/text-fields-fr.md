@@ -25,7 +25,7 @@ It supports standard, outlined and filled styling.
 
 ## Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 

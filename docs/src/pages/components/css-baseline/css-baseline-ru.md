@@ -74,4 +74,4 @@ In dark mode, the colors of the scrollbars are customized to provide a better co
 
 ## Кастомизация
 
-Head to the [global customization](/customization/theme-components/#global-css-override) section of the documentation to change the output of these components.
+Head to the [global customization](/customization/how-to-customize/#5-global-css-override) section of the documentation to change the output of these components.

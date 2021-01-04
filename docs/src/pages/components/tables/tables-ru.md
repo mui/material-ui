@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">Таблицы отображают наборы данных. Они могут быть полностью модифицированы.</p>
 
-[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Они могут быть встроены в основной контент, например в карточки. They can include:
+Tables display information in a way that's easy to scan, so that users can look for patterns and insights. Они могут быть встроены в основной контент, например в карточки. They can include:
 
 - Соответствующую визуализацию
 - Навигацию
@@ -115,6 +115,6 @@ An example of a table with expandable rows, revealing more information. It utili
 
 ### Caption
 
-A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it’s about and decide if they want to read it.
+A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

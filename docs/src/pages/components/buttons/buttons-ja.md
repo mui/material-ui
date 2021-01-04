@@ -43,7 +43,7 @@ Cardでは、テキストボタンを使用することでCardの内容に重点
 
 ## Outlined Buttons
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. 重要ではあるが、一番ではないアクションを含みます。
+[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren't the primary action in an app.
 
 Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い強調をします。
 
