@@ -49,11 +49,14 @@ const iOS =
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
-### Swipeable Bleeding
+### Swipeable edge
 
-Touch swipe only works on mobile devices, if you are on desktop you can click the Open button.
+You can configure the `SwipeableDrawer` to have a visible edge when closed.
 
-{{"demo": "pages/components/drawers/SwipeableBleedingDrawer.js", "iframe": true}}
+If you are on a desktop, you can toggle the drawer with the "OPEN" button.
+If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swipe.
+
+{{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
 
 ### Keep mounted
 

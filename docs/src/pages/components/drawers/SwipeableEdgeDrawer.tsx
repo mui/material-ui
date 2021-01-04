@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Global } from "@emotion/react";
+import { Global } from '@emotion/react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { grey } from "@material-ui/core/colors";
+import { grey } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Skeleton from '@material-ui/core/Skeleton';
@@ -11,11 +10,19 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
 const drawerBleeding = 56;
 
-export default function SwipeableBleedingDrawer(props) {
+interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window?: () => Window;
+}
+
+export default function SwipeableEdgeDrawer(props: Props) {
   const { window } = props;
   const [open, setOpen] = React.useState(false);
 
-  const toggleDrawer = (newOpen) => () => {
+  const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
 
@@ -28,15 +35,15 @@ export default function SwipeableBleedingDrawer(props) {
       <Global
         styles={{
           body: {
-            backgroundColor: `${grey[100]} !important`
+            backgroundColor: `${grey[100]} !important`,
           },
-          ".MuiPaper-root.MuiPaper-root": {
+          '.MuiPaper-root.MuiPaper-root': {
             height: `calc(50% - ${drawerBleeding}px)`,
-            overflow: "visible"
-          }
+            overflow: 'visible',
+          },
         }}
       />
-      <Box sx={{ textAlign: 'center' }}>
+      <Box sx={{ textAlign: 'center', pt: 1 }}>
         <Button onClick={toggleDrawer(true)}>Open</Button>
       </Box>
       <SwipeableDrawer
@@ -46,48 +53,40 @@ export default function SwipeableBleedingDrawer(props) {
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
         swipeAreaWidth={drawerBleeding}
+        disableSwipeToOpen={false}
         ModalProps={{
-          keepMounted: true
-        }}>
+          keepMounted: true,
+        }}
+      >
         <Box
           sx={{
-            position: "absolute",
+            position: 'absolute',
             top: -drawerBleeding,
             borderTopLeftRadius: 8,
             borderTopRightRadius: 8,
-            visibility: "visible",
+            visibility: 'visible',
             right: 0,
             left: 0,
-            backgroundColor: "#fff"
+            backgroundColor: '#fff',
           }}
         >
           <Box
             sx={{
               width: 30,
               height: 6,
-              bgcolor: "grey.300",
-              borderRadius: "3px",
-              position: "absolute",
+              bgcolor: 'grey.300',
+              borderRadius: '3px',
+              position: 'absolute',
               top: 8,
-              left: "calc(50% - 15px)"
+              left: 'calc(50% - 15px)',
             }}
           />
-          <Typography sx={{ p: 2, color: "text.secondary" }}>
-            51 results
-          </Typography>
+          <Typography sx={{ p: 2, color: 'text.secondary' }}>51 results</Typography>
         </Box>
-        <Box sx={{ mx: 2, mb: 2, height: "100%", overflow: "auto" }}>
+        <Box sx={{ mx: 2, mb: 2, height: '100%', overflow: 'auto' }}>
           <Skeleton variant="rectangular" height="100%" />
         </Box>
       </SwipeableDrawer>
     </div>
   );
 }
-
-SwipeableBleedingDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
