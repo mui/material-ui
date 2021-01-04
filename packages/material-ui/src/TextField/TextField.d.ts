@@ -43,7 +43,7 @@ export interface BaseTextFieldProps
    */
   color?: 'primary' | 'secondary';
   /**
-   * The default value of the `input` element.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue?: unknown;
   /**

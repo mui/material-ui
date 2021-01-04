@@ -71,7 +71,7 @@ export interface InputBaseProps
    */
   color?: 'primary' | 'secondary';
   /**
-   * The default `input` element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue?: unknown;
   /**

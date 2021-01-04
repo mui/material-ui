@@ -229,7 +229,7 @@ TextField.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * The default value of the `input` element.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**

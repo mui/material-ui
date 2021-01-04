@@ -492,7 +492,7 @@ Slider.propTypes = {
    */
   componentsProps: PropTypes.object,
   /**
-   * The default element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**

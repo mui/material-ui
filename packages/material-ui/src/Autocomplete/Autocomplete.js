@@ -594,7 +594,7 @@ Autocomplete.propTypes = {
    */
   closeText: PropTypes.string,
   /**
-   * The default input value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
   defaultValue: PropTypes.any,

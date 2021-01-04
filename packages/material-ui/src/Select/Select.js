@@ -119,7 +119,7 @@ Select.propTypes = {
    */
   classes: PropTypes.object,
   /**
-   * The default element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**

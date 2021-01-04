@@ -3,7 +3,7 @@ import { FormGroupProps } from '../FormGroup';
 
 export interface RadioGroupProps extends Omit<FormGroupProps, 'onChange'> {
   /**
-   * The default `input` element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue?: FormGroupProps['defaultValue'];
   /**

@@ -5,7 +5,7 @@
     "autoFocus": "If <code>true</code>, the <code>input</code> element is focused during the first mount.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
-    "defaultValue": "The default value of the <code>input</code> element.",
+    "defaultValue": "The default value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the <code>input</code> element is disabled.",
     "error": "If <code>true</code>, the label is displayed in an error state.",
     "FormHelperTextProps": "Props applied to the <a href=\"/api/form-helper-text/\"><code>FormHelperText</code></a> element.",

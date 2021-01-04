@@ -48,7 +48,7 @@ export interface SelectProps<T = unknown>
     nativeInput?: string;
   };
   /**
-   * The default element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue?: T;
   /**
