@@ -350,7 +350,7 @@ Popper.propTypes = {
     }),
   ),
   /**
-   * If `true`, the popper is visible.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**

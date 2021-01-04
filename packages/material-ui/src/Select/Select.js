@@ -202,7 +202,7 @@ Select.propTypes = {
    */
   onOpen: PropTypes.func,
   /**
-   * Control `select` open state.
+   * If `true`, the component is shown.
    * You can only use it when the `native` prop is `false` (default).
    */
   open: PropTypes.bool,

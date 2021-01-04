@@ -192,7 +192,7 @@ SpeedDialAction.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the tooltip is shown.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

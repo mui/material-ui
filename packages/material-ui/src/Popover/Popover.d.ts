@@ -95,7 +95,7 @@ export interface PopoverProps
   marginThreshold?: number;
   onClose?: ModalProps['onClose'];
   /**
-   * If `true`, the popover is visible.
+   * If `true`, the component is shown.
    */
   open: boolean;
   /**

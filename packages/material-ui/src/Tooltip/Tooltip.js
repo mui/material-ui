@@ -704,7 +704,7 @@ Tooltip.propTypes = {
    */
   onOpen: PropTypes.func,
   /**
-   * If `true`, the tooltip is shown.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

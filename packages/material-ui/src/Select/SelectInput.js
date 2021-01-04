@@ -541,7 +541,7 @@ SelectInput.propTypes = {
    */
   onOpen: PropTypes.func,
   /**
-   * Control `select` open state.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

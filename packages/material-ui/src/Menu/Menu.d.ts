@@ -52,7 +52,7 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    */
   onClose?: PopoverProps['onClose'];
   /**
-   * If `true`, the menu is visible.
+   * If `true`, the component is shown.
    */
   open: boolean;
   /**

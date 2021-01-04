@@ -538,7 +538,7 @@ Popover.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * If `true`, the popover is visible.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**

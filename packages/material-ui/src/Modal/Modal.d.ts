@@ -97,7 +97,7 @@ export interface ModalProps
     bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
   }['bivarianceHack'];
   /**
-   * If `true`, the modal is open.
+   * If `true`, the component is shown.
    */
   open: boolean;
 }

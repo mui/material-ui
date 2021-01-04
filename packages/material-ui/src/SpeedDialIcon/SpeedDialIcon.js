@@ -84,7 +84,7 @@ SpeedDialIcon.propTypes = {
   icon: PropTypes.node,
   /**
    * @ignore
-   * If `true`, the SpeedDial is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

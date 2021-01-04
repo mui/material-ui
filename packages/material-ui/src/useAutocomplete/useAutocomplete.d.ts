@@ -217,7 +217,7 @@ export interface UseAutocompleteProps<
     reason: AutocompleteHighlightChangeReason
   ) => void;
   /**
-   * Control the popup` open state.
+   * If `true`, the component is shown
    */
   open?: boolean;
   /**

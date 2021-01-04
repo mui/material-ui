@@ -798,7 +798,7 @@ Autocomplete.propTypes = {
    */
   onOpen: PropTypes.func,
   /**
-   * Control the popup` open state.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

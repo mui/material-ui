@@ -213,7 +213,7 @@ Menu.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * If `true`, the menu is visible.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**

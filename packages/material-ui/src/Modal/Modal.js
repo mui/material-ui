@@ -353,7 +353,7 @@ Modal.propTypes = {
    */
   onKeyDown: PropTypes.func,
   /**
-   * If `true`, the modal is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**

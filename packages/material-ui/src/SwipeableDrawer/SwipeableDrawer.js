@@ -644,7 +644,7 @@ SwipeableDrawer.propTypes = {
    */
   onOpen: PropTypes.func.isRequired,
   /**
-   * If `true`, the drawer is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**

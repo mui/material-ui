@@ -117,7 +117,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   onOpen?: (event: React.SyntheticEvent) => void;
   /**
-   * If `true`, the tooltip is shown.
+   * If `true`, the component is shown.
    */
   open?: boolean;
   /**

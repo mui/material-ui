@@ -242,7 +242,7 @@ Drawer.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * If `true`, the drawer is open.
+   * If `true`, the component is shown.
    * @default false
    */
   open: PropTypes.bool,

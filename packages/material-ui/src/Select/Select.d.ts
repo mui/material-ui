@@ -131,7 +131,7 @@ export interface SelectProps<T = unknown>
    */
   onOpen?: (event: React.SyntheticEvent) => void;
   /**
-   * Control `select` open state.
+   * If `true`, the component is shown.
    * You can only use it when the `native` prop is `false` (default).
    */
   open?: boolean;

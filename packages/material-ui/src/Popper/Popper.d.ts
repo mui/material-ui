@@ -58,7 +58,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    */
   modifiers?: Options['modifiers'];
   /**
-   * If `true`, the popper is visible.
+   * If `true`, the component is shown.
    */
   open: boolean;
   /**

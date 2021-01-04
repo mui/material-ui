@@ -62,7 +62,7 @@ export interface DrawerProps
    */
   onClose?: ModalProps['onClose'];
   /**
-   * If `true`, the drawer is open.
+   * If `true`, the component is shown.
    * @default false
    */
   open?: boolean;

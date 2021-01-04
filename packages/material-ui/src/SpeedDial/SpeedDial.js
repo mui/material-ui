@@ -453,7 +453,7 @@ SpeedDial.propTypes = {
    */
   onOpen: PropTypes.func,
   /**
-   * If `true`, the SpeedDial is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

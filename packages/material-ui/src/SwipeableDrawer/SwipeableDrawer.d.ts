@@ -47,7 +47,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    */
   onOpen: React.ReactEventHandler<{}>;
   /**
-   * If `true`, the drawer is open.
+   * If `true`, the component is shown.
    */
   open: boolean;
   /**
