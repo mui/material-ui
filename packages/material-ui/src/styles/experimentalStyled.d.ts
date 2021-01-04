@@ -93,7 +93,7 @@ export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
   ): StyledComponent<PropsOf<Tag>, StyleProps, Theme>;
 }
 
-export interface StyledOptions<Props> {
+export interface StyledOptions {
   label?: string;
   shouldForwardProp?(propName: PropertyKey): boolean;
   target?: string;
@@ -176,7 +176,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
 
   <C extends React.ComponentClass<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledOptions<React.ComponentProps<C>>,
+    options?: StyledOptions,
     muiOptions?: MuiStyledOptions
   ): CreateStyledComponent<
     PropsOf<C> & {
@@ -207,7 +207,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
 
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledOptions<React.ComponentProps<C>>,
+    options?: StyledOptions,
     muiOptions?: MuiStyledOptions
   ): CreateStyledComponent<
     PropsOf<C> & {
@@ -231,7 +231,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
-    options?: StyledOptions<JSX.IntrinsicElements[Tag]>,
+    options?: StyledOptions,
     muiOptions?: MuiStyledOptions
   ): CreateStyledComponent<
     { theme?: Theme; as?: React.ElementType; sx?: SxProps<Theme> },
