@@ -4,18 +4,19 @@ import { isRangeValid } from '../internal/pickers/date-utils';
 import { BasePickerProps } from '../internal/pickers/typings/BasePicker';
 import { calculateRangeChange } from './date-range-manager';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
-import { SharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
 import DateRangePickerToolbar from './DateRangePickerToolbar';
 import { useCalendarState } from '../DayPicker/useCalendarState';
 import { DateRangePickerViewMobile } from './DateRangePickerViewMobile';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { MobileKeyboardInputView } from '../internal/pickers/Picker/Picker';
 import DateRangePickerInput, { DateRangeInputProps } from './DateRangePickerInput';
-import { RangeInput, DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
+import { DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 import { ExportedDayPickerProps, defaultReduceAnimations } from '../DayPicker/DayPicker';
 import DateRangePickerViewDesktop, {
   ExportedDesktopDateRangeCalendarProps,
 } from './DateRangePickerViewDesktop';
+import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
+import { WrapperVariant } from '../internal/pickers/wrappers/Wrapper';
 
 type BaseCalendarPropsToReuse<TDate> = Omit<
   ExportedDayPickerProps<TDate>,
@@ -35,11 +36,19 @@ export interface ExportedDateRangePickerViewProps<TDate>
 
 interface DateRangePickerViewProps<TDate>
   extends CurrentlySelectingRangeEndProps,
-    ExportedDateRangePickerViewProps<TDate>,
-    SharedPickerProps<RangeInput<TDate>, DateRange<TDate>, DateRangeInputProps> {
+    ExportedDateRangePickerViewProps<TDate> {
   open: boolean;
   startText: React.ReactNode;
   endText: React.ReactNode;
+  isMobileKeyboardViewOpen: boolean;
+  toggleMobileKeyboardView: () => void;
+  DateInputProps: DateRangeInputProps;
+  date: DateRange<TDate>;
+  onDateChange: (
+    date: DateRange<TDate>,
+    currentWrapperVariant: WrapperVariant,
+    isFinish?: PickerSelectionState,
+  ) => void;
 }
 
 /**
