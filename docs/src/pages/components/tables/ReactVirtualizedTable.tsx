@@ -16,7 +16,7 @@ import {
   TableHeaderProps,
 } from 'react-virtualized';
 
-declare module '@material-ui/core/styles/withStyles' {
+declare module '@material-ui/core/styles' {
   // Augment the BaseCSSProperties so that we can control jss-rtl
   interface BaseCSSProperties {
     /*
