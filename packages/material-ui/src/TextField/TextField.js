@@ -296,7 +296,7 @@ TextField.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a `textarea` element is rendered.instead of an input.
+   * If `true`, a `textarea` element is rendered instead of an input.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -320,7 +320,7 @@ TextField.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**

@@ -95,7 +95,7 @@ export interface BaseTextFieldProps
    */
   margin?: 'none' | 'dense' | 'normal';
   /**
-   * If `true`, a `textarea` element is rendered.instead of an input.
+   * If `true`, a `textarea` element is rendered instead of an input.
    * @default false
    */
   multiline?: boolean;
@@ -106,7 +106,7 @@ export interface BaseTextFieldProps
   onBlur?: InputBaseProps['onBlur'];
   onFocus?: StandardInputProps['onFocus'];
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder?: string;
   /**
