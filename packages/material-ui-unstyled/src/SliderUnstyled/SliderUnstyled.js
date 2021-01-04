@@ -9,6 +9,7 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
+  visuallyHidden,
 } from '@material-ui/utils';
 import isHostComponent from '../utils/isHostComponent';
 import sliderUnstyledClasses from './sliderUnstyledClasses';
@@ -19,6 +20,9 @@ function asc(a, b) {
 }
 
 function clamp(value, min, max) {
+  if (value == null) {
+    return min;
+  }
   return Math.min(Math.max(min, value), max);
 }
 
@@ -102,7 +106,7 @@ function focusThumb({ sliderRef, activeIndex, setActive }) {
     !sliderRef.current.contains(doc.activeElement) ||
     Number(doc.activeElement.getAttribute('data-index')) !== activeIndex
   ) {
-    sliderRef.current.querySelector(`[role="slider"][data-index="${activeIndex}"]`).focus();
+    sliderRef.current.querySelector(`[type="range"][data-index="${activeIndex}"]`).focus();
   }
 
   if (setActive) {
@@ -209,7 +213,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     isRtl = false,
     components = {},
     componentsProps = {},
-    /* eslint-disable react/prop-types */
+    /* eslint-disable-next-line react/prop-types */
     theme,
     ...other
   } = props;
@@ -223,7 +227,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
-    default: defaultValue,
+    default: defaultValue ?? min,
     name: 'Slider',
   });
 
@@ -304,61 +308,29 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     setFocusVisible(-1);
   }
 
-  const handleKeyDown = useEventCallback((event) => {
+  const handleHiddenInputChange = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
-    const tenPercents = (max - min) / 10;
     const marksValues = marks.map((mark) => mark.value);
     const marksIndex = marksValues.indexOf(value);
-    let newValue;
-    const increaseKey = isRtl ? 'ArrowLeft' : 'ArrowRight';
-    const decreaseKey = isRtl ? 'ArrowRight' : 'ArrowLeft';
 
-    switch (event.key) {
-      case 'Home':
-        newValue = min;
-        break;
-      case 'End':
-        newValue = max;
-        break;
-      case 'PageUp':
-        if (step) {
-          newValue = value + tenPercents;
-        }
-        break;
-      case 'PageDown':
-        if (step) {
-          newValue = value - tenPercents;
-        }
-        break;
-      case increaseKey:
-      case 'ArrowUp':
-        if (step) {
-          newValue = value + step;
-        } else {
-          newValue = marksValues[marksIndex + 1] || marksValues[marksValues.length - 1];
-        }
-        break;
-      case decreaseKey:
-      case 'ArrowDown':
-        if (step) {
-          newValue = value - step;
-        } else {
-          newValue = marksValues[marksIndex - 1] || marksValues[0];
-        }
-        break;
-      default:
-        return;
-    }
+    let newValue = event.target.valueAsNumber;
 
-    // Prevent scroll of the page
-    event.preventDefault();
-
-    if (step) {
-      newValue = roundValueToStep(newValue, step, min);
+    if (marks && step == null) {
+      newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
     }
 
     newValue = clamp(newValue, min, max);
+
+    if (marks && step == null) {
+      const markValues = marks.map((mark) => mark.value);
+      const currentMarkIndex = markValues.indexOf(values[index]);
+
+      newValue =
+        newValue < values[index]
+          ? markValues[currentMarkIndex - 1]
+          : markValues[currentMarkIndex + 1];
+    }
 
     if (range) {
       const previousValue = newValue;
@@ -377,6 +349,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     if (handleChange) {
       handleChange(event, newValue);
     }
+
     if (onChangeCommitted) {
       onChangeCommitted(event, newValue);
     }
@@ -650,7 +623,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         className={clsx(utilityClasses.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
       />
-      <input value={values.join(',')} name={name} type="hidden" />
       {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
@@ -715,55 +687,72 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabel;
 
         return (
-          <ValueLabelComponent
-            key={index}
-            valueLabelFormat={valueLabelFormat}
-            valueLabelDisplay={valueLabelDisplay}
-            value={
-              typeof valueLabelFormat === 'function'
-                ? valueLabelFormat(scale(value), index)
-                : valueLabelFormat
-            }
-            index={index}
-            open={open === index || active === index || valueLabelDisplay === 'on'}
-            disabled={disabled}
-            {...valueLabelProps}
-            className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
-            {...(!isHostComponent(ValueLabel) && {
-              styleProps: { ...styleProps, ...valueLabelProps.styleProps },
-              theme,
-            })}
-          >
-            <Thumb
-              tabIndex={disabled ? null : 0}
-              role="slider"
-              data-index={index}
-              aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
-              aria-labelledby={ariaLabelledby}
-              aria-orientation={orientation}
-              aria-valuemax={scale(max)}
-              aria-valuemin={scale(min)}
-              aria-valuenow={scale(value)}
-              aria-valuetext={
-                getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+          <React.Fragment key={index}>
+            <ValueLabelComponent
+              valueLabelFormat={valueLabelFormat}
+              valueLabelDisplay={valueLabelDisplay}
+              value={
+                typeof valueLabelFormat === 'function'
+                  ? valueLabelFormat(scale(value), index)
+                  : valueLabelFormat
               }
-              onKeyDown={handleKeyDown}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              onMouseOver={handleMouseOver}
-              onMouseLeave={handleMouseLeave}
-              {...thumbProps}
-              className={clsx(utilityClasses.thumb, thumbProps.className, {
-                [utilityClasses.active]: active === index,
-                [utilityClasses.focusVisible]: focusVisible === index,
-              })}
-              {...(!isHostComponent(Thumb) && {
-                styleProps: { ...styleProps, ...thumbProps.styleProps },
+              index={index}
+              open={open === index || active === index || valueLabelDisplay === 'on'}
+              disabled={disabled}
+              {...valueLabelProps}
+              className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
+              {...(!isHostComponent(ValueLabel) && {
+                styleProps: { ...styleProps, ...valueLabelProps.styleProps },
                 theme,
               })}
-              style={{ ...style, ...thumbProps.style }}
-            />
-          </ValueLabelComponent>
+            >
+              <Thumb
+                data-index={index}
+                onMouseOver={handleMouseOver}
+                onMouseLeave={handleMouseLeave}
+                {...thumbProps}
+                className={clsx(utilityClasses.thumb, thumbProps.className, {
+                  [utilityClasses['active']]: active === index,
+                  [utilityClasses['focusVisible']]: focusVisible === index,
+                })}
+                {...(!isHostComponent(Thumb) && {
+                  styleProps: { ...styleProps, ...thumbProps.styleProps },
+                  theme,
+                })}
+                style={{ ...style, ...thumbProps.style }}
+              >
+                <input
+                  data-index={index}
+                  aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+                  aria-labelledby={ariaLabelledby}
+                  aria-orientation={orientation}
+                  aria-valuemax={scale(max)}
+                  aria-valuemin={scale(min)}
+                  aria-valuenow={scale(value)}
+                  aria-valuetext={
+                    getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+                  }
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  name={name}
+                  type="range"
+                  min={props.min}
+                  max={props.max}
+                  step={props.step}
+                  disabled={disabled}
+                  value={values[index]}
+                  onChange={handleHiddenInputChange}
+                  style={{
+                    ...visuallyHidden,
+                    direction: isRtl ? 'rtl' : 'ltr',
+                    // So that VoiceOver's focus indicator matches the thumb's dimensions
+                    width: '100%',
+                    height: '100%',
+                  }}
+                />
+              </Thumb>
+            </ValueLabelComponent>
+          </React.Fragment>
         );
       })}
     </Root>

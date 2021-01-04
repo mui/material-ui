@@ -160,14 +160,20 @@ const AirbnbSlider = styled(Slider)({
 });
 
 function AirbnbThumbComponent(props) {
+  const { children, ...other } = props;
   return (
-    <SliderThumb {...props}>
+    <SliderThumb {...other}>
+      {children}
       <span className="bar" />
       <span className="bar" />
       <span className="bar" />
     </SliderThumb>
   );
 }
+
+AirbnbThumbComponent.propTypes = {
+  children: PropTypes.node,
+};
 
 export default function CustomizedSlider() {
   return (
