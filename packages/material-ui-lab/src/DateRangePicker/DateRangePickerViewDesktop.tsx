@@ -44,11 +44,15 @@ interface DesktopDateRangeCalendarProps<TDate>
   currentlySelectingRangeEnd: 'start' | 'end';
 }
 
-type DateRangePickerViewDesktop = 'root' | 'rangeCalendarContainer' | 'calendar' | 'arrowSwitcher';
+type DateRangePickerViewDesktopClassKey =
+  | 'root'
+  | 'rangeCalendarContainer'
+  | 'calendar'
+  | 'arrowSwitcher';
 
-export const styles: MuiStyles<DateRangePickerViewDesktop> = (
+export const styles: MuiStyles<DateRangePickerViewDesktopClassKey> = (
   theme,
-): StyleRules<DateRangePickerViewDesktop> => ({
+): StyleRules<DateRangePickerViewDesktopClassKey> => ({
   root: {
     display: 'flex',
     flexDirection: 'row',
