@@ -14,7 +14,7 @@ export interface CardHeaderTypeMap<
      */
     action?: React.ReactNode;
     /**
-     * The Avatar for the Card Header.
+     * The Avatar element to display.
      */
     avatar?: React.ReactNode;
     /**

@@ -103,7 +103,7 @@ CardHeader.propTypes = {
    */
   action: PropTypes.node,
   /**
-   * The Avatar for the Card Header.
+   * The Avatar element to display.
    */
   avatar: PropTypes.node,
   /**

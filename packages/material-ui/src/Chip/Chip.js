@@ -453,7 +453,7 @@ Chip.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Avatar element.
+   * The Avatar element to display.
    */
   avatar: PropTypes.element,
   /**

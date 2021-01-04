@@ -9,7 +9,7 @@ export type ChipVariantDefaults = Record<'filled' | 'outlined', true>;
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * Avatar element.
+     * The Avatar element to display.
      */
     avatar?: React.ReactElement;
     /**
