@@ -13,7 +13,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 ### `@material-ui/core@v5.0.0-alpha.22`/`@material-ui/unstyled@v5.0.0-alpha.22`
 
-- [Autocomplete] Fix opton accessibility (#24213) @inform880
+- [Autocomplete] Fix VoiceOver not reading the correct activedescendant (#24213) @inform880
 - [Autocomplete] Warn when value is invalid (#24202) @Sandeep0695
 - [Button] Fix disableElevation regression (#24251) @oliviertassinari
 - [Container] Migrate to emotion (#24227) @oliviertassinari
