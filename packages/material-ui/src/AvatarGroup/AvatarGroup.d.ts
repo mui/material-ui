@@ -30,7 +30,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   spacing?: 'small' | 'medium' | number;
   /**
-   * The shape of the avatars.
+   * The variant to use.
    * @default 'circular'
    */
   variant?: OverridableStringUnion<AvatarGroupVariantDefaults, AvatarGroupPropsVariantOverrides>;

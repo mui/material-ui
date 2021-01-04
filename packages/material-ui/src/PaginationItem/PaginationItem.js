@@ -353,7 +353,7 @@ PaginationItem.propTypes = {
     'start-ellipsis',
   ]),
   /**
-   * The pagination item variant.
+   * The variant to use.
    * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -126,7 +126,7 @@ AvatarGroup.propTypes = {
    */
   spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
   /**
-   * The shape of the avatars.
+   * The variant to use.
    * @default 'circular'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -10,7 +10,7 @@
     "shape": "The shape of the pagination item.",
     "size": "The size of the component.",
     "type": "The type of pagination item.",
-    "variant": "The pagination item variant."
+    "variant": "The variant to use."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

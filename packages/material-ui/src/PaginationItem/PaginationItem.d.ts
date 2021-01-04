@@ -80,7 +80,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      */
     type?: UsePaginationItem['type'];
     /**
-     * The pagination item variant.
+     * The variant to use.
      * @default 'text'
      */
     variant?: OverridableStringUnion<
