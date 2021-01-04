@@ -19,6 +19,7 @@ describe('<Avatar />', () => {
     muiName: 'MuiAvatar',
     testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
     testVariantProps: { variant: 'foo' },
+    testStateOverrides: { prop: 'variant', value: 'rounded', styleKey: 'rounded' },
     skip: ['componentsProp'],
   }));
 

@@ -20,6 +20,7 @@ describe('<Typography />', () => {
     refInstanceof: window.HTMLParagraphElement,
     muiName: 'MuiTypography',
     testVariantProps: { color: 'secondary', variant: 'dot' },
+    testStateOverrides: { prop: 'variant', value: 'h2', styleKey: 'h2' },
     skip: ['componentsProp'],
   }));
 

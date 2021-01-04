@@ -39,6 +39,7 @@ describe('<Slider />', () => {
     muiName: 'MuiSlider',
     testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
     testVariantProps: { color: 'primary', orientation: 'vertical' },
+    testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
   }));
 
   it('should call handlers', () => {
