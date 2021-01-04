@@ -48,13 +48,9 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     className: classNameProps,
     href,
     noLinkStyle,
-    role: roleProp,
+    role, // Link don't have roles.
     ...other
   } = props;
-
-  // Catch role passed from ButtonBase. This is definitely a link
-  // @ts-ignore
-  other.role = roleProp === 'button' ? undefined : roleProp;
 
   const router = useRouter();
   const pathname = typeof href === 'string' ? href : href.pathname;
