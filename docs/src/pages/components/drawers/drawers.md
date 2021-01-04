@@ -49,6 +49,12 @@ const iOS =
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
+### Swipeable Bleeding
+
+Touch swipe only works on mobile devices, if you are on desktop you can click the Open button.
+
+{{"demo": "pages/components/drawers/SwipeableBleedingDrawer.js", "iframe": true}}
+
 ### Keep mounted
 
 To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
