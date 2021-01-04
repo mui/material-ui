@@ -9,8 +9,8 @@ export interface ContainerClasses {
   maxWidthXl: string;
 }
 
-declare const ContainerClasses: ContainerClasses;
+declare const containerClasses: ContainerClasses;
 
 export function getContainerUtilityClass(slot: string): string;
 
-export default ContainerClasses;
+export default containerClasses;

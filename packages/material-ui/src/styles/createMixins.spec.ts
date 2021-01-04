@@ -15,7 +15,9 @@ import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
       },
     },
   });
+}
 
+{
   const useStyles = makeStyles((theme) => ({
     appBarSpacer: theme.mixins.toolbar,
     toolbarIcon: {

@@ -15,7 +15,7 @@ import { Theme } from '@material-ui/core/styles';
 import { expectType } from '@material-ui/types';
 
 // Example 1
-const styles = ({ palette, spacing }: Theme) => ({
+const simpleStyles = ({ palette, spacing }: Theme) => ({
   root: {
     padding: spacing(1),
     backgroundColor: palette.background.default,
@@ -24,22 +24,21 @@ const styles = ({ palette, spacing }: Theme) => ({
 });
 
 // Shared types for examples
-interface ComponentProps extends WithStyles<typeof styles> {
+interface SimpleComponentProps extends WithStyles<typeof simpleStyles> {
   text: string;
 }
 
-const StyledExampleOne = withStyles(styles)(({ classes, text }: ComponentProps) => (
+const StyledExampleOne = withStyles(simpleStyles)(({ classes, text }: SimpleComponentProps) => (
   <div className={classes.root}>{text}</div>
 ));
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.FunctionComponent<ComponentProps & WithStyles<typeof styles>> = ({
-  classes,
-  text,
-}) => <div className={classes.root}>{text}</div>;
+const SimpleComponent: React.FunctionComponent<
+  SimpleComponentProps & WithStyles<typeof simpleStyles>
+> = ({ classes, text }) => <div className={classes.root}>{text}</div>;
 
-const StyledExampleTwo = withStyles(styles)(Component);
+const StyledExampleTwo = withStyles(simpleStyles)(SimpleComponent);
 <StyledExampleTwo text="I am styled!" />;
 
 // Example 3
@@ -52,7 +51,7 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof styles>> = ({
+const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof simpleStyles>> = ({
   classes,
   children,
 }) => <div className={classes.root}>{children}</div>;
@@ -80,16 +79,16 @@ const componentWithThemeRef = React.createRef<HTMLDivElement>();
 <ComponentWithTheme ref={componentWithThemeRef} />;
 
 // withStyles + withTheme
-type AllTheProps = WithTheme<Theme> & WithStyles<typeof styles>;
+type AllTheProps = WithTheme<Theme> & WithStyles<typeof simpleStyles>;
 
-const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => (
+const SimpleStyledComponent = withStyles(simpleStyles)(({ theme, classes }: AllTheProps) => (
   <div className={classes.root}>{theme.palette.text.primary}</div>
 ));
 
 // @ts-expect-error missing prop theme
-<StyledComponent />;
+<SimpleStyledComponent />;
 
-const AllTheComposition = withTheme<Theme, typeof StyledComponent>(StyledComponent);
+const AllTheComposition = withTheme<Theme, typeof SimpleStyledComponent>(SimpleStyledComponent);
 
 <AllTheComposition />;
 
@@ -131,8 +130,8 @@ declare const themed: boolean;
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
 // @withStyles(styles)
-const DecoratedComponent = withStyles(styles)(
-  class extends React.Component<ComponentProps & WithStyles<typeof styles>> {
+const DecoratedComponent = withStyles(simpleStyles)(
+  class extends React.Component<SimpleComponentProps & WithStyles<typeof simpleStyles>> {
     render() {
       const { classes, text } = this.props;
       return <div className={classes.root}>{text}</div>;
@@ -296,7 +295,7 @@ withStyles((theme) =>
 
 {
   // https://github.com/mui-org/material-ui/issues/11312
-  withStyles(styles, { name: 'MyComponent', index: 0 })(() => <div />);
+  withStyles(simpleStyles, { name: 'MyComponent', index: 0 })(() => <div />);
 }
 
 {
@@ -305,31 +304,31 @@ withStyles((theme) =>
     classes: number;
   }
 
-  class Component extends React.Component<Props & WithStyles<typeof styles>> {}
+  class Component extends React.Component<Props & WithStyles<typeof simpleStyles>> {}
   // @ts-expect-error
-  const StyledComponent = withStyles(styles)(Component);
+  const StyledComponent = withStyles(simpleStyles)(Component);
 
   // @ts-expect-error implicit FunctionComponent
-  withStyles(styles)((props: Props) => null);
+  withStyles(simpleStyles)((props: Props) => null);
   // @ts-expect-error
-  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null);
+  withStyles(simpleStyles)((props: Props & WithStyles<typeof simpleStyles>) => null);
   // @ts-expect-error
-  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null);
-  withStyles(styles)(
+  withStyles(simpleStyles)((props: Props & { children?: React.ReactNode }) => null);
+  withStyles(simpleStyles)(
     // @ts-expect-error
-    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null,
+    (props: Props & WithStyles<typeof simpleStyles> & { children?: React.ReactNode }) => null,
   );
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
   const StatelessComponent: React.FunctionComponent<Props> = (props) => null;
-  const StatelessComponentWithStyles: React.FunctionComponent<Props & WithStyles<typeof styles>> = (
-    props,
-  ) => null;
+  const StatelessComponentWithStyles: React.FunctionComponent<
+    Props & WithStyles<typeof simpleStyles>
+  > = (props) => null;
   // @ts-expect-error
-  withStyles(styles)(StatelessComponent);
+  withStyles(simpleStyles)(StatelessComponent);
   // @ts-expect-error
-  withStyles(styles)(StatelessComponentWithStyles);
+  withStyles(simpleStyles)(StatelessComponentWithStyles);
 }
 
 {
