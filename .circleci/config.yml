@@ -173,6 +173,9 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
+      - run:
+          name: Test module augmenation
+          command: yarn workspace @material-ui/core typescript:module-augmentation
 
       - restore_cache:
           name: Restore generated declaration files

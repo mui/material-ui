@@ -1,7 +1,7 @@
 import * as React from 'react';
 import withWidth from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
+import { Breakpoint } from '@material-ui/core/styles';
 
 type TagName = 'em' | 'u' | 'del';
 

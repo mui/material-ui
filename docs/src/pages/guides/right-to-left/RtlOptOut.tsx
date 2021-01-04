@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-declare module '@material-ui/core/styles/withStyles' {
+declare module '@material-ui/core/styles' {
   // Augment the BaseCSSProperties so that we can control jss-rtl
   interface BaseCSSProperties {
     /**

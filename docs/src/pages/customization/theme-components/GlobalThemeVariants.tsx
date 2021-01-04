@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-declare module '@material-ui/core/Button/Button' {
+declare module '@material-ui/core/Button' {
   interface ButtonPropsVariantOverrides {
     dashed: true;
   }

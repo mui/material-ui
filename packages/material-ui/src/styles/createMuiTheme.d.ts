@@ -9,6 +9,8 @@ import { Transitions, TransitionsOptions } from './transitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
 
+export { Breakpoint, BreakpointOverrides } from './createBreakpoints';
+
 export type Direction = 'ltr' | 'rtl';
 
 export interface ThemeOptions {

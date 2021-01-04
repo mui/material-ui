@@ -2,14 +2,27 @@ export * from './colorManipulator';
 export {
   default as createMuiTheme,
   default as unstable_createMuiStrictModeTheme,
+  Breakpoint,
+  BreakpointOverrides,
   ThemeOptions,
   Theme,
   Direction,
 } from './createMuiTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
-export { PaletteColorOptions, SimplePaletteColorOptions } from './createPalette';
+export {
+  Palette,
+  PaletteColor,
+  PaletteColorOptions,
+  PaletteOptions,
+  SimplePaletteColorOptions,
+} from './createPalette';
 export { default as createStyles } from './createStyles';
-export { TypographyStyle, Variant as TypographyVariant } from './createTypography';
+export {
+  Typography as TypographyVariants,
+  TypographyOptions as TypographyVariantsOptions,
+  TypographyStyle,
+  Variant as TypographyVariant,
+} from './createTypography';
 export { default as makeStyles } from './makeStyles';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { ComponentsPropsList } from './props';

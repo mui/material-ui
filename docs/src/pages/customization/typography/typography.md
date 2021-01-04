@@ -239,20 +239,22 @@ const theme = createMuiTheme({
 
 You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
 
+<!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
+
 ```ts
-declare module '@material-ui/core/styles/createTypography' {
-  interface Typography {
+declare module '@material-ui/core/styles' {
+  interface TypographyVariants {
     poster: React.CSSProperties;
   }
 
   // allow configuration using `createMuiTheme`
-  interface TypographyOptions {
+  interface TypographyVariantsOptions {
     poster?: React.CSSProperties;
   }
 }
 
 // Update the Typography's variant prop options
-declare module '@material-ui/core/Typography/Typography' {
+declare module '@material-ui/core/Typography' {
   interface TypographyPropsVariantOverrides {
     poster: true;
     h3: false;
