@@ -15,7 +15,7 @@
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disableClearable": "If <code>true</code>, the input can&#39;t be cleared.",
     "disableCloseOnSelect": "If <code>true</code>, the popup won&#39;t close when a value is selected.",
-    "disabled": "If <code>true</code>, the input is disabled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "disabledItemsFocusable": "If <code>true</code>, will allow focus on disabled items.",
     "disableListWrap": "If <code>true</code>, the list box in the popup will not wrap focus.",
     "disablePortal": "The <code>Popper</code> content will be under the DOM hierarchy of the parent component.",

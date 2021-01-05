@@ -29,7 +29,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
    */
   defaultExpanded?: boolean;
   /**
-   * If `true`, the accordion is displayed in a disabled state.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;

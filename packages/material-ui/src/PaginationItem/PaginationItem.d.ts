@@ -51,7 +51,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      */
     color?: 'standard' | 'primary' | 'secondary';
     /**
-     * If `true`, the item is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;

@@ -160,7 +160,7 @@ InputLabel.propTypes = {
    */
   disableAnimation: PropTypes.bool,
   /**
-   * If `true`, apply disabled class.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**

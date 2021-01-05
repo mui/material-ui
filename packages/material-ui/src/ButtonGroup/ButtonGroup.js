@@ -290,7 +290,7 @@ ButtonGroup.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the buttons are disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

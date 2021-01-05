@@ -123,7 +123,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      */
     defaultValue?: number | number[];
     /**
-     * If `true`, the slider is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;

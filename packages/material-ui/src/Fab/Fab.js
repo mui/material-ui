@@ -201,7 +201,7 @@ Fab.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the button is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

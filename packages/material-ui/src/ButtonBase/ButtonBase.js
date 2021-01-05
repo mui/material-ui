@@ -415,7 +415,7 @@ ButtonBase.propTypes = {
    */
   component: elementTypeAcceptingRef,
   /**
-   * If `true`, the base button is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

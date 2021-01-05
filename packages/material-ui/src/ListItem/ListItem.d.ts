@@ -64,7 +64,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      */
     dense?: boolean;
     /**
-     * If `true`, the list item is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;

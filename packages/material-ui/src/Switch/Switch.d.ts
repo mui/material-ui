@@ -43,7 +43,7 @@ export interface SwitchProps
    */
   color?: 'primary' | 'secondary' | 'default';
   /**
-   * If `true`, the switch is disabled.
+   * If `true`, the component is disabled.
    */
   disabled?: boolean;
   /**

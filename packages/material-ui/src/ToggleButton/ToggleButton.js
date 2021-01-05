@@ -128,7 +128,7 @@ ToggleButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the button is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

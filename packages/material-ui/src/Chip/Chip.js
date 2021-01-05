@@ -492,7 +492,7 @@ Chip.propTypes = {
    */
   deleteIcon: PropTypes.element,
   /**
-   * If `true`, the chip should be displayed in a disabled state.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

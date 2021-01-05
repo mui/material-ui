@@ -168,7 +168,7 @@ IconButton.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
-   * If `true`, the button is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

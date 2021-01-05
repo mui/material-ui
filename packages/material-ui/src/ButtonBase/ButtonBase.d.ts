@@ -40,7 +40,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
       focusVisible?: string;
     };
     /**
-     * If `true`, the base button is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;

@@ -281,7 +281,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const handleFocus = (event) => {
     // Fix a bug with IE11 where the focus/blur events are triggered
-    // while the input is disabled.
+    // while the component is disabled.
     if (fcs.disabled) {
       event.stopPropagation();
       return;
@@ -510,7 +510,7 @@ InputBase.propTypes = {
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element is disabled.
+   * If `true`, the component is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,

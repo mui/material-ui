@@ -74,7 +74,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     color?: 'inherit' | 'primary' | 'secondary';
     /**
-     * If `true`, the buttons are disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;

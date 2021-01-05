@@ -28,7 +28,7 @@ export type ToggleButtonTypeMap<
       sizeLarge?: string;
     };
     /**
-     * If `true`, the button is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;

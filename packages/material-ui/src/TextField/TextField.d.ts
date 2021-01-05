@@ -47,7 +47,7 @@ export interface BaseTextFieldProps
    */
   defaultValue?: unknown;
   /**
-   * If `true`, the `input` element is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;

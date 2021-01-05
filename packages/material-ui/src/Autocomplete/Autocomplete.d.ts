@@ -130,7 +130,7 @@ export interface AutocompleteProps<
    */
   closeText?: string;
   /**
-   * If `true`, the input is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;

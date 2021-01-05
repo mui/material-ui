@@ -36,7 +36,7 @@ export interface CheckboxProps
    */
   color?: 'primary' | 'secondary' | 'default';
   /**
-   * If `true`, the checkbox is disabled.
+   * If `true`, the component is disabled.
    */
   disabled?: SwitchBaseProps['disabled'];
   /**

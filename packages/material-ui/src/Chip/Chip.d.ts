@@ -104,7 +104,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     deleteIcon?: React.ReactElement;
     /**
-     * If `true`, the chip should be displayed in a disabled state.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;

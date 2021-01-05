@@ -43,7 +43,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   disableAnimation?: boolean;
   /**
-   * If `true`, apply disabled class.
+   * If `true`, the component is disabled.
    */
   disabled?: boolean;
   /**

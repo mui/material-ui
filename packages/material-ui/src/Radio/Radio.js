@@ -126,7 +126,7 @@ Radio.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
-   * If `true`, the radio is disabled.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**

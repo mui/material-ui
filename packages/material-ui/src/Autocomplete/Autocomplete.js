@@ -609,7 +609,7 @@ Autocomplete.propTypes = {
    */
   disableCloseOnSelect: PropTypes.bool,
   /**
-   * If `true`, the input is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

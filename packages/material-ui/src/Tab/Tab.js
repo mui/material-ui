@@ -186,7 +186,7 @@ Tab.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the tab is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

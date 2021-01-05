@@ -45,7 +45,7 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      */
     color?: PropTypes.Color;
     /**
-     * If `true`, the button is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
