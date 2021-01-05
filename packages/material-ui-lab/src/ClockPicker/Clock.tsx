@@ -68,6 +68,10 @@ export const styles: MuiStyles<ClockClassKey> = (theme): StyleRules<ClockClassKe
     // Disable scroll capabilities.
     touchAction: 'none',
     userSelect: 'none',
+    '@media (pointer: fine)': {
+      cursor: 'pointer',
+      borderRadius: '50%',
+    },
     '&:active': {
       cursor: 'move',
     },
