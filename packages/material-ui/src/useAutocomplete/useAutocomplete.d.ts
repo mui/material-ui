@@ -217,7 +217,7 @@ export interface UseAutocompleteProps<
     reason: AutocompleteHighlightChangeReason
   ) => void;
   /**
-   * If `true`, the component is shown
+   * If `true`, the component is shown.
    */
   open?: boolean;
   /**

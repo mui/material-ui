@@ -18,8 +18,8 @@ function FormButton(props) {
 
 FormButton.propTypes = {
   /**
-   * If `true`, the button is disabled.
-   * If `true`, the base button is disabled.
+   * If `true`, the component is disabled.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   mounted: PropTypes.bool,
