@@ -37,6 +37,10 @@ const DesktopDateRangePicker = makeDateRangePicker(
    */
   calendars: PropTypes.oneOf([1, 2, 3]),
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * className applied to the root component.
    */
   className: PropTypes.string,

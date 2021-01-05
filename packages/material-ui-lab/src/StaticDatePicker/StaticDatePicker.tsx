@@ -30,6 +30,10 @@ const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * className applied to the root component.
    */
   className: PropTypes.string,
