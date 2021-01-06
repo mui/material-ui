@@ -207,6 +207,9 @@ jobs:
           yarn test:karma:profile
           yarn test:karma:profile
         displayName: 'Profile browser tests'
+        env:
+          # Normalize environment with CircleCI
+          CI: true
 
       - task: PublishPipelineArtifact@1
         displayName: 'Publish profile report as pipeline artifact.'
