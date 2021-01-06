@@ -18,43 +18,55 @@ import requirePropFactory from '../utils/requirePropFactory';
 const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-function generateGrid(globalStyles, theme, breakpoint) {
+function generateGrid(globalStyles, theme, breakpoint, fullWidth) {
   const styles = {};
 
   GRID_SIZES.forEach((size) => {
-    const key = `grid-${breakpoint}-${size}`;
+    const spacings = fullWidth ? SPACINGS.slice(1) : [undefined];
 
-    if (size === true) {
-      // For the auto layouting
+    spacings.forEach((spacing) => {
+      const key = `grid-${breakpoint}-${size}${
+        fullWidth && spacing !== undefined ? `-fullWidth-spacing-${spacing}` : ''
+      }`;
+
+      if (size === true) {
+        // For the auto layouting
+        styles[key] = {
+          flexBasis: 0,
+          flexGrow: 1,
+          maxWidth: '100%',
+        };
+
+        return;
+      }
+
+      if (size === 'auto') {
+        styles[key] = {
+          flexBasis: 'auto',
+          flexGrow: 0,
+          maxWidth: 'none',
+        };
+
+        return;
+      }
+
+      // Keep 7 significant numbers.
+      let width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
+
+      if (fullWidth && spacing > 0) {
+        const themeSpacing = theme.spacing(spacing);
+
+        width = `calc(${width} + ${getOffset(themeSpacing)})`;
+      }
+
+      // Close to the bootstrap implementation:
+      // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
       styles[key] = {
-        flexBasis: 0,
-        flexGrow: 1,
-        maxWidth: '100%',
-      };
-
-      return;
-    }
-
-    if (size === 'auto') {
-      styles[key] = {
-        flexBasis: 'auto',
+        flexBasis: width,
         flexGrow: 0,
-        maxWidth: 'none',
+        maxWidth: width,
       };
-
-      return;
-    }
-
-    // Keep 7 significant numbers.
-    const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
-
-    // Close to the bootstrap implementation:
-    // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
-    styles[key] = {
-      flexBasis: width,
-      flexGrow: 0,
-      maxWidth: width,
-    };
+    });
   });
 
   // No need for a media query for the first size.
@@ -205,6 +217,11 @@ export const styles = (theme) => ({
     generateGrid(accumulator, theme, key);
     return accumulator;
   }, {}),
+  ...theme.breakpoints.keys.reduce((accumulator, key) => {
+    // Use side effect over immutability for better performance.
+    generateGrid(accumulator, theme, key, true);
+    return accumulator;
+  }, {}),
 });
 
 const Grid = React.forwardRef(function Grid(props, ref) {
@@ -226,6 +243,7 @@ const Grid = React.forwardRef(function Grid(props, ref) {
     xl = false,
     xs = false,
     zeroMinWidth = false,
+    fullWidth = false,
     ...other
   } = props;
 
@@ -246,6 +264,16 @@ const Grid = React.forwardRef(function Grid(props, ref) {
       [classes[`grid-md-${String(md)}`]]: md !== false,
       [classes[`grid-lg-${String(lg)}`]]: lg !== false,
       [classes[`grid-xl-${String(xl)}`]]: xl !== false,
+      [classes[`grid-xs-${String(xs)}-fullWidth-spacing-${String(spacing)}`]]:
+        container && fullWidth && spacing !== 0 && xs !== false,
+      [classes[`grid-sm-${String(sm)}-fullWidth-spacing-${String(spacing)}`]]:
+        container && fullWidth && spacing !== 0 && sm !== false,
+      [classes[`grid-md-${String(md)}-fullWidth-spacing-${String(spacing)}`]]:
+        container && fullWidth && spacing !== 0 && md !== false,
+      [classes[`grid-lg-${String(lg)}-fullWidth-spacing-${String(spacing)}`]]:
+        container && fullWidth && spacing !== 0 && lg !== false,
+      [classes[`grid-xl-${String(xl)}-fullWidth-spacing-${String(spacing)}`]]:
+        container && fullWidth && spacing !== 0 && xl !== false,
     },
     classNameProp,
   );
@@ -388,6 +416,11 @@ Grid.propTypes = {
    * @default false
    */
   zeroMinWidth: PropTypes.bool,
+  /**
+   * If `true`, it will make the items full width independent if they have spacing or not
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
 };
 
 const StyledGrid = withStyles(styles, { name: 'MuiGrid' })(Grid);
@@ -407,6 +440,7 @@ if (process.env.NODE_ENV !== 'production') {
     wrap: requireProp('container'),
     xs: requireProp('item'),
     zeroMinWidth: requireProp('item'),
+    fullWidth: requireProp('container'),
   };
 }
 

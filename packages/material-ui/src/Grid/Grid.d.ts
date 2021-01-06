@@ -194,6 +194,11 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default false
      */
     zeroMinWidth?: boolean;
+    /**
+     * If `true`, it will make the items full width independent if they have spacing or not
+     * @default false
+     */
+    fullWidth?: boolean;
   };
   defaultComponent: D;
 }
