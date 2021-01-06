@@ -40,6 +40,8 @@ function traceByStack(interactionName, callback) {
     .map((line) => {
       // anonymous functions create a "weird" stackframe like
       // "at path/to/actual.test.js (path/to/utility/file.js <- karma.test.js)"
+      // and we just want "path/to/actual.test.js" not "karma.test.js"
+      // TODO: Only supports chrome at the moment
       const fileMatch = line.match(/([^\s(]+\.test\.(js|ts|tsx)):(\d+):(\d+)/);
       if (fileMatch === null) {
         return null;
@@ -52,7 +54,7 @@ function traceByStack(interactionName, callback) {
     .map((file) => {
       return `${file.name.replace(workspaceRoot, '')}:${file.line}:${file.column}`;
     });
-  const originLine = testLines[testLines.length - 1] ?? 'unknown line';
+  const originLine = testLines[testLines.length - 1] ?? stack;
 
   return unstable_trace(`${originLine} (${interactionName})`, performance.now(), callback);
 }

@@ -16,9 +16,12 @@ function handleReactProfilerResults(event) {
 
 before(function beforeAllHook() {
   if (process.env.TEST_GATE === 'enable-dispatching-profiler') {
-    // Edge is so slow that we hit browserstack timeouts.
-    // "User Agent String": https://blogs.windows.com/msedgedev/2019/04/08/microsoft-edge-preview-channel-details/
-    const installSourceMapSupport = !/Edg\/\d+/.test(window.navigator.userAgent);
+    // Can extract original line in test/utils/createClientRender.js for chrome only.
+    // If we can't extract the original line we don't need to install source maps since it's fairly expensive.
+    const isEdgeBrowser = /Edg\/\d+/.test(window.navigator.userAgent);
+    // Edge is based on Chromium
+    const isChromeBrowser = !isEdgeBrowser && /Chrome\/\d+/.test(window.navigator.userAgent);
+    const installSourceMapSupport = isChromeBrowser;
     if (installSourceMapSupport) {
       sourceMapSupport.install();
       // Trigger init.
