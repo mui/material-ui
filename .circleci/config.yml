@@ -255,31 +255,6 @@ jobs:
       - run:
           name: Test umd release
           command: yarn test:umd
-  test_profile:
-    <<: *defaults
-    docker:
-      - image: mcr.microsoft.com/playwright:bionic
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-    
-    steps:
-      - checkout
-      - install_js
-      - run:
-          name: Tests real browsers
-          # Run a couple of times for a better sample.
-          # TODO: hack something together where we can compile once and run multiple times e.g. by abusing watchmode.
-          command: |
-            yarn test:karma:profile
-            yarn test:karma:profile
-            yarn test:karma:profile
-            yarn test:karma:profile
-            yarn test:karma:profile
-      # Persist reports for inspection in https://mui-dashboard.netlify.app/
-      - store_artifacts:
-          # see karma.conf.profile.js reactProfilerReporter.outputDir
-          path: tmp/react-profiler-report/karma
-          destination: react-profiler-report/karma
   test_regressions:
     <<: *defaults
     docker:
@@ -297,10 +272,27 @@ jobs:
           command: yarn test:argos
 workflows:
   version: 2
-  profile-tests:
+  pipeline:
     jobs:
-      - test_profile:
-          test-gate: enable-dispatching-profiler
+      - checkout
+      - test_unit:
+          requires:
+            - checkout
+      - test_static:
+          requires:
+            - checkout
+      - test_types:
+          requires:
+            - checkout
+      - test_browser:
+          requires:
+            - checkout
+      - test_regressions:
+          requires:
+            - test_unit
+            - test_static
+            - test_types
+            - test_browser
   react-next:
     triggers:
       - schedule:
