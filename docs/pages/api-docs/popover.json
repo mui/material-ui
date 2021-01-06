@@ -46,6 +46,7 @@
       },
       "default": "'auto'"
     },
+    "transitionInsidePaper": { "type": { "name": "bool" } },
     "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
   "name": "Popover",

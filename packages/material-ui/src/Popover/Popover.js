@@ -109,6 +109,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     },
     TransitionComponent = Grow,
     transitionDuration: transitionDurationProp = 'auto',
+    transitionInsidePaper,
     TransitionProps: { onEntering, ...TransitionProps } = {},
     ...other
   } = props;
@@ -387,22 +388,41 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       className={clsx(classes.root, className)}
       {...other}
     >
-      <TransitionComponent
-        appear
-        in={open}
-        timeout={transitionDuration}
-        onEntering={handleEntering}
-        {...TransitionProps}
-      >
+      {transitionInsidePaper ? (
         <Paper
           elevation={elevation}
           ref={paperRef}
           {...PaperProps}
           className={clsx(classes.paper, PaperProps.className)}
         >
-          {children}
+          <TransitionComponent
+            appear
+            in={open}
+            timeout={transitionDuration}
+            onEntering={handleEntering}
+            {...TransitionProps}
+          >
+            {children}
+          </TransitionComponent>
         </Paper>
-      </TransitionComponent>
+      ) : (
+        <TransitionComponent
+          appear
+          in={open}
+          timeout={transitionDuration}
+          onEntering={handleEntering}
+          {...TransitionProps}
+        >
+          <Paper
+            elevation={elevation}
+            ref={paperRef}
+            {...PaperProps}
+            className={clsx(classes.paper, PaperProps.className)}
+          >
+            {children}
+          </Paper>
+        </TransitionComponent>
+      )}
     </Modal>
   );
 });
@@ -589,6 +609,11 @@ Popover.propTypes = {
       exit: PropTypes.number,
     }),
   ]),
+  /**
+   * Set to 'true' to put the transition component inside the paper element. This is necessary
+   * for transition components that change the height of the popover (like Collapse).
+   */
+  transitionInsidePaper: PropTypes.bool,
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.

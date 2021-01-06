@@ -132,6 +132,11 @@ export interface PopoverProps
    */
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
+   * Set to 'true' to put the transition component inside the paper element. This is necessary
+   * for transition components that change the height of the popover (like Collapse).
+   */
+  transitionInsidePaper?: boolean;
+  /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
    * @default {}

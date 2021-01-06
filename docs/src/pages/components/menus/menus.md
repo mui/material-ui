@@ -77,9 +77,9 @@ You can use the `Typography` component with `noWrap` to workaround this issue:
 
 ## Change transition
 
-Use a different transition.
+Use different transitions.
 
-{{"demo": "pages/components/menus/FadeMenu.js"}}
+{{"demo": "pages/components/menus/TransitionMenu.js"}}
 
 ## Context menu
 
