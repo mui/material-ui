@@ -257,10 +257,14 @@ jobs:
           command: yarn test:umd
   test_profile:
     <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright:bionic
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    
     steps:
       - checkout
       - install_js
-      - prepare_chrome_headless
       - run:
           name: Tests real browsers
           # Run a couple of times for a better sample.

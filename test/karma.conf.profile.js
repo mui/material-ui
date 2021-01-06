@@ -1,4 +1,5 @@
 const path = require('path');
+const { chromium } = require('playwright');
 const webpack = require('webpack');
 
 const workspaceRoot = path.resolve(__dirname, '../');
@@ -9,7 +10,7 @@ const browserStack = {
   build: `material-ui-${new Date().toISOString()}`,
 };
 
-process.env.CHROME_BIN = require('puppeteer').executablePath();
+process.env.CHROME_BIN = chromium.executablePath();
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
