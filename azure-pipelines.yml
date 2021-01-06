@@ -188,7 +188,7 @@ jobs:
   - job: test_profile
     displayName: 'Profile test suite'
     container: mcr.microsoft.com/playwright:bionic
-    condition: eq(variables['command'], 'test_profile')
+    condition: eq(variables['command'], 'testProfile')
     steps:
       - task: NodeTool@0
         inputs:
