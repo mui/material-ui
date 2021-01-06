@@ -50,16 +50,14 @@ const ContainerRoot = experimentalStyled(
     marginLeft: 'auto',
     boxSizing: 'border-box',
     marginRight: 'auto',
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
     display: 'block', // Fix IE11 layout when used with main.
-    [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3),
-    },
-    ...(styleProps.disableGutters && {
-      paddingLeft: 0,
-      paddingRight: 0,
+    ...(!styleProps.disableGutters && {
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(3),
+      },
     }),
   }),
   ({ theme, styleProps }) =>

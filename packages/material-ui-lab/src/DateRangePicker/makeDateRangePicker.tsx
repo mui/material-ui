@@ -5,7 +5,7 @@ import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { withDateAdapterProp } from '../internal/pickers/withDateAdapterProp';
 import { makeWrapperComponent } from '../internal/pickers/wrappers/makeWrapperComponent';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
-import { SomeWrapper, ExtendWrapper } from '../internal/pickers/wrappers/Wrapper';
+import { SomeWrapper, PublicWrapperProps } from '../internal/pickers/wrappers/Wrapper';
 import { RangeInput, AllSharedDateRangePickerProps, DateRange } from './RangeTypes';
 import { makeValidationHook, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
@@ -36,7 +36,7 @@ export interface BaseDateRangePickerProps<TDate>
 
 export type DateRangePickerComponent<TWrapper extends SomeWrapper> = <TDate>(
   props: BaseDateRangePickerProps<TDate> &
-    ExtendWrapper<TWrapper> &
+    PublicWrapperProps<TWrapper> &
     AllSharedDateRangePickerProps<TDate> &
     React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;
@@ -78,7 +78,7 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
     ...other
   }: BaseDateRangePickerProps<TDate> &
     AllSharedDateRangePickerProps<TDate> &
-    ExtendWrapper<TWrapper>) {
+    PublicWrapperProps<TWrapper>) {
     const utils = useUtils();
     const minDate = useParsedDate(__minDate);
     const maxDate = useParsedDate(__maxDate);

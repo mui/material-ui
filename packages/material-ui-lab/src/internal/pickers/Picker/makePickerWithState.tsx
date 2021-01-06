@@ -5,7 +5,7 @@ import { MuiPickersAdapter } from '../hooks/useUtils';
 import { parsePickerInputValue } from '../date-utils';
 import { withDefaultProps } from '../withDefaultProps';
 import { KeyboardDateInput } from '../KeyboardDateInput';
-import { SomeWrapper, ExtendWrapper } from '../wrappers/Wrapper';
+import { SomeWrapper, PublicWrapperProps } from '../wrappers/Wrapper';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { withDateAdapterProp } from '../withDateAdapterProp';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
@@ -19,7 +19,7 @@ type AllAvailableForOverrideProps = ExportedPickerProps<AllAvailableViews>;
 
 export type AllPickerProps<T, TWrapper extends SomeWrapper = SomeWrapper> = T &
   AllSharedPickerProps &
-  ExtendWrapper<TWrapper>;
+  PublicWrapperProps<TWrapper>;
 
 export interface MakePickerOptions<T extends unknown> {
   name: string;
@@ -40,7 +40,7 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
-export type SharedPickerProps<TDate, TWrapper extends SomeWrapper> = ExtendWrapper<TWrapper> &
+export type SharedPickerProps<TDate, TWrapper extends SomeWrapper> = PublicWrapperProps<TWrapper> &
   AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
   React.RefAttributes<HTMLInputElement>;
 
@@ -62,7 +62,7 @@ export function makePickerWithStateAndWrapper<
   });
 
   function PickerWithState<TDate>(
-    __props: T & AllSharedPickerProps<ParsableDate<TDate>, TDate> & ExtendWrapper<TWrapper>,
+    __props: T & AllSharedPickerProps<ParsableDate<TDate>, TDate> & PublicWrapperProps<TWrapper>,
   ) {
     const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
 
