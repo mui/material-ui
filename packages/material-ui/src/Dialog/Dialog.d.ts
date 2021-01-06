@@ -89,7 +89,7 @@ export interface DialogProps
    */
   onClose?: ModalProps['onClose'];
   /**
-   * If `true`, the Dialog is open.
+   * If `true`, the component is shown.
    */
   open: ModalProps['open'];
   /**

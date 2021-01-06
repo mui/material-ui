@@ -4,7 +4,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The contents of the form control.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**
@@ -31,7 +31,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     disabled?: boolean;
     /**
-     * If `true`, the label should be displayed in an error state.
+     * If `true`, the label is displayed in an error state.
      * @default false
      */
     error?: boolean;
@@ -62,7 +62,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     required?: boolean;
     /**
-     * The size of the text field.
+     * The size of the component.
      * @default 'medium'
      */
     size?: 'small' | 'medium';

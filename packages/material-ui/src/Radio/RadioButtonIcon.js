@@ -58,7 +58,7 @@ RadioButtonIcon.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
-   * The size of the radio.
+   * The size of the component.
    * `small` is equivalent to the dense radio styling.
    */
   fontSize: PropTypes.oneOf(['small', 'medium']),

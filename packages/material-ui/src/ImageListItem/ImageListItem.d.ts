@@ -4,7 +4,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
-     * While you can pass any node as children, the main use case is for an img.
+     * The content of the component, normally an `<img>`.
      */
     children?: React.ReactNode;
     /**

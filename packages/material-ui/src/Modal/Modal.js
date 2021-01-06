@@ -275,7 +275,7 @@ Modal.propTypes = {
    */
   closeAfterTransition: PropTypes.bool,
   /**
-   * A HTML element or function that returns one.
+   * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
    * By default, it uses the body of the top-level document object,
@@ -304,12 +304,12 @@ Modal.propTypes = {
    */
   disableEnforceFocus: PropTypes.bool,
   /**
-   * If `true`, hitting escape will not fire `onClose`.
+   * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**
-   * The `children` will be inside the DOM hierarchy of the parent component.
+   * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal: PropTypes.bool,
@@ -353,7 +353,7 @@ Modal.propTypes = {
    */
   onKeyDown: PropTypes.func,
   /**
-   * If `true`, the modal is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**

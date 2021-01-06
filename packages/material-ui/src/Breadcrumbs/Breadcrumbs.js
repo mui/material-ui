@@ -146,7 +146,7 @@ Breadcrumbs.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The breadcrumb children.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

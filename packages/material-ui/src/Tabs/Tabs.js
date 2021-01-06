@@ -613,7 +613,7 @@ Tabs.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The tabs orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),

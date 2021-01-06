@@ -119,11 +119,11 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
       };
     };
     /**
-     * The default element value. Use when the component is not controlled.
+     * The default value. Use when the component is not controlled.
      */
     defaultValue?: number | number[];
     /**
-     * If `true`, the slider is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -185,7 +185,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      */
     onChangeCommitted?: (event: React.SyntheticEvent, value: number | number[]) => void;
     /**
-     * The slider orientation.
+     * The component orientation.
      * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';

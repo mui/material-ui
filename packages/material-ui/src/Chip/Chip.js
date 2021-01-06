@@ -453,7 +453,7 @@ Chip.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Avatar element.
+   * The Avatar element to display.
    */
   avatar: PropTypes.element,
   /**
@@ -492,7 +492,7 @@ Chip.propTypes = {
    */
   deleteIcon: PropTypes.element,
   /**
-   * If `true`, the chip should be displayed in a disabled state.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -501,7 +501,7 @@ Chip.propTypes = {
    */
   icon: PropTypes.element,
   /**
-   * The content of the label.
+   * The content of the component.
    */
   label: PropTypes.node,
   /**
@@ -522,7 +522,7 @@ Chip.propTypes = {
    */
   onKeyUp: PropTypes.func,
   /**
-   * The size of the chip.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),

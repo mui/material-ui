@@ -1,13 +1,13 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the button.",
+    "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "disabled": "If <code>true</code>, the button is disabled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
-    "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>focusVisibleClassName</code>.",
+    "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusedVisible</code> class.",
     "selected": "If <code>true</code>, the button is rendered in an active state.",
-    "size": "The size of the button. The prop defaults to the value inherited from the parent ToggleButtonGroup component.",
+    "size": "The size of the component. The prop defaults to the value inherited from the parent ToggleButtonGroup component.",
     "value": "The value to associate with the button when selected in a ToggleButtonGroup."
   },
   "classDescriptions": {

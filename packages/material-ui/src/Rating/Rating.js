@@ -479,7 +479,7 @@ Rating.propTypes = {
    */
   defaultValue: PropTypes.number,
   /**
-   * If `true`, the rating is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -569,7 +569,7 @@ Rating.propTypes = {
    */
   readOnly: PropTypes.bool,
   /**
-   * The size of the rating.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),

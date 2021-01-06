@@ -116,7 +116,7 @@ ToggleButton.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the button.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -128,7 +128,7 @@ ToggleButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the button is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -141,7 +141,7 @@ ToggleButton.propTypes = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,
@@ -158,7 +158,7 @@ ToggleButton.propTypes = {
    */
   selected: PropTypes.bool,
   /**
-   * The size of the button.
+   * The size of the component.
    * The prop defaults to the value inherited from the parent ToggleButtonGroup component.
    * @default 'medium'
    */

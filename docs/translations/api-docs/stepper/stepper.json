@@ -7,7 +7,7 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "connector": "An element to be placed between each step.",
     "nonLinear": "If set the <code>Stepper</code> will not assist in controlling steps for linear flow.",
-    "orientation": "The stepper orientation (layout flow direction)."
+    "orientation": "The component orientation (layout flow direction)."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

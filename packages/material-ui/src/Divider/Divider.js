@@ -218,7 +218,7 @@ Divider.propTypes = {
    */
   light: PropTypes.bool,
   /**
-   * The divider orientation.
+   * The component orientation.
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),

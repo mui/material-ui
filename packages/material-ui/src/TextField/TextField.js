@@ -229,11 +229,11 @@ TextField.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * The default value of the `input` element.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -296,7 +296,7 @@ TextField.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a `textarea` element is rendered.instead of an input.
+   * If `true`, a `textarea` element is rendered instead of an input.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -320,7 +320,7 @@ TextField.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**
@@ -343,7 +343,7 @@ TextField.propTypes = {
    */
   SelectProps: PropTypes.object,
   /**
-   * The size of the text field.
+   * The size of the component.
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**

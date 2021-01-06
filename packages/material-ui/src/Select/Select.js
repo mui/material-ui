@@ -119,7 +119,7 @@ Select.propTypes = {
    */
   classes: PropTypes.object,
   /**
-   * The default element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
@@ -202,7 +202,7 @@ Select.propTypes = {
    */
   onOpen: PropTypes.func,
   /**
-   * Control `select` open state.
+   * If `true`, the component is shown.
    * You can only use it when the `native` prop is `false` (default).
    */
   open: PropTypes.bool,

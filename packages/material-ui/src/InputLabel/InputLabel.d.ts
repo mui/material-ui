@@ -4,7 +4,7 @@ import { FormLabelProps } from '../FormLabel';
 
 export interface InputLabelProps extends StandardProps<FormLabelProps> {
   /**
-   * The contents of the `InputLabel`.
+   * The content of the component.
    */
   children?: React.ReactNode;
   /**
@@ -43,7 +43,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   disableAnimation?: boolean;
   /**
-   * If `true`, apply disabled class.
+   * If `true`, the component is disabled.
    */
   disabled?: boolean;
   /**

@@ -139,7 +139,7 @@ InputLabel.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The contents of the `InputLabel`.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -160,7 +160,7 @@ InputLabel.propTypes = {
    */
   disableAnimation: PropTypes.bool,
   /**
-   * If `true`, apply disabled class.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**

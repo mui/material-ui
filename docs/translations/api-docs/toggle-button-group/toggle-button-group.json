@@ -1,12 +1,12 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the button.",
+    "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "exclusive": "If <code>true</code>, only allow one of the child ToggleButton values to be selected.",
     "onChange": "Callback fired when the value changes.<br><br><strong>Signature:</strong><br><code>function(event: object, value: any) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> of the selected buttons. When <code>exclusive</code> is true this is a single value; when false an array of selected values. If no value is selected and <code>exclusive</code> is true the value is null; when false an empty array.",
-    "orientation": "The group orientation (layout flow direction).",
-    "size": "The size of the buttons.",
+    "orientation": "The component orientation (layout flow direction).",
+    "size": "The size of the component.",
     "value": "The currently selected value within the group or an array of selected values when <code>exclusive</code> is false.<br>The value must have reference equality with the option in order to be selected."
   },
   "classDescriptions": {

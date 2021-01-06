@@ -79,12 +79,12 @@ SpeedDialIcon.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The icon to display in the SpeedDial Floating Action Button.
+   * The icon to display.
    */
   icon: PropTypes.node,
   /**
    * @ignore
-   * If `true`, the SpeedDial is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

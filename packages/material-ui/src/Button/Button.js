@@ -401,7 +401,7 @@ Button.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the button.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -423,7 +423,7 @@ Button.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the button is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -441,7 +441,7 @@ Button.propTypes = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,
@@ -464,7 +464,7 @@ Button.propTypes = {
    */
   href: PropTypes.string,
   /**
-   * The size of the button.
+   * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */

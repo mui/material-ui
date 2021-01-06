@@ -40,7 +40,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
       focusVisible?: string;
     };
     /**
-     * If `true`, the base button is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -48,7 +48,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * If `true`, the ripple effect is disabled.
      *
      * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-     * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+     * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
      * @default false
      */
     disableRipple?: boolean;

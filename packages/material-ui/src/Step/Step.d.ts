@@ -30,7 +30,7 @@ export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivEle
    */
   completed?: boolean;
   /**
-   * Mark the step as disabled, will also disable the button if
+   * If `true`, the step is disabled, will also disable the button if
    * `StepButton` is a child of `Step`. Is passed to child components.
    */
   disabled?: boolean;

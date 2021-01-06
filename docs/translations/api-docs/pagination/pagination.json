@@ -17,7 +17,7 @@
     "showFirstButton": "If <code>true</code>, show the first-page button.",
     "showLastButton": "If <code>true</code>, show the last-page button.",
     "siblingCount": "Number of always visible pages before and after the current page.",
-    "size": "The size of the pagination component.",
+    "size": "The size of the component.",
     "variant": "The variant to use."
   },
   "classDescriptions": {

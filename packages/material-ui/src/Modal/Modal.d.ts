@@ -24,7 +24,7 @@ export interface ModalProps
    */
   closeAfterTransition?: boolean;
   /**
-   * A HTML element or function that returns one.
+   * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
    * By default, it uses the body of the top-level document object,
@@ -50,12 +50,12 @@ export interface ModalProps
    */
   disableEnforceFocus?: boolean;
   /**
-   * If `true`, hitting escape will not fire `onClose`.
+   * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
   disableEscapeKeyDown?: boolean;
   /**
-   * The `children` will be inside the DOM hierarchy of the parent component.
+   * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal?: PortalProps['disablePortal'];
@@ -97,7 +97,7 @@ export interface ModalProps
     bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
   }['bivarianceHack'];
   /**
-   * If `true`, the modal is open.
+   * If `true`, the component is shown.
    */
   open: boolean;
 }

@@ -4,13 +4,13 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The active color.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "disabled": "If <code>true</code>, the item is disabled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "page": "The current page number.",
     "selected": "If <code>true</code> the pagination item is selected.",
     "shape": "The shape of the pagination item.",
-    "size": "The size of the pagination item.",
+    "size": "The size of the component.",
     "type": "The type of pagination item.",
-    "variant": "The pagination item variant."
+    "variant": "The variant to use."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
@@ -69,6 +69,6 @@
       "description": "Pseudo-class applied to the root element if {{conditions}}.",
       "conditions": "<code>selected={true}</code>"
     },
-    "icon": { "description": "Styles applied to the icon element." }
+    "icon": { "description": "Styles applied to tThe icon to display." }
   }
 }

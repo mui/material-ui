@@ -27,7 +27,7 @@ export interface BackdropProps
    */
   invisible?: boolean;
   /**
-   * If `true`, the backdrop is open.
+   * If `true`, the component is shown.
    */
   open: boolean;
   /**

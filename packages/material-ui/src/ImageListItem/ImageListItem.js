@@ -108,7 +108,7 @@ ImageListItem.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * While you can pass any node as children, the main use case is for an img.
+   * The content of the component, normally an `<img>`.
    */
   children: PropTypes.node,
   /**

@@ -81,7 +81,7 @@ MenuItem.propTypes = {
    */
   button: PropTypes.bool,
   /**
-   * Menu item contents.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

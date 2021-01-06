@@ -259,7 +259,7 @@ Slide.propTypes = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
-   * If `true`, show the component; triggers the enter or exit animation.
+   * If `true`, the component will transition in.
    */
   in: PropTypes.bool,
   /**

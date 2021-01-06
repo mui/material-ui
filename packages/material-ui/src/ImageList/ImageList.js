@@ -82,7 +82,7 @@ ImageList.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Items that will be in the image list.
+   * The content of the component, normally `ImageListItem`s.
    */
   children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**

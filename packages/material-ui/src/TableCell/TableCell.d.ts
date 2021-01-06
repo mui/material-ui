@@ -22,7 +22,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    */
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
   /**
-   * The table cell contents.
+   * The content of the component.
    */
   children?: React.ReactNode;
   /**

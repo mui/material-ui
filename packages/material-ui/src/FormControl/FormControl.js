@@ -206,7 +206,7 @@ FormControl.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The contents of the form control.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -233,7 +233,7 @@ FormControl.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label should be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    * @default false
    */
   error: PropTypes.bool,
@@ -264,7 +264,7 @@ FormControl.propTypes = {
    */
   required: PropTypes.bool,
   /**
-   * The size of the text field.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),

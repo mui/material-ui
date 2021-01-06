@@ -9,7 +9,7 @@ export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P &
     Omit<ListItemTypeMap<P, D>['props'], 'children'> & {
       /**
-       * Menu item contents.
+       * The content of the component.
        */
       children?: React.ReactNode;
       /**

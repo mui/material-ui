@@ -9,7 +9,7 @@ export type FabVariantDefaults = Record<'circular' | 'extended', true>;
 export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The content of the button.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**
@@ -45,7 +45,7 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      */
     color?: PropTypes.Color;
     /**
-     * If `true`, the button is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -64,7 +64,7 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      */
     href?: string;
     /**
-     * The size of the button.
+     * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'large'
      */

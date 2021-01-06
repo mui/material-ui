@@ -13,7 +13,7 @@ export interface DrawerProps
    */
   anchor?: 'left' | 'top' | 'right' | 'bottom';
   /**
-   * The contents of the drawer.
+   * The content of the component.
    */
   children?: React.ReactNode;
   /**
@@ -62,7 +62,7 @@ export interface DrawerProps
    */
   onClose?: ModalProps['onClose'];
   /**
-   * If `true`, the drawer is open.
+   * If `true`, the component is shown.
    * @default false
    */
   open?: boolean;

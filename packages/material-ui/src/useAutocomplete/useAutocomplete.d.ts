@@ -217,7 +217,7 @@ export interface UseAutocompleteProps<
     reason: AutocompleteHighlightChangeReason
   ) => void;
   /**
-   * Control the popup` open state.
+   * If `true`, the component is shown.
    */
   open?: boolean;
   /**
@@ -248,7 +248,7 @@ export interface UseAutocompleteProps<
    */
   value?: Value<T, Multiple, DisableClearable, FreeSolo>;
   /**
-   * The default input value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
   defaultValue?: Value<T, Multiple, DisableClearable, FreeSolo>;

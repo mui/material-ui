@@ -179,7 +179,7 @@ Fab.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the button.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -201,7 +201,7 @@ Fab.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the button is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -224,7 +224,7 @@ Fab.propTypes = {
    */
   href: PropTypes.string,
   /**
-   * The size of the button.
+   * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'large'
    */

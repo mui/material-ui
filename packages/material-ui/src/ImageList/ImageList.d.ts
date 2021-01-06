@@ -7,7 +7,7 @@ export type ImageListVariantDefaults = Record<'masonry' | 'quilted' | 'standard'
 export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
     /**
-     * Items that will be in the image list.
+     * The content of the component, normally `ImageListItem`s.
      */
     children: NonNullable<React.ReactNode>;
     /**

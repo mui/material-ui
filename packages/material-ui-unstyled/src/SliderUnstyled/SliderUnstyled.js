@@ -834,11 +834,11 @@ SliderUnstyled.propTypes = {
    */
   componentsProps: PropTypes.object,
   /**
-   * The default element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**
-   * If `true`, the slider is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -912,7 +912,7 @@ SliderUnstyled.propTypes = {
    */
   onMouseDown: PropTypes.func,
   /**
-   * The slider orientation.
+   * The component orientation.
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),

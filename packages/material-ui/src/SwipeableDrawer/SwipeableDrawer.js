@@ -585,7 +585,7 @@ SwipeableDrawer.propTypes = {
    */
   anchor: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
-   * The contents of the drawer.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -644,7 +644,7 @@ SwipeableDrawer.propTypes = {
    */
   onOpen: PropTypes.func.isRequired,
   /**
-   * If `true`, the drawer is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**

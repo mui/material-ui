@@ -594,7 +594,7 @@ Autocomplete.propTypes = {
    */
   closeText: PropTypes.string,
   /**
-   * The default input value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
   defaultValue: PropTypes.any,
@@ -609,7 +609,7 @@ Autocomplete.propTypes = {
    */
   disableCloseOnSelect: PropTypes.bool,
   /**
-   * If `true`, the input is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -624,7 +624,7 @@ Autocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * The `Popper` content will be inside the DOM hierarchy of the parent component.
+   * The `Popper` content will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal: PropTypes.bool,
@@ -798,7 +798,7 @@ Autocomplete.propTypes = {
    */
   onOpen: PropTypes.func,
   /**
-   * Control the popup` open state.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**
@@ -870,7 +870,7 @@ Autocomplete.propTypes = {
    */
   selectOnFocus: PropTypes.bool,
   /**
-   * The size of the autocomplete.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
