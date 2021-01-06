@@ -2,7 +2,7 @@ import * as React from 'react';
 import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 
-export default function Pagee() {
+export default function Page() {
   return (
     <BrandingRoot>
       <BrandingBeginToday />

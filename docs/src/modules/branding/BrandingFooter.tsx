@@ -68,13 +68,11 @@ export default function BrandingFooter() {
                 </Link>
               </li>
               <li>
-                {/* TODO: add link */}
                 <Link color="inherit" variant="body2" href="/x/">
                   Material-UI X
                 </Link>
               </li>
               <li>
-                {/* TODO: add link */}
                 <Link color="inherit" variant="body2" href="/pricing/">
                   {t1('Pricing')}
                 </Link>
@@ -110,7 +108,6 @@ export default function BrandingFooter() {
           </Grid>
           <Grid item xs={6} sm={3} md={4} lg={2} className="BrandingFooter-list">
             <Typography component="h3">{t1('Library')}</Typography>
-            {/* TODO: Should se make sections of the Sidebar valid links to target these? */}
             <ul>
               <li>
                 <Link color="inherit" variant="body2" href="/getting-started/templates/">
@@ -154,7 +151,6 @@ export default function BrandingFooter() {
             <Typography component="h3">{t1('Explore')}</Typography>
             <ul>
               <li>
-                {/* TODO: add link */}
                 <Link color="inherit" variant="body2" href="/getting-started/installation/">
                   {t1('Docs')}
                 </Link>
@@ -170,7 +166,6 @@ export default function BrandingFooter() {
                 </Link>
               </li>
               <li>
-                {/* TODO: add link */}
                 <Link color="inherit" variant="body2" href="/discover-more/related-projects/">
                   {t1('Related Projects')}
                 </Link>
