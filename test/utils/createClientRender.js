@@ -11,8 +11,8 @@ import {
   prettyDOM,
   within,
 } from '@testing-library/react/pure';
-import userEvent from './user-event';
 import { unstable_trace } from 'scheduler/tracing';
+import userEvent from './user-event';
 
 const enableDispatchingProfiler = process.env.TEST_GATE === 'enable-dispatching-profiler';
 
