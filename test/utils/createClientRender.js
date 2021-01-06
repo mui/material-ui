@@ -54,7 +54,7 @@ function traceByStack(interactionName, callback) {
     .map((file) => {
       return `${file.name.replace(workspaceRoot, '')}:${file.line}:${file.column}`;
     });
-  const originLine = testLines[testLines.length - 1] ?? stack;
+  const originLine = testLines[testLines.length - 1] ?? 'unknown line';
 
   return unstable_trace(`${originLine} (${interactionName})`, performance.now(), callback);
 }
