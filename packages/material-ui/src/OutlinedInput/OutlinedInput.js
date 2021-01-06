@@ -40,6 +40,10 @@ export const styles = (theme) => {
       '&$focused $notchedOutline': {
         borderColor: theme.palette.secondary.main,
       },
+      '&$error $notchedOutline': {
+        // To remove once we migrate to emotion
+        borderColor: theme.palette.error.main,
+      },
     },
     /* Styles applied to the root element if the component is focused. */
     focused: {},
