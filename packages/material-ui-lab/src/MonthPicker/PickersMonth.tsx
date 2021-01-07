@@ -63,6 +63,7 @@ const PickersMonth: React.FC<MonthProps & WithStyles<typeof styles>> = (props) =
       onKeyDown={onSpaceOrEnter(handleSelection)}
       color={selected ? 'primary' : undefined}
       variant={selected ? 'h5' : 'subtitle1'}
+      disabled={disabled}
       {...other}
     />
   );
