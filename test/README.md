@@ -175,3 +175,29 @@ For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to t
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
 Alternatively, you might want to open `http://localhost:5000` (while `yarn test:regressions:dev` is running) to view individual views separately.
+
+### Performance monitoring
+
+We have a dedicated CI task that profiles our core test suite.
+Since this task is fairly expensive and not relevant to most day-to-day work it has to be started manually.
+The CircleCI docs explain [how to start a pipeline manually](https://circleci.com/docs/api/v2/#operation/triggerPipeline) in detail.
+Example:
+With an environment variable `$CIRCLE_TOKEN` containing a [CircleCI personal access token](https://app.circleci.com/settings/user/tokens).
+
+The following command triggers the `profile` workflow for the pull request #24289.
+
+```bash
+curl --request POST \
+  --url https://circleci.com/api/v2/project/gh/mui-org/material-ui/pipeline \
+  --header 'content-type: application/json' \
+  --header 'Circle-Token: $CIRCLE_TOKEN' \
+  --data-raw '{"branch":"pull/24289/head","parameters":{"workflow":"profile"}}'
+```
+
+To analyze this profile run you can use https://mui-dashboard.netlify.app/test-profile/:job-number.
+
+To find out the job number you can start with the response of the previous CircleCI API request which includes the created pipeline id.
+You then have to search in the [CircleCI UI](https://app.circleci.com/pipelines/github/mui-org/material-ui) for the job number of `test_profile` that is part of the started pipeline.
+The job number can be extracted from the URL of a particular CircleCI job.
+
+For example, in https://app.circleci.com/pipelines/github/mui-org/material-ui/32796/workflows/23f946de-328e-49b7-9c94-bfe0a0248a12/jobs/211258 `jobs/211258` points to the job number which is in this case `211258` which means you want to visit https://mui-dashboard.netlify.app/test-profile/211258 to analyze the profile.
