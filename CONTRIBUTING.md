@@ -103,15 +103,16 @@ Make sure the following is true:
 - When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-lab).
 - The branch is not behind its target.
 
-Because we will only merge a Pull Request for which all tests pass. The following items need to be true. We will provide assistance if not:
+Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
 
-- If TypeScript declarations were changed, `yarn typescript` passed.
-- The code is formatted (run `yarn prettier`).
-- The code is linted (run `yarn lint`).
-- If API documentation is being changed in the source (run `yarn docs:api`).
-- If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
-  See [about writing demos](#3-write-the-content-of-the-demo).
-- The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
+- The code is formatted. If the code was changed, run `yarn prettier`.
+- The code is linted. If the code was changed, run `yarn lint`.
+- The code is type-safe. If TypeScript sources/declarations were changed, `yarn typescript` passed.
+- The API docs are up-to-date. If API was changed, run `yarn proptypes && yarn docs:api`.
+- The demos are up-to-date. If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes. See [about writing demos](#3-write-the-content-of-the-demo).
+- The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
+
+If you have missed a step, don't worry, the Continuous Integration will run a thorough test on your commits and the maintainers of the project can assist.
 
 #### Checks and how to fix them
 
