@@ -20,7 +20,7 @@ export default function BasicDateRangePicker() {
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} variant="standard" />
-            <Box sx={{ mx: 2 }}>to</Box>
+            <Box sx={{ mx: 2 }}> to </Box>
             <TextField {...endProps} variant="standard" />
           </React.Fragment>
         )}
