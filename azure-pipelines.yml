@@ -184,36 +184,3 @@ jobs:
         inputs:
           artifactName: 'benchmarks'
           targetPath: 'tmp/benchmarks'
-
-  - job: test_profile
-    displayName: 'Profile test suite'
-    container: mcr.microsoft.com/playwright:bionic
-    condition: eq(variables['command'], 'testProfile')
-    steps:
-      - task: NodeTool@0
-        inputs:
-          versionSpec: '10.x'
-        displayName: 'Install Node.js'
-
-      - script: yarn install
-        displayName: 'install dependencies'
-
-      # Run a couple of times for a better sample.
-      # TODO: hack something together where we can compile once and run multiple times e.g. by abusing watchmode.
-      - script: |
-          yarn test:karma:profile
-          yarn test:karma:profile
-          yarn test:karma:profile
-          yarn test:karma:profile
-          yarn test:karma:profile
-        displayName: 'Profile browser tests'
-        env:
-          # Normalize environment with CircleCI
-          CI: true
-
-      - task: PublishPipelineArtifact@1
-        displayName: 'Publish profile report as pipeline artifact.'
-        inputs:
-          artifactName: 'react-profiler-report-karma'
-          # see karma.conf.profile.js reactProfilerReporter.outputDir
-          targetPath: tmp/react-profiler-report/karma
