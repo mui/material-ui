@@ -11,7 +11,8 @@ import {
 } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import Drawer from '../Drawer';
-import SwipeableDrawer from './SwipeableDrawer';
+import { getDomTreeShapes } from './SwipeableDrawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import SwipeArea from './SwipeArea';
 import useForkRef from '../utils/useForkRef';
 
@@ -684,6 +685,21 @@ describe('<SwipeableDrawer />', () => {
         ],
       });
       expect(handleClose.callCount).to.equal(0);
+    });
+  });
+
+  describe('getDomTreeShapes', () => {
+    it('should not ignore scroll container if parent is overflow hidden', () => {
+      const { container } = render(
+        <div style={{ overflow: 'hidden' }}>
+          <div style={{ overflow: 'auto' }}>
+            <div style={{ width: 10000, height: 2 }} data-testid="target" />
+          </div>
+        </div>,
+      );
+      const shape = getDomTreeShapes(screen.getByTestId('target'), container.firstChild);
+      // We have one scroll container
+      expect(shape).to.deep.equal([screen.getByTestId('target').parentElement]);
     });
   });
 });

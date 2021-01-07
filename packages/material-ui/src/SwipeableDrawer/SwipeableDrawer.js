@@ -58,7 +58,7 @@ function getTranslate(currentTranslate, startLocation, open, maxTranslate) {
  * @param {Element | null} element
  * @param {Element} rootNode
  */
-function getDomTreeShapes(element, rootNode) {
+export function getDomTreeShapes(element, rootNode) {
   // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129
   const domTreeShapes = [];
 
@@ -66,6 +66,13 @@ function getDomTreeShapes(element, rootNode) {
     const style = ownerWindow(rootNode).getComputedStyle(element);
 
     if (
+      // Ignore the scroll children if the element is absolute positioned.
+      style.getPropertyValue('position') === 'absolute' ||
+      // Ignore the scroll children if the element has an overflowX hidden
+      style.getPropertyValue('overflow-x') === 'hidden'
+    ) {
+      // noop
+    } else if (
       (element.clientWidth > 0 && element.scrollWidth > element.clientWidth) ||
       (element.clientHeight > 0 && element.scrollHeight > element.clientHeight)
     ) {
