@@ -65,7 +65,7 @@ Choose one of the 248 countries.
 
 The component has two states that can be controlled:
 
-1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd>Enter</kbd>.
+1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
 > ⚠️ These two state are isolated, they should be controlled independently.
@@ -88,7 +88,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 
 - `selectOnFocus` to helps the user clear the selected value.
 - `clearOnBlur` to helps the user to enter a new value.
-- `handleHomeEndKeys` to move focus inside the popup with the <kbd>Home</kbd> and <kbd>End</kbd> keys.
+- `handleHomeEndKeys` to move focus inside the popup with the <kbd class="key">Home</kbd> and <kbd class="key">End</kbd> keys.
 - A last option, for instance `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
