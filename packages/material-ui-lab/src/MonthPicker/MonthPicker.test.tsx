@@ -74,6 +74,7 @@ describe('<MonthPicker />', () => {
     expect(onChangeMock.callCount).to.equal(0);
 
     fireEvent.click(screen.getByText('Apr', { selector: 'button' }));
+    expect(onChangeMock.callCount).to.equal(1);
     expect((onChangeMock.args[0][0] as Date).getMonth()).to.equal(3); // month index starting from 0
 
     fireEvent.click(screen.getByText('Jul', { selector: 'button' }));
