@@ -28,6 +28,10 @@ export const styles = (theme) => ({
     '&$focused': {
       color: theme.palette.secondary.main,
     },
+    '&$error': {
+      // To remove once we migrate to emotion
+      color: theme.palette.error.main,
+    },
   },
   /* Pseudo-class applied to the root element if `focused={true}`. */
   focused: {},
