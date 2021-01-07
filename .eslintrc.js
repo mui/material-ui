@@ -1,5 +1,16 @@
 const path = require('path');
 
+const forbidTopLevelMessage = [
+  'Prefer one level nested imports to avoid bundling everything in dev mode',
+  'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
+].join('\n');
+// This only applies to packages published from this monorepo.
+// If you build a library around `@material-ui/core` you can safely use `createStyles` without running into the same issue as we are.
+const forbidCreateStylesMessage =
+  'Use `MuiStyles<ClassKey, Props>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
+  '`createStyles` will lead to inlined, at-compile-time-resolved type-imports. ' +
+  'See https://github.com/microsoft/TypeScript/issues/36097#issuecomment-578324386 for more information';
+
 module.exports = {
   root: true, // So parent files don't get applied
   globals: {
@@ -190,6 +201,7 @@ module.exports = {
         'jsx-a11y/click-events-have-key-events': 'off',
         'jsx-a11y/control-has-associated-label': 'off',
         'jsx-a11y/iframe-has-title': 'off',
+        'jsx-a11y/label-has-associated-control': 'off',
         'jsx-a11y/mouse-events-have-key-events': 'off',
         'jsx-a11y/no-noninteractive-tabindex': 'off',
         'jsx-a11y/no-static-element-interactions': 'off',
@@ -227,12 +239,53 @@ module.exports = {
     },
     {
       files: ['*.tsx'],
+      excludedFiles: '*.spec.tsx',
+      rules: {
+        // WARNING: If updated, make sure these rules are merged with `no-restricted-imports` (#ts-source-files)
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              // Allow deeper imports for TypeScript types. TODO?
+              '@material-ui/*/*/*/*',
+              // Macros are fine since they're transpiled into something else
+              '!@material-ui/utils/macros/*.macro',
+            ],
+          },
+        ],
+        'react/prop-types': 'off',
+      },
+    },
+    // Files used for generating TypeScript declaration files (#ts-source-files)
+    {
+      files: ['packages/*/src/**/*.tsx'],
+      excludedFiles: '*.spec.tsx',
       rules: {
         'no-restricted-imports': [
           'error',
           {
-            // Allow deeper imports for TypeScript types. TODO?
-            patterns: ['@material-ui/*/*/*/*', '!@material-ui/utils/macros/*.macro'],
+            paths: [
+              {
+                name: '@material-ui/core/styles',
+                importNames: ['createStyles'],
+                message: forbidCreateStylesMessage,
+              },
+              {
+                name: '@material-ui/styles',
+                importNames: ['createStyles'],
+                message: forbidCreateStylesMessage,
+              },
+              {
+                name: '@material-ui/styles/createStyles',
+                message: forbidCreateStylesMessage,
+              },
+            ],
+            patterns: [
+              // Allow deeper imports for TypeScript types. TODO?
+              '@material-ui/*/*/*/*',
+              // Macros are fine since they're transpiled into something else
+              '!@material-ui/utils/macros/*.macro',
+            ],
           },
         ],
         'react/prop-types': 'off',
@@ -281,6 +334,27 @@ module.exports = {
       rules: {
         // Working with flags is common in TypeScript compiler
         'no-bitwise': 'off',
+      },
+    },
+    {
+      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
+      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: [
+              {
+                name: '@material-ui/core',
+                message: forbidTopLevelMessage,
+              },
+              {
+                name: '@material-ui/lab',
+                message: forbidTopLevelMessage,
+              },
+            ],
+          },
+        ],
       },
     },
   ],

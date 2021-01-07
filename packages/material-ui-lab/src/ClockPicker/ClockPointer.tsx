@@ -1,39 +1,40 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { withStyles, createStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { StyleRules, MuiStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from '../internal/pickers/constants/dimensions';
 import { ClockViewType } from '../internal/pickers/constants/ClockType';
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      width: 2,
-      backgroundColor: theme.palette.primary.main,
-      position: 'absolute',
-      left: 'calc(50% - 1px)',
-      bottom: '50%',
-      transformOrigin: 'center bottom 0px',
-    },
-    animateTransform: {
-      transition: theme.transitions.create(['transform', 'height']),
-    },
-    thumb: {
-      width: 4,
-      height: 4,
-      backgroundColor: theme.palette.primary.contrastText,
-      borderRadius: '50%',
-      position: 'absolute',
-      top: -21,
-      left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
-      border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
-      boxSizing: 'content-box',
-    },
-    noPoint: {
-      backgroundColor: theme.palette.primary.main,
-    },
-  });
+export type ClockPointerClassKey = 'root' | 'animateTransform' | 'thumb' | 'noPoint';
 
-export type ClockPointerClassKey = keyof WithStyles<typeof styles>['classes'];
+export const styles: MuiStyles<ClockPointerClassKey> = (
+  theme,
+): StyleRules<ClockPointerClassKey> => ({
+  root: {
+    width: 2,
+    backgroundColor: theme.palette.primary.main,
+    position: 'absolute',
+    left: 'calc(50% - 1px)',
+    bottom: '50%',
+    transformOrigin: 'center bottom 0px',
+  },
+  animateTransform: {
+    transition: theme.transitions.create(['transform', 'height']),
+  },
+  thumb: {
+    width: 4,
+    height: 4,
+    backgroundColor: theme.palette.primary.contrastText,
+    borderRadius: '50%',
+    position: 'absolute',
+    top: -21,
+    left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
+    border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
+    boxSizing: 'content-box',
+  },
+  noPoint: {
+    backgroundColor: theme.palette.primary.main,
+  },
+});
 
 export interface ClockPointerProps
   extends React.HTMLProps<HTMLDivElement>,

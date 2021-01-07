@@ -50,7 +50,7 @@ export interface RatingProps
    */
   defaultValue?: number;
   /**
-   * If `true`, the rating is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;
@@ -122,7 +122,7 @@ export interface RatingProps
    */
   readOnly?: boolean;
   /**
-   * The size of the rating.
+   * The size of the component.
    * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';

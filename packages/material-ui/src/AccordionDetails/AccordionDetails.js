@@ -22,7 +22,7 @@ AccordionDetails.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the accordion details.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

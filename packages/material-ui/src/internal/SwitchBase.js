@@ -179,7 +179,7 @@ SwitchBase.propTypes = {
    */
   defaultChecked: PropTypes.bool,
   /**
-   * If `true`, the switch is disabled.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**

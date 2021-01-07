@@ -50,6 +50,18 @@ const overridesResolver = (props, styles) => {
   });
 };
 
+const extendUtilityClasses = (styleProps) => {
+  const { color, classes = {} } = styleProps;
+
+  return {
+    ...classes,
+    badge: clsx(classes.badge, {
+      [getBadgeUtilityClass(`color${capitalize(color)}`)]: color !== 'default',
+      [classes[`color${capitalize(color)}`]]: color !== 'default',
+    }),
+  };
+};
+
 const BadgeRoot = styled(
   'span',
   {},
@@ -193,18 +205,6 @@ const BadgeBadge = styled(
     }),
   }),
 }));
-
-const extendUtilityClasses = (styleProps) => {
-  const { color, classes = {} } = styleProps;
-
-  return {
-    ...classes,
-    badge: clsx(classes.badge, {
-      [getBadgeUtilityClass(`color${capitalize(color)}`)]: color !== 'default',
-      [classes[`color${capitalize(color)}`]]: color !== 'default',
-    }),
-  };
-};
 
 const Badge = React.forwardRef(function Badge(inputProps, ref) {
   const { isRtl, ...props } = useThemeProps({ props: inputProps, name: 'MuiBadge' });

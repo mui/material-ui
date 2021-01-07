@@ -25,7 +25,7 @@ materialDesign: https://material.io/components/text-fields
 
 ## Form props 表单的属性
 
-`TextField` 是由一些较小的组件组成的 ( [`FormControl`](/api/form-control/)， [`Input`](/api/input/)， [`FilledInput`](/api/filled-input/)， [`InputLabel`](/api/input-label/)， [`OutlinedInput`](/api/outlined-input/)， and [`FormHelperText`](/api/form-helper-text/) ) ，而你可以直接使用这些小的组件，来自定制你的表单域输入框。
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 

@@ -79,11 +79,11 @@ TabScrollButton.propTypes = {
    */
   direction: PropTypes.oneOf(['left', 'right']).isRequired,
   /**
-   * If `true`, the element is disabled.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**
-   * The tabs orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
 };

@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 <p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
 
-[スナックバー](https://material.io/design/components/snackbars.html) は、アプリが実行したプロセスまたは実行するプロセスをユーザーに通知します。 一時的に画面の下部に表示されます。 ユーザーの操作を中断したり、ユーザー入力を消去したりする必要はありません。
+[スナックバー](https://material.io/design/components/snackbars.html) は、アプリが実行したプロセスまたは実行するプロセスをユーザーに通知します。 一時的に画面の下部に表示されます。 They shouldn't interrupt the user experience, and they don't require user input to disappear.
 
 スナックバーには、実行された操作に直接関連する1行のテキストが含まれます。 テキストアクションは含まれますが、アイコンは含まれません。 それら使うことで通知を表示できます。 テキストアクションは含まれますが、アイコンは含まれません。 それら使うことで通知を表示できます。
 

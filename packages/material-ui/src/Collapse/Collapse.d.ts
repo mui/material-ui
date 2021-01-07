@@ -40,7 +40,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    */
   in?: boolean;
   /**
-   * The collapse transition orientation.
+   * The transition orientation.
    * @default 'vertical'
    */
   orientation?: 'horizontal' | 'vertical';

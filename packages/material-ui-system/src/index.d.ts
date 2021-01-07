@@ -32,7 +32,7 @@ export type BordersProps = PropsFor<typeof borders>;
 // breakpoints.js
 type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export function handleBreakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
+export function handleBreakpoints<Props>(
   props: Props,
   propValue: any,
   styleFromPropValue: (value: any) => any
@@ -226,7 +226,7 @@ export const padding: SimpleStyleFunction<
 export type PaddingProps = PropsFor<typeof padding>;
 
 // style.js
-export interface StyleOptions<PropKey, Theme extends object> {
+export interface StyleOptions<PropKey> {
   cssProperty?: PropKey | keyof React.CSSProperties | false;
   prop: PropKey;
   /**
@@ -236,7 +236,7 @@ export interface StyleOptions<PropKey, Theme extends object> {
   transform?: (cssValue: unknown) => number | string | React.CSSProperties | CSSObject;
 }
 export function style<PropKey extends string, Theme extends object>(
-  options: StyleOptions<PropKey, Theme>
+  options: StyleOptions<PropKey>
 ): StyleFunction<{ [K in PropKey]?: unknown } & { theme: Theme }>;
 
 // typography.js

@@ -130,12 +130,12 @@ export interface AutocompleteProps<
    */
   closeText?: string;
   /**
-   * If `true`, the input is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;
   /**
-   * The `Popper` content will be inside the DOM hierarchy of the parent component.
+   * The `Popper` content will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal?: boolean;
@@ -249,7 +249,7 @@ export interface AutocompleteProps<
    */
   renderTags?: (value: T[], getTagProps: AutocompleteGetTagProps) => React.ReactNode;
   /**
-   * The size of the autocomplete.
+   * The size of the component.
    * @default 'medium'
    */
   size?: 'small' | 'medium';

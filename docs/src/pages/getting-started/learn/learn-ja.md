@@ -2,13 +2,13 @@
 
 <p class="description">Material-UIは初めてですか？ 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。</p>
 
-Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
+Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful. 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
 
-## 最初の例
+## First example
 
-[使い方ページ](/getting-started/usage/#quick-start)ではMaterial-UIの小さな例とライブエディタがあります。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 [使い方ページ](/getting-started/usage/#quick-start)ではMaterial-UIの小さな例とライブエディタがあります。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。
+[使い方ページ](/getting-started/usage/#quick-start)ではMaterial-UIの小さな例とライブエディタがあります。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Even if you don't know anything about Material-UI yet, try changing the code and see how it affects the result.
 
-## サンプルプロジェクト
+## Example projects
 
 ReactでWebサイトを開発してデプロイする為に必要なインフラを提供する[いくつかのサンプルプロジェクト](/getting-started/example-projects/)があります。
 

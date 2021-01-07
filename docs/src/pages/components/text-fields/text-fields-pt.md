@@ -25,7 +25,7 @@ Os atributos são suportados pelo `TextField`, como por exemplo `required`, `dis
 
 ## Propriedades de formulário
 
-Atributos padrão de formulário são suportados, por exemplo,  `required`, `disabled`, `type`, etc. bem como `helperText` que é usado para dar contexto sobre o campo de texto, tal como, ele deve ser usado.
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 

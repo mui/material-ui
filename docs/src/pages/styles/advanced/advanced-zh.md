@@ -344,7 +344,7 @@ export default function App() {
 
 ## 服务端渲染
 
-这个例子将会返回 HTML 字符串，并在使用之前就内嵌好了所需的 CSS。
+This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';

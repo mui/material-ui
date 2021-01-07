@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import PickersToolbarText from '../internal/pickers/PickersToolbarText';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import ToolbarButton from '../internal/pickers/PickersToolbarButton';
@@ -9,7 +9,9 @@ import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVaria
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { DateTimePickerView } from '../internal/pickers/typings/Views';
 
-export const styles = createStyles({
+export const styles: MuiStyles<
+  'root' | 'separator' | 'timeContainer' | 'dateContainer' | 'timeTypography' | 'penIcon'
+> = {
   root: {
     paddingLeft: 16,
     paddingRight: 16,
@@ -33,7 +35,7 @@ export const styles = createStyles({
     top: 8,
     right: 8,
   },
-});
+};
 
 export type DateTimePickerToolbarClassKey = keyof WithStyles<typeof styles>['classes'];
 

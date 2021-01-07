@@ -3,33 +3,34 @@ import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import PenIcon from '../svg-icons/Pen';
 import CalendarIcon from '../svg-icons/Calendar';
 import { ToolbarComponentProps } from './typings/BasePicker';
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      justifyContent: 'space-between',
-      padding: theme.spacing(2, 3),
-    },
-    toolbarLandscape: {
-      height: 'auto',
-      maxWidth: 160,
-      padding: 16,
-      justifyContent: 'flex-start',
-      flexWrap: 'wrap',
-    },
-    dateTitleContainer: {
-      flex: 1,
-    },
-  });
+export type PickersToolbarClassKey = 'root' | 'toolbarLandscape' | 'dateTitleContainer';
 
-export type PickersToolbarClassKey = keyof WithStyles<typeof styles>['classes'];
+export const styles: MuiStyles<PickersToolbarClassKey> = (
+  theme,
+): StyleRules<PickersToolbarClassKey> => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    padding: theme.spacing(2, 3),
+  },
+  toolbarLandscape: {
+    height: 'auto',
+    maxWidth: 160,
+    padding: 16,
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+  },
+  dateTitleContainer: {
+    flex: 1,
+  },
+});
 
 export interface PickersToolbarProps
   extends Pick<

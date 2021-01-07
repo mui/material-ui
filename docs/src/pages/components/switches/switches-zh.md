@@ -9,7 +9,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 <p class="description">开关控制能切换单个设置的开/关两个状态。</p>
 
-开关组件是在移动设备上调整设置的首选方式。 开关控制的选项，以及它当前所处的状态，都应该在相应的描述标签中明确说明。
+开关组件是在移动设备上调整设置的首选方式。 The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

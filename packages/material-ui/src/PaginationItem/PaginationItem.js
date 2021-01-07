@@ -194,7 +194,7 @@ export const styles = (theme) => ({
   disabled: {},
   /* Pseudo-class applied to the root element if `selected={true}`. */
   selected: {},
-  /* Styles applied to the icon element. */
+  /* Styles applied to tThe icon to display. */
   icon: {
     fontSize: theme.typography.pxToRem(20),
     margin: '0 -8px',
@@ -253,10 +253,15 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
   return type === 'start-ellipsis' || type === 'end-ellipsis' ? (
     <div
       ref={ref}
-      className={clsx(classes.root, classes.ellipsis, {
-        [classes.disabled]: disabled,
-        [classes[`size${capitalize(size)}`]]: size !== 'medium',
-      })}
+      className={clsx(
+        classes.root,
+        classes.ellipsis,
+        {
+          [classes.disabled]: disabled,
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
+        },
+        className,
+      )}
     >
       …
     </div>
@@ -316,7 +321,7 @@ PaginationItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the item is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -335,7 +340,7 @@ PaginationItem.propTypes = {
    */
   shape: PropTypes.oneOf(['circular', 'rounded']),
   /**
-   * The size of the pagination item.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
@@ -353,7 +358,7 @@ PaginationItem.propTypes = {
     'start-ellipsis',
   ]),
   /**
-   * The pagination item variant.
+   * The variant to use.
    * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

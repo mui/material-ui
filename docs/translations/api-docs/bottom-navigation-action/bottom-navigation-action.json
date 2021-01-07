@@ -3,7 +3,7 @@
   "propDescriptions": {
     "children": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "icon": "The icon element.",
+    "icon": "The icon to display.",
     "label": "The label element.",
     "showLabel": "If <code>true</code>, the <code>BottomNavigationAction</code> will show its label. By default, only the selected <code>BottomNavigationAction</code> inside <code>BottomNavigation</code> will show its label.<br>The prop defaults to the value (<code>false</code>) inherited from the parent BottomNavigation component.",
     "value": "You can provide your own value. Otherwise, we fallback to the child position index."

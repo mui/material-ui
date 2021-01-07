@@ -7,7 +7,7 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 # Avaliação
 
-<p class="description">As avaliações fornecem informações sobre as opiniões e experiências dos outros e podem permitir que o usuário envie sua avaliação própria.</p>
+<p class="description">Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

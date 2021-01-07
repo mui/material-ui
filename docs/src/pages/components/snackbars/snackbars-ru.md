@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 <p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
 
-[Snackbars](https://material.io/design/components/snackbars.html) inform users of a process that an app has performed or will perform. Они времени отображаются в нижней части экрана (данное поведение можно изменить). Они не должны прерывать использование приложения пользователем, и они не требуют никаких действий для их закрытия.
+[Snackbars](https://material.io/design/components/snackbars.html) inform users of a process that an app has performed or will perform. Они времени отображаются в нижней части экрана (данное поведение можно изменить). They shouldn't interrupt the user experience, and they don't require user input to disappear.
 
 Всплывающие компоненты содержат одну строку текста, непосредственно связанную с выполненной операцией. Они могут содержать текстовое действие, но не иконки. Вы можете использовать их для отображения уведомлений.
 

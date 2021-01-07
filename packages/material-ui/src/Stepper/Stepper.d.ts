@@ -45,7 +45,7 @@ export interface StepperProps extends StandardProps<PaperProps> {
    */
   nonLinear?: boolean;
   /**
-   * The stepper orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation?: Orientation;

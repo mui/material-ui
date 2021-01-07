@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core/styles';
 import { orange } from '@material-ui/core/colors';
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles' {
   interface Theme {
     status: {
       danger: string;

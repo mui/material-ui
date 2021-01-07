@@ -43,7 +43,7 @@ export interface SwitchProps
    */
   color?: 'primary' | 'secondary' | 'default';
   /**
-   * If `true`, the switch is disabled.
+   * If `true`, the component is disabled.
    */
   disabled?: boolean;
   /**
@@ -51,7 +51,7 @@ export interface SwitchProps
    */
   icon?: React.ReactNode;
   /**
-   * The size of the switch.
+   * The size of the component.
    * `small` is equivalent to the dense switch styling.
    * @default 'medium'
    */

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
 
 export interface MonthProps {
@@ -12,34 +12,35 @@ export interface MonthProps {
   value: any;
 }
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      flex: '1 0 33.33%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      cursor: 'pointer',
-      outline: 0,
-      height: 64,
-      transition: theme.transitions.create('font-size', { duration: '100ms' }),
-      '&:focus': {
-        color: theme.palette.primary.main,
-        fontWeight: theme.typography.fontWeightMedium,
-      },
-      '&:disabled': {
-        pointerEvents: 'none',
-        color: theme.palette.text.secondary,
-      },
-      '&$selected': {
-        color: theme.palette.primary.main,
-        fontWeight: theme.typography.fontWeightMedium,
-      },
-    },
-    selected: {},
-  });
+export type PickersMonthClassKey = 'root' | 'selected';
 
-export type PickersMonthClassKey = keyof WithStyles<typeof styles>['classes'];
+export const styles: MuiStyles<PickersMonthClassKey> = (
+  theme,
+): StyleRules<PickersMonthClassKey> => ({
+  root: {
+    flex: '1 0 33.33%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    outline: 0,
+    height: 64,
+    transition: theme.transitions.create('font-size', { duration: '100ms' }),
+    '&:focus': {
+      color: theme.palette.primary.main,
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+    '&:disabled': {
+      pointerEvents: 'none',
+      color: theme.palette.text.secondary,
+    },
+    '&$selected': {
+      color: theme.palette.primary.main,
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+  },
+  selected: {},
+});
 
 /**
  * @ignore - do not document.

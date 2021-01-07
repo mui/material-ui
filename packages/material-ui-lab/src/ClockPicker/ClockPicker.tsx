@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import Clock from './Clock';
 import { pipe } from '../internal/pickers/utils';
 import { useUtils, useNow, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -80,13 +80,13 @@ export interface ClockPickerProps<TDate>
   showViewSwitcher?: boolean;
 }
 
-export const styles = createStyles({
+export const styles: MuiStyles<'arrowSwitcher'> = {
   arrowSwitcher: {
     position: 'absolute',
     right: 12,
     top: 15,
   },
-});
+};
 
 const getDefaultClockLabelText = <TDate extends any>(
   view: 'hours' | 'minutes' | 'seconds',
@@ -294,7 +294,6 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
         ampmInClock={ampmInClock}
         type={view}
         ampm={ampm}
-        // @ts-expect-error TODO figure out this weird error
         getClockLabelText={getClockLabelText}
         minutesStep={minutesStep}
         allowKeyboardControl={allowKeyboardControl}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles, WithStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { RangeInput, DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 import { useMaskedInput } from '../internal/pickers/hooks/useMaskedInput';
@@ -8,23 +8,26 @@ import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVaria
 import { mergeRefs, executeInTheNextEventLoopTick } from '../internal/pickers/utils';
 import { DateInputProps, MuiTextFieldProps } from '../internal/pickers/PureDateInput';
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      alignItems: 'baseline',
-      [theme.breakpoints.down('xs')]: {
-        flexDirection: 'column',
-        alignItems: 'center',
-      },
+export type DateRangePickerInputClassKey = 'root' | 'toLabelDelimiter';
+
+export const styles: MuiStyles<DateRangePickerInputClassKey> = (
+  theme,
+): StyleRules<DateRangePickerInputClassKey> => ({
+  root: {
+    display: 'flex',
+    alignItems: 'baseline',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
     },
-    toLabelDelimiter: {
-      margin: '8px 0',
-      [theme.breakpoints.up('sm')]: {
-        margin: '0 16px',
-      },
+  },
+  toLabelDelimiter: {
+    margin: '8px 0',
+    [theme.breakpoints.up('sm')]: {
+      margin: '0 16px',
     },
-  });
+  },
+});
 
 export interface ExportedDateRangePickerInputProps {
   /**

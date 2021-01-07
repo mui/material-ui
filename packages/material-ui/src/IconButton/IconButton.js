@@ -135,7 +135,7 @@ IconButton.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The icon element.
+   * The icon to display.
    */
   children: chainPropTypes(PropTypes.node, (props) => {
     const found = React.Children.toArray(props.children).some(
@@ -168,7 +168,7 @@ IconButton.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
-   * If `true`, the button is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -181,7 +181,7 @@ IconButton.propTypes = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,
@@ -194,7 +194,7 @@ IconButton.propTypes = {
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
   /**
-   * The size of the button.
+   * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */

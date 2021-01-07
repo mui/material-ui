@@ -473,7 +473,7 @@ SelectInput.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The default element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
@@ -541,7 +541,7 @@ SelectInput.propTypes = {
    */
   onOpen: PropTypes.func,
   /**
-   * Control `select` open state.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

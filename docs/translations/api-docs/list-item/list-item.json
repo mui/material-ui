@@ -10,7 +10,7 @@
     "ContainerComponent": "The container component used when a <code>ListItemSecondaryAction</code> is the last child.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "ContainerProps": "Props applied to the container component if used.",
     "dense": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used. The prop defaults to the value inherited from the parent List component.",
-    "disabled": "If <code>true</code>, the list item is disabled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "disableGutters": "If <code>true</code>, the left and right padding is removed.",
     "divider": "If <code>true</code>, a 1px light border is added to the bottom of the list item.",
     "selected": "Use to apply selected styling."

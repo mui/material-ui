@@ -24,7 +24,7 @@ export interface PopoverProps
    */
   action?: React.Ref<PopoverActions>;
   /**
-   * A HTML element, or a function that returns it.
+   * An HTML element, or a function that returns one.
    * It's used to set the position of the popover.
    */
   anchorEl?: null | Element | ((element: Element) => Element);
@@ -43,14 +43,12 @@ export interface PopoverProps
    */
   anchorOrigin?: PopoverOrigin;
   /**
-   * This is the position that may be used
-   * to set the position of the popover.
-   * The coordinates are relative to
-   * the application's client area.
+   * This is the position that may be used to set the position of the popover.
+   * The coordinates are relative to the application's client area.
    */
   anchorPosition?: PopoverPosition;
   /**
-   * This determines which anchor prop to refer to to set
+   * This determines which anchor prop to refer to when setting
    * the position of the popover.
    * @default 'anchorEl'
    */
@@ -69,7 +67,7 @@ export interface PopoverProps
     paper?: string;
   };
   /**
-   * A HTML element, component instance, or function that returns either.
+   * An HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
    *
    * By default, it uses the body of the anchorEl's top-level document object,
@@ -97,7 +95,7 @@ export interface PopoverProps
   marginThreshold?: number;
   onClose?: ModalProps['onClose'];
   /**
-   * If `true`, the popover is visible.
+   * If `true`, the component is shown.
    */
   open: boolean;
   /**

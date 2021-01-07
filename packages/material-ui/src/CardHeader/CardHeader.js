@@ -103,7 +103,7 @@ CardHeader.propTypes = {
    */
   action: PropTypes.node,
   /**
-   * The Avatar for the Card Header.
+   * The Avatar element to display.
    */
   avatar: PropTypes.node,
   /**
@@ -141,7 +141,7 @@ CardHeader.propTypes = {
    */
   subheaderTypographyProps: PropTypes.object,
   /**
-   * The content of the Card Title.
+   * The content of the component.
    */
   title: PropTypes.node,
   /**

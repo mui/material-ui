@@ -418,7 +418,7 @@ Popover.propTypes = {
    */
   action: refType,
   /**
-   * A HTML element, or a function that returns it.
+   * An HTML element, or a function that returns one.
    * It's used to set the position of the popover.
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {
@@ -477,17 +477,15 @@ Popover.propTypes = {
       .isRequired,
   }),
   /**
-   * This is the position that may be used
-   * to set the position of the popover.
-   * The coordinates are relative to
-   * the application's client area.
+   * This is the position that may be used to set the position of the popover.
+   * The coordinates are relative to the application's client area.
    */
   anchorPosition: PropTypes.shape({
     left: PropTypes.number.isRequired,
     top: PropTypes.number.isRequired,
   }),
   /**
-   * This determines which anchor prop to refer to to set
+   * This determines which anchor prop to refer to when setting
    * the position of the popover.
    * @default 'anchorEl'
    */
@@ -505,7 +503,7 @@ Popover.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * A HTML element, component instance, or function that returns either.
+   * An HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
    *
    * By default, it uses the body of the anchorEl's top-level document object,
@@ -540,7 +538,7 @@ Popover.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * If `true`, the popover is visible.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**

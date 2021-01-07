@@ -8,7 +8,7 @@ export type ButtonGroupVariantDefaults = Record<'text' | 'outlined' | 'contained
 export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The content of the button group.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**
@@ -74,7 +74,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     color?: 'inherit' | 'primary' | 'secondary';
     /**
-     * If `true`, the buttons are disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -99,12 +99,12 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     fullWidth?: boolean;
     /**
-     * The group orientation (layout flow direction).
+     * The component orientation (layout flow direction).
      * @default 'horizontal'
      */
     orientation?: 'vertical' | 'horizontal';
     /**
-     * The size of the button.
+     * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */

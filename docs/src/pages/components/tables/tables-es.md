@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">Las tablas muestran conjuntos de datos. Pueden ser totalmente personalizadas.</p>
 
-Las [tablas](https://material.io/design/components/data-tables.html) muestran información de una forma fácil de analizar, revelando así patrones e ideas a los usuarios. Se pueden integrar en contenido principal, tal como tarjetas. They can include:
+Tables display information in a way that's easy to scan, so that users can look for patterns and insights. Se pueden integrar en contenido principal, tal como tarjetas. They can include:
 
 - Un elemento visual correspondiente
 - Navegación
@@ -115,6 +115,6 @@ En el siguiente ejemplo, demostramos como usar [react-virtualized](https://githu
 
 ### Caption
 
-A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it’s about and decide if they want to read it.
+A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

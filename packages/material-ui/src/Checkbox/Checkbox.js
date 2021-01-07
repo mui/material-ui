@@ -130,7 +130,7 @@ Checkbox.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
-   * If `true`, the checkbox is disabled.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -179,7 +179,7 @@ Checkbox.propTypes = {
    */
   required: PropTypes.bool,
   /**
-   * The size of the checkbox.
+   * The size of the component.
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */

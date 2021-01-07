@@ -4,7 +4,7 @@ import { InternalStandardProps as StandardProps } from '..';
 export interface ToggleButtonGroupProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
   /**
-   * The content of the button.
+   * The content of the component.
    */
   children?: React.ReactNode;
   /**
@@ -37,12 +37,12 @@ export interface ToggleButtonGroupProps
    */
   onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
   /**
-   * The group orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation?: 'horizontal' | 'vertical';
   /**
-   * The size of the buttons.
+   * The size of the component.
    * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';

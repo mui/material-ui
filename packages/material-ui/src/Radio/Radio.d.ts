@@ -29,7 +29,7 @@ export interface RadioProps
    */
   color?: 'primary' | 'secondary' | 'default';
   /**
-   * If `true`, the radio is disabled.
+   * If `true`, the component is disabled.
    */
   disabled?: boolean;
   /**
@@ -37,7 +37,7 @@ export interface RadioProps
    */
   icon?: React.ReactNode;
   /**
-   * The size of the radio.
+   * The size of the component.
    * `small` is equivalent to the dense radio styling.
    * @default 'medium'
    */

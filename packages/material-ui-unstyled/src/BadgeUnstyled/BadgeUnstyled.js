@@ -9,10 +9,10 @@ const useUtilityClasses = (styleProps) => {
   const { variant, anchorOrigin, overlap, invisible, classes = {} } = styleProps;
 
   return {
-    root: clsx(badgeUnstyledClasses['root'], classes['root']),
+    root: clsx(badgeUnstyledClasses.root, classes.root),
     badge: clsx(
-      badgeUnstyledClasses['badge'],
-      classes['badge'],
+      badgeUnstyledClasses.badge,
+      classes.badge,
       getBadgeUtilityClass(variant),
       badgeUnstyledClasses[
         `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
@@ -25,7 +25,7 @@ const useUtilityClasses = (styleProps) => {
         )}${capitalize(overlap)}`
       ],
       {
-        [badgeUnstyledClasses['invisible']]: invisible,
+        [badgeUnstyledClasses.invisible]: invisible,
         [classes.invisible]: invisible,
       },
     ),

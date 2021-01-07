@@ -1,19 +1,20 @@
 import * as React from 'react';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { WithStyles, withStyles, MuiStyles, StyleRules } from '@material-ui/core/styles';
 import { DIALOG_WIDTH } from '../constants/dimensions';
 import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantContext';
 import { StaticWrapperProps, PrivateWrapperProps } from './WrapperProps';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      overflow: 'hidden',
-      minWidth: DIALOG_WIDTH,
-      display: 'flex',
-      flexDirection: 'column',
-      backgroundColor: theme.palette.background.paper,
-    },
-  });
+type StaticWrapperClassKey = 'root';
+
+const styles: MuiStyles<StaticWrapperClassKey> = (theme): StyleRules<StaticWrapperClassKey> => ({
+  root: {
+    overflow: 'hidden',
+    minWidth: DIALOG_WIDTH,
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: theme.palette.background.paper,
+  },
+});
 
 const StaticWrapper: React.FC<
   PrivateWrapperProps & StaticWrapperProps & WithStyles<typeof styles>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from '../internal/pickers/constants/dimensions';
 
 export interface ClockNumberProps {
@@ -12,38 +12,37 @@ export interface ClockNumberProps {
   'aria-label': string;
 }
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      width: CLOCK_HOUR_WIDTH,
-      height: CLOCK_HOUR_WIDTH,
-      position: 'absolute',
-      left: `calc((100% - ${CLOCK_HOUR_WIDTH}px) / 2)`,
-      display: 'inline-flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: '50%',
-      color: theme.palette.text.primary,
-      '&:focused': {
-        backgroundColor: theme.palette.background.paper,
-      },
-      '&$selected': {
-        color: theme.palette.primary.contrastText,
-      },
-      '&$disabled': {
-        pointerEvents: 'none',
-        color: theme.palette.text.disabled,
-      },
-    },
-    selected: {},
-    disabled: {},
-    inner: {
-      ...theme.typography.body2,
-      color: theme.palette.text.secondary,
-    },
-  });
+export type ClockNumberClassKey = 'root' | 'selected' | 'disabled' | 'inner';
 
-export type ClockNumberClassKey = keyof WithStyles<typeof styles>['classes'];
+export const styles: MuiStyles<ClockNumberClassKey> = (theme): StyleRules<ClockNumberClassKey> => ({
+  root: {
+    width: CLOCK_HOUR_WIDTH,
+    height: CLOCK_HOUR_WIDTH,
+    position: 'absolute',
+    left: `calc((100% - ${CLOCK_HOUR_WIDTH}px) / 2)`,
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '50%',
+    color: theme.palette.text.primary,
+    '&:focused': {
+      backgroundColor: theme.palette.background.paper,
+    },
+    '&$selected': {
+      color: theme.palette.primary.contrastText,
+    },
+    '&$disabled': {
+      pointerEvents: 'none',
+      color: theme.palette.text.disabled,
+    },
+  },
+  selected: {},
+  disabled: {},
+  inner: {
+    ...theme.typography.body2,
+    color: theme.palette.text.secondary,
+  },
+});
 
 /**
  * @ignore - internal component.

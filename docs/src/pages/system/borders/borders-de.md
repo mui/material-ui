@@ -4,7 +4,7 @@
 
 ## Rahmen
 
-Verwenden Sie Ränder Werkzeuge, um die Ränder eines Elements hinzuzufügen oder zu entfernen. Wählen Sie aus einzelne oder allen Grenzen aus.
+Use border utilities to add or remove an element's borders. Wählen Sie aus einzelne oder allen Grenzen aus.
 
 ### Zusätze
 

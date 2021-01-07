@@ -43,11 +43,11 @@ export interface BaseTextFieldProps
    */
   color?: 'primary' | 'secondary';
   /**
-   * The default value of the `input` element.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue?: unknown;
   /**
-   * If `true`, the `input` element is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;
@@ -95,7 +95,7 @@ export interface BaseTextFieldProps
    */
   margin?: 'none' | 'dense' | 'normal';
   /**
-   * If `true`, a `textarea` element is rendered.instead of an input.
+   * If `true`, a `textarea` element is rendered instead of an input.
    * @default false
    */
   multiline?: boolean;
@@ -106,7 +106,7 @@ export interface BaseTextFieldProps
   onBlur?: InputBaseProps['onBlur'];
   onFocus?: StandardInputProps['onFocus'];
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder?: string;
   /**
@@ -137,7 +137,7 @@ export interface BaseTextFieldProps
    */
   SelectProps?: Partial<SelectProps>;
   /**
-   * The size of the text field.
+   * The size of the component.
    */
   size?: 'small' | 'medium';
   /**

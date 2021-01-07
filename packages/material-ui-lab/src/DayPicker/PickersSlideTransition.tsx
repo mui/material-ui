@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 
@@ -13,14 +13,26 @@ export interface SlideTransitionProps extends Omit<CSSTransitionProps, 'timeout'
   children: React.ReactElement;
 }
 
+export type PickersSlideTransitionClassKey =
+  | 'root'
+  | 'slideEnter-left'
+  | 'slideEnter-right'
+  | 'slideEnterActive'
+  | 'slideEnterActive'
+  | 'slideExit'
+  | 'slideExitActiveLeft-left'
+  | 'slideExitActiveLeft-right';
+
 export const slideAnimationDuration = 350;
-export const styles = (theme: Theme) => {
+export const styles: MuiStyles<PickersSlideTransitionClassKey> = (
+  theme,
+): StyleRules<PickersSlideTransitionClassKey> => {
   const slideTransition = theme.transitions.create('transform', {
     duration: slideAnimationDuration,
     easing: 'cubic-bezier(0.35, 0.8, 0.4, 1)',
   });
 
-  return createStyles({
+  return {
     root: {
       display: 'block',
       position: 'relative',
@@ -61,10 +73,8 @@ export const styles = (theme: Theme) => {
       transition: slideTransition,
       zIndex: 0,
     },
-  });
+  };
 };
-
-export type PickersSlideTransitionClassKey = keyof WithStyles<typeof styles>['classes'];
 
 /**
  * @ignore - do not document.

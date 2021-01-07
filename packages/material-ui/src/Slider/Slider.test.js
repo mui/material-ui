@@ -69,9 +69,7 @@ describe('<Slider />', () => {
     expect(handleChangeCommitted.args[0][1]).to.equal(10);
 
     slider.focus();
-    fireEvent.keyDown(slider, {
-      key: 'Home',
-    });
+    fireEvent.change(slider, { target: { value: 23 } });
     expect(handleChange.callCount).to.equal(2);
     expect(handleChangeCommitted.callCount).to.equal(2);
   });
@@ -171,32 +169,66 @@ describe('<Slider />', () => {
   describe('range', () => {
     it('should support keyboard', () => {
       const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
-      const [thumb1, thumb2] = getAllByRole('slider');
+      const [slider1, slider2] = getAllByRole('slider');
 
       act(() => {
-        thumb1.focus();
-        fireEvent.keyDown(thumb1, {
-          key: 'ArrowRight',
-        });
+        slider1.focus();
+        fireEvent.change(slider1, { target: { value: '21' } });
       });
 
-      expect(thumb1.getAttribute('aria-valuenow')).to.equal('21');
+      expect(slider1.getAttribute('aria-valuenow')).to.equal('21');
+      expect(slider2.getAttribute('aria-valuenow')).to.equal('30');
 
       act(() => {
-        thumb2.focus();
-        fireEvent.keyDown(thumb2, {
-          key: 'ArrowLeft',
-        });
+        slider2.focus();
+        fireEvent.change(slider2, { target: { value: '31' } });
       });
 
-      expect(thumb2.getAttribute('aria-valuenow')).to.equal('29');
+      expect(slider1.getAttribute('aria-valuenow')).to.equal('21');
+      expect(slider2.getAttribute('aria-valuenow')).to.equal('31');
+
+      act(() => {
+        slider1.focus();
+        fireEvent.change(slider1, { target: { value: '31' } });
+      });
+
+      expect(slider1.getAttribute('aria-valuenow')).to.equal('31');
+      expect(slider2.getAttribute('aria-valuenow')).to.equal('31');
+      expect(document.activeElement).to.have.attribute('data-index', '0');
+
+      act(() => {
+        slider1.focus();
+        fireEvent.change(slider1, { target: { value: '32' } });
+      });
+
+      expect(slider1.getAttribute('aria-valuenow')).to.equal('31');
+      expect(slider2.getAttribute('aria-valuenow')).to.equal('32');
+      expect(document.activeElement).to.have.attribute('data-index', '1');
     });
 
     it('should focus the slider when dragging', () => {
-      const { getByRole } = render(<Slider defaultValue={30} step={10} marks />);
-      const thumb = getByRole('slider');
-      fireEvent.mouseDown(thumb);
-      expect(thumb).toHaveFocus();
+      const { getByRole, getByTestId, container } = render(
+        <Slider
+          componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
+          defaultValue={30}
+          step={10}
+          marks
+        />,
+      );
+      const slider = getByRole('slider');
+      const thumb = getByTestId('thumb');
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        left: 0,
+      }));
+
+      fireEvent.mouseDown(thumb, {
+        buttons: 1,
+        clientX: 1,
+      });
+
+      expect(slider).toHaveFocus();
     });
 
     it('should support mouse events', () => {
@@ -282,24 +314,157 @@ describe('<Slider />', () => {
         bottom: 10,
         left: 0,
       }));
-      const thumb = getByRole('slider');
+      const slider = getByRole('slider');
 
       fireEvent.touchStart(
         container.firstChild,
         createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
       );
-      expect(thumb).to.have.attribute('aria-valuenow', '20');
+      expect(slider).to.have.attribute('aria-valuenow', '20');
 
-      thumb.focus();
-      fireEvent.keyDown(thumb, {
-        key: 'ArrowUp',
+      fireEvent.change(slider, {
+        target: {
+          value: 21,
+        },
       });
-      expect(thumb).to.have.attribute('aria-valuenow', '30');
+      expect(slider).to.have.attribute('aria-valuenow', '30');
 
-      fireEvent.keyDown(thumb, {
-        key: 'ArrowDown',
+      fireEvent.change(slider, {
+        target: {
+          value: 29,
+        },
       });
-      expect(thumb).to.have.attribute('aria-valuenow', '20');
+      expect(slider).to.have.attribute('aria-valuenow', '20');
+    });
+
+    it('change events with non integer numbers should work', () => {
+      const { getByRole } = render(
+        <Slider defaultValue={0.2} min={-100} max={100} step={0.00000001} />,
+      );
+      const slider = getByRole('slider');
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.change(slider, { target: { value: '51.1' } });
+      expect(slider).to.have.attribute('aria-valuenow', '51.1');
+
+      fireEvent.change(slider, { target: { value: '0.00000005' } });
+      expect(slider).to.have.attribute('aria-valuenow', '5e-8');
+
+      fireEvent.change(slider, { target: { value: '1e-7' } });
+      expect(slider).to.have.attribute('aria-valuenow', '1e-7');
+    });
+
+    it('should round value to step precision', () => {
+      const { getByRole, container } = render(
+        <Slider defaultValue={0.2} min={0} max={1} step={0.1} />,
+      );
+      const slider = getByRole('slider');
+
+      act(() => {
+        slider.focus();
+      });
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      act(() => {
+        slider.focus();
+      });
+
+      expect(slider).to.have.attribute('aria-valuenow', '0.2');
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
+      );
+
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 80, clientY: 0 }]),
+      );
+      expect(slider).to.have.attribute('aria-valuenow', '0.8');
+
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 40, clientY: 0 }]),
+      );
+      expect(slider).to.have.attribute('aria-valuenow', '0.4');
+    });
+
+    it('should not fail to round value to step precision when step is very small', () => {
+      const { getByRole, container } = render(
+        <Slider defaultValue={0.00000002} min={0} max={0.0000001} step={0.00000001} />,
+      );
+      const slider = getByRole('slider');
+
+      act(() => {
+        slider.focus();
+      });
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      act(() => {
+        slider.focus();
+      });
+
+      expect(slider).to.have.attribute('aria-valuenow', '2e-8');
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
+      );
+
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 80, clientY: 0 }]),
+      );
+      expect(slider).to.have.attribute('aria-valuenow', '8e-8');
+    });
+
+    it('should not fail to round value to step precision when step is very small and negative', () => {
+      const { getByRole, container } = render(
+        <Slider defaultValue={-0.00000002} min={-0.0000001} max={0} step={0.00000001} />,
+      );
+      const slider = getByRole('slider');
+
+      act(() => {
+        slider.focus();
+      });
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      act(() => {
+        slider.focus();
+      });
+
+      expect(slider).to.have.attribute('aria-valuenow', '-2e-8');
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 80, clientY: 0 }]),
+      );
+
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
+      );
+      expect(slider).to.have.attribute('aria-valuenow', '-8e-8');
     });
   });
 
@@ -377,182 +542,159 @@ describe('<Slider />', () => {
     });
   });
 
-  describe('keyboard', () => {
-    it('should handle all the keys', () => {
+  describe('aria-valuenow', () => {
+    it('should update the aria-valuenow', () => {
       const { getByRole } = render(<Slider defaultValue={50} />);
-      const thumb = getByRole('slider');
+      const slider = getByRole('slider');
       act(() => {
-        thumb.focus();
+        slider.focus();
       });
 
-      fireEvent.keyDown(thumb, {
-        key: 'Home',
-      });
-      expect(thumb).to.have.attribute('aria-valuenow', '0');
+      fireEvent.change(slider, { target: { value: 51 } });
+      expect(slider).to.have.attribute('aria-valuenow', '51');
 
-      fireEvent.keyDown(thumb, {
-        key: 'End',
-      });
-      expect(thumb).to.have.attribute('aria-valuenow', '100');
+      fireEvent.change(slider, { target: { value: 52 } });
+      expect(slider).to.have.attribute('aria-valuenow', '52');
+    });
+  });
 
-      fireEvent.keyDown(thumb, {
-        key: 'PageDown',
-      });
-      expect(thumb).to.have.attribute('aria-valuenow', '90');
+  describe('prop: min', () => {
+    it('should set the min and aria-valuemin on the input', () => {
+      const min = 150;
+      const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={min} />);
+      const slider = getByRole('slider');
 
-      fireEvent.keyDown(thumb, {
-        key: 'Escape',
-      });
-      expect(thumb).to.have.attribute('aria-valuenow', '90');
-
-      fireEvent.keyDown(thumb, {
-        key: 'PageUp',
-      });
-      expect(thumb).to.have.attribute('aria-valuenow', '100');
+      expect(slider).to.have.attribute('aria-valuemin', String(min));
+      expect(slider).to.have.attribute('min', String(min));
     });
 
-    const moveLeftEvent = {
-      key: 'ArrowLeft',
-    };
-    const moveRightEvent = {
-      key: 'ArrowRight',
-    };
-
     it('should use min as the step origin', () => {
-      const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={150} />);
-      const thumb = getByRole('slider');
+      const min = 150;
+      const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={min} />);
+      const slider = getByRole('slider');
       act(() => {
-        thumb.focus();
+        slider.focus();
       });
 
-      fireEvent.keyDown(thumb, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '250');
+      expect(slider).to.have.attribute('aria-valuenow', String(min));
+    });
 
-      fireEvent.keyDown(thumb, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '150');
+    it('should not go less than the min', () => {
+      const min = 150;
+      const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={min} />);
+      const slider = getByRole('slider');
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.change(slider, { target: { value: String(min - 100) } });
+      expect(slider).to.have.attribute('aria-valuenow', String(min));
+    });
+  });
+  describe('prop: max', () => {
+    it('should set the max and aria-valuemax on the input', () => {
+      const max = 750;
+      const { getByRole } = render(<Slider defaultValue={150} step={100} max={max} min={150} />);
+      const slider = getByRole('slider');
+
+      expect(slider).to.have.attribute('aria-valuemax', String(max));
+      expect(slider).to.have.attribute('max', String(max));
+    });
+
+    it('should not go more than the max', () => {
+      const max = 750;
+      const { getByRole } = render(<Slider defaultValue={150} step={100} max={max} min={150} />);
+      const slider = getByRole('slider');
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.change(slider, { target: { value: String(max + 100) } });
+      expect(slider).to.have.attribute('aria-valuenow', String(max));
     });
 
     it('should reach right edge value', () => {
-      const { getByRole } = render(<Slider defaultValue={90} min={6} max={108} step={10} />);
+      const { getByRole, container } = render(
+        <Slider defaultValue={90} min={6} max={108} step={10} />,
+      );
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
       const thumb = getByRole('slider');
       act(() => {
         thumb.focus();
       });
 
-      fireEvent.keyDown(thumb, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '96');
+      expect(thumb).to.have.attribute('aria-valuenow', '90');
 
-      fireEvent.keyDown(thumb, moveRightEvent);
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
+      );
+
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 100, clientY: 0 }]),
+      );
       expect(thumb).to.have.attribute('aria-valuenow', '106');
 
-      fireEvent.keyDown(thumb, moveRightEvent);
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
+      );
       expect(thumb).to.have.attribute('aria-valuenow', '108');
 
-      fireEvent.keyDown(thumb, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '96');
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 50, clientY: 0 }]),
+      );
+      expect(thumb).to.have.attribute('aria-valuenow', '56');
 
-      fireEvent.keyDown(thumb, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '86');
-    });
-
-    it('should reach left edge value', () => {
-      const { getByRole } = render(<Slider defaultValue={20} min={6} max={108} step={10} />);
-      const thumb = getByRole('slider');
-      act(() => {
-        thumb.focus();
-      });
-
-      fireEvent.keyDown(thumb, moveLeftEvent);
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: -100, clientY: 0 }]),
+      );
       expect(thumb).to.have.attribute('aria-valuenow', '6');
-
-      fireEvent.keyDown(thumb, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '16');
-
-      fireEvent.keyDown(thumb, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '26');
-    });
-
-    it('should round value to step precision', () => {
-      const { getByRole } = render(<Slider defaultValue={0.2} min={0} max={1} step={0.1} />);
-      const thumb = getByRole('slider');
-      act(() => {
-        thumb.focus();
-      });
-
-      fireEvent.keyDown(thumb, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '0.3');
-    });
-
-    it('should not fail to round value to step precision when step is very small', () => {
-      const { getByRole } = render(
-        <Slider defaultValue={0.00000002} min={0} max={0.00000005} step={0.00000001} />,
-      );
-      const thumb = getByRole('slider');
-      act(() => {
-        thumb.focus();
-      });
-
-      fireEvent.keyDown(thumb, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '3e-8');
-    });
-
-    it('should not fail to round value to step precision when step is very small and negative', () => {
-      const { getByRole } = render(
-        <Slider defaultValue={-0.00000002} min={-0.00000005} max={0} step={0.00000001} />,
-      );
-      const thumb = getByRole('slider');
-      act(() => {
-        thumb.focus();
-      });
-
-      fireEvent.keyDown(thumb, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '-3e-8');
-    });
-
-    it('should handle RTL', () => {
-      const { getByRole } = render(
-        <ThemeProvider
-          theme={createMuiTheme({
-            direction: 'rtl',
-          })}
-        >
-          <Slider defaultValue={30} />
-        </ThemeProvider>,
-      );
-      const thumb = getByRole('slider');
-      act(() => {
-        thumb.focus();
-      });
-
-      fireEvent.keyDown(thumb, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '31');
-      fireEvent.keyDown(thumb, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '30');
     });
   });
 
   describe('prop: valueLabelDisplay', () => {
     it('should always display the value label according to on and off', () => {
-      const { getByRole, setProps } = render(<Slider valueLabelDisplay="on" value={50} />);
-      const thumb = getByRole('slider');
-      expect(thumb.firstChild).to.have.class(classes.valueLabelOpen);
+      const { setProps } = render(
+        <Slider
+          valueLabelDisplay="on"
+          value={50}
+          componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
+        />,
+      );
+      expect(document.querySelector(`.${classes.valueLabelOpen}`)).not.to.equal(null);
 
       setProps({
         valueLabelDisplay: 'off',
       });
 
-      const newThumb = getByRole('slider');
-      expect(newThumb.firstChild).to.equal(null);
+      expect(document.querySelector(`.${classes.valueLabelOpen}`)).to.equal(null);
     });
 
     it('should display the value label only on hover for auto', () => {
-      const { getByRole } = render(<Slider valueLabelDisplay="auto" value={50} />);
-      const thumb = getByRole('slider');
-      expect(thumb.firstChild).not.to.have.class(classes.valueLabelOpen);
+      const { getByTestId } = render(
+        <Slider
+          valueLabelDisplay="auto"
+          value={50}
+          componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
+        />,
+      );
+      const thumb = getByTestId('thumb');
+      expect(document.querySelector(`.${classes.valueLabelOpen}`)).to.equal(null);
 
       fireEvent.mouseOver(thumb);
 
-      expect(thumb.firstChild).to.have.class(classes.valueLabelOpen);
+      expect(document.querySelector(`.${classes.valueLabelOpen}`)).not.to.equal(null);
     });
 
     it('should be respected when using custom value label', () => {
@@ -639,37 +781,64 @@ describe('<Slider />', () => {
     expect(handleMouseDown.callCount).to.equal(1);
   });
 
-  it('should handle RTL', () => {
-    const handleChange = spy();
-    const { container, getByRole } = render(
-      <ThemeProvider
-        theme={createMuiTheme({
-          direction: 'rtl',
-        })}
-      >
-        <Slider value={30} onChange={handleChange} />
-      </ThemeProvider>,
-    );
-    const thumb = getByRole('slider');
-    expect(thumb.style.right).to.equal('30%');
+  describe('rtl', () => {
+    it('should add direction css', () => {
+      const { getByRole } = render(
+        <ThemeProvider
+          theme={createMuiTheme({
+            direction: 'rtl',
+          })}
+        >
+          <Slider defaultValue={30} />
+        </ThemeProvider>,
+      );
+      const thumb = getByRole('slider');
+      act(() => {
+        thumb.focus();
+      });
 
-    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
-      width: 100,
-      height: 10,
-      bottom: 10,
-      left: 0,
-    }));
+      expect(thumb.style.direction).to.equal('rtl');
+    });
 
-    fireEvent.touchStart(
-      container.firstChild,
-      createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
-    );
+    it('should handle RTL', () => {
+      const handleChange = spy();
+      const { container, getByTestId } = render(
+        <ThemeProvider
+          theme={createMuiTheme({
+            direction: 'rtl',
+          })}
+        >
+          <Slider
+            value={30}
+            onChange={handleChange}
+            componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
+          />
+        </ThemeProvider>,
+      );
+      const thumb = getByTestId('thumb');
+      expect(thumb.style.right).to.equal('30%');
 
-    fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]));
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
 
-    expect(handleChange.callCount).to.equal(2);
-    expect(handleChange.args[0][1]).to.equal(80);
-    expect(handleChange.args[1][1]).to.equal(78);
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
+      );
+
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
+      );
+
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[0][1]).to.equal(80);
+      expect(handleChange.args[1][1]).to.equal(78);
+    });
   });
 
   describe('warnings', () => {
@@ -762,12 +931,14 @@ describe('<Slider />', () => {
     const { getByRole } = render(
       <Slider onChange={handleChange} name="change-testing" value={3} />,
     );
-    const thumb = getByRole('slider');
+    const slider = getByRole('slider');
 
     act(() => {
-      thumb.focus();
-      fireEvent.keyDown(thumb, {
-        key: 'ArrowRight',
+      slider.focus();
+      fireEvent.change(slider, {
+        target: {
+          value: 4,
+        },
       });
     });
 

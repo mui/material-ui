@@ -4,7 +4,7 @@ import { TransitionProps } from '../transitions/transition';
 
 export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
-   * Step content.
+   * The content of the component.
    */
   children?: React.ReactNode;
   /**

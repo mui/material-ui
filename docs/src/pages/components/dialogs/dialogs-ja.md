@@ -41,7 +41,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 タイトルは必須入力です。
 
 - 「USBストレージを消去しますか?」など、内容領域に明確な質問や説明を入力します。
-- 「警告」や「よろしいですか」などの謝罪、あいまいさ、または質問を避けます。
+- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -94,9 +94,9 @@ function MyComponent() {
 
 ## 確認ダイアログ
 
-確認ダイアログでは、オプションを確定する前にユーザーが選択内容を明示的に確認する必要があります。 たとえば、ユーザーは複数の着信音を聞くことができますが、「OK」をタッチして最終的な選択を行うだけです。
+確認ダイアログでは、オプションを確定する前にユーザーが選択内容を明示的に確認する必要があります。 For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-確認ダイアログで[キャンセル] をタッチするか[戻る] を押すと、操作がキャンセルされ、変更が破棄されてダイアログが閉じます。
+Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -108,7 +108,7 @@ function MyComponent() {
 
 ## 長いコンテンツをスクロールする
 
-ダイアログがユーザのビューポートまたはデバイスに対して長すぎる場合は、スクロールします。
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll=paper`: paper要素内でダイアログボックスの内容がスクロールします。
 - `scroll=body`: ダイアログの内容がbody要素内をスクロールします。

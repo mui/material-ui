@@ -1,6 +1,6 @@
 # Spacing 间距
 
-<p class="description">为了改变一个元素的外观，您可以使用一系列的简写响应式的 margin 和 padding 的辅助工具类。</p>
+<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
 ## 符号
 

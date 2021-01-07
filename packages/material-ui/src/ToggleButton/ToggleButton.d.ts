@@ -7,7 +7,7 @@ export type ToggleButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The content of the button.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**
@@ -28,7 +28,7 @@ export type ToggleButtonTypeMap<
       sizeLarge?: string;
     };
     /**
-     * If `true`, the button is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -42,7 +42,7 @@ export type ToggleButtonTypeMap<
      */
     selected?: boolean;
     /**
-     * The size of the button.
+     * The size of the component.
      * The prop defaults to the value inherited from the parent ToggleButtonGroup component.
      * @default 'medium'
      */

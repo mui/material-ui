@@ -204,7 +204,7 @@ Pagination.propTypes = {
    */
   siblingCount: PropTypes.number,
   /**
-   * The size of the pagination component.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),

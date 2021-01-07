@@ -9,7 +9,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 <p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局在不同尺寸之间的一致性。</p>
 
-[Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html) 能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 的响应式 UI 是基于 12 列的栅格布局。
+[Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html) 能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design's responsive UI is based on a 12-column grid layout.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -19,9 +19,9 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 栅格系统是通过 `Grid` 组件实现的：
 
-- 为了高度的灵活性，组件使用了 [CSS 的 Flexible Box 模块](https://www.w3.org/TR/css-flexbox-1/) 。
+- It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
 - 它有两种类型的布局： _containers_ ， _items_。
-- 而项目宽度以百分比设置，因此相对于其父元素，它们总是流动的和变换大小的。
+- Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - 子项目（items）使用内边距来保持和其他块（items）的间距。
 - 其中五个断点可供使用：xs，sm，md，lg 和 xl。
 - 你可以为每个断点提供整数值，表示当视口宽度满足 [断点约束](/customization/breakpoints/#default-breakpoints) 时，12 个可用列中有多少列被组件占用。
@@ -38,7 +38,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ## Fluid grids 流式网格
 
-流式网格可以通过列（column）来缩放和调整内容的大小。 而其布局则可以通过使用断点（breakpoints）来决定布局是否需要进行较大的调整。
+流式网格可以通过列（column）来缩放和调整内容的大小。 A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### 基本栅格
 

@@ -99,11 +99,6 @@ describe('<Portal />', () => {
   });
 
   it('should unmount when parent unmounts', () => {
-    function Parent(props) {
-      const { show = true } = props;
-      return <div>{show ? <Child /> : null}</div>;
-    }
-
     function Child() {
       const containerRef = React.useRef();
       return (
@@ -114,6 +109,11 @@ describe('<Portal />', () => {
           </Portal>
         </div>
       );
+    }
+
+    function Parent(props) {
+      const { show = true } = props;
+      return <div>{show ? <Child /> : null}</div>;
     }
 
     const { setProps } = render(<Parent />);

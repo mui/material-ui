@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
 import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
   SliderUnstyledClasses,
 } from '@material-ui/unstyled';
-import { Theme } from '@material-ui/core/styles';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { OverrideProps } from '../OverridableComponent';
 
 export type SliderTypeMap<

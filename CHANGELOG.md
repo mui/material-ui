@@ -1,10 +1,62 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.22
+
+###### _Jan 4, 2021_
+
+Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- ♿️ Fix major accessibility issue with the Autocomplete (#24213) @inform880
+- 👩‍🎤 Migrate the Container to emotion (#24227) @oliviertassinari
+- 🐛 Fix Next.js regression and other cross-platform issues with the build (#24200, #24223)
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.22`/`@material-ui/unstyled@v5.0.0-alpha.22`
+
+- [Autocomplete] Fix VoiceOver not reading the correct activedescendant (#24213) @inform880
+- [Autocomplete] Warn when value is invalid (#24202) @Sandeep0695
+- [Button] Fix disableElevation regression (#24251) @oliviertassinari
+- [Container] Migrate to emotion (#24227) @oliviertassinari
+- [Pagination] Fix className forwarding when type is ellipsis (#24256) @andrelmlins
+- [Select] Improve description on how it extends the Input components (#24180) @azza85
+- [styled] Fix missing types for `sx` (#24211) @mnajdova
+- [styled] Remove unused type parameters from StyledOptions (#24255) @eps1lon
+- [styled] Support components without theme (#24214) @mnajdova
+- [styles] Fix classes logic (#24250) @oliviertassinari
+- [styles] Improve the classes structure (#24249) @oliviertassinari
+
+### `@material-ui/lab@v5.0.0-alpha.22`
+
+- [DatePicker] Fix year only view, hide the current month (#24205) @hyeonhong
+- [DatePicker] Nested imports for better DX (#24147) @oliviertassinari
+- [DatePicker] Remove unused type parameters (#24257) @eps1lon
+- [TimePicker] Prevent conflicting type parameter in `ClockProps#getClockLabelText` (#24193) @eps1lon
+
+### Docs
+
+- [docs] Accept pages written in TypeScript (#24230) @oliviertassinari
+- [docs] Document emotion migration breaking changes (#24229) @luminaxster
+- [docs] Fix broken benchmark link (#24210) @jalaj-k
+- [docs] Fix codesandbox datagrid demo (#24218) @brno32
+- [docs] Fix iframe demos with emotion (#24232) @oliviertassinari
+- [docs] Sync translations (#24161) @l10nbot
+
+### Core
+
+- [test] More granular progress tracking of relative type imports (#24233) @eps1lon
+- [core] Add missing sx typings on the components migrated to emotion (#24208) @mnajdova
+- [core] Batch small changes (#24224) @oliviertassinari
+- [core] Create issue mark duplicate (#24184) @xrkffgg
+- [core] Fix generation of package.json (#24223) @oliviertassinari
+- [core] Fix relative import of types (#24248) @oliviertassinari
+- [core] Platform agnostic build script for envinfo (#24200) @eps1lon
+- [core] Remove unused generics from experimentalStyled (#24192) @eps1lon
+
 ## 5.0.0-alpha.21
 
 ###### _Dec 30, 2020_
 
-Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Avatar to emotion (#24114) @oliviertassinari
 - 👩‍🎤 Migrate the Button to emotion (#24107, #24100) @mnajdova
@@ -22,6 +74,8 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [TrapFocus] Fix trap to only focus on tabbable elements (#23364) @gregnb
 - [Link] Improve integration with Next.js (#24121) @kelvinsanchez15
 - [Select] Fix overflow showing scrollbar (#24085) @Segebre
+- [Slider] Fix circular type reference in SliderValueLabel (#24190) @eps1lon
+- [Skeleton] Fix default TypeScript component type (#24191) @eps1lon
 
 ### `@material-ui/system@v5.0.0-alpha.21`
 
@@ -34,6 +88,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [DatePicker] Allow to customize icons (#24017) @jackcwu
 - [DatePicker] Fix missing component for theme augmentation (#24092) @rajzik
 - [DatePicker] Hide outline on container (#24108) @oliviertassinari
+- [DatePicker] Fix accessibility issue with heading (#24183) @gracektay
 - [TimePicker] Improve the design to fit on smaller screens (#23855) @marianayap
 - [TreeView] Add preventScroll for tree focus (#24105) @praveenkumar-kalidass
 
@@ -55,6 +110,9 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [docs] Replace process.browser with typeof navigator (#24122) @softshipper
 - [docs] Sync translations (#24152) @l10nbot
 - [docs] Update Fontsource install instructions (#24120) @DecliningLotus
+- [docs] Add system grid page (#24119) @mnajdova
+- [blog] 2020 in review and beyond (#24130) @oliviertassinari
+- [docs] Improve naming and structure of the Customization and Guide pages (#24175) @mnajdova
 
 ### Core
 
@@ -64,6 +122,8 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [core] Reduce response time of initial PR bot comment (#24168) @eps1lon
 - [core] Refactor styled() components to ease out the migration process (#24124) @mnajdova
 - [test] Add more packages to browser test suite (#24155) @eps1lon
+- [core] Monitor progress of fixing type imports (#24188) @eps1lon
+- [core] Fix build on Windows (#24187) @oliviertassinari
 
 ## 5.0.0-alpha.20
 
@@ -383,6 +443,26 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 #### Breaking changes
 
+- [Slider] Migrate to emotion (#23308) @mnajdova
+
+  By default, emotion injects its style after JSS, this breaks the computed styles. In order to get the correct CSS injection order until all the components are migrated, you need to wrap the root of your application with:
+
+  ```jsx
+  import * as React from 'react';
+  import ReactDOM from 'react-dom';
+  import { StylesProvider } from '@material-ui/core';
+  import App from './App';
+
+  ReactDOM.render(
+    <StylesProvider injectFirst>
+      <App />
+    </StylesProvider>,
+    document.querySelector('#root'),
+  );
+  ```
+
+  This enforces emotion being injected first. [More details](https://next.material-ui.com/guides/interoperability/#css-injection-order) in the documentation.
+
 - [Autocomplete] Rename `closeIcon` prop with `clearIcon` to avoid confusion (#23617) @akhilmhdh.
 
   ```diff
@@ -438,7 +518,6 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - [Icon] Allow customizing the 'material-icons' base class name (#23613) @rart
 - [Select] Fix focus() call on ref (#23302) @reedanders
 - [Slider] Add test case for triggering a specific value (#23642) @Thehambalamba
-- [Slider] Replace core Slider with SliderStyled (#23308) @mnajdova
 - [Slider] General cleanup and add classes prop for unstyled (#23569) @mnajdova
 - [styles] Add support for TypeScript 4.1 (#23633) @eps1lon
 

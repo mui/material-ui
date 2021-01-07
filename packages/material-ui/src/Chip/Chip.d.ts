@@ -9,7 +9,7 @@ export type ChipVariantDefaults = Record<'filled' | 'outlined', true>;
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * Avatar element.
+     * The Avatar element to display.
      */
     avatar?: React.ReactElement;
     /**
@@ -104,7 +104,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     deleteIcon?: React.ReactElement;
     /**
-     * If `true`, the chip should be displayed in a disabled state.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -113,7 +113,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     icon?: React.ReactElement;
     /**
-     * The content of the label.
+     * The content of the component.
      */
     label?: React.ReactNode;
     /**
@@ -122,7 +122,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     onDelete?: React.EventHandler<any>;
     /**
-     * The size of the chip.
+     * The size of the component.
      * @default 'medium'
      */
     size?: 'small' | 'medium';

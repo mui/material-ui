@@ -18,7 +18,7 @@ export interface SlideProps extends TransitionProps {
    */
   direction?: 'left' | 'right' | 'up' | 'down';
   /**
-   * If `true`, show the component; triggers the enter or exit animation.
+   * If `true`, the component will transition in.
    */
   in?: TransitionProps['in'];
   ref?: React.Ref<unknown>;

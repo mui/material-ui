@@ -176,7 +176,7 @@ BottomNavigationAction.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The icon element.
+   * The icon to display.
    */
   icon: PropTypes.node,
   /**

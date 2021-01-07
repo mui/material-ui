@@ -14,7 +14,7 @@ export interface CardHeaderTypeMap<
      */
     action?: React.ReactNode;
     /**
-     * The Avatar for the Card Header.
+     * The Avatar element to display.
      */
     avatar?: React.ReactNode;
     /**
@@ -55,7 +55,7 @@ export interface CardHeaderTypeMap<
       { component?: SubheaderTypographyComponent }
     >;
     /**
-     * The content of the Card Title.
+     * The content of the component.
      */
     title?: React.ReactNode;
     /**

@@ -1,4 +1,4 @@
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core/styles';
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with

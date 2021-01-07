@@ -46,7 +46,7 @@ SimpleBackdrop.propTypes = {
    */
   invisible: PropTypes.bool,
   /**
-   * If `true`, the backdrop is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
 };

@@ -8,6 +8,7 @@
     "sizes": { "type": { "name": "string" } },
     "src": { "type": { "name": "string" } },
     "srcSet": { "type": { "name": "string" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",

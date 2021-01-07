@@ -183,7 +183,7 @@ SpeedDialAction.propTypes = {
    */
   FabProps: PropTypes.object,
   /**
-   * The Icon to display in the SpeedDial Fab.
+   * The icon to display in the SpeedDial Fab.
    */
   icon: PropTypes.node,
   /**
@@ -192,7 +192,7 @@ SpeedDialAction.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the tooltip is shown.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

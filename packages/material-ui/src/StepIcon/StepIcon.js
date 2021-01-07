@@ -101,7 +101,7 @@ StepIcon.propTypes = {
    */
   completed: PropTypes.bool,
   /**
-   * Mark the step as failed.
+   * If `true`, the step is marked as failed.
    * @default false
    */
   error: PropTypes.bool,

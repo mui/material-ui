@@ -60,7 +60,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      */
     light?: boolean;
     /**
-     * The divider orientation.
+     * The component orientation.
      * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';

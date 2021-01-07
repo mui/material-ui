@@ -42,7 +42,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
       disabled?: string;
       /** Pseudo-class applied to the root element if `selected={true}`. */
       selected?: string;
-      /** Styles applied to the icon element. */
+      /** Styles applied to tThe icon to display. */
       icon?: string;
     };
     /**
@@ -51,7 +51,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      */
     color?: 'standard' | 'primary' | 'secondary';
     /**
-     * If `true`, the item is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -70,7 +70,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      */
     shape?: 'circular' | 'rounded';
     /**
-     * The size of the pagination item.
+     * The size of the component.
      * @default 'medium'
      */
     size?: 'small' | 'medium' | 'large';
@@ -80,7 +80,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      */
     type?: UsePaginationItem['type'];
     /**
-     * The pagination item variant.
+     * The variant to use.
      * @default 'text'
      */
     variant?: OverridableStringUnion<

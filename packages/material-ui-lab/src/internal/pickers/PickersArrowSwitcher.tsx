@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, WithStyles, withStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, WithStyles, withStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowLeftIcon from '../svg-icons/ArrowLeft';
 import ArrowRightIcon from '../svg-icons/ArrowRight';
@@ -45,21 +45,21 @@ interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps
   onLeftClick: () => void;
   onRightClick: () => void;
 }
+export type PickersArrowSwitcherClassKey = 'root' | 'spacer' | 'hidden';
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-    },
-    spacer: {
-      width: theme.spacing(3),
-    },
-    hidden: {
-      visibility: 'hidden',
-    },
-  });
-
-export type PickersArrowSwitcherClassKey = keyof WithStyles<typeof styles>['classes'];
+export const styles: MuiStyles<PickersArrowSwitcherClassKey> = (
+  theme,
+): StyleRules<PickersArrowSwitcherClassKey> => ({
+  root: {
+    display: 'flex',
+  },
+  spacer: {
+    width: theme.spacing(3),
+  },
+  hidden: {
+    visibility: 'hidden',
+  },
+});
 
 const PickersArrowSwitcher = React.forwardRef<
   HTMLDivElement,

@@ -29,7 +29,7 @@ export interface StepIconProps
    */
   completed?: boolean;
   /**
-   * Mark the step as failed.
+   * If `true`, the step is marked as failed.
    * @default false
    */
   error?: boolean;

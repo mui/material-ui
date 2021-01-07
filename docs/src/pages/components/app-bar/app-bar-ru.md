@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">Панель навигации отображает информацию и действия, относящиеся к текущему экрану.</p>
 
-В [](https://material.io/design/components/app-bars-top.html)верхней панели приложений</a> отображается содержимое и действия, связанные с текущим экраном. Она используется для брендинга, заголовков экрана, навигации и действий.
+В [](https://material.io/design/components/app-bars-top.html)верхней панели приложений</a> отображается содержимое и действия, связанные с текущим экраном. It's used for branding, screen titles, navigation, and actions.
 
 Она может использоваться как контекстное меню или как навигационная панель.
 

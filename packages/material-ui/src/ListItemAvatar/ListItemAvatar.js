@@ -44,7 +44,7 @@ ListItemAvatar.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component – normally `Avatar`.
+   * The content of the component, normally an `Avatar`.
    */
   children: PropTypes.node,
   /**

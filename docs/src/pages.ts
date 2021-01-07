@@ -236,15 +236,16 @@ const pages: MuiPage[] = [
           { pathname: '/customization/z-index', title: 'z-index' },
           { pathname: '/customization/transitions' },
           { pathname: '/customization/theme-components', title: 'Components' },
+          { pathname: '/customization/default-theme', title: 'Default Theme' },
         ],
       },
       { pathname: '/customization/how-to-customize' },
       { pathname: '/customization/color' },
-      { pathname: '/customization/default-theme', title: 'Default Theme' },
     ],
   },
   {
     pathname: '/guides',
+    title: 'How To Guides',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
       { pathname: '/guides/typescript', title: 'TypeScript' },

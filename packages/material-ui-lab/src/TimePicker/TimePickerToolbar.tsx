@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useTheme, createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { MuiStyles, useTheme, WithStyles, withStyles } from '@material-ui/core/styles';
 import PickersToolbarText from '../internal/pickers/PickersToolbarText';
 import ToolbarButton from '../internal/pickers/PickersToolbarButton';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
@@ -9,7 +9,17 @@ import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 
-export const styles = createStyles({
+export type TimePickerToolbarClassKey =
+  | 'separator'
+  | 'hourMinuteLabel'
+  | 'hourMinuteLabelLandscape'
+  | 'hourMinuteLabelReverse'
+  | 'ampmSelection'
+  | 'ampmLandscape'
+  | 'ampmLabel'
+  | 'penIconLandscape';
+
+export const styles: MuiStyles<TimePickerToolbarClassKey> = {
   separator: {
     outline: 0,
     margin: '0 4px 0 2px',
@@ -44,9 +54,7 @@ export const styles = createStyles({
   penIconLandscape: {
     marginTop: 'auto',
   },
-});
-
-export type TimePickerToolbarClassKey = keyof WithStyles<typeof styles>['classes'];
+};
 
 const clockTypographyVariant = 'h3';
 

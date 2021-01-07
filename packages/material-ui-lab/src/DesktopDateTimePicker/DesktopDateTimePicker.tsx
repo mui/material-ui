@@ -50,6 +50,10 @@ const DesktopDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPr
    */
   ampmInClock: PropTypes.bool,
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * className applied to the root component.
    */
   className: PropTypes.string,

@@ -99,7 +99,7 @@ LoadingButton.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the button.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -111,7 +111,7 @@ LoadingButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the button is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

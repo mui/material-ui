@@ -30,6 +30,10 @@ const DesktopDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkn
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * className applied to the root component.
    */
   className: PropTypes.string,

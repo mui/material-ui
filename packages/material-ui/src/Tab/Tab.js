@@ -186,7 +186,7 @@ Tab.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the tab is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -199,12 +199,12 @@ Tab.propTypes = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,
   /**
-   * The icon element.
+   * The icon to display.
    */
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   /**

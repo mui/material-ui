@@ -1,15 +1,15 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the button.",
+    "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "disabled": "If <code>true</code>, the button is disabled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.",
     "href": "The URL to link to when the button is clicked. If defined, an <code>a</code> element will be used as the root node.",
-    "size": "The size of the button. <code>small</code> is equivalent to the dense button styling.",
+    "size": "The size of the component. <code>small</code> is equivalent to the dense button styling.",
     "variant": "The variant to use."
   },
   "classDescriptions": {

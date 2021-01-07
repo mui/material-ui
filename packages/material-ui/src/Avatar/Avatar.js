@@ -8,11 +8,11 @@ import Person from '../internal/svg-icons/Person';
 import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
 
 const overridesResolver = (props, styles) => {
-  const { variant = 'circular' } = props;
+  const { colorDefault, variant = 'circular' } = props;
 
   return deepmerge(styles.root || {}, {
     ...styles[variant],
-    [`&.${avatarClasses.colorDefault}`]: styles.colorDefault,
+    ...(colorDefault && styles.colorDefault),
     [`& .${avatarClasses.img}`]: styles.img,
     [`& .${avatarClasses.fallback}`]: styles.fallback,
   });
@@ -22,8 +22,9 @@ const useUtilityClasses = (styleProps) => {
   const { classes = {}, variant, colorDefault } = styleProps;
 
   return {
-    root: clsx(avatarClasses.root, classes.root, getAvatarUtilityClass(variant), {
+    root: clsx(avatarClasses.root, classes.root, getAvatarUtilityClass(variant), classes[variant], {
       [avatarClasses.colorDefault]: colorDefault,
+      [classes.colorDefault]: colorDefault,
     }),
     img: clsx(avatarClasses.img, classes.img),
     fallback: clsx(avatarClasses.fallback, classes.fallback),
@@ -135,7 +136,6 @@ function useLoaded({ src, srcSet }) {
 
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAvatar' });
-
   const {
     alt,
     children: childrenProp,
@@ -225,7 +225,7 @@ Avatar.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * Attributes applied to the `img` element if the component is used to display an image.
+   * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes">Attributes</a> applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
    */
   imgProps: PropTypes.object,
@@ -242,6 +242,10 @@ Avatar.propTypes = {
    * Use this attribute for responsive image display.
    */
   srcSet: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The shape of the avatar.
    * @default 'circular'

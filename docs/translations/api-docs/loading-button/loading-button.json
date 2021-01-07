@@ -1,9 +1,9 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the button.",
+    "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "disabled": "If <code>true</code>, the button is disabled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "pending": "If <code>true</code>, the pending indicator is shown.",
     "pendingIndicator": "Element placed before the children if the button is in pending state.",
     "pendingPosition": "The pending indicator can be positioned on the start, end, or the center of the button."

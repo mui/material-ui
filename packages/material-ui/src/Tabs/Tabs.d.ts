@@ -82,7 +82,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     onChange?: (event: React.SyntheticEvent, value: any) => void;
     /**
-     * The tabs orientation (layout flow direction).
+     * The component orientation (layout flow direction).
      * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';

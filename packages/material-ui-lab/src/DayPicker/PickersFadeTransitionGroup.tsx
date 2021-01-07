@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { MuiStyles, WithStyles, withStyles, StyleRules } from '@material-ui/core/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 interface FadeTransitionProps {
@@ -10,35 +10,41 @@ interface FadeTransitionProps {
   children: React.ReactElement;
 }
 
-const animationDuration = 500;
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'block',
-      position: 'relative',
-    },
-    fadeEnter: {
-      willChange: 'transform',
-      opacity: 0,
-    },
-    fadeEnterActive: {
-      opacity: 1,
-      transition: theme.transitions.create('opacity', {
-        duration: animationDuration,
-      }),
-    },
-    fadeExit: {
-      opacity: 1,
-    },
-    fadeExitActive: {
-      opacity: 0,
-      transition: theme.transitions.create('opacity', {
-        duration: animationDuration / 2,
-      }),
-    },
-  });
+export type PickersFadeTransitionGroupClassKey =
+  | 'root'
+  | 'fadeEnter'
+  | 'fadeEnterActive'
+  | 'fadeExit'
+  | 'fadeExitActive';
 
-export type PickersFadeTransitionGroupClassKey = keyof WithStyles<typeof styles>['classes'];
+const animationDuration = 500;
+export const styles: MuiStyles<PickersFadeTransitionGroupClassKey> = (
+  theme,
+): StyleRules<PickersFadeTransitionGroupClassKey> => ({
+  root: {
+    display: 'block',
+    position: 'relative',
+  },
+  fadeEnter: {
+    willChange: 'transform',
+    opacity: 0,
+  },
+  fadeEnterActive: {
+    opacity: 1,
+    transition: theme.transitions.create('opacity', {
+      duration: animationDuration,
+    }),
+  },
+  fadeExit: {
+    opacity: 1,
+  },
+  fadeExitActive: {
+    opacity: 0,
+    transition: theme.transitions.create('opacity', {
+      duration: animationDuration / 2,
+    }),
+  },
+});
 
 /**
  * @ignore - do not document.

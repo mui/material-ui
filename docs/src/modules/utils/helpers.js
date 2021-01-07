@@ -97,6 +97,10 @@ function includePeerDependencies(deps, versions) {
     newDeps['@material-ui/core'] = versions['@material-ui/core'];
   }
 
+  if (newDeps['@material-ui/data-grid']) {
+    newDeps['@material-ui/core'] = versions['@material-ui/core'];
+  }
+
   if (window.muiDocConfig) {
     newDeps = window.muiDocConfig.csbIncludePeerDependencies(newDeps, { versions });
   }

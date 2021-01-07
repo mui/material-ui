@@ -39,6 +39,10 @@ const MobileDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', M
    */
   cancelText: PropTypes.node,
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * className applied to the root component.
    */
   className: PropTypes.string,

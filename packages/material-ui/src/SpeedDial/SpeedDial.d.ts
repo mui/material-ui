@@ -76,7 +76,7 @@ export interface SpeedDialProps
    */
   onOpen?: (event: React.SyntheticEvent<{}>, reason: OpenReason) => void;
   /**
-   * If `true`, the SpeedDial is open.
+   * If `true`, the component is shown.
    */
   open?: boolean;
   /**

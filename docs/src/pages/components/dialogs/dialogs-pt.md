@@ -41,7 +41,7 @@ Use alertas com barra de título apenas para situações de alto risco, como a p
 Se um título é necessário:
 
 - Use uma pergunta ou declaração clara com uma explicação na área de conteúdo, como "Apagar dados do USB?".
-- Evite desculpas, ambiguidade ou perguntas, algo como "Atenção!" ou "Você tem certeza?"
+- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -94,9 +94,9 @@ function MyComponent() {
 
 ## Diálogos de confirmação
 
-Os diálogos de confirmação exigem que os usuários confirmem explicitamente suas escolhas antes que uma opção seja confirmada. Por exemplo, os usuários podem ouvir vários toques, mas apenas fazer uma seleção final ao tocar em "OK".
+Os diálogos de confirmação exigem que os usuários confirmem explicitamente suas escolhas antes que uma opção seja confirmada. For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Tocar em “Cancelar” em um diálogo de confirmação ou pressionar Voltar, cancela a ação, descarta todas as alterações e fecha o diálogo.
+Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -108,7 +108,7 @@ Você pode criar um diálogo arrastável usando [react-draggable](https://github
 
 ## Rolagem de conteúdo longo
 
-Quando os diálogos se tornam muito longos para a janela de visualização (viewport) ou dispositivo do usuário, eles habilitam a rolagem.
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll=paper` o conteúdo do diálogo rola dentro do elemento.
 - `scroll=body` o conteúdo do diálogo rola dentro do corpo da página.

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, WithStyles, Theme, withStyles } from '@material-ui/core/styles';
+import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { ClockViewType } from '../internal/pickers/constants/ClockType';
@@ -27,75 +27,85 @@ export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
   minutesStep?: number;
   ampmInClock?: boolean;
   allowKeyboardControl?: boolean;
-  getClockLabelText: <TDate>(
+  getClockLabelText: (
     view: 'hours' | 'minutes' | 'seconds',
     time: TDate,
     adapter: MuiPickersAdapter<TDate>,
   ) => string;
 }
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: theme.spacing(2),
-    },
-    clock: {
-      backgroundColor: 'rgba(0,0,0,.07)',
-      borderRadius: '50%',
-      height: 220,
-      width: 220,
-      flexShrink: 0,
-      position: 'relative',
-      pointerEvents: 'none',
-    },
-    squareMask: {
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'auto',
-      outline: 0,
-      // Disable scroll capabilities.
-      touchAction: 'none',
-      userSelect: 'none',
-      '&:active': {
-        cursor: 'move',
-      },
-    },
-    pin: {
-      width: 6,
-      height: 6,
-      borderRadius: '50%',
-      backgroundColor: theme.palette.primary.main,
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    },
-    amButton: {
-      zIndex: 1,
-      left: 8,
-      position: 'absolute',
-      bottom: 8,
-    },
-    pmButton: {
-      zIndex: 1,
-      position: 'absolute',
-      bottom: 8,
-      right: 8,
-    },
-    meridiemButtonSelected: {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText,
-      '&:hover': {
-        backgroundColor: theme.palette.primary.light,
-      },
-    },
-  });
+export type ClockClassKey =
+  | 'root'
+  | 'clock'
+  | 'squareMask'
+  | 'pin'
+  | 'amButton'
+  | 'pmButton'
+  | 'meridiemButtonSelected';
 
-export type ClockClassKey = keyof WithStyles<typeof styles>['classes'];
+export const styles: MuiStyles<ClockClassKey> = (theme): StyleRules<ClockClassKey> => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: theme.spacing(2),
+  },
+  clock: {
+    backgroundColor: 'rgba(0,0,0,.07)',
+    borderRadius: '50%',
+    height: 220,
+    width: 220,
+    flexShrink: 0,
+    position: 'relative',
+    pointerEvents: 'none',
+  },
+  squareMask: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'auto',
+    outline: 0,
+    // Disable scroll capabilities.
+    touchAction: 'none',
+    userSelect: 'none',
+    '@media (pointer: fine)': {
+      cursor: 'pointer',
+      borderRadius: '50%',
+    },
+    '&:active': {
+      cursor: 'move',
+    },
+  },
+  pin: {
+    width: 6,
+    height: 6,
+    borderRadius: '50%',
+    backgroundColor: theme.palette.primary.main,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  },
+  amButton: {
+    zIndex: 1,
+    left: 8,
+    position: 'absolute',
+    bottom: 8,
+  },
+  pmButton: {
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+  },
+  meridiemButtonSelected: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.light,
+    },
+  },
+});
 
 /**
  * @ignore - internal component.
@@ -118,7 +128,7 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     value,
   } = props;
 
-  const utils = useUtils();
+  const utils = useUtils<TDate>();
   const isStatic = React.useContext(IsStaticVariantContext);
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const isMoving = React.useRef(false);

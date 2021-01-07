@@ -76,7 +76,7 @@ function findComponents(directory, components = []) {
   return components;
 }
 
-const jsRegex = /\.js$/;
+const pageRegex = /(\.js|\.tsx)$/;
 const blackList = ['/.eslintrc', '/_document', '/_app'];
 
 /**
@@ -105,6 +105,7 @@ function findPages(
       .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
       .replace(/^.*\/pages/, '')
       .replace('.js', '')
+      .replace('.tsx', '')
       .replace(/^\/index$/, '/') // Replace `index` by `/`.
       .replace(/\/index$/, '');
 
@@ -130,7 +131,7 @@ function findPages(
       return;
     }
 
-    if (!jsRegex.test(item) || blackList.includes(pathname)) {
+    if (!pageRegex.test(item) || blackList.includes(pathname)) {
       return;
     }
 

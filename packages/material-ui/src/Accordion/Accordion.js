@@ -159,7 +159,7 @@ Accordion.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the accordion.
+   * The content of the component.
    */
   children: chainPropTypes(PropTypes.node.isRequired, (props) => {
     const summary = React.Children.toArray(props.children)[0];
@@ -190,7 +190,7 @@ Accordion.propTypes = {
    */
   defaultExpanded: PropTypes.bool,
   /**
-   * If `true`, the accordion is displayed in a disabled state.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

@@ -11,6 +11,7 @@
     "focusRipple": { "type": { "name": "bool" } },
     "focusVisibleClassName": { "type": { "name": "string" } },
     "onFocusVisible": { "type": { "name": "func" } },
+    "sx": { "type": { "name": "object" } },
     "TouchRippleProps": { "type": { "name": "object" } }
   },
   "name": "ButtonBase",

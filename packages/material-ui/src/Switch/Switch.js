@@ -222,7 +222,7 @@ Switch.propTypes = {
    */
   defaultChecked: PropTypes.bool,
   /**
-   * If `true`, the switch is disabled.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -266,7 +266,7 @@ Switch.propTypes = {
    */
   required: PropTypes.bool,
   /**
-   * The size of the switch.
+   * The size of the component.
    * `small` is equivalent to the dense switch styling.
    * @default 'medium'
    */

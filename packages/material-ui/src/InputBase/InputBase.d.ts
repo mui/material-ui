@@ -71,11 +71,11 @@ export interface InputBaseProps
    */
   color?: 'primary' | 'secondary';
   /**
-   * The default `input` element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue?: unknown;
   /**
-   * If `true`, the `input` element is disabled.
+   * If `true`, the component is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled?: boolean;
@@ -179,7 +179,7 @@ export interface InputBaseProps
    */
   minRows?: string | number;
   /**
-   * The size of the text field.
+   * The size of the component.
    */
   size?: 'small' | 'medium';
   /**

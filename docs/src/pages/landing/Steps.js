@@ -12,14 +12,6 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const InstallationLink = React.forwardRef((buttonProps, ref) => (
-  <Link naked href="/getting-started/installation" ref={ref} {...buttonProps} />
-));
-
-const UsageLink = React.forwardRef((buttonProps, ref) => (
-  <Link naked href="/getting-started/usage" ref={ref} {...buttonProps} />
-));
-
 const useStyles = makeStyles(
   (theme) => ({
     root: {
@@ -112,7 +104,9 @@ function HomeSteps() {
             />
           </div>
           <Divider className={classes.divider} />
-          <Button component={InstallationLink}>{t('installButton')}</Button>
+          <Button component={Link} noLinkStyle href="/getting-started/installation">
+            {t('installButton')}
+          </Button>
         </Grid>
         <Grid item xs={12} md={6} className={clsx(classes.step, classes.rightStep)}>
           <div className={classes.stepTitle}>
@@ -137,7 +131,9 @@ function App() {
             />
           </div>
           <Divider className={classes.divider} />
-          <Button component={UsageLink}>{t('usageButton')}</Button>
+          <Button component={Link} noLinkStyle href="/getting-started/usage">
+            {t('usageButton')}
+          </Button>
         </Grid>
       </Grid>
     </Container>

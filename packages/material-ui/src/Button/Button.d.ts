@@ -1,4 +1,6 @@
 import { OverridableStringUnion } from '@material-ui/types';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 
@@ -11,7 +13,7 @@ export type ButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The content of the button.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**
@@ -97,7 +99,7 @@ export type ButtonTypeMap<
      */
     color?: 'inherit' | 'primary' | 'secondary';
     /**
-     * If `true`, the button is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -126,7 +128,7 @@ export type ButtonTypeMap<
      */
     href?: string;
     /**
-     * The size of the button.
+     * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
@@ -135,6 +137,10 @@ export type ButtonTypeMap<
      * Element placed before the children.
      */
     startIcon?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The variant to use.
      * @default 'text'
