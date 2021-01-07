@@ -10,9 +10,9 @@ import {
   screen,
 } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
-import Drawer from '../Drawer';
-import { getDomTreeShapes } from './SwipeableDrawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import Drawer from '@material-ui/core/Drawer';
+import { getDomTreeShapes } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
 import useForkRef from '../utils/useForkRef';
 
@@ -689,7 +689,12 @@ describe('<SwipeableDrawer />', () => {
   });
 
   describe('getDomTreeShapes', () => {
-    it('should not ignore scroll container if parent is overflow hidden', () => {
+    it('should not ignore scroll container if parent is overflow hidden', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // Need layouting
+        this.skip();
+      }
+
       const { container } = render(
         <div style={{ overflow: 'hidden' }}>
           <div style={{ overflow: 'auto' }}>
