@@ -276,11 +276,13 @@ jobs:
           # Run a couple of times for a better sample.
           # TODO: hack something together where we can compile once and run multiple times e.g. by abusing watchmode.
           command: |
-            yarn test:karma:profile
-            yarn test:karma:profile
-            yarn test:karma:profile
-            yarn test:karma:profile
-            yarn test:karma:profile
+            # Running on chrome only since actual times are innaccurate anyway
+            # The other reason is that browserstack allows little concurrency so it's likely that we're starving other runs.
+            yarn test:karma:profile --browser chrome,chromeHeadless
+            yarn test:karma:profile --browser chrome,chromeHeadless
+            yarn test:karma:profile --browser chrome,chromeHeadless
+            yarn test:karma:profile --browser chrome,chromeHeadless
+            yarn test:karma:profile --browser chrome,chromeHeadless
       # Persist reports for inspection in https://mui-dashboard.netlify.app/
       - store_artifacts:
           # see karma.conf.profile.js reactProfilerReporter.outputDir
