@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import defaultTheme from '../styles/defaultTheme';
 import { Global as StyledEngineGlobal } from '@material-ui/styled-engine';
+import defaultTheme from '../styles/defaultTheme';
 
 export default function Global(props) {
   return <StyledEngineGlobal {...props} defaultTheme={defaultTheme} />;
