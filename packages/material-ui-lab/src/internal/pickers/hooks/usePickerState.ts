@@ -4,8 +4,8 @@ import { WrapperVariant } from '../wrappers/Wrapper';
 import { BasePickerProps } from '../typings/BasePicker';
 import { useUtils, useNow, MuiPickersAdapter } from './useUtils';
 
-export interface PickerStateValueManager<TInput, TDateValue> {
-  parseInput: (utils: MuiPickersAdapter, props: BasePickerProps<TInput, TDateValue>) => TDateValue;
+export interface PickerStateValueManager<TInputValue, TDateValue> {
+  parseInput: (utils: MuiPickersAdapter, value: TInputValue) => TDateValue;
   emptyValue: TDateValue;
   areValuesEqual: (
     utils: MuiPickersAdapter,
@@ -37,14 +37,14 @@ export function usePickerState<TInput, TDateValue>(
   const now = useNow();
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
-  const [pickerDate, setPickerDate] = React.useState(valueManager.parseInput(utils, props));
+  const [pickerDate, setPickerDate] = React.useState(valueManager.parseInput(utils, value));
 
   // Mobile keyboard view is a special case.
   // When it's open picker should work like closed, cause we are just showing text field
   const [isMobileKeyboardViewOpen, setMobileKeyboardViewOpen] = React.useState(false);
 
   React.useEffect(() => {
-    const parsedDateValue = valueManager.parseInput(utils, props);
+    const parsedDateValue = valueManager.parseInput(utils, value);
     setPickerDate((currentPickerDate) => {
       if (!valueManager.areValuesEqual(utils, currentPickerDate, parsedDateValue)) {
         return parsedDateValue;
@@ -52,8 +52,7 @@ export function usePickerState<TInput, TDateValue>(
 
       return currentPickerDate;
     });
-    // We need to react only on value change, because `date` could potentially return new Date() on each render
-  }, [value, utils]); // eslint-disable-line
+  }, [value, utils, valueManager]);
 
   const acceptDate = React.useCallback(
     (acceptedDate: TDateValue, needClosePicker: boolean) => {
