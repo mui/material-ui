@@ -2,18 +2,16 @@ import * as React from 'react';
 import Interpolate from '@trendmicro/react-interpolate';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Link from 'docs/src/modules/components/Link';
-import InputBase from '@material-ui/core/InputBase';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
 import TwitterIcon from '@material-ui/icons/Twitter';
+import IconButton from '@material-ui/core/IconButton';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import BrandingLogo from 'docs/src/modules/branding/BrandingLogo';
+import BrandingNewsletter from 'docs/src/modules/branding/BrandingNewsletter';
 import t1 from 'docs/src/modules/branding/t1';
 
 const FooterRoot = styled('footer')(({ theme }) => ({
@@ -201,38 +199,7 @@ export default function BrandingFooter() {
             </ul>
           </Grid>
           <Grid item xs={12} lg={3} className="BrandingFooter-list">
-            <form>
-              <Typography component="h3" sx={{ maxWidth: { lg: 140 } }}>
-                {t1('Subscribe to our Newsletter')}
-              </Typography>
-              <Box
-                sx={{
-                  display: 'flex',
-                  backgroundColor: (theme) => theme.palette.greyF3,
-                  borderRadius: 1,
-                  maxWidth: 300,
-                  '& input': {
-                    paddingLeft: 2,
-                    height: 40,
-                    boxSizing: 'border-box',
-                  },
-                  '& button': {
-                    flexShrink: 0,
-                  },
-                }}
-              >
-                <InputBase
-                  fullWidth
-                  placeholder={t1('Enter your email')}
-                  inputProps={{
-                    'aria-label': t1('Enter your email'),
-                  }}
-                />
-                <Button variant="contained" color="inherit" size="small" type="submit">
-                  {t1('Subscribe')}
-                </Button>
-              </Box>
-            </form>
+            <BrandingNewsletter />
             <Typography sx={{ mt: 1, mb: 3 }} color="textSecondary" variant="body2">
               {t1("We don't spam.")}
             </Typography>
