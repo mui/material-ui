@@ -1,0 +1,10 @@
+{
+  "props": {},
+  "name": "Global",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "filename": "/packages/material-ui/src/Global/Global.js",
+  "inheritance": null,
+  "demos": "",
+  "styledComponent": true
+}
