@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
+import useThemeProps from '../styles/useThemeProps';
+import Global from '../Global';
 
 export const html = {
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
@@ -57,22 +58,20 @@ export const body = (theme) => ({
 });
 
 export const styles = (theme) => ({
-  '@global': {
-    html,
-    '*, *::before, *::after': {
-      boxSizing: 'inherit',
-    },
-    'strong, b': {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    body: {
-      margin: 0, // Remove the margin in all browsers.
-      ...body(theme),
-      // Add support for document.body.requestFullScreen().
-      // Other elements, if background transparent, are not supported.
-      '&::backdrop': {
-        backgroundColor: theme.palette.background.default,
-      },
+  html,
+  '*, *::before, *::after': {
+    boxSizing: 'inherit',
+  },
+  'strong, b': {
+    fontWeight: theme.typography.fontWeightBold,
+  },
+  body: {
+    margin: 0, // Remove the margin in all browsers.
+    ...body(theme),
+    // Add support for document.body.requestFullScreen().
+    // Other elements, if background transparent, are not supported.
+    '&::backdrop': {
+      backgroundColor: theme.palette.background.default,
     },
   },
 });
@@ -80,9 +79,16 @@ export const styles = (theme) => ({
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
-function CssBaseline(props) {
+function CssBaseline(inProps) {
+  const props = useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
+
   const { children = null } = props;
-  return <React.Fragment>{children}</React.Fragment>;
+  return (
+    <>
+      <Global styles={styles} />
+      {children}
+    </>
+  );
 }
 
 CssBaseline.propTypes = {
@@ -107,4 +113,4 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-export default withStyles(styles, { name: 'MuiCssBaseline' })(CssBaseline);
+export default CssBaseline;

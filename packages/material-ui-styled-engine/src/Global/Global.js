@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Global as EmotionGlobal, css } from '@emotion/react';
+import { Global as EmotionGlobal } from '@emotion/react';
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;

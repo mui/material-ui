@@ -1,1 +1,2 @@
-export { Global as default } from '@material-ui/styled-engine';
+export { default } from './Global';
+export * from './Global';

@@ -17,8 +17,7 @@ const GlobalStyle = createGlobalStyle((props) => {
 });
 
 function Global(props) {
-  const { styles } = props;
-  return <GlobalStyle styles={styles} />;
+  return <GlobalStyle {...props} />;
 }
 
 export default Global;
