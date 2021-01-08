@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp } from '@material-ui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import Global from '../Global';
 
@@ -97,19 +96,8 @@ CssBaseline.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * You can wrap a node.
-   * @default null
    */
   children: PropTypes.node,
 };
-
-if (process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line no-useless-concat
-  CssBaseline['propTypes' + ''] = exactProp({
-    // eslint-disable-next-line react/forbid-foreign-prop-types
-    ...CssBaseline.propTypes,
-    // classes is injected by withStyles but .propTypes on the actual component are part of the public API
-    classes: PropTypes.any,
-  });
-}
 
 export default CssBaseline;

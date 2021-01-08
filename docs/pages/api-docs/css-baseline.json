@@ -1,8 +1,8 @@
 {
-  "props": { "children": { "type": { "name": "node" }, "default": "null" } },
+  "props": { "children": { "type": { "name": "node" } } },
   "name": "CssBaseline",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
-  "spread": false,
+  "spread": true,
   "filename": "/packages/material-ui/src/CssBaseline/CssBaseline.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/css-baseline/\">Css Baseline</a></li></ul>",
