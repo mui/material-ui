@@ -202,7 +202,7 @@ describe('<DatePicker />', () => {
     render(
       <ThemeProvider theme={theme}>
         <StaticDatePicker
-          value={adapterToUse.date('2019-01-01T00:00:00.000')}
+          value={adapterToUse.date('2020-01-01T00:00:00.000')}
           onChange={() => {}}
           renderInput={(params) => <TextField {...params} />}
         />
