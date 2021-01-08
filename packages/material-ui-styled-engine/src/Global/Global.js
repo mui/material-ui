@@ -2,9 +2,19 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Global as EmotionGlobal, css } from '@emotion/react';
 
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
+
 export default function Global(props) {
-  const { styles } = props;
-  return <EmotionGlobal styles={typeof styles === 'string' ? css(styles) : styles} />;
+  const { styles, defaultTheme } = props;
+
+  const globalStyles =
+    typeof styles === 'function'
+      ? (themeInput) => styles(isEmpty(themeInput) ? defaultTheme : themeInput)
+      : styles;
+
+  return <EmotionGlobal styles={globalStyles} />;
 }
 
 Global.propTypes = {

@@ -2,12 +2,18 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle((props) => {
-  if (typeof props.styles === 'string') {
-    return [...props.styles];
-  }
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
 
-  return props.styles;
+const GlobalStyle = createGlobalStyle((props) => {
+  const { styles, defaultTheme } = props;
+
+  return typeof styles === 'function'
+    ? (props) => styles(isEmpty(props.theme) ? defaultTheme : props.theme)
+    : typeof styles === 'string'
+    ? [...props.styles]
+    : styles;
 });
 
 function Global(props) {
