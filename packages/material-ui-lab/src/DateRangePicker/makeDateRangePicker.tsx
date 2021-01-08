@@ -46,8 +46,7 @@ export const useDateRangeValidation = makeValidationHook<
   RangeInput<unknown>,
   BaseDateRangePickerProps<any>
 >(validateDateRange, {
-  defaultValidationError: [null, null],
-  isSameError: (a, b) => a[1] === b[1] && a[0] === b[0],
+  isSameError: (a, b) => b !== null && a[1] === b[1] && a[0] === b[0],
 });
 
 export function makeDateRangePicker<TWrapper extends SomeWrapper>(

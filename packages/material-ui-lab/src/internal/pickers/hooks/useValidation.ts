@@ -14,8 +14,7 @@ export interface ValidationProps<TError, TDateValue> {
 }
 
 export interface ValidationHookOptions<TError> {
-  defaultValidationError?: TError;
-  isSameError?: (a: TError, b: TError) => boolean;
+  isSameError?: (a: TError, b: TError | null) => boolean;
 }
 
 const defaultIsSameError = (a: unknown, b: unknown) => a === b;
@@ -26,13 +25,11 @@ export function makeValidationHook<
   TProps extends ValidationProps<TError, TDateValue>
 >(
   validateFn: (utils: MuiPickersAdapter, value: TDateValue, props: TProps) => TError,
-  { defaultValidationError, isSameError = defaultIsSameError }: ValidationHookOptions<TError> = {},
+  { isSameError = defaultIsSameError }: ValidationHookOptions<TError> = {},
 ) {
   return (value: TDateValue, props: TProps) => {
     const utils = useUtils();
-    const previousValidationErrorRef = React.useRef<TError>(
-      defaultValidationError || null,
-    ) as React.MutableRefObject<TError>;
+    const previousValidationErrorRef = React.useRef<TError | null>(null);
 
     const validationError = validateFn(utils, value, props);
 
