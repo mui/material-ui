@@ -81,7 +81,7 @@ export const styles = (theme) => ({
  */
 function CssBaseline(inProps) {
   const props = useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
-  const { children = null } = props;
+  const { children } = props;
   return (
     <React.Fragment>
       <Global styles={styles} />
