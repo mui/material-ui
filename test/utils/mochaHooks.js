@@ -14,6 +14,7 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
 
   function logUnexpectedConsoleCalls(format, ...args) {
     const message = formatUtil(format, ...args);
+
     // Safe stack so that test dev can track where the unexpected console message was created.
     const { stack } = new Error();
 

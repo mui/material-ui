@@ -1,67 +1,47 @@
 import { expect } from 'chai';
-import { stub } from 'sinon';
 import { create, easing, duration, getAutoHeightDuration } from './transitions';
 
 describe('transitions', () => {
   describe('create() function', () => {
     describe('warnings', () => {
-      let consoleErrorStub;
-
-      beforeEach(() => {
-        consoleErrorStub = stub(console, 'error');
-      });
-
-      afterEach(() => {
-        consoleErrorStub.restore();
-      });
-
       it('should warn when first argument is of bad type', () => {
-        create(5554);
-        expect(consoleErrorStub.args[0][0]).to.include(
+        expect(() => create(5554)).toErrorDev(
           'Material-UI: Argument "props" must be a string or Array',
         );
-        create({});
-        expect(consoleErrorStub.args[1][0]).to.include(
+        expect(() => create({})).toErrorDev(
           'Material-UI: Argument "props" must be a string or Array',
         );
       });
 
       it('should warn when bad "duration" option type', () => {
-        create('font', { duration: null });
-        expect(consoleErrorStub.args[0][0]).to.include(
+        expect(() => create('font', { duration: null })).toErrorDev(
           'Material-UI: Argument "duration" must be a number or a string but found null',
         );
-        create('font', { duration: {} });
-        expect(consoleErrorStub.args[1][0]).to.include(
+        expect(() => create('font', { duration: {} })).toErrorDev(
           'Material-UI: Argument "duration" must be a number or a string but found [object Object]',
         );
       });
 
       it('should warn when bad "easing" option type', () => {
-        create('transform', { easing: 123 });
-        expect(consoleErrorStub.args[0][0]).to.include(
+        expect(() => create('transform', { easing: 123 })).toErrorDev(
           'Material-UI: Argument "easing" must be a string',
         );
-        create('transform', { easing: {} });
-        expect(consoleErrorStub.args[1][0]).to.include(
+        expect(() => create('transform', { easing: {} })).toErrorDev(
           'Material-UI: Argument "easing" must be a string',
         );
       });
 
       it('should warn when bad "delay" option type', () => {
-        create('size', { delay: null });
-        expect(consoleErrorStub.args[0][0]).to.include(
+        expect(() => create('size', { delay: null })).toErrorDev(
           'Material-UI: Argument "delay" must be a number or a string',
         );
-        create('size', { delay: {} });
-        expect(consoleErrorStub.args[1][0]).to.include(
+        expect(() => create('size', { delay: {} })).toErrorDev(
           'Material-UI: Argument "delay" must be a number or a string',
         );
       });
 
       it('should warn when passed unrecognized option', () => {
-        create('size', { fffds: 'value' });
-        expect(consoleErrorStub.args[0][0]).to.include(
+        expect(() => create('size', { fffds: 'value' })).toErrorDev(
           'Material-UI: Unrecognized argument(s) [fffds]',
         );
       });

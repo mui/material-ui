@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  act,
+  act as rtlAct,
   buildQueries,
   cleanup,
   fireEvent as rtlFireEvent,
@@ -11,7 +11,118 @@ import {
   prettyDOM,
   within,
 } from '@testing-library/react/pure';
+import { unstable_trace } from 'scheduler/tracing';
 import userEvent from './user-event';
+
+const enableDispatchingProfiler = process.env.TEST_GATE === 'enable-dispatching-profiler';
+
+function noTrace(interaction, callback) {
+  return callback();
+}
+
+/**
+ * Path used in Error.prototype.stack.
+ *
+ * Computed in `before` hook.
+ * @type {string}
+ */
+let workspaceRoot;
+
+/**
+ * @param {string} interactionName - Human readable label for this particular interaction.
+ * @param {() => T} callback
+ * @returns {T}
+ */
+function traceByStack(interactionName, callback) {
+  const { stack } = new Error();
+  const testLines = stack
+    .split(/\r?\n/)
+    .map((line) => {
+      // anonymous functions create a "weird" stackframe like
+      // "at path/to/actual.test.js (path/to/utility/file.js <- karma.test.js)"
+      // and we just want "path/to/actual.test.js" not "karma.test.js"
+      // TODO: Only supports chrome at the moment
+      const fileMatch = line.match(/([^\s(]+\.test\.(js|ts|tsx)):(\d+):(\d+)/);
+      if (fileMatch === null) {
+        return null;
+      }
+      return { name: fileMatch[1], line: +fileMatch[3], column: +fileMatch[4] };
+    })
+    .filter((maybeTestFile) => {
+      return maybeTestFile !== null;
+    })
+    .map((file) => {
+      return `${file.name.replace(workspaceRoot, '')}:${file.line}:${file.column}`;
+    });
+  const originLine = testLines[testLines.length - 1] ?? 'unknown line';
+
+  return unstable_trace(`${originLine} (${interactionName})`, performance.now(), callback);
+}
+
+class NoopProfiler {
+  id = 'noop';
+
+  // eslint-disable-next-line class-methods-use-this
+  onRender() {}
+
+  // eslint-disable-next-line class-methods-use-this
+  report() {}
+}
+
+class DispatchingProfiler {
+  renders = [];
+
+  /**
+   *
+   * @param {import('mocha').Test} test
+   */
+  constructor(test) {
+    /**
+     * @readonly
+     */
+    this.test = test;
+    this.id = test.fullTitle();
+  }
+
+  /**
+   * @type {import('react').ProfilerOnRenderCallback}
+   */
+  onRender = (id, phase, actualDuration, baseDuration, startTime, commitTime, interactions) => {
+    // Do minimal work here to keep the render fast.
+    // Though it's unclear whether work here affects the profiler results.
+    // But even if it doesn't we'll keep the test feedback snappy.
+    this.renders.push([
+      id,
+      phase,
+      actualDuration,
+      baseDuration,
+      startTime,
+      commitTime,
+      interactions,
+    ]);
+  };
+
+  report() {
+    const event = new window.CustomEvent('reactProfilerResults', {
+      detail: {
+        [this.id]: this.renders.map((entry) => {
+          return {
+            phase: entry[1],
+            actualDuration: entry[2],
+            baseDuration: entry[3],
+            startTime: entry[4],
+            commitTime: entry[5],
+            interactions: Array.from(entry[6]),
+          };
+        }),
+      },
+    });
+    window.dispatchEvent(event);
+  }
+}
+
+const Profiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
+const trace = enableDispatchingProfiler ? traceByStack : noTrace;
 
 // holes are *All* selectors which aren't necessary for id selectors
 const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
@@ -84,11 +195,26 @@ function clientRender(element, options = {}) {
     container,
     hydrate,
     strict = true,
+    profiler,
     wrapper: InnerWrapper = React.Fragment,
   } = options;
 
+  if (profiler === null) {
+    // TODO: remove tests rendering in mocha hooks
+    // throw new Error('Rendered outside of a test. Use the test renderer only in tests.');
+  }
+
   const Mode = strict ? React.StrictMode : React.Fragment;
   function Wrapper({ children }) {
+    if (profiler !== null) {
+      return (
+        <Mode>
+          <React.Profiler id={profiler.id} onRender={profiler.onRender}>
+            <InnerWrapper>{children}</InnerWrapper>
+          </React.Profiler>
+        </Mode>
+      );
+    }
     return (
       <Mode>
         <InnerWrapper>{children}</InnerWrapper>
@@ -97,27 +223,31 @@ function clientRender(element, options = {}) {
   }
   Wrapper.propTypes = { children: PropTypes.node };
 
-  const result = testingLibraryRender(element, {
-    baseElement,
-    container,
-    hydrate,
-    queries: { ...queries, ...customQueries },
-    wrapper: Wrapper,
-  });
+  const result = trace('render', () =>
+    testingLibraryRender(element, {
+      baseElement,
+      container,
+      hydrate,
+      queries: { ...queries, ...customQueries },
+      wrapper: Wrapper,
+    }),
+  );
 
   /**
    * convenience helper. Better than repeating all props.
    */
   result.setProps = function setProps(props) {
-    result.rerender(React.cloneElement(element, props));
+    trace('setProps', () => result.rerender(React.cloneElement(element, props)));
     return result;
   };
 
   result.forceUpdate = function forceUpdate() {
-    result.rerender(
-      React.cloneElement(element, {
-        'data-force-update': String(Math.random()),
-      }),
+    trace('forceUpdate', () =>
+      result.rerender(
+        React.cloneElement(element, {
+          'data-force-update': String(Math.random()),
+        }),
+      ),
     );
     return result;
   };
@@ -131,7 +261,6 @@ function clientRender(element, options = {}) {
  */
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
-
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
 
@@ -140,11 +269,29 @@ export function createClientRender(globalOptions = {}) {
    * For legacy reasons `createClientRender` might accidentally be called in a before(Each) hook.
    */
   let wasCalledInSuite = false;
-  before(() => {
+  before(function beforeHook() {
     wasCalledInSuite = true;
+
+    if (enableDispatchingProfiler) {
+      // TODO windows?
+      const filename = new Error().stack
+        ?.split(/\r?\n/)
+        .map((line) => {
+          const fileMatch = line.match(/\(([^)]+):\d+:\d+\)/);
+          if (fileMatch === null) {
+            return null;
+          }
+          return fileMatch[1];
+        })
+        .find((file) => {
+          return file?.endsWith('createClientRender.js');
+        });
+      workspaceRoot = filename?.replace('test/utils/createClientRender.js', '');
+    }
   });
 
-  beforeEach(() => {
+  let profiler = null;
+  beforeEach(function beforeEachHook() {
     if (!wasCalledInSuite) {
       const error = new Error(
         'Unable to run `before` hook for `createClientRender`. This usually indicates that `createClientRender` was called in a `before` hook instead of in a `describe()` block.',
@@ -152,6 +299,14 @@ export function createClientRender(globalOptions = {}) {
       error.stack = createClientRenderStack;
       throw error;
     }
+
+    const test = this.currentTest;
+    if (test === undefined) {
+      throw new Error(
+        'Unable to find the currently running test. This is a bug with the client-renderer. Please report this issue to a maintainer.',
+      );
+    }
+    profiler = new Profiler(this.currentTest);
   });
 
   afterEach(() => {
@@ -168,69 +323,78 @@ export function createClientRender(globalOptions = {}) {
     }
 
     cleanup();
+    profiler.report();
+    profiler = null;
   });
 
   return function configuredClientRender(element, options = {}) {
     const { strict = globalStrict, ...localOptions } = options;
 
-    return clientRender(element, { ...localOptions, strict });
+    return clientRender(element, { ...localOptions, strict, profiler });
   };
 }
 
-const originalFireEventKeyDown = rtlFireEvent.keyDown;
-const originalFireEventKeyUp = rtlFireEvent.keyUp;
 /**
  * @type {typeof rtlFireEvent}
  */
-const fireEvent = (...args) => rtlFireEvent(...args);
-Object.assign(fireEvent, rtlFireEvent, {
-  keyDown(element, options = {}) {
-    // `element` shouldn't be `document` but we catch this later anyway
-    const document = element.ownerDocument || element;
-    const target = document.activeElement || document.body || document.documentElement;
-    if (target !== element) {
-      // see https://www.w3.org/TR/uievents/#keydown
-      const error = new Error(
-        `\`keydown\` events can only be targeted at the active element which is ${prettyDOM(
-          target,
-          undefined,
-          { maxDepth: 1 },
-        )}`,
-      );
-      // We're only interested in the callsite of fireEvent.keyDown
-      error.stack = error.stack
-        .split('\n')
-        .filter((line) => !/at Function.key/.test(line))
-        .join('\n');
-      throw error;
-    }
+const fireEvent = (target, event, ...args) => {
+  return trace(`firEvent.${event.type}`, () => rtlFireEvent(target, event, ...args));
+};
 
-    originalFireEventKeyDown(element, options);
-  },
-  keyUp(element, options = {}) {
-    // `element` shouldn't be `document` but we catch this later anyway
-    const document = element.ownerDocument || element;
-    const target = document.activeElement || document.body || document.documentElement;
-    if (target !== element) {
-      // see https://www.w3.org/TR/uievents/#keyup
-      const error = new Error(
-        `\`keyup\` events can only be targeted at the active element which is ${prettyDOM(
-          target,
-          undefined,
-          { maxDepth: 1 },
-        )}`,
-      );
-      // We're only interested in the callsite of fireEvent.keyUp
-      error.stack = error.stack
-        .split('\n')
-        .filter((line) => !/at Function.key/.test(line))
-        .join('\n');
-      throw error;
-    }
-
-    originalFireEventKeyUp(element, options);
-  },
+Object.keys(rtlFireEvent).forEach((eventType) => {
+  fireEvent[eventType] = (...args) =>
+    trace(`firEvent.${eventType}`, () => rtlFireEvent[eventType](...args));
 });
+
+const originalFireEventKeyDown = rtlFireEvent.keyDown;
+fireEvent.keyDown = (element, options = {}) => {
+  // `element` shouldn't be `document` but we catch this later anyway
+  const document = element.ownerDocument || element;
+  const target = document.activeElement || document.body || document.documentElement;
+  if (target !== element) {
+    // see https://www.w3.org/TR/uievents/#keydown
+    const error = new Error(
+      `\`keydown\` events can only be targeted at the active element which is ${prettyDOM(
+        target,
+        undefined,
+        { maxDepth: 1 },
+      )}`,
+    );
+    // We're only interested in the callsite of fireEvent.keyDown
+    error.stack = error.stack
+      .split('\n')
+      .filter((line) => !/at Function.key/.test(line))
+      .join('\n');
+    throw error;
+  }
+
+  trace('fireEvent.keyDown', () => originalFireEventKeyDown(element, options));
+};
+
+const originalFireEventKeyUp = rtlFireEvent.keyUp;
+fireEvent.keyUp = (element, options = {}) => {
+  // `element` shouldn't be `document` but we catch this later anyway
+  const document = element.ownerDocument || element;
+  const target = document.activeElement || document.body || document.documentElement;
+  if (target !== element) {
+    // see https://www.w3.org/TR/uievents/#keyup
+    const error = new Error(
+      `\`keyup\` events can only be targeted at the active element which is ${prettyDOM(
+        target,
+        undefined,
+        { maxDepth: 1 },
+      )}`,
+    );
+    // We're only interested in the callsite of fireEvent.keyUp
+    error.stack = error.stack
+      .split('\n')
+      .filter((line) => !/at Function.key/.test(line))
+      .join('\n');
+    throw error;
+  }
+
+  trace('fireEvent.keyUp', () => originalFireEventKeyUp(element, options));
+};
 
 /**
  *
@@ -272,8 +436,12 @@ export function fireTouchChangedEvent(target, type, options) {
   target.getBoundingClientRect = originalGetBoundingClientRect;
 }
 
+export function act(callback) {
+  return trace('act', () => rtlAct(callback));
+}
+
 export * from '@testing-library/react/pure';
-export { act, cleanup, fireEvent, userEvent };
+export { cleanup, fireEvent, userEvent };
 // We import from `@testing-library/react` and `@testing-library/dom` before creating a JSDOM.
 // At this point a global document isn't available yet. Now it is.
 export const screen = within(document.body);

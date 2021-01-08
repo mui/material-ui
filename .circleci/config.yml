@@ -1,5 +1,11 @@
 version: 2.1
 
+parameters:
+  workflow:
+    description: The name of the workflow to run
+    type: string
+    default: pipeline
+
 defaults: &defaults
   parameters:
     react-dist-tag:
@@ -256,6 +262,33 @@ jobs:
       - run:
           name: Test umd release
           command: yarn test:umd
+  test_profile:
+    <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright:bionic
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Tests real browsers
+          # Run a couple of times for a better sample.
+          # TODO: hack something together where we can compile once and run multiple times e.g. by abusing watchmode.
+          command: |
+            # Running on chrome only since actual times are innaccurate anyway
+            # The other reason is that browserstack allows little concurrency so it's likely that we're starving other runs.
+            yarn test:karma:profile --browsers chrome,chromeHeadless
+            yarn test:karma:profile --browsers chrome,chromeHeadless
+            yarn test:karma:profile --browsers chrome,chromeHeadless
+            yarn test:karma:profile --browsers chrome,chromeHeadless
+            yarn test:karma:profile --browsers chrome,chromeHeadless
+      # Persist reports for inspection in https://mui-dashboard.netlify.app/
+      - store_artifacts:
+          # see karma.conf.profile.js reactProfilerReporter.outputDir
+          path: tmp/react-profiler-report/karma
+          destination: react-profiler-report/karma
   test_regressions:
     <<: *defaults
     docker:
@@ -274,6 +307,8 @@ jobs:
 workflows:
   version: 2
   pipeline:
+    when:
+      equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
       - checkout
       - test_unit:
@@ -294,6 +329,11 @@ workflows:
             - test_static
             - test_types
             - test_browser
+  profile:
+    when:
+      equal: [profile, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_profile
   react-next:
     triggers:
       - schedule:
