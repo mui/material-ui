@@ -9,11 +9,15 @@ function isEmpty(obj) {
 const GlobalStyle = createGlobalStyle((props) => {
   const { styles, defaultTheme } = props;
 
-  return typeof styles === 'function'
-    ? (props) => styles(isEmpty(props.theme) ? defaultTheme : props.theme)
-    : typeof styles === 'string'
-    ? [...props.styles]
-    : styles;
+  if (typeof styles === 'function') {
+    return (props) => styles(isEmpty(props.theme) ? defaultTheme : props.theme)
+  }
+
+  if (typeof styles === 'string') {
+    return [...props.styles];
+  }
+
+  return styles
 });
 
 function Global(props) {

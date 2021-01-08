@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
 import ThemeProvider from '../styles/ThemeProvider';
@@ -12,7 +12,7 @@ const customTheme = createMuiTheme({
 describe('Global', () => {
   const render = createClientRender();
 
-  it('should provide default theme', function () {
+  it('should provide default theme', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
     const { container } = render(
@@ -27,7 +27,7 @@ describe('Global', () => {
     });
   });
 
-  it('should respect context theme if available', function () {
+  it('should respect context theme if available', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
     const { container } = render(
