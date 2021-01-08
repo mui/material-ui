@@ -20,7 +20,7 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Contained Buttons
+## Contained buttons
 
 [Contained buttons](https://material.io/components/buttons#contained-button)
 are high-emphasis, distinguished by their use of elevation and fill.
@@ -32,7 +32,7 @@ You can remove the elevation with the `disableElevation` prop.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Text Buttons
+## Text buttons
 
 [Text buttons](https://material.io/components/buttons#text-button)
 are typically used for less-pronounced actions, including those located:
@@ -44,7 +44,7 @@ In cards, text buttons help maintain an emphasis on card content.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-## Outlined Buttons
+## Outlined buttons
 
 [Outlined buttons](https://material.io/components/buttons#outlined-button)
 are medium-emphasis buttons. They contain actions that are important,
@@ -83,11 +83,11 @@ For larger or smaller buttons use the `size` prop.
 
 ## Buttons with icons and label
 
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons
+## Icon button
 
 Icon buttons are commonly found in app bars and toolbars.
 
@@ -115,10 +115,10 @@ Toggle the switch to see the transition between the different states.
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
-## Complex Buttons
+## Complex buttons
 
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
-You can take advantage of this lower level component to build custom interactions.
+You can take advantage of this lower-level component to build custom interactions.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
