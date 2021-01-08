@@ -22,5 +22,6 @@ const Global = createGlobalStyle((props) => {
 export default Global;
 
 Global.propTypes = {
+  defaultTheme: PropTypes.object,
   styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
 };

@@ -18,5 +18,6 @@ export default function Global(props) {
 }
 
 Global.propTypes = {
+  defaultTheme: PropTypes.object,
   styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
 };
