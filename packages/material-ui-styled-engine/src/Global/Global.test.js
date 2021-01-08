@@ -8,7 +8,7 @@ import Global from './Global';
 describe('Global', () => {
   const render = createClientRender();
 
-  it('should add global styles', function () {
+  it('should add global styles', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
     const { container } = render(
@@ -23,7 +23,7 @@ describe('Global', () => {
     });
   });
 
-  it('should add global styles using JS syntax', function () {
+  it('should add global styles using JS syntax', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
     const { container } = render(
@@ -38,7 +38,7 @@ describe('Global', () => {
     });
   });
 
-  it('should add global styles using function', function () {
+  it('should add global styles using function', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
     const { container } = render(
@@ -53,7 +53,7 @@ describe('Global', () => {
     });
   });
 
-  it('should give presedence to styled()', function () {
+  it('should give presedence to styled()', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
     const Span = styled('span')`
@@ -72,7 +72,7 @@ describe('Global', () => {
     });
   });
 
-  it('should give presedence to styled() using JS syntax', function () {
+  it('should give presedence to styled() using JS syntax', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
     const Span = styled('span')({
