@@ -40,8 +40,17 @@ export default function IconLabelButtons() {
         variant="contained"
         className={classes.button}
         startIcon={<CloudUploadIcon />}
+        component="label"
       >
         Upload
+        <input
+          type="file"
+          // multiple
+          hidden
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            console.log(e.currentTarget.files);
+          }}
+        />
       </Button>
       <Button
         variant="contained"

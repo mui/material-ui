@@ -38,8 +38,17 @@ export default function IconLabelButtons() {
         variant="contained"
         className={classes.button}
         startIcon={<CloudUploadIcon />}
+        component="label"
       >
         Upload
+        <input
+          type="file"
+          // multiple
+          hidden
+          onChange={(e) => {
+            console.log(e.currentTarget.files);
+          }}
+        />
       </Button>
       <Button
         variant="contained"
