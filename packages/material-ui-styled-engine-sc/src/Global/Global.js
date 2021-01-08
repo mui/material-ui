@@ -1,4 +1,3 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 
@@ -6,7 +5,7 @@ function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-const GlobalStyle = createGlobalStyle((props) => {
+const Global = createGlobalStyle((props) => {
   const { styles, defaultTheme } = props;
 
   if (typeof styles === 'function') {
@@ -19,10 +18,6 @@ const GlobalStyle = createGlobalStyle((props) => {
 
   return styles
 });
-
-function Global(props) {
-  return <GlobalStyle {...props} />;
-}
 
 export default Global;
 
