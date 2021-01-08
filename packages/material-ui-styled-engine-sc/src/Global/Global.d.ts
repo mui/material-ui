@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { CSSObject, InterpolationFunction } from 'styled-components';
 
-type StringTemplate = (strings: TemplateStringsArray, ...interpolations: any[]) => string;
-
-type GlobalStyles = StringTemplate | string | CSSObject | InterpolationFunction<any>;
-
 export interface GlobalProps {
-  styles: GlobalStyles;
+  styles: string | CSSObject | InterpolationFunction<any>;
   defaultTheme?: object;
 }
 
