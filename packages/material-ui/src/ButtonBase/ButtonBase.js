@@ -11,11 +11,11 @@ import TouchRipple from './TouchRipple';
 import buttonBaseClasses from './buttonBaseClasses';
 
 const overridesResolver = (props, styles) => {
-  const { disabled, focusVisible } = props;
+  const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...(disabled && styles.disabled),
-    ...(focusVisible && styles.focusVisible),
+    ...(styleProps.disabled && styles.disabled),
+    ...(styleProps.focusVisible && styles.focusVisible),
   });
 };
 

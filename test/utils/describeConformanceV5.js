@@ -57,7 +57,38 @@ function testThemeComponents(element, getOptions) {
       expect(container.firstChild).to.have.attribute(testProp, 'testProp');
     });
 
-    it("respect theme's styleOverrides", () => {
+    it("respect theme's styleOverrides custom state", () => {
+      const { muiName, testStateOverrides } = getOptions();
+
+      if (!testStateOverrides) {
+        return;
+      }
+
+      const testStyle = {
+        marginTop: '13px',
+      };
+
+      const theme = createMuiTheme({
+        components: {
+          [muiName]: {
+            styleOverrides: {
+              [testStateOverrides.styleKey]: testStyle,
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          {React.cloneElement(element, {
+            [testStateOverrides.prop]: testStateOverrides.value,
+          })}
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).to.toHaveComputedStyle(testStyle);
+    });
+
+    it("respect theme's styleOverrides slots", () => {
       const { muiName, testDeepOverrides } = getOptions();
 
       const testStyle = {
