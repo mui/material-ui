@@ -71,7 +71,7 @@ export default function BrandingDiscoverMore() {
             href="/discover-more/roadmap/"
             imagePosition="flex-end"
           >
-            Living document, layout out future plans and updates.
+            Living document, laying out future plans and updates.
           </DiscoverMoreCard>
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
