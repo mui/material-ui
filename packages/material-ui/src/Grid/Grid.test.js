@@ -149,21 +149,21 @@ describe('<Grid />', () => {
         paddingRight: '8px',
 =======
       expect(styles(remTheme)['spacing-xs-2']).to.deep.equal({
-        marginTop: '-0.25rem',
-        marginLeft: '-0.25rem',
+        marginTop: '-0.5rem',
+        marginLeft: '-0.5rem',
         width: 'calc(100% + 0.5rem)',
         '& > $item': {
-          paddingTop: '0.25rem',
-          paddingLeft: '0.25rem',
+          paddingTop: '0.5rem',
+          paddingLeft: '0.5rem',
         },
       });
       expect(styles(defaultTheme)['spacing-xs-2']).to.deep.equal({
-        marginTop: '-8px',
-        marginLeft: '-8px',
+        marginTop: '-16px',
+        marginLeft: '-16px',
         width: 'calc(100% + 16px)',
         '& > $item': {
-          paddingTop: '8px',
-          paddingLeft: '8px',
+          paddingTop: '16px',
+          paddingLeft: '16px',
         },
 >>>>>>> [Grid] fix: test for gutters
       });
