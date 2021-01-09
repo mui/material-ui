@@ -72,7 +72,7 @@ export default function BrandingNewsletter() {
             placeholder={t1('Enter your email')}
             name="email"
             inputProps={{
-              required: 'true',
+              required: true,
               'aria-label': t1('Enter your email'),
             }}
           />
