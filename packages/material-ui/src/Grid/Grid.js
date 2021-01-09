@@ -60,9 +60,9 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   }
 }
 
-function getOffset(val, div = 1) {
+function getOffset(val) {
   const parse = parseFloat(val);
-  return `${parse / div}${String(val).replace(String(parse), '') || 'px'}`;
+  return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
 function generateGutter({ theme, styleProps }) {
@@ -74,10 +74,12 @@ function generateGutter({ theme, styleProps }) {
 
     if (themeSpacing !== '0px') {
       styles = {
-        margin: `-${getOffset(themeSpacing, 2)}`,
+        marginTop: `-${getOffset(themeSpacing)}`,
+        marginLeft: `-${getOffset(themeSpacing)}`,
         width: `calc(100% + ${getOffset(themeSpacing)})`,
         [`& > .${gridClasses.item}`]: {
-          padding: getOffset(themeSpacing, 2),
+          paddingTop: getOffset(themeSpacing),
+          paddingLeft: getOffset(themeSpacing),
         },
       };
     }
