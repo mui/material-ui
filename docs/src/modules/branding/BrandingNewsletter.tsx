@@ -64,6 +64,8 @@ export default function BrandingNewsletter() {
             },
             '& button': {
               flexShrink: 0,
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
             },
           }}
         >
