@@ -51,16 +51,7 @@ function DiscoverMoreCard(props: DiscoverMoreCardProp) {
         <Typography sx={{ mt: 1, color: 'greyAA' }}>{children}</Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: imagePosition }}>
-        <Box
-          component="img"
-          alt=""
-          src={src}
-          sx={{
-            height: 243,
-            width: imagePosition === 'center' ? 290 : 330,
-            display: 'block',
-          }}
-        />
+        <img alt="" src={src} height={243} width={imagePosition === 'center' ? 290 : 330} />
       </Box>
     </Box>
   );
