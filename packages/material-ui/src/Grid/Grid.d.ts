@@ -139,6 +139,11 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * You should be wrapping *items* with a *container*.
      * @default false
      */
+    /**
+     * If `true`, it will make the items full width independent if they have spacing or not
+     * @default false
+     */
+    fullWidth?: boolean;
     item?: boolean;
     /**
      * Defines the `justify-content` style property.
@@ -194,11 +199,6 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default false
      */
     zeroMinWidth?: boolean;
-    /**
-     * If `true`, it will make the items full width independent if they have spacing or not
-     * @default false
-     */
-    fullWidth?: boolean;
   };
   defaultComponent: D;
 }

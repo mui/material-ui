@@ -18,6 +18,11 @@ import requirePropFactory from '../utils/requirePropFactory';
 const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
+function getOffset(val, div = 1) {
+  const parse = parseFloat(val);
+  return `${parse / div}${String(val).replace(String(parse), '') || 'px'}`;
+}
+
 function generateGrid(globalStyles, theme, breakpoint, fullWidth) {
   const styles = {};
 
@@ -75,11 +80,6 @@ function generateGrid(globalStyles, theme, breakpoint, fullWidth) {
   } else {
     globalStyles[theme.breakpoints.up(breakpoint)] = styles;
   }
-}
-
-function getOffset(val, div = 1) {
-  const parse = parseFloat(val);
-  return `${parse / div}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
 function generateGutter(theme, breakpoint) {
@@ -335,6 +335,11 @@ Grid.propTypes = {
    */
   direction: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
   /**
+   * If `true`, it will make the items full width independent if they have spacing or not
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
+  /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
    * @default false
@@ -416,11 +421,6 @@ Grid.propTypes = {
    * @default false
    */
   zeroMinWidth: PropTypes.bool,
-  /**
-   * If `true`, it will make the items full width independent if they have spacing or not
-   * @default false
-   */
-  fullWidth: PropTypes.bool,
 };
 
 const StyledGrid = withStyles(styles, { name: 'MuiGrid' })(Grid);
@@ -432,6 +432,7 @@ if (process.env.NODE_ENV !== 'production') {
     alignContent: requireProp('container'),
     alignItems: requireProp('container'),
     direction: requireProp('container'),
+    fullWidth: requireProp('container'),
     justifyContent: requireProp('container'),
     lg: requireProp('item'),
     md: requireProp('item'),
@@ -440,7 +441,6 @@ if (process.env.NODE_ENV !== 'production') {
     wrap: requireProp('container'),
     xs: requireProp('item'),
     zeroMinWidth: requireProp('item'),
-    fullWidth: requireProp('container'),
   };
 }
 
