@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import ArrowCirleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
 import Link from 'docs/src/modules/components/Link';
 
-interface DiscoverMoreCardProp {
+interface DiscoverMoreCardProps {
   children: string;
   href: string;
   imagePosition: 'flex-start' | 'center' | 'flex-end';
@@ -14,7 +14,7 @@ interface DiscoverMoreCardProp {
   title: string;
 }
 
-function DiscoverMoreCard(props: DiscoverMoreCardProp) {
+function DiscoverMoreCard(props: DiscoverMoreCardProps) {
   const { imagePosition, src, title, href, children } = props;
   return (
     <Box
