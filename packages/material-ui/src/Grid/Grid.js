@@ -417,7 +417,7 @@ Grid.propTypes = {
    */
   zeroMinWidth: PropTypes.bool,
   /**
-   * If `true`, it will make the items full width independent if they have spacing or not
+     * If `true`, items are full-width, independent of whether or not they have spacing.
    * @default false
    */
   fullWidth: PropTypes.bool,
