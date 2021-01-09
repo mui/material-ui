@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import BottomNavigation from '@material-ui/core/BottomNavigation';

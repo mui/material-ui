@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
 import Input from '@material-ui/core/Input';

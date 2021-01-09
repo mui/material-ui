@@ -422,7 +422,7 @@ const CustomizedSlider = styled(Slider)(
 **CssModulesSlider.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
 // webpack，parcel 或者其他工具将会把 CSS 注入到该页面
 import styles from './CssModulesSlider.module.css';
@@ -504,7 +504,7 @@ export default function CssModulesPriority() {
 **CssModulesSliderDeep1.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 // webpack，parcel 或者其他工具将会把 CSS 注入到该页面
 import styles from './CssModulesSliderDeep1.module.css';
 import Slider from '@material-ui/core/Slider';
@@ -540,7 +540,7 @@ export default function CssModulesSliderDeep1() {
 **CssModulesSliderDeep2.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 // webpack，parcel 或者其他工具将会把 CSS 注入到该页面
 import styles from './CssModulesSliderDeep2.module.css';
 import Slider from '@material-ui/core/Slider';

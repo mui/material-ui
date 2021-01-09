@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import AppTheme from 'docs/src/modules/components/AppTheme';
 import Privacy from 'docs/src/pages/premium-themes/onepirate/Privacy';
 

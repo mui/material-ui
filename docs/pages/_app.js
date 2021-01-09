@@ -1,6 +1,6 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
-import React from 'react';
+import * as React from 'react';
 import find from 'lodash/find';
 import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';

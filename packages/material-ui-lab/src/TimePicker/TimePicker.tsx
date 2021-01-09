@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import ClockIcon from '../internal/svg-icons/Clock';
 import { ParsableDate } from '../internal/pickers/constants/prop-types';

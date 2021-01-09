@@ -2,7 +2,7 @@
 import Benchmark from 'benchmark';
 import fs from 'fs';
 import path from 'path';
-import React from 'react';
+import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Markdown from 'docs/src/pages/getting-started/templates/blog/Markdown';

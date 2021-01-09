@@ -1,5 +1,5 @@
 declare module 'docs/src/modules/components/HighlightedCode' {
-  import React from 'react';
+  import * as React from 'react';
   import { StyledComponentProps } from '@material-ui/core/styles';
 
   type ClassKey = 'root';

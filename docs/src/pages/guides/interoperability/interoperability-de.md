@@ -422,7 +422,7 @@ Es ist schwer zu wissen, welchen Marktanteil [diese Styling-Lösung](https://git
 **CssModulesSlider.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
@@ -504,7 +504,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 **CssModulesSliderDeep1.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
 import Slider from '@material-ui/core/Slider';
@@ -540,7 +540,7 @@ The above demo relies on the [default `className` values](/styles/advanced/#with
 **CssModulesSliderDeep2.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
 import Slider from '@material-ui/core/Slider';

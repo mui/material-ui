@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Global } from '@emotion/react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { grey } from '@material-ui/core/colors';

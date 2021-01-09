@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
 import { create, SheetsRegistry } from 'jss';

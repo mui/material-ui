@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { chainPropTypes, getDisplayName } from '@material-ui/utils';

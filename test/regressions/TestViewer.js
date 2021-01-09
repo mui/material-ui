@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useFakeTimers } from 'sinon';
 import { StylesProvider } from '@material-ui/core';

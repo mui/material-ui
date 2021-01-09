@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import Benchmark from 'benchmark';
-import React from 'react';
+import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import styledComponents, { ServerStyleSheet } from 'styled-components';
 import styledEmotion from '@emotion/styled';

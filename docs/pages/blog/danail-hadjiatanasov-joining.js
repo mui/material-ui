@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 

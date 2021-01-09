@@ -8147,7 +8147,7 @@ Here is an example: https://codesandbox.io/s/vjzn5z4k77.
 
 ```jsx
 import Button from '@material-ui/core/Button';
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Like https://github.com/brunobertolini/styled-by
