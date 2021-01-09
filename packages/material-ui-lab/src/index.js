@@ -151,3 +151,5 @@ export * from './YearPicker';
 
 // createFilterOptions is exported from Autocomplete
 export { default as useAutocomplete } from './useAutocomplete';
+
+export { useUtils } from './internal/pickers/hooks/useUtils';

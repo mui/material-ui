@@ -150,3 +150,5 @@ export * from './YearPicker';
 
 export { default as useAutocomplete } from './useAutocomplete';
 export * from './useAutocomplete';
+
+export { useUtils } from './internal/pickers/hooks/useUtils';
