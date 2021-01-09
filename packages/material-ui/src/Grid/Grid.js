@@ -93,10 +93,12 @@ function generateGutter(theme, breakpoint) {
     }
 
     styles[`spacing-${breakpoint}-${spacing}`] = {
-      margin: `-${getOffset(themeSpacing, 2)}`,
+      marginTop: `-${getOffset(themeSpacing)}`,
+      marginLeft: `-${getOffset(themeSpacing)}`,
       width: `calc(100% + ${getOffset(themeSpacing)})`,
       '& > $item': {
-        padding: getOffset(themeSpacing, 2),
+        paddingTop: getOffset(themeSpacing),
+        paddingLeft: getOffset(themeSpacing),
       },
     };
   });
