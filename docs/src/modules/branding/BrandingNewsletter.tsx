@@ -46,8 +46,8 @@ export default function BrandingNewsletter() {
       {form === 'sent' ? (
         <Alert severity="success">
           <AlertTitle>Thanks! Now check your email.</AlertTitle>
-          You should get a <strong>confirmation email</strong> soon, open it up and confirm your
-          email so we can keep you up to date.
+          You should get a <strong>confirmation email</strong> soon. Open it up and confirm your
+          email address so that we can keep you up to date.
         </Alert>
       ) : (
         <Box
