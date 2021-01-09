@@ -87,7 +87,14 @@ export const styles = (theme) => {
       userSelect: 'none',
       WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
-      '&:hover, &$focusVisible': {
+      '&:hover': {
+        backgroundColor: emphasize(backgroundColor, 0.08),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor,
+        },
+      },
+      '&$focusVisible': {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
       '&:active': {
@@ -96,13 +103,27 @@ export const styles = (theme) => {
     },
     /* Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
     clickableColorPrimary: {
-      '&:hover, &$focusVisible': {
+      '&:hover': {
+        backgroundColor: emphasize(theme.palette.primary.main, 0.08),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.primary.main,
+        },
+      },
+      '&$focusVisible': {
         backgroundColor: emphasize(theme.palette.primary.main, 0.08),
       },
     },
     /* Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
     clickableColorSecondary: {
-      '&:hover, &$focusVisible': {
+      '&:hover': {
+        backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.secondary.main,
+        },
+      },
+      '&$focusVisible': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
       },
     },
@@ -130,7 +151,14 @@ export const styles = (theme) => {
       border: `1px solid ${
         theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
-      '&$focusVisible, $clickable&:hover': {
+      '$clickable&:hover': {
+        backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+      '&$focusVisible': {
         backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       },
       '& $avatar': {
@@ -158,6 +186,13 @@ export const styles = (theme) => {
     outlinedPrimary: {
       color: theme.palette.primary.main,
       border: `1px solid ${theme.palette.primary.main}`,
+      '$clickable&:hover': {
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
       '&$focusVisible, $clickable&:hover': {
         backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       },
@@ -166,7 +201,14 @@ export const styles = (theme) => {
     outlinedSecondary: {
       color: theme.palette.secondary.main,
       border: `1px solid ${theme.palette.secondary.main}`,
-      '&$focusVisible, $clickable&:hover': {
+      '$clickable&:hover': {
+        backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+      '&$focusVisible': {
         backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
@@ -221,6 +263,10 @@ export const styles = (theme) => {
       margin: '0 5px 0 -6px',
       '&:hover': {
         color: alpha(deleteIconColor, 0.4),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          color: deleteIconColor,
+        },
       },
     },
     /* Styles applied to the `deleteIcon` element if `size="small"`. */
@@ -234,6 +280,10 @@ export const styles = (theme) => {
       color: alpha(theme.palette.primary.contrastText, 0.7),
       '&:hover, &:active': {
         color: theme.palette.primary.contrastText,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          color: alpha(theme.palette.primary.contrastText, 0.7),
+        },
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
@@ -241,6 +291,10 @@ export const styles = (theme) => {
       color: alpha(theme.palette.secondary.contrastText, 0.7),
       '&:hover, &:active': {
         color: theme.palette.secondary.contrastText,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          color: alpha(theme.palette.secondary.contrastText, 0.7),
+        },
       },
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
@@ -248,6 +302,10 @@ export const styles = (theme) => {
       color: alpha(theme.palette.primary.main, 0.7),
       '&:hover, &:active': {
         color: theme.palette.primary.main,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          color: alpha(theme.palette.primary.main, 0.7),
+        },
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
@@ -255,6 +313,10 @@ export const styles = (theme) => {
       color: alpha(theme.palette.secondary.main, 0.7),
       '&:hover, &:active': {
         color: theme.palette.secondary.main,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          color: alpha(theme.palette.secondary.main, 0.7),
+        },
       },
     },
     /* Pseudo-class applied to the root element if keyboard focused. */
