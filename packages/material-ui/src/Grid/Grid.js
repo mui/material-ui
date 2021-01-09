@@ -106,6 +106,15 @@ function generateGutter(theme, breakpoint) {
   return styles;
 }
 
+function removeKeys(obj, filter) {
+  const newObj = {};
+  Object.assign(newObj, obj);
+  for (let i = 0; i < filter.length; i += 1) {
+    delete newObj[filter[i]];
+  }
+  return newObj;
+}
+
 // Default CSS values
 // flex: '0 1 auto',
 // flexDirection: 'row',
@@ -214,16 +223,37 @@ export const styles = (theme) => ({
     justifyContent: 'space-evenly',
   },
   ...generateGutter(theme, 'xs'),
-  ...theme.breakpoints.keys.reduce((accumulator, key) => {
-    // Use side effect over immutability for better performance.
-    generateGrid(accumulator, theme, key);
-    return accumulator;
-  }, {}),
-  ...theme.breakpoints.keys.reduce((accumulator, key) => {
-    // Use side effect over immutability for better performance.
-    generateGrid(accumulator, theme, key, true);
-    return accumulator;
-  }, {}),
+  ...(() => {
+    const finalStyles = {};
+
+    const mediaQueries = theme.breakpoints.keys.map((breakpoint) =>
+      theme.breakpoints.up(breakpoint),
+    );
+
+    const stylesWithoutFullWidth = theme.breakpoints.keys.reduce((accumulator, key) => {
+      // Use side effect over immutability for better performance.
+      generateGrid(accumulator, theme, key);
+      return accumulator;
+    }, {});
+    const stylesFullWidth = theme.breakpoints.keys.reduce((accumulator, key) => {
+      // Use side effect over immutability for better performance.
+      generateGrid(accumulator, theme, key, true);
+      return accumulator;
+    }, {});
+    Object.assign(finalStyles, {
+      ...removeKeys(stylesWithoutFullWidth, mediaQueries),
+      ...removeKeys(stylesFullWidth, mediaQueries),
+    });
+    mediaQueries.forEach((query) => {
+      Object.assign(finalStyles, {
+        [query]: {
+          ...stylesWithoutFullWidth[query],
+          ...stylesFullWidth[query],
+        },
+      });
+    });
+    return finalStyles;
+  })(),
 });
 
 const Grid = React.forwardRef(function Grid(props, ref) {
