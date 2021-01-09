@@ -22,17 +22,7 @@ import gridClasses, { getGridUtilityClass } from './gridClasses';
 function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   const size = styleProps[breakpoint];
 
-<<<<<<< HEAD
   if (!size) return;
-=======
-function getOffset(val, div = 1) {
-  const parse = parseFloat(val);
-  return `${parse / div}${String(val).replace(String(parse), '') || 'px'}`;
-}
-
-function generateGrid(globalStyles, theme, breakpoint) {
-  const styles = {};
->>>>>>> [Grid] fix: spacing issue
 
   let styles = {};
 
@@ -53,25 +43,12 @@ function generateGrid(globalStyles, theme, breakpoint) {
     // Keep 7 significant numbers.
     const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
 
-    const fullWidths = SPACINGS.slice(1).reduce((obj, spacing) => {
-      const themeSpacing = theme.spacing(spacing);
-      const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
-      return {
-        ...obj,
-        [`&$container$item$spacing-xs-${spacing}`]: {
-          flexBasis: fullWidth,
-          maxWidth: fullWidth,
-        },
-      };
-    }, {});
-
     // Close to the bootstrap implementation:
     // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
     styles = {
       flexBasis: width,
       flexGrow: 0,
       maxWidth: width,
-      ...fullWidths,
     };
   }
 
@@ -83,7 +60,6 @@ function generateGrid(globalStyles, theme, breakpoint) {
   }
 }
 
-<<<<<<< HEAD
 function getOffset(val) {
   const parse = parseFloat(val);
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
@@ -92,10 +68,6 @@ function getOffset(val) {
 function generateGutter({ theme, styleProps }) {
   const { container, spacing } = styleProps;
   let styles = {};
-=======
-function generateGutter(theme, breakpoint) {
-  const styles = {};
->>>>>>> [Grid] fix: spacing issue
 
   if (container && spacing !== 0) {
     const themeSpacing = theme.spacing(spacing);
@@ -165,7 +137,6 @@ const GridRoot = experimentalStyled(
 )(
   ({ styleProps }) => ({
     boxSizing: 'border-box',
-<<<<<<< HEAD
     ...(styleProps.container && {
       display: 'flex',
       flexWrap: 'wrap',
@@ -261,103 +232,6 @@ const useUtilityClasses = (styleProps) => {
 
 const Grid = React.forwardRef(function Grid(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiGrid' });
-=======
-    margin: 0, // For instance, it's useful when used with a `figure` element.
-  },
-  /* Styles applied to the root element if `zeroMinWidth={true}`. */
-  zeroMinWidth: {
-    minWidth: 0,
-  },
-  /* Styles applied to the root element if `direction="column"`. */
-  'direction-xs-column': {
-    flexDirection: 'column',
-    '& > $item': {
-      maxWidth: 'none !important',
-    },
-  },
-  /* Styles applied to the root element if `direction="column-reverse"`. */
-  'direction-xs-column-reverse': {
-    flexDirection: 'column-reverse',
-    '& > $item': {
-      maxWidth: 'none !important',
-    },
-  },
-  /* Styles applied to the root element if `direction="row-reverse"`. */
-  'direction-xs-row-reverse': {
-    flexDirection: 'row-reverse',
-  },
-  /* Styles applied to the root element if `wrap="nowrap"`. */
-  'wrap-xs-nowrap': {
-    flexWrap: 'nowrap',
-  },
-  /* Styles applied to the root element if `wrap="reverse"`. */
-  'wrap-xs-wrap-reverse': {
-    flexWrap: 'wrap-reverse',
-  },
-  /* Styles applied to the root element if `alignItems="center"`. */
-  'align-items-xs-center': {
-    alignItems: 'center',
-  },
-  /* Styles applied to the root element if `alignItems="flex-start"`. */
-  'align-items-xs-flex-start': {
-    alignItems: 'flex-start',
-  },
-  /* Styles applied to the root element if `alignItems="flex-end"`. */
-  'align-items-xs-flex-end': {
-    alignItems: 'flex-end',
-  },
-  /* Styles applied to the root element if `alignItems="baseline"`. */
-  'align-items-xs-baseline': {
-    alignItems: 'baseline',
-  },
-  /* Styles applied to the root element if `alignContent="center"`. */
-  'align-content-xs-center': {
-    alignContent: 'center',
-  },
-  /* Styles applied to the root element if `alignContent="flex-start"`. */
-  'align-content-xs-flex-start': {
-    alignContent: 'flex-start',
-  },
-  /* Styles applied to the root element if `alignContent="flex-end"`. */
-  'align-content-xs-flex-end': {
-    alignContent: 'flex-end',
-  },
-  /* Styles applied to the root element if `alignContent="space-between"`. */
-  'align-content-xs-space-between': {
-    alignContent: 'space-between',
-  },
-  /* Styles applied to the root element if `alignContent="space-around"`. */
-  'align-content-xs-space-around': {
-    alignContent: 'space-around',
-  },
-  /* Styles applied to the root element if `justifyContent="center"`. */
-  'justify-content-xs-center': {
-    justifyContent: 'center',
-  },
-  /* Styles applied to the root element if `justifyContent="flex-end"`. */
-  'justify-content-xs-flex-end': {
-    justifyContent: 'flex-end',
-  },
-  /* Styles applied to the root element if `justifyContent="space-between"`. */
-  'justify-content-xs-space-between': {
-    justifyContent: 'space-between',
-  },
-  /* Styles applied to the root element if `justifyContent="space-around"`. */
-  'justify-content-xs-space-around': {
-    justifyContent: 'space-around',
-  },
-  /* Styles applied to the root element if `justifyContent="space-evenly"`. */
-  'justify-content-xs-space-evenly': {
-    justifyContent: 'space-evenly',
-  },
-  ...generateGutter(theme, 'xs'),
-  ...theme.breakpoints.keys.reduce((accumulator, key) => {
-    // Use side effect over immutability for better performance.
-    generateGrid(accumulator, theme, key);
-    return accumulator;
-  }, {}),
-});
->>>>>>> [Grid] fix: spacing issue
 
   const {
     alignContent = 'stretch',

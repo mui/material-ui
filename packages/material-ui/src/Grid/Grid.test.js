@@ -98,6 +98,7 @@ describe('<Grid />', () => {
         spacing: (factor) => `${0.25 * factor}rem`,
       });
 
+<<<<<<< HEAD
       const { rerender } = render(
         <div style={{ width: parentWidth }}>
           <ThemeProvider theme={remTheme}>
@@ -146,6 +147,25 @@ describe('<Grid />', () => {
         paddingBottom: '8px',
         paddingLeft: '8px',
         paddingRight: '8px',
+=======
+      expect(styles(remTheme)['spacing-xs-2']).to.deep.equal({
+        marginTop: '-0.25rem',
+        marginLeft: '-0.25rem',
+        width: 'calc(100% + 0.5rem)',
+        '& > $item': {
+          paddingTop: '0.25rem',
+          paddingLeft: '0.25rem',
+        },
+      });
+      expect(styles(defaultTheme)['spacing-xs-2']).to.deep.equal({
+        marginTop: '-8px',
+        marginLeft: '-8px',
+        width: 'calc(100% + 16px)',
+        '& > $item': {
+          paddingTop: '8px',
+          paddingLeft: '8px',
+        },
+>>>>>>> [Grid] fix: test for gutters
       });
     });
   });
