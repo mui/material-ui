@@ -115,7 +115,7 @@ describe('<MenuItem />', () => {
       expect(handleKeyDown.callCount).to.equal(1);
     });
 
-    it('should fire onTouchStart', function touchStartTest() {
+    it('should fire onTouchStart', function test() {
       // only run in supported browsers
       if (typeof Touch === 'undefined') {
         this.skip();

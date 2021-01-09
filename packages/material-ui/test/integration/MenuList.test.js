@@ -558,7 +558,7 @@ describe('<MenuList> integration', () => {
       }, 500);
     });
 
-    it('should match ignoring hidden text', function testHiddenText() {
+    it('should match ignoring hidden text', function test() {
       if (!innerTextSupported) {
         // Will only be executed in Karma tests, since jsdom doesn't support innerText
         this.skip();
