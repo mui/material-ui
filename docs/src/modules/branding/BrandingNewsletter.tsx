@@ -15,7 +15,7 @@ function searchParams(params: any) {
 }
 
 export default function BrandingNewsletter() {
-  const [form, setForm] = React.useState('pristine');
+  const [form, setForm] = React.useState<'sent' | 'pristine'>('pristine');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -45,7 +45,7 @@ export default function BrandingNewsletter() {
       </Typography>
       {form === 'sent' ? (
         <Alert severity="success">
-          <AlertTitle>Thanks! Now check your email.</AlertTitle>
+          <AlertTitle>Thanks! Check your email.</AlertTitle>
           You should get a <strong>confirmation email</strong> soon. Open it up and confirm your
           email address so that we can keep you up to date.
         </Alert>
@@ -73,6 +73,7 @@ export default function BrandingNewsletter() {
             fullWidth
             placeholder={t1('Enter your email')}
             name="email"
+            type="email"
             inputProps={{
               required: true,
               'aria-label': t1('Enter your email'),
