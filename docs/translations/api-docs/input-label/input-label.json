@@ -40,11 +40,11 @@
       "conditions": "<code>size=\"small\"</code>"
     },
     "shrink": {
-      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "description": "Styles applied to the input element if {{conditions}}.",
       "conditions": "<code>shrink={true}</code>"
     },
     "animated": {
-      "description": "Styles applied to the `input` element unless {{conditions}}.",
+      "description": "Styles applied to the input element unless {{conditions}}.",
       "conditions": "<code>disableAnimation={true}</code>"
     },
     "filled": {

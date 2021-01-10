@@ -30,45 +30,45 @@
       "conditions": "<code>scroll=\"body\"</code>"
     },
     "container": { "description": "Styles applied to the container element." },
-    "paper": { "description": "Styles applied to the `Paper` component." },
+    "paper": { "description": "Styles applied to the Paper component." },
     "paperScrollPaper": {
-      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "description": "Styles applied to the Paper component if {{conditions}}.",
       "conditions": "<code>scroll=\"paper\"</code>"
     },
     "paperScrollBody": {
-      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "description": "Styles applied to the Paper component if {{conditions}}.",
       "conditions": "<code>scroll=\"body\"</code>"
     },
     "paperWidthFalse": {
-      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "description": "Styles applied to the Paper component if {{conditions}}.",
       "conditions": "<code>maxWidth=false</code>"
     },
     "paperWidthXs": {
-      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "description": "Styles applied to the Paper component if {{conditions}}.",
       "conditions": "<code>maxWidth=\"xs\"</code>"
     },
     "paperWidthSm": {
-      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "description": "Styles applied to the Paper component if {{conditions}}.",
       "conditions": "<code>maxWidth=\"sm\"</code>"
     },
     "paperWidthMd": {
-      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "description": "Styles applied to the Paper component if {{conditions}}.",
       "conditions": "<code>maxWidth=\"md\"</code>"
     },
     "paperWidthLg": {
-      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "description": "Styles applied to the Paper component if {{conditions}}.",
       "conditions": "<code>maxWidth=\"lg\"</code>"
     },
     "paperWidthXl": {
-      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "description": "Styles applied to the Paper component if {{conditions}}.",
       "conditions": "<code>maxWidth=\"xl\"</code>"
     },
     "paperFullWidth": {
-      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "description": "Styles applied to the Paper component if {{conditions}}.",
       "conditions": "<code>fullWidth={true}</code>"
     },
     "paperFullScreen": {
-      "description": "Styles applied to the `Paper` component if {{conditions}}.",
+      "description": "Styles applied to the Paper component if {{conditions}}.",
       "conditions": "<code>fullScreen={true}</code>"
     }
   }

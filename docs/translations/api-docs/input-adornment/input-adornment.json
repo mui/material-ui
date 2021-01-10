@@ -25,7 +25,7 @@
     },
     "disablePointerEvents": {
       "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>disablePointerEvents=true</code>"
+      "conditions": "<code>disablePointerEvents={true}</code>"
     },
     "hiddenLabel": {
       "description": "Styles applied if the adornment is used inside <FormControl hiddenLabel />."

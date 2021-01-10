@@ -73,30 +73,30 @@
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
     },
-    "avatar": { "description": "Styles applied to the `avatar` element." },
+    "avatar": { "description": "Styles applied to the avatar element." },
     "avatarSmall": {
-      "description": "Styles applied to the `avatar` element if {{conditions}}.",
+      "description": "Styles applied to the avatar element if {{conditions}}.",
       "conditions": "<code>size=\"small\"</code>"
     },
     "avatarColorPrimary": {
-      "description": "Styles applied to the `avatar` element if {{conditions}}.",
+      "description": "Styles applied to the avatar element if {{conditions}}.",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "avatarColorSecondary": {
-      "description": "Styles applied to the `avatar` element if {{conditions}}.",
+      "description": "Styles applied to the avatar element if {{conditions}}.",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "icon": { "description": "Styles applied to the `icon` element." },
+    "icon": { "description": "Styles applied to the icon element." },
     "iconSmall": {
-      "description": "Styles applied to the `icon` element if {{conditions}}.",
+      "description": "Styles applied to the icon element if {{conditions}}.",
       "conditions": "<code>size=\"small\"</code>"
     },
     "iconColorPrimary": {
-      "description": "Styles applied to the `icon` element if {{conditions}}.",
+      "description": "Styles applied to the icon element if {{conditions}}.",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "iconColorSecondary": {
-      "description": "Styles applied to the `icon` element if {{conditions}}.",
+      "description": "Styles applied to the icon element if {{conditions}}.",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "label": { "description": "Styles applied to the label `span` element." },
@@ -104,9 +104,9 @@
       "description": "Styles applied to the label `span` element if {{conditions}}.",
       "conditions": "<code>size=\"small\"</code>"
     },
-    "deleteIcon": { "description": "Styles applied to the `deleteIcon` element." },
+    "deleteIcon": { "description": "Styles applied to the deleteIcon element." },
     "deleteIconSmall": {
-      "description": "Styles applied to the `deleteIcon` element if {{conditions}}.",
+      "description": "Styles applied to the deleteIcon element if {{conditions}}.",
       "conditions": "<code>size=\"small\"</code>"
     },
     "deleteIconColorPrimary": {

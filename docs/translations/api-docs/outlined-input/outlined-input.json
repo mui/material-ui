@@ -54,29 +54,29 @@
       "conditions": "<code>error={true}</code>"
     },
     "sizeSmall": {
-      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "description": "Styles applied to the input element if {{conditions}}.",
       "conditions": "<code>size=\"small\"</code>"
     },
     "multiline": {
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>multiline={true}</code>"
     },
-    "notchedOutline": { "description": "Styles applied to the `NotchedOutline` element." },
-    "input": { "description": "Styles applied to the `input` element." },
+    "notchedOutline": { "description": "Styles applied to the NotchedOutline element." },
+    "input": { "description": "Styles applied to the input element." },
     "inputSizeSmall": {
-      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "description": "Styles applied to the input element if {{conditions}}.",
       "conditions": "<code>size=\"small\"</code>"
     },
     "inputMultiline": {
-      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "description": "Styles applied to the input element if {{conditions}}.",
       "conditions": "<code>multiline={true}</code>"
     },
     "inputAdornedStart": {
-      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "description": "Styles applied to the input element if {{conditions}}.",
       "conditions": "<code>startAdornment</code> is provided"
     },
     "inputAdornedEnd": {
-      "description": "Styles applied to the `input` element if {{conditions}}.",
+      "description": "Styles applied to the input element if {{conditions}}.",
       "conditions": "<code>endAdornment</code> is provided"
     }
   }
