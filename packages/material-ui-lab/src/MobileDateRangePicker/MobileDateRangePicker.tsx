@@ -272,7 +272,7 @@ const MobileDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', M
    *  renderInput={(startProps, endProps) => (
    *   <React.Fragment>
    *     <TextField {...startProps} />
-   *     to
+   *     <Box sx={{ mx: 2 }}> to </Box>
    *     <TextField {...endProps} />
    *   </React.Fragment>;
    *  )}

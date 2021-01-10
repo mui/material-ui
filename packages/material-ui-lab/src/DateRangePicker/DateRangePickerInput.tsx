@@ -41,7 +41,7 @@ export interface ExportedDateRangePickerInputProps {
    *  renderInput={(startProps, endProps) => (
    *   <React.Fragment>
    *     <TextField {...startProps} />
-   *     to
+   *     <Box sx={{ mx: 2 }}> to </Box>
    *     <TextField {...endProps} />
    *   </React.Fragment>;
    *  )}
