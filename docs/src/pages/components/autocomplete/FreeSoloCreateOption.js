@@ -33,7 +33,7 @@ export default function FreeSoloCreateOption() {
         const isExisting = options.some((option) => inputValue === option.title);
         if (inputValue !== '' && !isExisting) {
           filtered.push({
-            inputValue: inputValue,
+            inputValue,
             title: `Add "${inputValue}"`,
           });
         }
