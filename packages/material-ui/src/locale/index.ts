@@ -631,7 +631,7 @@ export const esES: Localization = {
         },
         labelRowsPerPage: 'Filas por página:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} de ${count !== -1 ? count : `more than ${to}`}`,
+          `${from}-${to} de ${count !== -1 ? count : `más de ${to}`}`,
       },
     },
     MuiRating: {
