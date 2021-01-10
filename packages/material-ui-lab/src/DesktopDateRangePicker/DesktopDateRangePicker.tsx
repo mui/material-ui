@@ -255,7 +255,7 @@ const DesktopDateRangePicker = makeDateRangePicker(
    *  renderInput={(startProps, endProps) => (
    *   <React.Fragment>
    *     <TextField {...startProps} />
-   *     <DateRangeDelimiter> to <DateRangeDelimiter>
+   *     <Box sx={{ mx: 2 }}> to </Box>
    *     <TextField {...endProps} />
    *   </React.Fragment>;
    *  )}
