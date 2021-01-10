@@ -10027,17 +10027,18 @@ jsbn@~0.1.0:
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
 jscodeshift-add-imports@^1.0.1:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/jscodeshift-add-imports/-/jscodeshift-add-imports-1.0.4.tgz#237e5af6f6945fd096b030a0946738f569521546"
-  integrity sha512-I5VZTN+beq5UMMMKy5HaBI1rgQwdVABO6fyojoi5fZFosoVgAJrd8tBkPFexCBj3Otton8KJ7uuiHzENTdSTlw==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/jscodeshift-add-imports/-/jscodeshift-add-imports-1.0.7.tgz#5dec165cbda4096ec095e7fab2533aa9765b4399"
+  integrity sha512-TfQMWotuyhf+QxWCFsbwowS83cA1j8OZBKT1c6NGZYgIAENP9RikAaqWa1pFLeK6OIKhbhw8jVpzXsI4n8VOZQ==
   dependencies:
     "@babel/traverse" "^7.4.5"
-    jscodeshift-find-imports "^2.0.1"
+    jscodeshift-find-imports "^2.0.2"
+    p-timeout "^3.2.0"
 
-jscodeshift-find-imports@^2.0.1:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/jscodeshift-find-imports/-/jscodeshift-find-imports-2.0.3.tgz#1e6949fc01bab7672a30622533f860285df84fc6"
-  integrity sha512-By/Od+r17bRv3laSd38mk5SFnuP7T1SRS8Zj4Cdw0xqFTnXzhCTgWAQHYN8frGKo3W2N9P24fUpJLbRcddI5GA==
+jscodeshift-find-imports@^2.0.2:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/jscodeshift-find-imports/-/jscodeshift-find-imports-2.0.4.tgz#4dc427bff6c8f8c6c766a19043cdbee4e1d10782"
+  integrity sha512-HxOzjWDOFFSCf8EKSTQGqCxXeRFqZszOywnZ0HuMB9YPDFHVpxftGRsY+QS+Qq8o2qUojlmNU3JEHts5DWYS1A==
 
 jscodeshift@^0.11.0:
   version "0.11.0"
@@ -12553,7 +12554,7 @@ p-reduce@^1.0.0:
   resolved "https://registry.yarnpkg.com/p-reduce/-/p-reduce-1.0.0.tgz#18c2b0dd936a4690a529f8231f58a0fdb6a47dfa"
   integrity sha1-GMKw3ZNqRpClKfgjH1ig/bakffo=
 
-p-timeout@^3.1.0:
+p-timeout@^3.1.0, p-timeout@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/p-timeout/-/p-timeout-3.2.0.tgz#c7e17abc971d2a7962ef83626b35d635acf23dfe"
   integrity sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg==
