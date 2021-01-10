@@ -28,11 +28,13 @@ export default function FreeSoloCreateOption() {
       filterOptions={(options, params) => {
         const filtered = filter(options, params);
 
+        const { inputValue } = params;
         // Suggest the creation of a new value
-        if (params.inputValue !== '') {
+        const isExisting = options.some((option) => inputValue === option.title);
+        if (inputValue !== '' && !isExisting) {
           filtered.push({
-            inputValue: params.inputValue,
-            title: `Add "${params.inputValue}"`,
+            inputValue,
+            title: `Add "${inputValue}"`,
           });
         }
 
