@@ -16,6 +16,6 @@
   },
   "classDescriptions": {
     "paper": { "description": "Styles applied to the Paper component." },
-    "list": { "description": "Styles applied to the List component.via `MenuList`." }
+    "list": { "description": "Styles applied to the List component via `MenuList`." }
   }
 }

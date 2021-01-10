@@ -29,7 +29,7 @@ export const styles = {
     // Add iOS momentum scrolling.
     WebkitOverflowScrolling: 'touch',
   },
-  /* Styles applied to the List component.via `MenuList`. */
+  /* Styles applied to the List component via `MenuList`. */
   list: {
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,

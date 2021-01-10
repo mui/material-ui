@@ -294,6 +294,7 @@ describe('<TreeItem />', () => {
 
           expect(getByTestId('test')).to.have.attribute('aria-selected', 'false');
         });
+
         it('should have the attribute `aria-selected={true}` if selected', () => {
           const { getByTestId } = render(
             <TreeView multiSelect defaultSelected={'test'}>
