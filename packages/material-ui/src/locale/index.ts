@@ -123,8 +123,8 @@ export const azAZ: Localization = {
           return 'Əvvəlki səhifəyə keç';
         },
         labelRowsPerPage: 'Səhifəyə düşən sətrlər:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} dən ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} dən ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -203,8 +203,8 @@ export const bgBG: Localization = {
           return 'Отиди на предишната страница';
         },
         labelRowsPerPage: 'Редове на страница:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} от ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} от ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -274,8 +274,8 @@ export const caES: Localization = {
         //   return 'Go to previous page';
         // },
         labelRowsPerPage: 'Files per pàgina:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} de ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} de ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -424,8 +424,8 @@ export const deDE: Localization = {
           return 'Zur vorherigen Seite';
         },
         labelRowsPerPage: 'Zeilen pro Seite:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} von ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} von ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -631,7 +631,7 @@ export const esES: Localization = {
         },
         labelRowsPerPage: 'Filas por página:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} de ${count !== -1 ? count : `more than ${to}`}`,
+          `${from}-${to} de ${count !== -1 ? count : `más de ${to}`}`,
       },
     },
     MuiRating: {
@@ -701,8 +701,8 @@ export const etEE: Localization = {
           return 'Vali eelmine lehekülg';
         },
         labelRowsPerPage: 'Ridu leheküljel:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -777,8 +777,8 @@ export const faIR: Localization = {
           return 'رفتن به صفحه‌ی قبلی';
         },
         labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} از ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} از ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -848,8 +848,8 @@ export const fiFI: Localization = {
           return 'Mene edelliselle sivulle';
         },
         labelRowsPerPage: 'Rivejä per sivu:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -990,8 +990,8 @@ export const heIL: Localization = {
         //   return 'Go to previous page';
         // },
         labelRowsPerPage: 'שורות בעמוד:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} מתוך ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} מתוך ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1132,8 +1132,8 @@ export const huHU: Localization = {
           return 'Előző oldalra';
         },
         labelRowsPerPage: 'Sorok száma:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1203,8 +1203,8 @@ export const hyAM: Localization = {
         //   return 'Go to previous page';
         // },
         labelRowsPerPage: 'Տողեր մեկ էջում`',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1274,8 +1274,8 @@ export const idID: Localization = {
         //   return 'Go to previous page';
         // },
         labelRowsPerPage: 'Baris per halaman:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} dari ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} dari ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1345,8 +1345,8 @@ export const isIS: Localization = {
         //   return 'Go to previous page';
         // },
         labelRowsPerPage: 'Raðir á síðu:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} af ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} af ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1416,8 +1416,8 @@ export const itIT: Localization = {
           return 'Vai alla pagina precedente';
         },
         labelRowsPerPage: 'Righe per pagina:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} di ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} di ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1701,8 +1701,8 @@ export const nlNL: Localization = {
         //   return 'Go to previous page';
         // },
         labelRowsPerPage: 'Regels per pagina :',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} van ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} van ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1772,8 +1772,8 @@ export const plPL: Localization = {
           return 'Przejdź do poprzedniej strony';
         },
         labelRowsPerPage: 'Wierszy na stronę:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} z ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} z ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1996,8 +1996,8 @@ export const roRO: Localization = {
           return 'Mergi la pagina precedentă';
         },
         labelRowsPerPage: 'Rânduri pe pagină:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} din ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} din ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -2371,8 +2371,8 @@ export const trTR: Localization = {
           return 'Önceki sayfaya git';
         },
         labelRowsPerPage: 'Sayfa başına satır:',
-        labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} tanesinden ${count !== -1 ? count : `more than ${to}`}`,
+        // labelDisplayedRows: ({ from, to, count }) =>
+        //   `${from}-${to} tanesinden ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
