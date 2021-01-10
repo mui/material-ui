@@ -24,19 +24,28 @@ const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
 const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
+  const {
+    color = 'default',
+    variant = 'standard',
+    anchorOrigin = {
+      vertical: 'top',
+      horizontal: 'right',
+    },
+    invisible,
+    overlap = 'rectangular',
+  } = props;
 
   return deepmerge(styles.root || {}, {
     [`& .${badgeClasses.badge}`]: {
       ...styles.badge,
-      ...styles[styleProps.variant],
+      ...styles[variant],
       ...styles[
-        `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
-          styleProps.anchorOrigin.horizontal,
-        )}${capitalize(styleProps.overlap)}`
+        `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
+          anchorOrigin.horizontal,
+        )}${capitalize(overlap)}`
       ],
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      ...(styleProps.invisible && styles.invisible),
+      ...(color !== 'default' && styles[`color${capitalize(color)}`]),
+      ...(invisible && styles.invisible),
     },
   });
 };
