@@ -50,6 +50,11 @@ commands:
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
             - v2-yarn-sha-
+      - restore_cache:
+          keys:
+            - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+            - v1-playwright-{{ arch }}-
+            - v1-playwright-
       - run:
           name: Install js dependencies
           command: yarn
@@ -66,6 +71,10 @@ jobs:
       - run:
           name: Check for duplicated packages
           command: yarn deduplicate
+      - save_cache:
+          key: v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/ms-playwright
       - save_cache:
           key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
