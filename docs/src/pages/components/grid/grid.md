@@ -101,7 +101,7 @@ If you need to do such, remove one of the props.
 
 ### Negative margin
 
-The spacing between items is implemented with a negative margin. This might lead to unexpected behavior. For instance, in order to apply a background color, you need to apply `display: flex;` to the pare
+The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 
