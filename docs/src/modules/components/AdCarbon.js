@@ -50,8 +50,8 @@ export function AdCarbonInline(props) {
         }
 
         attempt += 1;
-        const request = await fetch('https://srv.buysellads.com/ads/CE7DC23W.json');
-        const data = await request.json();
+        const response = await fetch('https://srv.buysellads.com/ads/CE7DC23W.json');
+        const data = await response.json();
         // Inspired by https://github.com/Semantic-Org/Semantic-UI-React/blob/2c7134128925dd831de85011e3eb0ec382ba7f73/docs/src/components/CarbonAd/CarbonAdNative.js#L9
         const sanitizedAd = data.ads
           .filter((item) => Object.keys(item).length > 0)
