@@ -66,11 +66,11 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
   };
 
   function RangePickerWithStateAndWrapper<TDate>(
-    props: BaseDateRangePickerProps<TDate> &
+    inProps: BaseDateRangePickerProps<TDate> &
       AllSharedDateRangePickerProps<TDate> &
       PublicWrapperProps<TWrapper>,
   ) {
-    const propsWithDefault = useThemeProps({ props, name });
+    const props = useThemeProps({ props: inProps, name });
 
     const {
       calendars,
@@ -83,7 +83,7 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
       minDate: minDateProp = defaultMinDate as TDate,
       maxDate: maxDateProp = defaultMaxDate as TDate,
       ...other
-    } = propsWithDefault;
+    } = props;
 
     const utils = useUtils();
     const minDate = useParsedDate(minDateProp);

@@ -65,24 +65,24 @@ export function makePickerWithStateAndWrapper<
     __props: T & AllSharedPickerProps<ParsableDate<TDate>, TDate> & PublicWrapperProps<TWrapper>,
   ) {
     const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
-    const propsWithDefault = useThemeProps({ props: allProps, name });
+    const props = useThemeProps({ props: allProps, name });
 
-    const validationError = useValidation(propsWithDefault.value, propsWithDefault) !== null;
+    const validationError = useValidation(props.value, props) !== null;
     const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-      propsWithDefault,
+      props,
       valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
     );
 
     // Note that we are passing down all the value without spread.
     // It saves us >1kb gzip and make any prop available automatically on any level down.
-    const { value, onChange, ...other } = propsWithDefault;
+    const { value, onChange, ...other } = props;
     const AllDateInputProps = { ...inputProps, ...other, validationError };
 
     return (
       <WrapperComponent wrapperProps={wrapperProps} DateInputProps={AllDateInputProps} {...other}>
         <Picker
           {...pickerProps}
-          toolbarTitle={propsWithDefault.label || propsWithDefault.toolbarTitle}
+          toolbarTitle={props.label || props.toolbarTitle}
           ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
           DateInputProps={AllDateInputProps}
           {...other}
