@@ -28,7 +28,7 @@ export const styles = {
   positionEnd: {
     marginLeft: 8,
   },
-  /* Styles applied to the root element if `disablePointerEvents=true`. */
+  /* Styles applied to the root element if `disablePointerEvents={true}`. */
   disablePointerEvents: {
     pointerEvents: 'none',
   },

@@ -235,7 +235,7 @@ ListItem.propTypes = {
    */
   button: PropTypes.bool,
   /**
-   * The content of the component. If a `ListItemSecondaryAction` is used it must
+   * The content of the component if a `ListItemSecondaryAction` is used it must
    * be the last child.
    */
   children: chainPropTypes(PropTypes.node, (props) => {

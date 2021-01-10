@@ -75,7 +75,7 @@ TabScrollButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Which direction should the button indicate?
+   * The direction the button should indicate.
    */
   direction: PropTypes.oneOf(['left', 'right']).isRequired,
   /**

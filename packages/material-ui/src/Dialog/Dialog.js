@@ -45,7 +45,7 @@ export const styles = (theme) => ({
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,
   },
-  /* Styles applied to the `Paper` component. */
+  /* Styles applied to the Paper component. */
   paper: {
     margin: 32,
     position: 'relative',
@@ -55,23 +55,23 @@ export const styles = (theme) => ({
       boxShadow: 'none',
     },
   },
-  /* Styles applied to the `Paper` component if `scroll="paper"`. */
+  /* Styles applied to the Paper component if `scroll="paper"`. */
   paperScrollPaper: {
     display: 'flex',
     flexDirection: 'column',
     maxHeight: 'calc(100% - 64px)',
   },
-  /* Styles applied to the `Paper` component if `scroll="body"`. */
+  /* Styles applied to the Paper component if `scroll="body"`. */
   paperScrollBody: {
     display: 'inline-block',
     verticalAlign: 'middle',
     textAlign: 'left', // 'initial' doesn't work on IE11
   },
-  /* Styles applied to the `Paper` component if `maxWidth=false`. */
+  /* Styles applied to the Paper component if `maxWidth=false`. */
   paperWidthFalse: {
     maxWidth: 'calc(100% - 64px)',
   },
-  /* Styles applied to the `Paper` component if `maxWidth="xs"`. */
+  /* Styles applied to the Paper component if `maxWidth="xs"`. */
   paperWidthXs: {
     maxWidth: Math.max(theme.breakpoints.values.xs, 444),
     '&$paperScrollBody': {
@@ -80,7 +80,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `Paper` component if `maxWidth="sm"`. */
+  /* Styles applied to the Paper component if `maxWidth="sm"`. */
   paperWidthSm: {
     maxWidth: theme.breakpoints.values.sm,
     '&$paperScrollBody': {
@@ -89,7 +89,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `Paper` component if `maxWidth="md"`. */
+  /* Styles applied to the Paper component if `maxWidth="md"`. */
   paperWidthMd: {
     maxWidth: theme.breakpoints.values.md,
     '&$paperScrollBody': {
@@ -98,7 +98,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `Paper` component if `maxWidth="lg"`. */
+  /* Styles applied to the Paper component if `maxWidth="lg"`. */
   paperWidthLg: {
     maxWidth: theme.breakpoints.values.lg,
     '&$paperScrollBody': {
@@ -107,7 +107,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `Paper` component if `maxWidth="xl"`. */
+  /* Styles applied to the Paper component if `maxWidth="xl"`. */
   paperWidthXl: {
     maxWidth: theme.breakpoints.values.xl,
     '&$paperScrollBody': {
@@ -116,11 +116,11 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `Paper` component if `fullWidth={true}`. */
+  /* Styles applied to the Paper component if `fullWidth={true}`. */
   paperFullWidth: {
     width: 'calc(100% - 64px)',
   },
-  /* Styles applied to the `Paper` component if `fullScreen={true}`. */
+  /* Styles applied to the Paper component if `fullScreen={true}`. */
   paperFullScreen: {
     margin: 0,
     width: '100%',

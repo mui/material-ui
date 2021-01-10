@@ -15,7 +15,7 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
       positionStart?: string;
       /** Styles applied to the root element if `position="end"`. */
       positionEnd?: string;
-      /** Styles applied to the root element if `disablePointerEvents=true`. */
+      /** Styles applied to the root element if `disablePointerEvents={true}`. */
       disablePointerEvents?: string;
       /** Styles applied if the adornment is used inside <FormControl hiddenLabel />. */
       hiddenLabel?: string;

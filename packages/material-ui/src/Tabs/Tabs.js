@@ -68,15 +68,15 @@ export const styles = (theme) => ({
       display: 'none', // Safari + Chrome
     },
   },
-  /* Styles applied to the `ScrollButtonComponent` component. */
+  /* Styles applied to the ScrollButtonComponent component. */
   scrollButtons: {},
-  /* Styles applied to the `ScrollButtonComponent` component if `allowScrollButtonsMobile={true}`. */
+  /* Styles applied to the ScrollButtonComponent component if `allowScrollButtonsMobile={true}`. */
   scrollButtonsHideMobile: {
     [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
   },
-  /* Styles applied to the `TabIndicator` component. */
+  /* Styles applied to the TabIndicator component. */
   indicator: {},
 });
 

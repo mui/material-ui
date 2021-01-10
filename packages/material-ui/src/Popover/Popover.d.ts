@@ -63,7 +63,7 @@ export interface PopoverProps
   classes?: {
     /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the `Paper` component. */
+    /** Styles applied to the Paper component. */
     paper?: string;
   };
   /**

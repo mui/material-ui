@@ -16,7 +16,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      */
     autoFocus?: boolean;
     /**
-     * The content of the component. If a `ListItemSecondaryAction` is used it must
+     * The content of the component if a `ListItemSecondaryAction` is used it must
      * be the last child.
      */
     children?: React.ReactNode;
