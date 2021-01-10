@@ -10,29 +10,31 @@
     "variant": "Applies the theme typography styles."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "underlineNone": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>underline=\"none\"</code>."
+      "conditions": "<code>underline=\"none\"</code>"
     },
     "underlineHover": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>underline=\"hover\"</code>."
+      "conditions": "<code>underline=\"hover\"</code>"
     },
     "underlineAlways": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>underline=\"always\"</code>."
+      "conditions": "<code>underline=\"always\"</code>"
     },
     "button": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>component=\"button\"</code>."
+      "conditions": "<code>component=\"button\"</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to the root element if the link is keyboard focused."
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "the link is keyboard focused"
     }
   }
 }

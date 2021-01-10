@@ -9,46 +9,46 @@
     "fontSize": "The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "colorPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>color=\"primary\"</code>."
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>color=\"secondary\"</code>."
+      "conditions": "<code>color=\"secondary\"</code>"
     },
     "colorAction": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>color=\"action\"</code>."
+      "conditions": "<code>color=\"action\"</code>"
     },
     "colorError": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>color=\"error\"</code>."
+      "conditions": "<code>color=\"error\"</code>"
     },
     "colorDisabled": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>color=\"disabled\"</code>."
+      "conditions": "<code>color=\"disabled\"</code>"
     },
     "fontSizeInherit": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>fontSize=\"inherit\"</code>."
+      "conditions": "<code>fontSize=\"inherit\"</code>"
     },
     "fontSizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>fontSize=\"small\"</code>."
+      "conditions": "<code>fontSize=\"small\"</code>"
     },
     "fontSizeLarge": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>fontSize=\"large\"</code>."
+      "conditions": "<code>fontSize=\"large\"</code>"
     }
   }
 }

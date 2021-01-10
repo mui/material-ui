@@ -8,21 +8,21 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "gutters": {
       "description": "{{stylesApplied}} unless {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>disableGutters={true}</code>."
+      "conditions": "<code>disableGutters={true}</code>"
     },
     "regular": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"regular\"</code>."
+      "conditions": "<code>variant=\"regular\"</code>"
     },
     "dense": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"dense\"</code>."
+      "conditions": "<code>variant=\"dense\"</code>"
     }
   }
 }

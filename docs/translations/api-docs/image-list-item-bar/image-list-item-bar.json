@@ -9,48 +9,52 @@
     "title": "Title to be displayed."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "positionBottom": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>position=\"bottom\"</code>."
+      "conditions": "<code>position=\"bottom\"</code>"
     },
     "positionTop": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>position=\"top\"</code>."
+      "conditions": "<code>position=\"top\"</code>"
     },
     "positionBelow": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>position=\"below\"</code>."
+      "conditions": "<code>position=\"below\"</code>"
     },
     "titleWrap": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "title and subtitle container element"
     },
     "titleWrapBelow": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "title and subtitle container element",
-      "conditions": "<code>position=\"below\"</code>."
+      "conditions": "<code>position=\"below\"</code>"
     },
     "titleWrapActionPosLeft": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "container element",
-      "conditions": "<code>actionPosition=\"left\"</code>."
+      "conditions": "<code>actionPosition=\"left\"</code>"
     },
     "titleWrapActionPosRight": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "container element",
-      "conditions": "<code>actionPosition=\"right\"</code>."
+      "conditions": "<code>actionPosition=\"right\"</code>"
     },
-    "title": { "description": "{{stylesApplied}}.", "nodeName": "title container element" },
-    "subtitle": { "description": "{{stylesApplied}}.", "nodeName": "subtitle container element" },
-    "actionIcon": { "description": "{{stylesApplied}} if supplied.", "nodeName": "actionIcon" },
+    "title": { "description": "{{stylesApplied}}", "nodeName": "title container element" },
+    "subtitle": { "description": "{{stylesApplied}}", "nodeName": "subtitle container element" },
+    "actionIcon": {
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "actionIcon",
+      "conditions": "supplied"
+    },
     "actionIconActionPosLeft": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "actionIcon",
-      "conditions": "<code>actionPosition=\"left\"</code>."
+      "conditions": "<code>actionPosition=\"left\"</code>"
     }
   }
 }

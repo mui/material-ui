@@ -6,6 +6,6 @@
     "disableTypography": "If <code>true</code>, the children won&#39;t be wrapped by a typography component. For instance, this can be useful to render an h4 instead of the default h2."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" }
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" }
   }
 }

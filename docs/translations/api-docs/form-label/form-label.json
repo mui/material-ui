@@ -12,16 +12,37 @@
     "required": "If <code>true</code>, the label will indicate that the <code>input</code> is required."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "colorSecondary": {
-      "description": "{{stylesApplied}} if the color is secondary.",
-      "nodeName": "root element"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "the color is secondary"
     },
-    "focused": { "description": "Pseudo-class applied to the root element if `focused={true}`." },
-    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
-    "error": { "description": "Pseudo-class applied to the root element if `error={true}`." },
-    "filled": { "description": "Pseudo-class applied to the root element if `filled={true}`." },
-    "required": { "description": "Pseudo-class applied to the root element if `required={true}`." },
-    "asterisk": { "description": "{{stylesApplied}}.", "nodeName": "asterisk element" }
+    "focused": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>focused={true}</code>"
+    },
+    "disabled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "error": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>error={true}</code>"
+    },
+    "filled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>filled={true}</code>"
+    },
+    "required": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>required={true}</code>"
+    },
+    "asterisk": { "description": "{{stylesApplied}}", "nodeName": "asterisk element" }
   }
 }

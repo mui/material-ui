@@ -804,22 +804,24 @@ function extractClassConditions(descriptions: any) {
   const classConditions: {
     [key: string]: { description: string; conditions?: string; nodeName?: string };
   } = {};
-  const stylesRegex = /Styles applied to the (.*?)( if | unless |,|\.)(`.*)*\.*/;
+  const stylesRegex = /(Styles|Pseudo-class) applied to the (.*?)(( if | unless |, ){1}(.*))?\./;
 
   Object.entries(descriptions).forEach(([className, classDescription]: any) => {
     if (className) {
       const conditions = classDescription.match(stylesRegex);
+      const applied =
+        conditions && conditions[1] === 'Styles' ? '{{stylesApplied}}' : '{{pseudoClassApplied}}';
 
-      if (conditions && conditions[3]) {
+      if (conditions && conditions[5]) {
         classConditions[className] = {
-          description: classDescription.replace(stylesRegex, '{{stylesApplied}}$2{{conditions}}.'),
-          nodeName: conditions[1],
-          conditions: conditions[3].replace(/`(.*?)`/g, '<code>$1</code>'),
+          description: classDescription.replace(stylesRegex, `${applied}$4{{conditions}}.`),
+          nodeName: conditions[2],
+          conditions: conditions[5].replace(/`(.*?)`/g, '<code>$1</code>'),
         };
-      } else if (conditions && conditions[1]) {
+      } else if (conditions && conditions[2]) {
         classConditions[className] = {
-          description: classDescription.replace(stylesRegex, '{{stylesApplied}}$2'),
-          nodeName: conditions[1],
+          description: classDescription.replace(stylesRegex, `${applied}$4`),
+          nodeName: conditions[2],
         };
       } else {
         classConditions[className] = { description: classDescription };

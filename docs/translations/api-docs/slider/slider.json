@@ -38,7 +38,9 @@
       "description": "Class name applied to the root element if `orientation=\"vertical\"`."
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root and thumb element if `disabled={true}`."
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root and thumb element",
+      "conditions": "<code>disabled={true}</code>"
     },
     "rail": { "description": "Class name applied to the rail element." },
     "track": { "description": "Class name applied to the track element." },
@@ -47,9 +49,15 @@
       "description": "Class name applied to the track element if `track=\"inverted\"`."
     },
     "thumb": { "description": "Class name applied to the thumb element." },
-    "active": { "description": "Pseudo-class applied to the thumb element if it's active." },
+    "active": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "thumb element",
+      "conditions": "it's active"
+    },
     "focusVisible": {
-      "description": "Pseudo-class applied to the thumb element if keyboard focused."
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "thumb element",
+      "conditions": "keyboard focused"
     },
     "valueLabel": { "description": "Class name applied to the thumb label element." },
     "mark": { "description": "Class name applied to the mark element." },

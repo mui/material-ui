@@ -8,17 +8,17 @@
     "rows": "Height of the item in number of grid rows."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "img": { "description": "Styles applied to an `img` element to ensure it covers the item." },
     "standard": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"standard\"</code>."
+      "conditions": "<code>variant=\"standard\"</code>"
     },
     "woven": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"woven\"</code>."
+      "conditions": "<code>variant=\"woven\"</code>"
     }
   }
 }

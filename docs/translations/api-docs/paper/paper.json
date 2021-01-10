@@ -9,21 +9,21 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "rounded": {
       "description": "{{stylesApplied}} unless {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>square={true}</code>."
+      "conditions": "<code>square={true}</code>"
     },
     "outlined": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"outlined\"</code>."
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "elevation": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"elevation\"</code>."
+      "conditions": "<code>variant=\"elevation\"</code>"
     }
   }
 }

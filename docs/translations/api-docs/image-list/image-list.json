@@ -10,26 +10,26 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "masonry": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"masonry\"</code>."
+      "conditions": "<code>variant=\"masonry\"</code>"
     },
     "quilted": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"quilted\"</code>."
+      "conditions": "<code>variant=\"quilted\"</code>"
     },
     "standard": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"standard\"</code>."
+      "conditions": "<code>variant=\"standard\"</code>"
     },
     "woven": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"woven\"</code>."
+      "conditions": "<code>variant=\"woven\"</code>"
     }
   }
 }

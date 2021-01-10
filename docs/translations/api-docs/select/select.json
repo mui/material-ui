@@ -26,43 +26,44 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "select component `root` class" },
-    "select": {
-      "description": "{{stylesApplied}}.",
-      "nodeName": "select component `select` class"
-    },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "select component `root` class" },
+    "select": { "description": "{{stylesApplied}}", "nodeName": "select component `select` class" },
     "filled": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "select component",
-      "conditions": "<code>variant=\"filled\"</code>."
+      "conditions": "<code>variant=\"filled\"</code>"
     },
     "outlined": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "select component",
-      "conditions": "<code>variant=\"outlined\"</code>."
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "selectMenu": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "select component `selectMenu` class"
     },
-    "disabled": { "description": "Pseudo-class applied to the select component `disabled` class." },
-    "icon": { "description": "{{stylesApplied}}.", "nodeName": "icon component" },
+    "disabled": {
+      "description": "{{pseudoClassApplied}}",
+      "nodeName": "select component `disabled` class"
+    },
+    "icon": { "description": "{{stylesApplied}}", "nodeName": "icon component" },
     "iconOpen": {
-      "description": "{{stylesApplied}} if the popup is open.",
-      "nodeName": "icon component"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "icon component",
+      "conditions": "the popup is open"
     },
     "iconFilled": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "icon component",
-      "conditions": "<code>variant=\"filled\"</code>."
+      "conditions": "<code>variant=\"filled\"</code>"
     },
     "iconOutlined": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "icon component",
-      "conditions": "<code>variant=\"outlined\"</code>."
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "nativeInput": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "underlying native input component"
     }
   }

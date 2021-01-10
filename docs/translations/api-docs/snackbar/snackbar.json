@@ -19,36 +19,36 @@
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "anchorOriginTopCenter": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>anchorOrigin={{ 'top', 'center' }}</code>."
+      "conditions": "<code>anchorOrigin={{ 'top', 'center' }}</code>"
     },
     "anchorOriginBottomCenter": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'center' }}</code>."
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'center' }}</code>"
     },
     "anchorOriginTopRight": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>."
+      "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
     },
     "anchorOriginBottomRight": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>."
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>"
     },
     "anchorOriginTopLeft": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>."
+      "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>"
     },
     "anchorOriginBottomLeft": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>."
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
     }
   }
 }

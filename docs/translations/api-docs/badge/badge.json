@@ -50,22 +50,24 @@
       "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"`."
     },
     "invisible": {
-      "description": "Pseudo-class to the badge `span` element if `invisible={true}`."
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "badge `span` element",
+      "conditions": "<code>invisible={true}</code>"
     },
     "colorPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "badge `span` element",
-      "conditions": "<code>color=\"primary\"</code>."
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "badge `span` element",
-      "conditions": "<code>color=\"secondary\"</code>."
+      "conditions": "<code>color=\"secondary\"</code>"
     },
     "colorError": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "badge `span` element",
-      "conditions": "<code>color=\"error\"</code>."
+      "conditions": "<code>color=\"error\"</code>"
     }
   }
 }

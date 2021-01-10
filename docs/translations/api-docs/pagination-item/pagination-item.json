@@ -13,11 +13,11 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "page": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>type=\"page\"</code>."
+      "conditions": "<code>type=\"page\"</code>"
     },
     "sizeSmall": {
       "description": "Styles applied applied to the root element if `size=\"small\"`."
@@ -28,48 +28,58 @@
     "text": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"text\"</code>."
+      "conditions": "<code>variant=\"text\"</code>"
     },
     "textPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>."
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
     },
     "textSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>."
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
     },
     "outlined": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"outlined\"</code>."
+      "conditions": "<code>variant=\"outlined\"</code>"
     },
     "outlinedPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>."
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
     },
     "outlinedSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>."
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
     },
     "rounded": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>rounded=\"true\"</code>."
+      "conditions": "<code>rounded=\"true\"</code>"
     },
     "ellipsis": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>type=\"start-ellipsis\"</code> or <code>type=\"end-ellipsis\"</code>."
+      "conditions": "<code>type=\"start-ellipsis\"</code> or <code>type=\"end-ellipsis\"</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to the root element if keyboard focused."
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "keyboard focused"
     },
-    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
-    "selected": { "description": "Pseudo-class applied to the root element if `selected={true}`." },
+    "disabled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "selected": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>selected={true}</code>"
+    },
     "icon": { "description": "Styles applied to tThe icon to display." }
   }
 }

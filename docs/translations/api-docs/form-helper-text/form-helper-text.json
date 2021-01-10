@@ -13,21 +13,41 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
-    "error": { "description": "Pseudo-class applied to the root element if `error={true}`." },
-    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "error": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>error={true}</code>"
+    },
+    "disabled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
     "sizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>size=\"small\"</code>."
+      "conditions": "<code>size=\"small\"</code>"
     },
     "contained": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"filled\"</code> or <code>variant=\"outlined\"</code>."
+      "conditions": "<code>variant=\"filled\"</code> or <code>variant=\"outlined\"</code>"
     },
-    "focused": { "description": "Pseudo-class applied to the root element if `focused={true}`." },
-    "filled": { "description": "Pseudo-class applied to the root element if `filled={true}`." },
-    "required": { "description": "Pseudo-class applied to the root element if `required={true}`." }
+    "focused": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>focused={true}</code>"
+    },
+    "filled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>filled={true}</code>"
+    },
+    "required": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>required={true}</code>"
+    }
   }
 }

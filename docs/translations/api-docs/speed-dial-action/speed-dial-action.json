@@ -13,36 +13,32 @@
     "tooltipTitle": "Label to display in the tooltip."
   },
   "classDescriptions": {
-    "fab": { "description": "{{stylesApplied}}.", "nodeName": "Fab component" },
+    "fab": { "description": "{{stylesApplied}}", "nodeName": "Fab component" },
     "fabClosed": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "Fab component",
-      "conditions": "<code>open={false}</code>."
+      "conditions": "<code>open={false}</code>"
     },
     "staticTooltip": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>tooltipOpen={true}</code>."
+      "conditions": "<code>tooltipOpen={true}</code>"
     },
     "staticTooltipClosed": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>tooltipOpen={true}</code> and <code>open={false}</code>."
+      "conditions": "<code>tooltipOpen={true}</code> and <code>open={false}</code>"
     },
     "staticTooltipLabel": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "static tooltip label",
-      "conditions": "<code>tooltipOpen={true}</code>."
+      "conditions": "<code>tooltipOpen={true}</code>"
     },
     "tooltipPlacementLeft": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root",
-      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"left\"</code>`"
+      "description": "Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement=\"left\"``"
     },
     "tooltipPlacementRight": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root",
-      "conditions": "<code>tooltipOpen={true}</code> and <code>tooltipPlacement=\"right\"</code>`"
+      "description": "Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement=\"right\"``"
     }
   }
 }

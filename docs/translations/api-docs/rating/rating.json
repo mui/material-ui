@@ -19,55 +19,61 @@
     "value": "The rating value."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "sizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>size=\"small\"</code>."
+      "conditions": "<code>size=\"small\"</code>"
     },
     "sizeLarge": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>size=\"large\"</code>."
+      "conditions": "<code>size=\"large\"</code>"
     },
     "readOnly": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>readOnly={true}</code>."
+      "conditions": "<code>readOnly={true}</code>"
     },
-    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
+    "disabled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
     "focusVisible": {
-      "description": "Pseudo-class applied to the root element if keyboard focused."
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "keyboard focused"
     },
     "visuallyHidden": { "description": "Visually hide an element." },
-    "label": { "description": "{{stylesApplied}}.", "nodeName": "label elements" },
+    "label": { "description": "{{stylesApplied}}", "nodeName": "label elements" },
     "labelEmptyValueActive": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "label of the \"no value\" input when it is active"
     },
-    "icon": { "description": "{{stylesApplied}}.", "nodeName": "icon wrapping elements" },
+    "icon": { "description": "{{stylesApplied}}", "nodeName": "icon wrapping elements" },
     "iconEmpty": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "icon wrapping elements when empty"
     },
     "iconFilled": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "icon wrapping elements when filled"
     },
     "iconHover": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "icon wrapping elements when hover"
     },
     "iconFocus": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "icon wrapping elements when focus"
     },
     "iconActive": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "icon wrapping elements when active"
     },
     "decimal": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "icon wrapping elements when decimals are necessary"
     }
   }

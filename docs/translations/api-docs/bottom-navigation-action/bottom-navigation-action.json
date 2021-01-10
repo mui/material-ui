@@ -9,15 +9,21 @@
     "value": "You can provide your own value. Otherwise, we fallback to the child position index."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
-    "selected": { "description": "Pseudo-class applied to the root element if selected." },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "selected": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "selected"
+    },
     "iconOnly": {
-      "description": "Pseudo-class applied to the root element if `showLabel={false}` and not selected."
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>showLabel={false}</code> and not selected"
     },
     "wrapper": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "span element that wraps the icon and label"
     },
-    "label": { "description": "{{stylesApplied}}.", "nodeName": "label's span element" }
+    "label": { "description": "{{stylesApplied}}", "nodeName": "label's span element" }
   }
 }

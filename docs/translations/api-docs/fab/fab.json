@@ -13,49 +13,55 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "label": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "span element that wraps the children"
     },
     "primary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>color=\"primary\"</code>."
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "secondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>color=\"secondary\"</code>."
+      "conditions": "<code>color=\"secondary\"</code>"
     },
     "extended": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"extended\"</code>."
+      "conditions": "<code>variant=\"extended\"</code>"
     },
     "circular": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"circular\"</code>."
+      "conditions": "<code>variant=\"circular\"</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to the ButtonBase root element if the button is keyboard focused."
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "ButtonBase root element",
+      "conditions": "the button is keyboard focused"
     },
-    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
+    "disabled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
     "colorInherit": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>color=\"inherit\"</code>."
+      "conditions": "<code>color=\"inherit\"</code>"
     },
     "sizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>size=\"small\"</code>`."
+      "conditions": "<code>size=\"small\"</code>`"
     },
     "sizeMedium": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>size=\"medium\"</code>`."
+      "conditions": "<code>size=\"medium\"</code>`"
     }
   }
 }

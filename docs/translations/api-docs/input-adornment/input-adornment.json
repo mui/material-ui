@@ -10,26 +10,26 @@
     "variant": "The variant to use. Note: If you are using the <code>TextField</code> component or the <code>FormControl</code> component you do not have to set this manually."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "filled": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"filled\"</code>."
+      "conditions": "<code>variant=\"filled\"</code>"
     },
     "positionStart": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>position=\"start\"</code>."
+      "conditions": "<code>position=\"start\"</code>"
     },
     "positionEnd": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>position=\"end\"</code>."
+      "conditions": "<code>position=\"end\"</code>"
     },
     "disablePointerEvents": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>disablePointerEvents={true}</code>."
+      "conditions": "<code>disablePointerEvents={true}</code>"
     },
     "hiddenLabel": {
       "description": "Styles applied if the adornment is used inside <FormControl hiddenLabel />."

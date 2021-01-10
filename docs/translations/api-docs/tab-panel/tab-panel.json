@@ -6,6 +6,6 @@
     "value": "The <code>value</code> of the corresponding <code>Tab</code>. Must use the index of the <code>Tab</code> when no <code>value</code> was passed to <code>Tab</code>."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" }
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" }
   }
 }

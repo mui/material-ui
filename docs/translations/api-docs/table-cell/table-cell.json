@@ -12,61 +12,61 @@
     "variant": "Specify the cell type. The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "head": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"head\"</code> or <code>context.table.head</code>."
+      "conditions": "<code>variant=\"head\"</code> or <code>context.table.head</code>"
     },
     "body": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"body\"</code> or <code>context.table.body</code>."
+      "conditions": "<code>variant=\"body\"</code> or <code>context.table.body</code>"
     },
     "footer": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>variant=\"footer\"</code> or <code>context.table.footer</code>."
+      "conditions": "<code>variant=\"footer\"</code> or <code>context.table.footer</code>"
     },
     "sizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>size=\"small\"</code>."
+      "conditions": "<code>size=\"small\"</code>"
     },
     "paddingCheckbox": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>padding=\"checkbox\"</code>."
+      "conditions": "<code>padding=\"checkbox\"</code>"
     },
     "paddingNone": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>padding=\"none\"</code>."
+      "conditions": "<code>padding=\"none\"</code>"
     },
     "alignLeft": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>align=\"left\"</code>."
+      "conditions": "<code>align=\"left\"</code>"
     },
     "alignCenter": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>align=\"center\"</code>."
+      "conditions": "<code>align=\"center\"</code>"
     },
     "alignRight": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>align=\"right\"</code>."
+      "conditions": "<code>align=\"right\"</code>"
     },
     "alignJustify": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>align=\"justify\"</code>."
+      "conditions": "<code>align=\"justify\"</code>"
     },
     "stickyHeader": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>context.table.stickyHeader={true}</code>."
+      "conditions": "<code>context.table.stickyHeader={true}</code>"
     }
   }
 }

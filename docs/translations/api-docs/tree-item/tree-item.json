@@ -17,14 +17,23 @@
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
-    "group": { "description": "{{stylesApplied}}.", "nodeName": "transition component" },
-    "content": { "description": "{{stylesApplied}}.", "nodeName": "content element" },
-    "expanded": { "description": "Pseudo-class applied to the content element when expanded." },
-    "selected": { "description": "Pseudo-class applied to the content element when selected." },
-    "focused": { "description": "Pseudo-class applied to the content element when focused." },
-    "disabled": { "description": "Pseudo-class applied to the element when disabled." },
-    "iconContainer": { "description": "{{stylesApplied}}.", "nodeName": "tree node icon" },
-    "label": { "description": "{{stylesApplied}}.", "nodeName": "label element" }
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "group": { "description": "{{stylesApplied}}", "nodeName": "transition component" },
+    "content": { "description": "{{stylesApplied}}", "nodeName": "content element" },
+    "expanded": {
+      "description": "{{pseudoClassApplied}}",
+      "nodeName": "content element when expanded"
+    },
+    "selected": {
+      "description": "{{pseudoClassApplied}}",
+      "nodeName": "content element when selected"
+    },
+    "focused": {
+      "description": "{{pseudoClassApplied}}",
+      "nodeName": "content element when focused"
+    },
+    "disabled": { "description": "{{pseudoClassApplied}}", "nodeName": "element when disabled" },
+    "iconContainer": { "description": "{{stylesApplied}}", "nodeName": "tree node icon" },
+    "label": { "description": "{{stylesApplied}}", "nodeName": "label element" }
   }
 }

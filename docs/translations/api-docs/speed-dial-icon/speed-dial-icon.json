@@ -6,22 +6,27 @@
     "openIcon": "The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
-    "icon": { "description": "{{stylesApplied}}.", "nodeName": "icon component" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "icon": { "description": "{{stylesApplied}}", "nodeName": "icon component" },
     "iconOpen": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "icon component",
-      "conditions": "<code>open={true}</code>."
+      "conditions": "<code>open={true}</code>"
     },
     "iconWithOpenIconOpen": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "icon when an `openIcon` is provided and",
-      "conditions": "<code>open={true}</code>."
+      "conditions": "<code>open={true}</code>"
     },
-    "openIcon": { "description": "{{stylesApplied}} if provided.", "nodeName": "`openIcon`" },
+    "openIcon": {
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "`openIcon`",
+      "conditions": "provided"
+    },
     "openIconOpen": {
-      "description": "{{stylesApplied}} if provided and if `open={true}`.",
-      "nodeName": "`openIcon`"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "`openIcon`",
+      "conditions": "provided and if <code>open={true}</code>"
     }
   }
 }

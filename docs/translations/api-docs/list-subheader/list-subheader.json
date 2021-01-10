@@ -10,31 +10,31 @@
     "inset": "If <code>true</code>, the List Subheader is indented."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "colorPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>color=\"primary\"</code>."
+      "conditions": "<code>color=\"primary\"</code>"
     },
     "colorInherit": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>color=\"inherit\"</code>."
+      "conditions": "<code>color=\"inherit\"</code>"
     },
     "gutters": {
       "description": "{{stylesApplied}} unless {{conditions}}.",
       "nodeName": "inner `component` element",
-      "conditions": "<code>disableGutters={true}</code>."
+      "conditions": "<code>disableGutters={true}</code>"
     },
     "inset": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>inset={true}</code>."
+      "conditions": "<code>inset={true}</code>"
     },
     "sticky": {
       "description": "{{stylesApplied}} unless {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>disableSticky={true}</code>."
+      "conditions": "<code>disableSticky={true}</code>"
     }
   }
 }

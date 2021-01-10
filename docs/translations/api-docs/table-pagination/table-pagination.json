@@ -20,30 +20,27 @@
     "showLastButton": "If <code>true</code>, show the last-page button."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
-    "toolbar": { "description": "{{stylesApplied}}.", "nodeName": "Toolbar component" },
-    "spacer": { "description": "{{stylesApplied}}.", "nodeName": "spacer element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "toolbar": { "description": "{{stylesApplied}}", "nodeName": "Toolbar component" },
+    "spacer": { "description": "{{stylesApplied}}", "nodeName": "spacer element" },
     "caption": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "caption Typography component",
-      "conditions": "<code>variant=\"caption\"</code>."
+      "conditions": "<code>variant=\"caption\"</code>"
     },
     "selectRoot": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "Select component root element"
     },
-    "select": {
-      "description": "{{stylesApplied}}.",
-      "nodeName": "Select component `select` class"
-    },
+    "select": { "description": "{{stylesApplied}}", "nodeName": "Select component `select` class" },
     "selectIcon": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "Select component `icon` class"
     },
-    "input": { "description": "{{stylesApplied}}.", "nodeName": "InputBase component" },
-    "menuItem": { "description": "{{stylesApplied}}.", "nodeName": "MenuItem component" },
+    "input": { "description": "{{stylesApplied}}", "nodeName": "InputBase component" },
+    "menuItem": { "description": "{{stylesApplied}}", "nodeName": "MenuItem component" },
     "actions": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "internal `TablePaginationActions` component"
     }
   }

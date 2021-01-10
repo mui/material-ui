@@ -18,6 +18,7 @@
     "overrideStylesStyledComponent": "<ul>\n<li>With a <a href=\"/guides/interoperability/#global-css\">global class name</a>.</li>\n<li>With a rule name as part of the component's <a href=\"/customization/components/#global-style-overrides\"><code>styleOverrides</code> property</a> in a custom theme.</li>\n</ul>",
     "pageDescription": "API documentation for the React {{name}} component. Learn about the available props, and the CSS API.",
     "props": "Props",
+    "pseudoClassApplied": "Pseudo-class applied to the {{nodeName}}",
     "refNotHeld": "The component cannot hold a ref.",
     "refRootElement": "The <code>ref</code> is forwarded to the root element.",
     "ruleName": "Rule name",

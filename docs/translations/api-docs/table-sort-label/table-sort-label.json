@@ -9,18 +9,22 @@
     "IconComponent": "Sort icon to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
-    "active": { "description": "Pseudo-class applied to the root element if `active={true}`." },
-    "icon": { "description": "{{stylesApplied}}.", "nodeName": "icon component" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "active": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>active={true}</code>"
+    },
+    "icon": { "description": "{{stylesApplied}}", "nodeName": "icon component" },
     "iconDirectionDesc": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "icon component",
-      "conditions": "<code>direction=\"desc\"</code>."
+      "conditions": "<code>direction=\"desc\"</code>"
     },
     "iconDirectionAsc": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "icon component",
-      "conditions": "<code>direction=\"asc\"</code>."
+      "conditions": "<code>direction=\"asc\"</code>"
     }
   }
 }

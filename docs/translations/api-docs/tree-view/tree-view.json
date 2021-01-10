@@ -20,6 +20,6 @@
     "selected": "Selected node ids. (Controlled) When <code>multiSelect</code> is true this takes an array of strings; when false (default) a string."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" }
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" }
   }
 }

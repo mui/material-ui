@@ -7,17 +7,25 @@
     "focusVisibleClassName": "This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It&#39;s a polyfill for the <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">CSS :focus-visible selector</a>. The rationale for using this feature <a href=\"https://github.com/WICG/focus-visible/blob/master/explainer.md\">is explained here</a>. A <a href=\"https://github.com/WICG/focus-visible\">polyfill can be used</a> to apply a <code>focus-visible</code> class to other components if needed."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "expanded": {
-      "description": "Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`."
+      "description": "{{pseudoClassApplied}}, {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "children wrapper element and <code>IconButton</code> component if <code>expanded={true}</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to the ButtonBase root element if the button is keyboard focused."
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "ButtonBase root element",
+      "conditions": "the button is keyboard focused"
     },
-    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
-    "content": { "description": "{{stylesApplied}}.", "nodeName": "children wrapper element" },
+    "disabled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "content": { "description": "{{stylesApplied}}", "nodeName": "children wrapper element" },
     "expandIconWrapper": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "`expandIcon`'s wrapper element"
     }
   }

@@ -27,50 +27,51 @@
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "popper": { "description": "{{stylesApplied}}.", "nodeName": "Popper component" },
+    "popper": { "description": "{{stylesApplied}}", "nodeName": "Popper component" },
     "popperInteractive": {
       "description": "{{stylesApplied}} unless {{conditions}}.",
       "nodeName": "Popper component",
-      "conditions": "<code>disableInteractive={true}</code>."
+      "conditions": "<code>disableInteractive={true}</code>"
     },
     "popperArrow": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "Popper component",
-      "conditions": "<code>arrow={true}</code>."
+      "conditions": "<code>arrow={true}</code>"
     },
     "tooltip": {
-      "description": "{{stylesApplied}}.",
+      "description": "{{stylesApplied}}",
       "nodeName": "tooltip (label wrapper) element"
     },
     "tooltipArrow": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "tooltip (label wrapper) element",
-      "conditions": "<code>arrow={true}</code>."
+      "conditions": "<code>arrow={true}</code>"
     },
-    "arrow": { "description": "{{stylesApplied}}.", "nodeName": "arrow element" },
+    "arrow": { "description": "{{stylesApplied}}", "nodeName": "arrow element" },
     "touch": {
-      "description": "{{stylesApplied}} if the tooltip is opened by touch.",
-      "nodeName": "tooltip (label wrapper) element"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "tooltip (label wrapper) element",
+      "conditions": "the tooltip is opened by touch"
     },
     "tooltipPlacementLeft": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "tooltip (label wrapper) element",
-      "conditions": "<code>placement</code> contains \"left\"."
+      "conditions": "<code>placement</code> contains \"left\""
     },
     "tooltipPlacementRight": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "tooltip (label wrapper) element",
-      "conditions": "<code>placement</code> contains \"right\"."
+      "conditions": "<code>placement</code> contains \"right\""
     },
     "tooltipPlacementTop": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "tooltip (label wrapper) element",
-      "conditions": "<code>placement</code> contains \"top\"."
+      "conditions": "<code>placement</code> contains \"top\""
     },
     "tooltipPlacementBottom": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "tooltip (label wrapper) element",
-      "conditions": "<code>placement</code> contains \"bottom\"."
+      "conditions": "<code>placement</code> contains \"bottom\""
     }
   }
 }

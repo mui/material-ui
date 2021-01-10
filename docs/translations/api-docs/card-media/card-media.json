@@ -8,16 +8,16 @@
     "src": "An alias for <code>image</code> property. Available only with media components. Media components: <code>video</code>, <code>audio</code>, <code>picture</code>, <code>iframe</code>, <code>img</code>."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "media": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>component=\"video, audio, picture, iframe, or img\"</code>."
+      "conditions": "<code>component=\"video, audio, picture, iframe, or img\"</code>"
     },
     "img": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>component=\"picture or img\"</code>."
+      "conditions": "<code>component=\"picture or img\"</code>"
     }
   }
 }

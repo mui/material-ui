@@ -11,19 +11,27 @@
     "value": "The value to associate with the button when selected in a ToggleButtonGroup."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
-    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
-    "selected": { "description": "Pseudo-class applied to the root element if `selected={true}`." },
-    "label": { "description": "{{stylesApplied}}.", "nodeName": "`label` wrapper element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "disabled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "selected": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>selected={true}</code>"
+    },
+    "label": { "description": "{{stylesApplied}}", "nodeName": "`label` wrapper element" },
     "sizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>size=\"small\"</code>."
+      "conditions": "<code>size=\"small\"</code>"
     },
     "sizeLarge": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>size=\"large\"</code>."
+      "conditions": "<code>size=\"large\"</code>"
     }
   }
 }

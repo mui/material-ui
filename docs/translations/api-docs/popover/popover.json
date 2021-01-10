@@ -21,7 +21,7 @@
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
-    "paper": { "description": "{{stylesApplied}}.", "nodeName": "Paper component" }
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "paper": { "description": "{{stylesApplied}}", "nodeName": "Paper component" }
   }
 }

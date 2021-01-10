@@ -30,70 +30,82 @@
     "value": "The value of the <code>input</code> element, required for a controlled component."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "colorSecondary": {
-      "description": "{{stylesApplied}} if color secondary.",
-      "nodeName": "root element"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "color secondary"
     },
     "underline": {
       "description": "{{stylesApplied}} unless {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>disableUnderline={true}</code>."
+      "conditions": "<code>disableUnderline={true}</code>"
     },
     "focused": {
-      "description": "Pseudo-class applied to the root element if the component is focused."
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "the component is focused"
     },
-    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
+    "disabled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
     "adornedStart": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>startAdornment</code> is provided."
+      "conditions": "<code>startAdornment</code> is provided"
     },
     "adornedEnd": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>endAdornment</code> is provided."
+      "conditions": "<code>endAdornment</code> is provided"
     },
-    "error": { "description": "Pseudo-class applied to the root element if `error={true}`." },
+    "error": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>error={true}</code>"
+    },
     "sizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "input element",
-      "conditions": "<code>size=\"small\"</code>."
+      "conditions": "<code>size=\"small\"</code>"
     },
     "multiline": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>multiline={true}</code>."
+      "conditions": "<code>multiline={true}</code>"
     },
     "hiddenLabel": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "root element",
-      "conditions": "<code>hiddenLabel={true}</code>."
+      "conditions": "<code>hiddenLabel={true}</code>"
     },
-    "input": { "description": "{{stylesApplied}}.", "nodeName": "input element" },
+    "input": { "description": "{{stylesApplied}}", "nodeName": "input element" },
     "inputSizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "input element",
-      "conditions": "<code>size=\"small\"</code>."
+      "conditions": "<code>size=\"small\"</code>"
     },
     "inputHiddenLabel": {
-      "description": "{{stylesApplied}} if in `<FormControl hiddenLabel />`.",
-      "nodeName": "`input`"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "`input`",
+      "conditions": "in <code><FormControl hiddenLabel /></code>"
     },
     "inputMultiline": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "input element",
-      "conditions": "<code>multiline={true}</code>."
+      "conditions": "<code>multiline={true}</code>"
     },
     "inputAdornedStart": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "input element",
-      "conditions": "<code>startAdornment</code> is provided."
+      "conditions": "<code>startAdornment</code> is provided"
     },
     "inputAdornedEnd": {
       "description": "{{stylesApplied}} if {{conditions}}.",
       "nodeName": "input element",
-      "conditions": "<code>endAdornment</code> is provided."
+      "conditions": "<code>endAdornment</code> is provided"
     }
   }
 }

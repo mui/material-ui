@@ -8,16 +8,26 @@
     "selected": "If <code>true</code>, the table row will have the selected shading."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
-    "selected": { "description": "Pseudo-class applied to the root element if `selected={true}`." },
-    "hover": { "description": "Pseudo-class applied to the root element if `hover={true}`." },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "selected": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>selected={true}</code>"
+    },
+    "hover": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>hover={true}</code>"
+    },
     "head": {
-      "description": "{{stylesApplied}} if table variant=\"head\".",
-      "nodeName": "root element"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "table variant=\"head\""
     },
     "footer": {
-      "description": "{{stylesApplied}} if table variant=\"footer\".",
-      "nodeName": "root element"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "table variant=\"footer\""
     }
   }
 }
