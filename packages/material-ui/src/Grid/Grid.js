@@ -22,7 +22,20 @@ import gridClasses, { getGridUtilityClass } from './gridClasses';
 function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   const size = styleProps[breakpoint];
 
+<<<<<<< HEAD
   if (!size) return;
+=======
+function getOffset(val) {
+  const parse = parseFloat(val);
+  return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
+}
+
+function generateGrid(globalStyles, theme, breakpoint) {
+  const styles = {};
+
+  GRID_SIZES.forEach((size) => {
+    const key = `grid-${breakpoint}-${size}`;
+>>>>>>> add visual regression test
 
   let styles = {};
 
@@ -43,12 +56,39 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
     // Keep 7 significant numbers.
     const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
 
+<<<<<<< HEAD
     // Close to the bootstrap implementation:
     // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
     styles = {
       flexBasis: width,
       flexGrow: 0,
       maxWidth: width,
+=======
+    const fullWidths = SPACINGS.reduce((obj, spacing) => {
+      const themeSpacing = theme.spacing(spacing);
+
+      if (themeSpacing === '0px') {
+        return obj;
+      }
+
+      const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
+      return {
+        ...obj,
+        [`&$container$item$spacing-xs-${spacing}`]: {
+          flexBasis: fullWidth,
+          maxWidth: fullWidth,
+        },
+      };
+    }, {});
+
+    // Close to the bootstrap implementation:
+    // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
+    styles[key] = {
+      maxWidth: width,
+      flexBasis: width,
+      flexGrow: 0,
+      ...fullWidths,
+>>>>>>> add visual regression test
     };
   }
 
