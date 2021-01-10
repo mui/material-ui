@@ -40,7 +40,7 @@ export interface InputBaseProps
     adornedEnd?: string;
     /** Pseudo-class applied to the root element if `error={true}`. */
     error?: string;
-    /** Styles applied to the `input` element if `size="small"`. */
+    /** Styles applied to the input element if `size="small"`. */
     sizeSmall?: string;
     /** Styles applied to the root element if `multiline={true}`. */
     multiline?: string;
@@ -50,19 +50,19 @@ export interface InputBaseProps
     fullWidth?: string;
     /** Styles applied to the root element if `hiddenLabel={true}`. */
     hiddenLabel?: string;
-    /** Styles applied to the `input` element. */
+    /** Styles applied to the input element. */
     input?: string;
-    /** Styles applied to the `input` element if `size="small"`. */
+    /** Styles applied to the input element if `size="small"`. */
     inputSizeSmall?: string;
-    /** Styles applied to the `input` element if `multiline={true}`. */
+    /** Styles applied to the input element if `multiline={true}`. */
     inputMultiline?: string;
-    /** Styles applied to the `input` element if `type="search"`. */
+    /** Styles applied to the input element if `type="search"`. */
     inputTypeSearch?: string;
-    /** Styles applied to the `input` element if `startAdornment` is provided. */
+    /** Styles applied to the input element if `startAdornment` is provided. */
     inputAdornedStart?: string;
-    /** Styles applied to the `input` element if `endAdornment` is provided. */
+    /** Styles applied to the input element if `endAdornment` is provided. */
     inputAdornedEnd?: string;
-    /** Styles applied to the `input` element if `hiddenLabel={true}`. */
+    /** Styles applied to the input element if `hiddenLabel={true}`. */
     inputHiddenLabel?: string;
   };
   /**

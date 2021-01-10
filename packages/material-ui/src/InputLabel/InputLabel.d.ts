@@ -27,9 +27,9 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
     formControl?: string;
     /** Styles applied to the root element if `size="small"`. */
     sizeSmall?: string;
-    /** Styles applied to the `input` element if `shrink={true}`. */
+    /** Styles applied to the input element if `shrink={true}`. */
     shrink?: string;
-    /** Styles applied to the `input` element unless `disableAnimation={true}`. */
+    /** Styles applied to the input element unless `disableAnimation={true}`. */
     animated?: string;
     /** Styles applied to the root element if `variant="filled"`. */
     filled?: string;

@@ -59,7 +59,7 @@ export const styles = (theme) => {
     },
     /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the `input` element if `size="small"`. */
+    /* Styles applied to the input element if `size="small"`. */
     sizeSmall: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
@@ -69,11 +69,11 @@ export const styles = (theme) => {
         paddingBottom: 10.5,
       },
     },
-    /* Styles applied to the `NotchedOutline` element. */
+    /* Styles applied to the NotchedOutline element. */
     notchedOutline: {
       borderColor,
     },
-    /* Styles applied to the `input` element. */
+    /* Styles applied to the input element. */
     input: {
       padding: '16.5px 14px',
       '&:-webkit-autofill': {
@@ -83,20 +83,20 @@ export const styles = (theme) => {
         borderRadius: 'inherit',
       },
     },
-    /* Styles applied to the `input` element if `size="small"`. */
+    /* Styles applied to the input element if `size="small"`. */
     inputSizeSmall: {
       paddingTop: 8.5,
       paddingBottom: 8.5,
     },
-    /* Styles applied to the `input` element if `multiline={true}`. */
+    /* Styles applied to the input element if `multiline={true}`. */
     inputMultiline: {
       padding: 0,
     },
-    /* Styles applied to the `input` element if `startAdornment` is provided. */
+    /* Styles applied to the input element if `startAdornment` is provided. */
     inputAdornedStart: {
       paddingLeft: 0,
     },
-    /* Styles applied to the `input` element if `endAdornment` is provided. */
+    /* Styles applied to the input element if `endAdornment` is provided. */
     inputAdornedEnd: {
       paddingRight: 0,
     },

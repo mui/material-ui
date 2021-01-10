@@ -15,7 +15,7 @@ export interface TreeItemProps
   classes?: {
     /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the `role="group"` element. */
+    /** Styles applied to the role="group" element. */
     group?: string;
     /** Styles applied to the content element. */
     content?: string;

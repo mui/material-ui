@@ -51,29 +51,29 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       outlinedPrimary?: string;
       /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
       outlinedSecondary?: string;
-      /** Styles applied to the `avatar` element. */
+      /** Styles applied to the avatar element. */
       avatar?: string;
-      /** Styles applied to the `avatar` element if `size="small"`. */
+      /** Styles applied to the avatar element if `size="small"`. */
       avatarSmall?: string;
-      /** Styles applied to the `avatar` element if `color="primary"`. */
+      /** Styles applied to the avatar element if `color="primary"`. */
       avatarColorPrimary?: string;
-      /** Styles applied to the `avatar` element if `color="secondary"`. */
+      /** Styles applied to the avatar element if `color="secondary"`. */
       avatarColorSecondary?: string;
-      /** Styles applied to the `icon` element. */
+      /** Styles applied to the icon element. */
       icon?: string;
-      /** Styles applied to the `icon` element if `size="small"`. */
+      /** Styles applied to the icon element if `size="small"`. */
       iconSmall?: string;
-      /** Styles applied to the `icon` element if `color="primary"`. */
+      /** Styles applied to the icon element if `color="primary"`. */
       iconColorPrimary?: string;
-      /** Styles applied to the `icon` element if `color="secondary"`. */
+      /** Styles applied to the icon element if `color="secondary"`. */
       iconColorSecondary?: string;
       /** Styles applied to the label `span` element. */
       label?: string;
       /** Styles applied to the label `span` element if `size="small"`. */
       labelSmall?: string;
-      /** Styles applied to the `deleteIcon` element. */
+      /** Styles applied to the deleteIcon element. */
       deleteIcon?: string;
-      /** Styles applied to the `deleteIcon` element if `size="small"`. */
+      /** Styles applied to the deleteIcon element if `size="small"`. */
       deleteIconSmall?: string;
       /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
       deleteIconColorPrimary?: string;
