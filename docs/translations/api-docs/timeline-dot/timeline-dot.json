@@ -7,38 +7,46 @@
     "variant": "The dot can appear filled or outlined."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "filled": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"filled\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"filled\"</code>."
     },
     "outlined": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"outlined\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"outlined\"</code>."
     },
     "filledGrey": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"grey\"</code> and <code>variant=\"filled\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"grey\"</code> and <code>variant=\"filled\"</code>."
     },
     "outlinedGrey": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"grey\"</code> and <code>variant=\"outlined\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"grey\"</code> and <code>variant=\"outlined\"</code>."
     },
     "filledPrimary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"filled\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"filled\"</code>."
     },
     "outlinedPrimary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"outlined\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"outlined\"</code>."
     },
     "filledSecondary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"filled\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"filled\"</code>."
     },
     "outlinedSecondary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>."
     }
   }
 }

@@ -12,23 +12,23 @@
     "value": "The value of the component."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "labelPlacementStart": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>labelPlacement=\"start\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>labelPlacement=\"start\"</code>."
     },
     "labelPlacementTop": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>labelPlacement=\"top\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>labelPlacement=\"top\"</code>."
     },
     "labelPlacementBottom": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>labelPlacement=\"bottom\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>labelPlacement=\"bottom\"</code>."
     },
-    "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "label": { "description": "Styles applied to the label's Typography component." }
+    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
+    "label": { "description": "{{stylesApplied}}.", "nodeName": "label's Typography component" }
   }
 }

@@ -30,26 +30,19 @@
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },
     "marked": {
-      "description": "Class name applied to the root element if {{conditions}}.",
-      "conditions": "<code>marks</code> is provided with at least one label"
+      "description": "Class name applied to the root element if `marks` is provided with at least one label."
     },
     "vertical": {
-      "description": "Class name applied to the root element if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "Class name applied to the root element if `orientation=\"vertical\"`."
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root and thumb element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code>"
+      "description": "Pseudo-class applied to the root and thumb element if `disabled={true}`."
     },
     "rail": { "description": "Class name applied to the rail element." },
     "track": { "description": "Class name applied to the track element." },
-    "trackFalse": {
-      "description": "Class name applied to the track element if {{conditions}}.",
-      "conditions": "<code>track={false}</code>"
-    },
+    "trackFalse": { "description": "Class name applied to the track element if `track={false}`." },
     "trackInverted": {
-      "description": "Class name applied to the track element if {{conditions}}.",
-      "conditions": "<code>track=\"inverted\"</code>"
+      "description": "Class name applied to the track element if `track=\"inverted\"`."
     },
     "thumb": { "description": "Class name applied to the thumb element." },
     "active": { "description": "Pseudo-class applied to the thumb element if it's active." },

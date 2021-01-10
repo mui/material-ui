@@ -12,54 +12,69 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "absolute": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>absolute={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>absolute={true}</code>."
     },
     "inset": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"inset\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"inset\"</code>."
     },
     "fullWidth": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"fullWidth\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"fullWidth\"</code>."
     },
     "light": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>light={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>light={true}</code>."
     },
     "middle": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"middle\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"middle\"</code>."
     },
     "vertical": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>orientation=\"vertical\"</code>."
     },
     "flexItem": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>flexItem={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>flexItem={true}</code>."
     },
-    "withChildren": { "description": "Styles applied to the root element if divider have text." },
+    "withChildren": {
+      "description": "{{stylesApplied}} if divider have text.",
+      "nodeName": "root element"
+    },
     "withChildrenVertical": {
-      "description": "Styles applied to the root element if divider have text and `orientation=\"vertical\"`."
+      "description": "{{stylesApplied}} if divider have text and `orientation=\"vertical\"`.",
+      "nodeName": "root element"
     },
     "textAlignRight": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>textAlign=\"right\" orientation=\"horizontal\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>textAlign=\"right\" orientation=\"horizontal\"</code>."
     },
     "textAlignLeft": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>textAlign=\"left\" orientation=\"horizontal\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>textAlign=\"left\" orientation=\"horizontal\"</code>."
     },
     "wrapper": {
-      "description": "Styles applied to the span children element if {{conditions}}.",
-      "conditions": "<code>orientation=\"horizontal\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "span children element",
+      "conditions": "<code>orientation=\"horizontal\"</code>."
     },
     "wrapperVertical": {
-      "description": "Styles applied to the span children element if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "span children element",
+      "conditions": "<code>orientation=\"vertical\"</code>."
     }
   }
 }

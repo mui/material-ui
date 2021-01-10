@@ -11,16 +11,24 @@
     "secondaryTypographyProps": "These props will be forwarded to the secondary typography component (as long as disableTypography is not <code>true</code>)."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "multiline": {
-      "description": "Styles applied to the Typography component if primary and secondary are set."
+      "description": "{{stylesApplied}} if primary and secondary are set.",
+      "nodeName": "Typography component"
     },
-    "dense": { "description": "Styles applied to the Typography component if dense." },
+    "dense": { "description": "{{stylesApplied}} if dense.", "nodeName": "Typography component" },
     "inset": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>inset={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>inset={true}</code>."
     },
-    "primary": { "description": "Styles applied to the primary `Typography` component." },
-    "secondary": { "description": "Styles applied to the secondary `Typography` component." }
+    "primary": {
+      "description": "{{stylesApplied}}.",
+      "nodeName": "primary `Typography` component"
+    },
+    "secondary": {
+      "description": "{{stylesApplied}}.",
+      "nodeName": "secondary `Typography` component"
+    }
   }
 }

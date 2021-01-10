@@ -7,19 +7,18 @@
     "focusVisibleClassName": "This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It&#39;s a polyfill for the <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">CSS :focus-visible selector</a>. The rationale for using this feature <a href=\"https://github.com/WICG/focus-visible/blob/master/explainer.md\">is explained here</a>. A <a href=\"https://github.com/WICG/focus-visible\">polyfill can be used</a> to apply a <code>focus-visible</code> class to other components if needed."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "expanded": {
-      "description": "Pseudo-class applied to the root element, children wrapper element and `IconButton` component if {{conditions}}.",
-      "conditions": "<code>expanded={true}</code>"
+      "description": "Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`."
     },
     "focusVisible": {
       "description": "Pseudo-class applied to the ButtonBase root element if the button is keyboard focused."
     },
-    "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "content": { "description": "Styles applied to the children wrapper element." },
-    "expandIconWrapper": { "description": "Styles applied to the `expandIcon`'s wrapper element." }
+    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
+    "content": { "description": "{{stylesApplied}}.", "nodeName": "children wrapper element" },
+    "expandIconWrapper": {
+      "description": "{{stylesApplied}}.",
+      "nodeName": "`expandIcon`'s wrapper element"
+    }
   }
 }

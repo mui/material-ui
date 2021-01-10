@@ -19,30 +19,36 @@
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "anchorOriginTopCenter": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>anchorOrigin={{ 'top', 'center' }}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>anchorOrigin={{ 'top', 'center' }}</code>."
     },
     "anchorOriginBottomCenter": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'center' }}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'center' }}</code>."
     },
     "anchorOriginTopRight": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>."
     },
     "anchorOriginBottomRight": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>."
     },
     "anchorOriginTopLeft": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>."
     },
     "anchorOriginBottomLeft": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>."
     }
   }
 }

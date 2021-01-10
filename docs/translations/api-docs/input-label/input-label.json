@@ -14,46 +14,40 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "focused": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>focused={true}</code>"
-    },
-    "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "error": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>error={true}</code>"
-    },
-    "required": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>required={true}</code>"
-    },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "focused": { "description": "Pseudo-class applied to the root element if `focused={true}`." },
+    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
+    "error": { "description": "Pseudo-class applied to the root element if `error={true}`." },
+    "required": { "description": "Pseudo-class applied to the root element if `required={true}`." },
     "asterisk": { "description": "Pseudo-class applied to the asterisk element." },
     "formControl": {
-      "description": "Styles applied to the root element if the component is a descendant of `FormControl`."
+      "description": "{{stylesApplied}} if the component is a descendant of `FormControl`.",
+      "nodeName": "root element"
     },
     "sizeSmall": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>size=\"small\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>size=\"small\"</code>."
     },
     "shrink": {
-      "description": "Styles applied to the input element if {{conditions}}.",
-      "conditions": "<code>shrink={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "input element",
+      "conditions": "<code>shrink={true}</code>."
     },
     "animated": {
-      "description": "Styles applied to the input element unless {{conditions}}.",
-      "conditions": "<code>disableAnimation={true}</code>"
+      "description": "{{stylesApplied}} unless {{conditions}}.",
+      "nodeName": "input element",
+      "conditions": "<code>disableAnimation={true}</code>."
     },
     "filled": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"filled\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"filled\"</code>."
     },
     "outlined": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"outlined\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"outlined\"</code>."
     }
   }
 }

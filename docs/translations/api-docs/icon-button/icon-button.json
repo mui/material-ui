@@ -11,35 +11,38 @@
     "size": "The size of the component. <code>small</code> is equivalent to the dense button styling."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "edgeStart": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>edge=\"start\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>edge=\"start\"</code>."
     },
     "edgeEnd": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>edge=\"end\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>edge=\"end\"</code>."
     },
     "colorInherit": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"inherit\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"inherit\"</code>."
     },
     "colorPrimary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"primary\"</code>."
     },
     "colorSecondary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"secondary\"</code>."
     },
-    "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code>"
-    },
+    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
     "sizeSmall": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>size=\"small\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>size=\"small\"</code>."
     },
-    "label": { "description": "Styles applied to the children container element." }
+    "label": { "description": "{{stylesApplied}}.", "nodeName": "children container element" }
   }
 }

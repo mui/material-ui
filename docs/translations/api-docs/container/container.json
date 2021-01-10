@@ -9,34 +9,41 @@
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "disableGutters": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>disableGutters={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>disableGutters={true}</code>."
     },
     "fixed": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>fixed={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>fixed={true}</code>."
     },
     "maxWidthXs": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>maxWidth=\"xs\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>maxWidth=\"xs\"</code>."
     },
     "maxWidthSm": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>maxWidth=\"sm\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>maxWidth=\"sm\"</code>."
     },
     "maxWidthMd": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>maxWidth=\"md\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>maxWidth=\"md\"</code>."
     },
     "maxWidthLg": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>maxWidth=\"lg\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>maxWidth=\"lg\"</code>."
     },
     "maxWidthXl": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>maxWidth=\"xl\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>maxWidth=\"xl\"</code>."
     }
   }
 }

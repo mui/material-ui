@@ -6,18 +6,21 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "alignLeft": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>align=\"left\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>align=\"left\"</code>."
     },
     "alignRight": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>align=\"right\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>align=\"right\"</code>."
     },
     "alignAlternate": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>align=\"alternate\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>align=\"alternate\"</code>."
     }
   }
 }

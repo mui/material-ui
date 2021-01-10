@@ -13,24 +13,29 @@
     "variant": "The shape of the avatar."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "colorDefault": {
-      "description": "Styles applied to the root element if not `src` or `srcSet`."
+      "description": "{{stylesApplied}} if not `src` or `srcSet`.",
+      "nodeName": "root element"
     },
     "circular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"circular\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"circular\"</code>."
     },
     "rounded": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"rounded\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"rounded\"</code>."
     },
     "square": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"square\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"square\"</code>."
     },
     "img": {
-      "description": "Styles applied to the img element if either `src` or `srcSet` is defined."
+      "description": "{{stylesApplied}} if either `src` or `srcSet` is defined.",
+      "nodeName": "img element"
     },
     "fallback": { "description": "Styles applied to the fallback icon" }
   }

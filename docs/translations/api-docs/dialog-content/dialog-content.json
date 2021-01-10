@@ -6,10 +6,11 @@
     "dividers": "Display the top and bottom dividers."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "dividers": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>dividers={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>dividers={true}</code>."
     }
   }
 }

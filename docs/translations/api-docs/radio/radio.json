@@ -18,22 +18,18 @@
     "value": "The value of the component. The DOM API casts this to a string."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "checked": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>checked={true}</code>"
-    },
-    "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code>"
-    },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "checked": { "description": "Pseudo-class applied to the root element if `checked={true}`." },
+    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
     "colorPrimary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"primary\"</code>."
     },
     "colorSecondary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"secondary\"</code>."
     }
   }
 }

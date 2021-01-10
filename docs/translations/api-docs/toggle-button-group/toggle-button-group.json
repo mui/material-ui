@@ -10,19 +10,22 @@
     "value": "The currently selected value within the group or an array of selected values when <code>exclusive</code> is false.<br>The value must have reference equality with the option in order to be selected."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "vertical": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>orientation=\"vertical\"</code>."
     },
-    "grouped": { "description": "Styles applied to the children." },
+    "grouped": { "description": "{{stylesApplied}}.", "nodeName": "children" },
     "groupedHorizontal": {
-      "description": "Styles applied to the children if {{conditions}}.",
-      "conditions": "<code>orientation=\"horizontal\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "children",
+      "conditions": "<code>orientation=\"horizontal\"</code>."
     },
     "groupedVertical": {
-      "description": "Styles applied to the children if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "children",
+      "conditions": "<code>orientation=\"vertical\"</code>."
     }
   }
 }

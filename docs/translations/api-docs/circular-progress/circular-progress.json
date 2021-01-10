@@ -10,36 +10,43 @@
     "variant": "The variant to use. Use indeterminate when there is no progress value."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "determinate": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"determinate\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"determinate\"</code>."
     },
     "indeterminate": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"indeterminate\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"indeterminate\"</code>."
     },
     "colorPrimary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"primary\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"primary\"</code>."
     },
     "colorSecondary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>color=\"secondary\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>color=\"secondary\"</code>."
     },
-    "svg": { "description": "Styles applied to the svg element." },
-    "circle": { "description": "Styles applied to the `circle` svg path." },
+    "svg": { "description": "{{stylesApplied}}.", "nodeName": "svg element" },
+    "circle": { "description": "{{stylesApplied}}.", "nodeName": "`circle` svg path" },
     "circleDeterminate": {
-      "description": "Styles applied to the `circle` svg path if {{conditions}}.",
-      "conditions": "<code>variant=\"determinate\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "`circle` svg path",
+      "conditions": "<code>variant=\"determinate\"</code>."
     },
     "circleIndeterminate": {
-      "description": "Styles applied to the `circle` svg path if {{conditions}}.",
-      "conditions": "<code>variant=\"indeterminate\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "`circle` svg path",
+      "conditions": "<code>variant=\"indeterminate\"</code>."
     },
     "circleDisableShrink": {
-      "description": "Styles applied to the `circle` svg path if {{conditions}}.",
-      "conditions": "<code>disableShrink={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "`circle` svg path",
+      "conditions": "<code>disableShrink={true}</code>."
     }
   }
 }

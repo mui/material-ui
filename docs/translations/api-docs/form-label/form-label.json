@@ -12,30 +12,16 @@
     "required": "If <code>true</code>, the label will indicate that the <code>input</code> is required."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "colorSecondary": {
-      "description": "Styles applied to the root element if the color is secondary."
+      "description": "{{stylesApplied}} if the color is secondary.",
+      "nodeName": "root element"
     },
-    "focused": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>focused={true}</code>"
-    },
-    "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code>"
-    },
-    "error": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>error={true}</code>"
-    },
-    "filled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>filled={true}</code>"
-    },
-    "required": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>required={true}</code>"
-    },
-    "asterisk": { "description": "Styles applied to the asterisk element." }
+    "focused": { "description": "Pseudo-class applied to the root element if `focused={true}`." },
+    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
+    "error": { "description": "Pseudo-class applied to the root element if `error={true}`." },
+    "filled": { "description": "Pseudo-class applied to the root element if `filled={true}`." },
+    "required": { "description": "Pseudo-class applied to the root element if `required={true}`." },
+    "asterisk": { "description": "{{stylesApplied}}.", "nodeName": "asterisk element" }
   }
 }

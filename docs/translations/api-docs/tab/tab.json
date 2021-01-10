@@ -12,35 +12,42 @@
     "wrapped": "Tab labels appear in a single row. They can use a second line if needed."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "labelIcon": {
-      "description": "Styles applied to the root element if both `icon` and `label` are provided."
+      "description": "{{stylesApplied}} if both `icon` and `label` are provided.",
+      "nodeName": "root element"
     },
     "textColorInherit": {
-      "description": "Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor=\"inherit\"`."
+      "description": "{{stylesApplied}} if the parent [`Tabs`](/api/tabs/) has `textColor=\"inherit\"`.",
+      "nodeName": "root element"
     },
     "textColorPrimary": {
-      "description": "Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor=\"primary\"`."
+      "description": "{{stylesApplied}} if the parent [`Tabs`](/api/tabs/) has `textColor=\"primary\"`.",
+      "nodeName": "root element"
     },
     "textColorSecondary": {
-      "description": "Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor=\"secondary\"`."
+      "description": "{{stylesApplied}} if the parent [`Tabs`](/api/tabs/) has `textColor=\"secondary\"`.",
+      "nodeName": "root element"
     },
     "selected": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>selected={true}</code> (controlled by the Tabs component)"
+      "description": "Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component)."
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code> (controlled by the Tabs component)"
+      "description": "Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component)."
     },
     "fullWidth": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>fullWidth={true}</code> (controlled by the Tabs component)"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>fullWidth={true}</code> (controlled by the Tabs component)."
     },
     "wrapped": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>wrapped={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>wrapped={true}</code>."
     },
-    "wrapper": { "description": "Styles applied to the `icon` and `label`'s wrapper element." }
+    "wrapper": {
+      "description": "{{stylesApplied}}.",
+      "nodeName": "`icon` and `label`'s wrapper element"
+    }
   }
 }

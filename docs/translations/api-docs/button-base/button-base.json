@@ -16,11 +16,8 @@
     "TouchRippleProps": "Props applied to the <code>TouchRipple</code> element."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code>"
-    },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." },
     "focusVisible": {
       "description": "Pseudo-class applied to the root element if keyboard focused."
     }

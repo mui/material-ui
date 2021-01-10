@@ -20,20 +20,31 @@
     "showLastButton": "If <code>true</code>, show the last-page button."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "toolbar": { "description": "Styles applied to the Toolbar component." },
-    "spacer": { "description": "Styles applied to the spacer element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "toolbar": { "description": "{{stylesApplied}}.", "nodeName": "Toolbar component" },
+    "spacer": { "description": "{{stylesApplied}}.", "nodeName": "spacer element" },
     "caption": {
-      "description": "Styles applied to the caption Typography component if {{conditions}}.",
-      "conditions": "<code>variant=\"caption\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "caption Typography component",
+      "conditions": "<code>variant=\"caption\"</code>."
     },
-    "selectRoot": { "description": "Styles applied to the Select component root element." },
-    "select": { "description": "Styles applied to the Select component `select` class." },
-    "selectIcon": { "description": "Styles applied to the Select component `icon` class." },
-    "input": { "description": "Styles applied to the InputBase component." },
-    "menuItem": { "description": "Styles applied to the MenuItem component." },
+    "selectRoot": {
+      "description": "{{stylesApplied}}.",
+      "nodeName": "Select component root element"
+    },
+    "select": {
+      "description": "{{stylesApplied}}.",
+      "nodeName": "Select component `select` class"
+    },
+    "selectIcon": {
+      "description": "{{stylesApplied}}.",
+      "nodeName": "Select component `icon` class"
+    },
+    "input": { "description": "{{stylesApplied}}.", "nodeName": "InputBase component" },
+    "menuItem": { "description": "{{stylesApplied}}.", "nodeName": "MenuItem component" },
     "actions": {
-      "description": "Styles applied to the internal `TablePaginationActions` component."
+      "description": "{{stylesApplied}}.",
+      "nodeName": "internal `TablePaginationActions` component"
     }
   }
 }

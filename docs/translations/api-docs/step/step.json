@@ -11,22 +11,24 @@
     "last": "If <code>true</code>, the Step is displayed as rendered last. The prop defaults to the value inherited from the parent Stepper component."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "horizontal": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>orientation=\"horizontal\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>orientation=\"horizontal\"</code>."
     },
     "vertical": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>orientation=\"vertical\"</code>."
     },
     "alternativeLabel": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>alternativeLabel={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>alternativeLabel={true}</code>."
     },
     "completed": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>completed={true}</code>"
+      "description": "Pseudo-class applied to the root element if `completed={true}`."
     }
   }
 }

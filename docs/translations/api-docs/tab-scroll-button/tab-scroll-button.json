@@ -8,14 +8,12 @@
     "orientation": "The component orientation (layout flow direction)."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "vertical": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>orientation=\"vertical\"</code>."
     },
-    "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
-      "conditions": "<code>disabled={true}</code>"
-    }
+    "disabled": { "description": "Pseudo-class applied to the root element if `disabled={true}`." }
   }
 }

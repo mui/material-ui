@@ -6,10 +6,11 @@
     "row": "Display group of elements in a compact row."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "row": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>row={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>row={true}</code>."
     }
   }
 }

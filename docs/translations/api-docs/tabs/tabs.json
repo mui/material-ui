@@ -23,42 +23,53 @@
     "visibleScrollbar": "If <code>true</code>, the scrollbar is visible. It can be useful when displaying a long vertical list of tabs."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "vertical": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>orientation=\"vertical\"</code>."
     },
-    "flexContainer": { "description": "Styles applied to the flex container element." },
+    "flexContainer": { "description": "{{stylesApplied}}.", "nodeName": "flex container element" },
     "flexContainerVertical": {
-      "description": "Styles applied to the flex container element if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "flex container element",
+      "conditions": "<code>orientation=\"vertical\"</code>."
     },
     "centered": {
-      "description": "Styles applied to the flex container element if {{conditions}}.",
-      "conditions": "<code>centered={true}</code> & <code>!variant=\"scrollable\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "flex container element",
+      "conditions": "<code>centered={true}</code> & <code>!variant=\"scrollable\"</code>."
     },
-    "scroller": { "description": "Styles applied to the tablist element." },
+    "scroller": { "description": "{{stylesApplied}}.", "nodeName": "tablist element" },
     "fixed": {
-      "description": "Styles applied to the tablist element if {{conditions}}.",
-      "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "tablist element",
+      "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b."
     },
     "scrollableX": {
-      "description": "Styles applied to the tablist element if {{conditions}}.",
-      "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"horizontal\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "tablist element",
+      "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"horizontal\"</code>."
     },
     "scrollableY": {
-      "description": "Styles applied to the tablist element if {{conditions}}.",
-      "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"vertical\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "tablist element",
+      "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"vertical\"</code>."
     },
     "hideScrollbar": {
-      "description": "Styles applied to the tablist element if {{conditions}}.",
-      "conditions": "<code>variant=\"scrollable\"</code> and <code>visibleScrollbar={false}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "tablist element",
+      "conditions": "<code>variant=\"scrollable\"</code> and <code>visibleScrollbar={false}</code>."
     },
-    "scrollButtons": { "description": "Styles applied to the ScrollButtonComponent component." },
+    "scrollButtons": {
+      "description": "{{stylesApplied}}.",
+      "nodeName": "ScrollButtonComponent component"
+    },
     "scrollButtonsHideMobile": {
-      "description": "Styles applied to the ScrollButtonComponent component if {{conditions}}.",
-      "conditions": "<code>allowScrollButtonsMobile={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "ScrollButtonComponent component",
+      "conditions": "<code>allowScrollButtonsMobile={true}</code>."
     },
-    "indicator": { "description": "Styles applied to the TabIndicator component." }
+    "indicator": { "description": "{{stylesApplied}}.", "nodeName": "TabIndicator component" }
   }
 }

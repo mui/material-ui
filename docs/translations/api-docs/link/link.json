@@ -10,22 +10,26 @@
     "variant": "Applies the theme typography styles."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "underlineNone": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>underline=\"none\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>underline=\"none\"</code>."
     },
     "underlineHover": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>underline=\"hover\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>underline=\"hover\"</code>."
     },
     "underlineAlways": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>underline=\"always\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>underline=\"always\"</code>."
     },
     "button": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>component=\"button\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>component=\"button\"</code>."
     },
     "focusVisible": {
       "description": "Pseudo-class applied to the root element if the link is keyboard focused."

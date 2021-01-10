@@ -99,10 +99,10 @@ function ClassesTable(props) {
               dangerouslySetInnerHTML={{
                 __html:
                   classDescriptions[className] &&
-                  classDescriptions[className].description.replace(
-                    /{{conditions}}/,
-                    classDescriptions[className].conditions,
-                  ),
+                  classDescriptions[className].description
+                    .replace(/{{stylesApplied}}/, t('api-docs.stylesApplied'))
+                    .replace(/{{conditions}}/, classDescriptions[className].conditions)
+                    .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
               }}
             />
           </tr>

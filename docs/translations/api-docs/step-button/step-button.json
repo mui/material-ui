@@ -7,15 +7,17 @@
     "optional": "The optional node to display."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "horizontal": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>orientation=\"horizontal\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>orientation=\"horizontal\"</code>."
     },
     "vertical": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>orientation=\"vertical\"</code>."
     },
-    "touchRipple": { "description": "Styles applied to the `ButtonBase` touch-ripple." }
+    "touchRipple": { "description": "{{stylesApplied}}.", "nodeName": "`ButtonBase` touch-ripple" }
   }
 }

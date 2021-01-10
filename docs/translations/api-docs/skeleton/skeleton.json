@@ -10,26 +10,31 @@
     "width": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "text": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"text\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"text\"</code>."
     },
     "rectangular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"rectangular\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"rectangular\"</code>."
     },
     "circular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>variant=\"circular\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>variant=\"circular\"</code>."
     },
     "pulse": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>animation=\"pulse\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>animation=\"pulse\"</code>."
     },
     "wave": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>animation=\"wave\"</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>animation=\"wave\"</code>."
     },
     "withChildren": { "description": "Styles applied when the component is passed children." },
     "fitContent": {

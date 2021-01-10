@@ -8,10 +8,11 @@
     "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "invisible": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>invisible={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>invisible={true}</code>."
     }
   }
 }

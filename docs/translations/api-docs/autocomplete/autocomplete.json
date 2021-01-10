@@ -61,40 +61,46 @@
     "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>getOptionSelected</code> prop."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "@media (pointer": { "description": "Avoid double tap issue on iOS" },
     "fullWidth": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>fullWidth={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>fullWidth={true}</code>."
     },
     "focused": { "description": "Pseudo-class applied to the root element if focused." },
-    "tag": { "description": "Styles applied to the tag elements, e.g. the chips." },
+    "tag": { "description": "{{stylesApplied}}, e.g. the chips.", "nodeName": "tag elements" },
     "tagSizeSmall": {
-      "description": "Styles applied to the tag elements, e.g. the chips if {{conditions}}.",
-      "conditions": "<code>size=\"small\"</code>"
+      "description": "{{stylesApplied}}, e.g. the chips if `size=\"small\"`.",
+      "nodeName": "tag elements"
     },
     "hasPopupIcon": { "description": "Styles applied when the popup icon is rendered." },
     "hasClearIcon": { "description": "Styles applied when the clear icon is rendered." },
-    "inputRoot": { "description": "Styles applied to the Input element." },
-    "input": { "description": "Styles applied to the input element." },
-    "inputFocused": { "description": "Styles applied to the input element if tag focused." },
-    "endAdornment": { "description": "Styles applied to the endAdornment element." },
-    "clearIndicator": { "description": "Styles applied to the clear indicator." },
-    "popupIndicator": { "description": "Styles applied to the popup indicator." },
+    "inputRoot": { "description": "{{stylesApplied}}.", "nodeName": "Input element" },
+    "input": { "description": "{{stylesApplied}}.", "nodeName": "input element" },
+    "inputFocused": {
+      "description": "{{stylesApplied}} if tag focused.",
+      "nodeName": "input element"
+    },
+    "endAdornment": { "description": "{{stylesApplied}}.", "nodeName": "endAdornment element" },
+    "clearIndicator": { "description": "{{stylesApplied}}.", "nodeName": "clear indicator" },
+    "popupIndicator": { "description": "{{stylesApplied}}.", "nodeName": "popup indicator" },
     "popupIndicatorOpen": {
-      "description": "Styles applied to the popup indicator if the popup is open."
+      "description": "{{stylesApplied}} if the popup is open.",
+      "nodeName": "popup indicator"
     },
-    "popper": { "description": "Styles applied to the popper element." },
+    "popper": { "description": "{{stylesApplied}}.", "nodeName": "popper element" },
     "popperDisablePortal": {
-      "description": "Styles applied to the popper element if {{conditions}}.",
-      "conditions": "<code>disablePortal={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "popper element",
+      "conditions": "<code>disablePortal={true}</code>."
     },
-    "paper": { "description": "Styles applied to the Paper component." },
-    "listbox": { "description": "Styles applied to the listbox component." },
-    "loading": { "description": "Styles applied to the loading wrapper." },
-    "noOptions": { "description": "Styles applied to the no option wrapper." },
-    "option": { "description": "Styles applied to the option elements." },
-    "groupLabel": { "description": "Styles applied to the group's label elements." },
-    "groupUl": { "description": "Styles applied to the group's ul elements." }
+    "paper": { "description": "{{stylesApplied}}.", "nodeName": "Paper component" },
+    "listbox": { "description": "{{stylesApplied}}.", "nodeName": "listbox component" },
+    "loading": { "description": "{{stylesApplied}}.", "nodeName": "loading wrapper" },
+    "noOptions": { "description": "{{stylesApplied}}.", "nodeName": "no option wrapper" },
+    "option": { "description": "{{stylesApplied}}.", "nodeName": "option elements" },
+    "groupLabel": { "description": "{{stylesApplied}}.", "nodeName": "group's label elements" },
+    "groupUl": { "description": "{{stylesApplied}}.", "nodeName": "group's ul elements" }
   }
 }

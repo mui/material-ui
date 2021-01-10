@@ -7,11 +7,12 @@
     "role": "The ARIA role attribute of the element."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "message": { "description": "Styles applied to the message wrapper element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "message": { "description": "{{stylesApplied}}.", "nodeName": "message wrapper element" },
     "action": {
-      "description": "Styles applied to the action wrapper element if {{conditions}}.",
-      "conditions": "<code>action</code> is provided"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "action wrapper element",
+      "conditions": "<code>action</code> is provided."
     }
   }
 }

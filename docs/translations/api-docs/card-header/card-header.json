@@ -12,11 +12,11 @@
     "titleTypographyProps": "These props will be forwarded to the title (as long as disableTypography is not <code>true</code>)."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "avatar": { "description": "Styles applied to the avatar element." },
-    "action": { "description": "Styles applied to the action element." },
-    "content": { "description": "Styles applied to the content wrapper element." },
-    "title": { "description": "Styles applied to the title Typography element." },
-    "subheader": { "description": "Styles applied to the subheader Typography element." }
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
+    "avatar": { "description": "{{stylesApplied}}.", "nodeName": "avatar element" },
+    "action": { "description": "{{stylesApplied}}.", "nodeName": "action element" },
+    "content": { "description": "{{stylesApplied}}.", "nodeName": "content wrapper element" },
+    "title": { "description": "{{stylesApplied}}.", "nodeName": "title Typography element" },
+    "subheader": { "description": "{{stylesApplied}}.", "nodeName": "subheader Typography element" }
   }
 }

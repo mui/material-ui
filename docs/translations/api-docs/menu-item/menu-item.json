@@ -9,15 +9,17 @@
     "ListItemClasses": "<code>classes</code> prop applied to the <a href=\"/api/list-item/\"><code>ListItem</code></a> element."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "{{stylesApplied}}.", "nodeName": "root element" },
     "gutters": {
-      "description": "Styles applied to the root element unless {{conditions}}.",
-      "conditions": "<code>disableGutters={true}</code>"
+      "description": "{{stylesApplied}} unless {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>disableGutters={true}</code>."
     },
     "selected": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>selected={true}</code>"
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "<code>selected={true}</code>."
     },
-    "dense": { "description": "Styles applied to the root element if dense." }
+    "dense": { "description": "{{stylesApplied}} if dense.", "nodeName": "root element" }
   }
 }

@@ -30,8 +30,9 @@ import getStylesCreator from '@material-ui/styles/getStylesCreator';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
-// Only run for ButtonBase
+// Only run for the named component
 const TEST = false;
+// const TEST = 'Accordion';
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
@@ -800,17 +801,25 @@ async function annotateClassesDefinition(context: {
  * Substitute CSS class description conditions with placeholder
  */
 function extractClassConditions(descriptions: any) {
-  const classConditions: { [key: string]: { description: string; conditions?: string } } = {};
-  const stylesRegex = /(if |unless )(`.*)./;
+  const classConditions: {
+    [key: string]: { description: string; conditions?: string; nodeName?: string };
+  } = {};
+  const stylesRegex = /Styles applied to the (.*?)( if | unless |,|\.)(`.*)*\.*/;
 
   Object.entries(descriptions).forEach(([className, classDescription]: any) => {
     if (className) {
       const conditions = classDescription.match(stylesRegex);
 
-      if (conditions) {
+      if (conditions && conditions[3]) {
         classConditions[className] = {
-          description: classDescription.replace(stylesRegex, '$1{{conditions}}.'),
-          conditions: conditions[2].replace(/`(.*?)`/g, '<code>$1</code>'),
+          description: classDescription.replace(stylesRegex, '{{stylesApplied}}$2{{conditions}}.'),
+          nodeName: conditions[1],
+          conditions: conditions[3].replace(/`(.*?)`/g, '<code>$1</code>'),
+        };
+      } else if (conditions && conditions[1]) {
+        classConditions[className] = {
+          description: classDescription.replace(stylesRegex, '{{stylesApplied}}$2'),
+          nodeName: conditions[1],
         };
       } else {
         classConditions[className] = { description: classDescription };
@@ -880,7 +889,7 @@ async function buildDocs(options: {
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
 
-  if (TEST && name !== 'ButtonBase') {
+  if (TEST && name !== TEST) {
     return;
   }
 
