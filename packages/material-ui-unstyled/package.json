@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.22",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Unstyled React components to build custom design systems on top of.",
+  "description": "Unstyled React components with which to implement custom design systems.",
   "main": "./src/index.js",
   "keywords": [
     "react",
