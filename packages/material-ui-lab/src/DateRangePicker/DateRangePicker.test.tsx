@@ -277,6 +277,7 @@ describe('<DateRangePicker />', () => {
     expect(screen.getByRole('tooltip')).toBeVisible();
   });
 
+  // TODO: remove once we use describeConformanceV5.
   it("respect theme's defaultProps", () => {
     const theme = createMuiTheme({
       components: {
