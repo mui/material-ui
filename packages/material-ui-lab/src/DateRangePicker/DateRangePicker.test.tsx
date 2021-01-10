@@ -209,12 +209,9 @@ describe('<DateRangePicker />', () => {
       },
     });
 
-    expect(
-      onChangeMock.calledWith([
-        adapterToUse.date('2019-06-06T00:00:00.000'),
-        adapterToUse.date('2019-06-06T00:00:00.000'),
-      ]),
-    ).to.equal(true);
+    expect(onChangeMock.callCount).to.equal(1);
+    expect(onChangeMock.args[0][0]).toEqualDateTime(adapterToUse.date('2019-06-06T00:00:00.000'));
+    expect(onChangeMock.args[0][1]).toEqualDateTime(adapterToUse.date('2019-06-06T00:00:00.000'));
   });
 
   it('scrolls current month to the active selection on focusing appropriate field', () => {

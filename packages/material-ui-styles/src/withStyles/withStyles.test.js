@@ -129,12 +129,11 @@ describe('withStyles', () => {
       const StyledComponent = withStyles(styles)(MyComp);
       render(<StyledComponent mySuppliedProp={222} />);
 
-      expect(
-        jssCallbackStub.calledWith({
-          myDefaultProp: 111,
-          mySuppliedProp: 222,
-        }),
-      ).to.equal(true);
+      expect(jssCallbackStub.callCount).to.equal(1);
+      expect(jssCallbackStub.args[0][0]).to.deep.equal({
+        myDefaultProp: 111,
+        mySuppliedProp: 222,
+      });
     });
 
     it('should support theme.props', () => {

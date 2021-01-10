@@ -266,7 +266,8 @@ describe('<DatePicker /> keyboard interactions', () => {
           },
         });
 
-        expect(onErrorMock.calledWith(expectedError)).to.be.equal(true);
+        expect(onErrorMock.callCount).to.equal(1);
+        expect(onErrorMock.args[0][0]).to.equal(expectedError);
       });
     });
   });

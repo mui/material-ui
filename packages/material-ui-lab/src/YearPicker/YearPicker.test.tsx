@@ -59,6 +59,7 @@ describe('<YearPicker />', () => {
     );
 
     fireEvent.click(screen.getByText('2025', { selector: 'button' }));
-    expect(onChangeMock.calledWith(adapterToUse.date('2025-02-02T00:00:00.000'))).to.equal(true);
+    expect(onChangeMock.callCount).to.equal(1);
+    expect(onChangeMock.args[0][0]).toEqualDateTime(adapterToUse.date('2025-02-02T00:00:00.000'));
   });
 });
