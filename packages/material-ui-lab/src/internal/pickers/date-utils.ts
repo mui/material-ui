@@ -1,7 +1,6 @@
 import { RangeInput, NonEmptyDateRange, DateRange } from '../../DateRangePicker/RangeTypes';
 import { arrayIncludes } from './utils';
 import { ParsableDate } from './constants/prop-types';
-import { BasePickerProps } from './typings/BasePicker';
 import { DatePickerView } from './typings/Views';
 import { MuiPickersAdapter } from './hooks/useUtils';
 
