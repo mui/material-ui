@@ -166,44 +166,17 @@ Please take a look at the theme's [global overrides page](/customization/theme-c
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
 
 ```jsx
-const GlobalCss = withStyles({
-  // @global is handled by jss-plugin-global.
-  '@global': {
-    '.MuiButton-root': {
-      fontSize: '1rem',
-    },
+import GlobalStyles from '@material-ui/core/GlobalStyles';
+
+const globalStyles = {
+  '.MuiButton-root': {
+    fontSize: '1rem',
   },
-})(() => null);
+};
 
 // …
 
-<GlobalCss />;
-```
-
-If you are using the [CssBaseline](/components/css-baseline/) component to apply global resets, it can also be used to apply global styles. For instance:
-
-```jsx
-const theme = createMuiTheme({
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        '@global': {
-          html: {
-            WebkitFontSmoothing: 'auto',
-          },
-        },
-      },
-    },
-  },
-});
-
-// ...
-return (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    {children}
-  </ThemeProvider>
-);
+<GlobalStyles styles={globalStyles} />;
 ```
 
 {{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}
