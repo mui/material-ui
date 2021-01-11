@@ -18,7 +18,7 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
     disabled?: string;
   };
   /**
-   * Which direction should the button indicate?
+   * The direction the button should indicate.
    */
   direction: 'left' | 'right';
   /**

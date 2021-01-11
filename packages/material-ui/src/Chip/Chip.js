@@ -171,31 +171,31 @@ export const styles = (theme) => {
       },
     },
     // TODO v5: remove
-    /* Styles applied to the `avatar` element. */
+    /* Styles applied to the avatar element. */
     avatar: {},
-    /* Styles applied to the `avatar` element if `size="small"`. */
+    /* Styles applied to the avatar element if `size="small"`. */
     avatarSmall: {},
-    /* Styles applied to the `avatar` element if `color="primary"`. */
+    /* Styles applied to the avatar element if `color="primary"`. */
     avatarColorPrimary: {},
-    /* Styles applied to the `avatar` element if `color="secondary"`. */
+    /* Styles applied to the avatar element if `color="secondary"`. */
     avatarColorSecondary: {},
-    /* Styles applied to the `icon` element. */
+    /* Styles applied to the icon element. */
     icon: {
       color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
       marginLeft: 5,
       marginRight: -6,
     },
-    /* Styles applied to the `icon` element if `size="small"`. */
+    /* Styles applied to the icon element if `size="small"`. */
     iconSmall: {
       fontSize: 18,
       marginLeft: 4,
       marginRight: -4,
     },
-    /* Styles applied to the `icon` element if `color="primary"`. */
+    /* Styles applied to the icon element if `color="primary"`. */
     iconColorPrimary: {
       color: 'inherit',
     },
-    /* Styles applied to the `icon` element if `color="secondary"`. */
+    /* Styles applied to the icon element if `color="secondary"`. */
     iconColorSecondary: {
       color: 'inherit',
     },
@@ -212,7 +212,7 @@ export const styles = (theme) => {
       paddingLeft: 8,
       paddingRight: 8,
     },
-    /* Styles applied to the `deleteIcon` element. */
+    /* Styles applied to the deleteIcon element. */
     deleteIcon: {
       WebkitTapHighlightColor: 'transparent',
       color: deleteIconColor,
@@ -223,7 +223,7 @@ export const styles = (theme) => {
         color: alpha(deleteIconColor, 0.4),
       },
     },
-    /* Styles applied to the `deleteIcon` element if `size="small"`. */
+    /* Styles applied to the deleteIcon element if `size="small"`. */
     deleteIconSmall: {
       fontSize: 16,
       marginRight: 4,

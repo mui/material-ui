@@ -36,7 +36,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
         toolbar?: string;
         /** Styles applied to the spacer element. */
         spacer?: string;
-        /** Styles applied to the caption Typography components if `variant="caption"`. */
+        /** Styles applied to the caption Typography component if `variant="caption"`. */
         caption?: string;
         /** Styles applied to the Select component root element. */
         selectRoot?: string;
@@ -44,7 +44,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
         select?: string;
         /** Styles applied to the Select component `icon` class. */
         selectIcon?: string;
-        /** Styles applied to the `InputBase` component. */
+        /** Styles applied to the InputBase component. */
         input?: string;
         /** Styles applied to the MenuItem component. */
         menuItem?: string;

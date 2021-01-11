@@ -13,9 +13,9 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "multiline": {
-      "description": "Styles applied to the `Typography` components if primary and secondary are set."
+      "description": "Styles applied to the Typography component if primary and secondary are set."
     },
-    "dense": { "description": "Styles applied to the `Typography` components if dense." },
+    "dense": { "description": "Styles applied to the Typography component if dense." },
     "inset": {
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>inset={true}</code>"

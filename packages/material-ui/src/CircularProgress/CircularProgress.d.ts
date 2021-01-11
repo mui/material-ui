@@ -17,7 +17,7 @@ export interface CircularProgressProps
     colorPrimary?: string;
     /** Styles applied to the root element if `color="secondary"`. */
     colorSecondary?: string;
-    /** Styles applied to the `svg` element. */
+    /** Styles applied to the svg element. */
     svg?: string;
     /** Styles applied to the `circle` svg path. */
     circle?: string;

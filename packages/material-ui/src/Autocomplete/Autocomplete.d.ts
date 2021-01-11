@@ -95,9 +95,9 @@ export interface AutocompleteProps<
     popper?: string;
     /** Styles applied to the popper element if `disablePortal={true}`. */
     popperDisablePortal?: string;
-    /** Styles applied to the `Paper` component. */
+    /** Styles applied to the Paper component. */
     paper?: string;
-    /** Styles applied to the `listbox` component. */
+    /** Styles applied to the listbox component. */
     listbox?: string;
     /** Styles applied to the loading wrapper. */
     loading?: string;
@@ -135,7 +135,7 @@ export interface AutocompleteProps<
    */
   disabled?: boolean;
   /**
-   * The `Popper` content will be under the DOM hierarchy of the parent component.
+   * If `true`, the `Popper` content will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal?: boolean;

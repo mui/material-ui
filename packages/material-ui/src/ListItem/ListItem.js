@@ -39,18 +39,18 @@ export const styles = (theme) => ({
       opacity: theme.palette.action.disabledOpacity,
     },
   },
-  /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
+  /* Styles applied to the container element if `children` includes `ListItemSecondaryAction`. */
   container: {
     position: 'relative',
   },
   /* Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
   focusVisible: {},
-  /* Styles applied to the `component` element if dense. */
+  /* Styles applied to the component element if dense. */
   dense: {
     paddingTop: 4,
     paddingBottom: 4,
   },
-  /* Styles applied to the `component` element if `alignItems="flex-start"`. */
+  /* Styles applied to the component element if `alignItems="flex-start"`. */
   alignItemsFlexStart: {
     alignItems: 'flex-start',
   },
@@ -90,7 +90,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
+  /* Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
   secondaryAction: {
     // Add some space to avoid collision as `ListItemSecondaryAction`
     // is absolutely positioned.
@@ -235,7 +235,7 @@ ListItem.propTypes = {
    */
   button: PropTypes.bool,
   /**
-   * The content of the component. If a `ListItemSecondaryAction` is used it must
+   * The content of the component if a `ListItemSecondaryAction` is used it must
    * be the last child.
    */
   children: chainPropTypes(PropTypes.node, (props) => {

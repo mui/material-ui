@@ -32,7 +32,7 @@ export const styles = (theme) => ({
   spacer: {
     flex: '1 1 100%',
   },
-  /* Styles applied to the caption Typography components if `variant="caption"`. */
+  /* Styles applied to the caption Typography component if `variant="caption"`. */
   caption: {
     flexShrink: 0,
   },
@@ -52,7 +52,7 @@ export const styles = (theme) => ({
   // TODO v5: remove
   /* Styles applied to the Select component `icon` class. */
   selectIcon: {},
-  /* Styles applied to the `InputBase` component. */
+  /* Styles applied to the InputBase component. */
   input: {
     color: 'inherit',
     fontSize: 'inherit',

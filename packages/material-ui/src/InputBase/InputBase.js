@@ -64,7 +64,7 @@ export const styles = (theme) => {
     adornedEnd: {},
     /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the `input` element if `size="small"`. */
+    /* Styles applied to the input element if `size="small"`. */
     sizeSmall: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
@@ -81,7 +81,7 @@ export const styles = (theme) => {
     },
     /* Styles applied to the root element if `hiddenLabel={true}`. */
     hiddenLabel: {},
-    /* Styles applied to the `input` element. */
+    /* Styles applied to the input element. */
     input: {
       font: 'inherit',
       letterSpacing: 'inherit',
@@ -134,27 +134,27 @@ export const styles = (theme) => {
         animationName: 'mui-auto-fill',
       },
     },
-    /* Styles applied to the `input` element if `size="small"`. */
+    /* Styles applied to the input element if `size="small"`. */
     inputSizeSmall: {
       paddingTop: 1,
     },
-    /* Styles applied to the `input` element if `multiline={true}`. */
+    /* Styles applied to the input element if `multiline={true}`. */
     inputMultiline: {
       height: 'auto',
       resize: 'none',
       padding: 0,
     },
-    /* Styles applied to the `input` element if `type="search"`. */
+    /* Styles applied to the input element if `type="search"`. */
     inputTypeSearch: {
       // Improve type search style.
       '-moz-appearance': 'textfield',
       '-webkit-appearance': 'textfield',
     },
-    /* Styles applied to the `input` element if `startAdornment` is provided. */
+    /* Styles applied to the input element if `startAdornment` is provided. */
     inputAdornedStart: {},
-    /* Styles applied to the `input` element if `endAdornment` is provided. */
+    /* Styles applied to the input element if `endAdornment` is provided. */
     inputAdornedEnd: {},
-    /* Styles applied to the `input` element if `hiddenLabel={true}`. */
+    /* Styles applied to the input element if `hiddenLabel={true}`. */
     inputHiddenLabel: {},
   };
 };

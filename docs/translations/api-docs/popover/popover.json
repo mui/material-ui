@@ -22,6 +22,6 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "paper": { "description": "Styles applied to the `Paper` component." }
+    "paper": { "description": "Styles applied to the Paper component." }
   }
 }

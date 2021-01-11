@@ -165,13 +165,13 @@ export const styles = (theme) => ({
   popperDisablePortal: {
     position: 'absolute',
   },
-  /* Styles applied to the `Paper` component. */
+  /* Styles applied to the Paper component. */
   paper: {
     ...theme.typography.body1,
     overflow: 'auto',
     margin: '4px 0',
   },
-  /* Styles applied to the `listbox` component. */
+  /* Styles applied to the listbox component. */
   listbox: {
     listStyle: 'none',
     margin: 0,
@@ -624,7 +624,7 @@ Autocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * The `Popper` content will be under the DOM hierarchy of the parent component.
+   * If `true`, the `Popper` content will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal: PropTypes.bool,

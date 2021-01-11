@@ -28,7 +28,7 @@ export const styles = (theme) => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
   },
-  /* Styles applied to the `svg` element. */
+  /* Styles applied to the svg element. */
   svg: {
     display: 'block', // Keeps the progress centered
   },

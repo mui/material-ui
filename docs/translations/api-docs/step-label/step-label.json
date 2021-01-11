@@ -19,9 +19,7 @@
       "description": "Styles applied to the root element if {{conditions}}.",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
-    "label": {
-      "description": "Styles applied to the `Typography` component which wraps `children`."
-    },
+    "label": { "description": "Styles applied to the Typography component that wraps `children`." },
     "active": {
       "description": "Pseudo-class applied to the `Typography` component if {{conditions}}.",
       "conditions": "<code>active={true}</code>"

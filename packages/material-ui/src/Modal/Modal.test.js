@@ -298,7 +298,7 @@ describe('<Modal />', () => {
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('should not call onClose when `disableEscapeKeyDown=true`', () => {
+    it('should not call onClose when `disableEscapeKeyDown={true}`', () => {
       const handleKeyDown = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(

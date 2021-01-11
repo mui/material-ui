@@ -17,7 +17,7 @@ export const styles = (theme) => ({
   docked: {
     flex: '0 0 auto',
   },
-  /* Styles applied to the `Paper` component. */
+  /* Styles applied to the Paper component. */
   paper: {
     overflowY: 'auto',
     display: 'flex',
@@ -34,17 +34,17 @@ export const styles = (theme) => ({
     // :focus-ring CSS pseudo-class will help.
     outline: 0,
   },
-  /* Styles applied to the `Paper` component if `anchor="left"`. */
+  /* Styles applied to the Paper component if `anchor="left"`. */
   paperAnchorLeft: {
     left: 0,
     right: 'auto',
   },
-  /* Styles applied to the `Paper` component if `anchor="right"`. */
+  /* Styles applied to the Paper component if `anchor="right"`. */
   paperAnchorRight: {
     left: 'auto',
     right: 0,
   },
-  /* Styles applied to the `Paper` component if `anchor="top"`. */
+  /* Styles applied to the Paper component if `anchor="top"`. */
   paperAnchorTop: {
     top: 0,
     left: 0,
@@ -53,7 +53,7 @@ export const styles = (theme) => ({
     height: 'auto',
     maxHeight: '100%',
   },
-  /* Styles applied to the `Paper` component if `anchor="bottom"`. */
+  /* Styles applied to the Paper component if `anchor="bottom"`. */
   paperAnchorBottom: {
     top: 'auto',
     left: 0,
@@ -62,23 +62,23 @@ export const styles = (theme) => ({
     height: 'auto',
     maxHeight: '100%',
   },
-  /* Styles applied to the `Paper` component if `anchor="left"` and `variant` is not "temporary". */
+  /* Styles applied to the Paper component if `anchor="left"` and `variant` is not "temporary". */
   paperAnchorDockedLeft: {
     borderRight: `1px solid ${theme.palette.divider}`,
   },
-  /* Styles applied to the `Paper` component if `anchor="top"` and `variant` is not "temporary". */
+  /* Styles applied to the Paper component if `anchor="top"` and `variant` is not "temporary". */
   paperAnchorDockedTop: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
-  /* Styles applied to the `Paper` component if `anchor="right"` and `variant` is not "temporary". */
+  /* Styles applied to the Paper component if `anchor="right"` and `variant` is not "temporary". */
   paperAnchorDockedRight: {
     borderLeft: `1px solid ${theme.palette.divider}`,
   },
-  /* Styles applied to the `Paper` component if `anchor="bottom"` and `variant` is not "temporary". */
+  /* Styles applied to the Paper component if `anchor="bottom"` and `variant` is not "temporary". */
   paperAnchorDockedBottom: {
     borderTop: `1px solid ${theme.palette.divider}`,
   },
-  /* Styles applied to the `Modal` component. */
+  /* Styles applied to the Modal component. */
   modal: {},
 });
 

@@ -13,12 +13,12 @@ export const styles = {
     marginTop: 4,
     marginBottom: 4,
   },
-  /* Styles applied to the `Typography` components if primary and secondary are set. */
+  /* Styles applied to the Typography component if primary and secondary are set. */
   multiline: {
     marginTop: 6,
     marginBottom: 6,
   },
-  /* Styles applied to the `Typography` components if dense. */
+  /* Styles applied to the Typography component if dense. */
   dense: {},
   /* Styles applied to the root element if `inset={true}`. */
   inset: {

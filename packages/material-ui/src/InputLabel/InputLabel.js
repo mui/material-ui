@@ -35,12 +35,12 @@ export const styles = (theme) => ({
     // Compensation for the `Input.inputSizeSmall` style.
     transform: 'translate(0, 21px) scale(1)',
   },
-  /* Styles applied to the `input` element if `shrink={true}`. */
+  /* Styles applied to the input element if `shrink={true}`. */
   shrink: {
     transform: 'translate(0, 1.5px) scale(0.75)',
     transformOrigin: 'top left',
   },
-  /* Styles applied to the `input` element unless `disableAnimation={true}`. */
+  /* Styles applied to the input element unless `disableAnimation={true}`. */
   animated: {
     transition: theme.transitions.create(['color', 'transform'], {
       duration: theme.transitions.duration.shorter,

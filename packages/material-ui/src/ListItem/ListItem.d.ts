@@ -16,7 +16,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      */
     autoFocus?: boolean;
     /**
-     * The content of the component. If a `ListItemSecondaryAction` is used it must
+     * The content of the component if a `ListItemSecondaryAction` is used it must
      * be the last child.
      */
     children?: React.ReactNode;
@@ -26,13 +26,13 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
     classes?: {
       /** Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
       root?: string;
-      /** Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
+      /** Styles applied to the container element if `children` includes `ListItemSecondaryAction`. */
       container?: string;
       /** Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
       focusVisible?: string;
-      /** Styles applied to the `component` element if dense. */
+      /** Styles applied to the component element if dense. */
       dense?: string;
-      /** Styles applied to the `component` element if `alignItems="flex-start"`. */
+      /** Styles applied to the component element if `alignItems="flex-start"`. */
       alignItemsFlexStart?: string;
       /** Pseudo-class applied to the inner `component` element if `disabled={true}`. */
       disabled?: string;
@@ -42,7 +42,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
       gutters?: string;
       /** Styles applied to the inner `component` element if `button={true}`. */
       button?: string;
-      /** Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
+      /** Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
       secondaryAction?: string;
       /** Pseudo-class applied to the root element if `selected={true}`. */
       selected?: string;

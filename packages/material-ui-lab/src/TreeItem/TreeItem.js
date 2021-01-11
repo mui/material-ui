@@ -17,7 +17,7 @@ export const styles = (theme) => ({
     padding: 0,
     outline: 0,
   },
-  /* Styles applied to the `role="group"` element. */
+  /* Styles applied to the transition component. */
   group: {
     margin: 0,
     padding: 0,
