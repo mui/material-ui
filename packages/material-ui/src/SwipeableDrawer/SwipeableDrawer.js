@@ -60,7 +60,7 @@ function getTranslate(currentTranslate, startLocation, open, maxTranslate) {
  */
 function getDomTreeShapes(element, rootNode) {
   // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129
-  let domTreeShapes = [];
+  const domTreeShapes = [];
 
   while (element && element !== rootNode.parentElement) {
     const style = ownerWindow(rootNode).getComputedStyle(element);
@@ -71,7 +71,7 @@ function getDomTreeShapes(element, rootNode) {
       // Ignore the scroll children if the element has an overflowX hidden
       style.getPropertyValue('overflow-x') === 'hidden'
     ) {
-      domTreeShapes = [];
+      // noop
     } else if (
       (element.clientWidth > 0 && element.scrollWidth > element.clientWidth) ||
       (element.clientHeight > 0 && element.scrollHeight > element.clientHeight)
@@ -334,16 +334,13 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       const dx = Math.abs(currentX - swipeInstance.current.startX);
       const dy = Math.abs(currentY - swipeInstance.current.startY);
 
-      // We are likely to be swiping, let's prevent the scroll event on iOS.
-      if (dx > dy) {
-        if (event.cancelable) {
-          event.preventDefault();
-        }
-      }
-
       const definitelySwiping = horizontalSwipe
         ? dx > dy && dx > UNCERTAINTY_THRESHOLD
         : dy > dx && dy > UNCERTAINTY_THRESHOLD;
+
+      if (definitelySwiping && event.cancelable) {
+        event.preventDefault();
+      }
 
       if (
         definitelySwiping === true ||

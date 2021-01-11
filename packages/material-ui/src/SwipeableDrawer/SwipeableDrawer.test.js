@@ -10,8 +10,8 @@ import {
   screen,
 } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
-import Drawer from '../Drawer';
-import SwipeableDrawer from './SwipeableDrawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import Drawer from '@material-ui/core/Drawer';
 import SwipeArea from './SwipeArea';
 import useForkRef from '../utils/useForkRef';
 
@@ -685,5 +685,79 @@ describe('<SwipeableDrawer />', () => {
       });
       expect(handleClose.callCount).to.equal(0);
     });
+  });
+
+  it('should not prevent scrolling a container', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // Need layouting
+      this.skip();
+    }
+
+    const handleTouchMove = spy((event) => event.defaultPrevented);
+
+    function Test() {
+      React.useEffect(() => {
+        document.addEventListener('touchmove', handleTouchMove);
+        return () => {
+          document.removeEventListener('touchmove', handleTouchMove);
+        };
+      }, []);
+
+      return (
+        <SwipeableDrawer anchor="top" open onOpen={() => {}} onClose={() => {}}>
+          <div style={{ width: 1000, height: 100 }} data-testid="target" />
+        </SwipeableDrawer>
+      );
+    }
+
+    render(<Test />);
+    const target = screen.getByTestId('target');
+    // Perform a full swipe left to horizontally scroll
+    fireEvent.touchStart(target, {
+      touches: [new Touch({ identifier: 0, target, pageX: 100, clientY: 0 })],
+    });
+    fireEvent.touchMove(target, {
+      touches: [new Touch({ identifier: 0, target, pageX: 50, clientY: 0 })],
+    });
+    expect(handleTouchMove.returnValues).to.deep.equal([false]);
+  });
+
+  it('should not ignore scroll container if parent is overflow hidden', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // Need layouting
+      this.skip();
+    }
+
+    const handleTouchMove = spy((event) => event.defaultPrevented);
+
+    function Test() {
+      React.useEffect(() => {
+        document.addEventListener('touchmove', handleTouchMove);
+        return () => {
+          document.removeEventListener('touchmove', handleTouchMove);
+        };
+      }, []);
+
+      return (
+        <SwipeableDrawer anchor="left" open onOpen={() => {}} onClose={() => {}}>
+          <div style={{ overflow: 'hidden', width: 100 }}>
+            <div style={{ overflow: 'auto' }}>
+              <div style={{ width: 1000, height: 100 }} data-testid="target" />
+            </div>
+          </div>
+        </SwipeableDrawer>
+      );
+    }
+
+    render(<Test />);
+    const target = screen.getByTestId('target');
+    // Perform a full swipe left to horizontally scroll
+    fireEvent.touchStart(target, {
+      touches: [new Touch({ identifier: 0, target, pageX: 100, clientY: 0 })],
+    });
+    fireEvent.touchMove(target, {
+      touches: [new Touch({ identifier: 0, target, pageX: 50, clientY: 0 })],
+    });
+    expect(handleTouchMove.returnValues).to.deep.equal([false]);
   });
 });
