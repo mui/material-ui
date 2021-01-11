@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.22",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Quickly build beautiful React apps. Simple, customizable, and accessible React components. Build your own design system, or start with Material Design.",
+  "description": "Quickly build beautiful React UIs. Simple, customizable, and accessible React components. Follow your own design system, or start with Material Design.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
