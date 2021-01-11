@@ -135,7 +135,7 @@ export function usePickerState<TInput, TDateValue>(
           acceptDate(newDate, shouldCloseOnSelect);
         }
 
-        // if selectionState === "shallow" do nothing (we already update picker state)
+        // if selectionState === "shallow" do nothing (we already update the draft state)
       },
     }),
     [acceptDate, disableCloseOnSelect, isMobileKeyboardViewOpen, draftState.draft],
