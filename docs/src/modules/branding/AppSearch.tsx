@@ -113,6 +113,9 @@ const useStyles = makeStyles(
       transition: theme.transitions.create('opacity', {
         duration: theme.transitions.duration.shortest,
       }),
+      // So that clicks target the input.
+      // Makes the text non selectable but neither is the placeholder or adornment.
+      pointerEvents: 'none',
       '&.Mui-focused': {
         opacity: 0,
       },
@@ -163,7 +166,7 @@ export default function AppSearch() {
         }}
       />
       <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>
-        {macOS ? '⌘' : 'Ctrl'}K
+        {macOS ? '⌘' : 'Ctrl+'}K
       </div>
     </div>
   );
