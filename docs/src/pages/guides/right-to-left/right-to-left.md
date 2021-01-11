@@ -33,7 +33,7 @@ npm install jss-rtl
 If you are using `emotion` or `styled-components`, you need this stylis plugin to flip the styles: [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl).
 
 ```sh
-npm install stylis-plugin-rtl@^1
+npm install stylis-plugin-rtl
 ```
 
 **Note**: Currently `emotion` is compatible with v2 of the plugin. However, `styled-components` currently work with the v1 of the plugin, so if you are using `styled-components` as styled engine, make sure to install the correct version.
