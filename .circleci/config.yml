@@ -34,6 +34,11 @@ defaults: &defaults
 
 commands:
   install_js:
+    parameters:
+      withBrowsers:
+        description: Whether we need to install browser binaries as well.
+        type: boolean
+        default: true
     steps:
       - run:
           name: View install environment
@@ -51,20 +56,28 @@ commands:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
             - v2-yarn-sha-
       - restore_cache:
+          when:
+            condition:
+              equals: [true, << parameters.withBrowsers >> ]
           keys:
             - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
             - v1-playwright-{{ arch }}-
             - v1-playwright-
       - run:
           name: Install js dependencies
-          command: yarn
+          command: |
+            echo "skip browsers: $PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD";
+            yarn
+          environment:
+            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<^ parameters.withBrowsers >>1<</ parameters.withBrowsers >>
 
 jobs:
   checkout:
     <<: *defaults
     steps:
       - checkout
-      - install_js
+      - install_js:
+          withBrowsers: true
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
@@ -257,7 +270,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          withBrowsers: true
       - run:
           name: Tests real browsers
           command: yarn test:karma
@@ -280,7 +294,8 @@ jobs:
 
     steps:
       - checkout
-      - install_js
+      - install_js:
+          withBrowsers: true
       - run:
           name: Tests real browsers
           # Run a couple of times for a better sample.
@@ -306,7 +321,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          withBrowsers: true
       - run:
           name: Run visual regression tests
           command: xvfb-run yarn test:regressions
