@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.22",
   "private": false,
   "author": "Material-UI Team",
-  "description": "CSS utilities for rapidly creating custom design.",
+  "description": "CSS utilities for rapidly laying out custom designs.",
   "main": "./src/index.js",
   "keywords": [
     "react",
