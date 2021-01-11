@@ -1,7 +1,6 @@
 import { RangeInput, NonEmptyDateRange, DateRange } from '../../DateRangePicker/RangeTypes';
 import { arrayIncludes } from './utils';
 import { ParsableDate } from './constants/prop-types';
-import { BasePickerProps } from './typings/BasePicker';
 import { DatePickerView } from './typings/Views';
 import { MuiPickersAdapter } from './hooks/useUtils';
 
@@ -106,10 +105,7 @@ export const getFormatAndMaskByViews = (
   };
 };
 
-export function parsePickerInputValue(
-  utils: MuiPickersAdapter,
-  { value }: BasePickerProps,
-): unknown | null {
+export function parsePickerInputValue(utils: MuiPickersAdapter, value: unknown): unknown {
   const parsedValue = utils.date(value);
 
   return utils.isValid(parsedValue) ? parsedValue : null;
@@ -117,7 +113,7 @@ export function parsePickerInputValue(
 
 export function parseRangeInputValue<TDate>(
   utils: MuiPickersAdapter,
-  { value = [null, null] }: BasePickerProps<RangeInput<TDate>, DateRange<TDate>>,
+  value: RangeInput<TDate> = [null, null],
 ) {
   return value.map((date) =>
     !utils.isValid(date) || date === null ? null : utils.startOfDay(utils.date(date)),
