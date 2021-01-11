@@ -35,10 +35,10 @@
       "conditions": "<code>tooltipOpen={true}</code>"
     },
     "tooltipPlacementLeft": {
-      "description": "Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement=\"left\"``"
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"left\"``"
     },
     "tooltipPlacementRight": {
-      "description": "Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement=\"right\"``"
+      "description": "Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement=\"right\"``"
     }
   }
 }

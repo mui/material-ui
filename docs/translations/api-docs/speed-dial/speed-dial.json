@@ -19,10 +19,12 @@
   "classDescriptions": {
     "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "fab": { "description": "{{stylesApplied}}", "nodeName": "the Fab component" },
-    "directionUp": { "description": "Styles applied to the root if direction=\"up\"" },
-    "directionDown": { "description": "Styles applied to the root if direction=\"down\"" },
-    "directionLeft": { "description": "Styles applied to the root if direction=\"left\"" },
-    "directionRight": { "description": "Styles applied to the root if direction=\"right\"" },
+    "directionUp": { "description": "Styles applied to the root element if direction=\"up\"" },
+    "directionDown": { "description": "Styles applied to the root element if direction=\"down\"" },
+    "directionLeft": { "description": "Styles applied to the root element if direction=\"left\"" },
+    "directionRight": {
+      "description": "Styles applied to the root element if direction=\"right\""
+    },
     "actions": {
       "description": "{{stylesApplied}}",
       "nodeName": "the actions (`children` wrapper) element"
