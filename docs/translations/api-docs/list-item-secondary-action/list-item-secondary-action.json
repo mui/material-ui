@@ -7,8 +7,9 @@
   "classDescriptions": {
     "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "disableGutters": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "root element when the parent `ListItem` has `disableGutters={true}`"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "the parent <code>ListItem</code> has <code>disableGutters={true}</code>"
     }
   }
 }

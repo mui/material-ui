@@ -17,12 +17,14 @@
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
     "entered": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "root element when the transition has entered"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "the transition has entered"
     },
     "hidden": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "root element when the transition has exited and `collapsedSize` = 0px"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "the transition has exited and <code>collapsedSize</code> = 0px"
     },
     "wrapper": { "description": "{{stylesApplied}}", "nodeName": "outer wrapper element" },
     "wrapperInner": { "description": "{{stylesApplied}}", "nodeName": "inner wrapper element" }

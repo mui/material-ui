@@ -48,33 +48,40 @@
     "visuallyHidden": { "description": "Visually hide an element." },
     "label": { "description": "{{stylesApplied}}", "nodeName": "label elements" },
     "labelEmptyValueActive": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "label of the \"no value\" input when it is active"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "label of the \"no value\" input",
+      "conditions": "it is active"
     },
     "icon": { "description": "{{stylesApplied}}", "nodeName": "icon wrapping elements" },
     "iconEmpty": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "icon wrapping elements when empty"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "icon wrapping elements",
+      "conditions": "empty"
     },
     "iconFilled": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "icon wrapping elements when filled"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "icon wrapping elements",
+      "conditions": "filled"
     },
     "iconHover": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "icon wrapping elements when hover"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "icon wrapping elements",
+      "conditions": "hover"
     },
     "iconFocus": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "icon wrapping elements when focus"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "icon wrapping elements",
+      "conditions": "focus"
     },
     "iconActive": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "icon wrapping elements when active"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "icon wrapping elements",
+      "conditions": "active"
     },
     "decimal": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "icon wrapping elements when decimals are necessary"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "icon wrapping elements",
+      "conditions": "decimals are necessary"
     }
   }
 }

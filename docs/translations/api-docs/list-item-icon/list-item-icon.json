@@ -7,8 +7,9 @@
   "classDescriptions": {
     "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
     "alignItemsFlexStart": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "root element when the parent `ListItem` uses `alignItems=\"flex-start\"`"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "root element",
+      "conditions": "the parent <code>ListItem</code> uses <code>alignItems=\"flex-start\"</code>"
     }
   }
 }

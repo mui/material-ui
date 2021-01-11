@@ -12,8 +12,9 @@
       "conditions": "the action area is keyboard focused"
     },
     "focusHighlight": {
-      "description": "{{stylesApplied}}",
-      "nodeName": "overlay that covers the action area when it is keyboard focused"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "overlay that covers the action area",
+      "conditions": "it is keyboard focused"
     }
   }
 }

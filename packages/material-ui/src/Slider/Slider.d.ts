@@ -24,13 +24,13 @@ export type SliderTypeMap<
      * @default {}
      */
     classes?: SliderUnstyledTypeMap['props']['classes'] & {
-      /** Class name applied to the root element if `color="primary"`. */
+      /** Styles applied to the root element if `color="primary"`. */
       colorPrimary?: string;
-      /** Class name applied to the root element if `color="secondary"`. */
+      /** Styles applied to the root element if `color="secondary"`. */
       colorSecondary?: string;
-      /** Class name applied to the thumb element if `color="primary"`. */
+      /** Styles applied to the thumb element if `color="primary"`. */
       thumbColorPrimary?: string;
-      /** Class name applied to the thumb element if `color="secondary"`. */
+      /** Styles applied to the thumb element if `color="secondary"`. */
       thumbColorSecondary?: string;
     };
     /**

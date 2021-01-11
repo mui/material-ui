@@ -57,29 +57,29 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      * @default {}
      */
     classes?: {
-      /** Class name applied to the root element. */
+      /** Styles applied to the root element. */
       root?: string;
-      /** Class name applied to the badge `span` element. */
+      /** Styles applied to the badge `span` element. */
       badge?: string;
-      /** Class name applied to the badge `span` element if `variant="dot"`. */
+      /** Styles applied to the badge `span` element if `variant="dot"`. */
       dot?: string;
-      /** Class name applied to the badge `span` element if `variant="standard"`. */
+      /** Styles applied to the badge `span` element if `variant="standard"`. */
       standard?: string;
-      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
+      /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
       anchorOriginTopRightRectangular?: string;
-      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
+      /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
       anchorOriginBottomRightRectangular?: string;
-      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
+      /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
       anchorOriginTopLeftRectangular?: string;
-      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
+      /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
       anchorOriginBottomLeftRectangular?: string;
-      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
+      /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
       anchorOriginTopRightCircular?: string;
-      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
+      /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
       anchorOriginBottomRightCircular?: string;
-      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
+      /** Styles applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
       anchorOriginTopLeftCircular?: string;
-      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
+      /** Styles applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
       anchorOriginBottomLeftCircular?: string;
       /** Pseudo-class applied to the badge `span` element if `invisible={true}`. */
       invisible?: string;

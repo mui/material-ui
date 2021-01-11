@@ -804,7 +804,7 @@ function extractClassConditions(descriptions: any) {
   const classConditions: {
     [key: string]: { description: string; conditions?: string; nodeName?: string };
   } = {};
-  const stylesRegex = /(Styles|Pseudo-class) applied to the (.*?)(( if | unless |, ){1}(.*))?\./;
+  const stylesRegex = /(Styles|Pseudo-class) applied to the (.*?)(( if | unless | when |, ){1}(.*))?\./;
 
   Object.entries(descriptions).forEach(([className, classDescription]: any) => {
     if (className) {

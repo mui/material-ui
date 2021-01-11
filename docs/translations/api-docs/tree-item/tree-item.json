@@ -21,18 +21,25 @@
     "group": { "description": "{{stylesApplied}}", "nodeName": "transition component" },
     "content": { "description": "{{stylesApplied}}", "nodeName": "content element" },
     "expanded": {
-      "description": "{{pseudoClassApplied}}",
-      "nodeName": "content element when expanded"
+      "description": "{{pseudoClassApplied}} when {{conditions}}.",
+      "nodeName": "content element",
+      "conditions": "expanded"
     },
     "selected": {
-      "description": "{{pseudoClassApplied}}",
-      "nodeName": "content element when selected"
+      "description": "{{pseudoClassApplied}} when {{conditions}}.",
+      "nodeName": "content element",
+      "conditions": "selected"
     },
     "focused": {
-      "description": "{{pseudoClassApplied}}",
-      "nodeName": "content element when focused"
+      "description": "{{pseudoClassApplied}} when {{conditions}}.",
+      "nodeName": "content element",
+      "conditions": "focused"
     },
-    "disabled": { "description": "{{pseudoClassApplied}}", "nodeName": "element when disabled" },
+    "disabled": {
+      "description": "{{pseudoClassApplied}} when {{conditions}}.",
+      "nodeName": "element",
+      "conditions": "disabled"
+    },
     "iconContainer": { "description": "{{stylesApplied}}", "nodeName": "tree node icon" },
     "label": { "description": "{{stylesApplied}}", "nodeName": "label element" }
   }

@@ -14,9 +14,9 @@
       "conditions": "<code>open={true}</code>"
     },
     "iconWithOpenIconOpen": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "icon when an `openIcon` is provided and",
-      "conditions": "<code>open={true}</code>"
+      "description": "{{stylesApplied}} when {{conditions}}.",
+      "nodeName": "icon",
+      "conditions": "an <code>openIcon</code> is provided and if <code>open={true}</code>"
     },
     "openIcon": {
       "description": "{{stylesApplied}} if {{conditions}}.",
