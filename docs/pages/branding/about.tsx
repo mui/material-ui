@@ -1,10 +1,12 @@
 import * as React from 'react';
 import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
+import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 
 export default function Page() {
   return (
     <BrandingRoot>
+      <BrandingDiscoverMore />
       <BrandingBeginToday />
     </BrandingRoot>
   );
@@ -235,74 +237,6 @@ export default function Page() {
 //     background: color === 'info' ? theme.palette.vividBlue : theme.palette.primary.main,
 //     width: 80,
 //     height: 80,
-//   },
-// }));
-
-// const DiscoverMoreCard = styled((props: any) => {
-//   const { imagePosition, src, alt, title, children, href, ...other } = props;
-//   return (
-//     <Card elevation={0} {...other}>
-//       <CardContent>
-//         <Grid
-//           className="DiscoverMoreCard-header"
-//           component="a"
-//           href={href}
-//           container
-//           direction="row"
-//           spacing={1}
-//         >
-//           <Grid item>
-//             <Typography variant="h4">{title}</Typography>
-//           </Grid>
-//           <Grid item>
-//             <ArrowCirleIcon />
-//           </Grid>
-//         </Grid>
-//         <Typography className="DiscoverMoreCard-content">{children}</Typography>
-//         <Box
-//           component="img"
-//           alt={alt}
-//           src={src}
-//           sx={{
-//             height: 243,
-//             width: imagePosition === 'center' ? 290 : 330,
-//             display: 'block',
-//             marginTop: 'auto',
-//           }}
-//         />
-//       </CardContent>
-//     </Card>
-//   );
-// })(({ theme, ...props }) => ({
-//   '&[class*="MuiCard-root"]': {
-//     background: theme.palette.secondary.main,
-//     color: 'white',
-//   },
-//   '& img': {
-//     marginLeft: props.imagePosition === 'center' || props.imagePosition === 'end' ? 'auto' : 0,
-//     marginRight: props.imagePosition === 'center' ? 'auto' : 0,
-//   },
-//   '& svg': {
-//     marginTop: 4,
-//   },
-//   height: theme.spacing(50),
-//   padding: 0,
-//   '& .DiscoverMoreCard-header': {
-//     textDecoration: 'none',
-//     color: 'white',
-//     padding: theme.spacing(2),
-//   },
-//   '& .DiscoverMoreCard-content': {
-//     padding: theme.spacing(2),
-//   },
-//   '& [class*="MuiCardContent-root"]': {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     height: '100%',
-//     padding: 0,
-//     '&:last-child': {
-//       paddingBottom: 0,
-//     },
 //   },
 // }));
 
@@ -994,51 +928,6 @@ export default function Page() {
 //                 </Link>
 //                 .
 //               </SupportCard>
-//             </Grid>
-//           </Grid>
-//         </Grid>
-
-//         <Grid container spacing={1} className="MuiGrid-panel MuiGrid-discoverMore">
-//           <Grid item xs={12}>
-//             <Typography variant="h2" align="center">
-//               Discover more
-//             </Typography>
-//           </Grid>
-//           <Grid item xs={12}>
-//             <Grid container spacing={2} alignItems="center" justifyContent="center">
-//               <Grid item lg={4} md={8} xs={12}>
-//                 <DiscoverMoreCard
-//                   title="Road map"
-//                   src="/static/branding/about/roadmap.png"
-//                   alt="Roadmap"
-//                   href="/discover-more/roadmap/"
-//                   imagePosition="end"
-//                 >
-//                   Living document, layout out future plans and updates.
-//                 </DiscoverMoreCard>
-//               </Grid>
-//               <Grid item lg={4} md={8} xs={12}>
-//                 <DiscoverMoreCard
-//                   title="Sponsors and Backers"
-//                   src="/static/branding/about/sponsors.png"
-//                   alt="Sponsors"
-//                   href="/discover-more/backers/"
-//                   imagePosition="center"
-//                 >
-//                   Support Material-UI core development through crowdfunding.
-//                 </DiscoverMoreCard>
-//               </Grid>
-//               <Grid item lg={4} md={8} xs={12}>
-//                 <DiscoverMoreCard
-//                   title="Contact Us"
-//                   alt="Open chat"
-//                   src="/static/branding/about/contact.png"
-//                   href="/company/contact/"
-//                   imagePosition="start"
-//                 >
-//                   Send us a message, we’re all ears!
-//                 </DiscoverMoreCard>
-//               </Grid>
 //             </Grid>
 //           </Grid>
 //         </Grid>
