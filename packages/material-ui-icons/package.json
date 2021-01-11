@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.22",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material Design SVG Icons compatible with Material-UI.",
+  "description": "Material Design icons distributed as SVG React components.",
   "main": "./src/index.js",
   "keywords": [
     "react",
