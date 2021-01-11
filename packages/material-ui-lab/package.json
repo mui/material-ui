@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.22",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Laboratory incubator for Material-UI.",
+  "description": "Laboratory for new Material-UI modules.",
   "main": "./src/index.js",
   "keywords": [
     "react",
