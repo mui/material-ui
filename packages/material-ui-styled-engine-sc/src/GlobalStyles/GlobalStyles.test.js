@@ -3,9 +3,9 @@ import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
 import { ThemeProvider } from 'styled-components';
 import styled from '..';
-import Global from './Global';
+import GlobalStyles from './GlobalStyles';
 
-describe('Global', () => {
+describe('GlobalStyles', () => {
   const render = createClientRender();
 
   it('should add global styles', function test() {
@@ -13,7 +13,7 @@ describe('Global', () => {
 
     const { container } = render(
       <div>
-        <Global styles={`span { color: rgb(0, 0, 255); }`} />
+        <GlobalStyles styles={`span { color: rgb(0, 0, 255); }`} />
         <span>Blue text</span>
       </div>,
     );
@@ -28,7 +28,7 @@ describe('Global', () => {
 
     const { container } = render(
       <div>
-        <Global styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
+        <GlobalStyles styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
         <span>Blue text</span>
       </div>,
     );
@@ -41,10 +41,9 @@ describe('Global', () => {
   it('should add global styles using function', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
-    // TODO: styled-components provides all props in the callback function, we need to handle this difference
     const { container } = render(
       <ThemeProvider theme={{ color: 'rgb(0, 0, 255)' }}>
-        <Global styles={(theme) => ({ span: { color: theme.color } })} />
+        <GlobalStyles styles={(theme) => ({ span: { color: theme.color } })} />
         <span>Blue text</span>
       </ThemeProvider>,
     );
@@ -63,7 +62,7 @@ describe('Global', () => {
 
     const { container } = render(
       <div>
-        <Global styles={`span { color: rgb(0, 0, 255); }`} />
+        <GlobalStyles styles={`span { color: rgb(0, 0, 255); }`} />
         <Span>Red text</Span>
       </div>,
     );
@@ -82,7 +81,7 @@ describe('Global', () => {
 
     const { container } = render(
       <div>
-        <Global styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
+        <GlobalStyles styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
         <Span>Red text</Span>
       </div>,
     );

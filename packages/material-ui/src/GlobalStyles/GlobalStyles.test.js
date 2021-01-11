@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
 import ThemeProvider from '../styles/ThemeProvider';
 import createMuiTheme from '../styles/createMuiTheme';
-import Global from './Global';
+import GlobalStyles from './GlobalStyles';
 
 const customTheme = createMuiTheme({
   spacing: 10,
@@ -17,7 +17,7 @@ describe('Global', () => {
 
     const { container } = render(
       <div>
-        <Global styles={(theme) => `span { margin-top: ${theme.spacing(1)}; }`} />
+        <GlobalStyles styles={(theme) => `span { margin-top: ${theme.spacing(1)}; }`} />
         <span>Text</span>
       </div>,
     );
@@ -32,7 +32,7 @@ describe('Global', () => {
 
     const { container } = render(
       <ThemeProvider theme={customTheme}>
-        <Global styles={(theme) => `span { margin-top: ${theme.spacing(1)}; }`} />
+        <GlobalStyles styles={(theme) => `span { margin-top: ${theme.spacing(1)}; }`} />
         <span>Text</span>
       </ThemeProvider>,
     );

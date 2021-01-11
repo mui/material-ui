@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import useThemeProps from '../styles/useThemeProps';
-import Global from '../Global';
+import GlobalStyles from '../GlobalStyles';
 
 export const html = {
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
@@ -83,7 +83,7 @@ function CssBaseline(inProps) {
   const { children } = props;
   return (
     <React.Fragment>
-      <Global styles={styles} />
+      <GlobalStyles styles={styles} />
       {children}
     </React.Fragment>
   );

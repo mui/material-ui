@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Global as EmotionGlobal } from '@emotion/react';
+import { Global } from '@emotion/react';
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-export default function Global(props) {
+export default function GlobalStyles(props) {
   const { styles, defaultTheme } = props;
 
   const globalStyles =
@@ -14,10 +14,10 @@ export default function Global(props) {
       ? (themeInput) => styles(isEmpty(themeInput) ? defaultTheme : themeInput)
       : styles;
 
-  return <EmotionGlobal styles={globalStyles} />;
+  return <Global styles={globalStyles} />;
 }
 
-Global.propTypes = {
+GlobalStyles.propTypes = {
   defaultTheme: PropTypes.object,
   styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
 };

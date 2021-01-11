@@ -5,7 +5,7 @@ function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-const Global = createGlobalStyle((props) => {
+const GlobalStyles = createGlobalStyle((props) => {
   const { styles, defaultTheme } = props;
 
   if (typeof styles === 'function') {
@@ -15,9 +15,9 @@ const Global = createGlobalStyle((props) => {
   return styles;
 });
 
-export default Global;
+export default GlobalStyles;
 
-Global.propTypes = {
+GlobalStyles.propTypes = {
   defaultTheme: PropTypes.object,
   styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
 };
