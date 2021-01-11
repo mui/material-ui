@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { withTheme } from '@material-ui/core/styles';
 import withStyles from '@material-ui/core/styles/withStyles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';

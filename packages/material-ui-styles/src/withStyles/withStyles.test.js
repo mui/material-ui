@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';

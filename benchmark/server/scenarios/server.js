@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import express from 'express';
-import React from 'react';
+import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { SheetsRegistry } from 'jss';
 import { createMuiTheme } from '@material-ui/core/styles';

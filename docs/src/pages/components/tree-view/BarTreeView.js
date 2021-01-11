@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';

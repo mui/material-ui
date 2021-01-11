@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { BasePickerProps } from '../typings/BasePicker';
 import { ResponsiveWrapperProps } from './ResponsiveWrapper';
 import { SomeWrapper } from './Wrapper';

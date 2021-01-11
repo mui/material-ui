@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import NoSsr from '@material-ui/core/NoSsr';

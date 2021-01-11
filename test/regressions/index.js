@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
@@ -58,6 +58,7 @@ const blacklist = [
   'docs-components-date-time-picker/BasicDateTimePicker.png', // Redundant
   'docs-components-date-time-picker/ResponsiveDateTimePickers.png', // Redundant
   'docs-components-dialogs', // Needs interaction
+  'docs-components-drawers/SwipeableEdgeDrawer.png', // Needs interaction
   'docs-components-drawers/SwipeableTemporaryDrawer.png', // Needs interaction
   'docs-components-drawers/TemporaryDrawer.png', // Needs interaction
   'docs-components-floating-action-button/FloatingActionButtonZoom.png', // Needs interaction
@@ -93,6 +94,7 @@ const blacklist = [
   'docs-components-skeleton/Facebook.png', // Flaky image loading
   'docs-components-skeleton/SkeletonChildren.png', // flaky image loading
   'docs-components-skeleton/YouTube.png', // Flaky image loading
+  'docs-components-slider/VerticalAccessibleSlider.png', // Redundant
   'docs-components-snackbars/ConsecutiveSnackbars.png', // Needs interaction
   'docs-components-snackbars/CustomizedSnackbars.png', // Redundant
   'docs-components-snackbars/DirectionSnackbar.png', // Needs interaction

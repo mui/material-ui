@@ -102,7 +102,7 @@ See the full list of [our backers](https://material-ui.com/discover-more/backers
 Here is a quick example to get you started, **it's all you need**:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 

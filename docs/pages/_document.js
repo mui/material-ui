@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';

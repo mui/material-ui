@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import NoSsr from '@material-ui/core/NoSsr';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';

@@ -1,5 +1,5 @@
 import express from 'express';
-import React from 'react';
+import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 export default function SimpleListSubheader() {

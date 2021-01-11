@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
