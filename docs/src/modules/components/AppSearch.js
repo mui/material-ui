@@ -269,7 +269,7 @@ export default function AppSearch() {
       />
       <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>
         {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-        {macOS ? '⌘' : 'Ctrl+'}K
+        {macOS ? '⌘' : 'Ctrl'}+K
       </div>
     </div>
   );

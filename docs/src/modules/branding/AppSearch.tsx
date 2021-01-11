@@ -163,7 +163,7 @@ export default function AppSearch() {
         }}
       />
       <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>
-        {macOS ? '⌘' : 'Ctrl'}K
+        {macOS ? '⌘' : 'Ctrl'}+K
       </div>
     </div>
   );
