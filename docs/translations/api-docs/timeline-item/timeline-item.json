@@ -5,31 +5,31 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "alignLeft": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>align=\"left\"</code>"
     },
     "alignRight": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>align=\"right\"</code>"
     },
     "alignAlternate": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>align=\"alternate\"</code>"
     },
     "missingOppositeContent": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "TimelineOppositeContent isn't provided"
     },
-    "content": { "description": "{{stylesApplied}}", "nodeName": "timeline content node" },
+    "content": { "description": "{{stylesApplied}}", "nodeName": "the timeline content node" },
     "oppositeContent": {
       "description": "{{stylesApplied}}",
-      "nodeName": "timeline opposite content node"
+      "nodeName": "the timeline opposite content node"
     }
   }
 }

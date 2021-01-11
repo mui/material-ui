@@ -20,67 +20,67 @@
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "scrollPaper": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "container element",
+      "nodeName": "the container element",
       "conditions": "<code>scroll=\"paper\"</code>"
     },
     "scrollBody": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "container element",
+      "nodeName": "the container element",
       "conditions": "<code>scroll=\"body\"</code>"
     },
-    "container": { "description": "{{stylesApplied}}", "nodeName": "container element" },
-    "paper": { "description": "{{stylesApplied}}", "nodeName": "Paper component" },
+    "container": { "description": "{{stylesApplied}}", "nodeName": "the container element" },
+    "paper": { "description": "{{stylesApplied}}", "nodeName": "the Paper component" },
     "paperScrollPaper": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Paper component",
+      "nodeName": "the Paper component",
       "conditions": "<code>scroll=\"paper\"</code>"
     },
     "paperScrollBody": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Paper component",
+      "nodeName": "the Paper component",
       "conditions": "<code>scroll=\"body\"</code>"
     },
     "paperWidthFalse": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Paper component",
+      "nodeName": "the Paper component",
       "conditions": "<code>maxWidth=false</code>"
     },
     "paperWidthXs": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Paper component",
+      "nodeName": "the Paper component",
       "conditions": "<code>maxWidth=\"xs\"</code>"
     },
     "paperWidthSm": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Paper component",
+      "nodeName": "the Paper component",
       "conditions": "<code>maxWidth=\"sm\"</code>"
     },
     "paperWidthMd": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Paper component",
+      "nodeName": "the Paper component",
       "conditions": "<code>maxWidth=\"md\"</code>"
     },
     "paperWidthLg": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Paper component",
+      "nodeName": "the Paper component",
       "conditions": "<code>maxWidth=\"lg\"</code>"
     },
     "paperWidthXl": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Paper component",
+      "nodeName": "the Paper component",
       "conditions": "<code>maxWidth=\"xl\"</code>"
     },
     "paperFullWidth": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Paper component",
+      "nodeName": "the Paper component",
       "conditions": "<code>fullWidth={true}</code>"
     },
     "paperFullScreen": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Paper component",
+      "nodeName": "the Paper component",
       "conditions": "<code>fullScreen={true}</code>"
     }
   }

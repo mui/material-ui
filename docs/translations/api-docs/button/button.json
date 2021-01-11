@@ -18,179 +18,179 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "label": {
       "description": "{{stylesApplied}}",
-      "nodeName": "span element that wraps the children"
+      "nodeName": "the span element that wraps the children"
     },
     "text": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code>"
     },
     "textInherit": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code> and <code>color=\"inherit\"</code>"
     },
     "textPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
     },
     "textSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
     },
     "outlined": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "outlinedInherit": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"inherit\"</code>"
     },
     "outlinedPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
     },
     "outlinedSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
     },
     "contained": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"contained\"</code>"
     },
     "containedInherit": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"inherit\"</code>"
     },
     "containedPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"primary\"</code>"
     },
     "containedSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
     },
     "disableElevation": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>disableElevation={true}</code>"
     },
     "focusVisible": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "ButtonBase root element",
+      "nodeName": "the ButtonBase root element",
       "conditions": "the button is keyboard focused"
     },
     "disabled": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "colorInherit": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"inherit\"</code>"
     },
     "textSizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code> and <code>variant=\"text\"</code>"
     },
     "textSizeMedium": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code> and <code>variant=\"text\"</code>"
     },
     "textSizeLarge": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"large\"</code> and <code>variant=\"text\"</code>"
     },
     "outlinedSizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code> and <code>variant=\"outlined\"</code>"
     },
     "outlinedSizeMedium": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code> and <code>variant=\"outlined\"</code>"
     },
     "outlinedSizeLarge": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"large\"</code> and <code>variant=\"outlined\"</code>"
     },
     "containedSizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code> and <code>variant=\"contained\"</code>"
     },
     "containedSizeMedium": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code> and <code>variant=\"contained\"</code>"
     },
     "containedSizeLarge": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"large\"</code> and <code>variant=\"contained\"</code>"
     },
     "sizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "sizeMedium": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code>"
     },
     "sizeLarge": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"large\"</code>"
     },
     "fullWidth": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
     },
     "startIcon": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "startIcon element",
+      "nodeName": "the startIcon element",
       "conditions": "supplied"
     },
     "endIcon": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "endIcon element",
+      "nodeName": "the endIcon element",
       "conditions": "supplied"
     },
     "iconSizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "icon element",
+      "nodeName": "the icon element",
       "conditions": "supplied and <code>size=\"small\"</code>"
     },
     "iconSizeMedium": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "icon element",
+      "nodeName": "the icon element",
       "conditions": "supplied and <code>size=\"medium\"</code>"
     },
     "iconSizeLarge": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "icon element",
+      "nodeName": "the icon element",
       "conditions": "supplied and <code>size=\"large\"</code>"
     }
   }

@@ -14,87 +14,87 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "filled": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code>"
     },
     "outlined": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "standard": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code>"
     },
     "standardSuccess": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code> and <code>color=\"success\"</code>"
     },
     "standardInfo": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code> and <code>color=\"info\"</code>"
     },
     "standardWarning": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code> and <code>color=\"warning\"</code>"
     },
     "standardError": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code> and <code>color=\"error\"</code>"
     },
     "outlinedSuccess": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"success\"</code>"
     },
     "outlinedInfo": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"info\"</code>"
     },
     "outlinedWarning": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>"
     },
     "outlinedError": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"error\"</code>"
     },
     "filledSuccess": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code> and <code>color=\"success\"</code>"
     },
     "filledInfo": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code> and <code>color=\"info\"</code>"
     },
     "filledWarning": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code> and <code>color=\"warning\"</code>"
     },
     "filledError": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code> and <code>color=\"error\"</code>"
     },
-    "icon": { "description": "{{stylesApplied}}", "nodeName": "icon wrapper element" },
-    "message": { "description": "{{stylesApplied}}", "nodeName": "message wrapper element" },
+    "icon": { "description": "{{stylesApplied}}", "nodeName": "the icon wrapper element" },
+    "message": { "description": "{{stylesApplied}}", "nodeName": "the message wrapper element" },
     "action": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "action wrapper element",
+      "nodeName": "the action wrapper element",
       "conditions": "<code>action</code> is provided"
     }
   }

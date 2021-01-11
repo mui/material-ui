@@ -15,61 +15,61 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
-    "badge": { "description": "{{stylesApplied}}", "nodeName": "badge `span` element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
+    "badge": { "description": "{{stylesApplied}}", "nodeName": "the badge `span` element" },
     "dot": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>variant=\"dot\"</code>"
     },
     "standard": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>variant=\"standard\"</code>"
     },
     "anchorOriginTopRightRectangular": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginBottomRightRectangular": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginTopLeftRectangular": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginBottomLeftRectangular": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginTopRightCircular": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"circular\"</code>"
     },
     "anchorOriginBottomRightCircular": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"circular\"</code>"
     },
     "anchorOriginTopLeftCircular": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"circular\"</code>"
     },
     "anchorOriginBottomLeftCircular": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"</code>"
     },
     "invisible": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "badge `span` element",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>invisible={true}</code>"
     }
   }

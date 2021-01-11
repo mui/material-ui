@@ -9,20 +9,20 @@
     "ListItemClasses": "<code>classes</code> prop applied to the <a href=\"/api/list-item/\"><code>ListItem</code></a> element."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "gutters": {
       "description": "{{stylesApplied}} unless {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>disableGutters={true}</code>"
     },
     "selected": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },
     "dense": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "dense"
     }
   }

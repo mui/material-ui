@@ -17,19 +17,19 @@
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
-    "fab": { "description": "{{stylesApplied}}", "nodeName": "Fab component" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
+    "fab": { "description": "{{stylesApplied}}", "nodeName": "the Fab component" },
     "directionUp": { "description": "Styles applied to the root if direction=\"up\"" },
     "directionDown": { "description": "Styles applied to the root if direction=\"down\"" },
     "directionLeft": { "description": "Styles applied to the root if direction=\"left\"" },
     "directionRight": { "description": "Styles applied to the root if direction=\"right\"" },
     "actions": {
       "description": "{{stylesApplied}}",
-      "nodeName": "actions (`children` wrapper) element"
+      "nodeName": "the actions (`children` wrapper) element"
     },
     "actionsClosed": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "actions (`children` wrapper) element",
+      "nodeName": "the actions (`children` wrapper) element",
       "conditions": "<code>open={false}</code>"
     }
   }

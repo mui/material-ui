@@ -8,12 +8,12 @@
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "last": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>last={true}</code> (controlled by <code>Step</code>)"
     },
-    "transition": { "description": "{{stylesApplied}}", "nodeName": "Transition component" }
+    "transition": { "description": "{{stylesApplied}}", "nodeName": "the Transition component" }
   }
 }

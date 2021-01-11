@@ -9,21 +9,21 @@
     "IconComponent": "Sort icon to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "active": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>active={true}</code>"
     },
-    "icon": { "description": "{{stylesApplied}}", "nodeName": "icon component" },
+    "icon": { "description": "{{stylesApplied}}", "nodeName": "the icon component" },
     "iconDirectionDesc": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "icon component",
+      "nodeName": "the icon component",
       "conditions": "<code>direction=\"desc\"</code>"
     },
     "iconDirectionAsc": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "icon component",
+      "nodeName": "the icon component",
       "conditions": "<code>direction=\"asc\"</code>"
     }
   }

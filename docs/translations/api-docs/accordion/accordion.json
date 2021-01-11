@@ -12,25 +12,25 @@
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "rounded": {
       "description": "{{stylesApplied}} unless {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>square={true}</code>"
     },
     "expanded": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>expanded={true}</code>"
     },
     "disabled": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "region": {
       "description": "{{stylesApplied}}, {{conditions}}.",
-      "nodeName": "region element",
+      "nodeName": "the region element",
       "conditions": "the container of the children"
     }
   }

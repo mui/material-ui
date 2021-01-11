@@ -28,56 +28,56 @@
     "valueLabelFormat": "The format function the value label&#39;s value.<br>When a function is provided, it should have the following signature:<br>- {number} value The value label&#39;s value to format - {number} index The value label&#39;s index to format"
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "marked": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>marks</code> is provided with at least one label"
     },
     "vertical": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
     "disabled": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "root and thumb element",
+      "nodeName": "the root and thumb element",
       "conditions": "<code>disabled={true}</code>"
     },
-    "rail": { "description": "{{stylesApplied}}", "nodeName": "rail element" },
-    "track": { "description": "{{stylesApplied}}", "nodeName": "track element" },
+    "rail": { "description": "{{stylesApplied}}", "nodeName": "the rail element" },
+    "track": { "description": "{{stylesApplied}}", "nodeName": "the track element" },
     "trackFalse": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "track element",
+      "nodeName": "the track element",
       "conditions": "<code>track={false}</code>"
     },
     "trackInverted": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "track element",
+      "nodeName": "the track element",
       "conditions": "<code>track=\"inverted\"</code>"
     },
-    "thumb": { "description": "{{stylesApplied}}", "nodeName": "thumb element" },
+    "thumb": { "description": "{{stylesApplied}}", "nodeName": "the thumb element" },
     "active": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "thumb element",
+      "nodeName": "the thumb element",
       "conditions": "it's active"
     },
     "focusVisible": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "thumb element",
+      "nodeName": "the thumb element",
       "conditions": "keyboard focused"
     },
-    "valueLabel": { "description": "{{stylesApplied}}", "nodeName": "thumb label element" },
-    "mark": { "description": "{{stylesApplied}}", "nodeName": "mark element" },
+    "valueLabel": { "description": "{{stylesApplied}}", "nodeName": "the thumb label element" },
+    "mark": { "description": "{{stylesApplied}}", "nodeName": "the mark element" },
     "markActive": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "mark element",
+      "nodeName": "the mark element",
       "conditions": "active (depending on the value)"
     },
-    "markLabel": { "description": "{{stylesApplied}}", "nodeName": "mark label element" },
+    "markLabel": { "description": "{{stylesApplied}}", "nodeName": "the mark label element" },
     "markLabelActive": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "mark label element",
+      "nodeName": "the mark label element",
       "conditions": "active (depending on the value)"
     }
   }

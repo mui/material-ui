@@ -34,6 +34,6 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" }
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" }
   }
 }

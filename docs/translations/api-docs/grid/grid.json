@@ -20,115 +20,115 @@
     "zeroMinWidth": "If <code>true</code>, it sets <code>min-width: 0</code> on the item. Refer to the limitations section of the documentation to better understand the use case."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "container": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>container={true}</code>"
     },
     "item": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>item={true}</code>"
     },
     "zeroMinWidth": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>zeroMinWidth={true}</code>"
     },
     "direction-xs-column": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>direction=\"column\"</code>"
     },
     "direction-xs-column-reverse": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>direction=\"column-reverse\"</code>"
     },
     "direction-xs-row-reverse": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>direction=\"row-reverse\"</code>"
     },
     "wrap-xs-nowrap": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>wrap=\"nowrap\"</code>"
     },
     "wrap-xs-wrap-reverse": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>wrap=\"reverse\"</code>"
     },
     "align-items-xs-center": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>alignItems=\"center\"</code>"
     },
     "align-items-xs-flex-start": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>alignItems=\"flex-start\"</code>"
     },
     "align-items-xs-flex-end": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>alignItems=\"flex-end\"</code>"
     },
     "align-items-xs-baseline": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>alignItems=\"baseline\"</code>"
     },
     "align-content-xs-center": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>alignContent=\"center\"</code>"
     },
     "align-content-xs-flex-start": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>alignContent=\"flex-start\"</code>"
     },
     "align-content-xs-flex-end": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>alignContent=\"flex-end\"</code>"
     },
     "align-content-xs-space-between": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>alignContent=\"space-between\"</code>"
     },
     "align-content-xs-space-around": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>alignContent=\"space-around\"</code>"
     },
     "justify-content-xs-center": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>justifyContent=\"center\"</code>"
     },
     "justify-content-xs-flex-end": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>justifyContent=\"flex-end\"</code>"
     },
     "justify-content-xs-space-between": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>justifyContent=\"space-between\"</code>"
     },
     "justify-content-xs-space-around": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>justifyContent=\"space-around\"</code>"
     },
     "justify-content-xs-space-evenly": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>justifyContent=\"space-evenly\"</code>"
     }
   }

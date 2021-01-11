@@ -15,122 +15,126 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "contained": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"contained\"</code>"
     },
     "outlined": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "text": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code>"
     },
     "disableElevation": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>disableElevation={true}</code>"
     },
-    "disabled": { "description": "Pseudo-class applied to child elements if `disabled={true}`." },
+    "disabled": {
+      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "nodeName": "the child elements",
+      "conditions": "<code>disabled={true}</code>"
+    },
     "fullWidth": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
     },
     "vertical": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
-    "grouped": { "description": "{{stylesApplied}}", "nodeName": "children" },
+    "grouped": { "description": "{{stylesApplied}}", "nodeName": "the children" },
     "groupedHorizontal": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
     "groupedVertical": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
     "groupedText": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"text\"</code>"
     },
     "groupedTextHorizontal": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"horizontal\"</code>"
     },
     "groupedTextVertical": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"text\"</code> and <code>orientation=\"vertical\"</code>"
     },
     "groupedTextPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"text\"</code> and <code>color=\"primary\"</code>"
     },
     "groupedTextSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
     },
     "groupedOutlined": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "groupedOutlinedHorizontal": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"horizontal\"</code>"
     },
     "groupedOutlinedVertical": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"outlined\"</code> and <code>orientation=\"vertical\"</code>"
     },
     "groupedOutlinedPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
     },
     "groupedOutlinedSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
     },
     "groupedContained": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"contained\"</code>"
     },
     "groupedContainedHorizontal": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"horizontal\"</code>"
     },
     "groupedContainedVertical": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"contained\"</code> and <code>orientation=\"vertical\"</code>"
     },
     "groupedContainedPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"primary\"</code>"
     },
     "groupedContainedSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "children",
+      "nodeName": "the children",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
     }
   }

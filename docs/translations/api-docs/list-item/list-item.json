@@ -18,56 +18,56 @@
   "classDescriptions": {
     "root": {
       "description": "{{stylesApplied}} May be wrapped by a `container`.",
-      "nodeName": "(normally root) `component` element"
+      "nodeName": "the (normally root) `component` element"
     },
     "container": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "container element",
+      "nodeName": "the container element",
       "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
     },
     "focusVisible": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "`component`'s `focusVisibleClassName` prop",
+      "nodeName": "the `component`'s `focusVisibleClassName` prop",
       "conditions": "<code>button={true}</code>"
     },
     "dense": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "component element",
+      "nodeName": "the component element",
       "conditions": "dense"
     },
     "alignItemsFlexStart": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "component element",
+      "nodeName": "the component element",
       "conditions": "<code>alignItems=\"flex-start\"</code>"
     },
     "disabled": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "inner `component` element",
+      "nodeName": "the inner `component` element",
       "conditions": "<code>disabled={true}</code>"
     },
     "divider": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "inner `component` element",
+      "nodeName": "the inner `component` element",
       "conditions": "<code>divider={true}</code>"
     },
     "gutters": {
       "description": "{{stylesApplied}} unless {{conditions}}.",
-      "nodeName": "inner `component` element",
+      "nodeName": "the inner `component` element",
       "conditions": "<code>disableGutters={true}</code>"
     },
     "button": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "inner `component` element",
+      "nodeName": "the inner `component` element",
       "conditions": "<code>button={true}</code>"
     },
     "secondaryAction": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "component element",
+      "nodeName": "the component element",
       "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
     },
     "selected": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     }
   }

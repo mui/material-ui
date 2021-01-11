@@ -9,10 +9,10 @@
     "stickyHeader": "Set the header sticky.<br>⚠️ It doesn&#39;t work with IE11."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "stickyHeader": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>stickyHeader={true}</code>"
     }
   }

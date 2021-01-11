@@ -11,34 +11,40 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "positionBottom": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>position=\"bottom\"</code>"
     },
     "positionTop": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>position=\"top\"</code>"
     },
     "positionStatic": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>position=\"static\"</code>"
     },
     "dots": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "dots container",
+      "nodeName": "the dots container",
       "conditions": "<code>variant=\"dots\"</code>"
     },
-    "dot": { "description": "Styles applied to each dot if `variant=\"dots\"`." },
+    "dot": {
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "each dot",
+      "conditions": "<code>variant=\"dots\"</code>"
+    },
     "dotActive": {
-      "description": "Styles applied to a dot if `variant=\"dots\"` and this is the active step."
+      "description": "{{stylesApplied}} if {{conditions}}.",
+      "nodeName": "a dot",
+      "conditions": "<code>variant=\"dots\"</code> and this is the active step"
     },
     "progress": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "Linear Progress component",
+      "nodeName": "the Linear Progress component",
       "conditions": "<code>variant=\"progress\"</code>"
     }
   }

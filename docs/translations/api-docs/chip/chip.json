@@ -16,144 +16,144 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "sizeSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "colorPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "disabled": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "clickable": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>onClick</code> is defined or <code>clickable={true}</code>"
     },
     "clickableColorPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>onClick</code> and <code>color=\"primary\"</code> is defined or <code>clickable={true}</code>"
     },
     "clickableColorSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>onClick</code> and <code>color=\"secondary\"</code> is defined or <code>clickable={true}</code>"
     },
     "deletable": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>onDelete</code> is defined"
     },
     "deletableColorPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>onDelete</code> and <code>color=\"primary\"</code> is defined"
     },
     "deletableColorSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>onDelete</code> and <code>color=\"secondary\"</code> is defined"
     },
     "outlined": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "filled": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code>"
     },
     "outlinedPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"primary\"</code>"
     },
     "outlinedSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
     },
-    "avatar": { "description": "{{stylesApplied}}", "nodeName": "avatar element" },
+    "avatar": { "description": "{{stylesApplied}}", "nodeName": "the avatar element" },
     "avatarSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "avatar element",
+      "nodeName": "the avatar element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "avatarColorPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "avatar element",
+      "nodeName": "the avatar element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "avatarColorSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "avatar element",
+      "nodeName": "the avatar element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "icon": { "description": "{{stylesApplied}}", "nodeName": "icon element" },
+    "icon": { "description": "{{stylesApplied}}", "nodeName": "the icon element" },
     "iconSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "icon element",
+      "nodeName": "the icon element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "iconColorPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "icon element",
+      "nodeName": "the icon element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "iconColorSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "icon element",
+      "nodeName": "the icon element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "label": { "description": "{{stylesApplied}}", "nodeName": "label `span` element" },
+    "label": { "description": "{{stylesApplied}}", "nodeName": "the label `span` element" },
     "labelSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "label `span` element",
+      "nodeName": "the label `span` element",
       "conditions": "<code>size=\"small\"</code>"
     },
-    "deleteIcon": { "description": "{{stylesApplied}}", "nodeName": "deleteIcon element" },
+    "deleteIcon": { "description": "{{stylesApplied}}", "nodeName": "the deleteIcon element" },
     "deleteIconSmall": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "deleteIcon element",
+      "nodeName": "the deleteIcon element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "deleteIconColorPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "deleteIcon element",
+      "nodeName": "the deleteIcon element",
       "conditions": "<code>color=\"primary\"</code> and <code>variant=\"filled\"</code>"
     },
     "deleteIconColorSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "deleteIcon element",
+      "nodeName": "the deleteIcon element",
       "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"filled\"</code>"
     },
     "deleteIconOutlinedColorPrimary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "deleteIcon element",
+      "nodeName": "the deleteIcon element",
       "conditions": "<code>color=\"primary\"</code> and <code>variant=\"outlined\"</code>"
     },
     "deleteIconOutlinedColorSecondary": {
       "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "deleteIcon element",
+      "nodeName": "the deleteIcon element",
       "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>"
     },
     "focusVisible": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "keyboard focused"
     }
   }

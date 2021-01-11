@@ -10,23 +10,23 @@
     "timeout": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.<br>Set to &#39;auto&#39; to automatically calculate transition time based on height."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
     "horizontal": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
     "entered": {
       "description": "{{stylesApplied}} when {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "the transition has entered"
     },
     "hidden": {
       "description": "{{stylesApplied}} when {{conditions}}.",
-      "nodeName": "root element",
+      "nodeName": "the root element",
       "conditions": "the transition has exited and <code>collapsedSize</code> = 0px"
     },
-    "wrapper": { "description": "{{stylesApplied}}", "nodeName": "outer wrapper element" },
-    "wrapperInner": { "description": "{{stylesApplied}}", "nodeName": "inner wrapper element" }
+    "wrapper": { "description": "{{stylesApplied}}", "nodeName": "the outer wrapper element" },
+    "wrapperInner": { "description": "{{stylesApplied}}", "nodeName": "the inner wrapper element" }
   }
 }

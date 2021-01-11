@@ -8,7 +8,7 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
-    "avatar": { "description": "{{stylesApplied}}", "nodeName": "avatar elements" }
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
+    "avatar": { "description": "{{stylesApplied}}", "nodeName": "the avatar elements" }
   }
 }

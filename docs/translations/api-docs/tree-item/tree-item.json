@@ -17,30 +17,30 @@
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "root element" },
-    "group": { "description": "{{stylesApplied}}", "nodeName": "transition component" },
-    "content": { "description": "{{stylesApplied}}", "nodeName": "content element" },
+    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
+    "group": { "description": "{{stylesApplied}}", "nodeName": "the transition component" },
+    "content": { "description": "{{stylesApplied}}", "nodeName": "the content element" },
     "expanded": {
       "description": "{{pseudoClassApplied}} when {{conditions}}.",
-      "nodeName": "content element",
+      "nodeName": "the content element",
       "conditions": "expanded"
     },
     "selected": {
       "description": "{{pseudoClassApplied}} when {{conditions}}.",
-      "nodeName": "content element",
+      "nodeName": "the content element",
       "conditions": "selected"
     },
     "focused": {
       "description": "{{pseudoClassApplied}} when {{conditions}}.",
-      "nodeName": "content element",
+      "nodeName": "the content element",
       "conditions": "focused"
     },
     "disabled": {
       "description": "{{pseudoClassApplied}} when {{conditions}}.",
-      "nodeName": "element",
+      "nodeName": "the element",
       "conditions": "disabled"
     },
-    "iconContainer": { "description": "{{stylesApplied}}", "nodeName": "tree node icon" },
-    "label": { "description": "{{stylesApplied}}", "nodeName": "label element" }
+    "iconContainer": { "description": "{{stylesApplied}}", "nodeName": "the tree node icon" },
+    "label": { "description": "{{stylesApplied}}", "nodeName": "the label element" }
   }
 }
