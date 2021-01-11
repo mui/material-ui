@@ -24,7 +24,7 @@
     }
   },
   "name": "Menu",
-  "styles": { "classes": ["root", "paper", "list"], "globalClasses": {}, "name": "MuiMenu" },
+  "styles": { "classes": ["root", "paper", "list", "disablePointerEvents", "enablePointerEvents"], "globalClasses": {}, "name": "MuiMenu" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Menu/Menu.js",

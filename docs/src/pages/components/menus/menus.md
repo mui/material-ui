@@ -67,7 +67,13 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 {{"demo": "pages/components/menus/AccountMenu.js"}}
 
-## Customization
+## Cascading menu
+
+Cascading menus allow users to choose from a large variety of choices, by displaying menus with multiple levels of hierarchy.
+
+{{"demo": "pages/components/menus/CascadingMenu.js"}}
+
+## Customized menus
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).

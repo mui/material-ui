@@ -8,11 +8,25 @@
     "disableGutters": { "type": { "name": "bool" } },
     "divider": { "type": { "name": "bool" } },
     "focusVisibleClassName": { "type": { "name": "string" } },
+    "openSubMenu": { "type": { "name": "bool" } },
+    "subMenu": { "type": { "name": "node" } },
+    "subMenuIcon": { "type": { "name": "node" }, "default": "KeyboardArrowRight" }
     "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "MenuItem",
   "styles": {
-    "classes": ["root", "focusVisible", "dense", "disabled", "divider", "gutters", "selected"],
+    "classes": [
+        "root",
+        "focusVisible",
+        "dense",
+        "disabled",
+        "divider",
+        "gutters",
+        "selected",
+        "subMenuItemWrapper",
+        "subMenuIcon",
+        "rtlSubMenuIcon"
+    ],
     "globalClasses": {
       "focusVisible": "Mui-focusVisible",
       "disabled": "Mui-disabled",
