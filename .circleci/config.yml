@@ -69,7 +69,6 @@ commands:
             echo "skip browsers: $PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD";
             yarn
           environment:
-            # `<<^ parameter.foo >>` syntax: https://discuss.circleci.com/t/conditional-string-feature-but-with-inverse-logic/28708/4
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<^ parameters.withBrowsers >>1<</ parameters.withBrowsers >>
 
 jobs:
