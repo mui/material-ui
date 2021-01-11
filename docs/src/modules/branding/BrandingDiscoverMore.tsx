@@ -23,14 +23,14 @@ function DiscoverMoreCard(props: DiscoverMoreCardProps) {
         color: 'white',
         borderRadius: 1,
         overflow: 'hidden',
-        minHeight: 420,
+        minHeight: { xs: 420, md: 460, lg: 420 },
         padding: 0,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
       }}
     >
-      <Box sx={{ p: 5, pt: 6 }}>
+      <Box sx={{ p: 5, pt: 6, pb: 3 }}>
         <Box
           component={Link}
           sx={{
@@ -64,7 +64,7 @@ export default function BrandingDiscoverMore() {
         Discover more
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6} lg={4}>
+        <Grid item xs={12} md={4}>
           <DiscoverMoreCard
             title="Road map"
             src="/static/branding/about/roadmap.png"
@@ -74,7 +74,7 @@ export default function BrandingDiscoverMore() {
             Living document, laying out future plans and updates.
           </DiscoverMoreCard>
         </Grid>
-        <Grid item xs={12} md={6} lg={4}>
+        <Grid item xs={12} md={4}>
           <DiscoverMoreCard
             title="Sponsors and Backers"
             src="/static/branding/about/sponsors.png"
@@ -84,7 +84,7 @@ export default function BrandingDiscoverMore() {
             Support Material-UI core development through crowdfunding.
           </DiscoverMoreCard>
         </Grid>
-        <Grid item xs={12} md={6} lg={4}>
+        <Grid item xs={12} md={4}>
           <DiscoverMoreCard
             title="Contact Us"
             src="/static/branding/about/contact.png"
