@@ -66,7 +66,7 @@ export default function BrandingDiscoverMore() {
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <DiscoverMoreCard
-            title="Road map"
+            title="Roadmap"
             src="/static/branding/about/roadmap.png"
             href="/discover-more/roadmap/"
             imagePosition="flex-end"
