@@ -52,7 +52,7 @@ jobs:
         displayName: 'install dependencies'
         env:
           # Don't use playwright in this job
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: true
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
       - script: |
           yarn danger ci
