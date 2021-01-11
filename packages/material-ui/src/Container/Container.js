@@ -2,9 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
-import containerClasses, { getContainerUtilityClass } from './containerClasses';
+import { getContainerUtilityClass } from './containerClasses';
 import capitalize from '../utils/capitalize';
 
 const overridesResolver = (props, styles) => {
@@ -18,22 +19,18 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes = {}, fixed, disableGutters, maxWidth } = styleProps;
+  const { classes, fixed, disableGutters, maxWidth } = styleProps;
 
-  return {
-    root: clsx(
-      containerClasses.root,
-      classes.root,
-      getContainerUtilityClass(`maxWidth${capitalize(String(maxWidth))}`),
-      classes[`maxWidth${capitalize(String(maxWidth))}`],
-      {
-        [containerClasses.fixed]: fixed,
-        [classes.fixed]: fixed,
-        [containerClasses.disableGutters]: disableGutters,
-        [classes.disableGutters]: disableGutters,
-      },
-    ),
+  const slots = {
+    root: [
+      'root',
+      maxWidth && `maxWidth${capitalize(String(maxWidth))}`,
+      fixed && 'fixed',
+      disableGutters && 'disableGutters',
+    ],
   };
+
+  return composeClasses({ slots, classes, getUtilityClass: getContainerUtilityClass });
 };
 
 const ContainerRoot = experimentalStyled(

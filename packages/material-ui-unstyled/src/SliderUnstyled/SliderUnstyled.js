@@ -12,7 +12,8 @@ import {
   visuallyHidden,
 } from '@material-ui/utils';
 import isHostComponent from '../utils/isHostComponent';
-import sliderUnstyledClasses from './sliderUnstyledClasses';
+import composeClasses from '../composeClasses';
+import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
 function asc(a, b) {
@@ -150,36 +151,31 @@ function doesSupportTouchActionNone() {
 }
 
 const useUtilityClasses = (styleProps) => {
-  const { disabled, marked, orientation, track, classes = {} } = styleProps;
+  const { disabled, marked, orientation, track, classes } = styleProps;
 
-  return {
-    root: clsx(sliderUnstyledClasses.root, classes.root, {
-      [sliderUnstyledClasses.disabled]: disabled,
-      [classes.disabled]: disabled,
-      [sliderUnstyledClasses.marked]: marked,
-      [classes.marked]: marked,
-      [sliderUnstyledClasses.vertical]: orientation === 'vertical',
-      [classes.vertical]: orientation === 'vertical',
-      [sliderUnstyledClasses.trackInverted]: track === 'inverted',
-      [classes.trackInverted]: track === 'inverted',
-      [sliderUnstyledClasses.trackFalse]: track === false,
-      [classes.trackFalse]: track === false,
-    }),
-    rail: clsx(sliderUnstyledClasses.rail, classes.rail),
-    track: clsx(sliderUnstyledClasses.track, classes.track),
-    mark: clsx(sliderUnstyledClasses.mark, classes.mark),
-    markActive: clsx(sliderUnstyledClasses.markActive, classes.markActive),
-    markLabel: clsx(sliderUnstyledClasses.markLabel, classes.markLabel),
-    markLabelActive: clsx(sliderUnstyledClasses.markLabelActive, classes.markLabelActive),
-    valueLabel: clsx(sliderUnstyledClasses.valueLabel, classes.valueLabel),
-    thumb: clsx(sliderUnstyledClasses.thumb, classes.thumb, {
-      [classes.disabled]: disabled,
-      [sliderUnstyledClasses.disabled]: disabled,
-    }),
-    active: clsx(sliderUnstyledClasses.active, classes.active),
-    disabled: clsx(sliderUnstyledClasses.disabled, classes.disabled),
-    focusVisible: clsx(sliderUnstyledClasses.focusVisible, classes.focusVisible),
+  const slots = {
+    root: [
+      'root',
+      disabled && 'disabled',
+      marked && 'marked',
+      orientation === 'vertical' && 'vertical',
+      track === 'inverted' && 'trackInverted',
+      track === false && 'trackFalse',
+    ],
+    rail: ['rail'],
+    track: ['track'],
+    mark: ['mark'],
+    markActive: ['markActive'],
+    markLabel: ['markLabel'],
+    markLabelActive: ['markLabelActive'],
+    valueLabel: ['valueLabel'],
+    thumb: ['thumb', disabled && 'disabled'],
+    active: ['active'],
+    disabled: ['disabled'],
+    focusVisible: ['focusVisible'],
   };
+
+  return composeClasses({ slots, classes, getUtilityClass: getSliderUtilityClass });
 };
 
 const Forward = ({ children }) => children;

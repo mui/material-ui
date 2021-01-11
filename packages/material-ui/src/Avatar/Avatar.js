@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
@@ -19,16 +20,15 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes = {}, variant, colorDefault } = styleProps;
+  const { classes, variant, colorDefault } = styleProps;
 
-  return {
-    root: clsx(avatarClasses.root, classes.root, getAvatarUtilityClass(variant), classes[variant], {
-      [avatarClasses.colorDefault]: colorDefault,
-      [classes.colorDefault]: colorDefault,
-    }),
-    img: clsx(avatarClasses.img, classes.img),
-    fallback: clsx(avatarClasses.fallback, classes.fallback),
+  const slots = {
+    root: ['root', variant, colorDefault && 'colorDefault'],
+    img: ['img'],
+    fallback: ['fallback'],
   };
+
+  return composeClasses({ slots, classes, getUtilityClass: getAvatarUtilityClass });
 };
 
 const AvatarRoot = experimentalStyled(

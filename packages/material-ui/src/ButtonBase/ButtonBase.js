@@ -2,13 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge, elementTypeAcceptingRef, refType } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
-import buttonBaseClasses from './buttonBaseClasses';
+import { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -22,15 +23,21 @@ const overridesResolver = (props, styles) => {
 const useUtilityClasses = (styleProps) => {
   const { disabled, focusVisible, focusVisibleClassName, classes = {} } = styleProps;
 
-  return {
-    root: clsx(buttonBaseClasses.root, classes.root, {
-      [buttonBaseClasses.disabled]: disabled,
-      [classes.disabled]: disabled,
-      [buttonBaseClasses.focusVisible]: focusVisible,
-      [classes.focusVisible]: focusVisible,
-      [focusVisibleClassName]: focusVisible,
-    }),
+  const slots = {
+    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
   };
+
+  const composedClasses = composeClasses({
+    slots,
+    classes,
+    getUtilityClass: getButtonBaseUtilityClass,
+  });
+
+  if (focusVisible && focusVisibleClassName) {
+    composedClasses.root += ` ${focusVisibleClassName}`;
+  }
+
+  return composedClasses;
 };
 
 export const ButtonBaseRoot = experimentalStyled(
