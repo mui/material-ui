@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 14
       - run: yarn install
-        environment:
+        env:
           # Don't need playwright in this job
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: true
       - run: yarn release:build
