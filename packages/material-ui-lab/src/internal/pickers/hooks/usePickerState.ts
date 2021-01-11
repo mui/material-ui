@@ -107,9 +107,9 @@ export function usePickerState<TInput, TDateValue>(
     [
       acceptDate,
       disableCloseOnSelect,
-      draftState.draft,
       isOpen,
       now,
+      draftState.draft,
       setIsOpen,
       valueManager.emptyValue,
     ],
@@ -138,7 +138,7 @@ export function usePickerState<TInput, TDateValue>(
         // if selectionState === "shallow" do nothing (we already update picker state)
       },
     }),
-    [acceptDate, disableCloseOnSelect, draftState.draft, isMobileKeyboardViewOpen],
+    [acceptDate, disableCloseOnSelect, isMobileKeyboardViewOpen, draftState.draft],
   );
 
   const inputProps = React.useMemo(
