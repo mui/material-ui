@@ -30,10 +30,6 @@ import getStylesCreator from '@material-ui/styles/getStylesCreator';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
-// Only run for the named component
-const TEST = false;
-// const TEST = 'Accordion';
-
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
 interface ReactApi extends ReactDocgenApi {
@@ -890,10 +886,6 @@ async function buildDocs(options: {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
-
-  if (TEST && name !== TEST) {
-    return;
-  }
 
   const componentApi: {
     componentDescription: string;
