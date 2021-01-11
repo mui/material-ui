@@ -29,11 +29,17 @@ Material-UI is available as an [npm package](https://www.npmjs.com/package/@mate
 **[Stable channel v4](https://material-ui.com/)**
 
 ```sh
-// with npm
+// install the components with npm
 npm install @material-ui/core
 
-// with yarn
+// ...with yarn
 yarn add @material-ui/core
+
+// install the icons with npm
+npm install @material-ui/icons
+
+//...with yarn
+yarn add @material-ui/icons
 ```
 
 ⚠️ All ongoing work has moved to v5. The development of v4 is limited to important bug fixes, security patches and easing the upgrade path to v5.
