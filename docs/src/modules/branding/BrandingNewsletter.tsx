@@ -56,7 +56,6 @@ export default function BrandingNewsletter() {
             display: 'flex',
             backgroundColor: (theme) => theme.palette.greyF3,
             borderRadius: 1,
-            overflow: 'hidden',
             maxWidth: 300,
             '& input': {
               paddingLeft: 2,
