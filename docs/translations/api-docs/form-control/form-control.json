@@ -16,19 +16,19 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
     "marginNormal": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>margin=\"normal\"</code>"
     },
     "marginDense": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>margin=\"dense\"</code>"
     },
     "fullWidth": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
     }

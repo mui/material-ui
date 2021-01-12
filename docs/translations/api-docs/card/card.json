@@ -6,6 +6,6 @@
     "raised": "If <code>true</code>, the card will use raised styling."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" }
+    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" }
   }
 }

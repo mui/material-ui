@@ -10,29 +10,29 @@
     "inset": "If <code>true</code>, the List Subheader is indented."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
     "colorPrimary": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "colorInherit": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"inherit\"</code>"
     },
     "gutters": {
-      "description": "{{stylesApplied}} unless {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the inner `component` element",
       "conditions": "<code>disableGutters={true}</code>"
     },
     "inset": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>inset={true}</code>"
     },
     "sticky": {
-      "description": "{{stylesApplied}} unless {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disableSticky={true}</code>"
     }

@@ -6,9 +6,9 @@
     "disableSpacing": "If <code>true</code>, the actions do not have additional margin."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
     "spacing": {
-      "description": "{{stylesApplied}} unless {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disableSpacing={true}</code>"
     }

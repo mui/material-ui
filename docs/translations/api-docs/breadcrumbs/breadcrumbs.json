@@ -11,9 +11,12 @@
     "separator": "Custom separator node."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
-    "ol": { "description": "{{stylesApplied}}", "nodeName": "the ol element" },
-    "li": { "description": "{{stylesApplied}}", "nodeName": "the li element" },
-    "separator": { "description": "{{stylesApplied}}", "nodeName": "the separator element" }
+    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "ol": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the ol element" },
+    "li": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the li element" },
+    "separator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the separator element"
+    }
   }
 }

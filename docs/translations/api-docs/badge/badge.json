@@ -17,55 +17,81 @@
     "component": "The component used for the root node. Either a string to use a HTML element or a component."
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "badge": { "description": "Class name applied to the badge `span` element." },
+    "root": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the root element"
+    },
+    "badge": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the badge `span` element"
+    },
     "dot": {
-      "description": "Class name applied to the badge `span` element if `variant=\"dot\"`."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>variant=\"dot\"</code>"
     },
     "standard": {
-      "description": "Class name applied to the badge `span` element if `variant=\"standard\"`."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>variant=\"standard\"</code>"
     },
     "anchorOriginTopRightRectangular": {
-      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap=\"rectangular\"`."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginBottomRightRectangular": {
-      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap=\"rectangular\"`."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginTopLeftRectangular": {
-      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap=\"rectangular\"`."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginBottomLeftRectangular": {
-      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap=\"rectangular\"`."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginTopRightCircular": {
-      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap=\"circular\"`."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"circular\"</code>"
     },
     "anchorOriginBottomRightCircular": {
-      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap=\"circular\"`."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"circular\"</code>"
     },
     "anchorOriginTopLeftCircular": {
-      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap=\"circular\"`."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"circular\"</code>"
     },
     "anchorOriginBottomLeftCircular": {
-      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"`."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"</code>"
     },
     "invisible": {
-      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge `span` element",
       "conditions": "<code>invisible={true}</code>"
     },
     "colorPrimary": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge `span` element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSecondary": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge `span` element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "colorError": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge `span` element",
       "conditions": "<code>color=\"error\"</code>"
     }

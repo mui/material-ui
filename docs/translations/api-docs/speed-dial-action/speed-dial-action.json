@@ -13,24 +13,24 @@
     "tooltipTitle": "Label to display in the tooltip."
   },
   "classDescriptions": {
-    "fab": { "description": "{{stylesApplied}}", "nodeName": "the Fab component" },
+    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" },
     "fabClosed": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Fab component",
       "conditions": "<code>open={false}</code>"
     },
     "staticTooltip": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>tooltipOpen={true}</code>"
     },
     "staticTooltipClosed": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>tooltipOpen={true}</code> and <code>open={false}</code>"
     },
     "staticTooltipLabel": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the static tooltip label",
       "conditions": "<code>tooltipOpen={true}</code>"
     },

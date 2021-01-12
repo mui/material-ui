@@ -14,53 +14,56 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
     "docked": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"permanent or persistent\"</code>"
     },
-    "paper": { "description": "{{stylesApplied}}", "nodeName": "the Paper component" },
+    "paper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Paper component"
+    },
     "paperAnchorLeft": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"left\"</code>"
     },
     "paperAnchorRight": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"right\"</code>"
     },
     "paperAnchorTop": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"top\"</code>"
     },
     "paperAnchorBottom": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"bottom\"</code>"
     },
     "paperAnchorDockedLeft": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"left\"</code> and <code>variant</code> is not \"temporary\""
     },
     "paperAnchorDockedTop": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"top\"</code> and <code>variant</code> is not \"temporary\""
     },
     "paperAnchorDockedRight": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"right\"</code> and <code>variant</code> is not \"temporary\""
     },
     "paperAnchorDockedBottom": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"bottom\"</code> and <code>variant</code> is not \"temporary\""
     },
-    "modal": { "description": "{{stylesApplied}}", "nodeName": "the Modal component" }
+    "modal": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Modal component" }
   }
 }

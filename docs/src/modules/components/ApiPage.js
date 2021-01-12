@@ -100,8 +100,6 @@ function ClassesTable(props) {
                 __html:
                   classDescriptions[className] &&
                   classDescriptions[className].description
-                    .replace(/{{stylesApplied}}/, t('api-docs.stylesApplied'))
-                    .replace(/{{pseudoClassApplied}}/, t('api-docs.pseudoClassApplied'))
                     .replace(/{{conditions}}/, classDescriptions[className].conditions)
                     .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
               }}

@@ -8,20 +8,23 @@
     "icon": "The label displayed in the step icon."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
-    "text": { "description": "{{stylesApplied}}", "nodeName": "the SVG text element" },
+    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "text": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the SVG text element"
+    },
     "active": {
-      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>active={true}</code>"
     },
     "completed": {
-      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>completed={true}</code>"
     },
     "error": {
-      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     }

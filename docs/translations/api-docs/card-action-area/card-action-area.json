@@ -5,14 +5,14 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
     "focusVisible": {
-      "description": "{{pseudoClassApplied}} if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the ButtonBase root element",
       "conditions": "the action area is keyboard focused"
     },
     "focusHighlight": {
-      "description": "{{stylesApplied}} when {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the overlay that covers the action area",
       "conditions": "it is keyboard focused"
     }
