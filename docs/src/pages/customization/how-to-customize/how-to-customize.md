@@ -167,8 +167,8 @@ Components expose [global class names](/styles/advanced/#with-material-ui-core) 
 
 ```css
 .MuiButton-root {
-  fontSize: '1rem',
+  fontsize: '1rem';
 }
 ```
 
-You can reference the  [Styles library interoperability](/guides/interoperability/) guide to find examples of this using different styles libraries or plain CSS.
+You can reference the [Styles library interoperability](/guides/interoperability/) guide to find examples of this using different styles libraries or plain CSS.

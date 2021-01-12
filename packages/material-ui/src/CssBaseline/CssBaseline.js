@@ -59,7 +59,7 @@ export const body = (theme) => ({
 
 export const styles = (theme) => {
   let themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;
-  
+
   const defaultStyles = {
     html,
     '*, *::before, *::after': {
@@ -79,7 +79,7 @@ export const styles = (theme) => {
     },
   };
 
-  if(themeOverrides) {
+  if (themeOverrides) {
     return deepmerge(defaultStyles, themeOverrides);
   }
 
