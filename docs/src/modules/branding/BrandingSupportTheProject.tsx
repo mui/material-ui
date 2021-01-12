@@ -50,17 +50,17 @@ export default function BrandingSupportTheProject() {
       <Typography variant="h2">
         How can <UnderlinedText>I support the project?</UnderlinedText>
       </Typography>
-      <Typography sx={{mb: 4}}>
-        There are many ways to support Material-UI:
-      </Typography>
+      <Typography sx={{ mb: 4 }}>There are many ways to support Material-UI:</Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <SupportCard icon={<QuestionAnswerIcon fontSize="large" />} title="Spread the word">
-            Evangelize Material-UI by linking to{' '}
-            <Link href="https://material-ui.com">material-ui.com</Link> on your website, every
-            backlink matters! Follow us on{' '}
-            <Link href="https://twitter.com/MaterialUI">Twitter</Link>, like and retweet the
-            important news. Or just talk about us with your friends.
+            <Typography sx={{ mt: 2 }}>
+              Evangelize Material-UI by linking to{' '}
+              <Link href="https://material-ui.com">material-ui.com</Link> on your website, every
+              backlink matters! Follow us on{' '}
+              <Link href="https://twitter.com/MaterialUI">Twitter</Link>, like and retweet the
+              important news. Or just talk about us with your friends.
+            </Typography>
           </SupportCard>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -69,12 +69,14 @@ export default function BrandingSupportTheProject() {
             icon={<FeedbackIcon fontSize="large" />}
             title="Give us feedback"
           >
-            Tell us what we&apos;re doing well or where we can improve. Please upvote (
-            <span role="img" aria-label="Thumbs up emoji">
-              👍
-            </span>
-            ) the issues that you are the most interested in seeing solved. {/* TODO: add link */}
-            <Link href={'/'}>Give us feedback</Link>
+            <Typography sx={{ mt: 2 }}>
+              Tell us what we&apos;re doing well or where we can improve. Please upvote (
+              <span role="img" aria-label="Thumbs up emoji">
+                👍
+              </span>
+              ) the issues that you are the most interested in seeing solved. {/* TODO: add link */}
+              <Link href={'/'}>Give us feedback</Link>
+            </Typography>
           </SupportCard>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -112,12 +114,12 @@ export default function BrandingSupportTheProject() {
         </Grid>
         <Grid item xs={12} md={6}>
           <SupportCard icon={<FinanceIcon fontSize="large" />} title="Support us financially">
-            <Typography gutterBottom>
+            <Typography sx={{ mt: 2 }}>
               If you use Material-UI in a commercial project and would like to support its continued
               development by becoming a Sponsor, or in a side or hobby project and would like to
               become a Backer, you can do so through OpenCollective.
             </Typography>
-            <Typography gutterBottom>
+            <Typography sx={{ mt: 2, mb: 2 }}>
               All funds donated are managed transparently, and Sponsors receive recognition in the
               README and on the Material-UI home page.
             </Typography>
@@ -134,9 +136,13 @@ export default function BrandingSupportTheProject() {
         </Grid>
         <Grid>
           <SupportCard icon={<HelpIcon fontSize="large" />} title="Help new users">
-            You can answer questions on{' '}
-            <Link href="https://stackoverflow.com/questions/tagged/material-ui">StackOverflow</Link>
-            .
+            <Typography sx={{ mt: 2 }}>
+              You can answer questions on{' '}
+              <Link href="https://stackoverflow.com/questions/tagged/material-ui">
+                StackOverflow
+              </Link>
+              .
+            </Typography>
           </SupportCard>
         </Grid>
       </Grid>
