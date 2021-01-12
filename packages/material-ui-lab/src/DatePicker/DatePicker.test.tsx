@@ -121,7 +121,8 @@ describe('<DatePicker />', () => {
     expect(getByMuiTest('calendar-month-text')).to.have.text('January');
 
     // onChange must be dispatched with newly selected date
-    expect(onChangeMock.calledWith(adapterToUse.date('2018-01-01T00:00:00.000'))).to.be.equal(true);
+    expect(onChangeMock.callCount).to.equal(1);
+    expect(onChangeMock.args[0][0]).toEqualDateTime(adapterToUse.date('2018-01-01T00:00:00.000'));
   });
 
   it('allows to change only year', () => {
@@ -208,7 +209,8 @@ describe('<DatePicker />', () => {
     openMobilePicker();
     fireEvent.click(screen.getByText('Clear'));
 
-    expect(onChangeMock.calledWith(null)).to.be.equal(true);
+    expect(onChangeMock.callCount).to.equal(1);
+    expect(onChangeMock.args[0][0]).to.equal(null);
     expect(screen.queryByRole('dialog')).to.equal(null);
   });
 

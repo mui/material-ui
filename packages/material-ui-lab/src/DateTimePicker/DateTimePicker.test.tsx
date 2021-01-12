@@ -55,7 +55,7 @@ describe('<DateTimePicker />', () => {
       this.skip();
     }
 
-    let onChangeMock: SinonSpy<any> = spy();
+    const onChangeMock: SinonSpy<any> = spy();
     const clockTouchEvent = {
       changedTouches: [
         {
@@ -67,13 +67,15 @@ describe('<DateTimePicker />', () => {
 
     function DateTimePickerWithState() {
       const [date, setDate] = React.useState<Date | null>(null);
-      onChangeMock = spy(setDate);
 
       return (
         <MobileDateTimePicker
           value={date}
           toolbarPlaceholder="Enter Date"
-          onChange={(newDate) => onChangeMock(newDate)}
+          onChange={(newDate) => {
+            setDate(newDate);
+            onChangeMock(newDate);
+          }}
           renderInput={(params) => <TextField autoFocus {...params} />}
         />
       );
@@ -108,9 +110,12 @@ describe('<DateTimePicker />', () => {
     fireTouchChangedEvent(getByMuiTest('clock'), 'touchend', clockTouchEvent);
 
     expect(getByMuiTest('minutes')).to.have.text('53');
+    expect(onChangeMock.callCount).to.equal(4);
 
     fireEvent.click(screen.getByText(/ok/i));
-    expect(onChangeMock.calledWith(adapterToUse.date('2010-01-15T11:53:00.000'))).to.be.equal(true);
+
+    expect(onChangeMock.callCount).to.equal(5);
+    expect(onChangeMock.args[4][0]).toEqualDateTime(adapterToUse.date('2010-01-15T11:53:00.000'));
   });
 
   it('prop: open – overrides open state', () => {

@@ -106,7 +106,7 @@ describe('<SpeedDial />', () => {
       });
       fireEvent.keyDown(buttonWrapper, { key: ' ' });
       expect(handleKeyDown.callCount).to.equal(1);
-      expect(handleKeyDown.calledWithMatch({ key: ' ' })).to.equal(true);
+      expect(handleKeyDown.args[0][0]).to.have.property('key', ' ');
     });
   });
 
