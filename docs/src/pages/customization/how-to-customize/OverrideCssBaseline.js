@@ -20,6 +20,5 @@ export default function OverrideCssBaseline() {
       <CssBaseline />
       <h1>Grey h1 element</h1>
     </ThemeProvider>
-  )
-
+  );
 }
