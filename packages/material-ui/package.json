@@ -33,7 +33,7 @@
     "build:stable": "node ../../scripts/build stable",
     "build:umd": "cross-env BABEL_ENV=stable rollup -c scripts/rollup.config.js",
     "build:copy-files": "node ../../scripts/copy-files.js",
-    "build:types": "tsc -p tsconfig.build.json",
+    "build:types": "node ../../scripts/buildTypes",
     "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true yarn build:modern",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build --tag next",
