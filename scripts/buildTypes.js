@@ -16,11 +16,14 @@ const exec = promisify(childProcess.exec);
  * @param {string} importPath
  */
 function rewriteImportPath(importPath) {
-  if (importPath.startsWith('../material-ui/src')) {
-    return importPath.replace('../material-ui/src', '@material-ui/core');
+  const coreSrcPath = path.join('..', 'material-ui', 'src');
+  if (importPath.startsWith(coreSrcPath)) {
+    return importPath.replace(coreSrcPath, '@material-ui/core');
   }
-  if (importPath.startsWith('../material-ui-styles/src')) {
-    return importPath.replace('../material-ui-styles/src', '@material-ui/styles');
+
+  const stylesSrcPath = path.join('..', 'material-ui-styles', 'src');
+  if (importPath.startsWith(stylesSrcPath)) {
+    return importPath.replace(stylesSrcPath, '@material-ui/styles');
   }
 
   throw new Error(`Don't know where to rewrite '${importPath}' to`);
