@@ -13,7 +13,7 @@ const useUtilityClasses = (styleProps) => {
     root: ['root'],
     badge: [
       'badge',
-      variant, // there was only utility class for the variant previously
+      variant,
       `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
         anchorOrigin.horizontal,
       )}${capitalize(overlap)}`,
