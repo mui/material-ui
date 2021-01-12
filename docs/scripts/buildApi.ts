@@ -812,11 +812,11 @@ function extractClassConditions(descriptions: any) {
           nodeName: conditions[3],
           conditions: conditions[6].replace(/`(.*?)`/g, '<code>$1</code>'),
         };
-        } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
-          classConditions[className] = {
-            description: description.replace(stylesRegex, '$1{{nodeName}}$5.'),
-            nodeName: conditions[3],
-          };
+      } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
+        classConditions[className] = {
+          description: description.replace(stylesRegex, '$1{{nodeName}}$5.'),
+          nodeName: conditions[3],
+        };
       } else {
         classConditions[className] = { description };
       }
