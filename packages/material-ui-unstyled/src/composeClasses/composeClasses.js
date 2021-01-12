@@ -1,4 +1,4 @@
-function composeClasses({ slots = {}, classes = {}, getUtilityClass = () => '' }) {
+function composeClasses({ slots, classes = {}, getUtilityClass }) {
   const output = {};
 
   Object.keys(slots).forEach((slot) => {
