@@ -507,7 +507,6 @@ As the core components use emotion as a styled engine, the props used by emotion
       },
     },
   });
-
   ```
 
 - The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`).
