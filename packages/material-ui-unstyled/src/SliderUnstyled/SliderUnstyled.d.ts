@@ -31,37 +31,37 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      * @default {}
      */
     classes?: {
-      /** Styles applied to the root element. */
+      /** Class name applied to the root element. */
       root?: string;
-      /** Styles applied to the root element if `marks` is provided with at least one label. */
+      /** Class name applied to the root element if `marks` is provided with at least one label. */
       marked?: string;
-      /** Styles applied to the root element if `orientation="vertical"`. */
+      /** Class name applied to the root element if `orientation="vertical"`. */
       vertical?: string;
       /** Pseudo-class applied to the root and thumb element if `disabled={true}`. */
       disabled?: string;
-      /** Styles applied to the rail element. */
+      /** Class name applied to the rail element. */
       rail?: string;
-      /** Styles applied to the track element. */
+      /** Class name applied to the track element. */
       track?: string;
-      /** Styles applied to the track element if `track={false}`. */
+      /** Class name applied to the track element if `track={false}`. */
       trackFalse?: string;
-      /** Styles applied to the track element if `track="inverted"`. */
+      /** Class name applied to the track element if `track="inverted"`. */
       trackInverted?: string;
-      /** Styles applied to the thumb element. */
+      /** Class name applied to the thumb element. */
       thumb?: string;
       /** Pseudo-class applied to the thumb element if it's active. */
       active?: string;
       /** Pseudo-class applied to the thumb element if keyboard focused. */
       focusVisible?: string;
-      /** Styles applied to the thumb label element. */
+      /** Class name applied to the thumb label element. */
       valueLabel?: string;
-      /** Styles applied to the mark element. */
+      /** Class name applied to the mark element. */
       mark?: string;
-      /** Styles applied to the mark element if active (depending on the value). */
+      /** Class name applied to the mark element if active (depending on the value). */
       markActive?: string;
-      /** Styles applied to the mark label element. */
+      /** Class name applied to the mark label element. */
       markLabel?: string;
-      /** Styles applied to the mark label element if active (depending on the value). */
+      /** Class name applied to the mark label element if active (depending on the value). */
       markLabelActive?: string;
     };
     /**

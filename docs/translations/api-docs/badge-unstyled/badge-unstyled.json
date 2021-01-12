@@ -15,57 +15,37 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "{{stylesApplied}}", "nodeName": "the root element" },
-    "badge": { "description": "{{stylesApplied}}", "nodeName": "the badge `span` element" },
+    "root": { "description": "Class name applied to the root element." },
+    "badge": { "description": "Class name applied to the badge `span` element." },
     "dot": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
-      "conditions": "<code>variant=\"dot\"</code>"
+      "description": "Class name applied to the badge `span` element if `variant=\"dot\"`."
     },
     "standard": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
-      "conditions": "<code>variant=\"standard\"</code>"
+      "description": "Class name applied to the badge `span` element if `variant=\"standard\"`."
     },
     "anchorOriginTopRightRectangular": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
-      "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"rectangular\"</code>"
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap=\"rectangular\"`."
     },
     "anchorOriginBottomRightRectangular": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"rectangular\"</code>"
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap=\"rectangular\"`."
     },
     "anchorOriginTopLeftRectangular": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
-      "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"rectangular\"</code>"
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap=\"rectangular\"`."
     },
     "anchorOriginBottomLeftRectangular": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"rectangular\"</code>"
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap=\"rectangular\"`."
     },
     "anchorOriginTopRightCircular": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
-      "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"circular\"</code>"
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap=\"circular\"`."
     },
     "anchorOriginBottomRightCircular": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"circular\"</code>"
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap=\"circular\"`."
     },
     "anchorOriginTopLeftCircular": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
-      "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"circular\"</code>"
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap=\"circular\"`."
     },
     "anchorOriginBottomLeftCircular": {
-      "description": "{{stylesApplied}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
-      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"</code>"
+      "description": "Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"`."
     },
     "invisible": {
       "description": "{{pseudoClassApplied}} if {{conditions}}.",
