@@ -177,6 +177,6 @@ If you just want to add some global baseline styles for some of the HTML element
 
 {{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}
 
-If you are already using the `CssBaseline` component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achive the same by using this approach.
+If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achive the same by using this approach.
 
 {{"demo": "pages/customization/how-to-customize/OverrideCssBaseline.js", "iframe": true, "height": 100}}
