@@ -13,7 +13,7 @@
     "variant": "The shape of the avatar."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "colorDefault": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

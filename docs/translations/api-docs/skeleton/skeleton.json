@@ -10,7 +10,7 @@
     "width": "Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "text": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

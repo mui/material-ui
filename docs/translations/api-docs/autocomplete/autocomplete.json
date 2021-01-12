@@ -61,7 +61,7 @@
     "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>getOptionSelected</code> prop."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "@media (pointer": { "description": "Avoid double tap issue on iOS" },
     "fullWidth": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

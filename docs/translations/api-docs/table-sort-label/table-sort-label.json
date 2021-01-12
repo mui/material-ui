@@ -9,7 +9,7 @@
     "IconComponent": "Sort icon to use."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "active": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

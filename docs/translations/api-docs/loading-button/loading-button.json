@@ -9,7 +9,7 @@
     "pendingPosition": "The pending indicator can be positioned on the start, end, or the center of the button."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "pending": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

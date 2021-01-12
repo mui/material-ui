@@ -802,23 +802,23 @@ function extractClassConditions(descriptions: any) {
   } = {};
   const stylesRegex = /((Styles|Pseudo-class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
-  Object.entries(descriptions).forEach(([className, classDescription]: any) => {
+  Object.entries(descriptions).forEach(([className, description]: any) => {
     if (className) {
-      const conditions = classDescription.match(stylesRegex);
+      const conditions = description.match(stylesRegex);
 
       if (conditions && conditions[6]) {
         classConditions[className] = {
-          description: classDescription.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
+          description: description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
           nodeName: conditions[3],
           conditions: conditions[6].replace(/`(.*?)`/g, '<code>$1</code>'),
         };
-      } else if (conditions && conditions[3]) {
-        classConditions[className] = {
-          description: classDescription.replace(stylesRegex, '$1{{nodeName}}$5.'),
-          nodeName: conditions[3],
-        };
+        } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
+          classConditions[className] = {
+            description: description.replace(stylesRegex, '$1{{nodeName}}$5.'),
+            nodeName: conditions[3],
+          };
       } else {
-        classConditions[className] = { description: classDescription };
+        classConditions[className] = { description };
       }
     }
   });

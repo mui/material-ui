@@ -21,7 +21,7 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "ul": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the ul element" },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

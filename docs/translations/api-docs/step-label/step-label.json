@@ -10,7 +10,7 @@
     "StepIconProps": "Props applied to the <a href=\"/api/step-icon/\"><code>StepIcon</code></a> element."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "horizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

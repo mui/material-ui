@@ -11,7 +11,7 @@
     "last": "If <code>true</code>, the Step is displayed as rendered last. The prop defaults to the value inherited from the parent Stepper component."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "horizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

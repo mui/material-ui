@@ -18,7 +18,7 @@
     "value": "The value of the component. The DOM API casts this to a string. The browser uses &quot;on&quot; as the default value."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "edgeStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

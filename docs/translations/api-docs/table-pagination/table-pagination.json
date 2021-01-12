@@ -20,7 +20,7 @@
     "showLastButton": "If <code>true</code>, show the last-page button."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "toolbar": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Toolbar component"

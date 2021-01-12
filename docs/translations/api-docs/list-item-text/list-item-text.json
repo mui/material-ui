@@ -11,7 +11,7 @@
     "secondaryTypographyProps": "These props will be forwarded to the secondary typography component (as long as disableTypography is not <code>true</code>)."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "multiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Typography component",

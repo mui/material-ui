@@ -7,7 +7,7 @@
     "role": "The ARIA role attribute of the element."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "message": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the message wrapper element"

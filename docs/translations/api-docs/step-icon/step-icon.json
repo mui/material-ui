@@ -8,7 +8,7 @@
     "icon": "The label displayed in the step icon."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "text": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the SVG text element"

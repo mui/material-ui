@@ -6,7 +6,7 @@
     "openIcon": "The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
     "iconOpen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

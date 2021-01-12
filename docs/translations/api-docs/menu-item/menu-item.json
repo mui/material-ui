@@ -9,7 +9,7 @@
     "ListItemClasses": "<code>classes</code> prop applied to the <a href=\"/api/list-item/\"><code>ListItem</code></a> element."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root element" },
+    "root": { "description": "Styles applied to the root element." },
     "gutters": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
