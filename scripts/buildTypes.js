@@ -13,15 +13,15 @@ const exec = promisify(childProcess.exec);
  *
  * @remarks Paths are hardcoded since it is unclear if all these broken import paths target "public paths".
  *
- * @param {string} importPath
+ * @param {string} importPath - POSIX path
  */
 function rewriteImportPath(importPath) {
-  const coreSrcPath = path.join('..', 'material-ui', 'src');
+  const coreSrcPath = path.posix.join('..', 'material-ui', 'src');
   if (importPath.startsWith(coreSrcPath)) {
     return importPath.replace(coreSrcPath, '@material-ui/core');
   }
 
-  const stylesSrcPath = path.join('..', 'material-ui-styles', 'src');
+  const stylesSrcPath = path.posix.join('..', 'material-ui-styles', 'src');
   if (importPath.startsWith(stylesSrcPath)) {
     return importPath.replace(stylesSrcPath, '@material-ui/styles');
   }
@@ -75,7 +75,10 @@ async function main() {
 
         if (!isImportReachableWhenPublished) {
           try {
-            const fixedImportPath = rewriteImportPath(importPathFromPublishDir);
+            const fixedImportPath = rewriteImportPath(
+              // ensure relative POSIX path
+              importPathFromPublishDir.replace(/\\/g, '/'),
+            );
             const originalImportType = importTypeMatch[0];
             const fixedImportType = importTypeMatch[0].replace(importPath, fixedImportPath);
 
