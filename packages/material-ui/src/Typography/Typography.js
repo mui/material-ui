@@ -2,10 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
-import typographyClasses, { getTypographyUtilityClass } from './typographyClasses';
+import { getTypographyUtilityClass } from './typographyClasses';
 
 const getTextColor = (color, palette) => {
   if (color.indexOf('text') === 0) {
@@ -78,39 +79,22 @@ const defaultVariantMapping = {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const {
-    align,
-    color,
-    display,
-    gutterBottom,
-    noWrap,
-    paragraph,
-    variant,
-    classes = {},
-  } = styleProps;
+  const { align, color, display, gutterBottom, noWrap, paragraph, variant, classes } = styleProps;
 
-  return {
-    root: clsx(
-      typographyClasses['root'],
-      classes['root'],
-      getTypographyUtilityClass(`color${capitalize(color)}`),
-      classes[`color${capitalize(color)}`],
-      typographyClasses[`align${capitalize(align)}`],
-      classes[`align${capitalize(align)}`],
-      typographyClasses[`display${capitalize(display)}`],
-      classes[`display${capitalize(display)}`],
-      getTypographyUtilityClass(variant),
-      classes[variant],
-      {
-        [typographyClasses['gutterBottom']]: gutterBottom,
-        [classes['gutterBottom']]: gutterBottom,
-        [typographyClasses['noWrap']]: noWrap,
-        [classes['noWrap']]: noWrap,
-        [typographyClasses['paragraph']]: paragraph,
-        [classes['paragraph']]: paragraph,
-      },
-    ),
+  const slots = {
+    root: [
+      'root',
+      variant,
+      `color${capitalize(color)}`,
+      `align${capitalize(align)}`,
+      `display${capitalize(display)}`,
+      gutterBottom && 'gutterBottom',
+      noWrap && 'noWrap',
+      paragraph && 'paragraph',
+    ],
   };
+
+  return composeClasses({ slots, classes, getUtilityClass: getTypographyUtilityClass });
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {

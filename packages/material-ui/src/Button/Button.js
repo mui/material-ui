@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
@@ -35,41 +36,23 @@ const overridesResolver = (props, styles) => {
 const useUtilityClasses = (styleProps) => {
   const { color, disableElevation, fullWidth, size, variant, classes = {} } = styleProps;
 
-  return {
-    root: clsx(
-      buttonClasses.root,
-      classes.root,
-      getButtonUtilityClass(variant),
-      classes[variant],
-      getButtonUtilityClass(`${variant}${capitalize(color)}`),
-      classes[[`${variant}${capitalize(color)}`]],
-      getButtonUtilityClass(`size${capitalize(size)}`),
-      classes[`size${capitalize(size)}`],
-      getButtonUtilityClass(`${variant}Size${capitalize(size)}`),
-      classes[`${variant}Size${capitalize(size)}`],
-      {
-        [buttonClasses.colorInherit]: color === 'inherit',
-        [classes.colorInherit]: color === 'inherit',
-        [buttonClasses.disableElevation]: disableElevation,
-        [classes.disableElevation]: disableElevation,
-        [buttonClasses.fullWidth]: fullWidth,
-        [classes.fullWidth]: fullWidth,
-      },
-    ),
-    label: clsx(buttonClasses.label, classes.label),
-    startIcon: clsx(
-      buttonClasses.startIcon,
-      classes.startIcon,
-      getButtonUtilityClass(`iconSize${capitalize(size)}`),
-      classes[`iconSize${capitalize(size)}`],
-    ),
-    endIcon: clsx(
-      buttonClasses.endIcon,
-      classes.endIcon,
-      getButtonUtilityClass(`iconSize${capitalize(size)}`),
-      classes[`iconSize${capitalize(size)}`],
-    ),
+  const slots = {
+    root: [
+      'root',
+      variant,
+      `${variant}${capitalize(color)}`,
+      `size${capitalize(size)}`,
+      `${variant}Size${capitalize(size)}`,
+      color === 'inherit' && 'colorInherit',
+      disableElevation && 'disableElevation',
+      fullWidth && 'fullWidth',
+    ],
+    label: ['label'],
+    startIcon: ['startIcon', `iconSize${capitalize(size)}`],
+    endIcon: ['endIcon', `iconSize${capitalize(size)}`],
   };
+
+  return composeClasses({ slots, classes, getUtilityClass: getButtonUtilityClass });
 };
 
 const commonIconStyles = (styleProps) => ({
