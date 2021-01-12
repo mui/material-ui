@@ -10,11 +10,13 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "vertical": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     }
   }

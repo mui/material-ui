@@ -9,13 +9,18 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "img": { "description": "Styles applied to an `img` element to ensure it covers the item." },
+    "img": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "an `img` element to ensure it covers the item"
+    },
     "standard": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code>"
     },
     "woven": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"woven\"</code>"
     }
   }

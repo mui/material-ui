@@ -9,6 +9,9 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "avatar": { "description": "Styles applied to the avatar elements." }
+    "avatar": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the avatar elements"
+    }
   }
 }

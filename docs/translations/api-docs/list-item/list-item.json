@@ -17,43 +17,57 @@
   },
   "classDescriptions": {
     "root": {
-      "description": "Styles applied to the (normally root) `component` element. May be wrapped by a `container`."
+      "description": "Styles applied to {{nodeName}}. May be wrapped by a `container`.",
+      "nodeName": "the (normally root) `component` element"
     },
     "container": {
-      "description": "Styles applied to the container element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the container element",
       "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the `component`'s `focusVisibleClassName` prop",
       "conditions": "<code>button={true}</code>"
     },
-    "dense": { "description": "Styles applied to the component element if dense." },
+    "dense": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the component element",
+      "conditions": "dense"
+    },
     "alignItemsFlexStart": {
-      "description": "Styles applied to the component element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the component element",
       "conditions": "<code>alignItems=\"flex-start\"</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to the inner `component` element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the inner `component` element",
       "conditions": "<code>disabled={true}</code>"
     },
     "divider": {
-      "description": "Styles applied to the inner `component` element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the inner `component` element",
       "conditions": "<code>divider={true}</code>"
     },
     "gutters": {
-      "description": "Styles applied to the inner `component` element unless {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the inner `component` element",
       "conditions": "<code>disableGutters={true}</code>"
     },
     "button": {
-      "description": "Styles applied to the inner `component` element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the inner `component` element",
       "conditions": "<code>button={true}</code>"
     },
     "secondaryAction": {
-      "description": "Styles applied to the component element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the component element",
       "conditions": "<code>children</code> includes <code>ListItemSecondaryAction</code>"
     },
     "selected": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     }
   }

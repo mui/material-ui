@@ -66,7 +66,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied applied to the root element if `size="small"`. */
+  /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     minWidth: 26,
     height: 26,
@@ -77,7 +77,7 @@ export const styles = (theme) => ({
       fontSize: theme.typography.pxToRem(18),
     },
   },
-  /* Styles applied applied to the root element if `size="large"`. */
+  /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     minWidth: 40,
     height: 40,

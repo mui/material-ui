@@ -16,9 +16,9 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
       root?: string;
       /** Styles applied to the root element if `type="page"`. */
       page?: string;
-      /** Styles applied applied to the root element if `size="small"`. */
+      /** Styles applied to the root element if `size="small"`. */
       sizeSmall?: string;
-      /** Styles applied applied to the root element if `size="large"`. */
+      /** Styles applied to the root element if `size="large"`. */
       sizeLarge?: string;
       /** Styles applied to the root element if `variant="text"`. */
       text?: string;

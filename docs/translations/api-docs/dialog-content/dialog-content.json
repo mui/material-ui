@@ -8,7 +8,8 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "dividers": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>dividers={true}</code>"
     }
   }

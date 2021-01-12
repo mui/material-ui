@@ -11,16 +11,19 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "active": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>active={true}</code>"
     },
-    "icon": { "description": "Styles applied to the icon component." },
+    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
     "iconDirectionDesc": {
-      "description": "Styles applied to the icon component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
       "conditions": "<code>direction=\"desc\"</code>"
     },
     "iconDirectionAsc": {
-      "description": "Styles applied to the icon component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
       "conditions": "<code>direction=\"asc\"</code>"
     }
   }

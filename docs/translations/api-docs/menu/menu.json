@@ -15,7 +15,13 @@
     "variant": "The variant to use. Use <code>menu</code> to prevent selected items from impacting the initial focus and the vertical alignment relative to the anchor element."
   },
   "classDescriptions": {
-    "paper": { "description": "Styles applied to the Paper component." },
-    "list": { "description": "Styles applied to the List component via `MenuList`." }
+    "paper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Paper component"
+    },
+    "list": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the List component via `MenuList`"
+    }
   }
 }

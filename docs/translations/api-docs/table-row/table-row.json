@@ -10,14 +10,24 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "selected": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },
     "hover": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>hover={true}</code>"
     },
-    "head": { "description": "Styles applied to the root element if table variant=\"head\"." },
-    "footer": { "description": "Styles applied to the root element if table variant=\"footer\"." }
+    "head": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "table variant=\"head\""
+    },
+    "footer": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "table variant=\"footer\""
+    }
   }
 }

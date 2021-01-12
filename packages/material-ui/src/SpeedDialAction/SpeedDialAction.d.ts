@@ -18,9 +18,9 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
     staticTooltipClosed?: string;
     /** Styles applied to the static tooltip label if `tooltipOpen={true}`. */
     staticTooltipLabel?: string;
-    /** Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
+    /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
     tooltipPlacementLeft?: string;
-    /** Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
+    /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
     tooltipPlacementRight?: string;
   };
   /**

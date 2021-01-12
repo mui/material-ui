@@ -8,9 +8,13 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "message": { "description": "Styles applied to the message wrapper element." },
+    "message": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the message wrapper element"
+    },
     "action": {
-      "description": "Styles applied to the action wrapper element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the action wrapper element",
       "conditions": "<code>action</code> is provided"
     }
   }

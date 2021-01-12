@@ -18,11 +18,14 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to the root element if keyboard focused."
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "keyboard focused"
     }
   }
 }

@@ -8,15 +8,18 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "alignLeft": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>align=\"left\"</code>"
     },
     "alignRight": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>align=\"right\"</code>"
     },
     "alignAlternate": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>align=\"alternate\"</code>"
     }
   }

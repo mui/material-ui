@@ -25,7 +25,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
       text?: string;
       /** Styles applied to the root element if `disableElevation={true}`. */
       disableElevation?: string;
-      /** Pseudo-class applied to child elements if `disabled={true}`. */
+      /** Pseudo-class applied to the child elements if `disabled={true}`. */
       disabled?: string;
       /** Styles applied to the root element if `fullWidth={true}`. */
       fullWidth?: string;

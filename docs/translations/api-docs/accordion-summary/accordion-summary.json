@@ -9,17 +9,27 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "expanded": {
-      "description": "Pseudo-class applied to the root element, children wrapper element and `IconButton` component if {{conditions}}.",
-      "conditions": "<code>expanded={true}</code>"
+      "description": "Pseudo-class applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "children wrapper element and <code>IconButton</code> component if <code>expanded={true}</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to the ButtonBase root element if the button is keyboard focused."
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the ButtonBase root element",
+      "conditions": "the button is keyboard focused"
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
-    "content": { "description": "Styles applied to the children wrapper element." },
-    "expandIconWrapper": { "description": "Styles applied to the `expandIcon`'s wrapper element." }
+    "content": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the children wrapper element"
+    },
+    "expandIconWrapper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the `expandIcon`'s wrapper element"
+    }
   }
 }

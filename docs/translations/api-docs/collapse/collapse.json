@@ -12,16 +12,27 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "horizontal": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
     "entered": {
-      "description": "Styles applied to the root element when the transition has entered."
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the transition has entered"
     },
     "hidden": {
-      "description": "Styles applied to the root element when the transition has exited and `collapsedSize` = 0px."
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the transition has exited and <code>collapsedSize</code> = 0px"
     },
-    "wrapper": { "description": "Styles applied to the outer wrapper element." },
-    "wrapperInner": { "description": "Styles applied to the inner wrapper element." }
+    "wrapper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the outer wrapper element"
+    },
+    "wrapperInner": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the inner wrapper element"
+    }
   }
 }

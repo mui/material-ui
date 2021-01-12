@@ -12,23 +12,29 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "underlineNone": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>underline=\"none\"</code>"
     },
     "underlineHover": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>underline=\"hover\"</code>"
     },
     "underlineAlways": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>underline=\"always\"</code>"
     },
     "button": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>component=\"button\"</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to the root element if the link is keyboard focused."
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the link is keyboard focused"
     }
   }
 }

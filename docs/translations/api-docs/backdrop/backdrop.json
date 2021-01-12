@@ -10,7 +10,8 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "invisible": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>invisible={true}</code>"
     }
   }
