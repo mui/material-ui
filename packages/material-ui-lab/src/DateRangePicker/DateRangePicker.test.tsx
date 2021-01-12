@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { isWeekend } from 'date-fns';
 import { screen, fireEvent } from 'test/utils';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
 import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
@@ -271,6 +272,36 @@ describe('<DateRangePicker />', () => {
 
     fireEvent.focus(screen.getAllByRole('textbox')[0]);
     expect(screen.getByRole('tooltip')).toBeVisible();
+  });
+
+  // TODO: remove once we use describeConformanceV5.
+  it("respect theme's defaultProps", () => {
+    const theme = createMuiTheme({
+      components: {
+        MuiPickersDateRangePicker: {
+          defaultProps: { startText: 'Início', endText: 'Fim' },
+        },
+      } as any,
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <DesktopDateRangePicker
+          renderInput={(startProps, endProps) => (
+            <React.Fragment>
+              <TextField {...startProps} variant="standard" />
+              <TextField {...endProps} variant="standard" />
+            </React.Fragment>
+          )}
+          onChange={() => {}}
+          TransitionComponent={FakeTransitionComponent}
+          value={[null, null]}
+        />
+      </ThemeProvider>,
+    );
+
+    expect(screen.queryByText('Início')).not.to.equal(null);
+    expect(screen.queryByText('Fim')).not.to.equal(null);
   });
 
   it('prop – `renderDay` should be called and render days', async () => {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import TextField from '@material-ui/core/TextField';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { fireEvent, screen, waitFor } from 'test/utils';
 import PickersDay from '@material-ui/lab/PickersDay';
 import CalendarSkeleton from '@material-ui/lab/PickersCalendarSkeleton';
@@ -192,6 +193,25 @@ describe('<DatePicker />', () => {
     fireEvent.click(screen.getByLabelText('Jan 2, 2018'));
 
     expect(screen.queryByRole('dialog')).to.equal(null);
+  });
+
+  // TODO: remove once we use describeConformanceV5
+  it("respect theme's defaultProps", () => {
+    const theme = createMuiTheme({
+      components: { MuiStaticDatePicker: { defaultProps: { toolbarTitle: 'Select A Date' } } },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <StaticDatePicker
+          value={adapterToUse.date('2020-01-01T00:00:00.000')}
+          onChange={() => {}}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </ThemeProvider>,
+    );
+
+    expect(screen.queryByText('Select A Date')).not.to.equal(null);
   });
 
   it('prop `clearable` - renders clear button in Mobile mode', () => {

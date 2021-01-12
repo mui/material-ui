@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { useThemeProps } from '@material-ui/core/styles';
 import Picker, { ExportedPickerProps } from './Picker';
 import { ParsableDate } from '../constants/prop-types';
 import { MuiPickersAdapter } from '../hooks/useUtils';
 import { parsePickerInputValue } from '../date-utils';
-import { withDefaultProps } from '../withDefaultProps';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { SomeWrapper, PublicWrapperProps } from '../wrappers/Wrapper';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
@@ -65,23 +65,24 @@ export function makePickerWithStateAndWrapper<
     __props: T & AllSharedPickerProps<ParsableDate<TDate>, TDate> & PublicWrapperProps<TWrapper>,
   ) {
     const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
+    const props = useThemeProps({ props: allProps, name });
 
-    const validationError = useValidation(allProps.value, allProps) !== null;
+    const validationError = useValidation(props.value, props) !== null;
     const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
-      allProps,
+      props,
       valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>,
     );
 
     // Note that we are passing down all the value without spread.
     // It saves us >1kb gzip and make any prop available automatically on any level down.
-    const { value, onChange, ...other } = allProps;
+    const { value, onChange, ...other } = props;
     const AllDateInputProps = { ...inputProps, ...other, validationError };
 
     return (
       <WrapperComponent wrapperProps={wrapperProps} DateInputProps={AllDateInputProps} {...other}>
         <Picker
           {...pickerProps}
-          toolbarTitle={allProps.label || allProps.toolbarTitle}
+          toolbarTitle={props.label || props.toolbarTitle}
           ToolbarComponent={other.ToolbarComponent || DefaultToolbarComponent}
           DateInputProps={AllDateInputProps}
           {...other}
@@ -90,7 +91,7 @@ export function makePickerWithStateAndWrapper<
     );
   }
 
-  const FinalPickerComponent = withDefaultProps({ name }, withDateAdapterProp(PickerWithState));
+  const FinalPickerComponent = withDateAdapterProp(PickerWithState);
 
   // tslint:disable-next-line
   // @ts-ignore Simply ignore generic values in props, because it is impossible

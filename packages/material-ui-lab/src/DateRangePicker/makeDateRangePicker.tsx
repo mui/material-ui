@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { useThemeProps } from '@material-ui/core/styles';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
-import { withDefaultProps } from '../internal/pickers/withDefaultProps';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { withDateAdapterProp } from '../internal/pickers/withDateAdapterProp';
 import { makeWrapperComponent } from '../internal/pickers/wrappers/makeWrapperComponent';
@@ -64,23 +64,29 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
     areValuesEqual: (utils, a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
   };
 
-  function RangePickerWithStateAndWrapper<TDate>({
-    calendars,
-    value,
-    onChange,
-    mask = '__/__/____',
-    startText = 'Start',
-    endText = 'End',
-    inputFormat: passedInputFormat,
-    minDate: __minDate = defaultMinDate as TDate,
-    maxDate: __maxDate = defaultMaxDate as TDate,
-    ...other
-  }: BaseDateRangePickerProps<TDate> &
-    AllSharedDateRangePickerProps<TDate> &
-    PublicWrapperProps<TWrapper>) {
+  function RangePickerWithStateAndWrapper<TDate>(
+    inProps: BaseDateRangePickerProps<TDate> &
+      AllSharedDateRangePickerProps<TDate> &
+      PublicWrapperProps<TWrapper>,
+  ) {
+    const props = useThemeProps({ props: inProps, name });
+
+    const {
+      calendars,
+      value,
+      onChange,
+      mask = '__/__/____',
+      startText = 'Start',
+      endText = 'End',
+      inputFormat: passedInputFormat,
+      minDate: minDateProp = defaultMinDate as TDate,
+      maxDate: maxDateProp = defaultMaxDate as TDate,
+      ...other
+    } = props;
+
     const utils = useUtils();
-    const minDate = useParsedDate(__minDate);
-    const maxDate = useParsedDate(__maxDate);
+    const minDate = useParsedDate(minDateProp);
+    const maxDate = useParsedDate(maxDateProp);
     const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] = React.useState<
       'start' | 'end'
     >('start');
@@ -133,10 +139,7 @@ export function makeDateRangePicker<TWrapper extends SomeWrapper>(
     );
   }
 
-  const FinalPickerComponent = withDefaultProps(
-    { name },
-    withDateAdapterProp(RangePickerWithStateAndWrapper),
-  );
+  const FinalPickerComponent = withDateAdapterProp(RangePickerWithStateAndWrapper);
 
   // @ts-expect-error Impossible to save component generics when wrapping with HOC
   return React.forwardRef<
