@@ -15,10 +15,11 @@ function searchParams(params: any) {
 }
 
 export default function BrandingNewsletter() {
-  const [form, setForm] = React.useState<'sent' | 'pristine'>('pristine');
+  const [form, setForm] = React.useState<'sent' | 'loading' | 'pristine'>('pristine');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setForm('loading');
     await fetch(
       'https://b54a4ca9.sibforms.com/serve/MUIEAL7ShMN_-JvWBUmF3ohJZXpuOAkBuriTevTM1gLkQWWuioHzjvYRLMT9K4KRGVU0rE02oJ_mcG1PVwaBe2O4UVlcxeyDT4BA8uGnG26Vl5ieAOf8eu1AM1fRXbiZb657oDuw2d5cy9hUpT2ekpgeBRJRHD2odSqJ7mAN1SF6cDWZo3SecU1lCIpGwurDex7GXUsbRS86Q387',
       {
@@ -55,6 +56,7 @@ export default function BrandingNewsletter() {
             display: 'flex',
             backgroundColor: (theme) => theme.palette.greyF3,
             borderRadius: 1,
+            overflow: 'hidden',
             maxWidth: 300,
             '& input': {
               paddingLeft: 2,
@@ -79,7 +81,13 @@ export default function BrandingNewsletter() {
               'aria-label': t1('Enter your email'),
             }}
           />
-          <Button variant="contained" color="inherit" size="small" type="submit">
+          <Button
+            disabled={form === 'loading'}
+            variant="contained"
+            color="inherit"
+            size="small"
+            type="submit"
+          >
             {t1('Subscribe')}
           </Button>
         </Box>

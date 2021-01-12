@@ -39,6 +39,13 @@ declare module '@material-ui/core/styles/createPalette' {
   interface PaletteOptions extends CustomPaletteOptions {}
 }
 
+// Update the Typography's variant prop options
+declare module '@material-ui/core/Typography' {
+  interface TypographyPropsVariantOverrides {
+    body3: true;
+  }
+}
+
 function round(value: number) {
   return Math.round(value * 1e5) / 1e5;
 }
@@ -151,12 +158,41 @@ theme = createMuiTheme(theme, {
       lineHeight: 1.25,
       fontSize: 24,
     },
+    h5: undefined,
+    h6: undefined,
+    subtitle1: undefined,
+    subtitle2: undefined,
     button: {
       fontWeight: 700,
       fontSize: 16,
     },
+    body1: {
+      fontSize: 16,
+      [theme.breakpoints.up('sm')]: {
+        fontSize: 18,
+      },
+    },
+    body2: {
+      fontSize: 14,
+      [theme.breakpoints.up('sm')]: {
+        fontSize: 16,
+      },
+    },
+    body3: {
+      fontSize: 14,
+    },
   },
   components: {
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          fontSize: 16,
+          [theme.breakpoints.up('sm')]: {
+            fontSize: 16,
+          },
+        },
+      },
+    },
     MuiButton: {
       defaultProps: {
         disableRipple: true,
