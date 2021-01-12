@@ -4,10 +4,12 @@ function composeClasses({ slots = {}, classes = {}, getUtilityClass = () => '' }
   Object.keys(slots).forEach((slot) => {
     output[slot] = slots[slot]
       .reduce((acc, key) => {
-        if (classes && classes[key]) {
-          acc.push(classes[key]);
+        if (key) {
+          if (classes && classes[key]) {
+            acc.push(classes[key]);
+          }
+          acc.push(getUtilityClass(key));
         }
-        acc.push(getUtilityClass(key));
         return acc;
       }, [])
       .join(' ');
