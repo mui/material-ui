@@ -494,19 +494,19 @@ As the core components use emotion as a styled engine, the props used by emotion
 - The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it.
 
   ```diff
-  const theme = createMuiTheme({	
-    components: {	
-      MuiCssBaseline: {	
-        styleOverrides: {	
-  -       '@global': {	
-            html: {	
-              WebkitFontSmoothing: 'auto',	
-            },	
-  -       },	
-        },	
-      },	
-    },	
-  });	
+  const theme = createMuiTheme({
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+  -       '@global': {
+            html: {
+              WebkitFontSmoothing: 'auto',
+            },
+  -       },
+        },
+      },
+    },
+  });
 
   ```
 
