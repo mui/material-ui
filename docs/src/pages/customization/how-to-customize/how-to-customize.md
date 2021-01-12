@@ -171,7 +171,7 @@ Components expose [global class names](/styles/advanced/#with-material-ui-core) 
 }
 ```
 
-You can reference the [Styles library interoperability](/guides/interoperability/) guide to find examples of this using different styles libraries or plain CSS.
+You can reference the [Styles library interoperability guide](/guides/interoperability/) to find examples of this using different styles libraries or plain CSS.
 
 If you just want to add some global baseline styles for some of the HTML elements, you can use the `GlobalStyles` component. Here is an example of how you may override for the `h1` elements.
 
