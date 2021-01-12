@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { deepmerge } from '@material-ui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
@@ -56,24 +57,34 @@ export const body = (theme) => ({
     : {}),
 });
 
-export const styles = (theme) => ({
-  html,
-  '*, *::before, *::after': {
-    boxSizing: 'inherit',
-  },
-  'strong, b': {
-    fontWeight: theme.typography.fontWeightBold,
-  },
-  body: {
-    margin: 0, // Remove the margin in all browsers.
-    ...body(theme),
-    // Add support for document.body.requestFullScreen().
-    // Other elements, if background transparent, are not supported.
-    '&::backdrop': {
-      backgroundColor: theme.palette.background.default,
+export const styles = (theme) => {
+  let themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;
+  
+  const defaultStyles = {
+    html,
+    '*, *::before, *::after': {
+      boxSizing: 'inherit',
     },
-  },
-});
+    'strong, b': {
+      fontWeight: theme.typography.fontWeightBold,
+    },
+    body: {
+      margin: 0, // Remove the margin in all browsers.
+      ...body(theme),
+      // Add support for document.body.requestFullScreen().
+      // Other elements, if background transparent, are not supported.
+      '&::backdrop': {
+        backgroundColor: theme.palette.background.default,
+      },
+    },
+  };
+
+  if(themeOverrides) {
+    return deepmerge(defaultStyles, themeOverrides);
+  }
+
+  return defaultStyles;
+};
 
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.

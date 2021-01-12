@@ -165,18 +165,10 @@ Please take a look at the theme's [global overrides page](/customization/theme-c
 
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
 
-```jsx
-import GlobalStyles from '@material-ui/core/GlobalStyles';
-
-const globalStyles = {
-  '.MuiButton-root': {
-    fontSize: '1rem',
-  },
-};
-
-// …
-
-<GlobalStyles styles={globalStyles} />;
+```css
+.MuiButton-root {
+  fontSize: '1rem',
+}
 ```
 
-{{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}
+You can reference the  [Styles library interoperability](/guides/interoperability/) guide to find examples of this using different styles libraries or plain CSS.
