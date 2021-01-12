@@ -50,6 +50,9 @@ jobs:
           node scripts/use-react-dist-tag.js $(REACT_DIST_TAG)
           yarn install
         displayName: 'install dependencies'
+        env:
+          # Don't use playwright in this job
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
       - script: |
           yarn danger ci
