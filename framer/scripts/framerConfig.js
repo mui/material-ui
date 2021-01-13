@@ -225,6 +225,7 @@ export const componentSettings = {
   },
   Paper: {
     ignoredProps: [
+      'sx',
       // FIXME: `Union`
       'variant',
     ],

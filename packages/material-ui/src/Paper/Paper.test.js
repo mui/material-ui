@@ -17,6 +17,7 @@ describe('<Paper />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'rounded' },
+    testStateOverrides: { prop: 'elevation', value: 10, styleKey: 'elevation10' },
     skip: ['componentsProp'],
   }));
 

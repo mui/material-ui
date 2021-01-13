@@ -67,14 +67,14 @@ export interface PaperProps extends StandardProps<React.HTMLAttributes<HTMLDivEl
    */
   square?: boolean;
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The variant to use.
    * @default 'elevation'
    */
   variant?: OverridableStringUnion<PaperVariantDefaults, PaperPropsVariantOverrides>;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
 }
 
 export type PaperClassKey = keyof NonNullable<PaperProps['classes']>;
