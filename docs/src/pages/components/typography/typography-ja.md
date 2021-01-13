@@ -52,7 +52,7 @@ The Typography component makes it easy to apply a default set of font weights an
 
 ## テーマ
 
-状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 このテーマのe [`typography`](/customization/default-theme/?expand-path=$.typography)キーを活用できることを願っています。
+状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 このテーマのe [`typography`](/customization/default-theme/?expand-path=$.typography)キーを活用できることを願っています。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 このテーマのe [`typography`](/customization/default-theme/?expand-path=$.typography)キーを活用できることを願っています。
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
@@ -65,8 +65,9 @@ Typographyコンポーネントは、 `variantMapping` プロパティを使用�
 ```jsx
 {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
-  h1. Heading
-</Typography>
+  h1. */}
+<Typography variant="h1" component="h2">
+  h1.
 ```
 
 - 以下のようにテーマ使用して、[マッピング をグローバルに](/customization/theme-components/#default-props)変更できます。
