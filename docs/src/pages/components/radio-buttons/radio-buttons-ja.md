@@ -44,7 +44,7 @@ In general, radio buttons should have a value selected by default. If this is no
 
 ## カスタマイズされたラジオ
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
