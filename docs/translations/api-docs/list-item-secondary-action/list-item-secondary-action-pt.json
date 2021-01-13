@@ -5,9 +5,13 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
     "disableGutters": {
-      "description": "Styles applied to the root element when the parent `ListItem` has `disableGutters={true}`."
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the parent <code>ListItem</code> has <code>disableGutters={true}</code>"
     }
   }
 }
