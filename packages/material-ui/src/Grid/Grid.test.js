@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender, screen } from 'test/utils';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Grid from './Grid';
 import classes from './gridClasses';
@@ -92,51 +92,56 @@ describe('<Grid />', () => {
     it('should generate the right values', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 
+      const parentWidth = 500;
       const remValue = 16;
       const remTheme = createMuiTheme({
         spacing: (factor) => `${0.25 * factor}rem`,
       });
 
-      const { container, getByTestId } = render(
-        <ThemeProvider theme={remTheme}>
-          <Grid container spacing={2}>
-            <Grid item data-testid="first-custom-theme" />
-            <Grid item />
-          </Grid>
-        </ThemeProvider>,
+      const { rerender } = render(
+        <div style={{ width: parentWidth }}>
+          <ThemeProvider theme={remTheme}>
+            <Grid data-testid="grid" container spacing={2}>
+              <Grid item data-testid="first-custom-theme" />
+              <Grid item />
+            </Grid>
+          </ThemeProvider>
+        </div>,
       );
 
-      expect(container.firstChild).toHaveComputedStyle({
+      expect(screen.getByTestId('grid')).toHaveComputedStyle({
         marginTop: `${-1 * remValue * 0.25}px`, // '-0.25rem'
         marginBottom: `${-1 * remValue * 0.25}px`, // '-0.25rem'
         marginLeft: `${-1 * remValue * 0.25}px`, // '-0.25rem'
         marginRight: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        // width: `${750 + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
+        width: `${parentWidth + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
       });
 
-      expect(getByTestId('first-custom-theme')).toHaveComputedStyle({
+      expect(screen.getByTestId('first-custom-theme')).toHaveComputedStyle({
         paddingTop: `${0.25 * remValue}px`, // 0.25rem
         paddingBottom: `${0.25 * remValue}px`, // 0.25rem
         paddingLeft: `${0.25 * remValue}px`, // 0.25rem
         paddingRight: `${0.25 * remValue}px`, // 0.25rem
       });
 
-      const { container: defaultThemeContainer, getByTestId: defaultThemeGetByTestId } = render(
-        <Grid container spacing={2}>
-          <Grid item data-testid="first-default-theme" />
-          <Grid item />
-        </Grid>,
+      rerender(
+        <div style={{ width: parentWidth }}>
+          <Grid data-testid="grid" container spacing={2}>
+            <Grid item data-testid="first-default-theme" />
+            <Grid item />
+          </Grid>
+        </div>,
       );
 
-      expect(defaultThemeContainer.firstChild).toHaveComputedStyle({
+      expect(screen.getByTestId('grid')).toHaveComputedStyle({
         marginTop: '-8px',
         marginBottom: '-8px',
         marginLeft: '-8px',
         marginRight: '-8px',
-        // width: `${750 + 16}px`, // 'calc(100% + 16px)'
+        width: `${parentWidth + 16}px`, // 'calc(100% + 16px)'
       });
 
-      expect(defaultThemeGetByTestId('first-default-theme')).toHaveComputedStyle({
+      expect(screen.getByTestId('first-default-theme')).toHaveComputedStyle({
         paddingTop: '8px',
         paddingBottom: '8px',
         paddingLeft: '8px',
