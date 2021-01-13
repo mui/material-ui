@@ -18,7 +18,7 @@ githubLabel: 'component: Badge'
 
 ## Customized badges （カスタマイズされたバッジ）
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドドキュメントページ](/customization/how-to-customize/)ご覧ください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドドキュメントページ](/customization/how-to-customize/)ご覧ください。
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
