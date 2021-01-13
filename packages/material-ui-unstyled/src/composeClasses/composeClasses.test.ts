@@ -4,13 +4,13 @@ import composeClasses from './composeClasses';
 describe('composeClasses', () => {
   it('should generate the classes based on the slots', () => {
     expect(
-      composeClasses({
-        slots: {
+      composeClasses(
+        {
           root: ['root', 'standard'],
           slot: ['slot'],
         },
-        getUtilityClass: (slot) => `MuiTest-${slot}`,
-      }),
+        (slot) => `MuiTest-${slot}`,
+      ),
     ).to.deep.equal({
       root: 'MuiTest-root MuiTest-standard',
       slot: 'MuiTest-slot',
@@ -19,17 +19,17 @@ describe('composeClasses', () => {
 
   it('should consider classes if available', () => {
     expect(
-      composeClasses({
-        slots: {
+      composeClasses(
+        {
           root: ['root', 'standard'],
           slot: ['slot'],
         },
-        getUtilityClass: (slot) => `MuiTest-${slot}`,
-        classes: {
+        (slot) => `MuiTest-${slot}`,
+        {
           standard: 'standardOverride',
           slot: 'slotOverride',
         },
-      }),
+      ),
     ).to.deep.equal({
       root: 'MuiTest-root standardOverride MuiTest-standard',
       slot: 'slotOverride MuiTest-slot',
@@ -38,17 +38,17 @@ describe('composeClasses', () => {
 
   it('should ignore false values', () => {
     expect(
-      composeClasses({
-        slots: {
+      composeClasses(
+        {
           root: ['root', false, 'standard'],
           slot: ['slot'],
         },
-        getUtilityClass: (slot) => `MuiTest-${slot}`,
-        classes: {
+        (slot) => `MuiTest-${slot}`,
+        {
           standard: 'standardOverride',
           slot: 'slotOverride',
         },
-      }),
+      ),
     ).to.deep.equal({
       root: 'MuiTest-root standardOverride MuiTest-standard',
       slot: 'slotOverride MuiTest-slot',

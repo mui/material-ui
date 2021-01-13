@@ -27,11 +27,7 @@ const useUtilityClasses = (styleProps) => {
     root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
   };
 
-  const composedClasses = composeClasses({
-    slots,
-    classes,
-    getUtilityClass: getButtonBaseUtilityClass,
-  });
+  const composedClasses = composeClasses(slots, getButtonBaseUtilityClass, classes);
 
   if (focusVisible && focusVisibleClassName) {
     composedClasses.root += ` ${focusVisibleClassName}`;

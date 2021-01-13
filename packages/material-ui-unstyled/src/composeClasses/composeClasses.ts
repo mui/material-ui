@@ -1,13 +1,8 @@
-interface ComposeClassesOptions<ClassKey extends string> {
-  slots: Record<ClassKey, Array<string | false>>;
-  classes?: Record<string, string>;
-  getUtilityClass: (slot: string) => string;
-}
-
 export default function composeClasses<ClassKey extends string>(
-  options: ComposeClassesOptions<ClassKey>,
+  slots: Record<ClassKey, Array<string | false>>,
+  getUtilityClass: (slot: string) => string,
+  classes?: Record<string, string>,
 ): Record<ClassKey, string> {
-  const { classes, getUtilityClass, slots } = options;
   const output: Record<ClassKey, string> = {} as any;
 
   Object.keys(slots).forEach(

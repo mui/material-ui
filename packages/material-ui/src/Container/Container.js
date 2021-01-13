@@ -30,7 +30,7 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  return composeClasses({ slots, classes, getUtilityClass: getContainerUtilityClass });
+  return composeClasses(slots, getContainerUtilityClass, classes);
 };
 
 const ContainerRoot = experimentalStyled(

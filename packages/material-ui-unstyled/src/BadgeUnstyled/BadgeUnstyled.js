@@ -21,7 +21,7 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  return composeClasses({ slots, classes, getUtilityClass: getBadgeUtilityClass });
+  return composeClasses(slots, getBadgeUtilityClass, classes);
 };
 
 const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
