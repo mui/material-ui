@@ -103,23 +103,23 @@ describe('<Grid />', () => {
             <Grid item data-testid="first-custom-theme" />
             <Grid item />
           </Grid>
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       expect(container.firstChild).toHaveComputedStyle({
         margin: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        width: `${750 + remValue*0.5}px`, // 'calc(100% + 0.5rem)'
+        width: `${750 + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
       });
 
       expect(getByTestId('first-custom-theme')).toHaveComputedStyle({
-         padding: `${0.25 * remValue}px`, // 0.25rem
+        padding: `${0.25 * remValue}px`, // 0.25rem
       });
-      
+
       const { container: defaultThemeContainer, getByTestId: defaultThemeGetByTestId } = render(
         <Grid container spacing={2}>
           <Grid item data-testid="first-default-theme" />
           <Grid item />
-        </Grid>
+        </Grid>,
       );
 
       expect(defaultThemeContainer.firstChild).toHaveComputedStyle({
@@ -128,7 +128,7 @@ describe('<Grid />', () => {
       });
 
       expect(defaultThemeGetByTestId('first-default-theme')).toHaveComputedStyle({
-         padding: '8px',
+        padding: '8px',
       });
     });
   });

@@ -181,11 +181,12 @@ const GridRoot = experimentalStyled(
     }),
   }),
   ({ theme, styleProps }) => generateGutter(theme, styleProps),
-  ({ theme, styleProps }) => theme.breakpoints.keys.reduce((accumulator, key) => {
-        // Use side effect over immutability for better performance.
-        generateGrid(accumulator, theme, key, styleProps);
-        return accumulator;
-      }, {}),
+  ({ theme, styleProps }) =>
+    theme.breakpoints.keys.reduce((accumulator, key) => {
+      // Use side effect over immutability for better performance.
+      generateGrid(accumulator, theme, key, styleProps);
+      return accumulator;
+    }, {}),
 );
 
 const useUtilityClasses = (styleProps) => {
