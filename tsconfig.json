@@ -13,7 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
     "allowJs": true,
-    "composite": true,
     "paths": {
       "@material-ui/core": ["./packages/material-ui/src"],
       "@material-ui/core/*": ["./packages/material-ui/src/*"],
