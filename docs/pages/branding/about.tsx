@@ -62,35 +62,41 @@ export default function Page() {
               title="Make changes happen"
               sx={{
                 'ul': {
+                  position: 'relative',
                   ml: 0,
-                  pl: 0,
+                  pl: '1.2em',
                 },
+                'ul li:before': {
+                  content: '"-"',
+                  position: 'absolute',
+                  left: 0,
+                }
               }}
             >
               <ul>
                 <li>
-                  - Edit the documentation. Every page has an &quot;EDIT THIS PAGE&quot; link in the
+                  Edit the documentation. Every page has an &quot;EDIT THIS PAGE&quot; link in the
                   top right.
                 </li>
                 <li>
-                  - Report bugs or missing features by{' '}
+                  Report bugs or missing features by{' '}
                   <Link href="https://github.com/mui-org/material-ui/issues">
                     creating an issue
                   </Link>
                   .
                 </li>
                 <li>
-                  - Review and comment on existing{' '}
+                  Review and comment on existing{' '}
                   <Link href="https://github.com/mui-org/material-ui/pulls">pull requests</Link> and{' '}
                   <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
                 </li>
                 <li>
                   {/* TODO: add link */}
-                  - Help <Link href={'/'}>translate</Link> the documentation.
+                  Help <Link href={'/'}>translate</Link> the documentation.
                 </li>
                 <li>
                   {/* TODO: add link */}
-                  - <Link href={'/'}>Improve our documentation</Link>, fix bugs, or add features by{' '}
+                  <Link href={'/'}>Improve our documentation</Link>, fix bugs, or add features by{' '}
                   {/* TODO: add link */}
                   <Link href={'/'}>submitting a pull request</Link>.
                 </li>
