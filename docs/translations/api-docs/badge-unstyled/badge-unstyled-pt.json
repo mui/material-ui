@@ -15,50 +15,66 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "badge": { "description": "Styles applied to the badge `span` element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
+    "badge": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the badge `span` element"
+    },
     "dot": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>variant=\"dot\"</code>"
     },
     "standard": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>variant=\"standard\"</code>"
     },
     "anchorOriginTopRightRectangular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginBottomRightRectangular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginTopLeftRectangular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginBottomLeftRectangular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"rectangular\"</code>"
     },
     "anchorOriginTopRightCircular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }} overlap=\"circular\"</code>"
     },
     "anchorOriginBottomRightCircular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }} overlap=\"circular\"</code>"
     },
     "anchorOriginTopLeftCircular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }} overlap=\"circular\"</code>"
     },
     "anchorOriginBottomLeftCircular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"</code>"
     },
     "invisible": {
-      "description": "Pseudo-class to the badge `span` element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
       "conditions": "<code>invisible={true}</code>"
     }
   }
