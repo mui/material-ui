@@ -100,7 +100,7 @@ export default function Page() {
                     Improve our documentation
                   </Link>
                   , fix bugs, or add features by{' '}
-                  <Link href="https://github.com/mui-org/material-ui/pulls">
+                  <Link href="https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
                     submitting a pull request
                   </Link>
                   .
