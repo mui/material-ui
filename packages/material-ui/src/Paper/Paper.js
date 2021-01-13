@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
-import {getPaperUtilityClass} from "./paperClasses";
+import { getPaperUtilityClass } from './paperClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -14,12 +14,12 @@ const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
     ...styles[styleProps.variant],
     ...(!styleProps.square && styles.rounded),
-    ...(styleProps.variant === "elevation" && styles[`elevation${styleProps.elevation}`]),
+    ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
   });
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { square, elevation, variant, classes} = styleProps;
+  const { square, elevation, variant, classes } = styleProps;
 
   const slots = {
     root: [
@@ -34,15 +34,14 @@ const useUtilityClasses = (styleProps) => {
 };
 
 const PaperRoot = experimentalStyled(
-  "div",
+  'div',
   {},
   {
     name: 'MuiPaper',
     slot: 'Root',
     overridesResolver,
-  }
-)(({theme, styleProps}) => {
-
+  },
+)(({ theme, styleProps }) => {
   return {
     /* Styles applied to the root element. */
     backgroundColor: theme.palette.background.paper,
@@ -53,18 +52,18 @@ const PaperRoot = experimentalStyled(
       borderRadius: theme.shape.borderRadius,
     }),
     /* Styles applied to the root element if `variant="outlined"`. */
-    ...(styleProps.variant === "outlined" && {
+    ...(styleProps.variant === 'outlined' && {
       border: `1px solid ${theme.palette.divider}`,
     }),
     /* Styles applied to the root element if `variant="elevation"`. */
-    ...(styleProps.variant === "elevation" && {
-      boxShadow : theme.shadows[styleProps.elevation]
+    ...(styleProps.variant === 'elevation' && {
+      boxShadow: theme.shadows[styleProps.elevation],
     }),
-  }
+  };
 });
 
 const Paper = React.forwardRef(function Paper(inProps, ref) {
-  const props = useThemeProps({props: inProps, name: 'MuiPaper'});
+  const props = useThemeProps({ props: inProps, name: 'MuiPaper' });
 
   const {
     className,
@@ -79,7 +78,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
     ...props,
     variant,
     elevation,
-    square
+    square,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -101,10 +100,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
     <PaperRoot
       as={Component}
       styleProps={styleProps}
-      className={clsx(
-        classes.root,
-        className,
-      )}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     />
@@ -144,6 +140,10 @@ Paper.propTypes = {
    * @default false
    */
   square: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The variant to use.
    * @default 'elevation'

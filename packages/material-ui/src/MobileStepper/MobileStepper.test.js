@@ -9,7 +9,7 @@ import {
 } from 'test/utils';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import Paper, {paperClasses} from '../Paper';
+import Paper, { paperClasses } from '../Paper';
 import Button from '../Button/Button';
 import MobileStepper from './MobileStepper';
 

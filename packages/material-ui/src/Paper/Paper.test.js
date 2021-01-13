@@ -16,7 +16,7 @@ describe('<Paper />', () => {
     muiName: 'MuiPaper',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
-    testVariantProps: {variant: 'rounded'},
+    testVariantProps: { variant: 'rounded' },
     skip: ['componentsProp'],
   }));
 
