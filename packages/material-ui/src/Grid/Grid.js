@@ -89,15 +89,15 @@ function generateGutter(theme, styleProps) {
 
 const overridesResolver = (props, styles) => {
   const {
-    container,
-    item,
-    zeroMinWidth,
-    spacing,
-    direction,
-    wrap,
-    alignItems,
     alignContent,
+    alignItems,
+    container,
+    direction,
+    item,
     justifyContent,
+    spacing,
+    wrap,
+    zeroMinWidth,
     xs,
     sm,
     md,
