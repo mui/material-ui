@@ -67,6 +67,27 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      * @default KeyboardArrowRight
      */
     subMenuIcon?: React.ReactNode;
+    onArrowRightKeydown?: React.KeyboardEventHandler<any>;
+    onKeyDown?: React.KeyboardEventHandler<any>;
+    onMouseEnter?: React.MouseEventHandler<any>;
+    onParentClose?: React.ReactEventHandler<{}>;
+    /**
+     * When `true`, opens the subMenu, if provided.
+     * @default false
+     */
+    openSubMenu?: boolean;
+    setParentOpenSubMenuIndex?: (index: number) => void;
+    /**
+     * Menu to display as a sub-menu.
+     */
+    subMenu?: React.ReactNode;
+    /**
+     * Normally `Icon`, `SvgIcon`, or a `@material-ui/icons`
+     * SVG icon element rendered on a MenuItem that
+     * contains a subMenu
+     * @default KeyboardArrowRight
+     */
+    subMenuIcon?: React.ReactNode;
   };
   defaultComponent: D;
 }>;
