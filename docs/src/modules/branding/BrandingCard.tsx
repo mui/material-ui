@@ -4,35 +4,30 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 interface BrandingCardProps {
+  children?: React.ReactNode;
   color?: 'primary' | 'info';
   icon?: React.ReactNode;
-  children?: React.ReactNode;
-  title?: string;
   sx?: BoxProps['sx'];
+  title?: string;
 }
 
-const BrandingCard = (props: BrandingCardProps) => {
+export default function BrandingCard(props: BrandingCardProps) {
   const { color, icon, title, children, sx, ...other } = props;
   return (
     <Box sx={{ mb: 5, ...sx }} {...other}>
-      <Box
+      <Avatar
         sx={{
           mb: 3,
-          '& [class*="MuiAvatar-root"]': {
-            bgcolor: color === 'info' ? 'vividBlue' : 'primary.main',
-            width: 80,
-            height: 80,
-          },
+          bgcolor: color === 'info' ? 'vividBlue' : 'primary.main',
+          width: 80,
+          height: 80,
         }}
+        aria-label={title}
       >
-        <Avatar aria-label={title}>{icon}</Avatar>
-      </Box>
-      <Box>
-        <Typography variant="h3">{title}</Typography>
-        <Typography component="div">{children}</Typography>
-      </Box>
+        {icon}
+      </Avatar>
+      <Typography variant="h3">{title}</Typography>
+      <Typography component="div">{children}</Typography>
     </Box>
   );
-};
-
-export default BrandingCard;
+}
