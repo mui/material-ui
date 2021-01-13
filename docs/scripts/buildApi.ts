@@ -712,10 +712,10 @@ async function updateStylesDefinition(context: {
                 let className = ((member as babel.types.TSPropertySignature)
                   .key as babel.types.Identifier).name;
 
-                if(!className) {
+                if (!className) {
                   // Necessary for classes defined as kebab case
                   className = ((member as babel.types.TSPropertySignature)
-                  .key as babel.types.StringLiteral).value;
+                    .key as babel.types.StringLiteral).value;
                 }
 
                 styles.classes.push(className);
