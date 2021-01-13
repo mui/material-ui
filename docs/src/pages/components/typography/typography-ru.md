@@ -65,8 +65,9 @@ The Typography component uses the `variantMapping` property to associate a UI va
 ```jsx
 {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
-  h1. Heading
-</Typography>
+  h1. */}
+<Typography variant="h1" component="h2">
+  h1.
 ```
 
 - Вы можете изменить сопоставление вариантов [глобально используя тему](/customization/theme-components/#default-props):
