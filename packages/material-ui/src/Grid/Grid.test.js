@@ -107,12 +107,18 @@ describe('<Grid />', () => {
       );
 
       expect(container.firstChild).toHaveComputedStyle({
-        margin: `${-1 * remValue * 0.25}px`, // '-0.25rem'
+        marginTop: `${-1 * remValue * 0.25}px`, // '-0.25rem'
+        marginBottom: `${-1 * remValue * 0.25}px`, // '-0.25rem'
+        marginLeft: `${-1 * remValue * 0.25}px`, // '-0.25rem'
+        marginRight: `${-1 * remValue * 0.25}px`, // '-0.25rem'
         // width: `${750 + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
       });
 
       expect(getByTestId('first-custom-theme')).toHaveComputedStyle({
-        padding: `${0.25 * remValue}px`, // 0.25rem
+        paddingTop: `${0.25 * remValue}px`, // 0.25rem
+        paddingBottom: `${0.25 * remValue}px`, // 0.25rem
+        paddingLeft: `${0.25 * remValue}px`, // 0.25rem
+        paddingRight: `${0.25 * remValue}px`, // 0.25rem
       });
 
       const { container: defaultThemeContainer, getByTestId: defaultThemeGetByTestId } = render(
@@ -123,12 +129,18 @@ describe('<Grid />', () => {
       );
 
       expect(defaultThemeContainer.firstChild).toHaveComputedStyle({
-        margin: '-8px',
+        marginTop: '-8px',
+        marginBottom: '-8px',
+        marginLeft: '-8px',
+        marginRight: '-8px',
         // width: `${750 + 16}px`, // 'calc(100% + 16px)'
       });
 
       expect(defaultThemeGetByTestId('first-default-theme')).toHaveComputedStyle({
-        padding: '8px',
+        paddingTop: '8px',
+        paddingBottom: '8px',
+        paddingLeft: '8px',
+        paddingRight: '8px',
       });
     });
   });
