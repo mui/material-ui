@@ -1,7 +1,6 @@
 # Advanced 进阶
 
-<p class="description">在这里，你可以找到如何在你的自定义组件中使用系统（system）的例子。
-</p>
+<p class="description">在这里，你可以找到如何在你的自定义组件中使用系统（system）的例子。</p>
 
 ## 将 `sx` 属性添加到你的自定义组件
 
