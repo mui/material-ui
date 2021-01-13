@@ -8,7 +8,7 @@ Material-UI 的打包文件大小至关重要。 每一次提交代码时，我�
 
 ## 何时以及如何使用 tree-shaking?
 
-在现代框架中，Material-UI 的 Tree-shaking 可开箱即用。 Material-UI 在导入顶层的 `material-ui` 时会提供出其完整的 API。 如果你使用的是 ES6 模块和支持 tree-shaking 的打包程序（[`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)），那么你可以安全地使用命名的导入，并且仍然可以自动获得优化的捆绑包大小。
+在现代框架中，Material-UI 的 Tree-shaking 可开箱即用。 Material-UI 在导入顶层的 `material-ui` 时会提供出其完整的 API。 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
