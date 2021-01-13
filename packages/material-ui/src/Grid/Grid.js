@@ -201,7 +201,7 @@ const useUtilityClasses = (styleProps) => {
     md,
     lg,
     xl,
-    classes = {},
+    classes,
   } = styleProps;
 
   const slots = {
