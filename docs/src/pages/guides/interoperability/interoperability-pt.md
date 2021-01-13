@@ -52,13 +52,13 @@ export default function PlainCssSlider() {
 **Nota:** A maioria das soluções CSS-in-JS injetam seus estilos na parte inferior do HTML `<head>`, que dá precedência ao Material-UI sobre seus estilos customizados. Para remover a necessidade de **!important**, você precisa alterar a ordem de injeção do CSS. Here's a demo of how it can be done in Material-UI:
 
 ```jsx
-import * as React from 'react';
+Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
-      {/* Your component tree. Agora você pode sobrescrever os estilos do Material-UI. */}
+      {/* Your component tree. */}
     </StylesProvider>
   );
 }
@@ -79,7 +79,13 @@ const cache = createCache({
 export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. Agora você pode sobrescrever os estilos do Material-UI. */}
+      {/* Sua árvore de componentes. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. */}
     </CacheProvider>
   );
 }
@@ -106,7 +112,7 @@ Os exemplos a seguir substituem o estilo de `thumb` do controle slider, além do
   color: #2e8b57;
 }
 
-.slider .MuiSlider-thumb {
+.slider . MuiSlider-thumb {
   border-radius: 1px;
 }
 ```
@@ -176,11 +182,11 @@ Fornecer explicitamente os nomes das classes ao componente é um esforço excess
 **GlobalCssSlider.css**
 
 ```css
-.MuiSlider-root {
+. MuiSlider-root {
   color: #20b2aa;
 }
 
-.MuiSlider-root:hover {
+. MuiSlider-root:hover {
   color: #2e8b57;
 }
 ```
@@ -202,13 +208,13 @@ export default function GlobalCssSlider() {
 **Nota:** A maioria das soluções CSS-in-JS injetam seus estilos na parte inferior do HTML `<head>`, que dá precedência ao Material-UI sobre seus estilos customizados. Para remover a necessidade de **!important**, você precisa alterar a ordem de injeção do CSS. Here's a demo of how it can be done in Material-UI:
 
 ```jsx
-import * as React from 'react';
+Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
-      {/* Your component tree. Agora você pode sobrescrever os estilos do Material-UI. */}
+      {/* Your component tree. */}
     </StylesProvider>
   );
 }
@@ -229,7 +235,13 @@ const cache = createCache({
 export default function GlobalCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. Agora você pode sobrescrever os estilos do Material-UI. */}
+      {/* Sua árvore de componentes. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. */}
     </CacheProvider>
   );
 }
@@ -248,15 +260,15 @@ O exemplo a seguir substituem o estilo de `thumb` do controle slider, além dos 
 **GlobalCssSliderDeep.css**
 
 ```css
-.MuiSlider-root {
+. MuiSlider-root {
   color: #20b2aa;
 }
 
-.MuiSlider-root:hover {
+. MuiSlider-root:hover {
   color: #2e8b57;
 }
 
-.MuiSlider-root .MuiSlider-thumb {
+. MuiSlider-root . MuiSlider-thumb {
   border-radius: 1px;
 }
 ```
@@ -325,7 +337,7 @@ const CustomizedSlider = styled(Slider)`
     color: #2e8b57;
   }
 
-  & .MuiSlider-thumb {
+  & . MuiSlider-thumb {
     border-radius: 1px;
   }
 `;
@@ -424,7 +436,7 @@ A fazer: preencha esta seção após o portal ser implementado com o novo motor 
 ```jsx
 import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
-// webpack, parcel ou qualquer que irá injetar o CSS na página
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
 
 export default function CssModulesSlider() {
@@ -442,13 +454,13 @@ export default function CssModulesSlider() {
 **Nota:** A maioria das soluções CSS-in-JS injetam seus estilos na parte inferior do HTML `<head>`, que dá precedência ao Material-UI sobre seus estilos customizados. Para remover a necessidade de **!important**, você precisa alterar a ordem de injeção do CSS. Here's a demo of how it can be done in Material-UI:
 
 ```jsx
-import * as React from 'react';
+Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
-      {/* Your component tree. Agora você pode sobrescrever os estilos do Material-UI. */}
+      {/* Your component tree. */}
     </StylesProvider>
   );
 }
@@ -469,7 +481,13 @@ const cache = createCache({
 export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. Agora você pode sobrescrever os estilos do Material-UI. */}
+      {/* Sua árvore de componentes. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. */}
     </CacheProvider>
   );
 }
@@ -496,7 +514,7 @@ Os exemplos a seguir substituem o estilo de `thumb` do controle slider, além do
   color: #2e8b57;
 }
 
-.slider .MuiSlider-thumb {
+.slider . MuiSlider-thumb {
   border-radius: 1px;
 }
 ```
@@ -505,7 +523,7 @@ Os exemplos a seguir substituem o estilo de `thumb` do controle slider, além do
 
 ```jsx
 import * as React from 'react';
-// webpack, parcel ou qualquer que irá injetar o CSS na página
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
 import Slider from '@material-ui/core/Slider';
 
@@ -541,7 +559,7 @@ A demonstração acima depende dos [valores padrão de `className`](/styles/adva
 
 ```jsx
 import * as React from 'react';
-// webpack, parcel ou qualquer que irá injetar o CSS na página
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
 import Slider from '@material-ui/core/Slider';
 
