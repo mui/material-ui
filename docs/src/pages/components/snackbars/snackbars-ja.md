@@ -28,7 +28,7 @@ Google Keepのスナックバーの動作を再現することを目的とした
 
 ## カスタマイズされたスナックバー
 
-コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
