@@ -104,6 +104,8 @@ const theme = createMuiTheme({
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
+<!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
+
 ```ts
 declare module "@material-ui/core/styles/createBreakpoints" {
   interface BreakpointOverrides {
@@ -244,7 +246,7 @@ Some implementation details that might be interesting to being aware of:
 
 - `options.withTheme` (*Boolean* [optional]): Valeur par défaut `false`. Provide the `theme` object to the component as a property.
 - `options.noSSR` (*Boolean* [optional]): Valeur par défaut `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
-- `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/theme-components/#default-props) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
+- `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. In order to set the initialWidth we need to pass a custom property with this shape: https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/theme-components/#default-props) on the theme.
 
 ```js
 const theme = createMuiTheme({
