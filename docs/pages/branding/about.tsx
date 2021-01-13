@@ -65,7 +65,7 @@ export default function Page() {
                 ul: {
                   position: 'relative',
                   ml: 0,
-                  pl: '1.2em',
+                  pl: '1.3em',
                 },
                 'ul li:before': {
                   content: '"-"',
