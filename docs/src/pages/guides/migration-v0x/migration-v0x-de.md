@@ -6,7 +6,7 @@
 
 ### Woah - die API ist anders! Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-I'm glad you asked! Die Antwort ist nein. The core concepts haven't changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
+Die Antwort ist nein. I'm glad you asked! The core concepts haven't changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
 ### Was hat zu einer so großen Veränderung geführt?
 
