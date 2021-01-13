@@ -125,7 +125,7 @@ export default function Page() {
                 endIcon={<OpenCollectiveIcon />}
                 variant="contained"
               >
-                Open collective
+                Open Collective
               </Button>
             </BrandingCard>
           </Grid>
