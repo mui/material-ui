@@ -12,6 +12,7 @@ jobs:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
+      - run: echo "${{ github.actor }}"
       - uses: actions/checkout@v2
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
