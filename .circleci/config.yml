@@ -352,7 +352,7 @@ workflows:
       - test_static:
           requires:
             - checkout
-      - test_types:
+      - test_types_next:
           requires:
             - checkout
       - test_browser:
@@ -362,7 +362,7 @@ workflows:
           requires:
             - test_unit
             - test_static
-            - test_types
+            - test_types_next
             - test_browser
   profile:
     when:
