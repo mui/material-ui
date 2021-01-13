@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from "@material-ui/system";
 import { OverridableStringUnion } from '@material-ui/types';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 
 export interface PaperPropsVariantOverrides {}
@@ -69,6 +71,10 @@ export interface PaperProps extends StandardProps<React.HTMLAttributes<HTMLDivEl
    * @default 'elevation'
    */
   variant?: OverridableStringUnion<PaperVariantDefaults, PaperPropsVariantOverrides>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type PaperClassKey = keyof NonNullable<PaperProps['classes']>;
