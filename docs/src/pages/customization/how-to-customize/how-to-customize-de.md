@@ -1,4 +1,4 @@
-# Anpassen von Komponenten
+# How to customize
 
 <p class="description">Sie können das Erscheinungsbild einer Material-UI-Komponente einfach anpassen.</p>
 
@@ -84,7 +84,7 @@ Sometimes, you can't use a **pseudo-class**, as the state doesn't exist in the w
 
 #### Warum muss ich die Spezifität erhöhen, um einen Komponentenzustand außer Kraft zu setzen?
 
-Die CSS-Spezifikation bewirkt, dass die Pseudoklassen die Spezifität erhöhen. For consistency with native elements, Material-UI increases the specificity of its custom pseudo-classes. This has one important advantage, it allows you to cherry-pick the state you want to customize.
+Die CSS-Spezifikation bewirkt, dass die Pseudoklassen die Spezifität erhöhen. Die CSS-Spezifikation bewirkt, dass die Pseudoklassen die Spezifität erhöhen. This has one important advantage, it allows you to cherry-pick the state you want to customize.
 
 #### What custom pseudo-classes are available in Material-UI?
 
@@ -154,49 +154,18 @@ Please take a look at the theme's [global overrides page](/customization/theme-c
 
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
 
-```jsx
-const GlobalCss = withStyles({
-  // @global is handled by jss-plugin-global.
-  '@global': {
-    '.MuiButton-root': {
-      fontSize: '1rem',
-    },
-  },
-})(() => null);
-
-// …
-
-<GlobalCss />;
+```css
+.MuiButton-root {
+  fontsize: '1rem';
+}
 ```
 
-If you are using the [CssBaseline](/components/css-baseline/) component to apply global resets, it can also be used to apply global styles. Zum Beispiel:
+You can reference the [Styles library interoperability guide](/guides/interoperability/) to find examples of this using different styles libraries or plain CSS.
 
-```jsx
-const theme = createMuiTheme({
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        html: {
-          WebkitFontSmoothing: 'auto',
-        },
-      },
-    },
-  },
-});
-
-// ...
-return (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    {children}
-  </ThemeProvider>
-);
-return (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    {children}
-  </ThemeProvider>
-);
-```
+If you just want to add some global baseline styles for some of the HTML elements, you can use the `GlobalStyles` component. Here is an example of how you can override styles for the `h1` elements.
 
 {{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}
+
+If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach.
+
+{{"demo": "pages/customization/how-to-customize/OverrideCssBaseline.js", "iframe": true, "height": 100}}
