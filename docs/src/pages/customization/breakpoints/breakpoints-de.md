@@ -104,6 +104,8 @@ const theme = createMuiTheme({
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
+<!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
+
 ```ts
 declare module "@material-ui/core/styles/createBreakpoints" {
   interface BreakpointOverrides {
@@ -244,7 +246,7 @@ Einige Implementierungsdetails, die interessant sein könnten:
 
 - `options.withTheme` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
 - `options.noSSR` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Die Benutzeroberfläche blinkt möglicherweise. Sie können dieses Flag auf `true` setzen, wenn Sie kein serverseitiges Rendering durchführen.
-- `options.initialWidth` (*Breakpoint* [optional]): Da `window.innerWidth` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/theme-components/#default-props) zum Theme verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben:
+- `options.initialWidth` (*Breakpoint* [optional]): Da `window.innerWidth` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben: Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/theme-components/#default-props) zum Theme verwenden.
 
 ```js
 const theme = createMuiTheme({
