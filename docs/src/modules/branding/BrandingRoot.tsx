@@ -272,7 +272,7 @@ theme = createMuiTheme(theme, {
     },
     MuiCssBaseline: {
       styleOverrides: {
-        'ul': {
+        ul: {
           listStyle: 'none',
         },
       },

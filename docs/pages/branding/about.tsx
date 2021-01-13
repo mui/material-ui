@@ -61,7 +61,7 @@ export default function Page() {
               icon={<ChangesIcon fontSize="large" />}
               title="Make changes happen"
               sx={{
-                'ul': {
+                ul: {
                   position: 'relative',
                   ml: 0,
                   pl: '1.2em',
@@ -70,7 +70,7 @@ export default function Page() {
                   content: '"-"',
                   position: 'absolute',
                   left: 0,
-                }
+                },
               }}
             >
               <ul>
