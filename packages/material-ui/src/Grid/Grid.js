@@ -64,24 +64,22 @@ function getOffset(val, div = 1) {
   return `${parse / div}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
-function generateGutter(theme, styleProps) {
+function generateGutter({ theme, styleProps }) {
   const { container, spacing } = styleProps;
   let styles = {};
 
   if (container && spacing !== 0) {
     const themeSpacing = theme.spacing(spacing);
 
-    if (themeSpacing === '0px') {
-      return {};
+    if (themeSpacing !== '0px') {
+      styles = {
+        margin: `-${getOffset(themeSpacing, 2)}`,
+        width: `calc(100% + ${getOffset(themeSpacing)})`,
+        [`& > .${gridClasses.item}`]: {
+          padding: getOffset(themeSpacing, 2),
+        },
+      };
     }
-
-    styles = {
-      margin: `-${getOffset(themeSpacing, 2)}`,
-      width: `calc(100% + ${getOffset(themeSpacing)})`,
-      [`& > .${gridClasses.item}`]: {
-        padding: getOffset(themeSpacing, 2),
-      },
-    };
   }
 
   return styles;
@@ -178,7 +176,7 @@ const GridRoot = experimentalStyled(
       justifyContent: styleProps.justifyContent,
     }),
   }),
-  ({ theme, styleProps }) => generateGutter(theme, styleProps),
+  generateGutter,
   ({ theme, styleProps }) =>
     theme.breakpoints.keys.reduce((accumulator, key) => {
       // Use side effect over immutability for better performance.
