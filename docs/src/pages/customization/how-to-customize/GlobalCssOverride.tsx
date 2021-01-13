@@ -1,21 +1,11 @@
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-
-const GlobalCss = withStyles({
-  // @global is handled by jss-plugin-global.
-  '@global': {
-    '.MuiButton-root': {
-      fontSize: '1rem',
-    },
-  },
-})(() => null);
+import GlobalStyles from '@material-ui/core/GlobalStyles';
 
 export default function GlobalCssOverride() {
   return (
     <React.Fragment>
-      <GlobalCss />
-      <Button>font-size: 1rem</Button>
+      <GlobalStyles styles={{ h1: { color: 'grey' } }} />
+      <h1>Grey h1 element</h1>
     </React.Fragment>
   );
 }

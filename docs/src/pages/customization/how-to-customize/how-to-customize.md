@@ -1,4 +1,4 @@
-# Customizing components
+# How to customize
 
 <p class="description">You can easily customize the appearance of a Material-UI component.</p>
 
@@ -165,45 +165,18 @@ Please take a look at the theme's [global overrides page](/customization/theme-c
 
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
 
-```jsx
-const GlobalCss = withStyles({
-  // @global is handled by jss-plugin-global.
-  '@global': {
-    '.MuiButton-root': {
-      fontSize: '1rem',
-    },
-  },
-})(() => null);
-
-// …
-
-<GlobalCss />;
+```css
+.MuiButton-root {
+  fontsize: '1rem';
+}
 ```
 
-If you are using the [CssBaseline](/components/css-baseline/) component to apply global resets, it can also be used to apply global styles. For instance:
+You can reference the [Styles library interoperability guide](/guides/interoperability/) to find examples of this using different styles libraries or plain CSS.
 
-```jsx
-const theme = createMuiTheme({
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        '@global': {
-          html: {
-            WebkitFontSmoothing: 'auto',
-          },
-        },
-      },
-    },
-  },
-});
-
-// ...
-return (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    {children}
-  </ThemeProvider>
-);
-```
+If you just want to add some global baseline styles for some of the HTML elements, you can use the `GlobalStyles` component. Here is an example of how you can override styles for the `h1` elements.
 
 {{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}
+
+If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach.
+
+{{"demo": "pages/customization/how-to-customize/OverrideCssBaseline.js", "iframe": true, "height": 100}}

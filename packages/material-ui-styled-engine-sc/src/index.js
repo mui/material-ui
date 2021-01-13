@@ -12,5 +12,5 @@ export default function styled(tag, options) {
 }
 
 export { ThemeContext, keyframes } from 'styled-components';
-
 export { default as StylesProvider } from './StylesProvider';
+export { default as GlobalStyles } from './GlobalStyles';
