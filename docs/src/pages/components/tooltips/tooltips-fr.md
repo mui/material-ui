@@ -75,7 +75,7 @@ Le `Tooltip` enveloppements long texte par défaut pour le rendre lisible.
 
 ## Interactif
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
@@ -92,11 +92,9 @@ Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les
 ```jsx
 <Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
-      A disabled button
-    </button>
-  </span>
-</Tooltip>
+    <button disabled={disabled} style={disabled ? <Tooltip title="You don't have permission to do this">
+  <span>
+    <button disabled={disabled} style={disabled ?
 ```
 
 ## Les transitions
