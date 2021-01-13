@@ -102,7 +102,15 @@ Com isto estamos criando uma nova instância do servidor Emotion e usando isto p
 Vamos ver como isso é passado na função `renderFullPage`.
 
 ```jsx
-import express from 'express';
+res.send(renderFullPage(html, `${css} ${styles.css}`));
+}
+
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// Isso é acionado toda vez que o servidor recebe uma requisição.
+  import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
@@ -134,14 +142,6 @@ function handleRender(req, res) {
   const styles = extractCritical(html);
 
   // Envie a página renderizada de volta para o cliente.
-  res.send(renderFullPage(html, `${css} ${styles.css}`));
-}
-
-const app = express();
-
-app.use('/build', express.static('build'));
-
-// Isso é acionado toda vez que o servidor recebe uma requisição.
 app.use(handleRender);
 
 const port = 3000;
