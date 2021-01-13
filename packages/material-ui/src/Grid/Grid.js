@@ -254,7 +254,6 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     ...props,
     alignContent,
     alignItems,
-    component,
     container,
     direction,
     item,
