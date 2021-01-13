@@ -21,6 +21,7 @@ jobs:
     if: ${{ github.actor != 'l10nbot' }}
     runs-on: ubuntu-latest
     steps:
+      - run: echo "${{ github.actor }}"
       - name: check if prs are dirty
         uses: eps1lon/actions-label-merge-conflict@releases/2.x
         with:
