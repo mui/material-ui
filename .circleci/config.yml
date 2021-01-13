@@ -243,6 +243,32 @@ jobs:
             # without --no-bail we only see at most a single failing package
             yarn typescript --no-bail
             exit 0
+      
+      - restore_cache:
+          name: Restore generated declaration files
+          keys:
+            # We assume that the target branch is `next` and that declaration files are persisted in commit order.
+            # "If there are multiple matches, the most recently generated cache will be used."
+            - typescript-declaration-files-next
+
+      - run:
+          name: Diff declaration files
+          command: |
+            git add -f packages/material-ui/build || echo '/core declarations do not exist'
+            git add -f packages/material-ui-lab/build || echo '/lab declarations do not exist'
+            git add -f packages/material-ui-utils/build || echo '/utils declarations do not exist'
+            yarn lerna run --parallel build:types
+            git --no-pager diff
+
+      - run:
+          name: Log defect declaration files
+          command: |
+            # ignore build failures
+            # Fixing these takes some effort that isn't viable to merge in a single PR.
+            # We'll simply monitor them for now.
+            set +e
+            node scripts/testBuiltTypes.js
+            exit 0
   test_browser:
     <<: *defaults
     docker:
