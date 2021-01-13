@@ -24,19 +24,19 @@ packageName: '@material-ui/lab'
 
 ⚠️ Unterstützung von systemeigenen Eingabesteuerelementen durch Browser [ist nicht perfekt](https://caniuse.com/#feat=input-datetime).
 
-### Datumsauswahlen
+### Date picker
 
 Eine native Datumsauswahl mit `type="date"`.
 
 {{"demo": "pages/components/pickers/DatePickers.js"}}
 
-### Datum & Zeitauswahl
+### Date & Time picker
 
 Ein natives Datum & Zeitauswahlbeispiel mit `type="datetime-local"`.
 
 {{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
-### Zeitauswahl
+### Time picker
 
 Ein natives Datum Zeitauswahlbeispiel mit `type="time"`.
 
