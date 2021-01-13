@@ -20,7 +20,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Eigenständige Buttons
+## Contained buttons
 
 [Contained buttons](https://material.io/design/components/buttons.html#contained-button) sind hervorgehoben und unterscheiden sich durch die Verwendung von Höhe und Füllung. Sie enthalten primäre Aktionen einer Anwendung.
 
@@ -30,7 +30,7 @@ Die Erhöhung kann mit der `disableElevation`-Prop deaktiviert werden.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Text-Buttons
+## Text buttons
 
 In Karten helfen Text Buttons dabei, den Karteninhalt hervorzuheben.
 
@@ -41,7 +41,7 @@ In Karten helfen Text-Buttons dabei, den Karteninhalt zu betonen.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-## Umrandete Buttons
+## Outlined buttons
 
 [Outlined Buttons](https://material.io/design/components/buttons.html#outlined-button) sind Buttons mit mittlerer Betonung. They contain actions that are important, but aren't the primary action in an app.
 
@@ -71,11 +71,11 @@ Fancy larger or smaller buttons? Verwende die Eigenschaft `size`.
 
 ## Buttons mit Symbolen und Beschriftung
 
-Manchmal möchten Sie möglicherweise Symbole für bestimmte Schaltflächen, um die UX der Anwendung zu verbessern, da Logos leichter als einfacher Text erkannt werden. Wenn Sie beispielsweise eine Schaltfläche zum Löschen haben, können Sie sie mit einem Mülleimer-Symbol kennzeichnen.
+Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. Wenn Sie beispielsweise eine Schaltfläche zum Löschen haben, können Sie sie mit einem Mülleimer-Symbol kennzeichnen.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons
+## Icon button
 
 Icon Buttons finden Sie häufig in App-Bars und Toolbars.
 
@@ -101,9 +101,9 @@ Hier ist ein [Integrationsbeispiel mit react-router](/guides/composition/#button
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
-## Komplexe Buttons
+## Complex buttons
 
-Die Text Buttons, die Contained Buttons, die Floatin Action Buttons und die Icon Buttons basieren auf derselben Komponente: der `ButtonBase`. Sie können die Vorteile dieser grundlegenden Komponente zum erstellen von benutzerdefinierten Interaktionen nutzen.
+Die Text Buttons, die Contained Buttons, die Floatin Action Buttons und die Icon Buttons basieren auf derselben Komponente: der `ButtonBase`. You can take advantage of this lower-level component to build custom interactions.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
