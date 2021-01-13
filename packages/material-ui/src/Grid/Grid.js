@@ -423,22 +423,23 @@ Grid.propTypes = {
   zeroMinWidth: PropTypes.bool,
 };
 
-if (process.env.NODE_ENV !== 'production') {
-  const requireProp = requirePropFactory('Grid');
-  Grid.propTypes = {
-    ...Grid.propTypes,
-    alignContent: requireProp('container'),
-    alignItems: requireProp('container'),
-    direction: requireProp('container'),
-    justifyContent: requireProp('container'),
-    lg: requireProp('item'),
-    md: requireProp('item'),
-    sm: requireProp('item'),
-    spacing: requireProp('container'),
-    wrap: requireProp('container'),
-    xs: requireProp('item'),
-    zeroMinWidth: requireProp('item'),
-  };
-}
+// TODO: This is breaking the buildAPI generation :(
+// if (process.env.NODE_ENV !== 'production') {
+//   const requireProp = requirePropFactory('Grid');
+//   Grid.propTypes = {
+//     ...Grid.propTypes,
+//     alignContent: requireProp('container'),
+//     alignItems: requireProp('container'),
+//     direction: requireProp('container'),
+//     justifyContent: requireProp('container'),
+//     lg: requireProp('item'),
+//     md: requireProp('item'),
+//     sm: requireProp('item'),
+//     spacing: requireProp('container'),
+//     wrap: requireProp('container'),
+//     xs: requireProp('item'),
+//     zeroMinWidth: requireProp('item'),
+//   };
+// }
 
 export default Grid;
