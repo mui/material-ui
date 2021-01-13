@@ -14,7 +14,7 @@ interface BrandingCardProps {
 const BrandingCard = (props: BrandingCardProps) => {
   const { color, icon, title, children, sx, ...other } = props;
   return (
-    <Box sx={{ mb: 4, ...sx }} {...other}>
+    <Box sx={{ mb: 5, ...sx }} {...other}>
       <Box
         sx={{
           mb: 3,
