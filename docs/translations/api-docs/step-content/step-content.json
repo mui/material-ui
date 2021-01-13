@@ -10,9 +10,13 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "last": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>last={true}</code> (controlled by <code>Step</code>)"
     },
-    "transition": { "description": "Styles applied to the Transition component." }
+    "transition": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Transition component"
+    }
   }
 }

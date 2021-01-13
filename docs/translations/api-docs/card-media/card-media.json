@@ -10,11 +10,13 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "media": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>component=\"video, audio, picture, iframe, or img\"</code>"
     },
     "img": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>component=\"picture or img\"</code>"
     }
   }

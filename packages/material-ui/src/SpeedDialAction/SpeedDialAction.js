@@ -57,7 +57,7 @@ export const styles = (theme) => ({
     padding: '4px 16px',
     wordBreak: 'keep-all',
   },
-  /* Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
+  /* Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
   tooltipPlacementLeft: {
     alignItems: 'center',
     '& $staticTooltipLabel': {
@@ -66,7 +66,7 @@ export const styles = (theme) => ({
       marginRight: 8,
     },
   },
-  /* Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
+  /* Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
   tooltipPlacementRight: {
     alignItems: 'center',
     '& $staticTooltipLabel': {

@@ -30,9 +30,6 @@ import getStylesCreator from '@material-ui/styles/getStylesCreator';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
-// Only run for ButtonBase
-const TEST = false;
-
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
 interface ReactApi extends ReactDocgenApi {
@@ -800,20 +797,28 @@ async function annotateClassesDefinition(context: {
  * Substitute CSS class description conditions with placeholder
  */
 function extractClassConditions(descriptions: any) {
-  const classConditions: { [key: string]: { description: string; conditions?: string } } = {};
-  const stylesRegex = /(if |unless )(`.*)./;
+  const classConditions: {
+    [key: string]: { description: string; conditions?: string; nodeName?: string };
+  } = {};
+  const stylesRegex = /((Styles|Pseudo-class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
-  Object.entries(descriptions).forEach(([className, classDescription]: any) => {
+  Object.entries(descriptions).forEach(([className, description]: any) => {
     if (className) {
-      const conditions = classDescription.match(stylesRegex);
+      const conditions = description.match(stylesRegex);
 
-      if (conditions) {
+      if (conditions && conditions[6]) {
         classConditions[className] = {
-          description: classDescription.replace(stylesRegex, '$1{{conditions}}.'),
-          conditions: conditions[2].replace(/`(.*?)`/g, '<code>$1</code>'),
+          description: description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
+          nodeName: conditions[3],
+          conditions: conditions[6].replace(/`(.*?)`/g, '<code>$1</code>'),
+        };
+      } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
+        classConditions[className] = {
+          description: description.replace(stylesRegex, '$1{{nodeName}}$5.'),
+          nodeName: conditions[3],
         };
       } else {
-        classConditions[className] = { description: classDescription };
+        classConditions[className] = { description };
       }
     }
   });
@@ -879,10 +884,6 @@ async function buildDocs(options: {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
-
-  if (TEST && name !== 'ButtonBase') {
-    return;
-  }
 
   const componentApi: {
     componentDescription: string;

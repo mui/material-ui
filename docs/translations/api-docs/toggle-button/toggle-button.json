@@ -13,20 +13,27 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "selected": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },
-    "label": { "description": "Styles applied to the `label` wrapper element." },
+    "label": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the `label` wrapper element"
+    },
     "sizeSmall": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "sizeLarge": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"large\"</code>"
     }
   }

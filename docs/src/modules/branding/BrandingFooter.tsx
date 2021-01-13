@@ -200,7 +200,7 @@ export default function BrandingFooter() {
           </Grid>
           <Grid item xs={12} lg={3} className="BrandingFooter-list">
             <BrandingNewsletter />
-            <Typography sx={{ mt: 1, mb: 3 }} color="textSecondary" variant="body2">
+            <Typography sx={{ mt: 1, mb: 3 }} color="textSecondary" variant="body3" component="div">
               {t1("We don't spam.")}
             </Typography>
             <IconButton
@@ -222,7 +222,7 @@ export default function BrandingFooter() {
             </IconButton>
           </Grid>
         </Grid>
-        <Typography sx={{ mt: { xs: 4, sm: 5, md: 4 } }} color="textSecondary" variant="body2">
+        <Typography sx={{ mt: { xs: 4, sm: 5, md: 4 } }} color="textSecondary" variant="body3">
           <Interpolate
             replacement={{
               versionNumber: (

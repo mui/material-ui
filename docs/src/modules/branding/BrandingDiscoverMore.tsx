@@ -48,7 +48,9 @@ function DiscoverMoreCard(props: DiscoverMoreCardProps) {
           </Typography>
           <ArrowCirleIcon />
         </Box>
-        <Typography sx={{ mt: 1, color: 'greyAA' }}>{children}</Typography>
+        <Typography sx={{ mt: 1, color: 'greyAA' }} variant="body2">
+          {children}
+        </Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: imagePosition }}>
         <img alt="" src={src} height={243} width={imagePosition === 'center' ? 290 : 330} />

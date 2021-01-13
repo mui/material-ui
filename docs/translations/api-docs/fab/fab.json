@@ -14,40 +14,53 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "label": { "description": "Styles applied to the span element that wraps the children." },
+    "label": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the span element that wraps the children"
+    },
     "primary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "secondary": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "extended": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"extended\"</code>"
     },
     "circular": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"circular\"</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to the ButtonBase root element if the button is keyboard focused."
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the ButtonBase root element",
+      "conditions": "the button is keyboard focused"
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "colorInherit": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"inherit\"</code>"
     },
     "sizeSmall": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>`"
     },
     "sizeMedium": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code>`"
     }
   }

@@ -21,27 +21,33 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "anchorOriginTopCenter": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'top', 'center' }}</code>"
     },
     "anchorOriginBottomCenter": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'center' }}</code>"
     },
     "anchorOriginTopRight": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
     },
     "anchorOriginBottomRight": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>"
     },
     "anchorOriginTopLeft": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>"
     },
     "anchorOriginBottomLeft": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
     }
   }

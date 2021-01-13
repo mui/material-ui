@@ -22,13 +22,15 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "ul": { "description": "Styles applied to the ul element." },
+    "ul": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the ul element" },
     "outlined": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "text": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code>"
     }
   }

@@ -14,28 +14,38 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "colorSecondary": {
-      "description": "Styles applied to the root element if the color is secondary."
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the color is secondary"
     },
     "focused": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>focused={true}</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "error": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     },
     "filled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>filled={true}</code>"
     },
     "required": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>required={true}</code>"
     },
-    "asterisk": { "description": "Styles applied to the asterisk element." }
+    "asterisk": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the asterisk element"
+    }
   }
 }

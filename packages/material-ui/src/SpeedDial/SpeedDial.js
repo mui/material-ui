@@ -46,7 +46,7 @@ export const styles = (theme) => ({
   fab: {
     pointerEvents: 'auto',
   },
-  /* Styles applied to the root if direction="up" */
+  /* Styles applied to the root element if direction="up" */
   directionUp: {
     flexDirection: 'column-reverse',
     '& $actions': {
@@ -55,7 +55,7 @@ export const styles = (theme) => ({
       paddingBottom: spacingActions + dialRadius,
     },
   },
-  /* Styles applied to the root if direction="down" */
+  /* Styles applied to the root element if direction="down" */
   directionDown: {
     flexDirection: 'column',
     '& $actions': {
@@ -64,7 +64,7 @@ export const styles = (theme) => ({
       paddingTop: spacingActions + dialRadius,
     },
   },
-  /* Styles applied to the root if direction="left" */
+  /* Styles applied to the root element if direction="left" */
   directionLeft: {
     flexDirection: 'row-reverse',
     '& $actions': {
@@ -73,7 +73,7 @@ export const styles = (theme) => ({
       paddingRight: spacingActions + dialRadius,
     },
   },
-  /* Styles applied to the root if direction="right" */
+  /* Styles applied to the root element if direction="right" */
   directionRight: {
     flexDirection: 'row',
     '& $actions': {

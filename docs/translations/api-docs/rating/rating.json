@@ -21,37 +21,70 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "sizeSmall": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "sizeLarge": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"large\"</code>"
     },
     "readOnly": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>readOnly={true}</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to the root element if keyboard focused."
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "keyboard focused"
     },
     "visuallyHidden": { "description": "Visually hide an element." },
-    "label": { "description": "Styles applied to the label elements." },
+    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
     "labelEmptyValueActive": {
-      "description": "Styles applied to the label of the \"no value\" input when it is active."
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the label of the \"no value\" input",
+      "conditions": "it is active"
     },
-    "icon": { "description": "Styles applied to the icon wrapping elements." },
-    "iconEmpty": { "description": "Styles applied to the icon wrapping elements when empty." },
-    "iconFilled": { "description": "Styles applied to the icon wrapping elements when filled." },
-    "iconHover": { "description": "Styles applied to the icon wrapping elements when hover." },
-    "iconFocus": { "description": "Styles applied to the icon wrapping elements when focus." },
-    "iconActive": { "description": "Styles applied to the icon wrapping elements when active." },
+    "icon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the icon wrapping elements"
+    },
+    "iconEmpty": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the icon wrapping elements",
+      "conditions": "empty"
+    },
+    "iconFilled": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the icon wrapping elements",
+      "conditions": "filled"
+    },
+    "iconHover": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the icon wrapping elements",
+      "conditions": "hover"
+    },
+    "iconFocus": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the icon wrapping elements",
+      "conditions": "focus"
+    },
+    "iconActive": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the icon wrapping elements",
+      "conditions": "active"
+    },
     "decimal": {
-      "description": "Styles applied to the icon wrapping elements when decimals are necessary."
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the icon wrapping elements",
+      "conditions": "decimals are necessary"
     }
   }
 }

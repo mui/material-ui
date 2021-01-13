@@ -112,11 +112,7 @@ import { TypographyClassKey } from '../Typography';
 export type ComponentsOverrides = {
   [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
 } & {
-  MuiCssBaseline?: {
-    '@global'?: {
-      '@font-face'?: CSSProperties['@font-face'];
-    } & Record<string, CSSProperties['@font-face'] | CSSProperties>; // allow arbitrary selectors
-  };
+  MuiCssBaseline?: CSSProperties;
 };
 
 export interface ComponentNameToClassKey {
@@ -145,10 +141,6 @@ export interface ComponentNameToClassKey {
   MuiCircularProgress: CircularProgressClassKey;
   MuiCollapse: CollapseClassKey;
   MuiContainer: ContainerClassKey;
-  /**
-   * @deprecated See CssBaseline.d.ts
-   */
-  MuiCssBaseline: '@global';
   MuiDialog: DialogClassKey;
   MuiDialogActions: DialogActionsClassKey;
   MuiDialogContent: DialogContentClassKey;

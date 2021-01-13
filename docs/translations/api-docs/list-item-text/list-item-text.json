@@ -13,14 +13,27 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "multiline": {
-      "description": "Styles applied to the Typography component if primary and secondary are set."
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Typography component",
+      "conditions": "primary and secondary are set"
     },
-    "dense": { "description": "Styles applied to the Typography component if dense." },
+    "dense": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Typography component",
+      "conditions": "dense"
+    },
     "inset": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>inset={true}</code>"
     },
-    "primary": { "description": "Styles applied to the primary `Typography` component." },
-    "secondary": { "description": "Styles applied to the secondary `Typography` component." }
+    "primary": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the primary `Typography` component"
+    },
+    "secondary": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the secondary `Typography` component"
+    }
   }
 }

@@ -81,7 +81,7 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
       anchorOriginTopLeftCircular?: string;
       /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
       anchorOriginBottomLeftCircular?: string;
-      /** Pseudo-class to the badge `span` element if `invisible={true}`. */
+      /** Pseudo-class applied to the badge `span` element if `invisible={true}`. */
       invisible?: string;
     };
     /**

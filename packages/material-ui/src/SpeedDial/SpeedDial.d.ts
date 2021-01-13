@@ -23,13 +23,13 @@ export interface SpeedDialProps
     root?: string;
     /** Styles applied to the Fab component. */
     fab?: string;
-    /** Styles applied to the root if direction="up" */
+    /** Styles applied to the root element if direction="up" */
     directionUp?: string;
-    /** Styles applied to the root if direction="down" */
+    /** Styles applied to the root element if direction="down" */
     directionDown?: string;
-    /** Styles applied to the root if direction="left" */
+    /** Styles applied to the root element if direction="left" */
     directionLeft?: string;
-    /** Styles applied to the root if direction="right" */
+    /** Styles applied to the root element if direction="right" */
     directionRight?: string;
     /** Styles applied to the actions (`children` wrapper) element. */
     actions?: string;

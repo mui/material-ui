@@ -30,7 +30,7 @@ export const styles = (theme) => ({
   disableElevation: {
     boxShadow: 'none',
   },
-  /* Pseudo-class applied to child elements if `disabled={true}`. */
+  /* Pseudo-class applied to the child elements if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {

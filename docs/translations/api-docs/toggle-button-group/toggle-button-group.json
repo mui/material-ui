@@ -12,16 +12,19 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "vertical": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
-    "grouped": { "description": "Styles applied to the children." },
+    "grouped": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the children" },
     "groupedHorizontal": {
-      "description": "Styles applied to the children if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
     "groupedVertical": {
-      "description": "Styles applied to the children if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the children",
       "conditions": "<code>orientation=\"vertical\"</code>"
     }
   }

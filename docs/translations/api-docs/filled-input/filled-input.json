@@ -31,60 +31,80 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "colorSecondary": { "description": "Styles applied to the root element if color secondary." },
+    "colorSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color secondary"
+    },
     "underline": {
-      "description": "Styles applied to the root element unless {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disableUnderline={true}</code>"
     },
     "focused": {
-      "description": "Pseudo-class applied to the root element if the component is focused."
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is focused"
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "adornedStart": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>startAdornment</code> is provided"
     },
     "adornedEnd": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>endAdornment</code> is provided"
     },
     "error": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     },
     "sizeSmall": {
-      "description": "Styles applied to the input element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "multiline": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>multiline={true}</code>"
     },
     "hiddenLabel": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>hiddenLabel={true}</code>"
     },
-    "input": { "description": "Styles applied to the input element." },
+    "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
     "inputSizeSmall": {
-      "description": "Styles applied to the input element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "inputHiddenLabel": {
-      "description": "Styles applied to the `input` if in `<FormControl hiddenLabel />`."
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the `input`",
+      "conditions": "in <code><FormControl hiddenLabel /></code>"
     },
     "inputMultiline": {
-      "description": "Styles applied to the input element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
       "conditions": "<code>multiline={true}</code>"
     },
     "inputAdornedStart": {
-      "description": "Styles applied to the input element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
       "conditions": "<code>startAdornment</code> is provided"
     },
     "inputAdornedEnd": {
-      "description": "Styles applied to the input element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
       "conditions": "<code>endAdornment</code> is provided"
     }
   }

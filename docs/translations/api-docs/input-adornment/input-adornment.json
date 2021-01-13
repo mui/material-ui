@@ -12,19 +12,23 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "filled": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code>"
     },
     "positionStart": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>position=\"start\"</code>"
     },
     "positionEnd": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>position=\"end\"</code>"
     },
     "disablePointerEvents": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disablePointerEvents={true}</code>"
     },
     "hiddenLabel": {

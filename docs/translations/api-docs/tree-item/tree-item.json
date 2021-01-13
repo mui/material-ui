@@ -18,13 +18,38 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "group": { "description": "Styles applied to the transition component." },
-    "content": { "description": "Styles applied to the content element." },
-    "expanded": { "description": "Pseudo-class applied to the content element when expanded." },
-    "selected": { "description": "Pseudo-class applied to the content element when selected." },
-    "focused": { "description": "Pseudo-class applied to the content element when focused." },
-    "disabled": { "description": "Pseudo-class applied to the element when disabled." },
-    "iconContainer": { "description": "Styles applied to the tree node icon." },
-    "label": { "description": "Styles applied to the label element." }
+    "group": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the transition component"
+    },
+    "content": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the content element"
+    },
+    "expanded": {
+      "description": "Pseudo-class applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the content element",
+      "conditions": "expanded"
+    },
+    "selected": {
+      "description": "Pseudo-class applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the content element",
+      "conditions": "selected"
+    },
+    "focused": {
+      "description": "Pseudo-class applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the content element",
+      "conditions": "focused"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the element",
+      "conditions": "disabled"
+    },
+    "iconContainer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the tree node icon"
+    },
+    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label element" }
   }
 }

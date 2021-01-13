@@ -16,69 +16,91 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "filled": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code>"
     },
     "outlined": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "standard": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code>"
     },
     "standardSuccess": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code> and <code>color=\"success\"</code>"
     },
     "standardInfo": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code> and <code>color=\"info\"</code>"
     },
     "standardWarning": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code> and <code>color=\"warning\"</code>"
     },
     "standardError": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"standard\"</code> and <code>color=\"error\"</code>"
     },
     "outlinedSuccess": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"success\"</code>"
     },
     "outlinedInfo": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"info\"</code>"
     },
     "outlinedWarning": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>"
     },
     "outlinedError": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"error\"</code>"
     },
     "filledSuccess": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code> and <code>color=\"success\"</code>"
     },
     "filledInfo": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code> and <code>color=\"info\"</code>"
     },
     "filledWarning": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code> and <code>color=\"warning\"</code>"
     },
     "filledError": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"filled\"</code> and <code>color=\"error\"</code>"
     },
-    "icon": { "description": "Styles applied to the icon wrapper element." },
-    "message": { "description": "Styles applied to the message wrapper element." },
+    "icon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the icon wrapper element"
+    },
+    "message": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the message wrapper element"
+    },
     "action": {
-      "description": "Styles applied to the action wrapper element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the action wrapper element",
       "conditions": "<code>action</code> is provided"
     }
   }

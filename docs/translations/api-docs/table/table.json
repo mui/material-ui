@@ -11,7 +11,8 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "stickyHeader": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>stickyHeader={true}</code>"
     }
   }

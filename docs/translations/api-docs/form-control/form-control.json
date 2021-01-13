@@ -18,15 +18,18 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "marginNormal": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>margin=\"normal\"</code>"
     },
     "marginDense": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>margin=\"dense\"</code>"
     },
     "fullWidth": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
     }
   }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useThemeProps } from '@material-ui/core/styles';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import Picker, { ExportedPickerProps } from './Picker';
 import { ParsableDate } from '../constants/prop-types';
 import { MuiPickersAdapter } from '../hooks/useUtils';

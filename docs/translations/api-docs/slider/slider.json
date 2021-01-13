@@ -32,55 +32,92 @@
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },
     "marked": {
-      "description": "Class name applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>marks</code> is provided with at least one label"
     },
     "vertical": {
-      "description": "Class name applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root and thumb element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root and thumb element",
       "conditions": "<code>disabled={true}</code>"
     },
-    "rail": { "description": "Class name applied to the rail element." },
-    "track": { "description": "Class name applied to the track element." },
+    "rail": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the rail element"
+    },
+    "track": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the track element"
+    },
     "trackFalse": {
-      "description": "Class name applied to the track element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the track element",
       "conditions": "<code>track={false}</code>"
     },
     "trackInverted": {
-      "description": "Class name applied to the track element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the track element",
       "conditions": "<code>track=\"inverted\"</code>"
     },
-    "thumb": { "description": "Class name applied to the thumb element." },
-    "active": { "description": "Pseudo-class applied to the thumb element if it's active." },
+    "thumb": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the thumb element"
+    },
+    "active": {
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "it's active"
+    },
     "focusVisible": {
-      "description": "Pseudo-class applied to the thumb element if keyboard focused."
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "keyboard focused"
     },
-    "valueLabel": { "description": "Class name applied to the thumb label element." },
-    "mark": { "description": "Class name applied to the mark element." },
+    "valueLabel": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the thumb label element"
+    },
+    "mark": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the mark element"
+    },
     "markActive": {
-      "description": "Class name applied to the mark element if active (depending on the value)."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the mark element",
+      "conditions": "active (depending on the value)"
     },
-    "markLabel": { "description": "Class name applied to the mark label element." },
+    "markLabel": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the mark label element"
+    },
     "markLabelActive": {
-      "description": "Class name applied to the mark label element if active (depending on the value)."
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the mark label element",
+      "conditions": "active (depending on the value)"
     },
     "colorPrimary": {
-      "description": "Class name applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSecondary": {
-      "description": "Class name applied to the root element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "thumbColorPrimary": {
-      "description": "Class name applied to the thumb element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "thumbColorSecondary": {
-      "description": "Class name applied to the thumb element if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
       "conditions": "<code>color=\"secondary\"</code>"
     }
   }

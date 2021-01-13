@@ -18,14 +18,20 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "fab": { "description": "Styles applied to the Fab component." },
-    "directionUp": { "description": "Styles applied to the root if direction=\"up\"" },
-    "directionDown": { "description": "Styles applied to the root if direction=\"down\"" },
-    "directionLeft": { "description": "Styles applied to the root if direction=\"left\"" },
-    "directionRight": { "description": "Styles applied to the root if direction=\"right\"" },
-    "actions": { "description": "Styles applied to the actions (`children` wrapper) element." },
+    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" },
+    "directionUp": { "description": "Styles applied to the root element if direction=\"up\"" },
+    "directionDown": { "description": "Styles applied to the root element if direction=\"down\"" },
+    "directionLeft": { "description": "Styles applied to the root element if direction=\"left\"" },
+    "directionRight": {
+      "description": "Styles applied to the root element if direction=\"right\""
+    },
+    "actions": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the actions (`children` wrapper) element"
+    },
     "actionsClosed": {
-      "description": "Styles applied to the actions (`children` wrapper) element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the actions (`children` wrapper) element",
       "conditions": "<code>open={false}</code>"
     }
   }

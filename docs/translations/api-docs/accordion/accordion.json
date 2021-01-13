@@ -14,19 +14,24 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "rounded": {
-      "description": "Styles applied to the root element unless {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>square={true}</code>"
     },
     "expanded": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>expanded={true}</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "region": {
-      "description": "Styles applied to the region element, the container of the children."
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the region element",
+      "conditions": "the container of the children"
     }
   }
 }
