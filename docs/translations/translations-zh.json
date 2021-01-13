@@ -1,5 +1,5 @@
 {
-  "adblock": "If you don't mind-tech related ads (no tracking or remarketing), and want to keep us running, please whitelist Material-UI in your blocker.",
+  "adblock": "如果您不介意与技术相关的广告，并且支持开源代码，请在你的 ad blocker 中将 Material-UI 设置为白名单。",
   "api-docs": {
     "componentName": "Component name",
     "default": "默认值",
