@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">O componente Box serve como um componente encapsulador (wrapper) para a auxiliar na maioria das necessidades de uso com CSS.</p>
 
-O component Box compõe [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas no `@material-ui/system`. É criado usando a função `experimentalStyled()` de `@material-ui/core/styles`.
+O component Box compõe [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas no `@material-ui/system`. O component Box compõe [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas no `@material-ui/system`.
 
 [A paleta](/system/palette/) com funções de estilo.
 
@@ -29,7 +29,7 @@ O componente Box envolve seu componente. Ele cria um novo elemento DOM, uma `<di
 
 Isso funciona muito bem quando as alterações precisam ser isoladas em um novo elemento DOM. Note no exemplo, a forma que você alterou a margem.
 
-No entanto, às vezes, você precisa modificar o elemento DOM subjacente. Por exemplo, você quer mudar a borda do botão. O componente botão define seus próprios estilos. A herança por CSS não irá ajudar nesse caso. Para contornar o problema, você tem duas opções:
+No entanto, às vezes, você precisa modificar o elemento DOM subjacente. No entanto, às vezes, você precisa modificar o elemento DOM subjacente. Por exemplo, você quer mudar a borda do botão. A herança por CSS não irá ajudar nesse caso. Para contornar o problema, você tem duas opções:
 
 1. Usar [`React.cloneElement()`](https://pt-br.reactjs.org/docs/react-api.html#cloneelement)
 
