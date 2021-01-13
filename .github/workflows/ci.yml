@@ -6,7 +6,7 @@ jobs:
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.
-    if: ${{ github.actor == 'l10nbot' }}
+    if: ${{ github.actor != 'eps1lon' }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
