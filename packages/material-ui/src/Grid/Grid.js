@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import requirePropFactory from '../utils/requirePropFactory';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
@@ -422,23 +423,24 @@ Grid.propTypes = {
   zeroMinWidth: PropTypes.bool,
 };
 
-// TODO: This is breaking the buildAPI generation :(
-// if (process.env.NODE_ENV !== 'production') {
-//   const requireProp = requirePropFactory('Grid');
-//   Grid.propTypes = {
-//     ...Grid.propTypes,
-//     alignContent: requireProp('container'),
-//     alignItems: requireProp('container'),
-//     direction: requireProp('container'),
-//     justifyContent: requireProp('container'),
-//     lg: requireProp('item'),
-//     md: requireProp('item'),
-//     sm: requireProp('item'),
-//     spacing: requireProp('container'),
-//     wrap: requireProp('container'),
-//     xs: requireProp('item'),
-//     zeroMinWidth: requireProp('item'),
-//   };
-// }
+if (process.env.NODE_ENV !== 'production') {
+  const requireProp = requirePropFactory('Grid');
+  // eslint-disable-next-line no-useless-concat
+  Grid['propTypes' + ''] = {
+    // eslint-disable-next-line react/forbid-foreign-prop-types
+    ...Grid.propTypes,
+    alignContent: requireProp('container'),
+    alignItems: requireProp('container'),
+    direction: requireProp('container'),
+    justifyContent: requireProp('container'),
+    lg: requireProp('item'),
+    md: requireProp('item'),
+    sm: requireProp('item'),
+    spacing: requireProp('container'),
+    wrap: requireProp('container'),
+    xs: requireProp('item'),
+    zeroMinWidth: requireProp('item'),
+  };
+}
 
 export default Grid;
