@@ -9,7 +9,7 @@ materialDesign: 'https://material.io/components/buttons#toggle-button'
 
 <p class="description">トグルボタンを使用して、関連するオプションをグループ化できます。</p>
 
-グループは共通のコンテナーを共用する必要があります。 ToggleButton sets `aria-pressed="<bool>"` according to the button state. ToggleButton sets `aria-pressed="<bool>"` according to the button state.
+グループは共通のコンテナーを共用する必要があります。 ToggleButton sets `aria-pressed="<bool>"` according to the button state.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -65,7 +65,7 @@ const handleAlignment = (event, newAlignment) => {
 
 ## Customized toggle button
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
