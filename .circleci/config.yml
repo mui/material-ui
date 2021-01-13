@@ -209,14 +209,8 @@ jobs:
             git --no-pager diff
 
       - run:
-          name: Log defect declaration files
-          command: |
-            # ignore build failures
-            # Fixing these takes some effort that isn't viable to merge in a single PR.
-            # We'll simply monitor them for now.
-            set +e
-            node scripts/testBuiltTypes.js
-            exit 0
+          name: Any defect declaration files?
+          command: node scripts/testBuiltTypes.js
       - save_cache:
           name: Save generated declaration files
           key: typescript-declaration-files-{{ .Branch }}-{{ .Revision }}
