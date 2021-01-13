@@ -33,23 +33,10 @@ npm install jss-rtl
 Se você estiver usando `emotion` ou `styled-components`, você precisa deste plugin de estilo para inverter os estilos: [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl).
 
 ```sh
-import { create } from 'jss';
-import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-
-// Configure o JSS
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-
-function RTL(props) {
-  return (
-    <StylesProvider jss={jss}>
-      {props.children}
-    </StylesProvider>
-  );
-}
+npm install stylis-plugin-rtl
 ```
 
-Nota: tanto `emotion` e `styled-components` funcionam atualmente com a v1 do plugin.
+**Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version.
 
 Tendo instalado o plugin em seu projeto, os componentes do Material-UI ainda exigem que ele seja carregado pela instância do motor de estilo que você usa. Encontre guias abaixo de como você pode carregá-lo.
 
