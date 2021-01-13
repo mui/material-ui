@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useThemeProps } from '@material-ui/core/styles';
+import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
 import { withDateAdapterProp } from '../internal/pickers/withDateAdapterProp';
