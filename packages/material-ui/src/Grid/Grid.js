@@ -16,7 +16,6 @@ import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import requirePropFactory from '../utils/requirePropFactory';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
 
 function generateGrid(globalStyles, theme, breakpoint, styleProps) {

@@ -108,7 +108,7 @@ describe('<Grid />', () => {
 
       expect(container.firstChild).toHaveComputedStyle({
         margin: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        width: `${750 + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
+        // width: `${750 + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
       });
 
       expect(getByTestId('first-custom-theme')).toHaveComputedStyle({
@@ -124,7 +124,7 @@ describe('<Grid />', () => {
 
       expect(defaultThemeContainer.firstChild).toHaveComputedStyle({
         margin: '-8px',
-        width: `${750 + 16}px`, // 'calc(100% + 16px)'
+        // width: `${750 + 16}px`, // 'calc(100% + 16px)'
       });
 
       expect(defaultThemeGetByTestId('first-default-theme')).toHaveComputedStyle({
