@@ -61,6 +61,7 @@
       },
       "default": "0"
     },
+    "sx": { "type": { "name": "object" } },
     "wrap": {
       "type": {
         "name": "enum",
