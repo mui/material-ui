@@ -50,8 +50,9 @@ export default function Page() {
                   👍
                 </span>
                 ) the issues that you are the most interested in seeing solved.{' '}
-                {/* TODO: add link */}
-                <Link href={'/'}>Give us feedback</Link>
+                <Link href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc">
+                  Give us feedback
+                </Link>
               </Typography>
             </BrandingCard>
           </Grid>
@@ -91,14 +92,18 @@ export default function Page() {
                   <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
                 </li>
                 <li>
-                  {/* TODO: add link */}
-                  Help <Link href={'/'}>translate</Link> the documentation.
+                  Help <Link href="https://translate.material-ui.com/">translate</Link> the
+                  documentation.
                 </li>
                 <li>
-                  {/* TODO: add link */}
-                  <Link href={'/'}>Improve our documentation</Link>, fix bugs, or add features by{' '}
-                  {/* TODO: add link */}
-                  <Link href={'/'}>submitting a pull request</Link>.
+                  <Link href="https://github.com/mui-org/material-ui/tree/HEAD/docs">
+                    Improve our documentation
+                  </Link>
+                  , fix bugs, or add features by{' '}
+                  <Link href="https://github.com/mui-org/material-ui/pulls">
+                    submitting a pull request
+                  </Link>
+                  .
                 </li>
               </ul>
             </BrandingCard>
@@ -116,8 +121,7 @@ export default function Page() {
               </Typography>
               <Button
                 color="inherit"
-                // TODO: check link
-                href={'https://opencollective.com/'}
+                href="https://opencollective.com/material-ui"
                 endIcon={<OpenCollectiveIcon />}
                 variant="contained"
               >
