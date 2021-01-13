@@ -135,14 +135,13 @@ const GridRoot = experimentalStyled(
   { name: 'MuiGrid', slot: 'Root', overridesResolver },
 )(
   ({ styleProps }) => ({
+    boxSizing: 'border-box',
     ...(styleProps.container && {
-      boxSizing: 'border-box',
       display: 'flex',
       flexWrap: 'wrap',
       width: '100%',
     }),
     ...(styleProps.item && {
-      boxSizing: 'border-box',
       margin: 0, // For instance, it's useful when used with a `figure` element.
     }),
     ...(styleProps.zeroMinWidth && {
