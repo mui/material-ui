@@ -25,7 +25,7 @@ export default function Page() {
           <br />
           How can <UnderlinedText>I support the project?</UnderlinedText>
         </Typography>
-        <Typography sx={{ mt: 2, mb: 4 }}>There are many ways to support Material-UI:</Typography>
+        <Typography sx={{ mt: 2, mb: 9 }}>There are many ways to support Material-UI:</Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <BrandingCard icon={<QuestionAnswerIcon fontSize="large" />} title="Spread the word">
