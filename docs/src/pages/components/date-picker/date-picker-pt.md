@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">Seletores de data permitem que o usuário selecione uma data.</p>
 
-Seletores de data permitem que o usuário selecione uma data. Seletores de data são exibidos com:
+Seletores de data permitem que o usuário selecione uma data. Seletores de data permitem que o usuário selecione uma data.
 
 - Diálogos em dispositivos móveis
 - Menu suspenso com campo de texto em desktop
