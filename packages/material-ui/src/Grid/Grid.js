@@ -93,14 +93,14 @@ const overridesResolver = (props, styles) => {
     direction,
     item,
     justifyContent,
+    lg,
+    md,
+    sm,
     spacing,
     wrap,
-    zeroMinWidth,
-    xs,
-    sm,
-    md,
-    lg,
     xl,
+    xs,
+    zeroMinWidth,
   } = props.styleProps || {};
 
   return deepmerge(styles.root || {}, {
@@ -187,21 +187,21 @@ const GridRoot = experimentalStyled(
 
 const useUtilityClasses = (styleProps) => {
   const {
-    container,
-    item,
-    zeroMinWidth,
-    spacing,
-    direction,
-    wrap,
-    alignItems,
     alignContent,
-    justifyContent,
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
+    alignItems,
     classes,
+    container,
+    direction,
+    item,
+    justifyContent,
+    lg,
+    md,
+    sm,
+    spacing,
+    wrap,
+    xl,
+    xs,
+    zeroMinWidth,
   } = styleProps;
 
   const slots = {
