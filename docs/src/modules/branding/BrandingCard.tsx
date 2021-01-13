@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Box, { BoxProps } from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
@@ -8,12 +8,13 @@ interface BrandingCardProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
   title?: string;
+  sx?: BoxProps['sx'];
 }
 
 const BrandingCard = (props: BrandingCardProps) => {
-  const { color, icon, title, children, ...other } = props;
+  const { color, icon, title, children, sx, ...other } = props;
   return (
-    <Box sx={{ mb: 4 }} {...other}>
+    <Box sx={{ mb: 4, ...sx }} {...other}>
       <Box
         sx={{
           mb: 3,
