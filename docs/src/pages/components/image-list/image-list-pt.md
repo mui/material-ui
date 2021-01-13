@@ -55,6 +55,6 @@ A barra de título pode ser colocada abaixo da imagem.
 
 ## Lista de imagem customizada
 
-Neste exemplo, os itens tem uma barra de título customizada, posicionada no topo e com um gradiente customizado com `titleBackground`. A ação secundária `IconButton` está posicionada à esquerda. Os blocos tem uma barra de título customizada, posicionada no topo e com um gradiente personalizado `titleBackground`.
+Neste exemplo, os itens tem uma barra de título customizada, posicionada no topo e com um gradiente customizado com `titleBackground`. A ação secundária `IconButton` está posicionada à esquerda. A ação secundária `IconButton` está posicionada à esquerda.
 
 {{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}
