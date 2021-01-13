@@ -75,7 +75,7 @@ Der `Tooltip` umhüllt standardmäßig lange Texte, um diese lesbar zu machen.
 
 ## Interaktive Liste
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
