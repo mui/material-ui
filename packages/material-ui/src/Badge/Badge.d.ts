@@ -12,6 +12,9 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface BadgePropsVariantOverrides {}
 export type BadgeVariantDefaults = Record<'standard' | 'dot', true>;
 
+export interface BadgePropsColorOverrides {}
+export type BadgeColorDefaults = Record<'primary' | 'secondary' | 'default' | 'error', true>;
+
 export type BadgeTypeMap<
   D extends React.ElementType = 'span',
   P = {}
@@ -33,7 +36,7 @@ export type BadgeTypeMap<
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'default'
      */
-    color?: 'primary' | 'secondary' | 'default' | 'error';
+    color?: OverridableStringUnion<BadgeColorDefaults, BadgePropsColorOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

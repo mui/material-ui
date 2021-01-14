@@ -7,6 +7,12 @@ import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../Over
 export interface ButtonPropsVariantOverrides {}
 export type ButtonVariantDefaults = Record<'text' | 'outlined' | 'contained', true>;
 
+export interface ButtonPropsColorOverrides {}
+export type ButtonColorDefaults = Record<'inherit' | 'primary' | 'secondary', true>;
+
+export interface ButtonPropsSizeOverrides {}
+export type ButtonSizeDefaults = Record<'small' | 'medium' | 'large', true>;
+
 export type ButtonTypeMap<
   P = {},
   D extends React.ElementType = 'button'
@@ -97,7 +103,7 @@ export type ButtonTypeMap<
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: 'inherit' | 'primary' | 'secondary';
+    color?: OverridableStringUnion<ButtonColorDefaults, ButtonPropsColorOverrides>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -132,7 +138,7 @@ export type ButtonTypeMap<
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size?: 'small' | 'medium' | 'large';
+    size?: OverridableStringUnion<ButtonSizeDefaults, ButtonPropsSizeOverrides>;
     /**
      * Element placed before the children.
      */
