@@ -30,7 +30,13 @@
     },
     "showZero": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } },
-    "variant": { "type": { "name": "string" }, "default": "'standard'" },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'dot'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
+      },
+      "default": "'standard'"
+    },
     "component": { "type": { "name": "elementType" } }
   },
   "name": "Badge",
