@@ -20,7 +20,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Блочные кнопки
+## Contained buttons
 
 [Блочные кнопки](https://material.io/design/components/buttons.html#contained-button) имеют высокий акцент, отличаются использованием возвышения и заполнения. Они содержат действия, которые являются основными для вашего приложения.
 
@@ -30,7 +30,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Текстовые кнопки
+## Text buttons
 
 В Карточках (Cards) текстовые кнопки помогают сохранить акцент на содержании карточки.
 
@@ -41,7 +41,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-## Контурные кнопки
+## Outlined buttons
 
 [Контурные кнопки](https://material.io/design/components/buttons.html#outlined-button) - это кнопки со средним акцентом. They contain actions that are important, but aren't the primary action in an app.
 
@@ -71,11 +71,11 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 ## Кнопки с иконками и текстом
 
-Иногда вы можете захотеть добавить текст для определенной кнопки, чтобы улучшить UX, поскольку мы распознаем логотипы легче, чем обычный текст. Например, если у вас есть кнопка удаления, вы можете пометить ее значком мусорной корзины.
+Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. Например, если у вас есть кнопка удаления, вы можете пометить ее значком мусорной корзины.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Кнопки с иконками
+## Icon button
 
 Кнопки с иконками обычно находятся на панелях навигации и на панелях инструментов.
 
@@ -101,9 +101,9 @@ The loading buttons can show pending state and disable interactions.
 
 Компонент ButtonBase устанавливает `pointer-events: none;` на отключенных (disabled) кнопках, что отменяет появление disabled-курсора.
 
-## Сложные кнопки
+## Complex buttons
 
-Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. Вы можете воспользоваться этим более низкоуровневым компонентом для создания пользовательских взаимодействий.
+Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. You can take advantage of this lower-level component to build custom interactions.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
