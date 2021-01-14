@@ -12,12 +12,11 @@ export default function requirePropFactory(componentNameInError, Component) {
   ) => {
     const propFullNameSafe = propFullName || propName;
 
-    const defaultPropType = Component?.propTypes?.[propFullNameSafe];
-    let defaultPropTypeVal = null;
+    const defaultTypeChecker = Component?.propTypes?.[propFullNameSafe];
+    let defaultTypeCheckerResult = null;
 
-    if(defaultPropType) {
-      console.log("Default prop type existed");
-      defaultPropTypeVal = defaultPropType(props, propName, componentName, location, propFullName)
+    if(defaultTypeChecker) {
+      defaultTypeCheckerResult = defaultTypeChecker(props, propName, componentName, location, propFullName)
     }
 
     if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
@@ -27,7 +26,7 @@ export default function requirePropFactory(componentNameInError, Component) {
       );
     }
 
-    return defaultPropTypeVal;
+    return defaultTypeCheckerResult;
   };
   return requireProp;
 }

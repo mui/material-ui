@@ -1,3 +1,3 @@
-type Component = (arg: any) => any & { propTypes?: object };
+import * as React from 'react';
 
-export default function requirePropFactory(componentNameInError: string, Component?: Component): any;
+export default function requirePropFactory(componentNameInError: string, Component?: React.ComponentType): any;
