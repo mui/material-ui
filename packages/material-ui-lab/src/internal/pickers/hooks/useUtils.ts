@@ -22,7 +22,7 @@ export function useUtils<T = unknown>() {
   return utils as MuiPickersAdapter<T>;
 }
 
-export function useNow<TDate = unknown>() {
+export function useNow<TDate = unknown>(): TDate {
   const utils = useUtils<TDate>();
   const now = React.useRef(utils.date());
 
