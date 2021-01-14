@@ -1,4 +1,4 @@
-export default function requirePropFactory(componentNameInError, Component) {
+export default function requirePropFactory(componentNameInError) {
   if (process.env.NODE_ENV === 'production') {
     return () => null;
   }
@@ -12,20 +12,6 @@ export default function requirePropFactory(componentNameInError, Component) {
   ) => {
     const propFullNameSafe = propFullName || propName;
 
-    // eslint-disable-next-line react/forbid-foreign-prop-types
-    const defaultTypeChecker = Component?.propTypes?.[propFullNameSafe];
-    let defaultTypeCheckerResult = null;
-
-    if (defaultTypeChecker) {
-      defaultTypeCheckerResult = defaultTypeChecker(
-        props,
-        propName,
-        componentName,
-        location,
-        propFullName,
-      );
-    }
-
     if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
       return new Error(
         `The prop \`${propFullNameSafe}\` of ` +
@@ -33,7 +19,7 @@ export default function requirePropFactory(componentNameInError, Component) {
       );
     }
 
-    return defaultTypeCheckerResult;
+    return null;
   };
   return requireProp;
 }

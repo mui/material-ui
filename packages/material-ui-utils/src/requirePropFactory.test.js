@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { spy } from 'sinon';
 import requirePropFactory from './requirePropFactory';
 
 describe('requirePropFactory', () => {
@@ -83,32 +82,6 @@ describe('requirePropFactory', () => {
             expect(result.message.indexOf(propName)).to.equal(-1);
           });
         });
-      });
-
-      it('should chain the proptypes with the default prop types coming from the component', () => {
-        const Test = () => null;
-        const mock = spy();
-        Test.propTypes = {
-          test: mock,
-        };
-
-        const customProps = {};
-        const customPropName = 'test';
-        customProps[customPropName] = true;
-
-        const customRequireProp = requirePropFactory('Test', Test);
-
-        const result = customRequireProp('otherProp');
-        result(customProps, customPropName, undefined, undefined, undefined);
-
-        expect(mock.callCount).to.equal(1);
-        expect(mock.args[0]).to.deep.equal([
-          customProps,
-          customPropName,
-          undefined,
-          undefined,
-          undefined,
-        ]);
       });
     });
   });
