@@ -108,11 +108,11 @@ const inHouseAds = [
       '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
   },
   {
-    name: 'shuffledev',
-    link: 'https://mui.dev/?ref=mui',
-    img: '/static/ads-in-house/shuffledev.jpg',
+    name: 'divjoy',
+    link: 'https://www.producthunt.com/posts/divjoy-2-0',
+    img: '/static/ads-in-house/divjoy.png',
     description:
-      '<b>Create Material-UI websites in minutes</b>. An online editor for Material-UI with a simple, intuitive drag & drop interface and ready-made React components.',
+      '<b>Divjoy</b>. Create your Material-UI app in minutes. You’ll get a nice template, authentication, database integration, subscription payments, and more.',
   },
 ];
 
