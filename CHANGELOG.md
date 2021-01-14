@@ -25,10 +25,42 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 
 ### `@material-ui/lab@v5.0.0-alpha.23`
 
+#### Breaking changes
+
+- [DateRangePicker] Remove DateRangDelimiter (#24298) @huzaima
+
+  You can migrate away from it with:
+
+  ```diff
+  diff --git a/docs/src/pages/components/date-range-picker/BasicDateRangePicker.tsx b/docs/src/pages/components/date-range-picker/BasicDateRangePicker.tsx
+  index 72a89f9a11..2742fa6811 100644
+  --- a/docs/src/pages/components/date-range-picker/BasicDateRangePicker.tsx
+  +++ b/docs/src/pages/components/date-range-picker/BasicDateRangePicker.tsx
+  @@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
+  import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
+  import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+  import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+  -import DateRangeDelimiter from '@material-ui/lab/DateRangeDelimiter';
+  +import Box from '@material-ui/core/Box';
+
+  export default function BasicDateRangePicker() {
+    const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
+  @@ -20,7 +20,7 @@ export default function BasicDateRangePicker() {
+          renderInput={(startProps, endProps) => (
+            <React.Fragment>
+              <TextField {...startProps} variant="standard" />
+  -            <DateRangeDelimiter> to </DateRangeDelimiter>
+  +            <Box sx={{ mx: 2 }}>to</Box>
+              <TextField {...endProps} variant="standard" />
+            </React.Fragment>
+          )}
+  ```
+
+#### Changes
+
 - [DatePicker] Fix out of range month selection (#24301) @m4theushw
 - [DatePicker] Replace withDefaultProps with useThemeProps (#24309) @m4theushw
 - [DatePicker] Simplify ExtendWrapper type (#24275) @eps1lon
-- [DateRangePicker] Remove DateRangDelimiter (#24298) @huzaima
 - [DatePicker] Reduce coupling of parsing picker input value and props (#24319) @eps1lon
 - [TimePicker] Add pointer cursor for clock in desktop (#24276) @praveenkumar-kalidass
 - [lab] Drop usage of createStyles (#24158) @eps1lon
