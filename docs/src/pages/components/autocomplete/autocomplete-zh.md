@@ -65,7 +65,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 此组件有两种可控的状态：
 
-1. “value” 状态（state）包含了 `value`/`onChange` 两种属性的组合。 这个状态表示用户选择的值，如当按下 <kbd>Enter</kbd> 键时。
+1. “value” 状态（state）包含了 `value`/`onChange` 两种属性的组合。 这个状态表示用户选择的值，如当按下 <kbd class="key">Enter</kbd> 键时。
 2. “input value” 状态（state) 则包含了 `inputValue`/`onInputChange` 两种属性的组合。 这个状态展示了在文本框中显示的值。
 
 > ⚠️ 以上两种状态互不干涉，它们应该被单独控制着。
@@ -88,7 +88,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 - `selectOnFocus` 帮助用户清除所选值。
 - `clearOnBlur` 帮助用户输入一个新的值。
-- `handleHomeEndKeys` 使用<kbd>Home</kbd> 和 <kbd>End</kbd> 键在弹出窗口内移动焦点。
+- `handleHomeEndKeys` 使用<kbd class="key">Home</kbd> 和 <kbd class="key">End</kbd> 键在弹出窗口内移动焦点。
 - 最后一个选项，例如 `加上 "你的搜索结果"`。
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
