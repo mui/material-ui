@@ -8,7 +8,6 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 
 - 📚 Support public paths in module augmentation (#24267) @eps1lon
 - 👩‍🎤 Migrate the Paper to emotion (#24397) @povilass
-- 📚 Implemented various CI improvements (#24313) @eps1lon, (#24358) @oliviertassinari
 
 - And many more 🐛 bug fixes and 📚 improvements.
 
