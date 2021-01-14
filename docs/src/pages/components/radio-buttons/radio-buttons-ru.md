@@ -75,7 +75,7 @@ For advanced customization use cases, a `useRadioGroup()` hook is exposed. It re
 
 ## Бесплатно
 
-- [Чекбоксы. Radio Buttons (радиокнопки)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Чекбоксы. Radio Buttons (радиокнопки) ](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
 ## Доступность
 

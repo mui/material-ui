@@ -30,7 +30,7 @@ The ButtonGroup can be displayed veritcally using the `orientation` prop.
 
 ## Split button
 
-`ButtonGroup` で分割したボタンを作成することも可能です。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。
+`ButtonGroup` で分割したボタンを作成することも可能です。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
 

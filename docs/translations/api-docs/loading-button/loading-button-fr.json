@@ -1,42 +1,54 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the button.",
+    "children": "Le contenu du composant.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "disabled": "If <code>true</code>, the button is disabled.",
+    "disabled": "If <code>true</code>, the accordion is displayed in a disabled state.",
     "pending": "If <code>true</code>, the pending indicator is shown.",
     "pendingIndicator": "Element placed before the children if the button is in pending state.",
     "pendingPosition": "The pending indicator can be positioned on the start, end, or the center of the button."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
     "pending": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>pending={true}</code>"
     },
-    "pendingIndicator": { "description": "Styles applied to the pendingIndicator element." },
+    "pendingIndicator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the pendingIndicator element"
+    },
     "pendingIndicatorCenter": {
-      "description": "Styles applied to the pendingIndicator element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the pendingIndicator element",
       "conditions": "<code>pendingPosition=\"center\"</code>"
     },
     "pendingIndicatorStart": {
-      "description": "Styles applied to the pendingIndicator element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the pendingIndicator element",
       "conditions": "<code>pendingPosition=\"start\"</code>"
     },
     "pendingIndicatorEnd": {
-      "description": "Styles applied to the pendingIndicator element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the pendingIndicator element",
       "conditions": "<code>pendingPosition=\"end\"</code>"
     },
     "endIconPendingEnd": {
-      "description": "Styles applied to the endIcon element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the endIcon element",
       "conditions": "<code>pending={true}</code> and <code>pendingPosition=\"end\"</code>"
     },
     "startIconPendingStart": {
-      "description": "Styles applied to the startIcon element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the startIcon element",
       "conditions": "<code>pending={true}</code> and <code>pendingPosition=\"start\"</code>"
     },
     "labelPendingCenter": {
-      "description": "Styles applied to the label element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the label element",
       "conditions": "<code>pending={true}</code> and <code>pendingPosition=\"center\"</code>"
     }
   }

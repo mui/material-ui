@@ -2,25 +2,25 @@
 
 <p class="description">Material-UIコンポーネントの外観を簡単にカスタマイズできます。</p>
 
-As components can be used in different contexts, there are several approaches to customizing them. 最小のユースケースから最大のユースケースまで、次をご覧ください
+コンポーネントはさまざまなコンテキストで使用できるため、カスタマイズにはアプローチが複数あります。 最小のユースケースから最大のユースケースまで、次をご覧ください
 
-1. [One-off customization](#1-one-off-customization)
-1. [Reusable style overrides](#2-reusable-style-overrides)
-1. [Dynamic variation](#3-dynamic-variation)
+1. [一度限りのバリエーション](#1-one-off-customization)
+1. [再利用可能なスタイルの上書き](#2-reusable-style-overrides)
+1. [動的なバリエーション](#3-dynamic-variation)
 1. [グローバルテーマバリエーション](#4-global-theme-variation)
 1. [グローバルCSSのオーバーライド](#5-global-css-override)
 
-## 1. One-off customization
+## 1. 一度限りのバリエーション
 
 次のソリューションを使用できる特定の実装のコンポーネントのスタイルを変更する必要がある場合があります。
 
-### Use the `sx` prop
+### `size`プロパティを使う
 
-The easiest way to add style overrides for a one-off situation is to use the `sx` prop available on all Material-UI components. Here is an example:
+一回限りスタイルをオーバーライドする上で最も簡単な方法は、すべての Material-UI コンポーネントで利用できる `sx` プロパティを使うことです。 Here is an example:
 
 {{"demo": "pages/customization/how-to-customize/SxProp.js"}}
 
-Next you'll see how you can you can use global class selectors for accessing slots inside the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component.
+次に、コンポーネント内のスロットにアクセスするためにグローバルクラスセレクタを使用する方法を説明します。 You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component.
 
 ### Overriding nested component styles
 
@@ -84,7 +84,7 @@ Sometimes, you can't use a **pseudo-class**, as the state doesn't exist in the w
 
 #### 1つのコンポーネント状態をオーバーライドするために、特異性を高める必要があるのはなぜですか。
 
-設計上、CSS仕様では疑似クラスを使用することで、特定性を高めています。 For consistency with native elements, Material-UI increases the specificity of its custom pseudo-classes. これには1つの重要な利点があり、カスタマイズしたい状態を簡単に選択できます。
+設計上、CSS仕様では疑似クラスを使用することで、特定性を高めています。 設計上、CSS仕様では疑似クラスを使用することで、特定性を高めています。 これには1つの重要な利点があり、カスタマイズしたい状態を簡単に選択できます。
 
 #### What custom pseudo-classes are available in Material-UI?
 
@@ -116,7 +116,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 }
 ```
 
-## 2. Reusable style overrides
+## 2. 再利用可能なスタイルの上書き
 
 If you find that you need the same overrides in multiple places across your application, you can use the `experimentalStyled()` utility for creating a reusable component:
 
@@ -124,7 +124,7 @@ If you find that you need the same overrides in multiple places across your appl
 
 With it, you have access to all of a component's props to dynamically style the component.
 
-## 3. Dynamic variation
+## 3. 動的なバリエーション
 
 In the previous section, we learned how to override the style of a Material-UI component. では、これらのオーバーライドを動的にする方法を見てみましょう。 Here are four alternatives; each has its pros and cons.
 
@@ -154,45 +154,18 @@ Please take a look at the theme's [global overrides page](/customization/theme-c
 
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
 
-```jsx
-const GlobalCss = withStyles({
-  // @global is handled by jss-plugin-global.
-  '@global': {
-    '.MuiButton-root': {
-      fontSize: '1rem',
-    },
-  },
-})(() => null);
-
-// …
-
-<GlobalCss />
+```css
+.MuiButton-root {
+  fontsize: '1rem';
+}
 ```
 
-If you are using the [CssBaseline](/components/css-baseline/) component to apply global resets, it can also be used to apply global styles. 例えば：
+You can reference the [Styles library interoperability guide](/guides/interoperability/) to find examples of this using different styles libraries or plain CSS.
 
-```jsx
-例えば：</p>
-
-<pre><code class="jsx">const theme = createMuiTheme({
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        html: {
-          WebkitFontSmoothing: 'auto',
-        },
-      },
-    },
-  },
-});
-
-// ...
-return (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    {children}
-  </ThemeProvider>
-);
-```
+If you just want to add some global baseline styles for some of the HTML elements, you can use the `GlobalStyles` component. Here is an example of how you can override styles for the `h1` elements.
 
 {{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}
+
+If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach.
+
+{{"demo": "pages/customization/how-to-customize/OverrideCssBaseline.js", "iframe": true, "height": 100}}

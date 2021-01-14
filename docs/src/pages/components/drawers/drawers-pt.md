@@ -47,6 +47,14 @@ const iOS =
 
 Para garantir que um drawer temporário não seja desmontado, especifique a propriedade `ModalProps` como:
 
+If you are on a desktop, you can toggle the drawer with the "OPEN" button. If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swipe.
+
+{{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+
+### Navegação em altura total
+
+Para garantir que um drawer temporário não seja desmontado, especifique a propriedade `ModalProps` como:
+
 ```jsx
 <Drawer
   variant="temporary"

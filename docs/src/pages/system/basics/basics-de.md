@@ -215,7 +215,7 @@ These shorthands are **optional**, they are great to save time when writing styl
 
 ### Superset of CSS
 
-As part of the prop, you can use any regular CSS too: child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples:
+As part of the prop, you can use any regular CSS too: child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples: Here are a few examples:
 
 - Using pseudo selectors:
 

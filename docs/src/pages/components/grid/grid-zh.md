@@ -122,7 +122,7 @@ If you need to do such, remove one of the props.
   <Typography noWrap>
 ```
 
-若想让子项继续在容器内展示，您需要设置 `min-width: 0`。 在实际操作中，你可以设置 `zeroMinWidth` 属性来实现它：
+若想让子项继续在容器内展示，您需要设置 `min-width: 0`。 若想让子项继续在容器内展示，您需要设置 `min-width: 0`。
 
 ```jsx
 <Grid item xs zeroMinWidth>

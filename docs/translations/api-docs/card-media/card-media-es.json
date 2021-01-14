@@ -8,13 +8,17 @@
     "src": "An alias for <code>image</code> property. Available only with media components. Media components: <code>video</code>, <code>audio</code>, <code>picture</code>, <code>iframe</code>, <code>img</code>."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
     "media": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>component=\"video, audio, picture, iframe, or img\"</code>"
     },
     "img": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>component=\"picture or img\"</code>"
     }
   }

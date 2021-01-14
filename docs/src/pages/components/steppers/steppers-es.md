@@ -66,6 +66,14 @@ Vertical steppers are designed for narrow screen sizes. They are ideal for mobil
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
+### Progreso
+
+The content of a step is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:
+
+```jsx
+<StepContent TransitionProps={{ unmountOnExit: false }} />
+```
+
 ## Mobile Stepper
 
 This component implements a compact stepper suitable for a mobile device. It has more limited functionality than the vertical stepper. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.

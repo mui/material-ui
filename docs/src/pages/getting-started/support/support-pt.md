@@ -47,7 +47,7 @@ Receba as últimas notícias sobre Material-UI.
 
 ### Versões suportadas
 
-O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. Developers can ensure Material-UI is the right choice for their React applications through Material-UI's community maintenance strategy. A equipe do Material-UI disponibiliza regularmente novos lançamentos, correções de bugs e é muito receptiva às solicitações da comunidade.
+O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. A equipe do Material-UI disponibiliza regularmente novos lançamentos, correções de bugs e é muito receptiva às solicitações da comunidade.
 
 Dada a realidade das restrições de tempo e recursos, bem como o desejo de continuar inovando, com o tempo, torna-se necessário mudar o foco para as versões mais recentes do framework ([nosso cronograma de lançamento](https://material-ui.com/versions/#release-frequency)), enquanto essa transição ocorre para as versões mais recentes, sempre que possível, inclusões de publicação de guias de migração são feitas, como [esta para a v4](/guides/migration-v3/). A comunidade de código aberto é sempre bem-vinda para enviar novos recursos e correções de erros também.
 

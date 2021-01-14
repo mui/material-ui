@@ -143,7 +143,7 @@ O rótulo flutuante está absolutamente posicionado, não afetará o leiaute da 
 
 Campos com type="number" tem problemas potenciais de usabilidade:
 
-- Permitindo certos caracteres não numéricos ('e', '+', '-', '.') e silenciosamente descartando outros
+- Permitindo certos caracteres não numéricos ('e', '+', '-', '.') e silenciosamente descartando outros e silenciosamente descartando outros
 - A funcionalidade de rolagem para incrementar/decrementar o número, pode causar alterações acidentais difíceis de notar
 
 e muito mais - consulte [este artigo](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) da equipe GOV.UK Design System para obter uma explicação mais detalhada.

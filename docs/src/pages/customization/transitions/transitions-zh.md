@@ -18,7 +18,7 @@
 
 #### 返回结果
 
-`transition`：CSS 的过渡动画（transition ）值，它包含了所有需要应用其过渡动画的 CSS 属性，也包含了所定义的持续时间、缓动效果和作用延迟。
+`
 
 使用 <code>theme.transitions.create()</code> 助手来为你的 UI 元素创建一致的过渡动画。</p>
 

@@ -20,7 +20,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Botones contenidos
+## Contained buttons
 
 Los [Botones contenidos](https://material.io/design/components/buttons.html#contained-button) son de alto énfasis, distinguidos por el uso de elevación y relleno. Contienen acciones que son primarias para la aplicación.
 
@@ -30,7 +30,7 @@ Se puede eliminar la elevación con la prop `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Botones de texto
+## Text buttons
 
 En las tarjetas, los botones de texto ayudan a mantener un énfasis en el contenido de la tarjeta.
 
@@ -41,7 +41,7 @@ En las tarjetas, los botones de texto ayudan a mantener un énfasis en el conten
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-## Botones con Contorno
+## Outlined buttons
 
 [Botones con contorno (outlined)](https://material.io/design/components/buttons.html#outlined-button) son de énfasis medio. They contain actions that are important, but aren't the primary action in an app.
 
@@ -71,11 +71,11 @@ Botones más grandes o más pequeños? Usa la propiedad `size`.
 
 ## Botones con iconos y títulos
 
-Tal vez se necesita tener iconos para un botón en particular para mejorar la experiencia del usuario de la aplicación porque se reconocen más fácilmente los logos que el texto. Por ejemplo, si se crea un botón para borrar se le puede poner un icono de papelera.
+Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. Por ejemplo, si se crea un botón para borrar se le puede poner un icono de papelera.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Botones con Iconos
+## Icon button
 
 Los botones de iconos suelen encontrarse en las barras de aplicaciones y las barras de herramientas.
 
@@ -101,9 +101,9 @@ Toggle the switch to see the transition between the different states.
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
-## Botones Complejos
+## Complex buttons
 
-Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y los Botones con Iconos se construyen sobre el mismo componente: el `ButtonBase`. Se puede sacar partido de este componente básico para construir interacciones personalizadas.
+Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y los Botones con Iconos se construyen sobre el mismo componente: el `ButtonBase`. You can take advantage of this lower-level component to build custom interactions.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
