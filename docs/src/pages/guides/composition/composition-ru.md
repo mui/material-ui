@@ -72,7 +72,7 @@ function ListItemLink(props) {
 
 The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
 
-```jsx
+```tsx
 import { Link } from 'react-router-dom';
 
 function ListItemLink(props) {
