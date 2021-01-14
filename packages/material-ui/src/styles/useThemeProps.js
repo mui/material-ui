@@ -1,11 +1,10 @@
 import { getThemeProps } from '@material-ui/styles';
 import useTheme from './useTheme';
-import defaultTheme from './defaultTheme';
 
 export default function useThemeProps({ props: inputProps, name }) {
   const props = { ...inputProps };
 
-  const contextTheme = useTheme() || defaultTheme;
+  const contextTheme = useTheme();
 
   const more = getThemeProps({ theme: contextTheme, name, props });
 
