@@ -12,6 +12,7 @@ export default function requirePropFactory(componentNameInError, Component) {
   ) => {
     const propFullNameSafe = propFullName || propName;
 
+    // eslint-disable-next-line react/forbid-foreign-prop-types
     const defaultTypeChecker = Component?.propTypes?.[propFullNameSafe];
     let defaultTypeCheckerResult = null;
 
