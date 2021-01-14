@@ -2,7 +2,7 @@
 
 <p class="description">您是第一次接触 Material-UI 吗? 如果你知道从哪里开始，就很容易学会！ 而接下来的教程将帮助你快速入门。</p>
 
-学习 Material-UI 的开发者来自于不同的背景，也使用着不同的学习方法。 Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful. 与任何新技术一样，Material-UI 的确有一个学习曲线。 有了练习和耐心，你很快就会掌握其中的诀窍。
+学习 Material-UI 的开发者来自于不同的背景，也使用着不同的学习方法。 Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful. 与任何新技术一样，Material-UI 的确有一个学习曲线。 与任何新技术一样，Material-UI 的确有一个学习曲线。 有了练习和耐心，你很快就会掌握其中的诀窍。
 
 ## First example
 
