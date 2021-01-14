@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-unwrap-createstyles",
   "private": true,
-  "version": "5.0.0-alpha.22",
+  "version": "5.0.0-alpha.23",
   "description": "unwraps createStyles call",
   "main": "src/index.js",
   "author": "Material-UI Team",
