@@ -114,6 +114,8 @@ const theme = createMuiTheme({
 
 如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
 
+<!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
+
 ```ts
 declare module "@material-ui/core/styles/createBreakpoints" {
   interface BreakpointOverrides {
@@ -251,7 +253,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 - `options.withTheme` (*Boolean* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
 - `options.noSSR` (_Boolean_ [optional]): 默认值为 `false`。 为了呈现服务器端渲染的协调性，我们需要将它渲染两次。 第一次什么也没渲染，第二次与子组件一起渲染。 这个双向渲染周期带有一个缺点。 UI 会有闪烁。 如果你不进行服务器端渲染，那么可以将此标志设置为 `true`。
-- `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 你可能需要使用一个启发式方法来估计客户端浏览器的屏幕宽度。 例如，你可以使用 user-agent 或 [client-hints](https://caniuse.com/#search=client%20hint)。 我们也可以在主题中使用 [`自定义属性`](/customization/theme-components/#default-props) 来设置全局的初始宽度。 为了设置 initialWidth，我们需要传递一个类似于以下结构的自定义属性：
+- `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 你可能需要使用一个启发式方法来估计客户端浏览器的屏幕宽度。 例如，你可以使用 user-agent 或 [client-hints](https://caniuse.com/#search=client%20hint)。 为了设置 initialWidth，我们需要传递一个类似于以下结构的自定义属性： 我们也可以在主题中使用 [`自定义属性`](/customization/theme-components/#default-props) 来设置全局的初始宽度。
 
 ```js
 const theme = createMuiTheme({
