@@ -112,7 +112,7 @@ const inHouseAds = [
     link: 'https://www.producthunt.com/posts/divjoy-2-0',
     img: '/static/ads-in-house/divjoy.png',
     description:
-      '<b>Create Material-UI app in minutes with Divjoy.</b> You’ll get a nice template, authentication, database integration, subscription payments, and more.',
+      '<b>Create your Material-UI app in minutes with Divjoy.</b> You’ll get a nice template, authentication, database integration, subscription payments, and more.',
   },
 ];
 
