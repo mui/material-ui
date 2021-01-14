@@ -1,4 +1,4 @@
 {
   "extends": "../../../../../tsconfig",
-  "files": ["badgeVariants.spec.ts"]
+  "files": ["badgeVariants.spec.tsx"]
 }
