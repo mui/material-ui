@@ -91,7 +91,7 @@ describe('requirePropFactory', () => {
         Test.propTypes = {
           test: mock,
         };
-    
+
         const props = {};
         const propName = 'test';
         props[propName] = true;
@@ -102,9 +102,7 @@ describe('requirePropFactory', () => {
         result(props, propName, undefined, undefined, undefined);
 
         expect(mock.callCount).to.equal(1);
-        expect(mock.args[0]).to.deep.equal(
-          [props, propName, undefined, undefined, undefined],
-        );
+        expect(mock.args[0]).to.deep.equal([props, propName, undefined, undefined, undefined]);
       });
     });
   });

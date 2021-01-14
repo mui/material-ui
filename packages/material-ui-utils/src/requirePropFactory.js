@@ -15,8 +15,14 @@ export default function requirePropFactory(componentNameInError, Component) {
     const defaultTypeChecker = Component?.propTypes?.[propFullNameSafe];
     let defaultTypeCheckerResult = null;
 
-    if(defaultTypeChecker) {
-      defaultTypeCheckerResult = defaultTypeChecker(props, propName, componentName, location, propFullName)
+    if (defaultTypeChecker) {
+      defaultTypeCheckerResult = defaultTypeChecker(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName,
+      );
     }
 
     if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
