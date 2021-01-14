@@ -1,14 +1,14 @@
 import { Theme } from './createMuiTheme';
 
-export type ThemedProps<T, Name extends keyof any> = T extends {
+export type ThemedProps<Theme, Name extends keyof any> = Theme extends {
   components: Record<Name, { defaultProps: infer Props }>;
 }
   ? Props
   : {};
 
-export interface AdditionalThemeProps<T> {
+export interface AdditionalThemeProps<Theme> {
   isRtl: boolean;
-  theme: T;
+  theme: Theme;
 }
 
 export default function useThemeProps<T = Theme, Props = {}, Name extends keyof any = any>(params: {
