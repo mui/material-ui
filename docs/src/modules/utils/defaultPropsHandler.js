@@ -53,11 +53,6 @@ function getJsdocDefaultValue(jsdoc) {
   return { value: defaultTag.description };
 }
 
-/**
- *
- * @param {import('@babel/core').NodePath} properties
- * @param {*} documentation
- */
 function getDefaultValuesFromProps(properties, documentation) {
   const { props: documentedProps } = documentation.toObject();
   const implementedProps = {};
