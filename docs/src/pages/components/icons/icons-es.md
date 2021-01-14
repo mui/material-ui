@@ -179,7 +179,7 @@ Nota: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) ya ha
 
 ## Icono (iconos de fuente)
 
-El componente `Icon` mostrará iconos de cualquier fuente compatible con ligaduras. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. Para usar un icono, simplemente se envuelve el nombre del icono (ligadura de la fuente) con el componente `Icono`, por ejemplo:
+El componente `Icon` mostrará iconos de cualquier fuente compatible con ligaduras. El componente `Icon` mostrará iconos de cualquier fuente compatible con ligaduras. Para usar un icono, simplemente se envuelve el nombre del icono (ligadura de la fuente) con el componente `Icono`, por ejemplo:
 
 ```jsx
 import Icon from '@material-ui/core/Icon';

@@ -47,6 +47,14 @@ const iOS =
 
 你可以使用 `ModalProps` 属性来确保临时抽屉不会被卸载，就像这样：
 
+If you are on a desktop, you can toggle the drawer with the "OPEN" button. If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swipe.
+
+{{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+
+### 全高导航栏
+
+你可以使用 `ModalProps` 属性来确保临时抽屉不会被卸载，就像这样：
+
 ```jsx
 <Drawer
   variant="temporary"
@@ -88,7 +96,7 @@ const iOS =
 
 永久抽屉始终可见并固定在左侧，与内容或背景位于同一高度。 他们无法被关闭。
 
-推荐在**桌面环境上默认**使用持久展开的抽屉。
+推荐在 **桌面环境上默认** 使用永久抽屉。
 
 ### 全高导航栏
 

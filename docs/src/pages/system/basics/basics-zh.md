@@ -2,7 +2,7 @@
 
 <p class="description">用于快速创建自定义设计的 CSS 工具集。</p>
 
-Material-UI comes with dozens of **ready-to-use** components in the core. 开始使用这些组件时可能会非常困难，但当涉及到通过定制设计使你的网站脱颖而出时，从这样无风格的状态开始可能更简单。 介绍该系统：
+Material-UI comes with dozens of **ready-to-use** components in the core. 开始使用这些组件时可能会非常困难，但当涉及到通过定制设计使你的网站脱颖而出时，从这样无风格的状态开始可能更简单。 开始使用这些组件时可能会非常困难，但当涉及到通过定制设计使你的网站脱颖而出时，从这样无风格的状态开始可能更简单。 介绍该系统：
 
 **系统**让你可以利用主题中所定义的值来快速构建自定义 UI 组件。
 
@@ -136,11 +136,11 @@ return (
 
 用户没有必要在样式组件的用法和定义的地方不断跳转。 有了这个系统，直接就可以在你需要的组件上面进行样式定制。
 
-**2. 命名是一件很难的事情。**
+**2. 2. 命名是一件很难的事情。**
 
 你有没有发现自己在为一个样式组件找一个好名字而苦恼？ 该系统可以直接将样式映射到元素。 所以你要做的就是只关心实际的样式属性。
 
-**3。 UI 中要达成一致是很困难的。 **
+**3。 UI 中要达成一致是很困难的。**
 
 当不止一个人在构建应用程序时尤其如此，因为团队成员之间必须就设计标记的选择和使用方式进行一些协调，主题结构的哪些部分应该使用哪些 CSS 属性等等。
 
@@ -150,7 +150,7 @@ return (
 
 `sx` 属性作为系统的主要部分，为了解决了这些问题，它提供了一种快速 & 简单的方式，也就是将特定 CSS 属性的正确设计标记直接应用到 React 元素中。 [上面的这个演示](#demo) 展示了如何使用它来创建一次性设计。
 
-This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。
 
 ### 何时使用？
 
@@ -170,12 +170,12 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 - 运行时会造成性能影响：
 
-  | 基准测试              | 代码片段                        | 花费时间  |
-  |:----------------- |:--------------------------- | ----- |
-  | a. 渲染 1,000 个基元   | `<div className="…">` | 100ms |
-  | b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
-  | c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
-  | d. 渲染一千个分组（Box）   | `<Box sx={…}>`        | 370ms |
+  | 基准测试                 | 代码片段                        | 花费时间  |
+  |:-------------------- |:--------------------------- | ----- |
+  | a. a. 渲染 1,000 个基元   | `<div className="…">` | 100ms |
+  | b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
+  | c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
+  | d. 渲染一千个分组（Box）      | `<Box sx={…}>`        | 370ms |
 
   _这里是可复现的 [性能测试文件夹](https://github.com/mui-org/material-ui/tree/next/benchmark/browser)。_
 
@@ -183,7 +183,7 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 ### API 权衡
 
-In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components, so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`.
+In previous versions, the system properties were supported as props on the `Box` component. In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components, so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`. Instead, all system properties are available under one prop `sx`.
 
 Additionally, having the system under one prop helps to easily differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
 
@@ -260,13 +260,13 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 如果你想要你的 CSS 属性是响应式的，那么可以使用断点速记语法。 确定断点有两种方法：
 
-#### 1. 将断点作为对象
+#### 1. 1. 将断点作为对象
 
 定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 这里又是前面的例子，使用的是对象语法。
 
 {{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 
-#### 2. 将断点作为数组
+#### 2. 自定义组件
 
 第二种选择是将你的断点沿着最小到最大来进行定义。
 
@@ -346,7 +346,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 `sx` 属性可以用于四个不同的位置：
 
-### 1. 核心组件
+### 1. 1. 核心组件
 
 所有的 Material-UI 核心组件都支持 `sx` 属性。
 
@@ -364,6 +364,6 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 const Div = styled('div')``;
 ```
 
-### 4、 使用 babel 插件的任何元素
+### 4、 4、 使用 babel 插件的任何元素
 
 等待开发 [#23220](https://github.com/mui-org/material-ui/issues/23220)。

@@ -143,6 +143,8 @@ const theme = createMuiTheme({
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
+<!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
+
 ```ts
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {

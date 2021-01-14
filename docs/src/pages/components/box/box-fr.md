@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">Le composant Box sert de composant de wrapper pour la plupart des besoins de l'utilitaire CSS.</p>
 
-Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-inclusive) qui sont exposées dans `@material-ui/system`. It's created using the `experimentalStyled()` function of `@material-ui/core/styles`.
+Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-inclusive) qui sont exposées dans `@material-ui/system`. Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-inclusive) qui sont exposées dans `@material-ui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -29,7 +29,7 @@ Le composant Box enveloppe votre composant. It creates a new DOM element, a `<di
 
 Cela fonctionne très bien quand les changements peuvent être isolés dans un nouvel élément DOM. Par exemple, vous pouvez changer la marge de cette façon.
 
-Cependant, vous devez parfois cibler l'élément DOM sous-jacent. For instance, you want to change the border of the Button. The Button component defines its own styles. L'héritage CSS n'aide pas. Pour contourner le problème, vous avez deux options :
+Cependant, vous devez parfois cibler l'élément DOM sous-jacent. Cependant, vous devez parfois cibler l'élément DOM sous-jacent. For instance, you want to change the border of the Button. L'héritage CSS n'aide pas. Pour contourner le problème, vous avez deux options :
 
 1. Utilisez [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
 

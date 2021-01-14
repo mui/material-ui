@@ -1,6 +1,6 @@
 # サポートされているコンポーネント
 
-<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。</p>
+<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。</p>
 
 While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, nor every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
 
@@ -44,7 +44,7 @@ While we strive to follow the guidelines where practical (applying common sense 
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)****
+- ****[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)******
 - **以下は、Material Designコンポーネントと機能のリストです。**
   - [Types:](https://material.io/design/components/lists.html#types)
     - **Single line ✓**

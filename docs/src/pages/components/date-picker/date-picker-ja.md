@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">Date pickers let the user select a date.</p>
 
-Date pickers let the user select a date. Date pickers are displayed with:
+Date pickers let the user select a date. Date pickers let the user select a date.
 
 - Dialogs on mobile
 - Text field dropdowns on desktop

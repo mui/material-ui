@@ -179,7 +179,7 @@ Nota: A biblioteca [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-mater
 
 ## Ícone (ícones de fonte)
 
-O componente `Icon` exibirá um ícone de qualquer fonte de ícone que suporte ligadura tipográfica (ligatures). Como pré-requisito, você deve incluir uma em seu projeto, como a [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web). Para usar um ícone, simplesmente coloque o nome do ícone (font ligature) com o componente `Icon`, por exemplo:
+O componente `Icon` exibirá um ícone de qualquer fonte de ícone que suporte ligadura tipográfica (ligatures). O componente `Icon` exibirá um ícone de qualquer fonte de ícone que suporte ligadura tipográfica (ligatures). Para usar um ícone, simplesmente coloque o nome do ícone (font ligature) com o componente `Icon`, por exemplo:
 
 ```jsx
 import Icon from '@material-ui/core/Icon';

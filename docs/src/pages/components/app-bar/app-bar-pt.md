@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">A barra de aplicativos exibe informações e ações relacionadas à tela atual.</p>
 
-A [barra de aplicativos superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. It's used for branding, screen titles, navigation, and actions.
+A barra de aplicativos superior fornece conteúdo e ações relacionadas à tela atual. Ela é utilizada para a identidade visual, títulos de tela, navegação e ações.
 
 Ela pode se transformar em uma barra de ações contextual ou ser utilizada como uma barra de navegação.
 
@@ -115,9 +115,9 @@ Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao top
 
 1. `options` (_Object_ [opcional]):
 
-   - `options.disableHysteresis` (*Boolean* [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor de `trigger`.
-   - `options.target` (*Node* [opcional]): Padrão `window`.
-   - `options.threshold` (*Number* [opcional]): Padrão `100`. Modifica o valor limite que aciona a `trigger` quando a barra de rolagem vertical cruzar ou chegar a este limite.
+   - `options.disableHysteresis` (_Boolean_ [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor de `trigger`.
+   - `options.target` (_Node_ [opcional]): Padrão `window`.
+   - `options.threshold` (_Number_ [opcional]): Padrão `100`. Modifica o valor limite que aciona a `trigger` quando a barra de rolagem vertical cruzar ou chegar a este limite.
 
 #### Retornos
 

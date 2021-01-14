@@ -1,8 +1,12 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the accordion details.",
+    "children": "Le contenu du composant.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details."
   },
-  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
+  "classDescriptions": {
+    "root": {
+      "description": "Styles applied to the root element."
+    }
+  }
 }

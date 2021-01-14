@@ -114,7 +114,7 @@ Indicadores de <a href="https://material.io/design/components/progress-indicator
 A animação do componente de progresso circular no IE11 é degradada. A animação do traço não está funcionando (equivalente a `disableShrink`) e a animação circular oscila. Você pode resolver o último com:
 
 ```css
-.MuiCircularProgress-indeterminate {
+. MuiCircularProgress-indeterminate {
   animation: circular-rotate 1.4s linear infinite;
 }
 

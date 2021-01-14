@@ -6,7 +6,7 @@ materialDesign: https://material.io/components/dialogs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 ---
 
-# Dialog
+# Diálogo
 
 <p class="description">Diálogos informam aos usuários sobre uma tarefa e podem conter informações críticas, exigir decisões ou envolver várias tarefas.</p>
 
@@ -41,7 +41,7 @@ Use alertas com barra de título apenas para situações de alto risco, como a p
 Se um título é necessário:
 
 - Use uma pergunta ou declaração clara com uma explicação na área de conteúdo, como "Apagar dados do USB?".
-- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
+- Evite desculpas, ambiguidade ou sentenças como "Aviso!" ou "Você tem certeza?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -94,9 +94,9 @@ function MyComponent() {
 
 ## Diálogos de confirmação
 
-Os diálogos de confirmação exigem que os usuários confirmem explicitamente suas escolhas antes que uma opção seja confirmada. For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
+Os diálogos de confirmação exigem que os usuários confirmem explicitamente suas escolhas antes que uma opção seja confirmada. Por exemplo, os usuários podem ouvir vários toques, mas apenas fazer uma seleção final ao tocar em "OK".
 
-Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+Tocar em "Cancelar" em um diálogo de confirmação ou pressionar Voltar, cancela a ação, descarta todas as alterações e fecha o diálogo.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 

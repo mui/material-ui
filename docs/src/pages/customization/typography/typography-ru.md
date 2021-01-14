@@ -58,9 +58,9 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
+      styleOverrides: {
         '@font-face': [raleway],
       },
     },
@@ -225,6 +225,8 @@ const theme = createMuiTheme({
 > If you aren't using TypeScript you should skip this step.
 
 You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
+
+<!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
 
 ```ts
 declare module '@material-ui/core/styles/createTypography' {

@@ -161,6 +161,7 @@ function handleRender(req, res) {
 }
 }
 }
+}
 ```
 
 {{"demo": "pages/components/use-media-query/ServerSide.js", "defaultCodeOpen": false}}

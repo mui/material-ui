@@ -23,13 +23,7 @@
       "default": "'rectangular'"
     },
     "showZero": { "type": { "name": "bool" } },
-    "variant": {
-      "type": {
-        "name": "union",
-        "description": "'dot'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
-      },
-      "default": "'standard'"
-    }
+    "variant": { "type": { "name": "string" }, "default": "'standard'" }
   },
   "name": "BadgeUnstyled",
   "styles": {

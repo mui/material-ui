@@ -24,19 +24,19 @@ packageName: '@material-ui/lab'
 
 ⚠️ Поддержка нативных типов полей ввода [не идеальна](https://caniuse.com/#feat=input-datetime).
 
-### Выбор даты
+### Date picker
 
 A native datepicker example with `type="date"`.
 
 {{"demo": "pages/components/pickers/DatePickers.js"}}
 
-### Поля выбора даты & времени
+### Date & Time picker
 
 Нативное поля выбора даты и времени с помощью `type="datetime-local"`.
 
 {{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
-### Поля выбора времени
+### Time picker
 
 Нативное поле выбора времени с помощью `type="time"`.
 

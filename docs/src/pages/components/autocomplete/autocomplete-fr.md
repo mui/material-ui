@@ -66,7 +66,7 @@ Choisissez l'un des 248 pays.
 
 Le composant a deux états qui peuvent être contrôlés :
 
-1. l'état "valeur" avec la combinaison `valeur`/`onChange` props. Cet état représente la valeur sélectionnée par l'utilisateur, par exemple en appuyant sur <kbd>Enter</kbd>.
+1. l'état "valeur" avec la combinaison `valeur`/`onChange` props. Cet état représente la valeur sélectionnée par l'utilisateur, par exemple en appuyant sur <kbd class="key">Enter</kbd>.
 2. l'état "input value" avec la combinaison `inputValue`/`onInputChange`. Cet état représente la valeur affichée dans la zone de texte.
 
 > ⚠ Ces deux états sont isolés, ils doivent être contrôlés de manière indépendante.
@@ -89,7 +89,7 @@ Si vous avez l'intention d'utiliser ce mode pour une [combo box](#combo-box) com
 
 - `selectOnFocus` pour aider l'utilisateur à effacer la valeur sélectionnée.
 - `clearOnBlur` pour aider l'utilisateur à entrer une nouvelle valeur.
-- `handleHomeEndKeys` pour déplacer le focus à l'intérieur de la fenêtre pop-up avec les touches <kbd>Accueil</kbd> et <kbd>Fin</kbd>.
+- `handleHomeEndKeys` pour déplacer le focus à l'intérieur de la fenêtre pop-up avec les touches <kbd class="key">Accueil</kbd> et <kbd class="key">Fin</kbd>.
 - Une dernière option, par exemple `Ajouter "VOTRE RECHERCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
@@ -300,11 +300,13 @@ In addition to remembering past entered values, the browser might also propose *
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
-  inputProps={{
-        ...params.inputProps,
-        autoComplete: 'new-password',
-      }}
-      /&#062;
+  <TextField
+    {...params}
+    inputProps={{
+      ...params.inputProps,
+      autoComplete: 'new-password',
+    }}
+  />
   ```
 
 Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.

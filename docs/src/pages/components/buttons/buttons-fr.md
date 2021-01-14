@@ -20,7 +20,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Contained Buttons (boutons contenus)
+## Contained buttons
 
 [Les boutons contenus](https://material.io/design/components/buttons.html#contained-button) sont très accentués, ils se distinguent par leur utilisation de l'élévation et du remplissage. Ils contiennent des actions qui sont essentielles à votre application.
 
@@ -30,7 +30,7 @@ Vous pouvez supprimer l'élévation avec la propriété `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Boutons de texte
+## Text buttons
 
 Dans les cartes, les boutons de texte aident à maintenir l’accent sur le contenu des cartes.
 
@@ -41,7 +41,7 @@ Dans les cartes, les boutons de texte aident à maintenir l’accent sur le cont
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-## Boutons en surbrillance
+## Outlined buttons
 
 [boutons en surbrillance](https://material.io/design/components/buttons.html#outlined-button) sont des boutons à accent moyen. They contain actions that are important, but aren't the primary action in an app.
 
@@ -71,11 +71,11 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 ## Boutons avec icônes et libellés
 
-Parfois, vous pouvez avoir des icônes pour certains boutons pour améliorer l'UX de l'application car nous reconnaissons les logos plus facilement que le texte brut. Par exemple, si vous avez un bouton de suppression, vous pouvez l’étiqueter avec une icône de poubelle.
+Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. Par exemple, si vous avez un bouton de suppression, vous pouvez l’étiqueter avec une icône de poubelle.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Boutons avec icône
+## Icon button
 
 Les boutons d'icônes se trouvent généralement dans les barres d'applications et les barres d'outils.
 
@@ -101,9 +101,9 @@ Toggle the switch to see the transition between the different states.
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
-## Boutons complexes
+## Complex buttons
 
-Les boutons texte, les boutons contained, les bouton d'action flottante et les boutons icône sont tous basés sur le composant `ButtonBase`. Vous pouvez tirer parti de ce composant de niveau inférieur pour créer des interactions personnalisées.
+Les boutons texte, les boutons contained, les bouton d'action flottante et les boutons icône sont tous basés sur le composant `ButtonBase`. You can take advantage of this lower-level component to build custom interactions.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 

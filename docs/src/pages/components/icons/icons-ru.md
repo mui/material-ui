@@ -179,7 +179,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 
 ## Icon (Font icons)
 
-Компонент `Icon` отображает иконку из любого иконочного шрифта с поддержкой лигатур. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. Чтобы использовать иконку, просто оберните её имя (лигатуру шрифта) в компонент `Icon`, например:
+Компонент `Icon` отображает иконку из любого иконочного шрифта с поддержкой лигатур. Компонент `Icon` отображает иконку из любого иконочного шрифта с поддержкой лигатур. Чтобы использовать иконку, просто оберните её имя (лигатуру шрифта) в компонент `Icon`, например:
 
 ```jsx
 import Icon from '@material-ui/core/Icon';

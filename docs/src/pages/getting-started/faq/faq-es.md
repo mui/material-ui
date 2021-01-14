@@ -54,10 +54,10 @@ module.exports = {
 +     new webpack.optimize.CommonsChunkPlugin({
 +       name: "vendor",
 +       minChunks:
-      },
-    },
-  },
-});
+      Infinity,
++     }),
+    ]
+  }
 ```
 
 ## ¿Cómo puedo desactivar las transiciones globalmente?
@@ -83,11 +83,10 @@ You can go one step further by disabling all transitions and animations effects:
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      // Name of the rule
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -267,6 +266,7 @@ function handleRender(req, res) {
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.
 ```
 
@@ -301,6 +301,7 @@ function handleRender(req, res) {
 
   //…
     const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.

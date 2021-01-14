@@ -80,11 +80,10 @@ You can go one step further by disabling all transitions and animations effects:
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      // Name of the rule
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -263,6 +262,7 @@ function handleRender(req, res) {
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
 
   - // Eine Sheet Instanz erstellen.
 ```
@@ -296,6 +296,7 @@ function handleRender(req, res) {
 
     // Rendern des Komponenten als String.
     const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
 

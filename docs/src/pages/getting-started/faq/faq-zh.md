@@ -83,15 +83,12 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   components: {
-    // 组件名 ⚛️
+    // Name of the component ⚛️
     MuiCssBaseline: {
       styleOverrides: {
-        // 规则名
-        '@global': {
-          '*, *::before, *::after': {
-            transition: 'none !important',
-            animation: 'none !important',
-          },
+        '*, *::before, *::after': {
+          transition: 'none !important',
+          animation: 'none !important',
         },
       },
     },

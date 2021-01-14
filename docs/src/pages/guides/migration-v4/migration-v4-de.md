@@ -68,13 +68,13 @@ Support for non-ref-forwarding class components in the `component` prop or as im
 The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migration from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
 
 ```jsx
-import * as React from 'react';
+Now you can override Material-UI's styles. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
-      {/* Your component tree. Now you can override Material-UI's styles. */}
+      {/* Your component tree. */}
     </StylesProvider>
   );
 }
@@ -95,7 +95,13 @@ const cache = createCache({
 export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Your component tree. Now you can override Material-UI's styles. */}
+      {/* Your component tree. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. */}
     </CacheProvider>
   );
 }
@@ -206,11 +212,11 @@ The following changes are supported by the adapter.
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
--  props: {
--    MuiButton: {
--      disableRipple: true,
--    },
--  },
+- props: {
+- MuiButton: {
+- disableRipple: true,
+- },
+- },
 +  components: {
 +    MuiButton: {
 +      defaultProps: {
@@ -227,11 +233,11 @@ const theme = createMuiTheme({
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
--  overrides: {
--    MuiButton: {
--      root: { padding: 0 },
--    },
--  },
+- overrides: {
+- MuiButton: {
+- root: { padding: 0 },
+- },
+- },
 +  components: {
 +    MuiButton: {
 +      styleOverrides: {
@@ -251,7 +257,7 @@ const theme = createMuiTheme({
 + import { alpha } from '@material-ui/core/styles';
 
 const classes = makeStyles(theme => ({
--  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+- backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
 +  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
 }));
 ```
@@ -306,7 +312,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```diff
   <Autocomplete
   - renderOption={(option, { selected }) => (
-  -   <React.Fragment>
+  - <React.Fragment>
   + renderOption={(props, option, { selected }) => (
   +   <li {...props}>
         <Checkbox
@@ -316,7 +322,7 @@ As the core components use emotion as a styled engine, the props used by emotion
           checked={selected}
         />
         {option.title}
-  -   </React.Fragment>
+  - </React.Fragment>
   +   </li>
     )}
   />
@@ -474,6 +480,24 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ###  CssBaseline
 
+- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it.
+
+  ```diff
+  const theme = createMuiTheme({
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+  -       '@global': {
+            html: {
+              WebkitFontSmoothing: 'auto',
+            },
+  -       },
+        },
+      },
+    },
+  });
+  ```
+
 - The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`). To return to the previous size, you can override it in the theme:
 
   ```js
@@ -532,7 +556,9 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import { useTheme, useMediaQuery } from '@material-ui/core';
 
   function ResponsiveDialog(props) {
-  - const { fullScreen } = props;
+  -
+
+  const { fullScreen } = props;
   + const theme = useTheme();
   + const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const [open, setOpen] = React.useState(false);
@@ -650,16 +676,16 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
   -<GridList spacing={8} cellHeight={200}>
-  -  <GridListTile>
+  - <GridListTile>
   +<ImageList gap={8} rowHeight={200}>
   +  <ImageListItem>
       <img src="file.jpg" alt="Image title" />
-  -    <GridListTileBar
+  - <GridListTileBar
   +    <ImageListItemBar
         title="Title"
         subtitle="Subtitle"
       />
-  -  </GridListTile>
+  - </GridListTile>
   -</GridList>
   +  </ImageListItem>
   +</ImageList>
@@ -893,7 +919,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Snackbar
 
-- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: You can restore the previous behavior with:
+- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: You can restore the previous behavior with: You can restore the previous behavior with:
 
   ```diff
   -<Snackbar />
@@ -942,9 +968,9 @@ As the core components use emotion as a styled engine, the props used by emotion
 
   ```diff
   -<Stepper elevation={2}>
-  -  <Step>
-  -    <StepLabel>Hello world</StepLabel>
-  -  </Step>
+  - <Step>
+  - <StepLabel>Hello world</StepLabel>
+  - </Step>
   -</Stepper>
   +<Paper square elevation={2}>
   +  <Stepper>
@@ -959,9 +985,9 @@ As the core components use emotion as a styled engine, the props used by emotion
 
   ```diff
   -<Stepper>
-  -  <Step>
-  -    <StepLabel>Hello world</StepLabel>
-  -  </Step>
+  - <Step>
+  - <StepLabel>Hello world</StepLabel>
+  - </Step>
   -</Stepper>
   +<Stepper style={{ padding: 24 }}>
   +  <Step>
@@ -1056,7 +1082,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
   ```diff
   -function NumberFormatCustom(props) {
-  -  const { inputRef, onChange, ...other } = props;
+  - const { inputRef, onChange, ...other } = props;
   +const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
   +  props,
   +  ref,
@@ -1066,7 +1092,7 @@ As the core components use emotion as a styled engine, the props used by emotion
     return (
       <NumberFormat
         {...other}
-  -     getInputRef={inputRef}
+  - getInputRef={inputRef}
   +     getInputRef={ref}
   ```
 

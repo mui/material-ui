@@ -1,9 +1,9 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "The content of the button.",
+    "children": "Le contenu du composant.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "disabled": "If <code>true</code>, the button is disabled.",
+    "disabled": "If <code>true</code>, the accordion is displayed in a disabled state.",
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>focusVisibleClassName</code>.",
     "selected": "If <code>true</code>, the button is rendered in an active state.",
@@ -11,22 +11,31 @@
     "value": "The value to associate with the button when selected in a ToggleButtonGroup."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
     "disabled": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "selected": {
-      "description": "Pseudo-class applied to the root element if {{conditions}}.",
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },
-    "label": { "description": "Styles applied to the `label` wrapper element." },
+    "label": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the `label` wrapper element"
+    },
     "sizeSmall": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "sizeLarge": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"large\"</code>"
     }
   }

@@ -2,7 +2,7 @@
 
 <p class="description">Material-UIは初めてですか？ 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。</p>
 
-Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful. 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
+Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful. 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
 
 ## First example
 

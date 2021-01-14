@@ -8,7 +8,7 @@ githubLabel: 'component: Skeleton'
 
 <p class="description">データがロードされる前にコンテンツのプレースホルダープレビューを表示して、ロード時のフラストレーションを軽減します。</p>
 
-コンポーネントのデータがすぐに利用できない場合があります。 You can improve the perceived responsiveness of the page by using skeletons. すぐに物事が発生しているように感じ、情報が画面に徐々に表示されます（Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+コンポーネントのデータがすぐに利用できない場合があります。 コンポーネントのデータがすぐに利用できない場合があります。 すぐに物事が発生しているように感じ、情報が画面に徐々に表示されます（Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

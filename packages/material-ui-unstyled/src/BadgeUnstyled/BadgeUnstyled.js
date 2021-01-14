@@ -198,10 +198,7 @@ BadgeUnstyled.propTypes = {
    * The variant to use.
    * @default 'standard'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['dot', 'standard']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes.string,
 };
 
 export default BadgeUnstyled;

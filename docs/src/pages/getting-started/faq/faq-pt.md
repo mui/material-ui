@@ -80,11 +80,10 @@ Você pode ir além, desabilitando todas as transições e efeitos de animaçõe
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  overrides: {
-    // Nome do componente ⚛️
+  components: {
+    // Name of the component ⚛️
     MuiCssBaseline: {
-      // Nome da regra
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -275,7 +274,7 @@ O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de
 
   ```diff
   - // Crie um novo gerador de nome de classe.
-  - // Crie um novo gerador de nome de classe.
+  -// Crie uma instância de sheets.
   -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {

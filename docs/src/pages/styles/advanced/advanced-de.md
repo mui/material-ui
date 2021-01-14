@@ -93,25 +93,24 @@ Das innere Theme ** überschreibt** das äußere Theme. Sie können das äußere
 Die `makeStyle` (Hook-Generator) und `withStyles` (HOC) APIs ermöglichen die Erstellung mehrerer Stilregeln pro Stylesheet. Jede Stilregel hat einen eigenen Klassennamen. Die Klassennamen werden der Komponente mit der `classes` Variable zur Verfügung gestellt. Dies ist besonders nützlich, wenn Sie verschachtelte Elemente in einer Komponente formatieren.
 
 ```jsx
-// Ein Stylesheet
+// A style sheet
 const useStyles = makeStyles({
-  root: {}, // eine Stil Regel
-  label: {}, // eine verschachtelte Regel
+  root: {}, // a style rule
+  label: {}, // a nested style rule
 });
 
 function Nested(props) {
   const classes = useStyles();
   return (
-    <button className={classes.root}> // 'jss1'
-      <span className={classes.label}> // 'jss2'
-        verschachtelt
-      </span>
+    <button className={classes.root}>
+      {/* 'jss1' */}
+      <span className={classes.label}>{/* 'jss2' nested */}</span>
     </button>
   );
 }
 
 function Parent() {
-  return <Nested />
+  return <Nested />;
 }
 ```
 
@@ -127,14 +126,12 @@ const Nested = withStyles({
   label: {}, // a nested style rule
 })(({ classes }) => (
   <button className={classes.root}>
-    <span className={classes.label}> // 'jss2 my-label'
-      Nested
-    </span>
+    <span className={classes.label}>{/* 'jss2 my-label' Nested*/}</span>
   </button>
 ));
 
 function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
+  return <Nested classes={{ label: 'my-label' }} />;
 }
 ```
 
@@ -152,15 +149,13 @@ function Nested(props) {
   const classes = useStyles(props);
   return (
     <button className={classes.root}>
-      <span className={classes.label}> // 'jss2 my-label'
-        nested
-      </span>
+      <span className={classes.label}>{/* 'jss2 my-label' nested */}</span>
     </button>
   );
 }
 
 function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
+  return <Nested classes={{ label: 'my-label' }} />;
 }
 ```
 
@@ -183,18 +178,14 @@ Selbstverständlich können Sie weitere Plugins benutzen. Hier ist ein Beispiel 
 ```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import rtl from 'jss-rtl';
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>...</StylesProvider>;
 }
 ```
 
@@ -234,16 +225,8 @@ Der `StylesProvider` Komponente hat eine `injectFirst` Eigenschaft, um **zuerst*
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      */}
-</StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree. */}
-</StylesProvider>
-      Now, you can override Material-UI's styles.
+<StylesProvider injectFirst>{/* Your component tree.
+      Styled components can override Material-UI's styles. */}</StylesProvider>;
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -272,19 +255,18 @@ export default function MyComponent() {
   const classesBase = useStylesBase();
 
   // Order doesn't matter
-  const className = clsx(classes.root, classesBase.root)
+  const className = clsx(classes.root, classesBase.root);
 
   // color: red 🔴 wins.
-  Sie müssen die <code>Klassen</code> Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben.
+  return <div className={className} />;
+}
 ```
- Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben.
-</code>
 
 Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben.
 
 ### insertionPoint
 
-### insertionPoint ### insertionPoint ### insertionPoint JSS \[bietet einen Mechanismus\](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) um diese Situation zu kontrollieren. Durch Hinzufügen der Platzierung des `Einfügepunkts` innerhalb Ihres HTML-Heads können Sie die \[Reihenfolge steuern\](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order), sodass die CSS-Regeln auf Ihre Komponenten angewendet werden.
+### insertionPoint ### insertionPoint ### insertionPoint ### insertionPoint JSS \[bietet einen Mechanismus\](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) um diese Situation zu kontrollieren. Durch Hinzufügen der Platzierung des `Einfügepunkts` innerhalb Ihres HTML-Heads können Sie die \[Reihenfolge steuern\](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order), sodass die CSS-Regeln auf Ihre Komponenten angewendet werden.
 
 #### HTML-Kommentar
 
@@ -292,7 +274,7 @@ In diesem Beispiel wird ein Html-String zurückgegeben und die erforderliche kri
 
 ```html
 <head>
-  <noscript id="jss-insertion-point" />
+  <!-- jss-insertion-point -->
   <link href="..." />
 </head>
 ```
@@ -300,16 +282,10 @@ In diesem Beispiel wird ein Html-String zurückgegeben und die erforderliche kri
 ```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
 
 const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
-});
-
-export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -324,26 +300,19 @@ The way that you do this is by passing a `<meta property="csp-nonce" content={no
 
 ```jsx
 <head>
-  <!-- jss-insertion-point -->
-  <link href="...">
-</head> />
+  <noscript id="jss-insertion-point" />
+  <link href="..." />
 </head>
 ```
 
 ```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
 
 const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
-});
-
-export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
-  insertionPoint: 'jss-insertion-point',
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
 export default function App() {
@@ -354,9 +323,6 @@ export default function App() {
 #### JS createComment
 
 codesandbox.io verhindert Zugriff auf das `<head>` Element. Um dieses Problem zu umgehen, können Sie die JavaScript `document.createComment()` API verwenden:
-
-```jsx
-</code>
 
 ```jsx
 import { create } from 'jss';
@@ -470,19 +436,10 @@ Die generierten Klassennamen der `@material-ui/core` Komponenten verhalten sich 
 Diese Bedingungen werden bei den häufigsten Anwendungsfällen von `@material-ui/core` erfüllt. Zum Beispiel dieses Stylesheet:
 
 ```jsx
-const useStyles = makeStyles({
-  root: { /* … */ },
-  label: { /* … */ },
-  outlined: {
-    /* … */
-    '&$disabled': { /* … */ },
-  },
-  outlinedPrimary: {
-    /* … */
-    '&:hover': { /* … */ },
-  },
-  disabled: {},
-}, { name: 'MuiButton' }); */
+const useStyles = makeStyles(
+  {
+    root: {
+      /* … */
     },
     label: {
       /* … */
@@ -515,12 +472,10 @@ generiert die folgenden Klassennamen, die Sie überschreiben können:
   /* … */
 }
 .MuiButton-outlined {
-  /* … .MuiButton-root { /* … */ }
-.MuiButton-label { /* … */ }
-.MuiButton-outlined { /* … */ }
-.MuiButton-outlined.Mui-disabled { /* … */ }
-.MuiButton-outlinedPrimary: { /* … */ }
-.MuiButton-outlinedPrimary:hover { /* … */ } */
+  /* … */
+}
+.MuiButton-outlined.Mui-disabled {
+  /* … */
 }
 .muibutton-outlinedprimary: {
   /* … */

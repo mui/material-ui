@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">Boxコンポーネントは、CSSユーティリティーのほとんどのニーズに対応するラッパーコンポーネントとして機能します</p>
 
-Boxコンポーネントは、`@material-ui/system`で公開される[すべてのスタイル関数](/system/basics/#all-inclusive) をパッケージ化します。 It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`. `@material-ui/core/styles`の`experimentalStyled()` を利用しているコンポーネントです。
+Boxコンポーネントは、`@material-ui/system`で公開される[すべてのスタイル関数](/system/basics/#all-inclusive) をパッケージ化します。 It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
 
 [The palette](/system/palette/) style関数。
 
@@ -27,7 +27,7 @@ The Box componentは、コンポーネントをラップします。 新しいDO
 
 {{"demo": "pages/components/box/BoxComponent.js", "defaultCodeOpen": true }}
 
-これは、新しいDOM要素に分離する変更の場合に非常に有効です。 たとえば、この方法で余白を変更できます。 たとえば、この方法で余白を変更できます。 たとえば、この方法で余白を変更できます。 たとえば、この方法で余白を変更できます。
+これは、新しいDOM要素に分離する変更の場合に非常に有効です。 たとえば、この方法で余白を変更できます。 たとえば、この方法で余白を変更できます。 たとえば、この方法で余白を変更できます。 たとえば、この方法で余白を変更できます。 たとえば、この方法で余白を変更できます。
 
 ただし、場合によっては基礎となるDOM要素をターゲットにする必要があります。 For instance, you want to change the border of the Button. The Button component defines its own styles. CSS継承は役に立ちません。 この問題を回避するには、次の2つの方法があります。
 

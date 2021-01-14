@@ -68,13 +68,13 @@ O suporte para componentes de classe, sem o encaminhamento de refs, na proprieda
 The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migration from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
 
 ```jsx
-import * as React from 'react';
+Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
-      {/* Your component tree. Agora você pode sobrescrever os estilos do Material-UI. */}
+      {/* Your component tree. */}
     </StylesProvider>
   );
 }
@@ -95,7 +95,13 @@ const cache = createCache({
 export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. Agora você pode sobrescrever os estilos do Material-UI. */}
+      {/* Sua árvore de componentes. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. */}
     </CacheProvider>
   );
 }
@@ -306,7 +312,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```diff
   <Autocomplete
   - renderOption={(option, { selected }) => (
-  -   <React.Fragment>
+  -   <React. Fragment>
   + renderOption={(props, option, { selected }) => (
   +   <li {...props}>
         <Checkbox
@@ -316,10 +322,7 @@ As the core components use emotion as a styled engine, the props used by emotion
           checked={selected}
         />
         {option.title}
-  -   </React.Fragment>
-  +   </li>
-    )}
-  />
+  -   </React.
   ```
 
 - Renomeie a propriedade `closeIcon` com `clearIcon` para evitar confusão.
@@ -473,6 +476,24 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```
 
 ###  CssBaseline
+
+- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it.
+
+  ```diff
+  const theme = createMuiTheme({
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+  -       '@global': {
+            html: {
+              WebkitFontSmoothing: 'auto',
+            },
+  -       },
+        },
+      },
+    },
+  });
+  ```
 
 - The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`). To return to the previous size, you can override it in the theme:
 
@@ -838,31 +859,26 @@ As the core components use emotion as a styled engine, the props used by emotion
 ### RootRef
 
 - Este componente foi removido. Você pode obter uma referência para o nó DOM subjacente dos nossos componentes através da propriedade  `ref`. The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which isdeprecated in `React.
-<pre><code class="diff">  -<RootRef rootRef={ref}>
+
+  ```diff
+  -<RootRef rootRef={ref}>
   -  <Button />
   -</RootRef>
   +<Button ref={ref} />
-`</pre></li> </ul> 
-  
-  
+  ```
 
 ### Skeleton
 
-- Mova o componente do lab para o core. O componente agora é estável. 
-  
-  
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import Skeleton from '@material-ui/lab/Skeleton';
   +import Skeleton from '@material-ui/core/Skeleton';
   ```
 
+  Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
 
-Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
-
-- Renomeie `circle` para `circular` e `rect` para `rectangular` por uma questão de consistência. Os valores possíveis devem ser adjetivos e não substantivos: 
-  
-  
+- Renomeie `circle` para `circular` e `rect` para `rectangular` por uma questão de consistência. Os valores possíveis devem ser adjetivos e não substantivos:
 
   ```diff
   -<Skeleton variant="circle" />
@@ -873,58 +889,39 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   +<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
   ```
 
-
-
-
 ### Slider
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`. 
-  
-  
+- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`.
 
   ```diff
   -<Slider onChange={(event: React. ChangeEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React. SyntheticEvent, value: unknown) => {}} />
   ```
 
-
-- A propriedade `ValueLabelComponent` agora faz parte da propriedade `components`. 
-  
-  
+- A propriedade `ValueLabelComponent` agora faz parte da propriedade `components`.
 
   ```diff
   -<Slider ValueLabelComponent={CustomValueLabel} />
   +<Slider components={{ ValueLabel: CustomValueLabel }} />
   ```
 
-
-- A propriedade `ThumbComponent` agora faz parte da propriedade `components`. 
-  
-  
+- A propriedade `ThumbComponent` agora faz parte da propriedade `components`.
 
   ```diff
   -<Slider ThumbComponent={CustomThumb} />
   +<Slider components={{ Thumb: CustomThumb }} />
   ```
 
-
-
-
 ### Snackbar
 
-- A notificação agora é exibida na parte inferior esquerda em telas grandes. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: Você pode reproduzir o comportamento anterior com: 
-  
-  
+- A notificação agora é exibida na parte inferior esquerda em telas grandes. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: Você pode reproduzir o comportamento anterior com: Você pode reproduzir o comportamento anterior com:
 
   ```diff
   -<Snackbar />
   +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
 
-
-- As propriedades de transição onE\* foram removidas. Em vez disso, use TransitionProps. 
-  
-  
+- As propriedades de transição onE\* foram removidas. Em vez disso, use TransitionProps.
 
   ```diff
   <Snackbar
@@ -945,14 +942,9 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   />
   ```
 
-
-
-
 ### SpeedDial
 
-- Mova o componente do lab para o core. O componente agora é estável. 
-  
-  
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -963,16 +955,11 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
 
-
-Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
-
-
+  Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
 
 ### Assistente
 
-- O componente raiz (Paper) foi substituído por um div. Stepper não tem mais elevação, nem herda as propriedades de Paper. Esta alteração destina-se a incentivar a composição. 
-  
-  
+- O componente raiz (Paper) foi substituído por um div. Stepper não tem mais elevação, nem herda as propriedades de Paper. Esta alteração destina-se a incentivar a composição.
 
   ```diff
   -<Stepper elevation={2}>
@@ -989,10 +976,7 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   +<Paper>
   ```
 
-
-- Remova o padding automático de 24px. 
-  
-  
+- Remova o padding automático de 24px.
 
   ```diff
   -<Stepper>
@@ -1007,13 +991,9 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   +</Stepper>
   ```
 
-
-
-
 ### SvgIcon
 
-- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed: 
-  
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
 
   ```diff
   -<SvgIcon fontSize="default">
@@ -1022,14 +1002,9 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   </SvgIcon>
   ```
 
-
-
-
 ### Table
 
-- A customização dos rótulos das ações da paginação da tabela deve ser feita com a propriedade `getItemAriaLabel`. Isso aumenta a consistência com o componente `Paginação`. 
-  
-  
+- A customização dos rótulos das ações da paginação da tabela deve ser feita com a propriedade `getItemAriaLabel`. Isso aumenta a consistência com o componente `Paginação`.
 
   ```diff
   <TablePagination
@@ -1038,10 +1013,7 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   + getItemAriaLabel={…}
   ```
 
-
-- Renomeie `onChangeRowsPerPage` para `onRowsPerPageChange` e `onChangePage` para `onPageChange` por questões de consistência da API. 
-  
-  
+- Renomeie `onChangeRowsPerPage` para `onRowsPerPageChange` e `onChangePage` para `onPageChange` por questões de consistência da API.
 
   ```diff
   <TablePagination
@@ -1051,26 +1023,19 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   + onPageChange={()=>{}}
   ```
 
-
-
-
 ### Abas
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`. 
-  
-  
+- TypeScript: The `event` in `onChange` is no longer typed as a `React. ChangeEvent` but `React. SyntheticEvent`.
 
   ```diff
   -<Tabs onChange={(event: React. ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React. SyntheticEvent, value: unknown) => {}} />
   ```
 
-
 - A API que controla os botões de rolagem foi dividida em duas propriedades.
-  
-    - A propriedade `scrollButtons` controla quando os botões de rolagem são exibidos dependendo do espaço disponível.
-  - A propriedade `allowScrollButtonsMobile` remove a consulta de mídia CSS que oculta sistematicamente os botões de rolagem no celular. 
-    
+
+  - A propriedade `scrollButtons` controla quando os botões de rolagem são exibidos dependendo do espaço disponível.
+  - A propriedade `allowScrollButtonsMobile` remove a consulta de mídia CSS que oculta sistematicamente os botões de rolagem no celular.
 
   ```diff
   -<Tabs scrollButtons="on" />
@@ -1081,13 +1046,9 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   +<Tabs scrollButtons={false} />
   ```
 
-
-
-
 ### TextField
 
-- Altere a variante padrão de `standard` para `outlined`. O padrão foi removido da Diretrizes do Material Design. 
-  
+- Altere a variante padrão de `standard` para `outlined`. O padrão foi removido da Diretrizes do Material Design.
 
   ```diff
   -<TextField value="Standard" />
@@ -1096,32 +1057,23 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   +<TextField value="Outlined" />
   ```
 
+Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
 
-[Este codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#textfield-variant-prop) atualizará automaticamente seu código.
-
-- Renomeie a propriedade `rowsMax` para `maxRows` por questão de consistência com atributos HTML. 
-  
-  
+- Renomeie a propriedade `rowsMax` para `maxRows` por questão de consistência com atributos HTML.
 
   ```diff
   -<TextField rowsMax={6}>
   +<TextField maxRows={6}>
   ```
 
-
-- Melhor isolar o comportamento fixo de altura do textarea para o dinâmico. Você precisa usar a propriedade `minRows` da seguinte forma: 
-  
-  
+- Melhor isolar o comportamento fixo de altura do textarea para o dinâmico. Você precisa usar a propriedade `minRows` da seguinte forma:
 
   ```diff
   -<TextField rows={2} maxRows={5} />
   +<TextField minRows={2} maxRows={5} />
   ```
 
-
-- Altere o que é esperado no encaminhamento de ref no componente customizado `inputComponent`. O componente deve encaminhar a propriedade `ref` em vez da propriedade `inputRef`. 
-  
-  
+- Altere o que é esperado no encaminhamento de ref no componente customizado `inputComponent`. O componente deve encaminhar a propriedade `ref` em vez da propriedade `inputRef`.
 
   ```diff
   -function NumberFormatCustom(props) {
@@ -1139,58 +1091,39 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   +     getInputRef={ref}
   ```
 
-
-- Renomeie as classes `marginDense` e `inputMarginDense` para `sizeSmall` e `inputSizeSmall` para corresponder com a propriedade. 
-  
-  
+- Renomeie as classes `marginDense` e `inputMarginDense` para `sizeSmall` e `inputSizeSmall` para corresponder com a propriedade.
 
   ```diff
   -<Input margin="dense" />
   +<Input size="small" />
   ```
 
-
-
-
 ### TextareaAutosize
 
-- Remova a propriedade `rows`, use `minRows` em vez disso. Esta alteração visa esclarecer o comportamento da propriedade. 
-  
-  
+- Remova a propriedade `rows`, use `minRows` em vez disso. Esta alteração visa esclarecer o comportamento da propriedade.
 
   ```diff
   -<TextareaAutosize rows={2} />
   +<TextareaAutosize minRows={2} />
   ```
 
-
-- Renomeie a propriedade `rowsMax` para `maxRows` por questão de consistência com atributos HTML. 
-  
-  
+- Renomeie a propriedade `rowsMax` para `maxRows` por questão de consistência com atributos HTML.
 
   ```diff
   -<TextareAutosize rowsMax={6}>
   +<TextareAutosize maxRows={6}>
   ```
 
-
-- Renomeie a propriedade `rowsMin` para `minRows` por questão de consistência com atributos HTML. 
-  
-  
+- Renomeie a propriedade `rowsMin` para `minRows` por questão de consistência com atributos HTML.
 
   ```diff
   -<TextareAutosize rowsMin={1}>
   +<TextareAutosize minRows={1}>
   ```
 
-
-
-
 ### ToggleButton
 
-- Mova o componente do lab para o core. O componente agora é estável. 
-  
-  
+- Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
   -import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -1199,18 +1132,13 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
-
-Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
-
-
+  Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
 
 ### Tooltip
 
 - Dicas agora estão interativas por padrão.
-  
-  O comportamento padrão anterior era falho, como mostra neste artigo, [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). Para refletir o novo valor padrão, a propriedade foi renomeada para `disableInteractive`. Se você quiser reproduzir o comportamento antigo (portanto não chegando ao nível AA), você pode aplicar a seguinte alteração: 
-  
-  
+
+  O comportamento padrão anterior era falho, como mostra neste artigo, [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). Para refletir o novo valor padrão, a propriedade foi renomeada para `disableInteractive`. Se você quiser reproduzir o comportamento antigo (portanto não chegando ao nível AA), você pode aplicar a seguinte alteração:
 
   ```diff
   -<Tooltip>
@@ -1221,13 +1149,9 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   +<Tooltip>
   ```
 
-
-
-
 ### Tipografia
 
-- Substitua a propriedade `srOnly` para não duplicar as capacidades do  [Sistema](https://material-ui.com/system/basics/): 
-  
+- Substitua a propriedade `srOnly` para não duplicar as capacidades do  [Sistema](https://material-ui.com/system/basics/):
 
   ```diff
   -import Typography from '@material-ui/core/Typography';
@@ -1240,14 +1164,9 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   +<Span>Create a user</Span>
   ```
 
-
-
-
 ### Sistema
 
 - Substitua a propriedade `css` para `sx` para evitar a colisão com as propriedades CSS de styled-components & emotion.
-
-
 
 ```diff
 -<Box css={{ color: 'primary.main' }} />

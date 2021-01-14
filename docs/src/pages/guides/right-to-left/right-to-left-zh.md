@@ -33,11 +33,10 @@ npm install jss-rtl
 如果你正在使用 `emotion` 或者 `styled-components`，你需要使用该插件来翻转样式： [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl)。
 
 ```sh
-npm install stylis-plugin-rtl@^1
-
+npm install stylis-plugin-rtl
 ```
 
-注意：`emotion` 和 `styled-components` 目前都兼容该插件的 v1 版本。
+**Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version.
 
 在你的项目中安装了该插件后，Material-UI 组件仍然需要通过你使用的样式引擎实例来加载它。 下面的指南讲述了如何进行加载。
 

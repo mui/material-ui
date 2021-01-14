@@ -26,7 +26,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## Customized tooltips
 
-コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -92,11 +92,9 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 ```jsx
 <Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
-      A disabled button
-    </button>
-  </span>
-</Tooltip>
+    <button disabled={disabled} style={disabled ? <Tooltip title="You don't have permission to do this">
+  <span>
+    <button disabled={disabled} style={disabled ?
 ```
 
 ## Transitions
