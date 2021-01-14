@@ -285,6 +285,7 @@ TextField.propTypes = {
   label: PropTypes.node,
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
+   * @default 'none'
    */
   margin: PropTypes.oneOf(['dense', 'none', 'normal']),
   /**

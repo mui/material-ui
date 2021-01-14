@@ -91,10 +91,6 @@ export interface BaseTextFieldProps
    */
   label?: React.ReactNode;
   /**
-   * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
-   */
-  margin?: 'none' | 'dense' | 'normal';
-  /**
    * If `true`, a `textarea` element is rendered instead of an input.
    * @default false
    */
