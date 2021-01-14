@@ -23,6 +23,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - [Textfield] Add error color for form input with secondary color (#24290) @praveenkumar-kalidass
 
 ### `@material-ui/lab@v5.0.0-alpha.23`
+
 - [DatePicker] Fix out of range month selection (#24301) @m4theushw
 - [DatePicker] Replace withDefaultProps with useThemeProps (#24309) @m4theushw
 - [DatePicker] Simplify ExtendWrapper type (#24275) @eps1lon
@@ -38,6 +39,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - [styled-engine] Add `GlobalStyles` component (#24176) @mnajdova
 
 ### Docs
+
 - [docs] Add example perfomance Stepper vertical (#24292) @vicasas
 - [docs] Change Link example from JS to TS (#24291) @vicasas
 - [docs] Do not show 'Add' if user input matches existing option (#24333) @ramdog
@@ -59,6 +61,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - [website] Improve typography theme (#24386) @oliviertassinari
 
 ### Core
+
 - [core] Create issue labeled (#24283) @xrkffgg
 - [core] Fix eslint @oliviertassinari
 - [core] Skip downloading browser binaries when building docs (#24393) @eps1lon
