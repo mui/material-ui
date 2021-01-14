@@ -19,7 +19,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - [SwipeableDrawer] Add bleeding demo (#24268) @vicasas
 - [SwipeableDrawer] Fix overflow scroll computation logic (#24225) @yann120
 - [Table] Fix "more than" translation in es-ES (#24356) @vicasas
-- [Textfield] Add error color for form input with secondary color (#24290) @praveenkumar-kalidass
+- [TextField] Fix error color for form input with secondary color (#24290) @praveenkumar-kalidass
 
 ### `@material-ui/lab@v5.0.0-alpha.23`
 
