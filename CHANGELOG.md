@@ -7,7 +7,8 @@
 Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - 📚 Only document public paths in module augmentation (#24267) @eps1lon
-- 👩‍🎤 Migrate the Paper and CssBaseline to emotion (#24397, #24176) @povilass @mnajdova 
+- 👩‍🎤 Migrate the Paper and CssBaseline to emotion (#24397, #24176) @povilass @mnajdova - we have created an issue tracking the progress with the migration to emotion - #24405. Would be great to see the community help us with converting more components.
+- 📅 Various impromenets on the picker components (#24301, #24309, #24275, #24298, #24319) @m4theushw @eps1lon @huzaima @praveenkumar-kalidass
 
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -20,6 +21,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - [SwipeableDrawer] Fix overflow scroll computation logic (#24225) @yann120
 - [Table] Fix "more than" translation in es-ES (#24356) @vicasas
 - [TextField] Fix error color for form input with secondary color (#24290) @praveenkumar-kalidass
+- [Button] Fix resolution of default props (#24253) @oliviertassinari
 
 ### `@material-ui/lab@v5.0.0-alpha.23`
 
@@ -27,11 +29,11 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - [DatePicker] Replace withDefaultProps with useThemeProps (#24309) @m4theushw
 - [DatePicker] Simplify ExtendWrapper type (#24275) @eps1lon
 - [DateRangePicker] Remove DateRangDelimiter (#24298) @huzaima
+- [DatePicker] Reduce coupling of parsing picker input value and props (#24319) @eps1lon
 - [TimePicker] Add pointer cursor for clock in desktop (#24276) @praveenkumar-kalidass
 - [lab] Drop usage of createStyles (#24158) @eps1lon
 - [lab] Fix import paths in generated declaration files (#24380) @eps1lon
 - [lab] Prevent possible null pointer in useValidation (#24318) @eps1lon
-- [lab] Reduce coupling of parsing picker input value and props (#24319) @eps1lon
 
 ### `@material-ui/styled-engine@v5.0.0-alpha.23`/`@material-ui/styled-engine-sc@v5.0.0-alpha.23`
 
@@ -78,7 +80,6 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - [test] Skip expensive GitHub actions on l10nbot commits (#24303) @eps1lon
 - [test] Test declaration files in TS nightly (#24391) @eps1lon
 - [styles] Define useThemeProps as unstable and fix TS issues (#24383) @mnajdova
-- [styles] Fix resolution of default props (#24253) @oliviertassinari
 
 ## 5.0.0-alpha.22
 
