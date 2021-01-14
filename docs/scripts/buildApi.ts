@@ -994,7 +994,10 @@ async function buildDocs(options: {
     );
 
     Object.keys(unstyledReactAPI.props).forEach((prop) => {
-      if (unstyledReactAPI.props[prop].defaultValue && (!reactApi.props[prop] || !reactApi.props[prop].defaultValue)) {
+      if (
+        unstyledReactAPI.props[prop].defaultValue &&
+        (!reactApi.props[prop] || !reactApi.props[prop].defaultValue)
+      ) {
         if (reactApi.props[prop]) {
           reactApi.props[prop].defaultValue = unstyledReactAPI.props[prop].defaultValue;
           reactApi.props[prop].jsdocDefaultValue = unstyledReactAPI.props[prop].jsdocDefaultValue;
