@@ -6,7 +6,7 @@
 
 Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- 📚 Support public paths in module augmentation (#24267) @eps1lon
+- 📚 Only document public paths in module augmentation (#24267) @eps1lon
 - 👩‍🎤 Migrate the Paper to emotion (#24397) @povilass
 
 - And many more 🐛 bug fixes and 📚 improvements.
