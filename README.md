@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[React](https://reactjs.org/) components for faster and simpler web development. Build your own design system, or start with [Material Design](https://material.io/design/introduction/).
+Quickly build beautiful [React](https://reactjs.org/) apps. Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with [Material Design](https://material.io/design/introduction/).
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui-org/material-ui/blob/master/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@material-ui/core/latest.svg)](https://www.npmjs.com/package/@material-ui/core)
