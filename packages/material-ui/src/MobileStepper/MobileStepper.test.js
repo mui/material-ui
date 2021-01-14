@@ -9,7 +9,7 @@ import {
 } from 'test/utils';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import Paper from '../Paper';
+import Paper, { paperClasses } from '../Paper';
 import Button from '../Button/Button';
 import MobileStepper from './MobileStepper';
 
@@ -47,7 +47,6 @@ describe('<MobileStepper />', () => {
 
   it('should render a Paper with 0 elevation', () => {
     const { container } = render(<MobileStepper {...defaultProps} />);
-    const paperClasses = getClasses(<Paper elevation={0} />);
     expect(container.firstChild).to.have.class(paperClasses.elevation0);
   });
 
