@@ -10,6 +10,7 @@ describe('composeClasses', () => {
           slot: ['slot'],
         },
         (slot) => `MuiTest-${slot}`,
+        undefined,
       ),
     ).to.deep.equal({
       root: 'MuiTest-root MuiTest-standard',
