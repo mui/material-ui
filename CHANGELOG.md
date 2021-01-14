@@ -8,7 +8,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 
 - 📚 Only document public paths in module augmentation (#24267) @eps1lon
 - 👩‍🎤 Migrate the Paper and CssBaseline to emotion (#24397, #24176) @povilass @mnajdova - we have created an issue tracking the progress with the migration to emotion - #24405. Would be great to see the community help us with converting more components.
-- 📅 Various impromenets on the picker components (#24301, #24309, #24275, #24298, #24319) @m4theushw @eps1lon @huzaima @praveenkumar-kalidass
+- 📅 Various improvements on the date picker components (#24301, #24309, #24275, #24298, #24319) @m4theushw @eps1lon @huzaima @praveenkumar-kalidass
 
 - And many more 🐛 bug fixes and 📚 improvements.
 
