@@ -1,5 +1,121 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.23
+
+###### _Jan 14, 2021_
+
+Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 📚 Only document public paths in module augmentation (#24267) @eps1lon
+- 👩‍🎤 Migrate the Paper and CssBaseline to emotion (#24397, #24176) @povilass @mnajdova
+
+  We have reached a point where we feel confident that the new approach should make it to v5 stable. An issue has been created to track the progress with the migration to emotion: #24405. Your contribution to this effort and the ones from the community are welcome 🙌.
+
+- 📅 Various improvements on the date picker components (#24301, #24309, #24275, #24298, #24319) @m4theushw @eps1lon @huzaima @praveenkumar-kalidass
+
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.23`/`@material-ui/unstyled@v5.0.0-alpha.23`
+
+- [Container] Fix disableGutters style not applied (#24284) @povilass
+- [Paper] Migrate to emotion (#24397) @povilass
+- [Slider] Allow mobile VO users to interact with Sliders (#23902) @CodySchaaf
+- [SwipeableDrawer] Add bleeding demo (#24268) @vicasas
+- [SwipeableDrawer] Fix overflow scroll computation logic (#24225) @yann120
+- [Table] Fix "more than" translation in es-ES (#24356) @vicasas
+- [TextField] Fix error color for form input with secondary color (#24290) @praveenkumar-kalidass
+- [Button] Fix resolution of default props (#24253) @oliviertassinari
+
+### `@material-ui/lab@v5.0.0-alpha.23`
+
+#### Breaking changes
+
+- [DateRangePicker] Remove DateRangDelimiter (#24298) @huzaima
+
+  You can migrate away from it with:
+
+  ```diff
+  diff --git a/docs/src/pages/components/date-range-picker/BasicDateRangePicker.tsx b/docs/src/pages/components/date-range-picker/BasicDateRangePicker.tsx
+  index 72a89f9a11..2742fa6811 100644
+  --- a/docs/src/pages/components/date-range-picker/BasicDateRangePicker.tsx
+  +++ b/docs/src/pages/components/date-range-picker/BasicDateRangePicker.tsx
+  @@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
+  import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
+  import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+  import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+  -import DateRangeDelimiter from '@material-ui/lab/DateRangeDelimiter';
+  +import Box from '@material-ui/core/Box';
+
+  export default function BasicDateRangePicker() {
+    const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
+  @@ -20,7 +20,7 @@ export default function BasicDateRangePicker() {
+          renderInput={(startProps, endProps) => (
+            <React.Fragment>
+              <TextField {...startProps} variant="standard" />
+  -            <DateRangeDelimiter> to </DateRangeDelimiter>
+  +            <Box sx={{ mx: 2 }}>to</Box>
+              <TextField {...endProps} variant="standard" />
+            </React.Fragment>
+          )}
+  ```
+
+#### Changes
+
+- [DatePicker] Fix out of range month selection (#24301) @m4theushw
+- [DatePicker] Replace withDefaultProps with useThemeProps (#24309) @m4theushw
+- [DatePicker] Simplify ExtendWrapper type (#24275) @eps1lon
+- [DatePicker] Reduce coupling of parsing picker input value and props (#24319) @eps1lon
+- [TimePicker] Add pointer cursor for clock in desktop (#24276) @praveenkumar-kalidass
+- [lab] Drop usage of createStyles (#24158) @eps1lon
+- [lab] Fix import paths in generated declaration files (#24380) @eps1lon
+- [lab] Prevent possible null pointer in useValidation (#24318) @eps1lon
+
+### `@material-ui/styled-engine@v5.0.0-alpha.23`/`@material-ui/styled-engine-sc@v5.0.0-alpha.23`
+
+- [styled-engine] Add `GlobalStyles` component (#24176) @mnajdova
+
+### Docs
+
+- [docs] Add example perfomance Stepper vertical (#24292) @vicasas
+- [docs] Change Link example from JS to TS (#24291) @vicasas
+- [docs] Do not show 'Add' if user input matches existing option (#24333) @ramdog
+- [docs] Focus docs search input when the shortcut is clicked (#24296) @eps1lon
+- [docs] Further template the CSS API descriptions (#24360) @mbrookes
+- [docs] Improve Next.js Link integration (#24258) @oliviertassinari
+- [docs] Misc API fixes (#24357) @mbrookes
+- [docs] Prevent kbd to wrap (#24269) @oliviertassinari
+- [docs] Simplify icon button docs (#24317) @baharalidurrani
+- [docs] Standardize some API descriptions (#24274) @mbrookes
+- [docs] Sync AppSearch.tsx with AppSearch.js (#24363) @Lagicrus
+- [docs] Update CONTRIBUTING being accepted (#24306) @vicasas
+- [docs] Update right to left compatibility plugin version (#24370) @mnajdova
+- [docs] Widen example datetime-local picker so it's not clipped (#24324) @ramdog
+- [website] Add BrandingFooter (#24095) @mnajdova
+- [website] Add Discover more (#24327) @oliviertassinari
+- [website] Add newsletter (#24322) @oliviertassinari
+- [website] Fix regressions @oliviertassinari
+- [website] Improve typography theme (#24386) @oliviertassinari
+
+### Core
+
+- [core] Create issue labeled (#24283) @xrkffgg
+- [core] Fix eslint @oliviertassinari
+- [core] Skip downloading browser binaries when building docs (#24393) @eps1lon
+- [core] Small changes (#24329) @oliviertassinari
+- [core] Support public paths in module augmentation (#24267) @eps1lon
+- [core] Update classes generation logic (#24371) @mnajdova
+- [core] Update issue mark duplicate (#24311) @xrkffgg
+- [core] Update issues helper version (#24379) @xrkffgg
+- [test] Add pipeline task for performance monitoring (#24289) @eps1lon
+- [test] Compensate for Circle CI's low performance (#24358) @oliviertassinari
+- [test] Debug expensive GH actions still runing for l10nbot (#24392) @eps1lon
+- [test] Move callback args to right side of assertion (#24366) @eps1lon
+- [test] Persist new declaration files in CI cache (#24313) @eps1lon
+- [test] Reduce download times of playwright binaries (#24364) @eps1lon
+- [test] Skip expensive GitHub actions on l10nbot commits (#24303) @eps1lon
+- [test] Test declaration files in TS nightly (#24391) @eps1lon
+- [styles] Define useThemeProps as unstable and fix TS issues (#24383) @mnajdova
+
 ## 5.0.0-alpha.22
 
 ###### _Jan 4, 2021_
