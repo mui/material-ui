@@ -102,7 +102,7 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      * The variant to use.
      * @default 'standard'
      */
-    variant?: 'standard' | 'dot';
+    variant?: string;
   };
   defaultComponent: D;
 }
