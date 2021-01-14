@@ -11,6 +11,11 @@ declare module 'react-docgen' {
   export interface BasePropTypeDescriptor {
     computed?: boolean;
     description?: string;
+    /**
+     * External props are props that are documented on the component but implemented somewhere else.
+     * For example, TextField documents `margin` but `margin` is spread to `FormControl` which actually implements `margin`.
+     */
+    external?: boolean;
     raw: string;
     required?: boolean;
     type?: PropType;

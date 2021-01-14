@@ -86,14 +86,13 @@ function getDefaultValuesFromProps(properties, documentation) {
     }
 
     const propertyPath = implementedProps[propName];
-    if (propertyPath === undefined) {
-      // Make sure we don't confuse it later with a prop where the implemented default value does not match the documented one.
-      propDescriptor.defaultValue = jsdocDefaultValue;
-    } else {
+    if (propertyPath !== undefined) {
       const defaultValue = getDefaultValue(propertyPath);
       if (defaultValue) {
         propDescriptor.defaultValue = defaultValue;
       }
+    } else {
+      propDescriptor.external = true;
     }
   });
 }
