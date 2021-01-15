@@ -5,7 +5,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 // Update the Button's extendable props options
 declare module '@material-ui/core/Badge' {
   interface BadgePropsVariantOverrides {
-    dashed: true;
+    action: true;
   }
   interface BadgePropsColorOverrides {
     success: true;
@@ -18,7 +18,7 @@ const theme = createMuiTheme({
     MuiBadge: {
       variants: [
         {
-          props: { variant: 'dashed' },
+          props: { variant: 'action' },
           style: {
             border: `2px dashed grey`,
           },
@@ -34,4 +34,10 @@ const theme = createMuiTheme({
   },
 });
 
-<Badge variant="dashed" color="success" badgeContent={123} />;
+<Badge variant="action" color="success" badgeContent={123} />;
+
+// @ts-expect-error typo
+<Badge variant="Action" />;
+
+// @ts-expect-error typo
+<Badge color="Success" />;

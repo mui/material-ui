@@ -5,13 +5,10 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 
 export interface ButtonPropsVariantOverrides {}
-export type ButtonVariantDefaults = Record<'text' | 'outlined' | 'contained', true>;
 
 export interface ButtonPropsColorOverrides {}
-export type ButtonColorDefaults = Record<'inherit' | 'primary' | 'secondary', true>;
 
 export interface ButtonPropsSizeOverrides {}
-export type ButtonSizeDefaults = Record<'small' | 'medium' | 'large', true>;
 
 export type ButtonTypeMap<
   P = {},
@@ -103,7 +100,10 @@ export type ButtonTypeMap<
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<ButtonColorDefaults, ButtonPropsColorOverrides>;
+    color?: OverridableStringUnion<
+      Record<'inherit' | 'primary' | 'secondary', true>,
+      ButtonPropsColorOverrides
+    >;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -138,7 +138,10 @@ export type ButtonTypeMap<
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size?: OverridableStringUnion<ButtonSizeDefaults, ButtonPropsSizeOverrides>;
+    size?: OverridableStringUnion<
+      Record<'small' | 'medium' | 'large', true>,
+      ButtonPropsSizeOverrides
+    >;
     /**
      * Element placed before the children.
      */
@@ -151,7 +154,10 @@ export type ButtonTypeMap<
      * The variant to use.
      * @default 'text'
      */
-    variant?: OverridableStringUnion<ButtonVariantDefaults, ButtonPropsVariantOverrides>;
+    variant?: OverridableStringUnion<
+      Record<'text' | 'outlined' | 'contained', true>,
+      ButtonPropsVariantOverrides
+    >;
   };
   defaultComponent: D;
 }>;
