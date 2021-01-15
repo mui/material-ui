@@ -1,5 +1,5 @@
 ---
-title: React 卡片组件
+title: React Card（卡片）组件
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
@@ -25,7 +25,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 ## 复杂的交互情况
 
-在桌面上，卡片内容是可以展开的。 （点击向下箭头的按钮来查看食谱）
+在桌面上，卡片内容是可以展开的。
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
