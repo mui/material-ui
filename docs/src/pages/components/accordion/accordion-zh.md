@@ -1,5 +1,5 @@
 ---
-title: React 扩展面板组件
+title: React Accordion （扩展面板）组件
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 ---
 
