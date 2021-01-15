@@ -225,7 +225,7 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  return composeClasses({ slots, classes, getUtilityClass: getGridUtilityClass });
+  return composeClasses(slots, getGridUtilityClass, classes);
 };
 
 const Grid = React.forwardRef(function Grid(inProps, ref) {
