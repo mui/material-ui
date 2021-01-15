@@ -30,6 +30,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@material-ui/core": "5.0.0-alpha.23",
+    "@material-ui/data-grid": "^4.0.0-alpha.15",
     "@material-ui/docs": "5.0.0-alpha.23",
     "@material-ui/icons": "5.0.0-alpha.23",
     "@material-ui/lab": "5.0.0-alpha.23",
