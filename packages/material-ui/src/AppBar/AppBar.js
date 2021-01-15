@@ -13,7 +13,7 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...styles[`position${capitalize(styleProps.color)}`],
+    ...styles[`position${capitalize(styleProps.position)}`],
     ...styles[`color${capitalize(styleProps.color)}`],
   });
 };
@@ -89,16 +89,14 @@ const AppBarRoot = experimentalStyled(
       backgroundColor: backgroundColorDefault,
       color: theme.palette.getContrastText(backgroundColorDefault),
     }),
-    /* Styles applied to the root element if `color="primary"`. */
-    ...(styleProps.color === 'primary' && {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText,
-    }),
-    /* Styles applied to the root element if `color="secondary"`. */
-    ...(styleProps.color === 'secondary' && {
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.secondary.contrastText,
-    }),
+    /* Styles applied to the root element if colors comes from palette. */
+    ...(styleProps.color &&
+      styleProps.color !== 'default' &&
+      styleProps.color !== 'inherit' &&
+      styleProps.color !== 'transparent' && {
+        backgroundColor: theme.palette[styleProps.color].main,
+        color: theme.palette[styleProps.color].contrastText,
+      }),
     /* Styles applied to the root element if `color="inherit"`. */
     ...(styleProps.color === 'inherit' && {
       color: 'inherit',
@@ -112,22 +110,17 @@ const AppBarRoot = experimentalStyled(
 });
 
 const AppBar = React.forwardRef(function AppBar(inProps, ref) {
-  const {
-    className,
-    color = 'primary',
-    position = 'fixed',
-    classes: inClasses,
-    ...other
-  } = useThemeProps({
+  const props = useThemeProps({
     props: inProps,
     name: 'MuiAppBar',
   });
+
+  const { className, color = 'primary', position = 'fixed', ...other } = props;
 
   const styleProps = {
     ...other,
     color,
     position,
-    classes: inClasses,
   };
 
   const classes = useUtilityClasses(styleProps);

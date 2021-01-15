@@ -15,7 +15,7 @@ describe('<AppBar />', () => {
     mount,
     muiName: 'MuiAppBar',
     refInstanceof: window.HTMLElement,
-    testVariantProps: { disabled: true },
+    testVariantProps: { position: 'relative' },
     testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
     skip: ['componentsProp'],
   }));

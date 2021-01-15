@@ -6,13 +6,15 @@
       "type": {
         "name": "enum",
         "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'transparent'"
-      }
+      },
+      "default": "'primary'"
     },
     "position": {
       "type": {
         "name": "enum",
         "description": "'absolute'<br>&#124;&nbsp;'fixed'<br>&#124;&nbsp;'relative'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'sticky'"
-      }
+      },
+      "default": "'fixed'"
     },
     "sx": { "type": { "name": "object" } }
   },
