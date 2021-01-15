@@ -18,7 +18,7 @@ It's important to understand that this package exposes pure (side-effect free) s
 
 ### Demo
 
-In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternatively, you can [use JSS](#interoperability). The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
+Далее в руководстве *Приступая к работе* в демонстрационных примерах мы используем **styled-components** (чтобы подчеркнуть универсальность этого пакета). Alternatively, you can [use JSS](#interoperability). В примерах также используется Material-UI [тема ](/customization/default-theme/) **по умолчанию**.
 
 {{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
