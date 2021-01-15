@@ -1,5 +1,5 @@
 ---
-title: React 警告提示组件
+title: React Alert （警告提示）组件
 components: Alert, AlertTitle
 ---
 
@@ -61,7 +61,7 @@ components: Alert, AlertTitle
 
 你可以使用消息条（Snackbar）来显示一个带警告提示组件的 [toast](/components/snackbars/#customized-snackbars) 。
 
-## Color 颜色
+## 颜色
 
 使用 `color` 属性可以覆盖不同程度提醒的默认颜色。
 
