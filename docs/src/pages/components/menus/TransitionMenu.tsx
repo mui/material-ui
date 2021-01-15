@@ -9,11 +9,11 @@ interface ButtonMenuProps {
   id: string;
   label: React.ReactNode;
   TransitionComponent: React.ElementType<CollapseProps & FadeProps>;
-  transitionInsidePaper?: boolean;
+  TransitionInnerComponent?: React.ElementType<CollapseProps & FadeProps>;
 }
 
 function ButtonMenu(props: ButtonMenuProps) {
-  const { id, label, TransitionComponent, transitionInsidePaper } = props;
+  const { id, label, TransitionComponent, TransitionInnerComponent } = props;
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -38,7 +38,7 @@ function ButtonMenu(props: ButtonMenuProps) {
         open={open}
         onClose={handleClose}
         TransitionComponent={TransitionComponent}
-        transitionInsidePaper={transitionInsidePaper}
+        TransitionInnerComponent={TransitionInnerComponent}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
@@ -54,8 +54,8 @@ export default function TransitionMenu() {
       <ButtonMenu
         id="collapse-menu"
         label="open with collapse transition"
-        TransitionComponent={Collapse}
-        transitionInsidePaper
+        TransitionComponent={Fade}
+        TransitionInnerComponent={Collapse}
       />
       <ButtonMenu
         id="fade-menu"

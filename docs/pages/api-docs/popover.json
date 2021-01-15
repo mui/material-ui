@@ -46,7 +46,8 @@
       },
       "default": "'auto'"
     },
-    "transitionInsidePaper": { "type": { "name": "bool" } },
+    "TransitionInnerComponent": { "type": { "name": "elementType" }, "default": "null" },
+    "TransitionInnerProps": { "type": { "name": "object" }, "default": "{}" },
     "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
   },
   "name": "Popover",

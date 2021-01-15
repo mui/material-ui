@@ -109,8 +109,9 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     },
     TransitionComponent = Grow,
     transitionDuration: transitionDurationProp = 'auto',
-    transitionInsidePaper,
     TransitionProps: { onEntering, ...TransitionProps } = {},
+    TransitionInnerComponent = null,
+    TransitionInnerProps = {},
     ...other
   } = props;
   const paperRef = React.useRef();
@@ -388,41 +389,33 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       className={clsx(classes.root, className)}
       {...other}
     >
-      {transitionInsidePaper ? (
+      <TransitionComponent
+        appear
+        in={open}
+        timeout={transitionDuration}
+        onEntering={handleEntering}
+        {...TransitionProps}
+      >
         <Paper
           elevation={elevation}
           ref={paperRef}
           {...PaperProps}
           className={clsx(classes.paper, PaperProps.className)}
         >
-          <TransitionComponent
-            appear
-            in={open}
-            timeout={transitionDuration}
-            onEntering={handleEntering}
-            {...TransitionProps}
-          >
-            {children}
-          </TransitionComponent>
+          {TransitionInnerComponent ? (
+            <TransitionInnerComponent
+              appear
+              in={open}
+              timeout={transitionDuration}
+              {...TransitionInnerProps}
+            >
+              {children}
+            </TransitionInnerComponent>
+          ) : (
+            children
+          )}
         </Paper>
-      ) : (
-        <TransitionComponent
-          appear
-          in={open}
-          timeout={transitionDuration}
-          onEntering={handleEntering}
-          {...TransitionProps}
-        >
-          <Paper
-            elevation={elevation}
-            ref={paperRef}
-            {...PaperProps}
-            className={clsx(classes.paper, PaperProps.className)}
-          >
-            {children}
-          </Paper>
-        </TransitionComponent>
-      )}
+      </TransitionComponent>
     </Modal>
   );
 });
@@ -610,10 +603,18 @@ Popover.propTypes = {
     }),
   ]),
   /**
-   * Set to 'true' to put the transition component inside the paper element. This is necessary
-   * for transition components that change the height of the popover (like Collapse).
+   * The component used for the transition inside the paper element.
+   * Use this for transitions (like Collapse) that modify the width/height of the popover.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default null
    */
-  transitionInsidePaper: PropTypes.bool,
+  TransitionInnerComponent: PropTypes.elementType,
+  /**
+   * Props applied to the transition element inside the paper element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * @default {}
+   */
+  TransitionInnerProps: PropTypes.object,
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.

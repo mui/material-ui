@@ -7,7 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
 
 function ButtonMenu(props) {
-  const { id, label, TransitionComponent, transitionInsidePaper } = props;
+  const { id, label, TransitionComponent, TransitionInnerComponent } = props;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -32,7 +32,7 @@ function ButtonMenu(props) {
         open={open}
         onClose={handleClose}
         TransitionComponent={TransitionComponent}
-        transitionInsidePaper={transitionInsidePaper}
+        TransitionInnerComponent={TransitionInnerComponent}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
@@ -46,7 +46,7 @@ ButtonMenu.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.node,
   TransitionComponent: PropTypes.elementType.isRequired,
-  transitionInsidePaper: PropTypes.bool,
+  TransitionInnerComponent: PropTypes.elementType,
 };
 
 export default function TransitionMenu() {
@@ -55,8 +55,8 @@ export default function TransitionMenu() {
       <ButtonMenu
         id="collapse-menu"
         label="open with collapse transition"
-        TransitionComponent={Collapse}
-        transitionInsidePaper
+        TransitionComponent={Fade}
+        TransitionInnerComponent={Collapse}
       />
       <ButtonMenu
         id="fade-menu"
