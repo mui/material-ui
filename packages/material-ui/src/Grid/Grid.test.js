@@ -98,7 +98,6 @@ describe('<Grid />', () => {
         spacing: (factor) => `${0.25 * factor}rem`,
       });
 
-<<<<<<< HEAD
       const { rerender } = render(
         <div style={{ width: parentWidth }}>
           <ThemeProvider theme={remTheme}>
@@ -111,18 +110,14 @@ describe('<Grid />', () => {
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        marginBottom: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        marginLeft: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        marginRight: `${-1 * remValue * 0.25}px`, // '-0.25rem'
+        marginTop: `${-1 * remValue * 0.5}px`, // '-0.5rem'
+        marginLeft: `${-1 * remValue * 0.5}px`, // '-0.5rem'
         width: `${parentWidth + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
       });
 
       expect(screen.getByTestId('first-custom-theme')).toHaveComputedStyle({
-        paddingTop: `${0.25 * remValue}px`, // 0.25rem
-        paddingBottom: `${0.25 * remValue}px`, // 0.25rem
-        paddingLeft: `${0.25 * remValue}px`, // 0.25rem
-        paddingRight: `${0.25 * remValue}px`, // 0.25rem
+        paddingTop: `${0.5 * remValue}px`, // 0.5rem
+        paddingLeft: `${0.5 * remValue}px`, // 0.5rem
       });
 
       rerender(
@@ -147,25 +142,6 @@ describe('<Grid />', () => {
         paddingBottom: '8px',
         paddingLeft: '8px',
         paddingRight: '8px',
-=======
-      expect(styles(remTheme)['spacing-xs-2']).to.deep.equal({
-        marginTop: '-0.5rem',
-        marginLeft: '-0.5rem',
-        width: 'calc(100% + 0.5rem)',
-        '& > $item': {
-          paddingTop: '0.5rem',
-          paddingLeft: '0.5rem',
-        },
-      });
-      expect(styles(defaultTheme)['spacing-xs-2']).to.deep.equal({
-        marginTop: '-16px',
-        marginLeft: '-16px',
-        width: 'calc(100% + 16px)',
-        '& > $item': {
-          paddingTop: '16px',
-          paddingLeft: '16px',
-        },
->>>>>>> [Grid] fix: test for gutters
       });
     });
   });
