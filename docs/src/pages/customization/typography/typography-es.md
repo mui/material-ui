@@ -56,18 +56,7 @@ Luego, usted podrá lo necesario en el cambiar el tema para usar la nueva fuente
 ```jsx
 const theme = createMuiTheme({
   typography: {
-    fontFamily: 'Raleway, Arial',
-  },
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        '@font-face': [raleway],
-      },
-    },
-  },
-});
-
-// ...
+    // Tell Material-UI what's the font-size on the html element is.
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
