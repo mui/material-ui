@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { spy } from 'sinon';
 import requirePropFactory from './requirePropFactory';
 
 describe('requirePropFactory', () => {
@@ -87,22 +87,29 @@ describe('requirePropFactory', () => {
 
       it('should chain the proptypes with the default prop types coming from the component', () => {
         const Test = () => null;
-        const mock = spy();
         Test.propTypes = {
-          test: mock,
+          test: PropTypes.string,
         };
 
         const localProps = {};
         const localPropName = 'test';
         localProps[localPropName] = true;
 
-        const localRequireProp = requirePropFactory('Test', Test);
+        const updatedPropChecker = requirePropFactory('Test', Test);
 
-        const result = localRequireProp('otherProp');
-        result(localProps, localPropName, undefined, undefined, undefined);
-
-        expect(mock.callCount).to.equal(1);
-        expect(mock.args[0]).to.deep.equal([localProps, localPropName, undefined, undefined, undefined]);
+        expect(() => {
+          PropTypes.checkPropTypes(
+            {
+              [localPropName]: updatedPropChecker('otherProp'),
+            }, 
+            localProps,
+            'prop',
+            'Test'
+          );
+        }).toErrorDev([
+          'Warning: Failed prop type: Invalid prop `test` of type `boolean` supplied to `Test`, expected `string`.',
+          'Warning: Failed prop type: The prop `test` of `Test` can only be used together with the `otherProp` prop.'
+        ]);
       });
     });
   });
