@@ -3,7 +3,7 @@ title: React Button component
 components: Button, IconButton, ButtonBase
 ---
 
-# Button (botón)
+# Botón
 
 <p class="description">Los botones permiten a los usuarios ejecutar acciones, y tomar decisiones, con un simple toque.</p>
 
@@ -44,12 +44,12 @@ Los botones delineados también son una alternativa de menos énfasis que los bo
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Handling clicks
+## Controlador del click
 
 Todos los componentes aceptan un controlador `onClick` el cual se aplica al elemento raíz en el DOM.
 
 ```jsx
-<Button onClick={() => { alert('clicked') }}>Click me</Button>
+<Button onClick={() => { alert('pulsado') }}>Hazme click</Button>
 ```
 
 Ten en cuenta que la documentación [evita](/guides/api/#native-properties) mencionar las propiedades nativas (existen varias) en la sección API de los componentes.
@@ -96,11 +96,11 @@ Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y
 
 Un caso de uso común es emplear el botón para iniciar la navegación hacia una nueva página. El componente `ButtonBase` provee un atributo para tratar este uso: `component`. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Esto se logra adjuntando una referencia al componente y esperando que el componente reenvíe esta referencia al nodo DOM subyacente. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
-Here is an [integration example with react-router](/guides/composition/#button).
+Aquí hay un ejemplo de integración con [react-router](/guides/composition/#button).
 
 ## Limitaciones
 
-### Cursor not-allowed
+### Cursor no permitido
 
 El componente ButtonBase define `pointer-events: none;` en los botones deshabilitados, lo que previene la aparición del cursor desactivado.
 
@@ -115,17 +115,17 @@ Si deseas usar `not-allowed`, tienes dos opciones:
   }
   ```
 
-However:
+Sin embargo:
 
-- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements).
+- Debería añadir `pointer-events: none` cuando necesite mostrar [tooltips en elemento deshabilitados](/components/tooltips/#disabled-elements).
 - The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
 
-2. **DOM change**. You can wrap the button:
+2. **Cambio en el DOM**. Puede encapsular el botón:
 
   ```jsx
   <span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
-      disabled
+      Deshabilitado
     </Button>
   </span>
   ```
