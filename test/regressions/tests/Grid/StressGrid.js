@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 import * as React from 'react';
-import PropTypes from 'prop-types';
-=======
-import React from 'react';
->>>>>>> add visual regression test
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
