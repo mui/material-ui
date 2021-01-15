@@ -1,5 +1,5 @@
 ---
-title: React Transition component
+title: Компонент React Transition
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
 
