@@ -136,7 +136,7 @@ return (
 
 用户没有必要在样式组件的用法和定义的地方不断跳转。 有了这个系统，直接就可以在你需要的组件上面进行样式定制。
 
-**2. 2. 命名是一件很难的事情。**
+**2. UI 中要达成一致是很困难的。**
 
 你有没有发现自己在为一个样式组件找一个好名字而苦恼？ 该系统可以直接将样式映射到元素。 所以你要做的就是只关心实际的样式属性。
 
@@ -170,12 +170,12 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 - 运行时会造成性能影响：
 
-  | 基准测试                 | 代码片段                        | 花费时间  |
-  |:-------------------- |:--------------------------- | ----- |
-  | a. a. 渲染 1,000 个基元   | `<div className="…">` | 100ms |
-  | b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
-  | c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
-  | d. 渲染一千个分组（Box）      | `<Box sx={…}>`        | 370ms |
+  | 基准测试                    | 代码片段                        | 花费时间  |
+  |:----------------------- |:--------------------------- | ----- |
+  | a. a. 渲染 1,000 个基元      | `<div className="…">` | 100ms |
+  | b. b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
+  | c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
+  | d. 渲染一千个分组（Box）         | `<Box sx={…}>`        | 370ms |
 
   _这里是可复现的 [性能测试文件夹](https://github.com/mui-org/material-ui/tree/next/benchmark/browser)。_
 
@@ -183,7 +183,7 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 ### API 权衡
 
-In previous versions, the system properties were supported as props on the `Box` component. In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components, so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`. Instead, all system properties are available under one prop `sx`.
+In previous versions, the system properties were supported as props on the `Box` component. In previous versions, the system properties were supported as props on the `Box` component. In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components, so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`. Instead, all system properties are available under one prop `sx`. Instead, all system properties are available under one prop `sx`.
 
 Additionally, having the system under one prop helps to easily differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
 
@@ -260,7 +260,7 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 如果你想要你的 CSS 属性是响应式的，那么可以使用断点速记语法。 确定断点有两种方法：
 
-#### 1. 1. 将断点作为对象
+#### 1. 1. 1. 将断点作为对象
 
 定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 这里又是前面的例子，使用的是对象语法。
 
@@ -346,7 +346,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 `sx` 属性可以用于四个不同的位置：
 
-### 1. 1. 核心组件
+### 1. 1. 1. 核心组件
 
 所有的 Material-UI 核心组件都支持 `sx` 属性。
 
@@ -354,7 +354,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 [`Box`](/components/box/) 是一个轻量级组件，它可以以工具集的方式通过包装其他组件来达到访问其 `sx` 属性的目的。 默认情况下将渲染一个 `<div>` 元素。
 
-### 3。 自定义组件
+### 3。 2. 自定义组件
 
 除了 Material-UI 组件，你也可以通过使用 `@material-ui/core/styles` 中的 `experimentalStyled` 工具集来将 `sx` 属性添加到你的自定义组件中。
 
@@ -364,6 +364,6 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 const Div = styled('div')``;
 ```
 
-### 4、 4、 使用 babel 插件的任何元素
+### 4、 4、 4、 使用 babel 插件的任何元素
 
 等待开发 [#23220](https://github.com/mui-org/material-ui/issues/23220)。
