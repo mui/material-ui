@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function StylesProvider(props) {
+export default function StyledEngineProvider(props) {
   const { injectFirst, children } = props;
 
   if (injectFirst && typeof window !== 'undefined') {
@@ -15,7 +15,7 @@ export default function StylesProvider(props) {
   return children;
 }
 
-StylesProvider.propTypes = {
+StyledEngineProvider.propTypes = {
   /**
    * Your component tree.
    */

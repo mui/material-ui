@@ -404,4 +404,8 @@ export { default as useAutocomplete } from './useAutocomplete';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
-export { StylesProvider } from '@material-ui/styled-engine';
+/**
+ * @deprecated will be removed in v5 beta, please use StyledEngineProvider instead
+ */
+export { default as StylesProvider } from './StyledEngineProvider';
+export { default as StyledEngineProvider } from './StyledEngineProvider';
