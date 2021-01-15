@@ -1,5 +1,5 @@
 ---
-title: React 文本框组件
+title: React Text Field（文本框）组件
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
@@ -105,7 +105,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/text-field)。
 
-## 局限性
+## 设计局限
 
 ### 缩放
 
