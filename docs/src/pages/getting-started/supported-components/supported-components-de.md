@@ -46,7 +46,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
 - **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)
 - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
-- **<strong x-id="1"><a href="https://material.io/design/components/image-lists.html">Listas de Imagem</a> ✓</strong> (também conhecido como Grade Lista)****** 
+- **<strong x-id="1"><a href="https://material.io/design/components/image-lists.html">Listas de Imagem</a> ✓</strong> (também conhecido como Grade Lista)********** 
   - [Types:](https://material.io/design/components/lists.html#types) 
     - **Single line ✓**
     - **Two line ✓**
@@ -59,7 +59,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
     - **Text field dropdown menu ✓** (Select)
     - **Switch ✓**
     - Reorder
-- **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
+- ******** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)****** 
   - [Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓ 
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
@@ -86,7 +86,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Fixed tabs](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
   - **[Mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
-- ****** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓<strong x-id="1">(Veraltetes Material v1)</strong>** 
+- ******** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)****** 
   - **[Tooltips](https://material.io/design/components/tooltips.html) ✓**
   - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
 - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓** 
