@@ -1,6 +1,6 @@
 # サポートされているコンポーネント
 
-<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。</p>
+<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。 Material-UIで現在サポートされているものは✓が表示されています。</p>
 
 While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, nor every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
 
@@ -44,7 +44,8 @@ While we strive to follow the guidelines where practical (applying common sense 
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)****
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)
+- **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
 - **以下は、Material Designコンポーネントと機能のリストです。** 
   - [Types:](https://material.io/design/components/lists.html#types) 
     - **Single line ✓**
@@ -59,7 +60,7 @@ While we strive to follow the guidelines where practical (applying common sense 
     - **Switch ✓**
     - Reorder
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
-  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed) 
+  - [Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓ 
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
     - **Text field dropdown menu ✓** (Select)
@@ -77,7 +78,7 @@ While we strive to follow the guidelines where practical (applying common sense 
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista) 
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
