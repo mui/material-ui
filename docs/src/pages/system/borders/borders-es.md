@@ -30,7 +30,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 <Box borderLeft={0}>…
 ```
 
-## Border color
+## Color de borde
 
 {{"demo": "pages/system/borders/BorderColor.js", "defaultCodeOpen": false}}
 
