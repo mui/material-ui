@@ -11,7 +11,7 @@
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
 - [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
-- [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
+- [普通的服务端渲染](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - 以及更多
 
 Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
