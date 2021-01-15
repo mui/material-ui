@@ -49,6 +49,10 @@ const theme = createMuiTheme({
 +     }),
     ]
   }
+      Infinity,
++     }),
+    ]
+  }
 ```
 
 {{"demo": "pages/customization/theme-components/DefaultProps.js"}}
