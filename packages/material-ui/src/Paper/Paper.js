@@ -30,7 +30,7 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  return composeClasses({ slots, classes, getUtilityClass: getPaperUtilityClass });
+  return composeClasses(slots, getPaperUtilityClass, classes);
 };
 
 const PaperRoot = experimentalStyled(
