@@ -45,7 +45,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 [テーマカスタマイズ](/customization/theme-components/#default-props)を使用してグローバルに定義することができます。
 
-Setting the icon prop to false will remove the icon altogether.
+icon プロパティ を `false` に設定すると、アイコンが全て削除されます。
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 
