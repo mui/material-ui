@@ -78,9 +78,6 @@ export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = <TDate>(
   props: BaseTimePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
 ) => JSX.Element;
 
-/**
- * @ignore - do not document.
- */
 /* @typescript-to-proptypes-generate */
 const TimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(ResponsiveWrapper, {
   name: 'MuiTimePicker',
