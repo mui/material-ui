@@ -4,7 +4,7 @@
 
 ## CSS
 
-設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される**every single style**を変更できるようにします。 それは本当に強力な機能です。 それは本当に強力な機能です。 それは本当に強力な機能です。 それは本当に強力な機能です。
+設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される**every single style**を変更できるようにします。 それは本当に強力な機能です。 それは本当に強力な機能です。 それは本当に強力な機能です。 それは本当に強力な機能です。 それは本当に強力な機能です。 それは本当に強力な機能です。
 
 ```js
 const theme = createMuiTheme({ props: { // Name of the component ⚛️ MuiButtonBase: { // The default props to change disableRipple: true, // No more ripple, on the whole application 💣! },
@@ -14,7 +14,7 @@ const theme = createMuiTheme({ props: { // Name of the component ⚛️ MuiButto
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。 各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。 あるいは、いつでも[実装を調べることができます](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)。
+各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。 各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。 あるいは、いつでも[実装を調べることができます](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)。 たとえば、 [Button](/api/button/#css)はこちらです。 各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。 あるいは、いつでも[実装を調べることができます](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)。
 
 ## Global CSS
 
