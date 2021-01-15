@@ -226,7 +226,7 @@ Der `StylesProvider` Komponente hat eine `injectFirst` Eigenschaft, um **zuerst*
 import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>{/* Your component tree.
-      Styled components can override Material-UI's styles. */}</StylesProvider>;
+      Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. */}</StylesProvider>;
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -280,8 +280,14 @@ In diesem Beispiel wird ein Html-String zurückgegeben und die erforderliche kri
 ```
 
 ```jsx
+</code>
+
+```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
   ...jssPreset(),
@@ -306,8 +312,14 @@ The way that you do this is by passing a `<meta property="csp-nonce" content={no
 ```
 
 ```jsx
+</code>
+
+```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
   ...jssPreset(),
@@ -382,9 +394,9 @@ Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/bl
 
 ### Next.js
 
-Sie müssen über eine benutzerdefiniertes `pages/_document.js` haben und [diese Logik](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) kopieren, um die serverseitig gerenderten Stile in das `<head>` Element hinzuzufügen.
-
 Siehe [dieses Beispielprojekt](https://github.com/mui-org/material-ui/blob/next/examples/nextjs) für ein aktuelles Verwendungsbeispiel.
+
+Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategenerateclassname-options-class-name-generator) generiert.
 
 ## Klassennamen
 
