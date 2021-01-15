@@ -134,6 +134,7 @@ const useExternalDocumentation: Record<string, '*' | string[]> = {
     'variant',
   ],
   Tab: ['disableRipple'],
+  TextField: ['margin'],
   ToggleButton: ['disableRipple'],
 };
 const transitionCallbacks = [

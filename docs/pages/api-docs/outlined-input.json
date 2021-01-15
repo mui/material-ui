@@ -11,7 +11,7 @@
     "fullWidth": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
     "inputComponent": { "type": { "name": "elementType" }, "default": "'input'" },
-    "inputProps": { "type": { "name": "object" } },
+    "inputProps": { "type": { "name": "object" }, "default": "{}" },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "label": { "type": { "name": "node" } },
     "labelWidth": { "type": { "name": "number" }, "default": "0" },

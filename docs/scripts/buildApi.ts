@@ -207,7 +207,7 @@ function createDescribeableProp(
   prop: PropDescriptor,
   propName: string,
 ): DescribeablePropDescriptor | null {
-  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
+  const { defaultValue, jsdocDefaultValue, description, external, required, type } = prop;
 
   const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
@@ -232,9 +232,11 @@ function createDescribeableProp(
   }
 
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
-    throw new Error(
-      `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
-    );
+    if (!external) {
+      throw new Error(
+        `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
+      );
+    }
   } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
     const shouldHaveDefaultAnnotation =
       // Discriminator for polymorphism which is not documented at the component level.
