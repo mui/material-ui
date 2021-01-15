@@ -1,5 +1,5 @@
 ---
-title: React 过渡动画组件
+title: React Transition（过渡动画）组件
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
 
