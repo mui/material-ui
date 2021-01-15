@@ -439,7 +439,7 @@ Grid.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  const requireProp = requirePropFactory('Grid');
+  const requireProp = requirePropFactory('Grid', Grid);
   // eslint-disable-next-line no-useless-concat
   Grid['propTypes' + ''] = {
     // eslint-disable-next-line react/forbid-foreign-prop-types
