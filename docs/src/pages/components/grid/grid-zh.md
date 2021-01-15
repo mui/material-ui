@@ -96,22 +96,7 @@ If you need to do such, remove one of the props.
 
 ### 负边距
 
-当我们使用负边距来实现项目之间的间距的时候，会有一个限制。 如果负边距超出`<body>`元素，则会出现水平滚动。 我们提供了 3 种解决方案：
-
-1. 不使用 spacing 的特性，并且在用户层面设置成`spacing={0}`。
-2. 将间距（padding）应用于父级元素，并且将至少一半的间距值赋予子级元素：
-
-   ```jsx
-   <body>
-     <div style={{ padding: 20 }}>
-       <Grid container spacing={5}>
-         //...
-       </Grid>
-     </div>
-   </body>
-   ```
-
-3. 在父元素上添加 `overflow-x: hidden;`。
+当我们使用负边距来实现项目之间的间距的时候，会有一个限制。 This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 
