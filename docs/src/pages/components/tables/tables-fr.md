@@ -23,6 +23,14 @@ Un exemple simple et sans fioritures.
 
 Une table de données contient en haut une ligne d’en-tête qui répertorie les noms de colonne, suivis de lignes pour les données.
 
+## Tri & Sélection
+
+The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
+
 ## Tableau simple
 
 Des cases à cocher doivent accompagner chaque ligne si l'utilisateur doit sélectionner ou manipuler des données.
@@ -36,14 +44,6 @@ Cet exemple illustre l'utilisation de `Checkbox` et des lignes cliquables pour l
 La table a reçu une largeur fixe pour illustrer le défilement horizontal. Afin d'éviter le défilement des contrôles de pagination, le composant TablePagination est utilisé en dehors du tableau. (L'exemple ['Action de pagination de table personnalisée' ](#custom-pagination-actions) ci-dessous montre la pagination dans TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
-
-## Tri & Sélection
-
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
-
-{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Tableaux Personnalisés
 
