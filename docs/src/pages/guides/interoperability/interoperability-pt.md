@@ -53,21 +53,6 @@ export default function PlainCssSlider() {
 
 ```jsx
 Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
-
-export default function GlobalCssPriority() {
-  return (
-    <StylesProvider injectFirst>
-      {/* Your component tree. */}
-    </StylesProvider>
-  );
-}
-```
-
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Aqui está um exemplo:
-
-```jsx
-import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
@@ -76,17 +61,38 @@ const cache = createCache({
   prepend: true,
 });
 
-export default function PlainCssPriority() {
+export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. import * as React from 'react';
+      {/* Sua árvore de componentes. */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Aqui está um exemplo:
+
+```jsx
+Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
-      {/* Your component tree. */}
-    </CacheProvider>
+      {/* Your component tree. import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Sua árvore de componentes. */}
+    </StylesProvider>
   );
 }
 ```
@@ -209,13 +215,19 @@ export default function GlobalCssSlider() {
 
 ```jsx
 Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
-      {/* Your component tree. */}
-    </StylesProvider>
+    <CacheProvider value={cache}>
+      {/* Sua árvore de componentes. */}
+    </CacheProvider>
   );
 }
 ```
@@ -236,13 +248,19 @@ export default function GlobalCssPriority() {
   return (
     <CacheProvider value={cache}>
       {/* Sua árvore de componentes. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
-      {/* Your component tree. */}
-    </CacheProvider>
+    <CacheProvider value={cache}>
+      {/* Sua árvore de componentes. */}
+    </StylesProvider>
   );
 }
 ```
@@ -455,13 +473,19 @@ export default function CssModulesSlider() {
 
 ```jsx
 Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
-      {/* Your component tree. */}
-    </StylesProvider>
+    <CacheProvider value={cache}>
+      {/* Sua árvore de componentes. */}
+    </CacheProvider>
   );
 }
 ```
@@ -478,17 +502,23 @@ const cache = createCache({
   prepend: true,
 });
 
-export default function CssModulesPriority() {
+export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
       {/* Sua árvore de componentes. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
-      {/* Your component tree. */}
-    </CacheProvider>
+    <CacheProvider value={cache}>
+      {/* Sua árvore de componentes. */}
+    </StylesProvider>
   );
 }
 ```
