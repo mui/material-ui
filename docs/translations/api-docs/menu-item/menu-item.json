@@ -45,6 +45,20 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
+    },
+    "subMenuIcon": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the subMenuIcon",
+      "conditions": "it is present"
+    },
+    "openSubMenuParent": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "parent item of open sub menu"
+    },
+    "rtlSubMenuIcon": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "subMenuIcon",
+      "conditions": "direction is 'rtl'"
     }
   }
 }

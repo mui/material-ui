@@ -543,8 +543,8 @@ describe('<Menu />', () => {
       ); // looks focused
     });
 
-    it('changes focus with left and right arrow buttons', () => {
-      const { getByRole } = render(<CascadingMenu />);
+    it('changes focus with left and right arrow buttons', async () => {
+      const { findByRole, getByRole } = render(<CascadingMenu />);
       act(() => {
         fireEvent.click(getByRole('button'));
       });
@@ -563,7 +563,8 @@ describe('<Menu />', () => {
 
       clock.tick(0);
 
-      const settings = getByRole('menuitem', { name: 'Settings' });
+      // There is an async element to the way this works, so we must test asyncronously.
+      const settings = await findByRole('menuitem', { name: 'Settings' });
       expect(settings).to.equal(document.activeElement); // is focused
       expect(Array.from(settings.classList)).to.include('Mui-focusVisible'); // looks focused
 
@@ -576,6 +577,23 @@ describe('<Menu />', () => {
       regularItem = getByRole('menuitem', { name: 'Regular item' });
       expect(regularItem).to.equal(document.activeElement); // is focused
       expect(Array.from(regularItem.classList)).to.include('Mui-focusVisible'); // looks focused
+    });
+
+    it('keeps parent items of open sub menus highlighted', () => {
+      const { getByRole } = render(<CascadingMenu />);
+
+      act(() => {
+        fireEvent.click(getByRole('button'));
+      });
+      act(() => {
+        fireEvent.keyDown(getByRole('menuitem', { name: 'Settings' }), { key: 'ArrowRight' });
+      });
+
+      clock.tick(0);
+
+      expect(Array.from(getByRole('menuitem', { name: 'Settings' }).classList)).to.include(
+        'MuiMenuItem-openSubMenuParent',
+      );
     });
   });
 });
