@@ -86,6 +86,8 @@ export const componentSettings = {
       'sx',
       // union not supported by framer ControlType
       // interface, control types and default value need to be hardcoded
+      'color',
+      'size',
       'variant',
     ],
     propValues: {
