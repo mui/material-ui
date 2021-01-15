@@ -130,18 +130,14 @@ describe('<Grid />', () => {
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: '-8px',
-        marginBottom: '-8px',
-        marginLeft: '-8px',
-        marginRight: '-8px',
+        marginTop: '-16px',
+        marginLeft: '-16px',
         width: `${parentWidth + 16}px`, // 'calc(100% + 16px)'
       });
 
       expect(screen.getByTestId('first-default-theme')).toHaveComputedStyle({
-        paddingTop: '8px',
-        paddingBottom: '8px',
-        paddingLeft: '8px',
-        paddingRight: '8px',
+        paddingTop: '16px',
+        paddingLeft: '16px',
       });
     });
   });
