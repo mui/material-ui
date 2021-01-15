@@ -114,7 +114,7 @@ function HomeIcon(props) {
 
 {{"demo": "pages/components/icons/SvgIconsSize.js"}}
 
-### Component prop
+### Component プロパティ
 
 You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format. [svgr](https://github.com/smooth-code/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
 
