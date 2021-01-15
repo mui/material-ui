@@ -10,7 +10,7 @@ components: TextField, Popper, Autocomplete
 El widget es útil para establecer el valor de un cuadro de texto de una sola línea en uno de los dos tipos de escenarios:
 
 1. El valor para el cuadro de texto debe elegirse de un conjunto predefinido de valores permitidos, por ejemplo, un campo de ubicación debe contener un nombre de ubicación válido: [cuadro combinado](#combo-box).
-2. El cuadro de texto puede contener cualquier valor arbitrario, pero es ventajoso sugerir posibles valores al usuario, por ejemplo, un campo de búsqueda puede sugerir búsquedas similares o anteriores para ahorrarle tiempo al usuario: [gratis solo](#free-solo).
+2. El cuadro de texto puede contener cualquier valor arbitrario, pero es de gran ventaja sugerir posibles valores al usuario, por ejemplo, un campo de búsqueda puede sugerir búsquedas similares o anteriores para ahorrarle tiempo al usuario: [solo libre](#free-solo).
 
 Esto pretende ser una versión mejorada de los paquetes "react-select" y "downshift".
 
@@ -78,7 +78,7 @@ También puedes mostrar un diálogo cuando el usuario quiere añadir un nuevo va
 
 ## `useAutocomplete`
 
-Para la personalización avanzada de casos de uso, exponemos un hook `useAutocomplete()`. Acepta casi las mismas opciones que el componente Autocompletar menus las propiedades relacionadas al renderizado de JSX. El componente Autocompletar usa este hook internamente.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. Acepta casi las mismas opciones que el componente Autocompletar menus las propiedades relacionadas al renderizado de JSX. El componente Autocompletar usa este hook internamente.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -138,9 +138,9 @@ Fancy smaller inputs? Use the `size` prop.
 
 ## Personalizaciones
 
-### Custom input
+### Input personalizado
 
-The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
+El apoyo `renderInput` te permite personalizar la entrada renderizada. El primer argumento de este apoyo renderizado contiene apoyos que necesitas para avanzar. Ponga atención específica a las claves `red` y `inputProps`.
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
@@ -226,6 +226,8 @@ Sin embargo, además de recordar el valor introducido anteriormente, el navegado
 
 - Nombra la entrada sin filtrar ninguna información que el navegador pueda utilizar. p.e. `id="field1"` en vez de `id="country"`. Si dejas el id de vacío, el componente utiliza un identificador aleatorio.
 - Establecer `autoComplete="new-password"`: jsx Establecer `autoComplete="new-password": 
+jsx` Establecer `autoComplete="new-password": 
+jsx` Establecer `autoComplete="new-password": 
     jsx` Establecer `autoComplete="new-password": 
         jsx` 
         Establecer <code>autoComplete="new-password": 
@@ -237,10 +239,10 @@ VoiceOver en iOS Safari no soporta el atributo `aria-owns` especialmente bien. P
 
 ### ListboxComponent
 
-If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
+Si proporciona un apoyo personalizado `ListboxComponent`, usted necesita asegurarse de que el contedenedor de desplazamiento destinado tiene el atributo `role` esta configurado `listbox`. Esto asegura el comportamiento correcto del desplazamiento, por ejemplo cuando usas el teclado para navegar.
 
 ## Accesibilidad
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-We encourage the usage of a label for the textbox. El componente implementa las prácticas de creación de WAI-ARIA.
+Animamos el uso de una etiqueta para el cuadro de texto. El componente implementa las prácticas de creación de WAI-ARIA.
