@@ -1,5 +1,5 @@
 ---
-title: React Breadcrumbs component
+title: Componente React para Navegação estrutural
 components: Breadcrumbs, Link, Typography
 ---
 
