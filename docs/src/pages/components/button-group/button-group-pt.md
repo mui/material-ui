@@ -1,5 +1,5 @@
 ---
-title: React ButtonGroup component
+title: Componente React para Grupo de botões
 components: Button, ButtonGroup
 ---
 
