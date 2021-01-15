@@ -96,22 +96,7 @@ If you need to do such, remove one of the props.
 
 ### Margen negativo
 
-Existe una limitación con el margen negativo que utilizamos para implementar el espaciado entre los elementos. Un scroll horizontal aparecerá si un margen negativo va más allá del `<body>`. Hay 3 soluciones disponibles:
-
-1. No usar la función de espaciado e implementarla en el espacio de usuario `spacing={0}` (por defecto).
-2. Aplicar padding al padre con al menos la mitad del valor de espaciado aplicado al hijo:
-
-   ```jsx
-   <body>
-    <div style={{ padding: 20 }}>
-      <Grid container spacing={5}>
-        //...
-       </Grid>
-    </div>
-  </body>
-   ```
-
-3. Añadiendo `overflow-x: hidden;` al padre.
+Existe una limitación con el margen negativo que utilizamos para implementar el espaciado entre los elementos. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 
