@@ -1,5 +1,5 @@
 ---
-title: React 选项卡组件
+title: React Tabs（选项卡）组件
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 ---
 
