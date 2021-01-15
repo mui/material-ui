@@ -69,21 +69,6 @@ The styled engine used in v5 by default is [`emotion`](https://github.com/emotio
 
 ```jsx
 Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
-
-export default function GlobalCssPriority() {
-  return (
-    <StylesProvider injectFirst>
-      {/* Your component tree. */}
-    </StylesProvider>
-  );
-}
-```
-
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Aqui está um exemplo:
-
-```jsx
-import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
@@ -92,17 +77,38 @@ const cache = createCache({
   prepend: true,
 });
 
-export default function PlainCssPriority() {
+export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. import * as React from 'react';
+      {/* Sua árvore de componentes. */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Aqui está um exemplo:
+
+```jsx
+Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
-      {/* Your component tree. */}
-    </CacheProvider>
+      {/* Your component tree. import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Sua árvore de componentes. */}
+    </StylesProvider>
   );
 }
 ```
@@ -914,7 +920,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Snackbar
 
-- A notificação agora é exibida na parte inferior esquerda em telas grandes. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: Você pode reproduzir o comportamento anterior com: Você pode reproduzir o comportamento anterior com:
+- A notificação agora é exibida na parte inferior esquerda em telas grandes. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: Você pode reproduzir o comportamento anterior com: This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: Você pode reproduzir o comportamento anterior com: Você pode reproduzir o comportamento anterior com:
 
   ```diff
   -<Snackbar />
