@@ -1,5 +1,5 @@
 ---
-title: React Drawer component
+title: Компонент React Drawer
 components: Drawer, SwipeableDrawer
 ---
 
@@ -27,7 +27,7 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It 
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-The following properties are used in this documentation website for optimal usability of the component:
+Для оптимальной удобства использования компонента используются следующие свойства:
 
 - iOS is hosted on high-end devices. The backdrop transition can be enabled without dropping frames. Производительность достаточно хороша.
 - iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
