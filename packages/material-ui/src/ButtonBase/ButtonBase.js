@@ -21,7 +21,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { disabled, focusVisible, focusVisibleClassName, classes = {} } = styleProps;
+  const { disabled, focusVisible, focusVisibleClassName, classes } = styleProps;
 
   const slots = {
     root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
