@@ -56,18 +56,7 @@ const raleway = {
 ```jsx
 const theme = createMuiTheme({
   typography: {
-    fontFamily: 'Raleway, Arial',
-  },
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        '@font-face': [raleway],
-      },
-    },
-  },
-});
-
-// ...
+    // 告知 Material-UI 此 html 元素的具体字体大小。
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
@@ -206,7 +195,7 @@ const theme = createMuiTheme({
 
 In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
 
-**Step 1. Step 1. Update the theme's typography object**
+**Step 1. Step 1. Step 1. Update the theme's typography object**
 
 ```js
 const theme = createMuiTheme({
@@ -220,7 +209,7 @@ const theme = createMuiTheme({
 });
 ```
 
-**Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
+**Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
 
 > If you aren't using TypeScript you should skip this step.
 
@@ -249,7 +238,7 @@ declare module '@material-ui/core/Typography/Typography' {
 }
 ```
 
-**Step 3. Step 3. You can now use the new variant**
+**Step 3. Step 3. Step 3. You can now use the new variant**
 
 {{"demo": "pages/customization/typography/TypographyCustomVariant.js", "hideToolbar": true}}
 
