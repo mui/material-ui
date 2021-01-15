@@ -73,6 +73,6 @@ The components accept a `TransitionComponent` prop to customize the default tran
 
 - Accepts an `in` prop. This corresponds to the open/close state.
 - Appeler la propriété de callback `onEnter` lorsque la transition d'entrée démarre.
-- Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée. Call the `onExited` callback prop when the exit transition is completed.
+- Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée. Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée.
 
 For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition).
