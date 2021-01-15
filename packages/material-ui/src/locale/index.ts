@@ -257,7 +257,7 @@ export const deDE: Localization = {
       backIconButtonText: 'Nächste Seite',
       labelRowsPerPage: 'Zeilen pro Seite:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} von ${count !== -1 ? count : `more than ${to}`}`,
+        `${from}-${to} von ${count !== -1 ? count : `mehr als ${to}`}`,
       nextIconButtonText: 'Nächste Seite',
     },
     MuiRating: {
