@@ -424,8 +424,8 @@ export const deDE: Localization = {
           return 'Zur vorherigen Seite';
         },
         labelRowsPerPage: 'Zeilen pro Seite:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} von ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} von ${count !== -1 ? count : `mehr als ${to}`}`,
       },
     },
     MuiRating: {
