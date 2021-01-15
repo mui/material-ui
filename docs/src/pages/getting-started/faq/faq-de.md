@@ -253,11 +253,6 @@ function handleRender(req, res) {
   // Rendern des Komponenten als String.
 const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
-  const html = ReactDOMServer.renderToString(
-  const html = ReactDOMServer.renderToString(
-  const html = ReactDOMServer.renderToString(
-
-  - // Eine Sheet Instanz erstellen.
 ```
 
 ### React Klassenname Hydratation Nichtübereinstimmung
@@ -285,11 +280,6 @@ function handleRender(req, res) {
 
   // Render der Komponente als String.
   const html = ReactDOMServer.renderToString(
-  const html = ReactDOMServer.renderToString(
-  const html = ReactDOMServer.renderToString(
-  const html = ReactDOMServer.renderToString(
-
-  - // Eine Sheet Instanz erstellen.
 ```
 
 - Sie müssen sicherstellen, dass auf Ihrem Client und Server die **exakt dieselbe Version** von Material-UI ausführen. Es kann vorkommen, dass eine Nichtübereinstimmung von selbst kleinerer Versionen zu Stilproblemen führen kann. Um die Versionsnummern zu überprüfen, führen Sie `npm list@material-ui/core` in der Umgebung aus, in der Sie Ihre Anwendung erstellen, und in Ihrer Implementierungsumgebung.
