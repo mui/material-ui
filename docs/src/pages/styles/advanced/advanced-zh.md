@@ -323,12 +323,6 @@ import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 const jss = create({
   ...jssPreset(),
   // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。 
-  insertionPoint: 'jss-insertion-point',
-});
-
-export default function App() {
-  return <StylesProvider jss={jss}>...</StylesProvider>;
-}
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
