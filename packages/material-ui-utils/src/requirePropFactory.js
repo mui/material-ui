@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 export default function requirePropFactory(componentNameInError, Component) {
   if (process.env.NODE_ENV === 'production') {
     return () => null;
@@ -14,18 +12,24 @@ export default function requirePropFactory(componentNameInError, Component) {
     componentName,
     location,
     propFullName,
+    ...args
   ) => {
     const propFullNameSafe = propFullName || propName;
 
     const defaultTypeChecker = prevPropTypes?.[propFullNameSafe];
 
     if (defaultTypeChecker) {
-      PropTypes.checkPropTypes(
-        { [propName]: defaultTypeChecker },
+      const typeCheckerResult = defaultTypeChecker(
         props,
+        propName,
+        componentName,
         location,
-        componentNameInError,
+        propFullName,
+        ...args,
       );
+      if (typeCheckerResult) {
+        return typeCheckerResult;
+      }
     }
 
     if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {

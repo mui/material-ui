@@ -162,7 +162,6 @@ describe('requirePropFactory', () => {
           );
         }).toErrorDev([
           'Warning: Failed prop type: Invalid prop `test` of type `boolean` supplied to `Test`, expected `string`.',
-          'Warning: Failed prop type: The prop `test` of `Test` can only be used together with the `otherProp` prop.',
         ]);
       });
     });
