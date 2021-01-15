@@ -57,19 +57,22 @@ The following is the outline for what the server-side is going to look like. We 
 `server.js`
 
 ```js
-import express from 'express';
+const css = sheets.toString();
 
-// We are going to fill these out in the sections to follow.
+  // Send the rendered page back to the client.
 function renderFullPage(html, css) {
   /* ... */
 }
 
 function handleRender(req, res) {
-  /* ... */
+  /* ... res.send(renderFullPage(html, css));
 }
 
-function handleRender(req, res) {
-  /* ...
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// This is fired every time the server-side receives a request.
 */
 }
 
@@ -109,17 +112,13 @@ app.use('/build', express.static('build'));
   );
 
   // Grab the CSS from the sheets.
-  import express from 'express';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
-import App from './App';
-import theme from './theme';
+  function renderFullPage(html, css) {
+  /* ... */
+}
 
-function handleRender(req, res) {
-  const sheets = new ServerStyleSheets();
+const app = express();
 
-  // Render the component to a string.
+// Isso é acionado toda vez que o servidor recebe uma solicitação.
 app.use(handleRender);
 
 const port = 3000;
