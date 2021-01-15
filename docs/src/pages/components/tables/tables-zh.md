@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">表格展示数据组。 它们是完全可以自定义的。</p>
 
-Tables display information in a way that's easy to scan, so that users can look for patterns and insights. 表格可以被内嵌在主要内容中，如 卡片（cards）。 它们可以包括：
+Tables display information in a way that's easy to scan, so that users can look for patterns and insights. 表格可以被内嵌在主要内容中，如 卡片（cards）。 表格可以被内嵌在主要内容中，如 卡片（cards）。 它们可以包括：
 
 - 对应的可视化效果
 - 导航

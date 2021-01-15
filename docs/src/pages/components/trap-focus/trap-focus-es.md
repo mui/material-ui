@@ -8,9 +8,9 @@ githubLabel: 'component: TrapFocus'
 
 <p class="description">Trap focus within a DOM node.</p>
 
-TrapFocus is a component that manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow focus to escape while open.
+TrapFocus is a component that manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open.
 
-When `open={true}` the trap is enabled, and pressing <kbd>Tab</kbd> or <kbd>Shift</kbd>+<kbd>Tab</kbd> will rotate focus within the inner focusable elements of the component.
+When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> or <kbd><kbd  class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> will rotate focus within the inner focusable elements of the component.
 
 - 📦 [1.5 kB comprimido](https://material-ui.com/size-snapshot).
 - ⚛️ Support portals

@@ -14,7 +14,7 @@ For crowdsourced technical questions from expert Material-UI devs in our communi
 
 ### GitHub<img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 
-We use GitHub issues exclusively as a bugs and feature requests tracker. バグを発見したと思われる場合、または新しく追加して欲しい機能を提案したい場合。 [これまでに同様な点が報告されていないか](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)修正されていないか確認してください。 既存の課題やプルリクエストを検索して、誰かが自分に似たようなものを報告しているかどうかを確認できます。
+We use GitHub issues exclusively as a bugs and feature requests tracker. バグや機能要求の目的でのみGitHubのIssueを使用しています。 バグを発見したと思われる場合、または新しく追加して欲しい機能を提案したい場合。 [これまでに同様な点が報告されていないか](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)修正されていないか確認してください。 既存の課題やプルリクエストを検索して、誰かが自分に似たようなものを報告しているかどうかを確認できます。 既存の課題やプルリクエストを検索して、誰かが自分に似たようなものを報告しているかどうかを確認できます。
 
 [Issueを開く](https://github.com/mui-org/material-ui/issues/new/choose)
 
@@ -47,7 +47,7 @@ Material-UIの最新ニュースを受け取る
 
 ### サポートされているバージョン
 
-Material-UI CE (Community Edition) は、最初から100%オープンソース (MITライセンス) であり、常にそうです。 Developers can ensure Material-UI is the right choice for their React applications through Material-UI's community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+Material-UI CE (Community Edition) は、最初から100%オープンソース (MITライセンス) であり、常にそうです。 Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. Material-UI CE (Community Edition) は、最初から100%オープンソース (MITライセンス) であり、常にそうです。 The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
 Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
 

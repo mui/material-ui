@@ -54,35 +54,47 @@ function getJsdocDefaultValue(jsdoc) {
 }
 
 function getDefaultValuesFromProps(properties, documentation) {
+  const { props: documentedProps } = documentation.toObject();
+  const implementedProps = {};
   properties
     .filter((propertyPath) => types.Property.check(propertyPath.node))
     .forEach((propertyPath) => {
       const propName = getPropertyName(propertyPath);
-      if (!propName) return;
-
-      const propDescriptor = documentation.getPropDescriptor(propName);
-      if (propDescriptor.description === undefined) {
-        // private props have no propsType validator and therefore
-        // not description.
-        // They are either not subject to eslint react/prop-types
-        // or are and then we catch these issues during linting.
-        return;
+      if (propName) {
+        implementedProps[propName] = propertyPath;
       }
+    });
 
-      const jsdocDefaultValue = getJsdocDefaultValue(
-        parseDoctrine(propDescriptor.description, {
-          sloppy: true,
-        }),
-      );
-      if (jsdocDefaultValue) {
-        propDescriptor.jsdocDefaultValue = jsdocDefaultValue;
-      }
+  // Sometimes we list props in .propTypes even though they're implemented by another component
+  // These props are spread so they won't appear in the component implementation.
+  Object.entries(documentedProps).forEach(([propName, propDescriptor]) => {
+    if (propDescriptor.description === undefined) {
+      // private props have no propsType validator and therefore
+      // not description.
+      // They are either not subject to eslint react/prop-types
+      // or are and then we catch these issues during linting.
+      return;
+    }
 
+    const jsdocDefaultValue = getJsdocDefaultValue(
+      parseDoctrine(propDescriptor.description, {
+        sloppy: true,
+      }),
+    );
+    if (jsdocDefaultValue) {
+      propDescriptor.jsdocDefaultValue = jsdocDefaultValue;
+    }
+
+    const propertyPath = implementedProps[propName];
+    if (propertyPath !== undefined) {
       const defaultValue = getDefaultValue(propertyPath);
       if (defaultValue) {
         propDescriptor.defaultValue = defaultValue;
       }
-    });
+    } else {
+      propDescriptor.external = true;
+    }
+  });
 }
 
 function getRenderBody(componentDefinition) {

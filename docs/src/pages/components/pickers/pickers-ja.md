@@ -24,19 +24,19 @@ packageName: '@material-ui/lab'
 
 ⚠ブラウザーによるネイティブ入力コントロールのサポート [は完全ではありません](https://caniuse.com/#feat=input-datetime)。 より充実したソリューションについては、 [@ material-ui / pickers](https://material-ui-pickers.dev/) をご覧ください。 より充実したソリューションについては、 [@ material-ui / pickers](https://material-ui-pickers.dev/) をご覧ください。 より充実したソリューションについては、 [@ material-ui / pickers](https://material-ui-pickers.dev/) をご覧ください。 より充実したソリューションについては、 [@ material-ui / pickers](https://material-ui-pickers.dev/) をご覧ください。
 
-### 日付ピッカー（Datepickers）
+### Date picker
 
 A native datepicker example with `type="date"`.
 
 {{"demo": "pages/components/pickers/DatePickers.js"}}
 
-### 日付＆時間ピッカー（Date & Time pickers）
+### Date & Time picker
 
 `type="datetime-local"`を指定したネイティブの日付 & 時刻ピッカーの例。
 
 {{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
-### 時間ピッカー（Time pickers）
+### Time picker
 
 `type="time"`を指定したネイティブの時間ピッカーの例。
 

@@ -14,7 +14,7 @@ Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. 
 - 💄 Gère la superposition de modales.
 - 🔐 Crée un backdrop, pour désactiver les interactions sous la modale.
 - 🔐 Désactive le scroll de la page quand elle est ouverte.
-- ♿️ Gère proprement le focus ;  assure l'accessibilité au contenu de la modale jusqu'à sa fermeture.
+- ♿️ Gère proprement le focus ; assure l'accessibilité au contenu de la modale jusqu'à sa fermeture.
 - ♿ Ajoute automatiquement les rôles ARIA appropriés.
 - 📦 [5 kB gzippé](/size-snapshot).
 

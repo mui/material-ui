@@ -28,7 +28,7 @@ const useUtilityClasses = (styleProps) => {
     fallback: ['fallback'],
   };
 
-  return composeClasses({ slots, classes, getUtilityClass: getAvatarUtilityClass });
+  return composeClasses(slots, getAvatarUtilityClass, classes);
 };
 
 const AvatarRoot = experimentalStyled(

@@ -66,11 +66,19 @@ Assistentes verticais são projetados para telas com tamanhos estreitos. Eles s�
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
+### Texto
+
+The content of a step is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:
+
+```jsx
+<StepContent TransitionProps={{ unmountOnExit: false }} />
+```
+
 ## Assistente Mobile
 
 Este componente implementa um assistente compacto adequado para um dispositivo mobile. Tem funcionalidades mais limitadas do que o assistente vertical. Veja [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) para essa inspiração.
 
-O assistente mobile suporta três variantes para mostrar progresso através das etapas disponíveis: texto, pontos e progresso.
+Use pontos quando o número de etapas não for grande.
 
 ### Texto
 
@@ -78,7 +86,7 @@ Use pontos quando o número de etapas não for grande.
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 
-### Texto
+### Pontos
 
 Use uma barra de progresso quando houver muitas etapas, ou se houver etapas que precisem ser inseridas durante o processo (com base nas respostas de etapas anteriores).
 

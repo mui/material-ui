@@ -30,6 +30,7 @@ export default function AutoGrid() {
           <Paper className={classes.paper}>xs</Paper>
         </Grid>
       </Grid>
+      <br />
       <Grid container spacing={3}>
         <Grid item xs>
           <Paper className={classes.paper}>xs</Paper>

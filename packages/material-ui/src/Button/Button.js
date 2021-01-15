@@ -34,7 +34,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { color, disableElevation, fullWidth, size, variant, classes = {} } = styleProps;
+  const { color, disableElevation, fullWidth, size, variant, classes } = styleProps;
 
   const slots = {
     root: [
@@ -52,7 +52,7 @@ const useUtilityClasses = (styleProps) => {
     endIcon: ['endIcon', `iconSize${capitalize(size)}`],
   };
 
-  return composeClasses({ slots, classes, getUtilityClass: getButtonUtilityClass });
+  return composeClasses(slots, getButtonUtilityClass, classes);
 };
 
 const commonIconStyles = (styleProps) => ({

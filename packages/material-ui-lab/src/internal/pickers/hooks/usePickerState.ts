@@ -16,6 +16,16 @@ export interface PickerStateValueManager<TInputValue, TDateValue> {
 
 export type PickerSelectionState = 'partial' | 'shallow' | 'finish';
 
+interface Draftable<T> {
+  committed: T;
+  draft: T;
+}
+
+interface DraftAction<DraftValue> {
+  type: 'update' | 'reset';
+  payload: DraftValue;
+}
+
 export function usePickerState<TInput, TDateValue>(
   props: BasePickerProps<TInput, TDateValue>,
   valueManager: PickerStateValueManager<TInput, TDateValue>,
@@ -34,25 +44,39 @@ export function usePickerState<TInput, TDateValue>(
     throw new Error('inputFormat prop is required');
   }
 
-  const now = useNow();
+  const now = useNow<TDateValue>();
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
-  const [pickerDate, setPickerDate] = React.useState(valueManager.parseInput(utils, value));
+
+  function initDraftableDate(date: TDateValue): Draftable<TDateValue> {
+    return { committed: date, draft: date };
+  }
+
+  const parsedDateValue = valueManager.parseInput(utils, value);
+  const [draftState, dispatch] = React.useReducer(
+    (state: Draftable<TDateValue>, action: DraftAction<TDateValue>): Draftable<TDateValue> => {
+      switch (action.type) {
+        case 'reset':
+          return initDraftableDate(action.payload);
+        case 'update':
+          return {
+            ...state,
+            draft: action.payload,
+          };
+        default:
+          return state;
+      }
+    },
+    parsedDateValue,
+    initDraftableDate,
+  );
+  if (!valueManager.areValuesEqual(utils, draftState.committed, parsedDateValue)) {
+    dispatch({ type: 'reset', payload: parsedDateValue });
+  }
 
   // Mobile keyboard view is a special case.
   // When it's open picker should work like closed, cause we are just showing text field
   const [isMobileKeyboardViewOpen, setMobileKeyboardViewOpen] = React.useState(false);
-
-  React.useEffect(() => {
-    const parsedDateValue = valueManager.parseInput(utils, value);
-    setPickerDate((currentPickerDate) => {
-      if (!valueManager.areValuesEqual(utils, currentPickerDate, parsedDateValue)) {
-        return parsedDateValue;
-      }
-
-      return currentPickerDate;
-    });
-  }, [value, utils, valueManager]);
 
   const acceptDate = React.useCallback(
     (acceptedDate: TDateValue, needClosePicker: boolean) => {
@@ -73,20 +97,27 @@ export function usePickerState<TInput, TDateValue>(
     () => ({
       open: isOpen,
       onClear: () => acceptDate(valueManager.emptyValue, true),
-      onAccept: () => acceptDate(pickerDate, true),
+      onAccept: () => acceptDate(draftState.draft, true),
       onDismiss: () => setIsOpen(false),
       onSetToday: () => {
-        // TODO FIX ME
-        setPickerDate(now as any);
-        acceptDate(now as any, !disableCloseOnSelect);
+        dispatch({ type: 'update', payload: now });
+        acceptDate(now, !disableCloseOnSelect);
       },
     }),
-    [acceptDate, disableCloseOnSelect, isOpen, now, pickerDate, setIsOpen, valueManager.emptyValue],
+    [
+      acceptDate,
+      disableCloseOnSelect,
+      isOpen,
+      now,
+      draftState.draft,
+      setIsOpen,
+      valueManager.emptyValue,
+    ],
   );
 
   const pickerProps = React.useMemo(
     () => ({
-      date: pickerDate,
+      date: draftState.draft,
       isMobileKeyboardViewOpen,
       toggleMobileKeyboardView: () => setMobileKeyboardViewOpen(!isMobileKeyboardViewOpen),
       onDateChange: (
@@ -94,7 +125,7 @@ export function usePickerState<TInput, TDateValue>(
         wrapperVariant: WrapperVariant,
         selectionState: PickerSelectionState = 'partial',
       ) => {
-        setPickerDate(newDate);
+        dispatch({ type: 'update', payload: newDate });
         if (selectionState === 'partial') {
           acceptDate(newDate, false);
         }
@@ -104,10 +135,10 @@ export function usePickerState<TInput, TDateValue>(
           acceptDate(newDate, shouldCloseOnSelect);
         }
 
-        // if selectionState === "shallow" do nothing (we already update picker state)
+        // if selectionState === "shallow" do nothing (we already update the draft state)
       },
     }),
-    [acceptDate, disableCloseOnSelect, isMobileKeyboardViewOpen, pickerDate],
+    [acceptDate, disableCloseOnSelect, isMobileKeyboardViewOpen, draftState.draft],
   );
 
   const inputProps = React.useMemo(
@@ -124,7 +155,7 @@ export function usePickerState<TInput, TDateValue>(
   const pickerState = { pickerProps, inputProps, wrapperProps };
   React.useDebugValue(pickerState, () => ({
     MuiPickerState: {
-      pickerDate,
+      pickerDraft: draftState,
       other: pickerState,
     },
   }));

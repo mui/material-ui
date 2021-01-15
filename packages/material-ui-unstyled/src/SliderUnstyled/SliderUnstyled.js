@@ -175,7 +175,7 @@ const useUtilityClasses = (styleProps) => {
     focusVisible: ['focusVisible'],
   };
 
-  return composeClasses({ slots, classes, getUtilityClass: getSliderUtilityClass });
+  return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
 const Forward = ({ children }) => children;

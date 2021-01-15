@@ -101,24 +101,7 @@ If you need to do such, remove one of the props.
 
 ### Negative margin
 
-There is one limitation with the negative margin we use to implement the spacing between items.
-A horizontal scroll will appear if a negative margin goes beyond the `<body>`.
-There are 3 available workarounds:
-
-1. Not using the spacing feature and implementing it in user space `spacing={0}` (default).
-2. Applying padding to the parent with at least half the spacing value applied to the child:
-
-   ```jsx
-   <body>
-     <div style={{ padding: 20 }}>
-       <Grid container spacing={5}>
-         //...
-       </Grid>
-     </div>
-   </body>
-   ```
-
-3. Adding `overflow-x: hidden;` to the parent.
+The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 

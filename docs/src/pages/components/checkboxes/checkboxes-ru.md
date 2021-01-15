@@ -54,7 +54,7 @@ A checkbox input can only have two states in a form: checked or unchecked. It ei
 
 ## Бесплатно
 
-- [Чекбоксы. Radio Buttons (радиокнопки)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Чекбоксы. Radio Buttons (радиокнопки) ](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 - [Чекбоксы. Switch (переключатели)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Доступность

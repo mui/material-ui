@@ -41,7 +41,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 如果需要加上标题请:
 
 - 使用明确的问题或声明，并在内容区域对其做出解释，例如：“是否要清除 USB 上的内容？”。
-- 避免使用道歉、模棱两可的内容或者问题，例如”警告！“或者”你确定吗？“
+- 避免使用道歉、模棱两可的内容或者问题，例如”警告！ “或者”你确定吗？ “
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -94,7 +94,7 @@ function MyComponent() {
 
 ## 确认对话框
 
-确认型对话框明确要求用户在提交选项之前确认他们的选择。 For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
+确认型对话框明确要求用户在提交选项之前确认他们的选择。 举个例子，用户可以听到多种铃声，但是只有在点击 “OK” 按钮后才意味着完成了选择。
 
 Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 

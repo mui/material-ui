@@ -4,7 +4,7 @@
     "autoWidth": "If <code>true</code>, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input.",
     "children": "The option elements to populate the select with. Can be some <code>MenuItem</code> when <code>native</code> is false and <code>option</code> when <code>native</code> is true.<br>⚠️The <code>MenuItem</code> elements <strong>must</strong> be direct descendants when <code>native</code> is false.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "defaultValue": "The default element value. Use when the component is not controlled.",
+    "defaultValue": "The default input value. Use when the component is not controlled.",
     "displayEmpty": "If <code>true</code>, a value is displayed even if no items are selected.<br>In order to display a meaningful value, a function can be passed to the <code>renderValue</code> prop which returns the value to be displayed when no items are selected.<br>⚠️ When using this prop, make sure the label doesn&#39;t overlap with the empty displayed value. The label should either be hidden or forced to a shrunk state.",
     "IconComponent": "The icon that displays the arrow.",
     "id": "The <code>id</code> of the wrapper element or the <code>select</code> element when <code>native</code>.",
@@ -26,28 +26,54 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the select component `root` class." },
-    "select": { "description": "Styles applied to the select component `select` class." },
+    "root": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the select component `root` class"
+    },
+    "select": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the select component `select` class"
+    },
     "filled": {
-      "description": "Styles applied to the select component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
       "conditions": "<code>variant=\"filled\"</code>"
     },
     "outlined": {
-      "description": "Styles applied to the select component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
-    "selectMenu": { "description": "Styles applied to the select component `selectMenu` class." },
-    "disabled": { "description": "Pseudo-class applied to the select component `disabled` class." },
-    "icon": { "description": "Styles applied to the icon component." },
-    "iconOpen": { "description": "Styles applied to the icon component if the popup is open." },
+    "selectMenu": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the select component `selectMenu` class"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to {{nodeName}}.",
+      "nodeName": "the select component `disabled` class"
+    },
+    "icon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the icon component"
+    },
+    "iconOpen": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
+      "conditions": "the popup is open"
+    },
     "iconFilled": {
-      "description": "Styles applied to the icon component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
       "conditions": "<code>variant=\"filled\"</code>"
     },
     "iconOutlined": {
-      "description": "Styles applied to the icon component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
-    "nativeInput": { "description": "Styles applied to the underlying native input component." }
+    "nativeInput": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the underlying native input component"
+    }
   }
 }

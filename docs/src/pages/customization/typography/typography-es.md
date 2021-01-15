@@ -56,7 +56,18 @@ Luego, usted podrá lo necesario en el cambiar el tema para usar la nueva fuente
 ```jsx
 const theme = createMuiTheme({
   typography: {
-    // Tell Material-UI what's the font-size on the html element is.
+    fontFamily: 'Raleway, Arial',
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        '@font-face': [raleway],
+      },
+    },
+  },
+});
+
+// ...
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
@@ -215,15 +226,17 @@ const theme = createMuiTheme({
 
 You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
 
+<!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
+
 ```ts
 declare module '@material-ui/core/styles/createTypography' {
   interface Typography {
-    poster: React.CSSProperties;
+    poster: React. CSSProperties;
   }
 
   // allow configuration using `createMuiTheme`
   interface TypographyOptions {
-    poster?: React.CSSProperties;
+    poster?: React. CSSProperties;
   }
 }
 

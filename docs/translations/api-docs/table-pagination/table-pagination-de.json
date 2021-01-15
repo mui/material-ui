@@ -20,20 +20,45 @@
     "showLastButton": "If <code>true</code>, show the last-page button."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "toolbar": { "description": "Styles applied to the Toolbar component." },
-    "spacer": { "description": "Styles applied to the spacer element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
+    "toolbar": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Toolbar component"
+    },
+    "spacer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the spacer element"
+    },
     "caption": {
-      "description": "Styles applied to the caption Typography components if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the caption Typography component",
       "conditions": "<code>variant=\"caption\"</code>"
     },
-    "selectRoot": { "description": "Styles applied to the Select component root element." },
-    "select": { "description": "Styles applied to the Select component `select` class." },
-    "selectIcon": { "description": "Styles applied to the Select component `icon` class." },
-    "input": { "description": "Styles applied to the `InputBase` component." },
-    "menuItem": { "description": "Styles applied to the MenuItem component." },
+    "selectRoot": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Select component root element"
+    },
+    "select": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Select component `select` class"
+    },
+    "selectIcon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Select component `icon` class"
+    },
+    "input": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the InputBase component"
+    },
+    "menuItem": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the MenuItem component"
+    },
     "actions": {
-      "description": "Styles applied to the internal `TablePaginationActions` component."
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the internal `TablePaginationActions` component"
     }
   }
 }

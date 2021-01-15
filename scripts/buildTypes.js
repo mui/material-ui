@@ -41,7 +41,7 @@ async function main() {
     );
   }
 
-  await exec(['yarn', 'tsc', '-p', tsconfigPath].join(' '));
+  await exec(['yarn', 'tsc', '-b', tsconfigPath].join(' '));
 
   const publishDir = path.join(packageRoot, 'build');
   const declarationFiles = await glob('**/*.d.ts', { absolute: true, cwd: publishDir });

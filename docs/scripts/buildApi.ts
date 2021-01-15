@@ -207,7 +207,7 @@ function createDescribeableProp(
   prop: PropDescriptor,
   propName: string,
 ): DescribeablePropDescriptor | null {
-  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
+  const { defaultValue, jsdocDefaultValue, description, external, required, type } = prop;
 
   const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
@@ -232,9 +232,11 @@ function createDescribeableProp(
   }
 
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
-    throw new Error(
-      `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
-    );
+    if (!external) {
+      throw new Error(
+        `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
+      );
+    }
   } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
     const shouldHaveDefaultAnnotation =
       // Discriminator for polymorphism which is not documented at the component level.
@@ -709,8 +711,15 @@ async function updateStylesDefinition(context: {
             if (members) {
               styles.descriptions = styles.descriptions || {};
               members.forEach((member) => {
-                const className = ((member as babel.types.TSPropertySignature)
+                let className = ((member as babel.types.TSPropertySignature)
                   .key as babel.types.Identifier).name;
+
+                if (!className) {
+                  // Necessary for classes defined as kebab case
+                  className = ((member as babel.types.TSPropertySignature)
+                    .key as babel.types.StringLiteral).value;
+                }
+
                 styles.classes.push(className);
                 if (member.leadingComments) {
                   styles.descriptions[className] = trimComment(member.leadingComments[0].value);
@@ -994,8 +1003,16 @@ async function buildDocs(options: {
     );
 
     Object.keys(unstyledReactAPI.props).forEach((prop) => {
-      if (unstyledReactAPI.props[prop].defaultValue) {
-        reactApi.props[prop] = unstyledReactAPI.props[prop];
+      if (
+        unstyledReactAPI.props[prop].defaultValue &&
+        (!reactApi.props[prop] || !reactApi.props[prop].defaultValue)
+      ) {
+        if (reactApi.props[prop]) {
+          reactApi.props[prop].defaultValue = unstyledReactAPI.props[prop].defaultValue;
+          reactApi.props[prop].jsdocDefaultValue = unstyledReactAPI.props[prop].jsdocDefaultValue;
+        } else {
+          reactApi.props[prop] = unstyledReactAPI.props[prop];
+        }
       }
     });
   }

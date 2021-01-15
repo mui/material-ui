@@ -94,7 +94,7 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  return composeClasses({ slots, classes, getUtilityClass: getTypographyUtilityClass });
+  return composeClasses(slots, getTypographyUtilityClass, classes);
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {

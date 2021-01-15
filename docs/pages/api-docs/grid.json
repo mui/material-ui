@@ -61,6 +61,7 @@
       },
       "default": "0"
     },
+    "sx": { "type": { "name": "object" } },
     "wrap": {
       "type": {
         "name": "enum",
@@ -143,5 +144,5 @@
   "filename": "/packages/material-ui/src/Grid/Grid.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/grid/\">Grid</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true
 }

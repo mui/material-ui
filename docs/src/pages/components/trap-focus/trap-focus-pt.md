@@ -8,9 +8,9 @@ githubLabel: 'component: TrapFocus'
 
 <p class="description">Capturar foco dentro de um nó DOM.</p>
 
-TrapFocus é um componente que gerencia o foco para seus descendentes. Isso é útil quando implementa sobreposições, como diálogos modais, que não devem permitir a saída do foco enquanto estiver aberto.
+TrapFocus é um componente que gerencia o foco para seus descendentes. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open.
 
-Quando `open={true}` a captura está habilitada, e pressionando <kbd>Tab</kbd> ou <kbd>Shift</kbd>+<kbd>Tab</kbd> irá alternar o foco dentro dos elementos focáveis internos do componente.
+When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> or <kbd><kbd  class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> will rotate focus within the inner focusable elements of the component.
 
 - 📦 [1.5 kB gzipped](https://material-ui.com/size-snapshot).
 - ⚛️ Suporte para portais
