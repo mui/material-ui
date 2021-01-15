@@ -972,15 +972,14 @@ async function buildDocs(options: {
     }
   }
 
-  let reactApi: ReactApi;
-  try {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+  const reactApi: ReactApi = docgenParse(
+    src,
+    null,
+    defaultHandlers.concat(muiDefaultPropsHandler),
+    {
       filename: componentObject.filename,
-    });
-  } catch (err) {
-    console.error('Error parsing src for', componentObject.filename);
-    throw err;
-  }
+    },
+  );
 
   const unstyledFileName = getUnstyledFilename(componentObject.filename);
   let unstyledSrc;
@@ -1313,7 +1312,7 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
         return { status: 'fulfilled' as const, value };
       })
       .catch((error) => {
-        error.message = `with component ${component.filename}: ${error.message}`;
+        error.message = `${component.filename}: ${error.message}`;
 
         return { status: 'rejected' as const, reason: error };
       });
