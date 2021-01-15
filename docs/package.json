@@ -30,7 +30,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@material-ui/core": "5.0.0-alpha.23",
-    "@material-ui/data-grid": "https://pkg.csb.dev/mui-org/material-ui-x/commit/268ed0d0/@material-ui/data-grid",
+    "@material-ui/data-grid": "https://pkg.csb.dev/mui-org/material-ui-x/commit/9226f1c5/@material-ui/data-grid",
     "@material-ui/docs": "5.0.0-alpha.23",
     "@material-ui/icons": "5.0.0-alpha.23",
     "@material-ui/lab": "5.0.0-alpha.23",
