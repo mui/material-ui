@@ -29,9 +29,7 @@ const theme = createMuiTheme({
         {
           props: { size: 'extraLarge' },
           style: {
-            '& > *:nth-of-type(1)': {
-              fontSize: 26,
-            },
+            fontSize: 26,
           },
         },
       ],
