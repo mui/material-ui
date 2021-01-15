@@ -11,13 +11,13 @@ function jsDemo(demoData) {
       'index.js': `
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/core';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import Demo from './demo';
 
 ReactDOM.render(
-  <StylesProvider injectFirst>
+  <StyledEngineProvider injectFirst>
     <Demo />
-  </StylesProvider>,
+  </StyledEngineProvider>,
   document.querySelector("#root")
 );
     `.trim(),
@@ -36,13 +36,13 @@ function tsDemo(demoData) {
       'index.tsx': `
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/core';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import Demo from './demo';
 
 ReactDOM.render(
-  <StylesProvider injectFirst>
+  <StyledEngineProvider injectFirst>
     <Demo />
-  </StylesProvider>,
+  </StyledEngineProvider>,
   document.querySelector("#root")
 );
     `.trim(),

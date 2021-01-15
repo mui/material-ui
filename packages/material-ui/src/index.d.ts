@@ -476,5 +476,5 @@ export * from './GlobalStyles';
 /**
  * @deprecated will be removed in v5.beta, please use StyledEngineProvider instead
  */
-export { StyledEngineProvider as StylesProvider } from '@material-ui/styled-engine';
-export { StyledEngineProvider } from '@material-ui/styled-engine';
+export { default as StylesProvider } from './StyledEngineProvider';
+export { default as StyledEngineProvider } from './StyledEngineProvider';

@@ -11,7 +11,7 @@ import { create } from 'jss';
 import jssRtl from 'jss-rtl';
 import { useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
-import { StylesProvider as CoreStylesProvider } from '@material-ui/core';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -21,7 +21,7 @@ import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import StyledEngineProvider, { cacheLtr } from 'docs/src/modules/utils/StyledEngineProvider';
+import DocsStyledEngineProvider, { cacheLtr } from 'docs/src/modules/utils/StyledEngineProvider';
 
 export { cacheLtr };
 
@@ -320,13 +320,13 @@ function AppWrapper(props) {
       </NextHead>
       <ReduxProvider store={redux}>
         <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
-          <CoreStylesProvider injectFirst>
+          <StyledEngineProvider injectFirst>
             <StylesProvider jss={jss}>
               <ThemeProvider>
-                <StyledEngineProvider>{children}</StyledEngineProvider>
+                <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
               </ThemeProvider>
             </StylesProvider>
-          </CoreStylesProvider>
+          </StyledEngineProvider>
         </PageContext.Provider>
         <LanguageNegotiation />
         <Analytics />
