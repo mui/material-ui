@@ -181,8 +181,8 @@ const StyledButton = styled(Button)`
 export default function StyledComponents() {
   return (
     <div>
-      <Button>默认的</Button>
-      <StyledButton>自定义的</StyledButton>
+      <Button>默认的按钮</Button>
+      <StyledButton>自定义按钮</StyledButton>
     </div>
   );
 }
@@ -234,8 +234,8 @@ const StyledButton = styled(Button)`
 export default function StyledComponentsDeep() {
   return (
     <div>
-      <Button>Default</Button>
-      <StyledButton>Customized</StyledButton>
+      <Button>默认的按钮</Button>
+      <StyledButton>自定义按钮</StyledButton>
     </div>
   );
 }
@@ -265,8 +265,8 @@ const StyledButton = styled(({ color, ...other }) => (
 export default function StyledComponentsDeep() {
   return (
     <div>
-      <Button>Default</Button>
-      <StyledButton>Customized</StyledButton>
+      <Button>默认的按钮</Button>
+      <StyledButton>自定义按钮</StyledButton>
     </div>
   );
 }
@@ -354,15 +354,15 @@ const StyledMenu = styled(({ className, ...props }) => (
 
 ```jsx
 import React from 'react';
-// webpack，parcel 或者其他会将 CSS 注入页面
+// webpack，parcel 或者其他工具会将 CSS 注入到此页面
 import styles from './CssModulesButton.css';
 import Button from '@material-ui/core/Button';
 
 export default function CssModulesButton() {
   return (
     <div>
-      <Button>默认</Button>
-      <Button className={styles.button}>自定义</Button>
+      <Button>默认的按钮</Button>
+      <Button className={styles.button}>自定义按钮</Button>
     </div>
   );
 }
@@ -411,15 +411,15 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 ```jsx
 import React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// webpack，parcel 或者其他工具会将 CSS 注入到此页面
 import styles from './CssModulesButtonDeep.css';
 import Button from '@material-ui/core/Button';
 
 export default function CssModulesButtonDeep() {
   return (
     <div>
-      <Button>Default</Button>
-      <Button classes={styles}>Customized</Button>
+      <Button>默认的按钮</Button>
+      <Button classes={styles}>自定义按钮</Button>
     </div>
   );
 }
@@ -445,7 +445,7 @@ import Button from '@material-ui/core/Button';
 export default function EmotionCSS() {
   return (
     <div>
-      <Button>Default</Button>
+      <Button>默认的按钮</Button>
       <Button
         css={css`
           background-color: #6772e5;
@@ -457,7 +457,7 @@ export default function EmotionCSS() {
           }
         `}
       >
-        Customized
+        自定义按钮
       </Button>
     </div>
   );
@@ -500,7 +500,7 @@ Material-UI 有着一个丰富的主题架构，而您可以利用它来做一�
     }
   `}
 >
-  Customized
+  自定义按钮
 </Button>
 ```
 
