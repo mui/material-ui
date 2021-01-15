@@ -2,11 +2,11 @@
 
 <p class="description">このページに戻って、読んでいるドキュメントのバージョンをいつでも切り替えることができます。</p>
 
-## 安定バージョン
+## Released versions
 
-本番環境では最新バージョンをお勧めします。
+The most recent stable version (✓) is recommended for use in production.
 
-{{"demo": "pages/versions/StableVersions.js", "hideToolbar": true, "bg": "inline"}}
+{{"demo": "pages/versions/ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## 最新バージョン
 
@@ -20,7 +20,7 @@
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI は [Semantic Versioning 2.0.0](https://semver.org/) に従いバージョンを付けています。 Material-UIのバージョン番号には3つの部分があります：`major.minor.patch` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。 Material-UIのバージョン番号には3つの部分があります：`major.minor.patch` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。 Material-UIのバージョン番号には3つの部分があります：` major.minor.patch ` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。
+Material-UI は [Semantic Versioning 2.0.0](https://semver.org/) に従いバージョンを付けています。 Material-UIのバージョン番号には3つの部分があります：`major.minor.patch` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。 Material-UIのバージョン番号には3つの部分があります：`major.minor.patch` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。 Material-UIのバージョン番号には3つの部分があります：`major.minor.patch` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。 Material-UIのバージョン番号には3つの部分があります：` major.minor.patch ` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。
 
 - **パッチリリース**　リスクが低く、バグ修正と小さな新機能が含まれています。 更新中に開発者の支援は必要ありません。 更新中に開発者の支援は必要ありません。 更新中に開発者の支援は必要ありません。 新しいメジャーリリースに更新するときは、更新スクリプトの実行、コードのリファクタリング、追加テストの実行、および新しいAPIの学習が必要になる場合があります。
 - **マイナーリリース**　重要な新機能が含まれています。 マイナーリリースは完全に下位互換性がある; アップデート中に開発者の支援は必要ありませんが、必要に応じて、リリースで追加された新しいAPI、機能、および機能を使用するようにアプリケーションとライブラリを変更できます。
@@ -43,7 +43,7 @@ Material-UI は [Semantic Versioning 2.0.0](https://semver.org/) に従いバー
 | 2018年 5月 | v1.0.0  | Released |
 | 2018年 9月 | v3.0.0  | Released |
 | 2019年 5月 | v4.0.0  | Released |
-| Q4 2020  | v5.0.0  | ⏳        |
+| Q1 2021  | v5.0.0  | ⏳        |
 
 
 詳細な概要については [マイルストーン](https://github.com/mui-org/material-ui/milestones) をご覧ください。
