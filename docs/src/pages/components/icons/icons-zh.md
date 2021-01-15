@@ -273,7 +273,7 @@ const theme = createMuiTheme({
 
 ## 无障碍设计
 
-Icons can convey all sorts of meaningful information, so it's important to ensure they are accessible where appropriate. There are two use cases you'll want to consider: There are two use cases you'll want to consider:
+Icons can convey all sorts of meaningful information, so it's important to ensure they are accessible where appropriate. There are two use cases you'll want to consider: There are two use cases you'll want to consider: There are two use cases you'll want to consider:
 
 - **装饰性图标** 仅用于增强视觉或强调品牌。 即使将它们从页面中移除，用户仍然可以理解并能够使用整个界面。
 - **Semantic icons** are ones that you're using to convey meaning, rather than just pure decoration. 这包含了没有文字辅助说明的图标，这些图标一般被用作在交互式控件中 — 按钮、表单元素、切换按钮等。 这包含了没有文字辅助说明的图标，这些图标一般被用作在交互式控件中 — 按钮、表单元素、切换按钮等。
