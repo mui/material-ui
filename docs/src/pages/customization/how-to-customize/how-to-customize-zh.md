@@ -2,7 +2,7 @@
 
 <p class="description">您可以轻松地自定义一个 Material-UI 组件的外观。</p>
 
-As components can be used in different contexts, there are several approaches to customizing them. 从最狭窄到最广泛的用例，这些是： 从最狭窄到最广泛的用例，这些是：
+As components can be used in different contexts, there are several approaches to customizing them. 从最狭窄到最广泛的用例，这些是： 从最狭窄到最广泛的用例，这些是： 从最狭窄到最广泛的用例，这些是：
 
 1. [One-off customization](#1-one-off-customization)
 1. [Reusable style overrides](#2-reusable-style-overrides)
@@ -16,15 +16,15 @@ As components can be used in different contexts, there are several approaches to
 
 ### Use the `sx` prop
 
-The easiest way to add style overrides for a one-off situation is to use the `sx` prop available on all Material-UI components. 下面是一个示例： 下面是一个示例：
+The easiest way to add style overrides for a one-off situation is to use the `sx` prop available on all Material-UI components. 下面是一个示例： 下面是一个示例： 下面是一个示例：
 
 {{"demo": "pages/customization/how-to-customize/SxProp.js"}}
 
-Next you'll see how you can you can use global class selectors for accessing slots inside the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component.
+Next you'll see how you can you can use global class selectors for accessing slots inside the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component.
 
 ### Overriding nested component styles
 
-You can use the browser dev tools to identify the slot for the component you want to override. It can save you a lot of time. You can use the browser dev tools to identify the slot for the component you want to override. It can save you a lot of time. The styles injected into the DOM by Material-UI rely on class names that [follow a simple pattern](/styles/advanced/#class-names): `[hash]-Mui[Component name]-[name of the slot]`.
+You can use the browser dev tools to identify the slot for the component you want to override. It can save you a lot of time. You can use the browser dev tools to identify the slot for the component you want to override. It can save you a lot of time. The styles injected into the DOM by Material-UI rely on class names that [follow a simple pattern](/styles/advanced/#class-names): `[hash]-Mui[Component name]-[name of the slot]`. It can save you a lot of time. You can use the browser dev tools to identify the slot for the component you want to override. It can save you a lot of time. The styles injected into the DOM by Material-UI rely on class names that [follow a simple pattern](/styles/advanced/#class-names): `[hash]-Mui[Component name]-[name of the slot]`.
 
 ⚠️ These class names can't be used as CSS selectors because they are unstable, however, Material-UI applies global class names using a consistent convention: `Mui[Component name]-[name of the slot]`.
 
@@ -40,7 +40,7 @@ You now know that you need to target the `.MuiSlider-thumb` class name for overr
 
 ### 用类名（class names）覆盖样式
 
-If you would like to override the styles of the components using classes, you can use the `className` prop available on each component. For overriding the styles of the different parts inside the component, you can use the global classes available for each slot, as described in the previous section. For overriding the styles of the different parts inside the component, you can use the global classes available for each slot, as described in the previous section.
+If you would like to override the styles of the components using classes, you can use the `className` prop available on each component. For overriding the styles of the different parts inside the component, you can use the global classes available for each slot, as described in the previous section. For overriding the styles of the different parts inside the component, you can use the global classes available for each slot, as described in the previous section. For overriding the styles of the different parts inside the component, you can use the global classes available for each slot, as described in the previous section.
 
 You can find examples of this using different styles libraries in the [Styles library interoperability](/guides/interoperability/) guide.
 
@@ -84,7 +84,7 @@ Sometimes, you can't use a **pseudo-class**, as the state doesn't exist in the w
 
 #### 为什么我需要增加优先级来覆盖一个组件的状态呢？
 
-通过一些设计，CSS 的一些特殊要求让伪类提高了优先级。 For consistency with native elements, Material-UI increases the specificity of its custom pseudo-classes. 这有一个重要的优点，您可以自由挑选那些想要自定义状态。 这有一个重要的优点，您可以自由挑选那些想要自定义状态。
+通过一些设计，CSS 的一些特殊要求让伪类提高了优先级。 通过一些设计，CSS 的一些特殊要求让伪类提高了优先级。 这有一个重要的优点，您可以自由挑选那些想要自定义状态。
 
 #### What custom pseudo-classes are available in Material-UI?
 
@@ -162,10 +162,10 @@ Components expose [global class names](/styles/advanced/#with-material-ui-core) 
 
 You can reference the [Styles library interoperability guide](/guides/interoperability/) to find examples of this using different styles libraries or plain CSS.
 
-If you just want to add some global baseline styles for some of the HTML elements, you can use the `GlobalStyles` component. Here is an example of how you can override styles for the `h1` elements.
+If you just want to add some global baseline styles for some of the HTML elements, you can use the `GlobalStyles` component. Here is an example of how you can override styles for the `h1` elements. Here is an example of how you can override styles for the `h1` elements.
 
 {{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}
 
-If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach.
+If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach. Here is how you can achieve the same by using this approach.
 
 {{"demo": "pages/customization/how-to-customize/OverrideCssBaseline.js", "iframe": true, "height": 100}}
