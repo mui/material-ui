@@ -19,6 +19,11 @@ import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
 
+function getOffset(val) {
+  const parse = parseFloat(val);
+  return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
+}
+
 function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   const size = styleProps[breakpoint];
 
@@ -42,6 +47,18 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   } else {
     // Keep 7 significant numbers.
     const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
+    let more = {};
+
+    if (styleProps.container && styleProps.item && styleProps.spacing !== 0) {
+      const themeSpacing = theme.spacing(styleProps.spacing);
+      if (themeSpacing !== '0px') {
+        const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
+        more = {
+          flexBasis: fullWidth,
+          maxWidth: fullWidth,
+        };
+      }
+    }
 
     // Close to the bootstrap implementation:
     // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
@@ -49,23 +66,19 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
       flexBasis: width,
       flexGrow: 0,
       maxWidth: width,
+      ...more,
     };
   }
 
   // No need for a media query for the first size.
-  if (breakpoint === 'xs') {
+  if (theme.breakpoints.values[breakpoint] === 0) {
     Object.assign(globalStyles, styles);
   } else {
     globalStyles[theme.breakpoints.up(breakpoint)] = styles;
   }
 }
 
-function getOffset(val, div = 1) {
-  const parse = parseFloat(val);
-  return `${parse / div}${String(val).replace(String(parse), '') || 'px'}`;
-}
-
-function generateGutter({ theme, styleProps }) {
+function generateGap({ theme, styleProps }) {
   const { container, spacing } = styleProps;
   let styles = {};
 
@@ -74,10 +87,12 @@ function generateGutter({ theme, styleProps }) {
 
     if (themeSpacing !== '0px') {
       styles = {
-        margin: `-${getOffset(themeSpacing, 2)}`,
         width: `calc(100% + ${getOffset(themeSpacing)})`,
+        marginTop: `-${getOffset(themeSpacing)}`,
+        marginLeft: `-${getOffset(themeSpacing)}`,
         [`& > .${gridClasses.item}`]: {
-          padding: getOffset(themeSpacing, 2),
+          paddingTop: getOffset(themeSpacing),
+          paddingLeft: getOffset(themeSpacing),
         },
       };
     }
@@ -177,12 +192,12 @@ const GridRoot = experimentalStyled(
       justifyContent: styleProps.justifyContent,
     }),
   }),
-  generateGutter,
+  generateGap,
   ({ theme, styleProps }) =>
-    theme.breakpoints.keys.reduce((accumulator, key) => {
+    theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
       // Use side effect over immutability for better performance.
-      generateGrid(accumulator, theme, key, styleProps);
-      return accumulator;
+      generateGrid(globalStyles, theme, breakpoint, styleProps);
+      return globalStyles;
     }, {}),
 );
 

@@ -110,18 +110,14 @@ describe('<Grid />', () => {
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        marginBottom: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        marginLeft: `${-1 * remValue * 0.25}px`, // '-0.25rem'
-        marginRight: `${-1 * remValue * 0.25}px`, // '-0.25rem'
+        marginTop: `${-1 * remValue * 0.5}px`, // '-0.5rem'
+        marginLeft: `${-1 * remValue * 0.5}px`, // '-0.5rem'
         width: `${parentWidth + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
       });
 
       expect(screen.getByTestId('first-custom-theme')).toHaveComputedStyle({
-        paddingTop: `${0.25 * remValue}px`, // 0.25rem
-        paddingBottom: `${0.25 * remValue}px`, // 0.25rem
-        paddingLeft: `${0.25 * remValue}px`, // 0.25rem
-        paddingRight: `${0.25 * remValue}px`, // 0.25rem
+        paddingTop: `${0.5 * remValue}px`, // 0.5rem
+        paddingLeft: `${0.5 * remValue}px`, // 0.5rem
       });
 
       rerender(
@@ -134,18 +130,14 @@ describe('<Grid />', () => {
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: '-8px',
-        marginBottom: '-8px',
-        marginLeft: '-8px',
-        marginRight: '-8px',
+        marginTop: '-16px',
+        marginLeft: '-16px',
         width: `${parentWidth + 16}px`, // 'calc(100% + 16px)'
       });
 
       expect(screen.getByTestId('first-default-theme')).toHaveComputedStyle({
-        paddingTop: '8px',
-        paddingBottom: '8px',
-        paddingLeft: '8px',
-        paddingRight: '8px',
+        paddingTop: '16px',
+        paddingLeft: '16px',
       });
     });
   });
