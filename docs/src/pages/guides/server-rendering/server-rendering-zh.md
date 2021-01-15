@@ -135,7 +135,7 @@ function renderFullPage(html, css) {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>My page</title>
+        <title>我的页面</title>
         <style id="jss-server-side">${css}</style>
       </head>
       <body>
