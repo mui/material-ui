@@ -92,17 +92,17 @@ describe('requirePropFactory', () => {
           test: mock,
         };
 
-        const props = {};
-        const propName = 'test';
-        props[propName] = true;
+        const localProps = {};
+        const localPropName = 'test';
+        localProps[localPropName] = true;
 
-        const requireProp = requirePropFactory('Test', Test);
+        const localRequireProp = requirePropFactory('Test', Test);
 
-        const result = requireProp('otherProp');
-        result(props, propName, undefined, undefined, undefined);
+        const result = localRequireProp('otherProp');
+        result(localProps, localPropName, undefined, undefined, undefined);
 
         expect(mock.callCount).to.equal(1);
-        expect(mock.args[0]).to.deep.equal([props, propName, undefined, undefined, undefined]);
+        expect(mock.args[0]).to.deep.equal([localProps, localPropName, undefined, undefined, undefined]);
       });
     });
   });

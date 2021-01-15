@@ -3,6 +3,7 @@ export default function requirePropFactory(componentNameInError, Component) {
     return () => null;
   }
 
+  // eslint-disable-next-line react/forbid-foreign-prop-types
   const prevPropTypes = Component ? { ...Component.propTypes } : null;
 
   const requireProp = (requiredProp) => (
