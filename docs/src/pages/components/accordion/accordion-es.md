@@ -9,7 +9,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 Un [panel de expansión](https://material.io/archive/guidelines/components/expansion-panels.html) es un contenedor liviano que puede ser ya sea único o estar conectado a una superficie más grande, como una tarjeta.
 
-> **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
+> **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. Antes era conocido como "panel de expansión".
 
 ## Panel de expansión simple
 
@@ -21,7 +21,7 @@ Extiende el comportamiento por defecto del panel para crear un acordeón con el 
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Customized accordions
+## Panel de expansión personalizados
 
 He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
@@ -35,13 +35,13 @@ In order to put an action such as a `Checkbox` or a button inside of the `Accord
 
 ## Rendimiento
 
-The content of Accordions is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+The content of Accordions is mounted by default even if the panel is not expanded. Este comportamiento por defecto tiene el renderizado del lado del servidor y SEO en mente. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+Como en cualquier optimización de rendimiento esto no es una bala de plata. Be sure to identify bottlenecks first and then try out these optimization strategies.
 
 ## Cabecera secundaria y columnas
 
