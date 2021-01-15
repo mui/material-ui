@@ -1,5 +1,5 @@
 ---
-title: React Pagination component
+title: Componente React Paginação
 components: Pagination, PaginationItem
 ---
 
@@ -45,7 +45,7 @@ Você pode especificar quantos dígitos exibir a qualquer lado da página atual 
 
 ## `usePagination`
 
-Para casos avançados de uso de customização, nós expomos um hook `usePagination()`. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX. O componente de paginação usa este hook internamente.
+Para casos avançados de uso de customização, nós expomos um hook sem dependência, `usePagination()`. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX. O componente de paginação usa este hook internamente.
 
 ```jsx
 import { usePagination } from '@material-ui/lab/Pagination';
