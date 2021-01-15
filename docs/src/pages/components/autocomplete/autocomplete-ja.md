@@ -26,7 +26,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 
 ### Options structure
 
-By default, the component accepts the following options structures:
+デフォルトでは、コンポーネントは以下の構造のオプションが設定可能です。
 
 ```ts
 const filterOptions = createFilterOptions({
@@ -66,7 +66,7 @@ However, you can use different structures by providing a `getOptionLabel` prop.
 
 コンポーネントは、操作できる二つのステートを持ちます。
 
-1. "value"ステートは `value`/`onChange` を組み合わせて使用します。 "value"ステートは `value`/`onChange` を組み合わせて使用します。 この値は、ユーザーが選択した値を示します。例えば、<kbd>Enter</kbd>を押している状態。 "value"ステートは `value`/`onChange` を組み合わせて使用します。 この値は、ユーザーが選択した値を示します。例えば、<kbd class="key">Enter</kbd>を押している状態。
+1. "value"ステートは `value`/`onChange` を組み合わせて使用します。 "value"ステートは `value`/`onChange` を組み合わせて使用します。 この値は、ユーザーが選択した値を示します。例えば、<kbd>Enter</kbd>を押している状態。 例えば、<kbd class="key">Enter</kbd>を押している状態。
 2. "input value"ステートは`inputValue`/`onInputChange` を組み合わせて使用します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。
 
 > 二つのステートは解離しており、独立して管理される必要があります。
