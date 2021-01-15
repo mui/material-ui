@@ -1,5 +1,5 @@
 ---
-title: React Box component
+title: Componente React Box
 ---
 
 # Box
