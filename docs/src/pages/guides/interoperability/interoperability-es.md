@@ -68,17 +68,11 @@ export default function GlobalCssPriority() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+import { StylesProvider } from '@material-ui/core';
 
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function PlainCssPriority() {
+export default function GlobalCssPriority() {
   return (
-    <CacheProvider value={cache}>
+    <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
@@ -86,7 +80,7 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. */}
-    </CacheProvider>
+    </StylesProvider>
   );
 }
 ```
@@ -242,7 +236,7 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. */}
-    </CacheProvider>
+    </StylesProvider>
   );
 }
 ```
@@ -488,7 +482,7 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. */}
-    </CacheProvider>
+    </StylesProvider>
   );
 }
 ```
