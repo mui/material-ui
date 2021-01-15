@@ -709,8 +709,15 @@ async function updateStylesDefinition(context: {
             if (members) {
               styles.descriptions = styles.descriptions || {};
               members.forEach((member) => {
-                const className = ((member as babel.types.TSPropertySignature)
+                let className = ((member as babel.types.TSPropertySignature)
                   .key as babel.types.Identifier).name;
+
+                if (!className) {
+                  // Necessary for classes defined as kebab case
+                  className = ((member as babel.types.TSPropertySignature)
+                    .key as babel.types.StringLiteral).value;
+                }
+
                 styles.classes.push(className);
                 if (member.leadingComments) {
                   styles.descriptions[className] = trimComment(member.leadingComments[0].value);

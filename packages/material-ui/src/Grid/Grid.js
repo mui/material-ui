@@ -12,50 +12,45 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import requirePropFactory from '../utils/requirePropFactory';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import gridClasses, { getGridUtilityClass } from './gridClasses';
 
-const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+function generateGrid(globalStyles, theme, breakpoint, styleProps) {
+  const size = styleProps[breakpoint];
 
-function generateGrid(globalStyles, theme, breakpoint) {
-  const styles = {};
+  if (!size) return;
 
-  GRID_SIZES.forEach((size) => {
-    const key = `grid-${breakpoint}-${size}`;
+  let styles = {};
 
-    if (size === true) {
-      // For the auto layouting
-      styles[key] = {
-        flexBasis: 0,
-        flexGrow: 1,
-        maxWidth: '100%',
-      };
-
-      return;
-    }
-
-    if (size === 'auto') {
-      styles[key] = {
-        flexBasis: 'auto',
-        flexGrow: 0,
-        maxWidth: 'none',
-      };
-
-      return;
-    }
-
+  if (size === true) {
+    // For the auto layouting
+    styles = {
+      flexBasis: 0,
+      flexGrow: 1,
+      maxWidth: '100%',
+    };
+  } else if (size === 'auto') {
+    styles = {
+      flexBasis: 'auto',
+      flexGrow: 0,
+      maxWidth: 'none',
+    };
+  } else {
     // Keep 7 significant numbers.
     const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
 
     // Close to the bootstrap implementation:
     // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
-    styles[key] = {
+    styles = {
       flexBasis: width,
       flexGrow: 0,
       maxWidth: width,
     };
-  });
+  }
 
   // No need for a media query for the first size.
   if (breakpoint === 'xs') {
@@ -70,27 +65,62 @@ function getOffset(val, div = 1) {
   return `${parse / div}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
-function generateGutter(theme, breakpoint) {
-  const styles = {};
+function generateGutter({ theme, styleProps }) {
+  const { container, spacing } = styleProps;
+  let styles = {};
 
-  SPACINGS.forEach((spacing) => {
+  if (container && spacing !== 0) {
     const themeSpacing = theme.spacing(spacing);
 
-    if (themeSpacing === '0px') {
-      return;
+    if (themeSpacing !== '0px') {
+      styles = {
+        margin: `-${getOffset(themeSpacing, 2)}`,
+        width: `calc(100% + ${getOffset(themeSpacing)})`,
+        [`& > .${gridClasses.item}`]: {
+          padding: getOffset(themeSpacing, 2),
+        },
+      };
     }
-
-    styles[`spacing-${breakpoint}-${spacing}`] = {
-      margin: `-${getOffset(themeSpacing, 2)}`,
-      width: `calc(100% + ${getOffset(themeSpacing)})`,
-      '& > $item': {
-        padding: getOffset(themeSpacing, 2),
-      },
-    };
-  });
+  }
 
   return styles;
 }
+
+const overridesResolver = (props, styles) => {
+  const {
+    alignContent,
+    alignItems,
+    container,
+    direction,
+    item,
+    justifyContent,
+    lg,
+    md,
+    sm,
+    spacing,
+    wrap,
+    xl,
+    xs,
+    zeroMinWidth,
+  } = props.styleProps;
+
+  return deepmerge(styles.root || {}, {
+    ...(container && styles.container),
+    ...(item && styles.item),
+    ...(zeroMinWidth && styles.zeroMinWidth),
+    ...(container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`]),
+    ...(direction !== 'row' && styles[`direction-xs-${String(direction)}`]),
+    ...(wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`]),
+    ...(alignItems !== 'stretch' && styles[`align-items-xs-${String(alignItems)}`]),
+    ...(alignContent !== 'stretch' && styles[`align-content-xs-${String(alignContent)}`]),
+    ...(justifyContent !== 'flex-start' && styles[`justify-content-xs-${String(justifyContent)}`]),
+    ...(xs !== false && styles[`grid-xs-${String(xs)}`]),
+    ...(sm !== false && styles[`grid-sm-${String(sm)}`]),
+    ...(md !== false && styles[`grid-md-${String(md)}`]),
+    ...(lg !== false && styles[`grid-lg-${String(lg)}`]),
+    ...(xl !== false && styles[`grid-xl-${String(xl)}`]),
+  });
+};
 
 // Default CSS values
 // flex: '0 1 auto',
@@ -98,122 +128,114 @@ function generateGutter(theme, breakpoint) {
 // alignItems: 'flex-start',
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {},
-  /* Styles applied to the root element if `container={true}`. */
-  container: {
+const GridRoot = experimentalStyled(
+  'div',
+  {},
+  { name: 'MuiGrid', slot: 'Root', overridesResolver },
+)(
+  ({ styleProps }) => ({
     boxSizing: 'border-box',
-    display: 'flex',
-    flexWrap: 'wrap',
-    width: '100%',
-  },
-  /* Styles applied to the root element if `item={true}`. */
-  item: {
-    boxSizing: 'border-box',
-    margin: 0, // For instance, it's useful when used with a `figure` element.
-  },
-  /* Styles applied to the root element if `zeroMinWidth={true}`. */
-  zeroMinWidth: {
-    minWidth: 0,
-  },
-  /* Styles applied to the root element if `direction="column"`. */
-  'direction-xs-column': {
-    flexDirection: 'column',
-    '& > $item': {
-      maxWidth: 'none',
-    },
-  },
-  /* Styles applied to the root element if `direction="column-reverse"`. */
-  'direction-xs-column-reverse': {
-    flexDirection: 'column-reverse',
-    '& > $item': {
-      maxWidth: 'none',
-    },
-  },
-  /* Styles applied to the root element if `direction="row-reverse"`. */
-  'direction-xs-row-reverse': {
-    flexDirection: 'row-reverse',
-  },
-  /* Styles applied to the root element if `wrap="nowrap"`. */
-  'wrap-xs-nowrap': {
-    flexWrap: 'nowrap',
-  },
-  /* Styles applied to the root element if `wrap="reverse"`. */
-  'wrap-xs-wrap-reverse': {
-    flexWrap: 'wrap-reverse',
-  },
-  /* Styles applied to the root element if `alignItems="center"`. */
-  'align-items-xs-center': {
-    alignItems: 'center',
-  },
-  /* Styles applied to the root element if `alignItems="flex-start"`. */
-  'align-items-xs-flex-start': {
-    alignItems: 'flex-start',
-  },
-  /* Styles applied to the root element if `alignItems="flex-end"`. */
-  'align-items-xs-flex-end': {
-    alignItems: 'flex-end',
-  },
-  /* Styles applied to the root element if `alignItems="baseline"`. */
-  'align-items-xs-baseline': {
-    alignItems: 'baseline',
-  },
-  /* Styles applied to the root element if `alignContent="center"`. */
-  'align-content-xs-center': {
-    alignContent: 'center',
-  },
-  /* Styles applied to the root element if `alignContent="flex-start"`. */
-  'align-content-xs-flex-start': {
-    alignContent: 'flex-start',
-  },
-  /* Styles applied to the root element if `alignContent="flex-end"`. */
-  'align-content-xs-flex-end': {
-    alignContent: 'flex-end',
-  },
-  /* Styles applied to the root element if `alignContent="space-between"`. */
-  'align-content-xs-space-between': {
-    alignContent: 'space-between',
-  },
-  /* Styles applied to the root element if `alignContent="space-around"`. */
-  'align-content-xs-space-around': {
-    alignContent: 'space-around',
-  },
-  /* Styles applied to the root element if `justifyContent="center"`. */
-  'justify-content-xs-center': {
-    justifyContent: 'center',
-  },
-  /* Styles applied to the root element if `justifyContent="flex-end"`. */
-  'justify-content-xs-flex-end': {
-    justifyContent: 'flex-end',
-  },
-  /* Styles applied to the root element if `justifyContent="space-between"`. */
-  'justify-content-xs-space-between': {
-    justifyContent: 'space-between',
-  },
-  /* Styles applied to the root element if `justifyContent="space-around"`. */
-  'justify-content-xs-space-around': {
-    justifyContent: 'space-around',
-  },
-  /* Styles applied to the root element if `justifyContent="space-evenly"`. */
-  'justify-content-xs-space-evenly': {
-    justifyContent: 'space-evenly',
-  },
-  ...generateGutter(theme, 'xs'),
-  ...theme.breakpoints.keys.reduce((accumulator, key) => {
-    // Use side effect over immutability for better performance.
-    generateGrid(accumulator, theme, key);
-    return accumulator;
-  }, {}),
-});
+    ...(styleProps.container && {
+      display: 'flex',
+      flexWrap: 'wrap',
+      width: '100%',
+    }),
+    ...(styleProps.item && {
+      margin: 0, // For instance, it's useful when used with a `figure` element.
+    }),
+    ...(styleProps.zeroMinWidth && {
+      minWidth: 0,
+    }),
+    ...(styleProps.direction === 'column' && {
+      flexDirection: 'column',
+      [`& > .${gridClasses.item}`]: {
+        maxWidth: 'none',
+      },
+    }),
+    ...(styleProps.direction === 'column-reverse' && {
+      flexDirection: 'column-reverse',
+      [`& > .${gridClasses.item}`]: {
+        maxWidth: 'none',
+      },
+    }),
+    ...(styleProps.direction === 'row-reverse' && {
+      flexDirection: 'row-reverse',
+    }),
+    ...(styleProps.wrap === 'nowrap' && {
+      flexWrap: 'nowrap',
+    }),
+    ...(styleProps.wrap === 'reverse' && {
+      flexWrap: 'wrap-reverse',
+    }),
+    ...(styleProps.alignItems && {
+      alignItems: styleProps.alignItems,
+    }),
+    ...(styleProps.alignContent && {
+      alignContent: styleProps.alignContent,
+    }),
+    ...(styleProps.justifyContent && {
+      justifyContent: styleProps.justifyContent,
+    }),
+  }),
+  generateGutter,
+  ({ theme, styleProps }) =>
+    theme.breakpoints.keys.reduce((accumulator, key) => {
+      // Use side effect over immutability for better performance.
+      generateGrid(accumulator, theme, key, styleProps);
+      return accumulator;
+    }, {}),
+);
 
-const Grid = React.forwardRef(function Grid(props, ref) {
+const useUtilityClasses = (styleProps) => {
+  const {
+    alignContent,
+    alignItems,
+    classes,
+    container,
+    direction,
+    item,
+    justifyContent,
+    lg,
+    md,
+    sm,
+    spacing,
+    wrap,
+    xl,
+    xs,
+    zeroMinWidth,
+  } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      container && 'container',
+      item && 'item',
+      zeroMinWidth && 'zeroMinWidth',
+      container && spacing !== 0 && `spacing-xs-${String(spacing)}`,
+      direction !== 'row' && `direction-xs-${String(direction)}`,
+      wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
+      alignItems !== 'stretch' && `align-items-xs-${String(alignItems)}`,
+      alignContent !== 'stretch' && `align-content-xs-${String(alignContent)}`,
+      justifyContent !== 'flex-start' && `justify-content-xs-${String(justifyContent)}`,
+      xs !== false && `grid-xs-${String(xs)}`,
+      sm !== false && `grid-sm-${String(sm)}`,
+      md !== false && `grid-md-${String(md)}`,
+      lg !== false && `grid-lg-${String(lg)}`,
+      xl !== false && `grid-xl-${String(xl)}`,
+    ],
+  };
+
+  return composeClasses({ slots, classes, getUtilityClass: getGridUtilityClass });
+};
+
+const Grid = React.forwardRef(function Grid(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiGrid' });
+
   const {
     alignContent = 'stretch',
     alignItems = 'stretch',
-    classes,
-    className: classNameProp,
-    component: Component = 'div',
+    className,
+    component = 'div',
     container = false,
     direction = 'row',
     item = false,
@@ -229,28 +251,35 @@ const Grid = React.forwardRef(function Grid(props, ref) {
     ...other
   } = props;
 
-  const className = clsx(
-    classes.root,
-    {
-      [classes.container]: container,
-      [classes.item]: item,
-      [classes.zeroMinWidth]: zeroMinWidth,
-      [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
-      [classes[`direction-xs-${String(direction)}`]]: direction !== 'row',
-      [classes[`wrap-xs-${String(wrap)}`]]: wrap !== 'wrap',
-      [classes[`align-items-xs-${String(alignItems)}`]]: alignItems !== 'stretch',
-      [classes[`align-content-xs-${String(alignContent)}`]]: alignContent !== 'stretch',
-      [classes[`justify-content-xs-${String(justifyContent)}`]]: justifyContent !== 'flex-start',
-      [classes[`grid-xs-${String(xs)}`]]: xs !== false,
-      [classes[`grid-sm-${String(sm)}`]]: sm !== false,
-      [classes[`grid-md-${String(md)}`]]: md !== false,
-      [classes[`grid-lg-${String(lg)}`]]: lg !== false,
-      [classes[`grid-xl-${String(xl)}`]]: xl !== false,
-    },
-    classNameProp,
-  );
+  const styleProps = {
+    ...props,
+    alignContent,
+    alignItems,
+    container,
+    direction,
+    item,
+    justifyContent,
+    lg,
+    md,
+    sm,
+    spacing,
+    wrap,
+    xl,
+    xs,
+    zeroMinWidth,
+  };
 
-  return <Component className={className} ref={ref} {...other} />;
+  const classes = useUtilityClasses(styleProps);
+
+  return (
+    <GridRoot
+      styleProps={styleProps}
+      className={clsx(classes.root, className)}
+      as={component}
+      ref={ref}
+      {...other}
+    />
+  );
 });
 
 Grid.propTypes = {
@@ -359,6 +388,10 @@ Grid.propTypes = {
    */
   spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
@@ -390,12 +423,12 @@ Grid.propTypes = {
   zeroMinWidth: PropTypes.bool,
 };
 
-const StyledGrid = withStyles(styles, { name: 'MuiGrid' })(Grid);
-
 if (process.env.NODE_ENV !== 'production') {
   const requireProp = requirePropFactory('Grid');
-  StyledGrid.propTypes = {
-    ...StyledGrid.propTypes,
+  // eslint-disable-next-line no-useless-concat
+  Grid['propTypes' + ''] = {
+    // eslint-disable-next-line react/forbid-foreign-prop-types
+    ...Grid.propTypes,
     alignContent: requireProp('container'),
     alignItems: requireProp('container'),
     direction: requireProp('container'),
@@ -410,4 +443,4 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default StyledGrid;
+export default Grid;

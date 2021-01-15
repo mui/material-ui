@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
@@ -170,6 +172,10 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default 0
      */
     spacing?: GridSpacing;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * Defines the `flex-wrap` style property.
      * It's applied for all screen sizes.
