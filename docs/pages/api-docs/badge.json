@@ -12,8 +12,8 @@
     "classes": { "type": { "name": "object" }, "default": "{}" },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'default'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+        "name": "union",
+        "description": "'default'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       },
       "default": "'default'"
     },
