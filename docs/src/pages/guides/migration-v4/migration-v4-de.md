@@ -84,17 +84,11 @@ export default function GlobalCssPriority() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+import { StylesProvider } from '@material-ui/core';
 
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function PlainCssPriority() {
+export default function GlobalCssPriority() {
   return (
-    <CacheProvider value={cache}>
+    <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
@@ -102,7 +96,7 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. */}
-    </CacheProvider>
+    </StylesProvider>
   );
 }
 ```
@@ -487,11 +481,11 @@ As the core components use emotion as a styled engine, the props used by emotion
     components: {
       MuiCssBaseline: {
         styleOverrides: {
-  -       '@global': {
+  - '@global': {
             html: {
               WebkitFontSmoothing: 'auto',
             },
-  -       },
+  - },
         },
       },
     },
@@ -919,7 +913,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Snackbar
 
-- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: You can restore the previous behavior with: You can restore the previous behavior with:
+- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: You can restore the previous behavior with: You can restore the previous behavior with: You can restore the previous behavior with:
 
   ```diff
   -<Snackbar />
