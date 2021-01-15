@@ -72,7 +72,7 @@ Cet exemple montre également comment retarder la transition d'entrée.
 The components accept a `TransitionComponent` prop to customize the default transitions. You can use any of the above components or your own. It should respect the following conditions:
 
 - Accepts an `in` prop. This corresponds to the open/close state.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
+- Appeler la propriété de callback `onEnter` lorsque la transition d'entrée démarre.
+- Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée. Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée.
 
 For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition).
