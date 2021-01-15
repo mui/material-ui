@@ -473,7 +473,6 @@ export * from './useAutocomplete';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
-
 /**
  * @deprecated will be removed in v5.beta, please use StyledEngineProvider instead
  */
