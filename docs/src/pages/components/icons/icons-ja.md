@@ -7,15 +7,15 @@ components: Icon, SvgIcon
 
 <p class="description">Material-UIでアイコンを使用するためのガイダンスと提案です。</p>
 
-Material-UI provides icons support in three ways:
+Material-UIはアイコンについて、3種類の提供方法をサポートします。
 
-1. Standardized [Material Design icons](#material-icons) exported as React components (SVG icons).
-1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
-1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
+1. 標準の [Material Design icons](#material-icons)を、Ractコンポーネント(SVGアイコン)として、エクスポートする方法
+1. ReactラッパーのカスタムSVGアイコンとして、[SVGアイコン](#svgicon) コンポーネントを利用する方法
+1. Reactラッパーのカスタムフォントアイコンとして、[アイコン](#icon-font-icons)  コンポーネントを利用する方法
 
 ## マテリアルアイコン（Material Icons）
 
-Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
+Material Designでは1,100以上の公式アイコンが標準化されており、それぞれ5つのテーマに分かれています。(下記参照) SVGアイコンは、@material-ui/iconsパッケージのReactコンポーネントとしてそれぞれエクスポートされています。 [これらのアイコンの一覧を検索](/components/material-icons/)することが出来ます。
 
 ### インストール
 
@@ -98,7 +98,7 @@ function HomeIcon(props) {
 
 {{"demo": "pages/components/icons/SvgIconsSize.js"}}
 
-### Component prop
+### Component プロパティ
 
 You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format. [svgr](https://github.com/smooth-code/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
 
@@ -172,7 +172,7 @@ import Icon from '@material-ui/core/Icon';
 
 {{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
-## Font vs SVG どのアプローチを使用しますか？ どのアプローチを使用しますか？ どのアプローチを使用しますか？
+## Font vs SVG どのアプローチを使用しますか？ どのアプローチを使用しますか？ どのアプローチを使用しますか？ どのアプローチを使用しますか？
 
 どちらの方法でも問題なく動作しますが、特にパフォーマンスとレンダリング品質の点で、わずかな違いがいくつかあります。 どちらの方法でも問題なく動作しますが、特にパフォーマンスとレンダリング品質の点で、わずかな違いがいくつかあります。 どちらの方法でも問題なく動作しますが、特にパフォーマンスとレンダリング品質の点で、わずかな違いがいくつかあります。 コード分割を可能にし、より多くのアイコンをサポートし、より速くより良くレンダリングするので、可能な限りSVGが優先されます。
 
