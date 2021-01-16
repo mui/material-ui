@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 <p class="description">Expansion panels(拡張パネル) には作成フローが含まれ、要素を簡単に編集できます。</p>
 
-[拡張パネル](https://material.io/archive/guidelines/components/expansion-panels.html)は 独立した軽量のコンテナであるか、カードなどの大きなサーフェスに接続されています。
+[拡張パネル](https://material.io/archive/guidelines/components/expansion-panels.html)は 軽量のコンテナであり、スタンドアロンでの使用、もしくは、カードのような大きな面へ接続して使用されます。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
