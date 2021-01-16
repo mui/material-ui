@@ -59,7 +59,7 @@ Two Universal Module Definition (**UMD**) files are provided:
 
 ⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
 
-⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 ⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js). このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 ⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 ⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js). このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
 
 ## Design resources
 
