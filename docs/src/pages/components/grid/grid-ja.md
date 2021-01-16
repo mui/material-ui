@@ -96,22 +96,7 @@ If you need to do such, remove one of the props.
 
 ### Negative margin
 
-項目間の間隔を実装するために使用する負のマージンには1つ制限があります。 項目間の間隔を実装するために使用する負のマージンには1つ制限があります。 負のマージンが `<body>`を超えると水平スクロールが表示されます。 回避策は3つあります。 回避策は3つあります。
-
-1. スペーシング機能を使用し、ユーザ空間でそれを実装していない `spacing ={0}` （デフォルト）。
-2. 子に適用された間隔値の少なくとも半分を使用して、親にパディングを適用します。
-
-   ```jsx
-   <body>
-    <div style={{ padding: 20 }}>
-      <Grid container spacing={5}>
-        //...
-       </Grid>
-    </div>
-  </body>
-   ```
-
-3. `overflow-x: hidden;`を親に追加する
+The spacing between items is implemented with a negative margin. これは予想外の動作をする可能性があります。 例えば背景色を適用するには、親要素に `display: flex;` を適用する必要があります。
 
 ### white-space: nowrap;
 
