@@ -65,7 +65,7 @@ const inHouseAds = [
     name: 'scaffoldhub',
     link: 'https://scaffoldhub.io/?partner=1',
     img: '/static/ads-in-house/scaffoldhub.png',
-    description: '<b>Scaffold</b>. Automate building your full-stack Material-UI web-app.',
+    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material-UI web-app.',
   },
   {
     name: 'templates',
@@ -109,7 +109,7 @@ const inHouseAds = [
   },
   {
     name: 'divjoy',
-    link: 'https://www.producthunt.com/posts/divjoy-2-0',
+    link: 'https://divjoy.com?via=material-ui',
     img: '/static/ads-in-house/divjoy.png',
     description:
       '<b>Divjoy</b>. Create your Material-UI app in minutes. You’ll get a nice template, authentication, database integration, subscription payments, and more.',
