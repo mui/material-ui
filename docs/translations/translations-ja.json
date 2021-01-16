@@ -194,7 +194,7 @@
     "/components/menus": "Menu",
     "/components/pagination": "Pagination",
     "/components/speed-dial": "スピードダイヤル（Speed Dial）",
-    "/components/steppers": "Stepper（ステッパー）",
+    "/components/steppers": "Stepper ステッパー",
     "/components/tabs": "Tabs",
     "/components/surfaces": "サーフェス",
     "/components/accordion": "Accordion (拡張パネル)",
