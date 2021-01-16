@@ -15,7 +15,8 @@
         "description": "'absolute'<br>&#124;&nbsp;'fixed'<br>&#124;&nbsp;'relative'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'sticky'"
       },
       "default": "'fixed'"
-    }
+    },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "AppBar",
   "styles": {
@@ -40,5 +41,5 @@
   "filename": "/packages/material-ui/src/AppBar/AppBar.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/app-bar/\">App Bar</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true
 }
