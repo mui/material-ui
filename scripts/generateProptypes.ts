@@ -112,6 +112,7 @@ const useExternalDocumentation: Record<string, '*' | string[]> = {
   MenuItem: ['dense'],
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
+  Checkbox: ['defaultChecked'],
   Switch: [
     'checked',
     'defaultChecked',

@@ -218,7 +218,7 @@ Switch.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
-   * @ignore
+   * The default checked state. Use when the component is not controlled.
    */
   defaultChecked: PropTypes.bool,
   /**
