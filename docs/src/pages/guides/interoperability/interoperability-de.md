@@ -57,10 +57,6 @@ export default function PlainCssButton() {
 ```jsx
 */}
 </StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
       */}
 </StylesProvider>
       Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
@@ -150,10 +146,6 @@ export default function GlobalCssButton() {
 ```jsx
 */}
 </StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
       */}
 </StylesProvider>
       Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
@@ -479,10 +471,6 @@ export default function EmotionCSS() {
 ```jsx
 */}
 </StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
       */}
 </StylesProvider>
       Now, you can override Material-UI's styles. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
