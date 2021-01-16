@@ -26,7 +26,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 
 ### Options structure
 
-By default, the component accepts the following options structures:
+デフォルトでは、コンポーネントは以下の構造のオプションが設定可能です。
 
 ```ts
 const filterOptions = createFilterOptions({
@@ -66,7 +66,7 @@ However, you can use different structures by providing a `getOptionLabel` prop.
 
 コンポーネントは、操作できる二つのステートを持ちます。
 
-1. "value"ステートは `value`/`onChange` を組み合わせて使用します。 "value"ステートは `value`/`onChange` を組み合わせて使用します。 この値は、ユーザーが選択した値を示します。例えば、<kbd>Enter</kbd>を押している状態。 "value"ステートは `value`/`onChange` を組み合わせて使用します。 この値は、ユーザーが選択した値を示します。例えば、<kbd class="key">Enter</kbd>を押している状態。
+1. "value"ステートは `value`/`onChange` を組み合わせて使用します。 例えば、<kbd class="key">Enter</kbd>を押している状態。
 2. "input value"ステートは`inputValue`/`onInputChange` を組み合わせて使用します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。
 
 > 二つのステートは解離しており、独立して管理される必要があります。
@@ -116,7 +116,7 @@ For advanced customization use cases, we expose a headless `useAutocomplete()` h
 import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
-- [4.5 kB gzipped](/size-snapshot).
+- 📦 [4.5 kB gzipped](/size-snapshot).
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -196,7 +196,7 @@ Fancy smaller inputs? `size`propを使用します。
 
 ### Custom input
 
-`renderInput`でレンダリングされる入力をカスタマイズできます。 このrender propsの一つ目の引数は、継承する必要のあるpropsを含みます。 `ref` と `inputProps` の扱いに特に注意してください。 このrender propsの一つ目の引数は、継承する必要のあるpropsを含みます。 `ref` と `inputProps` の扱いに特に注意してください。
+`renderInput`でレンダリングされる入力をカスタマイズできます。 このrender propsの一つ目の引数は、継承する必要のあるpropsを含みます。 `ref` と `inputProps` の扱いに特に注意してください。
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
@@ -266,7 +266,7 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ## Virtualization
 
-10,000のランダム生成された選択肢内で検索します。 10,000のランダム生成された選択肢内で検索します。 10,000のランダム生成された選択肢内で検索します。 [react-window](https://github.com/bvaughn/react-window)でリストをバーチャライズしています。 10,000のランダム生成された選択肢内で検索します。 10,000のランダム生成された選択肢内で検索します。 [react-window](https://github.com/bvaughn/react-window)でリストをバーチャライズしています。
+10,000のランダム生成された選択肢内で検索します。 10,000のランダム生成された選択肢内で検索します。 10,000のランダム生成された選択肢内で検索します。 [react-window](https://github.com/bvaughn/react-window)でリストをバーチャライズしています。 [react-window](https://github.com/bvaughn/react-window)でリストをバーチャライズしています。
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
@@ -296,7 +296,7 @@ By default, the component disables the **autocomplete** feature (remembering wha
 
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). autofillを避けたい場合、以下の方法を取れます。
 
-- ブラウザが判断できない命名を入力欄に使う。 ブラウザが判断できない命名を入力欄に使う。 例: `id="country"`の代わりに、`id="field1"`を使う idを空にした場合、コンポーネントはランダムなidを保管します。 idを空にした場合、コンポーネントはランダムなidを保管します。
+- ブラウザが判断できない命名を入力欄に使う。 例: `id="country"`の代わりに、`id="field1"`を使う idを空にした場合、コンポーネントはランダムなidを保管します。
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
@@ -323,4 +323,4 @@ iOS Safariのボイスオーバーは`aria-owns` を十分にサポートして�
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-テキストボックスに対して、ラベルの使用を奨励しています。 コンポーネントは WAI-ARIA オーサリングを実装しています。 コンポーネントは WAI-ARIA オーサリングを実装しています。
+テキストボックスに対して、ラベルの使用を奨励しています。 コンポーネントは WAI-ARIA オーサリングを実装しています。
