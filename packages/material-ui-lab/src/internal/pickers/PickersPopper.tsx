@@ -101,7 +101,7 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
     }
   }, [open, role]);
 
-  const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+  const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (!open) {
       return;
     }
