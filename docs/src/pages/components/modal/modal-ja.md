@@ -16,13 +16,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 - 🔐open開いている間、ページコンテンツのスクロールを無効にします。
 - ♿️フォーカスを適切に管理します。モーダルコンテンツに移動 して、モーダルが閉じられるまでそこに保持します。
 - ♿️適切なARIAロールを自動的に追加します。
-- [5 kB gzipped](/size-snapshot).
+- 📦 [5 kB gzipped](/size-snapshot).
 
 [The palette](/system/palette/) style関数。
 
 > **用語の注記**。 「モーダル」という用語は「ダイアログ」を意味するために使用されることがありますが、これは誤った呼び名です。 A modal window describes parts of a UI. 要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。
 
-要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。 This component should respect the following conditions:
+要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。 モーダルは、次のコンポーネントによって活用される低レベルの構成要素です。
 
 - [Dialog](/components/dialogs/)
 - [Drawer](/components/drawers/)
@@ -88,7 +88,7 @@ This is done for accessibility purposes, however, it might create issues. In the
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- **用語の注記**。 「モーダル」という用語は「ダイアログ」を意味するために使用されることがありますが、これは誤った呼び名です。 A modal window describes parts of a UI. 要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。
+- モーダルタイトルを参照する `aria-labelledby = "id..."` `モーダル`に追加してください。 要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。
 
   ```jsx
   <Modal
@@ -105,4 +105,4 @@ This is done for accessibility purposes, however, it might create issues. In the
   ```
 
 - The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-- Windows under a modal are **inert**. Keep in mind that a "modal window" overlays on either the primary window or another modal window. Keep in mind that a "modal window" overlays on either the primary window or another modal window. This might create [conflicting behaviors](#focus-trap).
+- Keep in mind that a "modal window" overlays on either the primary window or another modal window. Keep in mind that a "modal window" overlays on either the primary window or another modal window. That is, users cannot interact with content outside an active modal window. This might create [conflicting behaviors](#focus-trap).
