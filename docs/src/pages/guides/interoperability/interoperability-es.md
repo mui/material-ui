@@ -52,7 +52,13 @@ export default function PlainCssSlider() {
 **Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material-UI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done in Material-UI:
 
 ```jsx
-Now you can override Material-UI's styles. import * as React from 'react';
+import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
@@ -68,17 +74,11 @@ export default function GlobalCssPriority() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+import { StylesProvider } from '@material-ui/core';
 
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function PlainCssPriority() {
+export default function GlobalCssPriority() {
   return (
-    <CacheProvider value={cache}>
+    <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
@@ -86,7 +86,7 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. */}
-    </CacheProvider>
+    </StylesProvider>
   );
 }
 ```
@@ -208,7 +208,13 @@ export default function GlobalCssSlider() {
 **Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material-UI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done in Material-UI:
 
 ```jsx
-Now you can override Material-UI's styles. import * as React from 'react';
+import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
@@ -242,7 +248,7 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. */}
-    </CacheProvider>
+    </StylesProvider>
   );
 }
 ```
@@ -454,7 +460,13 @@ export default function CssModulesSlider() {
 **Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material-UI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done in Material-UI:
 
 ```jsx
-Now you can override Material-UI's styles. import * as React from 'react';
+import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
@@ -488,7 +500,7 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. */}
-    </CacheProvider>
+    </StylesProvider>
   );
 }
 ```
