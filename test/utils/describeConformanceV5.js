@@ -7,10 +7,11 @@ import {
   testClassName,
   testPropsSpread,
   describeRef,
-  testRootClass,
   findRootComponent,
   testReactTestRenderer,
+  randomStringValue,
 } from './describeConformance';
+import findOutermostIntrinsic from './findOutermostIntrinsic';
 
 /**
  * Material-UI components have a `components` prop that allows rendering a different
@@ -189,6 +190,38 @@ function testThemeComponents(element, getOptions) {
       expect(getByTestId('with-props')).to.toHaveComputedStyle(testStyle);
       expect(getByTestId('without-props')).not.to.toHaveComputedStyle(testStyle);
     });
+  });
+}
+
+/**
+ * Tests that the root component has the root class
+ * @param {React.ReactElement} element
+ * @param {() => ConformanceOptions} getOptions
+ */
+export function testRootClass(element, getOptions) {
+  it('applies the root class to the root component if it has this class', () => {
+    const { classes, mount } = getOptions();
+    if (classes.root == null) {
+      return;
+    }
+
+    const className = randomStringValue();
+    let wrapper = mount(React.cloneElement(element, { className }));
+
+    // we established that the root component renders the outermost host previously. We immediately
+    // jump to the host component because some components pass the `root` class
+    // to the `classes` prop of the root component.
+    // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
+    expect(findOutermostIntrinsic(wrapper).hasClass(classes.root)).to.equal(true);
+    expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(true);
+
+    // Test that classes prop works
+    const classesProp = { ...classes };
+    classesProp.root = `${classesProp.root} ${className}`;
+
+    wrapper = mount(React.cloneElement(element, { classes: classesProp }));
+    expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(true);
+    expect(findOutermostIntrinsic(wrapper).getDOMNode().getAttribute('classes')).to.equal(null);
   });
 }
 

@@ -47,7 +47,7 @@ export function findRootComponent(wrapper, { component }) {
   });
 }
 
-function randomStringValue() {
+export function randomStringValue() {
   return `s${Math.random().toString(36).slice(2)}`;
 }
 
