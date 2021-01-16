@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     height: 180,
   },
   wrapper: {
-    width: 100 + theme.spacing(2),
+    width: `calc(100px + ${theme.spacing(2)})`,
   },
   paper: {
     zIndex: 1,

@@ -167,7 +167,7 @@ Components expose [global class names](/styles/advanced/#with-material-ui-core) 
 
 ```css
 .MuiButton-root {
-  fontsize: '1rem';
+  font-size: 1rem;
 }
 ```
 
