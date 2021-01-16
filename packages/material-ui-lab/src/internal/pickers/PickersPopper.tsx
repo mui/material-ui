@@ -10,7 +10,6 @@ import { useForkRef, setRef, useEventCallback } from '@material-ui/core/utils';
 import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
 import { TransitionProps as MuiTransitionProps } from '@material-ui/core/transitions';
 import { useGlobalKeyDown, keycode } from './hooks/useKeyDown';
-import { executeInTheNextEventLoopTick } from './utils';
 
 export interface ExportedPickerPopperProps {
   /**
@@ -87,27 +86,35 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
 
     if (open) {
       lastFocusedElementRef.current = document.activeElement;
+
+      // Focus the paper element when popper opens, otherwise onBlur will not be invoked.
+      // Remove "disableAutoFocus" prop on TrapFocus also works but TrapFocus seems buggy.
+      // The page will jump a little bit when the button that opens the picker is
+      // located at the bottom of the screen.
+      paperRef.current?.focus();
     } else if (
       lastFocusedElementRef.current &&
       lastFocusedElementRef.current instanceof HTMLElement
     ) {
+      // restore focus, is it necessary?
       lastFocusedElementRef.current.focus();
     }
   }, [open, role]);
 
-  const handleBlur = () => {
+  const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (!open) {
       return;
     }
 
-    // document.activeElement is updating on the next tick after `blur` called
-    executeInTheNextEventLoopTick(() => {
-      if (paperRef.current?.contains(document.activeElement)) {
-        return;
-      }
+    // e.relatedTarget is the target receiving focus. Should not use document.activeElement
+    // since TrapFocus will make it the paper element after clicking on the paper element.
+    if ((e.relatedTarget && paperRef.current?.contains(e.relatedTarget as Node)) ||
+      // Prevent Popper getting closed when press "tab" on the last element
+      e.relatedTarget === paperRef.current?.nextSibling) {
+      return;
+    }
 
-      onClose();
-    });
+    onClose();
   };
 
   return (
@@ -117,6 +124,8 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
       open={open}
       anchorEl={anchorEl}
       className={clsx(classes.root, PopperProps?.className)}
+      // Prevent the page from jumping to the top. Seems to be a bug in TrapFocus.
+      disablePortal
       {...PopperProps}
     >
       {({ TransitionProps, placement }) => (
