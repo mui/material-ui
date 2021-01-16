@@ -53,7 +53,12 @@ const variantsResolver = (props, styles, theme, name) => {
 };
 
 export const shouldForwardProp = (prop) =>
-  prop !== 'styleProps' && prop !== 'theme' && prop !== 'isRtl' && prop !== 'sx' && prop !== 'as' && prop !== 'classes';
+  prop !== 'styleProps' &&
+  prop !== 'theme' &&
+  prop !== 'isRtl' &&
+  prop !== 'sx' &&
+  prop !== 'as' &&
+  prop !== 'classes';
 
 const lowercaseFirstLetter = (string) => {
   return string.charAt(0).toLowerCase() + string.slice(1);
