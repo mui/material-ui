@@ -258,6 +258,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
       role={role}
       square
       elevation={0}
+      styleProps={styleProps}
       className={clsx(classes.root, classes[variant], themeVariantsClasses, className)}
       ref={ref}
       {...other}
