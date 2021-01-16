@@ -32,7 +32,8 @@
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
       "default": "'standard'"
-    }
+    },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Alert",
   "styles": {
@@ -65,5 +66,5 @@
   "filename": "/packages/material-ui/src/Alert/Alert.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/alert/\">Alert</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true
 }

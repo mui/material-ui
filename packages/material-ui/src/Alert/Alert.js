@@ -1,11 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { useThemeVariants } from '@material-ui/styles';
-import withStyles from '../styles/withStyles';
+import experimentalStyled from '../styles/experimentalStyled';
 import { darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
+import { getAppBarUtilityClass } from './alertClasses';
 import IconButton from '../IconButton';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
@@ -13,19 +16,46 @@ import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
 
-export const styles = (theme) => {
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { variant, color, severity, classes } = styleProps;
+
+  const slots = {
+    root: ['root', `${variant}${capitalize(color || severity)}`],
+    icon: ['icon'],
+    message: ['message'],
+    action: ['action'],
+  };
+
+  return composeClasses(slots, getAppBarUtilityClass, classes);
+};
+
+const AlertRoot = experimentalStyled(
+  Paper,
+  {},
+  {
+    name: 'MuiAlert',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
 
   return {
     /* Styles applied to the root element. */
-    root: {
-      ...theme.typography.body2,
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: 'transparent',
-      display: 'flex',
-      padding: '6px 16px',
-    },
+    ...theme.typography.body2,
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: 'transparent',
+    display: 'flex',
+    padding: '6px 16px',
     /* Styles applied to the root element if `variant="filled"`. */
     filled: {},
     /* Styles applied to the root element if `variant="outlined"`. */
@@ -33,115 +63,151 @@ export const styles = (theme) => {
     /* Styles applied to the root element if `variant="standard"`. */
     standard: {},
     /* Styles applied to the root element if `variant="standard"` and `color="success"`. */
-    standardSuccess: {
-      color: getColor(theme.palette.success.main, 0.6),
-      backgroundColor: getBackgroundColor(theme.palette.success.main, 0.9),
-      '& $icon': {
-        color: theme.palette.success.main,
-      },
-    },
+    ...(styleProps.variant === 'standard' &&
+      styleProps.color === 'success' && {
+        color: getColor(theme.palette.success.main, 0.6),
+        backgroundColor: getBackgroundColor(theme.palette.success.main, 0.9),
+        '& $icon': {
+          color: theme.palette.success.main,
+        },
+      }),
     /* Styles applied to the root element if `variant="standard"` and `color="info"`. */
-    standardInfo: {
-      color: getColor(theme.palette.info.main, 0.6),
-      backgroundColor: getBackgroundColor(theme.palette.info.main, 0.9),
-      '& $icon': {
-        color: theme.palette.info.main,
-      },
-    },
+    ...(styleProps.variant === 'standard' &&
+      styleProps.color === 'info' && {
+        color: getColor(theme.palette.info.main, 0.6),
+        backgroundColor: getBackgroundColor(theme.palette.info.main, 0.9),
+        '& $icon': {
+          color: theme.palette.info.main,
+        },
+      }),
     /* Styles applied to the root element if `variant="standard"` and `color="warning"`. */
-    standardWarning: {
-      color: getColor(theme.palette.warning.main, 0.6),
-      backgroundColor: getBackgroundColor(theme.palette.warning.main, 0.9),
-      '& $icon': {
-        color: theme.palette.warning.main,
-      },
-    },
+    ...(styleProps.variant === 'standard' &&
+      styleProps.color === 'warning' && {
+        color: getColor(theme.palette.warning.main, 0.6),
+        backgroundColor: getBackgroundColor(theme.palette.warning.main, 0.9),
+        '& $icon': {
+          color: theme.palette.warning.main,
+        },
+      }),
     /* Styles applied to the root element if `variant="standard"` and `color="error"`. */
-    standardError: {
-      color: getColor(theme.palette.error.main, 0.6),
-      backgroundColor: getBackgroundColor(theme.palette.error.main, 0.9),
-      '& $icon': {
-        color: theme.palette.error.main,
-      },
-    },
+    ...(styleProps.variant === 'standard' &&
+      styleProps.color === 'error' && {
+        color: getColor(theme.palette.error.main, 0.6),
+        backgroundColor: getBackgroundColor(theme.palette.error.main, 0.9),
+        '& $icon': {
+          color: theme.palette.error.main,
+        },
+      }),
     /* Styles applied to the root element if `variant="outlined"` and `color="success"`. */
-    outlinedSuccess: {
-      color: getColor(theme.palette.success.main, 0.6),
-      border: `1px solid ${theme.palette.success.main}`,
-      '& $icon': {
-        color: theme.palette.success.main,
-      },
-    },
+    ...(styleProps.variant === 'outlined' &&
+      styleProps.color === 'success' && {
+        color: getColor(theme.palette.success.main, 0.6),
+        border: `1px solid ${theme.palette.success.main}`,
+        '& $icon': {
+          color: theme.palette.success.main,
+        },
+      }),
     /* Styles applied to the root element if `variant="outlined"` and `color="info"`. */
-    outlinedInfo: {
-      color: getColor(theme.palette.info.main, 0.6),
-      border: `1px solid ${theme.palette.info.main}`,
-      '& $icon': {
-        color: theme.palette.info.main,
-      },
-    },
+    ...(styleProps.variant === 'outlined' &&
+      styleProps.color === 'info' && {
+        color: getColor(theme.palette.info.main, 0.6),
+        border: `1px solid ${theme.palette.info.main}`,
+        '& $icon': {
+          color: theme.palette.info.main,
+        },
+      }),
     /* Styles applied to the root element if `variant="outlined"` and `color="warning"`. */
-    outlinedWarning: {
-      color: getColor(theme.palette.warning.main, 0.6),
-      border: `1px solid ${theme.palette.warning.main}`,
-      '& $icon': {
-        color: theme.palette.warning.main,
-      },
-    },
+    ...(styleProps.variant === 'outlined' &&
+      styleProps.color === 'warning' && {
+        color: getColor(theme.palette.warning.main, 0.6),
+        border: `1px solid ${theme.palette.warning.main}`,
+        '& $icon': {
+          color: theme.palette.warning.main,
+        },
+      }),
     /* Styles applied to the root element if `variant="outlined"` and `color="error"`. */
-    outlinedError: {
-      color: getColor(theme.palette.error.main, 0.6),
-      border: `1px solid ${theme.palette.error.main}`,
-      '& $icon': {
-        color: theme.palette.error.main,
-      },
-    },
+    ...(styleProps.variant === 'outlined' &&
+      styleProps.color === 'error' && {
+        color: getColor(theme.palette.error.main, 0.6),
+        border: `1px solid ${theme.palette.error.main}`,
+        '& $icon': {
+          color: theme.palette.error.main,
+        },
+      }),
     /* Styles applied to the root element if `variant="filled"` and `color="success"`. */
-    filledSuccess: {
-      color: '#fff',
-      fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: theme.palette.success.main,
-    },
+    ...(styleProps.variant === 'filled' &&
+      styleProps.color === 'success' && {
+        color: '#fff',
+        fontWeight: theme.typography.fontWeightMedium,
+        backgroundColor: theme.palette.success.main,
+      }),
     /* Styles applied to the root element if `variant="filled"` and `color="info"`. */
-    filledInfo: {
-      color: '#fff',
-      fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: theme.palette.info.main,
-    },
+    ...(styleProps.variant === 'filled' &&
+      styleProps.color === 'info' && {
+        color: '#fff',
+        fontWeight: theme.typography.fontWeightMedium,
+        backgroundColor: theme.palette.info.main,
+      }),
     /* Styles applied to the root element if `variant="filled"` and `color="warning"`. */
-    filledWarning: {
-      color: '#fff',
-      fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: theme.palette.warning.main,
-    },
+    ...(styleProps.variant === 'filled' &&
+      styleProps.color === 'warning' && {
+        color: '#fff',
+        fontWeight: theme.typography.fontWeightMedium,
+        backgroundColor: theme.palette.warning.main,
+      }),
     /* Styles applied to the root element if `variant="filled"` and `color="error"`. */
-    filledError: {
-      color: '#fff',
-      fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: theme.palette.error.main,
-    },
-    /* Styles applied to the icon wrapper element. */
-    icon: {
-      marginRight: 12,
-      padding: '7px 0',
-      display: 'flex',
-      fontSize: 22,
-      opacity: 0.9,
-    },
-    /* Styles applied to the message wrapper element. */
-    message: {
-      padding: '8px 0',
-    },
-    /* Styles applied to the action wrapper element if `action` is provided. */
-    action: {
-      display: 'flex',
-      alignItems: 'center',
-      marginLeft: 'auto',
-      paddingLeft: 16,
-      marginRight: -8,
-    },
+    ...(styleProps.variant === 'filled' &&
+      styleProps.color === 'error' && {
+        color: '#fff',
+        fontWeight: theme.typography.fontWeightMedium,
+        backgroundColor: theme.palette.error.main,
+      }),
   };
-};
+});
+
+/* Styles applied to the icon wrapper element. */
+const AlertIcon = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiAlert',
+    slot: 'Icon',
+  },
+)({
+  marginRight: 12,
+  padding: '7px 0',
+  display: 'flex',
+  fontSize: 22,
+  opacity: 0.9,
+});
+
+/* Styles applied to the message wrapper element. */
+const AlertMessage = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiAlert',
+    slot: 'Message',
+  },
+)({
+  padding: '8px 0',
+});
+
+/* Styles applied to the action wrapper element if `action` is provided. */
+const AlertAction = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiAlert',
+    slot: 'Message',
+  },
+)({
+  display: 'flex',
+  alignItems: 'center',
+  marginLeft: 'auto',
+  paddingLeft: 16,
+  marginRight: -8,
+});
 
 const defaultIconMapping = {
   success: <SuccessOutlinedIcon fontSize="inherit" />,
@@ -154,7 +220,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   const {
     action,
     children,
-    classes,
     className,
     closeText = 'Close',
     color,
@@ -166,6 +231,15 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     variant = 'standard',
     ...other
   } = props;
+
+  const styleProps = {
+    ...other,
+    variant,
+    color,
+    severity,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   const themeVariantsClasses = useThemeVariants(
     {
@@ -180,29 +254,23 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   );
 
   return (
-    <Paper
+    <AlertRoot
       role={role}
       square
       elevation={0}
-      className={clsx(
-        classes.root,
-        classes[variant],
-        classes[`${variant}${capitalize(color || severity)}`],
-        themeVariantsClasses,
-        className,
-      )}
+      className={clsx(classes.root, classes[variant], themeVariantsClasses, className)}
       ref={ref}
       {...other}
     >
       {icon !== false ? (
-        <div className={classes.icon}>
+        <AlertIcon className={classes.icon}>
           {icon || iconMapping[severity] || defaultIconMapping[severity]}
-        </div>
+        </AlertIcon>
       ) : null}
-      <div className={classes.message}>{children}</div>
-      {action != null ? <div className={classes.action}>{action}</div> : null}
+      <AlertMessage className={classes.message}>{children}</AlertMessage>
+      {action != null ? <AlertAction className={classes.action}>{action}</AlertAction> : null}
       {action == null && onClose ? (
-        <div className={classes.action}>
+        <AlertAction className={classes.action}>
           <IconButton
             size="small"
             aria-label={closeText}
@@ -212,9 +280,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
           >
             <CloseIcon fontSize="small" />
           </IconButton>
-        </div>
+        </AlertAction>
       ) : null}
-    </Paper>
+    </AlertRoot>
   );
 });
 
@@ -285,6 +353,10 @@ Alert.propTypes = {
    */
   severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The variant to use.
    * @default 'standard'
    */
@@ -294,4 +366,4 @@ Alert.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiAlert' })(Alert);
+export default Alert;

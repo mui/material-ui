@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 
 export type Color = 'success' | 'info' | 'warning' | 'error';
@@ -101,6 +102,10 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * @default 'standard'
    */
   variant?: OverridableStringUnion<AlertVariantDefaults, AlertPropsVariantOverrides>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type AlertClassKey = keyof NonNullable<AlertProps['classes']>;
