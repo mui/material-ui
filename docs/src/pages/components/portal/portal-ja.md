@@ -10,7 +10,7 @@ githubLabel: 'component: Portal'
 
 - 📦 [1.3 kB gzipped](/size-snapshot)
 
-ポータルコンポーネントの子は、指定された `コンテナ` 追加されます。 ポータルコンポーネントの子は、指定された `コンテナ` 追加されます。 コンポーネントは、 [`Modal`](/components/modal/) および [`Popper`](/components/popper/) コンポーネントによって内部的に使用されます。 ポータルコンポーネントの子は、指定された `コンテナ` 追加されます。 コンポーネントは、 [`Modal`](/components/modal/) および [`Popper`](/components/popper/) コンポーネントによって内部的に使用されます。 ポータルコンポーネントの子は、指定された `コンテナ` 追加されます。 コンポーネントは、 [`Modal`](/components/modal/) および [`Popper`](/components/popper/) コンポーネントによって内部的に使用されます。
+ポータルコンポーネントの子は、指定された `container` 追加されます。 コンポーネントは、 [`Modal`](/components/modal/) および [`Popper`](/components/popper/) コンポーネントによって内部的に使用されます。
 
 [The palette](/system/palette/) style関数。
 
