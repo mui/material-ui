@@ -5,6 +5,7 @@
     "checkedIcon": "The icon to display when the component is checked.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "defaultChecked": "The default checked state. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the component is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.",
     "edge": "If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).",

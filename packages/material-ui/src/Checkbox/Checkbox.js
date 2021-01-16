@@ -130,6 +130,10 @@ Checkbox.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
+   * The default checked state. Use when the component is not controlled.
+   */
+  defaultChecked: PropTypes.bool,
+  /**
    * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,

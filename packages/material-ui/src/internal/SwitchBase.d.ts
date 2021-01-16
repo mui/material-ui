@@ -19,6 +19,9 @@ export interface SwitchBaseProps
     disabled?: string;
     inpit?: string;
   };
+  /**
+   * The default checked state. Use when the component is not controlled.
+   */
   defaultChecked?: boolean;
   disabled?: boolean;
   /**

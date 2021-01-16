@@ -10,6 +10,7 @@
       },
       "default": "'secondary'"
     },
+    "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disableRipple": { "type": { "name": "bool" } },
     "edge": {
