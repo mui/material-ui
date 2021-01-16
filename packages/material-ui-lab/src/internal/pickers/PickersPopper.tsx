@@ -109,9 +109,9 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
     // e.relatedTarget is the target receiving focus. Should not use document.activeElement
     // since TrapFocus will make it the paper element after clicking on the paper element.
     if (
-      (e.relatedTarget && paperRef.current?.contains(e.relatedTarget as Node)) ||
+      (event.relatedTarget && paperRef.current?.contains(event.relatedTarget as Node)) ||
       // Prevent Popper getting closed when press "tab" on the last element
-      e.relatedTarget === paperRef.current?.nextSibling
+      event.relatedTarget === paperRef.current?.nextSibling
     ) {
       return;
     }
