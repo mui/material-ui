@@ -234,16 +234,7 @@ Der `StylesProvider` Komponente hat eine `injectFirst` Eigenschaft, um **zuerst*
 ```jsx
 */}
 </StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      */}
-</StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
+      Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -251,27 +242,39 @@ Der `StylesProvider` Komponente hat eine `injectFirst` Eigenschaft, um **zuerst*
 Das Einfügen von Style-Tags erfolgt in der **gleichen Reihenfolge** wie die `makeStyles`/`withStyles`/`styled` Aufrufe. Zum Beispiel gewinnt die Farbe Rot in diesem Fall:
 
 ```jsx
-import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 
-const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
+const useStylesBase = makeStyles({
+  root: {
+    color: 'blue', // 🔵
+  },
 });
 
-export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
-  Sie müssen die <code>Klassen</code> Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben.
-``` Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben.
-</code>
+const useStyles = makeStyles({
+  root: {
+    color: 'red', // 🔴
+  },
+});
+
+export default function MyComponent() {
+  // Order doesn't matter
+  const classes = useStyles();
+  const classesBase = useStylesBase();
+
+  // Order doesn't matter
+  const className = clsx(classes.root, classesBase.root)
+
+  // color: red 🔴 wins.
+  return <div className={className} />;
+}
+```
 
 Die Hook-Aufrufreihenfolge und die Klassennamensverkettungsreihenfolge **spielen keine Rolle**.
 
 ### insertionPoint
 
-### insertionPoint ### insertionPoint ### insertionPoint JSS \[bietet einen Mechanismus\](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) um diese Situation zu kontrollieren. Durch Hinzufügen der Platzierung des `Einfügepunkts` innerhalb Ihres HTML-Heads können Sie die \[Reihenfolge steuern\](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order), sodass die CSS-Regeln auf Ihre Komponenten angewendet werden.
+### insertionPoint ### insertionPoint ### insertionPoint ### insertionPoint JSS \[bietet einen Mechanismus\](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) um diese Situation zu kontrollieren. Durch Hinzufügen der Platzierung des `Einfügepunkts` innerhalb Ihres HTML-Heads können Sie die \[Reihenfolge steuern\](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order), sodass die CSS-Regeln auf Ihre Komponenten angewendet werden.
 
 #### HTML-Kommentar
 
@@ -283,18 +286,18 @@ Dann müssen Sie dieses Nonce an JSS übergeben, damit es den nachfolgenden <cod
 </code>
 
 ```jsx
+</code>
+
+```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
-});
-
-export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -327,7 +330,7 @@ export default function App() {
   return (
     <StylesProvider jss={jss}>
       ...
-  insertionPoint: 'jss-insertion-point',
+  insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
 export default function App() {
@@ -340,18 +343,18 @@ export default function App() {
 codesandbox.io verhindert Zugriff auf das `<head>` Element. Um dieses Problem zu umgehen, können Sie die JavaScript `document.createComment()` API verwenden:
 
 ```jsx
-</code>
-
-```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-
-const styleNode = document.createComment('jss-insertion-point');
-document.head.insertBefore(styleNode, document.head.firstChild);
+import rtl from 'jss-rtl'
 
 const jss = create({
-  ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
   insertionPoint: 'jss-insertion-point',
 });
 
