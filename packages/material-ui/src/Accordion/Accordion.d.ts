@@ -5,7 +5,7 @@ import { PaperProps } from '../Paper';
 
 export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   /**
-   * The content of the accordion.
+   * The content of the component.
    */
   children: NonNullable<React.ReactNode>;
   /**
@@ -14,7 +14,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   classes?: {
     /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element if `square={false}`. */
+    /** Styles applied to the root element unless `square={true}`. */
     rounded?: string;
     /** Pseudo-class applied to the root element if `expanded={true}`. */
     expanded?: string;
@@ -29,7 +29,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
    */
   defaultExpanded?: boolean;
   /**
-   * If `true`, the accordion will be displayed in a disabled state.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;

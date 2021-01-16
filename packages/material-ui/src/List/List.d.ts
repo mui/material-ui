@@ -13,7 +13,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     classes?: {
       /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the root element if `disablePadding={false}`. */
+      /** Styles applied to the root element unless `disablePadding={true}`. */
       padding?: string;
       /** Styles applied to the root element if dense. */
       dense?: string;
@@ -21,14 +21,14 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
       subheader?: string;
     };
     /**
-     * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
+     * If `true`, compact vertical padding designed for keyboard and mouse input is used for
      * the list and list items.
      * The prop is available to descendant components as the `dense` context.
      * @default false
      */
     dense?: boolean;
     /**
-     * If `true`, vertical padding will be removed from the list.
+     * If `true`, vertical padding is removed from the list.
      * @default false
      */
     disablePadding?: boolean;

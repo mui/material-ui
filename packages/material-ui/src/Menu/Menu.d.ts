@@ -6,7 +6,7 @@ import { TransitionHandlerProps, TransitionProps } from '../transitions/transiti
 
 export interface MenuProps extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>> {
   /**
-   * A HTML element, or a function that returns it.
+   * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.
    */
   anchorEl?: PopoverProps['anchorEl'];
@@ -26,9 +26,9 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the `Paper` component. */
+    /** Styles applied to the Paper component. */
     paper?: string;
-    /** Styles applied to the `List` component via `MenuList`. */
+    /** Styles applied to the List component via `MenuList`. */
     list?: string;
   };
   /**
@@ -52,7 +52,7 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    */
   onClose?: PopoverProps['onClose'];
   /**
-   * If `true`, the menu is visible.
+   * If `true`, the component is shown.
    */
   open: boolean;
   /**

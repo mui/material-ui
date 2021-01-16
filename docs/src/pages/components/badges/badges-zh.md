@@ -1,6 +1,6 @@
 ---
-title: React 徽章组件
-components: Badge
+title: React Badge（徽章）组件
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
@@ -10,7 +10,7 @@ githubLabel: 'component: Badge'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 基本徽章
+## 简单的徽章
 
 这个示例是个包含了文本的徽章，同时使用了主色和副色。 徽章会对其子元素生效。
 
@@ -18,7 +18,7 @@ githubLabel: 'component: Badge'
 
 ## 自定义徽章
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -55,3 +55,7 @@ githubLabel: 'component: Badge'
 你可以使用 `anchorOrigin` 属性移把徽章组件移动到封装的元素的任何角落。
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## 无样式的徽章
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}

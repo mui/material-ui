@@ -45,7 +45,7 @@ You can use a [transition component](/components/transitions/) such as `Collapse
 The `icon` prop allows you to add an icon to the beginning of the alert component.
 This will override the default icon for the specified severity.
 
-You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/globals/#default-props).
+You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/theme-components/#default-props).
 
 Setting the icon prop to `false` will remove the icon altogether.
 

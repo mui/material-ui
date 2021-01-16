@@ -11,9 +11,6 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      margin: 'auto',
-    },
     paper: {
       width: 200,
       height: 230,
@@ -110,13 +107,7 @@ export default function TransferList() {
   );
 
   return (
-    <Grid
-      container
-      spacing={2}
-      justifyContent="center"
-      alignItems="center"
-      className={classes.root}
-    >
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
       <Grid item>{customList(left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">

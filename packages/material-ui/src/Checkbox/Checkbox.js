@@ -130,11 +130,15 @@ Checkbox.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
-   * If `true`, the checkbox will be disabled.
+   * The default checked state. Use when the component is not controlled.
+   */
+  defaultChecked: PropTypes.bool,
+  /**
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -150,7 +154,7 @@ Checkbox.propTypes = {
    * If `true`, the component appears indeterminate.
    * This does not set the native input element to indeterminate due
    * to inconsistent behavior across browsers.
-   * However, we set a `data-indeterminate` attribute on the input.
+   * However, we set a `data-indeterminate` attribute on the `input`.
    * @default false
    */
   indeterminate: PropTypes.bool,
@@ -175,11 +179,11 @@ Checkbox.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
   /**
-   * The size of the checkbox.
+   * The size of the component.
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */

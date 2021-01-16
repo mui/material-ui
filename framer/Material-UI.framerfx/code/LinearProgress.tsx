@@ -36,14 +36,14 @@ addPropertyControls(LinearProgress, {
   value: {
     type: ControlType.Number,
     title: 'Value',
-    hidden: function hidden(props) {
+    hidden(props) {
       return props.variant === 'indeterminate';
     },
   },
   valueBuffer: {
     type: ControlType.Number,
     title: 'Value buffer',
-    hidden: function hidden(props) {
+    hidden(props) {
       return props.variant !== 'buffer';
     },
   },

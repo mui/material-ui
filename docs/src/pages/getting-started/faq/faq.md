@@ -95,12 +95,9 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiCssBaseline: {
       styleOverrides: {
-        // Name of the rule
-        '@global': {
-          '*, *::before, *::after': {
-            transition: 'none !important',
-            animation: 'none !important',
-          },
+        '*, *::before, *::after': {
+          transition: 'none !important',
+          animation: 'none !important',
         },
       },
     },

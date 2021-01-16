@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const styles = {
   item: {
@@ -108,7 +108,7 @@ function layouts(t) {
 
 function Templates(props) {
   const { classes } = props;
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <Grid container spacing={2}>

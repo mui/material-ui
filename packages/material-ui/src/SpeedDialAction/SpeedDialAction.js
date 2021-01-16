@@ -3,10 +3,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { emphasize, withStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
-import { capitalize } from '@material-ui/core/utils';
+import withStyles from '../styles/withStyles';
+import { emphasize } from '../styles/colorManipulator';
+import Fab from '../Fab';
+import Tooltip from '../Tooltip';
+import capitalize from '../utils/capitalize';
 
 export const styles = (theme) => ({
   /* Styles applied to the Fab component. */
@@ -56,7 +57,7 @@ export const styles = (theme) => ({
     padding: '4px 16px',
     wordBreak: 'keep-all',
   },
-  /* Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
+  /* Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
   tooltipPlacementLeft: {
     alignItems: 'center',
     '& $staticTooltipLabel': {
@@ -65,7 +66,7 @@ export const styles = (theme) => ({
       marginRight: 8,
     },
   },
-  /* Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
+  /* Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
   tooltipPlacementRight: {
     alignItems: 'center',
     '& $staticTooltipLabel': {
@@ -182,7 +183,7 @@ SpeedDialAction.propTypes = {
    */
   FabProps: PropTypes.object,
   /**
-   * The Icon to display in the SpeedDial Fab.
+   * The icon to display in the SpeedDial Fab.
    */
   icon: PropTypes.node,
   /**
@@ -191,7 +192,7 @@ SpeedDialAction.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the tooltip is shown.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

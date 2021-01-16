@@ -30,10 +30,20 @@ CSS media queries 是一种做出响应式的用户界面的特有方法。 而 
 在下面的演示中，我们根据屏幕宽度来更改背景颜色 (红色、蓝色和绿色)。
 
 ```jsx
-value         |0px     600px    960px    1280px   1920px
-key           |xs      sm       md       lg       xl
-screen width  |--------|--------|--------|--------|-------->
-range         |   xs   |   sm   |   md   |   lg   |   xl
+const styles = (theme) => ({
+  root: {
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      backgroundColor: theme.palette.secondary.main,
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.primary.main,
+    },
+    [theme.breakpoints.up('lg')]: {
+      backgroundColor: green[500],
+    },
+  },
+});
 ```
 
 {{"demo": "pages/customization/breakpoints/MediaQuery.js"}}
@@ -104,6 +114,8 @@ const theme = createMuiTheme({
 
 如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
 
+<!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
+
 ```ts
 declare module "@material-ui/core/styles/createBreakpoints" {
   interface BreakpointOverrides {
@@ -134,18 +146,16 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 #### 例子
 
 ```js
-declare module "@material-ui/core/styles/createBreakpoints" {
-  interface BreakpointOverrides {
-    xs: false; // 移除 `xs` 断点
-    sm: false;
-    md: false;
-    lg: false;
-    xl: false;
-    tablet: true; // 添加 `tablet` 断点
-    laptop: true;
-    desktop: true;
-  }
-}
+const styles = (theme) => ({
+  root: {
+    backgroundColor: 'blue',
+    // Match [md, ∞)
+    //       [960px, ∞)
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: 'red',
+    },
+  },
+});
 ```
 
 ### `theme.breakpoints.down(key) => media query`
@@ -161,12 +171,12 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 #### 例子
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, ∞)
-    //       [960px, ∞)
-    [theme.breakpoints.up('md')]: {
+    // Match [0, md)
+    //       [0, 960px)
+    [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
   },
@@ -186,13 +196,13 @@ const styles = theme => ({
 #### 例子
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [0, md + 1)
-    //       [0, lg)
-    //       [0, 1280px)
-    [theme.breakpoints.down('md')]: {
+    // Match [md, md + 1)
+    //       [md, lg)
+    //       [960px, 1280px)
+    [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
   },
@@ -213,13 +223,12 @@ const styles = theme => ({
 #### 例子
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, md + 1)
-    //       [md, lg)
-    //       [960px, 1280px)
-    [theme.breakpoints.only('md')]: {
+    // Match [sm, md)
+    //       [600px, 960px)
+    [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
   },
@@ -240,11 +249,11 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 #### 参数
 
-1. `options` (*Object* [optional]):
+1. `options` (_Object_ [optional]):
 
 - `options.withTheme` (*Boolean* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
 - `options.noSSR` (_Boolean_ [optional]): 默认值为 `false`。 为了呈现服务器端渲染的协调性，我们需要将它渲染两次。 第一次什么也没渲染，第二次与子组件一起渲染。 这个双向渲染周期带有一个缺点。 UI 会有闪烁。 如果你不进行服务器端渲染，那么可以将此标志设置为 `true`。
-- `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 你可能需要使用一个启发式方法来估计客户端浏览器的屏幕宽度。 例如，你可以使用 user-agent 或 [client-hints](https://caniuse.com/#search=client%20hint)。 我们也可以在主题中使用 [`自定义属性`](/customization/globals/#default-props) 来设置全局的初始宽度。 为了设置 initialWidth，我们需要传递一个类似于以下结构的自定义属性：
+- `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 你可能需要使用一个启发式方法来估计客户端浏览器的屏幕宽度。 例如，你可以使用 user-agent 或 [client-hints](https://caniuse.com/#search=client%20hint)。 为了设置 initialWidth，我们需要传递一个类似于以下结构的自定义属性： 我们也可以在主题中使用 [`自定义属性`](/customization/theme-components/#default-props) 来设置全局的初始宽度。
 
 ```js
 const theme = createMuiTheme({
@@ -269,17 +278,17 @@ const theme = createMuiTheme({
 #### 例子
 
 ```jsx
-const theme = createMuiTheme({
-  components: {
-    // withWidth component ⚛️
-    MuiWithWidth: {
-      defaultProps: {
-        // Initial width prop
-        initialWidth: 'lg', // 断点的全局设置 🌎!
-      },
-    },
-  },
-});
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+
+function MyComponent(props) {
+  if (isWidthUp('sm', props.width)) {
+    return <span />;
+  }
+
+  return <div />;
+}
+
+export default withWidth()(MyComponent);
 ```
 
 ## 默认值

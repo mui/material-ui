@@ -8,7 +8,7 @@
 
 ### 参数
 
-1. `options` (*Object* [optional]):
+1. `options` (_Object_ [optional]):
 
    - `options.disableGlobal` (*Boolean* [optional]): 默认值为`false`。 阻止生成确定性的类名。
    - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 字符串用来在生产中对类名称加上前缀。
@@ -29,19 +29,17 @@ const generateClassName = createGenerateClassName({
 });
 
 export default function App() {
-  return (
-    <StylesProvider generateClassName={generateClassName}>...</StylesProvider>
-  );
+  return <StylesProvider generateClassName={generateClassName}>...</StylesProvider>;
 }
 ```
 
 ## `createStyles(styles) => styles`
 
-在运行的时候，这个函数并没有真正“做任何事”，它一个只是认证函数。 Its only purpose is to defeat **TypeScript**'s type widening when providing style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
+在运行的时候，这个函数并没有真正“做任何事”，它一个只是认证函数。 它的唯一目的是，当向 `Theme` 的 `makeStyles`/`withStyles` 功能提供样式的规则时， 可以阻止 **TypeScript** 的类型扩展。
 
 ### 参数
 
-1. `styles` (*Object*): A styles object.
+1. `styles` (_Object_): 一个样式对象。
 
 ### 返回结果
 
@@ -54,7 +52,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-    backgroundColor: theme.color.red,
+    backgroundColor: theme.palette.red,
   },
 }));
 
@@ -71,7 +69,7 @@ export default function MyComponent {
 ### 参数
 
 1. `styles`(* Function | Object *): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它是提供的第一个参数。
-2. `options` (*Object* [optional]):
+2. `options` (_Object_ [optional]):
 
 - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
 - `options.name` (*String* [optional]): 样式表的名称。 适合调试。
@@ -91,7 +89,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   root: {
     backgroundColor: 'red',
-    color: props => props.color,
+    color: (props) => props.color,
   },
 });
 
@@ -128,7 +126,7 @@ const response = `
 
 实例化接受的第一个参数是一个 options 对象。
 
-1. `options` (*Object* [optional]): The options are spread as props to the [`StylesProvider`](#stylesprovider) component.
+1. `options` (_Object_ [optional])：options 作为属性分布到 [`StylesProvider`](#stylesprovider) 组件中。
 
 ### `sheets.collect(node) => React element`
 
@@ -154,7 +152,7 @@ const response = `
 
 1. `Component` ：将被包装的组件。
 2. `styles`(* Function | Object *): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它作为第一个参数的属性给出。
-3. `options` (*Object* [optional]):
+3. `options` (_Object_ [optional]):
 
 - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
 - `options.withTheme` (*Boolean* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
@@ -176,9 +174,7 @@ const MyComponent = styled('div')({
   backgroundColor: 'red',
 });
 
-const MyThemeComponent = styled('div')(({
-  theme
-}) => ({
+const MyThemeComponent = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
@@ -199,13 +195,13 @@ export default function StyledComponents() {
 
 ### 属性
 
-| 名称                | 类型     | 默认值   | 描述                                                                                                                                   |
-|:----------------- |:------ |:----- |:------------------------------------------------------------------------------------------------------------------------------------ |
-| children&nbsp;*   | node   |       | 您的组件树。                                                                                                                               |
-| disableGeneration | bool   | false | 使用此选项，你可以禁用样式表的生成。 当在服务端的 HTML 之外渲染步骤中遍历 React  树的时候，这个属性卓有成效。 举个例子，若你正在使用 react-apillo 来提取服务端接口发出的所有查询（queries）。 使用这个属性可以大大加快遍历的速度。 |
-| generateClassName | func   |       | JSS 的类名生成器。                                                                                                                          |
-| injectFirst       | bool   | false | 默认情况下，在页面中注入的 style会被插入到 `<head>` 元素的最后。 因此，相比其他样式表单，它们能够表现地更为具体。 如果您想要覆盖 Material-UI 的样式，请设置此属性。                              |
-| jss               | object |       | JSS 的实例。                                                                                                                             |
+| 名称                 | 类型     | 默认值   | 描述                                                                                                                                   |
+|:------------------ |:------ |:----- |:------------------------------------------------------------------------------------------------------------------------------------ |
+| children&nbsp;\* | node   |       | 您的组件树。                                                                                                                               |
+| disableGeneration  | bool   | false | 使用此选项，你可以禁用样式表的生成。 当在服务端的 HTML 之外渲染步骤中遍历 React  树的时候，这个属性卓有成效。 举个例子，若你正在使用 react-apillo 来提取服务端接口发出的所有查询（queries）。 使用这个属性可以大大加快遍历的速度。 |
+| generateClassName  | func   |       | JSS 的类名生成器。                                                                                                                          |
+| injectFirst        | bool   | false | 默认情况下，在页面中注入的 style会被插入到 `<head>` 元素的最后。 因此，相比其他样式表单，它们能够表现地更为具体。 如果您想要覆盖 Material-UI 的样式，请设置此属性。                              |
+| jss                | object |       | JSS 的实例。                                                                                                                             |
 
 ### 例子
 
@@ -229,10 +225,10 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### 属性
 
-| 名称              | 类型                                       | 默认值 | 描述                                        |
-|:--------------- |:---------------------------------------- |:--- |:----------------------------------------- |
-| children&nbsp;* | node                                     |     | 您的组件树。                                    |
-| theme&nbsp;\* | union:&nbsp;object&nbsp;&#124;&nbsp;func |     | 一个主题对象（theme object）。 您可以提供一个能够扩展外层主题的函数。 |
+| 名称                 | 类型                                       | 默认值 | 描述                                        |
+|:------------------ |:---------------------------------------- |:--- |:----------------------------------------- |
+| children&nbsp;\* | node                                     |     | 您的组件树。                                    |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |     | 一个主题对象（theme object）。 您可以提供一个能够扩展外层主题的函数。 |
 
 ### 例子
 
@@ -244,9 +240,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 const theme = {};
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>...</ThemeProvider>
-  );
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
@@ -287,7 +281,7 @@ export default function MyComponent() {
 ### 参数
 
 1. `styles`(* Function | Object *): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它是提供的第一个参数。
-2. `options` (*Object* [optional]):
+2. `options` (_Object_ [optional]):
 
 - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
 - `options.withTheme` (*Boolean* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。

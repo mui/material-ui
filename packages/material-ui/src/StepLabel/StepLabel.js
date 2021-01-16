@@ -26,7 +26,7 @@ export const styles = (theme) => ({
     textAlign: 'left',
     padding: '8px 0',
   },
-  /* Styles applied to the `Typography` component which wraps `children`. */
+  /* Styles applied to the Typography component that wraps `children`. */
   label: {
     transition: theme.transitions.create('color', {
       duration: theme.transitions.duration.shortest,
@@ -79,6 +79,7 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
     classes,
     className,
     error = false,
+    icon: iconProp,
     optional,
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
@@ -86,7 +87,8 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
   } = props;
 
   const { alternativeLabel, orientation } = React.useContext(StepperContext);
-  const { active, disabled, completed, icon } = React.useContext(StepContext);
+  const { active, disabled, completed, icon: iconContext } = React.useContext(StepContext);
+  const icon = iconProp || iconContext;
 
   let StepIconComponent = StepIconComponentProp;
 
@@ -164,7 +166,7 @@ StepLabel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Mark the step as failed.
+   * If `true`, the step is marked as failed.
    * @default false
    */
   error: PropTypes.bool,

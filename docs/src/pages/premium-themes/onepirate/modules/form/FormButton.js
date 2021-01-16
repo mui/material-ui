@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../components/Button';
@@ -18,8 +18,8 @@ function FormButton(props) {
 
 FormButton.propTypes = {
   /**
-   * If `true`, the button will be disabled.
-   * If `true`, the base button will be disabled.
+   * If `true`, the component is disabled.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   mounted: PropTypes.bool,

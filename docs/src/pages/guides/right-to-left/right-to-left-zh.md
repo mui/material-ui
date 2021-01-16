@@ -33,11 +33,10 @@ npm install jss-rtl
 如果你正在使用 `emotion` 或者 `styled-components`，你需要使用该插件来翻转样式： [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl)。
 
 ```sh
-npm install stylis-plugin-rtl@^1
-
+npm install stylis-plugin-rtl
 ```
 
-注意：`emotion` 和 `styled-components` 目前都兼容该插件的 v1 版本。
+**Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version.
 
 在你的项目中安装了该插件后，Material-UI 组件仍然需要通过你使用的样式引擎实例来加载它。 下面的指南讲述了如何进行加载。
 
@@ -54,7 +53,7 @@ import { create } from 'jss';
 import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
-// Configure JSS
+// 配置 JSS
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
@@ -70,14 +69,13 @@ function RTL(props) {
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 // 创建 rtl 缓存
 const cacheRtl = createCache({
   key: 'muirtl',
   stylisPlugins: [rtlPlugin],
-  speedy: true,
 });
 
 function RTL(props) {

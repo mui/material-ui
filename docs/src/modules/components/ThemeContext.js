@@ -6,13 +6,13 @@ import {
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
   darken,
 } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import { blue, pink } from '@material-ui/core/colors';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/core/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
+import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
 const languageMap = {
   en: enUS,
@@ -178,7 +178,7 @@ export function ThemeProvider(props) {
     }
   }, themeInitialOptions);
 
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
   const { dense, direction, paletteColors, paletteMode = preferredMode, spacing } = themeOptions;
@@ -188,19 +188,14 @@ export function ThemeProvider(props) {
   React.useEffect(() => {
     if (process.browser) {
       const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-      const nextPaletteType = getCookie('paletteMode');
+      const nextPaletteMode = getCookie('paletteMode') || preferredMode;
 
       dispatch({
         type: 'CHANGE',
-        payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteType },
+        payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteMode },
       });
     }
-  }, []);
-
-  // persist paletteMode
-  React.useEffect(() => {
-    document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
-  }, [paletteMode]);
+  }, [preferredMode]);
 
   useEnhancedEffect(() => {
     document.body.dir = direction;

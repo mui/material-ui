@@ -1,25 +1,22 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import Button from '@material-ui/core/Button';
+import { jsx, css } from '@emotion/react';
+import Slider from '@material-ui/core/Slider';
+import Box from '@material-ui/core/Box';
 
 export default function EmotionCSS() {
   return (
-    <div>
-      <Button>Default</Button>
-      <Button
+    <Box sx={{ width: 300 }}>
+      <Slider defaultValue={30} />
+      <Slider
+        defaultValue={30}
         css={css`
-          background-color: #6772e5;
-          color: #fff;
-          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
-            0 1px 3px rgba(0, 0, 0, 0.08);
-          padding: 7px 14px;
-          &:hover {
-            background-color: #5469d4;
+          color: #20b2aa;
+
+          :hover {
+            color: #2e8b57;
           }
         `}
-      >
-        Customized
-      </Button>
-    </div>
+      />
+    </Box>
   );
 }

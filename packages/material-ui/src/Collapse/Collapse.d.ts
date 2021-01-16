@@ -18,7 +18,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
     horizontal?: string;
     /** Styles applied to the root element when the transition has entered. */
     entered?: string;
-    /** Styles applied to the root element when the transition has exited and `collapsedSize` != 0px. */
+    /** Styles applied to the root element when the transition has exited and `collapsedSize` = 0px. */
     hidden?: string;
     /** Styles applied to the outer wrapper element. */
     wrapper?: string;
@@ -40,7 +40,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    */
   in?: boolean;
   /**
-   * The collapse transition orientation.
+   * The transition orientation.
    * @default 'vertical'
    */
   orientation?: 'horizontal' | 'vertical';

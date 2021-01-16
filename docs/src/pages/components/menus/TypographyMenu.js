@@ -31,9 +31,7 @@ export default function TypographyMenu() {
           <ListItemIcon>
             <PriorityHighIcon fontSize="small" />
           </ListItemIcon>
-          <Typography variant="inherit">
-            A very long text that overflows
-          </Typography>
+          <Typography variant="inherit">A very long text that overflows</Typography>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>

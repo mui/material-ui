@@ -1,24 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Paper from './Paper';
+import classes from './paperClasses';
 import { createMuiTheme, ThemeProvider } from '../styles';
 
 describe('<Paper />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Paper />);
-  });
-
-  describeConformance(<Paper />, () => ({
+  describeConformanceV5(<Paper />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    muiName: 'MuiPaper',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
+    testVariantProps: { variant: 'rounded' },
+    testStateOverrides: { prop: 'elevation', value: 10, styleKey: 'elevation10' },
+    skip: ['componentsProp'],
   }));
 
   describe('prop: square', () => {

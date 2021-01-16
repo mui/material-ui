@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 
@@ -17,7 +19,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     buttonRef?: React.Ref<unknown>;
     /**
-     * If `true`, the ripples will be centered.
+     * If `true`, the ripples are centered.
      * They won't start at the cursor interaction position.
      * @default false
      */
@@ -38,20 +40,20 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
       focusVisible?: string;
     };
     /**
-     * If `true`, the base button will be disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
     /**
-     * If `true`, the ripple effect will be disabled.
+     * If `true`, the ripple effect is disabled.
      *
      * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-     * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+     * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
      * @default false
      */
     disableRipple?: boolean;
     /**
-     * If `true`, the touch ripple effect will be disabled.
+     * If `true`, the touch ripple effect is disabled.
      * @default false
      */
     disableTouchRipple?: boolean;
@@ -61,8 +63,8 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     focusRipple?: boolean;
     /**
-     * This prop can help a person know which element has the keyboard focus.
-     * The class name will be applied when the element gain the focus through a keyboard interaction.
+     * This prop can help identify which element has keyboard focus.
+     * The class name will be applied when the element gains the focus through keyboard interaction.
      * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
      * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
      * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
@@ -74,6 +76,10 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * We trigger a `onFocus` callback too.
      */
     onFocusVisible?: React.FocusEventHandler<any>;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     // @types/react is stricter
     /**
      * @default 0

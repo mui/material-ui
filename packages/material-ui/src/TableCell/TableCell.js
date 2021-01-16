@@ -167,7 +167,7 @@ TableCell.propTypes = {
    */
   align: PropTypes.oneOf(['center', 'inherit', 'justify', 'left', 'right']),
   /**
-   * The table cell contents.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

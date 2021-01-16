@@ -36,7 +36,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
         toolbar?: string;
         /** Styles applied to the spacer element. */
         spacer?: string;
-        /** Styles applied to the caption Typography components if `variant="caption"`. */
+        /** Styles applied to the caption Typography component if `variant="caption"`. */
         caption?: string;
         /** Styles applied to the Select component root element. */
         selectRoot?: string;
@@ -44,7 +44,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
         select?: string;
         /** Styles applied to the Select component `icon` class. */
         selectIcon?: string;
-        /** Styles applied to the `InputBase` component. */
+        /** Styles applied to the InputBase component. */
         input?: string;
         /** Styles applied to the MenuItem component. */
         menuItem?: string;
@@ -109,6 +109,8 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       page: number;
       /**
        * The number of rows per page.
+       *
+       * Set -1 to display all the rows.
        */
       rowsPerPage: number;
       /**
@@ -147,10 +149,9 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
  * - [TablePagination API](https://material-ui.com/api/table-pagination/)
  * - inherits [TableCell API](https://material-ui.com/api/table-cell/)
  */
-declare const TablePagination: OverridableComponent<TablePaginationTypeMap<
-  {},
-  React.ComponentType<TablePaginationBaseProps>
->>;
+declare const TablePagination: OverridableComponent<
+  TablePaginationTypeMap<{}, React.ComponentType<TablePaginationBaseProps>>
+>;
 
 export type TablePaginationClassKey = keyof NonNullable<TablePaginationProps['classes']>;
 

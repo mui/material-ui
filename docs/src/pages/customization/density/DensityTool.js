@@ -10,7 +10,7 @@ import Switch from '@material-ui/core/Switch';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
 import IncreaseIcon from '@material-ui/icons/AddCircleOutline';
 import DecreaseIcon from '@material-ui/icons/RemoveCircleOutline';
-import { useSelector } from 'react-redux';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const minSpacing = 0;
 const maxSpacing = 20;
@@ -46,7 +46,7 @@ export default function DensityTool() {
   const theme = useTheme();
   const spacingUnit = theme.spacing(1);
 
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <Grid container spacing={2}>
@@ -70,10 +70,7 @@ export default function DensityTool() {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton
-            aria-label={t('increaseSpacing')}
-            onClick={decreaseSpacing}
-          >
+          <IconButton aria-label={t('increaseSpacing')} onClick={decreaseSpacing}>
             <DecreaseIcon />
           </IconButton>
           <Input
@@ -88,10 +85,7 @@ export default function DensityTool() {
               'aria-labelledby': 'input-slider',
             }}
           />
-          <IconButton
-            aria-label={t('decreaseSpacing')}
-            onClick={increaseSpacing}
-          >
+          <IconButton aria-label={t('decreaseSpacing')} onClick={increaseSpacing}>
             <IncreaseIcon />
           </IconButton>
         </Grid>

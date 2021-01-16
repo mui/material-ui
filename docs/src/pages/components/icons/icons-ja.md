@@ -9,15 +9,15 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 <p class="description">Material-UIでアイコンを使用するためのガイダンスと提案です。</p>
 
-Material-UI provides icons support in three ways:
+Material-UIはアイコンについて、3種類の提供方法をサポートします。
 
-1. Standardized [Material Design icons](#material-icons) exported as React components (SVG icons).
-1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
-1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
+1. 標準の [Material Design icons](#material-icons)を、Ractコンポーネント(SVGアイコン)として、エクスポートする方法
+1. ReactラッパーのカスタムSVGアイコンとして、[SVGアイコン](#svgicon) コンポーネントを利用する方法
+1. Reactラッパーのカスタムフォントアイコンとして、[アイコン](#icon-font-icons)  コンポーネントを利用する方法
 
 ## マテリアルアイコン（Material Icons）
 
-Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
+Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. [これらのアイコンの一覧を検索](/components/material-icons/)することが出来ます。
 
 ### インストール
 
@@ -179,15 +179,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 
 ## Icon (Font icons)
 
-`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
-
-```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-```
-
-`Icon` will set the correct class name for the Material Icons font. `Icon` will set the correct class name for the Material icon font.
-
-アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
+`Icon` will set the correct class name for the Material icon font. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -199,7 +191,52 @@ import Icon from '@material-ui/core/Icon';
 
 ### Font Material icons
 
+`Icon` will by default set the correct base class name for the Material Icons font (filled variant). All you need to do is load the font, for instance, via Google Web Fonts:
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+```
+
 {{"demo": "pages/components/icons/Icons.js"}}
+
+### Custom font
+
+For other fonts, you can customize the baseline class name using the `baseClassName` prop. For instance, you can display two-tone icons with Material Design:
+
+```jsx
+import Icon from '@material-ui/core/Icon';
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
+  // Import the two tones MD variant                           ^^^^^^^^
+/>;
+```
+
+{{"demo": "pages/components/icons/TwoToneIcons.js"}}
+
+#### Global base class name
+
+Modifying the `baseClassName` prop for each component usage is repetitive. You can change the default prop globally with the theme
+
+```js
+const theme = createMuiTheme({
+  components: {
+    MuiIcon: {
+      defaultProps: {
+        // Replace the `material-icons` default value.
+        baseClassName: 'material-icons-two-tone',
+      },
+    },
+  },
+});
+```
+
+Then, you can use the two-tone font directly:
+
+```jsx
+<Icon>add_circle</Icon>
+```
 
 ### Font Awesome
 
@@ -209,7 +246,7 @@ import Icon from '@material-ui/core/Icon';
 
 Note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos). The fa icons are cropped to use all the space available. You can adjust for this with a global override:
 
-```jsx
+```js
 const theme = createMuiTheme({
   components: {
     MuiIcon: {
@@ -228,7 +265,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/components/icons/FontAwesomeIconSize.js"}}
 
-## Font vs SVG どのアプローチを使用しますか？ どのアプローチを使用しますか？ どのアプローチを使用しますか？
+## Font vs SVG どのアプローチを使用しますか？ どのアプローチを使用しますか？ どのアプローチを使用しますか？ どのアプローチを使用しますか？
 
 Both approaches work fine, however there are some subtle differences, especially in terms of performance and rendering quality. Whenever possible SVG is preferred as it allows code splitting, supports more icons, and renders faster and better.
 
@@ -236,14 +273,14 @@ For more details, take a look at [why GitHub migrated from font icons to SVG ico
 
 ## アクセシビリティ
 
-Icons can convey all sorts of meaningful information, so it’s important to ensure they are accessible where appropriate. 次の2つの使用例を検討してください。
+Icons can convey all sorts of meaningful information, so it's important to ensure they are accessible where appropriate. There are two use cases you'll want to consider:
 
 - **Decorative icons** that are only being used for visual or branding reinforcement. それらがページから削除された場合でも、ユーザーはあなたのページを理解して使用することができます。
-- **Semantic icons** are ones that you’re using to convey meaning, rather than just pure decoration. This includes icons without text next to them that are used as interactive controls — buttons, form elements, toggles, etc.
+- **Semantic icons** are ones that you're using to convey meaning, rather than just pure decoration. This includes icons without text next to them that are used as interactive controls — buttons, form elements, toggles, etc.
 
 ### Decorative icons
 
-`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
+If your icons are purely decorative, you're already done! 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
 
 ### Semantic icons
 
@@ -272,7 +309,10 @@ You need to provide a text alternative that is only visible to assistive technol
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import { visuallyHidden } from '@material-ui/utils';
+import { makeStyles } from '@material-ui/core/styles';
+
+const classes = makeStyles({ visuallyHidden })();
 
 // ...
 

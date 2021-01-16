@@ -43,7 +43,7 @@ Puedes utilizar un [ componente de transition ](/components/transitions/) como `
 
 La propiedad `icon` te permite añadir un icono al inicio del componente alerta. Esto anulará el icono por defecto para la severidad especificada.
 
-Puedes cambiar el mapeo por defecto de severidad a ícono con la propiedad  `iconMapping`. Esto puede ser definido globalmente usando [la personalización del tema](/customization/globals/#default-props).
+Puedes cambiar el mapeo por defecto de severidad a ícono con la propiedad  `iconMapping`. Esto puede ser definido globalmente usando [la personalización del tema](/customization/theme-components/#default-props).
 
 Al establecer la propiedad `icono` a falso, el icono se removerá completamente.
 

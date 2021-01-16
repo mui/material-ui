@@ -15,7 +15,7 @@ Trop de types de formats et de styles à la fois peuvent gâcher n'importe quell
 
 ## Général
 
-La police *Roboto* ne sera **pas** automatiquement chargée par Material-UI. Le développeur est responsable du chargement de toutes les polices utilisées dans leur application. Roboto Font a quelques moyens faciles pour commencer. Pour une configuration plus avancée, consultez [la section de personnalisation du thème](/customization/typography/).
+La police *Roboto* ne sera **pas** automatiquement chargée par Material-UI. You are responsible for loading any fonts used in your application. Roboto Font a quelques moyens faciles pour commencer. Pour une configuration plus avancée, consultez [la section de personnalisation du thème](/customization/typography/).
 
 ## Roboto Font CDN
 
@@ -27,14 +27,17 @@ Afficher ci-dessous est un exemple de balisage de lien utilisé pour charger la 
 
 ## Installer via npm
 
-Vous pouvez [l'installer](https://www.npmjs.com/package/fontsource-roboto) en tapant la commande ci-dessous dans votre terminal :
+Vous pouvez [l'installer](https://www.npmjs.com/package/@fontsource/roboto) en tapant la commande ci-dessous dans votre terminal :
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Ensuite, vous pouvez l'importer dans votre point d'entrée.
 
 ```js
-import 'fontsource-roboto';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 For more info check out [Fontsource](https://github.com/fontsource/fontsource).
@@ -42,6 +45,8 @@ For more info check out [Fontsource](https://github.com/fontsource/fontsource).
 Fontsource can be configured to load specific subsets, weights and styles. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Composant
+
+The Typography component makes it easy to apply a default set of font weights and sizes in your application.
 
 {{"demo": "pages/components/typography/Types.js"}}
 
@@ -53,18 +58,19 @@ In some situations you might not be able to use the `Typography` component. Hope
 
 ## Changing the semantic element
 
-The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
+The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It's important to realize that the style of a typography component is independent from the semantic underlying element.
 
 - You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
 {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
-  h1. Heading
-</Typography>
+  h1. */}
+<Typography variant="h1" component="h2">
+  h1.
 ```
 
-- You can change the mapping [globally using the theme](/customization/globals/#default-props):
+- You can change the mapping [globally using the theme](/customization/theme-components/#default-props):
 
 ```js
 const theme = createMuiTheme({
@@ -86,6 +92,10 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
 
 ## Accessibilité
 

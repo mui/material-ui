@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Typography from '../Typography';
+import { typographyClasses } from '../Typography';
 import InputAdornment from './InputAdornment';
 import TextField from '../TextField';
 import FormControl from '../FormControl';
@@ -26,7 +26,6 @@ describe('<InputAdornment />', () => {
 
   it('should wrap text children in a Typography', () => {
     const { container } = render(<InputAdornment position="start">foo</InputAdornment>);
-    const typographyClasses = getClasses(<Typography />);
     const typography = container.querySelector(`.${typographyClasses.root}`);
 
     expect(typography).not.to.equal(null);
@@ -161,7 +160,6 @@ describe('<InputAdornment />', () => {
         foo
       </InputAdornment>,
     );
-    const typographyClasses = getClasses(<Typography />);
 
     expect(container.querySelector(`.${typographyClasses.root}`)).to.equal(null);
   });
@@ -177,14 +175,14 @@ describe('<InputAdornment />', () => {
     expect(adornment.firstChild).to.have.property('nodeName', 'DIV');
   });
 
-  it('applies a marginDense class inside <FormControl margin="dense" />', () => {
+  it('applies a size small class inside <FormControl size="small" />', () => {
     const { getByTestId } = render(
-      <FormControl margin="dense">
+      <FormControl size="small">
         <InputAdornment data-testid="root">$</InputAdornment>
       </FormControl>,
     );
 
-    expect(getByTestId('root')).to.have.class(classes.marginDense);
+    expect(getByTestId('root')).to.have.class(classes.sizeSmall);
   });
 
   it('applies a hiddenLabel class inside <FormControl hiddenLabel />', () => {

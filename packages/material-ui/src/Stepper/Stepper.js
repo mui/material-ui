@@ -113,7 +113,7 @@ Stepper.propTypes = {
    */
   nonLinear: PropTypes.bool,
   /**
-   * The stepper orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),

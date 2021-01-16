@@ -19,11 +19,11 @@
 更改主题配置变量是将 Material-UI 与您的需求相匹配的最有效方法。 以下各节涵盖了一些最重要的主题变量：
 
 - [Palette 调色板](/customization/palette/)
-- [文字排版](/customization/typography/)
-- [Spacing（间距）](/customization/spacing/)
+- [文字铸排](/customization/typography/)
+- [Spacing 间距](/customization/spacing/)
 - [Breakpoints 断点](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [全局样式](/customization/globals/)
+- [Components 组件](/customization/theme-components/)
 - [过渡动画](/customization/transitions/)
 
 您可以在[默认主题部分](/customization/default-theme/)查看完整的默认样式。
@@ -108,7 +108,7 @@ const theme = createMuiTheme({
 #### 参数
 
 1. `theme` (*Object*): 要增强的主题对象。
-2. `options` (*Object* [optional]):
+2. `options` (_Object_ [optional]):
 
 - `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers). 一个 [breakpoints](/customization/breakpoints/) 的数组（identifiers）。 一个 [breakpoints](/customization/breakpoints/) 的数组（identifiers）。
 - `disableAlign` (_Boolean_ [optional]): 默认值为`false`。 字体大小是否略有变化，这样能够保持行高并与 Material Design 的 4px 行高网格相对齐。 这需要主题样式中的无单位行高度。

@@ -1,5 +1,3 @@
-import * as React from 'react';
+import { unstable_isMuiElement as isMuiElement } from '@material-ui/utils';
 
-export default function isMuiElement(element, muiNames) {
-  return React.isValidElement(element) && muiNames.indexOf(element.type.muiName) !== -1;
-}
+export default isMuiElement;

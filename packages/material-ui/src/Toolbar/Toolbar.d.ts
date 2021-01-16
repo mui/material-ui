@@ -8,7 +8,8 @@ export type ToolbarVariantDefaults = Record<'regular' | 'dense', true>;
 export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
+     * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
+     * The Toolbar is a flex container, allowing flex item properites to be used to lay out the children.
      */
     children?: React.ReactNode;
     /**
@@ -17,7 +18,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     classes?: {
       /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the root element if `disableGutters={false}`. */
+      /** Styles applied to the root element unless `disableGutters={true}`. */
       gutters?: string;
       /** Styles applied to the root element if `variant="regular"`. */
       regular?: string;

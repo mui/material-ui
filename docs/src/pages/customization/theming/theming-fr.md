@@ -23,7 +23,7 @@ Changer la configuration du thème est la manière la plus efficace d'accorder M
 - [Ecartement](/customization/spacing/)
 - [Breakpoints](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [Variables globales](/customization/globals/)
+- [Composants](/customization/theme-components/)
 - [Les transitions](/customization/transitions/)
 
 Vous pouvez consulter la section [thème par défaut](/customization/default-theme/) pour afficher le thème par défaut dans son intégralité.

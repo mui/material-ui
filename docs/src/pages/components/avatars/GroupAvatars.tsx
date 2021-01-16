@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import AvatarGroup from '@material-ui/lab/AvatarGroup';
+import AvatarGroup from '@material-ui/core/AvatarGroup';
 
 export default function GroupAvatars() {
   return (

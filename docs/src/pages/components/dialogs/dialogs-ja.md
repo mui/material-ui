@@ -41,7 +41,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 タイトルは必須入力です。
 
 - 「USBストレージを消去しますか?」など、内容領域に明確な質問や説明を入力します。
-- 「警告」や「よろしいですか」などの謝罪、あいまいさ、または質問を避けます。
+- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -59,11 +59,11 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## Customized dialogs
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
 
 ダイアログボックスには、操作性を高めるために閉じるボタンが追加されています。
 
-{{"demo":"pages/components/dialogs/CustomizedDialogs.js"}}
+{{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
 ## Full-screen dialogs
 
@@ -84,9 +84,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  return <Dialog fullScreen={fullScreen} />
+  return <Dialog fullScreen={fullScreen} />;
 }
 ```
 
@@ -94,21 +94,21 @@ function MyComponent() {
 
 ## 確認ダイアログ
 
-確認ダイアログでは、オプションを確定する前にユーザーが選択内容を明示的に確認する必要があります。 たとえば、ユーザーは複数の着信音を聞くことができますが、「OK」をタッチして最終的な選択を行うだけです。
+確認ダイアログでは、オプションを確定する前にユーザーが選択内容を明示的に確認する必要があります。 For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-確認ダイアログで[キャンセル] をタッチするか[戻る] を押すと、操作がキャンセルされ、変更が破棄されてダイアログが閉じます。
+Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
 ## ドラッグ可能なダイアログ
 
-[react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。 これによりダイアログ全体がドラッグ可能になります。 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。 これによりダイアログ全体がドラッグ可能になります。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。
+[react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。 これによりダイアログ全体がドラッグ可能になります。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## 長いコンテンツをスクロールする
 
-ダイアログがユーザのビューポートまたはデバイスに対して長すぎる場合は、スクロールします。
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll=paper`: paper要素内でダイアログボックスの内容がスクロールします。
 - `scroll=body`: ダイアログの内容がbody要素内をスクロールします。
@@ -116,6 +116,10 @@ function MyComponent() {
 以下のデモを試してみてください。
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
+
+## パフォーマンス
+
+Follow the [Modal performance section](/components/modal/#performance).
 
 ## 制限事項
 

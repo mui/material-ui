@@ -73,7 +73,7 @@ function ListItemLink(props) {
 
 The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
 
-```jsx
+```tsx
 import { Link } from 'react-router-dom';
 
 function ListItemLink(props) {
@@ -116,7 +116,7 @@ You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-
 
 ## Routing libraries
 
-The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
+The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). They cover the Button, Link, and List components. You can apply the same strategy with all the components (BottomNavigation, Card, etc.).
 
 ### Button (Botón)
 
@@ -147,17 +147,17 @@ If you don't use one of the above types when using your components in conjunctio
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Be aware that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
-
-In some instances an additional warning is issued to help with debugging, similar to:
+Ten en cuenta que seguirás recibiendo esta advertencia por componentes `perezosos` y `memo` si su componente envuelto no puede contener ref. In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
--const MyButton = props => <div role="button" {...props} />;
-+const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
+
 <Button component={MyButton} />;
 ```
 
@@ -167,7 +167,7 @@ Only the two most common use cases are covered. For more information see [this s
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
-To find out if the Material-UI component you're using has this requirement, check out the the props API documentation for that component. If you need to forward refs the description will link to this section.
+Para averiguar si el componente de Material-UI que estás utilizando tiene este requisito, revisa la documentación de los accesorios de ese componente. If you need to forward refs the description will link to this section.
 
 ### Caveat with StrictMode
 

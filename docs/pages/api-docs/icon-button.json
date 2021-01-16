@@ -1,0 +1,49 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+      },
+      "default": "'default'"
+    },
+    "disabled": { "type": { "name": "bool" } },
+    "disableFocusRipple": { "type": { "name": "bool" } },
+    "disableRipple": { "type": { "name": "bool" } },
+    "edge": {
+      "type": {
+        "name": "enum",
+        "description": "'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;false"
+      },
+      "default": "false"
+    },
+    "size": {
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "default": "'medium'"
+    }
+  },
+  "name": "IconButton",
+  "styles": {
+    "classes": [
+      "root",
+      "edgeStart",
+      "edgeEnd",
+      "colorInherit",
+      "colorPrimary",
+      "colorSecondary",
+      "disabled",
+      "sizeSmall",
+      "label"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled" },
+    "name": "MuiIconButton"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui/src/IconButton/IconButton.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
+  "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
+  "styledComponent": false
+}

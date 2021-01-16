@@ -5,7 +5,7 @@
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/preact
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/preact
 cd preact
 ```
 
@@ -22,15 +22,8 @@ or:
 
 ## The idea behind the example
 
-[Preact](https://github.com/developit/preact) is a fast 3kB alternative to React with the same modern API.
+The project uses [Preact](https://github.com/developit/preact), which is a fast 3kB alternative to React with the same modern API.
 
-This example uses an ejected version of CRA.
-It's ejected to change the webpack configuration:
+This example uses CRA with `react-app-rewired` for adding webpack aliases for preact.
 
-```js
-alias: {
-  // Use Preact instead of React.
-  'react': 'preact/compat',
-  'react-dom': 'preact/compat',
-}
-```
+It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   withStyles,
   Theme,
@@ -92,6 +92,7 @@ function ProductCTA(props: WithStyles<typeof styles>) {
                 noBorder
                 className={classes.textField}
                 placeholder="Your email"
+                variant="standard"
               />
               <Button
                 type="submit"

@@ -36,7 +36,7 @@ You can change the placement of the label with the `FormControlLabel` component'
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}}
 
-## Show error
+## Отображение ошибок
 
 In general, radio buttons should have a value selected by default. If this is not the case, you can display an error if no value is selected when the form is submitted:
 
@@ -44,7 +44,7 @@ In general, radio buttons should have a value selected by default. If this is no
 
 ## Customized radios
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
@@ -75,7 +75,7 @@ For advanced customization use cases, a `useRadioGroup()` hook is exposed. It re
 
 ## Бесплатно
 
-- [Чекбоксы. Radio Buttons (радиокнопки)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Чекбоксы. Radio Buttons (радиокнопки) ](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
 ## Доступность
 

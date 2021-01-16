@@ -11,4 +11,6 @@ export default function styled(tag, options) {
   return scStyled(tag);
 }
 
-export { ThemeContext } from 'styled-components';
+export { ThemeContext, keyframes } from 'styled-components';
+export { default as StyledEngineProvider } from './StyledEngineProvider';
+export { default as GlobalStyles } from './GlobalStyles';

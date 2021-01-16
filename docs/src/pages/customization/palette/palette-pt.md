@@ -137,6 +137,8 @@ const theme = createMuiTheme({
 
 Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
+<!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
+
 ```ts
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
@@ -167,12 +169,12 @@ Precisa de inspiração? A equipe do Material Design construiu uma [ferramenta d
 
 ## Modo escuro
 
-O Material-UI vem com dois tipos de paletas, claro (o padrão) e escuro. Você pode deixar o tema escuro definindo `type: 'dark'`. Embora seja apenas uma alteração no valor de uma propriedade única, internamente ela modifica vários valores da paleta.
+O Material-UI vem com dois tipos de paletas, claro (o padrão) e escuro. Você pode deixar o tema escuro definindo `mode: 'dark'`. Embora seja apenas uma alteração no valor de uma propriedade única, internamente ela modifica vários valores da paleta.
 
 ```js
 const darkTheme = createMuiTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
   },
 });
 ```
@@ -202,7 +204,7 @@ function App() {
     () =>
       createMuiTheme({
         palette: {
-          type: prefersDarkMode ? 'dark' : 'light',
+          mode: prefersDarkMode ? 'dark' : 'light',
         },
       }),
     [prefersDarkMode],

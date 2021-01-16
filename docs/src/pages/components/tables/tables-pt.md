@@ -1,29 +1,34 @@
 ---
-title: React Table component
+title: Componente React Tabela
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
-# Table
+# Tabela
 
 <p class="description">Tabelas exibem conjuntos de dados. Elas podem ser totalmente customizadas.</p>
 
-[Tabelas](https://material.io/design/components/data-tables.html) apresentam informações de uma forma fácil de visualizar, de modo que os usuários podem procurar por padrões e percepções. Elas podem ser incorporadas no conteúdo principal, assim como cartões.
-
-As tabelas podem incluir:
+Tables display information in a way that's easy to scan, so that users can look for patterns and insights. Elas podem ser incorporadas no conteúdo principal, assim como cartões. Elas podem incluir:
 
 - Uma visualização correspondente
 - Navegação
 - Ferramentas para consultar e manipular dados
 
-Ao incluir ferramentas, elas devem ser colocadas diretamente acima ou abaixo da tabela.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Estrutura
 
 Um exemplo simples sem frescuras.
 
 Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes das colunas, seguidas pelas linhas dos dados.
+
+## Tabela de dados
+
+O componente `Table` tem um mapeamento próximo dos elementos nativos de `<table>`. Este requisito torna a construção de tabelas de dados ricas e desafiadora.
+
+O [componente `DataGrid`](/components/data-grid/) é projetado para situações de uso que focam em torno da manipulação de uma grande quantidade de dados tabulares. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
 
 ## Tabela Simples
 
@@ -39,15 +44,9 @@ A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para imp
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Classificando & Selecionando
-
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
-
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
-
 ## Tabelas Customizadas
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -75,9 +74,22 @@ A propriedade `Action` do componente `TablePagination` permite a implementação
 
 ## Cabeçalho fixo
 
-Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. Ele se beneficia do suporte de `stickyHeader` (⚠️ sem suporte ao IE 11).
+Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. Ela se aproveita da propriedade `stickyHeader`.<br /> (⚠️ sem suporte no IE11)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## Agrupando colunas
+
+Você pode agrupar cabeçalhos de coluna renderizando várias linhas de tabela dentro de um cabeçalho de tabela:
+
+```jsx
+<TableHead>
+  <TableRow />
+  <TableRow />
+</TableHead>
+```
+
+{{"demo": "pages/components/tables/ColumnGroupingTable.js", "bg": true}}
 
 ## Tabela minimizável
 
@@ -103,6 +115,6 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 ### Caption
 
-Um caption funciona como um título para uma tabela. A maioria dos leitores de tela anunciam o conteúdo dos captions. Os captions ajudam os usuários a encontrar uma tabela e a entender o que ela representa e decidir se querem lê-la.
+Um caption funciona como um título para uma tabela. A maioria dos leitores de tela anunciam o conteúdo dos captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

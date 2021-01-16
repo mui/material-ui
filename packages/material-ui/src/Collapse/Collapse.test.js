@@ -32,7 +32,7 @@ describe('<Collapse />', () => {
       <Collapse {...defaultProps} classes={{ root: 'woofCollapse1' }} />,
     );
     const collapse = container.firstChild;
-    expect(collapse.tagName).to.equal('DIV');
+    expect(collapse).to.have.tagName('div');
     expect(collapse).to.have.class(classes.root);
     expect(collapse).to.have.class('woofCollapse1');
   });
@@ -43,8 +43,8 @@ describe('<Collapse />', () => {
     const collapse = container.firstChild;
     const wrapper = collapse.firstChild;
     const innerWrapper = wrapper.firstChild;
-    expect(wrapper.tagName).to.equal('DIV');
-    expect(innerWrapper.firstChild.tagName).to.equal('H1');
+    expect(wrapper).to.have.tagName('div');
+    expect(innerWrapper.firstChild).to.have.tagName('h1');
   });
 
   describe('transition lifecycle', () => {

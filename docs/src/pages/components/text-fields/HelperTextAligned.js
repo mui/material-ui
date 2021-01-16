@@ -13,8 +13,18 @@ export default function HelperTextAligned() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <TextField helperText="Please enter your name" label="Name" />
-      <TextField helperText=" " label="Name" />
+      <TextField
+        helperText="Please enter your name"
+        id="demo-helper-text-aligned"
+        label="Name"
+        variant="standard"
+      />
+      <TextField
+        helperText=" "
+        id="demo-helper-text-aligned-no-helper"
+        label="Name"
+        variant="standard"
+      />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
-import { Input } from '@material-ui/core';
+import Input from '@material-ui/core/Input';
 import { createClientRender, screen } from 'test/utils';
 import { isMuiElement } from '@material-ui/core/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -129,12 +129,11 @@ describe('withStyles', () => {
       const StyledComponent = withStyles(styles)(MyComp);
       render(<StyledComponent mySuppliedProp={222} />);
 
-      expect(
-        jssCallbackStub.calledWith({
-          myDefaultProp: 111,
-          mySuppliedProp: 222,
-        }),
-      ).to.equal(true);
+      expect(jssCallbackStub.callCount).to.equal(1);
+      expect(jssCallbackStub.args[0][0]).to.deep.equal({
+        myDefaultProp: 111,
+        mySuppliedProp: 222,
+      });
     });
 
     it('should support theme.props', () => {

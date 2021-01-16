@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -6,7 +6,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem, {
   TreeItemProps,
   useTreeItem,
-  ContentProps,
+  TreeItemContentProps,
 } from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 const CustomContent = React.forwardRef(function CustomContent(
-  props: ContentProps,
+  props: TreeItemContentProps,
   ref,
 ) {
   const {
@@ -44,9 +44,7 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     preventSelection(event);
   };
 

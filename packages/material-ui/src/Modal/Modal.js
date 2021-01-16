@@ -63,7 +63,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     closeAfterTransition = false,
     container,
     disableAutoFocus = false,
-    disableBackdropClick = false,
     disableEnforceFocus = false,
     disableEscapeKeyDown = false,
     disablePortal = false,
@@ -76,7 +75,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     manager = defaultManager,
     onBackdropClick,
     onClose,
-    onEscapeKeyDown,
+    onKeyDown,
     open,
     ...other
   } = props;
@@ -172,12 +171,16 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
       onBackdropClick(event);
     }
 
-    if (!disableBackdropClick && onClose) {
+    if (onClose) {
       onClose(event, 'backdropClick');
     }
   };
 
   const handleKeyDown = (event) => {
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+
     // The handler doesn't take event.defaultPrevented into account:
     //
     // event.preventDefault() is meant to stop default behaviors like
@@ -186,10 +189,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     // Only special HTML elements have these default behaviors.
     if (event.key !== 'Escape' || !isTopModal()) {
       return;
-    }
-
-    if (onEscapeKeyDown) {
-      onEscapeKeyDown(event);
     }
 
     if (!disableEscapeKeyDown) {
@@ -223,7 +222,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
       <div
-        data-mui-test="Modal"
         ref={handleRef}
         onKeyDown={handleKeyDown}
         role="presentation"
@@ -277,7 +275,7 @@ Modal.propTypes = {
    */
   closeAfterTransition: PropTypes.bool,
   /**
-   * A HTML element or function that returns one.
+   * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
    * By default, it uses the body of the top-level document object,
@@ -298,11 +296,6 @@ Modal.propTypes = {
    */
   disableAutoFocus: PropTypes.bool,
   /**
-   * If `true`, clicking the backdrop will not fire `onClose`.
-   * @default false
-   */
-  disableBackdropClick: PropTypes.bool,
-  /**
    * If `true`, the modal will not prevent focus from leaving the modal while open.
    *
    * Generally this should never be set to `true` as it makes the modal less
@@ -311,12 +304,12 @@ Modal.propTypes = {
    */
   disableEnforceFocus: PropTypes.bool,
   /**
-   * If `true`, hitting escape will not fire `onClose`.
+   * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**
-   * The `children` will be inside the DOM hierarchy of the parent component.
+   * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal: PropTypes.bool,
@@ -356,14 +349,17 @@ Modal.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired when the escape key is pressed,
-   * `disableEscapeKeyDown` is false and the modal is in focus.
+   * @ignore
    */
-  onEscapeKeyDown: PropTypes.func,
+  onKeyDown: PropTypes.func,
   /**
-   * If `true`, the modal is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
 };
 
 export default Modal;

@@ -6,6 +6,14 @@ import { generate, GenerateOptions } from './generator';
 
 export type InjectOptions = {
   /**
+   * If source itself written in typescript prop-types disable prop-types validation
+   * by injecting propTypes as
+   * ```jsx
+   * .propTypes = { ... } as any
+   * ```
+   */
+  disableTypescriptPropTypesValidation?: boolean;
+  /**
    * By default all unused props are omitted from the result.
    * Set this to true to include them instead.
    */
@@ -73,6 +81,7 @@ function getUsedProps(
             );
           }
         } else if (babelTypes.isIdentifier(x.argument)) {
+          // get access props from rest-spread (`{...other}`)
           getUsedPropsInternal(x.argument);
         }
       });
@@ -87,6 +96,13 @@ function getUsedProps(
                 babelTypes.isThisExpression(init.object) &&
                 babelTypes.isIdentifier(init.property, { name: 'props' })) &&
             babelTypes.isObjectPattern(path.node.id)
+          ) {
+            getUsedPropsInternal(path.node.id);
+          } else if (
+            // currently tracking `inProps` which stands for the given props e.g. `function Modal(inProps) {}`
+            babelTypes.isIdentifier(node, { name: 'inProps' }) &&
+            // `const props = ...` assuming the right-hand side has `inProps` as input.
+            babelTypes.isIdentifier(path.node.id, { name: 'props' })
           ) {
             getUsedPropsInternal(path.node.id);
           }
@@ -110,6 +126,14 @@ function getUsedProps(
 
   getUsedPropsInternal(rootNode);
   return usedProps;
+}
+
+function flattenTsAsExpression(node: object | null | undefined) {
+  if (babelTypes.isTSAsExpression(node)) {
+    return node.expression as babel.Node;
+  }
+
+  return node;
 }
 
 function plugin(
@@ -284,6 +308,33 @@ function plugin(
           props,
         });
       },
+      VariableDeclaration(path) {
+        const { node } = path;
+
+        if (!babelTypes.isIdentifier(node.declarations[0].id)) return;
+        const nodeName = node.declarations[0].id.name;
+
+        // Handle any variable with /* @typescript-to-proptypes-generate */
+        if (
+          node.leadingComments &&
+          node.leadingComments.some((comment) =>
+            comment.value.includes('@typescript-to-proptypes-generate'),
+          )
+        ) {
+          if (!propTypes.body.some((prop) => prop.name === nodeName)) {
+            console.warn(
+              `It looks like the variable at ${node.loc} with /* @typescript-to-proptypes-generate */ is not a component, or props can not be inferred from typescript definitions.`,
+            );
+          }
+
+          injectPropTypes({
+            nodeName,
+            usedProps: [],
+            path: path as babel.NodePath<babelTypes.Node>,
+            props: propTypes.body.find((prop) => prop.name === nodeName)!,
+          });
+        }
+      },
       VariableDeclarator(path) {
         const { node } = path;
 
@@ -299,7 +350,7 @@ function plugin(
         const props = propTypes.body.find((prop) => prop.name === nodeName);
         if (!props) return;
 
-        function getFromProp(prop: babelTypes.Node) {
+        function getFromProp(propsNode: babelTypes.Node) {
           // Prevent visiting again
           (node as any).hasBeenVisited = true;
           path.skip();
@@ -307,22 +358,24 @@ function plugin(
           injectPropTypes({
             path: path.parentPath,
             usedProps:
-              babelTypes.isIdentifier(prop) || babelTypes.isObjectPattern(prop)
-                ? getUsedProps(path as babel.NodePath, prop)
+              babelTypes.isIdentifier(propsNode) || babelTypes.isObjectPattern(propsNode)
+                ? getUsedProps(path as babel.NodePath, propsNode)
                 : [],
             props: props!,
             nodeName,
           });
         }
 
+        const nodeInit = flattenTsAsExpression(node.init);
+
         if (
-          babelTypes.isArrowFunctionExpression(node.init) ||
-          babelTypes.isFunctionExpression(node.init)
+          babelTypes.isArrowFunctionExpression(nodeInit) ||
+          babelTypes.isFunctionExpression(nodeInit)
         ) {
-          getFromProp(node.init.params[0]);
-        } else if (babelTypes.isCallExpression(node.init)) {
+          getFromProp(nodeInit.params[0]);
+        } else if (babelTypes.isCallExpression(nodeInit)) {
           // x = react.memo(props => <div/>)
-          const arg = node.init.arguments[0];
+          const arg = nodeInit.arguments[0];
           if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
             getFromProp(arg.params[0]);
           }
@@ -376,11 +429,11 @@ export function inject(
   const propTypesToInject = new Map<string, string>();
 
   const { plugins: babelPlugins = [], ...babelOptions } = options.babelOptions || {};
-
   const result = babel.transformSync(target, {
     plugins: [
       require.resolve('@babel/plugin-syntax-class-properties'),
       require.resolve('@babel/plugin-syntax-jsx'),
+      [require.resolve('@babel/plugin-syntax-typescript'), { isTSX: true }],
       plugin(propTypes, options, propTypesToInject),
       ...(babelPlugins || []),
     ],

@@ -3,7 +3,7 @@ import { InputLabelProps } from '@material-ui/core';
 import { Autocomplete, AutocompleteProps } from '@material-ui/lab';
 import { expectType } from '@material-ui/types';
 
-interface MyAutocomplete<
+interface MyAutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
@@ -17,7 +17,7 @@ function MyAutocomplete<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
->(props: MyAutocomplete<T, Multiple, DisableClearable, FreeSolo>) {
+>(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>) {
   return <Autocomplete {...props} />;
 }
 

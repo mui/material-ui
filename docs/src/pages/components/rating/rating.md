@@ -7,7 +7,7 @@ waiAria: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating
 
 # Rating
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences, and can allow the user to submit a rating of their own.</p>
+<p class="description">Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -38,7 +38,7 @@ For larger or smaller ratings use the `size` prop.
 ## Customized rating
 
 Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+[overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/rating/CustomizedRating.js"}}
 
@@ -53,7 +53,7 @@ The accessibility of this component relies on:
 - Labels for the radio buttons containing actual text (“1 Star”, “2 Stars”, …).
   Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. You can use the [included locales](https://material-ui.com/guides/localization/), or provide your own.
 - A visually distinct appearance for the rating icons.
-  By default, the rating component uses both a difference of color and shape (filled and empty icons)to indicate the value. In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
+  By default, the rating component uses both a difference of color and shape (filled and empty icons) to indicate the value. In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
 
 {{"demo": "pages/components/rating/TextRating.js"}}
 

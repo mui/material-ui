@@ -87,8 +87,6 @@ export interface AutocompleteProps<
     endAdornment?: string;
     /** Styles applied to the clear indicator. */
     clearIndicator?: string;
-    /** Styles applied to the clear indicator if the input is dirty. */
-    clearIndicatorDirty?: string;
     /** Styles applied to the popup indicator. */
     popupIndicator?: string;
     /** Styles applied to the popup indicator if the popup is open. */
@@ -97,9 +95,9 @@ export interface AutocompleteProps<
     popper?: string;
     /** Styles applied to the popper element if `disablePortal={true}`. */
     popperDisablePortal?: string;
-    /** Styles applied to the `Paper` component. */
+    /** Styles applied to the Paper component. */
     paper?: string;
-    /** Styles applied to the `listbox` component. */
+    /** Styles applied to the listbox component. */
     listbox?: string;
     /** Styles applied to the loading wrapper. */
     loading?: string;
@@ -113,10 +111,10 @@ export interface AutocompleteProps<
     groupUl?: string;
   };
   /**
-   * The icon to display in place of the default close icon.
-   * @default <CloseIcon fontSize="small" />
+   * The icon to display in place of the default clear icon.
+   * @default <ClearIcon fontSize="small" />
    */
-  closeIcon?: React.ReactNode;
+  clearIcon?: React.ReactNode;
   /**
    * Override the default text for the *clear* icon button.
    *
@@ -132,12 +130,12 @@ export interface AutocompleteProps<
    */
   closeText?: string;
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;
   /**
-   * The `Popper` content will be inside the DOM hierarchy of the parent component.
+   * If `true`, the `Popper` content will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal?: boolean;
@@ -251,7 +249,7 @@ export interface AutocompleteProps<
    */
   renderTags?: (value: T[], getTagProps: AutocompleteGetTagProps) => React.ReactNode;
   /**
-   * The size of the autocomplete.
+   * The size of the component.
    * @default 'medium'
    */
   size?: 'small' | 'medium';

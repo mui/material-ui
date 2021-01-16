@@ -1,6 +1,6 @@
 # Approche de conception de l'API
 
-<p class="description">Nós aprendemos bastante como o Material-UI é usado e o refatoramento da v1 permitiu-nos repensar completamente o componente de API.</p>
+<p class="description">Nous avons beaucoup appris sur la façon dont Material-UI est utilisé, et la réécriture v1 nous a permis de repenser complètement l'API du composant.</p>
 
 > Le design de l'API est difficile car vous pouvez le rendre simple mais il est en fait trompeur complexe, ou le rendre vraiment simple mais semble complexe.
 
@@ -22,7 +22,7 @@ Outre le compromis de composition ci-dessus, nous appliquons les règles suivant
 
 ### La propagation
 
-Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
+Props supplied to a component which are not explicitly documented are spread to the root element; for instance, the `className` prop is applied to the root.
 
 Maintenant, supposons que vous vouliez désactiver les ondulations sur le `MenuItem`. Vous pouvez tirer parti du comportement de propagation :
 
@@ -38,7 +38,7 @@ Nous évitons de documenter les propriétés natives supportées par le DOM, com
 
 ### Les Classes CSS
 
-All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
 
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
@@ -80,7 +80,7 @@ The name of a boolean property should be chosen based on the **default value**. 
 
 ### Controlled components
 
-Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state.
+Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state. In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
 
 ### boolean vs enum
 

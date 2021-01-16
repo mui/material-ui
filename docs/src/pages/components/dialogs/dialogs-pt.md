@@ -1,12 +1,12 @@
 ---
-title: React Dialog component
+title: Componente React para Diálogos
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: Dialog'
 materialDesign: https://material.io/components/dialogs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 ---
 
-# Dialog
+# Diálogo
 
 <p class="description">Diálogos informam aos usuários sobre uma tarefa e podem conter informações críticas, exigir decisões ou envolver várias tarefas.</p>
 
@@ -41,7 +41,7 @@ Use alertas com barra de título apenas para situações de alto risco, como a p
 Se um título é necessário:
 
 - Use uma pergunta ou declaração clara com uma explicação na área de conteúdo, como "Apagar dados do USB?".
-- Evite desculpas, ambiguidade ou perguntas, algo como "Atenção!" ou "Você tem certeza?"
+- Evite desculpas, ambiguidade ou sentenças como "Aviso!" ou "Você tem certeza?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -59,7 +59,7 @@ Os formulários de diálogo permitem que usuários preencham campos dentro de um
 
 ## Diálogos customizados
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 O diálogo tem um botão de fechar para facilitar a utilização.
 
@@ -96,7 +96,7 @@ function MyComponent() {
 
 Os diálogos de confirmação exigem que os usuários confirmem explicitamente suas escolhas antes que uma opção seja confirmada. Por exemplo, os usuários podem ouvir vários toques, mas apenas fazer uma seleção final ao tocar em "OK".
 
-Tocar em “Cancelar” em um diálogo de confirmação ou pressionar Voltar, cancela a ação, descarta todas as alterações e fecha o diálogo.
+Tocar em "Cancelar" em um diálogo de confirmação ou pressionar Voltar, cancela a ação, descarta todas as alterações e fecha o diálogo.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -108,7 +108,7 @@ Você pode criar um diálogo arrastável usando [react-draggable](https://github
 
 ## Rolagem de conteúdo longo
 
-Quando os diálogos se tornam muito longos para a janela de visualização (viewport) ou dispositivo do usuário, eles habilitam a rolagem.
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll=paper` o conteúdo do diálogo rola dentro do elemento.
 - `scroll=body` o conteúdo do diálogo rola dentro do corpo da página.
@@ -116,6 +116,10 @@ Quando os diálogos se tornam muito longos para a janela de visualização (view
 Experimente a demonstração abaixo para ver o que queremos dizer:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
+
+## Performance
+
+Siga a seção [Performance Modal](/components/modal/#performance).
 
 ## Limitações
 

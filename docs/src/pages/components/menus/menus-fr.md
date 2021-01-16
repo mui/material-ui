@@ -6,29 +6,35 @@ materialDesign: https://material.io/components/menus
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
-# Menus
+# Menu
 
 <p class="description">Les menus affichent une liste de choix sur des surfaces temporaires.</p>
 
-Un [Menu](https://material.io/design/components/menus.html) affiche une liste de choix sur une surface temporaire. Il apparaît lorsque l'utilisateur interagit avec un bouton ou un autre contrôle.
+A menu displays a list of choices on a temporary surface. Il apparaît lorsque l'utilisateur interagit avec un bouton ou un autre contrôle.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Menu simple
+## Basic menu
 
-Les menus simples s'ouvrent par défaut sur l'élément d'ancrage (cette option peut être modifiée via les propriétés). Lorsqu'ils sont près du bord de l'écran, les menus simples se réalignent verticalement afin que tous les éléments du menu soient visibles.
+A basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
 
 Le choix d'une option doit idéalement être validé immédiatement et fermer le menu.
 
-**Désambiguïsation**: Contrairement aux menus simples, les boîtes de dialogue simples peuvent présenter des détails supplémentaires relatifs aux options disponibles pour un élément de la liste ou proposer des actions de navigation ou orthogonales liées à la tâche principale. Bien qu'ils puissent afficher le même contenu, les menus simples sont préférables aux simples dialogues, car les menus simples perturbent moins le contexte actuel de l'utilisateur.
+**Désambiguïsation**: Contrairement aux menus simples, les boîtes de dialogue simples peuvent présenter des détails supplémentaires relatifs aux options disponibles pour un élément de la liste ou proposer des actions de navigation ou orthogonales liées à la tâche principale. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 
-## Menus sélectionnés
+## Selected menu
 
 S'ils sont utilisés pour la sélection d'élément, lorsqu'ils sont ouverts, les menus simples tentent d'aligner verticalement l'élément de menu actuellement sélectionné avec l'élément d'ancrage, et la mise au point initiale sera placée sur l'élément de menu sélectionné. L'élément de menu actuellement sélectionné est défini à l'aide de la propriété `selected` (à partir de [ListItem](/api/list-item/)). Pour utiliser un élément de menu sélectionné sans affecter la mise au point initiale ou le positionnement vertical du menu, définissez la propriété `variant` à `menu`.
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
+
+## Positioned menu
+
+Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it. For instance, you can display the menu below the anchor:
+
+{{"demo": "pages/components/menus/PositionedMenu.js"}}
 
 ## Composition de MenuList
 
@@ -38,9 +44,9 @@ La responsabilité principale du composant `MenuList` est de gérer le focus.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Menus personnalisés
+## Customized menu
 
-Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
@@ -48,7 +54,7 @@ Le `MenuItem` est un wrapper autour de `ListItem` avec quelques styles suppléme
 
 🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/menu).
 
-## Hauteur maximale des menus
+## Max height menu
 
 Si la hauteur d'un menu empêche l'affichage de tous les éléments du menu, le menu peut défiler en interne.
 

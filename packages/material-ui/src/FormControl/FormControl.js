@@ -69,12 +69,12 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     component: Component = 'div',
     disabled = false,
     error = false,
-    fullWidth = false,
     focused: visuallyFocused,
+    fullWidth = false,
     hiddenLabel = false,
     margin = 'none',
     required = false,
-    size,
+    size = 'medium',
     variant = 'standard',
     ...other
   } = props;
@@ -166,7 +166,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     focused,
     fullWidth,
     hiddenLabel,
-    margin: (size === 'small' ? 'dense' : undefined) || margin,
+    size,
     onBlur: () => {
       setFocused(false);
     },
@@ -206,7 +206,7 @@ FormControl.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The contents of the form control.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -233,12 +233,12 @@ FormControl.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label should be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    * @default false
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the component will be displayed in focused state.
+   * If `true`, the component is displayed in focused state.
    */
   focused: PropTypes.bool,
   /**
@@ -247,7 +247,7 @@ FormControl.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * If `true`, the label will be hidden.
+   * If `true`, the label is hidden.
    * This is used to increase density for a `FilledInput`.
    * Be sure to add `aria-label` to the `input` element.
    * @default false
@@ -259,12 +259,13 @@ FormControl.propTypes = {
    */
   margin: PropTypes.oneOf(['dense', 'none', 'normal']),
   /**
-   * If `true`, the label will indicate that the input is required.
+   * If `true`, the label will indicate that the `input` is required.
    * @default false
    */
   required: PropTypes.bool,
   /**
-   * The size of the text field.
+   * The size of the component.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**

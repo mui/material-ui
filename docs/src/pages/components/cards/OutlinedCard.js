@@ -30,14 +30,10 @@ export default function OutlinedCard() {
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
           Word of the Day
         </Typography>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h5" component="div">
           be{bull}nev{bull}o{bull}lent
         </Typography>
         <Typography className={classes.pos} color="textSecondary">

@@ -42,14 +42,11 @@ Deciding where to put a test is (like naming things) a hard problem:
 
 ### Unexpected calls to `console.error` or `console.warn`
 
-By default our test suite fails if any test recorded `console.error` or `console.warn` calls:
-![unexpected console.error call](./unexpected-console-error-call.png)
+By default our test suite fails if any test recorded `console.error` or `console.warn` calls that are unexpected.
 
-The failure message includes the name of the test.
-The logged error is prefixed with the test file as well as suffixed with the full test name and test file.
+The failure message includes the full test name (suite names + test name).
 This should help locating the test in case the top of the stack can't be read due to excessive error messages.
 The error includes the logged message as well as the stacktrace of that message.
-Unfortunately the stacktrace is currently duplicated due to `chai`.
 
 You can explicitly [expect no console calls](#writing-a-test-for-consoleerror-or-consolewarn) for when you're adding a regression test.
 This makes the test more readable and properly fails the test in watchmode if the test had unexpected `console` calls.
@@ -162,41 +159,45 @@ so we also need to take into account the rendering engine.
 
 #### Run the visual regression tests
 
-`yarn test:regressions`
-
-Next, we are using [docker](https://github.com/docker/docker) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
+We are using [playwright](https://playwright.dev/) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
 
 ![before](/test/docs-regressions-before.png)
 ![diff](/test/docs-regressions-diff.png)
 
 Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/test/regressions/tests/Menu/SimpleMenuList.js#L6-L16) with the `Menu` component.
 
-#### Installation
+##### Development
 
-The visual regression tests suite has a hard dependency on [docker](https://github.com/docker/docker).
-You need to **install** it, then run the following commands:
+When working on the visual regression tests you can run `yarn test:regressions:dev` in the background to constantly rebuild the views used for visual regression testing.
+To actually take the screenshots you can then run `yarn test:regressions:run`.
+You can pass the same arguments as you could to `mocha`.
+For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
+You can view the screenshots in `test/regressions/screenshots/chrome`.
 
-```sh
-docker-compose up -d
+Alternatively, you might want to open `http://localhost:5000` (while `yarn test:regressions:dev` is running) to view individual views separately.
+
+### Performance monitoring
+
+We have a dedicated CI task that profiles our core test suite.
+Since this task is fairly expensive and not relevant to most day-to-day work it has to be started manually.
+The CircleCI docs explain [how to start a pipeline manually](https://circleci.com/docs/api/v2/#operation/triggerPipeline) in detail.
+Example:
+With an environment variable `$CIRCLE_TOKEN` containing a [CircleCI personal access token](https://app.circleci.com/settings/user/tokens).
+
+The following command triggers the `profile` workflow for the pull request #24289.
+
+```bash
+curl --request POST \
+  --url https://circleci.com/api/v2/project/gh/mui-org/material-ui/pipeline \
+  --header 'content-type: application/json' \
+  --header 'Circle-Token: $CIRCLE_TOKEN' \
+  --data-raw '{"branch":"pull/24289/head","parameters":{"workflow":"profile"}}'
 ```
 
-Due to issues with networking in OS X, getting the container to see the
-test page may require additional configuration as the `docker0` interface
-does not exist.
+To analyze this profile run you can use https://mui-dashboard.netlify.app/test-profile/:job-number.
 
-You can create an alias for the loopback interface using the instructions
-provided at https://docs.docker.com/docker-for-mac/networking/#/there-is-no-docker0-bridge-on-macos
+To find out the job number you can start with the response of the previous CircleCI API request which includes the created pipeline id.
+You then have to search in the [CircleCI UI](https://app.circleci.com/pipelines/github/mui-org/material-ui) for the job number of `test_profile` that is part of the started pipeline.
+The job number can be extracted from the URL of a particular CircleCI job.
 
-```
-sudo ifconfig lo0 alias 10.200.10.1/24
-```
-
-In our `vrtest` config this is set as the default, although it can be overridden with an env var:
-
-```
-testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
-```
-
-In addition to docker, the visual regression tests depend on either
-[ImageMagick](https://www.imagemagick.org/)
-or [GraphicsMagick](https://www.graphicsmagick.org/) being installed.
+For example, in https://app.circleci.com/pipelines/github/mui-org/material-ui/32796/workflows/23f946de-328e-49b7-9c94-bfe0a0248a12/jobs/211258 `jobs/211258` points to the job number which is in this case `211258` which means you want to visit https://mui-dashboard.netlify.app/test-profile/211258 to analyze the profile.

@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { ServerStyleSheet } from 'styled-components';
-import createEmotionServer from 'create-emotion-server';
+import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -53,7 +53,7 @@ export default class MyDocument extends Document {
           <link
             rel="canonical"
             href={`https://material-ui.com${
-              userLanguage === 'en' ? '/' : `/${userLanguage}`
+              userLanguage === 'en' ? '' : `/${userLanguage}`
             }${canonical}`}
           />
           <link rel="alternate" href={`https://material-ui.com${canonical}`} hrefLang="x-default" />
@@ -62,7 +62,7 @@ export default class MyDocument extends Document {
               key={userLanguage2}
               rel="alternate"
               href={`https://material-ui.com${
-                userLanguage2 === 'en' ? '/' : `/${userLanguage2}`
+                userLanguage2 === 'en' ? '' : `/${userLanguage2}`
               }${canonical}`}
               hrefLang={userLanguage2}
             />
@@ -73,11 +73,6 @@ export default class MyDocument extends Document {
             This includes DNS lookups, TLS negotiations, TCP handshakes.
           */}
           <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
-          <style id="material-icon-font" />
-          <style id="font-awesome-css" />
-          <style id="app-search" />
-          <style id="prismjs" />
-          <style id="insertion-point-jss" />
         </Head>
         <body>
           <Main />
@@ -145,27 +140,39 @@ MyDocument.getInitialProps = async (ctx) => {
       css = cleanCSS.minify(css).styles;
     }
 
+    // All the URLs should have a leading /.
+    // This is missing in the Next.js static export.
+    let url = ctx.req.url;
+    if (url[url.length - 1] !== '/') {
+      url += '/';
+    }
+
     return {
       ...initialProps,
-      canonical: pathnameToLanguage(ctx.req.url).canonical,
+      canonical: pathnameToLanguage(url).canonical,
       userLanguage: ctx.query.userLanguage || 'en',
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [
-        ...React.Children.toArray(initialProps.styles),
+        styledComponentsSheet.getStyleElement(),
+        <style
+          id="emotion-server-side"
+          key="emotion-server-side"
+          data-emotion={`css ${emotionStyles.ids.join(' ')}`}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: emotionStyles.css }}
+        />,
         <style
           id="jss-server-side"
           key="jss-server-side"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: css }}
         />,
-        <style
-          id="emotion-server-side"
-          key="emotion-server-side"
-          data-emotion-css={emotionStyles.ids.join(' ')}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: emotionStyles.css }}
-        />,
-        styledComponentsSheet.getStyleElement(),
+        <style id="material-icon-font" key="material-icon-font" />,
+        <style id="font-awesome-css" key="font-awesome-css" />,
+        <style id="app-search" key="app-search" />,
+        <style id="prismjs" key="prismjs" />,
+        <style id="insertion-point-jss" key="insertion-point-jss" />,
+        ...React.Children.toArray(initialProps.styles),
       ],
     };
   } finally {

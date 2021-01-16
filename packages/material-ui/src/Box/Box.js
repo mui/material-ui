@@ -1,87 +1,61 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  borders,
-  compose,
-  display,
-  flexbox,
-  grid,
-  palette,
-  positions,
-  shadows,
-  sizing,
-  spacing,
-  typography,
-  css,
-} from '@material-ui/system';
 import clsx from 'clsx';
 import styled from '../styles/experimentalStyled';
-
-export const styleFunction = css(
-  compose(
-    borders,
-    display,
-    flexbox,
-    grid,
-    positions,
-    palette,
-    shadows,
-    sizing,
-    spacing,
-    typography,
-  ),
-);
-
-function omit(input, fields) {
-  const output = {};
-
-  Object.keys(input).forEach((prop) => {
-    if (fields.indexOf(prop) === -1) {
-      output[prop] = input[prop];
-    }
-  });
-
-  return output;
-}
 
 /**
  * @ignore - do not document.
  */
-const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
-  const { children, clone, className, component: Component = 'div', ...other } = props;
-
-  const spread = omit(other, styleFunction.filterProps);
+const Box = React.forwardRef(function Box(props, ref) {
+  const { children, clone, className, component: Component = 'div', sx, ...other } = props;
 
   if (clone) {
     return React.cloneElement(children, {
       className: clsx(children.props.className, className),
-      ...spread,
+      ...other,
     });
   }
 
   if (typeof children === 'function') {
-    return children({ className, ...spread });
+    return children({ className, ...other });
   }
 
   return (
-    <Component ref={ref} className={className} {...spread}>
+    <Component ref={ref} className={className} {...other}>
       {children}
     </Component>
   );
 });
 
-BoxRoot.propTypes = {
-  children: PropTypes.node,
+Box.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
+  /**
+   * @ignore
+   */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
   clone: PropTypes.bool,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
   component: PropTypes.elementType,
+  /**
+   * @ignore
+   */
+  sx: PropTypes.object,
 };
 
-const shouldForwardProp = (prop) => styleFunction.filterProps.indexOf(prop) === -1;
-
-/**
- * @ignore - do not document.
- */
-const Box = styled(BoxRoot, { shouldForwardProp }, { muiName: 'MuiBox' })(styleFunction);
-
-export default Box;
+export default styled(Box, {}, { muiName: 'MuiBox', skipVariantsResolver: true })``;

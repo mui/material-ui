@@ -42,7 +42,6 @@ const Backdrop = React.forwardRef(function Backdrop(props, ref) {
   return (
     <TransitionComponent in={open} timeout={transitionDuration} {...other}>
       <div
-        data-mui-test="Backdrop"
         className={clsx(
           classes.root,
           {
@@ -83,7 +82,7 @@ Backdrop.propTypes = {
    */
   invisible: PropTypes.bool,
   /**
-   * If `true`, the backdrop is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**

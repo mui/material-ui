@@ -36,7 +36,7 @@ TextField.defaultProps = {
   label: 'TextField',
   multiline: false,
   required: false,
-  variant: 'standard' as 'standard',
+  variant: 'outlined' as 'outlined',
   width: 280,
   height: 56,
 };

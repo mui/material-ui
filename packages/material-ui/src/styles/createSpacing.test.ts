@@ -12,9 +12,9 @@ describe('createSpacing', () => {
     expect(spacing(2)).to.equal('16px');
     spacing = createSpacing(['0rem', '8rem', '16rem']);
     expect(spacing(2)).to.equal('16rem');
-    spacing = createSpacing((factor) => factor ** 2);
+    spacing = createSpacing((factor: number) => factor ** 2);
     expect(spacing(2)).to.equal('4px');
-    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
+    spacing = createSpacing((factor: number) => `${0.25 * factor}rem`);
     expect(spacing(2)).to.equal('0.5rem');
   });
 
@@ -27,7 +27,7 @@ describe('createSpacing', () => {
     let spacing;
     spacing = createSpacing();
     expect(spacing()).to.equal('8px');
-    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
+    spacing = createSpacing((factor: number) => `${0.25 * factor}rem`);
     expect(spacing()).to.equal('0.25rem');
   });
 
@@ -35,7 +35,7 @@ describe('createSpacing', () => {
     let spacing;
     spacing = createSpacing();
     expect(spacing(1, 2)).to.equal('8px 16px');
-    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
+    spacing = createSpacing((factor: number) => `${0.25 * factor}rem`);
     expect(spacing(1, 2)).to.equal('0.25rem 0.5rem');
   });
 
@@ -43,7 +43,9 @@ describe('createSpacing', () => {
     let spacing;
     spacing = createSpacing();
     expect(spacing(1, 'auto')).to.equal('8px auto');
-    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
+    spacing = createSpacing((factor: number | string) =>
+      typeof factor === 'string' ? factor : `${0.25 * factor}rem`,
+    );
     expect(spacing(1, 'auto', 2, 3)).to.equal('0.25rem auto 0.5rem 0.75rem');
   });
 

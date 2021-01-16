@@ -1,6 +1,5 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -11,14 +10,7 @@ import { FileDownload as FileDownloadIcon } from '@material-ui/docs';
 import BuildIcon from '@material-ui/icons/Build';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Link from 'docs/src/modules/components/Link';
-
-const InstallationLink = React.forwardRef((buttonProps, ref) => (
-  <Link naked href="/getting-started/installation" ref={ref} {...buttonProps} />
-));
-
-const UsageLink = React.forwardRef((buttonProps, ref) => (
-  <Link naked href="/getting-started/usage" ref={ref} {...buttonProps} />
-));
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -69,32 +61,18 @@ const useStyles = makeStyles(
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(2),
     },
-    link: {
-      marginTop: theme.spacing(1),
-      display: 'block',
-    },
-    img: {
-      maxWidth: 500,
-      width: '100%',
-      height: 'auto',
-    },
   }),
   { name: 'Steps' },
 );
 
 function HomeSteps() {
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <Container disableGutters className={classes.root}>
       <Grid container>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          className={clsx(classes.step, classes.leftStep)}
-        >
+        <Grid item xs={12} md={6} className={clsx(classes.step, classes.leftStep)}>
           <div className={classes.stepTitle}>
             <FileDownloadIcon className={classes.stepIcon} />
             <Typography variant="h6" component="h2">
@@ -106,7 +84,7 @@ function HomeSteps() {
               {t('installDescr')}
             </Typography>
             <HighlightedCode
-              code="$ npm install @material-ui/core@next @emotion/core @emotion/styled"
+              code="$ npm install @material-ui/core@next @emotion/react @emotion/styled"
               language="sh"
             />
             <Link
@@ -126,14 +104,11 @@ function HomeSteps() {
             />
           </div>
           <Divider className={classes.divider} />
-          <Button component={InstallationLink}>{t('installButton')}</Button>
+          <Button component={Link} noLinkStyle href="/getting-started/installation">
+            {t('installButton')}
+          </Button>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          className={clsx(classes.step, classes.rightStep)}
-        >
+        <Grid item xs={12} md={6} className={clsx(classes.step, classes.rightStep)}>
           <div className={classes.stepTitle}>
             <BuildIcon className={classes.stepIcon} />
             <Typography variant="h6" component="h2">
@@ -156,7 +131,9 @@ function App() {
             />
           </div>
           <Divider className={classes.divider} />
-          <Button component={UsageLink}>{t('usageButton')}</Button>
+          <Button component={Link} noLinkStyle href="/getting-started/usage">
+            {t('usageButton')}
+          </Button>
         </Grid>
       </Grid>
     </Container>

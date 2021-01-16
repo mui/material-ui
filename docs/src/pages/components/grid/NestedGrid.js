@@ -36,13 +36,13 @@ export default function NestedGrid() {
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
-        <Grid container item xs={12} spacing={3}>
+        <Grid container item spacing={3}>
           <FormRow />
         </Grid>
-        <Grid container item xs={12} spacing={3}>
+        <Grid container item spacing={3}>
           <FormRow />
         </Grid>
-        <Grid container item xs={12} spacing={3}>
+        <Grid container item spacing={3}>
           <FormRow />
         </Grid>
       </Grid>

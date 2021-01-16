@@ -10,7 +10,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 <p class="description">The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
 
 The [grid](https://material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
-Material Design’s responsive UI is based on a 12-column grid layout.
+Material Design's responsive UI is based on a 12-column grid layout.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -20,9 +20,9 @@ Material Design’s responsive UI is based on a 12-column grid layout.
 
 The grid system is implemented with the `Grid` component:
 
-- It uses [CSS’s Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
+- It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
 - There are two types of layout: _containers_ and _items_.
-- Item widths are set in percentages, so they’re always fluid and sized relative to their parent element.
+- Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
 - Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint contraints](/customization/breakpoints/#default-breakpoints).
@@ -42,7 +42,7 @@ This output transformation function can be customized [using the theme](/customi
 
 ## Fluid grids
 
-Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
+Fluid grids use columns that scale and resize content. A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Basic grid
 
@@ -89,28 +89,19 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
+⚠️ Defining an explicit width to a Grid element that is flex container, flex item, and has spacing at the same time lead to unexpected behavior, avoid doing it:
+
+```jsx
+<Grid spacing={1} container item xs={12}>
+```
+
+If you need to do such, remove one of the props.
+
 ## Limitations
 
 ### Negative margin
 
-There is one limitation with the negative margin we use to implement the spacing between items.
-A horizontal scroll will appear if a negative margin goes beyond the `<body>`.
-There are 3 available workarounds:
-
-1. Not using the spacing feature and implementing it in user space `spacing={0}` (default).
-2. Applying padding to the parent with at least half the spacing value applied to the child:
-
-   ```jsx
-   <body>
-     <div style={{ padding: 20 }}>
-       <Grid container spacing={5}>
-         //...
-       </Grid>
-     </div>
-   </body>
-   ```
-
-3. Adding `overflow-x: hidden;` to the parent.
+The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 

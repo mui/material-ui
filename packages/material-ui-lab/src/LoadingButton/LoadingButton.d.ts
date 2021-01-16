@@ -30,7 +30,7 @@ export type LoadingButtonTypeMap<
       labelPendingCenter?: string;
     };
     /**
-     * If `true`, the pending indicator will be shown.
+     * If `true`, the pending indicator is shown.
      * @default false
      */
     pending?: boolean;

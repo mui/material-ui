@@ -17,7 +17,7 @@ export const styles = (theme) => ({
     padding: 0,
     outline: 0,
   },
-  /* Styles applied to the `role="group"` element. */
+  /* Styles applied to the transition component. */
   group: {
     margin: 0,
     padding: 0,
@@ -223,7 +223,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   function handleFocus(event) {
     // DOM focus stays on the tree which manages focus with aria-activedescendant
     if (event.target === event.currentTarget) {
-      ownerDocument(event.target).getElementById(treeId).focus();
+      ownerDocument(event.target).getElementById(treeId).focus({ preventScroll: true });
     }
 
     const unfocusable = !disabledItemsFocusable && disabled;
@@ -314,7 +314,7 @@ TreeItem.propTypes = {
    */
   ContentProps: PropTypes.object,
   /**
-   * If `true`, the node will be disabled.
+   * If `true`, the node is disabled.
    */
   disabled: PropTypes.bool,
   /**

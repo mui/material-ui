@@ -36,11 +36,11 @@ export interface CheckboxProps
    */
   color?: 'primary' | 'secondary' | 'default';
   /**
-   * If `true`, the checkbox will be disabled.
+   * If `true`, the component is disabled.
    */
   disabled?: SwitchBaseProps['disabled'];
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple?: SwitchBaseProps['disableRipple'];
   /**
@@ -56,7 +56,7 @@ export interface CheckboxProps
    * If `true`, the component appears indeterminate.
    * This does not set the native input element to indeterminate due
    * to inconsistent behavior across browsers.
-   * However, we set a `data-indeterminate` attribute on the input.
+   * However, we set a `data-indeterminate` attribute on the `input`.
    * @default false
    */
   indeterminate?: boolean;
@@ -81,11 +81,11 @@ export interface CheckboxProps
    */
   onChange?: SwitchBaseProps['onChange'];
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required?: SwitchBaseProps['required'];
   /**
-   * The size of the checkbox.
+   * The size of the component.
    * `small` is equivalent to the dense checkbox styling.
    * @default 'medium'
    */

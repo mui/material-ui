@@ -30,41 +30,36 @@ export interface DialogProps
     scrollBody?: string;
     /** Styles applied to the container element. */
     container?: string;
-    /** Styles applied to the `Paper` component. */
+    /** Styles applied to the Paper component. */
     paper?: string;
-    /** Styles applied to the `Paper` component if `scroll="paper"`. */
+    /** Styles applied to the Paper component if `scroll="paper"`. */
     paperScrollPaper?: string;
-    /** Styles applied to the `Paper` component if `scroll="body"`. */
+    /** Styles applied to the Paper component if `scroll="body"`. */
     paperScrollBody?: string;
-    /** Styles applied to the `Paper` component if `maxWidth=false`. */
+    /** Styles applied to the Paper component if `maxWidth=false`. */
     paperWidthFalse?: string;
-    /** Styles applied to the `Paper` component if `maxWidth="xs"`. */
+    /** Styles applied to the Paper component if `maxWidth="xs"`. */
     paperWidthXs?: string;
-    /** Styles applied to the `Paper` component if `maxWidth="sm"`. */
+    /** Styles applied to the Paper component if `maxWidth="sm"`. */
     paperWidthSm?: string;
-    /** Styles applied to the `Paper` component if `maxWidth="md"`. */
+    /** Styles applied to the Paper component if `maxWidth="md"`. */
     paperWidthMd?: string;
-    /** Styles applied to the `Paper` component if `maxWidth="lg"`. */
+    /** Styles applied to the Paper component if `maxWidth="lg"`. */
     paperWidthLg?: string;
-    /** Styles applied to the `Paper` component if `maxWidth="xl"`. */
+    /** Styles applied to the Paper component if `maxWidth="xl"`. */
     paperWidthXl?: string;
-    /** Styles applied to the `Paper` component if `fullWidth={true}`. */
+    /** Styles applied to the Paper component if `fullWidth={true}`. */
     paperFullWidth?: string;
-    /** Styles applied to the `Paper` component if `fullScreen={true}`. */
+    /** Styles applied to the Paper component if `fullScreen={true}`. */
     paperFullScreen?: string;
   };
-  /**
-   * If `true`, clicking the backdrop will not fire the `onClose` callback.
-   * @default false
-   */
-  disableBackdropClick?: boolean;
   /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
   disableEscapeKeyDown?: boolean;
   /**
-   * If `true`, the dialog will be full-screen
+   * If `true`, the dialog is full-screen.
    * @default false
    */
   fullScreen?: boolean;
@@ -94,12 +89,7 @@ export interface DialogProps
    */
   onClose?: ModalProps['onClose'];
   /**
-   * Callback fired when the escape key is pressed,
-   * `disableKeyboard` is false and the modal is in focus.
-   */
-  onEscapeKeyDown?: ModalProps['onEscapeKeyDown'];
-  /**
-   * If `true`, the Dialog is open.
+   * If `true`, the component is shown.
    */
   open: ModalProps['open'];
   /**

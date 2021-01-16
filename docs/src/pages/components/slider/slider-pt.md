@@ -1,6 +1,6 @@
 ---
-title: React Slider component
-components: Slider
+title: Componente React Slider
+components: Slider, SliderUnstyled
 githubLabel: 'component: Slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
@@ -68,13 +68,19 @@ Neste exemplo, um campo de entrada permite que um valor seja definido.
 
 ## Sliders customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
 ## Sliders verticais
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
+
+**WARNING**: Chrome, Safari and newer Edge versions i.e. any browser based on WebKit exposes `<Slider orientation="vertical" />` as horizontal ([chromium issue #1158217](https://bugs.chromium.org/p/chromium/issues/detail?id=1158217)). By applying `-webkit-appearance: slider-vertical;` the slider is exposed as vertical.
+
+However, by applying `-webkit-appearance: slider-vertical;` keyboard navigation for horizontal keys (<kbd class="key">Arrow Left</kbd>, <kbd class="key">Arrow Right</kbd>) is reversed ([chromium issue #1162640](https://bugs.chromium.org/p/chromium/issues/detail?id=1162640)). Usually, up and right should increase and left and down should decrease the value. If you apply `-webkit-appearance` you could prevent keyboard navigation for horizontal arrow keys for a truly vertical slider. This might be less confusing to users compared to a change in direction.
+
+{{"demo": "pages/components/slider/VerticalAccessibleSlider.js"}}
 
 ## Faixa
 
@@ -94,9 +100,15 @@ A faixa pode ser invertida com `track="inverted"`.
 
 ## Escala não linear
 
-Você pode usar a propriedade `scale` para representar o `value` em uma escala diferente. Por exemplo, na demonstração seguinte, o valor *x* representa a potência de *10^x*.
+Você pode usar a propriedade `scale` para representar o `value` em uma escala diferente.
+
+Na seguinte demonstração, o valor _x_ representa o valor _2^x_. Acrescentar em _x_ aumenta o valor representado por fator de  _2_.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
+
+## Slider sem estilo
+
+{{"demo": "pages/components/slider/UnstyledSlider.js"}}
 
 ## Acessibilidade
 

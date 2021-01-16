@@ -1,18 +1,22 @@
-# The best pattern to follow is ignoring editor files in a global .gitignore configuration file.
-# However, in order to prevent issues, editor files are ignored here.
+# It is best to ignoring editor and system files in a local .gitignore configuration file.
+# However, in order to prevent issues, they are ignored here.
+.DS_STORE
 .idea
 .vscode
-
-.DS_STORE
 *.log
+*.tsbuildinfo
 /.eslintcache
 /.nyc_output
+/benchmark/**/dist
 /coverage
+/docs/.env.local
 /docs/.next
 /docs/export
 /examples/**/.cache
 /packages/material-ui-codemod/lib
+/packages/material-ui-envinfo/*.tgz
 /packages/material-ui-icons/material-icons/*
+/test/regressions/build
 /test/regressions/screenshots
 /test/selenium-output
 /tmp

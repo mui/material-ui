@@ -186,7 +186,7 @@ addPropertyControls(ListItem, {
   primaryIcon: {
     type: ControlType.String,
     title: 'Primary icon',
-    hidden: function hidden(props) {
+    hidden(props) {
       return (
         (props.primaryAction !== 'icon' && props.primaryAction !== 'avatar') ||
         props.imageFile !== '' ||
@@ -197,14 +197,14 @@ addPropertyControls(ListItem, {
   imageFile: {
     type: ControlType.Image,
     title: 'Image File',
-    hidden: function hidden(props) {
+    hidden(props) {
       return props.primaryAction !== undefined && props.primaryAction !== 'avatar';
     },
   },
   imageUrl: {
     type: ControlType.String,
     title: 'Image URL',
-    hidden: function hidden(props) {
+    hidden(props) {
       return (
         props.imageFile !== '' ||
         (props.primaryAction !== undefined && props.primaryAction !== 'avatar')
@@ -219,7 +219,7 @@ addPropertyControls(ListItem, {
   secondaryIcon: {
     type: ControlType.String,
     title: 'Secondary icon',
-    hidden: function hidden(props) {
+    hidden(props) {
       return props.secondaryAction !== 'iconButton';
     },
   },

@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
-import SpeedDial from '@material-ui/lab/SpeedDial';
+import SpeedDial from '@material-ui/core/SpeedDial';
 import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/core/SpeedDialAction';
 

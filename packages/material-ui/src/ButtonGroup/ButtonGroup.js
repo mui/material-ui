@@ -30,7 +30,7 @@ export const styles = (theme) => ({
   disableElevation: {
     boxShadow: 'none',
   },
-  /* Pseudo-class applied to child elements if `disabled={true}`. */
+  /* Pseudo-class applied to the child elements if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {
@@ -268,7 +268,7 @@ ButtonGroup.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the button group.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -290,7 +290,7 @@ ButtonGroup.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the buttons will be disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -300,12 +300,12 @@ ButtonGroup.propTypes = {
    */
   disableElevation: PropTypes.bool,
   /**
-   * If `true`, the button keyboard focus ripple will be disabled.
+   * If `true`, the button keyboard focus ripple is disabled.
    * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
-   * If `true`, the button ripple effect will be disabled.
+   * If `true`, the button ripple effect is disabled.
    * @default false
    */
   disableRipple: PropTypes.bool,
@@ -315,12 +315,12 @@ ButtonGroup.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The group orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * The size of the button.
+   * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */

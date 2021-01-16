@@ -27,7 +27,7 @@ function TabPanel(props) {
       aria-labelledby={`action-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </Typography>
   );
 }
@@ -142,17 +142,11 @@ export default function FloatingActionButtonZoom() {
           in={value === index}
           timeout={transitionDuration}
           style={{
-            transitionDelay: `${
-              value === index ? transitionDuration.exit : 0
-            }ms`,
+            transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
           }}
           unmountOnExit
         >
-          <Fab
-            aria-label={fab.label}
-            className={fab.className}
-            color={fab.color}
-          >
+          <Fab aria-label={fab.label} className={fab.className} color={fab.color}>
             {fab.icon}
           </Fab>
         </Zoom>

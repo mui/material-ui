@@ -28,6 +28,7 @@ const styles = {
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
   const {
+    appear = true,
     children,
     in: inProp,
     onEnter,
@@ -154,7 +155,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
 
   return (
     <TransitionComponent
-      appear
+      appear={appear}
       in={inProp}
       nodeRef={nodeRef}
       onEnter={handleEnter}
@@ -191,11 +192,17 @@ Grow.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
+  appear: PropTypes.bool,
+  /**
    * A single child content element.
    */
   children: elementAcceptingRef,
   /**
-   * If `true`, show the component; triggers the enter or exit animation.
+   * If `true`, the component will transition in.
    */
   in: PropTypes.bool,
   /**

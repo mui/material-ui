@@ -1,24 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { findOutermostIntrinsic, getClasses, createMount, createClientRender } from 'test/utils';
+import { getClasses, createClientRender } from 'test/utils';
 import TableCell from '@material-ui/core/TableCell';
+import Table from '@material-ui/core/Table';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 
 describe('<TableRow> integration', () => {
   let classes;
-  const mount = createMount();
   const render = createClientRender();
-  function mountInTable(node, Variant) {
-    const wrapper = mount(
-      <table>
+  function renderInTable(node, Variant) {
+    return render(
+      <Table>
         <Variant>
-          <tr>{node}</tr>
+          <TableRow>{node}</TableRow>
         </Variant>
-      </table>,
+      </Table>,
     );
-    return wrapper.find('tr').childAt(0);
   }
 
   before(() => {
@@ -26,52 +26,63 @@ describe('<TableRow> integration', () => {
   });
 
   it('should render a th with the head class when in the context of a table head', () => {
-    const wrapper = mountInTable(<TableCell />, TableHead);
-    const root = findOutermostIntrinsic(wrapper);
-    expect(root.type()).to.equal('th');
-    expect(root.hasClass(classes.root)).to.equal(true);
-    expect(root.hasClass(classes.head)).to.equal(true);
-    expect(root.props().scope).to.equal('col');
+    const { getByTestId } = renderInTable(<TableCell data-testid="cell" />, TableHead);
+    expect(getByTestId('cell')).to.have.tagName('th');
+    expect(getByTestId('cell')).to.have.class(classes.root);
+    expect(getByTestId('cell')).to.have.class(classes.head);
+    expect(getByTestId('cell')).to.have.attribute('scope', 'col');
   });
 
   it('should render specified scope attribute even when in the context of a table head', () => {
-    const wrapper = mountInTable(<TableCell scope="row" />, TableHead);
-    expect(wrapper.props().scope).to.equal('row');
+    const { getByTestId } = renderInTable(<TableCell scope="row" data-testid="cell" />, TableHead);
+    expect(getByTestId('cell')).to.have.attribute('scope', 'row');
   });
 
   it('should render a th with the footer class when in the context of a table footer', () => {
-    const wrapper = mountInTable(<TableCell />, TableFooter);
-    const root = findOutermostIntrinsic(wrapper);
-    expect(root.type()).to.equal('td');
-    expect(root.hasClass(classes.root)).to.equal(true);
-    expect(root.hasClass(classes.footer)).to.equal(true);
+    const { getByTestId } = renderInTable(<TableCell data-testid="cell" />, TableFooter);
+    expect(getByTestId('cell')).to.have.tagName('td');
+    expect(getByTestId('cell')).to.have.class(classes.root);
+    expect(getByTestId('cell')).to.have.class(classes.footer);
   });
 
   it('should render with the footer class when in the context of a table footer', () => {
-    const wrapper = mountInTable(<TableCell />, TableFooter);
-    expect(wrapper.find('td').hasClass(classes.root)).to.equal(true);
-    expect(wrapper.find('td').hasClass(classes.footer)).to.equal(true);
+    const { getByTestId } = renderInTable(<TableCell data-testid="cell" />, TableFooter);
+    expect(getByTestId('cell')).to.have.class(classes.root);
+    expect(getByTestId('cell')).to.have.class(classes.footer);
   });
 
   it('should render with the head class when variant is head, overriding context', () => {
-    const wrapper = mountInTable(<TableCell variant="head" />, TableFooter);
-    expect(wrapper.find('td').hasClass(classes.head)).to.equal(true);
-    expect(wrapper.find('td').props().scope).to.equal(undefined);
+    const { getByTestId } = renderInTable(
+      <TableCell variant="head" data-testid="cell" />,
+      TableFooter,
+    );
+    expect(getByTestId('cell')).to.have.class(classes.head);
+    expect(getByTestId('cell')).to.not.have.attribute('scope');
   });
 
   it('should render without head class when variant is body, overriding context', () => {
-    const wrapper = mountInTable(<TableCell variant="body" />, TableFooter);
-    expect(wrapper.find('td').hasClass(classes.head)).to.equal(false);
+    const { getByTestId } = renderInTable(
+      <TableCell variant="body" data-testid="cell" />,
+      TableFooter,
+    );
+    expect(getByTestId('cell')).not.to.have.class(classes.head);
   });
 
   it('should render without footer class when variant is body, overriding context', () => {
-    const wrapper = mountInTable(<TableCell variant="body" />, TableFooter);
-    expect(wrapper.find('td').hasClass(classes.footer)).to.equal(false);
+    const { getByTestId } = renderInTable(
+      <TableCell variant="body" data-testid="cell" />,
+      TableFooter,
+    );
+    expect(getByTestId('cell')).not.to.have.class(classes.footer);
   });
 
   it('should render with the footer class when variant is footer, overriding context', () => {
-    const wrapper = mountInTable(<TableCell variant="footer" />, TableHead);
-    expect(wrapper.find('th').hasClass(classes.footer)).to.equal(true);
+    const { getByTestId } = renderInTable(
+      <TableCell variant="footer" data-testid="cell" />,
+      TableHead,
+    );
+
+    expect(getByTestId('cell')).to.have.class(classes.footer);
   });
 
   it('sets role="columnheader" when "component" prop is set and used in the context of table head', () => {

@@ -36,6 +36,8 @@ Modal is a lower-level construct that is leveraged by the following components:
 
 ## Simple modal
 
+This demo stacks Modals, but it is strongly discouraged to do so in practice.
+
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
@@ -58,6 +60,21 @@ Modal has built-in support for [react-transition-group](https://github.com/react
 Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
+
+## Performance
+
+The content of modal is unmounted when closed.
+If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness
+it might be a good idea to change this default behavior by enabling the `keepMounted` prop:
+
+```jsx
+<Modal keepMounted />
+```
+
+{{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
+
+As with any performance optimization this is not a silver bullet. Be sure to identify
+bottlenecks first and then try out these optimization strategies.
 
 ## Server-side modal
 

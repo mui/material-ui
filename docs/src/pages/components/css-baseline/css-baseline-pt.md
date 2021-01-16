@@ -61,6 +61,10 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 
 - `box-sizing` é definido globalmente no elemento `<html>` para `border-box`. Todos elementos—incluindo `*::before` e `*::after` são declarados para herdar essa propriedade, que garante que a largura declarada do elemento nunca seja excedida devido ao preenchimento da borda.
 
+### Barras de rolagem
+
+No modo escuro, as cores das barras de rolagem são personalizadas para fornecer uma contraste melhor.
+
 ### Tipografia
 
 - Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho da fonte do `<html>` na página de [documentação do tema](/customization/typography/#typography-html-font-size).
@@ -70,4 +74,4 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 
 ## Customização
 
-Vá até a seção de [customização global](/customization/globals/#global-css) da documentação para alterar o comportamento desses componentes.
+Vá até a seção de [customização global](/customization/how-to-customize/#5-global-css-override) da documentação para alterar o comportamento desses componentes.

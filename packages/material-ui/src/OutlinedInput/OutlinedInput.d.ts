@@ -21,31 +21,31 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
     adornedEnd?: string;
     /** Pseudo-class applied to the root element if `error={true}`. */
     error?: string;
-    /** Styles applied to the `input` element if `margin="dense"`. */
-    marginDense?: string;
+    /** Styles applied to the input element if `size="small"`. */
+    sizeSmall?: string;
     /** Styles applied to the root element if `multiline={true}`. */
     multiline?: string;
-    /** Styles applied to the `NotchedOutline` element. */
+    /** Styles applied to the NotchedOutline element. */
     notchedOutline?: string;
-    /** Styles applied to the `input` element. */
+    /** Styles applied to the input element. */
     input?: string;
-    /** Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense?: string;
-    /** Styles applied to the `input` element if `multiline={true}`. */
+    /** Styles applied to the input element if `size="small"`. */
+    inputSizeSmall?: string;
+    /** Styles applied to the input element if `multiline={true}`. */
     inputMultiline?: string;
-    /** Styles applied to the `input` element if `startAdornment` is provided. */
+    /** Styles applied to the input element if `startAdornment` is provided. */
     inputAdornedStart?: string;
-    /** Styles applied to the `input` element if `endAdornment` is provided. */
+    /** Styles applied to the input element if `endAdornment` is provided. */
     inputAdornedEnd?: string;
   };
   /**
-   * The label of the input. It is only used for layout. The actual labelling
+   * The label of the `input`. It is only used for layout. The actual labelling
    * is handled by `InputLabel`. If specified `labelWidth` is ignored.
    */
   label?: React.ReactNode;
   /**
    * The width of the label. Is ignored if `label` is provided. Prefer `label`
-   * if the input label appears with a strike through.
+   * if the `input` label appears with a strike through.
    * @default 0
    */
   labelWidth?: number;

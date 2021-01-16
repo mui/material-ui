@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import url from 'url';
 import ExpandIcon from '@material-ui/icons/ExpandMore';
 import CollapseIcon from '@material-ui/icons/ChevronRight';
@@ -15,6 +14,7 @@ import {
 } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 /**
  * @param {unknown} value
@@ -103,14 +103,8 @@ function ObjectEntryLabel(props) {
     <React.Fragment>
       {`${objectKey}: `}
       {type === 'color' ? (
-        <span
-          className={classes.color}
-          style={{ borderColor: lighten(label, 0.7) }}
-        >
-          <span
-            className={classes.colorInner}
-            style={{ backgroundColor: label }}
-          />
+        <span className={classes.color} style={{ borderColor: lighten(label, 0.7) }}>
+          <span className={classes.colorInner} style={{ backgroundColor: label }} />
         </span>
       ) : null}
       <span className={clsx('token', tokenType)}>{label}</span>
@@ -170,9 +164,7 @@ function ObjectEntry(props) {
         content: classes.treeItemContent,
       }}
       nodeId={nodeId}
-      label={
-        <ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />
-      }
+      label={<ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />}
     >
       {children}
     </TreeItem>
@@ -273,7 +265,7 @@ function DefaultTheme(props) {
   const { classes } = props;
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const [darkTheme, setDarkTheme] = React.useState(false);
 
   React.useEffect(() => {

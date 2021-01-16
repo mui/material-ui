@@ -44,12 +44,7 @@ export default function Sidebar(props: SidebarProps) {
         Archives
       </Typography>
       {archives.map((archive) => (
-        <Link
-          display="block"
-          variant="body1"
-          href={archive.url}
-          key={archive.title}
-        >
+        <Link display="block" variant="body1" href={archive.url} key={archive.title}>
           {archive.title}
         </Link>
       ))}

@@ -5,11 +5,10 @@ import Divider from './Divider';
 
 describe('<Divider />', () => {
   const mount = createMount();
-  let render;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    render = createClientRender();
     classes = getClasses(<Divider />);
   });
 

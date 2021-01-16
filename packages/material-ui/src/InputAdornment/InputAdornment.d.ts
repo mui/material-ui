@@ -15,12 +15,12 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
       positionStart?: string;
       /** Styles applied to the root element if `position="end"`. */
       positionEnd?: string;
-      /** Styles applied to the root element if `disablePointerEvents=true`. */
+      /** Styles applied to the root element if `disablePointerEvents={true}`. */
       disablePointerEvents?: string;
       /** Styles applied if the adornment is used inside <FormControl hiddenLabel />. */
       hiddenLabel?: string;
-      /** Styles applied if the adornment is used inside <FormControl margin="dense" />. */
-      marginDense?: string;
+      /** Styles applied if the adornment is used inside <FormControl size="small" />. */
+      sizeSmall?: string;
     };
     /**
      * The content of the component, normally an `IconButton` or string.
@@ -28,7 +28,7 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
     children?: React.ReactNode;
     /**
      * Disable pointer events on the root.
-     * This allows for the content of the adornment to focus the input on click.
+     * This allows for the content of the adornment to focus the `input` on click.
      * @default false
      */
     disablePointerEvents?: boolean;

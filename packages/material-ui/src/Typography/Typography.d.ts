@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { PropTypes } from '..';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant } from '../styles/createTypography';
 
@@ -13,7 +14,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
      * Set the text-align on the component.
      * @default 'inherit'
      */
-    align?: PropTypes.Alignment;
+    align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
     /**
      * The content of the component.
      */
@@ -118,6 +119,10 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
      * @default false
      */
     paragraph?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * Applies the theme typography styles.
      * @default 'body1'

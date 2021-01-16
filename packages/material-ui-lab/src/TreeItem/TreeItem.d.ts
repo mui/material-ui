@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { ContentProps } from './TreeItemContent';
+import { TreeItemContentProps } from './TreeItemContent';
 
 export interface TreeItemProps
   extends StandardProps<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {
@@ -15,7 +15,7 @@ export interface TreeItemProps
   classes?: {
     /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the `role="group"` element. */
+    /** Styles applied to the transition component. */
     group?: string;
     /** Styles applied to the content element. */
     content?: string;
@@ -40,13 +40,13 @@ export interface TreeItemProps
    * The component used for the content node.
    * @default TreeItemContent
    */
-  ContentComponent?: React.ComponentType<ContentProps>;
+  ContentComponent?: React.ComponentType<TreeItemContentProps>;
   /**
    * Props applied to ContentComponent
    */
   ContentProps?: React.HTMLAttributes<HTMLElement>;
   /**
-   * If `true`, the node will be disabled.
+   * If `true`, the node is disabled.
    */
   disabled?: boolean;
   /**

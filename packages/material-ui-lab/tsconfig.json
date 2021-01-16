@@ -1,4 +1,9 @@
 {
   "extends": "../../tsconfig",
-  "include": ["src/**/*", "test/**/*", "../material-ui/src/internal/svg-icons/Add.js"]
+  "compilerOptions": {
+    // @date-io libraries produce duplicate type `DateType`
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["./**/*.spec.*"]
 }

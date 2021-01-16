@@ -19,17 +19,19 @@ function isEmpty(string) {
  * @param {object} props - the properties for which the classKey should be created
  */
 export default function propsToClassKey(props) {
-  const { variant, ...rest } = props;
+  const { variant, ...other } = props;
 
   let classKey = variant || '';
 
-  Object.keys(rest)
+  Object.keys(other)
     .sort()
     .forEach((key) => {
       if (key === 'color') {
         classKey += isEmpty(classKey) ? props[key] : capitalize(props[key]);
       } else {
-        classKey += `${isEmpty(classKey) ? key : capitalize(key)}${capitalize(props[key])}`;
+        classKey += `${isEmpty(classKey) ? key : capitalize(key)}${capitalize(
+          props[key].toString(),
+        )}`;
       }
     });
 

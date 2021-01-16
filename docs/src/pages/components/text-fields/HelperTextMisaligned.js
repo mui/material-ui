@@ -13,8 +13,17 @@ export default function HelperTextMisaligned() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <TextField helperText="Please enter your name" label="Name" />
-      <TextField label="Name" />
+      <TextField
+        helperText="Please enter your name"
+        id="demo-helper-text-misaligned"
+        label="Name"
+        variant="standard"
+      />
+      <TextField
+        id="demo-helper-text-misaligned-no-helper"
+        label="Name"
+        variant="standard"
+      />
     </div>
   );
 }

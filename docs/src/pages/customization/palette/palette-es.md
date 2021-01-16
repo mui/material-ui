@@ -143,6 +143,8 @@ const theme = createMuiTheme({
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
+<!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
+
 ```ts
 import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -177,12 +179,12 @@ Need inspiration? The Material Design team has built an [palette configuration t
 
 ## Dark mode
 
-Material-UI comes with two palette types, light (the default) and dark. You can make the theme dark by setting `type: 'dark'`. While it's only a single property value change, internally it modifies several palette values.
+Material-UI comes with two palette types, light (the default) and dark. Puedes convertir el tema a obscuro cambiando la configuración `mode: 'dark'`. While it's only a single property value change, internally it modifies several palette values.
 
 ```js
 const darkTheme = createMuiTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
   },
 });
 ```
@@ -200,27 +202,19 @@ You can leverage this preference dynamically with the [useMediaQuery](/component
 For instance, you can enable the dark mode automatically:
 
 ```jsx
-declare module '@material-ui/core/styles/createMuiTheme' {
-  interface Theme {
-    status: {
-      danger: React.CSSProperties['color'],
-    }
-  }
-  interface ThemeOptions {
-    status: {
-      danger: React.CSSProperties['color']
-    }
-  }
-}
+import * as React from 'react';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-declare module "@material-ui/core/styles/createPalette" {
-  interface Palette {
-    neutral: Palette['primary'];
-  }
-  interface PaletteOptions {
-    neutral: PaletteOptions['primary'];
-  }
-} 'dark' : 'light',
+function App() {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
         },
       }),
     [prefersDarkMode],

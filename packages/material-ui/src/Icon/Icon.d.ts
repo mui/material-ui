@@ -5,6 +5,12 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**
+     * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
+     * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
+     * @default 'material-icons'
+     */
+    baseClassName?: string;
+    /**
      * The name of the icon font ligature.
      */
     children?: React.ReactNode;
@@ -38,9 +44,9 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
     color?: Exclude<PropTypes.Color, 'default'> | 'action' | 'disabled' | 'error';
     /**
      * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
-     * @default 'default'
+     * @default 'medium'
      */
-    fontSize?: 'inherit' | 'default' | 'small' | 'large';
+    fontSize?: 'inherit' | 'large' | 'medium' | 'small';
   };
   defaultComponent: D;
 }

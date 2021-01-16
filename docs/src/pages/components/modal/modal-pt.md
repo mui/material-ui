@@ -1,5 +1,5 @@
 ---
-title: React Modal component
+title: Componente React Modal
 components: Modal
 githubLabel: 'component: Modal'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
@@ -31,6 +31,8 @@ Se você está criando um diálogo modal, você provavelmente quer usar o compon
 
 ## Modal simples
 
+Esta demonstração acumula modais, mas é fortemente desencorajado a fazer isso na prática.
+
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
 Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CSS `outline: 0`.
@@ -51,6 +53,18 @@ O modal possui suporte interno para [react-transition-group](https://github.com/
 Como alternativa, você pode usar [react-spring](https://github.com/react-spring/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
+
+## Performance
+
+O conteúdo do modal é desmontado quando fechado. Se você precisa disponibilizar o conteúdo para mecanismos de busca ou renderizar árvores de componentes grandes dentro do seu modal enquanto otimiza interação responsiva, pode ser uma boa ideia mudar este comportamento padrão ativando a propriedade `keepMounted`:
+
+```jsx
+<Modal keepMounted />
+```
+
+{{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
+
+Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
 
 ## Modal do lado do servidor
 

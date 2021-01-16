@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -21,9 +21,9 @@ function Copyright() {
 export default function App() {
   return (
     <Container maxWidth="sm">
-      <Box my={4}>
+      <Box sx={{ my: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Server Rendering v4-beta example
+          Server Rendering v5-alpha example
         </Typography>
         <ProTip />
         <Copyright />

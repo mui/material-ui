@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import { AppBarProps, WithStyles } from '@material-ui/core';
 import { withStyles, Theme } from '@material-ui/core/styles';

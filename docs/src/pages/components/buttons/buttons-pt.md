@@ -1,5 +1,5 @@
 ---
-title: React Button component
+title: Componente React para Botão
 components: Button, IconButton, ButtonBase
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: Button'
@@ -20,7 +20,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Botões Contidos
+## Contained buttons
 
 [Botões Contidos](https://material.io/design/components/buttons.html#contained-button) tem alta ênfase, distinguem-se pelo uso de elevação e preenchimento. Eles contém as principais ações da sua aplicação.
 
@@ -30,7 +30,7 @@ Você pode remover a elevação com a propriedade `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Botões de Texto
+## Text buttons
 
 Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
 
@@ -41,9 +41,9 @@ Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cart�
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-## Botões Delineados
+## Outlined buttons
 
-[Botões delineados](https://material.io/design/components/buttons.html#outlined-button) são botões com ênfase média. Eles contém ações que são importantes, mas não são as ações primárias de um aplicativo.
+[Botões delineados](https://material.io/design/components/buttons.html#outlined-button) são botões com ênfase média. They contain actions that are important, but aren't the primary action in an app.
 
 Botões delineados são uma alternativa de menor ênfase comparado com botões contidos, ou uma uma alternativa de maior ênfase comparado com botões de texto.
 
@@ -71,11 +71,11 @@ Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 ## Botões com ícones e rótulo
 
-Às vezes você pode querer ter ícones para determinado botão para melhorar o UX do aplicativo, reconhecemos logotipos mais facilmente do que o texto puro. Por exemplo, se você tem um botão com a ação de "deletar", você pode rotulá-lo com o ícone de lata de lixo.
+Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. Por exemplo, se você tem um botão com a ação de "deletar", você pode rotulá-lo com o ícone de lata de lixo.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Botões de Ícone
+## Icon button
 
 Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 
@@ -85,15 +85,15 @@ Botões de ícones são comumente encontrados em barras de aplicativos e barras 
 
 ## Botões customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
 🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/button).
 
-## Botões complexos
+## Botões de progresso
 
-The loading buttons can show pending state and disable interactions.
+Os botões de progresso podem mostrar o estado pendente e desativar as interações.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
@@ -101,9 +101,9 @@ Aqui está um [exemplo de integração com react-router](/guides/composition/#bu
 
 O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões, o que previne que o cursor desabilitado seja exibido.
 
-## Botões complexos
+## Complex buttons
 
-Os botões de texto, botões contidos, botões de ação flutuante e botões de ícone são construídos com base no mesmo componente: O componente `ButtonBase`. Você pode tirar vantagem deste componente de nível mais abstrato para construir interações customizadas.
+Os botões de texto, botões contidos, botões de ação flutuante e botões de ícone são construídos com base no mesmo componente: O componente `ButtonBase`. You can take advantage of this lower-level component to build custom interactions.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 

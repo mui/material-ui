@@ -7,10 +7,11 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
     LinkBaseProps & {
       /**
-       * The content of the link.
+       * The content of the component.
        */
       children?: React.ReactNode;
       /**
+       * Override or extend the styles applied to the component.
        */
       classes?: {
         /** Styles applied to the root element. */

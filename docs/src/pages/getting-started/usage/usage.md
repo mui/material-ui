@@ -31,7 +31,7 @@ Yes, this really is all you need to get started, as you can see in this live and
 
 ## Globals
 
-Material-UI usage experience can be improved with a handful of important globals that you’ll need to be aware of.
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### Responsive meta tag
 
@@ -58,4 +58,4 @@ Now that you have an idea of the basic setup, it's time to learn more about:
 
 - How to provide [the Material Design font and typography](/components/typography/).
 - How to take advantage of the [theming solution](/customization/theming/).
-- How to [override](/customization/components/) the look and feel of the components.
+- How to [override](/customization/how-to-customize/) the look and feel of the components.

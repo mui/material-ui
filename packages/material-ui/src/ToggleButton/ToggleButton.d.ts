@@ -7,7 +7,7 @@ export type ToggleButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The content of the button.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**
@@ -28,21 +28,21 @@ export type ToggleButtonTypeMap<
       sizeLarge?: string;
     };
     /**
-     * If `true`, the button will be disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
     /**
-     * If `true`, the  keyboard focus ripple will be disabled.
+     * If `true`, the  keyboard focus ripple is disabled.
      * @default false
      */
     disableFocusRipple?: boolean;
     /**
-     * If `true`, the button will be rendered in an active state.
+     * If `true`, the button is rendered in an active state.
      */
     selected?: boolean;
     /**
-     * The size of the button.
+     * The size of the component.
      * The prop defaults to the value inherited from the parent ToggleButtonGroup component.
      * @default 'medium'
      */

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { alpha, useTheme, withStyles, useThemeVariants } from '../styles';
+import { useTheme, withStyles, useThemeVariants } from '../styles';
+import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
@@ -34,6 +35,9 @@ export const styles = (theme) => ({
         backgroundColor: 'transparent',
       },
     },
+    '&$disabled': {
+      opacity: theme.palette.action.disabledOpacity,
+    },
     '&$focusVisible': {
       backgroundColor: theme.palette.action.focus,
     },
@@ -61,11 +65,8 @@ export const styles = (theme) => ({
         backgroundColor: theme.palette.action.selected,
       },
     },
-    '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
-    },
   },
-  /* Styles applied applied to the root element if `size="small"`. */
+  /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     minWidth: 26,
     height: 26,
@@ -76,7 +77,7 @@ export const styles = (theme) => ({
       fontSize: theme.typography.pxToRem(18),
     },
   },
-  /* Styles applied applied to the root element if `size="large"`. */
+  /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     minWidth: 40,
     height: 40,
@@ -193,7 +194,7 @@ export const styles = (theme) => ({
   disabled: {},
   /* Pseudo-class applied to the root element if `selected={true}`. */
   selected: {},
-  /* Styles applied to the icon element. */
+  /* Styles applied to tThe icon to display. */
   icon: {
     fontSize: theme.typography.pxToRem(20),
     margin: '0 -8px',
@@ -252,10 +253,15 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
   return type === 'start-ellipsis' || type === 'end-ellipsis' ? (
     <div
       ref={ref}
-      className={clsx(classes.root, classes.ellipsis, {
-        [classes.disabled]: disabled,
-        [classes[`size${capitalize(size)}`]]: size !== 'medium',
-      })}
+      className={clsx(
+        classes.root,
+        classes.ellipsis,
+        {
+          [classes.disabled]: disabled,
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
+        },
+        className,
+      )}
     >
       …
     </div>
@@ -315,7 +321,7 @@ PaginationItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the item will be disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -334,7 +340,7 @@ PaginationItem.propTypes = {
    */
   shape: PropTypes.oneOf(['circular', 'rounded']),
   /**
-   * The size of the pagination item.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
@@ -352,7 +358,7 @@ PaginationItem.propTypes = {
     'start-ellipsis',
   ]),
   /**
-   * The pagination item variant.
+   * The variant to use.
    * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

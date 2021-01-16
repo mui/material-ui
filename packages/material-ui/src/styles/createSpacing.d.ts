@@ -17,7 +17,9 @@ export interface Spacing {
 
 export type SpacingOptions =
   | number
+  | Spacing
   | ((factor: number) => string | number)
+  | ((factor: number | string) => string | number)
   | Array<string | number>;
 
 export default function createSpacing(spacing: SpacingOptions): Spacing;

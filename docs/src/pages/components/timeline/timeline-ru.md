@@ -1,5 +1,5 @@
 ---
-title: React Timeline component
+title: Компонент React Timeline
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 githubLabel: 'component: Timeline'
 packageName: '@material-ui/lab'
@@ -19,7 +19,7 @@ A basic timeline showing list of events.
 
 {{"demo": "pages/components/timeline/BasicTimeline.js"}}
 
-## Right aligned timeline
+## Right-aligned timeline
 
 The timeline can be positioned on the right side of the events.
 
@@ -49,6 +49,6 @@ The timeline can display content on opposite sides.
 
 ## Customized timeline
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

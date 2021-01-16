@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/docs",
-  "version": "5.0.0-alpha.1",
+  "version": "5.0.0-alpha.23",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Docs - Documentation building blocks.",
@@ -23,9 +23,11 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-lab",
   "scripts": {
-    "build": "yarn build:cjs && yarn build:esm && yarn build:copy-files",
-    "build:cjs": "node ../../scripts/build cjs",
-    "build:esm": "node ../../scripts/build esm",
+    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
+    "build:legacy": "node ../../scripts/build legacy",
+    "build:modern": "echo 'Skip modern build'",
+    "build:node": "node ../../scripts/build node",
+    "build:stable": "node ../../scripts/build stable",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
@@ -33,9 +35,9 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^5.0.0-alpha.1",
-    "@types/react": "^16.8.6",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -44,14 +46,13 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "^5.0.0-alpha.1",
+    "@material-ui/utils": "5.0.0-alpha.23",
     "nprogress": "^0.2.0"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   }
 }

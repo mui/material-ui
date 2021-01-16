@@ -27,7 +27,7 @@ describe('<Backdrop />', () => {
 
   it('should render a backdrop div with content of nested children', () => {
     const { container } = render(
-      <Backdrop open className="woofBackdrop">
+      <Backdrop open>
         <h1>Hello World</h1>
       </Backdrop>,
     );

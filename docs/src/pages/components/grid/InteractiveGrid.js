@@ -83,11 +83,7 @@ export default function InteractiveGrid() {
                     setDirection(event.target.value);
                   }}
                 >
-                  <FormControlLabel
-                    value="row"
-                    control={<Radio />}
-                    label="row"
-                  />
+                  <FormControlLabel value="row" control={<Radio />} label="row" />
                   <FormControlLabel
                     value="row-reverse"
                     control={<Radio />}

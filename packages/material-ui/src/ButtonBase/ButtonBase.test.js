@@ -1,11 +1,10 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -14,9 +13,9 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
-import * as PropTypes from 'prop-types';
-import TouchRipple from './TouchRipple';
+import PropTypes from 'prop-types';
 import ButtonBase from './ButtonBase';
+import classes from './buttonBaseClasses';
 
 describe('<ButtonBase />', () => {
   const render = createClientRender();
@@ -24,15 +23,11 @@ describe('<ButtonBase />', () => {
    * @type {ReturnType<typeof createMount>}
    */
   const mount = createMount();
-  /**
-   * @type {Record<string, string>}
-   */
-  let classes;
+
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
   let canFireDragEvents = true;
 
   before(() => {
-    classes = getClasses(<ButtonBase />);
     // browser testing config
     try {
       const EventConstructor = window.DragEvent || window.Event;
@@ -43,12 +38,15 @@ describe('<ButtonBase />', () => {
     }
   });
 
-  describeConformance(<ButtonBase />, () => ({
+  describeConformanceV5(<ButtonBase />, () => ({
     classes,
     inheritComponent: 'button',
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'a',
+    muiName: 'MuiButtonBase',
+    testVariantProps: { disabled: true },
+    skip: ['componentsProp'],
   }));
 
   describe('root node', () => {
@@ -428,24 +426,58 @@ describe('<ButtonBase />', () => {
 
   describe('prop: centerRipple', () => {
     it('centers the TouchRipple', () => {
-      const wrapper = mount(<ButtonBase centerRipple>Hello</ButtonBase>);
-      expect(wrapper.find(TouchRipple).props()).to.have.property('center', true);
+      const { container, getByRole } = render(
+        <ButtonBase
+          centerRipple
+          TouchRippleProps={{ classes: { root: 'touch-ripple', ripple: 'touch-ripple-ripple' } }}
+        >
+          Hello
+        </ButtonBase>,
+      );
+      // @ts-ignore
+      stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 100,
+        bottom: 10,
+        left: 20,
+        top: 20,
+      }));
+      fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
+      const rippleRipple = container.querySelector('.touch-ripple-ripple');
+      expect(rippleRipple).to.not.equal(null);
+      // @ts-ignore
+      const rippleSyle = window.getComputedStyle(rippleRipple);
+      expect(rippleSyle).to.have.property('height', '101px');
+      expect(rippleSyle).to.have.property('width', '101px');
     });
 
     it('is disabled by default', () => {
-      const wrapper = mount(<ButtonBase>Hello</ButtonBase>);
-      expect(wrapper.find(TouchRipple).props()).to.have.property('center', false);
+      const { container, getByRole } = render(
+        <ButtonBase
+          TouchRippleProps={{ classes: { root: 'touch-ripple', ripple: 'touch-ripple-ripple' } }}
+        >
+          Hello
+        </ButtonBase>,
+      );
+      // @ts-ignore
+      stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 100,
+        bottom: 10,
+        left: 20,
+        top: 20,
+      }));
+      fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
+      const rippleRipple = container.querySelector('.touch-ripple-ripple');
+      expect(rippleRipple).to.not.equal(null);
+      // @ts-ignore
+      const rippleSyle = window.getComputedStyle(rippleRipple);
+      expect(rippleSyle).to.not.have.property('height', '101px');
+      expect(rippleSyle).to.not.have.property('width', '101px');
     });
   });
 
   describe('focusRipple', () => {
-    before(function beforeHook() {
-      if (/Version\/10\.\d+\.\d+ Safari/.test(window.navigator.userAgent)) {
-        // browserstack quirk
-        this.skip();
-      }
-    });
-
     it('should pulsate the ripple when focusVisible', () => {
       const { getByRole } = render(
         <ButtonBase
@@ -893,7 +925,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        fireEvent.keyDown(document.querySelector('input'), {
+        fireEvent.keyDown(screen.getByRole('textbox'), {
           key: 'Enter',
         });
 
@@ -910,7 +942,7 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
 
-        fireEvent.keyUp(document.querySelector('input'), {
+        fireEvent.keyUp(screen.getByRole('textbox'), {
           key: ' ',
         });
 
@@ -991,10 +1023,10 @@ describe('<ButtonBase />', () => {
       PropTypes.resetWarningCache();
     });
 
-    it('warns on invalid `component` prop: ref forward', () => {
+    it('warns on invalid `component` prop: ref forward', function test() {
       // Only run the test on node. On the browser the thrown error is not caught
       if (!/jsdom/.test(window.navigator.userAgent)) {
-        return;
+        this.skip();
       }
 
       /**
@@ -1007,8 +1039,8 @@ describe('<ButtonBase />', () => {
 
       expect(() => {
         PropTypes.checkPropTypes(
-          // @ts-ignore `Naked` is internal
-          ButtonBase.Naked.propTypes,
+          // @ts-expect-error ExtendButtonBase<ButtonBaseTypeMap<{}, "button">> does not contain the property 'propTypes'.
+          ButtonBase.propTypes,
           { classes: {}, component: Component },
           'prop',
           'MockedName',

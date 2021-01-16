@@ -187,11 +187,7 @@ function ChipsPlayground(props) {
                   control={<Radio />}
                   label="medium"
                 />
-                <FormControlLabel
-                  value="small"
-                  control={<Radio />}
-                  label="small"
-                />
+                <FormControlLabel value="small" control={<Radio />} label="small" />
               </RadioGroup>
             </FormControl>
           </Grid>
@@ -205,16 +201,8 @@ function ChipsPlayground(props) {
                 value={icon}
                 onChange={handleChange}
               >
-                <FormControlLabel
-                  value="none"
-                  control={<Radio />}
-                  label="none"
-                />
-                <FormControlLabel
-                  value="icon"
-                  control={<Radio />}
-                  label="icon"
-                />
+                <FormControlLabel value="none" control={<Radio />} label="none" />
+                <FormControlLabel value="icon" control={<Radio />} label="icon" />
               </RadioGroup>
             </FormControl>
           </Grid>
@@ -228,11 +216,7 @@ function ChipsPlayground(props) {
                 value={avatar}
                 onChange={handleChange}
               >
-                <FormControlLabel
-                  value="none"
-                  control={<Radio />}
-                  label="none"
-                />
+                <FormControlLabel value="none" control={<Radio />} label="none" />
                 <FormControlLabel
                   value="letter"
                   control={<Radio />}
@@ -252,11 +236,7 @@ function ChipsPlayground(props) {
                 value={onDelete}
                 onChange={handleChange}
               >
-                <FormControlLabel
-                  value="none"
-                  control={<Radio />}
-                  label="none"
-                />
+                <FormControlLabel value="none" control={<Radio />} label="none" />
                 <FormControlLabel
                   value="default"
                   control={<Radio />}

@@ -17,7 +17,7 @@ A [typographic scale](https://material.io/design/typography/#type-scale) has a l
 ## General
 
 The _Roboto_ font will **not** be automatically loaded by Material-UI.
-The developer is responsible for loading all fonts used in their application.
+You are responsible for loading any fonts used in your application.
 Roboto Font has a few easy ways to get started. For more advanced configuration, check out
 [the theme customization section](/customization/typography/).
 
@@ -34,17 +34,17 @@ Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ## Install with npm
 
-You can [install it](https://www.npmjs.com/package/fontsource-roboto) by typing the below command in your terminal:
+You can [install it](https://www.npmjs.com/package/@fontsource/roboto) by typing the below command in your terminal:
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Then, you can import it in your entry-point.
 
 ```js
-import 'fontsource-roboto/300.css';
-import 'fontsource-roboto/400.css';
-import 'fontsource-roboto/500.css';
-import 'fontsource-roboto/700.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 For more info check out [Fontsource](https://github.com/fontsource/fontsource).
@@ -53,6 +53,8 @@ Fontsource can be configured to load specific subsets, weights and styles.
 Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Component
+
+The Typography component makes it easy to apply a default set of font weights and sizes in your application.
 
 {{"demo": "pages/components/typography/Types.js"}}
 
@@ -66,7 +68,7 @@ Hopefully, you might be able to take advantage of the [`typography`](/customizat
 ## Changing the semantic element
 
 The Typography component uses the `variantMapping` prop to associate a UI variant with a semantic element.
-It’s important to realize that the style of a typography component is independent from the semantic underlying element.
+It's important to realize that the style of a typography component is independent from the semantic underlying element.
 
 - You can change the underlying element for a one-off situation with the `component` prop:
 
@@ -79,7 +81,7 @@ It’s important to realize that the style of a typography component is independ
 </Typography>;
 ```
 
-- You can change the mapping [globally using the theme](/customization/globals/#default-props):
+- You can change the mapping [globally using the theme](/customization/theme-components/#default-props):
 
 ```js
 const theme = createMuiTheme({
@@ -103,6 +105,10 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
 
 ## Accessibility
 

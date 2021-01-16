@@ -28,7 +28,7 @@ export type BottomNavigationActionTypeMap<
       label?: string;
     };
     /**
-     * The icon element.
+     * The icon to display.
      */
     icon?: React.ReactNode;
     /**
@@ -62,10 +62,9 @@ export type BottomNavigationActionTypeMap<
  * - [BottomNavigationAction API](https://material-ui.com/api/bottom-navigation-action/)
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
-declare const BottomNavigationAction: ExtendButtonBase<BottomNavigationActionTypeMap<
-  {},
-  ButtonBaseTypeMap['defaultComponent']
->>;
+declare const BottomNavigationAction: ExtendButtonBase<
+  BottomNavigationActionTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>
+>;
 
 export type BottomNavigationActionClassKey = keyof NonNullable<
   BottomNavigationActionProps['classes']

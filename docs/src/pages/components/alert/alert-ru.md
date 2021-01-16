@@ -1,5 +1,5 @@
 ---
-title: React Alert component
+title: Компонент React Alert
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
@@ -7,7 +7,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 # Alert
 
-<p class="description">Alert показывает короткое и важное сообщение для того, чтобы привлечь внимание пользователя, не отвлекая его от задачи.</p>
+<p class="description">Alert показывает короткое и важное сообщение для того, чтобы привлечь внимание пользователя, не отвлекая его.</p>
 
 **Примечание:** Этот компонент не задокументирован в [гайдлайнах Material Design](https://material.io/), но Material-UI поддерживает его.
 
@@ -15,13 +15,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 ## Простейшие предупреждения
 
-Alert предлагает 4 уровня предупреждения с уникальным цветом и значком.
+Alert предлагает 4 уровня важности предупреждения с уникальными цветом и значком.
 
 {{"demo": "pages/components/alert/BasicAlerts.js"}}
 
 ## Описание
 
-Вы можете использовать `AlertTitle`, чтобы отобразить заголовок над содержимым.
+Вы можете использовать `AlertTitle`, чтобы отобразить отформатированный заголовок над содержимым.
 
 {{"demo": "pages/components/alert/DescriptionAlerts.js"}}
 
@@ -43,7 +43,7 @@ You can use a [transition component](/components/transitions/) such as `Collapse
 
 The `icon` prop allows you to add an icon to the beginning of the alert component. This will override the default icon for the specified severity.
 
-You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/globals/#default-props).
+You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/theme-components/#default-props).
 
 Setting the icon prop to false will remove the icon altogether.
 

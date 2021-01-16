@@ -2,10 +2,12 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import { makeStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
 import rtl from 'jss-rtl';
-import { useSelector } from 'react-redux';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 function FramedDemo(props) {
   const { children, document } = props;
@@ -25,13 +27,25 @@ function FramedDemo(props) {
     };
   }, [document]);
 
+  const cache = React.useMemo(
+    () =>
+      createCache({
+        key: 'iframe-demo',
+        prepend: true,
+        container: document.head,
+      }),
+    [document],
+  );
+
   const getWindow = React.useCallback(() => document.defaultView, [document]);
 
   return (
     <StylesProvider jss={jss} sheetsManager={sheetsManager}>
-      {React.cloneElement(children, {
-        window: getWindow,
-      })}
+      <CacheProvider value={cache}>
+        {React.cloneElement(children, {
+          window: getWindow,
+        })}
+      </CacheProvider>
     </StylesProvider>
   );
 }
@@ -54,7 +68,8 @@ const useStyles = makeStyles(
 );
 
 function DemoFrame(props) {
-  const { children, title, ...other } = props;
+  const { children, name, ...other } = props;
+  const title = `${name} demo`;
   const classes = useStyles();
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
@@ -95,7 +110,7 @@ function DemoFrame(props) {
 
 DemoFrame.propTypes = {
   children: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 /**
@@ -105,9 +120,9 @@ DemoFrame.propTypes = {
 function DemoSandboxed(props) {
   const { component: Component, iframe, name, onResetDemoClick, ...other } = props;
   const Sandbox = iframe ? DemoFrame : React.Fragment;
-  const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
+  const sandboxProps = iframe ? { name, ...other } : {};
 
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <DemoErrorBoundary onResetDemoClick={onResetDemoClick} t={t}>

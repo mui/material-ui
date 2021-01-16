@@ -1,6 +1,17 @@
 const upperFirst = require('lodash/upperFirst');
 const camelCase = require('lodash/camelCase');
-const { CODE_VARIANTS, LANGUAGES } = require('../constants');
+const { CODE_VARIANTS, SOURCE_CODE_REPO, LANGUAGES } = require('../constants');
+
+/**
+ * Mapping from the date adapter sub-packages to the npm packages they require.
+ * @example `@material-ui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
+ */
+const dateAdapterPackageMapping = {
+  AdapterDateFns: 'date-fns',
+  AdapterDayjs: 'dayjs',
+  AdapterLuxon: 'luxon',
+  AdapterMoment: 'moment',
+};
 
 function titleize(string) {
   if (process.env.NODE_ENV !== 'production') {
@@ -44,7 +55,7 @@ function pageToTitleI18n(page, t) {
  * set of packages that ship their own typings instead of using @types/ namespace
  * Array because Set([iterable]) is not supported in IE11
  */
-const packagesWithBundledTypes = ['date-fns', '@emotion/core', '@emotion/styled'];
+const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled'];
 
 /**
  * WARNING: Always uses `latest` typings.
@@ -74,34 +85,27 @@ function addTypeDeps(deps) {
 }
 
 function includePeerDependencies(deps, versions) {
-  Object.assign(deps, {
+  let newDeps = {
+    ...deps,
     'react-dom': versions['react-dom'],
     react: versions.react,
-    '@emotion/core': versions['@emotion/core'],
+    '@emotion/react': versions['@emotion/react'],
     '@emotion/styled': versions['@emotion/styled'],
-  });
+  };
 
-  if (
-    deps['@material-ui/lab'] ||
-    deps['@material-ui/pickers'] ||
-    deps['@material-ui/x'] ||
-    deps['@material-ui/x-grid'] ||
-    deps['@material-ui/x-pickers'] ||
-    deps['@material-ui/x-tree-view'] ||
-    deps['@material-ui/data-grid']
-  ) {
-    deps['@material-ui/core'] = versions['@material-ui/core'];
+  if (newDeps['@material-ui/lab']) {
+    newDeps['@material-ui/core'] = versions['@material-ui/core'];
   }
 
-  if (deps['@material-ui/x-grid-data-generator']) {
-    deps['@material-ui/core'] = versions['@material-ui/core'];
-    deps['@material-ui/icons'] = versions['@material-ui/icons'];
-    deps['@material-ui/lab'] = versions['@material-ui/lab'];
+  if (newDeps['@material-ui/data-grid']) {
+    newDeps['@material-ui/core'] = versions['@material-ui/core'];
   }
 
-  if (deps['@material-ui/pickers']) {
-    deps['date-fns'] = 'latest';
+  if (window.muiDocConfig) {
+    newDeps = window.muiDocConfig.csbIncludePeerDependencies(newDeps, { versions });
   }
+
+  return newDeps;
 }
 
 /**
@@ -110,7 +114,7 @@ function includePeerDependencies(deps, versions) {
  * @return string - A valid version for a dependency entry in a package.json
  */
 function getMuiPackageVersion(packageName, commitRef) {
-  if (commitRef === undefined) {
+  if (commitRef === undefined || SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui') {
     // TODO: change 'next' to 'latest' once next is merged into master.
     return 'next';
   }
@@ -123,16 +127,17 @@ function getMuiPackageVersion(packageName, commitRef) {
  * @param {object} options
  * @param {'JS' | 'TS'} [options.codeLanguage] -
  * @param {string} [options.muiCommitRef] - If specified use `@material-ui/*` packages from a specific commit.
- * @param {'next' | 'latest'} [options.reactVersion]
  * @returns {Record<string, 'latest'>} map of packages with their required version
  */
 function getDependencies(raw, options = {}) {
-  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef, reactVersion = 'latest' } = options;
+  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef } = options;
 
-  const deps = {};
-  const versions = {
-    'react-dom': reactVersion,
-    react: reactVersion,
+  let deps = {};
+  let versions = {
+    react: 'latest',
+    'react-dom': 'latest',
+    '@emotion/react': 'latest',
+    '@emotion/styled': 'latest',
     '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
     '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
     '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
@@ -140,11 +145,13 @@ function getDependencies(raw, options = {}) {
     '@material-ui/styled-engine-sc': getMuiPackageVersion('styled-engine-sc', muiCommitRef),
     '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
+    '@material-ui/unstyled': getMuiPackageVersion('unstyled', muiCommitRef),
     '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
-    '@material-ui/pickers': 'next',
-    '@emotion/core': 'latest',
-    '@emotion/styled': 'latest',
   };
+
+  if (window.muiDocConfig) {
+    versions = window.muiDocConfig.csbGetVersions(versions, { muiCommitRef });
+  }
 
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
   let m;
@@ -163,9 +170,21 @@ function getDependencies(raw, options = {}) {
     if (!deps[name]) {
       deps[name] = versions[name] ? versions[name] : 'latest';
     }
+
+    // e.g date-fns
+    const dateAdapterMatch = m[2].match(/^@material-ui\/lab\/(Adapter.*)/);
+    if (dateAdapterMatch !== null) {
+      const packageName = dateAdapterPackageMapping[dateAdapterMatch[1]];
+      if (packageName === undefined) {
+        throw new TypeError(
+          `Can't determine required npm package for adapter '${dateAdapterMatch[1]}'`,
+        );
+      }
+      deps[packageName] = 'latest';
+    }
   }
 
-  includePeerDependencies(deps, versions);
+  deps = includePeerDependencies(deps, versions);
 
   if (codeLanguage === CODE_VARIANTS.TS) {
     addTypeDeps(deps);
@@ -175,9 +194,19 @@ function getDependencies(raw, options = {}) {
   return deps;
 }
 
+/**
+ * Get the value of a cookie
+ * Source: https://vanillajstoolkit.com/helpers/getcookie/
+ * @param  {String} name  The name of the cookie
+ * @return {String}       The cookie value
+ */
 function getCookie(name) {
-  const regex = new RegExp(`(?:(?:^|.*;*)${name}*=*([^;]*).*$)|^.*$`);
-  return document.cookie.replace(regex, '$1');
+  if (process.browser) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+  return undefined;
 }
 
 function pathnameToLanguage(pathname) {

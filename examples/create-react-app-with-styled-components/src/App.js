@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyled';
+import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 
 export default function App() {

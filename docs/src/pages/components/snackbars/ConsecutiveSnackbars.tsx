@@ -27,9 +27,9 @@ export interface State {
 export default function ConsecutiveSnackbars() {
   const [snackPack, setSnackPack] = React.useState<SnackbarMessage[]>([]);
   const [open, setOpen] = React.useState(false);
-  const [messageInfo, setMessageInfo] = React.useState<
-    SnackbarMessage | undefined
-  >(undefined);
+  const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(
+    undefined,
+  );
 
   React.useEffect(() => {
     if (snackPack.length && !messageInfo) {

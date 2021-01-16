@@ -6,19 +6,23 @@ export default function TextOverflow() {
     <div style={{ width: 200, whiteSpace: 'nowrap' }}>
       <Box
         component="div"
-        my={2}
-        textOverflow="clip"
-        overflow="hidden"
-        bgcolor="background.paper"
+        sx={{
+          textOverflow: 'clip',
+          my: 2,
+          overflow: 'hidden',
+          bgcolor: 'background.paper',
+        }}
       >
         Text Overflow Clip. Text Overflow Clip.
       </Box>
       <Box
         component="div"
-        my={2}
-        textOverflow="ellipsis"
-        overflow="hidden"
-        bgcolor="background.paper"
+        sx={{
+          textOverflow: 'ellipsis',
+          my: 2,
+          overflow: 'hidden',
+          bgcolor: 'background.paper',
+        }}
       >
         Text Overflow Ellipsis. Text Overflow Ellipsis
       </Box>

@@ -41,7 +41,7 @@ export const styles = (theme) => {
         borderBottomColor: theme.palette.secondary.main,
       },
     },
-    /* Styles applied to the root element if `disableUnderline={false}`. */
+    /* Styles applied to the root element unless `disableUnderline={true}`. */
     underline: {
       '&:after': {
         borderBottom: `2px solid ${theme.palette.primary.main}`,
@@ -99,12 +99,12 @@ export const styles = (theme) => {
     },
     /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    marginDense: {},
+    /* Styles applied to the input element if `size="small"`. */
+    sizeSmall: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '25px 12px 8px',
-      '&$marginDense': {
+      '&$sizeSmall': {
         paddingTop: 21,
         paddingBottom: 4,
       },
@@ -115,7 +115,7 @@ export const styles = (theme) => {
     },
     /* Styles applied to the root element if `hiddenLabel={true}`. */
     hiddenLabel: {},
-    /* Styles applied to the `input` element. */
+    /* Styles applied to the input element. */
     input: {
       padding: '25px 12px 8px',
       '&:-webkit-autofill': {
@@ -126,8 +126,8 @@ export const styles = (theme) => {
         borderTopRightRadius: 'inherit',
       },
     },
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: {
+    /* Styles applied to the input element if `size="small"`. */
+    inputSizeSmall: {
       paddingTop: 21,
       paddingBottom: 4,
     },
@@ -135,20 +135,20 @@ export const styles = (theme) => {
     inputHiddenLabel: {
       paddingTop: 16,
       paddingBottom: 17,
-      '&$inputMarginDense': {
+      '&$inputSizeSmall': {
         paddingTop: 8,
         paddingBottom: 9,
       },
     },
-    /* Styles applied to the `input` element if `multiline={true}`. */
+    /* Styles applied to the input element if `multiline={true}`. */
     inputMultiline: {
       padding: 0,
     },
-    /* Styles applied to the `input` element if `startAdornment` is provided. */
+    /* Styles applied to the input element if `startAdornment` is provided. */
     inputAdornedStart: {
       paddingLeft: 0,
     },
-    /* Styles applied to the `input` element if `endAdornment` is provided. */
+    /* Styles applied to the input element if `endAdornment` is provided. */
     inputAdornedEnd: {
       paddingRight: 0,
     },
@@ -197,7 +197,7 @@ FilledInput.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -210,11 +210,11 @@ FilledInput.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * The default `input` element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the component is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
@@ -227,12 +227,12 @@ FilledInput.propTypes = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the input will indicate an error.
+   * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the `input` will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,
@@ -270,7 +270,7 @@ FilledInput.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a textarea element will be rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -286,7 +286,7 @@ FilledInput.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**
@@ -295,7 +295,7 @@ FilledInput.propTypes = {
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -87,6 +87,7 @@ function ProductCTA(props) {
                 noBorder
                 className={classes.textField}
                 placeholder="Your email"
+                variant="standard"
               />
               <Button
                 type="submit"

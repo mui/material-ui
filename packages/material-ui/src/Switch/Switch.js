@@ -218,15 +218,15 @@ Switch.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
-   * @ignore
+   * The default checked state. Use when the component is not controlled.
    */
   defaultChecked: PropTypes.bool,
   /**
-   * If `true`, the switch will be disabled.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -262,11 +262,11 @@ Switch.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
   /**
-   * The size of the switch.
+   * The size of the component.
    * `small` is equivalent to the dense switch styling.
    * @default 'medium'
    */

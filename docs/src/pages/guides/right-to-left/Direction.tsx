@@ -10,7 +10,7 @@ export default function Direction() {
   return (
     <ThemeProvider theme={theme}>
       <div dir="rtl">
-        <TextField placeholder="Name" />
+        <TextField placeholder="Name" variant="standard" />
         <input type="text" placeholder="Name" />
       </div>
     </ThemeProvider>

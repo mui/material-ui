@@ -25,7 +25,7 @@ function GridIntegration(props: WithWidth) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography variant="subtitle1" gutterBottom component="div">
         Current width: {width}
       </Typography>
       <Grid container spacing={3}>

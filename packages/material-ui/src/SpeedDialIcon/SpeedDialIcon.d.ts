@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '..';
 
 export interface SpeedDialIconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
@@ -21,7 +21,7 @@ export interface SpeedDialIconProps
     openIconOpen?: string;
   };
   /**
-   * The icon to display in the SpeedDial Floating Action Button.
+   * The icon to display.
    */
   icon?: React.ReactNode;
   /**
@@ -30,7 +30,7 @@ export interface SpeedDialIconProps
   openIcon?: React.ReactNode;
   /**
    * @ignore
-   * If `true`, the SpeedDial is open.
+   * If `true`, the component is shown.
    */
   open?: boolean;
 }

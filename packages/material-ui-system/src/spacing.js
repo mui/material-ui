@@ -1,5 +1,6 @@
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
+import { getPath } from './style';
 import merge from './merge';
 import memoize from './memoize';
 
@@ -43,7 +44,7 @@ const getCssProperties = memoize((prop) => {
   return Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
 });
 
-const spacingKeys = [
+const marginKeys = [
   'm',
   'mt',
   'mr',
@@ -51,13 +52,6 @@ const spacingKeys = [
   'ml',
   'mx',
   'my',
-  'p',
-  'pt',
-  'pr',
-  'pb',
-  'pl',
-  'px',
-  'py',
   'margin',
   'marginTop',
   'marginRight',
@@ -65,6 +59,16 @@ const spacingKeys = [
   'marginLeft',
   'marginX',
   'marginY',
+];
+
+const paddingKeys = [
+  'p',
+  'pt',
+  'pr',
+  'pb',
+  'pl',
+  'px',
+  'py',
   'padding',
   'paddingTop',
   'paddingRight',
@@ -74,14 +78,22 @@ const spacingKeys = [
   'paddingY',
 ];
 
-export function createUnarySpacing(theme) {
-  const themeSpacing = theme.spacing || 8;
+const spacingKeys = [...marginKeys, ...paddingKeys];
+
+export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
+  const themeSpacing = getPath(theme, themeKey) || defaultValue;
 
   if (typeof themeSpacing === 'number') {
     return (abs) => {
+      if (typeof abs === 'string') {
+        return abs;
+      }
+
       if (process.env.NODE_ENV !== 'production') {
         if (typeof abs !== 'number') {
-          console.error(`Material-UI: Expected spacing argument to be a number, got ${abs}.`);
+          console.error(
+            `Material-UI: Expected ${propName} argument to be a number or a string, got ${abs}.`,
+          );
         }
       }
       return themeSpacing * abs;
@@ -90,8 +102,19 @@ export function createUnarySpacing(theme) {
 
   if (Array.isArray(themeSpacing)) {
     return (abs) => {
+      if (typeof abs === 'string') {
+        return abs;
+      }
+
       if (process.env.NODE_ENV !== 'production') {
-        if (abs > themeSpacing.length - 1) {
+        if (!Number.isInteger(abs)) {
+          console.error(
+            [
+              `Material-UI: The \`theme.${themeKey}\` array type cannot be combined with non integer values.` +
+                `You should either use an integer value that can be used as index, or define the \`theme.${themeKey}\` as a number.`,
+            ].join('\n'),
+          );
+        } else if (abs > themeSpacing.length - 1) {
           console.error(
             [
               `Material-UI: The value provided (${abs}) overflows.`,
@@ -113,7 +136,7 @@ export function createUnarySpacing(theme) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(
       [
-        `Material-UI: The \`theme.spacing\` value (${themeSpacing}) is invalid.`,
+        `Material-UI: The \`theme.${themeKey}\` value (${themeSpacing}) is invalid.`,
         'It should be a number, an array or a function.',
       ].join('\n'),
     );
@@ -122,7 +145,11 @@ export function createUnarySpacing(theme) {
   return () => undefined;
 }
 
-function getValue(transformer, propValue) {
+export function createUnarySpacing(theme) {
+  return createUnaryUnit(theme, 'spacing', 8, 'spacing');
+}
+
+export function getValue(transformer, propValue) {
   if (typeof propValue === 'string') {
     return propValue;
   }
@@ -141,7 +168,7 @@ function getValue(transformer, propValue) {
   return `-${transformed}`;
 }
 
-function getStyleFromPropValue(cssProperties, transformer) {
+export function getStyleFromPropValue(cssProperties, transformer) {
   return (propValue) =>
     cssProperties.reduce((acc, cssProperty) => {
       acc[cssProperty] = getValue(transformer, propValue);
@@ -149,25 +176,58 @@ function getStyleFromPropValue(cssProperties, transformer) {
     }, {});
 }
 
-function spacing(props) {
-  const theme = props.theme;
-  const transformer = createUnarySpacing(theme);
+function resolveCssProperty(props, keys, prop, transformer) {
+  // Using a hash computation over an array iteration could be faster, but with only 28 items,
+  // it's doesn't worth the bundle size.
+  if (keys.indexOf(prop) === -1) {
+    return null;
+  }
+
+  const cssProperties = getCssProperties(prop);
+  const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
+
+  const propValue = props[prop];
+  return handleBreakpoints(props, propValue, styleFromPropValue);
+}
+
+function style(props, keys) {
+  const transformer = createUnarySpacing(props.theme);
 
   return Object.keys(props)
-    .map((prop) => {
-      // Using a hash computation over an array iteration could be faster, but with only 28 items,
-      // it's doesn't worth the bundle size.
-      if (spacingKeys.indexOf(prop) === -1) {
-        return null;
-      }
-
-      const cssProperties = getCssProperties(prop);
-      const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
-
-      const propValue = props[prop];
-      return handleBreakpoints(props, propValue, styleFromPropValue);
-    })
+    .map((prop) => resolveCssProperty(props, keys, prop, transformer))
     .reduce(merge, {});
+}
+
+export function margin(props) {
+  return style(props, marginKeys);
+}
+
+margin.propTypes =
+  process.env.NODE_ENV !== 'production'
+    ? marginKeys.reduce((obj, key) => {
+        obj[key] = responsivePropType;
+        return obj;
+      }, {})
+    : {};
+
+margin.filterProps = marginKeys;
+
+export function padding(props) {
+  return style(props, paddingKeys);
+}
+
+padding.propTypes =
+  process.env.NODE_ENV !== 'production'
+    ? paddingKeys.reduce((obj, key) => {
+        obj[key] = responsivePropType;
+        return obj;
+      }, {})
+    : {};
+
+padding.filterProps = paddingKeys;
+
+function spacing(props) {
+  return style(props, spacingKeys);
 }
 
 spacing.propTypes =

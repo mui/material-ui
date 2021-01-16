@@ -1,5 +1,5 @@
 ---
-title: React Select component
+title: Компонент React Select
 components: Select, NativeSelect
 githubLabel: 'component: Select'
 ---
@@ -14,7 +14,7 @@ githubLabel: 'component: Select'
 
 Меню располагаются над вызвавшими их элементами таким образом, чтобы элемент меню, выбранный в данный момент, перекрывал вызывающий элемент.
 
-Компонент Select взаимозаменяем с нативным элементом `<select>`.
+{{"demo": "pages/components/selects/BasicSelect.js"}}
 
 ## Расширенные возможности
 
@@ -24,9 +24,11 @@ githubLabel: 'component: Select'
 
 ## Props
 
+The Select component is implemented as a custom `<input>` element of the [InputBase](/api/input-base/). It extends the [text field components](/components/text-fields) sub-components, either the [Input](/api/input/), [FilledInput](/api/filled-input/), or [OutlinedInput](/api/outlined-input/), depending on the variant selected. It shares the same styles and many of the same props. Refer to the respective component's API page for details.
+
 ### Filled and outlined variants
 
-{{"demo": "pages/components/selects/NativeSelects.js"}}
+{{"demo": "pages/components/selects/SelectVariants.js"}}
 
 ### Labels and helper text
 
@@ -52,7 +54,7 @@ githubLabel: 'component: Select'
 
 ## Кастомизированные списки
 
-Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 Чтобы правильно подписать ваш элемент `Select`, вам потребуется дополнительный элемент со свойством `id`. После стилизации, вы можете использовать компонент напрямую как текстовое поле, либо передать его в компонент `Select`, свойством `input`.
 

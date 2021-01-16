@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import { expect } from 'chai';
-import glob from 'glob';
+import glob from 'fast-glob';
 import prettier from 'prettier';
 import * as ttp from '../src';
 import { TestOptions } from './types';

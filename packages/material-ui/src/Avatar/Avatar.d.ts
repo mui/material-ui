@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
@@ -37,7 +39,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
       fallback?: string;
     };
     /**
-     * Attributes applied to the `img` element if the component is used to display an image.
+     * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes">Attributes</a> applied to the `img` element if the component is used to display an image.
      * It can be used to listen for the loading error event.
      */
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
@@ -54,6 +56,10 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * Use this attribute for responsive image display.
      */
     srcSet?: string;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The shape of the avatar.
      * @default 'circular'

@@ -1,5 +1,5 @@
 ---
-title: React Modal component
+title: Компонент React Modal
 components: Modal
 githubLabel: 'component: Modal'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
@@ -31,6 +31,8 @@ If you are creating a modal dialog, you probably want to use the [Dialog](/compo
 
 ## Simple modal
 
+This demo stacks Modals, but it is strongly discouraged to do so in practice.
+
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
@@ -51,6 +53,18 @@ Modal has built-in support for [react-transition-group](https://github.com/react
 Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
+
+## Производительность
+
+The content of modal is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to change this default behavior by enabling the `keepMounted` prop:
+
+```jsx
+<Modal keepMounted />
+```
+
+{{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
+
+Как и при любой оптимизации производительности, эта функция не панацея. Сначала идентифицируйте узкие места и лишь затем пытайтесь применить эти стратегии.
 
 ## Server-side modal
 

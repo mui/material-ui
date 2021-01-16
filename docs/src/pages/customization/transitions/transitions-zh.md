@@ -10,7 +10,7 @@
 #### 参数
 
 1. `props` (_String_ | _String[]_)：默认值为 `['all']`。 这将提供一个 CSS 属性，或者提供一个应该具有动画效果的 CSS 属性列表。
-2. `options` (*Object* [optional]):
+2. `options` (_Object_ [optional]):
 
 - `options.duration` (_String_ | _Number_ [optional])：默认为 `theme.transitions.duration.standard`。 这将提供动画效果的时长。
 - `options.easing` (_String_ [optional])：默认为 `theme.transitions.easing.easeInOut`。 这将为动画提供缓动效果。
@@ -20,11 +20,10 @@
 
 `
 
-`transition`：一个 CSS 的动画值，它包含了所有需要应用动画效果的 CSS 属性，以及定义的时长、缓动效果。</p>
+使用 <code>theme.transitions.create()</code> 助手来为你的 UI 元素创建一致的过渡动画。</p>
 
 ```js
 theme.transitions.create(['background-color', 'transform']);
-
 ```
 
 #### 示例

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@material-ui/core';
-import { FabProps } from '@material-ui/core/Fab';
-import { TooltipProps } from '@material-ui/core/Tooltip';
+import { InternalStandardProps as StandardProps } from '..';
+import { FabProps } from '../Fab';
+import { TooltipProps } from '../Tooltip';
 
 export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps>, 'children'> {
   /**
@@ -18,9 +18,9 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
     staticTooltipClosed?: string;
     /** Styles applied to the static tooltip label if `tooltipOpen={true}`. */
     staticTooltipLabel?: string;
-    /** Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
+    /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
     tooltipPlacementLeft?: string;
-    /** Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
+    /** Styles applied to the root element if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
     tooltipPlacementRight?: string;
   };
   /**
@@ -34,7 +34,7 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
    */
   delay?: number;
   /**
-   * The Icon to display in the SpeedDial Fab.
+   * The icon to display in the SpeedDial Fab.
    */
   icon?: React.ReactNode;
   /**

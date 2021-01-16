@@ -9,7 +9,7 @@ export type FabVariantDefaults = Record<'circular' | 'extended', true>;
 export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The content of the button.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**
@@ -45,17 +45,17 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      */
     color?: PropTypes.Color;
     /**
-     * If `true`, the button will be disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
     /**
-     * If `true`, the  keyboard focus ripple will be disabled.
+     * If `true`, the  keyboard focus ripple is disabled.
      * @default false
      */
     disableFocusRipple?: boolean;
     /**
-     * If `true`, the ripple effect will be disabled.
+     * If `true`, the ripple effect is disabled.
      */
     disableRipple?: boolean;
     /**
@@ -64,7 +64,7 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      */
     href?: string;
     /**
-     * The size of the button.
+     * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'large'
      */

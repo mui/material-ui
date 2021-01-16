@@ -30,7 +30,7 @@ export const styles = (theme) => {
         borderBottomColor: theme.palette.secondary.main,
       },
     },
-    /* Styles applied to the root element if `disableUnderline={false}`. */
+    /* Styles applied to the root element unless `disableUnderline={true}`. */
     underline: {
       '&:after': {
         borderBottom: `2px solid ${theme.palette.primary.main}`,
@@ -80,19 +80,19 @@ export const styles = (theme) => {
     },
     /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    marginDense: {},
+    /* Styles applied to the input element if `size="small"`. */
+    sizeSmall: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {},
     /* Styles applied to the root element if `fullWidth={true}`. */
     fullWidth: {},
-    /* Styles applied to the `input` element. */
+    /* Styles applied to the input element. */
     input: {},
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: {},
-    /* Styles applied to the `input` element if `multiline={true}`. */
+    /* Styles applied to the input element if `size="small"`. */
+    inputSizeSmall: {},
+    /* Styles applied to the input element if `multiline={true}`. */
     inputMultiline: {},
-    /* Styles applied to the `input` element if `type="search"`. */
+    /* Styles applied to the input element if `type="search"`. */
     inputTypeSearch: {},
   };
 };
@@ -139,7 +139,7 @@ Input.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -152,16 +152,16 @@ Input.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * The default `input` element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the component is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the input will not have an underline.
+   * If `true`, the `input` will not have an underline.
    */
   disableUnderline: PropTypes.bool,
   /**
@@ -169,12 +169,12 @@ Input.propTypes = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the input will indicate an error.
+   * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the `input` will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,
@@ -212,7 +212,7 @@ Input.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a textarea element will be rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -228,7 +228,7 @@ Input.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**
@@ -237,7 +237,7 @@ Input.propTypes = {
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,

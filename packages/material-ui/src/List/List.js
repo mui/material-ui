@@ -12,7 +12,7 @@ export const styles = {
     padding: 0,
     position: 'relative',
   },
-  /* Styles applied to the root element if `disablePadding={false}`. */
+  /* Styles applied to the root element unless `disablePadding={true}`. */
   padding: {
     paddingTop: 8,
     paddingBottom: 8,
@@ -84,14 +84,14 @@ List.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
+   * If `true`, compact vertical padding designed for keyboard and mouse input is used for
    * the list and list items.
    * The prop is available to descendant components as the `dense` context.
    * @default false
    */
   dense: PropTypes.bool,
   /**
-   * If `true`, vertical padding will be removed from the list.
+   * If `true`, vertical padding is removed from the list.
    * @default false
    */
   disablePadding: PropTypes.bool,

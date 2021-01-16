@@ -6,6 +6,8 @@ export * from './styles';
 
 export * from './utils';
 
+export * from '@material-ui/unstyled';
+
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
 
@@ -32,6 +34,9 @@ export * from './Autocomplete';
 
 export { default as Avatar } from './Avatar';
 export * from './Avatar';
+
+export { default as AvatarGroup } from './AvatarGroup';
+export * from './AvatarGroup';
 
 export { default as Backdrop } from './Backdrop';
 export * from './Backdrop';
@@ -279,6 +284,15 @@ export * from './Snackbar';
 export { default as SnackbarContent } from './SnackbarContent';
 export * from './SnackbarContent';
 
+export { default as SpeedDial } from './SpeedDial';
+export * from './SpeedDial';
+
+export { default as SpeedDialAction } from './SpeedDialAction';
+export * from './SpeedDialAction';
+
+export { default as SpeedDialIcon } from './SpeedDialIcon';
+export * from './SpeedDialIcon';
+
 export { default as Step } from './Step';
 export * from './Step';
 
@@ -378,9 +392,6 @@ export * from './usePagination';
 export { default as useScrollTrigger } from './useScrollTrigger';
 export * from './useScrollTrigger';
 
-export { default as withMobileDialog } from './withMobileDialog';
-export * from './withMobileDialog';
-
 export { default as withWidth } from './withWidth';
 export * from './withWidth';
 
@@ -389,3 +400,12 @@ export * from './Zoom';
 
 // createFilterOptions is exported from Autocomplete
 export { default as useAutocomplete } from './useAutocomplete';
+
+export { default as GlobalStyles } from './GlobalStyles';
+export * from './GlobalStyles';
+
+/**
+ * @deprecated will be removed in v5 beta, please use StyledEngineProvider instead
+ */
+export { default as StylesProvider } from './StyledEngineProvider';
+export { default as StyledEngineProvider } from './StyledEngineProvider';

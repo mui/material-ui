@@ -8,7 +8,7 @@ export type IconButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The icon element.
+     * The icon to display.
      */
     children?: React.ReactNode;
     /**
@@ -40,12 +40,12 @@ export type IconButtonTypeMap<
      */
     color?: PropTypes.Color;
     /**
-     * If `true`, the button will be disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
     /**
-     * If `true`, the  keyboard focus ripple will be disabled.
+     * If `true`, the  keyboard focus ripple is disabled.
      * @default false
      */
     disableFocusRipple?: boolean;
@@ -58,7 +58,7 @@ export type IconButtonTypeMap<
      */
     edge?: 'start' | 'end' | false;
     /**
-     * The size of the button.
+     * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */

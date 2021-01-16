@@ -1,5 +1,5 @@
 ---
-title: React Switch component
+title: Componente React Interruptor
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 githubLabel: 'component: Switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
@@ -9,7 +9,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 <p class="description">Interruptores alternam o estado de uma única configuração ligado ou desligado.</p>
 
-[Interruptores](https://material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. A opção que o interruptor controla, juntamente com o estado atual, deve ser claramente explícita no rótulo em linha correspondente.
+[Interruptores](https://material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -31,7 +31,7 @@ O componente `Switch` pode ser fornecido com uma descrição graças ao componen
 
 ## Interruptores customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 

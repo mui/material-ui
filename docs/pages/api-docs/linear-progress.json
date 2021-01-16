@@ -1,0 +1,49 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "default": "'primary'"
+    },
+    "value": { "type": { "name": "number" } },
+    "valueBuffer": { "type": { "name": "number" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'buffer'<br>&#124;&nbsp;'determinate'<br>&#124;&nbsp;'indeterminate'<br>&#124;&nbsp;'query'"
+      },
+      "default": "'indeterminate'"
+    }
+  },
+  "name": "LinearProgress",
+  "styles": {
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorSecondary",
+      "determinate",
+      "indeterminate",
+      "buffer",
+      "query",
+      "dashed",
+      "dashedColorPrimary",
+      "dashedColorSecondary",
+      "bar",
+      "barColorPrimary",
+      "barColorSecondary",
+      "bar1Indeterminate",
+      "bar1Determinate",
+      "bar1Buffer",
+      "bar2Indeterminate",
+      "bar2Buffer"
+    ],
+    "globalClasses": {},
+    "name": "MuiLinearProgress"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui/src/LinearProgress/LinearProgress.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/progress/\">Progress</a></li></ul>",
+  "styledComponent": false
+}

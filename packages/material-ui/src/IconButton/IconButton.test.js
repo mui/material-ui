@@ -62,21 +62,6 @@ describe('<IconButton />', () => {
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
-  it('should pass centerRipple={true} to ButtonBase', () => {
-    const wrapper = mount(<IconButton>book</IconButton>);
-    expect(wrapper.find(ButtonBase).props()).to.have.property('centerRipple', true);
-  });
-
-  it('should have a focusRipple by default', () => {
-    const wrapper = mount(<IconButton>book</IconButton>);
-    expect(wrapper.find(ButtonBase).props()).to.have.property('focusRipple', true);
-  });
-
-  it('should pass disableFocusRipple to ButtonBase', () => {
-    const wrapper = mount(<IconButton disableFocusRipple>book</IconButton>);
-    expect(wrapper.find(ButtonBase).props()).to.have.property('focusRipple', false);
-  });
-
   describe('prop: size', () => {
     it('should render the right class', () => {
       let root;

@@ -1,9 +1,9 @@
 ---
-title: React 树视图组件
+title: React Tree View（树视图）组件
 components: TreeView, TreeItem
 githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
-packages: '@material-ui/lab'
+packageName: '@material-ui/lab'
 ---
 
 # Tree View 树视图
@@ -52,6 +52,18 @@ const data = {
 
 {{"demo": "pages/components/tree-view/RichObjectTreeView.js", "defaultCodeOpen": false}}
 
+## ContentComponent 属性
+
+你可以使用 `ContentComponent` 属性和 `useTreeItem` hook 来进一步定制 TreeItem 的行为。
+
+比如限制扩展动作，只能够点击图标。
+
+{{"demo": "pages/components/tree-view/IconExpansionTreeView.js", "defaultCodeOpen": false}}
+
+或者增加状态指示器的宽度：
+
+{{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
+
 ## 自定义的树视图
 
 ### 自定义的图标，边框和动画
@@ -75,7 +87,7 @@ const data = {
 - 鼠标或键盘交互不会展开/折叠所被禁用的项目。
 - 鼠标或键盘交互不会选择所被禁用的项目。
 - Shift + 方向键将跳过所被禁用的项目，并且会选择到下一个非禁用的项目。
-- Programmatic focus will not focus disabled items.
+- 编程焦点将不会聚焦到已禁用的项目。
 
 如果为真（true）：
 
@@ -84,7 +96,7 @@ const data = {
 - 鼠标或键盘交互不会展开/折叠所被禁用的项目。
 - 鼠标或键盘交互不会选择所被禁用的项目。
 - Shift + 方向键不会跳过禁用的项目，但是已被禁用项目也不会被选中。
-- Programmatic focus will focus disabled items.
+- 编程焦点将会聚焦到已禁用的项目。
 
 ## 无障碍设计
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';

@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">In der App-Bar werden Informationen und Aktionen angezeigt, die sich auf den aktuellen Bildschirm beziehen.</p>
 
-Die [obere App-Bar](https://material.io/design/components/app-bars-top.html) liefert Inhalte und Aktionen auf dem aktuellen Bildschirm. Sie wird für Branding, Bildschirmtitel, Navigation und Aktionen verwendet.
+Die [obere App-Bar](https://material.io/design/components/app-bars-top.html) liefert Inhalte und Aktionen auf dem aktuellen Bildschirm. It's used for branding, screen titles, navigation, and actions.
 
 It can transform into a contextual action bar or be used as a navbar.
 
@@ -53,7 +53,7 @@ A prominent app bar.
 
 When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
 
-1. You can use `position="sticky"` instead of fixed. ⚠️ sticky wird vom IE 11 nicht unterstützt.
+1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE11.
 2. You can render a second `<Toolbar />` component:
 
 ```jsx

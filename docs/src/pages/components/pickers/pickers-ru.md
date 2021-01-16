@@ -16,31 +16,27 @@ packageName: '@material-ui/lab'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## @material-ui/pickers
-
-![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
-
-[@material-ui/pickers](https://material-ui-pickers.dev/) provides date picker and time picker controls.
+## React components
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 
 ## Native pickers
 
-⚠️ Поддержка нативных типов полей ввода [не идеальна](https://caniuse.com/#feat=input-datetime). Взгяните на [@material-ui/pickers](https://material-ui-pickers.dev/) для более детального решения.
+⚠️ Поддержка нативных типов полей ввода [не идеальна](https://caniuse.com/#feat=input-datetime).
 
-### Выбор даты
+### Date picker
 
 A native datepicker example with `type="date"`.
 
 {{"demo": "pages/components/pickers/DatePickers.js"}}
 
-### Поля выбора даты & времени
+### Date & Time picker
 
 Нативное поля выбора даты и времени с помощью `type="datetime-local"`.
 
 {{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
-### Поля выбора времени
+### Time picker
 
 Нативное поле выбора времени с помощью `type="time"`.
 

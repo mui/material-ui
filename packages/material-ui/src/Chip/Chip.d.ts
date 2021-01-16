@@ -9,7 +9,7 @@ export type ChipVariantDefaults = Record<'filled' | 'outlined', true>;
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * Avatar element.
+     * The Avatar element to display.
      */
     avatar?: React.ReactElement;
     /**
@@ -51,29 +51,29 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       outlinedPrimary?: string;
       /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
       outlinedSecondary?: string;
-      /** Styles applied to the `avatar` element. */
+      /** Styles applied to the avatar element. */
       avatar?: string;
-      /** Styles applied to the `avatar` element if `size="small"`. */
+      /** Styles applied to the avatar element if `size="small"`. */
       avatarSmall?: string;
-      /** Styles applied to the `avatar` element if `color="primary"`. */
+      /** Styles applied to the avatar element if `color="primary"`. */
       avatarColorPrimary?: string;
-      /** Styles applied to the `avatar` element if `color="secondary"`. */
+      /** Styles applied to the avatar element if `color="secondary"`. */
       avatarColorSecondary?: string;
-      /** Styles applied to the `icon` element. */
+      /** Styles applied to the icon element. */
       icon?: string;
-      /** Styles applied to the `icon` element if `size="small"`. */
+      /** Styles applied to the icon element if `size="small"`. */
       iconSmall?: string;
-      /** Styles applied to the `icon` element if `color="primary"`. */
+      /** Styles applied to the icon element if `color="primary"`. */
       iconColorPrimary?: string;
-      /** Styles applied to the `icon` element if `color="secondary"`. */
+      /** Styles applied to the icon element if `color="secondary"`. */
       iconColorSecondary?: string;
       /** Styles applied to the label `span` element. */
       label?: string;
       /** Styles applied to the label `span` element if `size="small"`. */
       labelSmall?: string;
-      /** Styles applied to the `deleteIcon` element. */
+      /** Styles applied to the deleteIcon element. */
       deleteIcon?: string;
-      /** Styles applied to the `deleteIcon` element if `size="small"`. */
+      /** Styles applied to the deleteIcon element if `size="small"`. */
       deleteIconSmall?: string;
       /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
       deleteIconColorPrimary?: string;
@@ -104,7 +104,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     deleteIcon?: React.ReactElement;
     /**
-     * If `true`, the chip should be displayed in a disabled state.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -113,7 +113,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     icon?: React.ReactElement;
     /**
-     * The content of the label.
+     * The content of the component.
      */
     label?: React.ReactNode;
     /**
@@ -122,7 +122,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     onDelete?: React.EventHandler<any>;
     /**
-     * The size of the chip.
+     * The size of the component.
      * @default 'medium'
      */
     size?: 'small' | 'medium';

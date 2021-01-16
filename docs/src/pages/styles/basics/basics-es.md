@@ -10,11 +10,11 @@ In previous versions, Material-UI has used LESS, then a custom inline-style solu
 
 Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
-- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
+- Podes esperar [las mismas ventajas](https://www.styled-components.com/docs/basics#motivation) que las que tenían los componentes con estilos.
 
 <!-- #default-branch-switch -->
 
-- 🚀 Es [ultra rápida](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles).
+- 🚀 Es [ultra rápida](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles).
 - 🧩 Es extensible a través de una [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 - ⚡ Utiliza [JSS](https://github.com/cssinjs/jss) en su núcleo – un compilador de JavaScript a CSS de [alto rendimiento](https://github.com/cssinjs/jss/blob/master/docs/performance.md) que funciona en tiempo de ejecución y por el lado del servidor.
 - 📦 Less than [15 KB comprimido](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.

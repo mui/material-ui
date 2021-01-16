@@ -12,13 +12,19 @@ githubLabel: 'component: ButtonGroup'
 
 ## Groupe de boutons de base
 
+The standard Button variants are supported.
+
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
 ## Tailles et couleurs
 
+The `size` and `color` props can be used to control the appearance of the ButtonGroup.
+
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
 ## Groupe vertical
+
+The ButtonGroup can be displayed veritcally using the `orientation` prop.
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
@@ -30,6 +36,6 @@ githubLabel: 'component: ButtonGroup'
 
 ## Désactivé élévation
 
-You can remove the elevation with the `disableElevation` prop.
+Vous pouvez supprimer l'élévation avec la propriété `disableElevation`.
 
 {{"demo": "pages/components/button-group/DisableElevation.js"}}

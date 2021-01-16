@@ -8,7 +8,7 @@ export type ButtonGroupVariantDefaults = Record<'text' | 'outlined' | 'contained
 export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The content of the button group.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**
@@ -25,7 +25,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
       text?: string;
       /** Styles applied to the root element if `disableElevation={true}`. */
       disableElevation?: string;
-      /** Pseudo-class applied to child elements if `disabled={true}`. */
+      /** Pseudo-class applied to the child elements if `disabled={true}`. */
       disabled?: string;
       /** Styles applied to the root element if `fullWidth={true}`. */
       fullWidth?: string;
@@ -74,7 +74,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     color?: 'inherit' | 'primary' | 'secondary';
     /**
-     * If `true`, the buttons will be disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -84,12 +84,12 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     disableElevation?: boolean;
     /**
-     * If `true`, the button keyboard focus ripple will be disabled.
+     * If `true`, the button keyboard focus ripple is disabled.
      * @default false
      */
     disableFocusRipple?: boolean;
     /**
-     * If `true`, the button ripple effect will be disabled.
+     * If `true`, the button ripple effect is disabled.
      * @default false
      */
     disableRipple?: boolean;
@@ -99,12 +99,12 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     fullWidth?: boolean;
     /**
-     * The group orientation (layout flow direction).
+     * The component orientation (layout flow direction).
      * @default 'horizontal'
      */
     orientation?: 'vertical' | 'horizontal';
     /**
-     * The size of the button.
+     * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */

@@ -154,4 +154,28 @@ describe('<FormLabel />', () => {
       });
     });
   });
+
+  describe('prop: color', () => {
+    it('should have color secondary class', () => {
+      const { container } = render(<FormLabel color="secondary" />);
+      expect(container.querySelectorAll(`.${classes.colorSecondary}`)).to.have.lengthOf(1);
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.colorSecondary);
+    });
+
+    it('should have the focused class and style', () => {
+      const { container, getByTestId } = render(
+        <FormLabel data-testid="FormLabel" color="secondary" focused />,
+      );
+      expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.focused);
+      expect(getByTestId('FormLabel')).toHaveComputedStyle({ color: 'rgb(245, 0, 87)' });
+    });
+
+    it('should have the error class and style, even when focused', () => {
+      const { container, getByTestId } = render(
+        <FormLabel data-testid="FormLabel" color="secondary" focused error />,
+      );
+      expect(container.querySelector(`.${classes.colorSecondary}`)).to.have.class(classes.error);
+      expect(getByTestId('FormLabel')).toHaveComputedStyle({ color: 'rgb(244, 67, 54)' });
+    });
+  });
 });

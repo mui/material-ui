@@ -22,9 +22,9 @@ Api設計が難しいのは、単純に見えるようにしても実際には�
 
 ### スプレッド
 
-Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
+Props supplied to a component which are not explicitly documented are spread to the root element; for instance, the `className` prop is applied to the root.
 
-ここで、`MenuItem`のリプルを無効にするとします。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。
+ここで、`MenuItem`のリプルを無効にするとします。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。
 
 ```jsx
 <MenuItem disableRipple />
@@ -38,7 +38,7 @@ Props supplied to a component which are not explictly documented, are spread to 
 
 ### CSS クラス
 
-All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. クラス設計は、次の2つの制約に答えます: Material Design仕様を実装するのに十分なだけで、可能な限りクラス構造を単純にします。
+All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles. クラス設計は、次の2つの制約に答えます: Material Design仕様を実装するのに十分なだけで、可能な限りクラス構造を単純にします。
 
 - ルート要素に適用されるクラスは、常に`root`と呼ばれます。
 - 既定のスタイルはすべて1つのクラスにグループ化されます。
@@ -80,7 +80,7 @@ const styles = {
 
 ### 制御されたコンポーネント
 
-ほとんどの制御対象コンポーネントは、`値`および`onChange`プロパティによって制御されます。 ただし、ディスプレイ関連の状態には、`open`/`onClose`/`onOpen`の組み合わせが使用されます。
+ほとんどの制御対象コンポーネントは、`値`および`onChange`プロパティによって制御されます。 ただし、ディスプレイ関連の状態には、`open`/`onClose`/`onOpen`の組み合わせが使用されます。 In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
 
 ### boolean vs enum
 

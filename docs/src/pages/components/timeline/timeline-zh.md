@@ -1,5 +1,5 @@
 ---
-title: React 时间轴组件
+title: React Timeline（时间轴）组件
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 githubLabel: 'component: Timeline'
 packageName: '@material-ui/lab'
@@ -19,7 +19,7 @@ packageName: '@material-ui/lab'
 
 {{"demo": "pages/components/timeline/BasicTimeline.js"}}
 
-## 靠右对齐的时间轴
+## 向右对齐的时间线
 
 您也可以将时间轴放置在事件的右侧。
 
@@ -49,6 +49,6 @@ packageName: '@material-ui/lab'
 
 ## 定制的时间轴
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

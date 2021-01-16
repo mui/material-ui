@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@material-ui/core';
-import { FabProps } from '@material-ui/core/Fab';
-import { TransitionHandlerProps, TransitionProps } from '@material-ui/core/transitions';
+import { InternalStandardProps as StandardProps } from '..';
+import { FabProps } from '../Fab';
+import { TransitionHandlerProps, TransitionProps } from '../transitions';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
@@ -23,13 +23,13 @@ export interface SpeedDialProps
     root?: string;
     /** Styles applied to the Fab component. */
     fab?: string;
-    /** Styles applied to the root if direction="up" */
+    /** Styles applied to the root element if direction="up" */
     directionUp?: string;
-    /** Styles applied to the root if direction="down" */
+    /** Styles applied to the root element if direction="down" */
     directionDown?: string;
-    /** Styles applied to the root if direction="left" */
+    /** Styles applied to the root element if direction="left" */
     directionLeft?: string;
-    /** Styles applied to the root if direction="right" */
+    /** Styles applied to the root element if direction="right" */
     directionRight?: string;
     /** Styles applied to the actions (`children` wrapper) element. */
     actions?: string;
@@ -47,7 +47,7 @@ export interface SpeedDialProps
    */
   direction?: 'up' | 'down' | 'left' | 'right';
   /**
-   * If `true`, the SpeedDial will be hidden.
+   * If `true`, the SpeedDial is hidden.
    * @default false
    */
   hidden?: boolean;
@@ -76,7 +76,7 @@ export interface SpeedDialProps
    */
   onOpen?: (event: React.SyntheticEvent<{}>, reason: OpenReason) => void;
   /**
-   * If `true`, the SpeedDial is open.
+   * If `true`, the component is shown.
    */
   open?: boolean;
   /**

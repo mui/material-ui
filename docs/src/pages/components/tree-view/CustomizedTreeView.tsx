@@ -10,7 +10,8 @@ import {
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
-import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE11 support
+// web.cjs is required for IE11 support
+import { useSpring, animated } from 'react-spring/web.cjs';
 import { TransitionProps } from '@material-ui/core/transitions';
 
 function MinusSquare(props: SvgIconProps) {

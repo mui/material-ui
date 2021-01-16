@@ -81,7 +81,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
   );
 
   const UnsafeProps = (props: StyleProps) => {
-    // would be nice to have at least a compile time error because we forgot the argument
+    // @ts-expect-error
     const classes = useUnsafeProps(); // runtime: Can't read property color of undefined
     // but this would pass anyway
     const alsoClasses = useUnsafeProps(undefined); // runtime: Can't read property color of undefined
@@ -121,7 +121,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
   }));
 }
 
-function MyComponent() {
+function PartialTypeInferenceTest() {
   // If any generic is provided, inference breaks.
   // If the proposal https://github.com/Microsoft/TypeScript/issues/26242 goes through, we can fix this.
   const useStyles = makeStyles<Theme>((theme) => ({

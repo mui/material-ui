@@ -16,27 +16,27 @@ export interface InputProps extends StandardProps<InputBaseProps> {
     disabled?: string;
     /** Styles applied to the root element if color secondary. */
     colorSecondary?: string;
-    /** Styles applied to the root element if `disableUnderline={false}`. */
+    /** Styles applied to the root element unless `disableUnderline={true}`. */
     underline?: string;
     /** Pseudo-class applied to the root element if `error={true}`. */
     error?: string;
-    /** Styles applied to the `input` element if `margin="dense"`. */
-    marginDense?: string;
+    /** Styles applied to the input element if `size="small"`. */
+    sizeSmall?: string;
     /** Styles applied to the root element if `multiline={true}`. */
     multiline?: string;
     /** Styles applied to the root element if `fullWidth={true}`. */
     fullWidth?: string;
-    /** Styles applied to the `input` element. */
+    /** Styles applied to the input element. */
     input?: string;
-    /** Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense?: string;
-    /** Styles applied to the `input` element if `multiline={true}`. */
+    /** Styles applied to the input element if `size="small"`. */
+    inputSizeSmall?: string;
+    /** Styles applied to the input element if `multiline={true}`. */
     inputMultiline?: string;
-    /** Styles applied to the `input` element if `type="search"`. */
+    /** Styles applied to the input element if `type="search"`. */
     inputTypeSearch?: string;
   };
   /**
-   * If `true`, the input will not have an underline.
+   * If `true`, the `input` will not have an underline.
    */
   disableUnderline?: boolean;
 }

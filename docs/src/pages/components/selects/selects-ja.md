@@ -24,6 +24,8 @@ githubLabel: 'component: Select'
 
 ## Props
 
+The Select component is implemented as a custom `<input>` element of the [InputBase](/api/input-base/). It extends the [text field components](/components/text-fields) sub-components, either the [Input](/api/input/), [FilledInput](/api/filled-input/), or [OutlinedInput](/api/outlined-input/), depending on the variant selected. It shares the same styles and many of the same props. Refer to the respective component's API page for details.
+
 ### Filled and outlined variants
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
@@ -54,7 +56,7 @@ githubLabel: 'component: Select'
 
 ## カスタマイズされた選択
 
-コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
 
 To properly label your `Select` input you need an extra element with an `id` that contains a label. スタイルを設定したら、テキストフィールドとして直接使用するか、select `input` プロパティに提供して、 `select` フィールドを作成できます。
 
@@ -68,7 +70,7 @@ To properly label your `Select` input you need an extra element with an `id` tha
 
 To properly label your `Select` input you need an extra element with an `id` that contains a label. To properly label your `Select` input you need an extra element with an `id` that contains a label.
 
-単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
+単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
 
 
 

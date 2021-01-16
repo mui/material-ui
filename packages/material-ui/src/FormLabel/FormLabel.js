@@ -28,6 +28,10 @@ export const styles = (theme) => ({
     '&$focused': {
       color: theme.palette.secondary.main,
     },
+    '&$error': {
+      // To remove once we migrate to emotion
+      color: theme.palette.error.main,
+    },
   },
   /* Pseudo-class applied to the root element if `focused={true}`. */
   focused: {},
@@ -132,7 +136,7 @@ FormLabel.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label should be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    */
   error: PropTypes.bool,
   /**
@@ -144,7 +148,7 @@ FormLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * If `true`, the label will indicate that the input is required.
+   * If `true`, the label will indicate that the `input` is required.
    */
   required: PropTypes.bool,
 };

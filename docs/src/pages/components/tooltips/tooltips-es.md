@@ -16,21 +16,21 @@ When activated, [Tooltips](https://material.io/design/components/tooltips.html) 
 
 ## Simple Tooltips
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
-## Tooltips posicionados
+## Positioned tooltips
 
-El `Tooltip` tiene 12 **posiciones** para elegir. No tienen flechas direccionales; en cambio, dependen del movimiento que emana de la fuente para transmitir la dirección.
+El `Tooltip` tiene 12 **posiciones** para elegir. They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
 ## Tooltips personalizados
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Tooltip Flecha
+## Arrow tooltips
 
 Puedes usar el apoyo del prop `flecha` para dar a tu tooltip una flecha indicando a qué elemento se refiere.
 
@@ -61,13 +61,13 @@ Puede definir los tipos de eventos que causan que se muestre un tooltip.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Tooltips controlados
+## Controlled tooltips
 
 You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Ancho variable
+## Variable width
 
 El `Tooltip` envuelve texto largo por defecto para hacerlo legible.
 
@@ -75,11 +75,11 @@ El `Tooltip` envuelve texto largo por defecto para hacerlo legible.
 
 ## Explora
 
-Un tooltip puede ser interactivo. No se cerrará cuando el usuario pase sobre el tooltip antes de que el `leaveDelay` expire.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). No se cerrará cuando el usuario pase sobre el tooltip antes de que el `leaveDelay` expire. No se cerrará cuando el usuario pase sobre el tooltip antes de que el `leaveDelay` expire.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## Elementos deshabilitados
+## Disabled elements
 
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
@@ -90,20 +90,10 @@ By default disabled elements like `<button>` do not trigger user interactions so
 > If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:
 
 ```jsx
-<Tooltip title="You don't have permission to do this">
+<Tooltip title="No tiene permiso de hacer esto">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'A disabled button'}
-    </button>
-  </span>
-</Tooltip> { pointerEvents: 'none' } : {}}
-    >
-      {'A disabled button'}
-    </button>
-  </span>
-</Tooltip> { pointerEvents: 'none' } : {}}
-    >
-      {'A disabled button'}
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
+      A disabled button
     </button>
   </span>
 </Tooltip>
@@ -114,6 +104,18 @@ By default disabled elements like `<button>` do not trigger user interactions so
 Usar una transición diferente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
+
+## Follow cursor
+
+You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## Virtual element
+
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
 ## Mostrar y ocultar
 

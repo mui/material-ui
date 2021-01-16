@@ -28,7 +28,7 @@ export const styles = (theme) => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
   },
-  /* Styles applied to the `svg` element. */
+  /* Styles applied to the svg element. */
   svg: {
     display: 'block', // Keeps the progress centered
   },
@@ -111,7 +111,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
   }
 
   return (
-    <div
+    <span
       className={clsx(
         classes.root,
         {
@@ -142,7 +142,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
           strokeWidth={thickness}
         />
       </svg>
-    </div>
+    </span>
   );
 });
 
@@ -180,7 +180,7 @@ CircularProgress.propTypes = {
     return null;
   }),
   /**
-   * The size of the circle.
+   * The size of the component.
    * If using a number, the pixel unit is assumed.
    * If using a string, you need to provide the CSS unit, e.g '3rem'.
    * @default 40

@@ -44,10 +44,7 @@ export default function SimpleGrow() {
         <Grow in={checked}>
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon
-                points="0,100 50,00, 100,100"
-                className={classes.polygon}
-              />
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
             </svg>
           </Paper>
         </Grow>
@@ -59,10 +56,7 @@ export default function SimpleGrow() {
         >
           <Paper elevation={4} className={classes.paper}>
             <svg className={classes.svg}>
-              <polygon
-                points="0,100 50,00, 100,100"
-                className={classes.polygon}
-              />
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
             </svg>
           </Paper>
         </Grow>

@@ -58,9 +58,9 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
+      styleOverrides: {
         '@font-face': [raleway],
       },
     },
@@ -94,9 +94,9 @@ const theme = createMuiTheme({
 
 ブラウザで計算されるフォントサイズは、次の数式に従います。
 
-![font-size](/static/images/font-size.gif)
+<img src="/static/images/font-size.png" alt="font size calculation" style="width: 458px;" />
 
-<!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
+<!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### レスポンシブフォントサイズ
 
@@ -141,7 +141,7 @@ theme = responsiveFontSizes(theme);
 
 An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
 An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
@@ -201,6 +201,64 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
+
+**Step 1. Update the theme's typography object**
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    poster: {
+      color: 'red',
+    },
+    // Disable h3 variant
+    h3: undefined,
+  },
+});
+```
+
+**Step 2. Update the necessary typings (if you are using TypeScript)**
+
+> If you aren't using TypeScript you should skip this step.
+
+You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
+
+<!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
+
+```ts
+declare module '@material-ui/core/styles/createTypography' {
+  interface Typography {
+    poster: React.CSSProperties;
+  }
+
+  // allow configuration using `createMuiTheme`
+  interface TypographyOptions {
+    poster?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@material-ui/core/Typography/Typography' {
+  interface TypographyPropsVariantOverrides {
+    poster: true;
+    h3: false;
+  }
+}
+```
+
+**Step 3. You can now use the new variant**
+
+{{"demo": "pages/customization/typography/TypographyCustomVariant.js", "hideToolbar": true}}
+
+```jsx
+<Typography variant="poster">poster</Typography>;
+
+/* This variant is no longer supported */
+<Typography variant="h3">h3</Typography>;
+```
 
 ## デフォルト値
 

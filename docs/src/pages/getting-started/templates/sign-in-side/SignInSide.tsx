@@ -40,23 +40,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
 }));
 
 export default function SignInSide() {
@@ -67,16 +50,30 @@ export default function SignInSide() {
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+        <Box
+          sx={{
+            my: 8,
+            mx: 4,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <Box
+            component="form"
+            noValidate
+            sx={{
+              width: '100%', // Fix IE11 issue.
+              mt: 1,
+            }}
+          >
             <TextField
-              variant="outlined"
               margin="normal"
               required
               fullWidth
@@ -87,7 +84,6 @@ export default function SignInSide() {
               autoFocus
             />
             <TextField
-              variant="outlined"
               margin="normal"
               required
               fullWidth
@@ -105,7 +101,7 @@ export default function SignInSide() {
               type="submit"
               fullWidth
               variant="contained"
-              className={classes.submit}
+              sx={{ mt: 3, mb: 2 }}
             >
               Sign In
             </Button>
@@ -121,11 +117,11 @@ export default function SignInSide() {
                 </Link>
               </Grid>
             </Grid>
-            <Box mt={5}>
+            <Box sx={{ mt: 5 }}>
               <Copyright />
             </Box>
-          </form>
-        </div>
+          </Box>
+        </Box>
       </Grid>
     </Grid>
   );

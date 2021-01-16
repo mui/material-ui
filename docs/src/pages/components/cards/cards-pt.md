@@ -1,5 +1,5 @@
 ---
-title: React Card component
+title: Componente React para Cartão
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 githubLabel: 'component: Card'
 materialDesign: https://material.io/components/cards
@@ -29,7 +29,7 @@ Defina `variant="outlined"` para renderizar um cartão delineado.
 
 ## Interação Complexa
 
-O conteúdo do cartão pode ser expandido. (Click the downward chevron to view the recipe.)
+O conteúdo do cartão pode ser expandido. (Clique no gerador abaixo para ver detalhes.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
@@ -43,7 +43,17 @@ Por padrão, nós usamos uma combinação de um elemento `&lt;div&gt;` e um *bac
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. Não é suportado pelo IE 11.
+> ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. Não é suportado pelo IE11.
+
+## Ação primária
+
+Muitas vezes um cartão permite que os usuários interajam com toda sua superfície para acionar sua ação principal, seja uma expansão, um link para outra tela ou algum outro comportamento. A área de ação do cartão pode ser especificada envolvendo seu conteúdo em um componente `CardActionArea`.
+
+{{"demo": "pages/components/cards/ActionAreaCard.js", "bg": true}}
+
+Um cartão também pode oferecer ações suplementares que devem ser desvinculadas da área de ação principal, a fim de evitar sobreposições de eventos.
+
+{{"demo": "pages/components/cards/MultiActionAreaCard.js", "bg": true}}
 
 ## Controles da interface do usuário
 

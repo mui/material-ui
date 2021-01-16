@@ -31,6 +31,7 @@ const theme = createMuiTheme({
 
 | Locale                  | BCP 47 language tag | Import name |
 |:----------------------- |:------------------- |:----------- |
+| Arabe (Égypte)          | ar-EG               | `arEG`      |
 | Armenian                | hy-AM               | `hyAM`      |
 | Azerbaijani             | az-AZ               | `azAZ`      |
 | Bulgarian               | bg-BG               | `bgBG`      |
@@ -43,7 +44,7 @@ const theme = createMuiTheme({
 | Finnish                 | fi-FI               | `fiFI`      |
 | French                  | fr-FR               | `frFR`      |
 | German                  | de-DE               | `deDE`      |
-| Greek                   | el-GR               | `elGR`      |
+| Grec                    | el-GR               | `elGR`      |
 | Hebrew                  | he-IL               | `heIL`      |
 | Hindi                   | hi-IN               | `hiIN`      |
 | Hungarian               | hu-HU               | `huHU`      |
@@ -51,6 +52,7 @@ const theme = createMuiTheme({
 | Indonesian              | id-ID               | `idID`      |
 | Italian                 | it-IT               | `itIT`      |
 | Japanese                | ja-JP               | `jaJP`      |
+| Kazakh                  | kz-KZ               | `kzKZ`      |
 | Korean                  | ko-KR               | `koKR`      |
 | Persian                 | fa-IR               | `faIR`      |
 | Polish                  | pl-PL               | `plPL`      |
@@ -62,7 +64,7 @@ const theme = createMuiTheme({
 | Spanish                 | es-ES               | `esES`      |
 | Swedish                 | sv-SE               | `svSE`      |
 | Turkish                 | tr-TR               | `trTR`      |
-| Thai                    | th-TH               | `thTH`      |
+| Thaïlandais             | th-TH               | `thTH`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 
@@ -72,7 +74,7 @@ You can [find the source](https://github.com/mui-org/material-ui/blob/next/packa
 
 To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there.
 
-Please do consider contributing new translations back to Material-UI by opening a pull request. However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
+Please do consider contributing new translations back to Material-UI by opening a pull request. However, Material-UI aims to support the [100 most common](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [locales](https://www.ethnologue.com/guides/ethnologue200), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ## RTL Support
 

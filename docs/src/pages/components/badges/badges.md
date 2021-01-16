@@ -1,6 +1,6 @@
 ---
 title: React Badge component
-components: Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
@@ -18,7 +18,7 @@ Examples of badges containing text, using primary and secondary colors. The badg
 
 ## Customized badges
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -55,3 +55,7 @@ You can use the `overlap` prop to place the badge relative to the corner of the 
 You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled badge
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -11,21 +10,22 @@ import {
 } from 'test/utils';
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
+import classes from './buttonClasses';
 
 describe('<Button />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Button>Hello World</Button>);
-  });
-
-  describeConformance(<Button>Conformance?</Button>, () => ({
+  describeConformanceV5(<Button>Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
+    muiName: 'MuiButton',
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testVariantProps: { variant: 'contained', fullWidth: true },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
+    skip: ['componentsProp'],
   }));
 
   it('should render with the root, text, and textPrimary classes but no others', () => {
@@ -354,12 +354,14 @@ describe('<Button />', () => {
   });
 
   describe('server-side', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
-
     const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     it('should server-side render', () => {
       const markup = serverRender(<Button>Hello World</Button>);

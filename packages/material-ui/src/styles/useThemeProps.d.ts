@@ -1,5 +1,7 @@
-export interface ThemeWithProps<Components> {
-  components?: { [K in keyof Components]: { defaultProps?: Partial<Components[K]> } };
+import { Components } from './components';
+
+export interface ThemeWithProps {
+  components?: Components;
 }
 
 export type ThemedProps<Theme, Name extends keyof any> = Theme extends {
@@ -8,8 +10,16 @@ export type ThemedProps<Theme, Name extends keyof any> = Theme extends {
   ? Props
   : {};
 
+export interface AdditionalThemeProps<Theme> {
+  isRtl: boolean;
+  theme: Theme;
+}
+
 export default function useThemeProps<
-  Theme extends ThemeWithProps<any>,
+  Theme extends ThemeWithProps,
   Props,
   Name extends keyof any
->(params: { props: Props; name: Name }): Props & ThemedProps<Theme, Name>;
+>(params: {
+  props: Props;
+  name: Name;
+}): Props & ThemedProps<Theme, Name> & AdditionalThemeProps<Theme>;

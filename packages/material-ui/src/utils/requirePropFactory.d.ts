@@ -1,1 +1,3 @@
-export default function requirePropFactory(componentNameInError: string): any;
+import { unstable_requirePropFactory as requirePropFactory } from '@material-ui/utils';
+
+export default requirePropFactory;

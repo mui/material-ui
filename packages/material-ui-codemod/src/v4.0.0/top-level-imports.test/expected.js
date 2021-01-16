@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {
   withStyles,
@@ -24,7 +24,6 @@ import {
   DialogContentText,
   DialogContent,
   DialogActions,
-  withMobileDialog,
   Slide,
   RadioGroup,
   Radio,

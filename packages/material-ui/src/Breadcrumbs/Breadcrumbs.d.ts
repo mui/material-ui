@@ -4,7 +4,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
   props: P & {
     /**
-     * The breadcrumb children.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**

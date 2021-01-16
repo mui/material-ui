@@ -59,41 +59,36 @@ export default function InputAdornments() {
       <div>
         <TextField
           label="With normal TextField"
-          id="standard-start-adornment"
+          id="outlined-start-adornment"
           className={clsx(classes.margin, classes.textField)}
           InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">Kg</InputAdornment>
-            ),
+            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
         />
         <FormControl
-          className={clsx(
-            classes.margin,
-            classes.withoutLabel,
-            classes.textField,
-          )}
+          className={clsx(classes.margin, classes.textField)}
+          variant="outlined"
         >
-          <Input
-            id="standard-adornment-weight"
+          <OutlinedInput
+            id="outlined-adornment-weight"
             value={values.weight}
             onChange={handleChange('weight')}
             endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
-            aria-describedby="standard-weight-helper-text"
+            aria-describedby="outlined-weight-helper-text"
             inputProps={{
               'aria-label': 'weight',
             }}
+            labelWidth={0}
           />
-          <FormHelperText id="standard-weight-helper-text">
-            Weight
-          </FormHelperText>
+          <FormHelperText id="outlined-weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl className={clsx(classes.margin, classes.textField)}>
-          <InputLabel htmlFor="standard-adornment-password">
-            Password
-          </InputLabel>
-          <Input
-            id="standard-adornment-password"
+        <FormControl
+          className={clsx(classes.margin, classes.textField)}
+          variant="outlined"
+        >
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
@@ -103,20 +98,23 @@ export default function InputAdornments() {
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
+                  edge="end"
                 >
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
             }
+            labelWidth={70}
           />
         </FormControl>
-        <FormControl fullWidth className={classes.margin}>
-          <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
-          <Input
-            id="standard-adornment-amount"
+        <FormControl fullWidth className={classes.margin} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-amount"
             value={values.amount}
             onChange={handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            labelWidth={60}
           />
         </FormControl>
       </div>
@@ -126,9 +124,7 @@ export default function InputAdornments() {
           id="filled-start-adornment"
           className={clsx(classes.margin, classes.textField)}
           InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">Kg</InputAdornment>
-            ),
+            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
           variant="filled"
         />
@@ -185,43 +181,32 @@ export default function InputAdornments() {
       <div>
         <TextField
           label="With normal TextField"
-          id="outlined-start-adornment"
+          id="standard-start-adornment"
           className={clsx(classes.margin, classes.textField)}
           InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">Kg</InputAdornment>
-            ),
+            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
-          variant="outlined"
+          variant="standard"
         />
         <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant="outlined"
+          className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
         >
-          <OutlinedInput
-            id="outlined-adornment-weight"
+          <Input
+            id="standard-adornment-weight"
             value={values.weight}
             onChange={handleChange('weight')}
             endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
-            aria-describedby="outlined-weight-helper-text"
+            aria-describedby="standard-weight-helper-text"
             inputProps={{
               'aria-label': 'weight',
             }}
-            labelWidth={0}
           />
-          <FormHelperText id="outlined-weight-helper-text">
-            Weight
-          </FormHelperText>
+          <FormHelperText id="standard-weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant="outlined"
-        >
-          <InputLabel htmlFor="outlined-adornment-password">
-            Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
+        <FormControl className={clsx(classes.margin, classes.textField)}>
+          <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+          <Input
+            id="standard-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
@@ -231,23 +216,20 @@ export default function InputAdornments() {
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
-                  edge="end"
                 >
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
             }
-            labelWidth={70}
           />
         </FormControl>
-        <FormControl fullWidth className={classes.margin} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-amount"
+        <FormControl fullWidth className={classes.margin}>
+          <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+          <Input
+            id="standard-adornment-amount"
             value={values.amount}
             onChange={handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            labelWidth={60}
           />
         </FormControl>
       </div>

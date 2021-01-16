@@ -1,5 +1,7 @@
 const path = require('path');
 
+// WARNING: Use this module only as an inspiration.
+// Cherry-pick the parts you need and inline them in the webpack.config you need.
 // This module isn't used to build the documentation. We use Next.js for that.
 // This module is used by the visual regression tests to run the demos and by eslint-plugin-import.
 module.exports = {
@@ -21,6 +23,7 @@ module.exports = {
       ),
       '@material-ui/styles': path.resolve(__dirname, './packages/material-ui-styles/src'),
       '@material-ui/system': path.resolve(__dirname, './packages/material-ui-system/src'),
+      '@material-ui/unstyled': path.resolve(__dirname, './packages/material-ui-unstyled/src'),
       '@material-ui/utils': path.resolve(__dirname, './packages/material-ui-utils/src'),
       'typescript-to-proptypes': path.resolve(__dirname, './packages/typescript-to-proptypes/src'),
       docs: path.resolve(__dirname, './docs'),

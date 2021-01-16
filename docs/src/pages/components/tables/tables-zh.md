@@ -1,7 +1,8 @@
 ---
-title: React 表格组件
+title: React Table（表格）组件
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -9,29 +10,33 @@ materialDesign: https://material.io/components/data-tables
 
 <p class="description">表格展示数据组。 它们是完全可以自定义的。</p>
 
-[表格](https://material.io/design/components/data-tables.html)以一目了然的方式显示信息，这样一来用户可以寻找规律并探索见解。 表格可以被内嵌在主要内容中，如 卡片（cards）。
-
-表格可以包括：
+Tables display information in a way that's easy to scan, so that users can look for patterns and insights. 表格可以被内嵌在主要内容中，如 卡片（cards）。 表格可以被内嵌在主要内容中，如 卡片（cards）。 它们可以包括：
 
 - 对应的可视化效果
 - 导航
 - 一个用于查询和操作数据的工具
 
-当在引入工具时，我们应将它们直接放在表格的上方或下方。
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 表格的结构
+## 基础表格
 
 一个没有多余装饰的简单例子
 
-一个数据表格的顶部是标题行，并展示各列的名称，而后续的各行则是表格的数据。
+{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
-## 简单的表格
+## 数据表格
+
+`Table` 组件与原生 `<table>` 元素存在密切关联。 这种限制条件导致要构建丰富的数据表格会变得很有挑战性。
+
+[`DataGrid` 组件](/components/data-grid/) 专为需要处理大量表格数据的情况而设计。 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
+
+## 紧凑型表格
 
 这是一个简单紧凑型表格，并且没有多余的装饰。
 
 {{"demo": "pages/components/tables/DenseTable.js", "bg": true}}
 
-## 紧凑的表格
+## 排序 & 选择
 
 此示例演示了在表格内使用了 ` 选择框组件（Checkbox）` 以及单击选择行，而且这个表格带有一个自定义的 `工具条组件（Toolbar）`。 它也展示了如何使用 `TableSortLabel` 组件来给列标题添加样式。
 
@@ -39,15 +44,9 @@ materialDesign: https://material.io/components/data-tables
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## 排序 & 筛选
-
-`Table` 组件与原生 `<table>` 元素有密切的映射。 这种限制条件导致构建丰富的数据表格会变得很有挑战性。
-
-[`DataGrid` 组件](/components/data-grid/) 专为需要处理大量表格数据的情况而设计。 虽然它的结构相比之下不够灵活，但是有得必有失，牺牲灵活性来换取更强大的功能。
-
 ## 自定义表格
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -75,9 +74,22 @@ materialDesign: https://material.io/components/data-tables
 
 ## 固定表头
 
-一个具有可滚动行和固定表头的表格示例。 它利用了 `stickyheader` 这个属性（⚠️不支持 IE11）。
+一个具有可滚动行和固定表头的表格示例。 它是利用 `stickyHeader` 属性 <br /> 实现的（不支持 IE11）。
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## 按列分组
+
+你可以在一个表头内渲染多个表行来分组列头：
+
+```jsx
+<TableHead>
+  <TableRow />
+  <TableRow />
+</TableHead>
+```
+
+{{"demo": "pages/components/tables/ColumnGroupingTable.js", "bg": true}}
 
 ## 可折叠的表格
 
@@ -103,6 +115,6 @@ materialDesign: https://material.io/components/data-tables
 
 ### Caption 字幕
 
-字幕能够充当表格的表头。 大多数屏幕阅读器能够宣读字幕的内容。 字幕能够帮助用户找到一个表格，并且描述这个表格的内容，从而协助用户决定是不是想继续阅读这个表格。
+字幕能够充当表格的表头。 大多数屏幕阅读器能够宣读字幕的内容。 Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

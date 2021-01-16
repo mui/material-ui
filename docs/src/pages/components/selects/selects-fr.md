@@ -24,6 +24,8 @@ If you are looking for more advanced features, like combobox, multiselect, autoc
 
 ## Props
 
+The Select component is implemented as a custom `<input>` element of the [InputBase](/api/input-base/). It extends the [text field components](/components/text-fields) sub-components, either the [Input](/api/input/), [FilledInput](/api/filled-input/), or [OutlinedInput](/api/outlined-input/), depending on the variant selected. It shares the same styles and many of the same props. Refer to the respective component's API page for details.
+
 ### Filled and outlined variants
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
@@ -52,7 +54,7 @@ Le composant d'encapsulation `TextField` est un contrôle de formulaire complet 
 
 ## Customized selects
 
-Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 The first step is to style the `InputBase` component. Le composant d'encapsulation `TextField` est un contrôle de formulaire complet comprenant une étiquette, une entrée et un texte d'aide.
 
@@ -66,7 +68,7 @@ The `Select` component can handle multiple selections. The `Select` component ca
 
 Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
 
-### Default
+### Défaut
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 

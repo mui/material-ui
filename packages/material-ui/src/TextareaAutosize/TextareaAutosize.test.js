@@ -16,13 +16,7 @@ describe('<TextareaAutosize />', () => {
   }));
 
   describe('layout', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
-
     const getComputedStyleStub = {};
-
     function setLayout(
       input,
       shadow,
@@ -39,7 +33,12 @@ describe('<TextareaAutosize />', () => {
       });
     }
 
-    before(() => {
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       stub(window, 'getComputedStyle').value((node) => getComputedStyleStub[node] || {});
     });
 
@@ -62,8 +61,8 @@ describe('<TextareaAutosize />', () => {
         const { container } = render(<TextareaAutosize />);
         const input = container.querySelector('textarea[aria-hidden=null]');
         const shadow = container.querySelector('textarea[aria-hidden=true]');
-        expect(input.style).to.have.property('height', '0px');
-        expect(input.style).to.have.property('overflow', 'hidden');
+        expect(input.style).to.have.property('height', '');
+        expect(input.style).to.have.property('overflow', '');
 
         setLayout(input, shadow, {
           getComputedStyle: {
@@ -234,6 +233,38 @@ describe('<TextareaAutosize />', () => {
       setProps({ maxRows: 2 });
       expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
       expect(input.style).to.have.property('overflow', '');
+    });
+
+    it('should not sync height if container width is 0px', () => {
+      const lineHeight = 15;
+      const { container, forceUpdate } = render(<TextareaAutosize />);
+      const input = container.querySelector('textarea[aria-hidden=null]');
+      const shadow = container.querySelector('textarea[aria-hidden=true]');
+
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        scrollHeight: lineHeight * 2,
+        lineHeight,
+      });
+      forceUpdate();
+
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
+
+      setLayout(input, shadow, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+          width: '0px',
+        },
+        scrollHeight: lineHeight * 3,
+        lineHeight,
+      });
+
+      forceUpdate();
+      expect(input.style).to.have.property('height', `${lineHeight * 2}px`);
+      expect(input.style).to.have.property('overflow', 'hidden');
     });
 
     describe('warnings', () => {

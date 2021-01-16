@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
 import makeStyles from '../makeStyles';
@@ -90,11 +90,6 @@ describe('ThemeProvider', () => {
   });
 
   it('does not allow setting mui.nested manually', () => {
-    if (typeof Symbol === 'undefined') {
-      // skip in IE11
-      return;
-    }
-
     const useStyles = makeStyles({ root: {} }, { name: 'MuiTest' });
     function Component(props) {
       const classes = useStyles();

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Portal from '@material-ui/core/Portal';
 import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
 

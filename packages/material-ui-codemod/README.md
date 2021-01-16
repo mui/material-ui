@@ -18,6 +18,61 @@ APIs.
 
 ## Included Scripts
 
+### v5.0.0
+
+#### `box-sx-prop`
+
+Updates the Box API from separate system props to `sx`.
+
+The diff should look like this:
+
+```diff
+-<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
++<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/box-sx-prop.js
+```
+
+#### `moved-lab-modules`
+
+Updates all imports for `@material-ui/lab` components that have moved to `@material-ui/core`.
+
+```diff
+-import Skeleton from '@material-ui/lab/Skeleton';
++import Skeleton from '@material-ui/core/Skeleton';
+```
+
+or
+
+```diff
+-import { SpeedDial } from '@material-ui/lab';
++import { SpeedDial } from '@material-ui/core';
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/moved-lab-modules.js
+```
+
+#### `textfield-variant-prop`
+
+Add the TextField `variant="standard` prop when `variant` is undefined.
+The diff should look like this:
+
+```diff
+-<TextField value="Standard" />
+-<TextField value="Outlined" variant="outlined" />
++<TextField value="Standard" variant="standard" />
++<TextField value="Outlined" />
+```
+
+This codemod is non-idempotent (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so should only be run once against any particular codebase.
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/textfield-variant-prop.js
+```
+
 ### v4.0.0
 
 #### `theme-spacing-api`
@@ -31,7 +86,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v4.0.0/theme-spacing-api.js
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v4.0.0/theme-spacing-api.js
 ```
 
 This codemod tries to perform a basic expression simplification which can be improved for expressions that use more than one operation.
@@ -56,7 +111,7 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v4.0.0/optimal-imports.js
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v4.0.0/optimal-imports.js
 ```
 
 Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -72,7 +127,7 @@ Converts all `@material-ui/core` submodule imports to the root module:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v4.0.0/top-level-imports.js
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v4.0.0/top-level-imports.js
 ```
 
 Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -91,7 +146,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v1.0.0/import-path.js
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v1.0.0/import-path.js
 ```
 
 **Notice**: if you are migrating from pre-v1.0, and your imports use `material-ui`, you will need to manually find and replace all references to `material-ui` in your code to `@material-ui/core`. E.g.:
@@ -116,7 +171,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v1.0.0/color-imports.js
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v1.0.0/color-imports.js
 ```
 
 **additional options**
@@ -138,7 +193,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v1.0.0/svg-icon-imports.js
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v1.0.0/svg-icon-imports.js
 ```
 
 ### v0.15.0
@@ -160,7 +215,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v0.15.0/import-path.js
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v0.15.0/import-path.js
 ```
 
 ### Recast Options

@@ -3,13 +3,14 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
-import globCallback from 'glob';
-import { promisify } from 'util';
+import glob from 'fast-glob';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
-import { fixBabelGeneratorIssues, fixLineEndings } from '../docs/scripts/helpers';
-
-const glob = promisify(globCallback);
+import {
+  fixBabelGeneratorIssues,
+  fixLineEndings,
+  getUnstyledFilename,
+} from '../docs/scripts/helpers';
 
 enum GenerateResult {
   Success,
@@ -23,6 +24,33 @@ enum GenerateResult {
  * Includes component names for which we can't generate .propTypes from the TypeScript types.
  */
 const todoComponents: string[] = [];
+
+const todoComponentsTs: string[] = [
+  'ClockPicker',
+  'DatePicker',
+  'DateRangePicker',
+  'DateRangePickerDay',
+  'DayPicker',
+  'DesktopDatePicker',
+  'DesktopDateRangePicker',
+  'StaticDateRangePicker',
+  'MobileDateRangePicker',
+  'DateTimePicker',
+  'DesktopDateTimePicker',
+  'DesktopTimePicker',
+  'LocalizationProvider',
+  'MobileDatePicker',
+  'MobileDateTimePicker',
+  'MobileTimePicker',
+  'MonthPicker',
+  'PickersCalendarSkeleton',
+  'PickersDay',
+  'StaticDatePicker',
+  'StaticDateTimePicker',
+  'StaticTimePicker',
+  'TimePicker',
+  'YearPicker',
+];
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -56,18 +84,35 @@ const useExternalPropsFromInputBase = [
  * of dynamically loading them. At that point this list should be removed.
  * TODO: typecheck values
  */
-const useExternalDocumentation: Record<string, string[]> = {
+const useExternalDocumentation: Record<string, '*' | string[]> = {
   Button: ['disableRipple'],
   // `classes` is always external since it is applied from a HOC
   // In DialogContentText we pass it through
   // Therefore it's considered "unused" in the actual component but we still want to document it.
   DialogContentText: ['classes'],
+  DatePicker: '*',
+  MobileDatePicker: '*',
+  StaticDatePicker: '*',
+  DesktopDatePicker: '*',
+  TimePicker: '*',
+  MobileTimePicker: '*',
+  StaticTimePicker: '*',
+  DesktopTimePicker: '*',
+  DateTimePicker: '*',
+  MobileDateTimePicker: '*',
+  StaticDateTimePicker: '*',
+  DesktopDateTimePicker: '*',
+  DateRangePicker: '*',
+  MobileDateRangePicker: '*',
+  StaticDateRangePicker: '*',
+  DesktopDateRangePicker: '*',
   FilledInput: useExternalPropsFromInputBase,
   IconButton: ['disableRipple'],
   Input: useExternalPropsFromInputBase,
   MenuItem: ['dense'],
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
+  Checkbox: ['defaultChecked'],
   Switch: [
     'checked',
     'defaultChecked',
@@ -90,6 +135,7 @@ const useExternalDocumentation: Record<string, string[]> = {
     'variant',
   ],
   Tab: ['disableRipple'],
+  TextField: ['margin'],
   ToggleButton: ['disableRipple'],
 };
 const transitionCallbacks = [
@@ -152,9 +198,10 @@ const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
 });
 
 async function generateProptypes(
-  tsFile: string,
-  jsFile: string,
   program: ttp.ts.Program,
+  sourceFile: string,
+  tsFile: string = sourceFile,
+  tsTodo: boolean = false,
 ): Promise<GenerateResult> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
@@ -182,20 +229,24 @@ async function generateProptypes(
     });
   });
 
-  const jsContent = await fse.readFile(jsFile, 'utf8');
+  const sourceContent = await fse.readFile(sourceFile, 'utf8');
 
-  const unstyledFile = tsFile.endsWith('Styled.d.ts')
-    ? tsFile.replace(/Styled/g, 'Unstyled')
-    : null;
-  const result = ttp.inject(proptypes, jsContent, {
+  const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
+
+  const unstyledFile = getUnstyledFilename(tsFile, true);
+
+  const result = ttp.inject(proptypes, sourceContent, {
+    disableTypescriptPropTypesValidation: tsTodo,
     removeExistingPropTypes: true,
     babelOptions: {
-      filename: jsFile,
+      filename: sourceFile,
     },
     comment: [
       '----------------------------- Warning --------------------------------',
       '| These PropTypes are generated from the TypeScript type definitions |',
-      '|     To update them edit the d.ts file and run "yarn proptypes"     |',
+      isTsFile
+        ? '|     To update them edit TypeScript types and run "yarn proptypes"  |'
+        : '|     To update them edit the d.ts file and run "yarn proptypes"     |',
       '----------------------------------------------------------------------',
     ].join('\n'),
     getSortLiteralUnions,
@@ -241,7 +292,8 @@ async function generateProptypes(
       const { name: componentName } = component;
       if (
         useExternalDocumentation[componentName] &&
-        useExternalDocumentation[componentName].includes(prop.name)
+        (useExternalDocumentation[componentName] === '*' ||
+          useExternalDocumentation[componentName].includes(prop.name))
       ) {
         shouldDocument = true;
       }
@@ -254,11 +306,11 @@ async function generateProptypes(
     return GenerateResult.Failed;
   }
 
-  const prettified = prettier.format(result, { ...prettierConfig, filepath: jsFile });
+  const prettified = prettier.format(result, { ...prettierConfig, filepath: sourceFile });
   const formatted = fixBabelGeneratorIssues(prettified);
-  const correctedLineEndings = fixLineEndings(jsContent, formatted);
+  const correctedLineEndings = fixLineEndings(sourceContent, formatted);
 
-  await fse.writeFile(jsFile, correctedLineEndings);
+  await fse.writeFile(sourceFile, correctedLineEndings);
   return GenerateResult.Success;
 }
 
@@ -279,10 +331,11 @@ async function run(argv: HandlerArgv) {
 
   const allFiles = await Promise.all(
     [
+      path.resolve(__dirname, '../packages/material-ui-unstyled/src'),
       path.resolve(__dirname, '../packages/material-ui/src'),
       path.resolve(__dirname, '../packages/material-ui-lab/src'),
     ].map((folderPath) =>
-      glob('+([A-Z])*/+([A-Z])*.d.ts', {
+      glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
         absolute: true,
         cwd: folderPath,
       }),
@@ -294,7 +347,7 @@ async function run(argv: HandlerArgv) {
     // Example: Modal/ModalManager.d.ts
     .filter((filePath) => {
       const folderName = path.basename(path.dirname(filePath));
-      const fileName = path.basename(filePath, '.d.ts');
+      const fileName = path.basename(filePath).replace(/(\.d\.ts|\.tsx|\.ts)/g, '');
 
       return fileName === folderName;
     })
@@ -304,13 +357,16 @@ async function run(argv: HandlerArgv) {
   const program = ttp.createTSProgram(files, tsconfig);
 
   const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {
-    const jsFile = tsFile.replace('.d.ts', '.js');
+    const componentName = path.basename(tsFile).replace(/(\.d\.ts|\.tsx|\.js)/g, '');
 
-    if (todoComponents.includes(path.basename(jsFile, '.js'))) {
+    if (todoComponents.includes(componentName)) {
       return GenerateResult.TODO;
     }
 
-    return generateProptypes(tsFile, jsFile, program);
+    const tsTodo = todoComponentsTs.includes(componentName);
+
+    const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
+    return generateProptypes(program, sourceFile, tsFile, tsTodo);
   });
 
   const results = await Promise.all(promises);

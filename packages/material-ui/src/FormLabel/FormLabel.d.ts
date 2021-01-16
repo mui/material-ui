@@ -38,7 +38,7 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
        */
       disabled?: boolean;
       /**
-       * If `true`, the label should be displayed in an error state.
+       * If `true`, the label is displayed in an error state.
        */
       error?: boolean;
       /**
@@ -50,7 +50,7 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
        */
       focused?: boolean;
       /**
-       * If `true`, the label will indicate that the input is required.
+       * If `true`, the label will indicate that the `input` is required.
        */
       required?: boolean;
     };

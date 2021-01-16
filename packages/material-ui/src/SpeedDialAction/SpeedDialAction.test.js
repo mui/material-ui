@@ -27,10 +27,11 @@ describe('<SpeedDialAction />', () => {
   const mount = createMount({ strict: true });
   const render = createClientRender();
   let classes;
-  const fabClasses = getClasses(<Fab>Fab</Fab>);
+  let fabClasses;
 
   before(() => {
     classes = getClasses(<SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />);
+    fabClasses = getClasses(<Fab>Fab</Fab>);
   });
 
   describeConformance(
@@ -60,10 +61,6 @@ describe('<SpeedDialAction />', () => {
     });
 
     expect(getByText('placeholder')).to.have.class('bar');
-
-    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-    // can be removed once Popper#update is sync
-    clock.runAll();
   });
 
   it('should render a Fab', () => {

@@ -20,7 +20,9 @@ export const styles = (theme) => {
     root: {
       position: 'relative',
       overflow: 'hidden',
+      display: 'block',
       height: 4,
+      zIndex: 0, // Fix Safari's bug during composition of different paint.
       '@media print': {
         colorAdjust: 'exact',
       },
@@ -214,7 +216,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   }
 
   return (
-    <div
+    <span
       className={clsx(
         classes.root,
         classes[`color${capitalize(color)}`],
@@ -232,9 +234,9 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
       {...other}
     >
       {variant === 'buffer' ? (
-        <div className={clsx(classes.dashed, classes[`dashedColor${capitalize(color)}`])} />
+        <span className={clsx(classes.dashed, classes[`dashedColor${capitalize(color)}`])} />
       ) : null}
-      <div
+      <span
         className={clsx(classes.bar, classes[`barColor${capitalize(color)}`], {
           [classes.bar1Indeterminate]: variant === 'indeterminate' || variant === 'query',
           [classes.bar1Determinate]: variant === 'determinate',
@@ -243,7 +245,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
         style={inlineStyles.bar1}
       />
       {variant === 'determinate' ? null : (
-        <div
+        <span
           className={clsx(classes.bar, {
             [classes[`barColor${capitalize(color)}`]]: variant !== 'buffer',
             [classes[`color${capitalize(color)}`]]: variant === 'buffer',
@@ -253,7 +255,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
           style={inlineStyles.bar2}
         />
       )}
-    </div>
+    </span>
   );
 });
 

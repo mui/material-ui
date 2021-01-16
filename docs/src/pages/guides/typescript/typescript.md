@@ -205,13 +205,11 @@ interface Props extends WithStyles<typeof styles> {
 Applying `withStyles(styles)` as a function works as expected:
 
 ```tsx
-const DecoratedSFC = withStyles(styles)(
-  ({ text, type, color, classes }: Props) => (
-    <Typography variant={type} color={color} classes={classes}>
-      {text}
-    </Typography>
-  ),
-);
+const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
+  <Typography variant={type} color={color} classes={classes}>
+    {text}
+  </Typography>
+));
 
 const DecoratedClass = withStyles(styles)(
   class extends React.Component<Props> {
@@ -237,10 +235,9 @@ When adding custom properties to the `Theme`, you may continue to use it in a st
 The following example adds an `appDrawer` prop that is merged into the one exported by `material-ui`:
 
 ```ts
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
+import { Breakpoint, Theme } from '@material-ui/core/styles';
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width'];

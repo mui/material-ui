@@ -16,9 +16,9 @@ export interface ListItemTextProps<
   classes?: {
     /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the `Typography` components if primary and secondary are set. */
+    /** Styles applied to the Typography component if primary and secondary are set. */
     multiline?: string;
-    /** Styles applied to the `Typography` components if dense. */
+    /** Styles applied to the Typography component if dense. */
     dense?: string;
     /** Styles applied to the root element if `inset={true}`. */
     inset?: string;
@@ -36,7 +36,7 @@ export interface ListItemTextProps<
    */
   disableTypography?: boolean;
   /**
-   * If `true`, the children will be indented.
+   * If `true`, the children are indented.
    * This should be used if there is no left avatar or left icon.
    * @default false
    */

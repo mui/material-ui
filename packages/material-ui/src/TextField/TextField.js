@@ -88,7 +88,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     SelectProps,
     type,
     value,
-    variant = 'standard',
+    variant = 'outlined',
     ...other
   } = props;
 
@@ -207,7 +207,7 @@ TextField.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    * @default false
    */
   autoFocus: PropTypes.bool,
@@ -229,16 +229,16 @@ TextField.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * The default value of the `input` element.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    * @default false
    */
   error: PropTypes.bool,
@@ -285,6 +285,7 @@ TextField.propTypes = {
   label: PropTypes.node,
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
+   * @default 'none'
    */
   margin: PropTypes.oneOf(['dense', 'none', 'normal']),
   /**
@@ -296,7 +297,7 @@ TextField.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a textarea element will be rendered instead of an input.
+   * If `true`, a `textarea` element is rendered instead of an input.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -320,11 +321,11 @@ TextField.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**
-   * If `true`, the label is displayed as required and the `input` element will be required.
+   * If `true`, the label is displayed as required and the `input` element is required.
    * @default false
    */
   required: PropTypes.bool,
@@ -343,7 +344,7 @@ TextField.propTypes = {
    */
   SelectProps: PropTypes.object,
   /**
-   * The size of the text field.
+   * The size of the component.
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**
@@ -356,7 +357,7 @@ TextField.propTypes = {
   value: PropTypes.any,
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };

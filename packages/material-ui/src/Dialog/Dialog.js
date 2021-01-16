@@ -45,7 +45,7 @@ export const styles = (theme) => ({
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,
   },
-  /* Styles applied to the `Paper` component. */
+  /* Styles applied to the Paper component. */
   paper: {
     margin: 32,
     position: 'relative',
@@ -55,23 +55,23 @@ export const styles = (theme) => ({
       boxShadow: 'none',
     },
   },
-  /* Styles applied to the `Paper` component if `scroll="paper"`. */
+  /* Styles applied to the Paper component if `scroll="paper"`. */
   paperScrollPaper: {
     display: 'flex',
     flexDirection: 'column',
     maxHeight: 'calc(100% - 64px)',
   },
-  /* Styles applied to the `Paper` component if `scroll="body"`. */
+  /* Styles applied to the Paper component if `scroll="body"`. */
   paperScrollBody: {
     display: 'inline-block',
     verticalAlign: 'middle',
     textAlign: 'left', // 'initial' doesn't work on IE11
   },
-  /* Styles applied to the `Paper` component if `maxWidth=false`. */
+  /* Styles applied to the Paper component if `maxWidth=false`. */
   paperWidthFalse: {
     maxWidth: 'calc(100% - 64px)',
   },
-  /* Styles applied to the `Paper` component if `maxWidth="xs"`. */
+  /* Styles applied to the Paper component if `maxWidth="xs"`. */
   paperWidthXs: {
     maxWidth: Math.max(theme.breakpoints.values.xs, 444),
     '&$paperScrollBody': {
@@ -80,7 +80,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `Paper` component if `maxWidth="sm"`. */
+  /* Styles applied to the Paper component if `maxWidth="sm"`. */
   paperWidthSm: {
     maxWidth: theme.breakpoints.values.sm,
     '&$paperScrollBody': {
@@ -89,7 +89,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `Paper` component if `maxWidth="md"`. */
+  /* Styles applied to the Paper component if `maxWidth="md"`. */
   paperWidthMd: {
     maxWidth: theme.breakpoints.values.md,
     '&$paperScrollBody': {
@@ -98,7 +98,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `Paper` component if `maxWidth="lg"`. */
+  /* Styles applied to the Paper component if `maxWidth="lg"`. */
   paperWidthLg: {
     maxWidth: theme.breakpoints.values.lg,
     '&$paperScrollBody': {
@@ -107,7 +107,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `Paper` component if `maxWidth="xl"`. */
+  /* Styles applied to the Paper component if `maxWidth="xl"`. */
   paperWidthXl: {
     maxWidth: theme.breakpoints.values.xl,
     '&$paperScrollBody': {
@@ -116,11 +116,11 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the `Paper` component if `fullWidth={true}`. */
+  /* Styles applied to the Paper component if `fullWidth={true}`. */
   paperFullWidth: {
     width: 'calc(100% - 64px)',
   },
-  /* Styles applied to the `Paper` component if `fullScreen={true}`. */
+  /* Styles applied to the Paper component if `fullScreen={true}`. */
   paperFullScreen: {
     margin: 0,
     width: '100%',
@@ -145,14 +145,12 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     children,
     classes,
     className,
-    disableBackdropClick = false,
     disableEscapeKeyDown = false,
     fullScreen = false,
     fullWidth = false,
     maxWidth = 'sm',
     onBackdropClick,
     onClose,
-    onEscapeKeyDown,
     open,
     PaperComponent = Paper,
     PaperProps = {},
@@ -183,7 +181,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
       onBackdropClick(event);
     }
 
-    if (!disableBackdropClick && onClose) {
+    if (onClose) {
       onClose(event, 'backdropClick');
     }
   };
@@ -197,9 +195,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         ...BackdropProps,
       }}
       closeAfterTransition
-      disableBackdropClick={disableBackdropClick}
       disableEscapeKeyDown={disableEscapeKeyDown}
-      onEscapeKeyDown={onEscapeKeyDown}
       onClose={onClose}
       open={open}
       ref={ref}
@@ -219,7 +215,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         <div
           className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
           onMouseDown={handleMouseDown}
-          data-mui-test="FakeBackdrop"
         >
           <PaperComponent
             elevation={24}
@@ -276,17 +271,12 @@ Dialog.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, clicking the backdrop will not fire the `onClose` callback.
-   * @default false
-   */
-  disableBackdropClick: PropTypes.bool,
-  /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**
-   * If `true`, the dialog will be full-screen
+   * If `true`, the dialog is full-screen.
    * @default false
    */
   fullScreen: PropTypes.bool,
@@ -316,12 +306,7 @@ Dialog.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired when the escape key is pressed,
-   * `disableKeyboard` is false and the modal is in focus.
-   */
-  onEscapeKeyDown: PropTypes.func,
-  /**
-   * If `true`, the Dialog is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**

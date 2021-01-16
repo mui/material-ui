@@ -120,8 +120,10 @@ const theme = createMuiTheme({
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
+<!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
+
 ```ts
-declare module '@material-ui/core/styles/createBreakpoints' {
+declare module '@material-ui/core/styles' {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
@@ -271,7 +273,7 @@ Some implementation details that might be interesting to being aware of:
   You might want to use a heuristic to approximate
   the screen width of the client browser screen width.
   For instance, you could be using the user-agent or the [client-hints](https://caniuse.com/#search=client%20hint).
-  we also can set the initial width globally using [`custom props`](/customization/globals/#default-props) in the theme.
+  we also can set the initial width globally using [`custom props`](/customization/theme-components/#default-props) in the theme.
   In order to set the initialWidth we need to pass a custom prop with this shape:
 
 ```js

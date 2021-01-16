@@ -5,12 +5,10 @@ import path from 'path';
 import rimraf from 'rimraf';
 import Mustache from 'mustache';
 import Queue from 'modules/waterfall/Queue';
-import util from 'util';
 import intersection from 'lodash/intersection';
-import glob from 'glob';
+import globAsync from 'fast-glob';
 import SVGO from 'svgo';
 
-const globAsync = util.promisify(glob);
 export const RENAME_FILTER_DEFAULT = './renameFilters/default';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
 
@@ -189,9 +187,9 @@ async function worker({ svgPath, options, renameFilter, template }) {
   const destPath = renameFilter(svgPathObj, innerPath, options);
 
   const outputFileDir = path.dirname(path.join(options.outputDir, destPath));
-  const exists2 = await fse.exists(outputFileDir);
+  const pathExists = await fse.pathExists(outputFileDir);
 
-  if (!exists2) {
+  if (!pathExists) {
     console.log(`Making dir: ${outputFileDir}`);
     fse.mkdirpSync(outputFileDir);
   }
@@ -239,8 +237,8 @@ export async function main(options) {
     if (typeof renameFilter !== 'function') {
       throw Error('renameFilter must be a function');
     }
-    const exists1 = await fse.exists(options.outputDir);
-    if (!exists1) {
+    const pathExists = await fse.pathExists(options.outputDir);
+    if (!pathExists) {
       await fse.mkdir(options.outputDir);
     }
 

@@ -34,7 +34,7 @@ describe('useScrollTrigger', () => {
         <span ref={triggerRef}>{`${trigger}`}</span>
         <div ref={containerRef}>
           <Container ref={customContainer ? setContainer : null}>
-            <Box my={2}>Custom container</Box>
+            <Box sx={{ my: 2 }}>Custom container</Box>
           </Container>
         </div>
       </React.Fragment>
@@ -83,10 +83,12 @@ describe('useScrollTrigger', () => {
   });
 
   describe('scroll', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     function dispatchScroll(offset, element = window) {
       act(() => {

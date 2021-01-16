@@ -85,9 +85,9 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     <SwitchBase
       color={color}
       type="radio"
-      icon={React.cloneElement(defaultIcon, { fontSize: size === 'small' ? 'small' : 'default' })}
+      icon={React.cloneElement(defaultIcon, { fontSize: size === 'small' ? 'small' : 'medium' })}
       checkedIcon={React.cloneElement(defaultCheckedIcon, {
-        fontSize: size === 'small' ? 'small' : 'default',
+        fontSize: size === 'small' ? 'small' : 'medium',
       })}
       classes={{
         root: clsx(classes.root, classes[`color${capitalize(color)}`]),
@@ -126,11 +126,11 @@ Radio.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
-   * If `true`, the radio will be disabled.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -162,11 +162,11 @@ Radio.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
   /**
-   * The size of the radio.
+   * The size of the component.
    * `small` is equivalent to the dense radio styling.
    * @default 'medium'
    */

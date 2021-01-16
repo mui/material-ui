@@ -38,7 +38,7 @@ export default function TextRating() {
         precision={0.5}
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
-      <Box ml={2}>{labels[value]}</Box>
+      <Box sx={{ ml: 2 }}>{labels[value]}</Box>
     </div>
   );
 }

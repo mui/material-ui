@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import styled from '@emotion/styled';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 
 const Root = styled('div')((props) => ({
   width: '100%',

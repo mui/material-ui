@@ -3,6 +3,14 @@ import * as t from './types';
 
 export interface GenerateOptions {
   /**
+   * If source itself written in typescript prop-types disable prop-types validation
+   * by injecting propTypes as
+   * ```jsx
+   * .propTypes = { ... } as any
+   * ```
+   */
+  disableTypescriptPropTypesValidation?: boolean;
+  /**
    * Enable/disable the default sorting (ascending) or provide your own sort function
    * @default true
    */
@@ -86,9 +94,10 @@ function defaultSortLiteralUnions(a: t.LiteralType, b: t.LiteralType) {
  */
 export function generate(component: t.Component, options: GenerateOptions = {}): string {
   const {
-    sortProptypes = true,
+    disableTypescriptPropTypesValidation = false,
     importedName = 'PropTypes',
     includeJSDoc = true,
+    sortProptypes = true,
     previousPropTypesSource = new Map<string, string>(),
     reconcilePropTypes = (_prop: t.PropTypeDefinition, _previous: string, generated: string) =>
       generated,
@@ -182,7 +191,10 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
 
     if (propType.type === 'UnionNode') {
       const uniqueTypes = t.uniqueUnionTypes(propType).types;
-      const isOptional = uniqueTypes.some((type) => type.type === 'UndefinedNode');
+      const isOptional = uniqueTypes.some(
+        (type) =>
+          type.type === 'UndefinedNode' || (type.type === 'LiteralNode' && type.value === 'null'),
+      );
       const nonNullishUniqueTypes = uniqueTypes.filter((type) => {
         return (
           type.type !== 'UndefinedNode' && !(type.type === 'LiteralNode' && type.value === 'null')
@@ -304,5 +316,11 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     options.comment &&
     `// ${options.comment.split(/\r?\n/gm).reduce((prev, curr) => `${prev}\n// ${curr}`)}\n`;
 
-  return `${component.name}.propTypes = {\n${comment !== undefined ? comment : ''}${generated}\n}`;
+  const componentNameNode = disableTypescriptPropTypesValidation
+    ? `(${component.name} as any)`
+    : component.name;
+
+  return `${componentNameNode}.propTypes = {\n${
+    comment !== undefined ? comment : ''
+  }${generated}\n}`;
 }

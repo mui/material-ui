@@ -1,5 +1,5 @@
 ---
-title: React Dialog component
+title: Компонент React Dialog
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: Dialog'
 materialDesign: https://material.io/components/dialogs
@@ -41,7 +41,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 Если требуется название:
 
 - Используйте четкий вопрос или утверждение с пояснением в области содержимого, например «Очистить USB-накопитель?».
-- Избегайте извинений, двусмысленности или вопросов, таких как «Предупреждение!» Или «Вы уверены?»
+- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -59,7 +59,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 
 ## Индивидуальные диалоги
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 Данный диалог имеет кнопку закрытия, добавленную для удобства использования.
 
@@ -94,9 +94,9 @@ function MyComponent() {
 
 ## Диалоги подтверждения
 
-Диалоги подтверждения требуют, чтобы пользователи явно подтвердили свой выбор, прежде чем их выбор будет сохранен. Например, пользователи могут прослушивать несколько мелодий, но сделать окончательный выбор только после нажатия «ОК.».
+Диалоги подтверждения требуют, чтобы пользователи явно подтвердили свой выбор, прежде чем их выбор будет сохранен. For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Нажатие кнопки «Отмена» в диалоговом окне подтверждения или нажатие «Назад» отменяет действие, отменяет любые изменения и закрывает диалоговое окно.
+Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -108,7 +108,7 @@ function MyComponent() {
 
 ## Прокрутка длинного контента
 
-Когда диалоги становятся слишком длинными для окна просмотра или устройства пользователя, они их прокручивают.
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll = paper` содержимое диалогового окна прокручивается внутри элемента paper.
 - `scroll = body` содержимое диалога прокручивается внутри элемента body.
@@ -116,6 +116,10 @@ function MyComponent() {
 Попробуйте демо ниже, чтобы увидеть, что мы имеем в виду:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
+
+## Производительность
+
+Перейдите в раздел [Modal performance section](/components/modal/#performance).
 
 ## Ограничения
 

@@ -95,5 +95,13 @@ pluginTester({
         },
       },
     },
+    {
+      title: 'relative-import',
+      pluginOptions: {
+        muiError: { errorCodesPath: path.join(fixturePath, 'relative-import', 'error-codes.json') },
+      },
+      fixture: path.join(fixturePath, 'relative-import', 'input.js'),
+      output: readOutputFixtureSync('relative-import', 'output.js'),
+    },
   ],
 });

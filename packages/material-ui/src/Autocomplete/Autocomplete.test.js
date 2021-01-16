@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import {
   getClasses,
@@ -12,8 +13,15 @@ import {
 import { spy } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
-import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
-import Autocomplete from './Autocomplete';
+import Autocomplete, { createFilterOptions } from '@material-ui/core/Autocomplete';
+
+function checkHighlightIs(listbox, expected) {
+  if (expected) {
+    expect(listbox.querySelector('li[data-focus]')).to.have.text(expected);
+  } else {
+    expect(listbox.querySelector('li[data-focus]')).to.equal(null);
+  }
+}
 
 describe('<Autocomplete />', () => {
   const mount = createMount();
@@ -54,7 +62,11 @@ describe('<Autocomplete />', () => {
 
     it('should apply the icon classes', () => {
       const { container } = render(
-        <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
+        <Autocomplete
+          value={'one'}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
       );
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasClearIcon);
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
@@ -89,14 +101,10 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.change(document.activeElement, { target: { value: 'oo' } });
       fireEvent.change(document.activeElement, { target: { value: 'o' } });
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
     });
 
     it('should keep the highlight on the first item', () => {
@@ -111,13 +119,9 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.change(document.activeElement, { target: { value: 'two' } });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
     });
 
     it('should set the focus on the first item when possible', () => {
@@ -151,13 +155,9 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       setProps({ value: 'two' });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
     });
 
     it('should keep the current highlight if possible', () => {
@@ -173,15 +173,34 @@ describe('<Autocomplete />', () => {
       );
       const textbox = getByRole('textbox');
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
       fireEvent.keyDown(textbox, { key: 'Enter' });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
+    });
+
+    it('should work with filterSelectedOptions too', () => {
+      const options = ['Foo', 'Bar', 'Baz'];
+      const { getByRole } = render(
+        <Autocomplete
+          multiple
+          filterSelectedOptions
+          autoHighlight
+          value={options.slice(0, 1)}
+          options={options}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'Bar');
+      fireEvent.change(textbox, { target: { value: 'a' } });
+      checkHighlightIs(getByRole('listbox'), 'Bar');
+      fireEvent.change(textbox, { target: { value: 'aa' } });
+      fireEvent.change(textbox, { target: { value: 'a' } });
+      checkHighlightIs(getByRole('listbox'), 'Bar');
     });
   });
 
@@ -197,15 +216,11 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
       setProps({
         value: [],
       });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
     });
   });
 
@@ -217,7 +232,7 @@ describe('<Autocomplete />', () => {
           limitTags={2}
           options={['one', 'two', 'three']}
           defaultValue={['one', 'two', 'three']}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} variant="standard" />}
         />,
       );
 
@@ -242,7 +257,7 @@ describe('<Autocomplete />', () => {
           limitTags={0}
           options={['one', 'two', 'three']}
           defaultValue={['one', 'two', 'three']}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} variant="standard" />}
         />,
       );
 
@@ -273,19 +288,15 @@ describe('<Autocomplete />', () => {
       );
       const textbox = getByRole('textbox');
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
       fireEvent.keyDown(textbox, { key: 'ArrowUp' });
-      checkHighlightIs('three');
+      checkHighlightIs(getByRole('listbox'), 'three');
       fireEvent.keyDown(textbox, { key: 'Enter' }); // selects the last option (three)
       const input = getByRole('textbox');
       act(() => {
         input.blur();
         input.focus(); // opens the listbox again
       });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), null);
     });
   });
 
@@ -522,17 +533,22 @@ describe('<Autocomplete />', () => {
 
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
-    const { setProps } = render(
-      <Autocomplete
-        options={['one', 'two']}
+    const Test = (props) => (
+      <div
         onKeyDown={(event) => {
           if (!event.defaultPrevented && event.key === 'Enter') {
             handleSubmit();
           }
         }}
-        renderInput={(props2) => <TextField {...props2} autoFocus />}
-      />,
+      >
+        <Autocomplete
+          options={['one', 'two']}
+          renderInput={(props2) => <TextField {...props2} autoFocus />}
+          {...props}
+        />
+      </div>
     );
+    const { setProps } = render(<Test />);
     let textbox = screen.getByRole('textbox');
 
     fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -565,23 +581,26 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: getOptionDisabled', () => {
-    it('should disable the option but allow focus with disabledItemsFocusable', () => {
+    it('should prevent the disabled option to trigger actions but allow focus with disabledItemsFocusable', () => {
       const handleSubmit = spy();
       const handleChange = spy();
       const { getAllByRole } = render(
-        <Autocomplete
-          disabledItemsFocusable
-          getOptionDisabled={(option) => option === 'two'}
+        <div
           onKeyDown={(event) => {
             if (!event.defaultPrevented && event.key === 'Enter') {
               handleSubmit();
             }
           }}
-          onChange={handleChange}
-          openOnFocus
-          options={['one', 'two', 'three']}
-          renderInput={(props2) => <TextField {...props2} autoFocus />}
-        />,
+        >
+          <Autocomplete
+            disabledItemsFocusable
+            getOptionDisabled={(option) => option === 'two'}
+            onChange={handleChange}
+            openOnFocus
+            options={['one', 'two', 'three']}
+            renderInput={(props2) => <TextField {...props2} autoFocus />}
+          />
+        </div>,
       );
 
       let options;
@@ -633,16 +652,11 @@ describe('<Autocomplete />', () => {
       expect(listbox).to.equal(null);
 
       const buttons = getAllByRole('button', { hidden: true });
-      // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        expect(buttons[0]).toBeInaccessible();
-      }
-      expect(buttons[1]).toHaveAccessibleName('Open');
-      expect(buttons[1]).to.have.attribute('title', 'Open');
-      expect(buttons).to.have.length(2);
-      buttons.forEach((button) => {
-        expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
-      });
+
+      expect(buttons[0]).toHaveAccessibleName('Open');
+      expect(buttons[0]).to.have.attribute('title', 'Open');
+      expect(buttons).to.have.length(1);
+      expect(buttons[0], 'button is not in tab order').to.have.property('tabIndex', -1);
     });
 
     specify('when open', () => {
@@ -676,15 +690,10 @@ describe('<Autocomplete />', () => {
       });
 
       const buttons = getAllByRole('button', { hidden: true });
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        expect(buttons[0]).toBeInaccessible();
-      }
-      expect(buttons[1]).toHaveAccessibleName('Close');
-      expect(buttons[1]).to.have.attribute('title', 'Close');
-      expect(buttons).to.have.length(2);
-      buttons.forEach((button) => {
-        expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
-      });
+      expect(buttons[0]).toHaveAccessibleName('Close');
+      expect(buttons[0]).to.have.attribute('title', 'Close');
+      expect(buttons).to.have.length(1);
+      expect(buttons[0], 'button is not in tab order').to.have.property('tabIndex', -1);
     });
 
     it('should add and remove aria-activedescendant', () => {
@@ -885,6 +894,28 @@ describe('<Autocomplete />', () => {
         'aria-activedescendant',
         options[options.length - 1].getAttribute('id'),
       );
+    });
+
+    it('should ignore keydown event until the IME is confirmed', function test() {
+      // TODO: Often times out in Firefox 78.
+      // Is this slow because of testing-library or because of the implementation?
+      this.timeout(4000);
+
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['가1', '가2']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      const listbox = getByRole('listbox');
+      // Actual Behavior when "가" (Korean) is entered and press the arrow down key once on macOS/Chrome
+      fireEvent.change(textbox, { target: { value: '가' } });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown', keyCode: 229 });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown', keyCode: 40 });
+
+      checkHighlightIs(listbox, '가1');
     });
   });
 
@@ -1133,13 +1164,17 @@ describe('<Autocomplete />', () => {
   });
 
   describe('warnings', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
+
     it('warn if getOptionLabel do not return a string', () => {
       const handleChange = spy();
       render(
         <Autocomplete
           freeSolo
           onChange={handleChange}
-          options={[{ name: 'one' }, { name: 'two ' }]}
+          options={[{ name: 'one' }, {}]}
           getOptionLabel={(option) => option.name}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -1152,6 +1187,9 @@ describe('<Autocomplete />', () => {
       }).toErrorDev([
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         // strict mode renders twice
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        // strict mode renders twice
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
@@ -1241,6 +1279,17 @@ describe('<Autocomplete />', () => {
       expect(options).to.have.length(7);
       expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
     });
+
+    it('warn if the type of the value is wrong', () => {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Autocomplete.Naked.propTypes,
+          { multiple: true, value: null, options: [], renderInput: () => null },
+          'prop',
+          'Autocomplete',
+        );
+      }).toErrorDev('The Autocomplete expects the `value` prop to be an array or undefined.');
+    });
   });
 
   describe('prop: options', () => {
@@ -1258,15 +1307,11 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'one'
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'two'
 
-      function checkHighlightIs(expected) {
-        expect(listbox.querySelector('li[data-focus]')).to.have.text(expected);
-      }
+      checkHighlightIs(listbox, 'two');
 
-      checkHighlightIs('two');
-
-      // three option is added and autocomplete re-renders, two should still be highlighted
+      // three option is added and autocomplete re-renders, reset the highlight
       setProps({ options: ['one', 'two', 'three'] });
-      checkHighlightIs('two');
+      checkHighlightIs(listbox, null);
     });
 
     it('should not select undefined', () => {
@@ -1458,13 +1503,8 @@ describe('<Autocomplete />', () => {
     });
 
     it('should mantain list box open clicking on input when it is not empty', () => {
-      const handleHighlightChange = spy();
       const { getByRole, getAllByRole } = render(
-        <Autocomplete
-          onHighlightChange={handleHighlightChange}
-          options={['one']}
-          renderInput={(params) => <TextField {...params} />}
-        />,
+        <Autocomplete options={['one']} renderInput={(params) => <TextField {...params} />} />,
       );
       const combobox = getByRole('combobox');
       const textbox = getByRole('textbox');
@@ -1482,11 +1522,9 @@ describe('<Autocomplete />', () => {
     });
 
     it('should not toggle list box', () => {
-      const handleHighlightChange = spy();
       const { getByRole } = render(
         <Autocomplete
           value="one"
-          onHighlightChange={handleHighlightChange}
           options={['one']}
           renderInput={(params) => <TextField {...params} />}
         />,
@@ -2048,6 +2086,26 @@ describe('<Autocomplete />', () => {
         options[2],
       );
     });
+
+    it('should reset the highlight when the options change', () => {
+      const handleHighlightChange = [];
+      const { getByRole, setProps } = render(
+        <Autocomplete
+          onHighlightChange={(event, option) => {
+            handleHighlightChange.push(option);
+          }}
+          openOnFocus
+          autoHighlight
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      checkHighlightIs(getByRole('listbox'), 'one');
+      setProps({ options: ['four', 'five'] });
+      checkHighlightIs(getByRole('listbox'), 'four');
+      expect(handleHighlightChange).to.deep.equal([null, 'one', 'four']);
+    });
   });
 
   it('should filter options when new input value matches option', () => {
@@ -2079,5 +2137,38 @@ describe('<Autocomplete />', () => {
     fireEvent.change(textbox, { target: { value: 'one' } });
 
     expect(getAllByRole('option')).to.have.length(1);
+  });
+
+  it('should prevent the default event handlers', () => {
+    const handleChange = spy();
+    const handleSubmit = spy();
+    const Test = () => (
+      <div
+        onKeyDown={(event) => {
+          if (!event.defaultPrevented && event.key === 'Enter') {
+            handleSubmit();
+          }
+        }}
+      >
+        <Autocomplete
+          options={['one', 'two']}
+          onChange={handleChange}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              event.persist();
+              event.defaultMuiPrevented = true;
+            }
+          }}
+          renderInput={(params) => <TextField autoFocus {...params} />}
+        />
+      </div>
+    );
+    render(<Test />);
+    const textbox = screen.getByRole('textbox');
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'Enter' });
+    expect(handleChange.callCount).to.equal(0);
+    expect(handleSubmit.callCount).to.equal(1);
   });
 });

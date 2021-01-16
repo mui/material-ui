@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '../styles/withStyles';
 import AddIcon from '../internal/svg-icons/Add';
 
 export const styles = (theme) => ({
@@ -79,12 +79,12 @@ SpeedDialIcon.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The icon to display in the SpeedDial Floating Action Button.
+   * The icon to display.
    */
   icon: PropTypes.node,
   /**
    * @ignore
-   * If `true`, the SpeedDial is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

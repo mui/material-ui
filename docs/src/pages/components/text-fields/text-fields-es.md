@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/text-fields
 
 <p class="description">Los campos de texto permiten a los usuarios ingresar y editar texto.</p>
 
-[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
+[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. Generalmente se encuentran en formularios y diálogos.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -17,19 +17,19 @@ materialDesign: https://material.io/components/text-fields
 
 El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda.
 
-It supports standard, outlined and filled styling.
+Soporta estilos "Standard", "Outlined" y "Filled".
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
 **Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/) ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)), but Material-UI will continue to support it.
 
-## Form props
+## Propiedades del Form
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
-## Validation
+## Validación
 
 The `error` prop toggles the error state, the `helperText` prop can then be used to provide feedback to the user about the error.
 
@@ -65,6 +65,10 @@ Fancy smaller inputs? Use the `size` prop.
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
+The `filled` variant input height can be further reduced by rendering the label outside of it.
+
+{{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
+
 ## Disposición
 
 `dense` and `normal` alter other styles to meet the specification. `margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
@@ -99,7 +103,7 @@ The `color` prop changes the highlight color of the text field when focused.
 
 ## Inputs personalizados
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -107,7 +111,7 @@ La personalización no se limita a usar CSS, también puedes usar una composici�
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field).
+🎨 Si buscas un poco de inspiración, puedes visitar [MUI Treasury's ejemplos de customizacion](https://mui-treasury.com/styles/text-field).
 
 ## Limitaciones
 
@@ -137,7 +141,7 @@ The floating label is absolutely positioned, it won't impact the layout of the p
 
 Inputs of type="number" have potential usability issues:
 
-- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others and silently discarding others
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others and silently discarding others and silently discarding others
 - Si se está componiendo el componente:
 
 and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV. UK Design System team for a more detailed explanation.
@@ -168,7 +172,7 @@ El siguiente demo utiliza las librerías [react-text-mask](https://github.com/te
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-El componente del campo de texto proporcionado debe manejar el atributo `inputRef`. The property should be called with a value that implements the following interface:
+The provided input component should expose a ref with a value that implements the following interface:
 
 ```ts
 interface InputElement {
@@ -178,11 +182,30 @@ interface InputElement {
 ```
 
 ```jsx
-<div class="form-control">
-  <label for="mi-campo">Email</label>
-  <input id="mi-campo" aria-describedby="mi-texto-de-ayuda" />
-  <span id="mi-texto-de-ayuda">Nunca compartiremos tu email.</span>
-</div>
+const MyInputComponent = React.forwardRef((props, ref) => {
+  const { component: Component, ...other } = props;
+
+  // implement `InputElement` interface
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      // logic to focus the rendered component from 3rd party belongs here
+    },
+    // hiding the value e.g. react-stripe-elements
+  }));
+
+  // `Component` will be your `SomeThirdPartyComponent` from below
+  return <Component {...other} />;
+});
+
+// usage
+<TextField
+  InputProps={{
+    inputComponent: MyInputComponent,
+    inputProps: {
+      component: SomeThirdPartyComponent,
+    },
+  }}
+/>;
 ```
 
 ## Accesibilidad
@@ -202,11 +225,9 @@ In order for the text field to be accessible, **the input should be linked to th
 
 ```jsx
 <FormControl>
-  <InputLabel htmlFor="my-input">Email address</InputLabel>
-  <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">
-    We'll never share your email.
-  </FormHelperText>
+  <InputLabel htmlFor="mi-campo">Email</InputLabel>
+  <Input id="mi-campo" aria-describedby="mi-texto-de-ayuda" />
+  <FormHelperText id="mi-texto-de-ayuda">Nunca compartiremos tu email.</FormHelperText>
 </FormControl>
 ```
 

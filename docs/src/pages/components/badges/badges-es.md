@@ -1,6 +1,6 @@
 ---
 title: React Badge component
-components: Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
@@ -18,7 +18,7 @@ Ejemplos de insignias que contienen texto, utilizando colores primarios y secund
 
 ## Placas personalizadas
 
-He aquí un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/components/).
+He aquí un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -55,3 +55,7 @@ Usted puede usar la propiedad `anchorOrigin` para mover el Badge a cualquier esq
 Puede usar la propiedad `overlap` para colocar la insignia relativa a la esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled badge
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}

@@ -1,39 +1,39 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount } from 'test/utils';
+import { getClasses, createClientRender } from 'test/utils';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 describe('<TableRow> integration', () => {
   let classes;
-  const mount = createMount();
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<TableRow />);
   });
 
   it('should render with the head class when in the context of a table head', () => {
-    const wrapper = mount(
+    const { getByRole } = render(
       <table>
         <TableHead>
           <TableRow />
         </TableHead>
       </table>,
     );
-    expect(wrapper.find('tr').hasClass(classes.root)).to.equal(true);
-    expect(wrapper.find('tr').hasClass(classes.head)).to.equal(true);
+    expect(getByRole('row')).to.have.class(classes.root);
+    expect(getByRole('row')).to.have.class(classes.head);
   });
 
   it('should render with the footer class when in the context of a table footer', () => {
-    const wrapper = mount(
+    const { getByRole } = render(
       <table>
         <TableFooter>
           <TableRow />
         </TableFooter>
       </table>,
     );
-    expect(wrapper.find('tr').hasClass(classes.root)).to.equal(true);
-    expect(wrapper.find('tr').hasClass(classes.footer)).to.equal(true);
+    expect(getByRole('row')).to.have.class(classes.root);
+    expect(getByRole('row')).to.have.class(classes.footer);
   });
 });

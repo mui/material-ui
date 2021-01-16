@@ -2,12 +2,18 @@ import * as React from 'react';
 import NextHead from 'next/head';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default function Head(props) {
-  const t = useSelector((state) => state.options.t);
-  const { description = t('strapline'), title = t('headTitle'), children } = props;
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const t = useTranslate();
+  const {
+    card = 'https://material-ui.com/static/logo.png',
+    children,
+    description = t('strapline'),
+    largeCard = false,
+    title = t('headTitle'),
+  } = props;
+  const userLanguage = useUserLanguage();
   const router = useRouter();
 
   return (
@@ -16,17 +22,17 @@ export default function Head(props) {
       <title>{title}</title>
       <meta name="description" content={description} />
       {/* Twitter */}
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content={largeCard ? 'summary_large_image' : 'summary'} />
       <meta name="twitter:site" content="@MaterialUI" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://material-ui.com/static/logo.png" />
+      <meta name="twitter:image" content={card} />
       {/* Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:url" content={`https://material-ui.com${router.asPath}`} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="https://material-ui.com/static/logo.png" />
+      <meta property="og:image" content={card} />
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
@@ -37,7 +43,9 @@ export default function Head(props) {
 }
 
 Head.propTypes = {
+  card: PropTypes.string,
   children: PropTypes.node,
   description: PropTypes.string,
+  largeCard: PropTypes.bool,
   title: PropTypes.string,
 };

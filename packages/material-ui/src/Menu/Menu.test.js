@@ -157,7 +157,7 @@ describe('<Menu />', () => {
     );
     const popover = wrapper.find(Popover);
     expect(popover.props().open).to.equal(true);
-    const menuEl = document.querySelector('[data-mui-test="Menu"]');
+    const menuEl = document.querySelector('[role="menu"]');
     expect(document.activeElement).to.not.equal(menuEl);
     expect(false).to.equal(menuEl.contains(document.activeElement));
   });
@@ -173,7 +173,7 @@ describe('<Menu />', () => {
 
     popover.props().TransitionProps.onEntering(elementForHandleEnter);
     expect(onEnteringSpy.callCount).to.equal(1);
-    expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
+    expect(onEnteringSpy.args[0][0]).to.equal(elementForHandleEnter);
   });
 
   it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
@@ -191,7 +191,7 @@ describe('<Menu />', () => {
 
     popover.props().TransitionProps.onEntering(elementForHandleEnter);
     expect(onEnteringSpy.callCount).to.equal(1);
-    expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
+    expect(onEnteringSpy.args[0][0]).to.equal(elementForHandleEnter);
   });
 
   it('should call onClose on tab', () => {

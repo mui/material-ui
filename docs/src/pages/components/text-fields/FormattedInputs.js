@@ -16,15 +16,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TextMaskCustom(props) {
-  const { inputRef, ...other } = props;
+const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
+  const setRef = React.useCallback(
+    (maskedInputRef) => {
+      const value = maskedInputRef ? maskedInputRef.inputElement : null;
+
+      if (typeof ref === 'function') {
+        ref(value);
+      } else if (ref) {
+        ref.current = value;
+      }
+    },
+    [ref],
+  );
 
   return (
     <MaskedInput
-      {...other}
-      ref={(ref) => {
-        inputRef(ref ? ref.inputElement : null);
-      }}
+      {...props}
+      ref={setRef}
       mask={[
         '(',
         /[1-9]/,
@@ -45,19 +54,15 @@ function TextMaskCustom(props) {
       showMask
     />
   );
-}
+});
 
-TextMaskCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired,
-};
-
-function NumberFormatCustom(props) {
-  const { inputRef, onChange, ...other } = props;
+const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, ref) {
+  const { onChange, ...other } = props;
 
   return (
     <NumberFormat
       {...other}
-      getInputRef={inputRef}
+      getInputRef={ref}
       onValueChange={(values) => {
         onChange({
           target: {
@@ -71,10 +76,9 @@ function NumberFormatCustom(props) {
       prefix="$"
     />
   );
-}
+});
 
 NumberFormatCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
@@ -96,9 +100,7 @@ export default function FormattedInputs() {
   return (
     <div className={classes.root}>
       <FormControl>
-        <InputLabel htmlFor="formatted-text-mask-input">
-          react-text-mask
-        </InputLabel>
+        <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
         <Input
           value={values.textmask}
           onChange={handleChange}
@@ -116,6 +118,7 @@ export default function FormattedInputs() {
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}
+        variant="standard"
       />
     </div>
   );

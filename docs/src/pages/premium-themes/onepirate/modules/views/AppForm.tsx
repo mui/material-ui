@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
@@ -26,7 +26,7 @@ function AppForm(
   return (
     <div className={classes.root}>
       <Container maxWidth="sm">
-        <Box mt={7} mb={12}>
+        <Box sx={{ mt: 7, mb: 12 }}>
           <Paper className={classes.paper} background="light">
             {children}
           </Paper>

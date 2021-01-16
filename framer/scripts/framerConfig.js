@@ -23,6 +23,7 @@ export const componentSettings = {
       'sizes',
       'src',
       'srcSet',
+      'sx',
       // FIXME: `Union`
       'variant',
     ],
@@ -47,8 +48,11 @@ export const componentSettings = {
       'disableFocusRipple',
       'invisible',
       'overlap',
+      'components',
+      'componentsProps',
       // FIXME: `Union`
       'variant',
+      'sx',
     ],
     propValues: {
       icon: "''",
@@ -79,8 +83,11 @@ export const componentSettings = {
     ignoredProps: [
       'children',
       'disableFocusRipple',
+      'sx',
       // union not supported by framer ControlType
       // interface, control types and default value need to be hardcoded
+      'color',
+      'size',
       'variant',
     ],
     propValues: {
@@ -220,6 +227,7 @@ export const componentSettings = {
   },
   Paper: {
     ignoredProps: [
+      'sx',
       // FIXME: `Union`
       'variant',
     ],
@@ -252,9 +260,11 @@ export const componentSettings = {
   },
   Slider: {
     ignoredProps: [
+      'components',
       'defaultValue',
       'getAriaLabel',
       'getAriaValueText',
+      'isRtl',
       'onChange',
       'onChangeCommitted',
       'scale',
@@ -263,6 +273,7 @@ export const componentSettings = {
       'ValueLabelComponent',
       'valueLabelFormat',
       'marks',
+      'sx',
     ],
     propValues: {
       width: 160,
@@ -339,6 +350,7 @@ export const componentSettings = {
       'gutterBottom',
       'internalDeprecatedVariant',
       'paragraph',
+      'sx',
       // FIXME: `Union`
       'variant',
       'variantMapping',

@@ -3,6 +3,7 @@ import { AlertTitleProps } from '../AlertTitle';
 import { AppBarProps } from '../AppBar';
 import { AutocompleteProps } from '../Autocomplete';
 import { AvatarProps } from '../Avatar';
+import { AvatarGroupProps } from '../AvatarGroup';
 import { BackdropProps } from '../Backdrop';
 import { BadgeProps } from '../Badge';
 import { BottomNavigationActionProps } from '../BottomNavigationAction';
@@ -124,6 +125,7 @@ export interface ComponentsPropsList {
   MuiAppBar: AppBarProps;
   MuiAutocomplete: AutocompleteProps<any, any, any, any>;
   MuiAvatar: AvatarProps;
+  MuiAvatarGroup: AvatarGroupProps;
   MuiBackdrop: BackdropProps;
   MuiBadge: BadgeProps;
   MuiBottomNavigation: BottomNavigationProps;

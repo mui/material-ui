@@ -29,9 +29,7 @@ interface ExtraPaperProps {
   padding?: boolean;
 }
 
-function Paper(
-  props: PaperProps & ExtraPaperProps & WithStyles<typeof styles>,
-) {
+function Paper(props: PaperProps & ExtraPaperProps & WithStyles<typeof styles>) {
   const { background, classes, className, padding, ...other } = props;
 
   return (

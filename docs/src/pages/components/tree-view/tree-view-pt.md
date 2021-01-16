@@ -3,7 +3,7 @@ title: Componente React de Visualização em Árvore
 components: TreeView, TreeItem
 githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
-packages: '@material-ui/lab'
+packageName: '@material-ui/lab'
 ---
 
 # Visualização em árvore
@@ -50,6 +50,18 @@ const data = {
 
 {{"demo": "pages/components/tree-view/RichObjectTreeView.js", "defaultCodeOpen": false}}
 
+## Propriedade ContentComponent
+
+Você pode usar a propriedade `ContentComponent` e o hook `useTreeItem` para customizar ainda mais o comportamento do TreeItem.
+
+Como limitar a expansão para clicar no ícone:
+
+{{"demo": "pages/components/tree-view/IconExpansionTreeView.js", "defaultCodeOpen": false}}
+
+Ou aumentando a largura do indicador de estado:
+
+{{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
+
 ## Visualização em árvore customizada
 
 ### Ícones customizados, borda e animação
@@ -60,29 +72,29 @@ const data = {
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
 
-## Disabled tree items
+## Itens desabilitados na árvore
 
 {{"demo": "pages/components/tree-view/DisabledTreeItems.js"}}
 
-The behavior of disabled tree items depends on the `disabledItemsFocusable` prop.
+O comportamento dos itens desabilitados da árvore depende da propriedade `disabledItemsFocusable`.
 
-If it is false:
+Se é falsa:
 
-- Arrow keys will not focus disabled items and, the next non-disabled item will be focused.
-- Typing the first character of a disabled item's label will not focus the item.
-- Mouse or keyboard interaction will not expand/collapse disabled items.
-- Mouse or keyboard interaction will not select disabled items.
-- Shift + arrow keys will skip disabled items and, the next non-disabled item will be selected.
-- Programmatic focus will not focus disabled items.
+- As teclas de setas não focarão nos itens desabilitados e o próximo item não desabilitado será focado.
+- Digitar o primeiro caractere do rótulo de um item desabilitado não focará no item.
+- Interação do mouse ou teclado não irá expandir/recolher itens desabilitados.
+- Interação do mouse ou teclado não selecionará itens desabilitados.
+- Shift + teclas de setas irão pular itens desabilitados e o próximo item não desabilitado será selecionado.
+- Foco programático não focará itens desabilitados.
 
-If it is true:
+Se é verdadeira:
 
-- Arrow keys will focus disabled items.
-- Typing the first character of a disabled item's label will focus the item.
-- Mouse or keyboard interaction will not expand/collapse disabled items.
-- Mouse or keyboard interaction will not select disabled items.
-- Shift + arrow keys will not skip disabled items but, the disabled item will not be selected.
-- Programmatic focus will focus disabled items.
+- As teclas de setas focarão em itens desabilitados.
+- Digitar o primeiro caractere do rótulo de um item desabilitado focará no item.
+- Interação do mouse ou teclado não irá expandir/recolher itens desabilitados.
+- Interação do mouse ou teclado não selecionará itens desabilitados.
+- Shift + teclas de setas não irão pular itens desabilitados, mas o item desabilitado não será selecionado.
+- Foco programático focará itens desabilitados.
 
 ## Acessibilidade
 
@@ -90,4 +102,4 @@ If it is true:
 
 O componente segue as práticas de autoria da WAI-ARIA.
 
-To have an accessible tree view you must use `aria-labelledby` or `aria-label` to reference or provide a label on the TreeView, otherwise screen readers will announce it as "tree", making it hard to understand the context of a specific tree item.
+Para ter uma exibição em árvore acessível, você deve usar `aria-labelledby` ou `aria-label` para fazer referência ou fornecer um rótulo na TreeView, caso contrário, os leitores de tela irão anunciá-lo como "tree", tornando difícil entender o contexto de um item específico da árvore.

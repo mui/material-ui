@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const backers = [
   {
@@ -28,8 +28,7 @@ const backers = [
     title: 'Octopus - Repeatable, reliable deployments',
   },
   {
-    href:
-      'https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral',
+    href: 'https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral',
     alt: 'doit-intl',
     title: 'DoiT - Management Platform for Google Cloud and AWS',
   },
@@ -48,7 +47,7 @@ const useStyles = makeStyles(
 
 export default function QuickWord() {
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
   const backer = backers[Math.floor(backers.length * Math.random())];
 
   return (

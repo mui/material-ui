@@ -2,10 +2,14 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { duration, withStyles } from '@material-ui/core/styles';
-import Zoom from '@material-ui/core/Zoom';
-import Fab from '@material-ui/core/Fab';
-import { capitalize, isMuiElement, useForkRef, useControlled } from '@material-ui/core/utils';
+import { duration } from '../styles/transitions';
+import withStyles from '../styles/withStyles';
+import Zoom from '../Zoom';
+import Fab from '../Fab';
+import capitalize from '../utils/capitalize';
+import isMuiElement from '../utils/isMuiElement';
+import useForkRef from '../utils/useForkRef';
+import useControlled from '../utils/useControlled';
 
 function getOrientation(direction) {
   if (direction === 'up' || direction === 'down') {
@@ -42,7 +46,7 @@ export const styles = (theme) => ({
   fab: {
     pointerEvents: 'auto',
   },
-  /* Styles applied to the root if direction="up" */
+  /* Styles applied to the root element if direction="up" */
   directionUp: {
     flexDirection: 'column-reverse',
     '& $actions': {
@@ -51,7 +55,7 @@ export const styles = (theme) => ({
       paddingBottom: spacingActions + dialRadius,
     },
   },
-  /* Styles applied to the root if direction="down" */
+  /* Styles applied to the root element if direction="down" */
   directionDown: {
     flexDirection: 'column',
     '& $actions': {
@@ -60,7 +64,7 @@ export const styles = (theme) => ({
       paddingTop: spacingActions + dialRadius,
     },
   },
-  /* Styles applied to the root if direction="left" */
+  /* Styles applied to the root element if direction="left" */
   directionLeft: {
     flexDirection: 'row-reverse',
     '& $actions': {
@@ -69,7 +73,7 @@ export const styles = (theme) => ({
       paddingRight: spacingActions + dialRadius,
     },
   },
-  /* Styles applied to the root if direction="right" */
+  /* Styles applied to the root element if direction="right" */
   directionRight: {
     flexDirection: 'row',
     '& $actions': {
@@ -405,7 +409,7 @@ SpeedDial.propTypes = {
    */
   FabProps: PropTypes.object,
   /**
-   * If `true`, the SpeedDial will be hidden.
+   * If `true`, the SpeedDial is hidden.
    * @default false
    */
   hidden: PropTypes.bool,
@@ -449,7 +453,7 @@ SpeedDial.propTypes = {
    */
   onOpen: PropTypes.func,
   /**
-   * If `true`, the SpeedDial is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**

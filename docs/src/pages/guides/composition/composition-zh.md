@@ -48,7 +48,7 @@ return React.createElement(props.component, props)
 
 ### 当与内联函数一起使用时要注意
 
-Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. 例如，如果要创建自定义`ListItem`作为链接，您可以执行以下操作： 例如，如果要创建自定义 `ListItem` 来作为一个链接使用，您可以这样编写： 例如，如果要创建自定义 `ListItem` 来作为一个链接使用，您可以这样编写：
+使用内联函数作为 `component` 属性的参数可能会导致 **意外的卸载**，因为每次 React 渲染时都会传递一个新的组件。 例如，如果要创建自定义 `ListItem` 来作为一个链接使用，您可以这样编写：
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -56,7 +56,7 @@ import { Link } from 'react-router-dom';
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
-  const CustomLink = props => <Link to={to} {...props} />;
+  const CustomLink = (props) => <Link to={to} {...props} />;
 
   return (
     <li>
@@ -71,9 +71,9 @@ function ListItemLink(props) {
 
 ⚠️ 然而，由于我们使用一个内联函数来更改渲染的组件，所以每一次渲染 `ListItemLink` 时，React 都会先将它卸载。 React 不仅会不必要地更新 DOM，还会影响 `ListItem` 的涟漪效果。
 
-The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component: 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件： 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件：
+解决方案很简单： **避免内联函数，取而代之的是将一个静态组件传递给 `component` 属性**。 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件：
 
-```jsx
+```tsx
 import { Link } from 'react-router-dom';
 
 function ListItemLink(props) {
@@ -116,7 +116,7 @@ import { Link } from 'react-router-dom';
 
 ## 路由库
 
-通过 `component` 属性实现了与第三方路由库的整合。 该行为与上面的属性描述完全相同。 以下是一些 [react-router-dom](https://github.com/ReactTraining/react-router) 的示例： 它覆盖按钮（Button）、链接（Link）和列表（List）组件，对所有的组件，你应该能应用相同的策略。
+通过 `component` 属性实现了与第三方路由库的整合。 该行为与上面的属性描述完全相同。 以下是一些 [react-router-dom](https://github.com/ReactTraining/react-router) 的示例： 这几个示例涵盖了按钮，链接和列表组件。 你可以对所有的组件（BottomNavigation，Card 等）使用同样的方式来整合它。
 
 ### Button
 
@@ -147,17 +147,17 @@ import { Link } from 'react-router-dom';
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-请注意，在使用 `lazy` 和 `memo` 组件时，如果被封装的组件无法承载一个 ref，您仍然有可能收到这个警告。
-
-在某些情况下，我们发出了一个额外警告来帮助调试，类似于：
+请注意，如果 `lazy` 和 `memo` 组件的包装组件包装组件不能容纳 ref，那么仍然会收到此警告。 在某些情况下，我们发出了一个额外警告来帮助调试，类似于：
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 这只包含了两个最常见的用例。 欲了解更多信息，请查阅[在 React 官方文档中的此章节](https://reactjs.org/docs/forwarding-refs.html)。
 
 ```diff
--const MyButton = props => <div role="button" {...props} />;
-+const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
+
 <Button component={MyButton} />;
 ```
 
@@ -167,7 +167,7 @@ import { Link } from 'react-router-dom';
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
-要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述会关联到此章节。
+要确定你使用的 Material-UI 组件是否具有此要求，请查阅该组件的 props API 文档。 如果您需要转递 refs，描述会关联到此章节。
 
 ### 使用 StrictMode 的注意事项
 

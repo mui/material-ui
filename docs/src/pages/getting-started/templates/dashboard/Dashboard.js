@@ -84,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    boxSizing: 'border-box',
   },
   drawerPaperClose: {
     overflowX: 'hidden',
@@ -142,10 +143,7 @@ export default function Dashboard() {
             color="inherit"
             aria-label="open drawer"
             onClick={toggleDrawer}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden,
-            )}
+            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
           </IconButton>
@@ -205,7 +203,7 @@ export default function Dashboard() {
               </Paper>
             </Grid>
           </Grid>
-          <Box pt={4}>
+          <Box sx={{ pt: 4 }}>
             <Copyright />
           </Box>
         </Container>

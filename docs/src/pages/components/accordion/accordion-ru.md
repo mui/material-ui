@@ -1,20 +1,20 @@
 ---
-title: React Accordion component
+title: Компонент React Accordion
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
-# Accordion (панель расширения)
+# Accordion
 
-<p class="description">Панель расширения содержит потоки создания и позволяет легко редактировать элементы.</p>
+<p class="description">Аккордеоны содержат потоки создания и позволяют осуществить легковесное редактирование элемента.</p>
 
 [Accordion](https://material.io/archive/guidelines/components/expansion-panels.html) это простой контейнер, который может использоваться отдельно, либо как часть более крупного компонента, такого как Card (карточка).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
+> **На заметку:** Аккордеоны больше не задокументированы в [руководствах Material Design](https://material.io/), но Material-UI будет продолжать поддерживать их. Ранее они были известны как "expansion panels".
 
 ## Простая Accordion
 
@@ -28,25 +28,19 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 ## Customized accordions
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
-## Additional actions
-
-In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the accordion expansion.
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
-
 ## Производительность
 
-Содержимое Accordions монтируется по умолчанию, даже если панель не развернута. Это предопределенное поведение подразумевает рендеринг на стороне сервера и SEO. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+Содержимое аккордеонов монтируется по умолчанию, даже если панель не развернута. Это поведение подразумевает рендеринг на стороне сервера и SEO. Если внутри аккордеона находятся ресурсоемкие, для рендеринга, иерархии компонентов или просто на странице много аккордеонов, то возможно хорошей идеей будет изменить поведение по умолчанию включив `unmountOnExit` в `TransitionProps`:
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-Как и при любой оптимизации производительности, не стоит переоценивать её. Сначала идентифицируйте узкие места и лишь затем пытайтесь применить эти стратегии.
+Как и при любой оптимизации производительности, эта функция не панацея. Сначала идентифицируйте узкие места и лишь затем пытайтесь применить эти стратегии.
 
 ## Доступность
 

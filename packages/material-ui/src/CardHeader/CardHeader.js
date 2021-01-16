@@ -13,6 +13,7 @@ export const styles = {
   },
   /* Styles applied to the avatar element. */
   avatar: {
+    display: 'flex',
     flex: '0 0 auto',
     marginRight: 16,
   },
@@ -102,7 +103,7 @@ CardHeader.propTypes = {
    */
   action: PropTypes.node,
   /**
-   * The Avatar for the Card Header.
+   * The Avatar element to display.
    */
   avatar: PropTypes.node,
   /**
@@ -140,7 +141,7 @@ CardHeader.propTypes = {
    */
   subheaderTypographyProps: PropTypes.object,
   /**
-   * The content of the Card Title.
+   * The content of the component.
    */
   title: PropTypes.node,
   /**

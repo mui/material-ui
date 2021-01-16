@@ -9,15 +9,16 @@ export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P &
     Omit<ListItemTypeMap<P, D>['props'], 'children'> & {
       /**
-       * Menu item contents.
+       * The content of the component.
        */
       children?: React.ReactNode;
       /**
+       * Override or extend the styles applied to the component.
        */
       classes?: {
         /** Styles applied to the root element. */
         root?: string;
-        /** Styles applied to the root element if `disableGutters={false}`. */
+        /** Styles applied to the root element unless `disableGutters={true}`. */
         gutters?: string;
         /** Styles applied to the root element if `selected={true}`. */
         selected?: string;

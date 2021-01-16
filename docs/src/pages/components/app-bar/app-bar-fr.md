@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">La barre d'application affiche des informations et des actions relatives à l'écran actuel.</p>
 
-[La barre d'application](https://material.io/design/components/app-bars-top.html) de la page fournit le contenu et les actions liés à l'écran actuel. Il est utilisé pour la marque, les titres d'écran, la navigation et les actions.
+[La barre d'application](https://material.io/design/components/app-bars-top.html) de la page fournit le contenu et les actions liés à l'écran actuel. It's used for branding, screen titles, navigation, and actions.
 
 Il peut être utilisé en tant que barre d'action contextuel ou en tant que barre de navigation.
 
@@ -53,7 +53,7 @@ Barre d'application étendu.
 
 Quand vous rendez la barre d'application en position fixe, les dimensions de l'élément n'impact pas le reste de page. Cela peut rendre certaine partie de votre contenu invisible, caché derrière la barre d'application. Voici 3 solutions possible:
 
-1. Vous pouvez utiliser `position="sticky"` au lieu de `position="fixed"`. Sticky n'est pas supporter par IE 11.
+1. Vous pouvez utiliser `position="sticky"` au lieu de `position="fixed"`. ⚠️ sticky is not supported by IE11.
 2. Vous pouvez rendre un deuxième composant `<Toolbar />` :
 
 ```jsx

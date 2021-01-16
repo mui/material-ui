@@ -22,7 +22,7 @@ Além do trade-off da composição acima, aplicamos as seguintes regras:
 
 ### Propagação
 
-Propriedades fornecidas para um componente que não estão explicitamente documentadas, são propagadas para o elemento raiz; por exemplo, a propriedade `className` é aplicada no elemento raiz.
+Propriedades fornecidas para um componente que não estão explicitamente documentadas são propagadas para o elemento raiz; por exemplo, a propriedade `className` é aplicada no elemento raiz.
 
 Agora, digamos que você queira desabilitar o efeito cascata do `MenuItem`. Você pode aproveitar o comportamento da propagação:
 
@@ -38,7 +38,7 @@ Evitamos documentar propriedades nativas suportadas pelo DOM como [`className`](
 
 ### Classes CSS
 
-Todos os componentes aceitam uma propriedade [`classes`](/customization/components/#overriding-styles-with-classes) para customizar os estilos. O design de classes responde a duas restrições: para tornar a estrutura das classes o mais simples possível, enquanto que faz a implementação da especificação do Material Design.
+Todos os componentes aceitam uma propriedade [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) para customizar os estilos. O design de classes responde a duas restrições: para tornar a estrutura das classes o mais simples possível, enquanto que faz a implementação da especificação do Material Design.
 
 - A classe aplicada ao elemento raiz é sempre chamada de `root`.
 - Todos os estilos padrão são agrupados em uma única classe.
@@ -80,7 +80,7 @@ O nome de uma propriedade booleana deve ser escolhido com base no **valor padrã
 
 ### Componentes controlados
 
-A maior parte de componentes controlados, é controlado pelas propriedades `value` e `onChange`, no entanto, o `open` / `onClose` / `onOpen` é uma combinação usada para o estado relacionado à exibição.
+A maior parte de componentes controlados, é controlado pelas propriedades `value` e `onChange`, no entanto, o `open` / `onClose` / `onOpen` é uma combinação usada para o estado relacionado à exibição. Nos casos em que há mais eventos, colocamos o substantivo em primeiro lugar e depois o verbo, por exemplo: `onPageChange`, `onRowsChange`.
 
 ### booleano vs enumerador
 

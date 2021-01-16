@@ -66,7 +66,7 @@ Choisissez l'un des 248 pays.
 
 Le composant a deux états qui peuvent être contrôlés :
 
-1. l'état "valeur" avec la combinaison `valeur`/`onChange` props. Cet état représente la valeur sélectionnée par l'utilisateur, par exemple en appuyant sur <kbd>Enter</kbd>.
+1. l'état "valeur" avec la combinaison `valeur`/`onChange` props. Cet état représente la valeur sélectionnée par l'utilisateur, par exemple en appuyant sur <kbd class="key">Enter</kbd>.
 2. l'état "input value" avec la combinaison `inputValue`/`onInputChange`. Cet état représente la valeur affichée dans la zone de texte.
 
 > ⚠ Ces deux états sont isolés, ils doivent être contrôlés de manière indépendante.
@@ -89,7 +89,7 @@ Si vous avez l'intention d'utiliser ce mode pour une [combo box](#combo-box) com
 
 - `selectOnFocus` pour aider l'utilisateur à effacer la valeur sélectionnée.
 - `clearOnBlur` pour aider l'utilisateur à entrer une nouvelle valeur.
-- `handleHomeEndKeys` pour déplacer le focus à l'intérieur de la fenêtre pop-up avec les touches <kbd>Accueil</kbd> et <kbd>Fin</kbd>.
+- `handleHomeEndKeys` pour déplacer le focus à l'intérieur de la fenêtre pop-up avec les touches <kbd class="key">Accueil</kbd> et <kbd class="key">Fin</kbd>.
 - Une dernière option, par exemple `Ajouter "VOTRE RECHERCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
@@ -110,7 +110,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 
 ## `useAutocomplete`
 
-Pour les cas de personnalisation avancée, nous exposons un hook `useAutocomplete()`. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
@@ -259,8 +259,7 @@ Pour les mécanismes de filtrage plus riches, comme les correspondances floues, 
 ```jsx
 import matchSorter from 'match-sorter';
 
-const filterOptions = (options, { inputValue }) =>
-  matchSorter(options, inputValue);
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
 <Autocomplete filterOptions={filterOptions} />;
 ```
@@ -271,26 +270,46 @@ Recherchez dans 10 000 options générées aléatoirement. La liste est virtuali
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
+## Events
+
+If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+
+```jsx
+<Autocomplete
+  onKeyDown={(event) => {
+    if (event.key === 'Enter') {
+      // Prevent's default 'Enter' behavior.
+      event.defaultMuiPrevented = false;
+      // your handler code
+    }
+  }}
+/>
+```
+
 ## Limites
 
 ### autocomplete/autofill
 
 Les navigateurs ont des heuristiques pour aider les utilisateurs à remplir les entrées de formulaire. Cependant, cela peut nuire à l'UX du composant.
 
-Par défaut, le composant désactive la fonctionnalité **auto-complétion** (rappelant ce que l'utilisateur a tapé pour un champ donné dans une session précédente) avec l'attribut `autoComplete="off"`.
+By default, the component disables the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
 
-Cependant, en plus de se souvenir des valeurs entrées passées, le navigateur peut également proposer des suggestions de **remplissage automatique** (connexion, adresse ou détails de paiement enregistrés). Dans le cas où vous voulez le remplissage automatique, vous pouvez essayer ce qui suit :
+In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). Dans le cas où vous voulez le remplissage automatique, vous pouvez essayer ce qui suit :
 
 - Nommez l'input sans fuir les informations que le navigateur peut utiliser. par exemple `id="field1"` au lieu de `id="country"`. Si vous laissez l'id vide, le composant utilise un id aléatoire.
-- Définir `autoComplete="new-password"`: jsx jsx
+- Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
-  inputProps={{
-        ...params.inputProps,
-        autoComplete: 'new-password',
-      }}
-      /&#062;
+  <TextField
+    {...params}
+    inputProps={{
+      ...params.inputProps,
+      autoComplete: 'new-password',
+    }}
+  />
   ```
+
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
 
 ### voiceOver iOS
 

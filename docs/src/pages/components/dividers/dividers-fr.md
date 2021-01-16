@@ -15,13 +15,13 @@ materialDesign: https://material.io/components/dividers
 
 ## Liste diviseurs
 
-The divider renders as an `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
+Par défaut, le diviseur est rendu comme un `<hr>`. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 
 ## Spécification HTML5
 
-In a list, you should ensure the `Divider` is rendered as an `<li>` to match the HTML5 specification. The examples below show two ways of achieving this.
+Dans une liste, vous devez vous assurer que le `Divider` est rendu en tant que `<li>` pour correspondre à la spécification HTML5. Les exemples ci-dessous montrent deux manières d'y parvenir.
 
 ## Encart De Diviseurs
 
@@ -43,7 +43,7 @@ You can also render a divider with content.
 
 ## Vertical divider
 
-You can also render a divider vertically using the `orientation` prop.
+Vous pouvez également rendre un séparateur verticalement en utilisant la propriété `orientation`.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
 import { create, SheetsRegistry } from 'jss';
@@ -54,10 +54,12 @@ describe('StylesProvider', () => {
   });
 
   describe('server-side', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     const useStyles = makeStyles({ root: { display: 'flex' } });
     const Button = (props) => {

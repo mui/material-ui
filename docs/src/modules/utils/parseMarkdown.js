@@ -1,4 +1,4 @@
-import marked from 'marked/lib/marked';
+import marked from 'marked';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import kebabCase from 'lodash/kebabCase';
 import textToHash from 'docs/src/modules/utils/textToHash';
@@ -42,8 +42,14 @@ export function getHeaders(markdown) {
   // eslint-disable-next-line no-cond-assign
   while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
     const key = regexMatches[1];
-    const value = regexMatches[2].replace(/'(.*)'/, '$1');
-    headers[key] = value;
+    const value = regexMatches[2].replace(/(.*)/, '$1');
+    if (value[0] === '[') {
+      // Need double quotes to JSON parse.
+      headers[key] = JSON.parse(value.replace(/'/g, '"'));
+    } else {
+      // Remove trailing single quote yml escaping.
+      headers[key] = value.replace(/^'|'$/g, '');
+    }
   }
 
   if (headers.components) {
@@ -244,7 +250,7 @@ ${headers.components
               `<h${level}>`,
               `<a class="anchor-link" id="${hash}"></a>`,
               headingHtml,
-              `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
+              `<a class="anchor-link-style" aria-hidden="true" href="#${hash}">`,
               '<svg><use xlink:href="#anchor-link-icon" /></svg>',
               '</a>',
               `</h${level}>`,

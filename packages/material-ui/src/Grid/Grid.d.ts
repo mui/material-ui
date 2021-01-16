@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
@@ -59,24 +61,43 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
       item?: string;
       /** Styles applied to the root element if `zeroMinWidth={true}`. */
       zeroMinWidth?: string;
+      /** Styles applied to the root element if `direction="column"`. */
       'direction-xs-column'?: string;
+      /** Styles applied to the root element if `direction="column-reverse"`. */
       'direction-xs-column-reverse'?: string;
+      /** Styles applied to the root element if `direction="row-reverse"`. */
       'direction-xs-row-reverse'?: string;
+      /** Styles applied to the root element if `wrap="nowrap"`. */
       'wrap-xs-nowrap'?: string;
+      /** Styles applied to the root element if `wrap="reverse"`. */
       'wrap-xs-wrap-reverse'?: string;
+      /** Styles applied to the root element if `alignItems="center"`. */
       'align-items-xs-center'?: string;
+      /** Styles applied to the root element if `alignItems="flex-start"`. */
       'align-items-xs-flex-start'?: string;
+      /** Styles applied to the root element if `alignItems="flex-end"`. */
       'align-items-xs-flex-end'?: string;
+      /** Styles applied to the root element if `alignItems="baseline"`. */
       'align-items-xs-baseline'?: string;
+      /** Styles applied to the root element if `alignContent="center"`. */
       'align-content-xs-center'?: string;
+      /** Styles applied to the root element if `alignContent="flex-start"`. */
       'align-content-xs-flex-start'?: string;
+      /** Styles applied to the root element if `alignContent="flex-end"`. */
       'align-content-xs-flex-end'?: string;
+      /** Styles applied to the root element if `alignContent="space-between"`. */
       'align-content-xs-space-between'?: string;
+      /** Styles applied to the root element if `alignContent="space-around"`. */
       'align-content-xs-space-around'?: string;
+      /** Styles applied to the root element if `justifyContent="center"`. */
       'justify-content-xs-center'?: string;
+      /** Styles applied to the root element if `justifyContent="flex-end"`. */
       'justify-content-xs-flex-end'?: string;
+      /** Styles applied to the root element if `justifyContent="space-between"`. */
       'justify-content-xs-space-between'?: string;
+      /** Styles applied to the root element if `justifyContent="space-around"`. */
       'justify-content-xs-space-around'?: string;
+      /** Styles applied to the root element if `justifyContent="space-evenly"`. */
       'justify-content-xs-space-evenly'?: string;
       'spacing-xs-1'?: string;
       'spacing-xs-2'?: string;
@@ -151,6 +172,10 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default 0
      */
     spacing?: GridSpacing;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * Defines the `flex-wrap` style property.
      * It's applied for all screen sizes.

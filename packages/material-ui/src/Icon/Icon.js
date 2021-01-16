@@ -54,22 +54,26 @@ export const styles = (theme) => ({
 
 const Icon = React.forwardRef(function Icon(props, ref) {
   const {
+    baseClassName = 'material-icons',
     classes,
     className,
     color = 'inherit',
     component: Component = 'span',
-    fontSize = 'default',
+    fontSize = 'medium',
     ...other
   } = props;
 
   return (
     <Component
       className={clsx(
-        'material-icons',
+        baseClassName,
+        // Prevent the translation of the text content.
+        // The font relies on the exact text content to render the icon.
+        'notranslate',
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
+          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'medium',
         },
         className,
       )}
@@ -85,6 +89,12 @@ Icon.propTypes = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * The base class applied to the icon. Defaults to 'material-icons', but can be changed to any
+   * other base class that suits the icon font you're using (e.g. material-icons-rounded, fas, etc).
+   * @default 'material-icons'
+   */
+  baseClassName: PropTypes.string,
   /**
    * The name of the icon font ligature.
    */
@@ -109,9 +119,9 @@ Icon.propTypes = {
   component: PropTypes.elementType,
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
-   * @default 'default'
+   * @default 'medium'
    */
-  fontSize: PropTypes.oneOf(['default', 'inherit', 'large', 'small']),
+  fontSize: PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
 };
 
 Icon.muiName = 'Icon';

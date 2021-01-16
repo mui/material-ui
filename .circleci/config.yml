@@ -1,14 +1,25 @@
 version: 2.1
 
+parameters:
+  workflow:
+    description: The name of the workflow to run
+    type: string
+    default: pipeline
+
 defaults: &defaults
   parameters:
     react-dist-tag:
       description: The dist-tag of react to be used
       type: string
       default: stable
+    test-gate:
+      description: A particular type of tests that should be run
+      type: string
+      default: undefined
   environment:
     # expose it globally otherwise we have to thread it from each job to the install command
     REACT_DIST_TAG: << parameters.react-dist-tag >>
+    TEST_GATE: << parameters.test-gate >>
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:10
@@ -39,17 +50,14 @@ commands:
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
             - v2-yarn-sha-
+      - restore_cache:
+          keys:
+            - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+            - v1-playwright-{{ arch }}-
+            - v1-playwright-
       - run:
           name: Install js dependencies
           command: yarn
-  prepare_chrome_headless:
-    steps:
-      - run:
-          name: Install dependencies for Chrome Headless
-          # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y --force-yes gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
 
 jobs:
   checkout:
@@ -63,6 +71,10 @@ jobs:
       - run:
           name: Check for duplicated packages
           command: yarn deduplicate
+      - save_cache:
+          key: v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/ms-playwright
       - save_cache:
           key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
@@ -137,14 +149,23 @@ jobs:
           name: '`yarn docs:api` changes committed?'
           command: git diff --exit-code
       - run:
+          name: Update the navigation translations
+          command: yarn docs:i18n
+      - run:
+          name: '`yarn docs:i18n` changes committed?'
+          command: git diff --exit-code
+      - run:
           name: Generate the framer components
           command: yarn workspace framer build
       - run:
           name: '`yarn workspace framer build` changes committed?'
           command: git diff --exit-code
       - run:
-          name: Lint
+          name: Eslint
           command: yarn lint:ci
+      - run:
+          name: Stylelint
+          command: yarn stylelint
       - run:
           name: Lint JSON
           command: yarn jsonlint
@@ -167,6 +188,37 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
+      - run:
+          name: Test module augmenation
+          command: yarn workspace @material-ui/core typescript:module-augmentation
+
+      - restore_cache:
+          name: Restore generated declaration files
+          keys:
+            # We assume that the target branch is `next` and that declaration files are persisted in commit order.
+            # "If there are multiple matches, the most recently generated cache will be used."
+            - typescript-declaration-files-next
+
+      - run:
+          name: Diff declaration files
+          command: |
+            git add -f packages/material-ui/build || echo '/core declarations do not exist'
+            git add -f packages/material-ui-lab/build || echo '/lab declarations do not exist'
+            git add -f packages/material-ui-utils/build || echo '/utils declarations do not exist'
+            yarn lerna run --parallel build:types
+            git --no-pager diff
+
+      - run:
+          name: Any defect declaration files?
+          command: node scripts/testBuiltTypes.js
+      - save_cache:
+          name: Save generated declaration files
+          key: typescript-declaration-files-{{ .Branch }}-{{ .Revision }}
+          paths:
+            # packages with generated declaration files
+            - packages/material-ui/build
+            - packages/material-ui-lab/build
+            - packages/material-ui-utils/build
   test_types_next:
     <<: *defaults
     steps:
@@ -191,12 +243,41 @@ jobs:
             # without --no-bail we only see at most a single failing package
             yarn typescript --no-bail
             exit 0
+      
+      - restore_cache:
+          name: Restore generated declaration files
+          keys:
+            # We assume that the target branch is `next` and that declaration files are persisted in commit order.
+            # "If there are multiple matches, the most recently generated cache will be used."
+            - typescript-declaration-files-next
+
+      - run:
+          name: Diff declaration files
+          command: |
+            git add -f packages/material-ui/build || echo '/core declarations do not exist'
+            git add -f packages/material-ui-lab/build || echo '/lab declarations do not exist'
+            git add -f packages/material-ui-utils/build || echo '/utils declarations do not exist'
+            yarn lerna run --parallel build:types
+            git --no-pager diff
+
+      - run:
+          name: Log defect declaration files
+          command: |
+            # ignore build failures
+            # Fixing these takes some effort that isn't viable to merge in a single PR.
+            # We'll simply monitor them for now.
+            set +e
+            node scripts/testBuiltTypes.js
+            exit 0
   test_browser:
     <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright:bionic
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js
-      - prepare_chrome_headless
       - run:
           name: Tests real browsers
           command: yarn test:karma
@@ -210,22 +291,53 @@ jobs:
       - run:
           name: Test umd release
           command: yarn test:umd
-  test_regressions:
+  test_profile:
     <<: *defaults
     docker:
-      - image: circleci/node:10
-      - image: selenium/standalone-chrome:3.11.0
+      - image: mcr.microsoft.com/playwright:bionic
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+
     steps:
       - checkout
       - install_js
       - run:
-          name: Visual regression tests
+          name: Tests real browsers
+          # Run a couple of times for a better sample.
+          # TODO: hack something together where we can compile once and run multiple times e.g. by abusing watchmode.
           command: |
-            DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
-            yarn argos
+            # Running on chrome only since actual times are innaccurate anyway
+            # The other reason is that browserstack allows little concurrency so it's likely that we're starving other runs.
+            yarn test:karma:profile --browsers chrome,chromeHeadless
+            yarn test:karma:profile --browsers chrome,chromeHeadless
+            yarn test:karma:profile --browsers chrome,chromeHeadless
+            yarn test:karma:profile --browsers chrome,chromeHeadless
+            yarn test:karma:profile --browsers chrome,chromeHeadless
+      # Persist reports for inspection in https://mui-dashboard.netlify.app/
+      - store_artifacts:
+          # see karma.conf.profile.js reactProfilerReporter.outputDir
+          path: tmp/react-profiler-report/karma
+          destination: react-profiler-report/karma
+  test_regressions:
+    <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright:bionic
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Run visual regression tests
+          command: xvfb-run yarn test:regressions
+      - run:
+          name: Upload screenshots to Argos CI
+          command: yarn test:argos
 workflows:
   version: 2
   pipeline:
+    when:
+      equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
       - checkout
       - test_unit:
@@ -246,6 +358,11 @@ workflows:
             - test_static
             - test_types
             - test_browser
+  profile:
+    when:
+      equal: [profile, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_profile
   react-next:
     triggers:
       - schedule:

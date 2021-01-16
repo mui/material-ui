@@ -9,9 +9,8 @@ import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 
-// Translate the node so he can't be seen on the screen.
-// Later, we gonna translate back the node to his original location
-// with `none`.`
+// Translate the node so it can't be seen on the screen.
+// Later, we're going to translate the node back to its original location with `none`.
 function getTranslateValue(direction, node) {
   const rect = node.getBoundingClientRect();
   const containerWindow = ownerWindow(node);
@@ -71,6 +70,7 @@ const defaultTimeout = {
  */
 const Slide = React.forwardRef(function Slide(props, ref) {
   const {
+    appear = true,
     children,
     direction = 'down',
     in: inProp,
@@ -218,7 +218,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       onExit={handleExit}
       onExited={handleExited}
       onExiting={handleExiting}
-      appear
+      appear={appear}
       in={inProp}
       timeout={timeout}
       {...other}
@@ -244,6 +244,12 @@ Slide.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
+  appear: PropTypes.bool,
+  /**
    * A single child content element.
    */
   children: elementAcceptingRef,
@@ -253,7 +259,7 @@ Slide.propTypes = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
-   * If `true`, show the component; triggers the enter or exit animation.
+   * If `true`, the component will transition in.
    */
   in: PropTypes.bool,
   /**

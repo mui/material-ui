@@ -103,8 +103,8 @@ describe('<Fade />', () => {
 
       const element = container.querySelector('div');
 
-      expect(element.style).to.have.property('opacity', '0');
-      expect(element.style).to.have.property('visibility', 'hidden');
+      expect(element).toHaveInlineStyle({ opacity: '0' });
+      expect(element).toHaveInlineStyle({ visibility: 'hidden' });
     });
 
     it('should work when initially hidden, appear=false', () => {
@@ -116,8 +116,8 @@ describe('<Fade />', () => {
 
       const element = container.querySelector('div');
 
-      expect(element.style).to.have.property('opacity', '0');
-      expect(element.style).to.have.property('visibility', 'hidden');
+      expect(element).toHaveInlineStyle({ opacity: '0' });
+      expect(element).toHaveInlineStyle({ visibility: 'hidden' });
     });
   });
 });

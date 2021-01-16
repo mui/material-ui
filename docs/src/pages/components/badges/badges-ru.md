@@ -1,6 +1,6 @@
 ---
-title: React Badge component
-components: Badge
+title: Компонент React Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
@@ -18,7 +18,7 @@ githubLabel: 'component: Badge'
 
 ## Настраиваемые значки
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -55,3 +55,7 @@ githubLabel: 'component: Badge'
 Вы можете использовать проп `anchorOrigin` для перемещения значка в любой угол элемента.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled badge
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}

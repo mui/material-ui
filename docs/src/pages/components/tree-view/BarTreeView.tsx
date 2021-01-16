@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles, alpha, createStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -6,7 +6,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem, {
   TreeItemProps,
   useTreeItem,
-  ContentProps,
+  TreeItemContentProps,
 } from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
@@ -61,8 +61,7 @@ const useContentStyles = makeStyles((theme) =>
       '$root$selected:hover &': {
         backgroundColor: alpha(
           theme.palette.primary.main,
-          theme.palette.action.selectedOpacity +
-            theme.palette.action.hoverOpacity,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
@@ -75,8 +74,7 @@ const useContentStyles = makeStyles((theme) =>
       '$root$selected$focused &': {
         backgroundColor: alpha(
           theme.palette.primary.main,
-          theme.palette.action.selectedOpacity +
-            theme.palette.action.focusOpacity,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
         ),
       },
     },
@@ -88,7 +86,7 @@ const useContentStyles = makeStyles((theme) =>
 );
 
 const CustomContent = React.forwardRef(function CustomContent(
-  props: ContentProps,
+  props: TreeItemContentProps,
   ref,
 ) {
   const {
@@ -114,9 +112,7 @@ const CustomContent = React.forwardRef(function CustomContent(
 
   const icon = iconProp || expansionIcon || displayIcon;
 
-  const handleMouseDown = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     preventSelection(event);
   };
 

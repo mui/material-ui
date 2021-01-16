@@ -14,7 +14,7 @@ module.exports = {
       files: ['docs/**/*.md', 'docs/src/pages/**/*.{js,tsx}'],
       options: {
         // otherwise code blocks overflow on the docs website
-        printWidth: 80,
+        printWidth: 85,
       },
     },
   ],

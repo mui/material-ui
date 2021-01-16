@@ -1,5 +1,5 @@
 ---
-title: React 工具提示组件
+title: React Tooltip（工具提示）组件
 components: Tooltip
 githubLabel: 'component: Tooltip'
 materialDesign: https://material.io/components/tooltips
@@ -16,21 +16,21 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## 简单的文字提示
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
-## 工具提示的定位
+## 文字提示的位置
 
-`Tooltip` 有 12 个**位置** 选项。 它们没有方向箭头，而是依靠代码指示的移动情况来移动文字提示的出现位置。
+`Tooltip` 有 12 个**位置** 选项。 They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
 ## 自定义文字提示
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## 带箭头的工具提示
+## 文字提示的箭头
 
 您可以通过添加 `arrow` 属性向提示标签增加箭头指示器，从而可以凸显所指示的元素。
 
@@ -61,13 +61,13 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## 可控的工具提示
+## 受控的文字提示
 
 你可以使用 `open`， `onOpen` 和 `onClose` 属性来控制工具提示的行为。
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## 可变的宽度
+## 变量宽度
 
 为了保证可阅读性，`工具提示组件` 默认将较长的文字折行。
 
@@ -75,11 +75,11 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 ## 交互式
 
-工具提示可以是可交互的。 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。
+工具提示组件默认是可交互的（遵循 [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)）。 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 你可以通过 `disableInteractive` 来禁止交互（但是这将无法达到 AA 级所需的标准）。
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## 禁用的元素
+## 禁用元素
 
 默认情况下，被禁用的元素（如 `<Button>`）不会触发用户交互行为，因此 hover 等普通的事件不会激活`工具提示`的显示。 若想容纳已禁用的元素激活工具提示，请添加一个简单的包装元素，如 `span`。
 
@@ -90,18 +90,10 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 > 如果你没有包装从 `ButtonBase` 继承的 Material-UI 组件，譬如一个原生的 `<button>` 元素，当禁用元素的时候，你应该将 _pointer-events: none;_ 这个CSS 属性添加到您的元素中：
 
 ```jsx
-<Tooltip title="你没有足够的权限">
+<Tooltip title="您没有足够的操作权限">
   <span>
-    <button
-      disabled={disabled}
-      style={disabled ? { pointerEvents: 'none' } : {}}
-    >
-      {'A disabled button'}
-    </button>
-  </span>
-</Tooltip> { pointerEvents: 'none' } : {}}
-    >
-      {'A disabled button'}
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
+      一个禁用的按钮
     </button>
   </span>
 </Tooltip>
@@ -112,6 +104,18 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 使用不同的过渡动画。
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
+
+## 跟踪光标
+
+你可以通过设置 `followCursor={true}` 使工具提示组件跟随光标。
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## 虚拟元素
+
+如果你需要实现一个自定义的布局，那么你可以使用 `anchorEl` 属性： `anchorEl` 属性的值可以是一个假（fake） DOM 元素的引用。 你需要创建一个类似 [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/) 的对象。
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
 ## 显示和隐藏组件
 
@@ -128,7 +132,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 默认情况下，工具提示组件只会标注其子元素。 这与 `title` 明显不同，后者可以标注 **或** 描述它的子代，这取决于子代是否已经有标签。 例如，在：
 
 ```html
-<button title="some more information">A button</button>
+<button title="some more information">一个按钮</button>
 ```
 
 `title` 可以作为一种无障碍描述。 你可以通过设置 `describeChild` 来让你的工具提示组件具有无障碍描述的功能。 请注意，如果工具提示组件提供了唯一的视觉标签，那么你就不应该使用 `describeChild`。 否则，子元素将不会存在可访问的名称，而工具提示将违反 WCAG 2.1 [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html)。

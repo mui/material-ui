@@ -2,7 +2,7 @@ import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '..';
 
 export interface CircularProgressProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -17,7 +17,7 @@ export interface CircularProgressProps
     colorPrimary?: string;
     /** Styles applied to the root element if `color="secondary"`. */
     colorSecondary?: string;
-    /** Styles applied to the `svg` element. */
+    /** Styles applied to the svg element. */
     svg?: string;
     /** Styles applied to the `circle` svg path. */
     circle?: string;
@@ -40,7 +40,7 @@ export interface CircularProgressProps
    */
   disableShrink?: boolean;
   /**
-   * The size of the circle.
+   * The size of the component.
    * If using a number, the pixel unit is assumed.
    * If using a string, you need to provide the CSS unit, e.g '3rem'.
    * @default 40

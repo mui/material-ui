@@ -29,7 +29,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     'aria-labelledby'?: string;
     /**
-     * If `true`, the tabs will be centered.
+     * If `true`, the tabs are centered.
      * This prop is intended for large views.
      * @default false
      */
@@ -62,11 +62,11 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
       scrollableY?: string;
       /** Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`. */
       hideScrollbar?: string;
-      /** Styles applied to the `ScrollButtonComponent` component. */
+      /** Styles applied to the ScrollButtonComponent component. */
       scrollButtons?: string;
-      /** Styles applied to the `ScrollButtonComponent` component if `allowScrollButtonsMobile={true}`. */
+      /** Styles applied to the ScrollButtonComponent component if `allowScrollButtonsMobile={true}`. */
       scrollButtonsHideMobile?: string;
-      /** Styles applied to the `TabIndicator` component. */
+      /** Styles applied to the TabIndicator component. */
       indicator?: string;
     };
     /**
@@ -82,7 +82,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     onChange?: (event: React.SyntheticEvent, value: any) => void;
     /**
-     * The tabs orientation (layout flow direction).
+     * The component orientation (layout flow direction).
      * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
@@ -139,7 +139,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     variant?: 'standard' | 'scrollable' | 'fullWidth';
     /**
-     * If `true`, the scrollbar will be visible. It can be useful when displaying
+     * If `true`, the scrollbar is visible. It can be useful when displaying
      * a long vertical list of tabs.
      * @default false
      */

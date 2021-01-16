@@ -120,7 +120,7 @@ Step.propTypes = {
    */
   completed: PropTypes.bool,
   /**
-   * Mark the step as disabled, will also disable the button if
+   * If `true`, the step is disabled, will also disable the button if
    * `StepButton` is a child of `Step`. Is passed to child components.
    */
   disabled: PropTypes.bool,
@@ -135,7 +135,7 @@ Step.propTypes = {
    */
   index: PropTypes.number,
   /**
-   * If `true`, the Step will be displayed as rendered last.
+   * If `true`, the Step is displayed as rendered last.
    * The prop defaults to the value inherited from the parent Stepper component.
    */
   last: PropTypes.bool,

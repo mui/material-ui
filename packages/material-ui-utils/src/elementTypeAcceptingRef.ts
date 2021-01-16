@@ -3,7 +3,7 @@ import chainPropTypes from './chainPropTypes';
 
 function isClassComponent(elementType: Function) {
   // elementType.prototype?.isReactComponent
-  const { prototype } = elementType;
+  const { prototype = {} } = elementType;
 
   return Boolean(prototype.isReactComponent);
 }
@@ -18,7 +18,14 @@ function elementTypeAcceptingRef(
   const propValue = props[propName];
   const safePropName = propFullName || propName;
 
-  if (propValue == null) {
+  if (
+    propValue == null ||
+    // When server-side rendering React doesn't warn either.
+    // This is not an accurate check for SSR.
+    // This is only in place for emotion compat.
+    // TODO: Revisit once https://github.com/facebook/react/issues/20047 is resolved.
+    typeof window === 'undefined'
+  ) {
     return null;
   }
 

@@ -4,15 +4,15 @@
 
 ## Häufig gestellte Fragen
 
-### Woah - die API ist anders! Bedeutet das, dass 1.0 völlig anders ist und ich die Grundlagen noch einmal erlernen muss, und eine Migration wird praktisch unmöglich sein?
+### Woah - die API ist anders! Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-Gute Frage! Die Antwort ist nein. Die Kernkonzepte haben sich nicht geändert. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
+Die Antwort ist nein. I'm glad you asked! The core concepts haven't changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
 ### Was hat zu einer so großen Veränderung geführt?
 
 Die Material-UI wurde vor [4 Jahren gestartet](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). Das Ökosystem hat sich seitdem stark verändert, wir haben auch viel gelernt. [@nathanmarks](https://github.com/nathanmarks/) begann eine ehrgeizige Aufgabe, Material-UI **von Grund auf ** neu zu erstellen unter Ausnutzung seines Wissen seit langem bestehende Probleme zu lösen. Um einige der wichtigsten Änderungen zu nennen:
 
-- Neue Styling-Lösung mit CSS-in-JS (bessere[ Anpassungsmöglichkeiten](/customization/components/), bessere Leistung)
+- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
 - Neues Theming (Schachteln, selbsttragend usw.)
 - Schnelle Dokumentation dank [Next.js](https://github.com/zeit/next.js)
 - Viel bessere [Testabdeckung](/guides/testing/) (99%+, läuft auf allen gängigen Browsern, [visuelle Regressionstests](https://www.argos-ci.com/mui-org/material-ui))
@@ -49,28 +49,26 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 
 ```jsx
 import * as React from 'react';
-  import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
-  import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
-  import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
+import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-  const theme = createMuiTheme({
-    /* theme for v1.x */
-  });
-  const themeV0 = getMuiTheme({
-    /* theme for v0.x */
-  });
+const theme = createMuiTheme({
+  /* theme for v1.x */
+});
+const themeV0 = getMuiTheme({
+  /* theme for v0.x */
+});
 
-  function App() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <V0MuiThemeProvider muiTheme={themeV0}>
-          {/*Components*/}
-        </V0MuiThemeProvider>
-      </MuiThemeProvider>
-    );
-  }
+function App() {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <V0MuiThemeProvider muiTheme={themeV0}>{/*Components*/}</V0MuiThemeProvider>
+    </MuiThemeProvider>
+  );
+}
 
-  export default App;
+export default App;
 ```
 
 4. Danach können Sie jeweils eine Komponenteninstanz migrieren.
@@ -79,7 +77,7 @@ import * as React from 'react';
 
 ### Autovervollständigung (Autocomplete)
 
-Die Material-UI bietet keine übergeordnete API zur Lösung dieses Problems an. You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
+Die Material-UI bietet keine übergeordnete API zur Lösung dieses Problems an. Dafür müssen Sie die Lösungen zu erkunden, die [die React-Community entwickelt hat](/components/autocomplete/).
 
 In Zukunft werden wir versuchen, eine einfache Komponente bereitzustellen, um die einfachen Anwendungsfälle zu lösen: [#9997](https://github.com/mui-org/material-ui/issues/9997).
 

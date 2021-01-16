@@ -23,6 +23,7 @@ const reactMode = 'legacy';
 // eslint-disable-next-line no-console
 console.log(`Using React '${reactMode}' mode.`);
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
+const vercelDeploy = Boolean(process.env.VERCEL);
 
 module.exports = {
   typescript: {
@@ -40,6 +41,7 @@ module.exports = {
           LIB_VERSION: JSON.stringify(pkg.version),
           PULL_REQUEST: JSON.stringify(process.env.PULL_REQUEST === 'true'),
           REACT_MODE: JSON.stringify(reactMode),
+          FEEDBACK_URL: JSON.stringify(process.env.FEEDBACK_URL),
         },
       }),
     ]);
@@ -70,9 +72,7 @@ module.exports = {
 
       config.externals = [
         (context, request, callback) => {
-          const hasDependencyOnRepoPackages = ['notistack', '@material-ui/pickers'].includes(
-            request,
-          );
+          const hasDependencyOnRepoPackages = ['notistack'].includes(request);
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
@@ -107,7 +107,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)pickers)/,
+            include: /node_modules(\/|\\)notistack/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -130,6 +130,7 @@ module.exports = {
                         '@material-ui/styles': '../packages/material-ui-styles/src',
                         '@material-ui/system': '../packages/material-ui-system/src',
                         '@material-ui/utils': '../packages/material-ui-utils/src',
+                        '@material-ui/unstyled': '../packages/material-ui-unstyled/src',
                       },
                       transformFunctions: ['require'],
                     },
@@ -176,7 +177,7 @@ module.exports = {
 
     // We want to speed-up the build of pull requests.
     // For crowdin PRs we want to build all locales for testing.
-    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify) {
+    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify && !vercelDeploy) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');
@@ -195,9 +196,6 @@ module.exports = {
   },
   reactStrictMode: reactMode === 'legacy-strict',
   async rewrites() {
-    return [
-      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
-      { source: '/api/:rest*', destination: '/api-docs/:rest*' },
-    ];
+    return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
   },
 };

@@ -18,9 +18,9 @@ export default function BasicTextFields() {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <TextField id="standard-basic" label="Standard" />
+      <TextField id="outlined-basic" label="Outlined" />
       <TextField id="filled-basic" label="Filled" variant="filled" />
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+      <TextField id="standard-basic" label="Standard" variant="standard" />
     </form>
   );
 }

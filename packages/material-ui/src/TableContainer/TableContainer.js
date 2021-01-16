@@ -23,7 +23,7 @@ TableContainer.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The table itself, normally `<Table />`.
+   * The content of the component, normally `Table`.
    */
   children: PropTypes.node,
   /**

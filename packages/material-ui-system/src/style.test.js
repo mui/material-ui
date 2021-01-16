@@ -117,4 +117,61 @@ describe('style', () => {
       border: '4px solid',
     });
   });
+
+  it('should transform the property correctly using theme', () => {
+    const vSpacingWithTheme = style({
+      prop: 'vSpacing',
+      cssProperty: false,
+      themeKey: 'spacing',
+      transform: (value) => ({
+        '& > :not(:last-child)': {
+          marginBottom: value,
+        },
+      }),
+    });
+
+    const output = vSpacingWithTheme({
+      theme: {
+        spacing: (value) => value * 2,
+      },
+      vSpacing: 8,
+    });
+
+    expect(output).to.deep.equal({
+      '& > :not(:last-child)': {
+        marginBottom: 16,
+      },
+    });
+  });
+
+  it('should fallback to composed theme keys', () => {
+    const fontWeight = style({
+      prop: 'fontWeight',
+      themeKey: 'typography',
+    });
+
+    const output1 = fontWeight({
+      theme: {
+        typography: {
+          fontWeightBold: 700,
+        },
+      },
+      fontWeight: 'bold',
+    });
+    expect(output1).to.deep.equal({
+      fontWeight: 700,
+    });
+
+    const output2 = fontWeight({
+      theme: {
+        typography: {
+          fontWeight: 700,
+        },
+      },
+      fontWeight: 'default',
+    });
+    expect(output2).to.deep.equal({
+      fontWeight: 700,
+    });
+  });
 });

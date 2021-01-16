@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
@@ -57,8 +57,7 @@ const useContentStyles = makeStyles((theme) => ({
     '$root$selected:hover &': {
       backgroundColor: alpha(
         theme.palette.primary.main,
-        theme.palette.action.selectedOpacity +
-          theme.palette.action.hoverOpacity,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
       ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -71,8 +70,7 @@ const useContentStyles = makeStyles((theme) => ({
     '$root$selected$focused &': {
       backgroundColor: alpha(
         theme.palette.primary.main,
-        theme.palette.action.selectedOpacity +
-          theme.palette.action.focusOpacity,
+        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
       ),
     },
   },

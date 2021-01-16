@@ -19,8 +19,8 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
       error?: string;
       /** Pseudo-class applied to the root element if `disabled={true}`. */
       disabled?: string;
-      /** Styles applied to the root element if `margin="dense"`. */
-      marginDense?: string;
+      /** Styles applied to the root element if `size="small"`. */
+      sizeSmall?: string;
       /** Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
       contained?: string;
       /** Pseudo-class applied to the root element if `focused={true}`. */

@@ -18,15 +18,15 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
     disabled?: string;
   };
   /**
-   * Which direction should the button indicate?
+   * The direction the button should indicate.
    */
   direction: 'left' | 'right';
   /**
-   * If `true`, the element will be disabled.
+   * If `true`, the component is disabled.
    */
   disabled?: boolean;
   /**
-   * The tabs orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    */
   orientation: 'horizontal' | 'vertical';
 }

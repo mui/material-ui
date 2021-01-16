@@ -21,7 +21,7 @@ describe('<Box />', () => {
 
   it('renders children and box content', () => {
     const { container, getByTestId } = render(
-      <Box component="span" m={1}>
+      <Box component="span" sx={{ m: 1 }}>
         {testChildren}
       </Box>,
     );
@@ -29,20 +29,98 @@ describe('<Box />', () => {
     expect(container.querySelectorAll('span').length).to.equal(1);
   });
 
-  it('does not forward style props as DOM attributes', () => {
-    const elementRef = React.createRef();
-    render(
+  it('respect properties order when generating the CSS', function test() {
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+    if (isJSDOM) {
+      this.skip();
+    }
+
+    const testCaseBorderColorWins = render(
+      <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
+    );
+
+    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 255)',
+      borderRightColor: 'rgb(0, 0, 255)',
+      borderBottomColor: 'rgb(0, 0, 255)',
+      borderLeftColor: 'rgb(0, 0, 255)',
+    });
+
+    const testCaseBorderWins = render(
       <Box
-        color="primary.main"
-        fontFamily="Comic Sans"
-        fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
-        ref={elementRef}
+        sx={{
+          borderColor: 'rgb(0, 0, 255)',
+          border: 1,
+        }}
       />,
     );
 
-    const { current: element } = elementRef;
-    expect(element.getAttribute('color')).to.equal(null);
-    expect(element.getAttribute('font-family')).to.equal(null);
-    expect(element.getAttribute('font-size')).to.equal(null);
+    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 0)',
+      borderRightColor: 'rgb(0, 0, 0)',
+      borderBottomColor: 'rgb(0, 0, 0)',
+      borderLeftColor: 'rgb(0, 0, 0)',
+    });
+  });
+
+  it('respect properties order when generating the CSS from the sx prop', function test() {
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+    if (isJSDOM) {
+      this.skip();
+    }
+
+    const testCaseBorderColorWins = render(
+      <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
+    );
+
+    expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 255)',
+      borderRightColor: 'rgb(0, 0, 255)',
+      borderBottomColor: 'rgb(0, 0, 255)',
+      borderLeftColor: 'rgb(0, 0, 255)',
+    });
+
+    const testCaseBorderWins = render(<Box sx={{ borderColor: 'rgb(0, 0, 255)', border: 1 }} />);
+
+    expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderBottomWidth: '1px',
+      borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 0)',
+      borderRightColor: 'rgb(0, 0, 0)',
+      borderBottomColor: 'rgb(0, 0, 0)',
+      borderLeftColor: 'rgb(0, 0, 0)',
+    });
   });
 });

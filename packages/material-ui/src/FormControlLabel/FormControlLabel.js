@@ -49,7 +49,7 @@ export const styles = (theme) => ({
 });
 
 /**
- * Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
+ * Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.
  * Use this component if you want to display an extra label.
  */
 const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) {
@@ -133,7 +133,7 @@ FormControlLabel.propTypes = {
    */
   control: PropTypes.element.isRequired,
   /**
-   * If `true`, the control will be disabled.
+   * If `true`, the control is disabled.
    */
   disabled: PropTypes.bool,
   /**

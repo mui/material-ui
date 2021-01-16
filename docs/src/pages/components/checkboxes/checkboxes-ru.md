@@ -1,5 +1,5 @@
 ---
-title: React Checkbox component
+title: Компонент React Checkbox
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
 githubLabel: 'component: Checkbox'
@@ -46,7 +46,7 @@ A checkbox input can only have two states in a form: checked or unchecked. It ei
 
 ## Customized checkbox
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
@@ -54,7 +54,7 @@ A checkbox input can only have two states in a form: checked or unchecked. It ei
 
 ## Бесплатно
 
-- [Чекбоксы. Radio Buttons (радиокнопки)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Чекбоксы. Radio Buttons (радиокнопки) ](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 - [Чекбоксы. Switch (переключатели)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Доступность

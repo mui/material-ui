@@ -9,12 +9,12 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 <p class="description">モーダルコンポーネントは、ダイアログ、ポップオーバー、ライトボックスなどを作成するための強固な基盤を提供します。</p>
 
-コンポーネントは、backdropコンポーネントの前にその `children`ノードをレンダリングします。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。
+コンポーネントは、backdropコンポーネントの前にその `children`ノードをレンダリングします。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。
 
 - 💄 一度に1つだけでは不十分な場合に、モーダルスタッキングを管理します。
 - 🔐モーダルの下のインタラクションを無効にするためのバックドロップを作成します。
 - 🔐open開いている間、ページコンテンツのスクロールを無効にします。
-- ♿️フォーカスを適切に管理します。モーダルコンテンツに移動し、 して、モーダルが閉じられるまでそこに保持します。
+- ♿️フォーカスを適切に管理します。モーダルコンテンツに移動 して、モーダルが閉じられるまでそこに保持します。
 - ♿️適切なARIAロールを自動的に追加します。
 - [5 kB gzipped](/size-snapshot).
 
@@ -30,6 +30,8 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 - [Popover](/components/popover/)
 
 ## Simple modal
+
+This demo stacks Modals, but it is strongly discouraged to do so in practice.
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
@@ -52,9 +54,21 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
+## パフォーマンス
+
+The content of modal is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to change this default behavior by enabling the `keepMounted` prop:
+
+```jsx
+<Modal keepMounted />
+```
+
+{{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
+
+他のパフォーマンス最適化と同様、これは特効薬ではありません。 まずボトルネックを特定してから、これらの最適化戦略を試してください。
+
 ## Server-side modal
 
-React は、サーバー上の [`createPortal（）`](https://reactjs.org/docs/portals.html) APIを[サポートしません。](https://github.com/facebook/react/issues/13097) In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
+React は、サーバー上の [`createPortal（）`](https://reactjs.org/docs/portals.html) APIを[サポートしません。](https://github.com/facebook/react/issues/13097) In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 

@@ -67,6 +67,7 @@ export default function createBreakpoints(breakpoints) {
     between,
     only,
     width,
+    unit,
     ...other,
   };
 }

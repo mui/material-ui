@@ -16,21 +16,21 @@ Lorsqu'elles sont activées, [Info-bulles](https://material.io/design/components
 
 ## Info-bulles simples
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
-## Info-bulles positionnées
+## Positioned tooltips
 
-The `Tooltip` has 12 **placements** choice. They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
+The `Tooltip` has 12 **placements** choice. They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
 ## Customized tooltips
 
-Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Arrow Tooltips
+## Arrow tooltips
 
 You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
 
@@ -61,13 +61,13 @@ Vous pouvez définir les types d'événements qui entraînent l'affichage d'une 
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Info-bulles contrôlées
+## Controlled tooltips
 
 Vous pouvez utiliser les propriétés `open`, `onOpen` et `onClose` pour contrôler le comportement de l'info-bulle.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Largeur Variable
+## Variable width
 
 Le `Tooltip` enveloppements long texte par défaut pour le rendre lisible.
 
@@ -75,11 +75,11 @@ Le `Tooltip` enveloppements long texte par défaut pour le rendre lisible.
 
 ## Interactif
 
-A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## Éléments désactivés
+## Disabled elements
 
 Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les interactions utilisateur si un `infobulle` ne sera pas activée sur les événements normaux comme vol stationnaire. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
@@ -92,11 +92,9 @@ Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les
 ```jsx
 <Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'A disabled button'}
-    </button>
-  </span>
-</Tooltip>
+    <button disabled={disabled} style={disabled ? <Tooltip title="You don't have permission to do this">
+  <span>
+    <button disabled={disabled} style={disabled ?
 ```
 
 ## Les transitions
@@ -104,6 +102,18 @@ Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les
 Utilisez une transition différente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
+
+## Follow cursor
+
+You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## Virtual element
+
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
 ## Montrer et se cacher
 

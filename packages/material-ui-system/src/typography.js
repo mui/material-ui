@@ -33,7 +33,14 @@ export const textAlign = style({
   prop: 'textAlign',
 });
 
+export const typographyVariant = style({
+  prop: 'typography',
+  cssProperty: false,
+  themeKey: 'typography',
+});
+
 const typography = compose(
+  typographyVariant,
   fontFamily,
   fontSize,
   fontStyle,

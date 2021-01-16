@@ -70,12 +70,14 @@ export default function BackToTop(props: Props) {
       <CssBaseline />
       <AppBar>
         <Toolbar>
-          <Typography variant="h6">Scroll to see button</Typography>
+          <Typography variant="h6" component="div">
+            Scroll to see button
+          </Typography>
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <Container>
-        <Box my={2}>
+        <Box sx={{ my: 2 }}>
           {[...new Array(12)]
             .map(
               () => `Cras mattis consectetur purus sit amet fermentum.

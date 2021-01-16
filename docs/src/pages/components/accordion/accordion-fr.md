@@ -28,15 +28,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 ## Customized accordions
 
-Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
-
-## Actions supplémentaires
-
-Pour pouvoir exécuter une action comme une  `Checkbox`  ou un bouton à l'intérieur du `AccordionSummary`, vous aurez besoin d'arrêter la propagation du focus et de l'évènement de clique sur l'accordéon à partir de l'expansion/réduction au moment de son utilisation. Vous devriez également fournir un `aria-label` pour l'action, autrement le label de l'action imbriquer sera inclus dans le label du bouton parent qui contrôle l'expansion de l'accordéon.
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## Performances
 

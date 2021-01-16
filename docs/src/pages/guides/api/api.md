@@ -25,7 +25,7 @@ Aside from the above composition trade-off, we enforce the following rules:
 
 ### Spread
 
-Props supplied to a component which are not explictly documented, are spread to the root element;
+Props supplied to a component which are not explicitly documented are spread to the root element;
 for instance, the `className` prop is applied to the root.
 
 Now, let's say you want to disable the ripples on the `MenuItem`.
@@ -43,7 +43,7 @@ We avoid documenting native properties supported by the DOM like [`className`](/
 
 ### CSS Classes
 
-All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles.
+All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles.
 The classes design answers two constraints:
 to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
 

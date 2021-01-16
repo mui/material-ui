@@ -24,7 +24,7 @@ export interface ModalProps
    */
   closeAfterTransition?: boolean;
   /**
-   * A HTML element or function that returns one.
+   * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
    * By default, it uses the body of the top-level document object,
@@ -42,11 +42,6 @@ export interface ModalProps
    */
   disableAutoFocus?: boolean;
   /**
-   * If `true`, clicking the backdrop will not fire `onClose`.
-   * @default false
-   */
-  disableBackdropClick?: boolean;
-  /**
    * If `true`, the modal will not prevent focus from leaving the modal while open.
    *
    * Generally this should never be set to `true` as it makes the modal less
@@ -55,12 +50,12 @@ export interface ModalProps
    */
   disableEnforceFocus?: boolean;
   /**
-   * If `true`, hitting escape will not fire `onClose`.
+   * If `true`, hitting escape will not fire the `onClose` callback.
    * @default false
    */
   disableEscapeKeyDown?: boolean;
   /**
-   * The `children` will be inside the DOM hierarchy of the parent component.
+   * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal?: PortalProps['disablePortal'];
@@ -102,12 +97,7 @@ export interface ModalProps
     bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown'): void;
   }['bivarianceHack'];
   /**
-   * Callback fired when the escape key is pressed,
-   * `disableEscapeKeyDown` is false and the modal is in focus.
-   */
-  onEscapeKeyDown?: React.ReactEventHandler<{}>;
-  /**
-   * If `true`, the modal is open.
+   * If `true`, the component is shown.
    */
   open: boolean;
 }
@@ -115,10 +105,10 @@ export interface ModalProps
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
- * -   [Dialog](https://material-ui.com/api/dialog/)
- * -   [Drawer](https://material-ui.com/api/drawer/)
- * -   [Menu](https://material-ui.com/api/menu/)
- * -   [Popover](https://material-ui.com/api/popover/)
+ * *   [Dialog](https://material-ui.com/api/dialog/)
+ * *   [Drawer](https://material-ui.com/api/drawer/)
+ * *   [Menu](https://material-ui.com/api/menu/)
+ * *   [Popover](https://material-ui.com/api/popover/)
  *
  * If you are creating a modal dialog, you probably want to use the [Dialog](https://material-ui.com/api/dialog/) component
  * rather than directly using Modal.

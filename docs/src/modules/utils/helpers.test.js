@@ -11,6 +11,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Select from '@material-ui/core/Select';
+import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
 import FooBar, { Qux } from '@foo-bar/bip';
 const styles = theme => ({
   container: {
@@ -22,13 +23,14 @@ const styles = theme => ({
 
   it('should handle @ dependencies', () => {
     expect(getDependencies(s1)).to.deep.equal({
-      '@emotion/core': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
+      '@material-ui/unstyled': 'next',
       'prop-types': 'latest',
-      'react-dom': 'latest',
-      react: 'latest',
     });
   });
 
@@ -48,27 +50,15 @@ const suggestions = [
 `;
 
     expect(getDependencies(source)).to.deep.equal({
-      '@emotion/core': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
       'react-draggable': 'latest',
-      'react-dom': 'latest',
-      react: 'latest',
-    });
-  });
-
-  it('should support next dependencies', () => {
-    expect(getDependencies(s1, { reactVersion: 'next' })).to.deep.equal({
-      '@emotion/core': 'latest',
-      '@emotion/styled': 'latest',
-      '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'next',
-      'prop-types': 'latest',
-      'react-dom': 'next',
-      react: 'next',
     });
   });
 
@@ -78,31 +68,32 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import DateFnsAdapter from "@material-ui/pickers/adapter/date-fns";
-import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/lab';
 `;
 
     expect(getDependencies(source)).to.deep.equal({
-      'date-fns': 'latest',
-      '@emotion/core': 'latest',
-      '@emotion/styled': 'latest',
-      '@material-ui/pickers': 'next',
-      '@material-ui/core': 'next',
-      'prop-types': 'latest',
-      'react-dom': 'latest',
       react: 'latest',
+      'react-dom': 'latest',
+      'prop-types': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@material-ui/core': 'next',
+      '@material-ui/lab': 'next',
+      'date-fns': 'latest',
     });
   });
 
   it('can collect required @types packages', () => {
     expect(getDependencies(s1, { codeLanguage: 'TS' })).to.deep.equal({
-      '@emotion/core': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
+      'prop-types': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
-      'prop-types': 'latest',
-      'react-dom': 'latest',
-      react: 'latest',
+      '@material-ui/unstyled': 'next',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
@@ -114,22 +105,22 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
   it('should handle multilines', () => {
     const source = `
 import * as React from 'react';
-import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import {
   LocalizationProvider as MuiPickersLocalizationProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
-} from '@material-ui/pickers';
+} from '@material-ui/lab';
     `;
 
     expect(getDependencies(source)).to.deep.equal({
-      'date-fns': 'latest',
-      '@emotion/core': 'latest',
-      '@emotion/styled': 'latest',
-      '@material-ui/core': 'next',
-      '@material-ui/pickers': 'next',
       react: 'latest',
       'react-dom': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@material-ui/core': 'next',
+      '@material-ui/lab': 'next',
+      'date-fns': 'latest',
     });
   });
 
@@ -139,41 +130,19 @@ import lab from '@material-ui/lab';
     `;
 
     expect(getDependencies(source)).to.deep.equal({
-      '@emotion/core': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
       '@material-ui/lab': 'next',
-      react: 'latest',
-      'react-dom': 'latest',
-    });
-  });
-
-  it('should support the data-grid component', () => {
-    const source = `
-import * as React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
-import { useDemoData } from '@material-ui/x-grid-data-generator';
-    `;
-
-    expect(getDependencies(source, { codeLanguage: 'TS' })).to.deep.equal({
-      '@emotion/core': 'latest',
-      '@emotion/styled': 'latest',
-      '@material-ui/core': 'next',
-      '@material-ui/lab': 'next',
-      '@material-ui/icons': 'next',
-      '@material-ui/data-grid': 'latest',
-      '@material-ui/x-grid-data-generator': 'latest',
-      '@types/react': 'latest',
-      '@types/react-dom': 'latest',
-      react: 'latest',
-      'react-dom': 'latest',
-      typescript: 'latest',
     });
   });
 
   it('can use codesandbox deploys if a commit is given', () => {
     const source = `
 import * as Core from '@material-ui/core';
+import * as Unstyled from '@material-ui/unstyled';
 import * as Icons from '@material-ui/icons';
 import * as Lab from '@material-ui/lab';
 import * as Styles from '@material-ui/styles';
@@ -186,7 +155,7 @@ import * as Utils from '@material-ui/utils';
     ).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
-      '@emotion/core': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/core',
@@ -200,6 +169,31 @@ import * as Utils from '@material-ui/utils';
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/system',
       '@material-ui/utils':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/utils',
+      '@material-ui/unstyled':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/unstyled',
+    });
+  });
+
+  it('should date adapters', () => {
+    const source = `
+import * as React from 'react';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import AdapterDayjs from '@material-ui/lab/AdapterDayjs';
+import AdapterLuxon from '@material-ui/lab/AdapterLuxon';
+import AdapterMoment from '@material-ui/lab/AdapterMoment';
+    `;
+
+    expect(getDependencies(source)).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@material-ui/core': 'next',
+      '@material-ui/lab': 'next',
+      'date-fns': 'latest',
+      dayjs: 'latest',
+      luxon: 'latest',
+      moment: 'latest',
     });
   });
 });

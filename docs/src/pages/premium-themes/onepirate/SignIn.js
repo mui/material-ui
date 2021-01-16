@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Field, Form, FormSpy } from 'react-final-form';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
@@ -118,10 +118,7 @@ function SignIn() {
           )}
         </Form>
         <Typography align="center">
-          <Link
-            underline="always"
-            href="/premium-themes/onepirate/forgot-password/"
-          >
+          <Link underline="always" href="/premium-themes/onepirate/forgot-password/">
             Forgot password?
           </Link>
         </Typography>

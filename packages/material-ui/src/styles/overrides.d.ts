@@ -8,6 +8,7 @@ import { AlertTitleClassKey } from '../AlertTitle';
 import { AppBarClassKey } from '../AppBar';
 import { AutocompleteClassKey } from '../Autocomplete';
 import { AvatarClassKey } from '../Avatar';
+import { AvatarGroupClassKey } from '../AvatarGroup';
 import { BackdropClassKey } from '../Backdrop';
 import { BadgeClassKey } from '../Badge';
 import { BottomNavigationActionClassKey } from '../BottomNavigationAction';
@@ -111,11 +112,7 @@ import { TypographyClassKey } from '../Typography';
 export type ComponentsOverrides = {
   [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
 } & {
-  MuiCssBaseline?: {
-    '@global'?: {
-      '@font-face'?: CSSProperties['@font-face'];
-    } & Record<string, CSSProperties['@font-face'] | CSSProperties>; // allow arbitrary selectors
-  };
+  MuiCssBaseline?: CSSProperties;
 };
 
 export interface ComponentNameToClassKey {
@@ -124,6 +121,7 @@ export interface ComponentNameToClassKey {
   MuiAppBar: AppBarClassKey;
   MuiAutocomplete: AutocompleteClassKey;
   MuiAvatar: AvatarClassKey;
+  MuiAvatarGroup: AvatarGroupClassKey;
   MuiBackdrop: BackdropClassKey;
   MuiBadge: BadgeClassKey;
   MuiBottomNavigation: BottomNavigationClassKey;
@@ -143,10 +141,6 @@ export interface ComponentNameToClassKey {
   MuiCircularProgress: CircularProgressClassKey;
   MuiCollapse: CollapseClassKey;
   MuiContainer: ContainerClassKey;
-  /**
-   * @deprecated See CssBaseline.d.ts
-   */
-  MuiCssBaseline: '@global';
   MuiDialog: DialogClassKey;
   MuiDialogActions: DialogActionsClassKey;
   MuiDialogContent: DialogContentClassKey;

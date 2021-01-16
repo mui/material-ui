@@ -131,12 +131,7 @@ const footers = [
   },
   {
     title: 'Resources',
-    description: [
-      'Resource',
-      'Resource name',
-      'Another resource',
-      'Final resource',
-    ],
+    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
   },
   {
     title: 'Legal',
@@ -207,15 +202,10 @@ export default function Pricing() {
         >
           Pricing
         </Typography>
-        <Typography
-          variant="h5"
-          align="center"
-          color="textSecondary"
-          component="p"
-        >
-          Quickly build an effective pricing table for your potential customers
-          with this layout. It&apos;s built with default Material-UI components
-          with little customization.
+        <Typography variant="h5" align="center" color="textSecondary" component="p">
+          Quickly build an effective pricing table for your potential customers with
+          this layout. It&apos;s built with default Material-UI components with
+          little customization.
         </Typography>
       </Container>
       {/* End hero unit */}
@@ -296,7 +286,7 @@ export default function Pricing() {
             </Grid>
           ))}
         </Grid>
-        <Box mt={5}>
+        <Box sx={{ mt: 5 }}>
           <Copyright />
         </Box>
       </Container>

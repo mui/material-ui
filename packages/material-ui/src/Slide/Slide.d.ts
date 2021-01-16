@@ -3,6 +3,12 @@ import { TransitionProps } from '../transitions/transition';
 
 export interface SlideProps extends TransitionProps {
   /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
+  appear?: boolean;
+  /**
    * A single child content element.
    */
   children?: React.ReactElement<any, any>;
@@ -12,7 +18,7 @@ export interface SlideProps extends TransitionProps {
    */
   direction?: 'left' | 'right' | 'up' | 'down';
   /**
-   * If `true`, show the component; triggers the enter or exit animation.
+   * If `true`, the component will transition in.
    */
   in?: TransitionProps['in'];
   ref?: React.Ref<unknown>;

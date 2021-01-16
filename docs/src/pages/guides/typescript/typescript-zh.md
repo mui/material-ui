@@ -82,15 +82,16 @@ const styles = createStyles({
 });
 
 // 依赖于主题的样式
-const styles = ({ palette, spacing }: Theme) => createStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: spacing.unit,
-    backgroundColor: palette.background.default,
-    color: palette.primary.main,
-  },
-});
+const styles = ({ palette, spacing }: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: spacing.unit,
+      backgroundColor: palette.background.default,
+      color: palette.primary.main,
+    },
+  });
 ```
 
 `createStyles` 只是一个恒等函数（identity function)；它不会在运行时“做任何事情”，只是在编译时帮助指导类型推断。
@@ -112,11 +113,11 @@ const styles = createStyles({
 });
 ```
 
-However to allow these styles to pass TypeScript, the definitions have to be unambiguous concerning names for CSS classes and actual CSS property names. 由于类名称应与 CSS 属性相同，因此应避免使用。
+然而，为了让这些样式能在TypeScript 中使用，所以在定义时必须明确 CSS 类的名称和实际的 CSS 属性名称。 由于类名称应与 CSS 属性相同，因此应避免使用。
 
 ```ts
-// 这样是错误的，由于 TypeScript 认为 `@media (min-width: 960px)` 是一个类名
-// 并且 `content` 是 css 属性
+// 这样是错误的，因为 TypeScript 认为 `@media (min-width: 960px)` 是一个类名
+// 并且认为 `content` 是 css 属性
 const ambiguousStyles = createStyles({
   content: {
     minHeight: '100vh',
@@ -146,17 +147,24 @@ const ambiguousStyles = createStyles({
 由于用 `withStyles(styles)` 装饰的组件被注入了一个特殊的 `classes` 属性，您需要相应地定义其属性：
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props {
   // 未被注入样式的属性
   foo: number;
   bar: boolean;
-  // 被注入样式的属性
+  // 已被注入样式的属性
   classes: {
     root: string;
     paper: string;
@@ -170,11 +178,18 @@ interface Props {
 ```ts
 import { WithStyles, createStyles } from '@material-ui/core';
 
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props extends WithStyles<typeof styles> {
   foo: number;
@@ -196,14 +211,14 @@ const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) 
 const DecoratedClass = withStyles(styles)(
   class extends React.Component<Props> {
     render() {
-      const { text, type, color, classes } = this.props
+      const { text, type, color, classes } = this.props;
       return (
         <Typography variant={type} color={color} classes={classes}>
           {text}
         </Typography>
       );
     }
-  }
+  },
 );
 ```
 
@@ -250,7 +265,7 @@ export default function createMyTheme(options: ThemeOptions) {
       breakpoint: 'lg',
     },
     ...options,
-  })
+  });
 }
 ```
 
@@ -259,7 +274,9 @@ export default function createMyTheme(options: ThemeOptions) {
 ```ts
 import createMyTheme from './styles/createMyTheme';
 
-const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
+const theme = createMyTheme({
+  appDrawer: { breakpoint: 'md' },
+});
 ```
 
 ## `component` 属性的用法
@@ -297,10 +314,7 @@ function ThirdPartyComponent({ prop1 }: { prop1: string }) {
   return <div />;
 }
 // ...
-function ThirdPartyComponent({ prop1 } : { prop1: string }) {
-  return <div />
-}
-// ...
+<GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
 ```
 
 当所需的 `ThirdPartyComponent` 是明确要求时，`prop1` 也成为 `GenericCustomComponent` 的必需属性。

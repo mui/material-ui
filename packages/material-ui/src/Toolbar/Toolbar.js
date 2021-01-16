@@ -11,7 +11,7 @@ export const styles = (theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  /* Styles applied to the root element if `disableGutters={false}`. */
+  /* Styles applied to the root element unless `disableGutters={true}`. */
   gutters: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
@@ -71,7 +71,8 @@ Toolbar.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
+   * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
+   * The Toolbar is a flex container, allowing flex item properites to be used to lay out the children.
    */
   children: PropTypes.node,
   /**

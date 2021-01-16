@@ -1,66 +1,91 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
+import { deepmerge, elementTypeAcceptingRef, refType } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
-import withStyles from '../styles/withStyles';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
+import { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    boxSizing: 'border-box',
-    WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent', // Reset default value
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-    border: 0,
-    margin: 0, // Remove the margin in Safari
-    borderRadius: 0,
-    padding: 0, // Remove the padding in Firefox
-    cursor: 'pointer',
-    userSelect: 'none',
-    verticalAlign: 'middle',
-    '-moz-appearance': 'none', // Reset
-    '-webkit-appearance': 'none', // Reset
-    textDecoration: 'none',
-    // So we take precedent over the style of a native <a /> element.
-    color: 'inherit',
-    '&::-moz-focus-inner': {
-      borderStyle: 'none', // Remove Firefox dotted outline.
-    },
-    '&$disabled': {
-      pointerEvents: 'none', // Disable link interactions
-      cursor: 'default',
-    },
-    '@media print': {
-      colorAdjust: 'exact',
-    },
-  },
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if keyboard focused. */
-  focusVisible: {},
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.disabled && styles.disabled),
+    ...(styleProps.focusVisible && styles.focusVisible),
+  });
 };
+
+const useUtilityClasses = (styleProps) => {
+  const { disabled, focusVisible, focusVisibleClassName, classes } = styleProps;
+
+  const slots = {
+    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
+  };
+
+  const composedClasses = composeClasses(slots, getButtonBaseUtilityClass, classes);
+
+  if (focusVisible && focusVisibleClassName) {
+    composedClasses.root += ` ${focusVisibleClassName}`;
+  }
+
+  return composedClasses;
+};
+
+export const ButtonBaseRoot = experimentalStyled(
+  'button',
+  {},
+  { name: 'MuiButtonBase', slot: 'Root', overridesResolver },
+)({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
+  boxSizing: 'border-box',
+  WebkitTapHighlightColor: 'transparent',
+  backgroundColor: 'transparent', // Reset default value
+  // We disable the focus ring for mouse, touch and keyboard users.
+  outline: 0,
+  border: 0,
+  margin: 0, // Remove the margin in Safari
+  borderRadius: 0,
+  padding: 0, // Remove the padding in Firefox
+  cursor: 'pointer',
+  userSelect: 'none',
+  verticalAlign: 'middle',
+  MozAppearance: 'none', // Reset
+  WebkitAppearance: 'none', // Reset
+  textDecoration: 'none',
+  // So we take precedent over the style of a native <a /> element.
+  color: 'inherit',
+  '&::-moz-focus-inner': {
+    borderStyle: 'none', // Remove Firefox dotted outline.
+  },
+  '&.Mui-disabled': {
+    pointerEvents: 'none', // Disable link interactions
+    cursor: 'default',
+  },
+  '@media print': {
+    colorAdjust: 'exact',
+  },
+});
 
 /**
  * `ButtonBase` contains as few styles as possible.
  * It aims to be a simple building block for creating a button.
  * It contains a load of style reset and some focus/ripple logic.
  */
-const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
+const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiButtonBase' });
   const {
     action,
     buttonRef: buttonRefProp,
     centerRipple = false,
     children,
-    classes,
     className,
     component = 'button',
     disabled = false,
@@ -307,17 +332,25 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }, [enableTouchRipple]);
   }
 
+  const styleProps = {
+    ...props,
+    centerRipple,
+    component,
+    disabled,
+    disableRipple,
+    disableTouchRipple,
+    focusRipple,
+    tabIndex,
+    focusVisible,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <ComponentProp
-      className={clsx(
-        classes.root,
-        {
-          [classes.disabled]: disabled,
-          [classes.focusVisible]: focusVisible,
-          [focusVisibleClassName]: focusVisible,
-        },
-        className,
-      )}
+    <ButtonBaseRoot
+      as={ComponentProp}
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       onBlur={handleBlur}
       onClick={onClick}
       onFocus={handleFocus}
@@ -340,7 +373,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
         /* TouchRipple is only needed client-side, x2 boost on the server. */
         <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
       ) : null}
-    </ComponentProp>
+    </ButtonBaseRoot>
   );
 });
 
@@ -362,7 +395,7 @@ ButtonBase.propTypes = {
    */
   buttonRef: refType,
   /**
-   * If `true`, the ripples will be centered.
+   * If `true`, the ripples are centered.
    * They won't start at the cursor interaction position.
    * @default false
    */
@@ -385,20 +418,20 @@ ButtonBase.propTypes = {
    */
   component: elementTypeAcceptingRef,
   /**
-   * If `true`, the base button will be disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
+   * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,
   /**
-   * If `true`, the touch ripple effect will be disabled.
+   * If `true`, the touch ripple effect is disabled.
    * @default false
    */
   disableTouchRipple: PropTypes.bool,
@@ -408,8 +441,8 @@ ButtonBase.propTypes = {
    */
   focusRipple: PropTypes.bool,
   /**
-   * This prop can help a person know which element has the keyboard focus.
-   * The class name will be applied when the element gain the focus through a keyboard interaction.
+   * This prop can help identify which element has keyboard focus.
+   * The class name will be applied when the element gains the focus through keyboard interaction.
    * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
    * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
    * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
@@ -419,7 +452,7 @@ ButtonBase.propTypes = {
   /**
    * @ignore
    */
-  href: PropTypes.string,
+  href: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * @ignore
    */
@@ -474,6 +507,10 @@ ButtonBase.propTypes = {
    */
   onTouchStart: PropTypes.func,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * @default 0
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -487,4 +524,4 @@ ButtonBase.propTypes = {
   type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
 };
 
-export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
+export default ButtonBase;

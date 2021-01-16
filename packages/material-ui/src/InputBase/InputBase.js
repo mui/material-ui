@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
+import { refType, elementTypeAcceptingRef } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
@@ -64,12 +64,12 @@ export const styles = (theme) => {
     adornedEnd: {},
     /* Pseudo-class applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    marginDense: {},
+    /* Styles applied to the input element if `size="small"`. */
+    sizeSmall: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '4px 0 5px',
-      '&$marginDense': {
+      '&$sizeSmall': {
         paddingTop: 1,
       },
     },
@@ -81,7 +81,7 @@ export const styles = (theme) => {
     },
     /* Styles applied to the root element if `hiddenLabel={true}`. */
     hiddenLabel: {},
-    /* Styles applied to the `input` element. */
+    /* Styles applied to the input element. */
     input: {
       font: 'inherit',
       letterSpacing: 'inherit',
@@ -127,33 +127,34 @@ export const styles = (theme) => {
       },
       '&$disabled': {
         opacity: 1, // Reset iOS opacity
+        WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
       },
       '&:-webkit-autofill': {
         animationDuration: '5000s',
         animationName: 'mui-auto-fill',
       },
     },
-    /* Styles applied to the `input` element if `margin="dense"`. */
-    inputMarginDense: {
+    /* Styles applied to the input element if `size="small"`. */
+    inputSizeSmall: {
       paddingTop: 1,
     },
-    /* Styles applied to the `input` element if `multiline={true}`. */
+    /* Styles applied to the input element if `multiline={true}`. */
     inputMultiline: {
       height: 'auto',
       resize: 'none',
       padding: 0,
     },
-    /* Styles applied to the `input` element if `type="search"`. */
+    /* Styles applied to the input element if `type="search"`. */
     inputTypeSearch: {
       // Improve type search style.
       '-moz-appearance': 'textfield',
       '-webkit-appearance': 'textfield',
     },
-    /* Styles applied to the `input` element if `startAdornment` is provided. */
+    /* Styles applied to the input element if `startAdornment` is provided. */
     inputAdornedStart: {},
-    /* Styles applied to the `input` element if `endAdornment` is provided. */
+    /* Styles applied to the input element if `endAdornment` is provided. */
     inputAdornedEnd: {},
-    /* Styles applied to the `input` element if `hiddenLabel={true}`. */
+    /* Styles applied to the input element if `hiddenLabel={true}`. */
     inputHiddenLabel: {},
   };
 };
@@ -195,6 +196,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     readOnly,
     renderSuffix,
     rows,
+    size,
     startAdornment,
     type = 'text',
     value: valueProp,
@@ -211,8 +213,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         console.error(
           [
             'Material-UI: You have provided a `inputComponent` to the input component',
-            'that does not correctly handle the `inputRef` prop.',
-            'Make sure the `inputRef` prop is called with a HTMLInputElement.',
+            'that does not correctly handle the `ref` prop.',
+            'Make sure the `ref` prop is called with a HTMLInputElement.',
           ].join('\n'),
         );
       }
@@ -239,7 +241,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['color', 'disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
+    states: ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
   });
 
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
@@ -279,7 +281,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const handleFocus = (event) => {
     // Fix a bug with IE11 where the focus/blur events are triggered
-    // while the input is disabled.
+    // while the component is disabled.
     if (fcs.disabled) {
       event.stopPropagation();
       return;
@@ -357,23 +359,10 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   };
 
   let InputComponent = inputComponent;
-  let inputProps = {
-    ...inputPropsProp,
-    ref: handleInputRef,
-  };
+  let inputProps = inputPropsProp;
 
-  if (typeof InputComponent !== 'string') {
-    inputProps = {
-      // Rename ref to inputRef as we don't know the
-      // provided `inputComponent` structure.
-      inputRef: handleInputRef,
-      type,
-      ...inputProps,
-      ref: null,
-    };
-  } else if (multiline) {
+  if (multiline && InputComponent === 'input') {
     if (rows) {
-      InputComponent = 'textarea';
       if (process.env.NODE_ENV !== 'production') {
         if (minRows || maxRows) {
           console.warn(
@@ -381,8 +370,15 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           );
         }
       }
+      inputProps = {
+        type: undefined,
+        ...inputProps,
+      };
+
+      InputComponent = 'textarea';
     } else {
       inputProps = {
+        type: undefined,
         maxRows,
         minRows,
         ...inputProps,
@@ -390,11 +386,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
       InputComponent = TextareaAutosize;
     }
-  } else {
-    inputProps = {
-      type,
-      ...inputProps,
-    };
   }
 
   const handleAutoFill = (event) => {
@@ -419,7 +410,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           [classes.fullWidth]: fullWidth,
           [classes.focused]: fcs.focused,
           [classes.formControl]: muiFormControl,
-          [classes.marginDense]: fcs.margin === 'dense',
+          [classes.sizeSmall]: fcs.size === 'small',
           [classes.multiline]: multiline,
           [classes.adornedStart]: startAdornment,
           [classes.adornedEnd]: endAdornment,
@@ -450,14 +441,16 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           value={value}
           onKeyDown={onKeyDown}
           onKeyUp={onKeyUp}
+          type={type}
           {...inputProps}
+          ref={handleInputRef}
           className={clsx(
             classes.input,
             {
               [classes.disabled]: fcs.disabled,
               [classes.inputTypeSearch]: type === 'search',
               [classes.inputMultiline]: multiline,
-              [classes.inputMarginDense]: fcs.margin === 'dense',
+              [classes.inputSizeSmall]: fcs.size === 'small',
               [classes.inputHiddenLabel]: fcs.hiddenLabel,
               [classes.inputAdornedStart]: startAdornment,
               [classes.inputAdornedEnd]: endAdornment,
@@ -496,7 +489,7 @@ InputBase.propTypes = {
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -513,11 +506,11 @@ InputBase.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * The default `input` element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the component is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
@@ -526,12 +519,12 @@ InputBase.propTypes = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the input will indicate an error.
+   * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the `input` will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,
@@ -544,7 +537,7 @@ InputBase.propTypes = {
    * Either a string to use a HTML element or a component.
    * @default 'input'
    */
-  inputComponent: PropTypes.elementType,
+  inputComponent: elementTypeAcceptingRef,
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * @default {}
@@ -569,7 +562,7 @@ InputBase.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a textarea element will be rendered.
+   * If `true`, a `textarea` element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -578,7 +571,7 @@ InputBase.propTypes = {
    */
   name: PropTypes.string,
   /**
-   * Callback fired when the input is blurred.
+   * Callback fired when the `input` is blurred.
    *
    * Notice that the first argument (event) might be undefined.
    */
@@ -607,7 +600,7 @@ InputBase.propTypes = {
    */
   onKeyUp: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**
@@ -620,7 +613,7 @@ InputBase.propTypes = {
    */
   renderSuffix: PropTypes.func,
   /**
-   * If `true`, the `input` element will be required.
+   * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,
@@ -628,6 +621,10 @@ InputBase.propTypes = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The size of the component.
+   */
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * Start `InputAdornment` for this component.
    */

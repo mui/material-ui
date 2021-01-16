@@ -1,12 +1,12 @@
-# Spacing（间距）
+# Spacing 间距
 
-<p class="description">为了改变一个元素的外观，您可以使用一系列的简写响应式的 margin 和 padding 的辅助工具类。</p>
+<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
 ## 符号
 
 用 space 辅助工具能够将简写的 margin 和 padding 属性转换为margin 和 padding 的 CSS 声明。 而属性则使用 `{property}{sides}` 的格式命名。
 
-其中*属性*是其中之一：
+其中_属性_是其中之一：
 
 - `m` - 对于设置*margin*
 - `p` - 对于设置*padding*
@@ -32,10 +32,10 @@ const theme = {
   spacing: 8,
 }
 
-<Box m={-2} /> // margin: -16px;
-<Box m={0} /> // margin: 0px;
-<Box m={0.5} /> // margin: 4px;
-<Box m={2} /> // margin: 16px;
+<Box sx={{ m: -2 }} /> // margin: -16px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 0.5 }} /> // margin: 4px;
+<Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
 - 输入：`数字` & 主题：`数组` ：属性值用作数组索引。
@@ -45,27 +45,27 @@ const theme = {
   spacing: [0, 2, 3, 5, 8],
 }
 
-<Box m={-2} /> // margin: -3px;
-<Box m={0} /> // margin: 0px;
-<Box m={2} /> // margin: 3px;
+<Box sx={{ m: -2 }} /> // margin: -3px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 2 }} /> // margin: 3px;
 ```
 
 - 输入：`数字` & 主题：`功能` ：使用属性值调用该函数。
 
 ```jsx
 const theme = {
-  spacing: value => value ** 2,
+  spacing: value => value * 2,
 }
 
-<Box m={0} /> // margin: 0px;
-<Box m={2} /> // margin: 4px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
 - input: `string`: 该属性作为原始CSS值传递。
 
 ```jsx
-<Box m="2rem" /> // margin: 2rem;
-<Box mx="auto" /> // margin-left: auto; margin-right: auto;
+<Box sx={{ m: "2rem" }} /> // margin: 2rem;
+<Box sx={{ mx: "auto" }} /> // margin-left: auto; margin-right: auto;
 ```
 
 ## 示例
@@ -73,13 +73,9 @@ const theme = {
 {{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box p={1}>…
-<Box m={1}>…
-<Box p={2}>…
-<Box m={1}>…
-<Box p={2}>…
-<Box m={1}>…
-<Box p={2}>…
+<Box sx={{ p: 1 }}>…
+<Box sx={{ m: 1 }}>…
+<Box sx={{ p: 2 }}>…
 ```
 
 ## 水平居中
@@ -87,7 +83,7 @@ const theme = {
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box mx="auto">…
+<Box sx={{ mx: "auto" }}>…
 ```
 
 ## API
@@ -116,11 +112,11 @@ import { spacing } from '@material-ui/system';
 _有些人觉得属性简写让人困惑，如果你愿意的话，您也可以使用完整版：_
 
 ```diff
--<Box pt={2} />
-+<Box paddingTop={2} />
+-<Box sx={{ pt: 2 }} />
++<Box sx={{ paddingTop: 2 }} />
 ```
 
 ```diff
--<Box px={2} />
-+<Box paddingX={2} />
+-<Box sx={{ px: 2 }} />
++<Box sx={{ paddingX: 2 }} />
 ```

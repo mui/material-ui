@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
-import vrtest from 'vrtest-mui/client';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
 // Get all the tests specifically written for preventing regressions.
-const requireRegression = require.context('./tests', true, /(js|ts|tsx)$/);
+const requireRegression = require.context('./tests', true, /\.(js|ts|tsx)$/);
 const regressions = requireRegression.keys().reduce((res, path) => {
   const [suite, name] = path
     .replace('./', '')
@@ -46,32 +46,45 @@ const blacklist = [
   'docs-components-chips/ChipsPlayground.png', // Redux isolation
   'docs-components-click-away-listener', // Needs interaction
   'docs-components-container', // Can't see the impact
+  'docs-components-date-picker/CustomInput.png', // Redundant
+  'docs-components-date-picker/LocalizedDatePicker.png', // Redundant
+  'docs-components-date-picker/ResponsiveDatePickers.png', // Redundant
+  'docs-components-date-picker/ServerRequestDatePicker.png', // Redundant
+  'docs-components-date-picker/ViewsDatePicker.png', // Redundant
+  'docs-components-date-range-picker/CalendarsDateRangePicker.png', // Redundant
+  'docs-components-date-range-picker/CustomDateRangeInputs.png', // Redundant
+  'docs-components-date-range-picker/MinMaxDateRangePicker.png', // Redundant
+  'docs-components-date-range-picker/ResponsiveDateRangePicker.png', // Redundant
+  'docs-components-date-time-picker/BasicDateTimePicker.png', // Redundant
+  'docs-components-date-time-picker/ResponsiveDateTimePickers.png', // Redundant
   'docs-components-dialogs', // Needs interaction
+  'docs-components-drawers/SwipeableEdgeDrawer.png', // Needs interaction
   'docs-components-drawers/SwipeableTemporaryDrawer.png', // Needs interaction
   'docs-components-drawers/TemporaryDrawer.png', // Needs interaction
   'docs-components-floating-action-button/FloatingActionButtonZoom.png', // Needs interaction
-  'docs-components-image-list', // Image don't load
   'docs-components-grid/InteractiveGrid.png', // Redux isolation
   'docs-components-grid/SpacingGrid.png', // Needs interaction
   'docs-components-hidden', // Need to dynamically resize to test
+  'docs-components-icons/FontAwesomeIconSize.png', // Relies on cascading network requests
+  'docs-components-image-list', // Image don't load
   'docs-components-material-icons/synonyms.png', // No component
   'docs-components-menus', // Need interaction
+  'docs-components-modal/KeepMountedModal.png', // Needs interaction
   'docs-components-modal/SimpleModal.png', // Needs interaction
   'docs-components-modal/SpringModal.png', // Needs interaction
-  'docs-components-modal/TransitionsModal.png', // Needs interaction
   'docs-components-modal/TransitionsModal.png', // Needs interaction
   'docs-components-no-ssr/FrameDeferring.png', // Needs interaction
   'docs-components-popover/AnchorPlayground.png', // Redux isolation
   'docs-components-popover/MouseOverPopover.png', // Needs interaction
   'docs-components-popover/PopoverPopupState.png', // Needs interaction
   'docs-components-popover/SimplePopover.png', // Needs interaction
-  'docs-components-popper/FakedReferencePopper.png', // Needs interaction
   'docs-components-popper/PopperPopupState.png', // Needs interaction
   'docs-components-popper/PositionedPopper.png', // Needs interaction
   'docs-components-popper/ScrollPlayground.png', // Redux isolation
   'docs-components-popper/SimplePopper.png', // Needs interaction
   'docs-components-popper/SpringPopper.png', // Needs interaction
   'docs-components-popper/TransitionsPopper.png', // Needs interaction
+  'docs-components-popper/VirtualElementPopper.png', // Needs interaction
   'docs-components-portal/SimplePortal.png', // Needs interaction
   'docs-components-progress', // Flaky
   'docs-components-selects/ControlledOpenSelect.png', // Needs interaction
@@ -81,6 +94,7 @@ const blacklist = [
   'docs-components-skeleton/Facebook.png', // Flaky image loading
   'docs-components-skeleton/SkeletonChildren.png', // flaky image loading
   'docs-components-skeleton/YouTube.png', // Flaky image loading
+  'docs-components-slider/VerticalAccessibleSlider.png', // Redundant
   'docs-components-snackbars/ConsecutiveSnackbars.png', // Needs interaction
   'docs-components-snackbars/CustomizedSnackbars.png', // Redundant
   'docs-components-snackbars/DirectionSnackbar.png', // Needs interaction
@@ -94,21 +108,27 @@ const blacklist = [
   'docs-components-steppers/HorizontalNonLinearStepper.png', // Redundant
   'docs-components-steppers/SwipeableTextMobileStepper.png', // Flaky image loading
   'docs-components-steppers/TextMobileStepper.png', // Flaky image loading
+  'docs-components-tabs/AccessibleTabs.png', // Need interaction
   'docs-components-textarea-autosize', // Superseded by a dedicated regression test
+  'docs-components-time-picker/LocalizedTimePicker.png', // Redundant
+  'docs-components-time-picker/ResponsiveTimePickers.png', // Redundant
   'docs-components-tooltips', // Needs interaction
   'docs-components-transitions', // Needs interaction
+  'docs-components-trap-focus', // Need interaction
   'docs-components-tree-view/ControlledTreeView.png', // Redundant
   'docs-components-tree-view/CustomizedTreeView.png', // Flaky
+  'docs-components-tree-view/IconExpansionTreeView.png', // Need interaction
+  'docs-components-tree-view/MultiSelectTreeView.png', // Need interaction
   'docs-components-use-media-query', // Need to dynamically resize to test
   'docs-customization-breakpoints', // Need to dynamically resize to test
   'docs-customization-color', // Escape viewport
   'docs-customization-default-theme', // Redux isolation
   'docs-customization-density/DensityTool.png', // Redux isolation
+  'docs-customization-transitions/TransitionHover.png', // Need interaction
   'docs-customization-typography/ResponsiveFontSizesChart.png',
   'docs-discover-more-languages', // No public components
   'docs-discover-more-showcase', // No public components
   'docs-discover-more-team', // No public components
-  'docs-getting-started-templates', // No public components
   'docs-getting-started-templates-album/Album.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Flaky random images
   'docs-getting-started-templates-checkout/AddressForm.png', // Already tested in docs-getting-started-templates-checkout/Checkout
@@ -120,11 +140,15 @@ const blacklist = [
   'docs-getting-started-templates-dashboard/Orders.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
   'docs-getting-started-templates-dashboard/Title.png', // Already tested in docs-getting-started-templates-dashboard/Dashboard
   'docs-getting-started-templates-sign-in-side/SignInSide.png', // Flaky
+  'docs-getting-started-templates', // No public components
   'docs-getting-started-usage/Usage.png', // No public components
-  /^docs-guides-.*/, // No public components
   'docs-landing', // Mostly images, redundant
   'docs-production-error', // No components, page for DX
   'docs-styles-advanced', // Redudant
+  'docs-styles-basics/StressTest.png', // Need interaction
+  'docs-system-basics/BreakpointsAsArray.png', // Unit tests are enough
+  'docs-system-basics/BreakpointsAsObject.png', // Unit tests are enough
+  'docs-system-basics/ValueAsFunction.png', // Unit tests are enough
   'docs-system-borders', // Unit tests are enough
   'docs-system-display', // Unit tests are enough
   'docs-system-flexbox', // Unit tests are enough
@@ -135,14 +159,13 @@ const blacklist = [
   'docs-system-spacing', // Unit tests are enough
   'docs-system-typography', // Unit tests are enough
   'docs-versions', // No public components
+  /^docs-guides-.*/, // No public components
 ];
 
 const unusedBlacklistPatterns = new Set(blacklist);
 
 function excludeTest(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
-    // eslint-disable-next-line no-console
-    console.log('ignoring premium themes pages');
     return true;
   }
 
@@ -150,14 +173,12 @@ function excludeTest(suite, name) {
     if (typeof pattern === 'string') {
       if (pattern === suite) {
         unusedBlacklistPatterns.delete(pattern);
-        // eslint-disable-next-line no-console
-        console.log(`suite exact match: ignoring '${suite}/${name}'`);
+
         return true;
       }
       if (pattern === `${suite}/${name}.png`) {
         unusedBlacklistPatterns.delete(pattern);
-        // eslint-disable-next-line no-console
-        console.log(`suite+name exact match: ignoring '${suite}/${name}'`);
+
         return true;
       }
 
@@ -167,8 +188,6 @@ function excludeTest(suite, name) {
     // assume regex
     if (pattern.test(suite)) {
       unusedBlacklistPatterns.delete(pattern);
-      // eslint-disable-next-line no-console
-      console.log(`suite matches pattern '${pattern}': ignoring '${suite}/${name}'`);
       return true;
     }
     return false;
@@ -184,8 +203,6 @@ const demos = requireDemos.keys().reduce((res, path) => {
   if (excludeTest(suite, name)) {
     return res;
   }
-  // eslint-disable-next-line no-console
-  console.log(`testing ${suite}/${name}`);
 
   res.push({
     path,
@@ -197,15 +214,41 @@ const demos = requireDemos.keys().reduce((res, path) => {
   return res;
 }, []);
 
-const rootEl = document.createElement('div');
-rootEl.style.display = 'inline-block';
+const tests = regressions.concat(demos);
 
-vrtest.before(() => {
-  if (document && document.body) {
-    document.body.appendChild(rootEl);
+if (unusedBlacklistPatterns.size > 0) {
+  console.warn(
+    `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
+      .map((pattern) => `- ${pattern}`)
+      .join('\n')}`,
+  );
+}
+
+function App() {
+  function computeIsDev() {
+    if (window.location.hash === '#dev') {
+      return true;
+    }
+    if (window.location.hash === '#no-dev') {
+      return false;
+    }
+    return process.env.NODE_ENV === 'development';
   }
+  const [isDev, setDev] = React.useState(computeIsDev);
+  React.useEffect(() => {
+    function handleHashChange() {
+      setDev(computeIsDev());
+    }
+    window.addEventListener('hashchange', handleHashChange);
 
-  return new Promise((resolve, reject) => {
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  // Using <link rel="stylesheet" /> does not apply the google Roboto font in chromium headless/headfull.
+  const [fontState, setFontState] = React.useState('pending');
+  React.useEffect(() => {
     webfontloader.load({
       google: {
         families: ['Roboto:300,400,500,700', 'Material+Icons'],
@@ -216,43 +259,67 @@ vrtest.before(() => {
       },
       timeout: 20000,
       active: () => {
-        resolve('webfontloader: active');
+        setFontState('active');
       },
       inactive: () => {
-        reject(new Error('webfontloader: inactive'));
+        setFontState('inactive');
       },
     });
-  });
-});
+  }, []);
 
-let suite;
+  const testPrepared = fontState !== 'pending';
 
-const tests = regressions.concat(demos);
-tests.forEach((test) => {
-  if (!suite || suite.name !== test.suite) {
-    suite = vrtest.createSuite(test.suite);
+  function computePath(test) {
+    return `/${test.suite}/${test.name}`;
   }
 
-  const TestCase = test.case;
+  return (
+    <Router>
+      <Switch>
+        {tests.map((test) => {
+          const path = computePath(test);
+          const TestCase = test.case;
+          if (TestCase === undefined) {
+            console.warn('Missing test.case for ', test);
+            return null;
+          }
 
-  if (!TestCase) {
-    return;
-  }
-
-  suite.createTest(test.name, () => {
-    ReactDOM.render(
-      <TestViewer>
-        <TestCase />
-      </TestViewer>,
-      rootEl,
-    );
-  });
-});
-
-if (unusedBlacklistPatterns.size > 0) {
-  console.warn(
-    `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
-      .map((pattern) => `- ${pattern}`)
-      .join('\n')}`,
+          return (
+            <Route key={path} exact path={path}>
+              {testPrepared && (
+                <TestViewer>
+                  <TestCase />
+                </TestViewer>
+              )}
+            </Route>
+          );
+        })}
+      </Switch>
+      <div hidden={!isDev}>
+        <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
+        <p>
+          Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
+          appending <code>#no-dev</code>.
+        </p>
+        <a href="#no-dev">Hide devtools</a>
+        <details>
+          <summary id="my-test-summary">nav for all tests</summary>
+          <nav id="tests">
+            <ol>
+              {tests.map((test) => {
+                const path = computePath(test);
+                return (
+                  <li key={path}>
+                    <Link to={path}>{path}</Link>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+        </details>
+      </div>
+    </Router>
   );
 }
+
+ReactDOM.render(<App />, document.getElementById('react-root'));

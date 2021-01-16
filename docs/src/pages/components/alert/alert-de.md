@@ -1,11 +1,11 @@
 ---
-title: React Alert component
+title: React Hinweis Komponenten
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
-# Hinweis
+# Hinweis (Alert)
 
 <p class="description">Ein Hinweis zeigt eine kurze, wichtige Nachricht auf eine Weise, welche die Aufmerksamkeit des Benutzers auf sich zieht ohne die Aufgabe des Benutzers zu unterbrechen.</p>
 
@@ -43,9 +43,9 @@ You can use a [transition component](/components/transitions/) such as `Collapse
 
 The `icon` prop allows you to add an icon to the beginning of the alert component. This will override the default icon for the specified severity.
 
-You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/globals/#default-props).
+You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/theme-components/#default-props).
 
-Setting the icon prop to false will remove the icon altogether.
+Setze das Symbol-Prop auf `false` wird das Symbol komplett entfernen.
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 

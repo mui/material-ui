@@ -4,13 +4,16 @@
 
 // supported modes = check, check-changed, write, write-changed
 
-const glob = require('glob-gitignore');
+const glob = require('globby');
 const prettier = require('prettier');
 const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
 const { LANGUAGES } = require('docs/src/modules/constants');
 const listChangedFiles = require('./listChangedFiles');
+
+// FIXME: Incorrect assumption
+const workspaceRoot = process.cwd();
 
 function isTranslatedDocument(filename) {
   // markdown files from crowdin end with a 2 letter locale
@@ -25,14 +28,30 @@ function runPrettier(options) {
 
   const warnedFiles = [];
   const ignoredFiles = fs
-    .readFileSync(path.join(process.cwd(), '.eslintignore'), 'utf-8')
+    .readFileSync(path.join(workspaceRoot, '.eslintignore'), 'utf-8')
     .split(/\r*\n/)
-    .filter((notEmpty) => notEmpty);
+    .filter((line) => {
+      return (
+        // ignore comments
+        !line.startsWith('#') &&
+        // skip empty lines
+        line.length > 0
+      );
+    })
+    .map((line) => {
+      if (line.startsWith('/')) {
+        // "/" marks the cwd of the ignore file.
+        // Since we declare the dirname of the gitignore the cwd we can prepend "." as a shortcut.
+        return `.${line}`;
+      }
+      return line;
+    });
 
   const files = glob
     .sync('**/*.{js,md,tsx,ts,json}', {
+      cwd: workspaceRoot,
+      gitignore: true,
       ignore: [
-        '**/node_modules/**',
         // these are auto-generated
         'docs/pages/api-docs/**/*.md',
         ...ignoredFiles,
@@ -52,7 +71,7 @@ function runPrettier(options) {
     return;
   }
 
-  const prettierConfigPath = path.join(process.cwd(), 'prettier.config.js');
+  const prettierConfigPath = path.join(workspaceRoot, 'prettier.config.js');
 
   files.forEach((file) => {
     const prettierOptions = prettier.resolveConfig.sync(file, {

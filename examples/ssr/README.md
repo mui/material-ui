@@ -5,7 +5,7 @@
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/ssr
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/ssr
 cd ssr
 ```
 
@@ -22,4 +22,6 @@ or:
 
 ## The idea behind the example
 
-This is the reference implementation of the [Server Rendering tutorial](https://material-ui.com/guides/server-rendering/).
+This is the reference implementation of the [Server Rendering tutorial](https://next.material-ui.com/guides/server-rendering/).
+
+The example project includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).

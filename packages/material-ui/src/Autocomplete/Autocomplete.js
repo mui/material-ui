@@ -1,13 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import { withStyles } from '../styles';
+import { alpha } from '../styles/colorManipulator';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
 import IconButton from '../IconButton';
 import Chip from '../Chip';
-import CloseIcon from '../internal/svg-icons/Close';
+import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 
@@ -16,12 +18,12 @@ export { createFilterOptions };
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    '&$focused $clearIndicatorDirty': {
+    '&$focused $clearIndicator': {
       visibility: 'visible',
     },
     /* Avoid double tap issue on iOS */
     '@media (pointer: fine)': {
-      '&:hover $clearIndicatorDirty': {
+      '&:hover $clearIndicator': {
         visibility: 'visible',
       },
     },
@@ -68,7 +70,7 @@ export const styles = (theme) => ({
         padding: '6px 0',
       },
     },
-    '&[class*="MuiInput-root"][class*="MuiInput-marginDense"]': {
+    '&[class*="MuiInput-root"][class*="MuiInput-sizeSmall"]': {
       '& $input': {
         padding: '2px 4px 3px',
       },
@@ -94,7 +96,7 @@ export const styles = (theme) => ({
         right: 9,
       },
     },
-    '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-marginDense"]': {
+    '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-sizeSmall"]': {
       padding: 6,
       '& $input': {
         padding: '2.5px 4px',
@@ -116,7 +118,7 @@ export const styles = (theme) => ({
         right: 9,
       },
     },
-    '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-marginDense"]': {
+    '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-sizeSmall"]': {
       paddingBottom: 1,
       '& $input': {
         padding: '2.5px 4px',
@@ -146,8 +148,6 @@ export const styles = (theme) => ({
     padding: 4,
     visibility: 'hidden',
   },
-  /* Styles applied to the clear indicator if the input is dirty. */
-  clearIndicatorDirty: {},
   /* Styles applied to the popup indicator. */
   popupIndicator: {
     padding: 2,
@@ -165,13 +165,13 @@ export const styles = (theme) => ({
   popperDisablePortal: {
     position: 'absolute',
   },
-  /* Styles applied to the `Paper` component. */
+  /* Styles applied to the Paper component. */
   paper: {
     ...theme.typography.body1,
     overflow: 'auto',
     margin: '4px 0',
   },
-  /* Styles applied to the `listbox` component. */
+  /* Styles applied to the listbox component. */
   listbox: {
     listStyle: 'none',
     margin: 0,
@@ -207,18 +207,38 @@ export const styles = (theme) => ({
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
-    '&[aria-selected="true"]': {
-      backgroundColor: theme.palette.action.selected,
-    },
     '&[data-focus="true"]': {
       backgroundColor: theme.palette.action.hover,
-    },
-    '&:active': {
-      backgroundColor: theme.palette.action.selected,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
     '&[aria-disabled="true"]': {
       opacity: theme.palette.action.disabledOpacity,
       pointerEvents: 'none',
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: theme.palette.action.focus,
+    },
+    '&[aria-selected="true"]': {
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&[data-focus="true"]': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.action.selected,
+        },
+      },
+      '&.Mui-focusVisible': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
+      },
     },
   },
   /* Styles applied to the group's label elements. */
@@ -235,12 +255,6 @@ export const styles = (theme) => ({
   },
 });
 
-function DisablePortal(props) {
-  // eslint-disable-next-line react/prop-types
-  const { anchorEl, open, ...other } = props;
-  return <div {...other} />;
-}
-
 const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
@@ -251,12 +265,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     ChipProps,
     classes,
     className,
+    clearIcon = <ClearIcon fontSize="small" />,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     clearText = 'Clear',
-    closeIcon = <CloseIcon fontSize="small" />,
     closeText = 'Close',
-    debug = false,
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -295,7 +308,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     openText = 'Open',
     options,
     PaperComponent = Paper,
-    PopperComponent: PopperComponentProp = Popper,
+    PopperComponent = Popper,
     popupIcon = <ArrowDropDownIcon />,
     renderGroup: renderGroupProp,
     renderInput,
@@ -307,8 +320,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     ...other
   } = props;
   /* eslint-enable @typescript-eslint/no-unused-vars */
-
-  const PopperComponent = disablePortal ? DisablePortal : PopperComponentProp;
 
   const {
     getRootProps,
@@ -390,7 +401,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     });
   };
 
-  const hasClearIcon = !disableClearable && !disabled;
+  const hasClearIcon = !disableClearable && !disabled && dirty;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   return (
@@ -426,11 +437,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                     {...getClearProps()}
                     aria-label={clearText}
                     title={clearText}
-                    className={clsx(classes.clearIndicator, {
-                      [classes.clearIndicatorDirty]: dirty,
-                    })}
+                    className={classes.clearIndicator}
                   >
-                    {closeIcon}
+                    {clearIcon}
                   </IconButton>
                 ) : null}
 
@@ -464,6 +473,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           className={clsx(classes.popper, {
             [classes.popperDisablePortal]: disablePortal,
           })}
+          disablePortal={disablePortal}
           style={{
             width: anchorEl ? anchorEl.clientWidth : null,
           }}
@@ -552,7 +562,12 @@ Autocomplete.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the input's text will be cleared on blur if no value is selected.
+   * The icon to display in place of the default clear icon.
+   * @default <ClearIcon fontSize="small" />
+   */
+  clearIcon: PropTypes.node,
+  /**
+   * If `true`, the input's text is cleared on blur if no value is selected.
    *
    * Set to `true` if you want to help the user enter a new value.
    * Set to `false` if you want to help the user resume his search.
@@ -572,11 +587,6 @@ Autocomplete.propTypes = {
    */
   clearText: PropTypes.string,
   /**
-   * The icon to display in place of the default close icon.
-   * @default <CloseIcon fontSize="small" />
-   */
-  closeIcon: PropTypes.node,
-  /**
    * Override the default text for the *close popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
@@ -584,14 +594,7 @@ Autocomplete.propTypes = {
    */
   closeText: PropTypes.string,
   /**
-   * If `true`, the popup will ignore the blur event if the input is filled.
-   * You can inspect the popup markup with your browser tools.
-   * Consider this option when you need to customize the component.
-   * @default false
-   */
-  debug: PropTypes.bool,
-  /**
-   * The default input value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
   defaultValue: PropTypes.any,
@@ -606,7 +609,7 @@ Autocomplete.propTypes = {
    */
   disableCloseOnSelect: PropTypes.bool,
   /**
-   * If `true`, the input will be disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -621,7 +624,7 @@ Autocomplete.propTypes = {
    */
   disableListWrap: PropTypes.bool,
   /**
-   * The `Popper` content will be inside the DOM hierarchy of the parent component.
+   * If `true`, the `Popper` content will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal: PropTypes.bool,
@@ -678,8 +681,9 @@ Autocomplete.propTypes = {
    */
   getOptionLabel: PropTypes.func,
   /**
-   * Used to determine if an option is selected, considering the current value.
+   * Used to determine if an option is selected, considering the current value(s).
    * Uses strict equality by default.
+   * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {T} option The option to test.
    * @param {T} value The value to test against.
@@ -759,6 +763,7 @@ Autocomplete.propTypes = {
    * @param {object} event The event source of the callback.
    * @param {T|T[]} value The new value of the component.
    * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
+   * @param {string} [details]
    */
   onChange: PropTypes.func,
   /**
@@ -793,7 +798,7 @@ Autocomplete.propTypes = {
    */
   onOpen: PropTypes.func,
   /**
-   * Control the popup` open state.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool,
   /**
@@ -859,13 +864,13 @@ Autocomplete.propTypes = {
    */
   renderTags: PropTypes.func,
   /**
-   * If `true`, the input's text will be selected on focus.
+   * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
    * @default !props.freeSolo
    */
   selectOnFocus: PropTypes.bool,
   /**
-   * The size of the autocomplete.
+   * The size of the component.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
@@ -875,7 +880,18 @@ Autocomplete.propTypes = {
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
-  value: PropTypes.any,
+  value: chainPropTypes(PropTypes.any, (props) => {
+    if (props.multiple && props.value !== undefined && !Array.isArray(props.value)) {
+      throw new Error(
+        [
+          'Material-UI: The Autocomplete expects the `value` prop to be an array or undefined.',
+          `However, ${props.value} was provided.`,
+        ].join('\n'),
+      );
+    }
+
+    return null;
+  }),
 };
 
 export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);

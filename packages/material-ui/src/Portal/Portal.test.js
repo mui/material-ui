@@ -9,10 +9,12 @@ describe('<Portal />', () => {
   const render = createClientRender();
 
   describe('server-side', () => {
-    // Only run the test on node.
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     it('render nothing on the server', () => {
       const markup1 = serverRender(<div>Bar</div>);
@@ -97,11 +99,6 @@ describe('<Portal />', () => {
   });
 
   it('should unmount when parent unmounts', () => {
-    function Parent(props) {
-      const { show = true } = props;
-      return <div>{show ? <Child /> : null}</div>;
-    }
-
     function Child() {
       const containerRef = React.useRef();
       return (
@@ -112,6 +109,11 @@ describe('<Portal />', () => {
           </Portal>
         </div>
       );
+    }
+
+    function Parent(props) {
+      const { show = true } = props;
+      return <div>{show ? <Child /> : null}</div>;
     }
 
     const { setProps } = render(<Parent />);

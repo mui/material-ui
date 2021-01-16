@@ -25,8 +25,8 @@ Se existir **quatro** ou **cinco** ações, exiba os destinos inativos somente c
 
 {{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}
 
-## Fixed positioning
+## Posicionamento fixo
 
-This demo keeps bottom navigation fixed to the bottom, no matter the amount of content on-screen.
+Esta demonstração mantém a navegação inferior fixa na parte inferior, não importa a quantidade de conteúdo na tela.
 
 {{"demo": "pages/components/bottom-navigation/FixedBottomNavigation.js", "bg": true, "iframe": true, "maxWidth": 600}}

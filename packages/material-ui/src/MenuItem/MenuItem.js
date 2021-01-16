@@ -19,7 +19,7 @@ export const styles = (theme) => ({
     },
   },
   // TODO v5: remove
-  /* Styles applied to the root element if `disableGutters={false}`. */
+  /* Styles applied to the root element unless `disableGutters={true}`. */
   gutters: {},
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
@@ -81,7 +81,7 @@ MenuItem.propTypes = {
    */
   button: PropTypes.bool,
   /**
-   * Menu item contents.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -98,7 +98,7 @@ MenuItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * The prop defaults to the value inherited from the parent List component.
    * @default false
    */

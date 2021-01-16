@@ -12,7 +12,6 @@ import {
 } from 'test/utils';
 import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
-import TextareaAutosize from '../TextareaAutosize';
 import InputBase from './InputBase';
 import TextField from '../TextField';
 import Select from '../Select';
@@ -42,10 +41,15 @@ describe('<InputBase />', () => {
     expect(input).not.to.have.attribute('required');
   });
 
+  it('should add the right class when size is small', () => {
+    const { container } = render(<InputBase size="small" />);
+    expect(container.firstChild).to.have.class(classes.sizeSmall);
+  });
+
   describe('multiline', () => {
     it('should render an <TextareaAutosize /> when passed the multiline prop', () => {
-      const wrapper = mount(<InputBase multiline />);
-      expect(wrapper.find(TextareaAutosize)).to.have.lengthOf(1);
+      const { container } = render(<InputBase multiline />);
+      expect(container.querySelectorAll('textarea')).to.have.lengthOf(2);
     });
 
     it('should render an <textarea /> when passed the multiline and rows props', () => {
@@ -54,8 +58,8 @@ describe('<InputBase />', () => {
     });
 
     it('should forward the value to the TextareaAutosize', () => {
-      const wrapper = mount(<InputBase multiline maxRows={4} value="" />);
-      expect(wrapper.find(TextareaAutosize).props()).to.have.property('value', '');
+      const { container } = render(<InputBase multiline maxRows={4} value="Hello" />);
+      expect(container.querySelector('textarea')).to.have.value('Hello');
     });
   });
 
@@ -167,15 +171,10 @@ describe('<InputBase />', () => {
 
     it('should inject onBlur and onFocus', () => {
       let injectedProps;
-      function MyInputBase(props) {
+      const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
         injectedProps = props;
-        const { inputRef, ...other } = props;
-        return <input ref={inputRef} {...other} />;
-      }
-
-      MyInputBase.propTypes = {
-        inputRef: PropTypes.func.isRequired,
-      };
+        return <input ref={ref} {...props} />;
+      });
 
       render(<InputBase inputComponent={MyInputBase} />);
       expect(typeof injectedProps.onBlur).to.equal('function');
@@ -184,17 +183,15 @@ describe('<InputBase />', () => {
 
     describe('target mock implementations', () => {
       it('can just mock the value', () => {
-        function MockedValue(props) {
+        const MockedValue = React.forwardRef(function MockedValue(props, ref) {
           const { onChange } = props;
 
           const handleChange = (event) => {
             onChange({ target: { value: event.target.value } });
           };
 
-          // TODO: required because of a bug in aria-query
-          // remove `type` once https://github.com/A11yance/aria-query/pull/42 is merged
-          return <input onChange={handleChange} type="text" />;
-        }
+          return <input ref={ref} onChange={handleChange} />;
+        });
         MockedValue.propTypes = { onChange: PropTypes.func.isRequired };
 
         function FilledState(props) {
@@ -214,15 +211,10 @@ describe('<InputBase />', () => {
         expect(getByTestId('filled')).to.have.text('filled: true');
       });
 
-      it('can expose the full target with `inputRef`', () => {
-        function FullTarget(props) {
-          const { inputRef, ...other } = props;
-
-          return <input ref={inputRef} {...other} />;
-        }
-        FullTarget.propTypes = {
-          inputRef: PropTypes.any,
-        };
+      it("can expose the input component's ref through the inputComponent prop", () => {
+        const FullTarget = React.forwardRef(function FullTarget(props, ref) {
+          return <input ref={ref} {...props} />;
+        });
 
         function FilledState(props) {
           const { filled } = useFormControl();
@@ -250,34 +242,33 @@ describe('<InputBase />', () => {
          *
          * A ref is exposed to trigger a change event instead of using fireEvent.change
          */
-        function BadInputComponent(props) {
-          const { onChange, triggerChangeRef } = props;
+        const BadInputComponent = React.forwardRef(function BadInputComponent(props, ref) {
+          const { onChange } = props;
 
           // simulates const handleChange = () => onChange({}) and passing that
           // handler to the onChange prop of `input`
-          React.useImperativeHandle(triggerChangeRef, () => () => onChange({}));
+          React.useImperativeHandle(ref, () => () => onChange({}));
 
           return <input />;
-        }
+        });
+
         BadInputComponent.propTypes = {
           onChange: PropTypes.func.isRequired,
-          triggerChangeRef: PropTypes.object,
         };
 
         const triggerChangeRef = React.createRef();
-        render(<InputBase inputProps={{ triggerChangeRef }} inputComponent={BadInputComponent} />);
 
-        // mocking fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
-        // using dispatchEvents prevents us from catching the error in the browser
-        // in test:karma neither try-catch nor consoleErrorMock.spy catches the error
-        let errorMessage = '';
-        try {
-          triggerChangeRef.current();
-        } catch (error) {
-          errorMessage = String(error);
-        }
-
-        expect(errorMessage).to.include('Material-UI: Expected valid input target');
+        expect(() => {
+          render(
+            <InputBase inputProps={{ ref: triggerChangeRef }} inputComponent={BadInputComponent} />,
+          );
+        }).toErrorDev(
+          [
+            'Material-UI: You have provided a `inputComponent` to the input component',
+            'that does not correctly handle the `ref` prop.',
+            'Make sure the `ref` prop is called with a HTMLInputElement.',
+          ].join('\n'),
+        );
       });
     });
   });
@@ -329,29 +320,29 @@ describe('<InputBase />', () => {
       });
     });
 
-    describe('margin', () => {
-      it('should have the inputMarginDense class in a dense context', () => {
+    describe('size', () => {
+      it('should have the inputSizeSmall class in a dense context', () => {
         const { container } = render(
-          <FormControl margin="dense">
+          <FormControl size="small">
             <InputBase />
           </FormControl>,
         );
-        expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
+        expect(container.querySelector('input')).to.have.class(classes.inputSizeSmall);
       });
 
       it('should be overridden by props', () => {
         function InputBaseInFormWithMargin(props) {
           return (
-            <FormControl margin="none">
+            <FormControl size="medium">
               <InputBase {...props} />
             </FormControl>
           );
         }
         const { container, setProps } = render(<InputBaseInFormWithMargin />);
-        expect(container.querySelector('input')).not.to.have.class(classes.inputMarginDense);
+        expect(container.querySelector('input')).not.to.have.class(classes.inputSizeSmall);
 
-        setProps({ margin: 'dense' });
-        expect(container.querySelector('input')).to.have.class(classes.inputMarginDense);
+        setProps({ size: 'small' });
+        expect(container.querySelector('input')).to.have.class(classes.inputSizeSmall);
       });
 
       it('has an inputHiddenLabel class to further reduce margin', () => {
@@ -564,18 +555,17 @@ describe('<InputBase />', () => {
       const INPUT_VALUE = 'material';
       const OUTPUT_VALUE = 'test';
 
-      function MyInputBase(props) {
-        const { inputRef, onChange, ...other } = props;
+      const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
+        const { onChange, ...other } = props;
 
         const handleChange = (e) => {
           onChange(e.target.value, OUTPUT_VALUE);
         };
 
-        return <input ref={inputRef} onChange={handleChange} {...other} />;
-      }
+        return <input ref={ref} onChange={handleChange} {...other} />;
+      });
 
       MyInputBase.propTypes = {
-        inputRef: PropTypes.func.isRequired,
         onChange: PropTypes.func.isRequired,
       };
 
@@ -637,6 +627,7 @@ describe('<InputBase />', () => {
               </InputAdornment>
             ),
           }}
+          variant="standard"
         />,
       );
     });

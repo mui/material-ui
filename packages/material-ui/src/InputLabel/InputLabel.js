@@ -30,17 +30,17 @@ export const styles = (theme) => ({
     // slight alteration to spec spacing to match visual spec result
     transform: 'translate(0, 24px) scale(1)',
   },
-  /* Styles applied to the root element if `margin="dense"`. */
-  marginDense: {
-    // Compensation for the `Input.inputDense` style.
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    // Compensation for the `Input.inputSizeSmall` style.
     transform: 'translate(0, 21px) scale(1)',
   },
-  /* Styles applied to the `input` element if `shrink={true}`. */
+  /* Styles applied to the input element if `shrink={true}`. */
   shrink: {
     transform: 'translate(0, 1.5px) scale(0.75)',
     transformOrigin: 'top left',
   },
-  /* Styles applied to the `input` element if `disableAnimation={false}`. */
+  /* Styles applied to the input element unless `disableAnimation={true}`. */
   animated: {
     transition: theme.transitions.create(['color', 'transform'], {
       duration: theme.transitions.duration.shorter,
@@ -56,12 +56,12 @@ export const styles = (theme) => ({
     zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(12px, 20px) scale(1)',
-    '&$marginDense': {
+    '&$sizeSmall': {
       transform: 'translate(12px, 17px) scale(1)',
     },
     '&$shrink': {
       transform: 'translate(12px, 10px) scale(0.75)',
-      '&$marginDense': {
+      '&$sizeSmall': {
         transform: 'translate(12px, 7px) scale(0.75)',
       },
     },
@@ -72,7 +72,7 @@ export const styles = (theme) => ({
     zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(14px, 20px) scale(1)',
-    '&$marginDense': {
+    '&$sizeSmall': {
       transform: 'translate(14px, 12px) scale(1)',
     },
     '&$shrink': {
@@ -102,7 +102,7 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['margin', 'variant'],
+    states: ['size', 'variant'],
   });
 
   return (
@@ -114,7 +114,7 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
           [classes.formControl]: muiFormControl,
           [classes.animated]: !disableAnimation,
           [classes.shrink]: shrink,
-          [classes.marginDense]: fcs.margin === 'dense',
+          [classes.sizeSmall]: fcs.size === 'small',
           [classes.filled]: fcs.variant === 'filled',
           [classes.outlined]: fcs.variant === 'outlined',
         },
@@ -139,7 +139,7 @@ InputLabel.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The contents of the `InputLabel`.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -160,15 +160,15 @@ InputLabel.propTypes = {
    */
   disableAnimation: PropTypes.bool,
   /**
-   * If `true`, apply disabled class.
+   * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input of this label is focused.
+   * If `true`, the `input` of this label is focused.
    */
   focused: PropTypes.bool,
   /**
@@ -177,7 +177,7 @@ InputLabel.propTypes = {
    */
   margin: PropTypes.oneOf(['dense']),
   /**
-   * if `true`, the label will indicate that the input is required.
+   * if `true`, the label will indicate that the `input` is required.
    */
   required: PropTypes.bool,
   /**

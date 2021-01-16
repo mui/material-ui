@@ -10,13 +10,13 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      */
     alignItems?: 'flex-start' | 'center';
     /**
-     * If `true`, the list item will be focused during the first mount.
+     * If `true`, the list item is focused during the first mount.
      * Focus will also be triggered if the value changes from false to true.
      * @default false
      */
     autoFocus?: boolean;
     /**
-     * The content of the component. If a `ListItemSecondaryAction` is used it must
+     * The content of the component if a `ListItemSecondaryAction` is used it must
      * be the last child.
      */
     children?: React.ReactNode;
@@ -26,23 +26,23 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
     classes?: {
       /** Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
       root?: string;
-      /** Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
+      /** Styles applied to the container element if `children` includes `ListItemSecondaryAction`. */
       container?: string;
       /** Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
       focusVisible?: string;
-      /** Styles applied to the `component` element if dense. */
+      /** Styles applied to the component element if dense. */
       dense?: string;
-      /** Styles applied to the `component` element if `alignItems="flex-start"`. */
+      /** Styles applied to the component element if `alignItems="flex-start"`. */
       alignItemsFlexStart?: string;
       /** Pseudo-class applied to the inner `component` element if `disabled={true}`. */
       disabled?: string;
       /** Styles applied to the inner `component` element if `divider={true}`. */
       divider?: string;
-      /** Styles applied to the inner `component` element if `disableGutters={false}`. */
+      /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
       gutters?: string;
       /** Styles applied to the inner `component` element if `button={true}`. */
       button?: string;
-      /** Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
+      /** Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
       secondaryAction?: string;
       /** Pseudo-class applied to the root element if `selected={true}`. */
       selected?: string;
@@ -58,13 +58,13 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      */
     ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
     /**
-     * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+     * If `true`, compact vertical padding designed for keyboard and mouse input is used.
      * The prop defaults to the value inherited from the parent List component.
      * @default false
      */
     dense?: boolean;
     /**
-     * If `true`, the list item will be disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
@@ -102,7 +102,7 @@ declare const ListItem: OverridableComponent<
   ListItemTypeMap<
     {
       /**
-       * If `true`, the list item will be a button (using `ButtonBase`). Props intended
+       * If `true`, the list item is a button (using `ButtonBase`). Props intended
        * for `ButtonBase` can then be applied to `ListItem`.
        * @default false
        */
@@ -115,7 +115,7 @@ declare const ListItem: OverridableComponent<
     ListItemTypeMap<
       {
         /**
-         * If `true`, the list item will be a button (using `ButtonBase`). Props intended
+         * If `true`, the list item is a button (using `ButtonBase`). Props intended
          * for `ButtonBase` can then be applied to `ListItem`.
          * @default false
          */

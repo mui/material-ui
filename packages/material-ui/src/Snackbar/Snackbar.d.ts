@@ -91,7 +91,7 @@ export interface SnackbarProps
    */
   onClose?: (event: React.SyntheticEvent<any>, reason: SnackbarCloseReason) => void;
   /**
-   * If `true`, `Snackbar` is open.
+   * If `true`, the component is shown.
    */
   open?: boolean;
   /**

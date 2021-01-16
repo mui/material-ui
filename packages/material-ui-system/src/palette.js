@@ -12,6 +12,11 @@ export const bgcolor = style({
   themeKey: 'palette',
 });
 
-const palette = compose(color, bgcolor);
+export const backgroundColor = style({
+  prop: 'backgroundColor',
+  themeKey: 'palette',
+});
+
+const palette = compose(color, bgcolor, backgroundColor);
 
 export default palette;

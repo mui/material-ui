@@ -22,7 +22,7 @@ Aside from the above composition trade-off, we enforce the following rules:
 
 ### Spread
 
-Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
+Props supplied to a component which are not explicitly documented are spread to the root element; for instance, the `className` prop is applied to the root.
 
 Now, let's say you want to disable the ripples on the `MenuItem`. You can take advantage of the spread behavior:
 
@@ -38,7 +38,7 @@ We avoid documenting native properties supported by the DOM like [`className`](/
 
 ### CSS Classes
 
-All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
 
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
@@ -78,9 +78,9 @@ The name of a boolean property should be chosen based on the **default value**. 
 +<Input disabled />
 ```
 
-### Controlled components
+### Управляемые компоненты
 
-Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state.
+Большинство управляемых компонентов контролируются параметрами `value` и `onChange`, хотя комбинация `open` / `onClose` / `onOpen` используется с отвечающим за отображение состоянием. Если же событий несколько, то мы ставим в начало существительное, а затем глагол, например: `onPageChange`, `onRowsChange`.
 
 ### boolean vs enum
 
@@ -122,7 +122,7 @@ The `ref` is forwarded to the root element. This means that, without changing th
 
 ## Словарь
 
-- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. экземляр `window.HTMLDivElement`.
+- **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`. экземляр `window.HTMLDivElement`.
 - **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
 - **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
 - **root component**: the outermost component that renders a host component.

@@ -27,7 +27,6 @@ const SimpleBackdrop = React.forwardRef(function SimpleBackdrop(props, ref) {
 
   return open ? (
     <div
-      data-mui-test="Backdrop"
       aria-hidden
       ref={ref}
       {...other}
@@ -47,7 +46,7 @@ SimpleBackdrop.propTypes = {
    */
   invisible: PropTypes.bool,
   /**
-   * If `true`, the backdrop is open.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
 };

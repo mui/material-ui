@@ -1,0 +1,13 @@
+/* Only used to enable the language server */
+{
+  "extends": "../tsconfig.json",
+  "include": ["regressions/**/*", "utils/**/*"],
+  "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules"]
+}

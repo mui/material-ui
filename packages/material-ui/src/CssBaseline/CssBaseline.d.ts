@@ -4,7 +4,6 @@ import { StyledComponentProps } from '@material-ui/core/styles';
 export interface CssBaselineProps extends StyledComponentProps<never> {
   /**
    * You can wrap a node.
-   * @default null
    */
   children?: React.ReactNode;
 }

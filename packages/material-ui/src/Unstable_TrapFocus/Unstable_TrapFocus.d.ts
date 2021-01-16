@@ -3,7 +3,7 @@ import * as React from 'react';
 
 export interface TrapFocusProps {
   /**
-   * If `true`, focus will be locked.
+   * If `true`, focus is locked.
    */
   open: boolean;
   /**
@@ -11,6 +11,12 @@ export interface TrapFocusProps {
    * We use it to implement the restore focus between different browser documents.
    */
   getDoc: () => Document;
+  /**
+   * Returns an array of ordered tabbable nodes (i.e. in tab order) within the root.
+   * For instance, you can provide the "tabbable" npm dependency.
+   * @param {HTMLElement} root
+   */
+  getTabbable?: (root: HTMLElement) => string[];
   /**
    * Do we still want to enforce the focus?
    * This prop helps nesting TrapFocus elements.

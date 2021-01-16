@@ -1,5 +1,5 @@
 ---
-title: React 快速拨号组件
+title: React Speed Dial（快速拨号）组件
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: SpeedDial'
 0: 'https://material.io/components/buttons-floating-action-button#types-of-transitions'
@@ -24,7 +24,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 您可以使用 `SpeedDialIcon` 组件的 `图标` 和 `openIcon` 道具 为关闭和打开状态提供备用图标。
 
-SpeedDialActions工具提示可以持久显示，这样用户无需长按即可在触摸设备上查看工具提示。
+{{"demo": "pages/components/speed-dial/ControlledOpenSpeedDial.js"}}
 
 ## 自定义关闭图标
 
@@ -34,7 +34,7 @@ SpeedDialActions工具提示可以持久显示，这样用户无需长按即可�
 
 ## 恒定不变的操作的工具提示
 
-SpeedDialActions 提示组件可以持续显示，这样一来用户不用长按就能在触摸设备上看到提示内容了。
+快速拨号操作（SpeedDialActions）的工具提示可以持久显示，这样用户就不必在触摸设备上长按才能看到工具提示。
 
 为了演示的目的，该示例为所有设备都启用了该功能，但在生产环境中，它可以使用 `isTouch` 逻辑来有条件地设置属性。
 
@@ -59,5 +59,5 @@ SpeedDialActions 提示组件可以持续显示，这样一来用户不用长按
 
 - 对焦时打开快速拨号组件。
 - 空格键和回车键将会触发所选的快速拨号动作，并且切换快速拨号组件的打开状态。
-- 光标键可将焦点移至下一个或上一个快速拨号操作。 （请注意，任何光标键的方向都可以用来打开快速拨号。 这使得实际或感知的快速拨号盘方向的预期行为得以实现，例如，对于将快速拨号盘视为下拉菜单的屏幕阅读器用户而言。）
+- 光标键可将焦点移至下一个或上一个快速拨号操作。 （请注意，任何光标键的方向都可以用来打开快速拨号。 这使得实际或感知到的快速拨号盘方向的预期行为成为可能，例如，对于屏幕阅读器用户来说，他们认为快速拨号盘是一个下拉菜单。 )
 - Escape 键将会关闭快速拨号盘，如果一个快速快速拨号盘的动作被聚焦，则将该焦点回退到 Fab。

@@ -17,7 +17,7 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
     horizontal?: string;
     /** Styles applied to the root element if `orientation="vertical"`. */
     vertical?: string;
-    /** Styles applied to the `Typography` component which wraps `children`. */
+    /** Styles applied to the Typography component that wraps `children`. */
     label?: string;
     /** Pseudo-class applied to the `Typography` component if `active={true}`. */
     active?: string;
@@ -35,7 +35,7 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
     labelContainer?: string;
   };
   /**
-   * Mark the step as failed.
+   * If `true`, the step is marked as failed.
    * @default false
    */
   error?: boolean;

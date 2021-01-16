@@ -32,7 +32,7 @@ export const styles = (theme) => ({
   spacer: {
     flex: '1 1 100%',
   },
-  /* Styles applied to the caption Typography components if `variant="caption"`. */
+  /* Styles applied to the caption Typography component if `variant="caption"`. */
   caption: {
     flexShrink: 0,
   },
@@ -52,7 +52,7 @@ export const styles = (theme) => ({
   // TODO v5: remove
   /* Styles applied to the Select component `icon` class. */
   selectIcon: {},
-  /* Styles applied to the `InputBase` component. */
+  /* Styles applied to the InputBase component. */
   input: {
     color: 'inherit',
     fontSize: 'inherit',
@@ -111,6 +111,11 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   const labelId = useId(SelectProps.labelId);
   const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
+  const getLabelDisplayedRowsTo = () => {
+    if (count === -1) return (page + 1) * rowsPerPage;
+    return rowsPerPage === -1 ? count : Math.min(count, (page + 1) * rowsPerPage);
+  };
+
   return (
     <Component className={clsx(classes.root, className)} colSpan={colSpan} ref={ref} {...other}>
       <Toolbar className={classes.toolbar}>
@@ -149,7 +154,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
         <Typography color="inherit" variant="body2" className={classes.caption}>
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
-            to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
+            to: getLabelDisplayedRowsTo(),
             count: count === -1 ? -1 : count,
             page,
           })}
@@ -276,6 +281,8 @@ TablePagination.propTypes = {
   }),
   /**
    * The number of rows per page.
+   *
+   * Set -1 to display all the rows.
    */
   rowsPerPage: PropTypes.number.isRequired,
   /**

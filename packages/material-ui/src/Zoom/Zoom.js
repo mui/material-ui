@@ -28,6 +28,7 @@ const defaultTimeout = {
  */
 const Zoom = React.forwardRef(function Zoom(props, ref) {
   const {
+    appear = true,
     children,
     in: inProp,
     onEnter,
@@ -106,7 +107,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
 
   return (
     <TransitionComponent
-      appear
+      appear={appear}
       in={inProp}
       nodeRef={nodeRef}
       onEnter={handleEnter}
@@ -140,6 +141,12 @@ Zoom.propTypes = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
+  appear: PropTypes.bool,
   /**
    * A single child content element.
    */

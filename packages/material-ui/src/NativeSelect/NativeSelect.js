@@ -99,6 +99,7 @@ export const styles = (theme) => ({
     opacity: 0,
     pointerEvents: 'none',
     width: '100%',
+    boxSizing: 'border-box',
   },
 });
 
@@ -167,7 +168,7 @@ NativeSelect.propTypes = {
    */
   input: PropTypes.element,
   /**
-   * Attributes applied to the `select` element.
+   * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes">Attributes</a> applied to the `select` element.
    */
   inputProps: PropTypes.object,
   /**
@@ -178,7 +179,7 @@ NativeSelect.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The input value. The DOM API casts this to a string.
+   * The `input` value. The DOM API casts this to a string.
    */
   value: PropTypes.any,
   /**
