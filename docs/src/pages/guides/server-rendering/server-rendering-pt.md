@@ -102,7 +102,13 @@ Com isto estamos criando uma nova instância do servidor Emotion e usando isto p
 Vamos ver como isso é passado na função `renderFullPage`.
 
 ```jsx
-res.send(renderFullPage(html, `${css} ${styles.css}`));
+const css = sheets.toString();
+
+  // Pegue o CSS do emotion
+  const styles = extractCritical(html);
+
+  // Envie a página renderizada de volta para o cliente.
+  res.send(renderFullPage(html, `${css} ${styles.css}`));
 }
 
 const app = express();
@@ -136,12 +142,6 @@ function handleRender(req, res) {
   );
 
   // Pegue o CSS das folhas.
-  const css = sheets.toString();
-
-  // Pegue o CSS do emotion
-  const styles = extractCritical(html);
-
-  // Envie a página renderizada de volta para o cliente.
 app.use(handleRender);
 
 const port = 3000;
