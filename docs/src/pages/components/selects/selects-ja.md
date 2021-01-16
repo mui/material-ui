@@ -58,7 +58,7 @@ The Select component is implemented as a custom `<input>` element of the [InputB
 
 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/how-to-customize/)を参照してください。
 
-To properly label your `Select` input you need an extra element with an `id` that contains a label. スタイルを設定したら、テキストフィールドとして直接使用するか、select `input` プロパティに提供して、 `select` フィールドを作成できます。
+最初のステップは、 `InputBase` コンポーネントのスタイル設定です。 スタイルを設定したら、テキストフィールドとして直接使用するか、select `input` プロパティに提供して、 `select` フィールドを作成できます。
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -68,7 +68,7 @@ To properly label your `Select` input you need an extra element with an `id` tha
 
 ## 制御開選択
 
-To properly label your `Select` input you need an extra element with an `id` that contains a label. To properly label your `Select` input you need an extra element with an `id` that contains a label.
+`Select` コンポーネントは、複数の選択を処理できます。 To properly label your `Select` input you need an extra element with an `id` that contains a label.
 
 単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
 
