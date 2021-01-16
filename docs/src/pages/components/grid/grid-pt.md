@@ -96,22 +96,7 @@ Se você precisar fazer isso, remova uma das propriedades.
 
 ### Margem negativa
 
-Há uma limitação com a margem negativa que usamos para implementar o espaçamento entre itens. Uma barra de rolagem horizontal irá aparecer se uma margem negativa vai além do `<body>`. Existem 3 soluções disponíveis:
-
-1. Não usar o recurso de espaçamento e implementá-lo no espaço do usuário `spacing={0}` (Padrão).
-2. Aplicando padding ao pai com pelo menos metade do valor de espaçamento aplicado ao filho:
-
-   ```jsx
-   <body>
-    <div style={{ padding: 20 }}>
-      <Grid container spacing={5}>
-        //...
-       </Grid>
-    </div>
-  </body>
-   ```
-
-3. Adicionando `overflow-x: hidden;` para o pai.
+Há uma limitação com a margem negativa que usamos para implementar o espaçamento entre itens. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 
