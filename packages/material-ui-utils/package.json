@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.23",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI Utils - Utility functions for Material-UI.",
+  "description": "Utility functions for React components.",
   "main": "./src/index.ts",
   "keywords": [
     "react",

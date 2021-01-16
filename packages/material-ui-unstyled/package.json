@@ -3,13 +3,14 @@
   "version": "5.0.0-alpha.23",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI Unstyled - collection of unstyled React components.",
+  "description": "Unstyled React components with which to implement custom design systems.",
   "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
     "material-ui",
-    "unstyled"
+    "unstyled",
+    "a11y"
   ],
   "repository": {
     "type": "git",

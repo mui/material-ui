@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.23",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI Styled - Wrapper package for styled-components.",
+  "description": "styled() API wrapper package for styled-components.",
   "main": "./src/index.js",
   "keywords": [
     "react",
