@@ -68,7 +68,13 @@ Support for non-ref-forwarding class components in the `component` prop or as im
 The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migration from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
 
 ```jsx
-Now you can override Material-UI's styles. import * as React from 'react';
+import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
@@ -84,17 +90,11 @@ export default function GlobalCssPriority() {
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+import { StylesProvider } from '@material-ui/core';
 
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function PlainCssPriority() {
+export default function GlobalCssPriority() {
   return (
-    <CacheProvider value={cache}>
+    <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
@@ -102,7 +102,7 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. */}
-    </CacheProvider>
+    </StylesProvider>
   );
 }
 ```
@@ -917,7 +917,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Snackbar
 
-- Уведомление теперь отображается в левом нижнем углу на больших экранах. Это лучше соответствует поведению Gmail, Google Keep, material.io и т.д. Вы можете восстановить прежнее поведение с помощью: Вы можете восстановить прежнее поведение с помощью:
+- Уведомление теперь отображается в левом нижнем углу на больших экранах. Это лучше соответствует поведению Gmail, Google Keep, material.io и т.д. Вы можете восстановить прежнее поведение с помощью: Вы можете восстановить прежнее поведение с помощью: Вы можете восстановить прежнее поведение с помощью:
 
   ```diff
   -<Snackbar />
