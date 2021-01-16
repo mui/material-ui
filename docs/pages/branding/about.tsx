@@ -129,7 +129,7 @@ export default function Page() {
               </Button>
             </BrandingCard>
           </Grid>
-          <Grid>
+          <Grid item xs={12} md={6}>
             <BrandingCard icon={<HelpIcon fontSize="large" />} title="Help new users">
               <Typography sx={{ mt: 2 }}>
                 You can answer questions on{' '}
