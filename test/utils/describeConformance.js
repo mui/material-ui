@@ -166,6 +166,7 @@ export function testRootClass(element, getOptions) {
     expect(findOutermostIntrinsic(wrapper).getDOMNode().getAttribute('classes')).to.equal(null);
   });
 }
+
 /**
  * Tests that the component can be rendered with react-test-renderer.
  * This is important for snapshot testing with Jest (even if we don't encourage it).
