@@ -96,22 +96,7 @@ If you need to do such, remove one of the props.
 
 ### Marge négative
 
-Il existe une limitation à la marge négative utilisée pour mettre en œuvre l'espacement entre les éléments. Un défilement horizontal apparaîtra si une marge négative dépasse le `<body>`. Il existe 3 alternatives:
-
-1. Ne pas utiliser la fonctionnalité d'espacement et l'implémenter dans l'espace utilisateur `spacing={0}` (par défaut).
-2. Appliquer un rembourrage (padding) au parent avec au moins la moitié de la valeur d'espacement appliquée à l'enfant:
-
-   ```jsx
-   <body>
-    <div style={{ padding: 20 }}>
-      <Grid container spacing={5}>
-        //...
-       </Grid>
-    </div>
-  </body>
-   ```
-
-3. Ajouter `overflow-x: hidden;` au parent.
+Il existe une limitation à la marge négative utilisée pour mettre en œuvre l'espacement entre les éléments. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 
