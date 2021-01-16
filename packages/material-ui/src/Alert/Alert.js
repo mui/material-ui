@@ -8,7 +8,7 @@ import experimentalStyled from '../styles/experimentalStyled';
 import { darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
-import { getAppBarUtilityClass } from './alertClasses';
+import { getAlertUtilityClass } from './alertClasses';
 import IconButton from '../IconButton';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
@@ -34,7 +34,7 @@ const useUtilityClasses = (styleProps) => {
     action: ['action'],
   };
 
-  return composeClasses(slots, getAppBarUtilityClass, classes);
+  return composeClasses(slots, getAlertUtilityClass, classes);
 };
 
 const AlertRoot = experimentalStyled(
