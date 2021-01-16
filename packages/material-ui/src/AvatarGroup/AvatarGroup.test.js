@@ -1,24 +1,21 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
 import Avatar from '@material-ui/core/Avatar';
+import classes from './avatarGroupClasses';
 import AvatarGroup from './AvatarGroup';
 
 describe('<AvatarGroup />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<AvatarGroup />);
-  });
-
-  describeConformance(<AvatarGroup />, () => ({
+  describeConformanceV5(<AvatarGroup />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    muiName: 'MuiAvatarGroup',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentsProp'],
   }));
 
   it('should display all the avatars', () => {

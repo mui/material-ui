@@ -2,36 +2,72 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
-import { withStyles } from '../styles';
+import { chainPropTypes, deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import Avatar from '../Avatar';
+import { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 
 const SPACINGS = {
   small: -16,
   medium: null,
 };
 
-export const styles = (theme) => ({
+const overridesResolver = (props, styles) => {
+  return deepmerge(styles.root || {}, {});
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+    avatar: ['avatar'],
+  };
+
+  return composeClasses(slots, getAvatarGroupUtilityClass, classes);
+};
+
+const AvatarGroupRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiAvatarGroup',
+    slot: 'Root',
+    overridesResolver,
+  },
+)({
   /* Styles applied to the root element. */
-  root: {
-    display: 'flex',
-    flexDirection: 'row-reverse',
-  },
-  /* Styles applied to the avatar elements. */
-  avatar: {
-    border: `2px solid ${theme.palette.background.default}`,
-    boxSizing: 'content-box',
-    marginLeft: -8,
-    '&:last-child': {
-      marginLeft: 0,
-    },
-  },
+  display: 'flex',
+  flexDirection: 'row-reverse',
 });
 
-const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
+/* Styles applied to the avatar elements. */
+const AvatarGroupAvatar = experimentalStyled(
+  Avatar,
+  {},
+  {
+    name: 'MuiAvatarGroup',
+    slot: 'Avatar',
+  },
+)(({ theme }) => ({
+  border: `2px solid ${theme.palette.background.default}`,
+  boxSizing: 'content-box',
+  marginLeft: -8,
+  '&:last-child': {
+    marginLeft: 0,
+  },
+}));
+
+const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiAvatarGroup',
+  });
+
   const {
     children: childrenProp,
-    classes,
     className,
     max = 5,
     spacing = 'medium',
@@ -39,6 +75,8 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
     ...other
   } = props;
   const clampedMax = max < 2 ? 2 : max;
+
+  const classes = useUtilityClasses(props);
 
   const children = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -60,9 +98,9 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
   return (
-    <div className={clsx(classes.root, className)} ref={ref} {...other}>
+    <AvatarGroupRoot className={clsx(classes.root, className)} ref={ref} {...other}>
       {extraAvatars ? (
-        <Avatar
+        <AvatarGroupAvatar
           className={classes.avatar}
           style={{
             marginLeft,
@@ -70,7 +108,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
           variant={variant}
         >
           +{extraAvatars}
-        </Avatar>
+        </AvatarGroupAvatar>
       ) : null}
       {children
         .slice(0, children.length - extraAvatars)
@@ -85,7 +123,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
             variant: child.props.variant || variant,
           });
         })}
-    </div>
+    </AvatarGroupRoot>
   );
 });
 
@@ -126,6 +164,10 @@ AvatarGroup.propTypes = {
    */
   spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The variant to use.
    * @default 'circular'
    */
@@ -135,4 +177,4 @@ AvatarGroup.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiAvatarGroup' })(AvatarGroup);
+export default AvatarGroup;
