@@ -103,7 +103,7 @@ The loading buttons can show pending state and disable interactions.
 
 ## Complex buttons
 
-テキストボタン、コンテインボタン、フローティングアクションボタン、アイコンボタンは、同じコンポーネント(`ButtonBase`) を元に作成されています。 この元のコンポーネントを利用して独自のインタラクションを構築できます。 You can take advantage of this lower-level component to build custom interactions.
+テキストボタン、コンテインボタン、フローティングアクションボタン、アイコンボタンは、同じコンポーネント(`ButtonBase`) を元に作成されています。 You can take advantage of this lower-level component to build custom interactions.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
