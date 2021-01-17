@@ -20,7 +20,11 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
+    ...styles[styleProps.variant],
     ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
+    [`& .${avatarClasses.icon}`]: styles.icon,
+    [`& .${avatarClasses.message}`]: styles.message,
+    [`& .${avatarClasses.action}`]: styles.action,
   });
 };
 
