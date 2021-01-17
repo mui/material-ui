@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import { darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
@@ -139,7 +140,8 @@ const defaultIconMapping = {
   info: <InfoOutlinedIcon fontSize="inherit" />,
 };
 
-const Alert = React.forwardRef(function Alert(props, ref) {
+const Alert = React.forwardRef(function Alert(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiAlert' });
   const {
     action,
     children,
@@ -175,14 +177,16 @@ const Alert = React.forwardRef(function Alert(props, ref) {
       {...other}
     >
       {icon !== false ? (
-        <AlertIcon className={classes.icon}>
+        <AlertIcon styleProps={styleProps} className={classes.icon}>
           {icon || iconMapping[severity] || defaultIconMapping[severity]}
         </AlertIcon>
       ) : null}
-      <AlertMessage className={classes.message}>{children}</AlertMessage>
+      <AlertMessage styleProps={styleProps} className={classes.message}>
+        {children}
+      </AlertMessage>
       {action != null ? <AlertAction className={classes.action}>{action}</AlertAction> : null}
       {action == null && onClose ? (
-        <AlertAction className={classes.action}>
+        <AlertAction styleProps={styleProps} className={classes.action}>
           <IconButton
             size="small"
             aria-label={closeText}

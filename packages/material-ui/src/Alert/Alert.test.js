@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createMount, describeConformance } from 'test/utils';
+import { createMount, describeConformanceV5 } from 'test/utils';
 import classes from './alertClasses';
 import Paper from '../Paper';
 import Alert from './Alert';
@@ -7,11 +7,13 @@ import Alert from './Alert';
 describe('<Alert />', () => {
   const mount = createMount();
 
-  describeConformance(<Alert />, () => ({
+  describeConformanceV5(<Alert />, () => ({
     classes,
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    muiName: 'MuiAlert',
+    skip: ['componentsProp'],
+    testVariantProps: { variant: 'standard', color: 'success' },
   }));
 });
