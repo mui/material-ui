@@ -26,14 +26,14 @@
       },
       "default": "'success'"
     },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
       "default": "'standard'"
-    },
-    "sx": { "type": { "name": "object" } }
+    }
   },
   "name": "Alert",
   "styles": {
