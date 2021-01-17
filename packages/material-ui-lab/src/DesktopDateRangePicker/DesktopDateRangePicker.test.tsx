@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { isWeekend } from 'date-fns';
 import { screen, fireEvent } from 'test/utils';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
 import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
-import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
 import {
   createPickerRender,
   FakeTransitionComponent,
@@ -23,7 +21,7 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
   </React.Fragment>
 );
 
-describe('<DateRangePicker />', () => {
+describe('<DesktopDateRangePicker />', () => {
   const render = createPickerRender({ strict: false });
 
   before(function beforeHook() {
@@ -238,25 +236,6 @@ describe('<DateRangePicker />', () => {
     // scroll back
     fireEvent.focus(screen.getAllByRole('textbox')[0]);
     expect(screen.getByText('May 2019')).toBeVisible();
-  });
-
-  it('allows disabling dates', () => {
-    render(
-      <StaticDateRangePicker
-        renderInput={defaultRangeRenderInput}
-        minDate={adapterToUse.date('2005-01-01T00:00:00.000')}
-        shouldDisableDate={isWeekend}
-        onChange={() => {}}
-        value={[
-          adapterToUse.date('2018-01-01T00:00:00.000'),
-          adapterToUse.date('2018-01-31T00:00:00.000'),
-        ]}
-      />,
-    );
-
-    expect(
-      getAllByMuiTest('DateRangeDay').filter((day) => day.getAttribute('disabled') !== undefined),
-    ).to.have.length(31);
   });
 
   it(`doesn't crash if opening picker with invalid date input`, async () => {
