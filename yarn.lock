@@ -2946,9 +2946,9 @@
     recast "0.17.2"
 
 "@types/jsdom@^16.1.0":
-  version "16.2.5"
-  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-16.2.5.tgz#74ebad438741d249ecb416c5486dcde4217eb66c"
-  integrity sha512-k/ZaTXtReAjwWu0clU0KLS53dyqZnA8mm+jwKFeFrvufXgICp+VNbskETFxKKAguv0pkaEKTax5MaRmvalM+TA==
+  version "16.2.6"
+  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-16.2.6.tgz#9ddf0521e49be5365797e690c3ba63148e562c29"
+  integrity sha512-yQA+HxknGtW9AkRTNyiSH3OKW5V+WzO8OPTdne99XwJkYC+KYxfNIcoJjeiSqP3V00PUUpFP6Myoo9wdIu78DQ==
   dependencies:
     "@types/node" "*"
     "@types/parse5" "*"
