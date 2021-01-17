@@ -1,6 +1,6 @@
 export interface AlertClasses {
   root: string;
-  action: string;  
+  action: string;
   icon: string;
   message: string;
   filledSuccess: string;

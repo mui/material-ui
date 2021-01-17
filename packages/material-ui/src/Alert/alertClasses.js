@@ -6,7 +6,7 @@ export function getAlertUtilityClass(slot) {
 
 const alertClasses = generateUtilityClasses('MuiAlert', [
   'root',
-  'action',  
+  'action',
   'icon',
   'message',
   'filledSuccess',
