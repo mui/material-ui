@@ -51,6 +51,7 @@ const AlertRoot = experimentalStyled(
 )(({ theme, styleProps }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
+  const color = styleProps.color || styleProps.severity;
 
   return {
     /* Styles applied to the root element. */
@@ -60,29 +61,26 @@ const AlertRoot = experimentalStyled(
     display: 'flex',
     padding: '6px 16px',
     /* Styles applied to the root element if variant="standard". */
-    ...(styleProps.variant === 'standard' &&
-      styleProps.color && {
-        color: getColor(theme.palette[styleProps.color].main, 0.6),
-        backgroundColor: getBackgroundColor(theme.palette[styleProps.color].main, 0.9),
+    ...(color && styleProps.variant === 'standard' && {
+        color: getColor(theme.palette[color].main, 0.6),
+        backgroundColor: getBackgroundColor(theme.palette[color].main, 0.9),
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[styleProps.color].main,
+          color: theme.palette[color].main,
         },
       }),
     /* Styles applied to the root element if variant="outlined". */
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.color && {
-        color: getColor(theme.palette[styleProps.color].main, 0.6),
-        border: `1px solid ${theme.palette[styleProps.color].main}`,
+    ...(color && styleProps.variant === 'outlined' && {
+        color: getColor(theme.palette[color].main, 0.6),
+        border: `1px solid ${theme.palette[color].main}`,
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[styleProps.color].main,
+          color: theme.palette[color].main,
         },
       }),
     /* Styles applied to the root element if variant="filled". */
-    ...(styleProps.variant === 'filled' &&
-      styleProps.color && {
+    ...(color && styleProps.variant === 'filled' && {
         color: '#fff',
         fontWeight: theme.typography.fontWeightMedium,
-        backgroundColor: theme.palette[styleProps.color].main,
+        backgroundColor: theme.palette[color].main,
       }),
   };
 });
