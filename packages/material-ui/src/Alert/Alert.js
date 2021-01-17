@@ -61,7 +61,8 @@ const AlertRoot = experimentalStyled(
     display: 'flex',
     padding: '6px 16px',
     /* Styles applied to the root element if variant="standard". */
-    ...(color && styleProps.variant === 'standard' && {
+    ...(color &&
+      styleProps.variant === 'standard' && {
         color: getColor(theme.palette[color].main, 0.6),
         backgroundColor: getBackgroundColor(theme.palette[color].main, 0.9),
         [`& .${alertClasses.icon}`]: {
@@ -69,7 +70,8 @@ const AlertRoot = experimentalStyled(
         },
       }),
     /* Styles applied to the root element if variant="outlined". */
-    ...(color && styleProps.variant === 'outlined' && {
+    ...(color &&
+      styleProps.variant === 'outlined' && {
         color: getColor(theme.palette[color].main, 0.6),
         border: `1px solid ${theme.palette[color].main}`,
         [`& .${alertClasses.icon}`]: {
@@ -77,7 +79,8 @@ const AlertRoot = experimentalStyled(
         },
       }),
     /* Styles applied to the root element if variant="filled". */
-    ...(color && styleProps.variant === 'filled' && {
+    ...(color &&
+      styleProps.variant === 'filled' && {
         color: '#fff',
         fontWeight: theme.typography.fontWeightMedium,
         backgroundColor: theme.palette[color].main,
