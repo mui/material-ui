@@ -171,6 +171,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
         src={src}
         srcSet={srcSet}
         sizes={sizes}
+        styleProps={styleProps}
         className={classes.img}
         {...imgProps}
       />

@@ -363,7 +363,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
        * https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9
        * TODO v5: evaluate if still required for the supported browsers.
        */}
-      <ButtonLabel className={classes.label}>
+      <ButtonLabel className={classes.label} styleProps={styleProps}>
         {startIcon}
         {children}
         {endIcon}
