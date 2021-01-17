@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { createMount, describeConformance } from 'test/utils';
+import classes from './alertClasses';
 import Paper from '../Paper';
 import Alert from './Alert';
 
 describe('<Alert />', () => {
   const mount = createMount();
-  let classes;
-
-  before(() => {
-    classes = getClasses(<Alert />);
-  });
 
   describeConformance(<Alert />, () => ({
     classes,
