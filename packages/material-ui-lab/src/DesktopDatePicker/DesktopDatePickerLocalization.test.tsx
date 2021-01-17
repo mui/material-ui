@@ -1,66 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import fr from 'date-fns/locale/fr';
 import deLocale from 'date-fns/locale/de';
 import enLocale from 'date-fns/locale/en-US';
 import TextField from '@material-ui/core/TextField';
-import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 import DesktopDatePicker, { DesktopDatePickerProps } from '@material-ui/lab/DesktopDatePicker';
 import { fireEvent, screen } from 'test/utils';
-import { adapterToUse, getByMuiTest, createPickerRender } from '../internal/pickers/test-utils';
+import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
-describe('<DatePicker /> localization', () => {
-  const render = createPickerRender({ strict: false, locale: fr });
-
-  it('datePicker localized format for year view', () => {
-    render(
-      <MobileDatePicker
-        renderInput={(params) => <TextField {...params} />}
-        value={adapterToUse.date('2018-01-01T00:00:00.000')}
-        onChange={() => {}}
-        views={['year']}
-      />,
-    );
-
-    expect(screen.getByRole('textbox')).to.have.value('2018');
-
-    fireEvent.click(screen.getByLabelText(/Choose date/));
-    expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('2018');
-  });
-
-  it('datePicker localized format for year+month view', () => {
-    const value = adapterToUse.date(`2018-01-01T00:00:00.000`);
-    render(
-      <MobileDatePicker
-        renderInput={(params) => <TextField {...params} />}
-        value={value}
-        onChange={() => {}}
-        views={['year', 'month']}
-      />,
-    );
-
-    expect(screen.getByRole('textbox')).to.have.value('janvier 2018');
-
-    fireEvent.click(screen.getByLabelText(/Choose date/));
-    expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('janvier');
-  });
-
-  it('datePicker localized format for year+month+date view', () => {
-    render(
-      <MobileDatePicker
-        onChange={() => {}}
-        renderInput={(params) => <TextField {...params} />}
-        value={adapterToUse.date('2018-01-01T00:00:00.000')}
-        views={['year', 'month', 'date']}
-      />,
-    );
-
-    expect(screen.getByRole('textbox')).to.have.value('01/01/2018');
-
-    fireEvent.click(screen.getByLabelText(/Choose date/));
-    expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('1 janvier');
-  });
-
+describe('<DesktopDatePicker /> localization', () => {
   describe('input validation', () => {
     interface FormProps {
       Picker: React.ElementType<DesktopDatePickerProps>;
