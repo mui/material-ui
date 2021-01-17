@@ -15,7 +15,8 @@ describe('<AvatarGroup />', () => {
     mount,
     muiName: 'MuiAvatarGroup',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentsProp'],
+    testVariantProps: { max: 5, spacing: 'medium', variant: 'circular' },
+    skip: ['componentsProp', 'themeComponents'],
   }));
 
   it('should display all the avatars', () => {

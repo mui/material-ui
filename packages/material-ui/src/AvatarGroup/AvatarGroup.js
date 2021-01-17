@@ -7,7 +7,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Avatar from '../Avatar';
-import { getAvatarGroupUtilityClass } from './avatarGroupClasses';
+import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 
 const SPACINGS = {
   small: -16,
@@ -15,7 +15,9 @@ const SPACINGS = {
 };
 
 const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {});
+  return deepmerge(styles.root || {}, {
+    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
+  });
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -76,7 +78,14 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   } = props;
   const clampedMax = max < 2 ? 2 : max;
 
-  const classes = useUtilityClasses(props);
+  const styleProps = {
+    ...other,
+    max,
+    spacing,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   const children = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -98,9 +107,15 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
   return (
-    <AvatarGroupRoot className={clsx(classes.root, className)} ref={ref} {...other}>
+    <AvatarGroupRoot
+      styleProps={styleProps}
+      className={clsx(classes.root, className)}
+      ref={ref}
+      {...other}
+    >
       {extraAvatars ? (
         <AvatarGroupAvatar
+          styleProps={styleProps}
           className={classes.avatar}
           style={{
             marginLeft,
