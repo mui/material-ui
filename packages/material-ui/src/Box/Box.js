@@ -36,11 +36,7 @@ BoxInner.propTypes = {
   sx: PropTypes.object,
 };
 
-const BoxRoot = styled(
-  BoxInner,
-  {},
-  { muiName: 'MuiBox', skipVariantsResolver: true },
-)``;
+const BoxRoot = styled(BoxInner, {}, { muiName: 'MuiBox', skipVariantsResolver: true })``;
 
 /**
  * @ignore - do not document.
