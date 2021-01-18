@@ -13,7 +13,8 @@ describe('<Alert />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAlert',
-    skip: ['componentsProp'],
     testVariantProps: { variant: 'standard', color: 'success' },
+    testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
+    skip: ['componentsProp'],
   }));
 });
