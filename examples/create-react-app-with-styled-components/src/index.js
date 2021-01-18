@@ -1,12 +1,19 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StyledEngineProvider injectFirst>
+      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+      <CssBaseline />
+      <App />
+    </StyledEngineProvider>
   </React.StrictMode>,
+
   document.getElementById('root'),
 );
 

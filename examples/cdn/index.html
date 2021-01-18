@@ -27,6 +27,7 @@ const {
   Box,
   SvgIcon,
   Link,
+  StyledEngineProvider,
 } = MaterialUI;
 
 // Create a theme instance.
@@ -107,11 +108,13 @@ function App() {
 }
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-    <CssBaseline />
-    <App />
-  </ThemeProvider>,
+  <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={theme}>
+      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  </StyledEngineProvider>,
   document.querySelector('#root'),
 );
     </script>
