@@ -12,8 +12,8 @@ describe('<AlertTitle />', () => {
     inheritComponent: 'div',
     mount,
     muiName: 'MuiAlertTitle',
-    testVariantProps: { dummy: 'foo' }, // Dont have props to test, but other test must run
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentsProp'],
+    testStateOverrides: { styleKey: 'root' },
+    skip: ['componentsProp', 'themeVariants', 'themeDefaultProps'],
   }));
 });
