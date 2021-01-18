@@ -61,10 +61,6 @@ Box.propTypes = {
   /**
    * @ignore
    */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   */
   clone: PropTypes.bool,
   /**
    * The component used for the root node.
