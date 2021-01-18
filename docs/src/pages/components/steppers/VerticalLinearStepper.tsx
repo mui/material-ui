@@ -76,7 +76,7 @@ export default function VerticalLinearStepper() {
               <div className={classes.actionsContainer}>
                 <div>
                   <Button
-                    disabled={activeStep === 0}
+                    disabled={index === 0}
                     onClick={handleBack}
                     className={classes.button}
                   >
@@ -88,7 +88,7 @@ export default function VerticalLinearStepper() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                    {index === steps.length - 1 ? 'Finish' : 'Next'}
                   </Button>
                 </div>
               </div>
