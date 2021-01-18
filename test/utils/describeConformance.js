@@ -148,7 +148,7 @@ export function testRootClass(element, getOptions) {
     }
 
     const className = randomStringValue();
-    const wrapper = mount(React.cloneElement(element, { className }));
+    let wrapper = mount(React.cloneElement(element, { className }));
 
     // we established that the root component renders the outermost host previously. We immediately
     // jump to the host component because some components pass the `root` class
@@ -156,6 +156,14 @@ export function testRootClass(element, getOptions) {
     // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
     expect(findOutermostIntrinsic(wrapper).hasClass(classes.root)).to.equal(true);
     expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(true);
+
+    // Test that classes prop works
+    const classesProp = { ...classes };
+    classesProp.root = `${classesProp.root} ${className}`;
+
+    wrapper = mount(React.cloneElement(element, { classes: classesProp }));
+    expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(true);
+    expect(findOutermostIntrinsic(wrapper).getDOMNode().getAttribute('classes')).to.equal(null);
   });
 }
 
