@@ -48,6 +48,7 @@ describe('<TouchRipple />', () => {
     inheritComponent: 'span',
     mount,
     refInstanceof: Object,
+    muiName: 'MuiTouchRipple',
     skip: [
       'componentsProp',
       'refForwarding',
