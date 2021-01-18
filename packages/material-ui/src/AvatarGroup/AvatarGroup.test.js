@@ -9,15 +9,21 @@ describe('<AvatarGroup />', () => {
   const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<AvatarGroup />, () => ({
-    classes,
-    inheritComponent: 'div',
-    mount,
-    muiName: 'MuiAvatarGroup',
-    refInstanceof: window.HTMLDivElement,
-    testVariantProps: { max: 5, spacing: 'medium', variant: 'circular' },
-    skip: ['componentsProp', 'themeComponents'],
-  }));
+  describeConformanceV5(
+    <AvatarGroup>
+      <div />
+    </AvatarGroup>,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      mount,
+      muiName: 'MuiAvatarGroup',
+      refInstanceof: window.HTMLDivElement,
+      testDeepOverrides: { slotName: 'avatar', slotClassName: classes.avatar },
+      testVariantProps: { max: 10, spacing: 'small', variant: 'square' },
+      skip: ['componentsProp'],
+    }),
+  );
 
   it('should display all the avatars', () => {
     const { container } = render(

@@ -39,11 +39,19 @@ const AvatarGroupRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)({
+)(({ theme }) => ({
+  [`& .MuiAvatar-root`]: {
+    border: `2px solid ${theme.palette.background.default}`,
+    boxSizing: 'content-box',
+    marginLeft: -8,
+    '&:last-child': {
+      marginLeft: 0,
+    },
+  },
   /* Styles applied to the root element. */
   display: 'flex',
   flexDirection: 'row-reverse',
-});
+}));
 
 const AvatarGroupAvatar = experimentalStyled(
   Avatar,
