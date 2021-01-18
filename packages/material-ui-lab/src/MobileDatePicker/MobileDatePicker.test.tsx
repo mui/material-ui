@@ -133,6 +133,21 @@ describe('<MobileDatePicker />', () => {
     expect(screen.queryByRole('dialog')).to.equal(null);
   });
 
+  it('prop `toolbarTitle` – should render title from the prop', () => {
+    render(
+      <MobileDatePicker
+        renderInput={(params) => <TextField {...params} />}
+        open
+        toolbarTitle="test"
+        label="something"
+        onChange={() => {}}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
+      />,
+    );
+
+    expect(getByMuiTest('picker-toolbar-title').textContent).to.equal('test');
+  });
+
   it('prop `toolbarTitle` – should use label if no toolbar title', () => {
     render(
       <MobileDatePicker
