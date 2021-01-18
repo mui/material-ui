@@ -123,7 +123,7 @@ const AlertAction = experimentalStyled(
   {},
   {
     name: 'MuiAlert',
-    slot: 'Message',
+    slot: 'Action',
   },
 )({
   display: 'flex',
