@@ -1,4 +1,3 @@
-import { deepmerge } from '@material-ui/utils';
 import { propToStyleFunction } from '../getThemeValue';
 
 const splitProps = (props) => {
