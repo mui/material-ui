@@ -26,6 +26,7 @@
       },
       "default": "'success'"
     },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -65,5 +66,5 @@
   "filename": "/packages/material-ui/src/Alert/Alert.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/alert/\">Alert</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true
 }
