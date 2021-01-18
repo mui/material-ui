@@ -45,7 +45,6 @@ const AvatarGroupRoot = experimentalStyled(
   flexDirection: 'row-reverse',
 });
 
-/* Styles applied to the avatar elements. */
 const AvatarGroupAvatar = experimentalStyled(
   Avatar,
   {},
