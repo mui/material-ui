@@ -20,8 +20,7 @@ export * from './spacing';
 export { default as style } from './style';
 export { default as typography } from './typography';
 export * from './typography';
-export { default as unstable_styleFunctionSx } from './styleFunctionSx';
+export { default as unstable_styleFunctionSx, extendSxProp as unstable_extendSxProp } from './styleFunctionSx';
 export {
   default as unstable_getThemeValue,
-  propToStyleFunction as unstable_propToStyleFunction,
 } from './getThemeValue';

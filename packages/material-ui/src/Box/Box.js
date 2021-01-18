@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
-import { unstable_propToStyleFunction as propToStyleFunction } from '@material-ui/system';
+import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';
 
 const BoxRoot = styled(
@@ -30,34 +29,12 @@ const BoxRoot = styled(
   { muiName: 'MuiBox', skipVariantsResolver: true },
 )``;
 
-const splitProps = (props) => {
-  const result = {
-    boxProps: {},
-    otherProps: {},
-  };
-
-  Object.keys(props).forEach((prop) => {
-    if (propToStyleFunction[prop]) {
-      result.boxProps[prop] = props[prop];
-    } else {
-      result.otherProps[prop] = props[prop];
-    }
-  });
-
-  return result;
-};
-
 /**
  * @ignore - do not document.
  */
-const Box = React.forwardRef(function Box(props, ref) {
-  const { sx: inSx, ...other } = props;
-
-  const { boxProps, otherProps } = splitProps(other);
-
-  const sx = boxProps ? deepmerge(boxProps, inSx) : inSx;
-
-  return <BoxRoot sx={sx} ref={ref} {...otherProps} />;
+const Box = React.forwardRef(function Box(inProps, ref) {
+  const props = extendSxProp(inProps);
+  return <BoxRoot ref={ref} {...props} />;
 });
 
 Box.propTypes = {
