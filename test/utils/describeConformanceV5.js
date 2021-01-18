@@ -7,9 +7,9 @@ import {
   testClassName,
   testPropsSpread,
   describeRef,
-  testRootClass,
   findRootComponent,
   testReactTestRenderer,
+  testRootClass,
 } from './describeConformance';
 
 /**
