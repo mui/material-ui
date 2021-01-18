@@ -51,7 +51,6 @@ describe('<TouchRipple />', () => {
     skip: [
       'componentsProp',
       'refForwarding',
-      'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
     ],
