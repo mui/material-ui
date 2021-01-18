@@ -39,6 +39,7 @@ export default function Chart() {
           <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
           <YAxis stroke={theme.palette.text.secondary}>
             <Label
+              // @ts-expect-error https://github.com/recharts/recharts/issues/2400
               angle={270}
               position="left"
               style={{
