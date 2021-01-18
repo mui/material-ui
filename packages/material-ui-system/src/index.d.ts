@@ -288,5 +288,8 @@ export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-export { default as unstable_styleFunctionSx } from './styleFunctionSx';
+export {
+  default as unstable_styleFunctionSx,
+  extendSxProp as unstable_extendSxProp,
+} from './styleFunctionSx';
 export * from './styleFunctionSx';
