@@ -123,6 +123,8 @@ function getPropsPath(functionBody) {
 }
 
 module.exports = function defaultPropsHandler(documentation, componentDefinition) {
+  return;
+
   const renderBody = getRenderBody(componentDefinition);
   const props = getPropsPath(renderBody);
   if (props !== undefined) {

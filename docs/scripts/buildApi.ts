@@ -14,12 +14,14 @@ import * as yargs from 'yargs';
 import * as doctrine from 'doctrine';
 import {
   defaultHandlers,
+  resolver,
   parse as docgenParse,
   PropDescriptor,
   PropTypeDescriptor,
   ReactDocgenApi,
 } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
+import muiFindAnnotatedComponentsResolver from 'docs/src/modules/utils/findAnnotatedComponentsResolver';
 import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
@@ -438,25 +440,26 @@ function getInheritance(
  * why the source includes relative url. We transform them to absolute urls with
  * this method.
  */
-function computeApiDescription(api: ReactApi, options: { host: string }): Promise<string> {
+async function computeApiDescription(api: ReactApi, options: { host: string }): Promise<string> {
   const { host } = options;
-  return new Promise((resolve, reject) => {
-    remark()
-      .use(function docsLinksAttacher() {
-        return function transformer(tree) {
-          remarkVisit(tree, 'link', (linkNode) => {
-            if ((linkNode.url as string).startsWith('/')) {
-              linkNode.url = `${host}${linkNode.url}`;
-            }
-          });
-        };
-      })
-      .process(api.description, (error, file) => {
-        if (error) reject(error);
+  const file = await remark()
+    .use(function docsLinksAttacher() {
+      return function transformer(tree) {
+        remarkVisit(tree, 'link', (linkNode) => {
+          if ((linkNode.url as string).startsWith('/')) {
+            linkNode.url = `${host}${linkNode.url}`;
+          }
+        });
+      };
+    })
+    .process(api.description);
 
-        resolve(file.contents.toString('utf-8').trim());
-      });
-  });
+  const fullDescription = file.contents.toString('utf-8').trim();
+  // Ignore what we might have generated in `annotateComponentDefinition`
+  const generatedDescriptionMatch = fullDescription.match(/(Demos|API):\r?\n\r?\n/);
+  return generatedDescriptionMatch === null
+    ? fullDescription
+    : fullDescription.slice(0, generatedDescriptionMatch.index);
 }
 
 /**
@@ -508,9 +511,19 @@ async function annotateComponentDefinition(context: {
       }
 
       const { leadingComments } = node;
-      const jsdocBlock = leadingComments != null ? leadingComments[0] : null;
-      if (leadingComments != null && leadingComments.length > 1) {
-        throw new Error('Should only have a single leading jsdoc block');
+      const leadingCommentBlocks =
+        leadingComments != null
+          ? leadingComments.filter(({ type }) => type === 'CommentBlock')
+          : null;
+      const jsdocBlock = leadingCommentBlocks != null ? leadingCommentBlocks[0] : null;
+      if (leadingCommentBlocks != null && leadingCommentBlocks.length > 1) {
+        throw new Error(
+          `Should only have a single leading jsdoc block but got ${
+            leadingCommentBlocks.length
+          }:\n${leadingCommentBlocks
+            .map(({ type, value }, index) => `#${index} (${type}): ${value}`)
+            .join('\n')}`,
+        );
       }
       if (jsdocBlock != null) {
         start = jsdocBlock.start;
@@ -974,7 +987,19 @@ async function buildDocs(options: {
 
   const reactApi: ReactApi = docgenParse(
     src,
-    null,
+    // Use `findExportedComponentDefinition` and fallback to `muiFindAnnotatedComponentsResolver`
+    // `findExportedComponentDefinition` was the default resolver: https://github.com/reactjs/react-docgen/blob/aba7250ff5fde608ee6af7c286b15476d1b5bb99/src/main.js#L19
+    (ast, parser, importer) => {
+      const defaultResolvedDefinition = resolver.findExportedComponentDefinition(
+        ast,
+        parser,
+        importer,
+      );
+      if (defaultResolvedDefinition !== undefined) {
+        return defaultResolvedDefinition;
+      }
+      return muiFindAnnotatedComponentsResolver(ast, parser, importer);
+    },
     defaultHandlers.concat(muiDefaultPropsHandler),
     {
       filename: componentObject.filename,
@@ -1061,7 +1086,9 @@ async function buildDocs(options: {
    * Component description.
    */
   if (reactApi.description.length) {
-    componentApi.componentDescription = marked.parseInline(reactApi.description);
+    componentApi.componentDescription = marked.parseInline(
+      await computeApiDescription(reactApi, { host: '' }),
+    );
   }
 
   const componentProps = _.fromPairs(

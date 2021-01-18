@@ -48,7 +48,6 @@ const todoComponentsTs: string[] = [
   'StaticDatePicker',
   'StaticDateTimePicker',
   'StaticTimePicker',
-  'TimePicker',
   'YearPicker',
 ];
 

@@ -1,8 +1,26 @@
 declare module 'react-docgen' {
+  import { ASTNode } from 'ast-types';
+  // `import { NodePath } from 'ast-types';` points to `const NodePath: NodePathConstructor` for unknown reasons.
+  import { NodePath } from 'ast-types/lib/node-path';
+
+  export { NodePath };
+
   export type Handler = () => unknown;
 
   export const defaultHandlers: Handler[];
 
+  export type Importer = (path: NodePath, name: string) => NodePath | undefined;
+  export type Resolver = (
+    ast: ASTNode,
+    parser: unknown,
+    importer: Importer
+  ) => NodePath | NodePath[] | undefined;
+
+  export namespace resolver {
+    export const findAllComponentDefinitions: Resolver;
+    export const findExportedComponentDefinition: Resolver;
+    export const findAllExportedComponentDefinitions: Resolver;
+  }
   export interface ReactDocgenApi {
     description: string;
     props: Record<string, PropDescriptor>;
@@ -146,8 +164,13 @@ declare module 'react-docgen' {
 
   export function parse(
     source: string,
-    unknown: null,
-    handlers: Handler[0],
+    componentResolver: null | Resolver,
+    handlers: null | Handler[],
     options: { filename: string }
   ): any;
+
+  export namespace utils {
+    export function resolveExportDeclaration(path: NodePath, importer: Importer): NodePath[];
+    export function resolveToValue(path: NodePath, importer: Importer): NodePath;
+  }
 }
