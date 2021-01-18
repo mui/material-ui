@@ -22,7 +22,7 @@ export default function extendSxProp(props) {
   const { sx: inSx = {}, ...other } = props;
   const { systemProps, otherProps } = splitProps(other);
 
-  const sx = systemProps ? deepmerge(systemProps, inSx) : inSx;
+  const sx = { ...systemProps, ...inSx };
 
   return {
     ...otherProps,

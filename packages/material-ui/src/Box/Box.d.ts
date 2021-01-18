@@ -17,22 +17,22 @@ import {
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createMuiTheme';
 
-export type BoxStyleFunction = ComposedStyleFunction<
-  [
-    typeof borders,
-    typeof display,
-    typeof flexbox,
-    typeof grid,
-    typeof palette,
-    typeof positions,
-    typeof shadows,
-    typeof sizing,
-    typeof spacing,
-    typeof typography
-  ]
+type SystemProps = PropsFor<
+  ComposedStyleFunction<
+    [
+      typeof borders,
+      typeof display,
+      typeof flexbox,
+      typeof grid,
+      typeof palette,
+      typeof positions,
+      typeof shadows,
+      typeof sizing,
+      typeof spacing,
+      typeof typography
+    ]
+  >
 >;
-
-type SystemProps = PropsFor<BoxStyleFunction>;
 
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
