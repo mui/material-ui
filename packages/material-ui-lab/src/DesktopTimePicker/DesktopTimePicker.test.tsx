@@ -5,51 +5,10 @@ import { expect } from 'chai';
 import { fireEvent, screen } from 'test/utils';
 import { TimePickerProps } from '@material-ui/lab/TimePicker';
 import DesktopTimePicker from '@material-ui/lab/DesktopTimePicker';
-import { createPickerRender, adapterToUse, getByMuiTest } from '../internal/pickers/test-utils';
+import { createPickerRender, adapterToUse } from '../internal/pickers/test-utils';
 
 describe('<DesktopTimePicker />', () => {
   const render = createPickerRender({ strict: false });
-
-  function createMouseEventWithOffsets(
-    type: 'mousedown' | 'mousemove' | 'mouseup',
-    { offsetX, offsetY, ...eventOptions }: { offsetX: number; offsetY: number } & MouseEventInit,
-  ) {
-    const event = new window.MouseEvent(type, {
-      bubbles: true,
-      cancelable: true,
-      ...eventOptions,
-    });
-
-    Object.defineProperty(event, 'offsetX', { get: () => offsetX });
-    Object.defineProperty(event, 'offsetY', { get: () => offsetY });
-
-    return event;
-  }
-
-  it('accepts time on clock mouse move', () => {
-    const onChangeMock = spy();
-    render(
-      <DesktopTimePicker
-        ampm
-        open
-        value={adapterToUse.date('2018-01-01T00:00:00.000')}
-        onChange={onChangeMock}
-        renderInput={(props) => <TextField variant="outlined" {...props} />}
-      />,
-    );
-
-    const fakeEventOptions = {
-      buttons: 1,
-      offsetX: 20,
-      offsetY: 15,
-    };
-
-    fireEvent(getByMuiTest('clock'), createMouseEventWithOffsets('mousemove', fakeEventOptions));
-    fireEvent(getByMuiTest('clock'), createMouseEventWithOffsets('mouseup', fakeEventOptions));
-
-    expect(getByMuiTest('hours')).to.have.text('11');
-    expect(onChangeMock.callCount).to.equal(1);
-  });
 
   it('allows to navigate between timepicker views using arrow switcher', () => {
     render(
