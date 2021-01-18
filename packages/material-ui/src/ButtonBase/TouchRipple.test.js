@@ -48,7 +48,13 @@ describe('<TouchRipple />', () => {
     inheritComponent: 'span',
     mount,
     refInstanceof: Object,
-    skip: ['componentsProp', 'refForwarding', 'themeComponents'],
+    skip: [
+      'componentsProp',
+      'refForwarding',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
+    ],
   }));
 
   describe('prop: center', () => {
