@@ -4,27 +4,40 @@ import clsx from 'clsx';
 import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';
 
+const BoxInner = React.forwardRef((props, ref) => {
+  const { children, clone, className, component: Component = 'div', sx, ...other } = props;
+
+  if (clone) {
+    return React.cloneElement(children, {
+      className: clsx(children.props.className, className),
+      ...other,
+    });
+  }
+
+  if (typeof children === 'function') {
+    return children({ className, ...other });
+  }
+
+  return (
+    <Component ref={ref} className={className} {...other}>
+      {children}
+    </Component>
+  );
+});
+
+BoxInner.propTypes = {
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
+  className: PropTypes.string,
+  clone: PropTypes.bool,
+  component: PropTypes.elementType,
+  sx: PropTypes.object,
+};
+
 const BoxRoot = styled(
-  React.forwardRef((props, ref) => {
-    const { children, clone, className, component: Component = 'div', sx, ...other } = props;
-
-    if (clone) {
-      return React.cloneElement(children, {
-        className: clsx(children.props.className, className),
-        ...other,
-      });
-    }
-
-    if (typeof children === 'function') {
-      return children({ className, ...other });
-    }
-
-    return (
-      <Component ref={ref} className={className} {...other}>
-        {children}
-      </Component>
-    );
-  }),
+  BoxInner,
   {},
   { muiName: 'MuiBox', skipVariantsResolver: true },
 )``;
