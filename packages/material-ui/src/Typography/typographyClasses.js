@@ -27,14 +27,6 @@ const typographyClasses = generateUtilityClasses('MuiTypography', [
   'noWrap',
   'gutterBottom',
   'paragraph',
-  'colorInherit',
-  'colorPrimary',
-  'colorSecondary',
-  'colorTextPrimary',
-  'colorTextSecondary',
-  'colorError',
-  'displayInline',
-  'displayBlock',
 ]);
 
 export default typographyClasses;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { SxProps } from '@material-ui/system';
+import { SxProps, SystemProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant } from '../styles/createTypography';
@@ -9,7 +9,7 @@ export interface TypographyPropsVariantOverrides {}
 export type TypographyVariantDefaults = Record<Variant | 'inherit', true>;
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
-  props: P & {
+  props: P & SystemProps & {
     /**
      * Set the text-align on the component.
      * @default 'inherit'
@@ -67,40 +67,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
       gutterBottom?: string;
       /** Styles applied to the root element if `paragraph={true}`. */
       paragraph?: string;
-      /** Styles applied to the root element if `color="inherit"`. */
-      colorInherit?: string;
-      /** Styles applied to the root element if `color="primary"`. */
-      colorPrimary?: string;
-      /** Styles applied to the root element if `color="secondary"`. */
-      colorSecondary?: string;
-      /** Styles applied to the root element if `color="textPrimary"`. */
-      colorTextPrimary?: string;
-      /** Styles applied to the root element if `color="textSecondary"`. */
-      colorTextSecondary?: string;
-      /** Styles applied to the root element if `color="error"`. */
-      colorError?: string;
-      /** Styles applied to the root element if `display="inline"`. */
-      displayInline?: string;
-      /** Styles applied to the root element if `display="block"`. */
-      displayBlock?: string;
     };
-    /**
-     * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'initial'
-     */
-    color?:
-      | 'initial'
-      | 'inherit'
-      | 'primary'
-      | 'secondary'
-      | 'textPrimary'
-      | 'textSecondary'
-      | 'error';
-    /**
-     * Controls the display type
-     * @default 'initial'
-     */
-    display?: 'initial' | 'block' | 'inline';
     /**
      * If `true`, the text will have a bottom margin.
      * @default false

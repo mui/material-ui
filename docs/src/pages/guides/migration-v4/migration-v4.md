@@ -1233,6 +1233,21 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Span>Create a user</Span>
   ```
 
+- Replace the `Typography` color values with values available in the [System](https://material-ui.com/system/palette/). We did this change to avoid collision of the component's vs the system props.
+
+  ```diff
+  -<Typography color="primary">Primary</Typography>
+  +<Typography color="primary.main">Primary</Typography>
+  -<Typography color="textPrimary">Text primary</Typography>
+  +<Typography color="text.primary">Text primary</Typography>  
+  -<Typography color="secondary">Secondary</Typography>
+  +<Typography color="secondary.main">Secondary</Typography>
+  -<Typography color="textSecondary">Text secondary</Typography>
+  -<Typography color="text.secondary">Text secondary</Typography>
+  -<Typography color="error">Error</Typography>
+  +<Typography color="error.main">Error</Typography>  
+  ```
+
 ### System
 
 - Replace `css` prop with `sx` to avoid collision with styled-components & emotion CSS props.

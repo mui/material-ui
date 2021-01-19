@@ -70,32 +70,6 @@ describe('<Typography />', () => {
     });
   });
 
-  [
-    ['primary', 'colorPrimary'],
-    ['textSecondary', 'colorTextSecondary'],
-    ['secondary', 'colorSecondary'],
-    ['inherit', 'colorInherit'],
-    ['error', 'colorError'],
-  ].forEach(([color, className]) => {
-    it(`should render ${color} color`, () => {
-      // @ts-ignore literal/tuple type widening
-      const { container } = render(<Typography color={color}>Hello</Typography>);
-
-      // @ts-ignore
-      expect(classes[className] != null).to.equal(true);
-      // @ts-ignore
-      expect(container.firstChild).to.have.class(classes[className]);
-    });
-  });
-
-  describe('prop: color', () => {
-    it('should inherit the color', () => {
-      const { container } = render(<Typography color="inherit">Hello</Typography>);
-
-      expect(container.firstChild).to.have.class(classes.colorInherit);
-    });
-  });
-
   describe('headline', () => {
     it('should render a span by default', () => {
       const { getByText } = render(<Typography variant="button">Hello</Typography>);
