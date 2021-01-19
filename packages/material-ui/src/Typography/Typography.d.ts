@@ -10,7 +10,7 @@ export type TypographyVariantDefaults = Record<Variant | 'inherit', true>;
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    SystemProps<Theme> & {
+    SystemProps & {
       /**
        * Set the text-align on the component.
        * @default 'inherit'

@@ -14,11 +14,9 @@ const TypographyTest = () => {
       <Typography align="inherit" color="textSecondary" />
       <Typography align="inherit" color="error" />
       {/* @ts-expect-error */}
-      <Typography display="incorrectValue" />
+      <Typography sx={{ display: 2 }} display={'marija'} />
       <Typography component="a" href="url" display="block" />
       <Typography component="label" htmlFor="html" display="block" />
-      {/* @ts-expect-error */}
-      <Typography component="a" href="url" display="incorrectValue" />
       {/* @ts-expect-error */}
       <Typography component="a" incorrectAttribute="url" />
       {/* @ts-expect-error */}

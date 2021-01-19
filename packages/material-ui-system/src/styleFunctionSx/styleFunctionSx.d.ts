@@ -58,8 +58,3 @@ export default function unstable_styleFunctionSx(props: object): object;
 
 // utils
 export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
-
-// system props
-export type SystemProps<Theme extends object = {}> = {
-  [K in keyof AllSystemCSSProperties]: ResponsiveStyleValue<AllSystemCSSProperties[K]>;
-};

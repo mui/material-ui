@@ -288,6 +288,23 @@ export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
+export type SystemProps = PropsFor<
+  ComposedStyleFunction<
+    [
+      typeof borders,
+      typeof display,
+      typeof flexbox,
+      typeof grid,
+      typeof palette,
+      typeof positions,
+      typeof shadows,
+      typeof sizing,
+      typeof spacing,
+      typeof typography
+    ]
+  >
+>;
+
 export {
   default as unstable_styleFunctionSx,
   extendSxProp as unstable_extendSxProp,
