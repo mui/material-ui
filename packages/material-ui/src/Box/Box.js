@@ -1,12 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';
 
-/**
- * @ignore - do not document.
- */
-const Box = React.forwardRef(function Box(props, ref) {
+const BoxInner = React.forwardRef((props, ref) => {
   const { children, clone, className, component: Component = 'div', sx, ...other } = props;
 
   if (clone) {
@@ -27,6 +25,27 @@ const Box = React.forwardRef(function Box(props, ref) {
   );
 });
 
+BoxInner.propTypes = {
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
+  className: PropTypes.string,
+  clone: PropTypes.bool,
+  component: PropTypes.elementType,
+  sx: PropTypes.object,
+};
+
+const BoxRoot = styled(BoxInner, {}, { muiName: 'MuiBox', skipVariantsResolver: true })``;
+
+/**
+ * @ignore - do not document.
+ */
+const Box = React.forwardRef(function Box(inProps, ref) {
+  const props = extendSxProp(inProps);
+  return <BoxRoot ref={ref} {...props} />;
+});
+
 Box.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
@@ -42,10 +61,6 @@ Box.propTypes = {
   /**
    * @ignore
    */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   */
   clone: PropTypes.bool,
   /**
    * The component used for the root node.
@@ -58,4 +73,4 @@ Box.propTypes = {
   sx: PropTypes.object,
 };
 
-export default styled(Box, {}, { muiName: 'MuiBox', skipVariantsResolver: true })``;
+export default Box;
