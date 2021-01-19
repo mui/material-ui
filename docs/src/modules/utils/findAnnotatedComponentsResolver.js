@@ -1,31 +1,46 @@
-import { namedTypes as t, visit } from 'ast-types';
-import { ASTNode, NodePath, Resolver } from 'react-docgen';
+// @ts-check
+const { namedTypes: t, visit } = require('ast-types');
 
-export function isAnnotatedComponent(declaration: NodePath): boolean {
+/**
+ * @param {import('react-docgen').NodePath} declaration
+ * @returns {boolean}
+ */
+function isAnnotatedComponent(declaration) {
   // Check if we have:
   // /* @typescript-to-proptypes-generate */
   // const Component = ...
-  const leadingComments: NodePath<ASTNode, t.Comment[]> = declaration.get('leadingComments');
+  /**
+   * @type {import('react-docgen').NodePath<import('react-docgen').ASTNode, t.Comment[]>}
+   */
+  const leadingComments = declaration.get('leadingComments');
   if (leadingComments.value === undefined) {
     return false;
   }
 
-  return leadingComments.value.some(({ value }: { value: string }) => {
+  return leadingComments.value.some(({ value }) => {
     return value.trim() === '@typescript-to-proptypes-generate';
   });
 }
 
 /**
  * @remarks Base on https://github.com/reactjs/react-docgen/blob/master/src/resolver/findExportedComponentDefinition.js
- * @param ast
- * @param parser
- * @param importer
+ * @type {import('react-docgen').Resolver}
  */
-const findAnnotatedComponentsResolver: Resolver = (ast) => {
-  let foundAnnotatedComponent: NodePath | undefined;
+const findAnnotatedComponentsResolver = (ast) => {
+  /**
+   * @type {import('react-docgen').NodePath | undefined}
+   */
+  let foundAnnotatedComponent;
 
-  function exportDeclaration(path: NodePath) {
-    const declarationPath: NodePath = path.get('declaration');
+  /**
+   * @param {import('react-docgen').NodePath} path
+   * @returns {boolean}
+   */
+  function exportDeclaration(path) {
+    /**
+     * @type {import('react-docgen').NodePath}
+     */
+    const declarationPath = path.get('declaration');
     if (t.Identifier.check(declarationPath.node)) {
       const exportedValueScope = path.scope.lookup(declarationPath.node.name);
       const exportedValueScopeBindings = exportedValueScope.getBindings();
@@ -55,4 +70,5 @@ const findAnnotatedComponentsResolver: Resolver = (ast) => {
   return foundAnnotatedComponent;
 };
 
-export default findAnnotatedComponentsResolver;
+module.exports = findAnnotatedComponentsResolver;
+module.exports.isAnnotatedComponent = isAnnotatedComponent;

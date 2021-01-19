@@ -1,7 +1,8 @@
-import * as astTypes from 'ast-types';
-import { parse as parseDoctrine, Annotation } from 'doctrine';
-import { Documentation, Handler, Importer, NodePath, utils as docgenUtils } from 'react-docgen';
-import { isAnnotatedComponent } from './findAnnotatedComponentsResolver';
+// @ts-check
+const astTypes = require('ast-types');
+const { parse: parseDoctrine } = require('doctrine');
+const { utils: docgenUtils } = require('react-docgen');
+const { isAnnotatedComponent } = require('./findAnnotatedComponentsResolver');
 
 const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
 
@@ -10,17 +11,25 @@ const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = d
 
 const { namedTypes: types } = astTypes;
 
-function getDefaultValue(
-  propertyPath: NodePath,
-  importer: Importer,
-): { value: string; computed: boolean } | null {
+/**
+ * @param {import('react-docgen').NodePath} propertyPath
+ * @param {import('react-docgen').Importer} importer
+ * @returns {{ value: string; computed: boolean } | null}
+ */
+function getDefaultValue(propertyPath, importer) {
   if (!types.AssignmentPattern.check(propertyPath.get('value').node)) {
     return null;
   }
-  let path: NodePath = propertyPath.get('value', 'right');
+  /**
+   * @type import('react-docgen').NodePath
+   */
+  let path = propertyPath.get('value', 'right');
   let node = path.node;
 
-  let defaultValue: string | undefined;
+  /**
+   * @type {string|undefined}
+   */
+  let defaultValue;
   if (types.Literal.check(path.node)) {
     // @ts-expect-error TODO upstream fix
     defaultValue = node.raw;
@@ -55,7 +64,12 @@ function getDefaultValue(
   return null;
 }
 
-function getJsdocDefaultValue(jsdoc: Annotation): { value: string } | undefined {
+/**
+ *
+ * @param {import('doctrine').Annotation} jsdoc
+ * @return {{ value: string } | undefined}
+ */
+function getJsdocDefaultValue(jsdoc) {
   const defaultTag = jsdoc.tags.find((tag) => tag.title === 'default');
   if (defaultTag === undefined) {
     return undefined;
@@ -63,21 +77,37 @@ function getJsdocDefaultValue(jsdoc: Annotation): { value: string } | undefined 
   return { value: defaultTag.description || '' };
 }
 
-function getDefaultValuesFromProps(
-  properties: NodePath,
-  documentation: Documentation,
-  importer: Importer,
-): void {
+/**
+ * @param {import('react-docgen').NodePath} properties
+ * @param {import('react-docgen').Documentation} documentation
+ * @param {import('react-docgen').Importer} importer
+ * @returns {void}
+ */
+function getDefaultValuesFromProps(properties, documentation, importer) {
   const { props: documentedProps } = documentation.toObject();
-  const implementedProps: Record<string, NodePath> = {};
+  /**
+   * @type Record<string, import('react-docgen').NodePath>
+   */
+  const implementedProps = {};
   properties
-    .filter((propertyPath: NodePath) => types.Property.check(propertyPath.node), undefined)
-    .forEach((propertyPath: NodePath) => {
-      const propName = getPropertyName(propertyPath);
-      if (propName) {
-        implementedProps[propName] = propertyPath;
-      }
-    });
+    .filter(
+      /**
+       * @param {import('react-docgen').NodePath} propertyPath
+       */
+      (propertyPath) => types.Property.check(propertyPath.node),
+      undefined,
+    )
+    .forEach(
+      /**
+       * @param {import('react-docgen').NodePath} propertyPath
+       */
+      (propertyPath) => {
+        const propName = getPropertyName(propertyPath);
+        if (propName) {
+          implementedProps[propName] = propertyPath;
+        }
+      },
+    );
 
   // Sometimes we list props in .propTypes even though they're implemented by another component
   // These props are spread so they won't appear in the component implementation.
@@ -111,7 +141,12 @@ function getDefaultValuesFromProps(
   });
 }
 
-function getRenderBody(componentDefinition: NodePath, importer: Importer): NodePath {
+/**
+ * @param {import('react-docgen').NodePath} componentDefinition
+ * @param {import('react-docgen').Importer} importer
+ * @returns import('react-docgen').NodePath
+ */
+function getRenderBody(componentDefinition, importer) {
   const value = resolveToValue(componentDefinition, importer);
   if (isReactForwardRefCall(value, importer)) {
     return value.get('arguments', 0, 'body', 'body');
@@ -119,24 +154,45 @@ function getRenderBody(componentDefinition: NodePath, importer: Importer): NodeP
   return value.get('body', 'body');
 }
 
-function getPropsPath(functionBody: NodePath): NodePath | undefined {
-  let propsPath: NodePath | undefined;
+/**
+ * @param {import('react-docgen').NodePath} functionBody
+ * @returns import('react-docgen').NodePath | undefined
+ */
+function getPropsPath(functionBody) {
+  /**
+   * @type import('react-docgen').NodePath | undefined
+   */
+  let propsPath;
   // visitVariableDeclarator, can't use visit body.node since it looses scope information
   functionBody
-    .filter((path: NodePath) => {
-      return types.VariableDeclaration.check(path.node);
-    }, undefined)
-    .forEach((path: NodePath) => {
-      const declaratorPath = path.get('declarations', 0);
-      if (declaratorPath.get('init', 'name').value === 'props') {
-        propsPath = declaratorPath.get('id');
-      }
-    });
+    .filter(
+      /**
+       * @param {import('react-docgen').NodePath} path
+       */
+      (path) => {
+        return types.VariableDeclaration.check(path.node);
+      },
+      undefined,
+    )
+    .forEach(
+      /**
+       * @param {import('react-docgen').NodePath} path
+       */
+      (path) => {
+        const declaratorPath = path.get('declarations', 0);
+        if (declaratorPath.get('init', 'name').value === 'props') {
+          propsPath = declaratorPath.get('id');
+        }
+      },
+    );
 
   return propsPath;
 }
 
-const defaultPropsHandler: Handler = (documentation, componentDefinition, importer) => {
+/**
+ * @type {import('react-docgen').Handler}
+ */
+const defaultPropsHandler = (documentation, componentDefinition, importer) => {
   if (isAnnotatedComponent(componentDefinition)) {
     Object.values(documentation.toObject().props).forEach((propDescriptor) => {
       // For annotated components static analysis already breaks down.
@@ -152,4 +208,4 @@ const defaultPropsHandler: Handler = (documentation, componentDefinition, import
   }
 };
 
-export default defaultPropsHandler;
+module.exports = defaultPropsHandler;
