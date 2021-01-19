@@ -39,7 +39,7 @@ interface ReactApi extends ReactDocgenApi {
   inheritance: { component: string; pathname: string } | null;
   name: string;
   pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
-  spread: boolean;
+  spread: boolean | undefined;
   src: string;
   styles: {
     classes: string[];
@@ -1020,7 +1020,6 @@ async function buildDocs(options: {
   reactApi.name = name;
   reactApi.styles = styles;
   reactApi.pagesMarkdown = pagesMarkdown;
-  reactApi.spread = spread;
   reactApi.EOL = getLineFeed(src);
 
   // styled components does not have the options static
@@ -1035,6 +1034,7 @@ async function buildDocs(options: {
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
+  reactApi.spread = testInfo.spread ?? spread;
 
   // Relative location in the file system.
   reactApi.filename = componentObject.filename.replace(workspaceRoot, '');

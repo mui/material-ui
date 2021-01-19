@@ -95,9 +95,27 @@ function getInheritComponentName(valueNode: babel.types.Node): string | undefine
   return (valueNode as any).name;
 }
 
+function getSkippedTests(valueNode: babel.types.Node): string[] {
+  if (!babel.types.isArrayExpression(valueNode)) {
+    throw new TypeError(
+      `Unabled to determine skipped tests from '${valueNode.type}'. Expected an 'ArrayExpression' i.e. \`skippedTests: ["a", "b"]\`.`,
+    );
+  }
+
+  return valueNode.elements.map((element) => {
+    if (!babel.types.isStringLiteral(element)) {
+      throw new TypeError(
+        `Unable to determine skipped test from '${element?.type}'. Expected a 'StringLiter' i.e. \`"a"\`.`,
+      );
+    }
+    return element.value;
+  });
+}
+
 export interface ParseResult {
   forwardsRefTo: string | undefined;
   inheritComponent: string | undefined;
+  spread: boolean | undefined;
 }
 
 export default async function parseTest(componentFilename: string): Promise<ParseResult> {
@@ -123,12 +141,14 @@ export default async function parseTest(componentFilename: string): Promise<Pars
   const result: ParseResult = {
     forwardsRefTo: undefined,
     inheritComponent: undefined,
+    spread: undefined,
   };
 
   if (descriptor === null) {
     return result;
   }
 
+  let skippedTests: string[] = [];
   descriptor.properties.forEach((property) => {
     if (!babel.types.isObjectProperty(property)) {
       return;
@@ -143,10 +163,15 @@ export default async function parseTest(componentFilename: string): Promise<Pars
       case 'inheritComponent':
         result.inheritComponent = getInheritComponentName(property.value);
         break;
+      case 'skip':
+        skippedTests = getSkippedTests(property.value);
+        break;
       default:
         break;
     }
   });
+
+  result.spread = !skippedTests.includes('propsSpread');
 
   return result;
 }
