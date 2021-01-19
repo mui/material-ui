@@ -85,7 +85,7 @@ const colorTransformations = {
 
 const transformDeprecatedColors = (color) => {
   return colorTransformations[color] || color;
-}
+};
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiTypography' });
