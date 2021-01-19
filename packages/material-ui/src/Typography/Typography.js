@@ -59,7 +59,7 @@ const defaultVariantMapping = {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { align, color, display, gutterBottom, noWrap, paragraph, variant, classes } = styleProps;
+  const { align, gutterBottom, noWrap, paragraph, variant, classes } = styleProps;
 
   const slots = {
     root: [
