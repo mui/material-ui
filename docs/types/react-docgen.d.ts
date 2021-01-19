@@ -8,7 +8,7 @@ declare module 'react-docgen' {
   // sound wrapper around `NodePath` from `ast-types` i.e. no `any`
   export type NodePath<Node extends ASTNode = ASTNode, Value = unknown> = AstTypesNodePath<
     Node,
-    Value
+    Value | undefined
   >;
 
   export interface Documentation {

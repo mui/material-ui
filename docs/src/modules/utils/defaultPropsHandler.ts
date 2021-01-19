@@ -1,6 +1,7 @@
 import * as astTypes from 'ast-types';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
 import { Documentation, Handler, Importer, NodePath, utils as docgenUtils } from 'react-docgen';
+import { isAnnotatedComponent } from './findAnnotatedComponentsResolver';
 
 const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
 
@@ -136,10 +137,18 @@ function getPropsPath(functionBody: NodePath): NodePath | undefined {
 }
 
 const defaultPropsHandler: Handler = (documentation, componentDefinition, importer) => {
-  const renderBody = getRenderBody(componentDefinition, importer);
-  const props = getPropsPath(renderBody);
-  if (props !== undefined) {
-    getDefaultValuesFromProps(props.get('properties'), documentation, importer);
+  if (isAnnotatedComponent(componentDefinition)) {
+    Object.values(documentation.toObject().props).forEach((propDescriptor) => {
+      // For annotated components static analysis already breaks down.
+      // Props can be considered external i.e. we can't verify if the documented default value matches at runtime.
+      propDescriptor.external = true;
+    });
+  } else {
+    const renderBody = getRenderBody(componentDefinition, importer);
+    const props = getPropsPath(renderBody);
+    if (props !== undefined) {
+      getDefaultValuesFromProps(props.get('properties'), documentation, importer);
+    }
   }
 };
 

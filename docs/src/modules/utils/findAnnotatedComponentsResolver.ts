@@ -1,14 +1,15 @@
 import { namedTypes as t, visit } from 'ast-types';
-import { NodePath, Resolver } from 'react-docgen';
+import { ASTNode, NodePath, Resolver } from 'react-docgen';
 
-function isAnnotatedComponent(declaration: NodePath): boolean {
+export function isAnnotatedComponent(declaration: NodePath): boolean {
   // Check if we have:
   // /* @typescript-to-proptypes-generate */
   // const Component = ...
-  const leadingComments = declaration.get('leadingComments');
-  if (leadingComments === undefined) {
+  const leadingComments: NodePath<ASTNode, t.Comment[]> = declaration.get('leadingComments');
+  if (leadingComments.value === undefined) {
     return false;
   }
+
   return leadingComments.value.some(({ value }: { value: string }) => {
     return value.trim() === '@typescript-to-proptypes-generate';
   });
