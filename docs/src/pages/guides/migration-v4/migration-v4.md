@@ -1233,19 +1233,26 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Span>Create a user</Span>
   ```
 
-- Replace the `Typography` color values with values available in the [System](https://material-ui.com/system/palette/). We did this change to avoid collision of the component's vs the system props.
+- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.Typogrpahy.variants` options. For example
 
   ```diff
-  -<Typography color="primary">Primary</Typography>
-  +<Typography color="primary.main">Primary</Typography>
-  -<Typography color="textPrimary">Text primary</Typography>
-  +<Typography color="text.primary">Text primary</Typography>
-  -<Typography color="secondary">Secondary</Typography>
-  +<Typography color="secondary.main">Secondary</Typography>
-  -<Typography color="textSecondary">Text secondary</Typography>
-  -<Typography color="text.secondary">Text secondary</Typography>
-  -<Typography color="error">Error</Typography>
-  +<Typography color="error.main">Error</Typography>
+  const theme = createMuiTheme({
+    components: {
+      Typography: {
+  -     styleOverrides: {
+  -       colorSecondary: {
+  -         marginTop: '20px',
+  -       },
+  -     },
+  +     variants: {
+  +       props: { color: "secondary" },
+  +       style: {
+  +         marginTop: '20px',
+  +       },
+  +     }],
+      },
+    },
+  });
   ```
 
 ### System

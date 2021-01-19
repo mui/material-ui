@@ -75,6 +75,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTypographyUtilityClass, classes);
 };
 
+// TODO v6: deprecate these color values in v5.x and remove the transformation in v6
 const colorTransformations = {
   primary: 'primary.main',
   textPrimary: 'text.primary',

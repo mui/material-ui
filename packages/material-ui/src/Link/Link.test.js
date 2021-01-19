@@ -35,13 +35,21 @@ describe('<Link />', () => {
     expect(queryByText('Home')).to.not.equal(null);
   });
 
-  it('should pass props to the <Typography> component', () => {
+  it('should pass props to the <Typography> component', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
+      this.skip();
+    }
+
     const { container } = render(
       <Link href="/" color="primary">
         Test
       </Link>,
     );
-    expect(container.firstChild).to.have.class(typographyClasses.colorPrimary);
+    // primary color
+    expect(container.firstChild).toHaveComputedStyle({
+      color: 'rgb(63, 81, 181)',
+    });
   });
 
   describe('event callbacks', () => {
