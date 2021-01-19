@@ -1239,13 +1239,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   -<Typography color="primary">Primary</Typography>
   +<Typography color="primary.main">Primary</Typography>
   -<Typography color="textPrimary">Text primary</Typography>
-  +<Typography color="text.primary">Text primary</Typography>  
+  +<Typography color="text.primary">Text primary</Typography>
   -<Typography color="secondary">Secondary</Typography>
   +<Typography color="secondary.main">Secondary</Typography>
   -<Typography color="textSecondary">Text secondary</Typography>
   -<Typography color="text.secondary">Text secondary</Typography>
   -<Typography color="error">Error</Typography>
-  +<Typography color="error.main">Error</Typography>  
+  +<Typography color="error.main">Error</Typography>
   ```
 
 ### System
