@@ -5,7 +5,7 @@ import { Theme } from '../styles/createMuiTheme';
 
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    SystemProps & {
+    SystemProps<Theme> & {
       children?: React.ReactNode | ((props: React.ComponentPropsWithRef<D>) => React.ReactNode);
       component?: React.ElementType;
       clone?: boolean;
