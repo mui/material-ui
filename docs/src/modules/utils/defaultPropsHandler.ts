@@ -1,6 +1,6 @@
-const astTypes = require('ast-types');
-const { parse: parseDoctrine } = require('doctrine');
-const { utils: docgenUtils } = require('react-docgen');
+import * as astTypes from 'ast-types';
+import { parse as parseDoctrine, Annotation } from 'doctrine';
+import { Documentation, Handler, Importer, NodePath, utils as docgenUtils } from 'react-docgen';
 
 const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
 
@@ -9,30 +9,39 @@ const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = d
 
 const { namedTypes: types } = astTypes;
 
-function getDefaultValue(propertyPath) {
+function getDefaultValue(
+  propertyPath: NodePath,
+  importer: Importer,
+): { value: string; computed: boolean } | null {
   if (!types.AssignmentPattern.check(propertyPath.get('value').node)) {
     return null;
   }
-  let path = propertyPath.get('value', 'right');
-
+  let path: NodePath = propertyPath.get('value', 'right');
   let node = path.node;
-  let defaultValue;
-  if (types.Literal.check(node)) {
+
+  let defaultValue: string | undefined;
+  if (types.Literal.check(path.node)) {
+    // @ts-expect-error TODO upstream fix
     defaultValue = node.raw;
   } else {
     if (types.AssignmentPattern.check(path.node)) {
-      path = resolveToValue(path.get('right'));
+      path = resolveToValue(path.get('right'), importer);
     } else {
-      path = resolveToValue(path);
+      path = resolveToValue(path, importer);
     }
     if (types.ImportDeclaration.check(path.node)) {
+      if (!types.Identifier.check(node)) {
+        throw new TypeError(
+          `Unable to follow data flow. Expected an 'Identifier' resolve to an 'ImportDeclaration'. Instead attempted to resolve a '${node.type}'.`,
+        );
+      }
       defaultValue = node.name;
     } else {
       node = path.node;
       defaultValue = printValue(path);
     }
   }
-  if (typeof defaultValue !== 'undefined') {
+  if (defaultValue !== undefined) {
     return {
       value: defaultValue,
       computed:
@@ -45,20 +54,24 @@ function getDefaultValue(propertyPath) {
   return null;
 }
 
-function getJsdocDefaultValue(jsdoc) {
+function getJsdocDefaultValue(jsdoc: Annotation): { value: string } | undefined {
   const defaultTag = jsdoc.tags.find((tag) => tag.title === 'default');
   if (defaultTag === undefined) {
     return undefined;
   }
-  return { value: defaultTag.description };
+  return { value: defaultTag.description || '' };
 }
 
-function getDefaultValuesFromProps(properties, documentation) {
+function getDefaultValuesFromProps(
+  properties: NodePath,
+  documentation: Documentation,
+  importer: Importer,
+): void {
   const { props: documentedProps } = documentation.toObject();
-  const implementedProps = {};
+  const implementedProps: Record<string, NodePath> = {};
   properties
-    .filter((propertyPath) => types.Property.check(propertyPath.node))
-    .forEach((propertyPath) => {
+    .filter((propertyPath: NodePath) => types.Property.check(propertyPath.node), undefined)
+    .forEach((propertyPath: NodePath) => {
       const propName = getPropertyName(propertyPath);
       if (propName) {
         implementedProps[propName] = propertyPath;
@@ -87,7 +100,7 @@ function getDefaultValuesFromProps(properties, documentation) {
 
     const propertyPath = implementedProps[propName];
     if (propertyPath !== undefined) {
-      const defaultValue = getDefaultValue(propertyPath);
+      const defaultValue = getDefaultValue(propertyPath, importer);
       if (defaultValue) {
         propDescriptor.defaultValue = defaultValue;
       }
@@ -97,22 +110,22 @@ function getDefaultValuesFromProps(properties, documentation) {
   });
 }
 
-function getRenderBody(componentDefinition) {
-  const value = resolveToValue(componentDefinition);
-  if (isReactForwardRefCall(value)) {
+function getRenderBody(componentDefinition: NodePath, importer: Importer): NodePath {
+  const value = resolveToValue(componentDefinition, importer);
+  if (isReactForwardRefCall(value, importer)) {
     return value.get('arguments', 0, 'body', 'body');
   }
   return value.get('body', 'body');
 }
 
-function getPropsPath(functionBody) {
-  let propsPath;
+function getPropsPath(functionBody: NodePath): NodePath | undefined {
+  let propsPath: NodePath | undefined;
   // visitVariableDeclarator, can't use visit body.node since it looses scope information
   functionBody
-    .filter((path) => {
+    .filter((path: NodePath) => {
       return types.VariableDeclaration.check(path.node);
-    })
-    .forEach((path) => {
+    }, undefined)
+    .forEach((path: NodePath) => {
       const declaratorPath = path.get('declarations', 0);
       if (declaratorPath.get('init', 'name').value === 'props') {
         propsPath = declaratorPath.get('id');
@@ -122,12 +135,12 @@ function getPropsPath(functionBody) {
   return propsPath;
 }
 
-module.exports = function defaultPropsHandler(documentation, componentDefinition) {
-  return;
-
-  const renderBody = getRenderBody(componentDefinition);
+const defaultPropsHandler: Handler = (documentation, componentDefinition, importer) => {
+  const renderBody = getRenderBody(componentDefinition, importer);
   const props = getPropsPath(renderBody);
   if (props !== undefined) {
-    getDefaultValuesFromProps(props.get('properties'), documentation);
+    getDefaultValuesFromProps(props.get('properties'), documentation, importer);
   }
 };
+
+export default defaultPropsHandler;

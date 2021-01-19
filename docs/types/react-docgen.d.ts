@@ -1,11 +1,28 @@
 declare module 'react-docgen' {
   import { ASTNode } from 'ast-types';
   // `import { NodePath } from 'ast-types';` points to `const NodePath: NodePathConstructor` for unknown reasons.
-  import { NodePath } from 'ast-types/lib/node-path';
+  import { NodePath as AstTypesNodePath } from 'ast-types/lib/node-path';
 
-  export { NodePath };
+  export { ASTNode };
 
-  export type Handler = () => unknown;
+  // sound wrapper around `NodePath` from `ast-types` i.e. no `any`
+  export type NodePath<Node extends ASTNode = ASTNode, Value = unknown> = AstTypesNodePath<
+    Node,
+    Value
+  >;
+
+  export interface Documentation {
+    toObject(): ReactDocgenApi;
+  }
+
+  // declare it as opaque since we don't actually use it but pass it to `react-docgen`
+  export type Importer = unique Symbol;
+
+  export type Handler = (
+    documentation: Documentation,
+    componentDefinition: NodePath,
+    importer: Importer
+  ) => void;
 
   export const defaultHandlers: Handler[];
 
@@ -123,7 +140,7 @@ declare module 'react-docgen' {
   export interface PropDescriptor {
     defaultValue?: { computed: boolean; value: string };
     // augmented by docs/src/modules/utils/defaultPropsHandler.js
-    jsdocDefaultValue?: { computed: boolean; value: string };
+    jsdocDefaultValue?: { computed?: boolean; value: string };
     description?: string;
     // augmented by docs/src/modules/utils/defaultPropsHandler.js
     /**
@@ -170,6 +187,9 @@ declare module 'react-docgen' {
   ): any;
 
   export namespace utils {
+    export function getPropertyName(path: NodePath): string | undefined;
+    export function isReactForwardRefCall(path: NodePath, importer: Importer): boolean;
+    export function printValue(path: NodePath): string;
     export function resolveExportDeclaration(path: NodePath, importer: Importer): NodePath[];
     export function resolveToValue(path: NodePath, importer: Importer): NodePath;
   }
