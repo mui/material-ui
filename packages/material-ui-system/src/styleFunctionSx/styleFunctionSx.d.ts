@@ -61,5 +61,5 @@ export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 // system props
 export type SystemProps<Theme extends object = {}> = {
-  [K in keyof AllSystemCSSProperties]: ResponsiveStyleValue<AllSystemCSSProperties[K]>
+  [K in keyof AllSystemCSSProperties]: ResponsiveStyleValue<AllSystemCSSProperties[K]>;
 };
