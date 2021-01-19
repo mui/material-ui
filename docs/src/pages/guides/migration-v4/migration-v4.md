@@ -1238,7 +1238,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```diff
   const theme = createMuiTheme({
     components: {
-      Typography: {
+      MuiTypography: {
   -     styleOverrides: {
   -       colorSecondary: {
   -         marginTop: '20px',
