@@ -43,7 +43,7 @@ const AlertTitle = React.forwardRef(function AlertTitle(inProps, ref) {
 
   const { className, ...other } = props;
 
-  const styleProps = props;
+  const styleProps = { ...props };
 
   const classes = useUtilityClasses(styleProps);
 
