@@ -120,12 +120,21 @@ ClassesTable.propTypes = {
 function getTransaltedHeader(t, header) {
   const translations = {
     import: t('api-docs.import'),
-    componentName: t('api-docs.componentName'),
+    'component-name': t('api-docs.componentName'),
     props: t('api-docs.props'),
     inheritance: t('api-docs.inheritance'),
     demos: t('api-docs.demos'),
     css: 'CSS',
   };
+
+  // TODO Drop runtime type-checking once we type-check this file
+  if (!translations.hasOwnProperty(header)) {
+    throw new TypeError(
+      `Unable to translate header '${header}'. Did you mean one of '${Object.keys(
+        translations,
+      ).join("', '")}'`,
+    );
+  }
 
   return translations[header] || header;
 }
@@ -265,7 +274,7 @@ import { ${componentName} } from '${source}';`}
         ) : null}
         {componentStyles.name && (
           <React.Fragment>
-            <Heading hash="componentName" />
+            <Heading hash="component-name" />
             <span
               dangerouslySetInnerHTML={{
                 __html: t('api-docs.styleOverrides').replace(
