@@ -13,6 +13,7 @@ const iconClasses = generateUtilityClasses('MuiIcon', [
   'colorDisabled',
   'fontSizeInherit',
   'fontSizeSmall',
+  'fontSizeMedium',
   'fontSizeLarge',
 ]);
 
