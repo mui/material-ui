@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { deepmerge, chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
@@ -169,7 +170,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   return (
     <AccordionRoot
-      className={classes.root}
+      className={clsx(classes.root, className)}
       ref={ref}
       styleProps={styleProps}
       square={square}
