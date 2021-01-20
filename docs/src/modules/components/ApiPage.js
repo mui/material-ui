@@ -117,7 +117,7 @@ ClassesTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
-function getTransaltedHeader(t, header) {
+function getTranslatedHeader(t, header) {
   const translations = {
     import: t('api-docs.import'),
     componentName: t('api-docs.componentName'),
@@ -139,7 +139,7 @@ function Heading(props) {
     <Level>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content */}
       <a className="anchor-link" id={kebabCaseHash} />
-      {getTransaltedHeader(t, hash)}
+      {getTranslatedHeader(t, hash)}
       <a
         className="anchor-link-style"
         aria-hidden="true"
@@ -199,7 +199,7 @@ function ApiDocs(props) {
   sections.forEach((sectionName) => {
     if (sectionName) {
       toc.push({
-        text: getTransaltedHeader(t, sectionName),
+        text: getTranslatedHeader(t, sectionName),
         hash: sectionName,
         children: [
           ...(sectionName === 'props' && inheritance
