@@ -7,7 +7,6 @@ export interface IconClasses {
   colorDisabled: string;
   fontSizeInherit: string;
   fontSizeSmall: string;
-  fontSizeMedium: string;
   fontSizeLarge: string;
 }
 

@@ -53,7 +53,6 @@ const IconRoot = experimentalStyled(
   fontSize: {
     inherit: 'inherit',
     small: theme.typography.pxToRem(20),
-    medium: theme.typography.pxToRem(24),
     large: theme.typography.pxToRem(36),
   }[styleProps.fontSize],
   // TODO v5 deprecate, v6 remove for sx
