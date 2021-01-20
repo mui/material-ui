@@ -39,7 +39,7 @@ export const styles = (theme) => ({
     '&:not([multiple]) option, &:not([multiple]) optgroup': {
       backgroundColor: theme.palette.background.paper,
     },
-    // Bump specificity to allow extending custom inputs 
+    // Bump specificity to allow extending custom inputs
     '&&': {
       paddingRight: 24,
     },
