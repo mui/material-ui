@@ -13,7 +13,7 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-    ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
+    ...(styleProps.fontSize !== 'medium' && styles[`fontSize${capitalize(styleProps.fontSize)}`]),
   });
 };
 
@@ -24,7 +24,7 @@ const useUtilityClasses = (styleProps) => {
     root: [
       'root',
       color !== 'inherit' && `color${capitalize(color)}`,
-      `fontSize${capitalize(fontSize)}`,
+      fontSize !== 'medium' && `fontSize${capitalize(fontSize)}`,
     ],
   };
 
