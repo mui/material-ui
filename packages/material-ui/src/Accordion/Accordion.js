@@ -167,7 +167,13 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   ]);
 
   return (
-    <AccordionRoot className={classes.root} ref={ref} square={square} {...other}>
+    <AccordionRoot
+      className={classes.root}
+      ref={ref}
+      styleProps={styleProps}
+      square={square}
+      {...other}
+    >
       <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
       <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
         <AccordionRegion
@@ -175,6 +181,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
           id={summary.props['aria-controls']}
           role="region"
           className={classes.region}
+          styleProps={styleProps}
         >
           {children}
         </AccordionRegion>
