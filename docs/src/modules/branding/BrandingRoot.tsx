@@ -239,21 +239,6 @@ theme = createMuiTheme(theme, {
           },
         },
         {
-          props: { variant: 'contained', color: 'secondary' },
-          style: {
-            '&:hover': {
-              backgroundColor: darken(theme.palette.secondary.main, 0.15),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: theme.palette.secondary.main,
-              },
-            },
-            '&:active': {
-              backgroundColor: darken(theme.palette.secondary.main, 0.3),
-            },
-          },
-        },
-        {
           props: { size: 'small' },
           style: {
             padding: '8px 16px',
