@@ -382,6 +382,10 @@ Collapse.propTypes = {
    */
   style: PropTypes.object,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    *
@@ -397,10 +401,6 @@ Collapse.propTypes = {
       exit: PropTypes.number,
     }),
   ]),
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.object,
 };
 
 Collapse.muiSupportAuto = true;

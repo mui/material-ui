@@ -12,14 +12,14 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'vertical'"
     },
+    "sx": { "type": { "name": "object" } },
     "timeout": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "default": "duration.standard"
-    },
-    "sx": { "type": { "name": "object" } }
+    }
   },
   "name": "Collapse",
   "styles": {
