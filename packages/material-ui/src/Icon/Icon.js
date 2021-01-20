@@ -6,7 +6,7 @@ import { deepmerge } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
-import { getIconUtilityClass } from './iconClasses';
+import iconClasses, { getIconUtilityClass } from './iconClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -50,11 +50,9 @@ const IconRoot = experimentalStyled(
   display: 'inline-block', // allow overflow hidden to take action
   textAlign: 'center', // support non-square icon
   flexShrink: 0,
-  fontSize: {
-    inherit: 'inherit',
-    small: theme.typography.pxToRem(20),
-    large: theme.typography.pxToRem(36),
-  }[styleProps.fontSize],
+  [`&.${iconClasses.fontSizeInherit}`]: { fontSize: 'inherit' },
+  [`&.${iconClasses.fontSizeSmall}`]: { fontSize: theme.typography.pxToRem(20) },
+  [`&.${iconClasses.fontSizeLarge}`]: { fontSize: theme.typography.pxToRem(36) },
   // TODO v5 deprecate, v6 remove for sx
   color: {
     primary: theme.palette.primary.main,
