@@ -15,9 +15,6 @@ declare module 'react-docgen' {
     toObject(): ReactDocgenApi;
   }
 
-  // declare it as opaque since we don't actually use it but pass it to `react-docgen`
-  export type Importer = unknown;
-
   export type Handler = (
     documentation: Documentation,
     componentDefinition: NodePath,
