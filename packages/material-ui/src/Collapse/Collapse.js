@@ -112,6 +112,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     children,
     className,
     collapsedSize: collapsedSizeProp = '0px',
+    component,
     in: inProp,
     onEnter,
     onEntered,
@@ -278,6 +279,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     >
       {(state, childProps) => (
         <CollapseRoot
+          as={component}
           className={clsx(
             classes.root,
             {
