@@ -6,6 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
+import Paper from '../Paper';
 import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
@@ -33,7 +34,7 @@ const useUtilityClasses = (styleProps) => {
 };
 
 const AccordionRoot = experimentalStyled(
-  'Paper',
+  Paper,
   {},
   {
     name: 'MuiAccordion',
