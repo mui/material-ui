@@ -31,7 +31,7 @@ function BrandingJoinUs() {
       <Box
         component="img"
         src="/static/branding/block6.svg"
-        alt="Decorative blocks"
+        alt=""
         sx={{
           width: 570,
           height: 526,
@@ -455,7 +455,7 @@ export default function Page() {
 //               <Box
 //                 component="img"
 //                 src="/static/branding/block3.svg"
-//                 alt="Decorative blocks"
+//                 alt=""
 //                 sx={{
 //                   width: { xs: 80, md: 120 },
 //                   height: { xs: 80, md: 120 },
@@ -471,7 +471,7 @@ export default function Page() {
 //                 <Grid item className="MuiGrid-imageWrapper">
 //                   <Box
 //                     component="img"
-//                     alt="Decorative blocks"
+//                     alt=""
 //                     src="/static/branding/about/top-right.png"
 //                     sx={{ width: '100%' }}
 //                   />
@@ -501,7 +501,7 @@ export default function Page() {
 //             <Box
 //               component="img"
 //               src="/static/branding/block3.svg"
-//               alt="Decorative blocks"
+//               alt=""
 //               sx={{
 //                 width: 120,
 //                 height: 120,
@@ -550,7 +550,7 @@ export default function Page() {
 //             <Box
 //               component="img"
 //               src="/static/branding/block1-blue.svg"
-//               alt="Decorative blocks"
+//               alt=""
 //               sx={{
 //                 width: 290,
 //                 height: 120,
@@ -666,7 +666,7 @@ export default function Page() {
 //           <Box
 //             component="img"
 //             src="/static/branding/block4.svg"
-//             alt="Decorative blocks"
+//             alt=""
 //             sx={{
 //               width: 210,
 //               height: 170,
@@ -692,7 +692,7 @@ export default function Page() {
 //           <Box
 //             component="img"
 //             src="/static/branding/block1-white.svg"
-//             alt="Decorative blocks"
+//             alt=""
 //             sx={{
 //               width: 293,
 //               height: 120,
@@ -782,7 +782,7 @@ export default function Page() {
 //           <Box
 //             component="img"
 //             src="/static/branding/block2.svg"
-//             alt="Decorative blocks"
+//             alt=""
 //             sx={{
 //               width: 196,
 //               height: 139,
