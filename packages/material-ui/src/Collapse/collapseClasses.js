@@ -7,6 +7,9 @@ export function getCollapseUtilityClass(slot) {
 const collapseClasses = generateUtilityClasses('MuiCollapse', [
   'root',
   'horizontal',
+  'vertical',
+  'entered',
+  'hidden',
   'wrapper',
   'wrapperInner',
 ]);
