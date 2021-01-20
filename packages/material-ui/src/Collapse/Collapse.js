@@ -18,7 +18,10 @@ const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
     ...styles[styleProps.orientation],
     ...(styleProps.state === 'entered' && styles.entered),
-    ...(styleProps.state === 'exited' && !styleProps.in && styleProps.collapsedSize === '0px' && styles.hidden),
+    ...(styleProps.state === 'exited' &&
+      !styleProps.in &&
+      styleProps.collapsedSize === '0px' &&
+      styles.hidden),
     [`& .${collapseClasses.wrapper}`]: styles.wrapper,
     [`& .${collapseClasses.wrapperInner}`]: styles.wrapperInner,
   });
@@ -51,23 +54,25 @@ const CollapseRoot = experimentalStyled(
   height: 0,
   overflow: 'hidden',
   transition: theme.transitions.create('height'),
-  '&$horizontal': {
+  ...(styleProps.orientation === 'horizontal' && {
     height: 'auto',
     width: 0,
     transition: theme.transitions.create('width'),
-  },
+  }),
   /* Styles applied to the root element when the transition has entered. */
   ...(styleProps.state === 'entered' && {
     height: 'auto',
     overflow: 'visible',
-    '&$horizontal': {
+    ...(styleProps.orientation === 'horizontal' && {
       width: 'auto',
-    },
+    }),
   }),
   /* Styles applied to the root element when the transition has exited and `collapsedSize` = 0px. */
-  ...(styleProps.state === 'exited' && !styleProps.in && styleProps.collapsedSize === '0px' && {
-    visibility: 'hidden',
-  }),
+  ...(styleProps.state === 'exited' &&
+    !styleProps.in &&
+    styleProps.collapsedSize === '0px' && {
+      visibility: 'hidden',
+    }),
 }));
 
 /* Styles applied to the outer wrapper element. */
@@ -82,10 +87,10 @@ const CollapseWrapper = experimentalStyled(
   // Hack to get children with a negative margin to not falsify the height computation.
   display: 'flex',
   width: '100%',
-  '&$horizontal': {
+  ...(styleProps.orientation === 'horizontal' && {
     width: 'auto',
     height: '100%',
-  },
+  }),
 }));
 
 /* Styles applied to the inner wrapper element. */
@@ -98,10 +103,10 @@ const CollapseWrapperInner = experimentalStyled(
   },
 )(({ styleProps }) => ({
   width: '100%',
-  '&$horizontal': {
+  ...(styleProps.orientation === 'horizontal' && {
     width: 'auto',
     height: '100%',
-  },
+  }),
 }));
 
 /**
