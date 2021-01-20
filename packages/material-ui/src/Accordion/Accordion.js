@@ -132,15 +132,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
-    ...props,
-    square,
-    disabled,
-    expanded: expandedProp,
-  };
-
-  const classes = useUtilityClasses(styleProps);
-
   const [expanded, setExpandedState] = useControlled({
     controlled: expandedProp,
     default: defaultExpanded,
@@ -165,6 +156,15 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     disabled,
     handleChange,
   ]);
+
+  const styleProps = {
+    ...props,
+    square,
+    disabled,
+    expanded,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <AccordionRoot
