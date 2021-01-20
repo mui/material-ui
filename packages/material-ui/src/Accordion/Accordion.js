@@ -22,13 +22,10 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+  const { classes, square, expanded, disabled } = styleProps;
 
   const slots = {
-    root: ['root'],
-    rounded: ['rounded'],
-    expanded: ['expanded'],
-    disabled: ['disabled'],
+    root: ['root', !square && 'rounded', expanded && 'expanded', disabled && 'disabled'],
     region: ['region'],
   };
 
