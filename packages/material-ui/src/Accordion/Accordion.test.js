@@ -18,6 +18,8 @@ describe('<Accordion />', () => {
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLDivElement,
+    muiName: 'MuiAccordion',
+    testVariantProps: { variant: 'rounded' },
     skip: ['componentProp', 'componentsProp'],
   }));
 
