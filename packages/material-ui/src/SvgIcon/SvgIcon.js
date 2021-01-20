@@ -13,7 +13,7 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-    ...styles[`elevation${capitalize(styleProps.fontSize)}`],
+    ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
   });
 };
 
