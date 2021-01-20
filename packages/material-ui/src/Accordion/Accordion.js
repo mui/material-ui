@@ -64,7 +64,7 @@ const AccordionRoot = experimentalStyled(
         opacity: 0,
       },
     },
-    '&:first-child': {
+    '&:first-of-type': {
       '&:before': {
         display: 'none',
       },
@@ -75,7 +75,7 @@ const AccordionRoot = experimentalStyled(
     /* Styles applied to the root element if `expanded={true}`. */
     [`&.${accordionClasses.expanded}`]: {
       margin: '16px 0',
-      '&:last-child': {
+      '&:last-of-type': {
         marginBottom: 0,
       },
       '& + &': {
@@ -91,11 +91,11 @@ const AccordionRoot = experimentalStyled(
     /* Styles applied to the root element unless `square={true}`. */
     ...(!styleProps.square && {
       borderRadius: 0,
-      '&:first-child': {
+      '&:first-of-type': {
         borderTopLeftRadius: theme.shape.borderRadius,
         borderTopRightRadius: theme.shape.borderRadius,
       },
-      '&:last-child': {
+      '&:last-of-type': {
         borderBottomLeftRadius: theme.shape.borderRadius,
         borderBottomRightRadius: theme.shape.borderRadius,
         // Fix a rendering issue on Edge
