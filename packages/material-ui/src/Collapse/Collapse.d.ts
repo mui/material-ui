@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 
 export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
@@ -24,6 +25,10 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
     wrapper?: string;
     /** Styles applied to the inner wrapper element. */
     wrapperInner?: string;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   /**
    * The width (horizontal) or height (vertical) of the container when collapsed.

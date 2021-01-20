@@ -20,6 +20,7 @@
       "default": "duration.standard"
     }
   },
+  "sx": { "type": { "name": "object" } },
   "name": "Collapse",
   "styles": {
     "classes": ["root", "horizontal", "entered", "hidden", "wrapper", "wrapperInner"],
