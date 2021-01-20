@@ -140,7 +140,6 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     ...props,
     orientation,
     collapsedSize: collapsedSizeProp,
-    in: inProp,
   };
 
   const classes = useUtilityClasses(styleProps);
