@@ -165,6 +165,7 @@ function ApiDocs(props) {
   const userLanguage = useUserLanguage();
 
   const {
+    cssComponent,
     demos,
     filename,
     forwardsRefTo,
@@ -279,6 +280,17 @@ import { ${componentName} } from '${source}';`}
         <Heading hash="props" />
         <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
         <br />
+        {cssComponent && (
+          <React.Fragment>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('api-docs.cssComponent').replace(/{{name}}/, componentName),
+              }}
+            />
+            <br />
+            <br />
+          </React.Fragment>
+        )}
         <span dangerouslySetInnerHTML={{ __html: refHint }} />
         <br />
         <span dangerouslySetInnerHTML={{ __html: spreadHint }} />

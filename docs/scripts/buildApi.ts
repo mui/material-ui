@@ -55,6 +55,8 @@ interface DescribeablePropDescriptor {
   type: PropTypeDescriptor;
 }
 
+const cssComponents = ['Box', 'Grid', 'Typography'];
+
 const generateClassName = createGenerateClassName();
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
@@ -1187,6 +1189,7 @@ async function buildDocs(options: {
     inheritance: reactApi.inheritance,
     demos: generateDemoList(reactApi),
     styledComponent,
+    cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 
   // docs/pages/component-name.json
