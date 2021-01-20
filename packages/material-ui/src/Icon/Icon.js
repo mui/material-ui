@@ -13,7 +13,7 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-    ...(styleProps.fontSize !== 'medium' && styles[`fontSize${capitalize(styleProps.fontSize)}`]),
+    ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
   });
 };
 
@@ -24,7 +24,7 @@ const useUtilityClasses = (styleProps) => {
     root: [
       'root',
       color !== 'inherit' && `color${capitalize(color)}`,
-      fontSize !== 'medium' && `fontSize${capitalize(fontSize)}`,
+      `fontSize${capitalize(fontSize)}`,
     ],
   };
 
@@ -52,6 +52,7 @@ const IconRoot = experimentalStyled(
   flexShrink: 0,
   [`&.${iconClasses.fontSizeInherit}`]: { fontSize: 'inherit' },
   [`&.${iconClasses.fontSizeSmall}`]: { fontSize: theme.typography.pxToRem(20) },
+  [`&.${iconClasses.fontSizeMedium}`]: { fontSize: theme.typography.pxToRem(24) },
   [`&.${iconClasses.fontSizeLarge}`]: { fontSize: theme.typography.pxToRem(36) },
   // TODO v5 deprecate, v6 remove for sx
   color: {
