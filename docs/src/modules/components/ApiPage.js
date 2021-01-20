@@ -142,19 +142,13 @@ function getTransaltedHeader(t, header) {
 function Heading(props) {
   const { hash, level: Level = 'h2' } = props;
   const t = useTranslate();
-  const kebabCaseHash = hash === 'componentName' ? 'component-name' : `${hash}`;
 
   return (
     <Level>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content */}
-      <a className="anchor-link" id={kebabCaseHash} />
+      <a className="anchor-link" id={hash} />
       {getTransaltedHeader(t, hash)}
-      <a
-        className="anchor-link-style"
-        aria-hidden="true"
-        aria-label="anchor"
-        href={`#${kebabCaseHash}`}
-      >
+      <a className="anchor-link-style" aria-hidden="true" aria-label="anchor" href={`#${hash}`}>
         <svg>
           <use xlinkHref="#anchor-link-icon" />
         </svg>
