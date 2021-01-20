@@ -20,9 +20,9 @@ describe('<Collapse />', () => {
     inheritComponent: Transition,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'span',
     muiName: 'MuiCollapse',
     testVariantProps: { orientation: 'horizontal' },
+    skip: ['componentsProp'],
   }));
 
   it('should render a container around the wrapper', () => {
