@@ -1,5 +1,5 @@
 {
-  "componentDescription": "Will automatically set dynamic row height\nbased on the material table element parent (head, body, etc).",
+  "componentDescription": "<p>Will automatically set dynamic row height\nbased on the material table element parent (head, body, etc).</p>\n",
   "propDescriptions": {
     "children": "Should be valid &lt;tr&gt; children such as <code>TableCell</code>.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",

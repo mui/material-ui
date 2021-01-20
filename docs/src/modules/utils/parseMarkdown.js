@@ -90,14 +90,11 @@ export function getDescription(markdown) {
 /**
  * Render markdown used in the Material-UI docs
  * @param {string} markdown
- * @param {object} [options]
- * @param {function} [options.highlight] - https://marked.js.org/#/USING_ADVANCED.md#highlight
- * @param {object} [options.rest] - properties from https://marked.js.org/#/USING_PRO.md#renderer
+ * @param {object} [options] - properties from https://marked.js.org/#/USING_PRO.md#renderer
+
  */
 export function render(markdown, options = {}) {
-  const { highlight, ...rendererOptions } = options;
-
-  const renderer = Object.assign(new marked.Renderer(), rendererOptions);
+  const renderer = Object.assign(new marked.Renderer(), options);
 
   const markedOptions = {
     gfm: true,
@@ -107,11 +104,18 @@ export function render(markdown, options = {}) {
     sanitize: false,
     smartLists: true,
     smartypants: false,
-    highlight,
+    highlight: prism,
     renderer,
   };
 
   return marked(markdown, markedOptions);
+}
+
+/**
+ * @param {string} markdown
+ */
+export function renderInline(markdown) {
+  return marked.parseInline(markdown);
 }
 
 const externs = [
@@ -187,7 +191,6 @@ ${headers.components
         }
 
         return render(content, {
-          highlight: prism,
           heading: (headingHtml, level) => {
             // Main title, no need for an anchor.
             // It adds noises to the URL.

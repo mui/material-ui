@@ -9,7 +9,6 @@ import * as prettier from 'prettier';
 import * as recast from 'recast';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
-import marked from 'marked';
 import * as yargs from 'yargs';
 import * as doctrine from 'doctrine';
 import {
@@ -23,7 +22,11 @@ import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
-import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
+import {
+  getHeaders,
+  render as renderMarkdown,
+  renderInline as renderMarkdownInline,
+} from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
 import getStylesCreator from '@material-ui/styles/getStylesCreator';
@@ -1062,7 +1065,7 @@ async function buildDocs(options: {
    * Component description.
    */
   if (reactApi.description.length) {
-    componentApi.componentDescription = marked.parseInline(reactApi.description);
+    componentApi.componentDescription = renderMarkdown(reactApi.description);
   }
 
   const componentProps = _.fromPairs(
@@ -1073,7 +1076,7 @@ async function buildDocs(options: {
       }
 
       let description = generatePropDescription(prop, propName);
-      description = marked.parseInline(description);
+      description = renderMarkdownInline(description);
 
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';

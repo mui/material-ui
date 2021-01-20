@@ -1,5 +1,5 @@
 {
-  "componentDescription": "The props of the <a href=\"/api/modal/\">Modal</a> component are available\nwhen <code>variant=&quot;temporary&quot;</code> is set.",
+  "componentDescription": "<p>The props of the <a href=\"/api/modal/\">Modal</a> component are available\nwhen <code>variant=&quot;temporary&quot;</code> is set.</p>\n",
   "propDescriptions": {
     "anchor": "Side from which the drawer will appear.",
     "children": "The content of the component.",

@@ -1,5 +1,5 @@
 {
-  "componentDescription": "Refer to the <a href=\"/components/icons/\">Icons</a> section of the documentation\nregarding the available icon options.",
+  "componentDescription": "<p>Refer to the <a href=\"/components/icons/\">Icons</a> section of the documentation\nregarding the available icon options.</p>\n",
   "propDescriptions": {
     "children": "The icon to display.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",

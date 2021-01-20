@@ -1,5 +1,5 @@
 {
-  "componentDescription": "A <code>TableCell</code> based component for placing inside <code>TableFooter</code> for pagination.",
+  "componentDescription": "<p>A <code>TableCell</code> based component for placing inside <code>TableFooter</code> for pagination.</p>\n",
   "propDescriptions": {
     "ActionsComponent": "The component used for displaying the actions. Either a string to use a HTML element or a component.",
     "backIconButtonProps": "Props applied to the back arrow <a href=\"/api/icon-button/\"><code>IconButton</code></a> component.",

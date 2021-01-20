@@ -1,5 +1,5 @@
 {
-  "componentDescription": "Listen for click events that occur somewhere in the document, outside of the element itself.\nFor instance, if you need to hide a menu when people click anywhere else on your page.",
+  "componentDescription": "<p>Listen for click events that occur somewhere in the document, outside of the element itself.\nFor instance, if you need to hide a menu when people click anywhere else on your page.</p>\n",
   "propDescriptions": {
     "children": "The wrapped element.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "disableReactTree": "If <code>true</code>, the React tree is ignored and only the DOM tree is considered. This prop changes how portaled elements are handled.",

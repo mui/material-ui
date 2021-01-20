@@ -1,5 +1,5 @@
 {
-  "componentDescription": "Responsively hides children based on the selected implementation.",
+  "componentDescription": "<p>Responsively hides children based on the selected implementation.</p>\n",
   "propDescriptions": {
     "children": "The content of the component.",
     "implementation": "Specify which implementation to use.  &#39;js&#39; is the default, &#39;css&#39; works better for server-side rendering.",
