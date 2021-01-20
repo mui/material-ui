@@ -293,7 +293,6 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
           className={clsx(
             classes.root,
             {
-              [classes.horizontal]: isHorizontal,
               [classes.entered]: state === 'entered',
               [classes.hidden]: state === 'exited' && !inProp && collapsedSize === '0px',
             },
@@ -309,16 +308,12 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
         >
           <CollapseWrapper
             styleProps={{ ...styleProps, state }}
-            className={clsx(classes.wrapper, {
-              [classes.horizontal]: isHorizontal,
-            })}
+            className={classes.wrapper}
             ref={wrapperRef}
           >
             <CollapseWrapperInner
               styleProps={{ ...styleProps, state }}
-              className={clsx(classes.wrapperInner, {
-                [classes.horizontal]: isHorizontal,
-              })}
+              className={classes.wrapperInner}
             >
               {children}
             </CollapseWrapperInner>
