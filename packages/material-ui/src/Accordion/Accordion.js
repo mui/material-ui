@@ -68,7 +68,6 @@ const AccordionRoot = experimentalStyled(
       '&:before': {
         display: 'none',
       },
-
       [`&.${accordionClasses.expanded}`]: {
         marginTop: 0,
       },
