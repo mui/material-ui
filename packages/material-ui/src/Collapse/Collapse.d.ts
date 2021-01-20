@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 
 export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
@@ -52,6 +53,10 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    * @default duration.standard
    */
   timeout?: TransitionProps['timeout'] | 'auto';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type CollapseClassKey = keyof NonNullable<CollapseProps['classes']>;
