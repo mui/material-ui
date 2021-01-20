@@ -2,28 +2,18 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  createMount,
-  describeConformance,
-  getClasses,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender, fireEvent } from 'test/utils';
 import Paper from '../Paper';
 import Accordion from './Accordion';
 import AccordionSummary from '../AccordionSummary';
+import classes from './accordionClasses';
 
 describe('<Accordion />', () => {
   const render = createClientRender();
   const mount = createMount({ strict: true });
-  let classes;
   const minimalChildren = [<AccordionSummary key="header">Header</AccordionSummary>];
 
-  before(() => {
-    classes = getClasses(<Accordion>{minimalChildren}</Accordion>);
-  });
-
-  describeConformance(<Accordion>{minimalChildren}</Accordion>, () => ({
+  describeConformanceV5(<Accordion>{minimalChildren}</Accordion>, () => ({
     classes,
     inheritComponent: Paper,
     mount,
