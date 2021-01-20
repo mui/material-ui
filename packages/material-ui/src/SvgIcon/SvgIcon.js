@@ -151,6 +151,10 @@ SvgIcon.propTypes = {
    */
   shapeRendering: PropTypes.string,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * Provides a human-readable title for the element that contains it.
    * https://www.w3.org/TR/SVG-access/#Equivalent
    */
