@@ -50,6 +50,7 @@ const IconRoot = experimentalStyled(
   display: 'inline-block', // allow overflow hidden to take action
   textAlign: 'center', // support non-square icon
   flexShrink: 0,
+  // TODO overwritten by Material Icons style, need to fix stylesheet order
   fontSize: {
     inherit: 'inherit',
     small: theme.typography.pxToRem(20),
