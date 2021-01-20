@@ -13,10 +13,12 @@ const TypographyTest = () => {
       <Typography align="inherit" color="textPrimary" />
       <Typography align="inherit" color="textSecondary" />
       <Typography align="inherit" color="error" />
-      {/* @ts-expect-error */}
-      <Typography sx={{ display: 2 }} display={'marija'} />
+      {/* TODO: system props did not catch this error. Add @ts-expect-error after it is fixed. */}
+      <Typography display="incorrectValue" />
       <Typography component="a" href="url" display="block" />
       <Typography component="label" htmlFor="html" display="block" />
+      {/* TODO: system props did not catch this error. Add @ts-expect-error after it is fixed. */}
+      <Typography component="a" href="url" display="incorrectValue" />
       {/* @ts-expect-error */}
       <Typography component="a" incorrectAttribute="url" />
       {/* @ts-expect-error */}

@@ -37,7 +37,6 @@ describe('<Link />', () => {
 
   it('should pass props to the <Typography> component', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
-      // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
       this.skip();
     }
 

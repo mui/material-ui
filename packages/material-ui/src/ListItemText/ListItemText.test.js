@@ -66,7 +66,6 @@ describe('<ListItemText />', () => {
   describe('prop: secondary', () => {
     it('should render secondary text', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         this.skip();
       }
 
@@ -99,7 +98,6 @@ describe('<ListItemText />', () => {
   describe('prop: disableTypography', () => {
     it('should wrap children in `<Typography/>` by default', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         this.skip();
       }
 
@@ -174,7 +172,6 @@ describe('<ListItemText />', () => {
 
   it('should pass primaryTypographyProps to primary Typography component', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
-      // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
       this.skip();
     }
 
@@ -190,7 +187,6 @@ describe('<ListItemText />', () => {
 
   it('should pass secondaryTypographyProps to secondary Typography component', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
-      // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
       this.skip();
     }
 

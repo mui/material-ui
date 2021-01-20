@@ -33,7 +33,6 @@ describe('<CardHeader />', () => {
 
     it('should render the subheader as body1 secondary text', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         this.skip();
       }
 
@@ -85,7 +84,6 @@ describe('<CardHeader />', () => {
 
     it('should render the subheader as body2 secondary text inside the second child', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
-        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         this.skip();
       }
 
