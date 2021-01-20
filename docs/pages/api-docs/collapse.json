@@ -18,9 +18,9 @@
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "default": "duration.standard"
-    }
+    },
+    "sx": { "type": { "name": "object" } }
   },
-  "sx": { "type": { "name": "object" } },
   "name": "Collapse",
   "styles": {
     "classes": ["root", "horizontal", "entered", "hidden", "wrapper", "wrapperInner"],
@@ -35,5 +35,5 @@
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
   },
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li>\n<li><a href=\"/components/lists/\">Lists</a></li>\n<li><a href=\"/components/transitions/\">Transitions</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true
 }
