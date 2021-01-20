@@ -24,7 +24,6 @@ import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import {
   getHeaders,
-  render as renderMarkdown,
   renderInline as renderMarkdownInline,
 } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
@@ -871,7 +870,7 @@ async function buildDocs(options: {
   outputDirectory: string;
   theme: object;
   workspaceRoot: string;
-}) {
+}): Promise<void> {
   const {
     component: componentObject,
     outputDirectory,
@@ -896,16 +895,6 @@ async function buildDocs(options: {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
-
-  const componentApi: {
-    componentDescription: string;
-    propDescriptions: { [key: string]: string | undefined };
-    classDescriptions: { [key: string]: { description: string; conditions?: string } };
-  } = {
-    componentDescription: '',
-    propDescriptions: {},
-    classDescriptions: {},
-  };
 
   const styles: ReactApi['styles'] = {
     classes: [],
@@ -985,6 +974,16 @@ async function buildDocs(options: {
     throw err;
   }
 
+  const componentApi: {
+    componentDescription: string;
+    propDescriptions: { [key: string]: string | undefined };
+    classDescriptions: { [key: string]: { description: string; conditions?: string } };
+  } = {
+    componentDescription: reactApi.description,
+    propDescriptions: {},
+    classDescriptions: {},
+  };
+
   const unstyledFileName = getUnstyledFilename(componentObject.filename);
   let unstyledSrc;
 
@@ -1059,13 +1058,6 @@ async function buildDocs(options: {
       );
       return acc;
     }, {} as Record<string, string>);
-  }
-
-  /**
-   * Component description.
-   */
-  if (reactApi.description.length) {
-    componentApi.componentDescription = renderMarkdown(reactApi.description);
   }
 
   const componentProps = _.fromPairs(
@@ -1301,7 +1293,7 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
     // Don't document ThmeProvider API
     if (component.filename.includes('ThemeProvider')) {
-      return { status: 'fulfilled' };
+      return Promise.resolve({ status: 'fulfilled' as const });
     }
 
     return buildDocs({
@@ -1312,8 +1304,8 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
       theme,
       workspaceRoot,
     })
-      .then((value) => {
-        return { status: 'fulfilled' as const, value };
+      .then(() => {
+        return { status: 'fulfilled' as const };
       })
       .catch((error) => {
         error.message = `with component ${component.filename}: ${error.message}`;
