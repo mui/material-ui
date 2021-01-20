@@ -7,6 +7,7 @@ import { pascalCase } from './utils';
 interface Props extends SvgIconProps {
   baseClassName: string;
   color: 'action' | 'disabled' | 'error' | 'inherit' | 'primary' | 'secondary';
+  sx?: object;
   icon: string;
   theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   width: number | string;
@@ -41,6 +42,10 @@ addPropertyControls(Icon, {
     type: ControlType.Enum,
     title: 'Color',
     options: ['action', 'disabled', 'error', 'inherit', 'primary', 'secondary'],
+  },
+  sx: {
+    type: ControlType.Object,
+    title: 'Sx',
   },
   icon: {
     type: ControlType.String,
