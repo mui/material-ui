@@ -81,10 +81,10 @@ const Icon = React.forwardRef(function Icon(inProps, ref) {
 
   const styleProps = {
     ...props,
-    fontSize,
     baseClassName,
     color,
     component: Component,
+    fontSize,
   };
 
   const classes = useUtilityClasses(styleProps);
