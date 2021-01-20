@@ -4,6 +4,7 @@ import * as React from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { createClientRender } from './createClientRender';
 import {
+  testComponentProp,
   testClassName,
   testPropsSpread,
   describeRef,
@@ -217,6 +218,7 @@ function testThemeVariants(element, getOptions) {
 }
 
 const fullSuite = {
+  componentProp: testComponentProp,
   componentsProp: testComponentsProp,
   mergeClassName: testClassName,
   propsSpread: testPropsSpread,
