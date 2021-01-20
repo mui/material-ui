@@ -25,10 +25,6 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
     wrapper?: string;
     /** Styles applied to the inner wrapper element. */
     wrapperInner?: string;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
   };
   /**
    * The width (horizontal) or height (vertical) of the container when collapsed.
@@ -57,6 +53,10 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    * @default duration.standard
    */
   timeout?: TransitionProps['timeout'] | 'auto';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type CollapseClassKey = keyof NonNullable<CollapseProps['classes']>;
