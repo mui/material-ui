@@ -49,6 +49,10 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      * @default '/'
      */
     separator?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx: PropTypes.object;
   };
   defaultComponent: D;
 }
