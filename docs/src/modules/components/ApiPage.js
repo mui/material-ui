@@ -178,7 +178,7 @@ function ApiDocs(props) {
 
   const {
     componentDescription,
-    componentDescriptionToc,
+    componentDescriptionToc = [],
     classDescriptions,
     propDescriptions,
   } = descriptions[userLanguage];
