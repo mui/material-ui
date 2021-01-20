@@ -10,14 +10,17 @@ import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
-import { getCollapseUtilityClass } from './collapseClasses';
+import collapseClasses, { getCollapseUtilityClass } from './collapseClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...(styleProps.orientation === 'horizontal' && styles.horizontal),
+    ...styles[styleProps.orientation],
+    ...(styleProps.state === 'entered' && styles.entered),
+    ...(styleProps.state === 'exited' && !styleProps.in && styleProps.collapsedSize === '0px' && styles.hidden),
+    [`& .${collapseClasses.wrapper}`]: styles.wrapper,
+    [`& .${collapseClasses.wrapperInner}`]: styles.wrapperInner,
   });
 };
 
@@ -26,8 +29,10 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: ['root', `${orientation}`],
-    wrapper: ['wrapper'],
-    wrapperInner: ['wrapperInner'],
+    entered: ['entered'],
+    hidden: ['hidden'],
+    wrapper: ['wrapper', `${orientation}`],
+    wrapperInner: ['wrapperInner', `${orientation}`],
   };
 
   return composeClasses(slots, getCollapseUtilityClass, classes);
@@ -51,10 +56,8 @@ const CollapseRoot = experimentalStyled(
     width: 0,
     transition: theme.transitions.create('width'),
   },
-  /* Pseudo-class applied to the root element if `orientation="horizontal"`. */
-  ...(styleProps.orientation === 'horizontal' && {}),
   /* Styles applied to the root element when the transition has entered. */
-  ...(styleProps.entered && {
+  ...(styleProps.state === 'entered' && {
     height: 'auto',
     overflow: 'visible',
     '&$horizontal': {
@@ -62,7 +65,7 @@ const CollapseRoot = experimentalStyled(
     },
   }),
   /* Styles applied to the root element when the transition has exited and `collapsedSize` = 0px. */
-  ...(styleProps.hidden && {
+  ...(styleProps.state === 'exited' && !styleProps.in && styleProps.collapsedSize === '0px' && {
     visibility: 'hidden',
   }),
 }));
@@ -75,7 +78,7 @@ const CollapseWrapper = experimentalStyled(
     name: 'MuiCollapse',
     slot: 'Wrapper',
   },
-)(() => ({
+)(({ styleProps }) => ({
   // Hack to get children with a negative margin to not falsify the height computation.
   display: 'flex',
   width: '100%',
@@ -93,7 +96,7 @@ const CollapseWrapperInner = experimentalStyled(
     name: 'MuiCollapse',
     slot: 'WrapperInner',
   },
-)(() => ({
+)(({ styleProps }) => ({
   width: '100%',
   '&$horizontal': {
     width: 'auto',
@@ -129,8 +132,10 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
   } = props;
 
   const styleProps = {
-    ...other,
+    ...props,
     orientation,
+    collapsedSize: collapsedSizeProp,
+    in: inProp,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -293,19 +298,19 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
             [isHorizontal ? 'minWidth' : 'minHeight']: collapsedSize,
             ...style,
           }}
-          styleProps={styleProps}
+          styleProps={{ ...styleProps, state }}
           ref={handleRef}
           {...childProps}
         >
           <CollapseWrapper
-            styleProps={styleProps}
+            styleProps={{ ...styleProps, state }}
             className={clsx(classes.wrapper, {
               [classes.horizontal]: isHorizontal,
             })}
             ref={wrapperRef}
           >
             <CollapseWrapperInner
-              styleProps={styleProps}
+              styleProps={{ ...styleProps, state }}
               className={clsx(classes.wrapperInner, {
                 [classes.horizontal]: isHorizontal,
               })}

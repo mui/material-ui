@@ -22,6 +22,7 @@ describe('<Collapse />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiCollapse',
     testVariantProps: { orientation: 'horizontal' },
+    testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
     skip: ['componentsProp'],
   }));
 
