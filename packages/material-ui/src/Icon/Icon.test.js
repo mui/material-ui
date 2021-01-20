@@ -1,23 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Icon from './Icon';
+import { iconClasses } from './iconClasses';
 
 describe('<Icon />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Icon />);
-  });
-
-  describeConformance(<Icon>account_circle</Icon>, () => ({
-    classes,
+  describeConformanceV5(<Icon>account_circle</Icon>, () => ({
     inheritComponent: 'span',
     mount,
+    muiName: 'MuiIcon',
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'div',
+    skip: ['themeVariants', 'componentsProp'],
   }));
 
   it('renders children by default', () => {
@@ -34,7 +31,7 @@ describe('<Icon />', () => {
         </Icon>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.colorSecondary);
+      expect(getByTestId('root')).to.have.class(iconClasses.colorSecondary);
     });
 
     it('should render with the action color', () => {
@@ -44,7 +41,7 @@ describe('<Icon />', () => {
         </Icon>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.colorAction);
+      expect(getByTestId('root')).to.have.class(iconClasses.colorAction);
     });
 
     it('should render with the error color', () => {
@@ -54,7 +51,7 @@ describe('<Icon />', () => {
         </Icon>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.colorError);
+      expect(getByTestId('root')).to.have.class(iconClasses.colorError);
     });
 
     it('should render with the primary class', () => {
@@ -64,7 +61,7 @@ describe('<Icon />', () => {
         </Icon>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
+      expect(getByTestId('root')).to.have.class(iconClasses.colorPrimary);
     });
 
     it('should render without the default class', () => {
@@ -96,7 +93,7 @@ describe('<Icon />', () => {
         </Icon>,
       );
 
-      expect(getByTestId('root')).to.have.class(classes.fontSizeInherit);
+      expect(getByTestId('root')).to.have.class(iconClasses.fontSizeInherit);
     });
   });
 });
