@@ -1,20 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createClientRender, createMount, describeConformance } from 'test/utils';
-import Collapse from '../Collapse';
+import { collapseClasses } from '../Collapse';
 import Stepper from '../Stepper';
 import Step from '../Step';
 import StepContent from './StepContent';
 
 describe('<StepContent />', () => {
   let classes;
-  let collapseClasses;
   const mount = createMount({ strict: true });
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<StepContent />);
-    collapseClasses = getClasses(<Collapse />);
   });
 
   describeConformance(<StepContent />, () => ({

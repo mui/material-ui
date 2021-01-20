@@ -12,6 +12,7 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'vertical'"
     },
+    "sx": { "type": { "name": "object" } },
     "timeout": {
       "type": {
         "name": "union",
@@ -34,5 +35,5 @@
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
   },
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li>\n<li><a href=\"/components/lists/\">Lists</a></li>\n<li><a href=\"/components/transitions/\">Transitions</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true
 }
