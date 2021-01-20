@@ -42,54 +42,58 @@ const AccordionRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => {
-  const transition = {
-    duration: theme.transitions.duration.shortest,
-  };
+)(
+  ({ theme, styleProps }) => {
+    const transition = {
+      duration: theme.transitions.duration.shortest,
+    };
 
-  return {
-    /* Styles applied to the root element. */
-    position: 'relative',
-    transition: theme.transitions.create(['margin'], transition),
-    overflowAnchor: 'none', // Keep the same scrolling position
-    '&:before': {
-      position: 'absolute',
-      left: 0,
-      top: -1,
-      right: 0,
-      height: 1,
-      content: '""',
-      opacity: 1,
-      backgroundColor: theme.palette.divider,
-      transition: theme.transitions.create(['opacity', 'background-color'], transition),
-    },
-    '&:first-of-type': {
+    return {
+      /* Styles applied to the root element. */
+      position: 'relative',
+      transition: theme.transitions.create(['margin'], transition),
+      overflowAnchor: 'none', // Keep the same scrolling position
       '&:before': {
-        display: 'none',
-      },
-    },
-    /* Styles applied to the root element if `expanded={true}`. */
-    [`&.${accordionClasses.expanded}`]: {
-      margin: '16px 0',
-      '&:before': {
-        opacity: 0,
+        position: 'absolute',
+        left: 0,
+        top: -1,
+        right: 0,
+        height: 1,
+        content: '""',
+        opacity: 1,
+        backgroundColor: theme.palette.divider,
+        transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
       '&:first-of-type': {
-        marginTop: 0,
-      },
-      '&:last-of-type': {
-        marginBottom: 0,
-      },
-      '& + &': {
         '&:before': {
           display: 'none',
         },
       },
-    },
-    /* Styles applied to the root element if `disabled={true}`. */
-    [`&.${accordionClasses.disabled}`]: {
-      backgroundColor: theme.palette.action.disabledBackground,
-    },
+      /* Styles applied to the root element if `expanded={true}`. */
+      [`&.${accordionClasses.expanded}`]: {
+        margin: '16px 0',
+        '&:before': {
+          opacity: 0,
+        },
+        '&:first-of-type': {
+          marginTop: 0,
+        },
+        '&:last-of-type': {
+          marginBottom: 0,
+        },
+        '& + &': {
+          '&:before': {
+            display: 'none',
+          },
+        },
+      },
+      /* Styles applied to the root element if `disabled={true}`. */
+      [`&.${accordionClasses.disabled}`]: {
+        backgroundColor: theme.palette.action.disabledBackground,
+      },
+    };
+  },
+  ({ theme, styleProps }) => ({
     /* Styles applied to the root element unless `square={true}`. */
     ...(!styleProps.square && {
       borderRadius: 0,
@@ -107,8 +111,8 @@ const AccordionRoot = experimentalStyled(
         },
       },
     }),
-  };
-});
+  }),
+);
 
 const AccordionRegion = experimentalStyled(
   'div',
