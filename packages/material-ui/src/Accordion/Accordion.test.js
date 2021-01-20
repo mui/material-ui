@@ -122,7 +122,7 @@ describe('<Accordion />', () => {
       it('requires at least one child', () => {
         expect(() => {
           PropTypes.checkPropTypes(
-            Accordion.Naked.propTypes,
+            Accordion.propTypes,
             { classes: {}, children: [] },
             'prop',
             'MockedName',
@@ -133,7 +133,7 @@ describe('<Accordion />', () => {
       it('needs a valid element as the first child', () => {
         expect(() => {
           PropTypes.checkPropTypes(
-            Accordion.Naked.propTypes,
+            Accordion.propTypes,
             { classes: {}, children: <React.Fragment /> },
             'prop',
             'MockedName',
