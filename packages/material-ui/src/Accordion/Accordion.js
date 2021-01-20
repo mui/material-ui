@@ -62,21 +62,21 @@ const AccordionRoot = experimentalStyled(
       opacity: 1,
       backgroundColor: theme.palette.divider,
       transition: theme.transitions.create(['opacity', 'background-color'], transition),
-      [`&.${accordionClasses.expanded}`]: {
-        opacity: 0,
-      },
     },
     '&:first-of-type': {
       '&:before': {
         display: 'none',
       },
-      [`&.${accordionClasses.expanded}`]: {
-        marginTop: 0,
-      },
     },
     /* Styles applied to the root element if `expanded={true}`. */
     [`&.${accordionClasses.expanded}`]: {
       margin: '16px 0',
+      '&:before': {
+        opacity: 0,
+      },
+      '&:first-of-type': {
+        marginTop: 0,
+      },
       '&:last-of-type': {
         marginBottom: 0,
       },
