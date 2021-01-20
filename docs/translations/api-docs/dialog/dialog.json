@@ -1,5 +1,5 @@
 {
-  "componentDescription": "<p>Dialogs are overlaid modal paper based components with a backdrop.</p>\n",
+  "componentDescription": "Dialogs are overlaid modal paper based components with a backdrop.",
   "propDescriptions": {
     "aria-describedby": "The id(s) of the element(s) that describe the dialog.",
     "aria-labelledby": "The id(s) of the element(s) that label the dialog.",

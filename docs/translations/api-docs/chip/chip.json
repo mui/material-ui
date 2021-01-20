@@ -1,5 +1,5 @@
 {
-  "componentDescription": "<p>Chips represent complex entities in small blocks, such as a contact.</p>\n",
+  "componentDescription": "Chips represent complex entities in small blocks, such as a contact.",
   "propDescriptions": {
     "avatar": "The Avatar element to display.",
     "children": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",

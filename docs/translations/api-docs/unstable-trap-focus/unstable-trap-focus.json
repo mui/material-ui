@@ -1,5 +1,5 @@
 {
-  "componentDescription": "<p>Utility component that locks focus inside the component.</p>\n",
+  "componentDescription": "Utility component that locks focus inside the component.",
   "propDescriptions": {
     "children": "A single child content element.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "disableAutoFocus": "If <code>true</code>, the trap focus will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any trap focus children that have the <code>disableAutoFocus</code> prop.<br>Generally this should never be set to <code>true</code> as it makes the trap focus less accessible to assistive technologies, like screen readers.",
