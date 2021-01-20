@@ -18,7 +18,7 @@ describe('<Accordion />', () => {
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render and not be controlled', () => {
