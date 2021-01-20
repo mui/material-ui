@@ -86,7 +86,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const clampedMax = max < 2 ? 2 : max;
 
   const styleProps = {
-    ...other,
+    ...props,
     max,
     spacing,
     variant,
