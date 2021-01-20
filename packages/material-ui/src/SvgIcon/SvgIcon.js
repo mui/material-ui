@@ -56,6 +56,7 @@ const SvgIconRoot = experimentalStyled(
     medium: theme.typography.pxToRem(24),
     large: theme.typography.pxToRem(35),
   }[styleProps.fontSize],
+  // TODO v5 deprecate, v6 remove for sx
   color: {
     primary: theme.palette.primary.main,
     secondary: theme.palette.secondary.main,
