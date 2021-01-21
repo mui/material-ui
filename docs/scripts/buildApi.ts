@@ -9,7 +9,6 @@ import * as prettier from 'prettier';
 import * as recast from 'recast';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
-import marked from 'marked';
 import * as yargs from 'yargs';
 import * as doctrine from 'doctrine';
 import {
@@ -23,7 +22,10 @@ import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
-import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
+import {
+  getHeaders,
+  renderInline as renderMarkdownInline,
+} from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
 import getStylesCreator from '@material-ui/styles/getStylesCreator';
@@ -54,6 +56,8 @@ interface DescribeablePropDescriptor {
   required: boolean;
   type: PropTypeDescriptor;
 }
+
+const cssComponents = ['Box', 'Grid'];
 
 const generateClassName = createGenerateClassName();
 
@@ -868,7 +872,7 @@ async function buildDocs(options: {
   outputDirectory: string;
   theme: object;
   workspaceRoot: string;
-}) {
+}): Promise<void> {
   const {
     component: componentObject,
     outputDirectory,
@@ -893,16 +897,6 @@ async function buildDocs(options: {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
-
-  const componentApi: {
-    componentDescription: string;
-    propDescriptions: { [key: string]: string | undefined };
-    classDescriptions: { [key: string]: { description: string; conditions?: string } };
-  } = {
-    componentDescription: '',
-    propDescriptions: {},
-    classDescriptions: {},
-  };
 
   const styles: ReactApi['styles'] = {
     classes: [],
@@ -982,6 +976,16 @@ async function buildDocs(options: {
     throw err;
   }
 
+  const componentApi: {
+    componentDescription: string;
+    propDescriptions: { [key: string]: string | undefined };
+    classDescriptions: { [key: string]: { description: string; conditions?: string } };
+  } = {
+    componentDescription: reactApi.description,
+    propDescriptions: {},
+    classDescriptions: {},
+  };
+
   const unstyledFileName = getUnstyledFilename(componentObject.filename);
   let unstyledSrc;
 
@@ -1058,13 +1062,6 @@ async function buildDocs(options: {
     }, {} as Record<string, string>);
   }
 
-  /**
-   * Component description.
-   */
-  if (reactApi.description.length) {
-    componentApi.componentDescription = marked.parseInline(reactApi.description);
-  }
-
   const componentProps = _.fromPairs(
     Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
       const prop = createDescribeableProp(propDescriptor, propName);
@@ -1073,7 +1070,7 @@ async function buildDocs(options: {
       }
 
       let description = generatePropDescription(prop, propName);
-      description = marked.parseInline(description);
+      description = renderMarkdownInline(description);
 
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
@@ -1187,6 +1184,7 @@ async function buildDocs(options: {
     inheritance: reactApi.inheritance,
     demos: generateDemoList(reactApi),
     styledComponent,
+    cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 
   // docs/pages/component-name.json
@@ -1298,7 +1296,7 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
     // Don't document ThmeProvider API
     if (component.filename.includes('ThemeProvider')) {
-      return { status: 'fulfilled' };
+      return Promise.resolve({ status: 'fulfilled' as const });
     }
 
     return buildDocs({
@@ -1309,8 +1307,8 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
       theme,
       workspaceRoot,
     })
-      .then((value) => {
-        return { status: 'fulfilled' as const, value };
+      .then(() => {
+        return { status: 'fulfilled' as const };
       })
       .catch((error) => {
         error.message = `with component ${component.filename}: ${error.message}`;
