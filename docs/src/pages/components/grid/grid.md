@@ -139,4 +139,4 @@ Material-UI doesn't provide any CSS Grid functionality itself, but as seen below
 
 ## System props
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
+As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
