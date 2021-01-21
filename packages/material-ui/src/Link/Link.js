@@ -134,7 +134,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   };
 
   const styleProps = {
-    ...other,
+    ...props,
     color,
     component,
     focusVisible,
