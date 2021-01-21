@@ -11,34 +11,6 @@ import breadcrumbCollapsedClasses, {
   getBreadcrumbCollapsedUtilityClass,
 } from './breadcrumbCollapsedClasses';
 
-const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {
-    [`& .${breadcrumbCollapsedClasses.button}`]: styles.button,
-    [`& .${breadcrumbCollapsedClasses.icon}`]: styles.icon,
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
-
-  const slots = {
-    root: ['root'],
-    button: ['button'],
-    icon: ['icon'],
-  };
-
-  return composeClasses(slots, getBreadcrumbCollapsedUtilityClass, classes);
-};
-
-const BreadcrumbCollapsedRoot = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'PrivateBreadcrumbCollapsed',
-    slot: 'Root',
-    overridesResolver,
-  },
-)({});
 
 const BreadcrumbCollapsedButton = experimentalStyled(
   ButtonBase,
