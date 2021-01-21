@@ -186,7 +186,7 @@ export default function AppTableOfContents(props) {
     <Link
       display="block"
       color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
-      href={`${activePage.pathname}#${item.hash}`}
+      href={`${activePage.linkProps?.as ?? activePage.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       className={clsx(
