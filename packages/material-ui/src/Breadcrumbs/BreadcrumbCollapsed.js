@@ -70,16 +70,15 @@ const BreadcrumbCollapsedIcon = experimentalStyled(
     name: 'PrivateBreadcrumbCollapsed',
     slot: 'Icon',
   },
-)(() => ({
+)({
   width: 24,
   height: 16,
-}));
+});
 
 /**
  * @ignore - internal component.
  */
-const BreadcrumbCollapsed = React.forwardRef(function BreadcrumbCollapsed(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'PrivateBreadcrumbCollapsed' });
+const BreadcrumbCollapsed = React.forwardRef(function BreadcrumbCollapsed(props, ref) {
   const { ...other } = props;
 
   const styleProps = { ...props };
@@ -87,7 +86,7 @@ const BreadcrumbCollapsed = React.forwardRef(function BreadcrumbCollapsed(inProp
   const classes = useUtilityClasses(styleProps);
 
   return (
-    <BreadcrumbCollapsedRoot className={classes.root} styleProps={styleProps}>
+    <li>
       <BreadcrumbCollapsedButton
         className={classes.button}
         focusRipple

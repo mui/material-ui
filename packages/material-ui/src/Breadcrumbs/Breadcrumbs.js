@@ -46,14 +46,14 @@ const BreadcrumbsOl = experimentalStyled(
     name: 'MuiBreadcrumbs',
     slot: 'Ol',
   },
-)(() => ({
+)({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
   padding: 0,
   margin: 0,
   listStyle: 'none',
-}));
+});
 
 const BreadcrumbsSeparator = experimentalStyled(
   'li',
@@ -62,12 +62,12 @@ const BreadcrumbsSeparator = experimentalStyled(
     name: 'MuiBreadcrumbs',
     slot: 'Separator',
   },
-)(() => ({
+)({
   display: 'flex',
   userSelect: 'none',
   marginLeft: 8,
   marginRight: 8,
-}));
+});
 
 function insertSeparators(items, className, separator, styleProps) {
   return items.reduce((acc, current, index) => {
