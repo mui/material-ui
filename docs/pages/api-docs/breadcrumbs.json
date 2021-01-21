@@ -8,7 +8,7 @@
     "itemsBeforeCollapse": { "type": { "name": "number" }, "default": "1" },
     "maxItems": { "type": { "name": "number" }, "default": "8" },
     "separator": { "type": { "name": "node" }, "default": "'/'" },
-    "sx": { "type": { "name": "any" }, "required": true }
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Breadcrumbs",
   "styles": {

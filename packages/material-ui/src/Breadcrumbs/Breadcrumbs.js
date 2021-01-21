@@ -258,7 +258,7 @@ Breadcrumbs.propTypes = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.any.isRequired,
+  sx: PropTypes.object,
 };
 
 export default Breadcrumbs;
