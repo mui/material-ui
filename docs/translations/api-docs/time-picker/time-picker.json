@@ -1,5 +1,5 @@
 {
-  "componentDescription": "Demos:\n\n- [Time Picker](https://material-ui.com/components/time-picker/)\n\nAPI:\n\n- [TimePicker API](https://material-ui.com/api/time-picker/)",
+  "componentDescription": "",
   "propDescriptions": {
     "acceptRegex": "Regular expression to detect &quot;accepted&quot; symbols.",
     "allowKeyboardControl": "Enables keyboard listener for moving between days in calendar.",

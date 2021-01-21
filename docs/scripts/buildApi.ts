@@ -456,12 +456,7 @@ async function computeApiDescription(api: ReactApi, options: { host: string }): 
     })
     .process(api.description);
 
-  const fullDescription = file.contents.toString('utf-8').trim();
-  // Ignore what we might have generated in `annotateComponentDefinition`
-  const generatedDescriptionMatch = fullDescription.match(/(Demos|API):\r?\n\r?\n/);
-  return generatedDescriptionMatch === null
-    ? fullDescription
-    : fullDescription.slice(0, generatedDescriptionMatch.index);
+  return file.contents.toString('utf-8').trim();
 }
 
 /**
@@ -876,6 +871,41 @@ function normalizePath(filepath: string): string {
   return filepath.replace(/\\/g, '/');
 }
 
+async function parseComponentSource(
+  src: string,
+  componentObject: { filename: string },
+): Promise<ReactApi> {
+  const reactAPI: ReactApi = docgenParse(
+    src,
+    // Use `findExportedComponentDefinition` and fallback to `muiFindAnnotatedComponentsResolver`
+    // `findExportedComponentDefinition` was the default resolver: https://github.com/reactjs/react-docgen/blob/aba7250ff5fde608ee6af7c286b15476d1b5bb99/src/main.js#L19
+    (ast, parser, importer) => {
+      const defaultResolvedDefinition = resolver.findExportedComponentDefinition(
+        ast,
+        parser,
+        importer,
+      );
+      if (defaultResolvedDefinition !== undefined) {
+        return defaultResolvedDefinition;
+      }
+      return muiFindAnnotatedComponentsResolver(ast, parser, importer);
+    },
+    defaultHandlers.concat(muiDefaultPropsHandler),
+    {
+      filename: componentObject.filename,
+    },
+  );
+
+  const fullDescription = reactAPI.description;
+  // Ignore what we might have generated in `annotateComponentDefinition`
+  const annotatedDescriptionMatch = fullDescription.match(/(Demos|API):\r?\n\r?\n/);
+  if (annotatedDescriptionMatch !== null) {
+    reactAPI.description = fullDescription.slice(0, annotatedDescriptionMatch.index);
+  }
+
+  return reactAPI;
+}
+
 async function buildDocs(options: {
   component: { filename: string };
   pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
@@ -977,26 +1007,7 @@ async function buildDocs(options: {
     }
   }
 
-  const reactApi: ReactApi = docgenParse(
-    src,
-    // Use `findExportedComponentDefinition` and fallback to `muiFindAnnotatedComponentsResolver`
-    // `findExportedComponentDefinition` was the default resolver: https://github.com/reactjs/react-docgen/blob/aba7250ff5fde608ee6af7c286b15476d1b5bb99/src/main.js#L19
-    (ast, parser, importer) => {
-      const defaultResolvedDefinition = resolver.findExportedComponentDefinition(
-        ast,
-        parser,
-        importer,
-      );
-      if (defaultResolvedDefinition !== undefined) {
-        return defaultResolvedDefinition;
-      }
-      return muiFindAnnotatedComponentsResolver(ast, parser, importer);
-    },
-    defaultHandlers.concat(muiDefaultPropsHandler),
-    {
-      filename: componentObject.filename,
-    },
-  );
+  const reactApi: ReactApi = await parseComponentSource(src, componentObject);
 
   const componentApi: {
     componentDescription: string;
