@@ -19,7 +19,6 @@ const overridesResolver = (props, styles) => {
     ...(!styleProps.square && styles.rounded),
     ...(styleProps.expanded && styles.expanded),
     ...(styleProps.disabled && styles.disabled),
-    [`& .${accordionClasses.region}`]: styles.region,
   });
 };
 
@@ -28,7 +27,6 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: ['root', !square && 'rounded', expanded && 'expanded', disabled && 'disabled'],
-    region: ['region'],
   };
 
   return composeClasses(slots, getAccordionUtilityClass, classes);
@@ -114,15 +112,6 @@ const AccordionRoot = experimentalStyled(
   }),
 );
 
-const AccordionRegion = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAccordion',
-    slot: 'Region',
-  },
-)(() => ({}));
-
 const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAccordion' });
   const {
@@ -182,15 +171,14 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     >
       <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
       <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
-        <AccordionRegion
+        <div
           aria-labelledby={summary.props.id}
           id={summary.props['aria-controls']}
           role="region"
           className={classes.region}
-          styleProps={styleProps}
         >
           {children}
-        </AccordionRegion>
+        </div>
       </TransitionComponent>
     </AccordionRoot>
   );
