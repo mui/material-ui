@@ -7,16 +7,19 @@ import {
 } from '../TimePicker/TimePicker';
 import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
 
+// @typescript-to-proptypes-generate
 /**
- * @ignore - do not document.
+ *
+ * API:
+ *
+ * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
  */
-/* @typescript-to-proptypes-generate */
 const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(MobileWrapper, {
   name: 'MuiMobileTimePicker',
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof MobileWrapper>;
 
-(MobileTimePicker as any).propTypes = {
+MobileTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |

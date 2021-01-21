@@ -1,14 +1,14 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { describeConformance } from 'test/utils';
-import TimePicker from './TimePicker';
+import StaticTimePicker from './StaticTimePicker';
 import { createPickerMount } from '../internal/pickers/test-utils';
 
-describe('<TimePicker />', () => {
+describe('<StaticTimePicker />', () => {
   const mount = createPickerMount();
 
   describeConformance(
-    <TimePicker
+    <StaticTimePicker
       onChange={() => {}}
       renderInput={(props) => <TextField {...props} />}
       value={null}
@@ -16,9 +16,16 @@ describe('<TimePicker />', () => {
     () => ({
       classes: {},
       mount,
-      // TODO: The `ref` on the `TimePicker` is forwarded as `inputRef` in the `renderInput` parameters.
-      refInstanceof: window.HTMLInputElement,
-      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
+      refInstanceof: undefined,
+      skip: [
+        'componentProp',
+        'mergeClassName',
+        'propsSpread',
+        // TODO: `ref` is typed but has no effect
+        'refForwarding',
+        'rootClass',
+        'reactTestRenderer',
+      ],
     }),
   );
 });

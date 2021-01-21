@@ -7,16 +7,19 @@ import {
 } from '../TimePicker/TimePicker';
 import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
 
+// @typescript-to-proptypes-generate
 /**
- * @ignore - do not document.
+ *
+ * API:
+ *
+ * - [DesktopTimePicker API](https://material-ui.com/api/desktop-time-picker/)
  */
-/* @typescript-to-proptypes-generate */
 const DesktopTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(DesktopWrapper, {
   name: 'MuiDesktopTimePicker',
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof DesktopWrapper>;
 
-(DesktopTimePicker as any).propTypes = {
+DesktopTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |

@@ -38,7 +38,7 @@ interface PickerRenderOptions {
   locale?: string | object;
 }
 
-export function createPickerMount(options: { strict: boolean }) {
+export function createPickerMount(options: { strict?: boolean } = {}) {
   const mount = createMount(options);
 
   return (node: React.ReactNode) =>

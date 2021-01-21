@@ -2,13 +2,33 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { fireEvent, screen } from 'test/utils';
+import { describeConformance, fireEvent, screen } from 'test/utils';
 import { TimePickerProps } from '@material-ui/lab/TimePicker';
 import DesktopTimePicker from '@material-ui/lab/DesktopTimePicker';
-import { createPickerRender, adapterToUse } from '../internal/pickers/test-utils';
+import {
+  createPickerMount,
+  createPickerRender,
+  adapterToUse,
+} from '../internal/pickers/test-utils';
 
 describe('<DesktopTimePicker />', () => {
   const render = createPickerRender({ strict: false });
+  const mount = createPickerMount();
+
+  describeConformance(
+    <DesktopTimePicker
+      onChange={() => {}}
+      renderInput={(props) => <TextField {...props} />}
+      value={null}
+    />,
+    () => ({
+      classes: {},
+      mount,
+      // TODO: The `ref` on the `TimePicker` is forwarded as `inputRef` in the `renderInput` parameters.
+      refInstanceof: window.HTMLInputElement,
+      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
+    }),
+  );
 
   it('allows to navigate between timepicker views using arrow switcher', () => {
     render(
