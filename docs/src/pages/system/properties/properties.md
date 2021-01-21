@@ -4,7 +4,7 @@
 
 ## Properties reference table
 
-Note that this table only lists custom properties, all other regular CSS properties and selectors are supported. You can check out the [legend](/#legend) below.
+Note that this table only lists custom properties, all other regular CSS properties and selectors are supported. You can check out the [legend](/system/properties/#legend) below.
 
 | System key(s)         | CSS property/properties                                                                      | System style function                                        | Theme mapping                                                                           |
 | :-------------------- | :------------------------------------------------------------------------------------------- | :----------------------------------------------------------- | :-------------------------------------------------------------------------------------- |
