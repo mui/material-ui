@@ -1,6 +1,11 @@
 module.exports = {
   processors: ['stylelint-processor-styled-components'],
   extends: 'stylelint-config-standard',
+  ignoreFiles: [
+    // TypeScript declaration files contain no styles.
+    // Stylelint is also reporting parseError on `docs/types/react-docgen.d.ts`.
+    '**/*.d.ts',
+  ],
   rules: {
     'value-no-vendor-prefix': true,
     'property-no-vendor-prefix': true,
