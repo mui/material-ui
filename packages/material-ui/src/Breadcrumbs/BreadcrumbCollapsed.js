@@ -29,15 +29,20 @@ const BreadcrumbCollapsedButton = experimentalStyled(
   display: 'flex',
   marginLeft: theme.spacing(0.5),
   marginRight: theme.spacing(0.5),
-  backgroundColor: theme.palette.grey[100],
-  color: theme.palette.grey[700],
+  ...(theme.palette.type === 'light'
+    ? { backgroundColor: theme.palette.grey[100], color: theme.palette.grey[700] }
+    : { backgroundColor: theme.palette.grey[700], color: theme.palette.grey[100] }),
   borderRadius: 2,
   '&:hover, &:focus': {
-    backgroundColor: theme.palette.grey[200],
+    ...(theme.palette.type === 'light'
+      ? { backgroundColor: theme.palette.grey[200] }
+      : { backgroundColor: theme.palette.grey[600] }),
   },
   '&:active': {
     boxShadow: theme.shadows[0],
-    backgroundColor: emphasize(theme.palette.grey[200], 0.12),
+    ...(theme.palette.type === 'light'
+      ? { backgroundColor: emphasize(theme.palette.grey[200], 0.12) }
+      : { backgroundColor: emphasize(theme.palette.grey[600], 0.12) }),
   },
 }));
 
