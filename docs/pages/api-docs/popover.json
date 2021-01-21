@@ -55,5 +55,6 @@
   "filename": "/packages/material-ui/src/Popover/Popover.js",
   "inheritance": { "component": "Modal", "pathname": "/api/modal/" },
   "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li>\n<li><a href=\"/components/popover/\">Popover</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }

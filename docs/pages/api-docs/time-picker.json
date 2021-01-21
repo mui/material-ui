@@ -73,5 +73,6 @@
   "filename": "/packages/material-ui-lab/src/TimePicker/TimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }
