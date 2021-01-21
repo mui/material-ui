@@ -1,5 +1,5 @@
 {
-  "componentDescription": "<code>InputBase</code> contains as few styles as possible.\nIt aims to be a simple building block for creating an input.\nIt contains a load of style reset and some state logic.",
+  "componentDescription": "`InputBase` contains as few styles as possible.\nIt aims to be a simple building block for creating an input.\nIt contains a load of style reset and some state logic.",
   "propDescriptions": {
     "autoComplete": "This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it&#39;s more like an autofill. You can learn more about it <a href=\"https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill\">following the specification</a>.",
     "autoFocus": "If <code>true</code>, the <code>input</code> element is focused during the first mount.",
