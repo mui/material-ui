@@ -86,6 +86,10 @@ Let's take one row from [the table above](#properties-reference-table), for exam
 | :------------------- | :---------------------- | :---------------------------- | :---------------------------------------------------------------------------- |
 | `mb`, `marginBottom` | `margin-bottom`         | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
+<br />
+
+and detail each column:
+
 - **System keys**.
   The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
 
