@@ -107,7 +107,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   } = props;
 
   const styleProps = {
-    ...other,
+    ...props,
   };
 
   const classes = useUtilityClasses(styleProps);
