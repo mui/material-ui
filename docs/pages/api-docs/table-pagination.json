@@ -1,10 +1,13 @@
 {
   "props": {
+    "count": { "type": { "name": "number" }, "required": true },
+    "onPageChange": { "type": { "name": "func" }, "required": true },
+    "page": { "type": { "name": "custom", "description": "number" }, "required": true },
+    "rowsPerPage": { "type": { "name": "number" }, "required": true },
     "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
     "backIconButtonProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "count": { "type": { "name": "number" }, "required": true },
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "default": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}"
@@ -15,10 +18,7 @@
     },
     "labelRowsPerPage": { "type": { "name": "node" }, "default": "'Rows per page:'" },
     "nextIconButtonProps": { "type": { "name": "object" } },
-    "onPageChange": { "type": { "name": "func" }, "required": true },
     "onRowsPerPageChange": { "type": { "name": "func" } },
-    "page": { "type": { "name": "custom", "description": "number" }, "required": true },
-    "rowsPerPage": { "type": { "name": "number" }, "required": true },
     "rowsPerPageOptions": {
       "type": {
         "name": "arrayOf",

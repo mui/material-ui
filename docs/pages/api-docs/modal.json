@@ -1,8 +1,9 @@
 {
   "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
     "BackdropComponent": { "type": { "name": "elementType" }, "default": "SimpleBackdrop" },
     "BackdropProps": { "type": { "name": "object" } },
-    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "closeAfterTransition": { "type": { "name": "bool" } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disableAutoFocus": { "type": { "name": "bool" } },
@@ -14,8 +15,7 @@
     "hideBackdrop": { "type": { "name": "bool" } },
     "keepMounted": { "type": { "name": "bool" } },
     "onBackdropClick": { "type": { "name": "func" } },
-    "onClose": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" }, "required": true }
+    "onClose": { "type": { "name": "func" } }
   },
   "name": "Modal",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

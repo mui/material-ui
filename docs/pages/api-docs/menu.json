@@ -1,5 +1,6 @@
 {
   "props": {
+    "open": { "type": { "name": "bool" }, "required": true },
     "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "autoFocus": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "node" } },
@@ -7,7 +8,6 @@
     "disableAutoFocusItem": { "type": { "name": "bool" } },
     "MenuListProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" }, "required": true },
     "PopoverClasses": { "type": { "name": "object" } },
     "transitionDuration": {
       "type": {

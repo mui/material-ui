@@ -1,8 +1,8 @@
 {
   "props": {
+    "value": { "type": { "name": "string" }, "required": true },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "value": { "type": { "name": "string" }, "required": true }
+    "classes": { "type": { "name": "object" } }
   },
   "name": "TabPanel",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTabPanel" },

@@ -1,5 +1,6 @@
 {
   "props": {
+    "steps": { "type": { "name": "number" }, "required": true },
     "activeStep": { "type": { "name": "number" }, "default": "0" },
     "backButton": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -12,7 +13,6 @@
       },
       "default": "'bottom'"
     },
-    "steps": { "type": { "name": "number" }, "required": true },
     "variant": {
       "type": {
         "name": "enum",

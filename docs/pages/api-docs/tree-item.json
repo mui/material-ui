@@ -1,5 +1,6 @@
 {
   "props": {
+    "nodeId": { "type": { "name": "string" }, "required": true },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "collapseIcon": { "type": { "name": "node" } },
@@ -13,7 +14,6 @@
     "expandIcon": { "type": { "name": "node" } },
     "icon": { "type": { "name": "node" } },
     "label": { "type": { "name": "node" } },
-    "nodeId": { "type": { "name": "string" }, "required": true },
     "onFocus": { "type": { "name": "custom", "description": "unsupportedProp" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
     "TransitionProps": { "type": { "name": "object" } }
