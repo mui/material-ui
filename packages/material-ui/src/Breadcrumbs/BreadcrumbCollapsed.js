@@ -34,13 +34,13 @@ const BreadcrumbCollapsedButton = experimentalStyled(
     : { backgroundColor: theme.palette.grey[700], color: theme.palette.grey[100] }),
   borderRadius: 2,
   '&:hover, &:focus': {
-    ...(theme.palette.type === 'light'
+    ...(theme.palette.mode === 'light'
       ? { backgroundColor: theme.palette.grey[200] }
       : { backgroundColor: theme.palette.grey[600] }),
   },
   '&:active': {
     boxShadow: theme.shadows[0],
-    ...(theme.palette.type === 'light'
+    ...(theme.palette.mode === 'light'
       ? { backgroundColor: emphasize(theme.palette.grey[200], 0.12) }
       : { backgroundColor: emphasize(theme.palette.grey[600], 0.12) }),
   },
@@ -64,7 +64,7 @@ const BreadcrumbCollapsedIcon = experimentalStyled(
 const BreadcrumbCollapsed = React.forwardRef(function BreadcrumbCollapsed(props, ref) {
   const { ...other } = props;
 
-  const styleProps = { ...props };
+  const styleProps = props;
 
   const classes = useUtilityClasses(styleProps);
 
