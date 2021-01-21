@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, fireEvent, createClientRender } from 'test/utils';
+import { fireEvent, createClientRender } from 'test/utils';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
+import classes from './breadcrumbCollapsedClasses';
 
 describe('<BreadcrumbCollapsed />', () => {
-  let classes;
   const render = createClientRender();
-
-  before(() => {
-    classes = getClasses(<BreadcrumbCollapsed />);
-  });
 
   it('should render an icon', () => {
     const { container, getByRole } = render(<BreadcrumbCollapsed />);
