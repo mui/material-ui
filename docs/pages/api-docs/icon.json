@@ -17,7 +17,8 @@
         "description": "'inherit'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
       "default": "'medium'"
-    }
+    },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Icon",
   "styles": {
@@ -40,5 +41,5 @@
   "filename": "/packages/material-ui/src/Icon/Icon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/icons/\">Icons</a></li>\n<li><a href=\"/components/material-icons/\">Material Icons</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true
 }
