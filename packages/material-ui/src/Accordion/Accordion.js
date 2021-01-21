@@ -43,7 +43,7 @@ const AccordionRoot = experimentalStyled(
     overridesResolver,
   },
 )(
-  ({ theme, styleProps }) => {
+  ({ theme }) => {
     const transition = {
       duration: theme.transitions.duration.shortest,
     };
