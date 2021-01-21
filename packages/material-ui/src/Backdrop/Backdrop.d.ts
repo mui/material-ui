@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Omit, InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { Omit, InternalStandardProps as StandardProps, Theme } from '..';
 import { FadeProps } from '../Fade';
 import { TransitionProps } from '../transitions/transition';
 
@@ -30,6 +31,10 @@ export interface BackdropProps
    * If `true`, the component is shown.
    */
   open: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

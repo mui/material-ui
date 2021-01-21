@@ -4,6 +4,7 @@
     "classes": { "type": { "name": "object" } },
     "invisible": { "type": { "name": "bool" } },
     "open": { "type": { "name": "bool" }, "required": true },
+    "sx": { "type": { "name": "object" } },
     "transitionDuration": {
       "type": {
         "name": "union",
@@ -18,6 +19,6 @@
   "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
   "inheritance": { "component": "Fade", "pathname": "/api/fade/" },
   "demos": "<ul><li><a href=\"/components/backdrop/\">Backdrop</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
