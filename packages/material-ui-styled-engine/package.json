@@ -40,11 +40,11 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@emotion/cache": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
     "react": "^16.8.0 || ^17.0.0"
   },
   "peerDependenciesMeta": {
