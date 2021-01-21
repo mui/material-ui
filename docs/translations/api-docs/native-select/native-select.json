@@ -1,5 +1,5 @@
 {
-  "componentDescription": "An alternative to <code>&lt;Select native /&gt;</code> with a much smaller bundle size footprint.",
+  "componentDescription": "An alternative to `<Select native />` with a much smaller bundle size footprint.",
   "propDescriptions": {
     "children": "The option elements to populate the select with. Can be some <code>&lt;option&gt;</code> elements.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",

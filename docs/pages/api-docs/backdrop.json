@@ -20,4 +20,5 @@
   "inheritance": { "component": "Fade", "pathname": "/api/fade/" },
   "demos": "<ul><li><a href=\"/components/backdrop/\">Backdrop</a></li></ul>",
   "styledComponent": true
+  "cssComponent": false
 }

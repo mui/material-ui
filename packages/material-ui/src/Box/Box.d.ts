@@ -1,38 +1,7 @@
 import * as React from 'react';
-import {
-  borders,
-  ComposedStyleFunction,
-  display,
-  flexbox,
-  grid,
-  palette,
-  positions,
-  shadows,
-  sizing,
-  spacing,
-  typography,
-  PropsFor,
-  SxProps,
-} from '@material-ui/system';
+import { SystemProps, SxProps } from '@material-ui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createMuiTheme';
-
-type SystemProps = PropsFor<
-  ComposedStyleFunction<
-    [
-      typeof borders,
-      typeof display,
-      typeof flexbox,
-      typeof grid,
-      typeof palette,
-      typeof positions,
-      typeof shadows,
-      typeof sizing,
-      typeof spacing,
-      typeof typography
-    ]
-  >
->;
 
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
