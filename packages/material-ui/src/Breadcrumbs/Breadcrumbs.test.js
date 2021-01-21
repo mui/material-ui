@@ -15,7 +15,8 @@ describe('<Breadcrumbs />', () => {
     muiName: 'MuiBreadcrumbs',
     refInstanceof: window.HTMLElement,
     testComponentPropWith: 'div',
-    skip: ['componentsProp', 'themeVariants', 'themeDefaultProps'],
+    testVariantProps: { separator: '=' },
+    skip: ['componentsProp'],
   }));
 
   it('should render inaccessible separators between each listitem', () => {
