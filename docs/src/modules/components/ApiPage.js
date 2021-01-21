@@ -14,6 +14,19 @@ function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
   const t = useTranslate();
 
+  // Sort by required DESC, name ASC
+  const sortedPropsEntries = Object.entries(componentProps).sort(
+    ([aName, aData], [bName, bData]) => {
+      if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
+        return aName.localeCompare(bName);
+      }
+      if (aData.required) {
+        return -1;
+      }
+      return 1;
+    },
+  );
+
   return (
     <table>
       <thead>
@@ -25,7 +38,7 @@ function PropsTable(props) {
         </tr>
       </thead>
       <tbody>
-        {Object.entries(componentProps).map(([propName, propData]) => {
+        {sortedPropsEntries.map(([propName, propData]) => {
           const typeDescription = propData.type.description || propData.type.name;
           const propDefault = propData.default || (propData.type.name === 'bool' && 'false');
           return (
