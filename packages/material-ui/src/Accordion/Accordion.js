@@ -19,6 +19,7 @@ const overridesResolver = (props, styles) => {
     ...(!styleProps.square && styles.rounded),
     ...(styleProps.expanded && { [`&.${accordionClasses.expanded}`]: styles.expanded }),
     ...(styleProps.disabled && { [`&.${accordionClasses.disabled}`]: styles.disabled }),
+    [`& .${accordionClasses.region}`]: styles.region,
   });
 };
 
