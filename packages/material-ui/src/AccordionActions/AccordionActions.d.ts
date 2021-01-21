@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 
 export interface AccordionActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -20,6 +21,10 @@ export interface AccordionActionsProps extends StandardProps<React.HTMLAttribute
    * @default false
    */
   disableSpacing?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type AccordionActionsClassKey = keyof NonNullable<AccordionActionsProps['classes']>;
