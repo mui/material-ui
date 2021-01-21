@@ -17,7 +17,6 @@ const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
     ...styles[`underline${capitalize(styleProps.underline)}`],
     ...(styleProps.component === 'button' && styles.button),
-    ...(styleProps.focusVisible && styles.focusVisible),
   });
 };
 
