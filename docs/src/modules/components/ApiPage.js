@@ -179,7 +179,12 @@ function ApiDocs(props) {
     styles: componentStyles,
   } = pageContent;
 
-  const { componentDescription, classDescriptions, propDescriptions } = descriptions[userLanguage];
+  const {
+    componentDescription,
+    componentDescriptionToc = [],
+    classDescriptions,
+    propDescriptions,
+  } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
   const source = filename
@@ -190,28 +195,26 @@ function ApiDocs(props) {
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
-  const sections = [
-    'import',
-    componentStyles.name && 'component-name',
-    'props',
-    componentStyles.classes && 'css',
-    'demos',
-  ];
+  function createTocEntry(sectionName) {
+    return {
+      text: getTranslatedHeader(t, sectionName),
+      hash: sectionName,
+      children: [
+        ...(sectionName === 'props' && inheritance
+          ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+          : []),
+      ],
+    };
+  }
 
-  const toc = [];
-  sections.forEach((sectionName) => {
-    if (sectionName) {
-      toc.push({
-        text: getTranslatedHeader(t, sectionName),
-        hash: sectionName,
-        children: [
-          ...(sectionName === 'props' && inheritance
-            ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-            : []),
-        ],
-      });
-    }
-  });
+  const toc = [
+    createTocEntry('import'),
+    ...componentDescriptionToc,
+    componentStyles.name && createTocEntry('component-name'),
+    createTocEntry('props'),
+    componentStyles.classes && createTocEntry('css'),
+    createTocEntry('demos'),
+  ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
   let refHint = t('api-docs.refRootElement');

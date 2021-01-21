@@ -1,5 +1,5 @@
 {
-  "componentDescription": "Uses an additional container component if <code>ListItemSecondaryAction</code> is the last child.",
+  "componentDescription": "Uses an additional container component if `ListItemSecondaryAction` is the last child.",
   "propDescriptions": {
     "alignItems": "Defines the <code>align-items</code> style property.",
     "autoFocus": "If <code>true</code>, the list item is focused during the first mount. Focus will also be triggered if the value changes from false to true.",
