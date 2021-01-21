@@ -54,5 +54,6 @@
   "filename": "/packages/material-ui/src/TextField/TextField.js",
   "inheritance": { "component": "FormControl", "pathname": "/api/form-control/" },
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/components/pickers/\">Pickers</a></li>\n<li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }
