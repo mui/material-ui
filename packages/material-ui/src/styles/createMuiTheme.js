@@ -45,6 +45,7 @@ function createMuiTheme(options = {}, ...args) {
 
   if (process.env.NODE_ENV !== 'production') {
     const pseudoClasses = [
+      'active',
       'checked',
       'disabled',
       'error',
@@ -54,6 +55,7 @@ function createMuiTheme(options = {}, ...args) {
       'expanded',
       'selected',
     ];
+
     const traverse = (node, component) => {
       let key;
 
@@ -69,11 +71,11 @@ function createMuiTheme(options = {}, ...args) {
                 'You can not override it like this: ',
                 JSON.stringify(node, null, 2),
                 '',
-                'Instead, you need to use the $ruleName syntax:',
+                `Instead, you need to use the '&.Mui-${key}' syntax:`,
                 JSON.stringify(
                   {
                     root: {
-                      [`&$${key}`]: child,
+                      [`&.Mui-${key}`]: child,
                     },
                   },
                   null,
