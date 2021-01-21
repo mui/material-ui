@@ -158,7 +158,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   } = props;
 
   const styleProps = {
-    ...other,
+    ...props,
     variant,
     color,
     severity,

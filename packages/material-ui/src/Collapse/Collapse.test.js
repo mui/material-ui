@@ -1,30 +1,29 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Collapse from './Collapse';
+import classes from './collapseClasses';
 
 describe('<Collapse />', () => {
   const mount = createMount({ strict: true });
-  let classes;
   const defaultProps = {
     in: true,
     children: <div />,
   };
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Collapse {...defaultProps} />);
-  });
-
-  describeConformance(<Collapse {...defaultProps} />, () => ({
+  describeConformanceV5(<Collapse {...defaultProps} />, () => ({
     classes,
     inheritComponent: Transition,
     mount,
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'span',
+    muiName: 'MuiCollapse',
+    testVariantProps: { orientation: 'horizontal' },
+    testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
+    skip: ['componentsProp'],
   }));
 
   it('should render a container around the wrapper', () => {

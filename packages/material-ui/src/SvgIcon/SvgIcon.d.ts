@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
@@ -51,6 +53,10 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      * If you are having issues with blurry icons you should investigate this prop.
      */
     shapeRendering?: string;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * Provides a human-readable title for the element that contains it.
      * https://www.w3.org/TR/SVG-access/#Equivalent

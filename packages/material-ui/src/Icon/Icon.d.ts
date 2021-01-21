@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { PropTypes } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
@@ -47,6 +49,10 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * @default 'medium'
      */
     fontSize?: 'inherit' | 'large' | 'medium' | 'small';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }
