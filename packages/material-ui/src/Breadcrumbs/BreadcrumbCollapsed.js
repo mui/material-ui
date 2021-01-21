@@ -11,6 +11,17 @@ import breadcrumbCollapsedClasses, {
   getBreadcrumbCollapsedUtilityClass,
 } from './breadcrumbCollapsedClasses';
 
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    button: ['button'],
+    icon: ['icon'],
+  };
+
+  return composeClasses(slots, getBreadcrumbCollapsedUtilityClass, classes);
+};
+
 const BreadcrumbCollapsedButton = experimentalStyled(
   ButtonBase,
   {},
