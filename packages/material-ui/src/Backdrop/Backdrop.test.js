@@ -15,13 +15,12 @@ describe('<Backdrop />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiBackdrop',
+    testVariantProps: { invisible: true },
     skip: [
       'componentProp',
       'componentsProp',
       // react-transition-group issue
       'reactTestRenderer',
-      'themeVariants',
-      'themeDefaultProps',
     ],
   }));
 
