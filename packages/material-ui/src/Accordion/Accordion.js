@@ -26,6 +26,7 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: ['root', !square && 'rounded', expanded && 'expanded', disabled && 'disabled'],
+    region: ['region'],
   };
 
   return composeClasses(slots, getAccordionUtilityClass, classes);
