@@ -39,12 +39,12 @@ const BreadcrumbsRoot = experimentalStyled(
   },
 )({});
 
-const BreadcrumbsOL = experimentalStyled(
+const BreadcrumbsOl = experimentalStyled(
   'ol',
   {},
   {
     name: 'MuiBreadcrumbs',
-    slot: 'OL',
+    slot: 'Ol',
   },
 )(() => ({
   display: 'flex',
@@ -185,7 +185,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       styleProps={styleProps}
       {...other}
     >
-      <BreadcrumbsOL className={classes.ol} ref={listRef} styleProps={styleProps}>
+      <BreadcrumbsOl className={classes.ol} ref={listRef} styleProps={styleProps}>
         {insertSeparators(
           expanded || (maxItems && allItems.length <= maxItems)
             ? allItems
@@ -194,7 +194,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
           separator,
           styleProps,
         )}
-      </BreadcrumbsOL>
+      </BreadcrumbsOl>
     </BreadcrumbsRoot>
   );
 });
