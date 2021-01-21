@@ -103,7 +103,7 @@ function BrandingEmeriti() {
         </Typography>
         <Grid container spacing={4}>
           {emeriti.map((member) => (
-            <Grid item lg={3} sm={6} xs={12}>
+            <Grid item lg={3} sm={6} xs={12} key={member.name}>
               <BrandingPersona
                 name={member.name}
                 src={`https://github.com/${member.github}.png`}
