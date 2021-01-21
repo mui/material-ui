@@ -80,7 +80,7 @@ Note that this table only lists custom properties, all other regular CSS propert
 
 ## Legend
 
-Let's take the following row from [the table below](#properties-reference-table), for example:
+Let's take the following row from [the table above](#properties-reference-table), for example:
 
 | System key(s)        | CSS property/properties | System style function         | Theme mapping                                                                 |
 | :------------------- | :---------------------- | :---------------------------- | :---------------------------------------------------------------------------- |
