@@ -108,6 +108,12 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
 
   const styleProps = {
     ...props,
+    component: Component,
+    expandText,
+    itemsAfterCollapse,
+    itemsBeforeCollapse,
+    maxItems,
+    separator,
   };
 
   const classes = useUtilityClasses(styleProps);
