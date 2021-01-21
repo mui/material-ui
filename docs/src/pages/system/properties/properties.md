@@ -93,8 +93,22 @@ and detail each column:
 - **System keys**.
   The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
 
+  ```jsx
+  <Button sx={{ mb: 3 }}>
+  // or
+  <Box mb={3}>
+  // or
+  <Box marginBottom={3}>
+  ```
+
 - **CSS properties**.
   The column describes which CSS property will be generated when this system property is used.
+
+  ```css
+  .my-class {
+    margin-bottom: Xpx;
+  }
+  ```
 
 - **System style function**.
   The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@material-ui/system`.
@@ -103,19 +117,19 @@ and detail each column:
 - **Theme mapping**.
   Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
 
-  Let's take a look at an example:
+Let's take a look at an example:
 
-  ```jsx
-  <Box sx={{ mb: 3 }} />
+```jsx
+<Button sx={{ mb: 3 }} />
 
-  // is equivalent to
-  <Box sx={{ marginBottom: theme => theme.spacing(3)}} />
-  ```
+// is equivalent to
+<Button sx={{ marginBottom: theme => theme.spacing(3)}} />
+```
 
-  As the default theme spacing is 8px, this will result in the following CSS class:
+As the default theme spacing is 8px, this will result in the following CSS class:
 
-  ```css
-  .hash-MuiBox {
-    margin-bottom: 24px;
-  }
-  ```
+```css
+.my-class {
+  margin-bottom: 24px;
+}
+```
