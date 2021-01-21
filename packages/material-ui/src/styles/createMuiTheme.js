@@ -1,4 +1,5 @@
 import { deepmerge } from '@material-ui/utils';
+import { generateUtilityClass } from '@material-ui/unstyled';
 import createBreakpoints from './createBreakpoints';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
@@ -64,6 +65,7 @@ function createMuiTheme(options = {}, ...args) {
         const child = node[key];
         if (pseudoClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
           if (process.env.NODE_ENV !== 'production') {
+            const pseudoClass = generateUtilityClass('', key);
             console.error(
               [
                 `Material-UI: The \`${component}\` component increases ` +
@@ -71,11 +73,11 @@ function createMuiTheme(options = {}, ...args) {
                 'You can not override it like this: ',
                 JSON.stringify(node, null, 2),
                 '',
-                `Instead, you need to use the '&.Mui-${key}' syntax:`,
+                `Instead, you need to use the '&.${pseudoClass}' syntax:`,
                 JSON.stringify(
                   {
                     root: {
-                      [`&.Mui-${key}`]: child,
+                      [`&.${pseudoClass}`]: child,
                     },
                   },
                   null,
