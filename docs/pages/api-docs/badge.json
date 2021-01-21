@@ -67,5 +67,6 @@
   "filename": "/packages/material-ui/src/Badge/Badge.js",
   "inheritance": { "component": "BadgeUnstyled", "pathname": "/api/badge-unstyled/" },
   "demos": "<ul><li><a href=\"/components/avatars/\">Avatars</a></li>\n<li><a href=\"/components/badges/\">Badges</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }

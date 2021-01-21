@@ -44,5 +44,6 @@
   "filename": "/packages/material-ui/src/Link/Link.js",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
   "demos": "<ul><li><a href=\"/components/breadcrumbs/\">Breadcrumbs</a></li>\n<li><a href=\"/components/links/\">Links</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }

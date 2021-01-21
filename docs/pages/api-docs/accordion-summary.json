@@ -20,5 +20,6 @@
   "filename": "/packages/material-ui/src/AccordionSummary/AccordionSummary.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }

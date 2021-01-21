@@ -38,5 +38,6 @@
   "filename": "/packages/material-ui/src/Checkbox/Checkbox.js",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
   "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }
