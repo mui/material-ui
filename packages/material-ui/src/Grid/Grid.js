@@ -13,6 +13,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
+import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import requirePropFactory from '../utils/requirePropFactory';
 import experimentalStyled from '../styles/experimentalStyled';
@@ -103,12 +104,9 @@ function generateGap({ theme, styleProps }) {
 
 const overridesResolver = (props, styles) => {
   const {
-    alignContent,
-    alignItems,
     container,
     direction,
     item,
-    justifyContent,
     lg,
     md,
     sm,
@@ -126,9 +124,6 @@ const overridesResolver = (props, styles) => {
     ...(container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`]),
     ...(direction !== 'row' && styles[`direction-xs-${String(direction)}`]),
     ...(wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`]),
-    ...(alignItems !== 'stretch' && styles[`align-items-xs-${String(alignItems)}`]),
-    ...(alignContent !== 'stretch' && styles[`align-content-xs-${String(alignContent)}`]),
-    ...(justifyContent !== 'flex-start' && styles[`justify-content-xs-${String(justifyContent)}`]),
     ...(xs !== false && styles[`grid-xs-${String(xs)}`]),
     ...(sm !== false && styles[`grid-sm-${String(sm)}`]),
     ...(md !== false && styles[`grid-md-${String(md)}`]),
@@ -182,15 +177,6 @@ const GridRoot = experimentalStyled(
     ...(styleProps.wrap === 'reverse' && {
       flexWrap: 'wrap-reverse',
     }),
-    ...(styleProps.alignItems && {
-      alignItems: styleProps.alignItems,
-    }),
-    ...(styleProps.alignContent && {
-      alignContent: styleProps.alignContent,
-    }),
-    ...(styleProps.justifyContent && {
-      justifyContent: styleProps.justifyContent,
-    }),
   }),
   generateGap,
   ({ theme, styleProps }) =>
@@ -203,13 +189,10 @@ const GridRoot = experimentalStyled(
 
 const useUtilityClasses = (styleProps) => {
   const {
-    alignContent,
-    alignItems,
     classes,
     container,
     direction,
     item,
-    justifyContent,
     lg,
     md,
     sm,
@@ -229,9 +212,6 @@ const useUtilityClasses = (styleProps) => {
       container && spacing !== 0 && `spacing-xs-${String(spacing)}`,
       direction !== 'row' && `direction-xs-${String(direction)}`,
       wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
-      alignItems !== 'stretch' && `align-items-xs-${String(alignItems)}`,
-      alignContent !== 'stretch' && `align-content-xs-${String(alignContent)}`,
-      justifyContent !== 'flex-start' && `justify-content-xs-${String(justifyContent)}`,
       xs !== false && `grid-xs-${String(xs)}`,
       sm !== false && `grid-sm-${String(sm)}`,
       md !== false && `grid-md-${String(md)}`,
@@ -244,17 +224,14 @@ const useUtilityClasses = (styleProps) => {
 };
 
 const Grid = React.forwardRef(function Grid(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiGrid' });
-
+  const themeProps = useThemeProps({ props: inProps, name: 'MuiGrid' });
+  const props = extendSxProp(themeProps);
   const {
-    alignContent = 'stretch',
-    alignItems = 'stretch',
     className,
     component = 'div',
     container = false,
     direction = 'row',
     item = false,
-    justifyContent = 'flex-start',
     lg = false,
     md = false,
     sm = false,
@@ -268,12 +245,9 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const styleProps = {
     ...props,
-    alignContent,
-    alignItems,
     container,
     direction,
     item,
-    justifyContent,
     lg,
     md,
     sm,
@@ -302,25 +276,6 @@ Grid.propTypes = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
-  /**
-   * Defines the `align-content` style property.
-   * It's applied for all screen sizes.
-   * @default 'stretch'
-   */
-  alignContent: PropTypes.oneOf([
-    'center',
-    'flex-end',
-    'flex-start',
-    'space-around',
-    'space-between',
-    'stretch',
-  ]),
-  /**
-   * Defines the `align-items` style property.
-   * It's applied for all screen sizes.
-   * @default 'stretch'
-   */
-  alignItems: PropTypes.oneOf(['baseline', 'center', 'flex-end', 'flex-start', 'stretch']),
   /**
    * The content of the component.
    */
@@ -356,19 +311,6 @@ Grid.propTypes = {
    * @default false
    */
   item: PropTypes.bool,
-  /**
-   * Defines the `justify-content` style property.
-   * It is applied for all screen sizes.
-   * @default 'flex-start'
-   */
-  justifyContent: PropTypes.oneOf([
-    'center',
-    'flex-end',
-    'flex-start',
-    'space-around',
-    'space-between',
-    'space-evenly',
-  ]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
@@ -444,10 +386,7 @@ if (process.env.NODE_ENV !== 'production') {
   Grid['propTypes' + ''] = {
     // eslint-disable-next-line react/forbid-foreign-prop-types
     ...Grid.propTypes,
-    alignContent: requireProp('container'),
-    alignItems: requireProp('container'),
     direction: requireProp('container'),
-    justifyContent: requireProp('container'),
     lg: requireProp('item'),
     md: requireProp('item'),
     sm: requireProp('item'),
