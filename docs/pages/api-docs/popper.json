@@ -41,5 +41,6 @@
   "filename": "/packages/material-ui/src/Popper/Popper.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/components/menus/\">Menus</a></li>\n<li><a href=\"/components/popper/\">Popper</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }
