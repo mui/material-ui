@@ -1,18 +1,59 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { deepmerge, chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
+import experimentalStyled from '../styles/experimentalStyled';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
+import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
-  root: {
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.selected && { [`&.${listItemClasses.selected}`]: styles.selected }),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { disableGutters, children: childrenProp, selected, button, classes } = styleProps;
+
+  const children = React.Children.toArray(childrenProp);
+  const hasSecondaryAction =
+    children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
+
+  const slots = {
+    root: [
+      'root',
+      !disableGutters && 'gutters',
+      hasSecondaryAction && 'secondaryAction',
+      selected && 'selected',
+      button && 'button',
+    ],
+  };
+
+  return composeClasses(slots, getListItemUtilityClass, classes);
+};
+
+const ListItemRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiListItem',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => {
+  const { children: childrenProp } = styleProps;
+  const children = React.Children.toArray(childrenProp);
+  const hasSecondaryAction =
+    children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
+  return {
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -38,66 +79,62 @@ export const styles = (theme) => ({
     '&$disabled': {
       opacity: theme.palette.action.disabledOpacity,
     },
-  },
-  /* Styles applied to the container element if `children` includes `ListItemSecondaryAction`. */
-  container: {
-    position: 'relative',
-  },
-  /* Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
-  focusVisible: {},
-  /* Styles applied to the component element if dense. */
-  dense: {
-    paddingTop: 4,
-    paddingBottom: 4,
-  },
-  /* Styles applied to the component element if `alignItems="flex-start"`. */
-  alignItemsFlexStart: {
-    alignItems: 'flex-start',
-  },
-  /* Pseudo-class applied to the inner `component` element if `disabled={true}`. */
-  disabled: {},
-  /* Styles applied to the inner `component` element if `divider={true}`. */
-  divider: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    backgroundClip: 'padding-box',
-  },
-  /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
-  gutters: {
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
-  /* Styles applied to the inner `component` element if `button={true}`. */
-  button: {
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
+    /* Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
+    // TODO focusVisible: {},
+    /* Styles applied to the component element if dense. */
+    ...((styleProps.dense || React.useContext(ListContext).dense) && {
+      paddingTop: 4,
+      paddingBottom: 4,
     }),
-    '&:hover': {
-      textDecoration: 'none',
-      backgroundColor: theme.palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+    /* Styles applied to the component element if `alignItems="flex-start"`. */
+    ...(styleProps.alignItems === 'flex-start' && {
+      alignItems: 'flex-start',
+    }),
+    /* Pseudo-class applied to the inner `component` element if `disabled={true}`. */
+    // TODO disabled: {},
+    /* Styles applied to the inner `component` element if `divider={true}`. */
+    ...(styleProps.divider && {
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      backgroundClip: 'padding-box',
+    }),
+    /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
+    ...(!styleProps.disableGutters && {
+      paddingLeft: 16,
+      paddingRight: 16,
+    }),
+    /* Styles applied to the inner `component` element if `button={true}`. */
+    ...(styleProps.button && {
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      '&:hover': {
+        textDecoration: 'none',
+        backgroundColor: theme.palette.action.hover,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
       },
-    },
-    '&$selected:hover': {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-      ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&$selected:hover': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        },
       },
-    },
-  },
-  /* Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
-  secondaryAction: {
-    // Add some space to avoid collision as `ListItemSecondaryAction`
-    // is absolutely positioned.
-    paddingRight: 48,
-  },
-  /* Pseudo-class applied to the root element if `selected={true}`. */
-  selected: {},
+    }),
+    /* Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
+    ...(hasSecondaryAction && {
+      // Add some space to avoid collision as `ListItemSecondaryAction`
+      // is absolutely positioned.
+      paddingRight: 48,
+    }),
+    /* Pseudo-class applied to the root element if `selected={true}`. */
+    ...(styleProps.selected && {}),
+  };
 });
 
 /**
@@ -109,7 +146,6 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     autoFocus = false,
     button = false,
     children: childrenProp,
-    classes,
     className,
     component: componentProp,
     ContainerComponent = 'li',
@@ -122,6 +158,19 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     selected = false,
     ...other
   } = props;
+
+  const styleProps = {
+    ...other,
+    button,
+    children: childrenProp,
+    dense,
+    alignItems,
+    divider,
+    disableGutters,
+    selected,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   const context = React.useContext(ListContext);
   const childContext = {
@@ -150,20 +199,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   const handleRef = useForkRef(listItemRef, ref);
 
   const componentProps = {
-    className: clsx(
-      classes.root,
-      {
-        [classes.dense]: childContext.dense,
-        [classes.gutters]: !disableGutters,
-        [classes.divider]: divider,
-        [classes.disabled]: disabled,
-        [classes.button]: button,
-        [classes.alignItemsFlexStart]: alignItems === 'flex-start',
-        [classes.secondaryAction]: hasSecondaryAction,
-        [classes.selected]: selected,
-      },
-      className,
-    ),
+    className: clsx(classes.root, className),
     disabled,
     ...other,
   };
@@ -189,25 +225,35 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
       }
     }
 
+    const ListItemContainer = experimentalStyled(
+      ContainerComponent,
+      {},
+      {
+        name: 'MuiListItem',
+        slot: 'Container',
+        overridesResolver,
+      },
+    )(() => ({
+      position: 'relative',
+    }));
+
     return (
       <ListContext.Provider value={childContext}>
-        <ContainerComponent
-          className={clsx(classes.container, ContainerClassName)}
-          ref={handleRef}
-          {...ContainerProps}
-        >
-          <Component {...componentProps}>{children}</Component>
+        <ListItemContainer className={ContainerClassName} ref={handleRef} {...ContainerProps}>
+          <ListItemRoot styleProps={styleProps} {...componentProps}>
+            {children}
+          </ListItemRoot>
           {children.pop()}
-        </ContainerComponent>
+        </ListItemContainer>
       </ListContext.Provider>
     );
   }
 
   return (
     <ListContext.Provider value={childContext}>
-      <Component ref={handleRef} {...componentProps}>
+      <ListItemRoot ref={handleRef} styleProps={styleProps} {...componentProps}>
         {children}
-      </Component>
+      </ListItemRoot>
     </ListContext.Provider>
   );
 });
@@ -315,6 +361,10 @@ ListItem.propTypes = {
    * @default false
    */
   selected: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiListItem' })(ListItem);
+export default ListItem;
