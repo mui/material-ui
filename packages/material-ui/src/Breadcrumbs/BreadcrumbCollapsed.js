@@ -11,7 +11,6 @@ import breadcrumbCollapsedClasses, {
   getBreadcrumbCollapsedUtilityClass,
 } from './breadcrumbCollapsedClasses';
 
-
 const BreadcrumbCollapsedButton = experimentalStyled(
   ButtonBase,
   {},
@@ -67,7 +66,7 @@ const BreadcrumbCollapsed = React.forwardRef(function BreadcrumbCollapsed(props,
       >
         <BreadcrumbCollapsedIcon className={classes.icon} styleProps={styleProps} />
       </BreadcrumbCollapsedButton>
-    </BreadcrumbCollapsedRoot>
+    </li>
   );
 });
 
