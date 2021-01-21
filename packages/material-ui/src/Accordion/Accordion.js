@@ -17,8 +17,6 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...(!styleProps.square && styles.rounded),
-    ...(styleProps.expanded && { [`&.${accordionClasses.expanded}`]: styles.expanded }),
-    ...(styleProps.disabled && { [`&.${accordionClasses.disabled}`]: styles.disabled }),
     [`& .${accordionClasses.region}`]: styles.region,
   });
 };
