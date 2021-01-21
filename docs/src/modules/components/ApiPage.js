@@ -120,12 +120,21 @@ ClassesTable.propTypes = {
 function getTranslatedHeader(t, header) {
   const translations = {
     import: t('api-docs.import'),
-    componentName: t('api-docs.componentName'),
+    'component-name': t('api-docs.componentName'),
     props: t('api-docs.props'),
     inheritance: t('api-docs.inheritance'),
     demos: t('api-docs.demos'),
     css: 'CSS',
   };
+
+  // TODO Drop runtime type-checking once we type-check this file
+  if (!translations.hasOwnProperty(header)) {
+    throw new TypeError(
+      `Unable to translate header '${header}'. Did you mean one of '${Object.keys(
+        translations,
+      ).join("', '")}'`,
+    );
+  }
 
   return translations[header] || header;
 }
@@ -133,19 +142,13 @@ function getTranslatedHeader(t, header) {
 function Heading(props) {
   const { hash, level: Level = 'h2' } = props;
   const t = useTranslate();
-  const kebabCaseHash = hash === 'componentName' ? 'component-name' : `${hash}`;
 
   return (
     <Level>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content */}
-      <a className="anchor-link" id={kebabCaseHash} />
+      <a className="anchor-link" id={hash} />
       {getTranslatedHeader(t, hash)}
-      <a
-        className="anchor-link-style"
-        aria-hidden="true"
-        aria-label="anchor"
-        href={`#${kebabCaseHash}`}
-      >
+      <a className="anchor-link-style" aria-hidden="true" aria-label="anchor" href={`#${hash}`}>
         <svg>
           <use xlinkHref="#anchor-link-icon" />
         </svg>
@@ -265,7 +268,7 @@ import { ${componentName} } from '${source}';`}
         ) : null}
         {componentStyles.name && (
           <React.Fragment>
-            <Heading hash="componentName" />
+            <Heading hash="component-name" />
             <span
               dangerouslySetInnerHTML={{
                 __html: t('api-docs.styleOverrides').replace(
