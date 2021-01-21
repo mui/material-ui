@@ -52,5 +52,6 @@
   "filename": "/packages/material-ui/src/TablePagination/TablePagination.js",
   "inheritance": { "component": "TableCell", "pathname": "/api/table-cell/" },
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }
