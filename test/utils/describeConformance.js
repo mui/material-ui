@@ -77,7 +77,7 @@ export function testClassName(element, getOptions) {
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-function testComponentProp(element, getOptions) {
+export function testComponentProp(element, getOptions) {
   describe('prop: component', () => {
     it('can render another root component with the `component` prop', () => {
       const { mount, testComponentPropWith: component = 'em' } = getOptions();

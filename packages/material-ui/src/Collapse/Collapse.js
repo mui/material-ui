@@ -2,71 +2,125 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementTypeAcceptingRef } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
+import { deepmerge, elementTypeAcceptingRef } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
+import collapseClasses, { getCollapseUtilityClass } from './collapseClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    height: 0,
-    overflow: 'hidden',
-    transition: theme.transitions.create('height'),
-    '&$horizontal': {
-      height: 'auto',
-      width: 0,
-      transition: theme.transitions.create('width'),
-    },
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[styleProps.orientation],
+    ...(styleProps.state === 'entered' && styles.entered),
+    ...(styleProps.state === 'exited' &&
+      !styleProps.in &&
+      styleProps.collapsedSize === '0px' &&
+      styles.hidden),
+    [`& .${collapseClasses.wrapper}`]: styles.wrapper,
+    [`& .${collapseClasses.wrapperInner}`]: styles.wrapperInner,
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { orientation, classes } = styleProps;
+
+  const slots = {
+    root: ['root', `${orientation}`],
+    entered: ['entered'],
+    hidden: ['hidden'],
+    wrapper: ['wrapper', `${orientation}`],
+    wrapperInner: ['wrapperInner', `${orientation}`],
+  };
+
+  return composeClasses(slots, getCollapseUtilityClass, classes);
+};
+
+const CollapseRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiCollapse',
+    slot: 'Root',
+    overridesResolver,
   },
-  /* Pseudo-class applied to the root element if `orientation="horizontal"`. */
-  horizontal: {},
+)(({ theme, styleProps }) => ({
+  /* Styles applied to the root element. */
+  height: 0,
+  overflow: 'hidden',
+  transition: theme.transitions.create('height'),
+  ...(styleProps.orientation === 'horizontal' && {
+    height: 'auto',
+    width: 0,
+    transition: theme.transitions.create('width'),
+  }),
   /* Styles applied to the root element when the transition has entered. */
-  entered: {
+  ...(styleProps.state === 'entered' && {
     height: 'auto',
     overflow: 'visible',
-    '&$horizontal': {
+    ...(styleProps.orientation === 'horizontal' && {
       width: 'auto',
-    },
-  },
+    }),
+  }),
   /* Styles applied to the root element when the transition has exited and `collapsedSize` = 0px. */
-  hidden: {
-    visibility: 'hidden',
+  ...(styleProps.state === 'exited' &&
+    !styleProps.in &&
+    styleProps.collapsedSize === '0px' && {
+      visibility: 'hidden',
+    }),
+}));
+
+/* Styles applied to the outer wrapper element. */
+const CollapseWrapper = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiCollapse',
+    slot: 'Wrapper',
   },
-  /* Styles applied to the outer wrapper element. */
-  wrapper: {
-    // Hack to get children with a negative margin to not falsify the height computation.
-    display: 'flex',
-    width: '100%',
-    '&$horizontal': {
-      width: 'auto',
-      height: '100%',
-    },
+)(({ styleProps }) => ({
+  // Hack to get children with a negative margin to not falsify the height computation.
+  display: 'flex',
+  width: '100%',
+  ...(styleProps.orientation === 'horizontal' && {
+    width: 'auto',
+    height: '100%',
+  }),
+}));
+
+/* Styles applied to the inner wrapper element. */
+const CollapseWrapperInner = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiCollapse',
+    slot: 'WrapperInner',
   },
-  /* Styles applied to the inner wrapper element. */
-  wrapperInner: {
-    width: '100%',
-    '&$horizontal': {
-      width: 'auto',
-      height: '100%',
-    },
-  },
-});
+)(({ styleProps }) => ({
+  width: '100%',
+  ...(styleProps.orientation === 'horizontal' && {
+    width: 'auto',
+    height: '100%',
+  }),
+}));
 
 /**
  * The Collapse transition is used by the
  * [Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-const Collapse = React.forwardRef(function Collapse(props, ref) {
+const Collapse = React.forwardRef(function Collapse(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiCollapse' });
   const {
     children,
-    classes,
     className,
     collapsedSize: collapsedSizeProp = '0px',
-    component: Component = 'div',
+    component,
     in: inProp,
     onEnter,
     onEntered,
@@ -81,6 +135,15 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     TransitionComponent = Transition,
     ...other
   } = props;
+
+  const styleProps = {
+    ...props,
+    orientation,
+    collapsedSize: collapsedSizeProp,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   const theme = useTheme();
   const timer = React.useRef();
   const wrapperRef = React.useRef(null);
@@ -224,11 +287,11 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
       {...other}
     >
       {(state, childProps) => (
-        <Component
+        <CollapseRoot
+          as={component}
           className={clsx(
             classes.root,
             {
-              [classes.horizontal]: isHorizontal,
               [classes.entered]: state === 'entered',
               [classes.hidden]: state === 'exited' && !inProp && collapsedSize === '0px',
             },
@@ -238,24 +301,23 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
             [isHorizontal ? 'minWidth' : 'minHeight']: collapsedSize,
             ...style,
           }}
+          styleProps={{ ...styleProps, state }}
           ref={handleRef}
           {...childProps}
         >
-          <div
-            className={clsx(classes.wrapper, {
-              [classes.horizontal]: isHorizontal,
-            })}
+          <CollapseWrapper
+            styleProps={{ ...styleProps, state }}
+            className={classes.wrapper}
             ref={wrapperRef}
           >
-            <div
-              className={clsx(classes.wrapperInner, {
-                [classes.horizontal]: isHorizontal,
-              })}
+            <CollapseWrapperInner
+              styleProps={{ ...styleProps, state }}
+              className={classes.wrapperInner}
             >
               {children}
-            </div>
-          </div>
-        </Component>
+            </CollapseWrapperInner>
+          </CollapseWrapper>
+        </CollapseRoot>
       )}
     </TransitionComponent>
   );
@@ -326,6 +388,10 @@ Collapse.propTypes = {
    */
   style: PropTypes.object,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    *
@@ -345,4 +411,4 @@ Collapse.propTypes = {
 
 Collapse.muiSupportAuto = true;
 
-export default withStyles(styles, { name: 'MuiCollapse' })(Collapse);
+export default Collapse;

@@ -1,19 +1,5 @@
 {
   "props": {
-    "alignContent": {
-      "type": {
-        "name": "enum",
-        "description": "'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'stretch'"
-      },
-      "default": "'stretch'"
-    },
-    "alignItems": {
-      "type": {
-        "name": "enum",
-        "description": "'baseline'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'stretch'"
-      },
-      "default": "'stretch'"
-    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
@@ -26,13 +12,6 @@
       "default": "'row'"
     },
     "item": { "type": { "name": "bool" } },
-    "justifyContent": {
-      "type": {
-        "name": "enum",
-        "description": "'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'space-evenly'"
-      },
-      "default": "'flex-start'"
-    },
     "lg": {
       "type": {
         "name": "union",
@@ -97,20 +76,6 @@
       "direction-xs-row-reverse",
       "wrap-xs-nowrap",
       "wrap-xs-wrap-reverse",
-      "align-items-xs-center",
-      "align-items-xs-flex-start",
-      "align-items-xs-flex-end",
-      "align-items-xs-baseline",
-      "align-content-xs-center",
-      "align-content-xs-flex-start",
-      "align-content-xs-flex-end",
-      "align-content-xs-space-between",
-      "align-content-xs-space-around",
-      "justify-content-xs-center",
-      "justify-content-xs-flex-end",
-      "justify-content-xs-space-between",
-      "justify-content-xs-space-around",
-      "justify-content-xs-space-evenly",
       "spacing-xs-1",
       "spacing-xs-2",
       "spacing-xs-3",

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 /**
- * @type {React.Context<{ activePage: { pathname: string }, pages: Array<import('docs/src/pages').MuiPage>, versions: unknown[] }>}
+ * @type {React.Context<{ activePage: import('docs/src/pages').MuiPage>, pages: Array<import('docs/src/pages').MuiPage>, versions: unknown[] }>}
  */
 const PageContext = React.createContext();
 
