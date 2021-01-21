@@ -39,7 +39,7 @@ const BreadcrumbsRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(() => ({}));
+)({});
 
 const BreadcrumbsOL = experimentalStyled(
   'ol',
