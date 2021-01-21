@@ -13,7 +13,6 @@ import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsCla
 const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
     [`& .${breadcrumbsClasses.ol}`]: styles.ol,
-    [`& .${breadcrumbsClasses.li}`]: styles.li,
     [`& .${breadcrumbsClasses.separator}`]: styles.separator,
   });
 };
@@ -56,15 +55,6 @@ const BreadcrumbsOL = experimentalStyled(
   margin: 0,
   listStyle: 'none',
 }));
-
-const BreadcrumbsLI = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'LI',
-  },
-)(() => ({}));
 
 const BreadcrumbsSeparator = experimentalStyled(
   'li',
@@ -176,9 +166,9 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       return React.isValidElement(child);
     })
     .map((child, index) => (
-      <BreadcrumbsLI className={classes.li} key={`child-${index}`} styleProps={styleProps}>
+      <li className={classes.li} key={`child-${index}`}>
         {child}
-      </BreadcrumbsLI>
+      </li>
     ));
 
   return (
