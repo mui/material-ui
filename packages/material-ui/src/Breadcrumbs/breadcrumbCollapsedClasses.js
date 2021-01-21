@@ -5,7 +5,6 @@ export function getBreadcrumbCollapsedUtilityClass(slot) {
 }
 
 const breadcrumbCollapsedClasses = generateUtilityClasses('PrivateBreadcrumbCollapsed', [
-  'root',
   'button',
   'icon',
 ]);

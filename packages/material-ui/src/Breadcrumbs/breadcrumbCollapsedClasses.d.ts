@@ -1,5 +1,4 @@
 export interface BreadcrumbCollapsedClasses {
-  root: string;
   button: string;
   icon: string;
 }
