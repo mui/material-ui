@@ -24,29 +24,9 @@ export interface GridClasses {
   'direction-xs-row-reverse': string;
   'direction-xs-row': string;
 
-  'align-content-xs-center': string;
-  'align-content-xs-flex-end': string;
-  'align-content-xs-flex-start': string;
-  'align-content-xs-space-around': string;
-  'align-content-xs-space-between': string;
-  'align-content-xs-stretch': string;
-
-  'align-items-xs-baseline': string;
-  'align-items-xs-center': string;
-  'align-items-xs-flex-end': string;
-  'align-items-xs-flex-start': string;
-  'align-items-xs-stretch': string;
-
   'wrap-xs-nowrap': string;
   'wrap-xs-wrap-reverse': string;
   'wrap-xs-wrap': string;
-
-  'justify-content-xs-center': string;
-  'justify-content-xs-flex-end': string;
-  'justify-content-xs-flex-start': string;
-  'justify-content-xs-space-around': string;
-  'justify-content-xs-space-between': string;
-  'justify-content-xs-space-evenly': string;
 
   'grid-xs-auto': string;
   'grid-xs-true': string;
