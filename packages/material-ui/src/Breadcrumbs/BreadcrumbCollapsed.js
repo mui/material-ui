@@ -1,15 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
-import useThemeProps from '../styles/useThemeProps';
 import { emphasize } from '../styles/colorManipulator';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
-import breadcrumbCollapsedClasses, {
-  getBreadcrumbCollapsedUtilityClass,
-} from './breadcrumbCollapsedClasses';
+import { getBreadcrumbCollapsedUtilityClass } from './breadcrumbCollapsedClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
