@@ -67,7 +67,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   } = props;
 
   const styleProps = {
-    ...other,
+    ...props,
     invisible,
   };
 
