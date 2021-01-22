@@ -47,7 +47,7 @@ const IconButtonRoot = experimentalStyled(
     overridesResolver,
   },
 )(
-  ({ theme, styleProps }) => ({
+  ({ theme }) => ({
     /* Styles applied to the root element. */
     textAlign: 'center',
     flex: '0 0 auto',
@@ -67,7 +67,7 @@ const IconButtonRoot = experimentalStyled(
       },
     },
   }),
-  ({ theme, styleProps }) => ({
+  ({ styleProps }) => ({
     /* Styles applied to the root element if `edge="start"`. */
     ...(styleProps.edge === 'start' && {
       marginLeft: styleProps.size === 'small' ? -3 : -12,
@@ -112,7 +112,7 @@ const IconButtonRoot = experimentalStyled(
       fontSize: theme.typography.pxToRem(18),
     }),
   }),
-  ({ theme, styleProps }) => ({
+  ({ theme }) => ({
     /* Styles applied to the root element if `disabled={true}`. */
     [`&.${iconButtonClasses.disabled}`]: {
       backgroundColor: 'transparent',
