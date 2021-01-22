@@ -1,34 +1,77 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import withStyles from '../styles/withStyles';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
+import { getHiddenCssUtilityClass } from './hiddenCssClasses';
 
-const styles = (theme) => {
+const sizes = ['xl', 'lg', 'md', 'sm', 'xs'];
+
+const overridesResolver = (props, styles) => styles.root || {};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, breakpoints } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      ...sizes.map((size) => breakpoints.includes(`${size}Up`) && `${size}Up`),
+      ...sizes.map((size) => breakpoints.includes(`${size}Down`) && `${size}Down`),
+      ...sizes.map(
+        (size) => breakpoints.includes(`only${capitalize(size)}`) && `only${capitalize(size)}`,
+      ),
+    ],
+  };
+
+  return composeClasses(slots, getHiddenCssUtilityClass, classes);
+};
+
+const HiddenCssRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'PrivateHiddenCss',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => {
   const hidden = {
     display: 'none',
   };
 
-  return theme.breakpoints.keys.reduce((acc, key) => {
-    acc[`only${capitalize(key)}`] = {
-      [theme.breakpoints.only(key)]: hidden,
-    };
-    acc[`${key}Up`] = {
-      [theme.breakpoints.up(key)]: hidden,
-    };
-    acc[`${key}Down`] = {
-      [theme.breakpoints.down(key)]: hidden,
-    };
+  const styles = theme.breakpoints.keys
+    .map((key) => {
+      return {
+        [`only${capitalize(key)}`]: {
+          [theme.breakpoints.only(key)]: hidden,
+        },
+        [`${key}Up`]: {
+          [theme.breakpoints.up(key)]: hidden,
+        },
+        [`${key}Down`]: {
+          [theme.breakpoints.down(key)]: hidden,
+        },
+      };
+    })
+    .reduce((r, o) => {
+      Object.keys(o).forEach((k) => {
+        r[k] = o[k];
+      });
+      return r;
+    }, {});
 
-    return acc;
-  }, {});
-};
+  return { ...styleProps.breakpoints.map((size) => styles[size]) };
+});
 
 /**
  * @ignore - internal component.
  */
-function HiddenCss(props) {
-  const { children, classes, className, only, ...other } = props;
+const HiddenCss = React.forwardRef(function HiddenCss(inProps) {
+  const props = useThemeProps({ props: inProps, name: 'PrivateHiddenCss' });
+  const { children, className, only, ...other } = props;
   const theme = useTheme();
 
   if (process.env.NODE_ENV !== 'production') {
@@ -36,7 +79,7 @@ function HiddenCss(props) {
       const isUndeclaredBreakpoint = !theme.breakpoints.keys.some((breakpoint) => {
         return `${breakpoint}Up` === propName || `${breakpoint}Down` === propName;
       });
-      return isUndeclaredBreakpoint;
+      return !(propName === 'theme' || propName === 'isRtl') && isUndeclaredBreakpoint;
     });
 
     if (unknownProps.length > 0) {
@@ -48,45 +91,47 @@ function HiddenCss(props) {
     }
   }
 
-  const clsx = [];
-
-  if (className) {
-    clsx.push(className);
-  }
+  const breakpoints = [];
 
   for (let i = 0; i < theme.breakpoints.keys.length; i += 1) {
     const breakpoint = theme.breakpoints.keys[i];
-    const breakpointUp = props[`${breakpoint}Up`];
-    const breakpointDown = props[`${breakpoint}Down`];
+    const breakpointUp = other[`${breakpoint}Up`];
+    const breakpointDown = other[`${breakpoint}Down`];
 
     if (breakpointUp) {
-      clsx.push(classes[`${breakpoint}Up`]);
+      breakpoints.push(`${breakpoint}Up`);
     }
     if (breakpointDown) {
-      clsx.push(classes[`${breakpoint}Down`]);
+      breakpoints.push(`${breakpoint}Down`);
     }
   }
 
   if (only) {
     const onlyBreakpoints = Array.isArray(only) ? only : [only];
     onlyBreakpoints.forEach((breakpoint) => {
-      clsx.push(classes[`only${capitalize(breakpoint)}`]);
+      breakpoints.push(`only${capitalize(breakpoint)}`);
     });
   }
 
-  return <div className={clsx.join(' ')}>{children}</div>;
-}
+  const styleProps = {
+    ...props,
+    breakpoints,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
+  return (
+    <HiddenCssRoot className={clsx(classes.root, className)} styleProps={styleProps}>
+      {children}
+    </HiddenCssRoot>
+  );
+});
 
 HiddenCss.propTypes = {
   /**
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
@@ -145,4 +190,4 @@ HiddenCss.propTypes = {
   xsUp: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'PrivateHiddenCss' })(HiddenCss);
+export default HiddenCss;
