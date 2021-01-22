@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, elementTypeAcceptingRef, refType } from '@material-ui/utils';
+import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -11,14 +11,7 @@ import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
 import { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.disabled && styles.disabled),
-    ...(styleProps.focusVisible && styles.focusVisible),
-  });
-};
+const overridesResolver = (props, styles) => styles.root || {};
 
 const useUtilityClasses = (styleProps) => {
   const { disabled, focusVisible, focusVisibleClassName, classes } = styleProps;

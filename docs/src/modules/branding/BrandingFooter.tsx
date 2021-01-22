@@ -207,16 +207,23 @@ export default function BrandingFooter() {
               target="_blank"
               href="https://github.com/mui-org/material-ui"
               aria-label="github"
+              title="GitHub"
             >
               <GitHubIcon />
             </IconButton>
-            <IconButton target="_blank" href="https://twitter.com/MaterialUI" aria-label="twitter">
+            <IconButton
+              target="_blank"
+              href="https://twitter.com/MaterialUI"
+              aria-label="twitter"
+              title="Twitter"
+            >
               <TwitterIcon />
             </IconButton>
             <IconButton
               target="_blank"
               href="https://www.linkedin.com/company/material-ui/"
               aria-label="linkedin"
+              title="LinkedIn"
             >
               <LinkedInIcon />
             </IconButton>

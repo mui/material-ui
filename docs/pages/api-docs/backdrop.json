@@ -1,9 +1,9 @@
 {
   "props": {
+    "open": { "type": { "name": "bool" }, "required": true },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "invisible": { "type": { "name": "bool" } },
-    "open": { "type": { "name": "bool" }, "required": true },
     "sx": { "type": { "name": "object" } },
     "transitionDuration": {
       "type": {

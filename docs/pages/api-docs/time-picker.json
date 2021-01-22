@@ -1,5 +1,7 @@
 {
   "props": {
+    "onChange": { "type": { "name": "func" }, "required": true },
+    "renderInput": { "type": { "name": "func" }, "required": true },
     "acceptRegex": { "type": { "name": "instanceOf", "description": "RegExp" } },
     "allowKeyboardControl": { "type": { "name": "bool" } },
     "ampm": { "type": { "name": "bool" } },
@@ -24,7 +26,6 @@
     "minutesStep": { "type": { "name": "number" } },
     "okText": { "type": { "name": "node" } },
     "onAccept": { "type": { "name": "func" } },
-    "onChange": { "type": { "name": "func" }, "required": true },
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
     "onOpen": { "type": { "name": "func" } },
@@ -42,7 +43,6 @@
     },
     "PopperProps": { "type": { "name": "object" } },
     "readOnly": { "type": { "name": "bool" } },
-    "renderInput": { "type": { "name": "func" }, "required": true },
     "rifmFormatter": { "type": { "name": "func" } },
     "shouldDisableTime": { "type": { "name": "func" } },
     "showTodayButton": { "type": { "name": "bool" } },
