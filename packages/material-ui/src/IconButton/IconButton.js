@@ -66,8 +66,6 @@ const IconButtonRoot = experimentalStyled(
         backgroundColor: 'transparent',
       },
     },
-  }),
-  ({ styleProps }) => ({
     /* Styles applied to the root element if `edge="start"`. */
     ...(styleProps.edge === 'start' && {
       marginLeft: styleProps.size === 'small' ? -3 : -12,
