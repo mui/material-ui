@@ -4,6 +4,7 @@ import { getClasses, createMount, describeConformance, createClientRender } from
 import ListSubheader from '../ListSubheader';
 import List from './List';
 import ListItem from '../ListItem';
+import listItemClasses from '../ListItem/listItemClasses';
 
 describe('<List />', () => {
   const mount = createMount();
@@ -75,8 +76,6 @@ describe('<List />', () => {
           <ListItem />
         </List>,
       );
-
-      const listItemClasses = getClasses(<ListItem />);
 
       const liItems = container.querySelectorAll('li');
       for (let i = 0; i < liItems.length; i += 1) {
