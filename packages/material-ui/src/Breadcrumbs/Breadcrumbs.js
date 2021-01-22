@@ -105,9 +105,12 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     ...other
   } = props;
 
+  const [expanded, setExpanded] = React.useState(false);
+
   const styleProps = {
     ...props,
     component: Component,
+    expanded,
     expandText,
     itemsAfterCollapse,
     itemsBeforeCollapse,
@@ -116,8 +119,6 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   };
 
   const classes = useUtilityClasses(styleProps);
-
-  const [expanded, setExpanded] = React.useState(false);
 
   const listRef = React.useRef(null);
   const renderItemsBeforeAndAfter = (allItems) => {
