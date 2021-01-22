@@ -2,24 +2,52 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import TextField from '@material-ui/core/TextField';
-import { fireEvent, screen, waitFor } from 'test/utils';
+import { fireEvent, screen } from 'test/utils';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 import {
   createPickerRender,
   FakeTransitionComponent,
   adapterToUse,
   getByMuiTest,
-  openDesktopPicker,
 } from '../internal/pickers/test-utils';
+
+const UncontrolledOpenDesktopDatePicker = (({
+  onClose = () => {},
+  onOpen = () => {},
+  open: openProp,
+  defaultOpen,
+  ...other
+}: any) => {
+  if (openProp != null) {
+    throw new TypeError('Controlling `open` is not supported. Use `defaultOpen` instead.');
+  }
+  const [open, setOpen] = React.useState(defaultOpen);
+
+  return (
+    <DesktopDatePicker
+      open={open}
+      onClose={(...args) => {
+        setOpen(false);
+        onClose(...args);
+      }}
+      onOpen={(...args) => {
+        setOpen(true);
+        onOpen(...args);
+      }}
+      {...other}
+    />
+  );
+}) as typeof DesktopDatePicker;
 
 describe('<DesktopDatePicker />', () => {
   const render = createPickerRender({ strict: false });
 
   it('accepts date on day button click', () => {
     const onChangeMock = spy();
-
     render(
-      <DesktopDatePicker
+      <UncontrolledOpenDesktopDatePicker
+        // @ts-expect-error internal prop
+        defaultOpen
         value={adapterToUse.date('2019-01-01T00:00:00.000')}
         onChange={onChangeMock}
         TransitionComponent={FakeTransitionComponent}
@@ -27,17 +55,17 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    openDesktopPicker();
-
     fireEvent.click(screen.getByLabelText('Jan 2, 2019'));
-    expect(onChangeMock.callCount).to.equal(1);
 
+    expect(onChangeMock.callCount).to.equal(1);
     expect(screen.queryByRole('dialog')).to.equal(null);
   });
 
-  it('closes picker on selection in Desktop mode', async () => {
+  it('closes on selection', () => {
     render(
-      <DesktopDatePicker
+      <UncontrolledOpenDesktopDatePicker
+        // @ts-expect-error internal prop
+        defaultOpen
         TransitionComponent={FakeTransitionComponent}
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
         onChange={() => {}}
@@ -45,9 +73,6 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByLabelText('Choose date, selected date is Jan 1, 2018'));
-
-    await waitFor(() => screen.getByRole('dialog'));
     fireEvent.click(screen.getByLabelText('Jan 2, 2018'));
 
     expect(screen.queryByRole('dialog')).to.equal(null);
@@ -55,7 +80,9 @@ describe('<DesktopDatePicker />', () => {
 
   it("prop `disableCloseOnSelect` – if `true` doesn't close picker", () => {
     render(
-      <DesktopDatePicker
+      <UncontrolledOpenDesktopDatePicker
+        // @ts-expect-error internal prop
+        defaultOpen
         TransitionComponent={FakeTransitionComponent}
         disableCloseOnSelect
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
@@ -64,17 +91,16 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    openDesktopPicker();
     fireEvent.click(screen.getByLabelText('Jan 2, 2018'));
 
     expect(screen.queryByRole('dialog')).toBeVisible();
   });
 
-  it('does not call onChange if same date selected', async () => {
+  it('does not call onChange if same date selected', () => {
     const onChangeMock = spy();
-
     render(
       <DesktopDatePicker
+        open
         TransitionComponent={FakeTransitionComponent}
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
         onChange={onChangeMock}
@@ -82,10 +108,8 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByLabelText('Choose date, selected date is Jan 1, 2018'));
-    await waitFor(() => screen.getByRole('dialog'));
-
     fireEvent.click(screen.getByLabelText('Jan 1, 2018'));
+
     expect(onChangeMock.callCount).to.equal(0);
   });
 
