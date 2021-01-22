@@ -29,6 +29,7 @@
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "size": { "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" } },
     "startAdornment": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } },
     "type": { "type": { "name": "string" }, "default": "'text'" },
     "value": { "type": { "name": "any" } }
   },
@@ -63,6 +64,6 @@
   "filename": "/packages/material-ui/src/InputBase/InputBase.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

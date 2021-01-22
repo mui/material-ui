@@ -2,26 +2,29 @@ import generateUtilityClass from '@material-ui/unstyled/generateUtilityClass';
 import generateUtilityClasses from '@material-ui/unstyled/generateUtilityClasses';
 
 export function getInputBaseUtilityClass(slot) {
-  return generateUtilityClass('MuiFilledInput', slot);
+  return generateUtilityClass('MuiInputBase', slot);
 }
 
-const inputBaseClasses = generateUtilityClasses('MuiFilledInput', [
+const inputBaseClasses = generateUtilityClasses('MuiInputBase', [
   'root',
-  'colorSecondary',
-  'underline',
+  'formControl',
   'focused',
   'disabled',
   'adornedStart',
   'adornedEnd',
   'error',
-  'marginDense',
+  'sizeSmall',
   'multiline',
+  'colorSecondary',
+  'fullWidth',
+  'hiddenLabel',
   'input',
-  'inputMarginDense',
-  'inputHiddenLabel',
+  'inputSizeSmall',
   'inputMultiline',
+  'inputTypeSearch',
   'inputAdornedStart',
   'inputAdornedEnd',
+  'inputHiddenLabel',
 ]);
 
 export default inputBaseClasses;

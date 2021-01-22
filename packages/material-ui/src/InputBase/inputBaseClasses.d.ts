@@ -6,12 +6,13 @@ export interface InputBaseClasses {
   adornedStart: string;
   adornedEnd: string;
   error: string;
-  marginDense: string;
+  sizeSmall: string;
   multiline: string;
   colorSecondary: string;
   fullWidth: string;
+  hiddenLabel: string;
   input: string;
-  inputMarginDense: string;
+  inputSizeSmall: string;
   inputMultiline: string;
   inputTypeSearch: string;
   inputAdornedStart: string;
