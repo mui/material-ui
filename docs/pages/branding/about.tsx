@@ -375,7 +375,7 @@ function BrandingSupportUs() {
               backlink matters! Follow us on{' '}
               <Link href="https://twitter.com/MaterialUI">Twitter</Link>, retweet the important
               news. <Link href="https://github.com/mui-org/material-ui">Star us</Link> on GitHub
-              ⭐️. Or just talk about us with your friends.
+              ⭐️. Or share what you've built with Material-UI.
             </Typography>
           </BrandingCard>
         </Grid>
