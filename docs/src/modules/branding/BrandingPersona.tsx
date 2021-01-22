@@ -10,14 +10,14 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 import t1 from 'docs/src/modules/branding/t1';
 
 interface PersonaRootProps {
-  styleProps?: { size?: 'large' | 'small' };
+  styleProps: { size: 'large' | 'small' };
 }
 
 const PersonaRoot: OverridableComponent<BoxTypeMap<PersonaRootProps>> = styled(
   Box,
   {},
   { name: 'Persona', slot: 'Root' },
-)<PersonaRootProps>(({ styleProps = { size: 'large' }, theme }) => ({
+)<PersonaRootProps>(({ styleProps, theme }) => ({
   display: 'flex',
   marginTop: theme.spacing(1),
   marginBottom: theme.spacing(1),

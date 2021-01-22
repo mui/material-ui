@@ -19,6 +19,187 @@ import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import BrandingPersona from 'docs/src/modules/branding/BrandingPersona';
 
+function BrandingTeam() {
+  return (
+    <Box sx={{ bgcolor: 'greyF3', pt: 15, pb: 10 }}>
+      <Container sx={{ position: 'relative' }}>
+        <Box
+          component="img"
+          src="/static/branding/block4.svg"
+          alt=""
+          sx={{
+            width: 207,
+            height: 171,
+            position: 'absolute',
+            right: { xs: 10, md: 0 },
+            bottom: -175,
+          }}
+        />
+        <Typography variant="h2">Team</Typography>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+          Material-UI is maintained by a group of invaluable core contributors, with the massive
+          support and involvement of the community.
+        </Typography>
+      </Container>
+    </Box>
+  );
+}
+
+const company = [
+  {
+    name: 'Olivier Tassinari',
+    src: '/static/branding/about/olivier.jpg',
+    title: 'Co-founder',
+    location: 'Paris, France',
+    twitter: 'olivtassinari',
+    github: 'oliviertassinari',
+  },
+  {
+    name: 'Matt Brookes',
+    src: '/static/branding/about/matt.jpg',
+    title: 'Co-founder',
+    location: 'London, UK',
+    twitter: 'randomtechdude',
+    github: 'mbrookes',
+  },
+  {
+    name: 'Sebastian Silbermann',
+    src: '/static/branding/about/sebastian.jpg',
+    title: 'Community focus',
+    location: 'Dresden, Germany',
+    twitter: 'sebsilbermann',
+    github: 'eps1lon',
+  },
+  {
+    name: 'Damien Tassone',
+    src: '/static/branding/about/damien.jpg',
+    title: 'Enterprise focus',
+    location: 'Lodon, UK',
+    twitter: 'madKakoO',
+    github: 'dtassone',
+  },
+  {
+    name: 'Marija Najdova',
+    src: '/static/branding/about/marija.jpg',
+    title: 'Community focus',
+    location: 'Skopje, North Macedonia',
+    twitter: 'marijanajdova',
+    github: 'mnajdova',
+  },
+  {
+    name: 'Danail Hadjiatanasov',
+    src: '/static/branding/about/danail.jpg',
+    title: 'Enterprise focus',
+    location: 'Amsterdam, Netherlands',
+    twitter: 'danail_h',
+    github: 'DanailH',
+  },
+];
+
+function BrandingCompany() {
+  return (
+    <Box sx={{ bgcolor: 'greyEA', pt: 12, pb: 11 }}>
+      <Container sx={{ position: 'relative' }}>
+        <Box
+          component="img"
+          src="/static/branding/block1-white.svg"
+          alt=""
+          sx={{
+            width: 293,
+            height: 120,
+            position: 'absolute',
+            right: { xs: 20, md: 0 },
+            bottom: -130,
+          }}
+        />
+        <Typography variant="h3">
+          <UnderlinedText>Company</UnderlinedText>
+        </Typography>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+          The development of the project and its ecosystem is guided by an international team.
+        </Typography>
+        <Grid container spacing={4}>
+          {company.map((member) => (
+            <Grid item xs={12} md={6} lg={4} key={member.name}>
+              <BrandingPersona
+                name={member.name}
+                src={member.src}
+                title={member.title}
+                location={member.location}
+                twitter={member.twitter}
+                github={member.github}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
+  );
+}
+
+const community = [
+  {
+    name: 'Danica Shen',
+    github: 'DDDDDanica',
+    title: '🇨🇳 Chinese docs',
+    location: 'Ireland',
+  },
+  {
+    name: 'Yan Lee',
+    github: 'AGDholo',
+    title: '🇨🇳 Chinese docs',
+    location: 'China',
+  },
+  {
+    name: 'Jairon Alves Lima',
+    github: 'jaironalves',
+    title: '🇧🇷 Brazilian docs',
+    location: 'São Paulo, Brazil',
+  },
+] as typeof emeriti;
+
+function BrandingContributors() {
+  return (
+    <Box sx={{ bgcolor: 'greyF3', pt: 10, pb: 9 }}>
+      <Container sx={{ position: 'relative' }}>
+        <Box
+          component="img"
+          src="/static/branding/block2.svg"
+          alt=""
+          sx={{
+            width: 196,
+            height: 139,
+            position: 'absolute',
+            right: { xs: 30, md: 0 },
+            bottom: -132,
+          }}
+        />
+        <Typography variant="h3">
+          Community <UnderlinedText>Contributors</UnderlinedText>
+        </Typography>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+          Some members of the community have so enriched it, that they deserve special mention.
+        </Typography>
+        <Grid container spacing={4}>
+          {community.map((member) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={member.name}>
+              <BrandingPersona
+                name={member.name}
+                src={`https://github.com/${member.github}.png`}
+                title={member.title}
+                location={member.location}
+                twitter={member.twitter}
+                github={member.github}
+                size="small"
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
+  );
+}
+
 const emeriti = [
   {
     name: 'Hai Nguyen',
@@ -94,7 +275,7 @@ function BrandingEmeriti() {
   return (
     <Box sx={{ bgcolor: 'greyEA', pt: 10, pb: 9 }}>
       <Container>
-        <Typography variant="h3" component="h2">
+        <Typography variant="h3">
           Community <UnderlinedText>Emeriti</UnderlinedText>
         </Typography>
         <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
@@ -192,8 +373,9 @@ function BrandingSupportUs() {
               Evangelize Material-UI by linking to{' '}
               <Link href="https://material-ui.com">material-ui.com</Link> on your website, every
               backlink matters! Follow us on{' '}
-              <Link href="https://twitter.com/MaterialUI">Twitter</Link>, like and retweet the
-              important news. Or just talk about us with your friends.
+              <Link href="https://twitter.com/MaterialUI">Twitter</Link>, retweet the important
+              news. <Link href="https://github.com/mui-org/material-ui">Star us</Link> on GitHub
+              ⭐️. Or just talk about us with your friends.
             </Typography>
           </BrandingCard>
         </Grid>
@@ -304,6 +486,9 @@ function BrandingSupportUs() {
 export default function Page() {
   return (
     <BrandingRoot>
+      <BrandingTeam />
+      <BrandingCompany />
+      <BrandingContributors />
       <BrandingEmeriti />
       <BrandingJoinUs />
       <BrandingSupportUs />
@@ -789,177 +974,5 @@ export default function Page() {
 //               Material-UI is maintained by a group of invaluable core contributors, with the massive
 //               support and involvement of the community.
 //             </Typography>
-//           </Grid>
-//         </Grid>
-
-//         <Grid container className="MuiGrid-company MuiGrid-panel MuiGrid-relative" spacing={1}>
-//           <Box
-//             component="img"
-//             src="/static/branding/block1-white.svg"
-//             alt=""
-//             sx={{
-//               width: 293,
-//               height: 120,
-//               position: 'absolute',
-//               right: { xs: '5%', md: '10%' },
-//               top: 'calc(100% - 90px)',
-//             }}
-//           />
-//           <Grid item xs={12}>
-//             <Typography variant="h2">
-//               <UnderlinedText>Company</UnderlinedText>
-//             </Typography>
-//           </Grid>
-//           <Grid item lg={7} xs={12}>
-//             <Typography>
-//               The development of the project and its ecosystem is guided by an international team.
-//             </Typography>
-//           </Grid>
-
-//           <Grid item xs={12}>
-//             <Grid container className="MuiGrid-personasContainer">
-//               <Grid item lg={4} md={6} xs={12}>
-//                 <Persona
-//                   name="Olivier Tassinari"
-//                   src="/static/branding/about/olivier.jpg"
-//                   title="Co-founder"
-//                   location="Paris, France"
-//                   twitter="https://twitter.com/olivtassinari"
-//                   github="https://github.com/oliviertassinari"
-//                 />
-//               </Grid>
-//               <Grid item lg={4} md={6} xs={12}>
-//                 <Persona
-//                   name="Matt Brookes"
-//                   src="/static/branding/about/matt.jpg"
-//                   title="Co-founder"
-//                   location="London, UK"
-//                   twitter="https://twitter.com/randomtechdude"
-//                   github="https://github.com/mbrookes"
-//                 />
-//               </Grid>
-//               <Grid item lg={4} md={6} xs={12}>
-//                 <Persona
-//                   name="Sebastian Silbermann"
-//                   src="/static/branding/about/sebastian.jpg"
-//                   title="Community focus"
-//                   location="Dresden, Germany"
-//                   twitter="https://twitter.com/sebsilbermann"
-//                   github="https://github.com/eps1lon"
-//                 />
-//               </Grid>
-//               <Grid item lg={4} md={6} xs={12}>
-//                 <Persona
-//                   name="Damien Tassone"
-//                   src="/static/branding/about/damien.jpg"
-//                   title="Enterprise focus"
-//                   location="Lodon, UK"
-//                   twitter="https://twitter.com/madKakoO"
-//                   github="https://github.com/dtassone"
-//                 />
-//               </Grid>
-//               <Grid item lg={4} md={6} xs={12}>
-//                 <Persona
-//                   name="Marija Najdova"
-//                   src="/static/branding/about/marija.jpg"
-//                   title="Community focus"
-//                   location="Skopje, North Macedonia"
-//                   twitter="https://twitter.com/marijanajdova"
-//                   github="https://github.com/mnajdova"
-//                 />
-//               </Grid>
-//               <Grid item lg={4} md={6} xs={12}>
-//                 <Persona
-//                   name="Danail Hadjiatanasov"
-//                   src="/static/branding/about/danail.jpg"
-//                   title="Enterprise focus"
-//                   location="Amsterdam, Netherlands"
-//                   twitter="https://twitter.com/danail_h"
-//                   github="https://github.com/DanailH"
-//                 />
-//               </Grid>
-//             </Grid>
-//           </Grid>
-//         </Grid>
-
-//         <Grid container className="MuiGrid-contributors MuiGrid-panel MuiGrid-relative" spacing={1}>
-//           <Box
-//             component="img"
-//             src="/static/branding/block2.svg"
-//             alt=""
-//             sx={{
-//               width: 196,
-//               height: 139,
-//               position: 'absolute',
-//               right: { xs: '5%', md: '10%' },
-//               top: 'calc(100% - 90px)',
-//             }}
-//           />
-//           <Grid item xs={12}>
-//             <Typography variant="h2">
-//               <UnderlinedText>Community contributors</UnderlinedText>
-//             </Typography>
-//           </Grid>
-//           <Grid item xs={7}>
-//             <Typography>
-//               Some members of the community have so enriched it, that they deserve special mention.
-//             </Typography>
-//           </Grid>
-
-//           <Grid item xs={12}>
-//             <Grid container className="MuiGrid-personasContainer">
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Josh Wooding"
-//                   src="https://github.com/joshwooding.png"
-//                   title="Core contributions, J.P. Morgan"
-//                   location="London, UK"
-//                   twitter="https://twitter.com/JoshWooding_"
-//                   github="https://github.com/joshwooding"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Dmitriy Kovalenko"
-//                   src="https://github.com/dmtrKovalenko.png"
-//                   title="Date pickers"
-//                   location="Kharkiv, Ukraine"
-//                   twitter="https://twitter.com/dmtrKovalenko"
-//                   github="https://github.com/dmtrKovalenko"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Danica Shen"
-//                   src="https://github.com/DDDDDanica.png"
-//                   title="CN Chinese docs"
-//                   location="Ireland"
-//                   github="https://github.com/DDDDDanica"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Yan Lee"
-//                   src="https://github.com/AGDholo.png"
-//                   title="CN Chinese docs"
-//                   location="China"
-//                   github="https://github.com/AGDholo"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Jairon Alves Lima"
-//                   src="https://github.com/jaironalves.png"
-//                   title="BR Brazilian docs"
-//                   location="Barcelona, Spain"
-//                   github="https://github.com/jaironalves"
-//                   size="small"
-//                 />
-//               </Grid>
-//             </Grid>
 //           </Grid>
 //         </Grid>
