@@ -25,7 +25,7 @@ const useUtilityClasses = (styleProps) => {
     root: ['root', expanded && 'expanded', disabled && 'disabled'],
     focusVisible: ['focusVisible'],
     content: ['content', expanded && 'expanded'],
-    expandIcon: ['expandIcon', expanded && 'expanded'],
+    expandIconWrapper: ['expandIconWrapper', expanded && 'expanded'],
   };
 
   return composeClasses(slots, getAccordionSummaryUtilityClass, classes);
