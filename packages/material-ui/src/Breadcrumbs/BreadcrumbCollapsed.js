@@ -29,7 +29,7 @@ const BreadcrumbCollapsedButton = experimentalStyled(
   display: 'flex',
   marginLeft: theme.spacing(0.5),
   marginRight: theme.spacing(0.5),
-  ...(theme.palette.type === 'light'
+  ...(theme.palette.mode === 'light'
     ? { backgroundColor: theme.palette.grey[100], color: theme.palette.grey[700] }
     : { backgroundColor: theme.palette.grey[700], color: theme.palette.grey[100] }),
   borderRadius: 2,
