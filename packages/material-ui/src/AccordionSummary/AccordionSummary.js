@@ -12,8 +12,6 @@ import accordionSummaryClasses, {
 } from './accordionSummaryClasses';
 
 const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
   return deepmerge(styles.root || {}, {
     [`& .${accordionSummaryClasses.content}`]: styles.content,
     [`& .${accordionSummaryClasses.expandIconWrapper}`]: styles.expandIconWrapper,
@@ -41,7 +39,7 @@ const AccordionSummaryRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => {
+)(({ theme }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -62,10 +60,10 @@ const AccordionSummaryRoot = experimentalStyled(
     },
     /* Styles applied to the root element if `disabled={true}`. */
     [`&.${accordionSummaryClasses.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity
+      opacity: theme.palette.action.disabledOpacity,
     },
     [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
-      cursor: 'pointer'
+      cursor: 'pointer',
     },
   };
 });
@@ -77,7 +75,7 @@ const AccordionSummaryContent = experimentalStyled(
     name: 'MuiAccordionSummary',
     slot: 'Content',
   },
-)(({ theme, styleProps }) => {
+)(({ theme }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -102,7 +100,7 @@ const AccordionSummaryExpandIconWrapper = experimentalStyled(
     name: 'MuiAccordionSummary',
     slot: 'ExpandIconWrapper',
   },
-)(({ theme, styleProps }) => {
+)(({ theme }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
