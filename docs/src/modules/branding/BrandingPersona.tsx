@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import Box, { BoxTypeMap } from '@material-ui/core/Box';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -52,7 +51,16 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
   const { name, src, srcSet, title, location, twitter, github, size = 'large' } = props;
   return (
     <PersonaRoot styleProps={{ size }}>
-      <Avatar src={src} srcSet={srcSet} alt={`Image of ${name}`} />
+      <Box
+        component="img"
+        loading="lazy"
+        width={size === 'small' ? 120 : 200}
+        height={size === 'small' ? 120 : 200}
+        src={src}
+        sx={{ borderRadius: '50%', display: 'block', mb: 1 }}
+        srcSet={srcSet}
+        alt=""
+      />
       <Typography variant="h4" component="div">
         {name}
       </Typography>
