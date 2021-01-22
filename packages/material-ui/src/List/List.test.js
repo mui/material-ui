@@ -3,8 +3,7 @@ import { expect } from 'chai';
 import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
 import ListSubheader from '../ListSubheader';
 import List from './List';
-import ListItem from '../ListItem';
-import listItemClasses from '../ListItem/listItemClasses';
+import ListItem, { listItemClasses } from '../ListItem';
 
 describe('<List />', () => {
   const mount = createMount();
