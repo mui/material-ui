@@ -103,15 +103,15 @@ describe('<IconButton />', () => {
       expect(button).to.have.class(classes.disabled);
     });
   });
-  
-  it('should raise a warning about onClick in children because of Firefox', () => {	
-    expect(() => {	
-      PropTypes.checkPropTypes(	
-        IconButton.propTypes,	
-        { classes: {}, children: <svg onClick={() => {}} /> },	
-        'prop',	
-        'MockedName',	
-      );	
-    }).toErrorDev(['Material-UI: You are providing an onClick event listener']);	
+
+  it('should raise a warning about onClick in children because of Firefox', () => {
+    expect(() => {
+      PropTypes.checkPropTypes(
+        IconButton.propTypes,
+        { classes: {}, children: <svg onClick={() => {}} /> },
+        'prop',
+        'MockedName',
+      );
+    }).toErrorDev(['Material-UI: You are providing an onClick event listener']);
   });
 });
