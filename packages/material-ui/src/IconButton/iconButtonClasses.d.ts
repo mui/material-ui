@@ -7,6 +7,7 @@ export interface IconButtonClasses {
   edgeStart: string;
   edgeEnd: string;
   sizeSmall: string;
+  sizeMedium: string;
   label: string;
 }
 
