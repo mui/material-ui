@@ -1,5 +1,4 @@
-import generateUtilityClass from '@material-ui/unstyled/generateUtilityClass';
-import generateUtilityClasses from '@material-ui/unstyled/generateUtilityClasses';
+import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
 
 export function getInputBaseUtilityClass(slot) {
   return generateUtilityClass('MuiInputBase', slot);
