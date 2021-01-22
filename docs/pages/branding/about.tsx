@@ -121,14 +121,7 @@ function BrandingCompany() {
         <Grid container spacing={4}>
           {company.map((member) => (
             <Grid item xs={12} md={6} lg={4} key={member.name}>
-              <BrandingPersona
-                name={member.name}
-                src={member.src}
-                title={member.title}
-                location={member.location}
-                twitter={member.twitter}
-                github={member.github}
-              />
+              <BrandingPersona {...member} />
             </Grid>
           ))}
         </Grid>
@@ -143,18 +136,21 @@ const community = [
     github: 'DDDDDanica',
     title: '🇨🇳 Chinese docs',
     location: 'Ireland',
+    src: 'https://avatars.githubusercontent.com/u/12678455',
   },
   {
     name: 'Yan Lee',
     github: 'AGDholo',
     title: '🇨🇳 Chinese docs',
     location: 'China',
+    src: 'https://avatars.githubusercontent.com/u/13300332',
   },
   {
     name: 'Jairon Alves Lima',
     github: 'jaironalves',
     title: '🇧🇷 Brazilian docs',
     location: 'São Paulo, Brazil',
+    src: 'https://avatars.githubusercontent.com/u/29267813',
   },
 ] as typeof emeriti;
 
@@ -184,12 +180,9 @@ function BrandingContributors() {
           {community.map((member) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={member.name}>
               <BrandingPersona
-                name={member.name}
-                src={`https://github.com/${member.github}.png`}
-                title={member.title}
-                location={member.location}
-                twitter={member.twitter}
-                github={member.github}
+                {...member}
+                src={`${member.src}?s=120`}
+                srcSet={`${member.src}?s=240 2x`}
                 size="small"
               />
             </Grid>
@@ -207,12 +200,14 @@ const emeriti = [
     twitter: 'haicea',
     title: 'v0.x creator',
     location: 'Dallas, Texas, US',
+    src: 'https://avatars.githubusercontent.com/u/2007468',
   },
   {
     name: 'Nathan Marks',
     github: 'nathanmarks',
     title: 'v1.x co-creator',
     location: 'Toronto, ON',
+    src: 'https://avatars.githubusercontent.com/u/4420103',
   },
   {
     name: 'Kevin Ross',
@@ -220,6 +215,7 @@ const emeriti = [
     twitter: 'rosskevin',
     title: 'Core focus, flow',
     location: 'Franklin, Tennessee, US',
+    src: 'https://avatars.githubusercontent.com/u/136564',
   },
   {
     name: 'Sebastian Sebald',
@@ -227,12 +223,14 @@ const emeriti = [
     twitter: 'sebastiansebald',
     title: 'Core focus',
     location: 'Freiburg, Germany',
+    src: 'https://avatars.githubusercontent.com/u/985701',
   },
   {
     name: 'Ken Gregory',
     github: 'kgregory',
     title: 'Core focus',
     location: 'New Jersey, US',
+    src: 'https://avatars.githubusercontent.com/u/3155127',
   },
   {
     name: 'Tom Crockett',
@@ -240,6 +238,7 @@ const emeriti = [
     twitter: 'pelotom',
     title: 'Core focus',
     location: 'Los Angeles, California, US',
+    src: 'https://avatars.githubusercontent.com/u/128019',
   },
   {
     name: 'Maik Marschner',
@@ -247,6 +246,7 @@ const emeriti = [
     twitter: 'leMaikOfficial',
     title: 'Core focus',
     location: 'Hannover, Germany',
+    src: 'https://avatars.githubusercontent.com/u/5544859',
   },
   {
     name: 'Oleg Slobodskoi',
@@ -254,6 +254,7 @@ const emeriti = [
     twitter: 'oleg008',
     title: 'JSS',
     location: 'Berlin, Germany',
+    src: 'https://avatars.githubusercontent.com/u/52824',
   },
   {
     name: 'Dmitriy Kovalenko',
@@ -261,6 +262,7 @@ const emeriti = [
     twitter: 'dmtrKovalenko',
     title: 'Date pickers',
     location: 'Kharkiv, Ukraine',
+    src: 'https://avatars.githubusercontent.com/u/16926049',
   },
   {
     name: 'Josh Wooding',
@@ -268,6 +270,7 @@ const emeriti = [
     twitter: 'JoshWooding_',
     title: 'Core focus, J.P. Morgan',
     location: 'London, UK',
+    src: 'https://avatars.githubusercontent.com/u/12938082',
   },
 ];
 
@@ -286,12 +289,9 @@ function BrandingEmeriti() {
           {emeriti.map((member) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={member.name}>
               <BrandingPersona
-                name={member.name}
-                src={`https://github.com/${member.github}.png`}
-                title={member.title}
-                location={member.location}
-                twitter={member.twitter}
-                github={member.github}
+                {...member}
+                src={`${member.src}?s=120`}
+                srcSet={`${member.src}?s=240 2x`}
                 size="small"
               />
             </Grid>

@@ -43,15 +43,16 @@ interface BrandingPersonaProps {
   name?: string;
   size?: 'small' | 'large';
   src?: string;
+  srcSet?: string;
   title?: string;
   twitter?: string;
 }
 
 export default function BrandingPersona(props: BrandingPersonaProps) {
-  const { name, src, title, location, twitter, github, size = 'large' } = props;
+  const { name, src, srcSet, title, location, twitter, github, size = 'large' } = props;
   return (
     <PersonaRoot styleProps={{ size }}>
-      <Avatar src={src} alt={`Image of ${name}`} />
+      <Avatar src={src} srcSet={srcSet} alt={`Image of ${name}`} />
       <Typography variant="h4" component="div">
         {name}
       </Typography>
