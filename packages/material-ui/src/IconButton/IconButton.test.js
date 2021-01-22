@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import PropTypes from 'prop-types';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
