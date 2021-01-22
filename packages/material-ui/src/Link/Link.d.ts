@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Omit } from '@material-ui/types';
+import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
 import { TypographyProps } from '../Typography';
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
@@ -32,6 +34,10 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        * @default 'primary'
        */
       color?: TypographyProps['color'];
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme>;
       /**
        * `classes` prop applied to the [`Typography`](/api/typography/) element.
        */

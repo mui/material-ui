@@ -1,62 +1,99 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef } from '@material-ui/utils';
+import { deepmerge, elementTypeAcceptingRef } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import withStyles from '../styles/withStyles';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
+import linkClasses, { getLinkUtilityClass } from './linkClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {},
-  /* Styles applied to the root element if `underline="none"`. */
-  underlineNone: {
-    textDecoration: 'none',
-  },
-  /* Styles applied to the root element if `underline="hover"`. */
-  underlineHover: {
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
-  /* Styles applied to the root element if `underline="always"`. */
-  underlineAlways: {
-    textDecoration: 'underline',
-  },
-  // Same reset as ButtonBase.root
-  /* Styles applied to the root element if `component="button"`. */
-  button: {
-    position: 'relative',
-    WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent', // Reset default value
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-    border: 0,
-    margin: 0, // Remove the margin in Safari
-    borderRadius: 0,
-    padding: 0, // Remove the padding in Firefox
-    cursor: 'pointer',
-    userSelect: 'none',
-    verticalAlign: 'middle',
-    '-moz-appearance': 'none', // Reset
-    '-webkit-appearance': 'none', // Reset
-    '&::-moz-focus-inner': {
-      borderStyle: 'none', // Remove Firefox dotted outline.
-    },
-    '&$focusVisible': {
-      outline: 'auto',
-    },
-  },
-  /* Pseudo-class applied to the root element if the link is keyboard focused. */
-  focusVisible: {},
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[`underline${capitalize(styleProps.underline)}`],
+    ...(styleProps.component === 'button' && styles.button),
+  });
 };
 
-const Link = React.forwardRef(function Link(props, ref) {
+const useUtilityClasses = (styleProps) => {
+  const { classes, component, focusVisible, underline } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      `underline${capitalize(underline)}`,
+      component === 'button' && 'button',
+      focusVisible && 'focusVisible',
+    ],
+  };
+
+  return composeClasses(slots, getLinkUtilityClass, classes);
+};
+
+const LinkRoot = experimentalStyled(
+  Typography,
+  {},
+  {
+    name: 'MuiLink',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps }) => {
+  return {
+    /* Styles applied to the root element if `underline="none"`. */
+    ...(styleProps.underline === 'none' && {
+      textDecoration: 'none',
+    }),
+    /* Styles applied to the root element if `underline="hover"`. */
+    ...(styleProps.underline === 'hover' && {
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    }),
+    /* Styles applied to the root element if `underline="always"`. */
+    ...(styleProps.underline === 'always' && {
+      textDecoration: 'underline',
+    }),
+    // Same reset as ButtonBase.root
+    /* Styles applied to the root element if `component="button"`. */
+    ...(styleProps.component === 'button' && {
+      position: 'relative',
+      WebkitTapHighlightColor: 'transparent',
+      backgroundColor: 'transparent', // Reset default value
+      // We disable the focus ring for mouse, touch and keyboard users.
+      outline: 0,
+      border: 0,
+      margin: 0, // Remove the margin in Safari
+      borderRadius: 0,
+      padding: 0, // Remove the padding in Firefox
+      cursor: 'pointer',
+      userSelect: 'none',
+      verticalAlign: 'middle',
+      '-moz-appearance': 'none', // Reset
+      '-webkit-appearance': 'none', // Reset
+      '&::-moz-focus-inner': {
+        borderStyle: 'none', // Remove Firefox dotted outline.
+      },
+      [`&.${linkClasses.focusVisible}`]: {
+        outline: 'auto',
+      },
+    }),
+  };
+});
+
+const Link = React.forwardRef(function Link(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiLink',
+  });
+
   const {
-    classes,
     className,
     color = 'primary',
     component = 'a',
@@ -95,23 +132,27 @@ const Link = React.forwardRef(function Link(props, ref) {
     }
   };
 
+  const styleProps = {
+    ...props,
+    color,
+    component,
+    focusVisible,
+    underline,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Typography
-      className={clsx(
-        classes.root,
-        {
-          [classes.button]: component === 'button',
-          [classes.focusVisible]: focusVisible,
-        },
-        classes[`underline${capitalize(underline)}`],
-        className,
-      )}
+    <LinkRoot
+      className={clsx(classes.root, className)}
       classes={TypographyClasses}
       color={color}
       component={component}
       onBlur={handleBlur}
       onFocus={handleFocus}
       ref={handlerRef}
+      styleProps={styleProps}
       variant={variant}
       {...other}
     />
@@ -162,6 +203,10 @@ Link.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * `classes` prop applied to the [`Typography`](/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
@@ -195,4 +240,4 @@ Link.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiLink' })(Link);
+export default Link;
