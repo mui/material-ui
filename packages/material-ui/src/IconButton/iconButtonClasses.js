@@ -13,6 +13,7 @@ const iconButtonClasses = generateUtilityClasses('MuiIconButton', [
   'edgeStart',
   'edgeEnd',
   'sizeSmall',
+  'sizeMedium',
   'label',
 ]);
 
