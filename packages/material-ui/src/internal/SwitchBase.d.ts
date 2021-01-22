@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { IconButtonProps } from '../IconButton';
 
 export interface SwitchBaseProps
@@ -58,6 +59,10 @@ export interface SwitchBaseProps
    * If `true`, the `input` element is required.
    */
   required?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: SxProps<Theme>;
   tabIndex?: number;
   type?: React.InputHTMLAttributes<HTMLInputElement>['type'];
   /**
