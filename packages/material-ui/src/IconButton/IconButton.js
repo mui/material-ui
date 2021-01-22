@@ -16,7 +16,7 @@ const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
     ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
     ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-    styles[`size${capitalize(styleProps.size)}`],
+    ...styles[`size${capitalize(styleProps.size)}`],
     [`& .${iconButtonClasses.label}`]: styles.label,
   });
 };
