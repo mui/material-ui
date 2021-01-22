@@ -17,18 +17,28 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...(styleProps.dense && { dense: styles.dense }),
-    ...(styleProps.alignItems === 'flex-start' && { alignItemsFlexStart: styles.alignItemsFlexStart }),
+    ...(styleProps.alignItems === 'flex-start' && {
+      alignItemsFlexStart: styles.alignItemsFlexStart,
+    }),
     ...(styleProps.divider && { divider: styles.divider }),
     ...(!styleProps.disableGutters && { gutters: styles.gutters }),
     ...(styleProps.button && { button: styles.button }),
     ...(styleProps.hasSecondaryAction && { secondaryAction: styles.secondaryAction }),
-    ...(styleProps.selected && { selected: styles.selected }),
-    ...(styleProps.disabled && { disabled: styles.disabled }),
   });
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { dense, alignItems, divider, disableGutters, hasSecondaryAction, selected, disabled, button, classes } = styleProps;
+  const {
+    dense,
+    alignItems,
+    divider,
+    disableGutters,
+    hasSecondaryAction,
+    selected,
+    disabled,
+    button,
+    classes,
+  } = styleProps;
 
   const slots = {
     root: [
@@ -48,8 +58,8 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemUtilityClass, classes);
 };
 
-const getListItemRoot = component => (experimentalStyled(
-  component,
+const ListItemRoot = experimentalStyled(
+  'div',
   {},
   {
     name: 'MuiListItem',
@@ -133,10 +143,10 @@ const getListItemRoot = component => (experimentalStyled(
       paddingRight: 48,
     }),
   };
-}));
+});
 
-const getListItemContainer = component => (experimentalStyled(
-  component,
+const ListItemContainer = experimentalStyled(
+  'div',
   {},
   {
     name: 'MuiListItem',
@@ -145,7 +155,7 @@ const getListItemContainer = component => (experimentalStyled(
   },
 )(() => ({
   position: 'relative',
-})));
+}));
 
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
@@ -205,7 +215,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     disabled,
     hasSecondaryAction,
   };
-  const classes = useUtilityClasses(styleProps);  
+  const classes = useUtilityClasses(styleProps);
 
   const handleRef = useForkRef(listItemRef, ref);
 
@@ -219,7 +229,10 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
 
   if (button) {
     componentProps.component = componentProp || 'div';
-    componentProps.focusVisibleClassName = clsx(listItemClasses.focusVisible, focusVisibleClassName);
+    componentProps.focusVisibleClassName = clsx(
+      listItemClasses.focusVisible,
+      focusVisibleClassName,
+    );
     Component = ButtonBase;
   }
 
@@ -236,13 +249,15 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
       }
     }
 
-    const ListItemContainer = getListItemContainer(ContainerComponent);
-    const ListItemRoot = getListItemRoot(Component);
-
     return (
       <ListContext.Provider value={childContext}>
-        <ListItemContainer className={clsx(classes.container, ContainerClassName)} ref={handleRef} {...ContainerProps}>
-          <ListItemRoot styleProps={styleProps} {...componentProps}>
+        <ListItemContainer
+          as={ContainerComponent}
+          className={clsx(classes.container, ContainerClassName)}
+          ref={handleRef}
+          {...ContainerProps}
+        >
+          <ListItemRoot as={Component} styleProps={styleProps} {...componentProps}>
             {children}
           </ListItemRoot>
           {children.pop()}
@@ -251,10 +266,9 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     );
   }
 
-  const ListItemRoot = getListItemRoot(Component);
   return (
     <ListContext.Provider value={childContext}>
-      <ListItemRoot ref={handleRef} styleProps={styleProps} {...componentProps}>
+      <ListItemRoot as={Component} ref={handleRef} styleProps={styleProps} {...componentProps}>
         {children}
       </ListItemRoot>
     </ListContext.Provider>
