@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { deepmerge, chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
@@ -160,7 +161,8 @@ const ListItemContainer = experimentalStyled(
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
-const ListItem = React.forwardRef(function ListItem(props, ref) {
+const ListItem = React.forwardRef(function ListItem(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiListItem' });
   const {
     alignItems = 'center',
     autoFocus = false,
@@ -215,6 +217,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     disabled,
     hasSecondaryAction,
   };
+
   const classes = useUtilityClasses(styleProps);
 
   const handleRef = useForkRef(listItemRef, ref);
@@ -233,6 +236,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
       listItemClasses.focusVisible,
       focusVisibleClassName,
     );
+
     Component = ButtonBase;
   }
 
