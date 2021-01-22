@@ -77,13 +77,13 @@ function getDeprecatedInfo(type: PropTypeDescriptor) {
   return false;
 }
 
-function getChained(type: PropTypeDescriptor) {
+function getChained(type: PropTypeDescriptor): false | PropDescriptor {
   if (type.raw) {
     const marker = 'chainPropTypes';
     const indexStart = type.raw.indexOf(marker);
 
     if (indexStart !== -1) {
-      const parsed = docgenParse(
+      const parsed: ReactApi = docgenParse(
         `
         import PropTypes from 'prop-types';
         const Foo = () => <div />
@@ -1062,11 +1062,16 @@ async function buildDocs(options: {
     }, {} as Record<string, string>);
   }
 
-  const componentProps = _.fromPairs(
+  const componentProps = _.fromPairs<{
+    default: string | undefined;
+    required: boolean | undefined;
+    type: { name: string | undefined; description: string | undefined };
+  }>(
     Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
       const prop = createDescribeableProp(propDescriptor, propName);
       if (prop === null) {
-        return [];
+        // have to delete `componentProps.undefined` later
+        return [] as any;
       }
 
       let description = generatePropDescription(prop, propName);
@@ -1116,6 +1121,8 @@ async function buildDocs(options: {
       ];
     }),
   );
+  // created by returning the `[]` entry
+  delete componentProps.undefined;
 
   /**
    * CSS class descriptiohs.
@@ -1166,7 +1173,18 @@ async function buildDocs(options: {
    * Gather the metadata needed for the component's API page.
    */
   const pageContent = {
-    props: componentProps,
+    // Sorted by required DESC, name ASC
+    props: _.fromPairs(
+      Object.entries(componentProps).sort(([aName, aData], [bName, bData]) => {
+        if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
+          return aName.localeCompare(bName);
+        }
+        if (aData.required) {
+          return -1;
+        }
+        return 1;
+      }),
+    ),
     name: reactApi.name,
     styles: {
       classes: reactApi.styles.classes,

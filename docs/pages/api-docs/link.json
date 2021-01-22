@@ -10,6 +10,7 @@
       "default": "'primary'"
     },
     "component": { "type": { "name": "custom", "description": "element type" } },
+    "sx": { "type": { "name": "object" } },
     "TypographyClasses": { "type": { "name": "object" } },
     "underline": {
       "type": {
@@ -44,6 +45,6 @@
   "filename": "/packages/material-ui/src/Link/Link.js",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
   "demos": "<ul><li><a href=\"/components/breadcrumbs/\">Breadcrumbs</a></li>\n<li><a href=\"/components/links/\">Links</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

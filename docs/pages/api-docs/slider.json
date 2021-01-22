@@ -8,6 +8,7 @@
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
         "name": "shape",
@@ -59,8 +60,7 @@
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
       "default": "(x) => x"
-    },
-    "component": { "type": { "name": "elementType" } }
+    }
   },
   "name": "Slider",
   "styles": {

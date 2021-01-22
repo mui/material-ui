@@ -1,5 +1,7 @@
 {
   "props": {
+    "options": { "type": { "name": "array" }, "required": true },
+    "renderInput": { "type": { "name": "func" }, "required": true },
     "autoComplete": { "type": { "name": "bool" } },
     "autoHighlight": { "type": { "name": "bool" } },
     "autoSelect": { "type": { "name": "bool" } },
@@ -59,12 +61,10 @@
     "open": { "type": { "name": "bool" } },
     "openOnFocus": { "type": { "name": "bool" } },
     "openText": { "type": { "name": "string" }, "default": "'Open'" },
-    "options": { "type": { "name": "array" }, "required": true },
     "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
     "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
     "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
     "renderGroup": { "type": { "name": "func" } },
-    "renderInput": { "type": { "name": "func" }, "required": true },
     "renderOption": { "type": { "name": "func" } },
     "renderTags": { "type": { "name": "func" } },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
