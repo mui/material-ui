@@ -14,10 +14,9 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...(styleProps.disabled && styles.disabled),
     ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
     ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-    ...(styleProps.size === 'small' && styles.sizeSmall),
+    styles[`size${capitalize(styleProps.size)}`],
     [`& .${iconButtonClasses.label}`]: styles.label,
   });
 };
@@ -31,7 +30,7 @@ const useUtilityClasses = (styleProps) => {
       disabled && 'disabled',
       color !== 'default' && `color${capitalize(color)}`,
       edge && `edge${capitalize(edge)}`,
-      size === 'small' && 'sizeSmall',
+      `size${capitalize(size)}`
     ],
     label: ['label'],
   };
@@ -109,10 +108,10 @@ const IconButtonRoot = experimentalStyled(
   }),
   ({ theme, styleProps }) => ({
     /* Styles applied to the root element if `disabled={true}`. */
-    ...(styleProps.disabled && {
+    [`&.${iconButtonClasses.disabled}`]: {
       backgroundColor: 'transparent',
       color: theme.palette.action.disabled,
-    }),
+    },
   }),
 );
 
@@ -153,6 +152,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     edge,
     color,
     disabled,
+    disableFocusRipple,
     size,
   };
 

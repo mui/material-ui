@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import PropTypes from 'prop-types';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
@@ -101,5 +102,16 @@ describe('<IconButton />', () => {
       expect(button).to.have.property('disabled', true);
       expect(button).to.have.class(classes.disabled);
     });
+  });
+  
+  it('should raise a warning about onClick in children because of Firefox', () => {	
+    expect(() => {	
+      PropTypes.checkPropTypes(	
+        IconButton.propTypes,	
+        { classes: {}, children: <svg onClick={() => {}} /> },	
+        'prop',	
+        'MockedName',	
+      );	
+    }).toErrorDev(['Material-UI: You are providing an onClick event listener']);	
   });
 });
