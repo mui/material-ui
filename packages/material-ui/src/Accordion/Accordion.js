@@ -2,21 +2,52 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
+import { deepmerge, chainPropTypes } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
-import withStyles from '../styles/withStyles';
 import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
+import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
 
-export const styles = (theme) => {
-  const transition = {
-    duration: theme.transitions.duration.shortest,
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(!styleProps.square && styles.rounded),
+    [`& .${accordionClasses.region}`]: styles.region,
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, square, expanded, disabled } = styleProps;
+
+  const slots = {
+    root: ['root', !square && 'rounded', expanded && 'expanded', disabled && 'disabled'],
+    region: ['region'],
   };
 
-  return {
-    /* Styles applied to the root element. */
-    root: {
+  return composeClasses(slots, getAccordionUtilityClass, classes);
+};
+
+const AccordionRoot = experimentalStyled(
+  Paper,
+  {},
+  {
+    name: 'MuiAccordion',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(
+  ({ theme }) => {
+    const transition = {
+      duration: theme.transitions.duration.shortest,
+    };
+
+    return {
+      /* Styles applied to the root element. */
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
       overflowAnchor: 'none', // Keep the same scrolling position
@@ -31,40 +62,44 @@ export const styles = (theme) => {
         backgroundColor: theme.palette.divider,
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
-      '&:first-child': {
+      '&:first-of-type': {
         '&:before': {
           display: 'none',
         },
       },
-      '&$expanded': {
+      /* Styles applied to the root element if `expanded={true}`. */
+      [`&.${accordionClasses.expanded}`]: {
         margin: '16px 0',
-        '&:first-child': {
-          marginTop: 0,
-        },
-        '&:last-child': {
-          marginBottom: 0,
-        },
         '&:before': {
           opacity: 0,
         },
-      },
-      '&$expanded + &': {
-        '&:before': {
-          display: 'none',
+        '&:first-of-type': {
+          marginTop: 0,
+        },
+        '&:last-of-type': {
+          marginBottom: 0,
+        },
+        '& + &': {
+          '&:before': {
+            display: 'none',
+          },
         },
       },
-      '&$disabled': {
+      /* Styles applied to the root element if `disabled={true}`. */
+      [`&.${accordionClasses.disabled}`]: {
         backgroundColor: theme.palette.action.disabledBackground,
       },
-    },
+    };
+  },
+  ({ theme, styleProps }) => ({
     /* Styles applied to the root element unless `square={true}`. */
-    rounded: {
+    ...(!styleProps.square && {
       borderRadius: 0,
-      '&:first-child': {
+      '&:first-of-type': {
         borderTopLeftRadius: theme.shape.borderRadius,
         borderTopRightRadius: theme.shape.borderRadius,
       },
-      '&:last-child': {
+      '&:last-of-type': {
         borderBottomLeftRadius: theme.shape.borderRadius,
         borderBottomRightRadius: theme.shape.borderRadius,
         // Fix a rendering issue on Edge
@@ -73,20 +108,14 @@ export const styles = (theme) => {
           borderBottomRightRadius: 0,
         },
       },
-    },
-    /* Pseudo-class applied to the root element if `expanded={true}`. */
-    expanded: {},
-    /* Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled: {},
-    /* Styles applied to the region element, the container of the children. */
-    region: {},
-  };
-};
+    }),
+  }),
+);
 
-const Accordion = React.forwardRef(function Accordion(props, ref) {
+const Accordion = React.forwardRef(function Accordion(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiAccordion' });
   const {
     children: childrenProp,
-    classes,
     className,
     defaultExpanded = false,
     disabled = false,
@@ -123,18 +152,20 @@ const Accordion = React.forwardRef(function Accordion(props, ref) {
     handleChange,
   ]);
 
+  const styleProps = {
+    ...props,
+    square,
+    disabled,
+    expanded,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Paper
-      className={clsx(
-        classes.root,
-        {
-          [classes.expanded]: expanded,
-          [classes.disabled]: disabled,
-          [classes.rounded]: !square,
-        },
-        className,
-      )}
+    <AccordionRoot
+      className={clsx(classes.root, className)}
       ref={ref}
+      styleProps={styleProps}
       square={square}
       {...other}
     >
@@ -149,7 +180,7 @@ const Accordion = React.forwardRef(function Accordion(props, ref) {
           {children}
         </div>
       </TransitionComponent>
-    </Paper>
+    </AccordionRoot>
   );
 });
 
@@ -212,6 +243,10 @@ Accordion.propTypes = {
    */
   square: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
@@ -224,4 +259,4 @@ Accordion.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiAccordion' })(Accordion);
+export default Accordion;
