@@ -8,22 +8,13 @@ import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
 import { getHiddenCssUtilityClass } from './hiddenCssClasses';
 
-const sizes = ['xl', 'lg', 'md', 'sm', 'xs'];
-
 const overridesResolver = (props, styles) => styles.root || {};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, breakpoints } = styleProps;
 
   const slots = {
-    root: [
-      'root',
-      ...sizes.map((size) => breakpoints.includes(`${size}Up`) && `${size}Up`),
-      ...sizes.map((size) => breakpoints.includes(`${size}Down`) && `${size}Down`),
-      ...sizes.map(
-        (size) => breakpoints.includes(`only${capitalize(size)}`) && `only${capitalize(size)}`,
-      ),
-    ],
+    root: ['root', ...breakpoints],
   };
 
   return composeClasses(slots, getHiddenCssUtilityClass, classes);
@@ -42,28 +33,29 @@ const HiddenCssRoot = experimentalStyled(
     display: 'none',
   };
 
-  const styles = theme.breakpoints.keys
-    .map((key) => {
-      return {
-        [`only${capitalize(key)}`]: {
-          [theme.breakpoints.only(key)]: hidden,
-        },
-        [`${key}Up`]: {
-          [theme.breakpoints.up(key)]: hidden,
-        },
-        [`${key}Down`]: {
-          [theme.breakpoints.down(key)]: hidden,
-        },
-      };
-    })
-    .reduce((r, o) => {
-      Object.keys(o).forEach((k) => {
-        r[k] = o[k];
-      });
-      return r;
-    }, {});
-
-  return { ...styleProps.breakpoints.map((size) => styles[size]) };
+  return {
+    ...styleProps.breakpoints
+      .map((key) => {
+        if (key.startsWith('only')) {
+          return {
+            [theme.breakpoints.only(key.replace('only', ''))]: hidden,
+          };
+        }
+        return key.endsWith('Up')
+          ? {
+              [theme.breakpoints.up(key.replace('Up', ''))]: hidden,
+            }
+          : {
+              [theme.breakpoints.down(key.replace('Down', ''))]: hidden,
+            };
+      })
+      .reduce((r, o) => {
+        Object.keys(o).forEach((k) => {
+          r[k] = o[k];
+        });
+        return r;
+      }, {}),
+  };
 });
 
 /**
