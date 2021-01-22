@@ -1,0 +1,88 @@
+import * as React from 'react';
+import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import Box, { BoxTypeMap } from '@material-ui/core/Box';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import IconButton from '@material-ui/core/IconButton';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import t1 from 'docs/src/modules/branding/t1';
+
+interface PersonaRootProps {
+  styleProps?: { size?: 'large' | 'small' };
+}
+
+const PersonaRoot: OverridableComponent<BoxTypeMap<PersonaRootProps>> = styled(
+  Box,
+  {},
+  { name: 'Persona', slot: 'Root' },
+)<PersonaRootProps>(({ styleProps = { size: 'large' }, theme }) => ({
+  display: 'flex',
+  marginTop: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+  flexDirection: 'column',
+  alignItems: 'center',
+  '& [class*="MuiAvatar-root"]': {
+    width: styleProps.size === 'large' ? 200 : 120,
+    height: styleProps.size === 'large' ? 200 : 120,
+    marginBottom: theme.spacing(1),
+  },
+  '& [class*="MuiIconButton-root"]': {
+    width: 40,
+    height: 40,
+    backgroundColor: 'white',
+    color: theme.palette.greyAA,
+    boxShadow: `0 2px 3px rgba(9, 10, 12, .08)`,
+  },
+})) as OverridableComponent<BoxTypeMap<PersonaRootProps>>;
+
+interface BrandingPersonaProps {
+  github: string;
+  location?: string;
+  name?: string;
+  size?: 'small' | 'large';
+  src?: string;
+  title?: string;
+  twitter?: string;
+}
+
+export default function BrandingPersona(props: BrandingPersonaProps) {
+  const { name, src, title, location, twitter, github, size = 'large' } = props;
+  return (
+    <PersonaRoot styleProps={{ size }}>
+      <Avatar src={src} alt={`Image of ${name}`} />
+      <Typography variant="h4" component="div">
+        {name}
+      </Typography>
+      <Typography sx={{ color: 'grey5A' }} variant="body2">
+        {title}
+      </Typography>
+      <Typography variant="body2" sx={{ mt: 1, mb: 2 }}>
+        {location}
+      </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          // TODO use Stack
+          '&& > * + *': {
+            ml: 1,
+          },
+        }}
+      >
+        {twitter && (
+          <IconButton
+            component="a"
+            href={`https://twitter.com/${twitter}`}
+            aria-label={t1('twitter')}
+          >
+            <TwitterIcon />
+          </IconButton>
+        )}
+        <IconButton component="a" href={`https://github.com/${github}`} aria-label={t1('github')}>
+          <GitHubIcon />
+        </IconButton>
+      </Box>
+    </PersonaRoot>
+  );
+}

@@ -17,6 +17,109 @@ import OpenCollectiveIcon from 'docs/src/modules/branding/icons/OpenCollective';
 import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
+import BrandingPersona from 'docs/src/modules/branding/BrandingPersona';
+
+const emeriti = [
+  {
+    name: 'Hai Nguyen',
+    github: 'hai-cea',
+    twitter: 'haicea',
+    title: 'v0.x creator',
+    location: 'Dallas, Texas, US',
+  },
+  {
+    name: 'Nathan Marks',
+    github: 'nathanmarks',
+    title: 'v1.x co-creator',
+    location: 'Toronto, ON',
+  },
+  {
+    name: 'Kevin Ross',
+    github: 'rosskevin',
+    twitter: 'rosskevin',
+    title: 'Core focus, flow',
+    location: 'Franklin, Tennessee, US',
+  },
+  {
+    name: 'Sebastian Sebald',
+    github: 'sebald',
+    twitter: 'sebastiansebald',
+    title: 'Core focus',
+    location: 'Freiburg, Germany',
+  },
+  {
+    name: 'Ken Gregory',
+    github: 'kgregory',
+    title: 'Core focus',
+    location: 'New Jersey, US',
+  },
+  {
+    name: 'Tom Crockett',
+    github: 'pelotom',
+    twitter: 'pelotom',
+    title: 'Core focus',
+    location: 'Los Angeles, California, US',
+  },
+  {
+    name: 'Maik Marschner',
+    github: 'leMaik',
+    twitter: 'leMaikOfficial',
+    title: 'Core focus',
+    location: 'Hannover, Germany',
+  },
+  {
+    name: 'Oleg Slobodskoi',
+    github: 'kof',
+    twitter: 'oleg008',
+    title: 'JSS',
+    location: 'Berlin, Germany',
+  },
+  {
+    name: 'Dmitriy Kovalenko',
+    github: 'dmtrKovalenko',
+    twitter: 'dmtrKovalenko',
+    title: 'Date pickers',
+    location: 'Kharkiv, Ukraine',
+  },
+  {
+    name: 'Josh Wooding',
+    github: 'joshwooding',
+    twitter: 'JoshWooding_',
+    title: 'Core focus, J.P. Morgan',
+    location: 'London, UK',
+  },
+];
+
+function BrandingEmeriti() {
+  return (
+    <Box sx={{ bgcolor: 'greyEA', pt: 10, pb: 9 }}>
+      <Container>
+        <Typography variant="h3" component="h2">
+          Community <UnderlinedText>Emeriti</UnderlinedText>
+        </Typography>
+        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: 700 }}>
+          We honor some no-longer-active core team members who have made valuable contributons in
+          the past. They advise us from time-to-time.
+        </Typography>
+        <Grid container spacing={4}>
+          {emeriti.map((member) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={member.name}>
+              <BrandingPersona
+                name={member.name}
+                src={`https://github.com/${member.github}.png`}
+                title={member.title}
+                location={member.location}
+                twitter={member.twitter}
+                github={member.github}
+                size="small"
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
+  );
+}
 
 function BrandingJoinUs() {
   return (
@@ -201,6 +304,7 @@ function BrandingSupportUs() {
 export default function Page() {
   return (
     <BrandingRoot>
+      <BrandingEmeriti />
       <BrandingJoinUs />
       <BrandingSupportUs />
       <BrandingDiscoverMore />
@@ -853,110 +957,6 @@ export default function Page() {
 //                   title="BR Brazilian docs"
 //                   location="Barcelona, Spain"
 //                   github="https://github.com/jaironalves"
-//                   size="small"
-//                 />
-//               </Grid>
-//             </Grid>
-//           </Grid>
-//         </Grid>
-
-//         <Grid container className="MuiGrid-emeriti MuiGrid-panel" spacing={1}>
-//           <Grid item xs={12}>
-//             <Typography variant="h2">
-//               Community <UnderlinedText>Emeriti</UnderlinedText>
-//             </Typography>
-//           </Grid>
-//           <Grid item xs={7}>
-//             <Typography>
-//               We honor some no-longer-active core team members who have made valuable contributons
-//               in the past. They advise us from time-to-time.
-//             </Typography>
-//           </Grid>
-//           <Grid item xs={12}>
-//             <Grid container className="MuiGrid-personasContainer">
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Hai Nguyen"
-//                   src="https://github.com/hai-cea.png"
-//                   title="v0.x co-creator"
-//                   location="Dallas, UK"
-//                   twitter="https://twitter.com/haicea"
-//                   github="https://github.com/hai-cea"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Nathan Marks"
-//                   src="https://github.com/nathanmarks.png"
-//                   title="v1.x co-creator"
-//                   location="Toronto, Canada"
-//                   github="https://github.com/nathanmarks"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Kevin Ross"
-//                   src="https://github.com/rosskevin.png"
-//                   title="Open source focus"
-//                   location="Franklin, US"
-//                   twitter="https://twitter.com/rosskevin"
-//                   github="https://github.com/rosskevin"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Sebastian Sebald"
-//                   src="https://github.com/sebald.png"
-//                   title="Enterprice product designer"
-//                   location="Freiburg, Germany"
-//                   twitter="https://twitter.com/sebastiansebald"
-//                   github="https://github.com/sebald"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Ken Gregory"
-//                   src="https://github.com/kgregory.png"
-//                   title="Open source focus"
-//                   location="New Jersey, US"
-//                   github="https://github.com/kgregory"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Tom Crockett"
-//                   src="https://github.com/pelotom.png"
-//                   title="Community member, J.P. Morgan"
-//                   location="Los Angeles, US"
-//                   twitter="https://twitter.com/pelotom"
-//                   github="https://github.com/pelotom"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Maik Marschner"
-//                   src="https://github.com/leMaik.png"
-//                   title="Core focus"
-//                   location="Hannover, Germany"
-//                   twitter="https://twitter.com/leMaikOfficial"
-//                   github="https://github.com/leMaik"
-//                   size="small"
-//                 />
-//               </Grid>
-//               <Grid item lg={3} md={6} xs={12}>
-//                 <Persona
-//                   name="Oleg Slobodskoi"
-//                   src="https://github.com/kof.png"
-//                   title="JSS"
-//                   location="Berlin, Germany"
-//                   twitter="https://twitter.com/oleg008"
-//                   github="https://github.com/kof"
 //                   size="small"
 //                 />
 //               </Grid>
