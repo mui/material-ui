@@ -66,27 +66,23 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
         sx={{
           display: 'flex',
           // TODO use Stack
-          '& > * + *': {
+          '&& > * + *': {
             ml: 1,
           },
         }}
       >
         {twitter && (
-          <Grid item>
-            <IconButton
-              component="a"
-              href={`https://twitter.com/${twitter}`}
-              aria-label={t1('twitter')}
-            >
-              <TwitterIcon />
-            </IconButton>
-          </Grid>
-        )}
-        <Grid item>
-          <IconButton component="a" href={`https://github.com/${github}`} aria-label={t1('github')}>
-            <GitHubIcon />
+          <IconButton
+            component="a"
+            href={`https://twitter.com/${twitter}`}
+            aria-label={t1('twitter')}
+          >
+            <TwitterIcon />
           </IconButton>
-        </Grid>
+        )}
+        <IconButton component="a" href={`https://github.com/${github}`} aria-label={t1('github')}>
+          <GitHubIcon />
+        </IconButton>
       </Box>
     </PersonaRoot>
   );
