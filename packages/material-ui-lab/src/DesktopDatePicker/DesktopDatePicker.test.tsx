@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import TextField from '@material-ui/core/TextField';
-import { fireEvent, screen } from 'test/utils';
+import { act, fireEvent, screen } from 'test/utils';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 import {
   createPickerRender,
@@ -41,6 +41,26 @@ const UncontrolledOpenDesktopDatePicker = (({
 
 describe('<DesktopDatePicker />', () => {
   const render = createPickerRender({ strict: false });
+
+  it('opens when "Choose date" is clicked', () => {
+    const handleOpen = spy();
+    render(
+      <DesktopDatePicker
+        value={adapterToUse.date('2019-01-01T00:00:00.000')}
+        onChange={() => {}}
+        onOpen={handleOpen}
+        TransitionComponent={FakeTransitionComponent}
+        renderInput={(params) => <TextField {...params} />}
+      />,
+    );
+
+    act(() => {
+      screen.getByLabelText(/Choose date/).click();
+    });
+
+    expect(handleOpen.callCount).to.equal(1);
+    expect(screen.queryByRole('dialog')).not.to.equal(null);
+  });
 
   it('accepts date on day button click', () => {
     const onChangeMock = spy();
