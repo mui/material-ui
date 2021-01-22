@@ -47,70 +47,74 @@ const IconButtonRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
-  textAlign: 'center',
-  flex: '0 0 auto',
-  fontSize: theme.typography.pxToRem(24),
-  padding: 12,
-  borderRadius: '50%',
-  overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
-  color: theme.palette.action.active,
-  transition: theme.transitions.create('background-color', {
-    duration: theme.transitions.duration.shortest,
+)(
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element. */
+    textAlign: 'center',
+    flex: '0 0 auto',
+    fontSize: theme.typography.pxToRem(24),
+    padding: 12,
+    borderRadius: '50%',
+    overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
+    color: theme.palette.action.active,
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+    /* Styles applied to the root element if `edge="start"`. */
+    ...(styleProps.edge === 'start' && {
+      marginLeft: styleProps.size === 'small' ? -3 : -12,
+    }),
+    /* Styles applied to the root element if `edge="end"`. */
+    ...(styleProps.edge === 'end' && {
+      marginRight: styleProps.size === 'small' ? -3 : -12,
+    }),
+    /* Styles applied to the root element if `color="inherit"`. */
+    ...(styleProps.color === 'inherit' && {
+      color: 'inherit',
+    }),
+    /* Styles applied to the root element if `color="primary"`. */
+    ...(styleProps.color === 'primary' && {
+      color: theme.palette.primary.main,
+      '&:hover': {
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    }),
+    /* Styles applied to the root element if `color="secondary"`. */
+    ...(styleProps.color === 'secondary' && {
+      color: theme.palette.secondary.main,
+      '&:hover': {
+        backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    }),
+    /* Styles applied to the root element if `size="small"`. */
+    ...(styleProps.size === 'small' && {
+      padding: 3,
+      fontSize: theme.typography.pxToRem(18),
+    }),
   }),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element if `disabled={true}`. */
+    ...(styleProps.disabled && {
       backgroundColor: 'transparent',
-    },
-  },
-  /* Styles applied to the root element if `disabled={true}`. */
-  ...(styleProps.disabled && {
-    backgroundColor: 'transparent',
-    color: theme.palette.action.disabled,
+      color: theme.palette.action.disabled,
+    }),
   }),
-  /* Styles applied to the root element if `edge="start"`. */
-  ...(styleProps.edge === 'start' && {
-    marginLeft: styleProps.size === 'small' ? -3 : -12,
-  }),
-  /* Styles applied to the root element if `edge="end"`. */
-  ...(styleProps.edge === 'end' && {
-    marginRight: styleProps.size === 'small' ? -3 : -12,
-  }),
-  /* Styles applied to the root element if `color="inherit"`. */
-  ...(styleProps.color === 'inherit' && {
-    color: 'inherit',
-  }),
-  /* Styles applied to the root element if `color="primary"`. */
-  ...(styleProps.color === 'primary' && {
-    color: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-  }),
-  /* Styles applied to the root element if `color="secondary"`. */
-  ...(styleProps.color === 'secondary' && {
-    color: theme.palette.secondary.main,
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-  }),
-  /* Styles applied to the root element if `size="small"`. */
-  ...(styleProps.size === 'small' && {
-    padding: 3,
-    fontSize: theme.typography.pxToRem(18),
-  }),
-}));
+);
 
 const IconButtonLabel = experimentalStyled(
   'span',
