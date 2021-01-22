@@ -30,7 +30,7 @@ const useUtilityClasses = (styleProps) => {
       disabled && 'disabled',
       color !== 'default' && `color${capitalize(color)}`,
       edge && `edge${capitalize(edge)}`,
-      `size${capitalize(size)}`
+      `size${capitalize(size)}`,
     ],
     label: ['label'],
   };
