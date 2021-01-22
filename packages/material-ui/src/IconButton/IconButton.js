@@ -111,8 +111,6 @@ const IconButtonRoot = experimentalStyled(
       padding: 3,
       fontSize: theme.typography.pxToRem(18),
     }),
-  }),
-  ({ theme }) => ({
     /* Styles applied to the root element if `disabled={true}`. */
     [`&.${iconButtonClasses.disabled}`]: {
       backgroundColor: 'transparent',
