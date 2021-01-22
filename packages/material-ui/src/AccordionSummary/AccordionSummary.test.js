@@ -18,6 +18,7 @@ describe('<AccordionSummary />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordionSummary',
     testVariantProps: { disabled: true },
+    testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
     skip: ['componentProp', 'componentsProp'],
   }));
 
