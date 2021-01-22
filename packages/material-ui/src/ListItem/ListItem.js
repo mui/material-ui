@@ -145,7 +145,7 @@ const ListItemRoot = experimentalStyled(
 });
 
 const ListItemContainer = experimentalStyled(
-  'div',
+  'li',
   {},
   {
     name: 'MuiListItem',
