@@ -205,6 +205,7 @@ export default function BrandingFooter() {
             </Typography>
             <IconButton
               target="_blank"
+              rel="noopener"
               href="https://github.com/mui-org/material-ui"
               aria-label="github"
               title="GitHub"
@@ -213,6 +214,7 @@ export default function BrandingFooter() {
             </IconButton>
             <IconButton
               target="_blank"
+              rel="noopener"
               href="https://twitter.com/MaterialUI"
               aria-label="twitter"
               title="Twitter"
@@ -221,6 +223,7 @@ export default function BrandingFooter() {
             </IconButton>
             <IconButton
               target="_blank"
+              rel="noopener"
               href="https://www.linkedin.com/company/material-ui/"
               aria-label="linkedin"
               title="LinkedIn"
