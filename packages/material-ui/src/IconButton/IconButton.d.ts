@@ -1,4 +1,6 @@
-import { PropTypes } from '..';
+import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { PropTypes, Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
@@ -63,6 +65,10 @@ export type IconButtonTypeMap<
      * @default 'medium'
      */
     size?: 'small' | 'medium';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;

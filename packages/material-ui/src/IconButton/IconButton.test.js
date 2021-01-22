@@ -1,26 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
 import IconButton from './IconButton';
+import classes from './iconButtonClasses';
 
 describe('<IconButton />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender({ strict: false });
 
-  before(() => {
-    classes = getClasses(<IconButton />);
-  });
-
-  describeConformance(<IconButton>book</IconButton>, () => ({
+  describeConformanceV5(<IconButton>book</IconButton>, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
+    muiName: 'MuiIconButton',
+    testVariantProps: { edge: 'end', disabled: true },
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render an inner label span (bloody safari)', () => {
@@ -103,16 +102,5 @@ describe('<IconButton />', () => {
       expect(button).to.have.property('disabled', true);
       expect(button).to.have.class(classes.disabled);
     });
-  });
-
-  it('should raise a warning about onClick in children because of Firefox', () => {
-    expect(() => {
-      PropTypes.checkPropTypes(
-        IconButton.Naked.propTypes,
-        { classes: {}, children: <svg onClick={() => {}} /> },
-        'prop',
-        'MockedName',
-      );
-    }).toErrorDev(['Material-UI: You are providing an onClick event listener']);
   });
 });
