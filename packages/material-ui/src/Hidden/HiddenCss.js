@@ -78,7 +78,7 @@ const HiddenCss = React.forwardRef(function HiddenCss(inProps) {
       const isUndeclaredBreakpoint = !theme.breakpoints.keys.some((breakpoint) => {
         return `${breakpoint}Up` === propName || `${breakpoint}Down` === propName;
       });
-      return !(propName === 'theme' || propName === 'isRtl') && isUndeclaredBreakpoint;
+      return !['classes', 'theme', 'isRtl'].includes(propName) && isUndeclaredBreakpoint;
     });
 
     if (unknownProps.length > 0) {

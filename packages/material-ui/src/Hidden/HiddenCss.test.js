@@ -87,7 +87,7 @@ describe('<HiddenCss />', () => {
       const theme = createMuiTheme({ breakpoints: { keys: ['xxl'] } });
       const { container } = render(
         <MuiThemeProvider theme={theme}>
-          <HiddenCss xxlUp className="testid xxlUp">
+          <HiddenCss xxlUp className="testid" classes={{ xxlUp: 'xxlUp' }}>
             <div />
           </HiddenCss>
         </MuiThemeProvider>,
