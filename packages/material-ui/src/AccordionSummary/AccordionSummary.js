@@ -15,9 +15,6 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...(styleProps.expanded && styles.expanded),
-    [`&.${accordionSummaryClasses.focusVisible}`]: styles.focusVisible,
-    ...(styleProps.disabled && styles.disabled),
     [`& .${accordionSummaryClasses.content}`]: styles.content,
     [`& .${accordionSummaryClasses.expandIconWrapper}`]: styles.expandIconWrapper,
   });
@@ -28,6 +25,7 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: ['root', expanded && 'expanded', disabled && 'disabled'],
+    focusVisible: ['focusVisible'],
     content: ['content', expanded && 'expanded'],
     expandIcon: ['expandIcon', expanded && 'expanded'],
   };
@@ -55,17 +53,20 @@ const AccordionSummaryRoot = experimentalStyled(
     transition: theme.transitions.create(['min-height', 'background-color'], transition),
     padding: theme.spacing(0, 2),
     /* Styles applied to the root element if `expanded={true}`. */
-    ...(styleProps.expanded && {
+    [`&.${accordionSummaryClasses.expanded}`]: {
       minHeight: 64,
-    }),
+    },
     /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
     [`&.${accordionSummaryClasses.focusVisible}`]: {
       backgroundColor: theme.palette.action.focus,
     },
     /* Styles applied to the root element if `disabled={true}`. */
-    ...(styleProps.disabled
-      ? { opacity: theme.palette.action.disabledOpacity }
-      : { '&:hover': { cursor: 'pointer' } }),
+    [`&.${accordionSummaryClasses.disabled}`]: {
+      opacity: theme.palette.action.disabledOpacity
+    },
+    [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
+      cursor: 'pointer'
+    },
   };
 });
 
@@ -88,9 +89,9 @@ const AccordionSummaryContent = experimentalStyled(
     transition: theme.transitions.create(['margin'], transition),
     margin: '12px 0',
     /* Styles applied to the children wrapper element if `expanded={true}`. */
-    ...(styleProps.expanded && {
+    [`&.${accordionSummaryClasses.expanded}`]: {
       margin: '20px 0',
-    }),
+    },
   };
 });
 
@@ -113,9 +114,9 @@ const AccordionSummaryExpandIconWrapper = experimentalStyled(
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', transition),
     /* Styles applied to the `expandIcon`'s wrapper element if `expanded={true}`. */
-    ...(styleProps.expanded && {
+    [`&.${accordionSummaryClasses.expanded}`]: {
       transform: 'rotate(180deg)',
-    }),
+    },
   };
 });
 
