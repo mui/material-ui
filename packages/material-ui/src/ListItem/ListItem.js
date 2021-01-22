@@ -17,14 +17,12 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...(styleProps.dense && { dense: styles.dense }),
-    ...(styleProps.alignItems === 'flex-start' && {
-      alignItemsFlexStart: styles.alignItemsFlexStart,
-    }),
-    ...(styleProps.divider && { divider: styles.divider }),
-    ...(!styleProps.disableGutters && { gutters: styles.gutters }),
-    ...(styleProps.button && { button: styles.button }),
-    ...(styleProps.hasSecondaryAction && { secondaryAction: styles.secondaryAction }),
+    ...(styleProps.dense && styles.dense),
+    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+    ...(styleProps.divider && styles.divider),
+    ...(!styleProps.disableGutters && styles.gutters),
+    ...(styleProps.button && styles.button),
+    ...(styleProps.hasSecondaryAction && styles.secondaryAction),
   });
 };
 
