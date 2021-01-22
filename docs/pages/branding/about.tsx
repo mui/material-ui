@@ -24,68 +24,68 @@ const emeriti = [
     name: 'Hai Nguyen',
     github: 'hai-cea',
     twitter: 'haicea',
-    flag: 'v0.x creator',
+    title: 'v0.x creator',
     location: 'Dallas, Texas, US',
   },
   {
     name: 'Nathan Marks',
     github: 'nathanmarks',
-    flag: 'v1.x co-creator',
+    title: 'v1.x co-creator',
     location: 'Toronto, ON',
   },
   {
     name: 'Kevin Ross',
     github: 'rosskevin',
     twitter: 'rosskevin',
-    flag: 'Core focus, flow',
+    title: 'Core focus, flow',
     location: 'Franklin, Tennessee, US',
   },
   {
     name: 'Sebastian Sebald',
     github: 'sebald',
     twitter: 'sebastiansebald',
-    flag: 'Core focus',
+    title: 'Core focus',
     location: 'Freiburg, Germany',
   },
   {
     name: 'Ken Gregory',
     github: 'kgregory',
-    flag: 'Core focus',
+    title: 'Core focus',
     location: 'New Jersey, US',
   },
   {
     name: 'Tom Crockett',
     github: 'pelotom',
     twitter: 'pelotom',
-    flag: 'Core focus',
+    title: 'Core focus',
     location: 'Los Angeles, California, US',
   },
   {
     name: 'Maik Marschner',
     github: 'leMaik',
     twitter: 'leMaikOfficial',
-    flag: 'Core focus',
+    title: 'Core focus',
     location: 'Hannover, Germany',
   },
   {
     name: 'Oleg Slobodskoi',
     github: 'kof',
     twitter: 'oleg008',
-    flag: 'JSS',
+    title: 'JSS',
     location: 'Berlin, Germany',
   },
   {
     name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
     twitter: 'dmtrKovalenko',
-    flag: 'Date pickers',
+    title: 'Date pickers',
     location: 'Kharkiv, Ukraine',
   },
   {
     name: 'Josh Wooding',
     github: 'joshwooding',
     twitter: 'JoshWooding_',
-    flag: 'Core focus, J.P. Morgan',
+    title: 'Core focus, J.P. Morgan',
     location: 'London, UK',
   },
 ];
@@ -107,7 +107,7 @@ function BrandingEmeriti() {
               <BrandingPersona
                 name={member.name}
                 src={`https://github.com/${member.github}.png`}
-                title={member.flag}
+                title={member.title}
                 location={member.location}
                 twitter={member.twitter}
                 github={member.github}
