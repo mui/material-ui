@@ -29,6 +29,7 @@ describe('<ListItem />', () => {
     mount,
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',
+    testVariantProps: { dense: true },
     skip: ['componentsProp'],
   }));
 

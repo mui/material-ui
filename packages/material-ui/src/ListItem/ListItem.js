@@ -24,12 +24,11 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.hasSecondaryAction && { secondaryAction: styles.secondaryAction }),
     ...(styleProps.selected && { selected: styles.selected }),
     ...(styleProps.disabled && { disabled: styles.disabled }),
-    ...(styleProps.focusVisible && { focusVisible: styles.focusVisible }),
   });
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { dense, alignItems, divider, disableGutters, hasSecondaryAction, selected, disabled, focusVisible, button, classes } = styleProps;
+  const { dense, alignItems, divider, disableGutters, hasSecondaryAction, selected, disabled, button, classes } = styleProps;
 
   const slots = {
     root: [
@@ -42,7 +41,6 @@ const useUtilityClasses = (styleProps) => {
       hasSecondaryAction && 'secondaryAction',
       selected && 'selected',
       disabled && 'disabled',
-      focusVisible && 'focusVisible',
     ],
     container: ['container'],
   };
@@ -204,6 +202,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     divider,
     disableGutters,
     selected,
+    disabled,
     hasSecondaryAction,
   };
   const classes = useUtilityClasses(styleProps);  
