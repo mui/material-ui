@@ -52,7 +52,6 @@ export default function BrandingBeginToday() {
             position: 'absolute',
             right: 0,
             top: 'calc(100% - 81px)',
-            zIndex: 200,
             visibility: ['hidden', 'visible'],
           }}
         />

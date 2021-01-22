@@ -559,4 +559,15 @@ describe('system spacing', () => {
       });
     });
   });
+
+  it('should allow to conditionally set a value', () => {
+    const foo = true;
+    const output = spacing({
+      theme: {},
+      pt: foo ? undefined : 2,
+    });
+    expect(output).to.deep.equal({
+      paddingTop: undefined,
+    });
+  });
 });

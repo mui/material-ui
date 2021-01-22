@@ -13,5 +13,6 @@
   "filename": "/packages/material-ui/src/TextareaAutosize/TextareaAutosize.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/textarea-autosize/\">Textarea Autosize</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }

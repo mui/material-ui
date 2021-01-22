@@ -2,9 +2,11 @@ import * as React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+import Link from 'docs/src/modules/components/Link';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import BrandingCard from 'docs/src/modules/branding/BrandingCard';
 import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
 import FeedbackIcon from 'docs/src/modules/branding/icons/Feedback';
@@ -16,132 +18,191 @@ import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 
+function BrandingJoinUs() {
+  return (
+    <Box
+      sx={{
+        bgcolor: 'secondary.main',
+        color: 'secondary.contrastText',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      <Box
+        component="img"
+        src="/static/branding/block6.svg"
+        alt=""
+        sx={{
+          width: 570,
+          height: 526,
+          position: 'absolute',
+          display: 'block',
+          right: { xs: -360, sm: -350, lg: -300 },
+          bottom: { xs: -300, sm: -200, lg: -80 },
+        }}
+      />
+      <Container
+        maxWidth="md"
+        sx={{
+          py: { xs: 17, sm: 19, md: 20 },
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          position: 'relative',
+        }}
+      >
+        <Typography variant="h2" align="center">
+          Join our team of creators &amp; innovators
+        </Typography>
+        <Typography align="center" sx={{ mt: 3, mb: 5 }}>
+          If you love the challenge of doing things differently, empowering creativity, and making
+          real connections along the way–then this may be the place for you.
+        </Typography>
+        <Button
+          href="/company/jobs/"
+          component={Link}
+          noLinkStyle
+          size="large"
+          variant="contained"
+          endIcon={<NavigateNextIcon />}
+        >
+          See Open Positions
+        </Button>
+      </Container>
+    </Box>
+  );
+}
+
+function BrandingSupportUs() {
+  return (
+    <Container sx={{ mt: [10, 18], mb: [12, 20] }}>
+      <Typography variant="h2">
+        Material-UI is awesome.
+        <br />
+        How can <UnderlinedText>I support the project?</UnderlinedText>
+      </Typography>
+      <Typography sx={{ mt: 2, mb: 9 }}>There are many ways to support Material-UI:</Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <BrandingCard icon={<QuestionAnswerIcon fontSize="large" />} title="Spread the word">
+            <Typography sx={{ mt: 2 }}>
+              Evangelize Material-UI by linking to{' '}
+              <Link href="https://material-ui.com">material-ui.com</Link> on your website, every
+              backlink matters! Follow us on{' '}
+              <Link href="https://twitter.com/MaterialUI">Twitter</Link>, like and retweet the
+              important news. Or just talk about us with your friends.
+            </Typography>
+          </BrandingCard>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <BrandingCard
+            color="info"
+            icon={<FeedbackIcon fontSize="large" />}
+            title="Give us feedback"
+          >
+            <Typography sx={{ mt: 2 }}>
+              Tell us what we&apos;re doing well or where we can improve. Please upvote (
+              <span role="img" aria-label="Thumbs up emoji">
+                👍
+              </span>
+              ) the issues that you are the most interested in seeing solved.{' '}
+              <Link href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc">
+                Give us feedback
+              </Link>
+            </Typography>
+          </BrandingCard>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <BrandingCard
+            color="info"
+            icon={<ChangesIcon fontSize="large" />}
+            title="Make changes happen"
+            sx={{
+              ul: {
+                position: 'relative',
+                ml: 0,
+                pl: '1.3em',
+              },
+              'ul li:before': {
+                content: '"-"',
+                position: 'absolute',
+                left: 0,
+              },
+            }}
+          >
+            <ul>
+              <li>
+                Edit the documentation. Every page has an &quot;EDIT THIS PAGE&quot; link in the top
+                right.
+              </li>
+              <li>
+                Report bugs or missing features by{' '}
+                <Link href="https://github.com/mui-org/material-ui/issues">creating an issue</Link>.
+              </li>
+              <li>
+                Review and comment on existing{' '}
+                <Link href="https://github.com/mui-org/material-ui/pulls">pull requests</Link> and{' '}
+                <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
+              </li>
+              <li>
+                Help <Link href="https://translate.material-ui.com/">translate</Link> the
+                documentation.
+              </li>
+              <li>
+                <Link href="https://github.com/mui-org/material-ui/tree/HEAD/docs">
+                  Improve our documentation
+                </Link>
+                , fix bugs, or add features by{' '}
+                <Link href="https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
+                  submitting a pull request
+                </Link>
+                .
+              </li>
+            </ul>
+          </BrandingCard>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <BrandingCard icon={<FinanceIcon fontSize="large" />} title="Support us financially">
+            <Typography sx={{ mt: 2 }}>
+              If you use Material-UI in a commercial project and would like to support its continued
+              development by becoming a Sponsor, or in a side or hobby project and would like to
+              become a Backer, you can do so through OpenCollective.
+            </Typography>
+            <Typography sx={{ mt: 2, mb: 2 }}>
+              All funds donated are managed transparently, and Sponsors receive recognition in the
+              README and on the Material-UI home page.
+            </Typography>
+            <Button
+              color="inherit"
+              href="https://opencollective.com/material-ui"
+              endIcon={<OpenCollectiveIcon />}
+              variant="contained"
+            >
+              Open Collective
+            </Button>
+          </BrandingCard>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <BrandingCard icon={<HelpIcon fontSize="large" />} title="Help new users">
+            <Typography sx={{ mt: 2 }}>
+              You can answer questions on{' '}
+              <Link href="https://stackoverflow.com/questions/tagged/material-ui">
+                StackOverflow
+              </Link>
+              .
+            </Typography>
+          </BrandingCard>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+}
+
 export default function Page() {
   return (
     <BrandingRoot>
-      <Container sx={{ mt: [10, 18], mb: [12, 20] }}>
-        <Typography variant="h2">
-          Material-UI is awesome.
-          <br />
-          How can <UnderlinedText>I support the project?</UnderlinedText>
-        </Typography>
-        <Typography sx={{ mt: 2, mb: 9 }}>There are many ways to support Material-UI:</Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <BrandingCard icon={<QuestionAnswerIcon fontSize="large" />} title="Spread the word">
-              <Typography sx={{ mt: 2 }}>
-                Evangelize Material-UI by linking to{' '}
-                <Link href="https://material-ui.com">material-ui.com</Link> on your website, every
-                backlink matters! Follow us on{' '}
-                <Link href="https://twitter.com/MaterialUI">Twitter</Link>, like and retweet the
-                important news. Or just talk about us with your friends.
-              </Typography>
-            </BrandingCard>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <BrandingCard
-              color="info"
-              icon={<FeedbackIcon fontSize="large" />}
-              title="Give us feedback"
-            >
-              <Typography sx={{ mt: 2 }}>
-                Tell us what we&apos;re doing well or where we can improve. Please upvote (
-                <span role="img" aria-label="Thumbs up emoji">
-                  👍
-                </span>
-                ) the issues that you are the most interested in seeing solved.{' '}
-                <Link href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc">
-                  Give us feedback
-                </Link>
-              </Typography>
-            </BrandingCard>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <BrandingCard
-              color="info"
-              icon={<ChangesIcon fontSize="large" />}
-              title="Make changes happen"
-              sx={{
-                ul: {
-                  position: 'relative',
-                  ml: 0,
-                  pl: '1.3em',
-                },
-                'ul li:before': {
-                  content: '"-"',
-                  position: 'absolute',
-                  left: 0,
-                },
-              }}
-            >
-              <ul>
-                <li>
-                  Edit the documentation. Every page has an &quot;EDIT THIS PAGE&quot; link in the
-                  top right.
-                </li>
-                <li>
-                  Report bugs or missing features by{' '}
-                  <Link href="https://github.com/mui-org/material-ui/issues">
-                    creating an issue
-                  </Link>
-                  .
-                </li>
-                <li>
-                  Review and comment on existing{' '}
-                  <Link href="https://github.com/mui-org/material-ui/pulls">pull requests</Link> and{' '}
-                  <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
-                </li>
-                <li>
-                  Help <Link href="https://translate.material-ui.com/">translate</Link> the
-                  documentation.
-                </li>
-                <li>
-                  <Link href="https://github.com/mui-org/material-ui/tree/HEAD/docs">
-                    Improve our documentation
-                  </Link>
-                  , fix bugs, or add features by{' '}
-                  <Link href="https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
-                    submitting a pull request
-                  </Link>
-                  .
-                </li>
-              </ul>
-            </BrandingCard>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <BrandingCard icon={<FinanceIcon fontSize="large" />} title="Support us financially">
-              <Typography sx={{ mt: 2 }}>
-                If you use Material-UI in a commercial project and would like to support its
-                continued development by becoming a Sponsor, or in a side or hobby project and would
-                like to become a Backer, you can do so through OpenCollective.
-              </Typography>
-              <Typography sx={{ mt: 2, mb: 2 }}>
-                All funds donated are managed transparently, and Sponsors receive recognition in the
-                README and on the Material-UI home page.
-              </Typography>
-              <Button
-                color="inherit"
-                href="https://opencollective.com/material-ui"
-                endIcon={<OpenCollectiveIcon />}
-                variant="contained"
-              >
-                Open Collective
-              </Button>
-            </BrandingCard>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <BrandingCard icon={<HelpIcon fontSize="large" />} title="Help new users">
-              <Typography sx={{ mt: 2 }}>
-                You can answer questions on{' '}
-                <Link href="https://stackoverflow.com/questions/tagged/material-ui">
-                  StackOverflow
-                </Link>
-                .
-              </Typography>
-            </BrandingCard>
-          </Grid>
-        </Grid>
-      </Container>
+      <BrandingJoinUs />
+      <BrandingSupportUs />
       <BrandingDiscoverMore />
       <BrandingBeginToday />
     </BrandingRoot>
@@ -157,7 +218,6 @@ export default function Page() {
 // import CardHeader from '@material-ui/core/CardHeader';
 // import CardContent from '@material-ui/core/CardContent';
 // import Avatar from '@material-ui/core/Avatar';
-// import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 // import { experimentalStyled as styled } from '@material-ui/core/styles';
 // import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 // import Quote from 'docs/src/modules/branding/Quote';
@@ -365,13 +425,13 @@ export default function Page() {
 //             justifyContent="center"
 //           >
 //             <Grid item>
-//               <Typography variant="h1" align="center" gutterBottom>
+//               <Typography variant="h1" align="center">
 //                 We&apos;re on a mission to make building UIs with{' '}
 //                 <UnderlinedText>React</UnderlinedText> fun.
 //               </Typography>
 //             </Grid>
 //             <Grid item className="MuiGrid-centered-content">
-//               <Typography align="center" gutterBottom>
+//               <Typography align="center">
 //                 Material-UI started back in 2014 to unify{' '}
 //                 <Link href="https://reactjs.org/">React</Link> and{' '}
 //                 <Link href="https://material.io/design">Material Design</Link>.
@@ -395,7 +455,7 @@ export default function Page() {
 //               <Box
 //                 component="img"
 //                 src="/static/branding/block3.svg"
-//                 alt="Decorative blocks"
+//                 alt=""
 //                 sx={{
 //                   width: { xs: 80, md: 120 },
 //                   height: { xs: 80, md: 120 },
@@ -411,7 +471,7 @@ export default function Page() {
 //                 <Grid item className="MuiGrid-imageWrapper">
 //                   <Box
 //                     component="img"
-//                     alt="Decorative blocks"
+//                     alt=""
 //                     src="/static/branding/about/top-right.png"
 //                     sx={{ width: '100%' }}
 //                   />
@@ -441,7 +501,7 @@ export default function Page() {
 //             <Box
 //               component="img"
 //               src="/static/branding/block3.svg"
-//               alt="Decorative blocks"
+//               alt=""
 //               sx={{
 //                 width: 120,
 //                 height: 120,
@@ -459,17 +519,17 @@ export default function Page() {
 //           <Grid item lg={6} xs={12} className="MuiGrid-panel MuiGrid-panel-horizontalSpacing-xs">
 //             <Grid container spacing={1}>
 //               <Grid item>
-//                 <Typography variant="h2" gutterBottom>
+//                 <Typography variant="h2">
 //                   Our mission
 //                 </Typography>
 //               </Grid>
 //               <Grid item>
-//                 <Typography gutterBottom>
+//                 <Typography>
 //                   Our company is focused on making React UI development faster, simpler, and
 //                   accessible to more people. We build open source and commercial tools used by over
 //                   two millions developers in production.
 //                 </Typography>
-//                 <Typography gutterBottom>
+//                 <Typography>
 //                   We&apos;re proud not only of the products we make, but also the community and
 //                   partnerships we&apos;ve cultivated with other developers and companies.
 //                 </Typography>
@@ -490,7 +550,7 @@ export default function Page() {
 //             <Box
 //               component="img"
 //               src="/static/branding/block1-blue.svg"
-//               alt="Decorative blocks"
+//               alt=""
 //               sx={{
 //                 width: 290,
 //                 height: 120,
@@ -499,7 +559,7 @@ export default function Page() {
 //                 top: { xs: 'calc(100% - 60px)', md: 'calc(100% - 80px)' },
 //               }}
 //             />
-//             <Typography variant="h2" gutterBottom>
+//             <Typography variant="h2">
 //               Our values
 //             </Typography>
 //             <BulletItem>Transparency, most of our work is public</BulletItem>
@@ -512,7 +572,7 @@ export default function Page() {
 
 //         <Grid container className="MuiGrid-centered" alignItems="center">
 //           <Grid item>
-//             <Typography variant="h3" align="center" gutterBottom>
+//             <Typography variant="h3" align="center">
 //               <UnderlinedText>Our vision is</UnderlinedText> to provide material to build UIs. We
 //               have an elegant React implementation of the Material Design guidelines that can be
 //               customized to fully match your brand.
@@ -530,7 +590,7 @@ export default function Page() {
 //             />
 //           </Grid>
 //           <Grid item md={6} xs={12} className="MuiGrid-panel MuiGrid-smallLeftSpacing">
-//             <Typography gutterBottom>
+//             <Typography>
 //               The Material Design guidelines are an incredible starting point, but they do not
 //               provide guidance on all aspects or needs of an application. In addition to the
 //               guidelines-specific implementation,{' '}
@@ -549,7 +609,7 @@ export default function Page() {
 
 //         <Grid container spacing={1} alignItems="center">
 //           <Grid item md={6} xs={12} className="MuiGrid-panel MuiGrid-smallLeftSpacing">
-//             <Typography gutterBottom>
+//             <Typography>
 //               <b>
 //                 We focus on providing all the low-level tools needed to build a rich user-interface
 //                 with React.
@@ -589,7 +649,7 @@ export default function Page() {
 //             </Quote>
 //           </Grid>
 //           <Grid item lg={6} md={12} className="MuiGrid-panel MuiGrid-panel-horizontalSpacing-xs">
-//             <Typography variant="h4" gutterBottom>
+//             <Typography variant="h4">
 //               From a developer&apos;s point of view, we want Material-UI to:
 //             </Typography>
 //             <BulletItem>Deliver on fully encapsulated/composable React components,</BulletItem>
@@ -606,7 +666,7 @@ export default function Page() {
 //           <Box
 //             component="img"
 //             src="/static/branding/block4.svg"
-//             alt="Decorative blocks"
+//             alt=""
 //             sx={{
 //               width: 210,
 //               height: 170,
@@ -616,7 +676,7 @@ export default function Page() {
 //             }}
 //           />
 //           <Grid item xs={12}>
-//             <Typography variant="h2" gutterBottom>
+//             <Typography variant="h2">
 //               Team
 //             </Typography>
 //           </Grid>
@@ -632,7 +692,7 @@ export default function Page() {
 //           <Box
 //             component="img"
 //             src="/static/branding/block1-white.svg"
-//             alt="Decorative blocks"
+//             alt=""
 //             sx={{
 //               width: 293,
 //               height: 120,
@@ -642,12 +702,12 @@ export default function Page() {
 //             }}
 //           />
 //           <Grid item xs={12}>
-//             <Typography variant="h2" gutterBottom>
+//             <Typography variant="h2">
 //               <UnderlinedText>Company</UnderlinedText>
 //             </Typography>
 //           </Grid>
 //           <Grid item lg={7} xs={12}>
-//             <Typography gutterBottom>
+//             <Typography>
 //               The development of the project and its ecosystem is guided by an international team.
 //             </Typography>
 //           </Grid>
@@ -722,7 +782,7 @@ export default function Page() {
 //           <Box
 //             component="img"
 //             src="/static/branding/block2.svg"
-//             alt="Decorative blocks"
+//             alt=""
 //             sx={{
 //               width: 196,
 //               height: 139,
@@ -732,12 +792,12 @@ export default function Page() {
 //             }}
 //           />
 //           <Grid item xs={12}>
-//             <Typography variant="h2" gutterBottom>
+//             <Typography variant="h2">
 //               <UnderlinedText>Community contributors</UnderlinedText>
 //             </Typography>
 //           </Grid>
 //           <Grid item xs={7}>
-//             <Typography gutterBottom>
+//             <Typography>
 //               Some members of the community have so enriched it, that they deserve special mention.
 //             </Typography>
 //           </Grid>
@@ -802,12 +862,12 @@ export default function Page() {
 
 //         <Grid container className="MuiGrid-emeriti MuiGrid-panel" spacing={1}>
 //           <Grid item xs={12}>
-//             <Typography variant="h2" gutterBottom>
+//             <Typography variant="h2">
 //               Community <UnderlinedText>Emeriti</UnderlinedText>
 //             </Typography>
 //           </Grid>
 //           <Grid item xs={7}>
-//             <Typography gutterBottom>
+//             <Typography>
 //               We honor some no-longer-active core team members who have made valuable contributons
 //               in the past. They advise us from time-to-time.
 //             </Typography>
@@ -900,41 +960,6 @@ export default function Page() {
 //                   size="small"
 //                 />
 //               </Grid>
-//             </Grid>
-//           </Grid>
-//         </Grid>
-
-//         <Grid container className="MuiGrid-panelInverted MuiGrid-joinOurTeam" spacing={1}>
-//           <Box
-//             component="img"
-//             src="/static/branding/block6.svg"
-//             alt="Decorative blocks"
-//             sx={{
-//               width: 370,
-//               height: 326,
-//               position: 'absolute',
-//               right: { xs: -200, md: -180, lg: -150 },
-//               bottom: { xs: -200, md: -100, lg: 0 },
-//             }}
-//           />
-//           <Grid item xs={12}>
-//             <Typography variant="h2" align="center" gutterBottom>
-//               Join our team of creators &amp; innovators
-//             </Typography>
-//           </Grid>
-
-//           <Grid item xs={12}>
-//             <Typography align="center" gutterBottom>
-//               If you love the challenge of doing things differently, empowering creativity, and
-//               making real connections along the way–then this may be the place for you.
-//             </Typography>
-//           </Grid>
-
-//           <Grid item xs={12}>
-//             <Grid container justifyContent="center">
-//               <Button href="/company/jobs/" variant="contained" endIcon={<NavigateNextIcon />}>
-//                 See Open Positions
-//               </Button>
 //             </Grid>
 //           </Grid>
 //         </Grid>

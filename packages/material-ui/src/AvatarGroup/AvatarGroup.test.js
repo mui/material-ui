@@ -21,7 +21,7 @@ describe('<AvatarGroup />', () => {
       refInstanceof: window.HTMLDivElement,
       testDeepOverrides: { slotName: 'avatar', slotClassName: classes.avatar },
       testVariantProps: { max: 10, spacing: 'small', variant: 'square' },
-      skip: ['componentsProp'],
+      skip: ['componentProp', 'componentsProp'],
     }),
   );
 

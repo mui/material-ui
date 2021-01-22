@@ -23,5 +23,6 @@
   "filename": "/packages/material-ui/src/StepContent/StepContent.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }

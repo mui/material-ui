@@ -49,4 +49,5 @@
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
   "styledComponent": true
+  "cssComponent": false
 }
