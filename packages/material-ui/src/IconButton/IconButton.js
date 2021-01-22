@@ -66,6 +66,8 @@ const IconButtonRoot = experimentalStyled(
         backgroundColor: 'transparent',
       },
     },
+  }),
+  ({ theme, styleProps }) => ({
     /* Styles applied to the root element if `edge="start"`. */
     ...(styleProps.edge === 'start' && {
       marginLeft: styleProps.size === 'small' ? -3 : -12,
@@ -74,6 +76,8 @@ const IconButtonRoot = experimentalStyled(
     ...(styleProps.edge === 'end' && {
       marginRight: styleProps.size === 'small' ? -3 : -12,
     }),
+  }),
+  ({ theme, styleProps }) => ({
     /* Styles applied to the root element if `color="inherit"`. */
     ...(styleProps.color === 'inherit' && {
       color: 'inherit',
@@ -100,6 +104,8 @@ const IconButtonRoot = experimentalStyled(
         },
       },
     }),
+  }),
+  ({ theme, styleProps }) => ({
     /* Styles applied to the root element if `size="small"`. */
     ...(styleProps.size === 'small' && {
       padding: 3,
