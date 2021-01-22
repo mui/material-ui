@@ -14,7 +14,14 @@ const useUtilityClasses = (styleProps) => {
   const { classes, breakpoints } = styleProps;
 
   const slots = {
-    root: ['root', ...breakpoints],
+    root: [
+      'root',
+      ...breakpoints.map(({ breakpoint, dir }) => {
+        return dir === 'only'
+          ? `${dir}${capitalize(breakpoint)}`
+          : `${breakpoint}${capitalize(dir)}`;
+      }),
+    ],
   };
 
   return composeClasses(slots, getHiddenCssUtilityClass, classes);
@@ -35,18 +42,18 @@ const HiddenCssRoot = experimentalStyled(
 
   return {
     ...styleProps.breakpoints
-      .map((key) => {
-        if (key.startsWith('only')) {
+      .map(({ breakpoint, dir }) => {
+        if (dir === 'only') {
           return {
-            [theme.breakpoints.only(key.replace('only', ''))]: hidden,
+            [theme.breakpoints.only(breakpoint)]: hidden,
           };
         }
-        return key.endsWith('Up')
+        return dir === 'up'
           ? {
-              [theme.breakpoints.up(key.replace('Up', ''))]: hidden,
+              [theme.breakpoints.up(breakpoint)]: hidden,
             }
           : {
-              [theme.breakpoints.down(key.replace('Down', ''))]: hidden,
+              [theme.breakpoints.down(breakpoint)]: hidden,
             };
       })
       .reduce((r, o) => {
@@ -91,17 +98,17 @@ const HiddenCss = React.forwardRef(function HiddenCss(inProps) {
     const breakpointDown = other[`${breakpoint}Down`];
 
     if (breakpointUp) {
-      breakpoints.push(`${breakpoint}Up`);
+      breakpoints.push({ breakpoint, dir: 'up' });
     }
     if (breakpointDown) {
-      breakpoints.push(`${breakpoint}Down`);
+      breakpoints.push({ breakpoint, dir: 'down' });
     }
   }
 
   if (only) {
     const onlyBreakpoints = Array.isArray(only) ? only : [only];
     onlyBreakpoints.forEach((breakpoint) => {
-      breakpoints.push(`only${capitalize(breakpoint)}`);
+      breakpoints.push({ breakpoint, dir: 'only' });
     });
   }
 
