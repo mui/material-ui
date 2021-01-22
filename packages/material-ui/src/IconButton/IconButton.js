@@ -102,8 +102,6 @@ const IconButtonRoot = experimentalStyled(
         },
       },
     }),
-  }),
-  ({ theme, styleProps }) => ({
     /* Styles applied to the root element if `size="small"`. */
     ...(styleProps.size === 'small' && {
       padding: 3,
