@@ -204,15 +204,15 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
   const styleProps = {
-    ...other,
-    button,
-    children: childrenProp,
-    dense: dense || context.dense || false,
+    ...props,
     alignItems,
-    divider,
-    disableGutters,
-    selected,
+    autoFocus,
+    button,
+    dense: dense || context.dense || false,
     disabled,
+    disableGutters,
+    divider,
+    selected,
     hasSecondaryAction,
   };
 
