@@ -1,5 +1,6 @@
 {
   "props": {
+    "value": { "type": { "name": "any" }, "required": true },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "disabled": { "type": { "name": "bool" } },
@@ -12,8 +13,7 @@
         "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
       "default": "'medium'"
-    },
-    "value": { "type": { "name": "any" }, "required": true }
+    }
   },
   "name": "ToggleButton",
   "styles": {
