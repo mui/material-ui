@@ -27,6 +27,7 @@ function BrandingTeam() {
           component="img"
           src="/static/branding/block4.svg"
           alt=""
+          loading="lazy"
           sx={{
             width: 207,
             height: 171,
@@ -103,6 +104,7 @@ function BrandingCompany() {
         <Box
           component="img"
           src="/static/branding/block1-white.svg"
+          loading="lazy"
           alt=""
           sx={{
             width: 293,
@@ -161,6 +163,7 @@ function BrandingContributors() {
         <Box
           component="img"
           src="/static/branding/block2.svg"
+          loading="lazy"
           alt=""
           sx={{
             width: 196,
@@ -315,6 +318,7 @@ function BrandingJoinUs() {
       <Box
         component="img"
         src="/static/branding/block6.svg"
+        loading="lazy"
         alt=""
         sx={{
           width: 570,

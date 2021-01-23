@@ -50,14 +50,21 @@ interface BrandingPersonaProps {
 export default function BrandingPersona(props: BrandingPersonaProps) {
   const { name, src, srcSet, title, location, twitter, github, size = 'large' } = props;
   return (
-    <PersonaRoot styleProps={{ size }}>
-      <Box
-        component="img"
+    <PersonaRoot
+      styleProps={{ size }}
+      sx={{
+        '& img': {
+          borderRadius: '50%',
+          display: 'block',
+          mb: 1,
+        },
+      }}
+    >
+      <img
         loading="lazy"
+        src={src}
         width={size === 'small' ? 120 : 200}
         height={size === 'small' ? 120 : 200}
-        src={src}
-        sx={{ borderRadius: '50%', display: 'block', mb: 1 }}
         srcSet={srcSet}
         alt=""
       />
