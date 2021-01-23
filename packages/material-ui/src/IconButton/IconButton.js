@@ -47,7 +47,7 @@ const IconButtonRoot = experimentalStyled(
     overridesResolver,
   },
 )(
-  ({ theme }) => ({
+  ({ theme, styleProps }) => ({
     /* Styles applied to the root element. */
     textAlign: 'center',
     flex: '0 0 auto',
