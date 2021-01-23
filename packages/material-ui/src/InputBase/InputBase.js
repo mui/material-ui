@@ -14,7 +14,7 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 import TextareaAutosize from '../TextareaAutosize';
 import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
-import { getInputBaseUtilityClass } from './inputBaseClasses';
+import { inputBaseClasses, getInputBaseUtilityClass } from './inputBaseClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -29,19 +29,15 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.color === 'secondary' && styles.colorSecondary),
     ...(styleProps.fullWidth && styles.fullWidth),
     ...(styleProps.hiddenLabel && styles.hiddenLabel),
-  });
-};
-
-const inputOverridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.input || {}, {
-    ...(styleProps.multiline === 'small' && styles.inputMultiline),
-    ...(styleProps.size === 'small' && styles.inputSizeSmall),
-    ...(styleProps.type === 'search' && styles.inputTypeSearch),
-    ...(styleProps.startAdornment && styles.inputAdornedStart),
-    ...(styleProps.endAdornment && styles.inputAdornedEnd),
-    ...(styleProps.hiddenLabel && styles.inputHiddenLabel),
+    [`& .${inputBaseClasses.input}`]: {
+      ...styles.input,
+      ...(styleProps.size === 'small' && styles.inputSizeSmall),
+      ...(styleProps.multiline && styles.inputMultiline),
+      ...(styleProps.type === 'search' && styles.inputTypeSearch),
+      ...(styleProps.startAdornment && styles.inputAdornedStart),
+      ...(styleProps.endAdornment && styles.inputAdornedEnd),
+      ...(styleProps.hiddenLabel && styles.inputHiddenLabel),
+    },
   });
 };
 
@@ -129,7 +125,6 @@ const InputBaseComponent = experimentalStyled(
   {
     name: 'MuiInputBase',
     slot: 'Input',
-    overridesResolver: inputOverridesResolver,
   },
 )(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
