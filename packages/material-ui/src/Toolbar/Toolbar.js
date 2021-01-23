@@ -70,6 +70,7 @@ const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
 
   const styleProps = {
     ...props,
+    component,
     disableGutters,
     variant,
   };
