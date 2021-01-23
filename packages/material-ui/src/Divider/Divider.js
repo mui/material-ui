@@ -36,14 +36,14 @@ const overridesResolver = (props, styles) => {
 
 const useUtilityClasses = (styleProps) => {
   const {
-    classes,
-    variant,
     absolute,
+    children,
+    classes,
     flexItem,
     light,
     orientation,
-    children,
     textAlign,
+    variant,
   } = styleProps;
 
   const slots = {
