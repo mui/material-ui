@@ -82,10 +82,6 @@ export function getByMuiTest(...args: Parameters<typeof getAllByMuiTest>): Eleme
   );
 }
 
-export function openDesktopPicker() {
-  fireEvent.click(screen.getByLabelText(/choose date/i));
-}
-
 export function openMobilePicker() {
   fireEvent.click(screen.getByRole('textbox'));
 }
