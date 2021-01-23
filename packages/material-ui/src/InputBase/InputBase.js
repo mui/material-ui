@@ -14,7 +14,7 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 import TextareaAutosize from '../TextareaAutosize';
 import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
-import { inputBaseClasses, getInputBaseUtilityClass } from './inputBaseClasses';
+import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
