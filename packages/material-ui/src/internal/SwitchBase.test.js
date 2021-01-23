@@ -21,7 +21,7 @@ describe('<SwitchBase />', () => {
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
       testVariantProps: { disabled: true },
-       testThemeComponentsDefaultPropName: 'data-test',
+      testThemeComponentsDefaultPropName: 'data-test',
       skip: ['componentsProp'],
     }),
   );
