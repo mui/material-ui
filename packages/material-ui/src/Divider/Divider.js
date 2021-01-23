@@ -108,8 +108,6 @@ const DividerRoot = experimentalStyled(
       borderBottomWidth: 0,
       borderRightWidth: 'thin',
     }),
-  }),
-  ({ styleProps }) => ({
     /* Styles applied to the root element if `flexItem={true}`. */
     ...(styleProps.flexItem && {
       alignSelf: 'stretch',
