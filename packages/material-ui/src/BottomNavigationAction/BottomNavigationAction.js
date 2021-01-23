@@ -123,11 +123,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     ...other
   } = props;
 
-  const styleProps = {
-    ...props,
-    selected,
-    showLabel,
-  };
+  const styleProps = props;
 
   const classes = useUtilityClasses(styleProps);
 
