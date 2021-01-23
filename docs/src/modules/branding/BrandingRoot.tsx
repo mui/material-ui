@@ -208,14 +208,14 @@ theme = createMuiTheme(theme, {
             boxShadow: `0 0 0 0.25rem ${alpha(theme.palette.greyD7, 0.5)}`,
           },
           '&:hover': {
-            backgroundColor: darken(theme.palette.greyD7, 0.1),
+            backgroundColor: darken(theme.palette.greyD7, 0.07),
             // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
               backgroundColor: theme.palette.greyD7,
             },
           },
           '&:active': {
-            backgroundColor: darken(theme.palette.greyD7, 0.2),
+            backgroundColor: darken(theme.palette.greyD7, 0.18),
           },
         },
       },
@@ -227,29 +227,14 @@ theme = createMuiTheme(theme, {
               boxShadow: `0 0 0 0.25rem ${alpha(theme.palette.primary.main, 0.5)}`,
             },
             '&:hover': {
-              backgroundColor: darken(theme.palette.primary.main, 0.15),
+              backgroundColor: darken(theme.palette.primary.main, 0.12),
               // Reset on touch devices, it doesn't add specificity
               '@media (hover: none)': {
                 backgroundColor: theme.palette.primary.main,
               },
             },
             '&:active': {
-              backgroundColor: darken(theme.palette.primary.main, 0.3),
-            },
-          },
-        },
-        {
-          props: { variant: 'contained', color: 'secondary' },
-          style: {
-            '&:hover': {
-              backgroundColor: darken(theme.palette.secondary.main, 0.15),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: theme.palette.secondary.main,
-              },
-            },
-            '&:active': {
-              backgroundColor: darken(theme.palette.secondary.main, 0.3),
+              backgroundColor: darken(theme.palette.primary.main, 0.25),
             },
           },
         },
