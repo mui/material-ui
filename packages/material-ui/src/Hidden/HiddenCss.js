@@ -4,11 +4,8 @@ import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import experimentalStyled from '../styles/experimentalStyled';
-import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
 import { getHiddenCssUtilityClass } from './hiddenCssClasses';
-
-const overridesResolver = (props, styles) => styles.root || {};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, breakpoints } = styleProps;
@@ -33,7 +30,6 @@ const HiddenCssRoot = experimentalStyled(
   {
     name: 'PrivateHiddenCss',
     slot: 'Root',
-    overridesResolver,
   },
 )(({ theme, styleProps }) => {
   const hidden = {
@@ -68,8 +64,7 @@ const HiddenCssRoot = experimentalStyled(
 /**
  * @ignore - internal component.
  */
-const HiddenCss = React.forwardRef(function HiddenCss(inProps) {
-  const props = useThemeProps({ props: inProps, name: 'PrivateHiddenCss' });
+const HiddenCss = React.forwardRef(function HiddenCss(props) {
   const { children, className, only, ...other } = props;
   const theme = useTheme();
 
