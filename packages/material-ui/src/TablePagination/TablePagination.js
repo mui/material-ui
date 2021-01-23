@@ -32,11 +32,12 @@ export const styles = (theme) => ({
   spacer: {
     flex: '1 1 100%',
   },
-  /* Styles applied to the caption Typography component if `variant="caption"`. */
+  /* Styles applied to the select label Typography element. */
   selectLabel: {
     flexShrink: 0,
   },
-  caption: {
+  /* Styles applied to the displayed rows Typography element. */
+  displayedRows: {
     flexShrink: 0,
   },
   // TODO v5: `.selectRoot` should be merged with `.input`
@@ -154,7 +155,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
           </Select>
         )}
 
-        <Typography color="inherit" variant="body2" className={classes.caption}>
+        <Typography color="inherit" variant="body2" className={classes.displayedRows}>
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
             to: getLabelDisplayedRowsTo(),

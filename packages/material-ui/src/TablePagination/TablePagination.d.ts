@@ -36,8 +36,10 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
         toolbar?: string;
         /** Styles applied to the spacer element. */
         spacer?: string;
-        /** Styles applied to the caption Typography component if `variant="caption"`. */
-        caption?: string;
+        /** Styles applied to the select label Typography element. */
+        selectLabel?: string;
+        /** Styles applied to the displayed rows Typography element. */
+        displayedRows?: string;
         /** Styles applied to the Select component root element. */
         selectRoot?: string;
         /** Styles applied to the Select component `select` class. */
