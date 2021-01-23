@@ -36,10 +36,6 @@ export const styles = (theme) => ({
   selectLabel: {
     flexShrink: 0,
   },
-  /* Styles applied to the displayed rows Typography element. */
-  displayedRows: {
-    flexShrink: 0,
-  },
   // TODO v5: `.selectRoot` should be merged with `.input`
   /* Styles applied to the Select component root element. */
   selectRoot: {
@@ -64,6 +60,10 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the MenuItem component. */
   menuItem: {},
+  /* Styles applied to the displayed rows Typography element. */
+  displayedRows: {
+    flexShrink: 0,
+  },
   /* Styles applied to the internal `TablePaginationActions` component. */
   actions: {
     flexShrink: 0,

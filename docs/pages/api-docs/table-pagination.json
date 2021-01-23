@@ -37,12 +37,12 @@
       "toolbar",
       "spacer",
       "selectLabel",
-      "displayedRows",
       "selectRoot",
       "select",
       "selectIcon",
       "input",
       "menuItem",
+      "displayedRows",
       "actions"
     ],
     "globalClasses": {},

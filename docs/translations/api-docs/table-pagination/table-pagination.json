@@ -33,10 +33,6 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the select label Typography element"
     },
-    "displayedRows": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the displayed rows Typography element"
-    },
     "selectRoot": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Select component root element"
@@ -56,6 +52,10 @@
     "menuItem": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the MenuItem component"
+    },
+    "displayedRows": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the displayed rows Typography element"
     },
     "actions": {
       "description": "Styles applied to {{nodeName}}.",
