@@ -86,29 +86,25 @@ const BottomNavigationActionLabel = experimentalStyled(
     name: 'MuiBottomNavigationAction',
     slot: 'Label',
   },
-)(
-  ({ theme }) => ({
-    /* Styles applied to the label's span element. */
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(12),
-    opacity: 1,
-    transition: 'font-size 0.2s, opacity 0.2s',
-    transitionDelay: '0.1s',
-  }),
-  ({ styleProps }) => ({
-    ...(!styleProps.showLabel &&
-      !styleProps.selected && {
-        opacity: 0,
-        transitionDelay: '0s',
-      }),
-  }),
-  ({ theme, styleProps }) => ({
-    ...(styleProps.selected && {
+)(({ theme, styleProps }) => ({
+  /* Styles applied to the label's span element. */
+  fontFamily: theme.typography.fontFamily,
+  fontSize: theme.typography.pxToRem(12),
+  opacity: 1,
+  transition: 'font-size 0.2s, opacity 0.2s',
+  transitionDelay: '0.1s',
+  ...(!styleProps.showLabel &&
+    !styleProps.selected && {
+      opacity: 0,
+      transitionDelay: '0s',
+    }),
+  ...(styleProps.selected && {
+    [`&.${bottomNavigationActionClasses.selected}`]: {
       paddingTop: 6,
       color: theme.palette.primary.main,
-    }),
+    },
   }),
-);
+}));
 
 const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBottomNavigationAction' });
