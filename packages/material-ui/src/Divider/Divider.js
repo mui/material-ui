@@ -26,8 +26,10 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.textAlign === 'left' &&
       styleProps.orientation !== 'vertical' &&
       styles.textAlignLeft),
-    [`&.${dividerClasses.wrapper}`]: styles.wrapper,
-    [`&.${dividerClasses.wrapper} .${dividerClasses.wrapperVertical}`]: styles.wrapperVertical,
+    [`& .${dividerClasses.wrapper}`]: { 
+      ...styles.wrapper,
+      ...(styleProps.orientation === 'vertical' && styles.wrapperVertical),
+    },  
   });
 };
 
