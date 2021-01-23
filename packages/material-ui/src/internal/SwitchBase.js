@@ -1,20 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
-import useThemeProps from '../styles/useThemeProps';
 import useControlled from '../utils/useControlled';
 import useFormControl from '../FormControl/useFormControl';
 import IconButton from '../IconButton';
-import switchBaseClasses, { getSwitchBaseUtilityClass } from './switchBaseClasses';
-
-const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {
-    [`& .${switchBaseClasses.input}`]: styles.input,
-  });
-};
+import { getSwitchBaseUtilityClass } from './switchBaseClasses';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, checked, disabled } = styleProps;
@@ -33,7 +26,6 @@ const SwitchBaseRoot = experimentalStyled(
   {
     name: 'PrivateSwitchBase',
     slot: 'Root',
-    overridesResolver,
   },
 )({
   /* Styles applied to the root element. */
@@ -64,8 +56,7 @@ const SwitchBaseInput = experimentalStyled(
 /**
  * @ignore - internal component.
  */
-const SwitchBase = React.forwardRef(function SwitchBase(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'PrivateSwitchBase' });
+const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
   const {
     autoFocus,
     checked: checkedProp,

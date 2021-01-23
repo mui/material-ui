@@ -22,7 +22,7 @@ describe('<SwitchBase />', () => {
       testComponentPropWith: 'div',
       testVariantProps: { disabled: true },
       testThemeComponentsDefaultPropName: 'data-test',
-      skip: ['componentsProp'],
+      skip: ['componentsProp', 'themeDefaultProps', 'themeStyleOverrides'],
     }),
   );
 
