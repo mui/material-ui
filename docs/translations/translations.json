@@ -57,6 +57,10 @@
   "dashboardDescr": "A minimal dashboard with taskbar and mini variant draw. The chart is courtesy of Recharts, but it is simple to substitute an alternative.",
   "dashboardTitle": "Dashboard",
   "decreaseSpacing": "decrease spacing",
+  "demo": {
+    "pressEnter": "Press enter or type to enable tab-to-indent.",
+    "pressEscape": "Press escape to disable tab-to-indent."
+  },
   "demoToolbarLabel": "demo source",
   "diamondSponsors": "Diamond Sponsors",
   "editPage": "Edit this page",

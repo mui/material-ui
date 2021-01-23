@@ -71,10 +71,9 @@ function MarkdownDocs(props) {
           <Demo
             key={index}
             demo={{
+              imports: requireDemo(demo.module.replace('.js', 'Imports.js')).default,
               raw: demo.raw,
-              js: requireDemo(demo.module).default,
               rawTS: demo.rawTS,
-              tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
             }}
             disableAd={disableAd}
             demoOptions={renderedMarkdownOrDemo}

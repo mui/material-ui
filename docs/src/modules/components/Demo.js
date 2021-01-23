@@ -2,18 +2,19 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
+import { Error, Preview, Provider } from 'jarle';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import DemoEditor from './DemoEditor';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
+
 // Sync with styles from DemoToolbar
 // Importing the styles results in no bundle size reduction
 const useDemoToolbarFallbackStyles = makeStyles(
@@ -23,13 +24,14 @@ const useDemoToolbarFallbackStyles = makeStyles(
         display: 'none',
         [theme.breakpoints.up('sm')]: {
           display: 'flex',
-          height: theme.spacing(6),
+          height: 48,
         },
       },
     };
   },
   { name: 'DemoToolbar' },
 );
+
 export function DemoToolbarFallback() {
   const classes = useDemoToolbarFallbackStyles();
   const t = useTranslate();
@@ -46,24 +48,24 @@ function getDemoName(location) {
 function useDemoData(codeVariant, demo, githubLocation) {
   const userLanguage = useUserLanguage();
   const title = `${getDemoName(githubLocation)} Material Demo`;
+
   if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
     return {
       codeVariant: CODE_VARIANTS.TS,
       githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
       language: userLanguage,
       raw: demo.rawTS,
-      Component: demo.tsx,
+      imports: demo.imports,
       sourceLanguage: 'tsx',
       title,
     };
   }
-
   return {
     codeVariant: CODE_VARIANTS.JS,
     githubLocation,
     language: userLanguage,
     raw: demo.raw,
-    Component: demo.js,
+    imports: demo.imports,
     sourceLanguage: 'jsx',
     title,
   };
@@ -131,21 +133,6 @@ const useStyles = makeStyles(
         paddingTop: theme.spacing(3),
       },
     },
-    code: {
-      display: 'none',
-      padding: 0,
-      marginBottom: theme.spacing(1),
-      marginRight: 0,
-      [theme.breakpoints.up('sm')]: {
-        display: 'block',
-      },
-      '& pre': {
-        overflow: 'auto',
-        lineHeight: 1.5,
-        margin: '0 !important',
-        maxHeight: 'min(68vh, 1000px)',
-      },
-    },
     anchorLink: {
       marginTop: -64, // height of toolbar
       position: 'absolute',
@@ -174,15 +161,7 @@ export default function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
-  const DemoComponent = demoData.Component;
   const demoName = getDemoName(demoData.githubLocation);
-  const demoSandboxedStyle = React.useMemo(
-    () => ({
-      maxWidth: demoOptions.maxWidth,
-      height: demoOptions.height,
-    }),
-    [demoOptions.height, demoOptions.maxWidth],
-  );
 
   if (demoOptions.bg == null) {
     demoOptions.bg = 'outlined';
@@ -212,7 +191,23 @@ export default function Demo(props) {
     jsx !== demoData.raw &&
     jsx.split(/\n/).length <= 17;
 
+  const [editorValue, setEditorValue] = React.useState(demoData.raw.trim());
+  const handleEditorValueChange = (value) => {
+    setEditorValue(value);
+  };
+
+  const handleEditorFocus = () => {
+    setCodeOpen(true);
+  };
+
   const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
+
+  const handleResetDemo = () => {
+    resetDemo();
+    setEditorValue(demoData.raw);
+  };
+
+  const resolveImports = () => demoData.imports;
 
   const demoId = useUniqueId('demo-');
   const demoSourceId = useUniqueId(`demoSource-`);
@@ -241,14 +236,10 @@ export default function Demo(props) {
           action={initialFocusRef}
           tabIndex={-1}
         />
-        <DemoSandboxed
-          key={demoKey}
-          style={demoSandboxedStyle}
-          component={DemoComponent}
-          iframe={demoOptions.iframe}
-          name={demoName}
-          onResetDemoClick={resetDemo}
-        />
+        <Provider code={editorValue} resolveImports={resolveImports}>
+          <Preview key={demoKey} />
+          <Error />
+        </Provider>
       </div>
       <div className={classes.anchorLink} id={`${demoName}.js`} />
       <div className={classes.anchorLink} id={`${demoName}.tsx`} />
@@ -270,7 +261,7 @@ export default function Demo(props) {
                 setCodeOpen((open) => !open);
                 setShowAd(true);
               }}
-              onResetDemoClick={resetDemo}
+              onResetDemoClick={handleResetDemo}
               openDemoSource={openDemoSource}
               showPreview={showPreview}
             />
@@ -278,14 +269,11 @@ export default function Demo(props) {
         </NoSsr>
       )}
       <Collapse in={openDemoSource} unmountOnExit>
-        <div>
-          <HighlightedCode
-            className={classes.code}
-            id={demoSourceId}
-            code={showPreview && !codeOpen ? jsx : demoData.raw}
-            language={demoData.sourceLanguage}
-          />
-        </div>
+        <DemoEditor
+          value={showPreview && !codeOpen ? jsx : editorValue}
+          onValueChange={handleEditorValueChange}
+          onFocus={handleEditorFocus}
+        />
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
     </div>
