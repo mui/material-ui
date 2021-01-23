@@ -12,8 +12,6 @@ import switchBaseClasses, { getSwitchBaseUtilityClass } from './switchBaseClasse
 
 const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
-    [`&.${switchBaseClasses.checked}`]: styles.checked,
-    [`&.${switchBaseClasses.disabled}`]: styles.disabled,
     [`& .${switchBaseClasses.input}`]: styles.input,
   });
 };
