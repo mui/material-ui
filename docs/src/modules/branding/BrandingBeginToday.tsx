@@ -18,6 +18,7 @@ export default function BrandingBeginToday() {
       <Box
         component="img"
         src="/static/branding/block5.png"
+        loading="lazy"
         alt=""
         sx={{
           height: '100%',
@@ -45,13 +46,14 @@ export default function BrandingBeginToday() {
         <Box
           component="img"
           src="/static/branding/block1-blue.svg"
+          loading="lazy"
           alt=""
           sx={{
             width: 293,
             height: 120,
             position: 'absolute',
             right: 0,
-            top: 'calc(100% - 81px)',
+            top: 'calc(100% - 79px)',
             visibility: ['hidden', 'visible'],
           }}
         />
