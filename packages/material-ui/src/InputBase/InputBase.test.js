@@ -20,7 +20,7 @@ describe('<InputBase />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInputBase',
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render an <input /> inside the div', () => {
