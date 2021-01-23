@@ -64,7 +64,7 @@ const HiddenCssRoot = experimentalStyled(
 /**
  * @ignore - internal component.
  */
-const HiddenCss = React.forwardRef(function HiddenCss(props) {
+function HiddenCss(props) {
   const { children, className, only, ...other } = props;
   const theme = useTheme();
 
@@ -119,7 +119,7 @@ const HiddenCss = React.forwardRef(function HiddenCss(props) {
       {children}
     </HiddenCssRoot>
   );
-});
+}
 
 HiddenCss.propTypes = {
   /**
