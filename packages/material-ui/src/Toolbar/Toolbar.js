@@ -30,7 +30,7 @@ const ToolbarRoot = experimentalStyled(
   'div',
   {},
   {
-    name: 'MuiToobar',
+    name: 'MuiToolbar',
     slot: 'Root',
     overridesResolver,
   },

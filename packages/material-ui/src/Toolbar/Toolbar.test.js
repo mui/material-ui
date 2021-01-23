@@ -14,8 +14,9 @@ describe('<Toolbar />', () => {
     mount,
     muiName: 'MuiToolbar',
     refInstanceof: window.HTMLDivElement,
-    testVariantProps: { disableGutters: true, variant: 'regular' },
-    skip: ['componentsProps'],
+    testVariantProps: { variant: 'foo' },
+    testStateOverrides: { prop: 'variant', value: 'foo', styleKey: 'foo' },
+    skip: ['componentsProp'],
   }));
 
   it('should render with gutters class', () => {
