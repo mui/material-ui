@@ -20,17 +20,17 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...(styleProps.color === 'secondary' && styles.colorSecondary),
+    ...(styleProps.formControl && styles.formControl),
+    ...(styleProps.focused && styles.focused),
     ...(styleProps.disabled && styles.disabled),
+    ...(styleProps.startAdornment && styles.adornedStart),
     ...(styleProps.endAdornment && styles.adornedEnd),
     ...(styleProps.error && styles.error),
-    ...(styleProps.focused && styles.focused),
-    ...(styleProps.formControl && styles.formControl),
+    ...(styleProps.size === 'small' && styles.sizeSmall),
+    ...(styleProps.multiline && styles.multiline),
+    ...(styleProps.color === 'secondary' && styles.colorSecondary),
     ...(styleProps.fullWidth && styles.fullWidth),
     ...(styleProps.hiddenLabel && styles.hiddenLabel),
-    ...(styleProps.multiline && styles.multiline),
-    ...(styleProps.size === 'small' && styles.sizeSmall),
-    ...(styleProps.startAdornment && styles.adornedStart),
   });
 };
 
