@@ -17,11 +17,10 @@ describe('<SwitchBase />', () => {
       classes,
       inheritComponent: IconButton,
       mount,
-      muiName: 'PrivateSwitchBase',
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
       testVariantProps: { disabled: true },
-      skip: ['componentsProp', 'themeDefaultProps', 'themeStyleOverrides'],
+      skip: ['componentsProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
     }),
   );
 
