@@ -33,6 +33,9 @@ export const styles = (theme) => ({
     flex: '1 1 100%',
   },
   /* Styles applied to the caption Typography component if `variant="caption"`. */
+  selectLabel: {
+    flexShrink: 0,
+  },
   caption: {
     flexShrink: 0,
   },
@@ -121,7 +124,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
       <Toolbar className={classes.toolbar}>
         <div className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (
-          <Typography color="inherit" variant="body2" className={classes.caption} id={labelId}>
+          <Typography color="inherit" variant="body2" className={classes.selectLabel} id={labelId}>
             {labelRowsPerPage}
           </Typography>
         )}
