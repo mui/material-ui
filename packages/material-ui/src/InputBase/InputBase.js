@@ -70,7 +70,6 @@ const useUtilityClasses = (styleProps) => {
       multiline && 'multiline',
       startAdornment && 'adornedStart',
       endAdornment && 'adornedEnd',
-      focused && 'focused',
       hiddenLabel && 'hiddenLabel',
     ],
     input: [
@@ -78,6 +77,7 @@ const useUtilityClasses = (styleProps) => {
       disabled && 'disabled',
       type === 'search' && 'inputTypeSearch',
       multiline && 'inputMultiline',
+      size === 'small' && 'inputSizeSmall',
       hiddenLabel && 'inputHiddenLabel',
       startAdornment && 'inputAdornedStart',
       endAdornment && 'inputAdornedEnd',
