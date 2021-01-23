@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -27,6 +29,10 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
      * @default false
      */
     showLabels?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The value of the currently selected `BottomNavigationAction`.
      */

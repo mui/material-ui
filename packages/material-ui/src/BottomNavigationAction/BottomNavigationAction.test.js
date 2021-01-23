@@ -2,31 +2,29 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   createClientRender,
   within,
   fireEvent,
 } from 'test/utils';
 import ButtonBase from '../ButtonBase';
 import BottomNavigationAction from './BottomNavigationAction';
+import classes from './bottomNavigationActionClasses';
 
 describe('<BottomNavigationAction />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<BottomNavigationAction />);
-  });
-
-  describeConformance(<BottomNavigationAction />, () => ({
+  describeConformanceV5(<BottomNavigationAction />, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
+    muiName: 'MuiBottomNavigationAction',
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
+    testVariantProps: { showLabel: true },
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('adds a `selected` class when selected', () => {
