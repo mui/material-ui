@@ -1,1 +1,3 @@
-export default function useEventCallback<T extends (...args: any[]) => any>(func: T): T;
+export default function useEventCallback<Args extends unknown[]>(
+  func: (...args: Args) => void
+): (...args: Args) => void;
