@@ -225,7 +225,7 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
   const styleProps = {
     ...props,
     absolute,
-    children,
+    component,
     flexItem,
     light,
     orientation,
