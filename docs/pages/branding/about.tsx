@@ -33,7 +33,7 @@ function BrandingTeam() {
             height: 171,
             position: 'absolute',
             right: { xs: 10, md: 0 },
-            bottom: -175,
+            bottom: -176,
           }}
         />
         <Typography variant="h2">Team</Typography>
@@ -111,7 +111,7 @@ function BrandingCompany() {
             height: 120,
             position: 'absolute',
             right: { xs: 20, md: 0 },
-            bottom: -130,
+            bottom: -129,
           }}
         />
         <Typography variant="h3">
@@ -170,7 +170,7 @@ function BrandingContributors() {
             height: 139,
             position: 'absolute',
             right: { xs: 30, md: 0 },
-            bottom: -132,
+            bottom: -131,
           }}
         />
         <Typography variant="h3">

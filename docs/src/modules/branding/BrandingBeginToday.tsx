@@ -53,7 +53,7 @@ export default function BrandingBeginToday() {
             height: 120,
             position: 'absolute',
             right: 0,
-            top: 'calc(100% - 81px)',
+            top: 'calc(100% - 79px)',
             visibility: ['hidden', 'visible'],
           }}
         />
