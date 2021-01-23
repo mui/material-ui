@@ -49,11 +49,11 @@ const useUtilityClasses = (styleProps) => {
   const slots = {
     root: [
       'root',
-      variant,
       absolute && 'absolute',
-      flexItem && 'flexItem',
+      variant,
       light && 'light',
       orientation === 'vertical' && 'vertical',
+      flexItem && 'flexItem',
       children && 'withChildren',
       children && orientation === 'vertical' && 'withChildrenVertical',
       textAlign === 'right' && orientation !== 'vertical' && 'textAlignRight',
