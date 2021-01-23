@@ -99,7 +99,11 @@ function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
     // 1. IE11 support, which trigger the handleClickAway even after the unbind
     // 2. The child might render null.
     // 3. Behave like a blur listener.
-    if (!activatedRef.current || !nodeRef.current || clickedRootScrollbar(event, doc)) {
+    if (
+      !activatedRef.current ||
+      !nodeRef.current ||
+      ('clientX' in event && clickedRootScrollbar(event, doc))
+    ) {
       return;
     }
 
