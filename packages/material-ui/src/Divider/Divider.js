@@ -184,19 +184,15 @@ const DividerWrapper = experimentalStyled(
     name: 'MuiDivider',
     slot: 'Wrapper',
   },
-)(
-  ({ theme }) => ({
-    display: 'inline-block',
-    paddingLeft: theme.spacing(1.2),
-    paddingRight: theme.spacing(1.2),
+)(({ theme, styleProps }) => ({
+  display: 'inline-block',
+  paddingLeft: theme.spacing(1.2),
+  paddingRight: theme.spacing(1.2),
+  ...(styleProps.orientation === 'vertical' && {
+    paddingTop: theme.spacing(1.2),
+    paddingBottom: theme.spacing(1.2),
   }),
-  ({ theme, styleProps }) => ({
-    ...(styleProps.orientation === 'vertical' && {
-      paddingTop: theme.spacing(1.2),
-      paddingBottom: theme.spacing(1.2),
-    }),
-  }),
-);
+}));
 
 const Divider = React.forwardRef(function Divider(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
