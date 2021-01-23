@@ -93,6 +93,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   const styleProps = {
     ...props,
     color,
+    component,
     disableGutters,
     disableSticky,
     inset,
