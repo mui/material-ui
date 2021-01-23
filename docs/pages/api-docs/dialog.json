@@ -1,5 +1,6 @@
 {
   "props": {
+    "open": { "type": { "name": "bool" }, "required": true },
     "aria-describedby": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
     "children": { "type": { "name": "node" } },
@@ -16,7 +17,6 @@
     },
     "onBackdropClick": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" }, "required": true },
     "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "scroll": {

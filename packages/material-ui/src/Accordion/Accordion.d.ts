@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PaperProps } from '../Paper';
 
@@ -45,6 +46,10 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
    * @param {boolean} expanded The `expanded` state of the accordion.
    */
   onChange?: (event: React.SyntheticEvent, expanded: boolean) => void;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
