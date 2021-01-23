@@ -61,7 +61,7 @@ const BreadcrumbCollapsedIcon = experimentalStyled(
 /**
  * @ignore - internal component.
  */
-const BreadcrumbCollapsed = React.forwardRef(function BreadcrumbCollapsed(props) {
+function BreadcrumbCollapsed(props) {
   const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
@@ -77,7 +77,7 @@ const BreadcrumbCollapsed = React.forwardRef(function BreadcrumbCollapsed(props)
       </BreadcrumbCollapsedButton>
     </li>
   );
-});
+}
 
 BreadcrumbCollapsed.propTypes = {
   /**
