@@ -74,7 +74,7 @@ const company = [
   {
     name: 'Damien Tassone',
     src: '/static/branding/about/damien.jpg',
-    title: 'Enterprise focus',
+    location: 'Barcelona, Spain',
     location: 'Lodon, UK',
     twitter: 'madKakoO',
     github: 'dtassone',
