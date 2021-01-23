@@ -1,74 +1,126 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
-import withStyles from '../styles/withStyles';
 import AccordionContext from '../Accordion/AccordionContext';
+import accordionSummaryClasses, {
+  getAccordionSummaryUtilityClass,
+} from './accordionSummaryClasses';
 
-export const styles = (theme) => {
+const overridesResolver = (props, styles) => {
+  return deepmerge(styles.root || {}, {
+    [`& .${accordionSummaryClasses.content}`]: styles.content,
+    [`& .${accordionSummaryClasses.expandIconWrapper}`]: styles.expandIconWrapper,
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, expanded, disabled } = styleProps;
+
+  const slots = {
+    root: ['root', expanded && 'expanded', disabled && 'disabled'],
+    focusVisible: ['focusVisible'],
+    content: ['content', expanded && 'expanded'],
+    expandIconWrapper: ['expandIconWrapper', expanded && 'expanded'],
+  };
+
+  return composeClasses(slots, getAccordionSummaryUtilityClass, classes);
+};
+
+const AccordionSummaryRoot = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'MuiAccordionSummary',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
 
   return {
     /* Styles applied to the root element. */
-    root: {
-      display: 'flex',
-      minHeight: 8 * 6,
-      transition: theme.transitions.create(['min-height', 'background-color'], transition),
-      padding: theme.spacing(0, 2),
-      '&:hover:not($disabled)': {
-        cursor: 'pointer',
-      },
-      '&$expanded': {
-        minHeight: 64,
-      },
-      '&$focusVisible': {
-        backgroundColor: theme.palette.action.focus,
-      },
-      '&$disabled': {
-        opacity: theme.palette.action.disabledOpacity,
-      },
+    display: 'flex',
+    minHeight: 8 * 6,
+    transition: theme.transitions.create(['min-height', 'background-color'], transition),
+    padding: theme.spacing(0, 2),
+    /* Styles applied to the root element if `expanded={true}`. */
+    [`&.${accordionSummaryClasses.expanded}`]: {
+      minHeight: 64,
     },
-    /* Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
-    expanded: {},
-    /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
-    focusVisible: {},
-    /* Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled: {},
-    /* Styles applied to the children wrapper element. */
-    content: {
-      display: 'flex',
-      flexGrow: 1,
-      transition: theme.transitions.create(['margin'], transition),
-      margin: '12px 0',
-      '&$expanded': {
-        margin: '20px 0',
-      },
+    /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
+    [`&.${accordionSummaryClasses.focusVisible}`]: {
+      backgroundColor: theme.palette.action.focus,
     },
-    /* Styles applied to the `expandIcon`'s wrapper element. */
-    expandIconWrapper: {
-      display: 'flex',
-      color: theme.palette.action.active,
-      transform: 'rotate(0deg)',
-      transition: theme.transitions.create('transform', transition),
-      '&$expanded': {
-        transform: 'rotate(180deg)',
-      },
+    /* Styles applied to the root element if `disabled={true}`. */
+    [`&.${accordionSummaryClasses.disabled}`]: {
+      opacity: theme.palette.action.disabledOpacity,
+    },
+    [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
+      cursor: 'pointer',
     },
   };
-};
+});
 
-const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) {
-  const {
-    children,
-    classes,
-    className,
-    expandIcon,
-    focusVisibleClassName,
-    onClick,
-    ...other
-  } = props;
+const AccordionSummaryContent = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiAccordionSummary',
+    slot: 'Content',
+  },
+)(({ theme }) => {
+  const transition = {
+    duration: theme.transitions.duration.shortest,
+  };
+
+  return {
+    /* Styles applied to the children wrapper element. */
+    display: 'flex',
+    flexGrow: 1,
+    transition: theme.transitions.create(['margin'], transition),
+    margin: '12px 0',
+    /* Styles applied to the children wrapper element if `expanded={true}`. */
+    [`&.${accordionSummaryClasses.expanded}`]: {
+      margin: '20px 0',
+    },
+  };
+});
+
+const AccordionSummaryExpandIconWrapper = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiAccordionSummary',
+    slot: 'ExpandIconWrapper',
+  },
+)(({ theme }) => {
+  const transition = {
+    duration: theme.transitions.duration.shortest,
+  };
+
+  return {
+    /* Styles applied to the `expandIcon`'s wrapper element. */
+    display: 'flex',
+    color: theme.palette.action.active,
+    transform: 'rotate(0deg)',
+    transition: theme.transitions.create('transform', transition),
+    /* Styles applied to the `expandIcon`'s wrapper element if `expanded={true}`. */
+    [`&.${accordionSummaryClasses.expanded}`]: {
+      transform: 'rotate(180deg)',
+    },
+  };
+});
+
+const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiAccordionSummary' });
+  const { children, className, expandIcon, focusVisibleClassName, onClick, ...other } = props;
 
   const { disabled = false, expanded, toggle } = React.useContext(AccordionContext);
   const handleChange = (event) => {
@@ -80,37 +132,40 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
     }
   };
 
+  const styleProps = {
+    ...props,
+    expanded,
+    disabled,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <ButtonBase
+    <AccordionSummaryRoot
       focusRipple={false}
       disableRipple
       disabled={disabled}
       component="div"
       aria-expanded={expanded}
-      className={clsx(
-        classes.root,
-        {
-          [classes.disabled]: disabled,
-          [classes.expanded]: expanded,
-        },
-        className,
-      )}
+      className={clsx(classes.root, className)}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       onClick={handleChange}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     >
-      <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
+      <AccordionSummaryContent className={classes.content} styleProps={styleProps}>
+        {children}
+      </AccordionSummaryContent>
       {expandIcon && (
-        <div
-          className={clsx(classes.expandIconWrapper, {
-            [classes.expanded]: expanded,
-          })}
+        <AccordionSummaryExpandIconWrapper
+          className={classes.expandIconWrapper}
+          styleProps={styleProps}
         >
           {expandIcon}
-        </div>
+        </AccordionSummaryExpandIconWrapper>
       )}
-    </ButtonBase>
+    </AccordionSummaryRoot>
   );
 });
 
@@ -148,6 +203,10 @@ AccordionSummary.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiAccordionSummary' })(AccordionSummary);
+export default AccordionSummary;

@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+import { Theme } from '..';
 
 export type AccordionSummaryTypeMap<
   P = {},
@@ -32,6 +34,10 @@ export type AccordionSummaryTypeMap<
      * The icon to display as the expand indicator.
      */
     expandIcon?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;
