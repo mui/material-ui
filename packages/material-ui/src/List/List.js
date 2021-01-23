@@ -69,8 +69,9 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const styleProps = {
     ...props,
-    disablePadding,
+    component,
     dense,
+    disablePadding,
   };
 
   const classes = useUtilityClasses(styleProps);
