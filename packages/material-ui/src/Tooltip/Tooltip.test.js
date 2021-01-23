@@ -2,9 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -15,6 +14,7 @@ import {
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
+import classes from './tooltipClasses';
 
 async function raf() {
   return new Promise((resolve) => {
@@ -46,18 +46,9 @@ describe('<Tooltip />', () => {
   });
 
   const mount = createMount({ strict: true });
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(
-      <Tooltip title="Hello World">
-        <button type="submit">Hello World</button>
-      </Tooltip>,
-    );
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <Tooltip title="Hello World">
       <button type="submit">Hello World</button>
     </Tooltip>,
@@ -65,7 +56,10 @@ describe('<Tooltip />', () => {
       classes,
       inheritComponent: 'button',
       mount,
+      muiName: 'MuiTooltip',
       refInstanceof: window.HTMLButtonElement,
+      testVariantProps: { arrow: true },
+      testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
       skip: [
         'componentProp',
         // react-transition-group issue
