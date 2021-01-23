@@ -5,15 +5,22 @@ import t1 from 'docs/src/modules/branding/t1';
 
 interface BrandingLogoProps {
   href?: string;
-  variant?: 'lockup' | 'icon';
+  loading?: 'lazy';
   sx?: BoxProps['sx'];
+  variant?: 'lockup' | 'icon';
 }
 
 export default function BrandingLogo(props: BrandingLogoProps) {
-  const { href, variant = 'lockup', sx } = props;
+  const { href, variant = 'lockup', sx, loading } = props;
   return (
     <Box component={href ? Link : 'div'} href={href} sx={{ display: 'inline-flex', ...sx }}>
-      <img height="32" src={`/static/branding/logo-${variant}.svg`} alt={t1('Material-UI Logo')} />
+      <img
+        height="32"
+        width={variant === 'lockup' ? 178 : 32}
+        src={`/static/branding/logo-${variant}.svg`}
+        alt={t1('Material-UI Logo')}
+        loading={loading}
+      />
     </Box>
   );
 }

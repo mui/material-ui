@@ -53,7 +53,13 @@ function DiscoverMoreCard(props: DiscoverMoreCardProps) {
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: imagePosition }}>
-        <img alt="" src={src} height={243} width={imagePosition === 'center' ? 290 : 330} />
+        <img
+          alt=""
+          src={src}
+          height={243}
+          width={imagePosition === 'center' ? 290 : 330}
+          loading="lazy"
+        />
       </Box>
     </Box>
   );
