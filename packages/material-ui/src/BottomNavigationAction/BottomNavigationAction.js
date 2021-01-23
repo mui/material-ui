@@ -41,31 +41,25 @@ const BottomNavigationActionRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(
-  ({ theme }) => ({
-    /* Styles applied to the root element. */
-    transition: theme.transitions.create(['color', 'padding-top'], {
-      duration: theme.transitions.duration.short,
+)(({ theme, styleProps }) => ({
+  /* Styles applied to the root element. */
+  transition: theme.transitions.create(['color', 'padding-top'], {
+    duration: theme.transitions.duration.short,
+  }),
+  padding: '6px 12px 8px',
+  minWidth: 80,
+  maxWidth: 168,
+  color: theme.palette.text.secondary,
+  flex: '1',
+  ...(!styleProps.showLabel &&
+    !styleProps.selected && {
+      paddingTop: 16,
     }),
-    padding: '6px 12px 8px',
-    minWidth: 80,
-    maxWidth: 168,
-    color: theme.palette.text.secondary,
-    flex: '1',
+  ...(styleProps.selected && {
+    paddingTop: 6,
+    color: theme.palette.primary.main,
   }),
-  ({ styleProps }) => ({
-    ...(!styleProps.showLabel &&
-      !styleProps.selected && {
-        paddingTop: 16,
-      }),
-  }),
-  ({ theme, styleProps }) => ({
-    ...(styleProps.selected && {
-      paddingTop: 6,
-      color: theme.palette.primary.main,
-    }),
-  }),
-);
+}));
 
 const BottomNavigationActionWrapper = experimentalStyled(
   'span',
