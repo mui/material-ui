@@ -20,6 +20,7 @@ describe('<InputBase />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInputBase',
+    testVariantProps: { size: 'small' },
     skip: ['componentProp', 'componentsProp'],
   }));
 
