@@ -47,7 +47,11 @@ const BottomNavigation = React.forwardRef(function BottomNavigation(inProps, ref
     ...other
   } = props;
 
-  const styleProps = props;
+  const styleProps = {
+    ...props,
+    component,
+    showLabels,
+  };
 
   const classes = useUtilityClasses(styleProps);
 

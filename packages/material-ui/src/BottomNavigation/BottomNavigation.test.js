@@ -22,10 +22,10 @@ describe('<BottomNavigation />', () => {
       classes,
       inheritComponent: 'div',
       mount,
-      muiName: 'BottomNavigation',
+      muiName: 'MuiBottomNavigation',
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
-      skip: ['componentsProp'],
+      skip: ['componentsProp', 'themeVariants'],
     }),
   );
 
