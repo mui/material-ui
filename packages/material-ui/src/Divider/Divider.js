@@ -12,11 +12,11 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
     ...(styleProps.absolute && styles.absolute),
-    ...(styleProps.flexItem && styles.flexItem),
+    ...styles[styleProps.variant],
     ...(styleProps.light && styles.light),
     ...(styleProps.orientation === 'vertical' && styles.vertical),
+    ...(styleProps.flexItem && styles.flexItem),
     ...(styleProps.children && styles.withChildren),
     ...(styleProps.children &&
       styleProps.orientation === 'vertical' &&
