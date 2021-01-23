@@ -198,8 +198,8 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
   const {
     absolute = false,
-    className,
     children,
+    className,
     component = children ? 'div' : 'hr',
     flexItem = false,
     light = false,
