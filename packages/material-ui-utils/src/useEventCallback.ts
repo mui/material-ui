@@ -11,6 +11,11 @@ export default function useEventCallback<Args extends unknown[], Return>(
   useEnhancedEffect(() => {
     ref.current = fn;
   });
-  // tslint:disable-next-line:ban-comma-operator hide `this`
-  return React.useCallback((...args: Args) => (0, ref.current!)(...args), []);
+  return React.useCallback(
+    (...args: Args) =>
+      // @ts-expect-error hide `this`
+      // tslint:disable-next-line:ban-comma-operator
+      (0, ref.current!)(...args),
+    [],
+  );
 }
