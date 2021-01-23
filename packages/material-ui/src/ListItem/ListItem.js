@@ -210,8 +210,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     disabled,
     disableGutters,
     divider,
-    selected,
     hasSecondaryAction,
+    selected,
   };
 
   const classes = useUtilityClasses(styleProps);
