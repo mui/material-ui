@@ -1,8 +1,8 @@
 export interface ToolbarClasses {
   root: string;
-  dense: string;
-  regular: string;
   gutters: string;
+  regular: string;
+  dense: string;
 }
 
 declare const toolbarClasses: ToolbarClasses;

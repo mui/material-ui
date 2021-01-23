@@ -7,8 +7,8 @@ export function getToolbarUtilityClass(slot) {
 const toolbarClasses = generateUtilityClasses('MuiToolbar', [
   'root',
   'gutters',
-  'dense',
   'regular',
+  'dense',
 ]);
 
 export default toolbarClasses;
