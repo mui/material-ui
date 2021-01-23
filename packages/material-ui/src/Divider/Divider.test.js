@@ -15,7 +15,7 @@ describe('<Divider />', () => {
     muiName: 'MuiDivider',
     refInstanceof: window.HTMLHRElement,
     testComponentPropWith: 'div',
-    testVariantProps: { vertical: true, flexItem: true, textAlign: 'left' },
+    testVariantProps: { orientation: 'vertical', flexItem: true, textAlign: 'left' },
     testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
     skip: ['componentsProp'],
   }));
