@@ -21,8 +21,6 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...(styleProps.formControl && styles.formControl),
-    ...(styleProps.focused && styles.focused),
-    ...(styleProps.disabled && styles.disabled),
     ...(styleProps.startAdornment && styles.adornedStart),
     ...(styleProps.endAdornment && styles.adornedEnd),
     ...(styleProps.error && styles.error),
