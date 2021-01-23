@@ -96,7 +96,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const {
     children,
     className,
-    component: Component = 'nav',
+    component = 'nav',
     expandText = 'Show path',
     itemsAfterCollapse = 1,
     itemsBeforeCollapse = 1,
@@ -109,7 +109,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
 
   const styleProps = {
     ...props,
-    component: Component,
+    component,
     expanded,
     expandText,
     itemsAfterCollapse,
@@ -180,7 +180,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   return (
     <BreadcrumbsRoot
       ref={ref}
-      component={Component}
+      component={component}
       color="textSecondary"
       className={clsx(classes.root, className)}
       styleProps={styleProps}
