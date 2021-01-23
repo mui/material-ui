@@ -69,7 +69,7 @@ const DividerRoot = experimentalStyled(
   'div',
   {},
   {
-    name: 'MuiXyz',
+    name: 'MuiDivider',
     slot: 'Root',
     overridesResolver,
   },
