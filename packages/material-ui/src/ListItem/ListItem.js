@@ -206,7 +206,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     alignItems,
     autoFocus,
     button,
-    dense: dense || context.dense || false,
+    dense: childContext.dense,
     disabled,
     disableGutters,
     divider,
