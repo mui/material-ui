@@ -152,9 +152,9 @@ const ListItemContainer = experimentalStyled(
     slot: 'Container',
     overridesResolver,
   },
-)(() => ({
+)({
   position: 'relative',
-}));
+});
 
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
