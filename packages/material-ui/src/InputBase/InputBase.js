@@ -219,7 +219,6 @@ const InputBaseComponent = experimentalStyled(
  */
 const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiInputBase' });
-
   const {
     'aria-describedby': ariaDescribedby,
     autoComplete,
@@ -454,15 +453,15 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const styleProps = {
     ...props,
     color: fcs.color || 'primary',
-    disabled,
-    error: fcs.error,
+    disabled: fcs.disabled,
     endAdornment,
+    error: fcs.error,
     focused: fcs.focused,
     formControl: muiFormControl,
     fullWidth,
     hiddenLabel: fcs.hiddenLabel,
     multiline,
-    size,
+    size: fcs.size,
     startAdornment,
     type,
   };
