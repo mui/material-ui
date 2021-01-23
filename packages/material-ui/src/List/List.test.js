@@ -4,6 +4,7 @@ import { getClasses, createMount, describeConformance, createClientRender } from
 import ListSubheader from '../ListSubheader';
 import List from './List';
 import ListItem from '../ListItem';
+import listSubheaderClasses from '../ListSubheader/listSubheaderClasses';
 
 describe('<List />', () => {
   const mount = createMount();
@@ -42,7 +43,6 @@ describe('<List />', () => {
 
     it('should render ListSubheader', () => {
       const { container } = render(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      const listSubheaderClasses = getClasses(<ListSubheader />);
       const item = container.querySelector('li');
 
       expect(item).to.have.class(listSubheaderClasses.root);
