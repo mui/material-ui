@@ -16,7 +16,6 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
-    ...(styleProps.selected && styles.selected),
     [`& .${bottomNavigationActionClasses.wrapper}`]: styles.wrapper,
     [`& .${bottomNavigationActionClasses.label}`]: styles.label,
   });
