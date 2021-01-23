@@ -34,27 +34,29 @@ const ToolbarRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  /* Styles applied to the root element unless `disableGutters={true}`. */
-  ...(!styleProps.disableGutters && {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3),
-    },
+)(
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element. */
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    /* Styles applied to the root element unless `disableGutters={true}`. */
+    ...(!styleProps.disableGutters && {
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(3),
+      },
+    }),
+    /* Styles applied to the root element if `variant="dense"`. */
+    ...(styleProps.variant === 'dense' && {
+      minHeight: 48,
+    }),
   }),
   /* Styles applied to the root element if `variant="regular"`. */
-  ...(styleProps.variant === 'regular' && theme.mixins.toolbar),
-  /* Styles applied to the root element if `variant="dense"`. */
-  ...(styleProps.variant === 'dense' && {
-    minHeight: 48,
-  }),
-}));
+  ({ theme, styleProps }) => styleProps.variant === 'regular' && theme.mixins.toolbar,
+);
 
 const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiToolbar' });
