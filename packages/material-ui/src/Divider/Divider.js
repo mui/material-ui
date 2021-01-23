@@ -27,10 +27,10 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.textAlign === 'left' &&
       styleProps.orientation !== 'vertical' &&
       styles.textAlignLeft),
-    [`& .${dividerClasses.wrapper}`]: { 
+    [`& .${dividerClasses.wrapper}`]: {
       ...styles.wrapper,
       ...(styleProps.orientation === 'vertical' && styles.wrapperVertical),
-    },  
+    },
   });
 };
 
@@ -74,7 +74,7 @@ const DividerRoot = experimentalStyled(
     overridesResolver,
   },
 )(
-  ({ theme }) => ({
+  ({ theme, styleProps }) => ({
     /* Styles applied to the root element. */
     margin: 0, // Reset browser default style.
     flexShrink: 0,
@@ -82,14 +82,16 @@ const DividerRoot = experimentalStyled(
     borderStyle: 'solid',
     borderColor: theme.palette.divider,
     borderBottomWidth: 'thin',
-  }),
-  ({ styleProps }) => ({
     /* Styles applied to the root element if `absolute={true}`. */
     ...(styleProps.absolute && {
       position: 'absolute',
       bottom: 0,
       left: 0,
       width: '100%',
+    }),
+    /* Styles applied to the root element if `light={true}`. */
+    ...(styleProps.light && {
+      borderColor: alpha(theme.palette.divider, 0.08),
     }),
   }),
   ({ theme, styleProps }) => ({
@@ -101,12 +103,6 @@ const DividerRoot = experimentalStyled(
     ...(styleProps.variant === 'middle' && {
       marginLeft: theme.spacing(2),
       marginRight: theme.spacing(2),
-    }),
-  }),
-  ({ theme, styleProps }) => ({
-    /* Styles applied to the root element if `light={true}`. */
-    ...(styleProps.light && {
-      borderColor: alpha(theme.palette.divider, 0.08),
     }),
   }),
   ({ styleProps }) => ({
@@ -145,6 +141,8 @@ const DividerRoot = experimentalStyled(
         transform: 'translateY(50%)',
       },
     }),
+  }),
+  ({ theme, styleProps }) => ({
     /* Styles applied to the root element if divider have text and `orientation="vertical"`. */
     ...(styleProps.children &&
       styleProps.orientation === 'vertical' && {
