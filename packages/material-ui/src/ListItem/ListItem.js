@@ -43,13 +43,13 @@ const useUtilityClasses = (styleProps) => {
     root: [
       'root',
       dense && 'dense',
-      alignItems === 'flex-start' && 'alignItemsFlexStart',
-      divider && 'divider',
       !disableGutters && 'gutters',
+      divider && 'divider',
+      disabled && 'disabled',
       button && 'button',
+      alignItems === 'flex-start' && 'alignItemsFlexStart',
       hasSecondaryAction && 'secondaryAction',
       selected && 'selected',
-      disabled && 'disabled',
     ],
     container: ['container'],
   };
