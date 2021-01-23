@@ -109,6 +109,7 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
 
   const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0.01;
 
+  // TODO remove this branch
   return (
     <fieldset
       aria-hidden
