@@ -1,4 +1,6 @@
 import { OverridableStringUnion } from '@material-ui/types';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface DividerPropsVariantOverrides {}
@@ -64,6 +66,10 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The text alignment.
      * @default 'center'
