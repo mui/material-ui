@@ -93,8 +93,6 @@ const DividerRoot = experimentalStyled(
     ...(styleProps.light && {
       borderColor: alpha(theme.palette.divider, 0.08),
     }),
-  }),
-  ({ theme, styleProps }) => ({
     /* Styles applied to the root element if `variant="inset"`. */
     ...(styleProps.variant === 'inset' && {
       marginLeft: 72,
@@ -104,8 +102,6 @@ const DividerRoot = experimentalStyled(
       marginLeft: theme.spacing(2),
       marginRight: theme.spacing(2),
     }),
-  }),
-  ({ styleProps }) => ({
     /* Styles applied to the root element if `orientation="vertical"`. */
     ...(styleProps.orientation === 'vertical' && {
       height: '100%',
