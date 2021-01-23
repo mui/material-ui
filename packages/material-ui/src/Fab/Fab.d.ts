@@ -1,5 +1,6 @@
 import { OverridableStringUnion } from '@material-ui/types';
-import { PropTypes } from '..';
+import { SxProps } from '@material-ui/system';
+import { PropTypes, Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
@@ -74,6 +75,10 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      * @default 'circular'
      */
     variant?: OverridableStringUnion<FabVariantDefaults, FabPropsVariantOverrides>;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;

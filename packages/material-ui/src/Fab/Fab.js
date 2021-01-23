@@ -1,80 +1,80 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useThemeVariants } from '@material-ui/styles';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
+import useThemeProps from '../styles/useThemeProps';
+import fabClasses, { getFabUtilityClass } from './fabClasses';
+import { experimentalStyled } from '../styles';
 
-export const styles = (theme) => ({
+const overrideResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[styleProps.variant],
+    ...styles[`size${capitalize(styleProps.size)}`],
+    ...(styleProps.color === 'inherit' && styles.colorInherit),
+    [`& .${fabClasses.label}`]: styles.label,
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { color, variant, classes, size } = styleProps;
+
+  const slots = {
+    root: ['root', variant, `size${capitalize(size)}`, color === 'inherit' && 'colorInherit'],
+    label: ['label'],
+  };
+
+  return composeClasses(slots, getFabUtilityClass, classes);
+};
+
+const FabRoot = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'MuiFab',
+    slot: 'Root',
+    overrideResolver,
+  },
+)(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    ...theme.typography.button,
-    minHeight: 36,
-    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
-      duration: theme.transitions.duration.short,
-    }),
-    borderRadius: '50%',
-    padding: 0,
-    minWidth: 0,
-    width: 56,
-    height: 56,
+  ...theme.typography.button,
+  minHeight: 36,
+  transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+    duration: theme.transitions.duration.short,
+  }),
+  borderRadius: '50%',
+  padding: 0,
+  minWidth: 0,
+  width: 56,
+  height: 56,
+  boxShadow: theme.shadows[6],
+  '&:active': {
+    boxShadow: theme.shadows[12],
+  },
+  color: theme.palette.getContrastText(theme.palette.grey[300]),
+  backgroundColor: theme.palette.grey[300],
+  '&:hover': {
+    backgroundColor: theme.palette.grey.A100,
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      backgroundColor: theme.palette.grey[300],
+    },
+    textDecoration: 'none',
+  },
+  '&.Mui-focusVisible': {
     boxShadow: theme.shadows[6],
-    '&:active': {
-      boxShadow: theme.shadows[12],
-    },
-    color: theme.palette.getContrastText(theme.palette.grey[300]),
-    backgroundColor: theme.palette.grey[300],
-    '&:hover': {
-      backgroundColor: theme.palette.grey.A100,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.grey[300],
-      },
-      textDecoration: 'none',
-    },
-    '&$focusVisible': {
-      boxShadow: theme.shadows[6],
-    },
-    '&$disabled': {
-      color: theme.palette.action.disabled,
-      boxShadow: theme.shadows[0],
-      backgroundColor: theme.palette.action.disabledBackground,
-    },
   },
-  /* Styles applied to the span element that wraps the children. */
-  label: {
-    width: '100%', // assure the correct width for iOS Safari
-    display: 'inherit',
-    alignItems: 'inherit',
-    justifyContent: 'inherit',
-  },
-  /* Styles applied to the root element if `color="primary"`. */
-  primary: {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.primary.main,
-      },
-    },
-  },
-  /* Styles applied to the root element if `color="secondary"`. */
-  secondary: {
-    color: theme.palette.secondary.contrastText,
-    backgroundColor: theme.palette.secondary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.secondary.dark,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.secondary.main,
-      },
-    },
+  '&.Mui-disabled': {
+    color: theme.palette.action.disabled,
+    boxShadow: theme.shadows[0],
+    backgroundColor: theme.palette.action.disabledBackground,
   },
   /* Styles applied to the root element if `variant="extended"`. */
-  extended: {
+  ...(styleProps.variant === 'extended' && {
     borderRadius: 48 / 2,
     padding: '0 16px',
     width: 'auto',
@@ -95,33 +95,66 @@ export const styles = (theme) => ({
       minWidth: 40,
       height: 40,
     },
-  },
-  /* Styles applied to the root element if `variant="circular"`. */
-  circular: {},
-  /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
-  focusVisible: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
+  }),
   /* Styles applied to the root element if `color="inherit"`. */
-  colorInherit: {
+  ...(styleProps.color === 'inherit' && {
     color: 'inherit',
-  },
+  }),
+  /* Styles applied to the root element if `color="primary"`. */
+  ...(styleProps.color === 'primary' && {
+    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.primary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+  }),
+  /* Styles applied to the root element if `color="secondary"`. */
+  ...(styleProps.color === 'secondary' && {
+    color: theme.palette.secondary.contrastText,
+    backgroundColor: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.dark,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.secondary.main,
+      },
+    },
+  }),
   /* Styles applied to the root element if `size="small"``. */
-  sizeSmall: {
+  ...(styleProps.size === 'small' && {
     width: 40,
     height: 40,
-  },
+  }),
   /* Styles applied to the root element if `size="medium"``. */
-  sizeMedium: {
+  ...(styleProps.size === 'medium' && {
     width: 48,
     height: 48,
+  }),
+}));
+
+const FabLabel = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiFab',
+    slot: 'Label',
   },
+)({
+  /* Styles applied to the span element that wraps the children. */
+  width: '100%', // assure the correct width for iOS Safari
+  display: 'inherit',
+  alignItems: 'inherit',
+  justifyContent: 'inherit',
 });
 
-const Fab = React.forwardRef(function Fab(props, ref) {
+const Fab = React.forwardRef(function Fab(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiFab' });
   const {
     children,
-    classes,
     className,
     color = 'default',
     component = 'button',
@@ -133,43 +166,31 @@ const Fab = React.forwardRef(function Fab(props, ref) {
     ...other
   } = props;
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      color,
-      component,
-      disabled,
-      disableFocusRipple,
-      size,
-      variant,
-    },
-    'MuiFab',
-  );
+  const styleProps = {
+    ...props,
+    color,
+    component,
+    disabled,
+    disableFocusRipple,
+    size,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <ButtonBase
-      className={clsx(
-        classes.root,
-        classes[variant],
-        {
-          [classes.primary]: color === 'primary',
-          [classes.secondary]: color === 'secondary',
-          [classes[`size${capitalize(size)}`]]: size !== 'large',
-          [classes.disabled]: disabled,
-          [classes.colorInherit]: color === 'inherit',
-        },
-        themeVariantsClasses,
-        className,
-      )}
-      component={component}
+    <FabRoot
+      className={clsx(classes.root, className)}
+      as={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+      focusVisibleClassName={clsx(classes.focusRipple, focusVisibleClassName)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     >
-      <span className={classes.label}>{children}</span>
-    </ButtonBase>
+      <FabLabel className={classes.label}>{children}</FabLabel>
+    </FabRoot>
   );
 });
 
@@ -230,6 +251,10 @@ Fab.propTypes = {
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The variant to use.
    * @default 'circular'
    */
@@ -239,4 +264,4 @@ Fab.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiFab' })(Fab);
+export default Fab;
