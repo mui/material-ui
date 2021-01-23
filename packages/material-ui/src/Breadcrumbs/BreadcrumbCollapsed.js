@@ -62,10 +62,7 @@ const BreadcrumbCollapsedIcon = experimentalStyled(
  * @ignore - internal component.
  */
 const BreadcrumbCollapsed = React.forwardRef(function BreadcrumbCollapsed(props) {
-  const { ...other } = props;
-
   const styleProps = props;
-
   const classes = useUtilityClasses(styleProps);
 
   return (
@@ -73,7 +70,7 @@ const BreadcrumbCollapsed = React.forwardRef(function BreadcrumbCollapsed(props)
       <BreadcrumbCollapsedButton
         className={classes.button}
         focusRipple
-        {...other}
+        {...props}
         styleProps={styleProps}
       >
         <BreadcrumbCollapsedIcon className={classes.icon} styleProps={styleProps} />
