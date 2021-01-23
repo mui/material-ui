@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import Box, { BoxTypeMap } from '@material-ui/core/Box';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -10,14 +9,14 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 import t1 from 'docs/src/modules/branding/t1';
 
 interface PersonaRootProps {
-  styleProps?: { size?: 'large' | 'small' };
+  styleProps: { size: 'large' | 'small' };
 }
 
 const PersonaRoot: OverridableComponent<BoxTypeMap<PersonaRootProps>> = styled(
   Box,
   {},
   { name: 'Persona', slot: 'Root' },
-)<PersonaRootProps>(({ styleProps = { size: 'large' }, theme }) => ({
+)<PersonaRootProps>(({ styleProps, theme }) => ({
   display: 'flex',
   marginTop: theme.spacing(1),
   marginBottom: theme.spacing(1),
@@ -43,15 +42,32 @@ interface BrandingPersonaProps {
   name?: string;
   size?: 'small' | 'large';
   src?: string;
+  srcSet?: string;
   title?: string;
   twitter?: string;
 }
 
 export default function BrandingPersona(props: BrandingPersonaProps) {
-  const { name, src, title, location, twitter, github, size = 'large' } = props;
+  const { name, src, srcSet, title, location, twitter, github, size = 'large' } = props;
   return (
-    <PersonaRoot styleProps={{ size }}>
-      <Avatar src={src} alt={`Image of ${name}`} />
+    <PersonaRoot
+      styleProps={{ size }}
+      sx={{
+        '& img': {
+          borderRadius: '50%',
+          display: 'block',
+          mb: 1,
+        },
+      }}
+    >
+      <img
+        loading="lazy"
+        src={src}
+        width={size === 'small' ? 120 : 200}
+        height={size === 'small' ? 120 : 200}
+        srcSet={srcSet}
+        alt=""
+      />
       <Typography variant="h4" component="div">
         {name}
       </Typography>

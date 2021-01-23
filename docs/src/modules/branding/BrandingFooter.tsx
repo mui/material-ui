@@ -55,7 +55,7 @@ export default function BrandingFooter() {
       <Container maxWidth="lg">
         <Grid container>
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <BrandingLogo sx={{ mb: 5 }} href="/" />
+            <BrandingLogo loading="lazy" sx={{ mb: 5 }} href="/" />
           </Grid>
           <Grid item xs={6} sm={3} md={4} lg={2} className="BrandingFooter-list">
             <Typography component="h3">{t1('Products')}</Typography>
@@ -205,6 +205,7 @@ export default function BrandingFooter() {
             </Typography>
             <IconButton
               target="_blank"
+              rel="noopener"
               href="https://github.com/mui-org/material-ui"
               aria-label="github"
               title="GitHub"
@@ -213,6 +214,7 @@ export default function BrandingFooter() {
             </IconButton>
             <IconButton
               target="_blank"
+              rel="noopener"
               href="https://twitter.com/MaterialUI"
               aria-label="twitter"
               title="Twitter"
@@ -221,6 +223,7 @@ export default function BrandingFooter() {
             </IconButton>
             <IconButton
               target="_blank"
+              rel="noopener"
               href="https://www.linkedin.com/company/material-ui/"
               aria-label="linkedin"
               title="LinkedIn"
