@@ -11,8 +11,8 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...styleProps.variant,
     ...(!styleProps.disableGutters && styles.gutters),
+    ...styles[styleProps.variant],
   });
 };
 
