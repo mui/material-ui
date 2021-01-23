@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import { alpha } from '../styles/colorManipulator';
 import dividerClasses, { getDividerUtilityClass } from './dividerClasses';
 
@@ -205,7 +206,8 @@ const DividerWrapper = experimentalStyled(
   }),
 );
 
-const Divider = React.forwardRef(function Divider(props, ref) {
+const Divider = React.forwardRef(function Divider(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
   const {
     absolute = false,
     className,
