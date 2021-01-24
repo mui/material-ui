@@ -125,7 +125,7 @@ const DividerRoot = experimentalStyled(
         position: 'relative',
         width: '100%',
         borderColor: theme.palette.divider,
-        borderTop: 'thin',
+        borderTopWidth: 'thin',
         borderLeft: 0,
         borderRight: 0,
         borderBottom: 0,
