@@ -51,6 +51,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
       className={clsx(classes.root, className)}
       elevation={raised ? 8 : 1}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     />
   );
