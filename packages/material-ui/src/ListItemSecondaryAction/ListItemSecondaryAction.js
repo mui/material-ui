@@ -1,37 +1,63 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import ListContext from '../List/ListContext';
-import withStyles from '../styles/withStyles';
+import { getListItemSecondaryActionClassesUtilityClass } from './listItemSecondaryActionClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    position: 'absolute',
-    right: 16,
-    top: '50%',
-    transform: 'translateY(-50%)',
-  },
-  /* Styles applied to the root element when the parent `ListItem` has `disableGutters={true}`. */
-  disableGutters: {
-    right: 0,
-  },
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.disableGutters && styles.disableGutters),
+  });
 };
+
+const useUtilityClasses = (styleProps) => {
+  const { disableGutters, classes } = styleProps;
+
+  const slots = {
+    root: ['root', disableGutters && 'disableGutters'],
+  };
+
+  return composeClasses(slots, getListItemSecondaryActionClassesUtilityClass, classes);
+};
+
+const ListItemSecondaryActionRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiListItemSecondaryAction',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps }) => ({
+  position: 'absolute',
+  right: 16,
+  top: '50%',
+  transform: 'translateY(-50%)',
+  ...(styleProps.disableGutters && {
+    right: 0,
+  }),
+}));
 
 /**
  * Must be used as the last child of ListItem to function properly.
  */
-const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(props, ref) {
-  const { classes, className, ...other } = props;
+const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiListItemSecondaryAction' });
+  const { className, ...other } = props;
   const context = React.useContext(ListContext);
+  const styleProps = { ...props, disableGutters: context.disableGutters };
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <div
-      className={clsx(
-        classes.root,
-        { [classes.disableGutters]: context.disableGutters },
-        className,
-      )}
+    <ListItemSecondaryActionRoot
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     />
@@ -55,8 +81,12 @@ ListItemSecondaryAction.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
 ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
 
-export default withStyles(styles, { name: 'MuiListItemSecondaryAction' })(ListItemSecondaryAction);
+export default ListItemSecondaryAction;

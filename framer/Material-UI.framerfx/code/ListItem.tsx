@@ -20,6 +20,7 @@ interface Props {
   disableGutters: boolean;
   divider: boolean;
   selected: boolean;
+  sx?: object;
   width: number | string;
   height: number;
   inset: boolean;
@@ -165,6 +166,10 @@ addPropertyControls(ListItem, {
   selected: {
     type: ControlType.Boolean,
     title: 'Selected',
+  },
+  sx: {
+    type: ControlType.Object,
+    title: 'Sx',
   },
   inset: {
     type: ControlType.Boolean,
