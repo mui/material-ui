@@ -16,7 +16,8 @@ describe('<Card />', () => {
     muiName: 'MuiCard',
     refInstanceof: window.HTMLDivElement,
     testStateOverrides: { styleKey: 'root' },
-    skip: ['componentsProp', 'themeVariants'],
+    testVariantProps: { raised: true },
+    skip: ['componentsProp'],
   }));
 
   it('when raised should render Paper with 8dp', () => {
