@@ -58,9 +58,10 @@ function BrandingVision() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Typography>
-            The Material Design guidelines are an incredible starting point, but they don't provide
-            guidance on all aspects or needs of an application. In addition to the
-            guideline-specific implementation,{' '}
+            {
+              "The Material Design guidelines are an incredible starting point, but they don't provide guidance on all aspects or needs of an application."
+            }
+            In addition to the guideline-specific implementation,{' '}
             <b>we want Material-UI to be more generally useful for application development.</b>
           </Typography>
           <Typography>
