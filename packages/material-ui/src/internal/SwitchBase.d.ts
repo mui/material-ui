@@ -59,10 +59,6 @@ export interface SwitchBaseProps
    * If `true`, the `input` element is required.
    */
   required?: boolean;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: SxProps<Theme>;
   tabIndex?: number;
   type?: React.InputHTMLAttributes<HTMLInputElement>['type'];
   /**
