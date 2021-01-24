@@ -13,6 +13,6 @@ describe('<CardActions />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiCardActions',
     testVariantProps: { disableSpacing: true },
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 });
