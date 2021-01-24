@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { IconButtonProps } from '../IconButton';
 
 export interface SwitchBaseProps
