@@ -36,8 +36,23 @@ function BrandingVision() {
       <Grid container alignItems="center" spacing={4}>
         <Grid item xs={12} sm={6}>
           <Box
-            sx={{ width: '100%', maxWidth: 470, display: 'block' }}
+            sx={{
+              position: 'relative',
+              maxWidth: 470,
+              '& div': {
+                paddingTop: `${Math.round(1140/940*100)}%`,
+              },
+              '& img': {
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              },
+            }}
           >
+            <div />
             <img alt="" src="/static/branding/about/vision.png" loading="lazy" />
           </Box>
         </Grid>
@@ -78,12 +93,26 @@ function BrandingVision() {
           </Grid>
           <Grid item xs={12} sm={6} sx={{ order: [1, 2] }}>
             <Box
-              component="img"
-              alt=""
-              loading="lazy"
-              src="/static/branding/about/focus.jpg"
-              sx={{ width: '100%', maxWidth: 470, ml: 'auto', display: 'block' }}
-            />
+              sx={{
+                position: 'relative',
+                ml: 'auto',
+                maxWidth: 470,
+                '& div': {
+                  paddingTop: `${Math.round(940/1140*100)}%`,
+                },
+                '& img': {
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                },
+              }}
+            >
+              <div />
+              <img alt="" src="/static/branding/about/focus.jpg" loading="lazy" />
+            </Box>
           </Grid>
         </Grid>
       </Box>
