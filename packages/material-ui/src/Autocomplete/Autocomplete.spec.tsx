@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { InputLabelProps } from '@material-ui/core';
-import { Autocomplete, AutocompleteProps } from '@material-ui/lab';
+import { Autocomplete, AutocompleteProps, InputLabelProps } from '@material-ui/core';
 import { expectType } from '@material-ui/types';
 
 interface MyAutocompleteProps<
