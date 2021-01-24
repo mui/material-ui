@@ -130,8 +130,9 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
         }}
       >
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
+        {/* notranslate needed while Google Translate will not fix zero-width space issue */}
         {/* eslint-disable-next-line react/no-danger */}
-        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
       </legend>
     </fieldset>
   );
