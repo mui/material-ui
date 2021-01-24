@@ -56,6 +56,7 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
         '& img': {
           borderRadius: '50%',
           display: 'block',
+          bgcolor: 'greyD7',
           mb: 1,
         },
       }}

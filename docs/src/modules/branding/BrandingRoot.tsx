@@ -5,7 +5,6 @@ import { darken, createMuiTheme, alpha, ThemeProvider } from '@material-ui/core/
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
 interface CustomPalette {
-  azure: string;
   vividBlue: string;
   emeral: string;
   sizzlingRed: string;
@@ -20,7 +19,6 @@ interface CustomPalette {
 }
 
 interface CustomPaletteOptions {
-  azure?: string;
   vividBlue?: string;
   emeral?: string;
   sizzlingRed?: string;
