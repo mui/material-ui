@@ -10,7 +10,7 @@ interface BrandingBulletItemProps {
 export default function BrandingBulletItem(props: BrandingBulletItemProps) {
   const { children, ...other } = props;
   return (
-    <Box {...other} sx={{ display: 'flex' }}>
+    <Box component="li" {...other} sx={{ display: 'flex' }}>
       <CheckIcon
         sx={{
           display: 'inline-block',

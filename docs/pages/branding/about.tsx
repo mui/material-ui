@@ -40,7 +40,7 @@ function BrandingVision() {
               position: 'relative',
               maxWidth: 470,
               '& div': {
-                paddingTop: `${Math.round(1140/940*100)}%`,
+                paddingTop: `${Math.round((1140 / 940) * 100)}%`,
               },
               '& img': {
                 position: 'absolute',
@@ -98,7 +98,7 @@ function BrandingVision() {
                 ml: 'auto',
                 maxWidth: 470,
                 '& div': {
-                  paddingTop: `${Math.round(940/1140*100)}%`,
+                  paddingTop: `${Math.round((940 / 1140) * 100)}%`,
                 },
                 '& img': {
                   position: 'absolute',
