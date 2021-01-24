@@ -117,7 +117,6 @@ const AccordionRoot = experimentalStyled(
     }),
     /* Styles applied to the root element unless `disableGutters={true}`. */
     ...(!styleProps.disableGutters && {
-      /* Styles applied to the root element if `expanded={true}`. */
       [`&.${accordionClasses.expanded}`]: {
         margin: '16px 0',
       },
@@ -240,7 +239,7 @@ Accordion.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the bottom margin of an expanded accordion is removed and the `AccordionSummary` height did not change.
+   * If `true`, it removes the margin between two expanded accordion items and the increase of height.
    * @default false
    */
   disableGutters: PropTypes.bool,

@@ -5,7 +5,7 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "defaultExpanded": "If <code>true</code>, expands the accordion by default.",
     "disabled": "If <code>true</code>, the component is disabled.",
-    "disableGutters": "If <code>true</code>, the bottom margin of an expanded accordion is removed and the <code>AccordionSummary</code> height did not change.",
+    "disableGutters": "If <code>true</code>, it removes the margin between two expanded accordion items and the increase of height.",
     "expanded": "If <code>true</code>, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion.",
     "onChange": "Callback fired when the expand/collapse state is changed.<br><br><strong>Signature:</strong><br><code>function(event: object, expanded: boolean) =&gt; void</code><br><em>event:</em> The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.<br><em>expanded:</em> The <code>expanded</code> state of the accordion.",
     "square": "If <code>true</code>, rounded corners are disabled.",

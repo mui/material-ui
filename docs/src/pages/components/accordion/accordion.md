@@ -18,7 +18,7 @@ An accordion is a lightweight container that may either be used standalone, or b
 
 ## Basic accordion
 
-{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 
 ## Controlled accordion
 

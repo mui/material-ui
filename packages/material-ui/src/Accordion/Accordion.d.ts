@@ -37,7 +37,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
    */
   disabled?: boolean;
   /**
-   * If `true`, the bottom margin of an expanded accordion is removed and the `AccordionSummary` height did not change.
+   * If `true`, it removes the margin between two expanded accordion items and the increase of height.
    * @default false
    */
   disableGutters?: boolean;
