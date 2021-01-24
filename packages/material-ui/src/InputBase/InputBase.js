@@ -177,7 +177,7 @@ const InputBaseComponent = experimentalStyled(
       WebkitAppearance: 'none',
     },
     // Show and hide the placeholder logic
-    'label[data-shrink=false] + &.Mui-formControl &': {
+    [`label[data-shrink=false] + .${inputBaseClasses.formControl} &`]: {
       '&::-webkit-input-placeholder': placeholderHidden,
       '&::-moz-placeholder': placeholderHidden, // Firefox 19+
       '&:-ms-input-placeholder': placeholderHidden, // IE11
