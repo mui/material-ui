@@ -29,9 +29,9 @@ function BrandingVision() {
         component="p"
         sx={{ textAlign: 'center', maxWidth: 770, mx: 'auto', mb: 11 }}
       >
-        <UnderlinedText>Our vision is</UnderlinedText> to provide material to build rich user interfaces. Material-UI is an
-        elegant React implementation of the Material Design guidelines that can be customized to
-        fully match your brand.
+        <UnderlinedText>Our vision is</UnderlinedText> to provide material to build rich user
+        interfaces. Material-UI is an elegant React implementation of the Material Design guidelines
+        that can be customized to fully match your brand.
       </Typography>
       <Grid container alignItems="center" spacing={4}>
         <Grid item xs={12} sm={6}>
@@ -61,14 +61,12 @@ function BrandingVision() {
             The Material Design guidelines are an incredible starting point, but they don't provide
             guidance on all aspects or needs of an application. In addition to the
             guideline-specific implementation,{' '}
-            <b>
-              we want Material-UI to be more generally useful for application development.
-            </b>
+            <b>we want Material-UI to be more generally useful for application development.</b>
           </Typography>
           <Typography>
-            Material-UI implements not only the Material Design guidelines, but is
-            also a general use UI library of components, offering components
-            that are simply not addressed in the design guidelines.
+            Material-UI implements not only the Material Design guidelines, but is also a general
+            use UI library of components, offering components that are simply not addressed in the
+            design guidelines.
           </Typography>
         </Grid>
       </Grid>
@@ -80,14 +78,14 @@ function BrandingVision() {
                 We focus on providing all the low-level tools needed to build a rich user-interface
                 with React.
               </b>{' '}
-              We implement the Material Design specification, which is a bar set quite high. You
-              are able to take advantage of it for your own business with any style customization
+              We implement the Material Design specification, which is a bar set quite high. You are
+              able to take advantage of it for your own business with any style customization
               needed.
             </Typography>
             <Typography>
-              We want to see companies succeed using Material-UI in a way that matches their
-              brand, close to the Material Design philosophy or not. We don&apos;t want them to feel
-              that their UI simply looks like another Google product.
+              We want to see companies succeed using Material-UI in a way that matches their brand,
+              close to the Material Design philosophy or not. We don&apos;t want them to feel that
+              their UI simply looks like another Google product.
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} sx={{ order: [1, 2] }}>
@@ -139,7 +137,9 @@ function BrandingVision() {
               Deliver on fully encapsulated/composable React components,
             </BrandingBulletItem>
             <BrandingBulletItem>Be themeable/customizable,</BrandingBulletItem>
-            <BrandingBulletItem>Be cross browser compatible and assistive technology accessible,</BrandingBulletItem>
+            <BrandingBulletItem>
+              Be cross browser compatible and assistive technology accessible,
+            </BrandingBulletItem>
             <BrandingBulletItem>
               Promote developer joy, a sense of community, and an environment where new and
               experienced developers can learn from each other.
