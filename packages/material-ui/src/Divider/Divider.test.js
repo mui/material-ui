@@ -16,7 +16,6 @@ describe('<Divider />', () => {
     refInstanceof: window.HTMLHRElement,
     testComponentPropWith: 'div',
     testVariantProps: { orientation: 'vertical', flexItem: true, textAlign: 'left' },
-    testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
     skip: ['componentsProp'],
   }));
 
