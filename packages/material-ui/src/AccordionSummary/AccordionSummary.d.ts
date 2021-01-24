@@ -25,6 +25,10 @@ export type AccordionSummaryTypeMap<
       focusVisible?: string;
       /** Pseudo-class applied to the root element if `disabled={true}`. */
       disabled?: string;
+      /** Styles applied to the root element unless `disableGutters={true}`. */
+      gutters?: string;
+      /** Styles applied to the children wrapper element unless `disableGutters={true}`. */
+      contentGutters?: string;
       /** Styles applied to the children wrapper element. */
       content?: string;
       /** Styles applied to the `expandIcon`'s wrapper element. */

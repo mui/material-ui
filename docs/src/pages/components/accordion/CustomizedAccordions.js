@@ -9,14 +9,8 @@ const Accordion = withStyles({
   root: {
     border: '1px solid rgba(0, 0, 0, .125)',
     boxShadow: 'none',
-    '&:not(:last-child)': {
-      borderBottom: 0,
-    },
     '&:before': {
       display: 'none',
-    },
-    '&$expanded': {
-      margin: 'auto',
     },
   },
   expanded: {},
@@ -57,6 +51,7 @@ export default function CustomizedAccordions() {
     <div>
       <Accordion
         square
+        disableGutters
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
       >
@@ -74,6 +69,7 @@ export default function CustomizedAccordions() {
       </Accordion>
       <Accordion
         square
+        disableGutters
         expanded={expanded === 'panel2'}
         onChange={handleChange('panel2')}
       >
@@ -91,6 +87,7 @@ export default function CustomizedAccordions() {
       </Accordion>
       <Accordion
         square
+        disableGutters
         expanded={expanded === 'panel3'}
         onChange={handleChange('panel3')}
       >

@@ -19,12 +19,12 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, expanded, disabled } = styleProps;
+  const { classes, expanded, disabled, disableGutters } = styleProps;
 
   const slots = {
-    root: ['root', expanded && 'expanded', disabled && 'disabled'],
+    root: ['root', expanded && 'expanded', disabled && 'disabled', !disableGutters && 'gutters'],
     focusVisible: ['focusVisible'],
-    content: ['content', expanded && 'expanded'],
+    content: ['content', expanded && 'expanded', !disableGutters && 'contentGutters'],
     expandIconWrapper: ['expandIconWrapper', expanded && 'expanded'],
   };
 
@@ -39,34 +39,41 @@ const AccordionSummaryRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme }) => {
-  const transition = {
-    duration: theme.transitions.duration.shortest,
-  };
+)(
+  ({ theme }) => {
+    const transition = {
+      duration: theme.transitions.duration.shortest,
+    };
 
-  return {
-    /* Styles applied to the root element. */
-    display: 'flex',
-    minHeight: 8 * 6,
-    transition: theme.transitions.create(['min-height', 'background-color'], transition),
-    padding: theme.spacing(0, 2),
-    /* Styles applied to the root element if `expanded={true}`. */
-    [`&.${accordionSummaryClasses.expanded}`]: {
-      minHeight: 64,
-    },
-    /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
-    [`&.${accordionSummaryClasses.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus,
-    },
-    /* Styles applied to the root element if `disabled={true}`. */
-    [`&.${accordionSummaryClasses.disabled}`]: {
-      opacity: theme.palette.action.disabledOpacity,
-    },
-    [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
-      cursor: 'pointer',
-    },
-  };
-});
+    return {
+      /* Styles applied to the root element. */
+      display: 'flex',
+      minHeight: 8 * 6,
+      transition: theme.transitions.create(['min-height', 'background-color'], transition),
+      padding: theme.spacing(0, 2),
+      /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
+      [`&.${accordionSummaryClasses.focusVisible}`]: {
+        backgroundColor: theme.palette.action.focus,
+      },
+      /* Styles applied to the root element if `disabled={true}`. */
+      [`&.${accordionSummaryClasses.disabled}`]: {
+        opacity: theme.palette.action.disabledOpacity,
+      },
+      [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
+        cursor: 'pointer',
+      },
+    };
+  },
+  ({ styleProps }) => ({
+    /* Styles applied to the root element unless `disableGutters={true}`. */
+    ...(!styleProps.disableGutters && {
+      /* Styles applied to the root element if `expanded={true}`. */
+      [`&.${accordionSummaryClasses.expanded}`]: {
+        minHeight: 64,
+      },
+    }),
+  }),
+);
 
 const AccordionSummaryContent = experimentalStyled(
   'div',
@@ -75,23 +82,30 @@ const AccordionSummaryContent = experimentalStyled(
     name: 'MuiAccordionSummary',
     slot: 'Content',
   },
-)(({ theme }) => {
-  const transition = {
-    duration: theme.transitions.duration.shortest,
-  };
+)(
+  ({ theme }) => {
+    const transition = {
+      duration: theme.transitions.duration.shortest,
+    };
 
-  return {
-    /* Styles applied to the children wrapper element. */
-    display: 'flex',
-    flexGrow: 1,
-    transition: theme.transitions.create(['margin'], transition),
-    margin: '12px 0',
-    /* Styles applied to the children wrapper element if `expanded={true}`. */
-    [`&.${accordionSummaryClasses.expanded}`]: {
-      margin: '20px 0',
-    },
-  };
-});
+    return {
+      /* Styles applied to the children wrapper element. */
+      display: 'flex',
+      flexGrow: 1,
+      transition: theme.transitions.create(['margin'], transition),
+      margin: '12px 0',
+    };
+  },
+  ({ styleProps }) => ({
+    /* Styles applied to the children wrapper element unless `disableGutters={true}`. */
+    ...(!styleProps.disableGutters && {
+      /** Styles applied to the children wrapper element if `expanded={true}`. */
+      [`&.${accordionSummaryClasses.expanded}`]: {
+        margin: '20px 0',
+      },
+    }),
+  }),
+);
 
 const AccordionSummaryExpandIconWrapper = experimentalStyled(
   'div',
@@ -122,7 +136,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
   const props = useThemeProps({ props: inProps, name: 'MuiAccordionSummary' });
   const { children, className, expandIcon, focusVisibleClassName, onClick, ...other } = props;
 
-  const { disabled = false, expanded, toggle } = React.useContext(AccordionContext);
+  const { disabled = false, disableGutters, expanded, toggle } = React.useContext(AccordionContext);
   const handleChange = (event) => {
     if (toggle) {
       toggle(event);
@@ -136,6 +150,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     ...props,
     expanded,
     disabled,
+    disableGutters,
   };
 
   const classes = useUtilityClasses(styleProps);

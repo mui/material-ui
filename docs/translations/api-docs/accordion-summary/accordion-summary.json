@@ -24,6 +24,16 @@
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
+    "gutters": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disableGutters={true}</code>"
+    },
+    "contentGutters": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the children wrapper element",
+      "conditions": "<code>disableGutters={true}</code>"
+    },
     "content": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the children wrapper element"
