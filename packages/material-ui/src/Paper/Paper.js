@@ -67,18 +67,19 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
 
   const {
     className,
-    component: Component = 'div',
-    square = false,
+    component = 'div',
     elevation = 1,
+    square = false,
     variant = 'elevation',
     ...other
   } = props;
 
   const styleProps = {
     ...props,
-    variant,
+    component,
     elevation,
     square,
+    variant,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -98,7 +99,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
 
   return (
     <PaperRoot
-      as={Component}
+      as={component}
       styleProps={styleProps}
       className={clsx(classes.root, className)}
       ref={ref}
