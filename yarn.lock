@@ -2959,9 +2959,9 @@
     "@types/lodash" "*"
 
 "@types/lodash@*", "@types/lodash@^4.14.136", "@types/lodash@^4.14.138":
-  version "4.14.167"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.167.tgz#ce7d78553e3c886d4ea643c37ec7edc20f16765e"
-  integrity sha512-w7tQPjARrvdeBkX/Rwg95S592JwxqOjmms3zWQ0XZgSyxSLdzWaYH3vErBhdVS/lRBX7F8aBYcYJYTr5TMGOzw==
+  version "4.14.168"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
+  integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
 
 "@types/luxon@^1.25.0":
   version "1.25.1"
