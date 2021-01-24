@@ -100,8 +100,7 @@ const BottomNavigationActionLabel = experimentalStyled(
     }),
   ...(styleProps.selected && {
     [`&.${bottomNavigationActionClasses.selected}`]: {
-      paddingTop: 6,
-      color: theme.palette.primary.main,
+      fontSize: theme.typography.pxToRem(14),
     },
   }),
 }));
