@@ -1078,6 +1078,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   + onPageChange={()=>{}}
   ```
 
+- Separate classes for different table pagination labels. This allows simpler customizations.
+
+  ```diff
+  <TablePagination
+  - classes={{ caption: 'foo' }}
+  + classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
+  />
+  ```
+
 ### Tabs
 
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
