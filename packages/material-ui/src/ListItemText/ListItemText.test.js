@@ -1,24 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Typography, { typographyClasses } from '../Typography';
 import ListItemText from './ListItemText';
+import classes from './listItemTextClasses';
 
 describe('<ListItemText />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<ListItemText />);
-  });
-
-  describeConformance(<ListItemText />, () => ({
+  describeConformanceV5(<ListItemText />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    name: 'MuiListItemText',
+    testVariantProps: { inset: true },
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render with inset class', () => {
