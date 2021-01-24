@@ -9975,13 +9975,12 @@ jsbn@~0.1.0:
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
 jscodeshift-add-imports@^1.0.1:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/jscodeshift-add-imports/-/jscodeshift-add-imports-1.0.7.tgz#5dec165cbda4096ec095e7fab2533aa9765b4399"
-  integrity sha512-TfQMWotuyhf+QxWCFsbwowS83cA1j8OZBKT1c6NGZYgIAENP9RikAaqWa1pFLeK6OIKhbhw8jVpzXsI4n8VOZQ==
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/jscodeshift-add-imports/-/jscodeshift-add-imports-1.0.10.tgz#3d0f99d539d492cfa037aa4a63f04c4a626bcff5"
+  integrity sha512-VUe9DJ3zkWIR62zSRQnmsOVeyt77yD8knvYNna/PzRZlF9j799hJw5sqTZu4EX16XLIqS3FxWz3nXuGuiw9iyQ==
   dependencies:
     "@babel/traverse" "^7.4.5"
     jscodeshift-find-imports "^2.0.2"
-    p-timeout "^3.2.0"
 
 jscodeshift-find-imports@^2.0.2:
   version "2.0.4"
@@ -12482,7 +12481,7 @@ p-reduce@^1.0.0:
   resolved "https://registry.yarnpkg.com/p-reduce/-/p-reduce-1.0.0.tgz#18c2b0dd936a4690a529f8231f58a0fdb6a47dfa"
   integrity sha1-GMKw3ZNqRpClKfgjH1ig/bakffo=
 
-p-timeout@^3.1.0, p-timeout@^3.2.0:
+p-timeout@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/p-timeout/-/p-timeout-3.2.0.tgz#c7e17abc971d2a7962ef83626b35d635acf23dfe"
   integrity sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg==
