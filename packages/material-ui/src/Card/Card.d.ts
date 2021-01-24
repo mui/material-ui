@@ -1,4 +1,5 @@
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 
 export interface CardProps extends StandardProps<PaperProps> {
@@ -14,6 +15,10 @@ export interface CardProps extends StandardProps<PaperProps> {
    * @default false
    */
   raised?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type CardClassKey = keyof NonNullable<CardProps['classes']>;
