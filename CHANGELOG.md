@@ -25,8 +25,46 @@ You can expect similar releases like this one in the coming months.
 - [Popover] Deprecate transition onX props (#22202) @mbrookes
 - [Snackbar] Deprecate transition onX props (#22206) @mbrookes
 
+## 4.11.3
+###### _Jan 24, 2021_
+
+This release fixes an important issue with Chrome 88. The usage of NaN as a CSS property with JSS throws an exception.
+
+### `@material-ui/core@v4.11.3`
+
+- [styles] Upgrade jss to 10.5.1 (#24570) @oliviertassinari
+
+### `@material-ui/styles@v4.11.3`
+
+- [styles] Upgrade jss to 10.5.1 (#24570) @oliviertassinari
+
+### `@material-ui/system@v4.11.3`
+
+- [system] Fix handling of null-ish values (#24527) @oliviertassinari"
+
+### Docs
+
+- [blog] 2020 in review and beyond (#24130) @oliviertassinari
+- [docs] Add ELEVATOR to backers (#23977) @mbrookes
+- [docs] Add eslint rule to docs (#23843) @jens-ox
+- [docs] Add notification for Adobe XD design assets (#23979) @mbrookes
+- [docs] Allow codesandbox deploy for demos in X (#23644) @oliviertassinari
+- [docs] Fix codesandbox datagrid demo (#24218) @brno32
+- [docs] Improve displayed versions (#24051) @oliviertassinari
+- [docs] Mention Adobe XD (#23978) @oliviertassinari
+- [docs] Sync tranlations (#23981) @l10nbot
+- [docs] Sync translation (#23719) @l10nbot
+- [docs] Sync translations (#23836) @l10nbot
+- [docs] Sync translations (#24039) @l10nbot
+- [docs] Update Divjoy URL (#24447) @mbrookes
+- [docs] Update in-house ads (#24410) @mbrookes
+
+### Core
+
+- [core] Batch small changes (#24224) @oliviertassinari
+
 ## 4.11.2
-###### _Dec 2 2020_
+###### _Dec 2, 2020_
 
 This release widens the peer dependency scope of React to accept ^17.0.0.
 The change makes it easier for developers to upgrade React independently from Material-UI. The best support for React 17 will be found in Material-UI v5.
@@ -62,7 +100,7 @@ This is a reminder that all ongoing work has moved to v5. This means a feature f
 - [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
 
 ## 4.11.1
-###### _Nov 24 2020_
+###### _Nov 24, 2020_
 
 Big thanks to the 12 contributors who made this release possible.
 
