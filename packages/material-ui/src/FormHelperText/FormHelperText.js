@@ -83,9 +83,8 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
       {...other}
     >
       {children === ' ' ? (
-        // notranslate needed while Google Translate will not fix zero-width space issue
         // eslint-disable-next-line react/no-danger
-        <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
       ) : (
         children
       )}

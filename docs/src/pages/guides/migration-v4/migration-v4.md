@@ -1155,6 +1155,13 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Input size="small" />
   ```
 
+- Remove the `labelWidth` prop, use the `label` prop instead. The new prop allows to rely on CSS only to render the notch in the outline.
+
+  ```diff
+  -<OutlinedInput labelWidth={310}>
+  +<OutlinedInput label="My label">
+  ```
+
 ### TextareaAutosize
 
 - Remove the `rows` prop, use the `minRows` prop instead.

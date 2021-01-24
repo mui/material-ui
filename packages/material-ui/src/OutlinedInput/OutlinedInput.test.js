@@ -13,7 +13,7 @@ describe('<OutlinedInput />', () => {
     classes = getClasses(<OutlinedInput />);
   });
 
-  describeConformance(<OutlinedInput labelWidth={0} />, () => ({
+  describeConformance(<OutlinedInput />, () => ({
     classes,
     inheritComponent: InputBase,
     mount,
@@ -23,7 +23,7 @@ describe('<OutlinedInput />', () => {
 
   it('should render a NotchedOutline', () => {
     const { container } = render(
-      <OutlinedInput classes={{ notchedOutline: 'notched-outlined' }} labelWidth={0} />,
+      <OutlinedInput classes={{ notchedOutline: 'notched-outlined' }} />,
     );
 
     expect(container.querySelector('.notched-outlined')).not.to.equal(null);

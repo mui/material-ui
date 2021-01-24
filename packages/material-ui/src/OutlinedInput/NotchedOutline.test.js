@@ -9,7 +9,6 @@ describe('<NotchedOutline />', () => {
 
   let classes;
   const defaultProps = {
-    labelWidth: 36,
     notched: true,
   };
 
