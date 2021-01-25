@@ -68,7 +68,7 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
   const handleRef = useForkRef(paperRef, containerRef);
   const lastFocusedElementRef = React.useRef<Element | null>(null);
 
-  const handlePaperRef = useEventCallback((node) => {
+  const handlePaperRef = useEventCallback((node: HTMLElement) => {
     setRef(handleRef, node);
 
     if (node) {
