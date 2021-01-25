@@ -4,7 +4,6 @@ import { getClasses, createMount, describeConformance, createClientRender } from
 import ListSubheader, { listSubheaderClasses } from '../ListSubheader';
 import List from './List';
 import ListItem, { listItemClasses } from '../ListItem';
-import { listSubheaderClasses } from '../ListSubheader';
 
 describe('<List />', () => {
   const mount = createMount();
