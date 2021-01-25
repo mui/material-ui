@@ -1,23 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import CircularProgress from './CircularProgress';
+import classes from './circularProgressClasses';
 
 describe('<CircularProgress />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<CircularProgress />);
-  });
-
-  describeConformance(<CircularProgress />, () => ({
+  describeConformanceV5(<CircularProgress />, () => ({
     classes,
     inheritComponent: 'span',
     mount,
+    muiName: 'MuiCircularProgress',
+    testDeepOverrides: { slotName: 'circle', slotClassName: classes.circle },
+    testVariantProps: { variant: 'determinate' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render with the primary color by default', () => {
@@ -48,7 +47,7 @@ describe('<CircularProgress />', () => {
     expect(svg.firstChild).to.have.class(classes.circle, 'should have the circle class');
   });
 
-  it('should render intermediate variant by default', () => {
+  it('should render indeterminate variant by default', () => {
     const { container } = render(<CircularProgress />);
     const circularProgress = container.firstChild;
     expect(circularProgress).to.have.class(classes.root);
