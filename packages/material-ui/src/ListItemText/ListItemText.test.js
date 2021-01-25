@@ -9,7 +9,7 @@ describe('<ListItemText />', () => {
   const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<ListItemText primary="Conformance?" />, () => ({
+  describeConformanceV5(<ListItemText>Conformance?</ListItemText>, () => ({
     classes,
     inheritComponent: 'div',
     mount,
