@@ -1,24 +1,21 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import ListItemSecondaryAction from './ListItemSecondaryAction';
 import ListItem from '../ListItem';
+import classes from './listItemSecondaryActionClasses';
 
 describe('<ListItemSecondaryAction />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<ListItemSecondaryAction />);
-  });
-
-  describeConformance(<ListItemSecondaryAction />, () => ({
+  describeConformanceV5(<ListItemSecondaryAction />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    muiName: 'MuiListItemSecondaryAction',
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   it('should render without classes that disable gutters', () => {
