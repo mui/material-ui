@@ -21,11 +21,12 @@ describe('<Fab />', () => {
     classes,
     inheritComponent: ButtonBase,
     mount,
-    name: 'MuiFab',
-    testVariantProps: { variant: 'foo' },
-    testStateOverrides: { props: 'variant', value: 'foo', styleKey: 'foo' },
+    muiName: 'MuiFab',
+    testVariantProps: { variant: 'extended' },
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
+    skip: ['componentsProp'],
   }));
 
   it('should render with the root class but no others', () => {

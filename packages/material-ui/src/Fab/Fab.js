@@ -7,9 +7,9 @@ import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
-import { experimentalStyled } from '../styles';
+import experimentalStyled from '../styles/experimentalStyled';
 
-const overrideResolver = (props, styles) => {
+const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
@@ -24,7 +24,14 @@ const useUtilityClasses = (styleProps) => {
   const { color, variant, classes, size } = styleProps;
 
   const slots = {
-    root: ['root', variant, `size${capitalize(size)}`, color === 'inherit' && 'colorInherit'],
+    root: [
+      'root',
+      variant,
+      `size${capitalize(size)}`,
+      color === 'inherit' && 'colorInherit',
+      color === 'primary' && 'primary',
+      color === 'secondary' && 'secondary',
+    ],
     label: ['label'],
   };
 
@@ -37,7 +44,7 @@ const FabRoot = experimentalStyled(
   {
     name: 'MuiFab',
     slot: 'Root',
-    overrideResolver,
+    overridesResolver,
   },
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -81,21 +88,23 @@ const FabRoot = experimentalStyled(
     minHeight: 'auto',
     minWidth: 48,
     height: 48,
-    '&$sizeSmall': {
+  }),
+  ...(styleProps.variant === 'extended' &&
+    styleProps.size === 'small' && {
       width: 'auto',
       padding: '0 8px',
       borderRadius: 34 / 2,
       minWidth: 34,
       height: 34,
-    },
-    '&$sizeMedium': {
+    }),
+  ...(styleProps.variant === 'extended' &&
+    styleProps.size === 'medium' && {
       width: 'auto',
       padding: '0 16px',
       borderRadius: 40 / 2,
       minWidth: 40,
       height: 40,
-    },
-  }),
+    }),
   /* Styles applied to the root element if `color="inherit"`. */
   ...(styleProps.color === 'inherit' && {
     color: 'inherit',
@@ -181,15 +190,17 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
   return (
     <FabRoot
       className={clsx(classes.root, className)}
-      as={component}
+      component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      focusVisibleClassName={clsx(classes.focusRipple, focusVisibleClassName)}
+      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       styleProps={styleProps}
       ref={ref}
       {...other}
     >
-      <FabLabel className={classes.label}>{children}</FabLabel>
+      <FabLabel className={classes.label} styleProps={styleProps}>
+        {children}
+      </FabLabel>
     </FabRoot>
   );
 });
