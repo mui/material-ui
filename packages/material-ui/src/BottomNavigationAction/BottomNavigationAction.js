@@ -97,7 +97,7 @@ const BottomNavigationActionLabel = experimentalStyled(
       transitionDelay: '0s',
     }),
   [`&.${bottomNavigationActionClasses.selected}`]: {
-      fontSize: theme.typography.pxToRem(14),
+    fontSize: theme.typography.pxToRem(14),
     },
   }),
 }));
