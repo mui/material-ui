@@ -96,6 +96,4 @@ DialogActions.propTypes = {
   sx: PropTypes.object,
 };
 
-DialogActions.name = 'MuiDialogActions';
-
 export default DialogActions;
