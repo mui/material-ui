@@ -1,6 +1,10 @@
 /* eslint-disable no-restricted-syntax */
 const { Octokit } = require('@octokit/rest');
+const childProcess = require('child_process');
+const { promisify } = require('util');
 const yargs = require('yargs');
+
+const exec = promisify(childProcess.exec);
 
 /**
  * @param {string} commitMessage
@@ -35,8 +39,25 @@ function filterCommit(commitsItem) {
   );
 }
 
+async function findLatestTaggedVersion() {
+  const { stdout } = await exec(
+    [
+      'git',
+      'describe',
+      // Earlier tags used lightweight tags + commit.
+      // We switched to annotated tags later.
+      '--tags',
+      '--abbrev=0',
+      // only include "version-tags"
+      '--match "v*"',
+    ].join(' '),
+  );
+
+  return stdout.trim();
+}
+
 async function main(argv) {
-  const { githubToken, lastRelease, release } = argv;
+  const { githubToken, lastRelease: lastReleaseInput, release } = argv;
 
   if (!githubToken) {
     throw new TypeError(
@@ -46,6 +67,14 @@ async function main(argv) {
   const octokit = new Octokit({
     auth: githubToken,
   });
+
+  const latestTaggedVersion = await findLatestTaggedVersion();
+  const lastRelease = lastReleaseInput !== undefined ? lastReleaseInput : latestTaggedVersion;
+  if (lastRelease !== latestTaggedVersion) {
+    console.warn(
+      `Creating changelog for ${latestTaggedVersion}..${release} when latest tagged version is '${latestTaggedVersion}'.`,
+    );
+  }
 
   /**
    * @type {AsyncIterableIterator<Octokit.Response<Octokit.ReposCompareCommitsResponse>>}
@@ -129,12 +158,13 @@ ${changes.join('\n')}
 
 yargs
   .command({
-    command: '$0 <lastRelease>',
+    command: '$0',
     description: 'Creates a changelog',
     builder: (command) => {
       return command
-        .positional('lastRelease', {
-          describe: 'The release to compare gainst e.g. `v5.0.0-alpha.23`.',
+        .option('lastRelease', {
+          describe:
+            'The release to compare gainst e.g. `v5.0.0-alpha.23`. Default: The latest tag on the current branch.',
           type: 'string',
         })
         .option('githubToken', {
