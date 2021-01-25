@@ -921,7 +921,7 @@ async function parseComponentSource(
   // Ignore what we might have generated in `annotateComponentDefinition`
   const annotatedDescriptionMatch = fullDescription.match(/(Demos|API):\r?\n\r?\n/);
   if (annotatedDescriptionMatch !== null) {
-    reactAPI.description = fullDescription.slice(0, annotatedDescriptionMatch.index);
+    reactAPI.description = fullDescription.slice(0, annotatedDescriptionMatch.index).trim();
   }
 
   return reactAPI;
