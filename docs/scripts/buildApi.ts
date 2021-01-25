@@ -563,6 +563,10 @@ async function annotateComponentDefinition(context: {
   }
 
   const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
+  // Ensure a newline between manual and generated description.
+  if (markdownLines[markdownLines.length - 1] !== '') {
+    markdownLines.push('');
+  }
   if (demos.length > 0) {
     markdownLines.push(
       'Demos:',
