@@ -42,7 +42,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const { className, raised = false, ...other } = props;
 
-  const styleProps = { ...props };
+  const styleProps = { ...props, raised };
 
   const classes = useUtilityClasses(styleProps);
 
