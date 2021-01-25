@@ -11,8 +11,6 @@ Big thanks to the 21 contributors who made this release possible. Here are some 
 - Converted 27 components to emotion
 - Fixed various issues on API documentation pages (#24526, #24503, #24504. #24517, #24417)
 
-TODO INSERT HIGHLIGHTS
-
 ### `@material-ui/core@5.0.0-alpha.24`
 
 - <!-- 01 --> [BottomNavigation] Migrate to emotion (#24556) @vinyldarkscratch
