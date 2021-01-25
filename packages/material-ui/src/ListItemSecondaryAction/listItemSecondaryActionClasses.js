@@ -1,7 +1,7 @@
 import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
 
 export function getListItemSecondaryActionClassesUtilityClass(slot) {
-  return generateUtilityClass('MuiButton', slot);
+  return generateUtilityClass('MuiListItemSecondaryAction', slot);
 }
 
 const listItemSecondaryActionClasses = generateUtilityClasses('MuiButton', [
