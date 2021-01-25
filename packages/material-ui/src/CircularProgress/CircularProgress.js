@@ -22,14 +22,9 @@ const overridesResolver = (props, styles) => {
     [`& .${circularProgressClasses.svg}`]: styles.svg,
     [`& .${circularProgressClasses.circle}`]: {
       ...styles.circle,
+      ...styles[`circle${capitalize(styleProps.variant)}`],
       ...(styleProps.disableShrink && styles.circleDisableShrink),
     },
-    ...(styleProps.variant === 'determinate' && {
-      [`& .${circularProgressClasses.circleDeterminate}`]: styles.circleDeterminate,
-    }),
-    ...(styleProps.variant === 'indeterminate' && {
-      [`& .${circularProgressClasses.circleIndeterminate}`]: styles.circleIndeterminate,
-    }),
   });
 };
 
