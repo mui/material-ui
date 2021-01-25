@@ -122,7 +122,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   let secondary = secondaryProp;
   if (secondary != null && secondary.type !== Typography && !disableTypography) {
     secondary = (
-      <ListItemTextSecondary
+      <Typography
         variant="body2"
         className={classes.secondary}
         color="textSecondary"
