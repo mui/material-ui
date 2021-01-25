@@ -98,7 +98,7 @@ const BottomNavigationActionLabel = experimentalStyled(
     }),
   [`&.${bottomNavigationActionClasses.selected}`]: {
     fontSize: theme.typography.pxToRem(14),
-    },
+  },
   }),
 }));
 
