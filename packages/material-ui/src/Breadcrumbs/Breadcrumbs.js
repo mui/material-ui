@@ -21,7 +21,7 @@ const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
   const slots = {
-    root: ['root'],
+    li: ['li'],
     ol: ['ol'],
     separator: ['separator'],
   };
