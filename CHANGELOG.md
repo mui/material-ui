@@ -111,13 +111,6 @@ TODO INSERT HIGHLIGHTS
 - <!-- 58 --> [core] Batch small changes (#24445) @oliviertassinari
 - <!-- 79 --> [core] Normalize generating declaration files (#24411)
 
-### website
-
-- <!-- 24 --> [website] Team (#24553) @oliviertassinari
-- <!-- 25 --> [website] Emeriti (#24541) @oliviertassinari
-- <!-- 33 --> [website] Add Join Us block (#24521) @oliviertassinari
-- <!-- 75 --> [website] Add 'Support the project' section (#24384) @mnajdova
-
 All contributors of this release in alphabetical order: @artola, @CyanoFresh, @d3mp, @duganbrett, @eladmotola, @eps1lon, @greguintow, @KarimMokhtar, @kutnickclose, @lukaselmer, @mbrookes, @mnajdova, @mxsph, @oliviertassinari, @povilass, @praveenkumar-kalidass, @TimonPllkrn, @tonysepia, @vicasas, @vinyldarkscratch, @xs9627
 
 ## 5.0.0-alpha.23
