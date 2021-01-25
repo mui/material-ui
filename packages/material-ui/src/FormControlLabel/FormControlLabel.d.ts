@@ -64,6 +64,7 @@ export type FormControlLabelClassKey = keyof NonNullable<FormControlLabelProps['
 /**
  * Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.
  * Use this component if you want to display an extra label.
+ *
  * Demos:
  *
  * - [Checkboxes](https://material-ui.com/components/checkboxes/)
