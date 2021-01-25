@@ -5,9 +5,10 @@ import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 
-function mapEventPropToEvent<EventHandlerName extends string>(
-  eventProp: EventHandlerName,
-): EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never {
+// TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
+function mapEventPropToEvent(
+  eventProp: ClickAwayMouseEventHandler | ClickAwayTouchEventHandler,
+): 'click' | 'mousedown' | 'mouseup' | 'touchstart' | 'touchend' {
   return eventProp.substring(2).toLowerCase() as any;
 }
 
