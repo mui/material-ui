@@ -107,7 +107,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   let primary = primaryProp != null ? primaryProp : children;
   if (primary != null && primary.type !== Typography && !disableTypography) {
     primary = (
-      <ListItemTextPrimary
+      <Typography
         variant={dense ? 'body2' : 'body1'}
         className={classes.primary}
         component="span"
