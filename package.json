@@ -8,6 +8,7 @@
     "build:codesandbox": "lerna run --parallel --scope \"@material-ui/*\" build",
     "release:version": "lerna version --exact --no-changelog --no-push --no-git-tag-version",
     "release:build": "lerna run --parallel --scope \"@material-ui/*\" build",
+    "release:changelog": "node scripts/generateChangelog",
     "release:publish": "lerna publish from-package --dist-tag next --contents build",
     "release:publish:dry-run": "lerna publish from-package --dist-tag next --contents build --registry=\"http://localhost:4873/\"",
     "docs:api": "rimraf ./docs/pages/api-docs && yarn docs:api:build",
