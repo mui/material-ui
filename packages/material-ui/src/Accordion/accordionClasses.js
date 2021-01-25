@@ -9,6 +9,7 @@ const accordionClasses = generateUtilityClasses('MuiAccordion', [
   'rounded',
   'expanded',
   'disabled',
+  'gutters',
   'region',
 ]);
 

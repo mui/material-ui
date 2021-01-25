@@ -21,6 +21,8 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
     expanded?: string;
     /** Pseudo-class applied to the root element if `disabled={true}`. */
     disabled?: string;
+    /** Styles applied to the root element unless `disableGutters={true}`. */
+    gutters?: string;
     /** Styles applied to the region element, the container of the children. */
     region?: string;
   };
@@ -34,6 +36,11 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
    * @default false
    */
   disabled?: boolean;
+  /**
+   * If `true`, it removes the margin between two expanded accordion items and the increase of height.
+   * @default false
+   */
+  disableGutters?: boolean;
   /**
    * If `true`, expands the accordion, otherwise collapse it.
    * Setting this prop enables control over the accordion.

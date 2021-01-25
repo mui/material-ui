@@ -3,6 +3,8 @@ export interface AccordionSummaryClasses {
   expanded: string;
   focusVisible: string;
   disabled: string;
+  gutters: string;
+  contentGutters: string;
   content: string;
   expandIconWrapper: string;
 }

@@ -3,6 +3,7 @@ export interface AccordionClasses {
   rounded: string;
   expanded: string;
   disabled: string;
+  gutters: string;
   region: string;
 }
 

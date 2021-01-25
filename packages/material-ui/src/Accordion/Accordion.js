@@ -17,15 +17,22 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...(!styleProps.square && styles.rounded),
+    ...(!styleProps.disableGutters && styles.gutters),
     [`& .${accordionClasses.region}`]: styles.region,
   });
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, square, expanded, disabled } = styleProps;
+  const { classes, square, expanded, disabled, disableGutters } = styleProps;
 
   const slots = {
-    root: ['root', !square && 'rounded', expanded && 'expanded', disabled && 'disabled'],
+    root: [
+      'root',
+      !square && 'rounded',
+      expanded && 'expanded',
+      disabled && 'disabled',
+      !disableGutters && 'gutters',
+    ],
     region: ['region'],
   };
 
@@ -69,7 +76,6 @@ const AccordionRoot = experimentalStyled(
       },
       /* Styles applied to the root element if `expanded={true}`. */
       [`&.${accordionClasses.expanded}`]: {
-        margin: '16px 0',
         '&:before': {
           opacity: 0,
         },
@@ -109,6 +115,12 @@ const AccordionRoot = experimentalStyled(
         },
       },
     }),
+    /* Styles applied to the root element unless `disableGutters={true}`. */
+    ...(!styleProps.disableGutters && {
+      [`&.${accordionClasses.expanded}`]: {
+        margin: '16px 0',
+      },
+    }),
   }),
 );
 
@@ -119,6 +131,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     className,
     defaultExpanded = false,
     disabled = false,
+    disableGutters = false,
     expanded: expandedProp,
     onChange,
     square = false,
@@ -146,16 +159,16 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   );
 
   const [summary, ...children] = React.Children.toArray(childrenProp);
-  const contextValue = React.useMemo(() => ({ expanded, disabled, toggle: handleChange }), [
-    expanded,
-    disabled,
-    handleChange,
-  ]);
+  const contextValue = React.useMemo(
+    () => ({ expanded, disabled, disableGutters, toggle: handleChange }),
+    [expanded, disabled, disableGutters, handleChange],
+  );
 
   const styleProps = {
     ...props,
     square,
     disabled,
+    disableGutters,
     expanded,
   };
 
@@ -225,6 +238,11 @@ Accordion.propTypes = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, it removes the margin between two expanded accordion items and the increase of height.
+   * @default false
+   */
+  disableGutters: PropTypes.bool,
   /**
    * If `true`, expands the accordion, otherwise collapse it.
    * Setting this prop enables control over the accordion.
