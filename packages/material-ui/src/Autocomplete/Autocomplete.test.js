@@ -16,10 +16,17 @@ import Chip from '@material-ui/core/Chip';
 import Autocomplete, { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
+  const focused = listbox.querySelector('[role="option"][data-focus]');
+
   if (expected) {
-    expect(listbox.querySelector('li[data-focus]')).to.have.text(expected);
+    if (focused) {
+      expect(focused).to.have.text(expected);
+    } else {
+      // No options selected
+      expect(null).to.equal(expected);
+    }
   } else {
-    expect(listbox.querySelector('li[data-focus]')).to.equal(null);
+    expect(focused).to.equal(null);
   }
 }
 
