@@ -1,24 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
 import ListSubheader, { listSubheaderClasses } from '../ListSubheader';
-import List from './List';
 import ListItem, { listItemClasses } from '../ListItem';
+import List from './List';
+import classes from './listClasses';
 
 describe('<List />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<List />);
-  });
-
-  describeConformance(<List />, () => ({
+  describeConformanceV5(<List />, () => ({
     classes,
     inheritComponent: 'ul',
     mount,
+    muiName: 'MuiList',
     refInstanceof: window.HTMLUListElement,
+    testVariantProps: { disablePadding: true },
+    skip: ['componentsProp'],
   }));
 
   it('should render with padding classes', () => {
