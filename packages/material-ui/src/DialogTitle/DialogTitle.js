@@ -5,7 +5,6 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import Typography from '../Typography';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import Paper from '../Paper';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
 
 const overridesResolver = (props, styles) => styles.root || {};
