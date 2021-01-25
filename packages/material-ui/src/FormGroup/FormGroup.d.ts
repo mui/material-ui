@@ -28,6 +28,7 @@ export type FormGroupClassKey = keyof NonNullable<FormGroupProps['classes']>;
  * `FormGroup` wraps controls such as `Checkbox` and `Switch`.
  * It provides compact row layout.
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
+ *
  * Demos:
  *
  * - [Checkboxes](https://material-ui.com/components/checkboxes/)
