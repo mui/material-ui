@@ -13,6 +13,7 @@ import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsCla
 const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
     [`& .${breadcrumbsClasses.ol}`]: styles.ol,
+    [`& .${breadcrumbsClasses.li}`]: styles.li,
     [`& .${breadcrumbsClasses.separator}`]: styles.separator,
   });
 };
