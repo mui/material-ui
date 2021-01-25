@@ -33,6 +33,7 @@ import createGenerateClassName from '@material-ui/styles/createGenerateClassName
 import getStylesCreator from '@material-ui/styles/getStylesCreator';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
+import { bind } from 'lodash';
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
@@ -505,7 +506,21 @@ async function annotateComponentDefinition(context: {
         if (babel.types.isIdentifier(babelPath.node.declaration)) {
           const bindingId = babelPath.node.declaration.name;
           const binding = babelPath.scope.bindings[bindingId];
-          node = binding.path.parentPath.node;
+
+          // The JSDOC MUST be located at the declaration
+          if (babel.types.isFunctionDeclaration(binding.path.node)) {
+            // For function declarations the binding is equal to the declaration
+            // /**
+            //  */
+            // function Component() {}
+            node = binding.path.node;
+          } else {
+            // For variable declarations the binding points to the declarator.
+            // /**
+            //  */
+            // const Component = () => {}
+            node = binding.path.parentPath.node;
+          }
         }
       }
 
