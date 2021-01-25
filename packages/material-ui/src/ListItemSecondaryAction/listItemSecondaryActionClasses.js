@@ -4,7 +4,7 @@ export function getListItemSecondaryActionClassesUtilityClass(slot) {
   return generateUtilityClass('MuiListItemSecondaryAction', slot);
 }
 
-const listItemSecondaryActionClasses = generateUtilityClasses('MuiButton', [
+const listItemSecondaryActionClasses = generateUtilityClasses('MuiListItemSecondaryAction', [
   'root',
   'disableGutters',
 ]);
