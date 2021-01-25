@@ -78,15 +78,6 @@ TODO INSERT HIGHLIGHTS
 - <!-- 20 --> [utils] `useEventCallback` `args` defaults to `unknown[]` (#24564) @eps1lon
 - <!-- 69 --> [utils] Fix requirePropFactory to merge validators (#24423) @mnajdova
 
-### core
-
-- <!-- 29 --> [core] Improve pseudo classes overrides error (#24535) @mnajdova
-- <!-- 45 --> [core] Fix styleProps to always contain all props (#24505) @mnajdova
-- <!-- 56 --> [core] Do not forward classes prop by default in experimentalStyled (#24451) @mnajdova
-- <!-- 57 --> [core] Pass styleProps on all slots in the styled() components (#24454) @mnajdova
-- <!-- 58 --> [core] Batch small changes (#24445) @oliviertassinari
-- <!-- 79 --> [core] Normalize generating declaration files (#24411) @eps1lon
-
 ### docs
 
 - <!-- 02 --> [docs] Add missing newline in component JSDOC (#24610) @eps1lon
@@ -107,12 +98,18 @@ TODO INSERT HIGHLIGHTS
 - <!-- 71 --> [docs] Document default values of external props (#24417) @eps1lon
 - <!-- 78 --> [docs] Update in-house ads (#24410) @mbrookes
 
-### test
+### core
 
 - <!-- 21 --> [test] Simplify DatePicker tests (#24545) @eps1lon
+- <!-- 29 --> [core] Improve pseudo classes overrides error (#24535) @mnajdova
+- <!-- 45 --> [core] Fix styleProps to always contain all props (#24505) @mnajdova
 - <!-- 46 --> [test] Fix AvatarGroup failing test (#24512) @mnajdova
-- <!-- 55 --> [test] Split tests in describeConformanceV5 to isolate them (#24479) @mnajdova
 - <!-- 51 --> [pickers] Sort tests (#24481) @eps1lon
+- <!-- 55 --> [test] Split tests in describeConformanceV5 to isolate them (#24479) @mnajdova
+- <!-- 56 --> [core] Do not forward classes prop by default in experimentalStyled (#24451) @mnajdova
+- <!-- 57 --> [core] Pass styleProps on all slots in the styled() components (#24454) @mnajdova
+- <!-- 58 --> [core] Batch small changes (#24445) @oliviertassinari
+- <!-- 79 --> [core] Normalize generating declaration files (#24411)
 
 ### website
 
