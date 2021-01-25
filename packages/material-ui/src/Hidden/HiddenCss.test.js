@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender } from 'test/utils';
+import { createMount, createClientRender } from 'test/utils';
 import HiddenCss from './HiddenCss';
 import { createMuiTheme, MuiThemeProvider } from '../styles';
+import classes from './hiddenCssClasses';
 
 const TestChild = () => <div data-testid="test-child">bar</div>;
 
@@ -12,15 +13,6 @@ describe('<HiddenCss />', () => {
    */
   const mount = createMount();
   const render = createClientRender();
-  let classes;
-
-  before(() => {
-    classes = getClasses(
-      <HiddenCss>
-        <div />
-      </HiddenCss>,
-    );
-  });
 
   describe('the generated class names', () => {
     it('should be ok with only', () => {
