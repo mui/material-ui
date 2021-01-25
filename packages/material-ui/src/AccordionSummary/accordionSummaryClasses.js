@@ -9,6 +9,8 @@ const accordionSummaryClasses = generateUtilityClasses('MuiAccordionSummary', [
   'expanded',
   'focusVisible',
   'disabled',
+  'gutters',
+  'contentGutters',
   'content',
   'expandIconWrapper',
 ]);
