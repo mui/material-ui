@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { parseISO } from 'date-fns';
-import { createClientRender, fireEvent, screen } from 'test/utils';
+import { createClientRender, createMount, fireEvent, screen } from 'test/utils';
 import { queryHelpers, Matcher, MatcherOptions } from '@testing-library/react/pure';
 import { TransitionProps } from '@material-ui/core/transitions';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
@@ -36,6 +36,13 @@ export const FakeTransitionComponent = React.forwardRef<HTMLDivElement, Transiti
 interface PickerRenderOptions {
   // object for date-fns, string for other adapters
   locale?: string | object;
+}
+
+export function createPickerMount(options: { strict?: boolean } = {}) {
+  const mount = createMount(options);
+
+  return (node: React.ReactNode) =>
+    mount(<LocalizationProvider dateAdapter={AdapterClassToUse}>{node}</LocalizationProvider>);
 }
 
 export function createPickerRender({

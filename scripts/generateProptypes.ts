@@ -37,18 +37,14 @@ const todoComponentsTs: string[] = [
   'MobileDateRangePicker',
   'DateTimePicker',
   'DesktopDateTimePicker',
-  'DesktopTimePicker',
   'LocalizationProvider',
   'MobileDatePicker',
   'MobileDateTimePicker',
-  'MobileTimePicker',
   'MonthPicker',
   'PickersCalendarSkeleton',
   'PickersDay',
   'StaticDatePicker',
   'StaticDateTimePicker',
-  'StaticTimePicker',
-  'TimePicker',
   'YearPicker',
 ];
 

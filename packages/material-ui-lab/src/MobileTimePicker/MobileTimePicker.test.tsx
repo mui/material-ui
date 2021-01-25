@@ -2,28 +2,49 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { fireEvent, fireTouchChangedEvent } from 'test/utils';
+import { describeConformance, fireEvent, fireTouchChangedEvent } from 'test/utils';
 import MobileTimePicker from '@material-ui/lab/MobileTimePicker';
-import { createPickerRender, adapterToUse, getByMuiTest } from '../internal/pickers/test-utils';
+import {
+  createPickerMount,
+  createPickerRender,
+  adapterToUse,
+  getByMuiTest,
+} from '../internal/pickers/test-utils';
+
+function createMouseEventWithOffsets(
+  type: 'mousedown' | 'mousemove' | 'mouseup',
+  { offsetX, offsetY, ...eventOptions }: { offsetX: number; offsetY: number } & MouseEventInit,
+) {
+  const event = new window.MouseEvent(type, {
+    bubbles: true,
+    cancelable: true,
+    ...eventOptions,
+  });
+
+  Object.defineProperty(event, 'offsetX', { get: () => offsetX });
+  Object.defineProperty(event, 'offsetY', { get: () => offsetY });
+
+  return event;
+}
 
 describe('<MobileTimePicker />', () => {
   const render = createPickerRender({ strict: false });
+  const mount = createPickerMount();
 
-  function createMouseEventWithOffsets(
-    type: 'mousedown' | 'mousemove' | 'mouseup',
-    { offsetX, offsetY, ...eventOptions }: { offsetX: number; offsetY: number } & MouseEventInit,
-  ) {
-    const event = new window.MouseEvent(type, {
-      bubbles: true,
-      cancelable: true,
-      ...eventOptions,
-    });
-
-    Object.defineProperty(event, 'offsetX', { get: () => offsetX });
-    Object.defineProperty(event, 'offsetY', { get: () => offsetY });
-
-    return event;
-  }
+  describeConformance(
+    <MobileTimePicker
+      onChange={() => {}}
+      renderInput={(props) => <TextField {...props} />}
+      value={null}
+    />,
+    () => ({
+      classes: {},
+      mount,
+      // TODO: The `ref` on the `TimePicker` is forwarded as `inputRef` in the `renderInput` parameters.
+      refInstanceof: window.HTMLInputElement,
+      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
+    }),
+  );
 
   it('accepts time on clock mouse move', () => {
     const onChangeMock = spy();
