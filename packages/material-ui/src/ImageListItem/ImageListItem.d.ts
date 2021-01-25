@@ -1,4 +1,6 @@
+import { SxProps } from '@material-ui/system';
 import * as React from 'react';
+import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
@@ -17,6 +19,10 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
      * @default 1
      */
     rows?: number;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
   classKey: ImageListItemClassKey;
