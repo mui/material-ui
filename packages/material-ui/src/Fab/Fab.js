@@ -16,6 +16,8 @@ const overridesResolver = (props, styles) => {
     ...styles[styleProps.variant],
     ...styles[`size${capitalize(styleProps.size)}`],
     ...(styleProps.color === 'inherit' && styles.colorInherit),
+    ...(styleProps.color === 'primary' && styles.primary),
+    ...(styleProps.color === 'secondary' && styles.secondary),
     [`& .${fabClasses.label}`]: styles.label,
   });
 };
