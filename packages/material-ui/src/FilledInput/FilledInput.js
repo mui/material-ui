@@ -1,48 +1,109 @@
 import * as React from 'react';
+import { deepmerge, refType } from '@material-ui/utils';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
-import InputBase from '../InputBase';
-import withStyles from '../styles/withStyles';
 
-export const styles = (theme) => {
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import InputBase from '../InputBase';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
+
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    [`&.${filledInputClasses.colorSecondary}`]: styles.colorSecondary,
+    ...(!styleProps.disableUnderline && styles.undeline),
+    ...(styleProps.startAdornment && styles.adornedStart),
+    ...(styleProps.endAdornment && styles.adornedEnd),
+    [`&.${filledInputClasses.error}`]: styles.error,
+    [`&.${filledInputClasses.sizeSmall}`]: styles.sizeSmall,
+    ...(styleProps.multiline && styles.multiline),
+    [`&.${filledInputClasses.hiddenLabel}`]: styles.hiddenLabel,
+    [`& .${filledInputClasses.input}`]: {
+      ...styles.input,
+      ...(styleProps.multiline && styles.inputMultiline),
+      ...(styleProps.startAdornment && styles.inputAdornedStart),
+      ...(styleProps.endAdornment && styles.inputAdornedEnd),
+    },
+    [`& .${filledInputClasses.inputSizeSmall}`]: styles.inputSizeSmall,
+    [`& .${filledInputClasses.inputHiddenLabel}`]: styles.inputHiddenLabel,
+  });
+};
+const useUtilityClasses = (styleProps) => {
+  const {
+    classes,
+    disableUnderline,
+    disabled,
+    startAdornment,
+    endAdornment,
+    multiline,
+  } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      !disableUnderline && 'underline',
+      disabled && 'disabled',
+      startAdornment && 'adornedStart',
+      endAdornment && 'adornedEnd',
+      multiline && 'multiline',
+    ],
+    input: [
+      'input',
+      multiline && 'inputMultiline',
+      startAdornment && 'inputAdornedStart',
+      endAdornment && 'inputAdornedEnd',
+    ],
+    sizeSmall: ['sizeSmall'],
+    colorSecondary: ['colorSecondary'],
+    hiddenLabel: ['hiddenLabel'],
+    inputHiddenLabel: ['inputHiddenLabel'],
+    inputSizeSmall: ['inputSizeSmall'],
+  };
+
+  return composeClasses(slots, getFilledInputUtilityClass, classes);
+};
+
+const FilledInputRoot = experimentalStyled(
+  InputBase,
+  {
+    shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes',
+  },
+  { named: 'MuiFilledInput', slot: 'Root', overridesResolver },
+)(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)';
-
   return {
     /* Styles applied to the root element. */
-    root: {
-      position: 'relative',
-      backgroundColor,
-      borderTopLeftRadius: theme.shape.borderRadius,
-      borderTopRightRadius: theme.shape.borderRadius,
-      transition: theme.transitions.create('background-color', {
-        duration: theme.transitions.duration.shorter,
-        easing: theme.transitions.easing.easeOut,
-      }),
-      '&:hover': {
-        backgroundColor: light ? 'rgba(0, 0, 0, 0.13)' : 'rgba(255, 255, 255, 0.13)',
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor,
-        },
-      },
-      '&$focused': {
-        backgroundColor: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)',
-      },
-      '&$disabled': {
-        backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
+
+    position: 'relative',
+    backgroundColor,
+    borderTopLeftRadius: theme.shape.borderRadius,
+    borderTopRightRadius: theme.shape.borderRadius,
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shorter,
+      easing: theme.transitions.easing.easeOut,
+    }),
+    '&:hover': {
+      backgroundColor: light ? 'rgba(0, 0, 0, 0.13)' : 'rgba(255, 255, 255, 0.13)',
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor,
       },
     },
-    /* Styles applied to the root element if color secondary. */
-    colorSecondary: {
-      '&$underline:after': {
+    '&.Mui-focused': {
+      backgroundColor: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)',
+    },
+    '&.Mui-disabled': {
+      backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
+    },
+    ...(!styleProps.disableUnderline && {
+      [`&.${filledInputClasses.colorSecondary}:after`]: {
         borderBottomColor: theme.palette.secondary.main,
       },
-    },
-    /* Styles applied to the root element unless `disableUnderline={true}`. */
-    underline: {
+    }),
+    ...(!styleProps.disableUnderline && {
       '&:after': {
         borderBottom: `2px solid ${theme.palette.primary.main}`,
         left: 0,
@@ -58,10 +119,10 @@ export const styles = (theme) => {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&$focused:after': {
+      '&.Mui-focused:after': {
         transform: 'scaleX(1)',
       },
-      '&$error:after': {
+      '&.Mui-error:after': {
         borderBottomColor: theme.palette.error.main,
         transform: 'scaleX(1)', // error is always underlined in red
       },
@@ -81,42 +142,34 @@ export const styles = (theme) => {
       '&:hover:not($disabled):before': {
         borderBottom: `1px solid ${theme.palette.text.primary}`,
       },
-      '&$disabled:before': {
+      '&.Mui-disabled:before': {
         borderBottomStyle: 'dotted',
       },
-    },
-    /* Pseudo-class applied to the root element if the component is focused. */
-    focused: {},
-    /* Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled: {},
-    /* Styles applied to the root element if `startAdornment` is provided. */
-    adornedStart: {
+    }),
+    ...(styleProps.startAdornment && {
       paddingLeft: 12,
-    },
-    /* Styles applied to the root element if `endAdornment` is provided. */
-    adornedEnd: {
-      paddingRight: 12,
-    },
-    /* Pseudo-class applied to the root element if `error={true}`. */
-    error: {},
-    /* Styles applied to the input element if `size="small"`. */
-    sizeSmall: {},
-    /* Styles applied to the root element if `multiline={true}`. */
-    multiline: {
-      padding: '25px 12px 8px',
-      '&$sizeSmall': {
-        paddingTop: 21,
-        paddingBottom: 4,
+      [`& .${filledInputClasses.adornedStart}`]: {
+        paddingLeft: 0,
       },
-      '&$hiddenLabel': {
+    }),
+    ...(styleProps.endAdornment && {
+      paddingRight: 12,
+      [`& .${filledInputClasses.endAdornment}`]: {
+        paddingRight: 0,
+      },
+    }),
+    ...(styleProps.multiline && {
+      padding: '25px 12px 8px',
+      [`&.${filledInputClasses.hiddenLabel}`]: {
         paddingTop: 16,
         paddingBottom: 17,
       },
-    },
-    /* Styles applied to the root element if `hiddenLabel={true}`. */
-    hiddenLabel: {},
-    /* Styles applied to the input element. */
-    input: {
+      [`&.${filledInputClasses.sizeSmall}`]: {
+        paddingTop: 21,
+        paddingBottom: 4,
+      },
+    }),
+    [`& .${filledInputClasses.input}`]: {
       padding: '25px 12px 8px',
       '&:-webkit-autofill': {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
@@ -126,39 +179,29 @@ export const styles = (theme) => {
         borderTopRightRadius: 'inherit',
       },
     },
-    /* Styles applied to the input element if `size="small"`. */
-    inputSizeSmall: {
+    [`& .${filledInputClasses.inputSizeSmall}`]: {
       paddingTop: 21,
       paddingBottom: 4,
     },
-    /* Styles applied to the `input` if in `<FormControl hiddenLabel />`. */
-    inputHiddenLabel: {
+    ...(styleProps.multiline && {
+      [`& .${filledInputClasses.inputMultiline}`]: {
+        padding: 0,
+      },
+    }),
+    [`& .${filledInputClasses.inputHiddenLabel}`]: {
       paddingTop: 16,
       paddingBottom: 17,
-      '&$inputSizeSmall': {
-        paddingTop: 8,
-        paddingBottom: 9,
-      },
     },
-    /* Styles applied to the input element if `multiline={true}`. */
-    inputMultiline: {
-      padding: 0,
-    },
-    /* Styles applied to the input element if `startAdornment` is provided. */
-    inputAdornedStart: {
-      paddingLeft: 0,
-    },
-    /* Styles applied to the input element if `endAdornment` is provided. */
-    inputAdornedEnd: {
-      paddingRight: 0,
+    [`& .${filledInputClasses.inputHiddenLabel}.${filledInputClasses.inputSizeSmall}`]: {
+      paddingTop: 8,
+      paddingBottom: 9,
     },
   };
-};
+});
 
 const FilledInput = React.forwardRef(function FilledInput(props, ref) {
   const {
     disableUnderline,
-    classes,
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
@@ -166,21 +209,27 @@ const FilledInput = React.forwardRef(function FilledInput(props, ref) {
     ...other
   } = props;
 
+  const styleProps = {
+    ...other,
+    disableUnderline,
+    fullWidth,
+    inputComponent,
+    multiline,
+    type,
+  };
+
+  const classes = useUtilityClasses(props);
+
   return (
-    <InputBase
-      classes={{
-        ...classes,
-        root: clsx(classes.root, {
-          [classes.underline]: !disableUnderline,
-        }),
-        underline: null,
-      }}
+    <FilledInputRoot
+      styleProps={styleProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
       ref={ref}
       type={type}
       {...other}
+      classes={classes}
     />
   );
 });
@@ -308,6 +357,10 @@ FilledInput.propTypes = {
    */
   startAdornment: PropTypes.node,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
@@ -320,4 +373,4 @@ FilledInput.propTypes = {
 
 FilledInput.muiName = 'Input';
 
-export default withStyles(styles, { name: 'MuiFilledInput' })(FilledInput);
+export default FilledInput;
