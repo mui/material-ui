@@ -7,7 +7,8 @@
     "itemsAfterCollapse": { "type": { "name": "number" }, "default": "1" },
     "itemsBeforeCollapse": { "type": { "name": "number" }, "default": "1" },
     "maxItems": { "type": { "name": "number" }, "default": "8" },
-    "separator": { "type": { "name": "node" }, "default": "'/'" }
+    "separator": { "type": { "name": "node" }, "default": "'/'" },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Breadcrumbs",
   "styles": {
@@ -20,6 +21,6 @@
   "filename": "/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/breadcrumbs/\">Breadcrumbs</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

@@ -29,10 +29,9 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the spacer element"
     },
-    "caption": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the caption Typography component",
-      "conditions": "<code>variant=\"caption\"</code>"
+    "selectLabel": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the select label Typography element"
     },
     "selectRoot": {
       "description": "Styles applied to {{nodeName}}.",
@@ -53,6 +52,10 @@
     "menuItem": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the MenuItem component"
+    },
+    "displayedRows": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the displayed rows Typography element"
     },
     "actions": {
       "description": "Styles applied to {{nodeName}}.",

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformanceV5, createClientRender } from 'test/utils';
-import ListSubheader from '../ListSubheader';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
+import ListSubheader, { listSubheaderClasses } from '../ListSubheader';
+import ListItem, { listItemClasses } from '../ListItem';
 import List from './List';
-import ListItem from '../ListItem';
 import classes from './listClasses';
 
 describe('<List />', () => {
@@ -41,7 +41,6 @@ describe('<List />', () => {
 
     it('should render ListSubheader', () => {
       const { container } = render(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      const listSubheaderClasses = getClasses(<ListSubheader />);
       const item = container.querySelector('li');
 
       expect(item).to.have.class(listSubheaderClasses.root);
@@ -74,8 +73,6 @@ describe('<List />', () => {
           <ListItem />
         </List>,
       );
-
-      const listItemClasses = getClasses(<ListItem />);
 
       const liItems = container.querySelectorAll('li');
       for (let i = 0; i < liItems.length; i += 1) {

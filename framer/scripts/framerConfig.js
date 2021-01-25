@@ -186,7 +186,7 @@ export const componentSettings = {
     template: 'icon.txt',
   },
   IconButton: {
-    ignoredProps: ['children', 'edge', 'disableRipple', 'disableFocusRipple'],
+    ignoredProps: ['children', 'edge', 'disableRipple', 'disableFocusRipple', 'sx'],
     propValues: {
       icon: "'favorite'",
       iconTheme: 'Filled',
@@ -198,7 +198,7 @@ export const componentSettings = {
     template: 'icon_button.txt',
   },
   ListItem: {
-    ignoredProps: ['children', 'ContainerComponent', 'ContainerProps'],
+    ignoredProps: ['children', 'ContainerComponent', 'ContainerProps', 'sx'],
     propValues: {
       width: 568,
       height: 48,

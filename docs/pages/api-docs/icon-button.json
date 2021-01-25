@@ -22,7 +22,8 @@
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "default": "'medium'"
-    }
+    },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "IconButton",
   "styles": {
@@ -45,6 +46,6 @@
   "filename": "/packages/material-ui/src/IconButton/IconButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
