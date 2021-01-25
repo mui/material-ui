@@ -48,104 +48,108 @@ const FabRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
-  ...theme.typography.button,
-  minHeight: 36,
-  transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
-    duration: theme.transitions.duration.short,
-  }),
-  borderRadius: '50%',
-  padding: 0,
-  minWidth: 0,
-  width: 56,
-  height: 56,
-  boxShadow: theme.shadows[6],
-  '&:active': {
-    boxShadow: theme.shadows[12],
-  },
-  color: theme.palette.getContrastText(theme.palette.grey[300]),
-  backgroundColor: theme.palette.grey[300],
-  '&:hover': {
-    backgroundColor: theme.palette.grey.A100,
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: theme.palette.grey[300],
-    },
-    textDecoration: 'none',
-  },
-  '&.Mui-focusVisible': {
-    boxShadow: theme.shadows[6],
-  },
-  '&.Mui-disabled': {
-    color: theme.palette.action.disabled,
-    boxShadow: theme.shadows[0],
-    backgroundColor: theme.palette.action.disabledBackground,
-  },
-  /* Styles applied to the root element if `variant="extended"`. */
-  ...(styleProps.variant === 'extended' && {
-    borderRadius: 48 / 2,
-    padding: '0 16px',
-    width: 'auto',
-    minHeight: 'auto',
-    minWidth: 48,
-    height: 48,
-  }),
-  ...(styleProps.variant === 'extended' &&
-    styleProps.size === 'small' && {
-      width: 'auto',
-      padding: '0 8px',
-      borderRadius: 34 / 2,
-      minWidth: 34,
-      height: 34,
+)(
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element. */
+    ...theme.typography.button,
+    minHeight: 36,
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+      duration: theme.transitions.duration.short,
     }),
-  ...(styleProps.variant === 'extended' &&
-    styleProps.size === 'medium' && {
-      width: 'auto',
+    borderRadius: '50%',
+    padding: 0,
+    minWidth: 0,
+    width: 56,
+    height: 56,
+    boxShadow: theme.shadows[6],
+    '&:active': {
+      boxShadow: theme.shadows[12],
+    },
+    color: theme.palette.getContrastText(theme.palette.grey[300]),
+    backgroundColor: theme.palette.grey[300],
+    '&:hover': {
+      backgroundColor: theme.palette.grey.A100,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.grey[300],
+      },
+      textDecoration: 'none',
+    },
+    '&.Mui-focusVisible': {
+      boxShadow: theme.shadows[6],
+    },
+    '&.Mui-disabled': {
+      color: theme.palette.action.disabled,
+      boxShadow: theme.shadows[0],
+      backgroundColor: theme.palette.action.disabledBackground,
+    },
+    /* Styles applied to the root element if `variant="extended"`. */
+    ...(styleProps.variant === 'extended' && {
+      borderRadius: 48 / 2,
       padding: '0 16px',
-      borderRadius: 40 / 2,
-      minWidth: 40,
+      width: 'auto',
+      minHeight: 'auto',
+      minWidth: 48,
+      height: 48,
+    }),
+    ...(styleProps.variant === 'extended' &&
+      styleProps.size === 'small' && {
+        width: 'auto',
+        padding: '0 8px',
+        borderRadius: 34 / 2,
+        minWidth: 34,
+        height: 34,
+      }),
+    ...(styleProps.variant === 'extended' &&
+      styleProps.size === 'medium' && {
+        width: 'auto',
+        padding: '0 16px',
+        borderRadius: 40 / 2,
+        minWidth: 40,
+        height: 40,
+      }),
+    /* Styles applied to the root element if `color="inherit"`. */
+    ...(styleProps.color === 'inherit' && {
+      color: 'inherit',
+    }),
+    /* Styles applied to the root element if `size="small"``. */
+    ...(styleProps.size === 'small' && {
+      width: 40,
       height: 40,
     }),
-  /* Styles applied to the root element if `color="inherit"`. */
-  ...(styleProps.color === 'inherit' && {
-    color: 'inherit',
+    /* Styles applied to the root element if `size="medium"``. */
+    ...(styleProps.size === 'medium' && {
+      width: 48,
+      height: 48,
+    }),
   }),
-  /* Styles applied to the root element if `color="primary"`. */
-  ...(styleProps.color === 'primary' && {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.primary.main,
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element if `color="primary"`. */
+    ...(styleProps.color === 'primary' && {
+      color: theme.palette.primary.contrastText,
+      backgroundColor: theme.palette.primary.main,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.dark,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.primary.main,
+        },
       },
-    },
-  }),
-  /* Styles applied to the root element if `color="secondary"`. */
-  ...(styleProps.color === 'secondary' && {
-    color: theme.palette.secondary.contrastText,
-    backgroundColor: theme.palette.secondary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.secondary.dark,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.secondary.main,
+    }),
+    /* Styles applied to the root element if `color="secondary"`. */
+    ...(styleProps.color === 'secondary' && {
+      color: theme.palette.secondary.contrastText,
+      backgroundColor: theme.palette.secondary.main,
+      '&:hover': {
+        backgroundColor: theme.palette.secondary.dark,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.secondary.main,
+        },
       },
-    },
+    }),
   }),
-  /* Styles applied to the root element if `size="small"``. */
-  ...(styleProps.size === 'small' && {
-    width: 40,
-    height: 40,
-  }),
-  /* Styles applied to the root element if `size="medium"``. */
-  ...(styleProps.size === 'medium' && {
-    width: 48,
-    height: 48,
-  }),
-}));
+);
 
 const FabLabel = experimentalStyled(
   'span',

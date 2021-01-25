@@ -10,6 +10,7 @@ export interface FabClasses {
   colorInherit: string;
   sizeSmall: string;
   sizeMedium: string;
+  sizeLarge: string;
 }
 
 declare const fabClasses: FabClasses;

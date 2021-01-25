@@ -16,6 +16,7 @@ const fabClasses = generateUtilityClasses('MuiFab', [
   'colorInherit',
   'sizeSmall',
   'sizeMedium',
+  'sizeLarge',
 ]);
 
 export default fabClasses;
