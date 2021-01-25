@@ -75,6 +75,19 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   const { dense } = React.useContext(ListContext);
 
   let primary = primaryProp != null ? primaryProp : children;
+  let secondary = secondaryProp;
+
+  const styleProps = {
+    ...props,
+    disableTypography,
+    inset,
+    primary: !!primary,
+    secondary: !!secondary,
+    dense,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   if (primary != null && primary.type !== Typography && !disableTypography) {
     primary = (
       <Typography
@@ -89,7 +102,6 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
     );
   }
 
-  let secondary = secondaryProp;
   if (secondary != null && secondary.type !== Typography && !disableTypography) {
     secondary = (
       <Typography
@@ -103,17 +115,6 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
       </Typography>
     );
   }
-
-  const styleProps = {
-    ...props,
-    disableTypography,
-    inset,
-    primary: !!primary,
-    secondary: !!secondary,
-    dense,
-  };
-
-  const classes = useUtilityClasses(styleProps);
 
   return (
     <ListItemTextRoot
