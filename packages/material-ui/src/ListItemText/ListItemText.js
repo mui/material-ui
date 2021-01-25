@@ -130,7 +130,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
         {...secondaryTypographyProps}
       >
         {secondary}
-      </ListItemTextSecondary>
+      </Typography>
     );
   }
 
