@@ -9,7 +9,7 @@ import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getListItemTextUtilityClass } from './listItemTextClasses';
 
-const overridersResolver = (props, styles) => {
+const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
@@ -37,7 +37,7 @@ const ListItemTextRoot = experimentalStyled(
   {
     name: 'MuiListItemText',
     slot: 'Root',
-    overridersResolver,
+    overridesResolver,
   },
 )(({ styleProps }) => ({
   /* Styles applied to the root element. */
