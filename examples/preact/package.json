@@ -11,7 +11,7 @@
     "@testing-library/user-event": "latest",
     "preact": "latest",
     "preact-compat": "latest",
-    "react-scripts": "latest"
+    "react-scripts": "^3.4.3"
   },
   "scripts": {
     "start": "react-app-rewired start",
