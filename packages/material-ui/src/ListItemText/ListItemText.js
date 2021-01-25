@@ -7,7 +7,7 @@ import Typography from '../Typography';
 import ListContext from '../List/ListContext';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
-import { getListItemTextUtilityClass } from './listItemTextClasses';
+import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -16,6 +16,8 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.inset && styles.inset),
     ...(styleProps.primary && styleProps.secondary && styles.multiline),
     ...(styleProps.dense && styles.dense),
+    [`& .${listItemTextClasses.primary}`]: styles.primary,
+    [`& .${listItemTextClasses.secondary}`]: styles.secondary,
   });
 };
 

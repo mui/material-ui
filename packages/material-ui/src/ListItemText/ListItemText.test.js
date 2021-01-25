@@ -9,12 +9,13 @@ describe('<ListItemText />', () => {
   const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<ListItemText />, () => ({
+  describeConformanceV5(<ListItemText primary="Conformance?" />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
     muiName: 'MuiListItemText',
     testVariantProps: { inset: true },
+    testDeepOverrides: { slotName: 'primary', slotClassName: classes.primary },
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'componentsProp'],
   }));
