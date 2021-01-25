@@ -1,6 +1,6 @@
 ### [Versions](https://material-ui.com/versions/)
 
-## v5.0.0-alpha.24
+## 5.0.0-alpha.24
 
 <!-- generated comparing v5.0.0-alpha.23..next -->
 
@@ -13,7 +13,7 @@ Big thanks to the 21 contributors who made this release possible. Here are some 
 
 TODO INSERT HIGHLIGHTS
 
-### `@material-ui/core@`
+### `@material-ui/core@5.0.0-alpha.24`
 
 - <!-- 01 --> [BottomNavigation] Migrate to emotion (#24556) @vinyldarkscratch
 - <!-- 03 --> [CardActions] Fix wrong classes export name (#24609) @mnajdova
@@ -55,25 +55,25 @@ TODO INSERT HIGHLIGHTS
 - <!-- 73 --> [Grid] Migrate to emotion (#24395) @mnajdova
 - <!-- 74 --> [Badge] Fix TS custom variants (#24407) @mnajdova
 
-### `@material-ui/lab@`
+### `@material-ui/lab@5.0.0-alpha.24`
 
 - <!-- 32 --> [DatePicker] Remove unnecessary wrapping dom node (#24533) @mxsph
 - <!-- 68 --> [DateRangePicker] Remove variant prop override for Textfield (#24433) @praveenkumar-kalidass
 - <!-- 77 --> [lab] Reflect draft pattern of picker value in implementation (#24367) @eps1lon
 
-### `@material-ui/styled-engine@`
+### `@material-ui/styled-engine@5.0.0-alpha.24`
 
 - <!-- 67 --> [styled-engine] Rename StylesProvider to StyledEngineProvider (#24429) @mnajdova
 
-### `@material-ui/system@`
+### `@material-ui/system@5.0.0-alpha.24`
 
 - <!-- 36 --> [system] Fix handling of null-ish values (#24530) @oliviertassinari
 
-### `@material-ui/unstyled@`
+### `@material-ui/unstyled@5.0.0-alpha.24`
 
 - <!-- 72 --> [unstyled] Convert composeClasses to TypeScript (#24396) @eps1lon
 
-### `@material-ui/utils@`
+### `@material-ui/utils@5.0.0-alpha.24`
 
 - <!-- 20 --> [utils] `useEventCallback` `args` defaults to `unknown[]` (#24564) @eps1lon
 - <!-- 69 --> [utils] Fix requirePropFactory to merge validators (#24423) @mnajdova
