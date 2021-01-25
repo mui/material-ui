@@ -18,7 +18,8 @@
     "disabled": { "type": { "name": "bool" } },
     "disableGutters": { "type": { "name": "bool" } },
     "divider": { "type": { "name": "bool" } },
-    "selected": { "type": { "name": "bool" } }
+    "selected": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "ListItem",
   "styles": {
@@ -47,6 +48,6 @@
   "filename": "/packages/material-ui/src/ListItem/ListItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
 import ListSubheader from '../ListSubheader';
 import List from './List';
-import ListItem from '../ListItem';
+import ListItem, { listItemClasses } from '../ListItem';
 
 describe('<List />', () => {
   const mount = createMount();
@@ -75,8 +75,6 @@ describe('<List />', () => {
           <ListItem />
         </List>,
       );
-
-      const listItemClasses = getClasses(<ListItem />);
 
       const liItems = container.querySelectorAll('li');
       for (let i = 0; i < liItems.length; i += 1) {
