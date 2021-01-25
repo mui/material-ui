@@ -96,8 +96,7 @@ const BottomNavigationActionLabel = experimentalStyled(
       opacity: 0,
       transitionDelay: '0s',
     }),
-  ...(styleProps.selected && {
-    [`&.${bottomNavigationActionClasses.selected}`]: {
+  [`&.${bottomNavigationActionClasses.selected}`]: {
       fontSize: theme.typography.pxToRem(14),
     },
   }),
