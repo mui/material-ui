@@ -57,28 +57,6 @@ const ListItemTextRoot = experimentalStyled(
   }),
 }));
 
-const ListItemTextPrimary = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiListItemText',
-    slot: 'Primary',
-  },
-)(() => ({
-  /* Styles applied to the primary `Typography` component. */
-}));
-
-const ListItemTextSecondary = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiListItemText',
-    slot: 'Secondary',
-  },
-)(() => ({
-  /* Styles applied to the secondary `Typography` component. */
-}));
-
 const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiListItemText' });
   const {
