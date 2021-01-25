@@ -1,5 +1,6 @@
+import { SxProps } from '@material-ui/system';
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TypographyProps } from '../Typography';
 
 export interface ListItemTextProps<
@@ -65,6 +66,10 @@ export interface ListItemTextProps<
     SecondaryTypographyComponent,
     { component?: SecondaryTypographyComponent }
   >;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type ListItemTextClassKey = keyof NonNullable<ListItemTextProps['classes']>;
