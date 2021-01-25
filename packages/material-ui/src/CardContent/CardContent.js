@@ -42,7 +42,7 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
     name: 'MuiCardContent',
   });
 
-  const { className, component: Component = 'div', ...other } = props;
+  const { className, component = 'div', ...other } = props;
 
   const styleProps = { ...props };
 
