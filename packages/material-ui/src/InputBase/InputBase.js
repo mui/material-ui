@@ -26,7 +26,7 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.error && styles.error),
     ...(styleProps.size === 'small' && styles.sizeSmall),
     ...(styleProps.multiline && styles.multiline),
-    ...(styleProps.color && styles[`color${capitalize(color)}`]),
+    ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
     ...(styleProps.fullWidth && styles.fullWidth),
     ...(styleProps.hiddenLabel && styles.hiddenLabel),
     [`& .${inputBaseClasses.input}`]: {
