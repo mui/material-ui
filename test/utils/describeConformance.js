@@ -91,7 +91,7 @@ export function testComponentProp(element, getOptions) {
 
 /**
  * Material-UI components can spread additional props to a documented component.
- * It's set via @inheritComponent in the source.
+ *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
@@ -126,7 +126,7 @@ export function describeRef(element, getOptions) {
       testRef(element, mount, (instance, wrapper) => {
         expect(instance).to.be.instanceof(refInstanceof);
 
-        if (inheritComponent && instance.nodeType === 1) {
+        if (inheritComponent !== undefined && instance.nodeType === 1) {
           const rootHost = findOutermostIntrinsic(wrapper);
           expect(instance).to.equal(rootHost.instance());
         }
@@ -196,7 +196,7 @@ const fullSuite = {
 /**
  * @typedef {Object} ConformanceOptions
  * @property {Record<string, string>} classes - `classes` of the component provided by `@material-ui/styles`
- * @property {import('react').ElementType} inheritComponent - The element type that receives spread props.
+ * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
  * @property {(node: React.ReactNode) => void} mount - Should be a return value from createMount
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
