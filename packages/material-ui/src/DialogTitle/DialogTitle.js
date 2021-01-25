@@ -21,7 +21,7 @@ const useUtilityClasses = (styleProps) => {
 };
 
 const DialogTitleRoot = experimentalStyled(
-  Paper,
+  'div',
   {},
   {
     name: 'MuiDialogTitle',
