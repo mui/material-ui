@@ -55,8 +55,6 @@ const ListItemTextRoot = experimentalStyled(
   ...(styleProps.inset && {
     paddingLeft: 56,
   }),
-  /* Styles applied to the Typography component if dense. */
-  ...(styleProps.dense && {}),
 }));
 
 const ListItemTextPrimary = experimentalStyled(
