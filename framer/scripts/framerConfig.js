@@ -161,11 +161,11 @@ export const componentSettings = {
   },
   Fab: {
     ignoredProps: [
-      'sx',
       'children',
       'disableFocusRipple',
       // FIXME: `Union`
       'variant',
+      'sx',
     ],
     propValues: {
       icon: "'add'",
