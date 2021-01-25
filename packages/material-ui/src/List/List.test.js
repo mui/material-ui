@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
-import ListSubheader from '../ListSubheader';
+import ListSubheader, { listSubheaderClasses } from '../ListSubheader';
 import List from './List';
 import ListItem, { listItemClasses } from '../ListItem';
 
@@ -42,7 +42,6 @@ describe('<List />', () => {
 
     it('should render ListSubheader', () => {
       const { container } = render(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      const listSubheaderClasses = getClasses(<ListSubheader />);
       const item = container.querySelector('li');
 
       expect(item).to.have.class(listSubheaderClasses.root);
