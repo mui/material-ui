@@ -8,7 +8,7 @@ _Jan 25, 2021_
 
 Big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
-- 👩‍🎤 Convert 27 components to emotion. 38% of the components have been migrated so far thanks to the help of the community. 
+- 👩‍🎤 Convert 27 components to emotion. 38% of the components have been migrated so far thanks to the help of the community.
 - 🐛 Fix two long-standing issues with the Grid. Solve the horizontal scrollbar as well as dimensions when nesting (#24332) @greguintow.
 - 📚 Fix various display issues on API documentation pages (#24526, #24503, #24504. #24517, #24417).
 - 📐 Add a subset of the system as flatten props on the CSS utility components (`Grid` and `Box` so far, `Typography` and `Stack` coming later) (#24485, #24499) @mnajdova.
