@@ -112,7 +112,6 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
         className={classes.primary}
         component="span"
         display="block"
-        styleProps={styleProps}
         {...primaryTypographyProps}
       >
         {primary}
