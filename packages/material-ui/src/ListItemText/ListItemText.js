@@ -23,7 +23,7 @@ const useUtilityClasses = (styleProps) => {
   const { classes, inset, primary, secondary, dense } = styleProps;
 
   const slots = {
-    root: ['root', inset && 'inset', dense && 'dense'],
+    root: ['root', inset && 'inset', dense && 'dense', primary && secondary && 'multiline'],
     primary: [primary && 'primary'],
     secondary: [secondary && 'secondary'],
   };
