@@ -13,7 +13,7 @@ describe('<ListItemText />', () => {
     classes,
     inheritComponent: 'div',
     mount,
-    name: 'MuiListItemText',
+    muiName: 'MuiListItemText',
     testVariantProps: { inset: true },
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'componentsProp'],

@@ -45,7 +45,7 @@ const ListItemTextRoot = experimentalStyled(
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
-  /* Styles applied to the Typography component if primary and secondary are set. */
+  /* Styles applied to the root if primary and secondary are set. */
   ...(styleProps.primary &&
     styleProps.secondary && {
       marginTop: 6,
