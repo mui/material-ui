@@ -12,7 +12,7 @@ describe('<CardContent />', () => {
     mount,
     muiName: 'MuiCardContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentsProp'],
+    skip: ['componentsProp', 'themeVariants'],
     testComponentPropWith: 'span',
   }));
 });
