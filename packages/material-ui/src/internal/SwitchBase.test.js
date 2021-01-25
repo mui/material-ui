@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import IconButton from '../IconButton';
+import classes from './switchBaseClasses';
 
 describe('<SwitchBase />', () => {
   const render = createClientRender();
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />);
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <SwitchBase checkedIcon="checked" icon="unchecked" type="checkbox" />,
     () => ({
       classes,
@@ -23,6 +19,8 @@ describe('<SwitchBase />', () => {
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
+      testVariantProps: { disabled: true },
+      skip: ['componentsProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
     }),
   );
 
