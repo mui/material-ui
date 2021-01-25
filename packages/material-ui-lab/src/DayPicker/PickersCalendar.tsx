@@ -198,7 +198,6 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate> & WithStyles<
                   const dayProps: PickersDayProps<TDate> = {
                     key: (day as any)?.toString(),
                     day,
-                    role: 'cell',
                     isAnimating: isMonthSwitchingAnimating,
                     disabled: isDateDisabled(day),
                     allowKeyboardControl,
@@ -225,7 +224,9 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate> & WithStyles<
                   return renderDay ? (
                     renderDay(day, selectedDates, dayProps)
                   ) : (
-                    <PickersDay {...dayProps} />
+                    <div role="cell" key={dayProps.key}>
+                      <PickersDay {...dayProps} />
+                    </div>
                   );
                 })}
               </div>

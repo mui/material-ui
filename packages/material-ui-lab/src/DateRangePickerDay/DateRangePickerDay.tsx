@@ -148,6 +148,7 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
       })}
     >
       <div
+        role="cell"
         data-mui-test={shouldRenderPreview ? 'DateRangePreview' : undefined}
         className={clsx(classes.rangeIntervalPreview, {
           [classes.rangeIntervalDayPreview]: shouldRenderPreview,
