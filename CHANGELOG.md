@@ -8,7 +8,7 @@ _Jan 25, 2021_
 
 Big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
-- Converted TODO components to emotion
+- Converted 27 components to emotion
 - Fixed various issues on API documentation pages
 
 TODO INSERT HIGHLIGHTS
