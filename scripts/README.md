@@ -19,15 +19,15 @@ The following steps must be proposed as a pull request.
 
 1. Open PR with changes and wait for review and green CI
 
+1. Merge PR once CI is green and it has been approved
+
 ### Release
 
 1. checkout merge commit of the merged PR
 1. `yarn relase:build`
 1. `yarn relase:publish`
    You need your 2FA device.
-1. Tag the release (e.g. `git tag -a v5.0.0-alpha.23 -m 'v5.0.0-alpha.23'`)
-   **WARNING:** Use annotated tags (`git tag -a`) not lightweight tags.
-1. push the tag: `git push --tags`
+1. `yarn release:tag`
 
 ### Documentation
 
