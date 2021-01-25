@@ -26,8 +26,8 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: ['root', inset && 'inset', dense && 'dense', primary && secondary && 'multiline'],
-    primary: [primary && 'primary'],
-    secondary: [secondary && 'secondary'],
+    primary: ['primary'],
+    secondary: ['secondary'],
   };
 
   return composeClasses(slots, getListItemTextUtilityClass, classes);
