@@ -15,7 +15,6 @@ describe('<Card />', () => {
     mount,
     muiName: 'MuiCard',
     refInstanceof: window.HTMLDivElement,
-    testStateOverrides: { styleKey: 'root' },
     testVariantProps: { raised: true },
     skip: ['componentsProp'],
   }));
