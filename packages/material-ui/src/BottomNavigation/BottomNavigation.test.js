@@ -1,35 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender, fireEvent } from 'test/utils';
 import BottomNavigationAction from '../BottomNavigationAction';
 import Icon from '../Icon';
 import BottomNavigation from './BottomNavigation';
+import classes from './bottomNavigationClasses';
+import actionClasses from '../BottomNavigationAction/bottomNavigationActionClasses';
 
 describe('<BottomNavigation />', () => {
   const mount = createMount();
-  let classes;
-  let actionClasses;
   const render = createClientRender();
   const icon = <Icon>restore</Icon>;
   const getBottomNavigation = (container) => container.firstChild;
 
-  before(() => {
-    classes = getClasses(
-      <BottomNavigation showLabels value={0}>
-        <BottomNavigationAction icon={icon} />
-      </BottomNavigation>,
-    );
-    actionClasses = getClasses(<BottomNavigationAction icon={icon} />);
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <BottomNavigation>
       <BottomNavigationAction label="One" />
     </BottomNavigation>,
@@ -37,8 +22,10 @@ describe('<BottomNavigation />', () => {
       classes,
       inheritComponent: 'div',
       mount,
+      muiName: 'MuiBottomNavigation',
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
+      skip: ['componentsProp', 'themeVariants'],
     }),
   );
 
