@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '..';
 
 export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -14,6 +16,10 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
       /** Styles applied to the root element. */
       root?: string;
     };
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }
