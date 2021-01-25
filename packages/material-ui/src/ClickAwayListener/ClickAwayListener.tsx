@@ -201,7 +201,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
 ClickAwayListener.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The wrapped element.
