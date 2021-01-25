@@ -50,7 +50,7 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
 
   return (
     <CardContentRoot
-      as={Component}
+      as={component}
       className={clsx(classes.root, className)}
       styleProps={styleProps}
       ref={ref}
