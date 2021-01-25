@@ -1,19 +1,132 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, elementTypeAcceptingRef } from '@material-ui/utils';
+import { refType, elementTypeAcceptingRef, deepmerge } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
-import withStyles from '../styles/withStyles';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import TextareaAutosize from '../TextareaAutosize';
+import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
+import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
-export const styles = (theme) => {
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.formControl && styles.formControl),
+    ...(styleProps.startAdornment && styles.adornedStart),
+    ...(styleProps.endAdornment && styles.adornedEnd),
+    ...(styleProps.error && styles.error),
+    ...(styleProps.size === 'small' && styles.sizeSmall),
+    ...(styleProps.multiline && styles.multiline),
+    ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
+    ...(styleProps.fullWidth && styles.fullWidth),
+    ...(styleProps.hiddenLabel && styles.hiddenLabel),
+    [`& .${inputBaseClasses.input}`]: {
+      ...styles.input,
+      ...(styleProps.size === 'small' && styles.inputSizeSmall),
+      ...(styleProps.multiline && styles.inputMultiline),
+      ...(styleProps.type === 'search' && styles.inputTypeSearch),
+      ...(styleProps.startAdornment && styles.inputAdornedStart),
+      ...(styleProps.endAdornment && styles.inputAdornedEnd),
+      ...(styleProps.hiddenLabel && styles.inputHiddenLabel),
+    },
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const {
+    classes,
+    color,
+    disabled,
+    error,
+    endAdornment,
+    focused,
+    formControl,
+    fullWidth,
+    hiddenLabel,
+    multiline,
+    size,
+    startAdornment,
+    type,
+  } = styleProps;
+  const slots = {
+    root: [
+      'root',
+      `color${capitalize(color)}`,
+      disabled && 'disabled',
+      error && 'error',
+      fullWidth && 'fullWidth',
+      focused && 'focused',
+      formControl && 'formControl',
+      size === 'small' && 'sizeSmall',
+      multiline && 'multiline',
+      startAdornment && 'adornedStart',
+      endAdornment && 'adornedEnd',
+      hiddenLabel && 'hiddenLabel',
+    ],
+    input: [
+      'input',
+      disabled && 'disabled',
+      type === 'search' && 'inputTypeSearch',
+      multiline && 'inputMultiline',
+      size === 'small' && 'inputSizeSmall',
+      hiddenLabel && 'inputHiddenLabel',
+      startAdornment && 'inputAdornedStart',
+      endAdornment && 'inputAdornedEnd',
+    ],
+  };
+
+  return composeClasses(slots, getInputBaseUtilityClass, classes);
+};
+
+const InputBaseRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiInputBase',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => ({
+  ...theme.typography.body1,
+  color: theme.palette.text.primary,
+  lineHeight: '1.4375em', // 23px
+  boxSizing: 'border-box', // Prevent padding issue with fullWidth.
+  position: 'relative',
+  cursor: 'text',
+  display: 'inline-flex',
+  alignItems: 'center',
+  '&.Mui-disabled': {
+    color: theme.palette.text.disabled,
+    cursor: 'default',
+  },
+  ...(styleProps.multiline && {
+    padding: '4px 0 5px',
+    ...(styleProps.size === 'small' && {
+      paddingTop: 1,
+    }),
+  }),
+  ...(styleProps.fullWidth && {
+    width: '100%',
+  }),
+}));
+
+const InputBaseComponent = experimentalStyled(
+  'input',
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {
+    name: 'MuiInputBase',
+    slot: 'Input',
+  },
+)(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',
@@ -32,144 +145,84 @@ export const styles = (theme) => {
   };
 
   return {
-    '@global': {
-      '@keyframes mui-auto-fill': {},
-      '@keyframes mui-auto-fill-cancel': {},
+    font: 'inherit',
+    letterSpacing: 'inherit',
+    color: 'currentColor',
+    padding: '4px 0 5px',
+    border: 0,
+    boxSizing: 'content-box',
+    background: 'none',
+    height: '1.4375em', // Reset 23pxthe native input line-height
+    margin: 0, // Reset for Safari
+    WebkitTapHighlightColor: 'transparent',
+    display: 'block',
+    // Make the flex item shrink with Firefox
+    minWidth: 0,
+    width: '100%', // Fix IE11 width issue
+    animationName: 'mui-auto-fill-cancel',
+    animationDuration: '10ms',
+    '&::-webkit-input-placeholder': placeholder,
+    '&::-moz-placeholder': placeholder, // Firefox 19+
+    '&:-ms-input-placeholder': placeholder, // IE11
+    '&::-ms-input-placeholder': placeholder, // Edge
+    '&:focus': {
+      outline: 0,
     },
-    /* Styles applied to the root element. */
-    root: {
-      // Mimics the default input display property used by browsers for an input.
-      ...theme.typography.body1,
-      color: theme.palette.text.primary,
-      lineHeight: '1.4375em', // 23px
-      boxSizing: 'border-box', // Prevent padding issue with fullWidth.
-      position: 'relative',
-      cursor: 'text',
-      display: 'inline-flex',
-      alignItems: 'center',
-      '&$disabled': {
-        color: theme.palette.text.disabled,
-        cursor: 'default',
-      },
+    // Reset Firefox invalid required input style
+    '&:invalid': {
+      boxShadow: 'none',
     },
-    /* Styles applied to the root element if the component is a descendant of `FormControl`. */
-    formControl: {},
-    /* Styles applied to the root element if the component is focused. */
-    focused: {},
-    /* Styles applied to the root element if `disabled={true}`. */
-    disabled: {},
-    /* Styles applied to the root element if `startAdornment` is provided. */
-    adornedStart: {},
-    /* Styles applied to the root element if `endAdornment` is provided. */
-    adornedEnd: {},
-    /* Pseudo-class applied to the root element if `error={true}`. */
-    error: {},
-    /* Styles applied to the input element if `size="small"`. */
-    sizeSmall: {},
-    /* Styles applied to the root element if `multiline={true}`. */
-    multiline: {
-      padding: '4px 0 5px',
-      '&$sizeSmall': {
-        paddingTop: 1,
-      },
+    '&::-webkit-search-decoration': {
+      // Remove the padding when type=search.
+      WebkitAppearance: 'none',
     },
-    /* Styles applied to the root element if the color is secondary. */
-    colorSecondary: {},
-    /* Styles applied to the root element if `fullWidth={true}`. */
-    fullWidth: {
-      width: '100%',
+    // Show and hide the placeholder logic
+    [`label[data-shrink=false] + .${inputBaseClasses.formControl} &`]: {
+      '&::-webkit-input-placeholder': placeholderHidden,
+      '&::-moz-placeholder': placeholderHidden, // Firefox 19+
+      '&:-ms-input-placeholder': placeholderHidden, // IE11
+      '&::-ms-input-placeholder': placeholderHidden, // Edge
+      '&:focus::-webkit-input-placeholder': placeholderVisible,
+      '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
+      '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
+      '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
-    /* Styles applied to the root element if `hiddenLabel={true}`. */
-    hiddenLabel: {},
-    /* Styles applied to the input element. */
-    input: {
-      font: 'inherit',
-      letterSpacing: 'inherit',
-      color: 'currentColor',
-      padding: '4px 0 5px',
-      border: 0,
-      boxSizing: 'content-box',
-      background: 'none',
-      height: '1.4375em', // Reset 23pxthe native input line-height
-      margin: 0, // Reset for Safari
-      WebkitTapHighlightColor: 'transparent',
-      display: 'block',
-      // Make the flex item shrink with Firefox
-      minWidth: 0,
-      width: '100%', // Fix IE11 width issue
-      animationName: 'mui-auto-fill-cancel',
-      animationDuration: '10ms',
-      '&::-webkit-input-placeholder': placeholder,
-      '&::-moz-placeholder': placeholder, // Firefox 19+
-      '&:-ms-input-placeholder': placeholder, // IE11
-      '&::-ms-input-placeholder': placeholder, // Edge
-      '&:focus': {
-        outline: 0,
-      },
-      // Reset Firefox invalid required input style
-      '&:invalid': {
-        boxShadow: 'none',
-      },
-      '&::-webkit-search-decoration': {
-        // Remove the padding when type=search.
-        '-webkit-appearance': 'none',
-      },
-      // Show and hide the placeholder logic
-      'label[data-shrink=false] + $formControl &': {
-        '&::-webkit-input-placeholder': placeholderHidden,
-        '&::-moz-placeholder': placeholderHidden, // Firefox 19+
-        '&:-ms-input-placeholder': placeholderHidden, // IE11
-        '&::-ms-input-placeholder': placeholderHidden, // Edge
-        '&:focus::-webkit-input-placeholder': placeholderVisible,
-        '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
-        '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
-        '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
-      },
-      '&$disabled': {
-        opacity: 1, // Reset iOS opacity
-        WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
-      },
-      '&:-webkit-autofill': {
-        animationDuration: '5000s',
-        animationName: 'mui-auto-fill',
-      },
+    '&.Mui-disabled': {
+      opacity: 1, // Reset iOS opacity
+      WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
     },
-    /* Styles applied to the input element if `size="small"`. */
-    inputSizeSmall: {
+    '&:-webkit-auto-fill': {
+      animationDuration: '5000s',
+      animationName: 'mui-auto-fill',
+    },
+    ...(styleProps.size === 'small' && {
       paddingTop: 1,
-    },
+    }),
     /* Styles applied to the input element if `multiline={true}`. */
-    inputMultiline: {
+    ...(styleProps.multiline && {
       height: 'auto',
       resize: 'none',
       padding: 0,
-    },
+    }),
     /* Styles applied to the input element if `type="search"`. */
-    inputTypeSearch: {
+    ...(styleProps.type === 'search' && {
       // Improve type search style.
-      '-moz-appearance': 'textfield',
-      '-webkit-appearance': 'textfield',
-    },
-    /* Styles applied to the input element if `startAdornment` is provided. */
-    inputAdornedStart: {},
-    /* Styles applied to the input element if `endAdornment` is provided. */
-    inputAdornedEnd: {},
-    /* Styles applied to the input element if `hiddenLabel={true}`. */
-    inputHiddenLabel: {},
+      MozAppearance: 'textfield',
+      WebkitAppearance: 'textfield',
+    }),
   };
-};
-
+});
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
  * It contains a load of style reset and some state logic.
  */
-const InputBase = React.forwardRef(function InputBase(props, ref) {
+const InputBase = React.forwardRef(function InputBase(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiInputBase' });
   const {
     'aria-describedby': ariaDescribedby,
     autoComplete,
     autoFocus,
-    classes,
     className,
     color,
     defaultValue,
@@ -346,7 +399,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   // or auto filled by the browser before the hydration (for SSR).
   React.useEffect(() => {
     checkDirty(inputRef.current);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClick = (event) => {
     if (inputRef.current && event.currentTarget === event.target) {
@@ -399,77 +453,78 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     }
   }, [muiFormControl, startAdornment]);
 
+  const styleProps = {
+    ...props,
+    color: fcs.color || 'primary',
+    disabled: fcs.disabled,
+    endAdornment,
+    error: fcs.error,
+    focused: fcs.focused,
+    formControl: muiFormControl,
+    fullWidth,
+    hiddenLabel: fcs.hiddenLabel,
+    multiline,
+    size: fcs.size,
+    startAdornment,
+    type,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <div
-      className={clsx(
-        classes.root,
-        classes[`color${capitalize(fcs.color || 'primary')}`],
-        {
-          [classes.disabled]: fcs.disabled,
-          [classes.error]: fcs.error,
-          [classes.fullWidth]: fullWidth,
-          [classes.focused]: fcs.focused,
-          [classes.formControl]: muiFormControl,
-          [classes.sizeSmall]: fcs.size === 'small',
-          [classes.multiline]: multiline,
-          [classes.adornedStart]: startAdornment,
-          [classes.adornedEnd]: endAdornment,
-          [classes.hiddenLabel]: fcs.hiddenLabel,
-        },
-        className,
-      )}
-      onClick={handleClick}
-      ref={ref}
-      {...other}
-    >
-      {startAdornment}
-      <FormControlContext.Provider value={null}>
-        <InputComponent
-          aria-invalid={fcs.error}
-          aria-describedby={ariaDescribedby}
-          autoComplete={autoComplete}
-          autoFocus={autoFocus}
-          defaultValue={defaultValue}
-          disabled={fcs.disabled}
-          id={id}
-          onAnimationStart={handleAutoFill}
-          name={name}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          required={fcs.required}
-          rows={rows}
-          value={value}
-          onKeyDown={onKeyDown}
-          onKeyUp={onKeyUp}
-          type={type}
-          {...inputProps}
-          ref={handleInputRef}
-          className={clsx(
-            classes.input,
-            {
-              [classes.disabled]: fcs.disabled,
-              [classes.inputTypeSearch]: type === 'search',
-              [classes.inputMultiline]: multiline,
-              [classes.inputSizeSmall]: fcs.size === 'small',
-              [classes.inputHiddenLabel]: fcs.hiddenLabel,
-              [classes.inputAdornedStart]: startAdornment,
-              [classes.inputAdornedEnd]: endAdornment,
-            },
-            inputPropsProp.className,
-          )}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          onFocus={handleFocus}
-        />
-      </FormControlContext.Provider>
-      {endAdornment}
-      {renderSuffix
-        ? renderSuffix({
-            ...fcs,
-            startAdornment,
-          })
-        : null}
-    </div>
+    <React.Fragment>
+      <GlobalStyles
+        styles={{
+          '@keyframes mui-auto-fill': {},
+          '@keyframes mui-auto-fill-cancel': {},
+        }}
+      />
+      <InputBaseRoot
+        className={clsx(classes.root, className)}
+        styleProps={styleProps}
+        onClick={handleClick}
+        ref={ref}
+        {...other}
+      >
+        {startAdornment}
+        <FormControlContext.Provider value={null}>
+          <InputBaseComponent
+            as={InputComponent}
+            styleProps={styleProps}
+            aria-invalid={fcs.error}
+            aria-describedby={ariaDescribedby}
+            autoComplete={autoComplete}
+            autoFocus={autoFocus}
+            defaultValue={defaultValue}
+            disabled={fcs.disabled}
+            id={id}
+            onAnimationStart={handleAutoFill}
+            name={name}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            required={fcs.required}
+            rows={rows}
+            value={value}
+            onKeyDown={onKeyDown}
+            onKeyUp={onKeyUp}
+            type={type}
+            {...inputProps}
+            ref={handleInputRef}
+            className={clsx(classes.input, inputPropsProp.className)}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            onFocus={handleFocus}
+          />
+        </FormControlContext.Provider>
+        {endAdornment}
+        {renderSuffix
+          ? renderSuffix({
+              ...fcs,
+              startAdornment,
+            })
+          : null}
+      </InputBaseRoot>
+    </React.Fragment>
   );
 });
 
@@ -630,6 +685,10 @@ InputBase.propTypes = {
    */
   startAdornment: PropTypes.node,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
@@ -640,4 +699,4 @@ InputBase.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiInputBase' })(InputBase);
+export default InputBase;

@@ -1,34 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  screen,
-} from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender, screen } from 'test/utils';
 import Breadcrumbs from './Breadcrumbs';
+import classes from './breadcrumbsClasses';
 
 describe('<Breadcrumbs />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(
-      <Breadcrumbs>
-        <span>Hello World</span>
-      </Breadcrumbs>,
-    );
-  });
-
-  describeConformance(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
+  describeConformanceV5(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
     classes,
     inheritComponent: 'nav',
     mount,
+    muiName: 'MuiBreadcrumbs',
     refInstanceof: window.HTMLElement,
     testComponentPropWith: 'div',
+    testVariantProps: { separator: '=' },
+    skip: ['componentsProp'],
   }));
 
   it('should render inaccessible separators between each listitem', () => {

@@ -314,7 +314,7 @@ function plugin(
         if (!babelTypes.isIdentifier(node.declarations[0].id)) return;
         const nodeName = node.declarations[0].id.name;
 
-        // Handle any variable with /* @typescript-to-proptypes-generate */
+        // Handle any variable with a comment containing `@typescript-to-proptypes-generate`
         if (
           node.leadingComments &&
           node.leadingComments.some((comment) =>

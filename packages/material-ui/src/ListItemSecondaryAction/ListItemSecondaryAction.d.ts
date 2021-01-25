@@ -23,6 +23,7 @@ export type ListItemSecondaryActionClassKey = keyof NonNullable<
 
 /**
  * Must be used as the last child of ListItem to function properly.
+ *
  * Demos:
  *
  * - [Lists](https://material-ui.com/components/lists/)

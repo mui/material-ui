@@ -70,7 +70,7 @@ export const componentSettings = {
     template: 'badge.txt',
   },
   BottomNavigation: {
-    ignoredProps: ['children', 'onChange', 'ScrollButtonComponent', 'value'],
+    ignoredProps: ['children', 'onChange', 'ScrollButtonComponent', 'value', 'sx'],
     propValues: {
       icons: "['restore', 'favorite', 'location_on', 'folder']",
       labels: "['Recents', 'Favorites', 'Nearby', 'Saved']",
@@ -198,7 +198,7 @@ export const componentSettings = {
     template: 'icon_button.txt',
   },
   ListItem: {
-    ignoredProps: ['children', 'ContainerComponent', 'ContainerProps'],
+    ignoredProps: ['children', 'ContainerComponent', 'ContainerProps', 'sx'],
     propValues: {
       width: 568,
       height: 48,

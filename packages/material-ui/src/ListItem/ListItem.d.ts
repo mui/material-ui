@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
@@ -83,12 +85,17 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      * @default false
      */
     selected?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }
 
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
+ *
  * Demos:
  *
  * - [Lists](https://material-ui.com/components/lists/)

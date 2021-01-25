@@ -8,7 +8,16 @@
   },
   "name": "AccordionSummary",
   "styles": {
-    "classes": ["root", "expanded", "focusVisible", "disabled", "content", "expandIconWrapper"],
+    "classes": [
+      "root",
+      "expanded",
+      "focusVisible",
+      "disabled",
+      "gutters",
+      "contentGutters",
+      "content",
+      "expandIconWrapper"
+    ],
     "globalClasses": {
       "expanded": "Mui-expanded",
       "focusVisible": "Mui-focusVisible",

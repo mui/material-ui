@@ -1,8 +1,40 @@
 declare module 'react-docgen' {
-  export type Handler = () => unknown;
+  import { ASTNode } from 'ast-types';
+  // `import { NodePath } from 'ast-types';` points to `const NodePath: NodePathConstructor` for unknown reasons.
+  import { NodePath as AstTypesNodePath } from 'ast-types/lib/node-path';
+
+  export { ASTNode };
+
+  // sound wrapper around `NodePath` from `ast-types` i.e. no `any`
+  export type NodePath<Node extends ASTNode = ASTNode, Value = unknown> = AstTypesNodePath<
+    Node,
+    Value | undefined
+  >;
+
+  export interface Documentation {
+    toObject(): ReactDocgenApi;
+  }
+
+  export type Handler = (
+    documentation: Documentation,
+    componentDefinition: NodePath,
+    importer: Importer
+  ) => void;
 
   export const defaultHandlers: Handler[];
 
+  export type Importer = (path: NodePath, name: string) => NodePath | undefined;
+  export type Resolver = (
+    ast: ASTNode,
+    parser: unknown,
+    importer: Importer
+  ) => NodePath | NodePath[] | undefined;
+
+  export namespace resolver {
+    export const findAllComponentDefinitions: Resolver;
+    export const findExportedComponentDefinition: Resolver;
+    export const findAllExportedComponentDefinitions: Resolver;
+  }
   export interface ReactDocgenApi {
     description: string;
     props: Record<string, PropDescriptor>;
@@ -105,7 +137,7 @@ declare module 'react-docgen' {
   export interface PropDescriptor {
     defaultValue?: { computed: boolean; value: string };
     // augmented by docs/src/modules/utils/defaultPropsHandler.js
-    jsdocDefaultValue?: { computed: boolean; value: string };
+    jsdocDefaultValue?: { computed?: boolean; value: string };
     description?: string;
     // augmented by docs/src/modules/utils/defaultPropsHandler.js
     /**
@@ -146,8 +178,16 @@ declare module 'react-docgen' {
 
   export function parse(
     source: string,
-    unknown: null,
-    handlers: Handler[0],
+    componentResolver: null | Resolver,
+    handlers: null | Handler[],
     options: { filename: string }
   ): any;
+
+  export namespace utils {
+    export function getPropertyName(path: NodePath): string | undefined;
+    export function isReactForwardRefCall(path: NodePath, importer: Importer): boolean;
+    export function printValue(path: NodePath): string;
+    export function resolveExportDeclaration(path: NodePath, importer: Importer): NodePath[];
+    export function resolveToValue(path: NodePath, importer: Importer): NodePath;
+  }
 }

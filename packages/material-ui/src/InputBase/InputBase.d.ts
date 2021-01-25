@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 
 export interface InputBaseProps
@@ -187,6 +189,10 @@ export interface InputBaseProps
    */
   startAdornment?: React.ReactNode;
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
@@ -209,6 +215,7 @@ export type InputBaseClassKey = keyof NonNullable<InputBaseProps['classes']>;
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
  * It contains a load of style reset and some state logic.
+ *
  * Demos:
  *
  * - [Text Fields](https://material-ui.com/components/text-fields/)
