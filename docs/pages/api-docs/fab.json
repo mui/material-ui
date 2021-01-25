@@ -21,6 +21,7 @@
       },
       "default": "'large'"
     },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -52,6 +53,6 @@
   "filename": "/packages/material-ui/src/Fab/Fab.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/floating-action-button/\">Floating Action Button</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
