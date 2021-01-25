@@ -52,6 +52,7 @@ export type TableSortLabelTypeMap<
 
 /**
  * A button based label for placing inside `TableCell` for column sorting.
+ *
  * Demos:
  *
  * - [Tables](https://material-ui.com/components/tables/)

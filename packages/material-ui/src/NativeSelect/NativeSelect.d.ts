@@ -72,6 +72,7 @@ export type NativeSelectClassKey = keyof NonNullable<NativeSelectProps['classes'
 
 /**
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
+ *
  * Demos:
  *
  * - [Selects](https://material-ui.com/components/selects/)
