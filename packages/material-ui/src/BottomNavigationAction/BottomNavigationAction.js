@@ -55,12 +55,10 @@ const BottomNavigationActionRoot = experimentalStyled(
     !styleProps.selected && {
       paddingTop: 16,
     }),
-  ...(styleProps.selected && {
-    [`&.${bottomNavigationActionClasses.selected}`]: {
-      paddingTop: 6,
-      color: theme.palette.primary.main,
-    },
-  }),
+  [`&.${bottomNavigationActionClasses.selected}`]: {
+    paddingTop: 6,
+    color: theme.palette.primary.main,
+  },
 }));
 
 const BottomNavigationActionWrapper = experimentalStyled(
