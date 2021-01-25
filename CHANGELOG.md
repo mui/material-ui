@@ -6,9 +6,7 @@
 
 _Jan 25, 2021_
 
-Big thanks to the 21 contributors who made this release possible: @eps1lon, @mbrookes, @mnajdova, @greguintow, @praveenkumar-kalidass, @oliviertassinari, @lukaselmer, @povilass, @eladmotola, @kutnickclose, @artola, @vinyldarkscratch, @KarimMokhtar, @mxsph, @tonysepia, @d3mp, @CyanoFresh, @xs9627, @vicasas, @TimonPllkrn, @duganbrett
-
-Here are some highlights:
+Big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
 - Converted TODO components to emotion
 - Fixed various issues on API documentation pages
@@ -122,6 +120,8 @@ TODO INSERT HIGHLIGHTS
 - <!-- 25 --> [website] Emeriti (#24541) @oliviertassinari
 - <!-- 33 --> [website] Add Join Us block (#24521) @oliviertassinari
 - <!-- 75 --> [website] Add 'Support the project' section (#24384) @mnajdova
+
+All contributors of this release in alphabetical order: @artola, @CyanoFresh, @d3mp, @duganbrett, @eladmotola, @eps1lon, @greguintow, @KarimMokhtar, @kutnickclose, @lukaselmer, @mbrookes, @mnajdova, @mxsph, @oliviertassinari, @povilass, @praveenkumar-kalidass, @TimonPllkrn, @tonysepia, @vicasas, @vinyldarkscratch, @xs9627
 
 ## 5.0.0-alpha.23
 

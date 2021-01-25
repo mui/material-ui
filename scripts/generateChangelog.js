@@ -104,7 +104,10 @@ async function main(argv) {
       }),
     ),
   );
-  const contributorHandles = authors.map((author) => `@${author}`).join(', ');
+  const contributorHandles = authors
+    .sort((a, b) => a.localeCompare(b))
+    .map((author) => `@${author}`)
+    .join(', ');
 
   // We don't know when a particular commit was made from the API.
   // Only that the commits are ordered by date DESC
@@ -143,13 +146,13 @@ _${nowFormated}_
 
 Big thanks to the ${
     authors.length
-  } contributors who made this release possible: ${contributorHandles}
-
-Here are some highlights ✨:
+  } contributors who made this release possible. Here are some highlights ✨:
 
 TODO INSERT HIGHLIGHTS
 
 ${changes.join('\n')}
+
+All contributors of this release in alphabetical order: ${contributorHandles}
 `;
 
   // eslint-disable-next-line no-console -- output of this script
