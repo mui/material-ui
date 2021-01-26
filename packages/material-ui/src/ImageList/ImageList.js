@@ -34,7 +34,7 @@ const ImageListRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => {
+)(({ styleProps }) => {
   /* Styles applied to the root element. */
   return {
     display: 'grid',
@@ -44,11 +44,7 @@ const ImageListRoot = experimentalStyled(
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
     /* Styles applied to the root element if `variant="masonry"`. */
     ...(styleProps.variant === 'masonry' && {
-      position: 'absolute',
-      zIndex: theme.zIndex.appBar,
-      top: 0,
-      left: 'auto',
-      right: 0,
+      display: 'block',
     }),
     /* Styles applied to the root element if `variant="quilted"`. */
     ...(styleProps.variant === 'quilted' && {}),
