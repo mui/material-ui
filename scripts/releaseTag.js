@@ -57,11 +57,11 @@ async function main(argv) {
 yargs
   .command({
     command: '$0',
-    description: 'Creates a changelog',
+    description: 'Tags the current release and pushes these changes to mui-org/material-ui.',
     builder: (command) => {
       return command.option('dryRun', {
         default: false,
-        describe: "If true, tags won't be pushed",
+        describe: "If true, tags won't be pushed.",
         type: 'boolean',
       });
     },
