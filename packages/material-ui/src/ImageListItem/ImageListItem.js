@@ -48,7 +48,7 @@ const ImageListItemRoot = experimentalStyled(
       // For titlebar under list item
       display: 'flex',
       flexDirection: 'column',
-      '& $img': {
+      [`& .${imageListItemClasses.img}`]: {
         height: 'auto',
         flexGrow: 1,
       },
