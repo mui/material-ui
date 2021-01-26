@@ -33,7 +33,6 @@ import createGenerateClassName from '@material-ui/styles/createGenerateClassName
 import getStylesCreator from '@material-ui/styles/getStylesCreator';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { getLineFeed, getUnstyledFilename } from './helpers';
-import { bind } from 'lodash';
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
