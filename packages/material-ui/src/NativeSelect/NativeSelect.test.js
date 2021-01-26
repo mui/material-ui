@@ -2,11 +2,12 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
 import Input from '../Input';
+import { inputClasses } from '../Input'
 import NativeSelect from './NativeSelect';
 
 describe('<NativeSelect />', () => {
   let classes;
-  let inputClasses;
+
   const mount = createMount();
   const render = createClientRender();
   const defaultProps = {
@@ -23,7 +24,6 @@ describe('<NativeSelect />', () => {
 
   before(() => {
     classes = getClasses(<NativeSelect {...defaultProps} />);
-    inputClasses = getClasses(<Input />);
   });
 
   describeConformance(<NativeSelect {...defaultProps} />, () => ({
