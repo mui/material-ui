@@ -18,6 +18,141 @@ import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import BrandingPersona from 'docs/src/modules/branding/BrandingPersona';
+import BrandingQuote from 'docs/src/modules/branding/BrandingQuote';
+import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
+
+function BrandingVision() {
+  return (
+    <Container sx={{ my: 15 }}>
+      <Typography
+        variant="h3"
+        component="p"
+        sx={{ textAlign: 'center', maxWidth: 770, mx: 'auto', mb: 11 }}
+      >
+        <UnderlinedText>Our vision is</UnderlinedText> to provide material to build rich user
+        interfaces. Material-UI is an elegant React implementation of the Material Design guidelines
+        that can be customized to fully match your brand.
+      </Typography>
+      <Grid container alignItems="center" spacing={4}>
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              position: 'relative',
+              maxWidth: 470,
+              '& div': {
+                paddingTop: `${Math.round((1140 / 940) * 100)}%`,
+              },
+              '& img': {
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              },
+            }}
+          >
+            <div />
+            <img alt="" src="/static/branding/about/vision.png" loading="lazy" />
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Typography>
+            {
+              "The Material Design guidelines are an incredible starting point, but they don't provide guidance on all aspects or needs of an application."
+            }
+            In addition to the guideline-specific implementation,{' '}
+            <b>we want Material-UI to be more generally useful for application development.</b>
+          </Typography>
+          <Typography>
+            Material-UI implements not only the Material Design guidelines, but is also a general
+            use UI library of components, offering components that are simply not addressed in the
+            design guidelines.
+          </Typography>
+        </Grid>
+      </Grid>
+      <Box sx={{ my: 15 }}>
+        <Grid container alignItems="center" spacing={4}>
+          <Grid item xs={12} sm={6} sx={{ order: [2, 1] }}>
+            <Typography>
+              <b>
+                We focus on providing all the low-level tools needed to build a rich user-interface
+                with React.
+              </b>{' '}
+              We implement the Material Design specification, which is a bar set quite high. You are
+              able to take advantage of it for your own business with any style customization
+              needed.
+            </Typography>
+            <Typography>
+              We want to see companies succeed using Material-UI in a way that matches their brand,
+              close to the Material Design philosophy or not. We don&apos;t want them to feel that
+              their UI simply looks like another Google product.
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6} sx={{ order: [1, 2] }}>
+            <Box
+              sx={{
+                position: 'relative',
+                ml: 'auto',
+                maxWidth: 470,
+                '& div': {
+                  paddingTop: `${Math.round((940 / 1140) * 100)}%`,
+                },
+                '& img': {
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                },
+              }}
+            >
+              <div />
+              <img alt="" src="/static/branding/about/focus.jpg" loading="lazy" />
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+      <Grid container alignItems="center" spacing={4}>
+        <Grid item xs={12} md={6}>
+          <BrandingQuote
+            author={{
+              avatar: '/static/branding/about/olivier.jpg',
+              name: 'Olivier Tassinari',
+              title: 'Co-founder',
+            }}
+            sx={{ width: '100%', maxWidth: { md: 470 } }}
+          >
+            React is set on a course to further dominate the way UIs are built on the web for a long
+            time.
+            <br />
+            The next major iteration to improve the DX will be a paradigm shift.
+            {" It's not coming with a new library but low-code."}
+          </BrandingQuote>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h4" component="p">
+            From a developer&apos;s point of view, we want Material-UI to:
+          </Typography>
+          <Box component="ul" sx={{ m: 0, p: 0, mt: 2 }}>
+            <BrandingBulletItem>
+              Deliver on fully encapsulated/composable React components,
+            </BrandingBulletItem>
+            <BrandingBulletItem>Be themeable/customizable,</BrandingBulletItem>
+            <BrandingBulletItem>
+              Be cross browser compatible and assistive technology accessible,
+            </BrandingBulletItem>
+            <BrandingBulletItem>
+              Promote developer joy, a sense of community, and an environment where new and
+              experienced developers can learn from each other.
+            </BrandingBulletItem>
+          </Box>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+}
 
 function BrandingTeam() {
   return (
@@ -490,6 +625,7 @@ function BrandingSupportUs() {
 export default function Page() {
   return (
     <BrandingRoot>
+      <BrandingVision />
       <BrandingTeam />
       <BrandingCompany />
       <BrandingContributors />
@@ -513,8 +649,7 @@ export default function Page() {
 // import Avatar from '@material-ui/core/Avatar';
 // import { experimentalStyled as styled } from '@material-ui/core/styles';
 // import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-// import Quote from 'docs/src/modules/branding/Quote';
-// import BulletItem from 'docs/src/modules/branding/BulletItem';
+// import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
 // import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
 // import Persona from 'docs/src/modules/branding/Persona';
 // import ArrowCirleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
@@ -855,128 +990,10 @@ export default function Page() {
 //             <Typography variant="h2">
 //               Our values
 //             </Typography>
-//             <BulletItem>Transparency, most of our work is public</BulletItem>
-//             <BulletItem>Creating a safe, high-trust team</BulletItem>
-//             <BulletItem>Building incredible developer experiences</BulletItem>
-//             <BulletItem>Maintaining a healthy working environment</BulletItem>
-//             <BulletItem>Deliver web experiences that feel amazing</BulletItem>
-//           </Grid>
-//         </Grid>
-
-//         <Grid container className="MuiGrid-centered" alignItems="center">
-//           <Grid item>
-//             <Typography variant="h3" align="center">
-//               <UnderlinedText>Our vision is</UnderlinedText> to provide material to build UIs. We
-//               have an elegant React implementation of the Material Design guidelines that can be
-//               customized to fully match your brand.
-//             </Typography>
-//           </Grid>
-//         </Grid>
-
-//         <Grid container spacing={1} alignItems="center">
-//           <Grid item md={6} xs={12} className="MuiGrid-panel">
-//             <Box
-//               component="img"
-//               alt="Dozen UI elements and blocks"
-//               src="/static/branding/about/vision.png"
-//               sx={{ width: '100%' }}
-//             />
-//           </Grid>
-//           <Grid item md={6} xs={12} className="MuiGrid-panel MuiGrid-smallLeftSpacing">
-//             <Typography>
-//               The Material Design guidelines are an incredible starting point, but they do not
-//               provide guidance on all aspects or needs of an application. In addition to the
-//               guidelines-specific implementation,{' '}
-//               <b>
-//                 we want Material-UI to be whatever is generally useful for application development
-//               </b>
-//               , all in the spirit of the Material Design guidelines.
-//             </Typography>
-//             <Typography>
-//               Therefore, Material-UI does not only implement the Material Design guidelines, but is
-//               also a general use UI library of components. It also means we offer components or
-//               combinations that are simply not addressed in the design guidelines.
-//             </Typography>
-//           </Grid>
-//         </Grid>
-
-//         <Grid container spacing={1} alignItems="center">
-//           <Grid item md={6} xs={12} className="MuiGrid-panel MuiGrid-smallLeftSpacing">
-//             <Typography>
-//               <b>
-//                 We focus on providing all the low-level tools needed to build a rich user-interface
-//                 with React.
-//               </b>{' '}
-//               We implement the Material Design specification (which is a bar set quite high), you
-//               are able to take advantage of it for your own business with any style customization
-//               needed.
-//             </Typography>
-//             <Typography>
-//               We want to see companies succeeding using Material-UI in a way that matches their
-//               brand, close to the Material Design philosophy or not. We don&apos;t want them to feel
-//               that their UI simply looks like another Google product.
-//             </Typography>
-//           </Grid>
-//           <Grid item md={6} xs={12} className="MuiGrid-panel">
-//             <Box
-//               component="img"
-//               alt="Bunch of legos"
-//               src="/static/branding/about/focus.jpg"
-//               sx={{ width: '100%' }}
-//             />
-//           </Grid>
-//         </Grid>
-
-//         <Grid container spacing={1}>
-//           <Grid item lg={6} md={12} className="">
-//             <Quote
-//               author={{
-//                 avatar: '/static/about/olivier.jpg',
-//                 name: 'Olivier Tassinari',
-//                 title: 'Co-founder',
-//               }}
-//             >
-//               We believe that React is set on a course to dominate the way UIs are built on the web
-//               for a very long time. We also believe that the next major iteration is coming with
-//               low-code. Material-UI is at the forefront of this transformation.
-//             </Quote>
-//           </Grid>
-//           <Grid item lg={6} md={12} className="MuiGrid-panel MuiGrid-panel-horizontalSpacing-xs">
-//             <Typography variant="h4">
-//               From a developer&apos;s point of view, we want Material-UI to:
-//             </Typography>
-//             <BulletItem>Deliver on fully encapsulated/composable React components,</BulletItem>
-//             <BulletItem>Be themeable/customizable,</BulletItem>
-//             <BulletItem>Be cross browser compatible and accessible,</BulletItem>
-//             <BulletItem>
-//               Promote developer joy, a sense of community, and an environment where new and
-//               experienced developers can learn from each other.
-//             </BulletItem>
-//           </Grid>
-//         </Grid>
-
-//         <Grid container className="MuiGrid-team MuiGrid-panel MuiGrid-relative" spacing={1}>
-//           <Box
-//             component="img"
-//             src="/static/branding/block4.svg"
-//             alt=""
-//             sx={{
-//               width: 210,
-//               height: 170,
-//               position: 'absolute',
-//               right: { xs: '5%', md: '10%' },
-//               top: 'calc(100% - 120px)',
-//             }}
-//           />
-//           <Grid item xs={12}>
-//             <Typography variant="h2">
-//               Team
-//             </Typography>
-//           </Grid>
-//           <Grid item lg={7} xs={12}>
-//             <Typography>
-//               Material-UI is maintained by a group of invaluable core contributors, with the massive
-//               support and involvement of the community.
-//             </Typography>
+//             <BrandingBulletItem>Transparency, most of our work is public</BrandingBulletItem>
+//             <BrandingBulletItem>Creating a safe, high-trust team</BrandingBulletItem>
+//             <BrandingBulletItem>Building incredible developer experiences</BrandingBulletItem>
+//             <BrandingBulletItem>Maintaining a healthy working environment</BrandingBulletItem>
+//             <BrandingBulletItem>Deliver web experiences that feel amazing</BrandingBulletItem>
 //           </Grid>
 //         </Grid>
