@@ -2,7 +2,7 @@ import * as React from 'react';
 import { deepmerge, refType } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import InputBase from '../InputBase';
+import InputBase, { inputBaseClasses  } from '../InputBase';
 import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { getFilledInputUtilityClass } from './filledInputClasses';
