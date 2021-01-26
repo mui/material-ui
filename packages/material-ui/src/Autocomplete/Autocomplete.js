@@ -114,7 +114,7 @@ export const styles = (theme) => ({
       '& .MuiFilledInput-input': {
         padding: '7px 4px',
       },
-      '& .MuiInputBase-inputAdornedEnd': {
+      '& $endAdornment': {
         right: 9,
       },
     },
