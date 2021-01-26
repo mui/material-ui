@@ -43,7 +43,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
   });
 
   const { children, className, disableTypography = false, ...other } = props;
-  const styleProps = { ...props };
+  const styleProps = { ...props, disableTypography };
   const classes = useUtilityClasses(styleProps);
 
   return (
