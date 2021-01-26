@@ -11,7 +11,7 @@ import {
 import { useFakeTimers } from 'sinon';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
-import Fab, { fabClasses } from '@material-ui/core/Fab';
+import { fabClasses } from '@material-ui/core/Fab';
 import SpeedDialAction from './SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {
