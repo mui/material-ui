@@ -34,12 +34,13 @@ describe('<DayPicker />', () => {
     expect(screen.getByText('January')).toBeVisible();
     expect(screen.getByText('2019')).toBeVisible();
     expect(getAllByMuiTest('day')).to.have.length(31);
+    // It should follow https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
     expect(
       document.querySelector('[role="grid"] > [role="row"] > [role="cell"] > button'),
     ).to.have.text('1');
   });
 
-  it('renders year selection  standalone', () => {
+  it('renders year selection standalone', () => {
     render(
       <DayPicker
         date={adapterToUse.date('2019-01-01T00:00:00.000')}
