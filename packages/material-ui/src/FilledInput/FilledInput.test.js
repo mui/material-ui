@@ -15,7 +15,9 @@ describe('<FilledInput />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiFilledInput',
-    testVariantProps: { size: 'small' },
+    testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
+    testVariantProps: { size: 'small', color: 'secondary' },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     skip: ['componentProp', 'componentsProp'],
   }));
 

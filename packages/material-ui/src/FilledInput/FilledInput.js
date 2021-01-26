@@ -1,64 +1,27 @@
 import * as React from 'react';
 import { deepmerge, refType } from '@material-ui/utils';
 import PropTypes from 'prop-types';
-
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import InputBase from '../InputBase';
 import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
-import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
+import useThemeProps from '../styles/useThemeProps';
+import { getFilledInputUtilityClass } from './filledInputClasses';
+import { inputBaseClasses } from '../InputBase';
+import { overridesResolver as inputBaseOverridesResolver } from '../InputBase/InputBase';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    [`&.${filledInputClasses.colorSecondary}`]: styles.colorSecondary,
+  return deepmerge(inputBaseOverridesResolver(props, styles), {
     ...(!styleProps.disableUnderline && styles.undeline),
-    ...(styleProps.startAdornment && styles.adornedStart),
-    ...(styleProps.endAdornment && styles.adornedEnd),
-    [`&.${filledInputClasses.error}`]: styles.error,
-    [`&.${filledInputClasses.sizeSmall}`]: styles.sizeSmall,
-    ...(styleProps.multiline && styles.multiline),
-    [`&.${filledInputClasses.hiddenLabel}`]: styles.hiddenLabel,
-    [`& .${filledInputClasses.input}`]: {
-      ...styles.input,
-      ...(styleProps.multiline && styles.inputMultiline),
-      ...(styleProps.startAdornment && styles.inputAdornedStart),
-      ...(styleProps.endAdornment && styles.inputAdornedEnd),
-    },
-    [`& .${filledInputClasses.inputSizeSmall}`]: styles.inputSizeSmall,
-    [`& .${filledInputClasses.inputHiddenLabel}`]: styles.inputHiddenLabel,
   });
 };
+
 const useUtilityClasses = (styleProps) => {
-  const {
-    classes,
-    disableUnderline,
-    disabled,
-    startAdornment,
-    endAdornment,
-    multiline,
-  } = styleProps;
+  const { classes, disableUnderline } = styleProps;
 
   const slots = {
-    root: [
-      'root',
-      !disableUnderline && 'underline',
-      disabled && 'disabled',
-      startAdornment && 'adornedStart',
-      endAdornment && 'adornedEnd',
-      multiline && 'multiline',
-    ],
-    input: [
-      'input',
-      multiline && 'inputMultiline',
-      startAdornment && 'inputAdornedStart',
-      endAdornment && 'inputAdornedEnd',
-    ],
-    sizeSmall: ['sizeSmall'],
-    colorSecondary: ['colorSecondary'],
-    hiddenLabel: ['hiddenLabel'],
-    inputHiddenLabel: ['inputHiddenLabel'],
-    inputSizeSmall: ['inputSizeSmall'],
+    root: ['root', !disableUnderline && 'underline'],
+    input: ['input'],
   };
 
   return composeClasses(slots, getFilledInputUtilityClass, classes);
@@ -69,14 +32,13 @@ const FilledInputRoot = experimentalStyled(
   {
     shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes',
   },
-  { named: 'MuiFilledInput', slot: 'Root', overridesResolver },
+  { name: 'MuiFilledInput', slot: 'Root', overridesResolver },
 )(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)';
   return {
     /* Styles applied to the root element. */
-
     position: 'relative',
     backgroundColor,
     borderTopLeftRadius: theme.shape.borderRadius,
@@ -99,11 +61,6 @@ const FilledInputRoot = experimentalStyled(
       backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
     },
     ...(!styleProps.disableUnderline && {
-      [`&.${filledInputClasses.colorSecondary}:after`]: {
-        borderBottomColor: theme.palette.secondary.main,
-      },
-    }),
-    ...(!styleProps.disableUnderline && {
       '&:after': {
         borderBottom: `2px solid ${theme.palette.primary.main}`,
         left: 0,
@@ -118,6 +75,9 @@ const FilledInputRoot = experimentalStyled(
           easing: theme.transitions.easing.easeOut,
         }),
         pointerEvents: 'none', // Transparent to the hover style.
+        [`&.${inputBaseClasses.colorSecondary}`]: {
+          borderBottomColor: theme.palette.secondary.main,
+        },
       },
       '&.Mui-focused:after': {
         transform: 'scaleX(1)',
@@ -139,7 +99,7 @@ const FilledInputRoot = experimentalStyled(
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&:hover:not($disabled):before': {
+      '&:hover:not(.Mui-disabled):before': {
         borderBottom: `1px solid ${theme.palette.text.primary}`,
       },
       '&.Mui-disabled:before': {
@@ -148,28 +108,23 @@ const FilledInputRoot = experimentalStyled(
     }),
     ...(styleProps.startAdornment && {
       paddingLeft: 12,
-      [`& .${filledInputClasses.adornedStart}`]: {
-        paddingLeft: 0,
-      },
     }),
     ...(styleProps.endAdornment && {
       paddingRight: 12,
-      [`& .${filledInputClasses.endAdornment}`]: {
-        paddingRight: 0,
-      },
     }),
     ...(styleProps.multiline && {
       padding: '25px 12px 8px',
-      [`&.${filledInputClasses.hiddenLabel}`]: {
+      [`&.${inputBaseClasses.hiddenLabel}`]: {
         paddingTop: 16,
         paddingBottom: 17,
       },
-      [`&.${filledInputClasses.sizeSmall}`]: {
+      [`&.${inputBaseClasses.sizeSmall}`]: {
         paddingTop: 21,
         paddingBottom: 4,
       },
     }),
-    [`& .${filledInputClasses.input}`]: {
+    // input styles
+    [`& .${inputBaseClasses.input}`]: {
       padding: '25px 12px 8px',
       '&:-webkit-autofill': {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
@@ -178,28 +133,34 @@ const FilledInputRoot = experimentalStyled(
         borderTopLeftRadius: 'inherit',
         borderTopRightRadius: 'inherit',
       },
-    },
-    [`& .${filledInputClasses.inputSizeSmall}`]: {
-      paddingTop: 21,
-      paddingBottom: 4,
-    },
-    ...(styleProps.multiline && {
-      [`& .${filledInputClasses.inputMultiline}`]: {
+      ...(styleProps.multiline && {
         padding: 0,
+      }),
+      ...(styleProps.startAdornment && {
+        paddingLeft: 0,
+      }),
+      ...(styleProps.endAdornment && {
+        paddingRight: 0,
+      }),
+      [`&.${inputBaseClasses.inputSizeSmall}`]: {
+        paddingTop: 21,
+        paddingBottom: 4,
       },
-    }),
-    [`& .${filledInputClasses.inputHiddenLabel}`]: {
-      paddingTop: 16,
-      paddingBottom: 17,
-    },
-    [`& .${filledInputClasses.inputHiddenLabel}.${filledInputClasses.inputSizeSmall}`]: {
-      paddingTop: 8,
-      paddingBottom: 9,
+      [`&.${inputBaseClasses.inputHiddenLabel}`]: {
+        paddingTop: 16,
+        paddingBottom: 17,
+        [`&.${inputBaseClasses.inputSizeSmall}`]: {
+          paddingTop: 8,
+          paddingBottom: 9,
+        },
+      },
     },
   };
 });
 
-const FilledInput = React.forwardRef(function FilledInput(props, ref) {
+const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiFilledInput' });
+
   const {
     disableUnderline,
     fullWidth = false,
@@ -211,7 +172,6 @@ const FilledInput = React.forwardRef(function FilledInput(props, ref) {
 
   const styleProps = {
     ...other,
-    disableUnderline,
     fullWidth,
     inputComponent,
     multiline,
