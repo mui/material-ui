@@ -23,7 +23,7 @@ import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import muiFindAnnotatedComponentsResolver from 'docs/src/modules/utils/findAnnotatedComponentsResolver';
 import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
-import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
+import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import {
   getHeaders,
   renderInline as renderMarkdownInline,
@@ -1295,7 +1295,21 @@ Page.getInitialProps = () => {
   }
 }
 
+/**
+ * Creates .js file containing all /api nextjs pages
+ */
+function generateApiPagesManifest(outputPath: string, prettierConfigPath: string): void {
+  const [{ children: apiPages }] = findPages({ front: true });
+  if (apiPages === undefined) {
+    throw new TypeError('Unable to find pages under /api');
+  }
+
+  const source = `module.exports = ${JSON.stringify(apiPages)}`;
+  writePrettifiedFile(outputPath, source, prettierConfigPath);
+}
+
 async function run(argv: {
+  apiPagesManifestPath?: string;
   componentDirectories?: string[];
   grep?: string;
   outputDirectory?: string;
@@ -1307,6 +1321,7 @@ async function run(argv: {
   const componentDirectories = argv.componentDirectories!.map((componentDirectory) => {
     return path.resolve(componentDirectory);
   });
+  const apiPagesManifestPath = path.resolve(argv.apiPagesManifestPath!);
   const outputDirectory = path.resolve(argv.outputDirectory!);
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
 
@@ -1390,6 +1405,8 @@ async function run(argv: {
   if (fails.length > 0) {
     process.exit(1);
   }
+
+  generateApiPagesManifest(apiPagesManifestPath, prettierConfigPath);
 }
 
 yargs
@@ -1410,6 +1427,11 @@ yargs
         .option('grep', {
           description:
             'Only generate files for component filenames matching the pattern. The string is treated as a RegExp.',
+          type: 'string',
+        })
+        .option('apiPagesManifestPath', {
+          description: 'The path to the file where pages available under /api are written to.',
+          requiresArg: true,
           type: 'string',
         });
     },
