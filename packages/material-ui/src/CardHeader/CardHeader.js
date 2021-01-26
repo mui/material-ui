@@ -9,8 +9,6 @@ import experimentalStyled from '../styles/experimentalStyled';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
 
 const overridesResolver = (props, styles) => {
-  // const { styleProps } = props;
-
   return deepmerge(styles.root || {}, {
     [`& .${cardHeaderClasses.avatar}`]: styles.avatar,
     [`& .${cardHeaderClasses.action}`]: styles.action,
