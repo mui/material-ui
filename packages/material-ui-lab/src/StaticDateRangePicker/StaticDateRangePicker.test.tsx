@@ -30,7 +30,27 @@ describe('<StaticDateRangePicker />', () => {
     );
 
     expect(
-      getAllByMuiTest('DateRangeDay').filter((day) => day.getAttribute('disabled') !== undefined),
+      getAllByMuiTest('DateRangePickerDay').filter(
+        (day) => day.getAttribute('disabled') !== undefined,
+      ),
     ).to.have.length(31);
+  });
+
+  it('should render the correct a11y tree structure', () => {
+    render(
+      <StaticDateRangePicker
+        renderInput={defaultRangeRenderInput}
+        onChange={() => {}}
+        value={[
+          adapterToUse.date('2018-01-01T00:00:00.000'),
+          adapterToUse.date('2018-01-31T00:00:00.000'),
+        ]}
+      />,
+    );
+
+    // It should follow https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
+    expect(
+      document.querySelector('[role="grid"] > [role="row"] [role="cell"] > button'),
+    ).to.have.text('1');
   });
 });

@@ -3,8 +3,8 @@ import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
 import DayPicker from '@material-ui/lab/DayPicker';
 
-export default function InternalPickers() {
-  const [date, setDate] = React.useState<Date | null>(new Date());
+export default function SubComponentsPickers() {
+  const [date, setDate] = React.useState(new Date());
 
   return (
     <LocalizaitonProvider dateAdapter={AdapterDateFns}>

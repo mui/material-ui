@@ -4,7 +4,7 @@ import { DateRange } from './RangeTypes';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { calculateRangePreview } from './date-range-manager';
 import PickersCalendar, { PickersCalendarProps } from '../DayPicker/PickersCalendar';
-import DateRangeDay, { DateRangePickerDayProps } from '../DateRangePickerDay';
+import DateRangePickerDay, { DateRangePickerDayProps } from '../DateRangePickerDay';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import PickersArrowSwitcher, {
   ExportedArrowSwitcherProps,
@@ -29,9 +29,9 @@ export interface ExportedDesktopDateRangeCalendarProps<TDate> {
   calendars?: 1 | 2 | 3;
   /**
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
-   * @example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />
+   * @example (date, DateRangePickerDayProps) => <DateRangePickerDay {...DateRangePickerDayProps} />
    */
-  renderDay?: (date: TDate, DateRangeDayProps: DateRangePickerDayProps<TDate>) => JSX.Element;
+  renderDay?: (date: TDate, DateRangePickerDayProps: DateRangePickerDayProps<TDate>) => JSX.Element;
 }
 
 interface DesktopDateRangeCalendarProps<TDate>
@@ -109,7 +109,7 @@ function DateRangePickerViewDesktop<TDate>(
     maxDate: maxDateProp,
     minDate: minDateProp,
     onChange,
-    renderDay = (_, dateRangeProps) => <DateRangeDay {...dateRangeProps} />,
+    renderDay = (_, dateRangeProps) => <DateRangePickerDay {...dateRangeProps} />,
     rightArrowButtonText = 'Next month',
     ...other
   } = props;
