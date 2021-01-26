@@ -1,38 +1,52 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import { getMenuItemUtilityClass } from './menuItemClasses';
 import ListItem from '../ListItem';
+import listItemClasses from '../ListItem/listItemClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    ...theme.typography.body1,
-    minHeight: 48,
-    paddingTop: 6,
-    paddingBottom: 6,
-    boxSizing: 'border-box',
-    width: 'auto',
-    whiteSpace: 'nowrap',
-    [theme.breakpoints.up('sm')]: {
-      minHeight: 'auto',
-    },
+const overridesResolver = (props, styles) => styles.root || {};
+
+const useUtilityClasses = (styleProps) => {
+  const { selected, disableGutters, classes } = styleProps;
+  const slots = {
+    root: ['root', selected && 'selected', !disableGutters && 'gutters'],
+  };
+
+  return composeClasses(slots, getMenuItemUtilityClass, classes);
+};
+
+const MenuItemRoot = experimentalStyled(
+  ListItem,
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {
+    name: 'MuiMenuItem',
+    slot: 'Root',
+    overridesResolver,
   },
-  // TODO v5: remove
-  /* Styles applied to the root element unless `disableGutters={true}`. */
-  gutters: {},
-  /* Styles applied to the root element if `selected={true}`. */
-  selected: {},
-  /* Styles applied to the root element if dense. */
-  dense: {
+)(({ theme }) => ({
+  ...theme.typography.body1,
+  minHeight: 48,
+  paddingTop: 6,
+  paddingBottom: 6,
+  boxSizing: 'border-box',
+  width: 'auto',
+  whiteSpace: 'nowrap',
+  [theme.breakpoints.up('sm')]: {
+    minHeight: 'auto',
+  },
+  [`&.${listItemClasses.dense}`]: {
     ...theme.typography.body2,
     minHeight: 'auto',
   },
-});
+}));
 
-const MenuItem = React.forwardRef(function MenuItem(props, ref) {
+const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
   const {
-    classes,
     className,
     component = 'li',
     disableGutters = false,
@@ -43,28 +57,30 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    selected,
+    disableGutters,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   let tabIndex;
   if (!props.disabled) {
     tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
   }
 
   return (
-    <ListItem
+    <MenuItemRoot
+      styleProps={styleProps}
       button
       role={role}
       tabIndex={tabIndex}
       component={component}
       selected={selected}
       disableGutters={disableGutters}
-      classes={{ dense: classes.dense, ...ListItemClasses }}
-      className={clsx(
-        classes.root,
-        {
-          [classes.selected]: selected,
-          [classes.gutters]: !disableGutters,
-        },
-        className,
-      )}
+      classes={ListItemClasses}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     />
@@ -125,9 +141,13 @@ MenuItem.propTypes = {
    */
   selected: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);
+export default MenuItem;

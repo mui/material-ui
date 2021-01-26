@@ -1,3 +1,5 @@
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { DistributiveOmit } from '@material-ui/types';
 import { ListItemTypeMap, ListItemProps } from '../ListItem';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
@@ -29,6 +31,10 @@ export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
        * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
        */
       ListItemClasses?: ListItemProps['classes'];
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme>;
     };
   defaultComponent: D;
 }

@@ -5,7 +5,8 @@
     "component": { "type": { "name": "elementType" } },
     "dense": { "type": { "name": "bool" } },
     "disableGutters": { "type": { "name": "bool" } },
-    "ListItemClasses": { "type": { "name": "object" } }
+    "ListItemClasses": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "MenuItem",
   "styles": {
@@ -18,6 +19,6 @@
   "filename": "/packages/material-ui/src/MenuItem/MenuItem.js",
   "inheritance": { "component": "ListItem", "pathname": "/api/list-item/" },
   "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
