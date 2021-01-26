@@ -46,12 +46,6 @@ const ImageListRoot = experimentalStyled(
     ...(styleProps.variant === 'masonry' && {
       display: 'block',
     }),
-    /* Styles applied to the root element if `variant="quilted"`. */
-    ...(styleProps.variant === 'quilted' && {}),
-    /* Styles applied to the root element if `variant="standard"`. */
-    ...(styleProps.variant === 'standard' && {}),
-    /* Styles applied to the root element if `variant="woven"`. */
-    ...(styleProps.variant === 'woven' && {}),
   };
 });
 
