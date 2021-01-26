@@ -16,7 +16,7 @@ describe('<ImageListItem />', () => {
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'div',
     muiName: 'MuiImageListItem',
-    testVariantProps: { variant: 'standard' },
+    testVariantProps: { variant: 'masonry' },
     skip: ['componentProp', 'componentsProp'],
   }));
 
