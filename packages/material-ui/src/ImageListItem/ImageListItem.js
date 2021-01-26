@@ -38,44 +38,33 @@ const ImageListItemRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ styleProps }) => {
-  return {
-    display: 'inline-block',
-    position: 'relative',
-    lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item gap
-    /* Styles applied to the root element if `variant="standard"`. */
+)(({ styleProps }) => ({
+  display: 'inline-block',
+  position: 'relative',
+  lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item gap
+  /* Styles applied to the root element if `variant="standard"`. */
+  ...(styleProps.variant === 'standard' && {
+    // For titlebar under list item
+    display: 'flex',
+    flexDirection: 'column',
+  }),
+  /* Styles applied to the root element if `variant="woven"`. */
+  ...(styleProps.variant === 'woven' && {
+    height: '100%',
+    alignSelf: 'center',
+    '&:nth-of-type(even)': {
+      height: '70%',
+    },
+  }),
+  [`& .${imageListItemClasses.img}`]: {
+    objectFit: 'cover',
+    width: '100%',
+    height: '100%',
     ...(styleProps.variant === 'standard' && {
-      // For titlebar under list item
-      display: 'flex',
-      flexDirection: 'column',
-      [`& .${imageListItemClasses.img}`]: {
-        height: 'auto',
-        flexGrow: 1,
-      },
+      height: 'auto',
+      flexGrow: 1,
     }),
-    /* Styles applied to the root element if `variant="woven"`. */
-    ...(styleProps.variant === 'woven' && {
-      height: '100%',
-      alignSelf: 'center',
-      '&:nth-of-type(even)': {
-        height: '70%',
-      },
-    }),
-  };
-});
-
-experimentalStyled(
-  'img',
-  {},
-  {
-    name: 'MuiImageListItem',
-    slot: 'Img',
-    overridesResolver,
   },
-)(() => ({
-  objectFit: 'cover',
-  width: '100%',
-  height: '100%',
 }));
 
 const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
