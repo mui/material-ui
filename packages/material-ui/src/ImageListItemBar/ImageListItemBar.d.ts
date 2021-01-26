@@ -1,5 +1,6 @@
+import { SxProps } from '@material-ui/system';
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 
 export interface ImageListItemBarProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -51,6 +52,10 @@ export interface ImageListItemBarProps
    * String or element serving as subtitle (support text).
    */
   subtitle?: React.ReactNode;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * Title to be displayed.
    */
