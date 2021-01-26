@@ -34,6 +34,9 @@ describe('<DayPicker />', () => {
     expect(screen.getByText('January')).toBeVisible();
     expect(screen.getByText('2019')).toBeVisible();
     expect(getAllByMuiTest('day')).to.have.length(31);
+    expect(
+      document.querySelector('[role="grid"] > [role="row"] > [role="cell"] > button'),
+    ).to.have.text('1');
   });
 
   it('renders year selection  standalone', () => {
