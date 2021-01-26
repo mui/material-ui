@@ -1,4 +1,3 @@
-import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { deepmerge } from '@material-ui/utils';
 import clsx from 'clsx';
@@ -6,6 +5,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
+import capitalize from '../utils/capitalize';
 import imageListItemBarClasses, { getImageListItemBarUtilityClass } from './imageListItemBarClasses';
 
 const overridesResolver = (props, styles) => {
