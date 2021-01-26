@@ -165,7 +165,7 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
           day={day}
           selected={selected}
           outsideCurrentMonth={outsideCurrentMonth}
-          data-mui-test="DateRangeDay"
+          data-mui-test="DateRangePickerDay"
           className={clsx(classes.day, {
             [classes.notSelectedDate]: !selected,
             [classes.dayOutsideRangeInterval]: !isHighlighting,

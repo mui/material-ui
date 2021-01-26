@@ -30,7 +30,9 @@ describe('<StaticDateRangePicker />', () => {
     );
 
     expect(
-      getAllByMuiTest('DateRangeDay').filter((day) => day.getAttribute('disabled') !== undefined),
+      getAllByMuiTest('DateRangePickerDay').filter(
+        (day) => day.getAttribute('disabled') !== undefined,
+      ),
     ).to.have.length(31);
   });
 });
