@@ -3,6 +3,8 @@ export interface ImageListItemClasses {
   img: string;
   standard: string;
   woven: string;
+  masonry: string;
+  quilted: string;
 }
 
 declare const imageListItemClasses: ImageListItemClasses;
