@@ -3,15 +3,40 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { keyframes } from '@material-ui/styled-engine';
 import capitalize from '../utils/capitalize';
 
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import circularProgressClasses, {
   getCircularProgressUtilityClass,
 } from './circularProgressClasses';
 
 const SIZE = 44;
+
+const circularRotateKeyframe = keyframes`
+0% {
+  transform: rotate(0deg);
+}
+100% {
+  transform: rotate(360deg);
+}
+`;
+
+const circularDashKeyframe = keyframes`
+0% {
+  strokeDasharray: 1px, 200px;
+  strokeDashoffset: 0px;
+}
+50% {
+  strokeDasharray: 100px, 200px;
+  strokeDashoffset: -15px;
+}
+100% {
+  strokeDasharray: 100px, 200px;
+  strokeDashoffset: -125px;
+}
+`;
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -34,7 +59,7 @@ const useUtilityClasses = (styleProps) => {
   const slots = {
     root: ['root', variant, `color${capitalize(color)}`],
     svg: ['svg'],
-    circle: ['circle', `circle${variant}`, disableShrink && 'circleDisableShrink'],
+    circle: ['circle', `circle${capitalize(variant)}`, disableShrink && 'circleDisableShrink'],
   };
 
   return composeClasses(slots, getCircularProgressUtilityClass, classes);
@@ -42,40 +67,34 @@ const useUtilityClasses = (styleProps) => {
 
 const CircularProgressRoot = experimentalStyled(
   'span',
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiCircularProgress',
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
-  display: 'inline-block',
-  /* Styles applied to the root element if `variant="determinate"`. */
-  ...(styleProps.variant === 'determinate' && {
-    transition: theme.transitions.create('transform'),
-  }),
-  /* Styles applied to the root element if `variant="indeterminate"`. */
-  ...(styleProps.variant === 'indeterminate' && {
-    animation: '$circular-rotate 1.4s linear infinite',
-  }),
-  /* Styles applied to the root element if `color="primary"`. */
-  ...(styleProps.color === 'primary' && {
-    color: theme.palette.primary.main,
-  }),
-  /* Styles applied to the root element if `color="secondary"`. */
-  ...(styleProps.color === 'secondary' && {
-    color: theme.palette.secondary.main,
-  }),
-  '@keyframes circular-rotate': {
-    '0%': {
-      transform: 'rotate(0deg)',
-    },
-    '100%': {
-      transform: 'rotate(360deg)',
-    },
-  },
-}));
+)`
+  display: inline-block;
+
+  &.${circularProgressClasses.determinate} {
+    transition: ${({ theme }) => theme.transitions.create('transform')}
+  }
+
+  &.${circularProgressClasses.indeterminate} {
+    animation-name: ${circularRotateKeyframe};
+    animation-duration: 1.4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  &.${circularProgressClasses.primary} {
+    color: ${({ theme }) => theme.palette.primary.main}
+  }
+
+  &.${circularProgressClasses.secondary} {
+    color: ${({ theme }) => theme.palette.secondary.main}
+  }
+`;
 
 const CircularProgressSVG = experimentalStyled(
   'svg',
@@ -91,46 +110,31 @@ const CircularProgressSVG = experimentalStyled(
 
 const CircularProgressCircle = experimentalStyled(
   'circle',
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiCircularProgress',
     slot: 'Circle',
   },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the `circle` svg path. */
-  stroke: 'currentColor',
-  // Use butt to follow the specification, by chance, it's already the default CSS value.
-  // strokeLinecap: 'butt',
-  /* Styles applied to the `circle` svg path if `variant="determinate"`. */
-  ...(styleProps.variant === 'determinate' && {
-    transition: theme.transitions.create('stroke-dashoffset'),
-  }),
-  /* Styles applied to the `circle` svg path if `variant="indeterminate"`. */
-  ...(styleProps.variant === 'indeterminate' && {
-    animation: '$circular-dash 1.4s ease-in-out infinite',
-    // Some default value that looks fine waiting for the animation to kicks in.
-    strokeDasharray: '80px, 200px',
-    strokeDashoffset: '0px', // Add the unit to fix a Edge 16 and below bug.
-  }),
-  '@keyframes circular-dash': {
-    '0%': {
-      strokeDasharray: '1px, 200px',
-      strokeDashoffset: '0px',
-    },
-    '50%': {
-      strokeDasharray: '100px, 200px',
-      strokeDashoffset: '-15px',
-    },
-    '100%': {
-      strokeDasharray: '100px, 200px',
-      strokeDashoffset: '-125px',
-    },
-  },
-  /* Styles applied to the `circle` svg path if `disableShrink={true}`. */
-  ...(styleProps.disableShrink && {
-    animation: 'none',
-  }),
-}));
+)`
+  stroke: currentColor;
+
+  &.${circularProgressClasses.determinate} {
+    transition: ${({ theme }) => theme.transitions.create('stroke-dashoffset')};
+  }
+
+  &.${circularProgressClasses.indeterminate} {
+    animation-name: ${circularDashKeyframe};
+    animation-duration: 1.4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    strokeDasharray: 80px, 200px;
+    strokeDashoffset: 0px;
+  }
+
+  &.${circularProgressClasses.disableShrink} {
+    animation: none;
+  }
+`;
 
 /**
  * ## ARIA
