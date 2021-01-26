@@ -2,20 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, deepmerge } from '@material-ui/utils';
-
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getCardMediaUtilityClass } from './cardMediaClasses';
 
-const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
-const IMAGE_COMPONENTS = ['picture', 'img'];
-
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-
-  const isMediaComponent = MEDIA_COMPONENTS.indexOf(styleProps.component) !== -1;
-  const isImageComponent = IMAGE_COMPONENTS.indexOf(styleProps.component) !== -1;
+  const { isMediaComponent, isImageComponent } = styleProps;
 
   return deepmerge(styles.root || {}, {
     ...(isMediaComponent && styles.media),
@@ -24,10 +18,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
-
-  const isMediaComponent = MEDIA_COMPONENTS.indexOf(styleProps.component) !== -1;
-  const isImageComponent = IMAGE_COMPONENTS.indexOf(styleProps.component) !== -1;
+  const { classes, isMediaComponent, isImageComponent } = styleProps;
 
   const slots = {
     root: ['root', isMediaComponent && 'media', isImageComponent && 'img'],
@@ -50,16 +41,19 @@ const CardMediaRoot = experimentalStyled(
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
-  ...(MEDIA_COMPONENTS.indexOf(styleProps.component) !== -1 && {
+  ...(styleProps.isMediaComponent && {
     /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
     width: '100%',
   }),
-  ...(IMAGE_COMPONENTS.indexOf(styleProps.component) !== -1 && {
+  ...(styleProps.isImageComponent && {
     /* Styles applied to the root element if `component="picture or img"`. */
     // ⚠️ object-fit is not supported by IE11.
     objectFit: 'cover',
   }),
 }));
+
+const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
+const IMAGE_COMPONENTS = ['picture', 'img'];
 
 const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiCardMedia' });
@@ -72,6 +66,8 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
   const styleProps = {
     ...props,
     component,
+    isMediaComponent,
+    isImageComponent: IMAGE_COMPONENTS.indexOf(component) !== -1,
   };
 
   const classes = useUtilityClasses(styleProps);
