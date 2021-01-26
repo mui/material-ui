@@ -124,9 +124,11 @@ function BrandingVision() {
             }}
             sx={{ width: '100%', maxWidth: { md: 470 } }}
           >
-            We believe that React is set on a course to dominate the way UIs are built on the web
-            for a very long time. We also believe that the next major iteration is coming with
-            low-code. Material-UI is at the forefront of this transformation.
+            React is set on a course to further dominate the way UIs are built on the web for a long
+            time.
+            <br />
+            The next major iteration to improve the DX will be a paradigm shift.
+            {" It's not coming with a new library but low-code."}
           </BrandingQuote>
         </Grid>
         <Grid item xs={12} md={6}>
