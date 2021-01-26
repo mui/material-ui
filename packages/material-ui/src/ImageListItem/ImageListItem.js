@@ -96,7 +96,15 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
     height = rowHeight * rows + gap * (rows - 1);
   }
 
-  const styleProps = { ...props, component, variant };
+  const styleProps = { 
+    ...props,
+    cols,
+    component,
+    gap,
+    rowHeight,
+    rows,
+    variant,
+  };
 
   const classes = useUtilityClasses(styleProps);
 
