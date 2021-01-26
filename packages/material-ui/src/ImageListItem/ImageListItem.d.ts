@@ -10,6 +10,19 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /* Styles applied to an `img` element to ensure it covers the item. */
+      img?: string;
+      /* Styles applied to the root element if `variant="standard"`. */
+      standard?: string;
+      /* Styles applied to the root element if `variant="woven"`. */
+      woven?: string;
+    }
+    /**
      * Width of the item in number of grid columns.
      * @default 1
      */
@@ -25,7 +38,6 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
     sx?: SxProps<Theme>;
   };
   defaultComponent: D;
-  classKey: ImageListItemClassKey;
 }
 /**
  *
