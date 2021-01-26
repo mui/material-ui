@@ -21,6 +21,10 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
       standard?: string;
       /* Styles applied to the root element if `variant="woven"`. */
       woven?: string;
+      /** Styles applied to the root element if `variant="masonry"`. */
+      masonry?: string;
+      /** Styles applied to the root element if `variant="quilted"`. */
+      quilted?: string;
     }
     /**
      * Width of the item in number of grid columns.
