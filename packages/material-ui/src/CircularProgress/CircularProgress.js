@@ -67,7 +67,7 @@ const useUtilityClasses = (styleProps) => {
 
 const CircularProgressRoot = experimentalStyled(
   'span',
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiCircularProgress',
     slot: 'Root',
@@ -110,7 +110,7 @@ const CircularProgressSVG = experimentalStyled(
 
 const CircularProgressCircle = experimentalStyled(
   'circle',
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {},
   {
     name: 'MuiCircularProgress',
     slot: 'Circle',
