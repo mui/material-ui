@@ -9,8 +9,10 @@ A typical release goes like this:
 The following steps must be proposed as a pull request.
 
 1. Generate the changelog with `yarn relase:changelog`
+
    The output must be prepended to the top level `CHANGELOG.md`
-   `node scripts/generateChangelog --help` for more information.
+   `yarn release:changelog --help` for more information.
+
 1. Clean the generated changelog, to match the format of https://github.com/mui-org/material-ui/releases.
 
 1. Update the root `/package.json`'s version
