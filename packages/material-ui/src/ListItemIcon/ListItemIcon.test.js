@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createMount, describeConformanceV5 } from 'test/utils';
 import ListItemIcon from './ListItemIcon';
-import classes from './listItemIconClasses'
+import classes from './listItemIconClasses';
 
 describe('<ListItemIcon />', () => {
   const mount = createMount();
