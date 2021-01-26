@@ -1,5 +1,130 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.24
+
+<!-- generated comparing v5.0.0-alpha.23..next -->
+
+_Jan 26, 2021_
+
+Big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 Convert 31 components to emotion. Around 40% of the components have been migrated so far thanks to the help of the community.
+- 🐛 Fix two long-standing issues with the Grid. Solve the horizontal scrollbar as well as dimensions when nesting (#24332) @greguintow.
+- 📚 Fix various display issues on API documentation pages (#24526, #24503, #24504. #24517, #24417).
+- 📐 Add a subset of the system as flatten props on the CSS utility components (`Grid` and `Box` so far, `Typography` and `Stack` coming later) (#24485, #24499) @mnajdova.
+
+  ```jsx
+  <Box m={2}>
+  ```
+
+### `@material-ui/core@5.0.0-alpha.24`
+
+- <!-- 85 --> [Dialog] Migrate DialogActions to emotion (#24613) @vicasas
+- <!-- 84 --> [Toolbar] Migrate to emotion (#24567) @natac13
+- <!-- 83 --> [Hidden] Fix unsupported props warning when sx prop is used (#24624) @mnajdova
+- <!-- 82 --> [List] Migrate ListItemText to emotion (#24602) @natac13
+- <!-- 80 --> [List] Migrate ListItemSecondaryAction to emotion (#24593) @xs9627
+- <!-- 79 --> [BottomNavigation] Migrate to emotion (#24556) @vinyldarkscratch
+- <!-- 77 --> [CardActions] Fix wrong classes export name (#24609) @mnajdova
+- <!-- 76 --> [Card] Migrate CardContent to emotion (#24600) @vicasas
+- <!-- 75 --> [Card] Migrate to emotion (#24597) @povilass
+- <!-- 74 --> [TextField] Migrate InputBase to emotion (#24555) @duganbrett
+- <!-- 73 --> [Accordion] Allow to disable gutter/spacing (#24532) @TimonPllkrn
+- <!-- 72 --> [List] Migrate to emotion (#24560) @vinyldarkscratch
+- <!-- 71 --> [Card] Migrate CardActions to emotion (#24604) @vicasas
+- <!-- 69 --> [List] Migrate ListSubheader to emotion (#24561) @vinyldarkscratch
+- <!-- 68 --> [Breadcrumbs] Migrate to emotion (#24522) @vinyldarkscratch
+- <!-- 67 --> [Divider] Migrate to emotion (#24558) @vinyldarkscratch
+- <!-- 66 --> [Switch] Migrate SwitchBase to emotion (#24552) @vinyldarkscratch
+- <!-- 65 --> [Hidden] Migrate to emotion (#24544) @vinyldarkscratch
+- <!-- 64 --> [List] Migrate ListItem to emotion (#24543) @xs9627
+- <!-- 62 --> [TextField] Fix Google Translate zero-width space issue (#24563) @d3mp
+- <!-- 61 --> [Table] Separate classes for different labels (#24568) @tonysepia
+- <!-- 58 --> [Accordion] Migrate AccordionSummary to emotion (#24540) @vinyldarkscratch
+- <!-- 57 --> [IconButton] Migrate to emotion (#24542) @vinyldarkscratch
+- <!-- 54 --> [Accordion] Migrate AccordionActions to emotion (#24538) @vinyldarkscratch
+- <!-- 53 --> [Accordion] Migrate AccordionDetails to emotion (#24539) @vinyldarkscratch
+- <!-- 50 --> [Link] Migrate to emotion (#24529) @praveenkumar-kalidass
+- <!-- 49 --> [Accordion] Migrate to emotion (#24518) @vinyldarkscratch
+- <!-- 46 --> [Backdrop] Migrate to emotion (#24523) @vinyldarkscratch
+- <!-- 39 --> [Grid] Add system props (#24499) @mnajdova
+- <!-- 38 --> [Icon] Migrate to emotion (#24516) @vinyldarkscratch
+- <!-- 36 --> [Collapse] Migrate to emotion (#24501) @vinyldarkscratch
+- <!-- 33 --> [SvgIcon] Migrate to emotion (#24506) @oliviertassinari
+- <!-- 32 --> [Avatar] Migrate AvatarGroup to emotion (#24452) @praveenkumar-kalidass
+- <!-- 31 --> [Box] Add back system props (#24485) @mnajdova
+- <!-- 30 --> [Alert] Migrate AlertTitle to emotion (#24448) @povilass
+- <!-- 26 --> [Alert] Migrate to emotion (#24442) @kutnickclose
+- <!-- 21 --> [l10n] Improve Hebrew translation (#24449) @eladmotola
+- <!-- 19 --> [Checkbox][Switch] Document defaultChecked (#24446) @praveenkumar-kalidass
+- <!-- 18 --> [AppBar] Migrate to emotion (#24439) @povilass
+- <!-- 16 --> [l10n] Improve German translation (#24436) @lukaselmer
+- <!-- 15 --> [Button][Badge] Support custom colors and sizes (#24408) @mnajdova
+- <!-- 10 --> [Grid] Fix horizontal scrollbar and nested dimensions (#24332) @greguintow
+- <!-- 07 --> [Grid] Migrate to emotion (#24395) @mnajdova
+- <!-- 06 --> [Badge] Fix TS custom variants (#24407) @mnajdova
+
+### `@material-ui/lab@5.0.0-alpha.24`
+
+- <!-- 48 --> [DatePicker] Remove unnecessary wrapping dom node (#24533) @mxsph
+- <!-- 12 --> [DateRangePicker] Remove variant prop override for Textfield (#24433) @praveenkumar-kalidass
+- <!-- 03 --> [lab] Reflect draft pattern of picker value in implementation (#24367) @eps1lon
+
+### `@material-ui/styled-engine@5.0.0-alpha.24`
+
+- <!-- 13 --> [styled-engine] Rename StylesProvider to StyledEngineProvider (#24429) @mnajdova
+
+### `@material-ui/system@5.0.0-alpha.24`
+
+- <!-- 44 --> [system] Fix handling of null-ish values (#24530) @oliviertassinari
+
+### `@material-ui/unstyled@5.0.0-alpha.24`
+
+- <!-- 08 --> [unstyled] Convert composeClasses to TypeScript (#24396) @eps1lon
+
+### `@material-ui/utils@5.0.0-alpha.24`
+
+- <!-- 60 --> [utils] `useEventCallback` `args` defaults to `unknown[]` (#24564) @eps1lon
+- <!-- 11 --> [utils] Fix requirePropFactory to merge validators (#24423) @mnajdova
+
+### docs
+
+- <!-- 86 --> [examples] Patch preact example not working (#24616)
+- <!-- 78 --> [docs] Add missing newline in component JSDOC (#24610) @eps1lon
+- <!-- 70 --> [docs] Add API of picker components (#24497) @eps1lon
+- <!-- 63 --> [examples] Add `locale` prop to the Nextjs Link component (#24596) @CyanoFresh
+- <!-- 52 --> [docs] List required props first in /api/* (#24526) @eps1lon
+- <!-- 45 --> [docs] Mention the system props when available in the API pages (#24503) @mnajdova
+- <!-- 43 --> [docs] Improve system properties page (#24524) @mnajdova
+- <!-- 42 --> [docs] Fix malformed component API description (#24504) @eps1lon
+- <!-- 41 --> [docs] Fix ToC "Component name" fragment link on /api/* (#24517) @eps1lon
+- <!-- 40 --> [docs] Fix ToC on /api pages linking to api-docs (#24515) @eps1lon
+- <!-- 37 --> [docs] Add comment explaining specificity bump on Select (#24509) @KarimMokhtar
+- <!-- 28 --> [docs] Compute spreadable from tests (#24490) @eps1lon
+- <!-- 27 --> [docs] Fix label bug in stepper vertical demo (#24491) @artola
+- <!-- 20 --> [docs] Update Divjoy URL (#24447) @mbrookes
+- <!-- 17 --> [docs] Improve packages description (#24330) @oliviertassinari
+- <!-- 14 --> [docs] Fix content-layout-shift (#24418) @oliviertassinari
+- <!-- 09 --> [docs] Document default values of external props (#24417) @eps1lon
+- <!-- 02 --> [docs] Update in-house ads (#24410) @mbrookes @ewldev
+
+### core
+
+- <!-- 87 --> [core] Skip downloading browser binaries in codesandbox/ci (#24628) @eps1lon
+- <!-- 81 --> [core] Batch small changes (#24599) @oliviertassinari
+- <!-- 59 --> [test] Simplify DatePicker tests (#24545) @eps1lon
+- <!-- 51 --> [core] Improve pseudo classes overrides error (#24535) @mnajdova
+- <!-- 35 --> [core] Fix styleProps to always contain all props (#24505) @mnajdova
+- <!-- 34 --> [test] Fix AvatarGroup failing test (#24512) @mnajdova
+- <!-- 29 --> [pickers] Sort tests (#24481) @eps1lon
+- <!-- 25 --> [test] Split tests in describeConformanceV5 to isolate them (#24479) @mnajdova
+- <!-- 24 --> [core] Do not forward classes prop by default in experimentalStyled (#24451) @mnajdova
+- <!-- 23 --> [core] Pass styleProps on all slots in the styled() components (#24454) @mnajdova
+- <!-- 22 --> [core] Batch small changes (#24445) @oliviertassinari
+- <!-- 01 --> [core] Normalize generating declaration files (#24411) @eps1lon
+
+All contributors of this release in alphabetical order: @artola, @CyanoFresh, @d3mp, @duganbrett, @eladmotola, @eps1lon, @ewldev, @greguintow, @KarimMokhtar, @kutnickclose, @lukaselmer, @mbrookes, @mnajdova, @mxsph, @natac13, @oliviertassinari, @povilass, @praveenkumar-kalidass, @TimonPllkrn, @tonysepia, @vicasas, @vinyldarkscratch, @xs9627
+
 ## 5.0.0-alpha.23
 
 ###### _Jan 14, 2021_

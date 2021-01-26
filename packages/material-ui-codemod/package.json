@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/codemod",
-  "version": "5.0.0-alpha.23",
+  "version": "5.0.0-alpha.24",
   "private": false,
   "author": "Material-UI Team",
   "description": "Codemod scripts for Material-UI.",

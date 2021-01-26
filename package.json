@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-alpha.23",
+  "version": "5.0.0-alpha.24",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=test babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -8,8 +8,10 @@
     "build:codesandbox": "lerna run --parallel --scope \"@material-ui/*\" build",
     "release:version": "lerna version --exact --no-changelog --no-push --no-git-tag-version",
     "release:build": "lerna run --parallel --scope \"@material-ui/*\" build",
+    "release:changelog": "node scripts/releaseChangelog",
     "release:publish": "lerna publish from-package --dist-tag next --contents build",
     "release:publish:dry-run": "lerna publish from-package --dist-tag next --contents build --registry=\"http://localhost:4873/\"",
+    "release:tag": "node scripts/releaseTag",
     "docs:api": "rimraf ./docs/pages/api-docs && yarn docs:api:build",
     "docs:api:build": "cross-env BABEL_ENV=test __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/buildApi.ts  ./docs/pages/api-docs ./packages/material-ui-unstyled/src ./packages/material-ui/src ./packages/material-ui-lab/src",
     "docs:build": "yarn workspace docs build",
@@ -70,6 +72,7 @@
     "@babel/register": "^7.10.1",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
+    "@octokit/rest": "^18.0.14",
     "@rollup/plugin-replace": "^2.3.1",
     "@testing-library/dom": "^7.22.1",
     "@testing-library/react": "^11.0.2",
