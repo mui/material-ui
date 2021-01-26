@@ -1,6 +1,6 @@
 {
   "buildCommand": "build:codesandbox",
-  "installCommand": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn install",
+  "installCommand": "install:codesandbox",
   "packages": [
     "packages/material-ui",
     "packages/material-ui-icons",
