@@ -25,7 +25,7 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
       masonry?: string;
       /** Styles applied to the root element if `variant="quilted"`. */
       quilted?: string;
-    }
+    };
     /**
      * Width of the item in number of grid columns.
      * @default 1

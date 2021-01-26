@@ -9,7 +9,7 @@
   },
   "name": "ImageListItem",
   "styles": {
-    "classes": ["root", "img", "standard", "woven"],
+    "classes": ["root", "img", "standard", "woven", "masonry", "quilted"],
     "globalClasses": {},
     "name": "MuiImageListItem"
   },
