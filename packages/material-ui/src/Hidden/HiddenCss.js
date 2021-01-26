@@ -73,7 +73,7 @@ function HiddenCss(props) {
       const isUndeclaredBreakpoint = !theme.breakpoints.keys.some((breakpoint) => {
         return `${breakpoint}Up` === propName || `${breakpoint}Down` === propName;
       });
-      return !['classes', 'theme', 'isRtl'].includes(propName) && isUndeclaredBreakpoint;
+      return !['classes', 'theme', 'isRtl', 'sx'].includes(propName) && isUndeclaredBreakpoint;
     });
 
     if (unknownProps.length > 0) {

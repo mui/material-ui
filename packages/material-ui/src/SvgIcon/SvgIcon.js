@@ -73,7 +73,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     children,
     className,
     color = 'inherit',
-    component: Component = 'svg',
+    component = 'svg',
     fontSize = 'medium',
     htmlColor,
     titleAccess,
@@ -84,7 +84,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const styleProps = {
     ...props,
     color,
-    component: Component,
+    component,
     fontSize,
     viewBox,
   };
@@ -93,7 +93,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
 
   return (
     <SvgIconRoot
-      as={Component}
+      as={component}
       className={clsx(classes.root, className)}
       styleProps={styleProps}
       focusable="false"

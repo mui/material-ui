@@ -1,61 +1,109 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
+import bottomNavigationActionClasses, {
+  getBottomNavigationActionUtilityClass,
+} from './bottomNavigationActionClasses';
 
-export const styles = (theme) => ({
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
+    [`& .${bottomNavigationActionClasses.wrapper}`]: styles.wrapper,
+    [`& .${bottomNavigationActionClasses.label}`]: styles.label,
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, showLabel, selected } = styleProps;
+
+  const slots = {
+    root: ['root', !showLabel && !selected && 'iconOnly', selected && 'selected'],
+    wrapper: ['wrapper'],
+    label: ['label', !showLabel && !selected && 'iconOnly', selected && 'selected'],
+  };
+
+  return composeClasses(slots, getBottomNavigationActionUtilityClass, classes);
+};
+
+const BottomNavigationActionRoot = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'MuiBottomNavigationAction',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    transition: theme.transitions.create(['color', 'padding-top'], {
-      duration: theme.transitions.duration.short,
-    }),
-    padding: '6px 12px 8px',
-    minWidth: 80,
-    maxWidth: 168,
-    color: theme.palette.text.secondary,
-    flex: '1',
-    '&$iconOnly': {
+  transition: theme.transitions.create(['color', 'padding-top'], {
+    duration: theme.transitions.duration.short,
+  }),
+  padding: '6px 12px 8px',
+  minWidth: 80,
+  maxWidth: 168,
+  color: theme.palette.text.secondary,
+  flex: '1',
+  ...(!styleProps.showLabel &&
+    !styleProps.selected && {
       paddingTop: 16,
-    },
-    '&$selected': {
-      paddingTop: 6,
-      color: theme.palette.primary.main,
-    },
+    }),
+  [`&.${bottomNavigationActionClasses.selected}`]: {
+    paddingTop: 6,
+    color: theme.palette.primary.main,
   },
-  /* Pseudo-class applied to the root element if selected. */
-  selected: {},
-  /* Pseudo-class applied to the root element if `showLabel={false}` and not selected. */
-  iconOnly: {},
+}));
+
+const BottomNavigationActionWrapper = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiBottomNavigationAction',
+    slot: 'Wrapper',
+  },
+)({
   /* Styles applied to the span element that wraps the icon and label. */
-  wrapper: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    flexDirection: 'column',
-  },
-  /* Styles applied to the label's span element. */
-  label: {
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(12),
-    opacity: 1,
-    transition: 'font-size 0.2s, opacity 0.2s',
-    transitionDelay: '0.1s',
-    '&$iconOnly': {
-      opacity: 0,
-      transitionDelay: '0s',
-    },
-    '&$selected': {
-      fontSize: theme.typography.pxToRem(14),
-    },
-  },
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  flexDirection: 'column',
 });
 
-const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(props, ref) {
+const BottomNavigationActionLabel = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiBottomNavigationAction',
+    slot: 'Label',
+  },
+)(({ theme, styleProps }) => ({
+  /* Styles applied to the label's span element. */
+  fontFamily: theme.typography.fontFamily,
+  fontSize: theme.typography.pxToRem(12),
+  opacity: 1,
+  transition: 'font-size 0.2s, opacity 0.2s',
+  transitionDelay: '0.1s',
+  ...(!styleProps.showLabel &&
+    !styleProps.selected && {
+      opacity: 0,
+      transitionDelay: '0s',
+    }),
+  [`&.${bottomNavigationActionClasses.selected}`]: {
+    fontSize: theme.typography.pxToRem(14),
+  },
+}));
+
+const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiBottomNavigationAction' });
   const {
-    classes,
     className,
     icon,
     label,
@@ -69,6 +117,11 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     value,
     ...other
   } = props;
+
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+
+  const classes = useUtilityClasses(styleProps);
 
   const touchStartPos = React.useRef();
   const touchTimer = React.useRef();
@@ -126,34 +179,23 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
   };
 
   return (
-    <ButtonBase
+    <BottomNavigationActionRoot
       ref={ref}
-      className={clsx(
-        classes.root,
-        {
-          [classes.selected]: selected,
-          [classes.iconOnly]: !showLabel && !selected,
-        },
-        className,
-      )}
+      className={clsx(classes.root, className)}
       focusRipple
       onClick={handleChange}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      styleProps={styleProps}
       {...other}
     >
-      <span className={classes.wrapper}>
+      <BottomNavigationActionWrapper className={classes.wrapper} styleProps={styleProps}>
         {icon}
-        <span
-          className={clsx(classes.label, {
-            [classes.selected]: selected,
-            [classes.iconOnly]: !showLabel && !selected,
-          })}
-        >
+        <BottomNavigationActionLabel className={classes.label} styleProps={styleProps}>
           {label}
-        </span>
-      </span>
-    </ButtonBase>
+        </BottomNavigationActionLabel>
+      </BottomNavigationActionWrapper>
+    </BottomNavigationActionRoot>
   );
 });
 
@@ -208,9 +250,13 @@ BottomNavigationAction.propTypes = {
    */
   showLabel: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiBottomNavigationAction' })(BottomNavigationAction);
+export default BottomNavigationAction;

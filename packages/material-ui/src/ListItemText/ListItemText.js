@@ -1,39 +1,68 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    flex: '1 1 auto',
-    minWidth: 0,
-    marginTop: 4,
-    marginBottom: 4,
-  },
-  /* Styles applied to the Typography component if primary and secondary are set. */
-  multiline: {
-    marginTop: 6,
-    marginBottom: 6,
-  },
-  /* Styles applied to the Typography component if dense. */
-  dense: {},
-  /* Styles applied to the root element if `inset={true}`. */
-  inset: {
-    paddingLeft: 56,
-  },
-  /* Styles applied to the primary `Typography` component. */
-  primary: {},
-  /* Styles applied to the secondary `Typography` component. */
-  secondary: {},
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.inset && styles.inset),
+    ...(styleProps.primary && styleProps.secondary && styles.multiline),
+    ...(styleProps.dense && styles.dense),
+    [`& .${listItemTextClasses.primary}`]: styles.primary,
+    [`& .${listItemTextClasses.secondary}`]: styles.secondary,
+  });
 };
 
-const ListItemText = React.forwardRef(function ListItemText(props, ref) {
+const useUtilityClasses = (styleProps) => {
+  const { classes, inset, primary, secondary, dense } = styleProps;
+
+  const slots = {
+    root: ['root', inset && 'inset', dense && 'dense', primary && secondary && 'multiline'],
+    primary: ['primary'],
+    secondary: ['secondary'],
+  };
+
+  return composeClasses(slots, getListItemTextUtilityClass, classes);
+};
+
+const ListItemTextRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiListItemText',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps }) => ({
+  /* Styles applied to the root element. */
+  flex: '1 1 auto',
+  minWidth: 0,
+  marginTop: 4,
+  marginBottom: 4,
+  /* Styles applied to the root if primary and secondary are set. */
+  ...(styleProps.primary &&
+    styleProps.secondary && {
+      marginTop: 6,
+      marginBottom: 6,
+    }),
+  /* Styles applied to the root element if `inset={true}`. */
+  ...(styleProps.inset && {
+    paddingLeft: 56,
+  }),
+}));
+
+const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiListItemText' });
   const {
     children,
-    classes,
     className,
     disableTypography = false,
     inset = false,
@@ -46,6 +75,19 @@ const ListItemText = React.forwardRef(function ListItemText(props, ref) {
   const { dense } = React.useContext(ListContext);
 
   let primary = primaryProp != null ? primaryProp : children;
+  let secondary = secondaryProp;
+
+  const styleProps = {
+    ...props,
+    disableTypography,
+    inset,
+    primary: !!primary,
+    secondary: !!secondary,
+    dense,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   if (primary != null && primary.type !== Typography && !disableTypography) {
     primary = (
       <Typography
@@ -60,7 +102,6 @@ const ListItemText = React.forwardRef(function ListItemText(props, ref) {
     );
   }
 
-  let secondary = secondaryProp;
   if (secondary != null && secondary.type !== Typography && !disableTypography) {
     secondary = (
       <Typography
@@ -76,22 +117,15 @@ const ListItemText = React.forwardRef(function ListItemText(props, ref) {
   }
 
   return (
-    <div
-      className={clsx(
-        classes.root,
-        {
-          [classes.dense]: dense,
-          [classes.inset]: inset,
-          [classes.multiline]: primary && secondary,
-        },
-        className,
-      )}
+    <ListItemTextRoot
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     >
       {primary}
       {secondary}
-    </div>
+    </ListItemTextRoot>
   );
 });
 
@@ -144,6 +178,10 @@ ListItemText.propTypes = {
    * (as long as disableTypography is not `true`).
    */
   secondaryTypographyProps: PropTypes.object,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);
+export default ListItemText;

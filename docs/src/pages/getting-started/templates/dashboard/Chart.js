@@ -36,8 +36,15 @@ export default function Chart() {
             left: 24,
           }}
         >
-          <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
-          <YAxis stroke={theme.palette.text.secondary}>
+          <XAxis
+            dataKey="time"
+            stroke={theme.palette.text.secondary}
+            style={theme.typography.body2}
+          />
+          <YAxis
+            stroke={theme.palette.text.secondary}
+            style={theme.typography.body2}
+          >
             <Label
               // @ts-expect-error https://github.com/recharts/recharts/issues/2400
               angle={270}
@@ -45,6 +52,7 @@ export default function Chart() {
               style={{
                 textAnchor: 'middle',
                 fill: theme.palette.text.primary,
+                ...theme.typography.body1,
               }}
             >
               Sales ($)

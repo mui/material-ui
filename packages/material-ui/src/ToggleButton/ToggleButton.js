@@ -75,7 +75,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
   const handleChange = (event) => {
     if (onClick) {
       onClick(event, value);
-      if (event.isDefaultPrevented()) {
+      if (event.defaultPrevented) {
         return;
       }
     }
