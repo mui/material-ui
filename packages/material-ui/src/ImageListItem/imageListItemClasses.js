@@ -9,6 +9,8 @@ const imageListItemClasses = generateUtilityClasses('MuiImageListItem', [
   'img',
   'standard',
   'woven',
+  'masonry',
+  'quilted',
 ]);
 
 export default imageListItemClasses;
