@@ -147,10 +147,6 @@ const FilledInputInput = experimentalStyled(
   ...(styleProps.hiddenLabel && {
     paddingTop: 16,
     paddingBottom: 17,
-    ...(styleProps.size === 'small' && {
-      paddingTop: 8,
-      paddingBottom: 9,
-    }),
   }),
   /* Styles applied to the input element if `multiline={true}`. */
   ...(styleProps.multiline && {
