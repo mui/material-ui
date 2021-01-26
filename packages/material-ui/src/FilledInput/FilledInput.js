@@ -186,7 +186,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   } = props;
 
   const styleProps = {
-    ...other,
+    ...props,
     fullWidth,
     inputComponent,
     multiline,
