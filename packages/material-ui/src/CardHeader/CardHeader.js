@@ -110,6 +110,7 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
   const styleProps = {
     ...props,
     component,
+    disableTypography,
   };
 
   const classes = useUtilityClasses(styleProps);
