@@ -6,7 +6,6 @@ import InputBase from '../InputBase';
 import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { getFilledInputUtilityClass } from './filledInputClasses';
-import { inputBaseClasses } from '../InputBase';
 import { overridesResolver as inputBaseOverridesResolver } from '../InputBase/InputBase';
 
 const overridesResolver = (props, styles) => {
