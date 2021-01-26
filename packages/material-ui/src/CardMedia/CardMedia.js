@@ -41,8 +41,8 @@ const CardMediaRoot = experimentalStyled(
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
+  /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
   ...(styleProps.isMediaComponent && {
-    /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
     width: '100%',
   }),
   /* Styles applied to the root element if `component="picture or img"`. */
