@@ -92,7 +92,7 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
       ? { columnCount: cols, columnGap: gap, ...styleProp }
       : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap, ...styleProp };
 
-  const styleProps = { ...props, component, variant };
+  const styleProps = { ...props, component, gap, rowHeight, variant };
 
   const classes = useUtilityClasses(styleProps);
 
