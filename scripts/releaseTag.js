@@ -21,7 +21,7 @@ async function findMuiOrgRemote() {
       return { name, url, method };
     })
     .find((remote) => {
-      return remote.url.indexOf('mui-org/material-ui') && remote.method === '(push)';
+      return remote.url.indexOf('mui-org/material-ui.git') && remote.method === '(push)';
     });
 }
 
@@ -49,7 +49,7 @@ async function main(argv) {
     await exec(['git', 'push', muiOrgRemote.name, tag].join(' '));
     // eslint-disable-next-line no-console -- verbose logging
     console.log(
-      `Pushed tag '${tag}' to . This should not be reversed. In case of emergency enter 'git push --delete ${muiOrgRemote} ${tag}' to remove.`,
+      `Pushed tag '${tag}' to . This should not be reversed. In case of emergency enter 'git push --delete ${muiOrgRemote.name} ${tag}' to remove.`,
     );
   }
 }
