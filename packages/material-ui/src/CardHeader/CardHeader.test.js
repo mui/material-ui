@@ -15,6 +15,7 @@ describe('<CardHeader />', () => {
     mount,
     muiName: 'MuiCardHeader',
     refInstanceof: window.HTMLDivElement,
+    testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'foo' },
     skip: ['componentsProp'],
