@@ -1295,7 +1295,11 @@ Page.getInitialProps = () => {
   }
 }
 
-function run(argv: { componentDirectories?: string[]; grep?: string; outputDirectory?: string }) {
+async function run(argv: {
+  componentDirectories?: string[];
+  grep?: string;
+  outputDirectory?: string;
+}) {
   const workspaceRoot = path.resolve(__dirname, '../../');
   /**
    * @type {string[]}
@@ -1374,18 +1378,18 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
       });
   });
 
-  Promise.all(componentBuilds).then((builds) => {
-    const fails = builds.filter(
-      (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',
-    );
+  const builds = await Promise.all(componentBuilds);
 
-    fails.forEach((build) => {
-      console.error(build.reason);
-    });
-    if (fails.length > 0) {
-      process.exit(1);
-    }
+  const fails = builds.filter(
+    (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',
+  );
+
+  fails.forEach((build) => {
+    console.error(build.reason);
   });
+  if (fails.length > 0) {
+    process.exit(1);
+  }
 }
 
 yargs
