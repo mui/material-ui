@@ -28,6 +28,7 @@ const useUtilityClasses = (styleProps) => {
   const slots = {
     root: [
       'root',
+      'disabled',
       variant,
       `size${capitalize(size)}`,
       color === 'inherit' && 'colorInherit',
