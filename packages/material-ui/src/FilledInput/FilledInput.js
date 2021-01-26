@@ -132,7 +132,10 @@ const FilledInputInput = experimentalStyled(
   { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   { name: 'MuiFilledInput', slot: 'Input' },
 )(({ theme, styleProps }) => ({
-  padding: '25px 12px 8px',
+  paddingTop: 25,
+  paddingRight: 12,
+  paddingBottom: 8,
+  paddingLeft: 12,
   '&:-webkit-autofill': {
     WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
     WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
@@ -150,7 +153,10 @@ const FilledInputInput = experimentalStyled(
   }),
   /* Styles applied to the input element if `multiline={true}`. */
   ...(styleProps.multiline && {
-    padding: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
   }),
   /* Styles applied to the input element if `startAdornment` is provided. */
   ...(styleProps.startAdornment && {
