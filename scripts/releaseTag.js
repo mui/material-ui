@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-const { Octokit } = require('@octokit/rest');
 const childProcess = require('child_process');
 const fse = require('fs-extra');
 const path = require('path');
