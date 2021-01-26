@@ -110,26 +110,27 @@ async function main(argv) {
     .join(', ');
 
   // We don't know when a particular commit was made from the API.
-  // Only that the commits are ordered by date DESC
-  const commitsItemsByDateAsc = commitsItems.slice().reverse();
+  // Only that the commits are ordered by date ASC
+  const commitsItemsByDateDesc = commitsItems.slice().reverse();
   // Sort by tags ASC, date desc
   // Will only consider exact matches of tags so `[Slider]` will not be grouped with `[Slider][Modal]`
   commitsItems.sort((a, b) => {
     const aTags = parseTags(a.commit.message);
     const bTags = parseTags(b.commit.message);
     if (aTags === bTags) {
-      return commitsItemsByDateAsc.indexOf(a) - commitsItemsByDateAsc.indexOf(b);
+      return commitsItemsByDateDesc.indexOf(a) - commitsItemsByDateDesc.indexOf(b);
     }
     return aTags.localeCompare(bTags);
   });
   const changes = commitsItems.map((commitsItem) => {
     // Helps changelog author keeping track of order when grouping commits under headings.
-    const dateSortMarker = `<!-- ${commitsItemsByDateAsc
-      .indexOf(commitsItem)
+    const dateSortMarker = `<!-- ${(
+      commitsItemsByDateDesc.length - commitsItemsByDateDesc.indexOf(commitsItem)
+    )
       .toString()
       // Padding them with a zero means we can just feed a list into online sorting tools like https://www.online-utility.org/text/sort.jsp
       // i.e. we can sort the lines alphanumerically
-      .padStart(Math.ceil(Math.log10(commitsItemsByDateAsc.length)), '0')} -->`;
+      .padStart(Math.ceil(Math.log10(commitsItemsByDateDesc.length)), '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
     return `- ${dateSortMarker} ${shortMessage} @${commitsItem.author.login}`;
   });
