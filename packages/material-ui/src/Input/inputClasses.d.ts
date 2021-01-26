@@ -1,11 +1,11 @@
-export interface FilledInputClasses {
+export interface InputClasses {
   root: string;
   underline: string;
   input: string;
 }
 
-declare const filledInputClasses: FilledInputClasses;
+declare const inputClasses: InputClasses;
 
-export function getFilledInputUtilityClass(slot: string): string;
+export function getInputUtilityClass(slot: string): string;
 
-export default filledInputClasses;
+export default inputClasses;

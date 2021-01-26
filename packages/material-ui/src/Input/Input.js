@@ -120,7 +120,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   return (
     <InputBase
       components={{ Root: InputRoot }}
-      componentsProps={{ root: { styleProps }, input: { styleProps } }}
+      componentsProps={{ root: { styleProps } }}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
