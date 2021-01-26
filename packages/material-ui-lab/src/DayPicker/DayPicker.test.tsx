@@ -40,7 +40,7 @@ describe('<DayPicker />', () => {
     ).to.have.text('1');
   });
 
-  // Flaky match 201 in the CI
+  // Flaky, it match 201 instead of 200 in the CI
   // eslint-disable-next-line mocha/no-skipped-tests
   it.skip('renders year selection standalone', () => {
     render(
