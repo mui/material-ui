@@ -6,7 +6,9 @@ import * as React from 'react';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
-import imageListItemBarClasses, { getImageListItemBarUtilityClass } from './imageListItemBarClasses';
+import imageListItemBarClasses, {
+  getImageListItemBarUtilityClass,
+} from './imageListItemBarClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -14,8 +16,10 @@ const overridesResolver = (props, styles) => {
   return deepmerge(styles.root || {}, {
     ...styles[`position${capitalize(styleProps.position)}`],
     ...styles[`titleWrap${capitalize(styleProps.position)}`],
-    ...(styleProps.actionIcon && styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`]),
-    ...(styleProps.actionIcon && styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`]),
+    ...(styleProps.actionIcon &&
+      styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`]),
+    ...(styleProps.actionIcon &&
+      styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`]),
     [`& .${imageListItemBarClasses.title}`]: styles.title,
     [`& .${imageListItemBarClasses.subtitle}`]: styles.subtitle,
     [`& .${imageListItemBarClasses.actionIcon}`]: styles.actionIcon,
@@ -34,7 +38,7 @@ const useUtilityClasses = (styleProps) => {
     ],
     title: ['title'],
     subtitle: ['subtitle'],
-    actionIcon: ['actionIcon', `actionIconActionPos${capitalize(actionPosition)}`,],
+    actionIcon: ['actionIcon', `actionIconActionPos${capitalize(actionPosition)}`],
   };
 
   return composeClasses(slots, getImageListItemBarUtilityClass, classes);
@@ -89,12 +93,14 @@ const ImageListItemBarTitleWrap = experimentalStyled(
       padding: '6px 0 12px',
       color: 'inherit',
     }),
-    ...(styleProps.actionIcon && styleProps.actionPosition === 'left' && {
-      paddingLeft: 0,
-    }),
-    ...(styleProps.actionIcon && styleProps.actionPosition === 'right' && {
-      paddingRight: 0,
-    }),
+    ...(styleProps.actionIcon &&
+      styleProps.actionPosition === 'left' && {
+        paddingLeft: 0,
+      }),
+    ...(styleProps.actionIcon &&
+      styleProps.actionPosition === 'right' && {
+        paddingRight: 0,
+      }),
   };
 });
 
@@ -144,9 +150,10 @@ const ImageListItemBarActionIcon = experimentalStyled(
   },
 )(({ styleProps }) => {
   return {
-    ...(styleProps.actionIcon && styleProps.actionPosition === 'left' && {
-      order: -1,
-    }),
+    ...(styleProps.actionIcon &&
+      styleProps.actionPosition === 'left' && {
+        order: -1,
+      }),
   };
 });
 

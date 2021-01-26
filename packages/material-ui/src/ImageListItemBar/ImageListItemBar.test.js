@@ -14,7 +14,7 @@ describe('<ImageListItemBar />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiImageListItemBar',
-    testVariantProps: { position: 'top' ,actionPosition: 'left' },
+    testVariantProps: { position: 'top', actionPosition: 'left' },
     skip: ['componentProp', 'componentsProp'],
   }));
 
