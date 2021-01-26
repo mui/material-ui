@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType, elementTypeAcceptingRef, deepmerge } from '@material-ui/utils';
+import { isHostComponent } from '@material-ui/unstyled';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
@@ -16,7 +17,7 @@ import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
-const overridesResolver = (props, styles) => {
+export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
@@ -87,7 +88,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getInputBaseUtilityClass, classes);
 };
 
-const InputBaseRoot = experimentalStyled(
+export const InputBaseRoot = experimentalStyled(
   'div',
   {},
   {
@@ -119,7 +120,7 @@ const InputBaseRoot = experimentalStyled(
   }),
 }));
 
-const InputBaseComponent = experimentalStyled(
+export const InputBaseComponent = experimentalStyled(
   'input',
   { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
@@ -225,6 +226,8 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     autoFocus,
     className,
     color,
+    components = {},
+    componentsProps = {},
     defaultValue,
     disabled,
     endAdornment,
@@ -253,6 +256,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     startAdornment,
     type = 'text',
     value: valueProp,
+    /* eslint-disable-next-line react/prop-types */
+    isRtl,
+    /* eslint-disable-next-line react/prop-types */
+    theme,
     ...other
   } = props;
 
@@ -471,6 +478,12 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
+  const Root = components.Root || InputBaseRoot;
+  const rootProps = componentsProps.root || {};
+
+  const Input = components.Input || InputBaseComponent;
+  inputProps = { ...inputProps, ...componentsProps.input };
+
   return (
     <React.Fragment>
       <GlobalStyles
@@ -479,17 +492,20 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
           '@keyframes mui-auto-fill-cancel': {},
         }}
       />
-      <InputBaseRoot
-        className={clsx(classes.root, className)}
-        styleProps={styleProps}
-        onClick={handleClick}
+      <Root
+        {...rootProps}
+        {...(!isHostComponent(Root) && {
+          styleProps: { ...styleProps, ...rootProps.styleProps },
+          theme,
+        })}
         ref={ref}
+        onClick={handleClick}
         {...other}
+        className={clsx(classes.root, rootProps.className, className)}
       >
         {startAdornment}
         <FormControlContext.Provider value={null}>
-          <InputBaseComponent
-            as={InputComponent}
+          <Input
             styleProps={styleProps}
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}
@@ -509,8 +525,13 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
             onKeyUp={onKeyUp}
             type={type}
             {...inputProps}
+            {...(!isHostComponent(Input) && {
+              as: InputComponent,
+              styleProps: { ...styleProps, ...inputProps.styleProps },
+              theme,
+            })}
             ref={handleInputRef}
-            className={clsx(classes.input, inputPropsProp.className)}
+            className={clsx(classes.input, inputProps.className, inputPropsProp.className)}
             onBlur={handleBlur}
             onChange={handleChange}
             onFocus={handleFocus}
@@ -523,7 +544,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
               startAdornment,
             })
           : null}
-      </InputBaseRoot>
+      </Root>
     </React.Fragment>
   );
 });
@@ -560,6 +581,20 @@ InputBase.propTypes = {
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * The default value. Use when the component is not controlled.
    */

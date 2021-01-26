@@ -21,7 +21,7 @@ describe('<InputBase />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInputBase',
     testVariantProps: { size: 'small' },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render an <input /> inside the div', () => {
