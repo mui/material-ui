@@ -1,24 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import FilledInput from './FilledInput';
 import InputBase from '../InputBase';
+import classes from './filledInputClasses';
 
 describe('<FilledInput />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<FilledInput />);
-  });
-
-  describeConformance(<FilledInput open />, () => ({
+  describeConformanceV5(<FilledInput open />, () => ({
     classes,
     inheritComponent: InputBase,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    muiName: 'MuiFilledInput',
+    testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
+    testVariantProps: { variant: 'contained', fullWidth: true },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should have the underline class', () => {

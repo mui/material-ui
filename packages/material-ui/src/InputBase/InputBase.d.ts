@@ -73,6 +73,36 @@ export interface InputBaseProps
    */
   color?: 'primary' | 'secondary';
   /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: {
+    Root?: React.ElementType;
+    Input?: React.ElementType;
+  };
+
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps?: {
+    root?: {
+      as: React.ElementType;
+      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
+        hiddenLabel?: boolean;
+        focused?: boolean;
+      };
+    };
+    input?: {
+      as?: React.ElementType;
+      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
+        hiddenLabel?: boolean;
+        focused?: boolean;
+      };
+    };
+  };
+  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue?: unknown;
