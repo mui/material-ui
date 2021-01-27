@@ -138,7 +138,7 @@ Paper.propTypes = {
   elevation: chainPropTypes(PropTypes.number, (props) => {
     if (props.elevation > 0 && props.variant === 'outlined') {
       return new Error(
-        'Material-UI: Combining `elevation={>0}` with `variant="outlined"` will have no effect.',
+        'Material-UI: Combining `elevation={>0}` with `variant="outlined"` has no effect.',
       );
     }
 
