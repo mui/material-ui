@@ -163,6 +163,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   const styleProps = {
     ...props,
     disabled,
+    disableFocusRipple,
     selected,
     icon: !!icon,
     label: !!label,
