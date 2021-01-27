@@ -144,7 +144,7 @@ export const componentSettings = {
     template: 'chip.txt',
   },
   CircularProgress: {
-    ignoredProps: ['disableShrink', 'size'],
+    ignoredProps: ['disableShrink', 'size', 'sx'],
     propValues: {
       width: 44,
       height: 44,

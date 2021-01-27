@@ -13,6 +13,7 @@
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "40"
     },
+    "sx": { "type": { "name": "object" } },
     "thickness": { "type": { "name": "number" }, "default": "3.6" },
     "value": { "type": { "name": "number" }, "default": "0" },
     "variant": {
@@ -42,6 +43,6 @@
   "filename": "/packages/material-ui/src/CircularProgress/CircularProgress.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/progress/\">Progress</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
