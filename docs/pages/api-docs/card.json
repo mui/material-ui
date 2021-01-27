@@ -2,7 +2,7 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "raised": { "type": { "name": "bool" } },
+    "raised": { "type": { "name": "custom", "description": "bool" }, "default": "false" },
     "sx": { "type": { "name": "object" } }
   },
   "name": "Card",
