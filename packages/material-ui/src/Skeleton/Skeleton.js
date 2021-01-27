@@ -1,31 +1,93 @@
-import * as React from 'react';
+import { keyframes } from '@material-ui/styled-engine';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { deepmerge } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import * as React from 'react';
 import {
   alpha,
-  withStyles,
-  unstable_toUnitless as toUnitless,
   unstable_getUnit as getUnit,
-  useThemeVariants,
+  unstable_toUnitless as toUnitless,
+  useThemeVariants
 } from '../styles';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import { getSkeltonUtilityClass } from './skeltonClasses';
 
-export const styles = (theme) => {
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[styleProps.variant],
+    ...styles[styleProps.animation],
+    ...(styleProps.hasChildren && styles.withChildren),
+    ...(styleProps.hasChildren && !styleProps.width && styles.fitContent),
+    ...(styleProps.hasChildren && !styleProps.height && styles.heightAuto),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, variant, animation, hasChildren, width, height } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      variant,
+      animation,
+      hasChildren && 'withChildren',
+      hasChildren && !width && 'fitContent',
+      hasChildren && !height && 'heightAuto',
+    ],
+  };
+
+  return composeClasses(slots, getSkeltonUtilityClass, classes);
+};
+
+const pulseKeyframe = keyframes`
+0% {
+  opacity: 1;
+}
+50% {
+  opacity: 0.4;
+}
+100% {
+  opacity: 1;
+}
+`;
+
+const waveKeyframe = keyframes`
+0% {
+  transform: translateX(-100%);
+}
+50% {
+  // +0.5s of delay between each loop
+  transform: translateX(100%);
+}
+100% {
+  transform: translateX(100%);
+}
+`;
+
+const SkeltonRoot = experimentalStyled(
+  'span',
+  {},
+  { name: 'MuiSkelton', slot: 'Root' },
+  overridesResolver,
+)(({ styleProps, theme }) => {
   const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
   const radiusValue = toUnitless(theme.shape.borderRadius);
 
   return {
     /* Styles applied to the root element. */
-    root: {
-      display: 'block',
-      // Create a "on paper" color with sufficient contrast retaining the color
-      backgroundColor: alpha(
-        theme.palette.text.primary,
-        theme.palette.mode === 'light' ? 0.11 : 0.13,
-      ),
-      height: '1.2em',
-    },
+    display: 'block',
+    // Create a "on paper" color with sufficient contrast retaining the color
+    backgroundColor: alpha(
+      theme.palette.text.primary,
+      theme.palette.mode === 'light' ? 0.11 : 0.13,
+    ),
+    height: '1.2em',
     /* Styles applied to the root element if `variant="text"`. */
-    text: {
+    ...(styleProps.variant === 'text' && {
       marginTop: 0,
       marginBottom: 0,
       height: 'auto',
@@ -37,36 +99,23 @@ export const styles = (theme) => {
       '&:empty:before': {
         content: '"\\00a0"',
       },
-    },
-    /* Styles applied to the root element if `variant="rectangular"`. */
-    rectangular: {},
+    }),
     /* Styles applied to the root element if `variant="circular"`. */
-    circular: {
+    ...(styleProps.variant === 'circular' && {
       borderRadius: '50%',
-    },
+    }),
     /* Styles applied to the root element if `animation="pulse"`. */
-    pulse: {
-      animation: '$pulse 1.5s ease-in-out 0.5s infinite',
-    },
-    '@keyframes pulse': {
-      '0%': {
-        opacity: 1,
-      },
-      '50%': {
-        opacity: 0.4,
-      },
-      '100%': {
-        opacity: 1,
-      },
-    },
+    ...(styleProps.animation === 'pulse' && {
+      animation: `${pulseKeyframe} 1.5s ease-in-out 0.5s infinite`,
+    }),
     /* Styles applied to the root element if `animation="wave"`. */
-    wave: {
+    ...(styleProps.animation === 'wave' && {
       position: 'relative',
       overflow: 'hidden',
       // Fix bug in Safari https://bugs.webkit.org/show_bug.cgi?id=68196
       WebkitMaskImage: '-webkit-radial-gradient(white, black)',
       '&::after': {
-        animation: '$wave 1.6s linear 0.5s infinite',
+        animation: `${waveKeyframe} 1.6s linear 0.5s infinite`,
         background: `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`,
         content: '""',
         position: 'absolute',
@@ -76,42 +125,36 @@ export const styles = (theme) => {
         right: 0,
         top: 0,
       },
-    },
-    '@keyframes wave': {
-      '0%': {
-        transform: 'translateX(-100%)',
-      },
-      '60%': {
-        // +0.5s of delay between each loop
-        transform: 'translateX(100%)',
-      },
-      '100%': {
-        transform: 'translateX(100%)',
-      },
-    },
+    }),
     /* Styles applied when the component is passed children. */
-    withChildren: {
+    ...(styleProps.hasChildren && {
       '& > *': {
         visibility: 'hidden',
       },
-    },
+    }),
     /* Styles applied when the component is passed children and no width. */
-    fitContent: {
-      maxWidth: 'fit-content',
-    },
+    ...(styleProps.hasChildren &&
+      !styleProps.width && {
+        maxWidth: 'fit-content',
+      }),
     /* Styles applied when the component is passed children and no height. */
-    heightAuto: {
-      height: 'auto',
-    },
+    ...(styleProps.hasChildren &&
+      !styleProps.height && {
+        height: 'auto',
+      }),
   };
-};
+});
 
-const Skeleton = React.forwardRef(function Skeleton(props, ref) {
+const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiSkelton',
+  });
+
   const {
     animation = 'pulse',
-    classes,
     className,
-    component: Component = 'span',
+    component = 'span',
     height,
     style,
     variant = 'text',
@@ -123,7 +166,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
     {
       ...props,
       animation,
-      component: Component,
+      component,
       variant,
     },
     'MuiSkeleton',
@@ -131,8 +174,18 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
 
   const hasChildren = Boolean(other.children);
 
+  const styleProps = {
+    ...props,
+    animation,
+    component,
+    variant,
+    hasChildren,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
+    <SkeltonRoot
       ref={ref}
       className={clsx(
         classes.root,
@@ -146,6 +199,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
         themeVariantsClasses,
         className,
       )}
+      styleProps={styleProps}
       {...other}
       style={{
         width,
@@ -194,6 +248,10 @@ Skeleton.propTypes = {
    */
   style: PropTypes.object,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The type of content that will be rendered.
    * @default 'text'
    */
@@ -208,4 +266,4 @@ Skeleton.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-export default withStyles(styles, { name: 'MuiSkeleton' })(Skeleton);
+export default Skeleton;
