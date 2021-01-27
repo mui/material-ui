@@ -61,20 +61,20 @@ export const styles = (theme) => ({
       width: 0,
       minWidth: 30,
     },
-    '&[class*="MuiInput-root"]': {
+    '&.MuiInput-root': {
       paddingBottom: 1,
-      '& $input': {
+      '& .MuiInput-input': {
         padding: 4,
       },
-      '& $input:first-child': {
+      '& .MuiInput-input:first-child': {
         padding: '6px 0',
       },
     },
-    '&[class*="MuiInput-root"][class*="MuiInput-sizeSmall"]': {
-      '& $input': {
+    '&.MuiInput-root.MuiInputBase-sizeSmall': {
+      '& .MuiInput-input': {
         padding: '2px 4px 3px',
       },
-      '& $input:first-child': {
+      '& .MuiInput-input:first-child': {
         padding: '1px 0 4px',
       },
     },

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
 import FormControl from '../FormControl';
-import Input from '../Input';
 import OutlinedInput from '../OutlinedInput';
 import TextField from './TextField';
 import MenuItem from '../MenuItem';
+import { inputBaseClasses } from '../InputBase';
 
 describe('<TextField />', () => {
   let classes;
@@ -32,14 +32,14 @@ describe('<TextField />', () => {
     });
 
     it('should forward the multiline prop to Input', () => {
-      const inputClasses = getClasses(<Input />);
       const { getByRole } = render(<TextField variant="standard" multiline />);
 
-      expect(getByRole('textbox', { hidden: false })).to.have.class(inputClasses.inputMultiline);
+      expect(getByRole('textbox', { hidden: false })).to.have.class(
+        inputBaseClasses.inputMultiline,
+      );
     });
 
     it('should forward the fullWidth prop to Input', () => {
-      const inputClasses = getClasses(<Input />);
       const { getByTestId } = render(
         <TextField
           variant="standard"
@@ -48,7 +48,7 @@ describe('<TextField />', () => {
         />,
       );
 
-      expect(getByTestId('mui-input-base-root')).to.have.class(inputClasses.fullWidth);
+      expect(getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.fullWidth);
     });
   });
 
