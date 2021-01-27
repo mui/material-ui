@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Input from '../Input';
-import { inputClasses } from '../Input'
+import Input, { inputClasses } from '../Input';
 import NativeSelect from './NativeSelect';
 
 describe('<NativeSelect />', () => {
