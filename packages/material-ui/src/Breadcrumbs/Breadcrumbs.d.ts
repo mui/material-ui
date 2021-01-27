@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
@@ -49,6 +51,10 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      * @default '/'
      */
     separator?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }

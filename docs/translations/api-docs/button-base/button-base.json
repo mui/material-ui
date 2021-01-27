@@ -1,5 +1,5 @@
 {
-  "componentDescription": "<code>ButtonBase</code> contains as few styles as possible.\nIt aims to be a simple building block for creating a button.\nIt contains a load of style reset and some focus/ripple logic.",
+  "componentDescription": "`ButtonBase` contains as few styles as possible.\nIt aims to be a simple building block for creating a button.\nIt contains a load of style reset and some focus/ripple logic.",
   "propDescriptions": {
     "action": "A ref for imperative actions. It currently only supports <code>focusVisible()</code> action.",
     "centerRipple": "If <code>true</code>, the ripples are centered. They won&#39;t start at the cursor interaction position.",

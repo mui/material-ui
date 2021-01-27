@@ -151,7 +151,6 @@ const DateRangePickerInput: React.FC<DateRangeInputProps & WithStyles<typeof sty
     TextFieldProps: {
       ...TextFieldProps,
       ref: startRef,
-      variant: 'outlined',
       focused: open && currentlySelectingRangeEnd === 'start',
     },
     inputProps: {
@@ -170,7 +169,6 @@ const DateRangePickerInput: React.FC<DateRangeInputProps & WithStyles<typeof sty
     TextFieldProps: {
       ...TextFieldProps,
       ref: endRef,
-      variant: 'outlined',
       focused: open && currentlySelectingRangeEnd === 'end',
     },
     inputProps: {

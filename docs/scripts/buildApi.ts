@@ -9,21 +9,25 @@ import * as prettier from 'prettier';
 import * as recast from 'recast';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
-import marked from 'marked';
 import * as yargs from 'yargs';
 import * as doctrine from 'doctrine';
 import {
   defaultHandlers,
+  resolver,
   parse as docgenParse,
   PropDescriptor,
   PropTypeDescriptor,
   ReactDocgenApi,
 } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
+import muiFindAnnotatedComponentsResolver from 'docs/src/modules/utils/findAnnotatedComponentsResolver';
 import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
-import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
+import {
+  getHeaders,
+  renderInline as renderMarkdownInline,
+} from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
 import getStylesCreator from '@material-ui/styles/getStylesCreator';
@@ -39,7 +43,7 @@ interface ReactApi extends ReactDocgenApi {
   inheritance: { component: string; pathname: string } | null;
   name: string;
   pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
-  spread: boolean;
+  spread: boolean | undefined;
   src: string;
   styles: {
     classes: string[];
@@ -54,6 +58,8 @@ interface DescribeablePropDescriptor {
   required: boolean;
   type: PropTypeDescriptor;
 }
+
+const cssComponents = ['Box', 'Grid'];
 
 const generateClassName = createGenerateClassName();
 
@@ -73,13 +79,13 @@ function getDeprecatedInfo(type: PropTypeDescriptor) {
   return false;
 }
 
-function getChained(type: PropTypeDescriptor) {
+function getChained(type: PropTypeDescriptor): false | PropDescriptor {
   if (type.raw) {
     const marker = 'chainPropTypes';
     const indexStart = type.raw.indexOf(marker);
 
     if (indexStart !== -1) {
-      const parsed = docgenParse(
+      const parsed: ReactApi = docgenParse(
         `
         import PropTypes from 'prop-types';
         const Foo = () => <div />
@@ -438,25 +444,21 @@ function getInheritance(
  * why the source includes relative url. We transform them to absolute urls with
  * this method.
  */
-function computeApiDescription(api: ReactApi, options: { host: string }): Promise<string> {
+async function computeApiDescription(api: ReactApi, options: { host: string }): Promise<string> {
   const { host } = options;
-  return new Promise((resolve, reject) => {
-    remark()
-      .use(function docsLinksAttacher() {
-        return function transformer(tree) {
-          remarkVisit(tree, 'link', (linkNode) => {
-            if ((linkNode.url as string).startsWith('/')) {
-              linkNode.url = `${host}${linkNode.url}`;
-            }
-          });
-        };
-      })
-      .process(api.description, (error, file) => {
-        if (error) reject(error);
+  const file = await remark()
+    .use(function docsLinksAttacher() {
+      return function transformer(tree) {
+        remarkVisit(tree, 'link', (linkNode) => {
+          if ((linkNode.url as string).startsWith('/')) {
+            linkNode.url = `${host}${linkNode.url}`;
+          }
+        });
+      };
+    })
+    .process(api.description);
 
-        resolve(file.contents.toString('utf-8').trim());
-      });
-  });
+  return file.contents.toString('utf-8').trim();
 }
 
 /**
@@ -508,9 +510,19 @@ async function annotateComponentDefinition(context: {
       }
 
       const { leadingComments } = node;
-      const jsdocBlock = leadingComments != null ? leadingComments[0] : null;
-      if (leadingComments != null && leadingComments.length > 1) {
-        throw new Error('Should only have a single leading jsdoc block');
+      const leadingCommentBlocks =
+        leadingComments != null
+          ? leadingComments.filter(({ type }) => type === 'CommentBlock')
+          : null;
+      const jsdocBlock = leadingCommentBlocks != null ? leadingCommentBlocks[0] : null;
+      if (leadingCommentBlocks != null && leadingCommentBlocks.length > 1) {
+        throw new Error(
+          `Should only have a single leading jsdoc block but got ${
+            leadingCommentBlocks.length
+          }:\n${leadingCommentBlocks
+            .map(({ type, value }, index) => `#${index} (${type}): ${value}`)
+            .join('\n')}`,
+        );
       }
       if (jsdocBlock != null) {
         start = jsdocBlock.start;
@@ -551,6 +563,10 @@ async function annotateComponentDefinition(context: {
   }
 
   const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
+  // Ensure a newline between manual and generated description.
+  if (markdownLines[markdownLines.length - 1] !== '') {
+    markdownLines.push('');
+  }
   if (demos.length > 0) {
     markdownLines.push(
       'Demos:',
@@ -861,6 +877,41 @@ function normalizePath(filepath: string): string {
   return filepath.replace(/\\/g, '/');
 }
 
+async function parseComponentSource(
+  src: string,
+  componentObject: { filename: string },
+): Promise<ReactApi> {
+  const reactAPI: ReactApi = docgenParse(
+    src,
+    // Use `findExportedComponentDefinition` and fallback to `muiFindAnnotatedComponentsResolver`
+    // `findExportedComponentDefinition` was the default resolver: https://github.com/reactjs/react-docgen/blob/aba7250ff5fde608ee6af7c286b15476d1b5bb99/src/main.js#L19
+    (ast, parser, importer) => {
+      const defaultResolvedDefinition = resolver.findExportedComponentDefinition(
+        ast,
+        parser,
+        importer,
+      );
+      if (defaultResolvedDefinition !== undefined) {
+        return defaultResolvedDefinition;
+      }
+      return muiFindAnnotatedComponentsResolver(ast, parser, importer);
+    },
+    defaultHandlers.concat(muiDefaultPropsHandler),
+    {
+      filename: componentObject.filename,
+    },
+  );
+
+  const fullDescription = reactAPI.description;
+  // Ignore what we might have generated in `annotateComponentDefinition`
+  const annotatedDescriptionMatch = fullDescription.match(/(Demos|API):\r?\n\r?\n/);
+  if (annotatedDescriptionMatch !== null) {
+    reactAPI.description = fullDescription.slice(0, annotatedDescriptionMatch.index);
+  }
+
+  return reactAPI;
+}
+
 async function buildDocs(options: {
   component: { filename: string };
   pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
@@ -868,7 +919,7 @@ async function buildDocs(options: {
   outputDirectory: string;
   theme: object;
   workspaceRoot: string;
-}) {
+}): Promise<void> {
   const {
     component: componentObject,
     outputDirectory,
@@ -893,16 +944,6 @@ async function buildDocs(options: {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
-
-  const componentApi: {
-    componentDescription: string;
-    propDescriptions: { [key: string]: string | undefined };
-    classDescriptions: { [key: string]: { description: string; conditions?: string } };
-  } = {
-    componentDescription: '',
-    propDescriptions: {},
-    classDescriptions: {},
-  };
 
   const styles: ReactApi['styles'] = {
     classes: [],
@@ -972,15 +1013,17 @@ async function buildDocs(options: {
     }
   }
 
-  let reactApi: ReactApi;
-  try {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
-      filename: componentObject.filename,
-    });
-  } catch (err) {
-    console.error('Error parsing src for', componentObject.filename);
-    throw err;
-  }
+  const reactApi: ReactApi = await parseComponentSource(src, componentObject);
+
+  const componentApi: {
+    componentDescription: string;
+    propDescriptions: { [key: string]: string | undefined };
+    classDescriptions: { [key: string]: { description: string; conditions?: string } };
+  } = {
+    componentDescription: reactApi.description,
+    propDescriptions: {},
+    classDescriptions: {},
+  };
 
   const unstyledFileName = getUnstyledFilename(componentObject.filename);
   let unstyledSrc;
@@ -1020,7 +1063,6 @@ async function buildDocs(options: {
   reactApi.name = name;
   reactApi.styles = styles;
   reactApi.pagesMarkdown = pagesMarkdown;
-  reactApi.spread = spread;
   reactApi.EOL = getLineFeed(src);
 
   // styled components does not have the options static
@@ -1035,6 +1077,7 @@ async function buildDocs(options: {
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
+  reactApi.spread = testInfo.spread ?? spread;
 
   // Relative location in the file system.
   reactApi.filename = componentObject.filename.replace(workspaceRoot, '');
@@ -1058,22 +1101,20 @@ async function buildDocs(options: {
     }, {} as Record<string, string>);
   }
 
-  /**
-   * Component description.
-   */
-  if (reactApi.description.length) {
-    componentApi.componentDescription = marked.parseInline(reactApi.description);
-  }
-
-  const componentProps = _.fromPairs(
+  const componentProps = _.fromPairs<{
+    default: string | undefined;
+    required: boolean | undefined;
+    type: { name: string | undefined; description: string | undefined };
+  }>(
     Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
       const prop = createDescribeableProp(propDescriptor, propName);
       if (prop === null) {
-        return [];
+        // have to delete `componentProps.undefined` later
+        return [] as any;
       }
 
       let description = generatePropDescription(prop, propName);
-      description = marked.parseInline(description);
+      description = renderMarkdownInline(description);
 
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
@@ -1119,6 +1160,8 @@ async function buildDocs(options: {
       ];
     }),
   );
+  // created by returning the `[]` entry
+  delete componentProps.undefined;
 
   /**
    * CSS class descriptiohs.
@@ -1169,7 +1212,18 @@ async function buildDocs(options: {
    * Gather the metadata needed for the component's API page.
    */
   const pageContent = {
-    props: componentProps,
+    // Sorted by required DESC, name ASC
+    props: _.fromPairs(
+      Object.entries(componentProps).sort(([aName, aData], [bName, bData]) => {
+        if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
+          return aName.localeCompare(bName);
+        }
+        if (aData.required) {
+          return -1;
+        }
+        return 1;
+      }),
+    ),
     name: reactApi.name,
     styles: {
       classes: reactApi.styles.classes,
@@ -1187,6 +1241,7 @@ async function buildDocs(options: {
     inheritance: reactApi.inheritance,
     demos: generateDemoList(reactApi),
     styledComponent,
+    cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 
   // docs/pages/component-name.json
@@ -1298,7 +1353,7 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
     // Don't document ThmeProvider API
     if (component.filename.includes('ThemeProvider')) {
-      return { status: 'fulfilled' };
+      return Promise.resolve({ status: 'fulfilled' as const });
     }
 
     return buildDocs({
@@ -1309,11 +1364,11 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
       theme,
       workspaceRoot,
     })
-      .then((value) => {
-        return { status: 'fulfilled' as const, value };
+      .then(() => {
+        return { status: 'fulfilled' as const };
       })
       .catch((error) => {
-        error.message = `with component ${component.filename}: ${error.message}`;
+        error.message = `${component.filename}: ${error.message}`;
 
         return { status: 'rejected' as const, reason: error };
       });

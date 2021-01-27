@@ -19,6 +19,23 @@ describe('<Box />', () => {
     </div>
   );
 
+  it('does not forward style props as DOM attributes', () => {
+    const elementRef = React.createRef();
+    render(
+      <Box
+        color="primary.main"
+        fontFamily="Comic Sans"
+        fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
+        ref={elementRef}
+      />,
+    );
+
+    const { current: element } = elementRef;
+    expect(element).not.to.have.attribute('color');
+    expect(element).not.to.have.attribute('font-family');
+    expect(element).not.to.have.attribute('font-size');
+  });
+
   it('renders children and box content', () => {
     const { container, getByTestId } = render(
       <Box component="span" sx={{ m: 1 }}>
@@ -36,9 +53,7 @@ describe('<Box />', () => {
       this.skip();
     }
 
-    const testCaseBorderColorWins = render(
-      <Box sx={{ border: 1, borderColor: 'rgb(0, 0, 255)' }} />,
-    );
+    const testCaseBorderColorWins = render(<Box border={1} borderColor="rgb(0, 0, 255)" />);
 
     expect(testCaseBorderColorWins.container.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
@@ -55,14 +70,7 @@ describe('<Box />', () => {
       borderLeftColor: 'rgb(0, 0, 255)',
     });
 
-    const testCaseBorderWins = render(
-      <Box
-        sx={{
-          borderColor: 'rgb(0, 0, 255)',
-          border: 1,
-        }}
-      />,
-    );
+    const testCaseBorderWins = render(<Box borderColor={'rgb(0, 0, 255)'} border={1} />);
 
     expect(testCaseBorderWins.container.firstChild).toHaveComputedStyle({
       borderTopWidth: '1px',
@@ -121,6 +129,20 @@ describe('<Box />', () => {
       borderRightColor: 'rgb(0, 0, 0)',
       borderBottomColor: 'rgb(0, 0, 0)',
       borderLeftColor: 'rgb(0, 0, 0)',
+    });
+  });
+
+  it('combines system properties with the sx prop', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container } = render(<Box mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
+
+    expect(container.firstChild).toHaveComputedStyle({
+      marginTop: '16px',
+      marginRight: '40px',
+      marginBottom: '16px',
     });
   });
 });

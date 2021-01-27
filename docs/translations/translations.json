@@ -2,6 +2,7 @@
   "adblock": "If you don't mind-tech related ads (no tracking or remarketing), and want to keep us running, please whitelist Material-UI in your blocker.",
   "api-docs": {
     "componentName": "Component name",
+    "cssComponent": "As a CSS utility, the {{name}} component also supports all <a href=\"/system/properties/\"><code>system</code></a> properties. You can use them as props directly on the component.",
     "default": "Default",
     "demos": "Demos",
     "description": "Description",
@@ -224,7 +225,8 @@
     "/components/data-grid/getting-started": "Getting Started",
     "/components/data-grid/columns": "Columns",
     "/components/data-grid/rows": "Rows",
-    "/components/data-grid/filtering": "🚧 Filtering",
+    "/components/data-grid/sorting": "Sorting",
+    "/components/data-grid/filtering": "Filtering",
     "/components/data-grid/pagination": "Pagination",
     "/components/data-grid/selection": "Selection",
     "/components/data-grid/editing": "🚧 Editing",

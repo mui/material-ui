@@ -6,6 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 interface Props {
   checked: boolean;
   color: 'default' | 'primary' | 'secondary';
+  defaultChecked?: boolean;
   disabled: boolean;
   size: 'medium' | 'small';
   label: string;
@@ -59,6 +60,10 @@ addPropertyControls(Switch, {
     type: ControlType.Enum,
     title: 'Color',
     options: ['default', 'primary', 'secondary'],
+  },
+  defaultChecked: {
+    type: ControlType.Boolean,
+    title: 'Default checked',
   },
   disabled: {
     type: ControlType.Boolean,

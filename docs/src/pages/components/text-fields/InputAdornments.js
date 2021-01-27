@@ -104,7 +104,7 @@ export default function InputAdornments() {
                 </IconButton>
               </InputAdornment>
             }
-            labelWidth={70}
+            label="Password"
           />
         </FormControl>
         <FormControl fullWidth className={classes.margin} variant="outlined">
@@ -114,7 +114,7 @@ export default function InputAdornments() {
             value={values.amount}
             onChange={handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            labelWidth={60}
+            label="Amount"
           />
         </FormControl>
       </div>

@@ -7,6 +7,7 @@ import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
@@ -16,15 +17,16 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 let savedScrollTop = null;
+
 function PersistScroll(props) {
-  const { children } = props;
+  const { children, enabled } = props;
   const rootRef = React.useRef();
 
   React.useEffect(() => {
     const parent = rootRef.current ? rootRef.current.parentElement : null;
-    const activeElement = document.querySelector('.app-drawer-active');
+    const activeElement = parent.querySelector('.app-drawer-active');
 
-    if (!parent || !activeElement || !activeElement.scrollIntoView) {
+    if (!enabled || !parent || !activeElement || !activeElement.scrollIntoView) {
       return undefined;
     }
 
@@ -33,8 +35,6 @@ function PersistScroll(props) {
     if (savedScrollTop === null || activeBox.top - savedScrollTop < 0) {
       // Center the selected item in the list container.
       activeElement.scrollIntoView();
-      // Fix a Chrome issue, reset the tabbable ring back to the top of the document.
-      document.body.scrollIntoView();
     } else {
       parent.scrollTop = savedScrollTop;
     }
@@ -42,13 +42,14 @@ function PersistScroll(props) {
     return () => {
       savedScrollTop = parent.scrollTop;
     };
-  }, []);
+  }, [enabled]);
 
   return <div ref={rootRef}>{children}</div>;
 }
 
 PersistScroll.propTypes = {
   children: PropTypes.node,
+  enabled: PropTypes.bool,
 };
 
 const styles = (theme) => ({
@@ -149,42 +150,43 @@ function AppNavDrawer(props) {
   const userLanguage = useUserLanguage();
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
   const t = useTranslate();
+  const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
-  const navItems = React.useMemo(
-    () => renderNavItems({ onClose, pages, activePage, depth: 0, t }),
-    [activePage, pages, onClose, t],
-  );
-  const drawer = (
-    <PersistScroll>
-      <div className={classes.toolbarIe11}>
-        <div className={classes.toolbar}>
-          <Link className={classes.title} href="/" onClick={onClose} variant="h6" color="inherit">
-            Material-UI
-          </Link>
-          {process.env.LIB_VERSION ? (
-            <Link
-              color="textSecondary"
-              variant="caption"
-              href={`https://material-ui.com${languagePrefix}/versions/`}
-              onClick={onClose}
-            >
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
-              {`v${process.env.LIB_VERSION}`}
+  const drawer = React.useMemo(() => {
+    const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
+
+    return (
+      <React.Fragment>
+        <div className={classes.toolbarIe11}>
+          <div className={classes.toolbar}>
+            <Link className={classes.title} href="/" onClick={onClose} variant="h6" color="inherit">
+              Material-UI
             </Link>
-          ) : null}
+            {process.env.LIB_VERSION ? (
+              <Link
+                color="textSecondary"
+                variant="caption"
+                href={`https://material-ui.com${languagePrefix}/versions/`}
+                onClick={onClose}
+              >
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
+                {`v${process.env.LIB_VERSION}`}
+              </Link>
+            ) : null}
+          </div>
         </div>
-      </div>
-      <Divider />
-      <Box sx={{ mx: 3, my: 2 }}>
-        <DiamondSponsors spot="drawer" />
-      </Box>
-      {navItems}
-    </PersistScroll>
-  );
+        <Divider />
+        <Box sx={{ mx: 3, my: 2 }}>
+          <DiamondSponsors spot="drawer" />
+        </Box>
+        {navItems}
+      </React.Fragment>
+    );
+  }, [activePage, pages, onClose, t, classes, languagePrefix]);
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>
-      <Hidden lgUp={!disablePermanent} implementation="js">
+      {disablePermanent || mobile ? (
         <SwipeableDrawer
           classes={{
             paper: clsx(classes.paper, 'algolia-drawer'),
@@ -200,7 +202,7 @@ function AppNavDrawer(props) {
         >
           {drawer}
         </SwipeableDrawer>
-      </Hidden>
+      ) : null}
       {disablePermanent ? null : (
         <Hidden lgDown implementation="css">
           <Drawer
@@ -210,7 +212,7 @@ function AppNavDrawer(props) {
             variant="permanent"
             open
           >
-            {drawer}
+            <PersistScroll enabled={!mobile}>{drawer}</PersistScroll>
           </Drawer>
         </Hidden>
       )}

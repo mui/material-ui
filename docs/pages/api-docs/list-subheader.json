@@ -12,7 +12,8 @@
     "component": { "type": { "name": "elementType" } },
     "disableGutters": { "type": { "name": "bool" } },
     "disableSticky": { "type": { "name": "bool" } },
-    "inset": { "type": { "name": "bool" } }
+    "inset": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "ListSubheader",
   "styles": {
@@ -25,5 +26,6 @@
   "filename": "/packages/material-ui/src/ListSubheader/ListSubheader.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

@@ -258,7 +258,7 @@ const MobileDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', M
   reduceAnimations: PropTypes.bool,
   /**
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
-   * @example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />
+   * @example (date, DateRangePickerDayProps) => <DateRangePickerDay {...DateRangePickerDayProps} />
    */
   renderDay: PropTypes.func,
   /**

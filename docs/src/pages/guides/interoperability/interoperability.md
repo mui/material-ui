@@ -55,13 +55,13 @@ export default function PlainCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 
 export default function GlobalCssPriority() {
   return (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. Now you can override Material-UI's styles. */}
-    </StylesProvider>
+    </StyledEngineProvider>
   );
 }
 ```
@@ -208,13 +208,13 @@ export default function GlobalCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 
 export default function GlobalCssPriority() {
   return (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. Now you can override Material-UI's styles. */}
-    </StylesProvider>
+    </StyledEngineProvider>
   );
 }
 ```
@@ -462,13 +462,13 @@ export default function CssModulesSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 
 export default function GlobalCssPriority() {
   return (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. Now you can override Material-UI's styles. */}
-    </StylesProvider>
+    </StyledEngineProvider>
   );
 }
 ```

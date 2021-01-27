@@ -78,13 +78,13 @@ The styled engine used in v5 by default is [`emotion`](https://github.com/emotio
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 
 export default function GlobalCssPriority() {
   return (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. Now you can override Material-UI's styles. */}
-    </StylesProvider>
+    </StyledEngineProvider>
   );
 }
 ```
@@ -672,6 +672,28 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Grid justifyContent="center">
   ```
 
+- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. For example
+
+  ```diff
+  const theme = createMuiTheme({
+    components: {
+      MuiGrid: {
+  -     styleOverrides: {
+  -       "align-items-xs-flex-end": {
+  -         marginTop: '20px',
+  -       },
+  -     },
+  +     variants: {
+  +       props: { alignItems: "flex-end" },
+  +       style: {
+  +         marginTop: '20px',
+  +       },
+  +     }],
+      },
+    },
+  });
+  ```
+
 ### GridList
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
@@ -1054,6 +1076,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   - onChangePage={()=>{}}
   + onRowsPerPageChange={()=>{}}
   + onPageChange={()=>{}}
+  ```
+
+- Separate classes for different table pagination labels. This allows simpler customizations.
+
+  ```diff
+  <TablePagination
+  - classes={{ caption: 'foo' }}
+  + classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
+  />
   ```
 
 ### Tabs

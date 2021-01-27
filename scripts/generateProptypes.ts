@@ -37,18 +37,14 @@ const todoComponentsTs: string[] = [
   'MobileDateRangePicker',
   'DateTimePicker',
   'DesktopDateTimePicker',
-  'DesktopTimePicker',
   'LocalizationProvider',
   'MobileDatePicker',
   'MobileDateTimePicker',
-  'MobileTimePicker',
   'MonthPicker',
   'PickersCalendarSkeleton',
   'PickersDay',
   'StaticDatePicker',
   'StaticDateTimePicker',
-  'StaticTimePicker',
-  'TimePicker',
   'YearPicker',
 ];
 
@@ -112,6 +108,7 @@ const useExternalDocumentation: Record<string, '*' | string[]> = {
   MenuItem: ['dense'],
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
+  Checkbox: ['defaultChecked'],
   Switch: [
     'checked',
     'defaultChecked',

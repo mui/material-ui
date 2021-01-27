@@ -1,20 +1,18 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { createMount, describeConformanceV5 } from 'test/utils';
 import DialogActions from './DialogActions';
+import classes from './dialogActionsClasses';
 
 describe('<DialogActions />', () => {
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<DialogActions />);
-  });
-
-  describeConformance(<DialogActions />, () => ({
+  describeConformanceV5(<DialogActions />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    muiName: 'MuiDialogActions',
+    testVariantProps: { disableSpacing: true },
+    skip: ['componentProp', 'componentsProp'],
   }));
 });

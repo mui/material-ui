@@ -1,23 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
 import Divider from './Divider';
+import classes from './dividerClasses';
 
 describe('<Divider />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Divider />);
-  });
-
-  describeConformance(<Divider />, () => ({
+  describeConformanceV5(<Divider />, () => ({
     classes,
     inheritComponent: 'hr',
     mount,
+    muiName: 'MuiDivider',
     refInstanceof: window.HTMLHRElement,
     testComponentPropWith: 'div',
+    testVariantProps: { orientation: 'vertical', flexItem: true, textAlign: 'left' },
+    skip: ['componentsProp'],
   }));
 
   it('should set the absolute class', () => {

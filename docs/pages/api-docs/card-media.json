@@ -4,7 +4,8 @@
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "image": { "type": { "name": "string" } },
-    "src": { "type": { "name": "string" } }
+    "src": { "type": { "name": "string" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "CardMedia",
   "styles": { "classes": ["root", "media", "img"], "globalClasses": {}, "name": "MuiCardMedia" },
@@ -13,5 +14,6 @@
   "filename": "/packages/material-ui/src/CardMedia/CardMedia.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

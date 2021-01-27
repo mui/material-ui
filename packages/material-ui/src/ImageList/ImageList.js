@@ -1,37 +1,65 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { deepmerge } from '@material-ui/utils';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import { getImageListUtilityClass } from './imageListClasses';
 import ImageListContext from './ImageListContext';
 
-export const styles = {
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[styleProps.variant],
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, variant } = styleProps;
+
+  const slots = {
+    root: ['root', variant],
+  };
+
+  return composeClasses(slots, getImageListUtilityClass, classes);
+};
+
+const ImageListRoot = experimentalStyled(
+  'ul',
+  {},
+  {
+    name: 'MuiImageList',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps }) => {
   /* Styles applied to the root element. */
-  root: {
+  return {
     display: 'grid',
     overflowY: 'auto',
     listStyle: 'none',
     padding: 0,
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-  },
-  /* Styles applied to the root element if `variant="masonry"`. */
-  masonry: {
-    display: 'block',
-  },
-  /* Styles applied to the root element if `variant="quilted"`. */
-  quilted: {},
-  /* Styles applied to the root element if `variant="standard"`. */
-  standard: {},
-  /* Styles applied to the root element if `variant="woven"`. */
-  woven: {},
-};
+    /* Styles applied to the root element if `variant="masonry"`. */
+    ...(styleProps.variant === 'masonry' && {
+      display: 'block',
+    }),
+  };
+});
 
-const ImageList = React.forwardRef(function ImageList(props, ref) {
+const ImageList = React.forwardRef(function ImageList(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiImageList',
+  });
+
   const {
     children,
-    classes,
     className,
     cols = 2,
-    component: Component = 'ul',
+    component = 'ul',
     rowHeight = 'auto',
     gap = 4,
     style: styleProp,
@@ -64,15 +92,21 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
       ? { columnCount: cols, columnGap: gap, ...styleProp }
       : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap, ...styleProp };
 
+  const styleProps = { ...props, component, gap, rowHeight, variant };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
+    <ImageListRoot
+      as={component}
       className={clsx(classes.root, classes[variant], className)}
       ref={ref}
       style={style}
+      styleProps={styleProps}
       {...other}
     >
       <ImageListContext.Provider value={contextValue}>{children}</ImageListContext.Provider>
-    </Component>
+    </ImageListRoot>
   );
 });
 
@@ -118,6 +152,10 @@ ImageList.propTypes = {
    */
   style: PropTypes.object,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The variant to use.
    * @default 'standard'
    */
@@ -127,4 +165,4 @@ ImageList.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiImageList' })(ImageList);
+export default ImageList;

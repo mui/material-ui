@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { TypographyProps } from '../Typography';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '..';
 
 export interface CardHeaderTypeMap<
   Props = {},
@@ -54,6 +56,10 @@ export interface CardHeaderTypeMap<
       SubheaderTypographyComponent,
       { component?: SubheaderTypographyComponent }
     >;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The content of the component.
      */

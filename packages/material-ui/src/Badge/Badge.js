@@ -293,7 +293,10 @@ Badge.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'default'
    */
-  color: PropTypes.oneOf(['default', 'error', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'error', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.

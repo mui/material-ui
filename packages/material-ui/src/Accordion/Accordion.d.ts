@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PaperProps } from '../Paper';
 
@@ -20,6 +21,8 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
     expanded?: string;
     /** Pseudo-class applied to the root element if `disabled={true}`. */
     disabled?: string;
+    /** Styles applied to the root element unless `disableGutters={true}`. */
+    gutters?: string;
     /** Styles applied to the region element, the container of the children. */
     region?: string;
   };
@@ -34,6 +37,11 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
    */
   disabled?: boolean;
   /**
+   * If `true`, it removes the margin between two expanded accordion items and the increase of height.
+   * @default false
+   */
+  disableGutters?: boolean;
+  /**
    * If `true`, expands the accordion, otherwise collapse it.
    * Setting this prop enables control over the accordion.
    */
@@ -45,6 +53,10 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
    * @param {boolean} expanded The `expanded` state of the accordion.
    */
   onChange?: (event: React.SyntheticEvent, expanded: boolean) => void;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

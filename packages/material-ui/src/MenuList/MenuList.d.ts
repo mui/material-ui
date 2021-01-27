@@ -42,6 +42,7 @@ export type MenuListClassKey = keyof NonNullable<MenuListProps['classes']>;
  * It's exposed to help customization of the [`Menu`](https://material-ui.com/api/menu/) component if you
  * use it separately you need to move focus into the component manually. Once
  * the focus is placed inside the component it is fully keyboard accessible.
+ *
  * Demos:
  *
  * - [Menus](https://material-ui.com/components/menus/)

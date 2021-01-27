@@ -1,19 +1,53 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    padding: theme.spacing(1, 2, 2),
+const overridesResolver = (props, styles) => {
+  return styles.root || {};
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getAccordionDetailsUtilityClass, classes);
+};
+
+const AccordionDetailsRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiAccordionDetails',
+    slot: 'Root',
+    overridesResolver,
   },
-});
+)(({ theme }) => ({
+  /* Styles applied to the root element. */
+  padding: theme.spacing(1, 2, 2),
+}));
 
-const AccordionDetails = React.forwardRef(function AccordionDetails(props, ref) {
-  const { classes, className, ...other } = props;
+const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiAccordionDetails' });
+  const { className, ...other } = props;
+  const styleProps = { ...props };
 
-  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
+  const classes = useUtilityClasses(styleProps);
+
+  return (
+    <AccordionDetailsRoot
+      className={clsx(classes.root, className)}
+      ref={ref}
+      styleProps={styleProps}
+      {...other}
+    />
+  );
 });
 
 AccordionDetails.propTypes = {
@@ -33,6 +67,10 @@ AccordionDetails.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiAccordionDetails' })(AccordionDetails);
+export default AccordionDetails;

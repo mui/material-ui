@@ -1,0 +1,71 @@
+{
+  "props": {
+    "onChange": { "type": { "name": "func" }, "required": true },
+    "renderInput": { "type": { "name": "func" }, "required": true },
+    "acceptRegex": { "type": { "name": "instanceOf", "description": "RegExp" } },
+    "allowKeyboardControl": { "type": { "name": "bool" } },
+    "ampm": { "type": { "name": "bool" } },
+    "ampmInClock": { "type": { "name": "bool" } },
+    "className": { "type": { "name": "string" } },
+    "dateAdapter": { "type": { "name": "object" } },
+    "disableCloseOnSelect": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableIgnoringDatePartForTimeValidation": { "type": { "name": "bool" } },
+    "disableMaskedInput": { "type": { "name": "bool" } },
+    "disableOpenPicker": { "type": { "name": "bool" } },
+    "displayStaticWrapperAs": {
+      "type": { "name": "enum", "description": "'desktop'<br>&#124;&nbsp;'mobile'" }
+    },
+    "getClockLabelText": { "type": { "name": "func" } },
+    "getOpenDialogAriaText": { "type": { "name": "func" } },
+    "InputAdornmentProps": { "type": { "name": "object" } },
+    "inputFormat": { "type": { "name": "string" } },
+    "mask": { "type": { "name": "string" } },
+    "minutesStep": { "type": { "name": "number" } },
+    "onAccept": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "onError": { "type": { "name": "func" } },
+    "onOpen": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "OpenPickerButtonProps": { "type": { "name": "object" } },
+    "openPickerIcon": { "type": { "name": "node" } },
+    "openTo": {
+      "type": {
+        "name": "enum",
+        "description": "'date'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'seconds'<br>&#124;&nbsp;'year'"
+      }
+    },
+    "orientation": {
+      "type": { "name": "enum", "description": "'landscape'<br>&#124;&nbsp;'portrait'" }
+    },
+    "readOnly": { "type": { "name": "bool" } },
+    "rifmFormatter": { "type": { "name": "func" } },
+    "shouldDisableTime": { "type": { "name": "func" } },
+    "showToolbar": { "type": { "name": "bool" } },
+    "ToolbarComponent": { "type": { "name": "elementType" } },
+    "toolbarFormat": { "type": { "name": "string" } },
+    "toolbarPlaceholder": { "type": { "name": "node" } },
+    "toolbarTitle": { "type": { "name": "node" } },
+    "value": {
+      "type": {
+        "name": "union",
+        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
+      }
+    },
+    "views": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'seconds'&gt;"
+      }
+    }
+  },
+  "name": "StaticTimePicker",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": false,
+  "forwardsRefTo": "undefined",
+  "filename": "/packages/material-ui-lab/src/StaticTimePicker/StaticTimePicker.tsx",
+  "inheritance": null,
+  "demos": "",
+  "styledComponent": true,
+  "cssComponent": false
+}

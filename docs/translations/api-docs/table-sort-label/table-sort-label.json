@@ -1,5 +1,5 @@
 {
-  "componentDescription": "A button based label for placing inside <code>TableCell</code> for column sorting.",
+  "componentDescription": "A button based label for placing inside `TableCell` for column sorting.",
   "propDescriptions": {
     "active": "If <code>true</code>, the label will have the active styling (should be true for the sorted column).",
     "children": "Label contents, the arrow will be appended automatically.",

@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
+import { SystemProps, SxProps } from '@material-ui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createMuiTheme';
 
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
-    children?: React.ReactNode | ((props: React.ComponentPropsWithRef<D>) => React.ReactNode);
-    component?: React.ElementType;
-    clone?: boolean;
-    ref?: React.Ref<unknown>;
-    sx?: SxProps<Theme>;
-  };
+  props: P &
+    SystemProps & {
+      children?: React.ReactNode | ((props: React.ComponentPropsWithRef<D>) => React.ReactNode);
+      component?: React.ElementType;
+      clone?: boolean;
+      ref?: React.Ref<unknown>;
+      sx?: SxProps<Theme>;
+    };
   defaultComponent: D;
 }
 

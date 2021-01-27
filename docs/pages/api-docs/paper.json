@@ -55,5 +55,6 @@
   "filename": "/packages/material-ui/src/Paper/Paper.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li>\n<li><a href=\"/components/paper/\">Paper</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }

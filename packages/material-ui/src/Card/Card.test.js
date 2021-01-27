@@ -1,23 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Card from './Card';
 import Paper from '../Paper';
+import classes from './cardClasses';
 
 describe('<Card />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
-  before(() => {
-    classes = getClasses(<Card />);
-  });
 
-  describeConformance(<Card />, () => ({
+  describeConformanceV5(<Card />, () => ({
     classes,
     inheritComponent: Paper,
     mount,
+    muiName: 'MuiCard',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    testVariantProps: { raised: true },
+    skip: ['componentsProp'],
   }));
 
   it('when raised should render Paper with 8dp', () => {

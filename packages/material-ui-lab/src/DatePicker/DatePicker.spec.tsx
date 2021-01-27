@@ -1,6 +1,6 @@
 import * as React from 'react';
 import moment, { Moment } from 'moment';
-import { DatePicker, StaticDatePicker, DayPicker, PickersDay } from '@material-ui/lab';
+import DatePicker from '@material-ui/lab/DatePicker';
 import AdapterDateFns from '../AdapterDateFns';
 import MomentAdapter from '../AdapterMoment';
 
@@ -67,23 +67,6 @@ const InferTest = () => {
   renderInput={() => <input />}
 />;
 
-// External components are generic as well
-<DayPicker<Moment>
-  view="date"
-  views={['date']}
-  date={moment()}
-  minDate={moment()}
-  maxDate={moment()}
-  onChange={(date) => date?.format()}
-/>;
-
-<PickersDay<Date>
-  day={new Date()}
-  allowSameDateSelection
-  outsideCurrentMonth
-  onDaySelect={(date) => date?.getDay()}
-/>;
-
 // Edge case and known issue. When the passed `value` is not a date type
 // We cannot infer the type properly without explicit generic type or `dateAdapter` prop
 // So in this case it is expected that type will be the type of `value` as for now
@@ -97,14 +80,6 @@ const InferTest = () => {
 />;
 
 {
-  // Allows to pass the wrapper-specific props only to the proper wrapper
-  <StaticDatePicker
-    value={new Date()}
-    onChange={(date) => date?.getDate()}
-    renderInput={() => <input />}
-    displayStaticWrapperAs="desktop"
-  />;
-
   <DatePicker
     value={new Date()}
     onChange={(date) => date?.getDate()}

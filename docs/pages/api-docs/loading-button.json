@@ -37,5 +37,6 @@
   "filename": "/packages/material-ui-lab/src/LoadingButton/LoadingButton.js",
   "inheritance": { "component": "Button", "pathname": "/api/button/" },
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }

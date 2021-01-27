@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
@@ -43,6 +45,10 @@ export type BottomNavigationActionTypeMap<
      * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
      */
     showLabel?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * You can provide your own value. Otherwise, we fallback to the child position index.
      */

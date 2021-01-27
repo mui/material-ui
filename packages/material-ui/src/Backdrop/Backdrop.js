@@ -1,35 +1,62 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import Fade from '../Fade';
+import { getBackdropUtilityClass } from './backdropClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    // Improve scrollable dialog support.
-    zIndex: -1,
-    position: 'fixed',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 0,
-    bottom: 0,
-    top: 0,
-    left: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    WebkitTapHighlightColor: 'transparent',
-  },
-  /* Styles applied to the root element if `invisible={true}`. */
-  invisible: {
-    backgroundColor: 'transparent',
-  },
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.invisible && styles.invisible),
+  });
 };
 
-const Backdrop = React.forwardRef(function Backdrop(props, ref) {
+const useUtilityClasses = (styleProps) => {
+  const { classes, invisible } = styleProps;
+
+  const slots = {
+    root: ['root', invisible && 'invisible'],
+  };
+
+  return composeClasses(slots, getBackdropUtilityClass, classes);
+};
+
+const BackdropRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiBackdrop',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps }) => ({
+  // Improve scrollable dialog support.
+  zIndex: -1,
+  position: 'fixed',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  right: 0,
+  bottom: 0,
+  top: 0,
+  left: 0,
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  WebkitTapHighlightColor: 'transparent',
+  /* Styles applied to the root element if `invisible={true}`. */
+  ...(styleProps.invisible && {
+    backgroundColor: 'transparent',
+  }),
+}));
+
+const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
   const {
     children,
-    classes,
     className,
     invisible = false,
     open,
@@ -39,21 +66,23 @@ const Backdrop = React.forwardRef(function Backdrop(props, ref) {
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    invisible,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
     <TransitionComponent in={open} timeout={transitionDuration} {...other}>
-      <div
-        className={clsx(
-          classes.root,
-          {
-            [classes.invisible]: invisible,
-          },
-          className,
-        )}
+      <BackdropRoot
+        className={clsx(classes.root, className)}
         aria-hidden
         ref={ref}
+        styleProps={styleProps}
       >
         {children}
-      </div>
+      </BackdropRoot>
     </TransitionComponent>
   );
 });
@@ -86,6 +115,10 @@ Backdrop.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
@@ -99,4 +132,4 @@ Backdrop.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);
+export default Backdrop;
