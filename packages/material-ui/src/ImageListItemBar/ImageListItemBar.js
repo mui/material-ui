@@ -15,26 +15,30 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...styles[`position${capitalize(styleProps.position)}`],
-    ...styles[`titleWrap${capitalize(styleProps.position)}`],
-    ...(styleProps.actionIcon &&
-      styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`]),
-    ...(styleProps.actionIcon &&
-      styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`]),
+    [`& .${imageListItemBarClasses.titleWrap}`]: {
+      ...styles.titleWrap,
+      ...styles[`titleWrap${capitalize(styleProps.position)}`],
+      ...(styleProps.actionIcon &&
+        styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`]),
+    },
     [`& .${imageListItemBarClasses.title}`]: styles.title,
     [`& .${imageListItemBarClasses.subtitle}`]: styles.subtitle,
-    [`& .${imageListItemBarClasses.actionIcon}`]: styles.actionIcon,
+    [`& .${imageListItemBarClasses.actionIcon}`]: {
+      ...styles.actionIcon,
+      ...styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`],
+    },
   });
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, position, actionPosition } = styleProps;
+  const { classes, position, actionIcon, actionPosition } = styleProps;
 
   const slots = {
     root: ['root', `position${capitalize(position)}`],
     titleWrap: [
       'titleWrap',
       `titleWrap${capitalize(position)}`,
-      `titleWrapActionPos${capitalize(actionPosition)}`,
+      actionIcon && `titleWrapActionPos${capitalize(actionPosition)}`,
     ],
     title: ['title'],
     subtitle: ['subtitle'],
@@ -85,7 +89,6 @@ const ImageListItemBarTitleWrap = experimentalStyled(
   {
     name: 'MuiImageListItemBar',
     slot: 'TitleWrap',
-    overridesResolver,
   },
 )(({ theme, styleProps }) => {
   return {
@@ -118,7 +121,6 @@ const ImageListItemBarTitle = experimentalStyled(
   {
     name: 'MuiImageListItemBar',
     slot: 'Title',
-    overridesResolver,
   },
 )(({ theme }) => {
   return {
@@ -137,7 +139,6 @@ const ImageListItemBarSubtitle = experimentalStyled(
   {
     name: 'MuiImageListItemBar',
     slot: 'Subtitle',
-    overridesResolver,
   },
 )(({ theme }) => {
   return {
@@ -156,15 +157,13 @@ const ImageListItemBarActionIcon = experimentalStyled(
   {
     name: 'MuiImageListItemBar',
     slot: 'ActionIcon',
-    overridesResolver,
   },
 )(({ styleProps }) => {
   return {
     /* Styles applied to the actionIcon if `actionPosition="left"`. */
-    ...(styleProps.actionIcon &&
-      styleProps.actionPosition === 'left' && {
-        order: -1,
-      }),
+    ...(styleProps.actionPosition === 'left' && {
+      order: -1,
+    }),
   };
 });
 
@@ -184,8 +183,6 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(inProps, ref
     ...other
   } = props;
 
-  const actionPos = actionIcon && actionPosition;
-
   const styleProps = { ...props, position, actionPosition };
 
   const classes = useUtilityClasses(styleProps);
@@ -193,26 +190,11 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(inProps, ref
   return (
     <ImageListItemBarRoot
       styleProps={styleProps}
-      className={clsx(
-        classes.root,
-        {
-          [classes.positionBelow]: position === 'below',
-          [classes.positionBottom]: position === 'bottom',
-          [classes.positionTop]: position === 'top',
-        },
-        className,
-      )}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
-      <ImageListItemBarTitleWrap
-        styleProps={styleProps}
-        className={clsx(classes.titleWrap, {
-          [classes.titleWrapBelow]: position === 'below',
-          [classes.titleWrapActionPosLeft]: actionPos === 'left',
-          [classes.titleWrapActionPosRight]: actionPos === 'right',
-        })}
-      >
+      <ImageListItemBarTitleWrap styleProps={styleProps} className={classes.titleWrap}>
         <ImageListItemBarTitle className={classes.title}>{title}</ImageListItemBarTitle>
         {subtitle ? (
           <ImageListItemBarSubtitle className={classes.subtitle}>
@@ -221,12 +203,7 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(inProps, ref
         ) : null}
       </ImageListItemBarTitleWrap>
       {actionIcon ? (
-        <ImageListItemBarActionIcon
-          styleProps={styleProps}
-          className={clsx(classes.actionIcon, {
-            [classes.actionIconActionPosLeft]: actionPos === 'left',
-          })}
-        >
+        <ImageListItemBarActionIcon styleProps={styleProps} className={classes.actionIcon}>
           {actionIcon}
         </ImageListItemBarActionIcon>
       ) : null}

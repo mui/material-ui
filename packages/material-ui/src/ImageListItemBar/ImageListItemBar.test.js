@@ -14,6 +14,7 @@ describe('<ImageListItemBar />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiImageListItemBar',
+    testDeepOverrides: { slotName: 'titleWrap', slotClassName: classes.titleWrap },
     testVariantProps: { position: 'top', actionPosition: 'left' },
     skip: ['componentProp', 'componentsProp'],
   }));

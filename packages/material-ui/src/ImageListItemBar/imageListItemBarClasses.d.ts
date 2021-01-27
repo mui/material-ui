@@ -4,6 +4,8 @@ export interface ImageListItemBarClasses {
   positionTop: string;
   positionBelow: string;
   titleWrap: string;
+  titleWrapBottom: string;
+  titleWrapTop: string;
   titleWrapBelow: string;
   titleWrapActionPosLeft: string;
   titleWrapActionPosRight: string;
@@ -11,6 +13,7 @@ export interface ImageListItemBarClasses {
   subtitle: string;
   actionIcon: string;
   actionIconActionPosLeft: string;
+  actionIconActionPosRight: string;
 }
 
 declare const imageListItemBarClasses: ImageListItemBarClasses;

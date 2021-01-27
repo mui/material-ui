@@ -10,6 +10,8 @@ const imageListItemBarClasses = generateUtilityClasses('MuiImageListItemBar', [
   'positionTop',
   'positionBelow',
   'titleWrap',
+  'titleWrapBottom',
+  'titleWrapTop',
   'titleWrapBelow',
   'titleWrapActionPosLeft',
   'titleWrapActionPosRight',
@@ -17,6 +19,7 @@ const imageListItemBarClasses = generateUtilityClasses('MuiImageListItemBar', [
   'subtitle',
   'actionIcon',
   'actionIconActionPosLeft',
+  'actionIconActionPosRight',
 ]);
 
 export default imageListItemBarClasses; /* Styles applied to the root element. */
