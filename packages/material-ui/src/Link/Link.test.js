@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, act, createClientRender, fireEvent, describeConformanceV5 } from 'test/utils';
-import Link from './Link';
-import Typography, { typographyClasses } from '../Typography';
+import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
 import classes from './linkClasses';
 
 function focusVisible(element) {
