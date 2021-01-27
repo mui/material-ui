@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, act, createClientRender, fireEvent, describeConformanceV5 } from 'test/utils';
 import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
+import Typography, { typographyClasses } from '@material-ui/core/Typography';
 import classes from './linkClasses';
 
 function focusVisible(element) {
@@ -35,20 +35,13 @@ describe('<Link />', () => {
     expect(queryByText('Home')).to.not.equal(null);
   });
 
-  it('should pass props to the <Typography> component', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it('should pass props to the <Typography> component', () => {
     const { container } = render(
-      <Link href="/" color="primary">
+      <Link href="/" variant="body2">
         Test
       </Link>,
     );
-    // primary color
-    expect(container.firstChild).toHaveComputedStyle({
-      color: 'rgb(63, 81, 181)',
-    });
+    expect(container.firstChild).to.have.class(typographyClasses.body2);
   });
 
   describe('event callbacks', () => {

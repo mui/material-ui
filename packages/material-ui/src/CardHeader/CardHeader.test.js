@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import CardHeader from './CardHeader';
-import { typographyClasses } from '../Typography';
-import classes from './cardHeaderClasses';
+import { typographyClasses } from '@material-ui/core/Typography';
+import CardHeader, { cardHeaderClasses as classes } from '@material-ui/core/CardHeader';
 
 describe('<CardHeader />', () => {
   const mount = createMount();
