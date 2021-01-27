@@ -23,7 +23,7 @@ import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import muiFindAnnotatedComponentsResolver from 'docs/src/modules/utils/findAnnotatedComponentsResolver';
 import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
-import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
+import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import {
   getHeaders,
   renderInline as renderMarkdownInline,
@@ -1309,7 +1309,25 @@ Page.getInitialProps = () => {
   }
 }
 
-function run(argv: { componentDirectories?: string[]; grep?: string; outputDirectory?: string }) {
+/**
+ * Creates .js file containing all /api nextjs pages
+ */
+function generateApiPagesManifest(outputPath: string, prettierConfigPath: string): void {
+  const [{ children: apiPages }] = findPages({ front: true });
+  if (apiPages === undefined) {
+    throw new TypeError('Unable to find pages under /api');
+  }
+
+  const source = `module.exports = ${JSON.stringify(apiPages)}`;
+  writePrettifiedFile(outputPath, source, prettierConfigPath);
+}
+
+async function run(argv: {
+  apiPagesManifestPath?: string;
+  componentDirectories?: string[];
+  grep?: string;
+  outputDirectory?: string;
+}) {
   const workspaceRoot = path.resolve(__dirname, '../../');
   /**
    * @type {string[]}
@@ -1317,6 +1335,7 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
   const componentDirectories = argv.componentDirectories!.map((componentDirectory) => {
     return path.resolve(componentDirectory);
   });
+  const apiPagesManifestPath = path.resolve(argv.apiPagesManifestPath!);
   const outputDirectory = path.resolve(argv.outputDirectory!);
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
 
@@ -1388,18 +1407,20 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
       });
   });
 
-  Promise.all(componentBuilds).then((builds) => {
-    const fails = builds.filter(
-      (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',
-    );
+  const builds = await Promise.all(componentBuilds);
 
-    fails.forEach((build) => {
-      console.error(build.reason);
-    });
-    if (fails.length > 0) {
-      process.exit(1);
-    }
+  const fails = builds.filter(
+    (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',
+  );
+
+  fails.forEach((build) => {
+    console.error(build.reason);
   });
+  if (fails.length > 0) {
+    process.exit(1);
+  }
+
+  generateApiPagesManifest(apiPagesManifestPath, prettierConfigPath);
 }
 
 yargs
@@ -1420,6 +1441,11 @@ yargs
         .option('grep', {
           description:
             'Only generate files for component filenames matching the pattern. The string is treated as a RegExp.',
+          type: 'string',
+        })
+        .option('apiPagesManifestPath', {
+          description: 'The path to the file where pages available under /api are written to.',
+          requiresArg: true,
           type: 'string',
         });
     },

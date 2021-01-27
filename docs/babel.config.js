@@ -52,7 +52,6 @@ module.exports = {
     'babel-plugin-optimize-clsx',
     // for IE11 support
     '@babel/plugin-transform-object-assign',
-    'babel-plugin-preval',
     [
       'babel-plugin-module-resolver',
       {
