@@ -91,6 +91,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   const styleProps = {
     ...props,
     contained: fcs.variant === 'filled' || fcs.variant === 'outlined',
+    variant: fcs.variant,
     small: fcs.size === 'small',
     disabled: fcs.disabled,
     error: fcs.error,
@@ -100,7 +101,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   };
 
   const classes = useUtilityClasses(styleProps);
-  console.log(props.style)
+
   return (
     <FormHelperTextRoot
       as={component}
