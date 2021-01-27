@@ -505,7 +505,21 @@ async function annotateComponentDefinition(context: {
         if (babel.types.isIdentifier(babelPath.node.declaration)) {
           const bindingId = babelPath.node.declaration.name;
           const binding = babelPath.scope.bindings[bindingId];
-          node = binding.path.parentPath.node;
+
+          // The JSDOC MUST be located at the declaration
+          if (babel.types.isFunctionDeclaration(binding.path.node)) {
+            // For function declarations the binding is equal to the declaration
+            // /**
+            //  */
+            // function Component() {}
+            node = binding.path.node;
+          } else {
+            // For variable declarations the binding points to the declarator.
+            // /**
+            //  */
+            // const Component = () => {}
+            node = binding.path.parentPath.node;
+          }
         }
       }
 
@@ -906,7 +920,7 @@ async function parseComponentSource(
   // Ignore what we might have generated in `annotateComponentDefinition`
   const annotatedDescriptionMatch = fullDescription.match(/(Demos|API):\r?\n\r?\n/);
   if (annotatedDescriptionMatch !== null) {
-    reactAPI.description = fullDescription.slice(0, annotatedDescriptionMatch.index);
+    reactAPI.description = fullDescription.slice(0, annotatedDescriptionMatch.index).trim();
   }
 
   return reactAPI;

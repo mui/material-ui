@@ -5,22 +5,64 @@ import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 
-function mapEventPropToEvent(eventProp) {
-  return eventProp.substring(2).toLowerCase();
+// TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
+function mapEventPropToEvent(
+  eventProp: ClickAwayMouseEventHandler | ClickAwayTouchEventHandler,
+): 'click' | 'mousedown' | 'mouseup' | 'touchstart' | 'touchend' {
+  return eventProp.substring(2).toLowerCase() as any;
 }
 
-function clickedRootScrollbar(event, doc) {
+function clickedRootScrollbar(event: MouseEvent, doc: Document) {
   return (
     doc.documentElement.clientWidth < event.clientX ||
     doc.documentElement.clientHeight < event.clientY
   );
 }
 
+type ClickAwayMouseEventHandler = 'onClick' | 'onMouseDown' | 'onMouseUp';
+type ClickAwayTouchEventHandler = 'onTouchStart' | 'onTouchEnd';
+
+export interface ClickAwayListenerProps {
+  /**
+   * The wrapped element.
+   */
+  children: React.ReactElement;
+  /**
+   * If `true`, the React tree is ignored and only the DOM tree is considered.
+   * This prop changes how portaled elements are handled.
+   * @default false
+   */
+  disableReactTree?: boolean;
+  /**
+   * The mouse event to listen to. You can disable the listener by providing `false`.
+   * @default 'onClick'
+   */
+  mouseEvent?: ClickAwayMouseEventHandler | false;
+  /**
+   * Callback fired when a "click away" event is detected.
+   */
+  onClickAway: (event: MouseEvent | TouchEvent) => void;
+  /**
+   * The touch event to listen to. You can disable the listener by providing `false`.
+   * @default 'onTouchEnd'
+   */
+  touchEvent?: ClickAwayTouchEventHandler | false;
+}
+
 /**
  * Listen for click events that occur somewhere in the document, outside of the element itself.
  * For instance, if you need to hide a menu when people click anywhere else on your page.
+ *
+ * Demos:
+ *
+ * - [Click Away Listener](https://material-ui.com/components/click-away-listener/)
+ * - [Menus](https://material-ui.com/components/menus/)
+ *
+ * API:
+ *
+ * - [ClickAwayListener API](https://material-ui.com/api/click-away-listener/)
  */
-function ClickAwayListener(props) {
+function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
   const {
     children,
     disableReactTree = false,
@@ -29,7 +71,7 @@ function ClickAwayListener(props) {
     touchEvent = 'onTouchEnd',
   } = props;
   const movedRef = React.useRef(false);
-  const nodeRef = React.useRef(null);
+  const nodeRef = React.useRef<Element>(null);
   const activatedRef = React.useRef(false);
   const syntheticEventRef = React.useRef(false);
 
@@ -44,7 +86,11 @@ function ClickAwayListener(props) {
     };
   }, []);
 
-  const handleRef = useForkRef(children.ref, nodeRef);
+  const handleRef = useForkRef(
+    // @ts-expect-error TODO upstream fix
+    children.ref,
+    nodeRef,
+  );
 
   // The handler doesn't take event.defaultPrevented into account:
   //
@@ -52,7 +98,7 @@ function ClickAwayListener(props) {
   // clicking a checkbox to check it, hitting a button to submit a form,
   // and hitting left arrow to move the cursor in a text input etc.
   // Only special HTML elements have these default behaviors.
-  const handleClickAway = useEventCallback((event) => {
+  const handleClickAway = useEventCallback((event: MouseEvent | TouchEvent) => {
     // Given developers can stop the propagation of the synthetic event,
     // we can only be confident with a positive value.
     const insideReactTree = syntheticEventRef.current;
@@ -63,7 +109,11 @@ function ClickAwayListener(props) {
     // 1. IE11 support, which trigger the handleClickAway even after the unbind
     // 2. The child might render null.
     // 3. Behave like a blur listener.
-    if (!activatedRef.current || !nodeRef.current || clickedRootScrollbar(event, doc)) {
+    if (
+      !activatedRef.current ||
+      !nodeRef.current ||
+      ('clientX' in event && clickedRootScrollbar(event, doc))
+    ) {
       return;
     }
 
@@ -80,7 +130,14 @@ function ClickAwayListener(props) {
       insideDOM = event.composedPath().indexOf(nodeRef.current) > -1;
     } else {
       insideDOM =
-        !doc.documentElement.contains(event.target) || nodeRef.current.contains(event.target);
+        !doc.documentElement.contains(
+          // @ts-expect-error returns `false` as intended when not dispatched from a Node
+          event.target,
+        ) ||
+        nodeRef.current.contains(
+          // @ts-expect-error returns `false` as intended when not dispatched from a Node
+          event.target,
+        );
     }
 
     if (!insideDOM && (disableReactTree || !insideReactTree)) {
@@ -89,7 +146,7 @@ function ClickAwayListener(props) {
   });
 
   // Keep track of mouse/touch events that bubbled up through the portal.
-  const createHandleSynthetic = (handlerName) => (event) => {
+  const createHandleSynthetic = (handlerName: string) => (event: React.SyntheticEvent) => {
     syntheticEventRef.current = true;
 
     const childrenPropsHandler = children.props[handlerName];
@@ -98,7 +155,10 @@ function ClickAwayListener(props) {
     }
   };
 
-  const childrenProps = { ref: handleRef };
+  const childrenProps: { ref: React.Ref<Element> } & Pick<
+    React.DOMAttributes<Element>,
+    ClickAwayMouseEventHandler | ClickAwayTouchEventHandler
+  > = { ref: handleRef };
 
   if (touchEvent !== false) {
     childrenProps[touchEvent] = createHandleSynthetic(touchEvent);
@@ -150,7 +210,7 @@ function ClickAwayListener(props) {
 ClickAwayListener.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The wrapped element.
@@ -180,7 +240,7 @@ ClickAwayListener.propTypes = {
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
-  ClickAwayListener['propTypes' + ''] = exactProp(ClickAwayListener.propTypes);
+  (ClickAwayListener as any)['propTypes' + ''] = exactProp(ClickAwayListener.propTypes);
 }
 
 export default ClickAwayListener;
