@@ -7,6 +7,12 @@ import {
 } from '../DatePicker/DatePicker';
 import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
 
+/**
+ *
+ * API:
+ *
+ * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
+ */
 // @typescript-to-proptypes-generate
 const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
   StaticWrapper,
