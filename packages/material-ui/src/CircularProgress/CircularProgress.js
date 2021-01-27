@@ -90,10 +90,8 @@ const CircularProgressRoot = experimentalStyled(
     styleProps.variant === 'indeterminate' && 'infinite'};
     
   color: ${({ styleProps, theme }) =>
-    styleProps.color === 'primary'
-      ? theme.palette.primary.main
-      : styleProps.color === 'secondary'
-      ? theme.palette.secondary.main
+    styleProps.color === 'primary' || styleProps.color === 'secondary'
+      ? theme.palette[styleProps.color].main
       : undefined};
 `;
 
@@ -126,12 +124,12 @@ const CircularProgressCircle = experimentalStyled(
       ? theme.transitions.create('stroke-dashoffset')
       : undefined};
 
-  animation-name: ${({ styleProps }) =>
-    styleProps.disableShrink
-      ? 'none'
-      : styleProps.variant === 'indeterminate'
-      ? circularDashKeyframe
-      : undefined};
+  animation-name: ${({ styleProps }) => {
+    if (styleProps.disableShrink) {
+      return 'none';
+    }
+    return styleProps.variant === 'indeterminate' ? circularDashKeyframe : undefined;
+  }};
   animation-duration: ${({ styleProps }) => styleProps.variant === 'indeterminate' && '1.4s'};
   animation-timing-function: ${({ styleProps }) =>
     styleProps.variant === 'indeterminate' && 'ease-in-out'};
