@@ -40,7 +40,7 @@ const CardActionAreaRoot = experimentalStyled(
   display: 'block',
   textAlign: 'inherit',
   width: '100%',
-  [`&:hover ${cardActionAreaClasses.focusHighlight}`]: {
+  [`&:hover .${cardActionAreaClasses.focusHighlight}`]: {
     opacity: theme.palette.action.hoverOpacity,
     '@media (hover: none)': {
       opacity: 0,
