@@ -7,7 +7,7 @@ import { keyframes } from '@material-ui/styled-engine';
 import capitalize from '../utils/capitalize';
 
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import experimentalStyled from '../styles/experimentalStyled';
 import circularProgressClasses, {
   getCircularProgressUtilityClass,
 } from './circularProgressClasses';
@@ -25,16 +25,16 @@ const circularRotateKeyframe = keyframes`
 
 const circularDashKeyframe = keyframes`
 0% {
-  strokeDasharray: 1px, 200px;
-  strokeDashoffset: 0px;
+  stroke-dasharray: 1px, 200px;
+  stroke-dashoffset: 0px;
 }
 50% {
-  strokeDasharray: 100px, 200px;
-  strokeDashoffset: -15px;
+  stroke-dasharray: 100px, 200px;
+  stroke-dashoffset: -15px;
 }
 100% {
-  strokeDasharray: 100px, 200px;
-  strokeDashoffset: -125px;
+  stroke-dasharray: 100px, 200px;
+  stroke-dashoffset: -125px;
 }
 `;
 
@@ -80,20 +80,20 @@ const CircularProgressRoot = experimentalStyled(
     transition: ${({ theme }) => theme.transitions.create('transform')}
   }
 
-  &.${circularProgressClasses.indeterminate} {
-    animation-name: ${circularRotateKeyframe};
-    animation-duration: 1.4s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-  }
-
-  &.${circularProgressClasses.primary} {
-    color: ${({ theme }) => theme.palette.primary.main}
-  }
-
-  &.${circularProgressClasses.secondary} {
-    color: ${({ theme }) => theme.palette.secondary.main}
-  }
+  animation-name: ${({ styleProps }) =>
+    styleProps.variant === 'indeterminate' && circularRotateKeyframe};
+  animation-duration: ${({ styleProps }) => styleProps.variant === 'indeterminate' && '1.4s'};
+  animation-timing-function: ${({ styleProps }) =>
+    styleProps.variant === 'indeterminate' && 'linear'};
+  animation-iteration-count: ${({ styleProps }) =>
+    styleProps.variant === 'indeterminate' && 'infinite'};
+    
+  color: ${({ styleProps, theme }) =>
+    styleProps.color === 'primary'
+      ? theme.palette.primary.main
+      : styleProps.color === 'secondary'
+      ? theme.palette.secondary.main
+      : undefined}
 `;
 
 const CircularProgressSVG = experimentalStyled(
@@ -118,22 +118,23 @@ const CircularProgressCircle = experimentalStyled(
 )`
   stroke: currentColor;
 
-  &.${circularProgressClasses.determinate} {
+  &.${circularProgressClasses.circleDeterminate} {
     transition: ${({ theme }) => theme.transitions.create('stroke-dashoffset')};
   }
 
-  &.${circularProgressClasses.indeterminate} {
-    animation-name: ${circularDashKeyframe};
-    animation-duration: 1.4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    strokeDasharray: 80px, 200px;
-    strokeDashoffset: 0px;
-  }
-
-  &.${circularProgressClasses.disableShrink} {
-    animation: none;
-  }
+  animation-name: ${({ styleProps }) =>
+    styleProps.disableShrink
+      ? 'none'
+      : styleProps.variant === 'indeterminate'
+      ? circularDashKeyframe
+      : undefined};
+  animation-duration: ${({ styleProps }) => styleProps.variant === 'indeterminate' && '1.4s'};
+  animation-timing-function: ${({ styleProps }) =>
+    styleProps.variant === 'indeterminate' && 'ease-in-out'};
+  animation-iteration-count: ${({ styleProps }) =>
+    styleProps.variant === 'indeterminate' && 'infinite'};
+  stroke-dasharray: ${({ styleProps }) => styleProps.variant === 'indeterminate' && '80px, 200px'};
+  stroke-dashoffset: ${({ styleProps }) => styleProps.variant === 'indeterminate' && '0px'};
 `;
 
 /**
