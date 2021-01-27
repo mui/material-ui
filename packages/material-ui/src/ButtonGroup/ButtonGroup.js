@@ -2,6 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import { useThemeVariants } from '@material-ui/styles';
 import capitalize from '../utils/capitalize';
 import { alpha } from '../styles/colorManipulator';
@@ -298,7 +299,15 @@ ButtonGroup.propTypes = {
    * If `true`, no elevation is used.
    * @default false
    */
-  disableElevation: PropTypes.bool,
+  disableElevation: chainPropTypes(PropTypes.bool, (props) => {
+    if (props.disableElevation && props.variant === 'outlined') {
+      return new Error(
+        'Material-UI: Combining `disableElevation` with `variant="outlined"` will have no effect.',
+      );
+    }
+
+    return null;
+  }),
   /**
    * If `true`, the button keyboard focus ripple is disabled.
    * @default false
