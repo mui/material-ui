@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { deepmerge } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
@@ -6,9 +7,14 @@ import experimentalStyled, { shouldForwardProp } from '../styles/experimentalSty
 import useThemeProps from '../styles/useThemeProps';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import ListItem from '../ListItem';
-import listItemClasses from '../ListItem/listItemClasses';
+import { overridesResolver as listItemOverridesResolver, ListItemRoot } from '../ListItem/ListItem';
 
-const overridesResolver = (props, styles) => styles.root || {};
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+  return deepmerge(listItemOverridesResolver(props, styles), {
+    ...(styleProps.dense && styles.dense),
+  });
+};
 
 const useUtilityClasses = (styleProps) => {
   const { selected, disableGutters, classes } = styleProps;
@@ -20,14 +26,14 @@ const useUtilityClasses = (styleProps) => {
 };
 
 const MenuItemRoot = experimentalStyled(
-  ListItem,
+  ListItemRoot,
   { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiMenuItem',
     slot: 'Root',
     overridesResolver,
   },
-)(({ theme }) => ({
+)(({ theme, styleProps }) => ({
   ...theme.typography.body1,
   minHeight: 48,
   paddingTop: 6,
@@ -38,10 +44,10 @@ const MenuItemRoot = experimentalStyled(
   [theme.breakpoints.up('sm')]: {
     minHeight: 'auto',
   },
-  [`&.${listItemClasses.dense}`]: {
+  ...(styleProps.dense && {
     ...theme.typography.body2,
     minHeight: 'auto',
-  },
+  }),
 }));
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
@@ -71,7 +77,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   }
 
   return (
-    <MenuItemRoot
+    <ListItem
+      components={{ Root: MenuItemRoot }}
+      componentsProps={{ root: { styleProps } }}
       styleProps={styleProps}
       button
       role={role}

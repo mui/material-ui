@@ -9,6 +9,11 @@
     "children": { "type": { "name": "custom", "description": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "ContainerComponent": {
       "type": { "name": "custom", "description": "element type" },
       "default": "'li'"
