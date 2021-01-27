@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
 
 export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -66,6 +68,10 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default 'medium'
      */
     size?: 'small' | 'medium';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The variant to use.
      * @default 'standard'
