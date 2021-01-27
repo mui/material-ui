@@ -1,0 +1,26 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "disableTypography": { "type": { "name": "bool" } },
+    "inset": { "type": { "name": "bool" } },
+    "primary": { "type": { "name": "node" } },
+    "primaryTypographyProps": { "type": { "name": "object" } },
+    "secondary": { "type": { "name": "node" } },
+    "secondaryTypographyProps": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "ListItemText",
+  "styles": {
+    "classes": ["root", "multiline", "dense", "inset", "primary", "secondary"],
+    "globalClasses": {},
+    "name": "MuiListItemText"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/ListItemText/ListItemText.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

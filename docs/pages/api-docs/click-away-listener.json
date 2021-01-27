@@ -1,0 +1,29 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "onClickAway": { "type": { "name": "func" }, "required": true },
+    "disableReactTree": { "type": { "name": "bool" } },
+    "mouseEvent": {
+      "type": {
+        "name": "enum",
+        "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;false"
+      },
+      "default": "'onClick'"
+    },
+    "touchEvent": {
+      "type": {
+        "name": "enum",
+        "description": "'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false"
+      },
+      "default": "'onTouchEnd'"
+    }
+  },
+  "name": "ClickAwayListener",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": false,
+  "filename": "/packages/material-ui/src/ClickAwayListener/ClickAwayListener.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/click-away-listener/\">Click Away Listener</a></li>\n<li><a href=\"/components/menus/\">Menus</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}
