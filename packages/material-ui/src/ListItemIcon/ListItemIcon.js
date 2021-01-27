@@ -20,7 +20,7 @@ const useUtilityClasses = (styleProps) => {
   const { alignItems, classes } = styleProps;
 
   const slots = {
-    root: ['root', alignItemsFlexStart === 'flex-start'],
+    root: ['root', alignItems === 'flex-start' && 'alignItemsFlexStart'],
   };
 
   return composeClasses(slots, getListItemIconUtilityClass, classes);
