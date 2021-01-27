@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 /**
- * Create live demo imports.
+ * Build live demo imports.
  */
 
 /**
- * List of demos to ignore when transpiling
- * Example: ['app-bar/BottomAppBar.tsx']
+ * List of demos to ignore
+ * Example: ['app-bar/BottomAppBar.js']
  */
 const ignoreList = [];
 
@@ -47,8 +47,7 @@ const TranspileResult = {
   Failed: 1,
 };
 
-async function transpileFile(tsxPath) {
-  const jsPath = tsxPath.replace(/\.tsx?$/, '.js');
+async function transpileFile(jsPath) {
   try {
     let source = await fse.readFile(jsPath, 'utf8');
 

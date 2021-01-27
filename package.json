@@ -18,7 +18,7 @@
     "docs:build-sw": "yarn workspace docs build-sw",
     "docs:build-color-preview": "babel-node scripts/buildColorTypes",
     "docs:demos": "yarn docs:typescript:formatted --watch",
-    "docs:demos:imports": "cross-env BABEL_ENV=test babel-node --extensions \".js\" ./docs/scripts/createDemoImports",
+    "docs:demos:imports": "cross-env BABEL_ENV=test babel-node --extensions \".js\" ./docs/scripts/buildDemoImports",
     "docs:deploy": "yarn workspace docs deploy",
     "docs:dev": "yarn workspace docs dev",
     "docs:export": "yarn workspace docs export",
