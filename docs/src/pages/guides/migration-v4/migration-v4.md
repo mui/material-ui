@@ -1195,7 +1195,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import { visuallyHidden } from '@material-ui/utils';
 
   -<Typography variant="srOnly">Create a user</Typography>
-  +<Typography sx={visuallyHidden}>Create a user</Typography>
+  +<span style={visuallyHidden}>Create a user</span>
   ```
 
 ### System
