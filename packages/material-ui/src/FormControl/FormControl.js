@@ -49,7 +49,7 @@ const FormControlRoot = experimentalStyled(
     marginTop: 16,
     marginBottom: 8,
   }),
-  ...(styleProps.dense === 'dense' && {
+  ...(styleProps.margin === 'dense' && {
     marginTop: 8,
     marginBottom: 4,
   }),
