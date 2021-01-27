@@ -102,7 +102,7 @@ export const styles = (theme) => ({
         padding: '2.5px 4px',
       },
     },
-    '&.MuiFilledInput-root': {
+    '&[class*="MuiFilledInput-root"]': {
       paddingTop: 19,
       paddingLeft: 8,
       '$hasPopupIcon &, $hasClearIcon &': {
@@ -111,16 +111,16 @@ export const styles = (theme) => ({
       '$hasPopupIcon$hasClearIcon &': {
         paddingRight: 52 + 4 + 9,
       },
-      '& .MuiFilledInput-input': {
+      '& $input': {
         padding: '7px 4px',
       },
       '& $endAdornment': {
         right: 9,
       },
     },
-    '&.MuiFilledInput-root.MuiInputBase-sizeSmall': {
+    '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-sizeSmall"]': {
       paddingBottom: 1,
-      '& .MuiFilledInput-input': {
+      '& $input': {
         padding: '2.5px 4px',
       },
     },
