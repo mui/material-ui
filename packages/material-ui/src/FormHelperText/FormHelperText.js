@@ -171,6 +171,10 @@ FormHelperText.propTypes = {
    */
   required: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The variant to use.
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
