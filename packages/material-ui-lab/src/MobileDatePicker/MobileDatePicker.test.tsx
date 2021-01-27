@@ -294,7 +294,7 @@ describe('<MobileDatePicker />', () => {
       );
       const start = adapterToUse.date();
       fireEvent.click(screen.getByRole('textbox'));
-      clock.tick(10)
+      clock.tick(10);
       fireEvent.click(screen.getByText(/today/i));
 
       expect(onCloseMock.callCount).to.equal(1);
