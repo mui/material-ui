@@ -64,7 +64,7 @@ export const datePickerConfig = {
 
 export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
   props: BaseDatePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
-) => JSX.Element) & { propTypes?: unknown };
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
