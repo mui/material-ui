@@ -11,12 +11,10 @@ import Rating from '@material-ui/core/Rating';
 
 export default function HalfRating() {
   return <Rating name="half-rating" value={2.5} precision={0.5} />;
-}
-`,
+}`,
         true,
       ),
-    ).to.equal(`<Rating name="half-rating" value={2.5} precision={0.5} />
-`);
+    ).to.equal(`<Rating name="half-rating" value={2.5} precision={0.5} />`);
   });
 
   it('should extract a multi-line preview', () => {
@@ -35,8 +33,7 @@ export default function UseWidth() {
       ),
     ).to.equal(`<ThemeProvider theme={theme}>
   <MyComponent />
-</ThemeProvider>
-`);
+</ThemeProvider>`);
   });
 
   it('should exclude an outer div', () => {
@@ -53,8 +50,7 @@ export default function UseWidth() {
 `,
         true,
       ),
-    ).to.equal(`<MyComponent />
-`);
+    ).to.equal(`<MyComponent />`);
   });
 
   it('should return all if no match', () => {
@@ -67,11 +63,8 @@ export function UseWidth() {
 `,
         true,
       ),
-    ).to.equal(`
-export function UseWidth() {
+    ).to.equal(`export function UseWidth() {
   return ( <MyComponent />;
-}
-
-`);
+}`);
   });
 });
