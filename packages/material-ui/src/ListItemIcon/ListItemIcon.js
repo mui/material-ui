@@ -12,7 +12,7 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...(styleProps.alignItemsFlexStart && styles.alignItemsFlexStart),
+    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
   });
 };
 
