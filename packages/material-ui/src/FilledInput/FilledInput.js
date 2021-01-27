@@ -15,7 +15,7 @@ import {
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(inputBaseOverridesResolver(props, styles), {
-    ...(!styleProps.disableUnderline && styles.undeline),
+    ...(!styleProps.disableUnderline && styles.underline),
   });
 };
 
