@@ -1,31 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import Tab from './Tab';
 import ButtonBase from '../ButtonBase';
+import classes from './tabClasses';
 
 describe('<Tab />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Tab textColor="inherit" />);
-  });
-
-  describeConformance(<Tab textColor="inherit" />, () => ({
+  describeConformanceV5(<Tab textColor="inherit" />, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
+    muiName: 'MuiTab',
+    testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
+    testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLButtonElement,
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should have a ripple by default', () => {
