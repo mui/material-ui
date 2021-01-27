@@ -83,6 +83,16 @@ const FabRoot = experimentalStyled(
       boxShadow: theme.shadows[0],
       backgroundColor: theme.palette.action.disabledBackground,
     },
+    /* Styles applied to the root element if `size="small"``. */
+    ...(styleProps.size === 'small' && {
+      width: 40,
+      height: 40,
+    }),
+    /* Styles applied to the root element if `size="medium"``. */
+    ...(styleProps.size === 'medium' && {
+      width: 48,
+      height: 48,
+    }),
     /* Styles applied to the root element if `variant="extended"`. */
     ...(styleProps.variant === 'extended' && {
       borderRadius: 48 / 2,
@@ -111,16 +121,6 @@ const FabRoot = experimentalStyled(
     /* Styles applied to the root element if `color="inherit"`. */
     ...(styleProps.color === 'inherit' && {
       color: 'inherit',
-    }),
-    /* Styles applied to the root element if `size="small"``. */
-    ...(styleProps.size === 'small' && {
-      width: 40,
-      height: 40,
-    }),
-    /* Styles applied to the root element if `size="medium"``. */
-    ...(styleProps.size === 'medium' && {
-      width: 48,
-      height: 48,
     }),
   }),
   ({ theme, styleProps }) => ({
