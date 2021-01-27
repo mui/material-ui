@@ -65,6 +65,8 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCircularProgressUtilityClass, classes);
 };
 
+// This `styled()` function invokes keyframes. `styled-components` only supports keyframes
+// in string templates. Do not convert these styles in JS object as it will break.
 const CircularProgressRoot = experimentalStyled(
   'span',
   {},
@@ -76,9 +78,8 @@ const CircularProgressRoot = experimentalStyled(
 )`
   display: inline-block;
 
-  &.${circularProgressClasses.determinate} {
-    transition: ${({ theme }) => theme.transitions.create('transform')}
-  }
+  transition: ${({ styleProps, theme }) =>
+    styleProps.variant === 'determinate' ? theme.transitions.create('transform') : undefined};
 
   animation-name: ${({ styleProps }) =>
     styleProps.variant === 'indeterminate' && circularRotateKeyframe};
@@ -108,6 +109,8 @@ const CircularProgressSVG = experimentalStyled(
   display: 'block', // Keeps the progress centered
 });
 
+// This `styled()` function invokes keyframes. `styled-components` only supports keyframes
+// in string templates. Do not convert these styles in JS object as it will break.
 const CircularProgressCircle = experimentalStyled(
   'circle',
   {},
@@ -118,9 +121,10 @@ const CircularProgressCircle = experimentalStyled(
 )`
   stroke: currentColor;
 
-  &.${circularProgressClasses.circleDeterminate} {
-    transition: ${({ theme }) => theme.transitions.create('stroke-dashoffset')};
-  }
+  transition: ${({ styleProps, theme }) =>
+    styleProps.variant === 'determinate'
+      ? theme.transitions.create('stroke-dashoffset')
+      : undefined};
 
   animation-name: ${({ styleProps }) =>
     styleProps.disableShrink
