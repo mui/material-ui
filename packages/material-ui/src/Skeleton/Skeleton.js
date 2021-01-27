@@ -8,7 +8,7 @@ import {
   alpha,
   unstable_getUnit as getUnit,
   unstable_toUnitless as toUnitless,
-  useThemeVariants
+  useThemeVariants,
 } from '../styles';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -186,6 +186,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
 
   return (
     <SkeltonRoot
+      as={component}
       ref={ref}
       className={clsx(
         classes.root,
