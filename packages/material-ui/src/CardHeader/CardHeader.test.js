@@ -31,21 +31,13 @@ describe('<CardHeader />', () => {
       expect(title).to.have.class(typographyClasses.h5);
     });
 
-    it('should render the subheader as body1 secondary text', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
+    it('should render the subheader as body1', () => {
       const cardHeader = render(<CardHeader title="Title" subheader="Subheader" />).container
         .firstChild;
       const wrapper = cardHeader.firstChild;
       const subheader = wrapper.childNodes[1];
       expect(subheader).to.have.class(typographyClasses.root);
       expect(subheader).to.have.class(typographyClasses.body1);
-      // text secondary color
-      expect(subheader).toHaveComputedStyle({
-        color: 'rgba(0, 0, 0, 0.54)',
-      });
     });
 
     it('should not render the subheader if none is given', () => {
@@ -82,20 +74,12 @@ describe('<CardHeader />', () => {
       expect(title).to.have.class(typographyClasses.body2);
     });
 
-    it('should render the subheader as body2 secondary text inside the second child', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
+    it('should render the subheader as body2 secondary text inside the second child', () => {
       const titleWrapper = cardHeader.childNodes[1];
       expect(titleWrapper).to.have.class(classes.content, 'should have the content class');
       const subHeader = titleWrapper.childNodes[1];
       expect(subHeader).to.have.class(typographyClasses.root);
       expect(subHeader).to.have.class(typographyClasses.body2);
-      // text secondary color
-      expect(subHeader).toHaveComputedStyle({
-        color: 'rgba(0, 0, 0, 0.54)',
-      });
     });
   });
 });
