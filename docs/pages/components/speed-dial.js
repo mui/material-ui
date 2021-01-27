@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/speed-dial';
-const requireImports = require.context('docs/src/pages/components/speed-dial', false, /Imports\.js$/);
+const requireImports = require.context(
+  'docs/src/pages/components/speed-dial',
+  false,
+  /Imports\.js$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/components/speed-dial',
   false,

@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/checkboxes';
-const requireImports = require.context('docs/src/pages/components/checkboxes', false, /Imports\.js$/);
+const requireImports = require.context(
+  'docs/src/pages/components/checkboxes',
+  false,
+  /Imports\.js$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/components/checkboxes',
   false,

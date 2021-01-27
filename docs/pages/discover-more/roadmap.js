@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'discover-more/roadmap';
-const requireImports = require.context('docs/src/pages/discover-more/roadmap', false, /Imports\.js$/);
+const requireImports = require.context(
+  'docs/src/pages/discover-more/roadmap',
+  false,
+  /Imports\.js$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/discover-more/roadmap',
   false,

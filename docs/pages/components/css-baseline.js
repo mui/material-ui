@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/css-baseline';
-const requireImports = require.context('docs/src/pages/components/css-baseline', false, /Imports\.js$/);
+const requireImports = require.context(
+  'docs/src/pages/components/css-baseline',
+  false,
+  /Imports\.js$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/components/css-baseline',
   false,

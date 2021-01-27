@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'customization/spacing';
-const requireImports = require.context('docs/src/pages/customization/spacing', false, /Imports\.js$/);
+const requireImports = require.context(
+  'docs/src/pages/customization/spacing',
+  false,
+  /Imports\.js$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/customization/spacing',
   false,

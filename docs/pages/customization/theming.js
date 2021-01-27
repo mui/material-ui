@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'customization/theming';
-const requireImports = require.context('docs/src/pages/customization/theming', false, /Imports\.js$/);
+const requireImports = require.context(
+  'docs/src/pages/customization/theming',
+  false,
+  /Imports\.js$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/customization/theming',
   false,

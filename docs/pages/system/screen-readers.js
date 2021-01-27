@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'system/screen-readers';
-const requireImports = require.context('docs/src/pages/system/screen-readers', false, /Imports\.js$/);
+const requireImports = require.context(
+  'docs/src/pages/system/screen-readers',
+  false,
+  /Imports\.js$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/system/screen-readers',
   false,

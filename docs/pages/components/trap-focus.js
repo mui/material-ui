@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/trap-focus';
-const requireImports = require.context('docs/src/pages/components/trap-focus', false, /Imports\.js$/);
+const requireImports = require.context(
+  'docs/src/pages/components/trap-focus',
+  false,
+  /Imports\.js$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/components/trap-focus',
   false,

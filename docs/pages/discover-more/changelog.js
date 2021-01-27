@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'discover-more/changelog';
-const requireImports = require.context('docs/src/pages/discover-more/changelog', false, /Imports\.js$/);
+const requireImports = require.context(
+  'docs/src/pages/discover-more/changelog',
+  false,
+  /Imports\.js$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/discover-more/changelog',
   false,
