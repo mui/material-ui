@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import {
-  getClasses,
-  describeConformance,
+  describeConformanceV5,
   createClientRender,
   createMount,
   createServerRender,
@@ -12,22 +11,22 @@ import {
 import Fab from './Fab';
 import ButtonBase, { touchRippleClasses } from '../ButtonBase';
 import Icon from '../Icon';
+import classes from './fabClasses';
 
 describe('<Fab />', () => {
   const mount = createMount();
   const render = createClientRender({ strict: false });
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Fab>Fab</Fab>);
-  });
-
-  describeConformance(<Fab>Conformance?</Fab>, () => ({
+  describeConformanceV5(<Fab>Conformance?</Fab>, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
+    muiName: 'MuiFab',
+    testVariantProps: { variant: 'extended' },
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
+    skip: ['componentsProp'],
   }));
 
   it('should render with the root class but no others', () => {

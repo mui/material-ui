@@ -165,6 +165,7 @@ export const componentSettings = {
       'disableFocusRipple',
       // FIXME: `Union`
       'variant',
+      'sx',
     ],
     propValues: {
       icon: "'add'",
