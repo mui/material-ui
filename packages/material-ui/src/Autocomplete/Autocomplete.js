@@ -70,7 +70,7 @@ export const styles = (theme) => ({
         padding: '6px 0',
       },
     },
-    '&.MuiInput-root.MuiInput-sizeSmall': {
+    '&.MuiInput-root.MuiInputBase-sizeSmall': {
       '& .MuiInput-input': {
         padding: '2px 4px 3px',
       },
