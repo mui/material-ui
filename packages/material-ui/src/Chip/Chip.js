@@ -478,11 +478,10 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       deleteIconProp && React.isValidElement(deleteIconProp) ? (
         <ChipDeleteIcon
           className={clsx(classes.deleteIcon, customClasses)}
+          as={deleteIconProp}
           onClick={handleDeleteIconClick}
           styleProps={styleProps}
-        >
-          {deleteIconProp}
-        </ChipDeleteIcon>
+        />
       ) : (
         <CancelIcon
           className={clsx(classes.deleteIcon, customClasses)}
@@ -503,11 +502,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   let icon = null;
   if (iconProp && React.isValidElement(iconProp)) {
-    icon = (
-      <ChipIcon className={classes.icon} styleProps={styleProps}>
-        {iconProp}
-      </ChipIcon>
-    );
+    icon = <ChipIcon as={iconProp} className={classes.icon} styleProps={styleProps} />;
   }
 
   if (process.env.NODE_ENV !== 'production') {
