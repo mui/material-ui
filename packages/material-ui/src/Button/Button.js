@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -411,15 +411,7 @@ Button.propTypes = {
    * If `true`, no elevation is used.
    * @default false
    */
-  disableElevation: chainPropTypes(PropTypes.bool, (props) => {
-    if (props.disableElevation && props.variant === 'outlined') {
-      return new Error(
-        'Material-UI: Combining `disableElevation` with `variant="outlined"` will have no effect.',
-      );
-    }
-
-    return null;
-  }),
+  disableElevation: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple is disabled.
    * @default false
