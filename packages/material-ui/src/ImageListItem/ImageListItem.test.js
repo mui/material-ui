@@ -1,24 +1,23 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import * as React from 'react';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import ImageList from '../ImageList';
 import ImageListItem from './ImageListItem';
+import classes from './imageListItemClasses';
 
 describe('<ImageListItem />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<ImageListItem />);
-  });
-
-  describeConformance(<ImageListItem />, () => ({
+  describeConformanceV5(<ImageListItem />, () => ({
     classes,
     inheritComponent: 'li',
     mount,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'div',
+    muiName: 'MuiImageListItem',
+    testVariantProps: { variant: 'masonry' },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   const itemData = {
