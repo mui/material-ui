@@ -2243,6 +2243,15 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
+"@material-ui/data-grid@^4.0.0-alpha.18":
+  version "4.0.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.18.tgz#d078a518dd5671f0d1d3fe2de8449b94b8547e9f"
+  integrity sha512-t4wikroS2s3Aj+zM/mDfG5+8gfF2okUffKRppIqZQVIn+n3K4pAexWC10wqc8ohNFzBEgGzwQjTXEt+Hy2PX0A==
+  dependencies:
+    "@material-ui/utils" "^5.0.0-alpha.14"
+    prop-types "^15.7.2"
+    reselect "^4.0.0"
+
 "@material-ui/types@^4.0.0", "@material-ui/types@^4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@material-ui/types/-/types-4.1.1.tgz#b65e002d926089970a3271213a3ad7a21b17f02b"

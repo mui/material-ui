@@ -39,6 +39,7 @@
     "@material-ui/system": "5.0.0-alpha.24",
     "@material-ui/types": "5.1.6",
     "@material-ui/unstyled": "5.0.0-alpha.24",
+    "@material-ui/data-grid": "^4.0.0-alpha.18",
     "@trendmicro/react-interpolate": "^0.5.5",
     "@types/autosuggest-highlight": "^3.1.0",
     "@types/css-mediaquery": "^0.1.0",
