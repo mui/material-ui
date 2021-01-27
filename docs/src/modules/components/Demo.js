@@ -7,10 +7,10 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
-import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
-import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
+import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import DemoEditor from './DemoEditor';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
@@ -281,7 +281,7 @@ export default function Demo(props) {
 }
 
 Demo.propTypes = {
-  demo: PropTypes.object.isRequired,
+  demo: PropTypes.string.isRequired,
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,

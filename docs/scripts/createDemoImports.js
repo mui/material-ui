@@ -7,7 +7,7 @@
  * List of demos to ignore when transpiling
  * Example: ['app-bar/BottomAppBar.tsx']
  */
-const ignoreList = ['components/.eslintrc.js', 'material-icons/synonyms.js'];
+const ignoreList = [];
 
 const fse = require('fs-extra');
 const path = require('path');
@@ -29,7 +29,7 @@ async function getFiles(root) {
         files.push(...(await getFiles(filePath)));
       } else if (
         stat.isFile() &&
-        /docs\/src\/pages\/components\/.*\.js?$/.test(filePath) &&
+        /docs\/src\/pages\/.*\/[A-Z].*\.js$/.test(filePath) &&
         !filePath.endsWith('.tsx') &&
         !filePath.endsWith('Imports.js') &&
         !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
