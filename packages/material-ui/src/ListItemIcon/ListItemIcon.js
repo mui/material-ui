@@ -17,7 +17,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { alignItemsFlexStart, classes } = styleProps;
+  const { alignItems, classes } = styleProps;
 
   const slots = {
     root: ['root', alignItemsFlexStart === 'flex-start'],
