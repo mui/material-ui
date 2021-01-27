@@ -16,18 +16,17 @@ import chipClasses, { getChipUtilityClass } from './chipClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  const { color, clickable, onDelete, size } = styleProps;
+  const { color, clickable, onDelete, size, variant } = styleProps;
 
   return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...(styleProps.disabled && styles.disabled),
+    ...styles[variant],
     ...styles[`size${capitalize(size)}`],
     ...styles[`color${capitalize(color)}`],
     ...(clickable && styles.clickable),
     ...(clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`]),
     ...(onDelete && styles.deletable),
     ...(onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`]),
-    ...styles[`outlined${capitalize(styleProps.variant)}`],
+    ...(variant === 'outlined' && styles[`outlined${capitalize(variant)}`]),
     [`& .${chipClasses.label}`]: {
       ...styles.label,
       ...styles[`label${capitalize(size)}`],
