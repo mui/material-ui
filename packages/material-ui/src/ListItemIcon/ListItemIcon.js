@@ -41,7 +41,7 @@ const ListItemIconRoot = experimentalStyled(
   flexShrink: 0,
   display: 'inline-flex',
   /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
-  ...(styleProps.alignItemsFlexStart && {
+  ...(styleProps.alignItems === 'flex-start' && {
     marginTop: 8,
   }),
 }));
