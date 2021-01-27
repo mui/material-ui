@@ -170,34 +170,24 @@ describe('<ListItemText />', () => {
     expect(texts[1]).have.text('This is the secondary text');
   });
 
-  it('should pass primaryTypographyProps to primary Typography component', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it('should pass primaryTypographyProps to primary Typography component', () => {
     const { container } = render(
       <ListItemText
         primary="This is the primary text"
-        primaryTypographyProps={{ color: 'inherit' }}
+        primaryTypographyProps={{ 'data-test': 'foo' }}
       />,
     );
-    // inherit color
-    expect(container.querySelector('span')).toHaveComputedStyle({ color: 'rgb(0, 0, 0)' });
+    expect(container.querySelector('span')).to.have.attribute('data-test');
   });
 
-  it('should pass secondaryTypographyProps to secondary Typography component', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it('should pass secondaryTypographyProps to secondary Typography component', () => {
     const { container } = render(
       <ListItemText
         primary="This is the primary text"
         secondary="This is the secondary text"
-        secondaryTypographyProps={{ color: 'inherit' }}
+        secondaryTypographyProps={{ 'data-test': 'foo' }}
       />,
     );
-    // inherit color
-    expect(container.querySelector('p')).toHaveComputedStyle({ color: 'rgb(0, 0, 0)' });
+    expect(container.querySelector('p')).to.have.attribute('data-test');
   });
 });
