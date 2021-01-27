@@ -83,7 +83,7 @@ export const styles: MuiStyles<PickersModalDialogClassKey> = {
   },
 };
 
-const PickersModalDialog: React.FC<PickersModalDialoggProps & WithStyles<typeof styles>> = (
+const PickersModalDialog: React.FC<PickersModalDialogProps & WithStyles<typeof styles>> = (
   props,
 ) => {
   const {
