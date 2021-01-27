@@ -57,7 +57,7 @@ const ListItemIcon = React.forwardRef(function ListItemIcon(inProps, ref) {
 
   const { className, ...other } = props;
   const context = React.useContext(ListContext);
-  const styleProps = { ...props, alignItemsFlexStart: context.alignItems };
+  const styleProps = { ...props, alignItems: context.alignItems };
   const classes = useUtilityClasses(styleProps);
 
   return (
