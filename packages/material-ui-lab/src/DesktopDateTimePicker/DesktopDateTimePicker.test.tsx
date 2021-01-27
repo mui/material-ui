@@ -20,7 +20,7 @@ describe('<DesktopDateTimePicker />', () => {
     clock.restore();
   });
 
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('opens dialog on calendar button click for Mobile mode', () => {
     render(

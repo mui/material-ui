@@ -22,7 +22,7 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 );
 
 describe('<DesktopDateRangePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   before(function beforeHook() {
     if (!/jsdom/.test(window.navigator.userAgent)) {
@@ -99,6 +99,7 @@ describe('<DesktopDateRangePicker />', () => {
         onChange={onChangeMock}
         value={[adapterToUse.date('2019-01-01T00:00:00.000'), null]}
       />,
+      { strict: false }, // findDOMNode issue
     );
 
     fireEvent.click(screen.getByLabelText('Jan 1, 2019'));

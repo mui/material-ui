@@ -40,7 +40,7 @@ const UncontrolledOpenDesktopDatePicker = (({
 }) as typeof DesktopDatePicker;
 
 describe('<DesktopDatePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('opens when "Choose date" is clicked', () => {
     const handleOpen = spy();
@@ -109,6 +109,7 @@ describe('<DesktopDatePicker />', () => {
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}
       />,
+      { strict: false },
     );
 
     fireEvent.click(screen.getByLabelText('Jan 2, 2018'));

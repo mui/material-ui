@@ -12,7 +12,7 @@ import {
 } from '../internal/pickers/test-utils';
 
 describe('<StaticDatePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('render proper month', () => {
     render(
@@ -36,6 +36,7 @@ describe('<StaticDatePicker />', () => {
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}
       />,
+      { strict: false },
     );
 
     expect(getByMuiTest('calendar-month-text')).to.have.text('January');
@@ -83,6 +84,7 @@ describe('<StaticDatePicker />', () => {
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
         shouldDisableYear={(year) => adapterToUse.getYear(year) === 2030}
       />,
+      { strict: false }, // findDOMNode issue
     );
 
     const getYearButton = (year: number) =>

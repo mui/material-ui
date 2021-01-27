@@ -9,7 +9,7 @@ import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils
 
 describe('<YearPicker />', () => {
   const mount = createMount();
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
   let classes: Record<string, string>;
 
   const localizedMount = (node: React.ReactNode) => {

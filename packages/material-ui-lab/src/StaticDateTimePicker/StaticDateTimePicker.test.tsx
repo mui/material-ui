@@ -17,7 +17,7 @@ describe('<StaticDateTimePicker />', () => {
     clock.restore();
   });
 
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('allows to select the same day and move to the next view', () => {
     const onChangeMock = spy();

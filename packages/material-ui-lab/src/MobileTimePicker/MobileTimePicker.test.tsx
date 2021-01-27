@@ -28,7 +28,7 @@ function createMouseEventWithOffsets(
 }
 
 describe('<MobileTimePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
   const mount = createPickerMount();
 
   describeConformance(

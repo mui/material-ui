@@ -8,7 +8,7 @@ import { adapterToUse, createPickerRender, getAllByMuiTest } from '../internal/p
 
 describe('<DayPicker />', () => {
   const mount = createMount();
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
   let classes: Record<string, string>;
 
   const localizedMount = (node: React.ReactNode) => {
@@ -55,7 +55,9 @@ describe('<DayPicker />', () => {
   });
 
   it('switches between views uncontrolled', () => {
-    render(<DayPicker date={adapterToUse.date('2019-01-01T00:00:00.000')} onChange={() => {}} />);
+    render(<DayPicker date={adapterToUse.date('2019-01-01T00:00:00.000')} onChange={() => {}} />, {
+      strict: false, // findDOMNode issue
+    });
 
     fireEvent.click(screen.getByLabelText(/switch to year view/i));
 

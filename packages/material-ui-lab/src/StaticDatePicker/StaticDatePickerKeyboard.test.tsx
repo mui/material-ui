@@ -6,7 +6,7 @@ import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<StaticDatePicker /> keyboard interactions', () => {
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   describe('Calendar keyboard navigation', () => {
     it('autofocus selected day on mount', () => {

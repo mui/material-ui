@@ -16,7 +16,7 @@ import {
 } from '../internal/pickers/test-utils';
 
 describe('<MobileDatePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('Accepts date on `OK` button click', () => {
     const onChangeMock = spy();
@@ -52,6 +52,7 @@ describe('<MobileDatePicker />', () => {
         renderInput={(params) => <TextField {...params} />}
         maxDate={adapterToUse.date('2018-01-01T00:00:00.000')}
       />,
+      { strict: false }, // findDOMNode issue
     );
 
     expect(getByMuiTest('calendar-year-text')).to.have.text('2018');
@@ -71,6 +72,7 @@ describe('<MobileDatePicker />', () => {
         onChange={onChangeMock}
         renderInput={(params) => <TextField {...params} />}
       />,
+      { strict: false },
     );
 
     fireEvent.click(screen.getByLabelText(/switch to year view/i));
@@ -208,6 +210,7 @@ describe('<MobileDatePicker />', () => {
         onMonthChange={onMonthChangeMock}
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
       />,
+      { strict: false },
     );
 
     fireEvent.click(screen.getByLabelText('Next month'));

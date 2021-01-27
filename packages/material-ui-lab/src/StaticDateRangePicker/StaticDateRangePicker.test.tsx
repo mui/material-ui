@@ -13,7 +13,7 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 );
 
 describe('<StaticDateRangePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('allows disabling dates', () => {
     render(

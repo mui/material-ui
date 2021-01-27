@@ -6,9 +6,7 @@ import ThemeProvider from '../styles/ThemeProvider';
 import createMuiTheme from '../styles/createMuiTheme';
 
 describe('<CssBaseline />', () => {
-  // StrictModeViolation: makeStyles will retain the styles in the head in strict mode
-  // which becomes an issue for global styles
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   it('renders its children', () => {
     const { container } = render(

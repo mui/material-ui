@@ -48,14 +48,15 @@ export function createPickerMount(options: { strict?: boolean } = {}) {
 export function createPickerRender({
   locale,
   ...renderOptions
-}: PickerRenderOptions & import('test/utils').RenderOptions) {
+}: PickerRenderOptions & import('test/utils').RenderOptions = {}) {
   const clientRender = createClientRender(renderOptions);
 
-  return (node: React.ReactNode) =>
+  return (node: React.ReactNode, options?: import('test/utils').RenderOptions) =>
     clientRender(
       <LocalizationProvider locale={locale} dateAdapter={AdapterClassToUse}>
         {node}
       </LocalizationProvider>,
+      options,
     );
 }
 
