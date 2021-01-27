@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
 
 export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'> {
   props: P & {
@@ -55,6 +57,10 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
      * If `true`, the helper text should use required classes key.
      */
     required?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The variant to use.
      */

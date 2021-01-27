@@ -1,24 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import FormHelperText from './FormHelperText';
 import FormControl from '../FormControl';
+import classes from './formHelperTextClasses';
 
 describe('<FormHelperText />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<FormHelperText />);
-  });
-
-  describeConformance(<FormHelperText />, () => ({
+  describeConformanceV5(<FormHelperText />, () => ({
     classes,
     inheritComponent: 'p',
     mount,
     refInstanceof: window.HTMLParagraphElement,
     testComponentPropWith: 'div',
+    muiName: 'MuiFormHelperText',
+    testVariantProps: { size: 'small' },
+    skip: ['componentsProp'],
   }));
 
   describe('prop: error', () => {
