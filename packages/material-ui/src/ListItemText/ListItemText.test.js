@@ -64,21 +64,16 @@ describe('<ListItemText />', () => {
   });
 
   describe('prop: secondary', () => {
-    it('should render secondary text', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
+    it('should render secondary text', () => {
       const ref = React.createRef();
       const text = () => ref.current.textContent;
       const { container } = render(
         <ListItemText secondary="This is the secondary text" ref={ref} />,
       );
       expect(container.querySelectorAll('p.MuiTypography-root')).to.have.length(1);
-      // text secondary color
-      expect(container.querySelector('p.MuiTypography-root')).toHaveComputedStyle({
-        color: 'rgba(0, 0, 0, 0.54)',
-      });
+      expect(container.querySelector('p.MuiTypography-root')).to.have.class(
+        typographyClasses.body2,
+      );
       expect(text()).to.equal('This is the secondary text');
     });
 
@@ -96,11 +91,7 @@ describe('<ListItemText />', () => {
   });
 
   describe('prop: disableTypography', () => {
-    it('should wrap children in `<Typography/>` by default', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
+    it('should wrap children in `<Typography/>` by default', () => {
       const { container } = render(
         <ListItemText primary="This is the primary text" secondary="This is the secondary text" />,
       );
@@ -113,10 +104,7 @@ describe('<ListItemText />', () => {
       expect(primaryText).to.have.text('This is the primary text');
 
       const secondaryText = texts[1];
-      // text secondary color
-      expect(secondaryText).toHaveComputedStyle({
-        color: 'rgba(0, 0, 0, 0.54)',
-      });
+      expect(secondaryText).to.have.class(typographyClasses.body2);
       expect(secondaryText).to.have.text('This is the secondary text');
     });
 
