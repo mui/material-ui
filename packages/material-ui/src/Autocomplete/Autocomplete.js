@@ -61,7 +61,7 @@ export const styles = (theme) => ({
       width: 0,
       minWidth: 30,
     },
-    '.MuiInput-root': {
+    '&.MuiInput-root': {
       paddingBottom: 1,
       '& .MuiInput-input': {
         padding: 4,
