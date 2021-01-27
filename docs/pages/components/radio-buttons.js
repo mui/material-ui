@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/radio-buttons';
-const requireDemo = require.context(
+const requireImports = require.context(
   'docs/src/pages/components/radio-buttons',
   false,
   /\.(js|tsx)$/,
@@ -15,7 +15,7 @@ const requireRaw = require.context(
 );
 
 export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return <MarkdownDocs demos={demos} docs={docs} requireImports={requireImports} />;
 }
 
 Page.getInitialProps = () => {

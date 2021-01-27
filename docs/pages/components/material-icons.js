@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'components/material-icons';
-const requireDemo = require.context(
+const requireImports = require.context(
   'docs/src/pages/components/material-icons',
   false,
   /\.(js|tsx)$/,
@@ -15,7 +15,7 @@ const requireRaw = require.context(
 );
 
 export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} disableToc requireDemo={requireDemo} />;
+  return <MarkdownDocs demos={demos} docs={docs} disableToc requireImports={requireImports} />;
 }
 
 Page.getInitialProps = () => {

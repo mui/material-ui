@@ -3,7 +3,7 @@ import TopLayoutCompany from 'docs/src/modules/components/TopLayoutCompany';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'company/software-engineer';
-const requireDemo = require.context(
+const requireImports = require.context(
   'docs/src/pages/company/software-engineer',
   false,
   /\.(js|tsx)$/,
@@ -15,7 +15,7 @@ const requireRaw = require.context(
 );
 
 export default function Page({ demos, docs }) {
-  return <TopLayoutCompany demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return <TopLayoutCompany demos={demos} docs={docs} requireImports={requireImports} />;
 }
 
 Page.getInitialProps = () => {

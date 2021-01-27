@@ -12,7 +12,7 @@ const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
 };
 function MarkdownDocs(props) {
-  const { disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
+  const { disableAd = false, disableToc = false, demos = {}, docs, requireImports } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
@@ -71,7 +71,7 @@ function MarkdownDocs(props) {
           <Demo
             key={index}
             demo={{
-              imports: requireDemo(demo.module.replace('.js', 'Imports.js')).default,
+              imports: requireImports(demo.module.replace('.js', 'Imports.js')).default,
               raw: demo.raw,
               rawTS: demo.rawTS,
             }}
@@ -90,7 +90,7 @@ MarkdownDocs.propTypes = {
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
-  requireDemo: PropTypes.func,
+  requireImports: PropTypes.func,
 };
 
 if (process.env.NODE_ENV !== 'production') {

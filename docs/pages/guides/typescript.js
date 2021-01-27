@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'guides/typescript';
-const requireDemo = require.context('docs/src/pages/guides/typescript', false, /\.(js|tsx)$/);
+const requireImports = require.context('docs/src/pages/guides/typescript', false, /Imports\.js$/);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/guides/typescript',
   false,
@@ -11,7 +11,7 @@ const requireRaw = require.context(
 );
 
 export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return <MarkdownDocs demos={demos} docs={docs} requireImports={requireImports} />;
 }
 
 Page.getInitialProps = () => {
