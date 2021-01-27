@@ -23,7 +23,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, textColor, fullWidth, wrapped, icon, label, selected } = styleProps;
+  const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = styleProps;
 
   const slots = {
     root: [
@@ -33,6 +33,7 @@ const useUtilityClasses = (styleProps) => {
       fullWidth && 'fullWidth',
       wrapped && 'wrapped',
       selected && 'selected',
+      disabled && 'disabled',
     ],
     wrapper: ['wrapper'],
   };
