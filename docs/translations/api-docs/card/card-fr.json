@@ -3,7 +3,7 @@
   "propDescriptions": {
     "children": "Le contenu du composant.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "raised": "If <code>true</code>, the card will use raised styling."
+    "raised": "If <code>true</code>, the card will use raised styling. Has no effect when used with <code>variant={'outlined'}</code>."
   },
   "classDescriptions": {
     "root": {
