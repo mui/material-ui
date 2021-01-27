@@ -7,10 +7,7 @@ import {
 } from '../DatePicker/DatePicker';
 import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
 
-/**
- * @ignore - do not document.
- */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
   StaticWrapper,
   {

@@ -7,10 +7,7 @@ import {
 } from '../DatePicker/DatePicker';
 import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
 
-/**
- * @ignore - do not document.
- */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
   MobileWrapper,
   {

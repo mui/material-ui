@@ -7,10 +7,7 @@ import {
 import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
 import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
 
-/**
- * @ignore - do not document.
- */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const DesktopDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
   DesktopWrapper,
   {
