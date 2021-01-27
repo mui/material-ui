@@ -94,7 +94,7 @@ const CircularProgressRoot = experimentalStyled(
       ? theme.palette.primary.main
       : styleProps.color === 'secondary'
       ? theme.palette.secondary.main
-      : undefined}
+      : undefined};
 `;
 
 const CircularProgressSVG = experimentalStyled(
@@ -166,6 +166,9 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     ...props,
     color,
     disableShrink,
+    size,
+    thickness,
+    value,
     variant,
   };
 
