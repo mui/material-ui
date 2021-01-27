@@ -23,12 +23,12 @@ const breadcrumbNameMap = {
 };
 
 function ListItemLink(props) {
-  const { to, open, ...other } = props;
+  const { to, open } = props;
   const primary = breadcrumbNameMap[to];
 
   return (
     <li>
-      <ListItem button component={RouterLink} to={to} {...other}>
+      <ListItem button component={RouterLink} to={to}>
         <ListItemText primary={primary} />
         {open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
       </ListItem>
