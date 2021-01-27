@@ -62,9 +62,9 @@ export const datePickerConfig = {
   },
 };
 
-export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = <TDate>(
+export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
   props: BaseDatePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
-) => JSX.Element;
+) => JSX.Element) & { propTypes?: unknown };
 
 // @typescript-to-proptypes-generate
 const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(ResponsiveWrapper, {
@@ -72,7 +72,7 @@ const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(R
   ...datePickerConfig,
 }) as DatePickerGenericComponent<typeof MobileWrapper>;
 
-(DatePicker as any).propTypes = {
+DatePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |

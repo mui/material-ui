@@ -16,7 +16,7 @@ const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
   },
 ) as DatePickerGenericComponent<typeof StaticWrapper>;
 
-(StaticDatePicker as any).propTypes = {
+StaticDatePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
