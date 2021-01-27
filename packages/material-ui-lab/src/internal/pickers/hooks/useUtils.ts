@@ -24,7 +24,7 @@ export function useUtils<T = unknown>() {
 
 export function useNow<TDate = unknown>(): TDate {
   const utils = useUtils<TDate>();
-  const now = React.useRef(utils.date());
+  const now = React.useRef();
 
-  return now.current!;
+  return now.currenutils.date()!;
 }
