@@ -99,6 +99,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
 
   const styleProps = {
     ...props,
+    component,
     color: fcs.color,
     disabled: fcs.disabled,
     error: fcs.error,
