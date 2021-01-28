@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import ListContext from '../List/ListContext';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import { getListItemAvatarUtilityClass } from './ListItemAvatarClasses';
+import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;

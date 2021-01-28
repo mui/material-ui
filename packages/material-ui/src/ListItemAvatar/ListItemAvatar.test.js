@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createMount, describeConformanceV5 } from 'test/utils';
 import ListItemAvatar from './ListItemAvatar';
-import classes from './ListItemAvatarClasses';
+import classes from './listItemAvatarClasses';
 
 describe('<ListItemAvatar />', () => {
   const mount = createMount();
