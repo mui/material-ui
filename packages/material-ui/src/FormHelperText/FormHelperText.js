@@ -6,6 +6,7 @@ import { deepmerge } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import experimentalStyled from '../styles/experimentalStyled';
+import capitalize from '../utils/capitalize';
 import { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
 import useThemeProps from '../styles/useThemeProps';
 
