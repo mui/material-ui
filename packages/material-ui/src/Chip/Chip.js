@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
-// import { useThemeVariants } from '@material-ui/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import { emphasize, alpha } from '../styles/colorManipulator';
