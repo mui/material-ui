@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import { deepmerge, chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -220,8 +220,11 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const handleRef = useForkRef(listItemRef, ref);
 
+  const Root = components.Root || ListItemRoot;
+  const rootProps = componentsProps.root || {};
+
   const componentProps = {
-    className: clsx(classes.root, className),
+    className: clsx(classes.root, rootProps.className, className),
     disabled,
     ...other,
   };
@@ -237,9 +240,6 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
     Component = ButtonBase;
   }
-
-  const Root = components.Root || ListItemRoot;
-  const rootProps = componentsProps.root || {};
 
   if (hasSecondaryAction) {
     // Use div by default.
@@ -262,7 +262,15 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           ref={handleRef}
           {...ContainerProps}
         >
-          <Root {...rootProps} as={Component} styleProps={styleProps} {...componentProps}>
+          <Root
+            {...rootProps}
+            as={Component}
+            styleProps={styleProps}
+            {...(!isHostComponent(Root) && {
+              styleProps: { ...styleProps, ...rootProps.styleProps },
+            })}
+            {...componentProps}
+          >
             {children}
           </Root>
           {children.pop()}
@@ -278,6 +286,9 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         as={Component}
         ref={handleRef}
         styleProps={styleProps}
+        {...(!isHostComponent(Root) && {
+          styleProps: { ...styleProps, ...rootProps.styleProps },
+        })}
         {...componentProps}
       >
         {children}

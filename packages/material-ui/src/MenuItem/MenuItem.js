@@ -17,9 +17,9 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { selected, disableGutters, classes } = styleProps;
+  const { selected, disableGutters, dense, classes } = styleProps;
   const slots = {
-    root: ['root', selected && 'selected', !disableGutters && 'gutters'],
+    root: ['root', selected && 'selected', !disableGutters && 'gutters', dense && 'dense'],
   };
 
   return composeClasses(slots, getMenuItemUtilityClass, classes);
@@ -60,6 +60,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     role = 'menuitem',
     selected,
     tabIndex: tabIndexProp,
+    dense,
     ...other
   } = props;
 
@@ -67,6 +68,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     ...props,
     selected,
     disableGutters,
+    dense,
   };
 
   const classes = useUtilityClasses(styleProps);

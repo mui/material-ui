@@ -2,6 +2,7 @@ export interface MenuItemClasses {
   root: string;
   gutters: string;
   selected: string;
+  dense: string;
 }
 
 declare const menuItemClasses: MenuItemClasses;
