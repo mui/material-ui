@@ -1,27 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
 import FormControl from '../FormControl';
 import Input from '../Input';
 import InputLabel from './InputLabel';
 import FormLabel from '../FormLabel';
+import classes from './inputLabelClasses';
 
 describe('<InputLabel />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<InputLabel />);
-  });
-
-  describeConformance(<InputLabel>Foo</InputLabel>, () => ({
+  describeConformanceV5(<InputLabel>Foo</InputLabel>, () => ({
     classes,
     inheritComponent: FormLabel,
     mount,
     refInstanceof: window.HTMLLabelElement,
-    skip: ['componentProp'],
+    muiName: 'MuiInputLabel',
+    testVariantProps: { size: 'small' },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render a label with text', () => {

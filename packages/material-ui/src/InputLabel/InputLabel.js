@@ -1,54 +1,75 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import withStyles from '../styles/withStyles';
-import FormLabel from '../FormLabel';
+import FormLabel, {
+  FormLabelRoot,
+  overridesResolver as formLabelOverridesResolver,
+} from '../FormLabel/FormLabel';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    display: 'block',
-    transformOrigin: 'top left',
-  },
-  /* Pseudo-class applied to the root element if `focused={true}`. */
-  focused: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if `error={true}`. */
-  error: {},
-  /* Pseudo-class applied to the root element if `required={true}`. */
-  required: {},
-  /* Pseudo-class applied to the asterisk element. */
-  asterisk: {},
-  /* Styles applied to the root element if the component is a descendant of `FormControl`. */
-  formControl: {
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+  return deepmerge(formLabelOverridesResolver(props, styles), {
+    ...(!styleProps.formControl && styles.formControl),
+    ...(styleProps.size === 'small' && styles.sizeSmall),
+    ...(styleProps.shrink && styles.shrink),
+    ...(!styleProps.disableAnimation && styles.animated),
+    ...(styleProps.filled && styles.filled),
+    ...(styleProps.outlined && styles.outlined),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, formControl, size, shrink, disableAnimation, filled, outlined } = styleProps;
+  const slots = {
+    root: [
+      'root',
+      formControl && 'formControl',
+      size === 'small' && 'sizeSmall',
+      shrink && 'shrink',
+      !disableAnimation && 'animated',
+      filled && 'filled',
+      outlined && 'outlined',
+    ],
+  };
+
+  return composeClasses(slots, getInputLabelUtilityClasses, classes);
+};
+
+const InputLabelRoot = experimentalStyled(
+  FormLabelRoot,
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  { name: 'MuiInputLabel', slot: 'Root', overridesResolver },
+)(({ theme, styleProps }) => ({
+  display: 'block',
+  transformOrigin: 'top left',
+  ...(styleProps.formControl && {
     position: 'absolute',
     left: 0,
     top: 0,
     // slight alteration to spec spacing to match visual spec result
     transform: 'translate(0, 24px) scale(1)',
-  },
-  /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
+  }),
+  ...(styleProps.size === 'small' && {
     // Compensation for the `Input.inputSizeSmall` style.
     transform: 'translate(0, 21px) scale(1)',
-  },
-  /* Styles applied to the input element if `shrink={true}`. */
-  shrink: {
+  }),
+  ...(styleProps.shrink && {
     transform: 'translate(0, 1.5px) scale(0.75)',
     transformOrigin: 'top left',
-  },
-  /* Styles applied to the input element unless `disableAnimation={true}`. */
-  animated: {
+  }),
+  ...(!styleProps.disableAnimation && {
     transition: theme.transitions.create(['color', 'transform'], {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.easeOut,
     }),
-  },
-  /* Styles applied to the root element if `variant="filled"`. */
-  filled: {
+  }),
+  ...(styleProps.filled && {
     // Chrome's autofill feature gives the input field a yellow background.
     // Since the input field is behind the label in the HTML tree,
     // the input field is drawn last and hides the label with an opaque background color.
@@ -56,34 +77,33 @@ export const styles = (theme) => ({
     zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(12px, 20px) scale(1)',
-    '&$sizeSmall': {
+    ...(styleProps.size === 'small' && {
       transform: 'translate(12px, 17px) scale(1)',
-    },
-    '&$shrink': {
+    }),
+    ...(styleProps.shrink && {
       transform: 'translate(12px, 10px) scale(0.75)',
-      '&$sizeSmall': {
+      ...(styleProps.size === 'small' && {
         transform: 'translate(12px, 7px) scale(0.75)',
-      },
-    },
-  },
-  /* Styles applied to the root element if `variant="outlined"`. */
-  outlined: {
+      }),
+    }),
+  }),
+  ...(styleProps.outlined && {
     // see comment above on filled.zIndex
     zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(14px, 20px) scale(1)',
-    '&$sizeSmall': {
+    ...(styleProps.size === 'small' && {
       transform: 'translate(14px, 12px) scale(1)',
-    },
-    '&$shrink': {
+    }),
+    ...(styleProps.shrink && {
       transform: 'translate(14px, -6px) scale(0.75)',
-    },
-  },
-});
+    }),
+  }),
+}));
 
-const InputLabel = React.forwardRef(function InputLabel(props, ref) {
+const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
+  const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
   const {
-    classes,
     className,
     disableAnimation = false,
     margin,
@@ -105,30 +125,25 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
     states: ['size', 'variant'],
   });
 
+  const styleProps = {
+    ...props,
+    formControl: muiFormControl,
+    disableAnimation,
+    shrink,
+    size: fcs.size,
+    filled: fcs.variant === 'filled',
+    outlined: fcs.variant === 'outlined',
+  };
+
+  const classes = useUtilityClasses(styleProps);
   return (
     <FormLabel
+      component={InputLabelRoot}
+      componentProps={{ styleProps }}
       data-shrink={shrink}
-      className={clsx(
-        classes.root,
-        {
-          [classes.formControl]: muiFormControl,
-          [classes.animated]: !disableAnimation,
-          [classes.shrink]: shrink,
-          [classes.sizeSmall]: fcs.size === 'small',
-          [classes.filled]: fcs.variant === 'filled',
-          [classes.outlined]: fcs.variant === 'outlined',
-        },
-        className,
-      )}
-      classes={{
-        focused: classes.focused,
-        disabled: classes.disabled,
-        error: classes.error,
-        required: classes.required,
-        asterisk: classes.asterisk,
-      }}
       ref={ref}
       {...other}
+      classes={classes}
     />
   );
 });
@@ -185,9 +200,13 @@ InputLabel.propTypes = {
    */
   shrink: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The variant to use.
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
-export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);
+export default InputLabel;

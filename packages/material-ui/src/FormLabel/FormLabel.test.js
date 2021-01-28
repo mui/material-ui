@@ -1,25 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
 import FormLabel from './FormLabel';
 import FormControl, { useFormControl } from '../FormControl';
+import classes from './formLabelClasses';
 
 describe('<FormLabel />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<FormLabel />);
-  });
-
-  describeConformance(<FormLabel />, () => ({
+  describeConformanceV5(<FormLabel />, () => ({
     classes,
     inheritComponent: 'label',
     mount,
     refInstanceof: window.HTMLLabelElement,
     testComponentPropWith: 'div',
+    muiName: 'MuiFormLabel',
+    testVariantProps: { color: 'secondary' },
+    skip: ['componentsProp'],
   }));
 
   describe('prop: required', () => {
