@@ -8,9 +8,12 @@ import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
 import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
 
 /**
- * @ignore - do not document.
+ *
+ * API:
+ *
+ * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)
  */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const DesktopDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
   DesktopWrapper,
   {
@@ -19,7 +22,7 @@ const DesktopDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkn
   },
 ) as DatePickerGenericComponent<typeof DesktopWrapper>;
 
-(DesktopDatePicker as any).propTypes = {
+DesktopDatePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |

@@ -76,7 +76,7 @@ export const timePickerConfig = {
 
 export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
   props: BaseTimePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
-) => JSX.Element) & { propTypes?: unknown };
+) => JSX.Element) & { propTypes?: any };
 
 /**
  *
