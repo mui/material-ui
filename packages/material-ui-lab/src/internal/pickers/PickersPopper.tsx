@@ -65,6 +65,7 @@ function clickedRootScrollbar(event: MouseEvent, doc: Document) {
  * @param onTouchStart
  */
 function useClickAwayListener(
+  active: boolean,
   onClickAway: (event: MouseEvent | TouchEvent) => void,
 ): [React.Ref<Element>, React.MouseEventHandler, React.TouchEventHandler] {
   const movedRef = React.useRef(false);
@@ -125,30 +126,40 @@ function useClickAwayListener(
   };
 
   React.useEffect(() => {
-    const doc = ownerDocument(nodeRef.current);
+    if (active) {
+      const doc = ownerDocument(nodeRef.current);
 
-    const handleTouchMove = () => {
-      movedRef.current = true;
-    };
+      const handleTouchMove = () => {
+        movedRef.current = true;
+      };
 
-    doc.addEventListener('touchstart', handleClickAway);
-    doc.addEventListener('touchmove', handleTouchMove);
+      doc.addEventListener('touchstart', handleClickAway);
+      doc.addEventListener('touchmove', handleTouchMove);
 
-    return () => {
-      doc.removeEventListener('touchstart', handleClickAway);
-      doc.removeEventListener('touchmove', handleTouchMove);
-    };
-  }, [handleClickAway]);
+      return () => {
+        doc.removeEventListener('touchstart', handleClickAway);
+        doc.removeEventListener('touchmove', handleTouchMove);
+      };
+    }
+    return undefined;
+  }, [active, handleClickAway]);
 
   React.useEffect(() => {
-    const doc = ownerDocument(nodeRef.current);
+    // TODO This behavior is not tested automatically
+    // It's unclear whether this is due to different update semantics in test (batched in act() vs discrete on click).
+    // Or if this is a timing related issues due to different Transition components
+    // Once we get rid of all the manual scheduling (e.g. setTimeout(update, 0)) we can revisit this code+test.
+    if (active) {
+      const doc = ownerDocument(nodeRef.current);
 
-    doc.addEventListener('click', handleClickAway);
+      doc.addEventListener('click', handleClickAway);
 
-    return () => {
-      doc.removeEventListener('click', handleClickAway);
-    };
-  }, [handleClickAway]);
+      return () => {
+        doc.removeEventListener('click', handleClickAway);
+      };
+    }
+    return undefined;
+  }, [active, handleClickAway]);
 
   return [nodeRef, handleSynthetic, handleSynthetic];
 }
@@ -188,7 +199,7 @@ const PickersPopper: React.FC<PickerPopperProps & WithStyles<typeof styles>> = (
     }
   }, [open, role]);
 
-  const [clickAwayRef, onPaperClick, onPaperTouchStart] = useClickAwayListener(onClose);
+  const [clickAwayRef, onPaperClick, onPaperTouchStart] = useClickAwayListener(open, onClose);
   const paperRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(paperRef, containerRef);
 
