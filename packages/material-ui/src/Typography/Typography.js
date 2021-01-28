@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
@@ -8,26 +9,12 @@ import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
 
-const getTextColor = (color, palette) => {
-  if (color.indexOf('text') === 0) {
-    return palette.text[color.split('text').pop().toLowerCase()];
-  }
-
-  if (color === 'inherit' || color === 'initial') {
-    return color;
-  }
-
-  return palette[color].main;
-};
-
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
     ...(styleProps.variant && styles[styleProps.variant]),
-    ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
     ...(styleProps.align && styles[`align${capitalize(styleProps.align)}`]),
-    ...(styleProps.display && styles[`display${capitalize(styleProps.display)}`]),
     ...(styleProps.noWrap && styles.noWrap),
     ...(styleProps.gutterBottom && styles.gutterBottom),
     ...(styleProps.paragraph && styles.paragraph),
@@ -55,13 +42,6 @@ export const TypographyRoot = experimentalStyled(
   ...(styleProps.paragraph && {
     marginBottom: 16,
   }),
-  ...(styleProps.color &&
-    styleProps.color !== 'initial' && {
-      color: getTextColor(styleProps.color, theme.palette),
-    }),
-  ...(styleProps.display !== 'initial' && {
-    display: styleProps.display,
-  }),
 }));
 
 const defaultVariantMapping = {
@@ -79,15 +59,13 @@ const defaultVariantMapping = {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { align, color, display, gutterBottom, noWrap, paragraph, variant, classes } = styleProps;
+  const { align, gutterBottom, noWrap, paragraph, variant, classes } = styleProps;
 
   const slots = {
     root: [
       'root',
       variant,
-      `color${capitalize(color)}`,
       `align${capitalize(align)}`,
-      `display${capitalize(display)}`,
       gutterBottom && 'gutterBottom',
       noWrap && 'noWrap',
       paragraph && 'paragraph',
@@ -97,14 +75,28 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTypographyUtilityClass, classes);
 };
 
+// TODO v6: deprecate these color values in v5.x and remove the transformation in v6
+const colorTransformations = {
+  primary: 'primary.main',
+  textPrimary: 'text.primary',
+  secondary: 'secondary.main',
+  textSecondary: 'text.secondary',
+  error: 'error.main',
+};
+
+const transformDeprecatedColors = (color) => {
+  return colorTransformations[color] || color;
+};
+
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTypography' });
+  const themeProps = useThemeProps({ props: inProps, name: 'MuiTypography' });
+  themeProps.color = transformDeprecatedColors(themeProps.color);
+  const props = extendSxProp(themeProps);
+
   const {
     align = 'inherit',
     className,
-    color = 'initial',
     component,
-    display = 'initial',
     gutterBottom = false,
     noWrap = false,
     paragraph = false,
@@ -117,9 +109,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...props,
     align,
     className,
-    color,
     component,
-    display,
     gutterBottom,
     noWrap,
     paragraph,
@@ -168,28 +158,10 @@ Typography.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'initial'
-   */
-  color: PropTypes.oneOf([
-    'error',
-    'inherit',
-    'initial',
-    'primary',
-    'secondary',
-    'textPrimary',
-    'textSecondary',
-  ]),
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * Controls the display type
-   * @default 'initial'
-   */
-  display: PropTypes.oneOf(['block', 'initial', 'inline']),
   /**
    * If `true`, the text will have a bottom margin.
    * @default false

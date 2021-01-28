@@ -132,11 +132,7 @@ describe('<Box />', () => {
     });
   });
 
-  it('combines system properties with the sx prop', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it('combines system properties with the sx prop', () => {
     const { container } = render(<Box mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
 
     expect(container.firstChild).toHaveComputedStyle({

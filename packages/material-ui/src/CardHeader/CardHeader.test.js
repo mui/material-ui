@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import CardHeader from './CardHeader';
-import { typographyClasses } from '../Typography';
-import classes from './cardHeaderClasses';
+import { typographyClasses } from '@material-ui/core/Typography';
+import CardHeader, { cardHeaderClasses as classes } from '@material-ui/core/CardHeader';
 
 describe('<CardHeader />', () => {
   const mount = createMount();
@@ -31,14 +30,13 @@ describe('<CardHeader />', () => {
       expect(title).to.have.class(typographyClasses.h5);
     });
 
-    it('should render the subheader as body1 secondary text', () => {
+    it('should render the subheader as body1', () => {
       const cardHeader = render(<CardHeader title="Title" subheader="Subheader" />).container
         .firstChild;
       const wrapper = cardHeader.firstChild;
       const subheader = wrapper.childNodes[1];
       expect(subheader).to.have.class(typographyClasses.root);
       expect(subheader).to.have.class(typographyClasses.body1);
-      expect(subheader).to.have.class(typographyClasses.colorTextSecondary);
     });
 
     it('should not render the subheader if none is given', () => {
@@ -81,7 +79,6 @@ describe('<CardHeader />', () => {
       const subHeader = titleWrapper.childNodes[1];
       expect(subHeader).to.have.class(typographyClasses.root);
       expect(subHeader).to.have.class(typographyClasses.body2);
-      expect(subHeader).to.have.class(typographyClasses.colorTextSecondary);
     });
   });
 });

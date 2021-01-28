@@ -180,15 +180,7 @@ Link.propTypes = {
    * The color of the link.
    * @default 'primary'
    */
-  color: PropTypes.oneOf([
-    'error',
-    'inherit',
-    'initial',
-    'primary',
-    'secondary',
-    'textPrimary',
-    'textSecondary',
-  ]),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

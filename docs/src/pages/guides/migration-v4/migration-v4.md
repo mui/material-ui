@@ -1229,6 +1229,28 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<span style={visuallyHidden}>Create a user</span>
   ```
 
+- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example
+
+  ```diff
+  const theme = createMuiTheme({
+    components: {
+      MuiTypography: {
+  -     styleOverrides: {
+  -       colorSecondary: {
+  -         marginTop: '20px',
+  -       },
+  -     },
+  +     variants: {
+  +       props: { color: "secondary" },
+  +       style: {
+  +         marginTop: '20px',
+  +       },
+  +     }],
+      },
+    },
+  });
+  ```
+
 ### System
 
 - Replace `css` prop with `sx` to avoid collision with styled-components & emotion CSS props.
