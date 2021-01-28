@@ -19,7 +19,7 @@ const useUtilityClasses = (styleProps) => {
   const { classes, dividers } = styleProps;
 
   const slots = {
-    root: ['root', !dividers && 'dividers'],
+    root: ['root', dividers && 'dividers'],
   };
 
   return composeClasses(slots, getDialogContentUtilityClass, classes);
@@ -44,7 +44,7 @@ const DialogContentRoot = experimentalStyled(
     paddingTop: 20,
   },
   /* Styles applied to the root element if `dividers={true}`. */
-  ...(!styleProps.dividers && {
+  ...(styleProps.dividers && {
     padding: '16px 24px',
     borderTop: `1px solid ${theme.palette.divider}`,
     borderBottom: `1px solid ${theme.palette.divider}`,
