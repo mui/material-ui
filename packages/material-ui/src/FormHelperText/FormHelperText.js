@@ -25,7 +25,6 @@ const useUtilityClasses = (styleProps) => {
   const slots = {
     root: [
       'root',
-      error && error,
       disabled && 'disabled',
       error && 'error',
       `size${capitalize(styleProps.size)}`
