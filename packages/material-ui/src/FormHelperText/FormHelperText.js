@@ -28,7 +28,7 @@ const useUtilityClasses = (styleProps) => {
       error && error,
       disabled && 'disabled',
       error && 'error',
-      small && 'sizeSmall',
+      `size${capitalize(styleProps.size)}`
       contained && 'contained',
       focused && 'focused',
       filled && 'filled',
