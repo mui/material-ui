@@ -1,8 +1,6 @@
-export interface TableBodyClasses {
-  root: string;
-}
+import { TableBodyClassKey } from './TableBody';
 
-declare const tableBodyClasses: TableBodyClasses;
+declare const tableBodyClasses: Record<TableBodyClassKey, string>;
 
 export function getTableBodyUtilityClass(slot: string): string;
 
