@@ -221,7 +221,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   return (
     <FormControlContext.Provider value={childContext}>
       <FormControlRoot
-        as={Component}
+        as={component}
         styleProps={styleProps}
         className={clsx(classes.root, className)}
         ref={ref}
