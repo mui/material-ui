@@ -6,6 +6,7 @@ export function getFormControlUtilityClasses(slot) {
 
 const formControlClasses = generateUtilityClasses('MuiFormControl', [
   'root',
+  'marginNone',
   'marginNormal',
   'marginDense',
   'fullWidth',
