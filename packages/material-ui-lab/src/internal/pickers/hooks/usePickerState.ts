@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useOpenState } from './useOpenState';
 import { WrapperVariant } from '../wrappers/Wrapper';
 import { BasePickerProps } from '../typings/BasePicker';
-import { useUtils, useNow, MuiPickersAdapter } from './useUtils';
+import { useUtils, MuiPickersAdapter } from './useUtils';
 
 export interface PickerStateValueManager<TInputValue, TDateValue> {
   parseInput: (utils: MuiPickersAdapter, value: TInputValue) => TDateValue;
@@ -44,7 +44,6 @@ export function usePickerState<TInput, TDateValue>(
     throw new Error('inputFormat prop is required');
   }
 
-  const now = useNow<TDateValue>();
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
 
@@ -100,6 +99,7 @@ export function usePickerState<TInput, TDateValue>(
       onAccept: () => acceptDate(draftState.draft, true),
       onDismiss: () => setIsOpen(false),
       onSetToday: () => {
+        const now = utils.date() as TDateValue;
         dispatch({ type: 'update', payload: now });
         acceptDate(now, !disableCloseOnSelect);
       },
@@ -108,7 +108,7 @@ export function usePickerState<TInput, TDateValue>(
       acceptDate,
       disableCloseOnSelect,
       isOpen,
-      now,
+      utils,
       draftState.draft,
       setIsOpen,
       valueManager.emptyValue,

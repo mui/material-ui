@@ -37,7 +37,7 @@ function App() {
 
 ## Basic usage
 
-The date picker will be rendered as a modal dialog on mobile, and a textfield with a popover on desktop.
+The date picker is rendered as a modal dialog on mobile, and a textbox with a popup on desktop.
 
 {{"demo": "pages/components/date-picker/BasicDatePicker.js"}}
 

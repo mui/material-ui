@@ -44,7 +44,7 @@ export interface ExportedPickerModalProps {
   DialogProps?: Partial<MuiDialogProps>;
 }
 
-export interface PickerModalDialogProps extends ExportedPickerModalProps {
+export interface PickersModalDialogProps extends ExportedPickerModalProps {
   onAccept: () => void;
   onClear: () => void;
   onDismiss: () => void;
@@ -83,7 +83,7 @@ export const styles: MuiStyles<PickersModalDialogClassKey> = {
   },
 };
 
-const PickersModalDialog: React.FC<PickerModalDialogProps & WithStyles<typeof styles>> = (
+const PickersModalDialog: React.FC<PickersModalDialogProps & WithStyles<typeof styles>> = (
   props,
 ) => {
   const {

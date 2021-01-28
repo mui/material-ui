@@ -81,7 +81,7 @@ export default function ServerRequestDatePicker() {
           setValue(newValue);
         }}
         onMonthChange={handleMonthChange}
-        renderInput={(params) => <TextField {...params} variant="standard" />}
+        renderInput={(params) => <TextField {...params} />}
         renderLoading={() => <PickersCalendarSkeleton />}
         renderDay={(day, _value, DayComponentProps) => {
           const isSelected =

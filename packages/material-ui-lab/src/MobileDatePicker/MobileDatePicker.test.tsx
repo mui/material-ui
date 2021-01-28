@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers, SinonFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import { fireEvent, screen } from 'test/utils';
 import PickersDay from '@material-ui/lab/PickersDay';
@@ -176,28 +176,6 @@ describe('<MobileDatePicker />', () => {
     expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('January');
   });
 
-  it('prop `showTodayButton` – accept current date when "today" button is clicked', () => {
-    const onCloseMock = spy();
-    const onChangeMock = spy();
-    render(
-      <MobileDatePicker
-        renderInput={(params) => <TextField {...params} />}
-        showTodayButton
-        cancelText="stream"
-        onClose={onCloseMock}
-        onChange={onChangeMock}
-        value={adapterToUse.date('2018-01-01T00:00:00.000')}
-        DialogProps={{ TransitionComponent: FakeTransitionComponent }}
-      />,
-    );
-
-    fireEvent.click(screen.getByRole('textbox'));
-    fireEvent.click(screen.getByText(/today/i));
-
-    expect(onCloseMock.callCount).to.equal(1);
-    expect(onChangeMock.callCount).to.equal(1);
-  });
-
   it('prop `onMonthChange` – dispatches callback when months switching', () => {
     const onMonthChangeMock = spy();
     render(
@@ -287,5 +265,41 @@ describe('<MobileDatePicker />', () => {
     );
 
     expect(screen.getByText('July')).toBeVisible();
+  });
+
+  describe('mock time', () => {
+    let clock: SinonFakeTimers;
+
+    beforeEach(() => {
+      clock = useFakeTimers(new Date());
+    });
+
+    afterEach(() => {
+      clock.restore();
+    });
+
+    it('prop `showTodayButton` – accept current date when "today" button is clicked', () => {
+      const onCloseMock = spy();
+      const handleChange = spy();
+      render(
+        <MobileDatePicker
+          renderInput={(params) => <TextField {...params} />}
+          showTodayButton
+          cancelText="stream"
+          onClose={onCloseMock}
+          onChange={handleChange}
+          value={adapterToUse.date('2018-01-01T00:00:00.000')}
+          DialogProps={{ TransitionComponent: FakeTransitionComponent }}
+        />,
+      );
+      const start = adapterToUse.date();
+      fireEvent.click(screen.getByRole('textbox'));
+      clock.tick(10);
+      fireEvent.click(screen.getByText(/today/i));
+
+      expect(onCloseMock.callCount).to.equal(1);
+      expect(handleChange.callCount).to.equal(1);
+      expect(adapterToUse.getDiff(handleChange.args[0][0], start)).to.equal(10);
+    });
   });
 });
