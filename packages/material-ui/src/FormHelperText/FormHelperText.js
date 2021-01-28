@@ -17,7 +17,6 @@ const overridesResolver = (props, styles) => {
     ...styles[`size${capitalize(styleProps.size)}`]
     ...(styleProps.contained && styles.contained),
     ...(styleProps.filled && styles.filled),
-    ...(styleProps.required && styles.required),
   });
 };
 
