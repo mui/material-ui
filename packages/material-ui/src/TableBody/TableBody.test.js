@@ -20,7 +20,7 @@ describe('<TableBody />', () => {
       const wrapper = mount(<table>{node}</table>);
       return wrapper.find('table').childAt(0);
     },
-    wrapRender: (node) => {
+    render: (node) => {
       const { container, ...rest } = render(<table>{node}</table>);
       return { container: container.firstChild, ...rest };
     },
