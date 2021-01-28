@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -78,7 +79,15 @@ Card.propTypes = {
    * If `true`, the card will use raised styling.
    * @default false
    */
-  raised: PropTypes.bool,
+  raised: chainPropTypes(PropTypes.bool, (props) => {
+    if (props.raised && props.variant === 'outlined') {
+      return new Error(
+        'Material-UI: Combining `raised={true}` with `variant="outlined"` has no effect.',
+      );
+    }
+
+    return null;
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
