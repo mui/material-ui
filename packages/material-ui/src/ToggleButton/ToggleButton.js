@@ -110,7 +110,6 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
     ...props,
     disabled,
     disableFocusRipple,
-    selected,
     size,
   };
 
