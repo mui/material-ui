@@ -14,7 +14,7 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
-    ...styles[`size${capitalize(styleProps.size)}`]
+    ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
     ...(styleProps.contained && styles.contained),
     ...(styleProps.filled && styles.filled),
   });
@@ -27,7 +27,7 @@ const useUtilityClasses = (styleProps) => {
       'root',
       disabled && 'disabled',
       error && 'error',
-      `size${capitalize(styleProps.size)}`
+      size && `size${capitalize(size)}`,
       contained && 'contained',
       focused && 'focused',
       filled && 'filled',
