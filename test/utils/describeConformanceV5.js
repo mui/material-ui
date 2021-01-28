@@ -102,7 +102,8 @@ function testThemeStyleOverrides(element, getOptions) {
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
     });
 
-    it("respect theme's styleOverrides slots", () => {
+    it("respect theme's styleOverrides slots", function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) this.skip();
       const { muiName, testDeepOverrides } = getOptions();
 
       const testStyle = {
@@ -185,7 +186,8 @@ function testThemeVariants(element, getOptions) {
   const render = createClientRender();
 
   describe('theme: variants', () => {
-    it("respect theme's variants", () => {
+    it("respect theme's variants", function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) this.skip();
       const { muiName, testVariantProps = {} } = getOptions();
 
       const testStyle = {
