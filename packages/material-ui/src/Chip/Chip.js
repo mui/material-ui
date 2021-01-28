@@ -469,10 +469,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   let avatar = null;
   if (avatarProp && React.isValidElement(avatarProp)) {
     avatar = React.cloneElement(avatarProp, {
-      className: clsx(classes.avatar, avatarProp.props.className, {
-        [classes.avatarSmall]: small,
-        [classes[`avatarColor${capitalize(color)}`]]: color !== 'default',
-      }),
+      className: clsx(classes.avatar, avatarProp.props.className),
     });
   }
 
