@@ -24,6 +24,7 @@
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "default": "'medium'"
     },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "enum",
@@ -43,6 +44,6 @@
   "filename": "/packages/material-ui/src/FormControl/FormControl.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li>\n<li><a href=\"/components/switches/\">Switches</a></li>\n<li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
