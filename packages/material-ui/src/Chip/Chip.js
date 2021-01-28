@@ -92,6 +92,7 @@ const ChipRoot = experimentalStyled(
   ({ theme, styleProps }) => {
     const backgroundColor =
       theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
+    const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
 
     return {
       /* Styles applied to the root element. */
@@ -142,6 +143,57 @@ const ChipRoot = experimentalStyled(
         height: 18,
         fontSize: theme.typography.pxToRem(10),
       },
+      /* Styles applied to the icon element. */
+      [`& .${chipClasses.icon}`]: {
+        color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
+        marginLeft: 5,
+        marginRight: -6,
+        /* Styles applied to the icon element if `size="small"`. */
+        ...(styleProps.size === 'small' && {
+          fontSize: 18,
+          marginLeft: 4,
+          marginRight: -4,
+        }),
+        /* Styles applied to the icon element if `color="primary"`. */
+        ...(styleProps.color === 'primary' && {
+          color: 'inherit',
+        }),
+        /* Styles applied to the icon element if `color="secondary"`. */
+        ...(styleProps.color === 'secondary' && {
+          color: 'inherit',
+        }),
+      },
+      /* Styles applied to the deleteIcon element. */
+      [`& .${chipClasses.deleteIcon}`]: {
+        WebkitTapHighlightColor: 'transparent',
+        color: deleteIconColor,
+        fontSize: 22,
+        cursor: 'pointer',
+        margin: '0 5px 0 -6px',
+        '&:hover': {
+          color: alpha(deleteIconColor, 0.4),
+        },
+        /* Styles applied to the deleteIcon element if `size="small"`. */
+        ...(styleProps.size === 'small' && {
+          fontSize: 16,
+          marginRight: 4,
+          marginLeft: -4,
+        }),
+        /* Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
+        ...(styleProps.color === 'primary' && {
+          color: alpha(theme.palette.primary.contrastText, 0.7),
+          '&:hover, &:active': {
+            color: theme.palette.primary.contrastText,
+          },
+        }),
+        /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
+        ...(styleProps.color === 'secondary' && {
+          color: alpha(theme.palette.secondary.contrastText, 0.7),
+          '&:hover, &:active': {
+            color: theme.palette.secondary.contrastText,
+          },
+        }),
+      },
       /* Styles applied to the root element if `size="small"`. */
       ...(styleProps.size === 'small' && {
         height: 24,
@@ -174,52 +226,6 @@ const ChipRoot = experimentalStyled(
         styleProps.color === 'secondary' && {
           '&.Mui-focusVisible': {
             backgroundColor: emphasize(theme.palette.secondary.main, 0.2),
-          },
-        }),
-      /* Styles applied to the root element if `variant="outlined"`. */
-      ...(styleProps.variant === 'outlined' && {
-        backgroundColor: 'transparent',
-        border: `1px solid ${
-          theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-        }`,
-        [`&.Mui-focusVisible, .${chipClasses.clickable}&:hover`]: {
-          backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-        },
-        [`& .${chipClasses.avatar}`]: {
-          marginLeft: 4,
-        },
-        [`& .${chipClasses.avatarSmall}`]: {
-          marginLeft: 2,
-        },
-        [`& .${chipClasses.icon}`]: {
-          marginLeft: 4,
-        },
-        [`& .${chipClasses.iconSmall}`]: {
-          marginLeft: 2,
-        },
-        [`& .${chipClasses.deleteIcon}`]: {
-          marginRight: 5,
-        },
-        [`& .${chipClasses.deleteIconSmall}`]: {
-          marginRight: 3,
-        },
-      }),
-      /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
-      ...(styleProps.variant === 'outlined' &&
-        styleProps.color === 'primary' && {
-          color: theme.palette.primary.main,
-          border: `1px solid ${theme.palette.primary.main}`,
-          [`&.Mui-focusVisible, .${chipClasses.clickable}&:hover`]: {
-            backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-          },
-        }),
-      /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
-      ...(styleProps.variant === 'outlined' &&
-        styleProps.color === 'secondary' && {
-          color: theme.palette.secondary.main,
-          border: `1px solid ${theme.palette.secondary.main}`,
-          [`&.Mui-focusVisible, .${chipClasses.clickable}&:hover`]: {
-            backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
           },
         }),
     };
@@ -257,6 +263,68 @@ const ChipRoot = experimentalStyled(
         }),
     };
   },
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element if `variant="outlined"`. */
+    ...(styleProps.variant === 'outlined' && {
+      backgroundColor: 'transparent',
+      border: `1px solid ${
+        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      }`,
+      [`&.Mui-focusVisible, .${chipClasses.clickable}&:hover`]: {
+        backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      },
+      [`& .${chipClasses.avatar}`]: {
+        marginLeft: 4,
+      },
+      [`& .${chipClasses.avatarSmall}`]: {
+        marginLeft: 2,
+      },
+      [`& .${chipClasses.icon}`]: {
+        marginLeft: 4,
+      },
+      [`& .${chipClasses.iconSmall}`]: {
+        marginLeft: 2,
+      },
+      [`& .${chipClasses.deleteIcon}`]: {
+        marginRight: 5,
+      },
+      [`& .${chipClasses.deleteIconSmall}`]: {
+        marginRight: 3,
+      },
+    }),
+    /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+    ...(styleProps.variant === 'outlined' &&
+      styleProps.color === 'primary' && {
+        color: theme.palette.primary.main,
+        border: `1px solid ${theme.palette.primary.main}`,
+        [`&.Mui-focusVisible, .${chipClasses.clickable}&:hover`]: {
+          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        },
+        /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
+        [`& .${chipClasses.deleteIcon}`]: {
+          color: alpha(theme.palette.primary.main, 0.7),
+          '&:hover, &:active': {
+            color: theme.palette.primary.main,
+          },
+        },
+      }),
+    /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+    ...(styleProps.variant === 'outlined' &&
+      styleProps.color === 'secondary' && {
+        color: theme.palette.secondary.main,
+        border: `1px solid ${theme.palette.secondary.main}`,
+        [`&.Mui-focusVisible, .${chipClasses.clickable}&:hover`]: {
+          backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        },
+        /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
+        [`& .${chipClasses.deleteIcon}`]: {
+          color: alpha(theme.palette.secondary.main, 0.7),
+          '&:hover, &:active': {
+            color: theme.palette.secondary.main,
+          },
+        },
+      }),
+  }),
 );
 
 const ChipLabel = experimentalStyled(
@@ -279,96 +347,6 @@ const ChipLabel = experimentalStyled(
     paddingRight: 8,
   }),
 }));
-
-const ChipIcon = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiChip',
-    slot: 'Icon',
-  },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the icon element. */
-  color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
-  marginLeft: 5,
-  marginRight: -6,
-  /* Styles applied to the icon element if `size="small"`. */
-  ...(styleProps.size === 'small' && {
-    fontSize: 18,
-    marginLeft: 4,
-    marginRight: -4,
-  }),
-  /* Styles applied to the icon element if `color="primary"`. */
-  ...(styleProps.color === 'primary' && {
-    color: 'inherit',
-  }),
-  /* Styles applied to the icon element if `color="secondary"`. */
-  ...(styleProps.color === 'secondary' && {
-    color: 'inherit',
-  }),
-}));
-
-const ChipDeleteIcon = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiChip',
-    slot: 'DeleteIcon',
-  },
-)(
-  ({ theme, styleProps }) => {
-    const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
-    return {
-      /* Styles applied to the deleteIcon element. */
-      WebkitTapHighlightColor: 'transparent',
-      color: deleteIconColor,
-      fontSize: 22,
-      cursor: 'pointer',
-      margin: '0 5px 0 -6px',
-      '&:hover': {
-        color: alpha(deleteIconColor, 0.4),
-      },
-      /* Styles applied to the deleteIcon element if `size="small"`. */
-      ...(styleProps.size === 'small' && {
-        fontSize: 16,
-        marginRight: 4,
-        marginLeft: -4,
-      }),
-      /* Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
-      ...(styleProps.color === 'primary' && {
-        color: alpha(theme.palette.primary.contrastText, 0.7),
-        '&:hover, &:active': {
-          color: theme.palette.primary.contrastText,
-        },
-      }),
-      /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
-      ...(styleProps.color === 'secondary' && {
-        color: alpha(theme.palette.secondary.contrastText, 0.7),
-        '&:hover, &:active': {
-          color: theme.palette.secondary.contrastText,
-        },
-      }),
-    };
-  },
-  ({ theme, styleProps }) => ({
-    /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
-    ...(styleProps.color === 'primary' &&
-      styleProps.variant === 'outlined' && {
-        color: alpha(theme.palette.primary.main, 0.7),
-        '&:hover, &:active': {
-          color: theme.palette.primary.main,
-        },
-      }),
-    /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
-    ...(styleProps.color === 'secondary' &&
-      styleProps.variant === 'outlined' && {
-        color: alpha(theme.palette.secondary.main, 0.7),
-        '&:hover, &:active': {
-          color: theme.palette.secondary.main,
-        },
-      }),
-  }),
-);
 
 function isDeleteKeyboardEvent(keyboardEvent) {
   return keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';
@@ -476,12 +454,10 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
     deleteIcon =
       deleteIconProp && React.isValidElement(deleteIconProp) ? (
-        <ChipDeleteIcon
-          className={clsx(classes.deleteIcon, customClasses)}
-          as={deleteIconProp}
-          onClick={handleDeleteIconClick}
-          styleProps={styleProps}
-        />
+        React.cloneElement(deleteIconProp, {
+          className: clsx(deleteIconProp.props.className, classes.deleteIcon, customClasses),
+          onClick: handleDeleteIconClick,
+        })
       ) : (
         <CancelIcon
           className={clsx(classes.deleteIcon, customClasses)}
@@ -502,7 +478,9 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   let icon = null;
   if (iconProp && React.isValidElement(iconProp)) {
-    icon = <ChipIcon as={iconProp} className={classes.icon} styleProps={styleProps} />;
+    icon = React.cloneElement(iconProp, {
+      className: clsx(classes.icon, iconProp.props.className),
+    });
   }
 
   if (process.env.NODE_ENV !== 'production') {
@@ -513,18 +491,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       );
     }
   }
-
-  // const themeVariantsClasses = useThemeVariants(
-  //   {
-  //     ...props,
-  //     clickable,
-  //     color,
-  //     disabled,
-  //     size,
-  //     variant,
-  //   },
-  //   'MuiChip',
-  // );
 
   return (
     <ChipRoot
