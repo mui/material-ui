@@ -1,4 +1,5 @@
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 
 export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -14,6 +15,10 @@ export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<
     /** Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
     alignItemsFlexStart?: string;
   };
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type ListItemAvatarClassKey = keyof NonNullable<ListItemAvatarProps['classes']>;
