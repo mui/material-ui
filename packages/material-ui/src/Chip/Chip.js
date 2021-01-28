@@ -64,7 +64,7 @@ const useUtilityClasses = (styleProps) => {
       clickable && 'clickable',
       clickable && `clickableColor${capitalize(color)}`,
       onDelete && 'deletable',
-      onDelete && `deletableColor${capitalize(color)})`,
+      onDelete && `deletableColor${capitalize(color)}`,
     ],
     label: ['label', `label${capitalize(size)}`],
     avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
