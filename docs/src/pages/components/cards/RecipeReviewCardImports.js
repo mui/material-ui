@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -18,7 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   clsx,
   '@material-ui/core/Card': Card,
   '@material-ui/core/CardHeader': CardHeader,

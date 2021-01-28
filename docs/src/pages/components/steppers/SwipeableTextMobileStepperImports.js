@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -11,7 +11,7 @@ import { autoPlay } from 'react-swipeable-views-utils';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { makeStyles, useTheme },
+  '@material-ui/core/styles': { makeStyles, createStyles, useTheme },
   '@material-ui/core/MobileStepper': MobileStepper,
   '@material-ui/core/Paper': Paper,
   '@material-ui/core/Typography': Typography,

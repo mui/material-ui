@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
@@ -16,7 +16,7 @@ import { Link as RouterLink } from 'react-router-dom';
 export default {
   react: React,
   'prop-types': PropTypes,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   '@material-ui/core/List': List,
   '@material-ui/core/Link': Link,
   '@material-ui/core/ListItem': ListItem,

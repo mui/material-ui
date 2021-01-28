@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -12,7 +12,7 @@ import Hidden from '@material-ui/core/Hidden';
 export default {
   react: React,
   'prop-types': PropTypes,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   '@material-ui/core/Typography': Typography,
   '@material-ui/core/Grid': Grid,
   '@material-ui/core/Card': Card,

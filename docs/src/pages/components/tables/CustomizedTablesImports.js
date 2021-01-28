@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles, createStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { withStyles, makeStyles },
+  '@material-ui/core/styles': { withStyles, makeStyles, createStyles },
   '@material-ui/core/Table': Table,
   '@material-ui/core/TableBody': TableBody,
   '@material-ui/core/TableCell': TableCell,

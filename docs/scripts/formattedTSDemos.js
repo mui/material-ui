@@ -163,7 +163,7 @@ async function main(argv) {
 
   tsxFiles.forEach((filePath) => {
     fse.watchFile(filePath, { interval: 500 }, async () => {
-      if ((await transpileFile(filePath, program)) === 0) {
+      if ((await transpileFile(filePath, program, true)) === 0) {
         console.log('Success - %s', filePath);
       }
     });

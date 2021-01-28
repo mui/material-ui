@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
@@ -17,7 +17,7 @@ import Review from './Review';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   '@material-ui/core/CssBaseline': CssBaseline,
   '@material-ui/core/AppBar': AppBar,
   '@material-ui/core/Container': Container,

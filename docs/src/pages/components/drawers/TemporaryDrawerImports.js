@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -14,7 +14,7 @@ import MailIcon from '@material-ui/icons/Mail';
 export default {
   react: React,
   clsx,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   '@material-ui/core/Drawer': Drawer,
   '@material-ui/core/Button': Button,
   '@material-ui/core/List': List,

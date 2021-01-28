@@ -14,7 +14,7 @@ import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import FourKIcon from '@material-ui/icons/FourK';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 export default {
   react: React,
@@ -33,5 +33,5 @@ export default {
   '@material-ui/icons/ThreeDRotation': ThreeDRotationIcon,
   '@material-ui/icons/FourK': FourKIcon,
   '@material-ui/icons/ThreeSixty': ThreeSixtyIcon,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
 };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -16,7 +16,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 export default {
   react: React,
   'prop-types': PropTypes,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   '@material-ui/core/Button': Button,
   '@material-ui/core/List': List,
   '@material-ui/core/ListItem': ListItem,

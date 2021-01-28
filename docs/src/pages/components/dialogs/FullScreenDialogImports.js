@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -15,7 +15,7 @@ import Slide from '@material-ui/core/Slide';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   '@material-ui/core/Button': Button,
   '@material-ui/core/Dialog': Dialog,
   '@material-ui/core/ListItemText': ListItemText,

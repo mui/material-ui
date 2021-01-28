@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
 import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   '@material-ui/lab/Timeline': Timeline,
   '@material-ui/lab/TimelineItem': TimelineItem,
   '@material-ui/lab/TimelineSeparator': TimelineSeparator,

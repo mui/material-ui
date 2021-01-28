@@ -30,7 +30,6 @@ async function getFiles(root) {
       } else if (
         stat.isFile() &&
         /docs\/src\/pages\/.*\/[A-Z].*\.js$/.test(filePath) &&
-        !filePath.endsWith('.tsx') &&
         !filePath.endsWith('Imports.js') &&
         !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
       ) {
@@ -51,12 +50,13 @@ async function transpileFile(jsPath) {
   try {
     let source = await fse.readFile(jsPath, 'utf8');
 
-    // Flatten multiline imports
+    // Flatten multiline imports; TS createStyles workaround
     source = source
       .replace(/{\n/gm, '{')
       .replace(/,\n/gm, ',')
       .replace(/,}/gm, ' }')
-      .replace(/ {2}/gm, ' ');
+      .replace(/ {2}/gm, ' ')
+      .replace('makeStyles', 'makeStyles, createStyles');
 
     // Extract imports
     const importsRegex = /^import.*$/gm;
@@ -105,7 +105,7 @@ async function transpileFile(jsPath) {
     const prettified = prettierFormat(output);
     const correctedLineEndings = fixLineEndings(source, prettified);
 
-    await fse.writeFile(jsPath.replace(/\.js?$/, 'Imports.js'), correctedLineEndings);
+    await fse.writeFile(jsPath.replace(/\.js$/, 'Imports.js'), correctedLineEndings);
     return TranspileResult.Success;
   } catch (err) {
     console.error('Something went wrong with %s\n%s\n', tsxPath, err);
@@ -114,10 +114,10 @@ async function transpileFile(jsPath) {
 }
 
 async function main(argv) {
-  const { watch: watchMode, pattern } = argv;
+  const { watch: watchMode, grep } = argv;
 
-  const filePattern = new RegExp(pattern);
-  if (pattern.length > 0) {
+  const filePattern = new RegExp(grep);
+  if (grep.length > 0) {
     console.log(`Only considering demos matching ${filePattern}`);
   }
 
@@ -182,7 +182,7 @@ yargs
           description: 'Convert demos as soon as they changed',
           type: 'boolean',
         })
-        .option('pattern', {
+        .option('grep', {
           default: '',
           description: 'Convert only the JS demos whose filename matches the given pattern.',
           type: 'string',

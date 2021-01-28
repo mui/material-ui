@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,7 +13,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   '@material-ui/core/AppBar': AppBar,
   '@material-ui/core/CssBaseline': CssBaseline,
   '@material-ui/core/Toolbar': Toolbar,

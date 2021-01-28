@@ -3,7 +3,7 @@ import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import Slide from '@material-ui/core/Slide';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 export default {
   react: React,
@@ -11,5 +11,5 @@ export default {
   '@material-ui/core/Paper': Paper,
   '@material-ui/core/Slide': Slide,
   '@material-ui/core/FormControlLabel': FormControlLabel,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
 };

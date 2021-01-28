@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
+import * as TS from 'typescript';
 import { Error, Preview, Provider } from 'jarle';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -184,6 +185,10 @@ export default function Demo(props) {
     }
   }, [demoName]);
 
+  React.useEffect(() => {
+    setEditorValue(demoData.raw.trim())
+  }, [codeVariant])
+
   const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
     !demoOptions.hideToolbar &&
@@ -217,6 +222,13 @@ export default function Demo(props) {
 
   const [showAd, setShowAd] = React.useState(false);
 
+  const demoJS = React.useMemo(() => {
+    return TS.transpile(editorValue, {
+      target: 'es6',
+      jsx: true,
+    });
+  }, [editorValue]);
+
   return (
     <div className={classes.root}>
       <div
@@ -236,7 +248,7 @@ export default function Demo(props) {
           action={initialFocusRef}
           tabIndex={-1}
         />
-        <Provider code={editorValue} resolveImports={resolveImports}>
+        <Provider code={demoJS} resolveImports={resolveImports}>
           <Preview key={demoKey} />
           <Error />
         </Provider>

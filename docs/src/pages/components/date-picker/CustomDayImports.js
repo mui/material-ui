@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, createStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
@@ -13,7 +13,7 @@ import startOfWeek from 'date-fns/startOfWeek';
 
 export default {
   react: React,
-  '@material-ui/core': { makeStyles },
+  '@material-ui/core': { makeStyles, createStyles },
   '@material-ui/core/TextField': TextField,
   '@material-ui/lab/AdapterDateFns': AdapterDateFns,
   '@material-ui/lab/LocalizationProvider': LocalizaitonProvider,

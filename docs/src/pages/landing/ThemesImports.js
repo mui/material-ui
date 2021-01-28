@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -10,7 +10,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { makeStyles, useTheme },
+  '@material-ui/core/styles': { makeStyles, createStyles, useTheme },
   '@material-ui/core/Typography': Typography,
   '@material-ui/core/Container': Container,
   '@material-ui/core/Grid': Grid,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -17,7 +17,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { alpha, makeStyles },
+  '@material-ui/core/styles': { alpha, makeStyles, createStyles },
   '@material-ui/core/AppBar': AppBar,
   '@material-ui/core/Toolbar': Toolbar,
   '@material-ui/core/IconButton': IconButton,

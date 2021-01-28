@@ -3,6 +3,7 @@ import {
   createMuiTheme,
   experimentalStyled,
   makeStyles,
+  createStyles,
   ThemeProvider,
 } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -14,6 +15,7 @@ export default {
     createMuiTheme,
     experimentalStyled,
     makeStyles,
+    createStyles,
     ThemeProvider,
   },
   '@material-ui/core/Button': Button,

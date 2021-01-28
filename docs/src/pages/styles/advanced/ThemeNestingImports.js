@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, makeStyles, createStyles } from '@material-ui/core/styles';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { ThemeProvider, makeStyles },
+  '@material-ui/core/styles': { ThemeProvider, makeStyles, createStyles },
 };

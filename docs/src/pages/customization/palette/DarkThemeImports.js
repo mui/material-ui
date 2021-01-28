@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {
   makeStyles,
+  createStyles,
   ThemeProvider,
   useTheme,
   createMuiTheme,
@@ -14,6 +15,7 @@ export default {
   '@material-ui/core/Grid': Grid,
   '@material-ui/core/styles': {
     makeStyles,
+    createStyles,
     ThemeProvider,
     useTheme,
     createMuiTheme,

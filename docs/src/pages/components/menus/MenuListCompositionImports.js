@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 export default {
   react: React,
@@ -17,5 +17,5 @@ export default {
   '@material-ui/core/Popper': Popper,
   '@material-ui/core/MenuItem': MenuItem,
   '@material-ui/core/MenuList': MenuList,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
 };

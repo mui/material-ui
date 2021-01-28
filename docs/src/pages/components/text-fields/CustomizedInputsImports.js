@@ -5,6 +5,7 @@ import {
   useTheme,
   withStyles,
   makeStyles,
+  createStyles,
   createMuiTheme,
 } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
@@ -21,6 +22,7 @@ export default {
     useTheme,
     withStyles,
     makeStyles,
+    createStyles,
     createMuiTheme,
   },
   '@material-ui/core/InputBase': InputBase,

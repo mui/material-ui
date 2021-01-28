@@ -97,5 +97,5 @@ export default function DemoEditor(props) {
 DemoEditor.propTypes = {
   onFocus: PropTypes.func.isRequired,
   onValueChange: PropTypes.func.isRequired,
-  value: PropTypes.object.isRequired,
+  value: PropTypes.string.isRequired,
 };

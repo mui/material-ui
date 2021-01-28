@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -21,7 +21,7 @@ import MailIcon from '@material-ui/icons/Mail';
 export default {
   react: React,
   clsx,
-  '@material-ui/core/styles': { makeStyles, useTheme },
+  '@material-ui/core/styles': { makeStyles, createStyles, useTheme },
   '@material-ui/core/Drawer': Drawer,
   '@material-ui/core/CssBaseline': CssBaseline,
   '@material-ui/core/AppBar': AppBar,

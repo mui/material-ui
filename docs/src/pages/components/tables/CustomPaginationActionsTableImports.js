@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -18,7 +18,7 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 export default {
   react: React,
   'prop-types': PropTypes,
-  '@material-ui/core/styles': { makeStyles, useTheme },
+  '@material-ui/core/styles': { makeStyles, createStyles, useTheme },
   '@material-ui/core/Table': Table,
   '@material-ui/core/TableBody': TableBody,
   '@material-ui/core/TableCell': TableCell,

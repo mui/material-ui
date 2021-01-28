@@ -2,6 +2,7 @@ import * as React from 'react';
 import { convertLength } from '@material-ui/core/styles/cssUtils';
 import {
   makeStyles,
+  createStyles,
   createMuiTheme,
   responsiveFontSizes,
 } from '@material-ui/core/styles';
@@ -19,7 +20,12 @@ import {
 export default {
   react: React,
   '@material-ui/core/styles/cssUtils': { convertLength },
-  '@material-ui/core/styles': { makeStyles, createMuiTheme, responsiveFontSizes },
+  '@material-ui/core/styles': {
+    makeStyles,
+    createStyles,
+    createMuiTheme,
+    responsiveFontSizes,
+  },
   recharts: {
     Legend,
     Tooltip,

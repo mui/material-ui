@@ -6,7 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 export default {
@@ -18,6 +18,6 @@ export default {
   '@material-ui/core/RadioGroup': RadioGroup,
   '@material-ui/core/Radio': Radio,
   '@material-ui/core/Paper': Paper,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   'docs/src/modules/components/HighlightedCode': HighlightedCode,
 };

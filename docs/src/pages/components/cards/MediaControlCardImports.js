@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -11,7 +11,7 @@ import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { makeStyles, useTheme },
+  '@material-ui/core/styles': { makeStyles, createStyles, useTheme },
   '@material-ui/core/Card': Card,
   '@material-ui/core/CardContent': CardContent,
   '@material-ui/core/CardMedia': CardMedia,

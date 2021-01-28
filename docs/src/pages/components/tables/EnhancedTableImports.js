@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { lighten, makeStyles } from '@material-ui/core/styles';
+import { lighten, makeStyles, createStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -26,7 +26,7 @@ export default {
   react: React,
   'prop-types': PropTypes,
   clsx,
-  '@material-ui/core/styles': { lighten, makeStyles },
+  '@material-ui/core/styles': { lighten, makeStyles, createStyles },
   '@material-ui/core/Table': Table,
   '@material-ui/core/TableBody': TableBody,
   '@material-ui/core/TableCell': TableCell,

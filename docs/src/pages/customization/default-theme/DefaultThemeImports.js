@@ -8,6 +8,7 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
 import {
   makeStyles,
+  createStyles,
   withStyles,
   createMuiTheme,
   lighten,
@@ -25,7 +26,13 @@ export default {
   '@material-ui/lab/TreeView': TreeView,
   '@material-ui/lab/TreeItem': TreeItem,
   clsx,
-  '@material-ui/core/styles': { makeStyles, withStyles, createMuiTheme, lighten },
+  '@material-ui/core/styles': {
+    makeStyles,
+    createStyles,
+    withStyles,
+    createMuiTheme,
+    lighten,
+  },
   '@material-ui/core/FormControlLabel': FormControlLabel,
   '@material-ui/core/Switch': Switch,
   'docs/src/modules/utils/i18n': { useTranslate },

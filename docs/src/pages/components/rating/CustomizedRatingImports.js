@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/core/Rating';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 export default {
   react: React,
   'prop-types': PropTypes,
-  '@material-ui/core/styles': { makeStyles, withStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles, withStyles },
   '@material-ui/core/Rating': Rating,
   '@material-ui/icons/Favorite': FavoriteIcon,
   '@material-ui/icons/FavoriteBorder': FavoriteBorderIcon,

@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles, createStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -15,7 +15,7 @@ export default {
   '@material-ui/core/IconButton': IconButton,
   '@material-ui/core/Typography': Typography,
   '@material-ui/core/InputBase': InputBase,
-  '@material-ui/core/styles': { alpha, makeStyles },
+  '@material-ui/core/styles': { alpha, makeStyles, createStyles },
   '@material-ui/icons/Menu': MenuIcon,
   '@material-ui/icons/Search': SearchIcon,
 };

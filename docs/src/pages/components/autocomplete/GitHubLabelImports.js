@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme, alpha, makeStyles } from '@material-ui/core/styles';
+import { useTheme, alpha, makeStyles, createStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -11,7 +11,7 @@ import InputBase from '@material-ui/core/InputBase';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { useTheme, alpha, makeStyles },
+  '@material-ui/core/styles': { useTheme, alpha, makeStyles, createStyles },
   '@material-ui/core/Popper': Popper,
   '@material-ui/core/ClickAwayListener': ClickAwayListener,
   '@material-ui/icons/Settings': SettingsIcon,

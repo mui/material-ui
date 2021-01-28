@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -14,7 +14,7 @@ import StepConnector from '@material-ui/core/StepConnector';
 export default {
   react: React,
   'prop-types': PropTypes,
-  '@material-ui/core/styles': { makeStyles, withStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles, withStyles },
   clsx,
   '@material-ui/core/Stepper': Stepper,
   '@material-ui/core/Step': Step,

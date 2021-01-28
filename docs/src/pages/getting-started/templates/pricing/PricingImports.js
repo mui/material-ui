@@ -11,7 +11,7 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 export default {
@@ -28,6 +28,6 @@ export default {
   '@material-ui/core/Toolbar': Toolbar,
   '@material-ui/core/Typography': Typography,
   '@material-ui/core/Link': Link,
-  '@material-ui/core/styles': { makeStyles },
+  '@material-ui/core/styles': { makeStyles, createStyles },
   '@material-ui/core/Container': Container,
 };
