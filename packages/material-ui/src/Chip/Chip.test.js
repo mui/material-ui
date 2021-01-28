@@ -2,9 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -15,22 +14,23 @@ import {
 import CheckBox from '../internal/svg-icons/CheckBox';
 import Avatar from '../Avatar';
 import Chip from './Chip';
+import classes from './chipClasses';
 
 describe('<Chip />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Chip />);
-  });
-
-  describeConformance(<Chip />, () => ({
+  describeConformanceV5(<Chip />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    muiName: 'MuiChip',
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testVariantProps: { variant: 'outlined' },
+    testStatOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
+    skip: ['componentsProp'],
   }));
 
   describe('text only', () => {

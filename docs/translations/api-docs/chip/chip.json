@@ -13,6 +13,7 @@
     "label": "The content of the component.",
     "onDelete": "Callback fired when the delete icon is clicked. If set, the delete icon will be shown.",
     "size": "The size of the component.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "variant": "The variant to use."
   },
   "classDescriptions": {
@@ -21,6 +22,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
+    },
+    "sizeMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"medium\"</code>"
     },
     "colorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -96,6 +102,11 @@
       "nodeName": "the avatar element",
       "conditions": "<code>size=\"small\"</code>"
     },
+    "avatarMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the avatar element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
     "avatarColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the avatar element",
@@ -111,6 +122,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon element",
       "conditions": "<code>size=\"small\"</code>"
+    },
+    "iconMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon element",
+      "conditions": "<code>size=\"medium\"</code>"
     },
     "iconColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -131,6 +147,11 @@
       "nodeName": "the label `span` element",
       "conditions": "<code>size=\"small\"</code>"
     },
+    "labelMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the label `span` element",
+      "conditions": "<code>size=\"medium\"</code>"
+    },
     "deleteIcon": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the deleteIcon element"
@@ -139,6 +160,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the deleteIcon element",
       "conditions": "<code>size=\"small\"</code>"
+    },
+    "deleteIconMedium": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>size=\"medium\"</code>"
     },
     "deleteIconColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
