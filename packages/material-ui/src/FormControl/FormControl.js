@@ -88,7 +88,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     children,
     className,
     color = 'primary',
-    component: Component = 'div',
+    component = 'div',
     disabled = false,
     error = false,
     focused: visuallyFocused,
