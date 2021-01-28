@@ -15,7 +15,7 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...(styleProps.error && styles.error),
-    ...(styleProps.small && styles.sizeSmall),
+    ...styles[`size${capitalize(styleProps.size)}`]
     ...(styleProps.contained && styles.contained),
     ...(styleProps.filled && styles.filled),
     ...(styleProps.required && styles.required),
