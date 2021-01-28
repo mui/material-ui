@@ -20,6 +20,7 @@ describe('<TableBody />', () => {
       const wrapper = mount(<table>{node}</table>);
       return wrapper.find('table').childAt(0);
     },
+    wrapper: (node) => <table>{node}</table>,
     muiName: 'MuiTableBody',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableSectionElement,
