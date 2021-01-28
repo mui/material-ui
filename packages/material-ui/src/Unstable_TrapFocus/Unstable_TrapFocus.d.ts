@@ -54,6 +54,7 @@ export interface TrapFocusProps {
 
 /**
  * Utility component that locks focus inside the component.
+ *
  * Demos:
  *
  * - [Trap Focus](https://material-ui.com/components/trap-focus/)

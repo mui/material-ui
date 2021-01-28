@@ -1,4 +1,5 @@
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputBaseProps } from '../InputBase';
 
 export interface FilledInputProps extends StandardProps<InputBaseProps> {
@@ -45,6 +46,10 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
    * If `true`, the input will not have an underline.
    */
   disableUnderline?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type FilledInputClassKey = keyof NonNullable<FilledInputProps['classes']>;

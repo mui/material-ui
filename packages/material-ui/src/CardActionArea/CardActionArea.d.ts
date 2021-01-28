@@ -1,3 +1,5 @@
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
@@ -15,6 +17,10 @@ export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButton
       focusHighlight?: string;
     };
     focusVisibleClassName?: string;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;

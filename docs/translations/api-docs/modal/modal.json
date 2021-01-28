@@ -1,5 +1,5 @@
 {
-  "componentDescription": "Modal is a lower-level construct that is leveraged by the following components:\n\n- <a href=\"/api/dialog/\">Dialog</a>\n- <a href=\"/api/drawer/\">Drawer</a>\n- <a href=\"/api/menu/\">Menu</a>\n- <a href=\"/api/popover/\">Popover</a>\n\nIf you are creating a modal dialog, you probably want to use the <a href=\"/api/dialog/\">Dialog</a> component\nrather than directly using Modal.\n\nThis component shares many concepts with <a href=\"https://react-bootstrap.github.io/react-overlays/#modals\">react-overlays</a>.",
+  "componentDescription": "Modal is a lower-level construct that is leveraged by the following components:\n\n- [Dialog](/api/dialog/)\n- [Drawer](/api/drawer/)\n- [Menu](/api/menu/)\n- [Popover](/api/popover/)\n\nIf you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component\nrather than directly using Modal.\n\nThis component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).",
   "propDescriptions": {
     "BackdropComponent": "A backdrop component. This prop enables custom backdrop rendering.",
     "BackdropProps": "Props applied to the <a href=\"/api/backdrop/\"><code>Backdrop</code></a> element.",

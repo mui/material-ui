@@ -10,7 +10,7 @@
     "outDir": "build",
     "rootDir": "./src"
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+  "include": ["./src/**/*.ts*"],
+  "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
   "references": [{ "path": "../material-ui-unstyled/tsconfig.build.json" }]
 }

@@ -7,7 +7,18 @@ import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 
 export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
-  const { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, ...other } = props;
+  const {
+    to,
+    linkAs,
+    href,
+    replace,
+    scroll,
+    passHref,
+    shallow,
+    prefetch,
+    locale,
+    ...other
+  } = props;
 
   return (
     <NextLink
@@ -18,6 +29,7 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
       scroll={scroll}
       shallow={shallow}
       passHref={passHref}
+      locale={locale}
     >
       <a ref={ref} {...other} />
     </NextLink>
@@ -27,6 +39,7 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
 NextLinkComposed.propTypes = {
   href: PropTypes.any,
   linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  locale: PropTypes.string,
   passHref: PropTypes.bool,
   prefetch: PropTypes.bool,
   replace: PropTypes.bool,

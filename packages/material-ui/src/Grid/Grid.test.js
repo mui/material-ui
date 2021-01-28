@@ -64,30 +64,6 @@ describe('<Grid />', () => {
     });
   });
 
-  describe('prop: alignItems', () => {
-    it('should apply the align-item class', () => {
-      const { container } = render(<Grid alignItems="center" container />);
-
-      expect(container.firstChild).to.have.class(classes['align-items-xs-center']);
-    });
-  });
-
-  describe('prop: alignContent', () => {
-    it('should apply the align-content class', () => {
-      const { container } = render(<Grid alignContent="center" container />);
-
-      expect(container.firstChild).to.have.class(classes['align-content-xs-center']);
-    });
-  });
-
-  describe('prop: justifyContent', () => {
-    it('should apply the justify-content class', () => {
-      const { container } = render(<Grid justifyContent="space-evenly" container />);
-
-      expect(container.firstChild).to.have.class(classes['justify-content-xs-space-evenly']);
-    });
-  });
-
   describe('gutter', () => {
     it('should generate the right values', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) this.skip();
@@ -139,6 +115,20 @@ describe('<Grid />', () => {
         paddingTop: '16px',
         paddingLeft: '16px',
       });
+    });
+  });
+
+  it('combines system properties with the sx prop', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { container } = render(<Grid mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
+
+    expect(container.firstChild).toHaveComputedStyle({
+      marginTop: '16px',
+      marginRight: '40px',
+      marginBottom: '16px',
     });
   });
 });

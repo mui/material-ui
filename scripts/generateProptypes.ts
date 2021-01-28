@@ -37,18 +37,14 @@ const todoComponentsTs: string[] = [
   'MobileDateRangePicker',
   'DateTimePicker',
   'DesktopDateTimePicker',
-  'DesktopTimePicker',
   'LocalizationProvider',
   'MobileDatePicker',
   'MobileDateTimePicker',
-  'MobileTimePicker',
   'MonthPicker',
   'PickersCalendarSkeleton',
   'PickersDay',
   'StaticDatePicker',
   'StaticDateTimePicker',
-  'StaticTimePicker',
-  'TimePicker',
   'YearPicker',
 ];
 
@@ -354,6 +350,8 @@ async function run(argv: HandlerArgv) {
     .filter((filePath) => {
       return filePattern.test(filePath);
     });
+  // May not be able to understand all files due to mismatch in TS versions.
+  // Check `programm.getSyntacticDiagnostics()` if referenced files could not be compiled.
   const program = ttp.createTSProgram(files, tsconfig);
 
   const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {

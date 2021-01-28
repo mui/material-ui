@@ -11,7 +11,7 @@ import {
 import { useFakeTimers } from 'sinon';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
-import Fab from '@material-ui/core/Fab';
+import { fabClasses } from '@material-ui/core/Fab';
 import SpeedDialAction from './SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {
@@ -27,11 +27,9 @@ describe('<SpeedDialAction />', () => {
   const mount = createMount({ strict: true });
   const render = createClientRender();
   let classes;
-  let fabClasses;
 
   before(() => {
     classes = getClasses(<SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />);
-    fabClasses = getClasses(<Fab>Fab</Fab>);
   });
 
   describeConformance(

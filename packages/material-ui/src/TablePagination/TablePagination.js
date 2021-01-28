@@ -32,8 +32,8 @@ export const styles = (theme) => ({
   spacer: {
     flex: '1 1 100%',
   },
-  /* Styles applied to the caption Typography component if `variant="caption"`. */
-  caption: {
+  /* Styles applied to the select label Typography element. */
+  selectLabel: {
     flexShrink: 0,
   },
   // TODO v5: `.selectRoot` should be merged with `.input`
@@ -60,6 +60,10 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the MenuItem component. */
   menuItem: {},
+  /* Styles applied to the displayed rows Typography element. */
+  displayedRows: {
+    flexShrink: 0,
+  },
   /* Styles applied to the internal `TablePaginationActions` component. */
   actions: {
     flexShrink: 0,
@@ -121,7 +125,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
       <Toolbar className={classes.toolbar}>
         <div className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (
-          <Typography color="inherit" variant="body2" className={classes.caption} id={labelId}>
+          <Typography color="inherit" variant="body2" className={classes.selectLabel} id={labelId}>
             {labelRowsPerPage}
           </Typography>
         )}
@@ -151,7 +155,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
           </Select>
         )}
 
-        <Typography color="inherit" variant="body2" className={classes.caption}>
+        <Typography color="inherit" variant="body2" className={classes.displayedRows}>
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
             to: getLabelDisplayedRowsTo(),

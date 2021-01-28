@@ -72,5 +72,6 @@
   "filename": "/packages/material-ui/src/ButtonGroup/ButtonGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/button-group/\">Button Group</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }

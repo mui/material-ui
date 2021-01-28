@@ -22,7 +22,6 @@ export default function BrandingCard(props: BrandingCardProps) {
           width: 80,
           height: 80,
         }}
-        aria-label={title}
       >
         {icon}
       </Avatar>

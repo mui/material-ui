@@ -1,22 +1,21 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
 import ListSubheader from './ListSubheader';
+import classes from './listSubheaderClasses';
 
 describe('<ListSubheader />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<ListSubheader />);
-  });
-
-  describeConformance(<ListSubheader />, () => ({
+  describeConformanceV5(<ListSubheader />, () => ({
     classes,
     inheritComponent: 'li',
     mount,
+    muiName: 'MuiListSubheader',
     refInstanceof: window.HTMLLIElement,
+    testVariantProps: { disableGutters: true },
+    skip: ['componentsProp'],
   }));
 
   it('should display primary color', () => {

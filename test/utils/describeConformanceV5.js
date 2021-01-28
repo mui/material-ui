@@ -4,6 +4,7 @@ import * as React from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { createClientRender } from './createClientRender';
 import {
+  testComponentProp,
   testClassName,
   testPropsSpread,
   describeRef,
@@ -41,7 +42,8 @@ function testThemeDefaultProps(element, getOptions) {
 
   describe('theme: default components', () => {
     it("respect theme's defaultProps", () => {
-      const { muiName, testThemeComponentsDefaultPropName: testProp = 'id' } = getOptions();
+      const testProp = 'data-id';
+      const { muiName } = getOptions();
       const theme = createMuiTheme({
         components: {
           [muiName]: {
@@ -69,7 +71,11 @@ function testThemeStyleOverrides(element, getOptions) {
   const render = createClientRender();
 
   describe('theme: style overrides', () => {
-    it("respect theme's styleOverrides custom state", () => {
+    it("respect theme's styleOverrides custom state", function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       const { muiName, testStateOverrides } = getOptions();
 
       if (!testStateOverrides) {
@@ -100,7 +106,11 @@ function testThemeStyleOverrides(element, getOptions) {
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
     });
 
-    it("respect theme's styleOverrides slots", () => {
+    it("respect theme's styleOverrides slots", function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       const { muiName, testDeepOverrides } = getOptions();
 
       const testStyle = {
@@ -183,7 +193,11 @@ function testThemeVariants(element, getOptions) {
   const render = createClientRender();
 
   describe('theme: variants', () => {
-    it("respect theme's variants", () => {
+    it("respect theme's variants", function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       const { muiName, testVariantProps = {} } = getOptions();
 
       const testStyle = {
@@ -217,6 +231,7 @@ function testThemeVariants(element, getOptions) {
 }
 
 const fullSuite = {
+  componentProp: testComponentProp,
   componentsProp: testComponentsProp,
   mergeClassName: testClassName,
   propsSpread: testPropsSpread,

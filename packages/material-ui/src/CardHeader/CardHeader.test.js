@@ -1,24 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import CardHeader from './CardHeader';
 import { typographyClasses } from '../Typography';
+import classes from './cardHeaderClasses';
 
 describe('<CardHeader />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<CardHeader />);
-  });
-
-  describeConformance(<CardHeader />, () => ({
+  describeConformanceV5(<CardHeader />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    muiName: 'MuiCardHeader',
     refInstanceof: window.HTMLDivElement,
+    testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
     testComponentPropWith: 'span',
+    testVariantProps: { variant: 'foo' },
+    skip: ['componentsProp'],
   }));
 
   describe('without an avatar', () => {

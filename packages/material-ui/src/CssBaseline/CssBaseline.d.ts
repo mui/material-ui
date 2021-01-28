@@ -10,6 +10,7 @@ export interface CssBaselineProps extends StyledComponentProps<never> {
 
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
+ *
  * Demos:
  *
  * - [Css Baseline](https://material-ui.com/components/css-baseline/)

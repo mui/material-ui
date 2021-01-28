@@ -72,7 +72,9 @@ module.exports = {
 
       config.externals = [
         (context, request, callback) => {
-          const hasDependencyOnRepoPackages = ['notistack'].includes(request);
+          const hasDependencyOnRepoPackages = ['notistack', '@material-ui/data-grid'].includes(
+            request,
+          );
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
@@ -107,7 +109,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)notistack/,
+            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)data-grid)/,
             use: {
               loader: 'babel-loader',
               options: {

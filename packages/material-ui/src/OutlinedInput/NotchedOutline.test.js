@@ -11,6 +11,7 @@ describe('<NotchedOutline />', () => {
   const defaultProps = {
     labelWidth: 36,
     notched: true,
+    label: 'My label',
   };
 
   before(() => {
@@ -30,7 +31,7 @@ describe('<NotchedOutline />', () => {
 
     expect(container.querySelector('fieldset')).to.have.class('notched-outline');
     expect(container.querySelector('fieldset').style.width).to.equal('17px');
-    expect(container.querySelector('legend')).to.have.class(classes.legend);
+    expect(container.querySelector('legend')).to.have.class(classes.legendNotched);
   });
 
   it('should set alignment rtl', () => {
@@ -43,8 +44,9 @@ describe('<NotchedOutline />', () => {
         <NotchedOutline {...defaultProps} />
       </ThemeProvider>,
     );
-    expect(container1.querySelector('fieldset').style.paddingLeft).to.equal('8px');
-    expect(container1.querySelector('legend').style.width).to.equal('35px');
+    expect(container1.querySelector('fieldset')).toHaveComputedStyle({
+      paddingLeft: '8px',
+    });
 
     const { container: container2 } = render(
       <ThemeProvider
@@ -55,7 +57,8 @@ describe('<NotchedOutline />', () => {
         <NotchedOutline {...defaultProps} />
       </ThemeProvider>,
     );
-    expect(container2.querySelector('fieldset').style.paddingRight).to.equal('8px');
-    expect(container2.querySelector('legend').style.width).to.equal('35px');
+    expect(container2.querySelector('fieldset')).toHaveComputedStyle({
+      paddingRight: '8px',
+    });
   });
 });

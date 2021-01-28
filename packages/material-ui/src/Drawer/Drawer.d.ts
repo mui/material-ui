@@ -93,6 +93,7 @@ export type DrawerClassKey = keyof NonNullable<DrawerProps['classes']>;
 /**
  * The props of the [Modal](https://material-ui.com/api/modal/) component are available
  * when `variant="temporary"` is set.
+ *
  * Demos:
  *
  * - [Drawers](https://material-ui.com/components/drawers/)

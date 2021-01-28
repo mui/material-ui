@@ -1,4 +1,6 @@
+import { SxProps } from '@material-ui/system';
 import * as React from 'react';
+import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface CardMediaTypeMap<P, D extends React.ElementType> {
@@ -30,6 +32,10 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
      * Media components: `video`, `audio`, `picture`, `iframe`, `img`.
      */
     src?: string;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }

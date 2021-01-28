@@ -4,7 +4,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { styled } from '@material-ui/core/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { render as renderMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import { renderInline as renderInlineMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const ErrorMessageSection = styled('div')({
   // reset display: block from Demo
@@ -89,7 +89,7 @@ export default function ErrorDecoder() {
       return div.innerHTML;
     });
 
-    return renderMarkdown(readableMessage);
+    return renderInlineMarkdown(readableMessage);
   }, [args, code, data.errorCodes]);
 
   if (data.state === 'loading') {

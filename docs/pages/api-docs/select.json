@@ -53,5 +53,6 @@
   "filename": "/packages/material-ui/src/Select/Select.js",
   "inheritance": { "component": "Input", "pathname": "/api/input/" },
   "demos": "<ul><li><a href=\"/components/selects/\">Selects</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }

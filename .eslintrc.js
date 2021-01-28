@@ -13,9 +13,6 @@ const forbidCreateStylesMessage =
 
 module.exports = {
   root: true, // So parent files don't get applied
-  globals: {
-    preval: false, // Used in the documentation
-  },
   env: {
     es6: true,
     browser: true,

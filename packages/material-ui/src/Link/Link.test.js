@@ -1,16 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, act, createClientRender, fireEvent, describeConformanceV5 } from 'test/utils';
 import Link from './Link';
 import Typography, { typographyClasses } from '../Typography';
+import classes from './linkClasses';
 
 function focusVisible(element) {
   act(() => {
@@ -23,17 +17,16 @@ function focusVisible(element) {
 describe('<Link />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Link href="/">Home</Link>);
-  });
-
-  describeConformance(<Link href="/">Home</Link>, () => ({
+  describeConformanceV5(<Link href="/">Home</Link>, () => ({
     classes,
     inheritComponent: Typography,
     mount,
+    muiName: 'MuiLink',
     refInstanceof: window.HTMLAnchorElement,
+    testVariantProps: { color: 'secondary', variant: 'h1' },
+    testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
+    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {

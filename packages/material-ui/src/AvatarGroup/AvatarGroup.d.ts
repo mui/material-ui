@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps, Theme } from '@material-ui/core';
 import { OverridableStringUnion } from '@material-ui/types';
+import { SxProps } from '@material-ui/system';
 
 export interface AvatarGroupPropsVariantOverrides {}
 export type AvatarGroupVariantDefaults = Record<'circular' | 'rounded' | 'square', true>;
@@ -29,6 +30,10 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * @default 'medium'
    */
   spacing?: 'small' | 'medium' | number;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The variant to use.
    * @default 'circular'

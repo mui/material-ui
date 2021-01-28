@@ -118,7 +118,7 @@ const AppBar = React.forwardRef(function AppBar(inProps, ref) {
   const { className, color = 'primary', position = 'fixed', ...other } = props;
 
   const styleProps = {
-    ...other,
+    ...props,
     color,
     position,
   };

@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
 
 export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -67,6 +69,10 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     size?: 'small' | 'medium';
     /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
+    /**
      * The variant to use.
      * @default 'standard'
      */
@@ -98,6 +104,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  *
  * ⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
+ *
  * Demos:
  *
  * - [Checkboxes](https://material-ui.com/components/checkboxes/)

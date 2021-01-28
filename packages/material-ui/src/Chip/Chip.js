@@ -472,9 +472,10 @@ Chip.propTypes = {
   /**
    * If `true`, the chip will appear clickable, and will raise when pressed,
    * even if the onClick prop is not defined.
-   * If false, the chip will not be clickable, even if onClick prop is defined.
+   * If `false`, the chip will not appear clickable, even if onClick prop is defined.
    * This can be used, for example,
    * along with the component prop to indicate an anchor Chip is clickable.
+   * Note: this controls the UI and does not affect the onClick event.
    */
   clickable: PropTypes.bool,
   /**

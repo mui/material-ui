@@ -1,37 +1,67 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import ListContext from '../List/ListContext';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    minWidth: 56,
-    flexShrink: 0,
-  },
-  /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
-  alignItemsFlexStart: {
-    marginTop: 8,
-  },
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
+  });
 };
+
+const useUtilityClasses = (styleProps) => {
+  const { alignItems, classes } = styleProps;
+
+  const slots = {
+    root: ['root', alignItems === 'flex-start' && 'alignItemsFlexStart'],
+  };
+
+  return composeClasses(slots, getListItemAvatarUtilityClass, classes);
+};
+
+const ListItemAvatarRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiListItemAvatar',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps }) => ({
+  /* Styles applied to the root element. */
+  minWidth: 56,
+  flexShrink: 0,
+  /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
+  ...(styleProps.alignItems === 'flex-start' && {
+    marginTop: 8,
+  }),
+}));
 
 /**
  * A simple wrapper to apply `List` styles to an `Avatar`.
  */
-const ListItemAvatar = React.forwardRef(function ListItemAvatar(props, ref) {
-  const { classes, className, ...other } = props;
+const ListItemAvatar = React.forwardRef(function ListItemAvatar(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiListItemAvatar',
+  });
+
+  const { className, ...other } = props;
   const context = React.useContext(ListContext);
+  const styleProps = { ...props, alignItems: context.alignItems };
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <div
-      className={clsx(
-        classes.root,
-        {
-          [classes.alignItemsFlexStart]: context.alignItems === 'flex-start',
-        },
-        className,
-      )}
+    <ListItemAvatarRoot
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     />
@@ -55,6 +85,10 @@ ListItemAvatar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiListItemAvatar' })(ListItemAvatar);
+export default ListItemAvatar;
