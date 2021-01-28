@@ -7,9 +7,7 @@ import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { getTableContainerUtilityClass } from './tableContainerClasses';
 
-const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {});
-};
+const overridesResolver = (props, styles) => styles.root || {}
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
