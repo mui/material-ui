@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
+import { chainPropTypes, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -135,7 +135,15 @@ Paper.propTypes = {
    * It accepts values between 0 and 24 inclusive.
    * @default 1
    */
-  elevation: PropTypes.number,
+  elevation: chainPropTypes(PropTypes.number, (props) => {
+    if (props.elevation > 0 && props.variant === 'outlined') {
+      return new Error(
+        'Material-UI: Combining `elevation={>0}` with `variant="outlined"` has no effect.',
+      );
+    }
+
+    return null;
+  }),
   /**
    * If `true`, rounded corners are disabled.
    * @default false
