@@ -43,7 +43,7 @@ const DialogContentRoot = experimentalStyled(
     // dialog without title
     paddingTop: 20,
   },
-  /* Styles applied to the root element unless `disableSpacing={true}`. */
+  /* Styles applied to the root element if `dividers={true}`. */
   ...(!styleProps.dividers && {
     padding: '16px 24px',
     borderTop: `1px solid ${theme.palette.divider}`,
