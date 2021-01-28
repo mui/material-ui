@@ -1220,17 +1220,13 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Typography
 
-- Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
+- Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
 
   ```diff
-  -import Typography from '@material-ui/core/Typography';
-  +import { visuallyHidden } from '@material-ui/system';
-  +import styled from 'styled-component';
-
-  +const Span = styled('span')(visuallyHidden);
+  +import { visuallyHidden } from '@material-ui/utils';
 
   -<Typography variant="srOnly">Create a user</Typography>
-  +<Span>Create a user</Span>
+  +<span style={visuallyHidden}>Create a user</span>
   ```
 
 ### System
