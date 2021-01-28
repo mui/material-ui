@@ -3,29 +3,29 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   createClientRender,
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   createServerRender,
 } from 'test/utils';
 import ButtonBase from '../ButtonBase';
 import ToggleButton from './ToggleButton';
+import classes from './toggleButtonClasses';
 
 describe('<ToggleButton />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<ToggleButton value="classes">Hello World</ToggleButton>);
-  });
-
-  describeConformance(<ToggleButton value="X">Hello, World!</ToggleButton>, () => ({
+  describeConformanceV5(<ToggleButton value="X">Hello, World!</ToggleButton>, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
+    muiName: 'MuiToggleButton',
+    testVariantProps: { variant: 'foo' },
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testStateOverrides: { prop: 'size', value: 'large', styleKey: 'sizeLarge' },
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'div',
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('adds the `selected` class to the root element if selected={true}', () => {
