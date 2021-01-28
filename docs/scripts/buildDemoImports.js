@@ -7,7 +7,7 @@
  * List of demos to ignore
  * Example: ['app-bar/BottomAppBar.js']
  */
-const ignoreList = [];
+const ignoreList = ['landing', 'getting-started', 'discover-more', 'production-error', 'versions', 'premium-themes', 'ResponsiveFontSizesChartImports.js'];
 
 const fse = require('fs-extra');
 const path = require('path');
@@ -31,7 +31,7 @@ async function getFiles(root) {
         stat.isFile() &&
         /docs\/src\/pages\/.*\/[A-Z].*\.js$/.test(filePath) &&
         !filePath.endsWith('Imports.js') &&
-        !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
+        !ignoreList.some((ignorePath) => filePath.includes(path.normalize(ignorePath)))
       ) {
         files.push(filePath);
       }
@@ -108,7 +108,7 @@ async function transpileFile(jsPath) {
     await fse.writeFile(jsPath.replace(/\.js$/, 'Imports.js'), correctedLineEndings);
     return TranspileResult.Success;
   } catch (err) {
-    console.error('Something went wrong with %s\n%s\n', tsxPath, err);
+    console.error('Something went wrong with %s\n%s\n', jsPath, err);
     return TranspileResult.Failed;
   }
 }

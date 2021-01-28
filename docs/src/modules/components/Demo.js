@@ -185,10 +185,6 @@ export default function Demo(props) {
     }
   }, [demoName]);
 
-  React.useEffect(() => {
-    setEditorValue(demoData.raw.trim())
-  }, [codeVariant])
-
   const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
     !demoOptions.hideToolbar &&
@@ -200,6 +196,10 @@ export default function Demo(props) {
   const handleEditorValueChange = (value) => {
     setEditorValue(value);
   };
+
+  React.useEffect(() => {
+    setEditorValue(demoData.raw.trim());
+  }, [codeVariant, demoData.raw]);
 
   const handleEditorFocus = () => {
     setCodeOpen(true);
