@@ -47,7 +47,9 @@ const FormHelperTextRoot = experimentalStyled(
   ...theme.typography.caption,
   textAlign: 'left',
   marginTop: 3,
-  margin: 0,
+  marginRight: 0,
+  marginBottom: 0,
+  marginLeft: 0,
   '&.Mui-disabled': {
     color: theme.palette.text.disabled,
   },
