@@ -9,13 +9,14 @@ import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
-import { getToggleButtonUtilityClass } from './toggleButtonClasses';
+import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
     ...styles[`size${capitalize(styleProps.size)}`],
+    [`& .${toggleButtonClasses.label}`]: styles.label,
   });
 };
 
@@ -107,6 +108,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
 
   const styleProps = {
     ...props,
+    disabled,
     disableFocusRipple,
     selected,
     size,
@@ -200,6 +202,10 @@ ToggleButton.propTypes = {
    * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The value to associate with the button when selected in a
    * ToggleButtonGroup.
