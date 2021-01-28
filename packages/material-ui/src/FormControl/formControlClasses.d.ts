@@ -1,5 +1,6 @@
 export interface FormControlClasses {
   root: string;
+  marginNone: string;
   marginNormal: string;
   marginDense: string;
   fullWidth: string;
