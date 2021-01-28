@@ -19,6 +19,10 @@ const StaticTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Stat
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof StaticWrapper>;
 
+if (process.env.NODE_ENV !== 'production') {
+  (StaticTimePicker as any).displayName = 'StaticTimePicker';
+}
+
 StaticTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

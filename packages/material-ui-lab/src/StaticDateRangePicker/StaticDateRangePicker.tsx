@@ -8,6 +8,10 @@ import StaticWrapper from '../internal/pickers/wrappers/StaticWrapper';
 /* @typescript-to-proptypes-generate */
 const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', StaticWrapper);
 
+if (process.env.NODE_ENV !== 'production') {
+  (StaticDateRangePicker as any).displayName = 'StaticDateRangePicker';
+}
+
 (StaticDateRangePicker as any).propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

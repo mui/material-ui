@@ -141,6 +141,10 @@ const DateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unk
   },
 ) as DateTimePickerGenericComponent<typeof ResponsiveWrapper>;
 
+if (process.env.NODE_ENV !== 'production') {
+  (DateTimePicker as any).displayName = 'DateTimePicker';
+}
+
 (DateTimePicker as any).propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

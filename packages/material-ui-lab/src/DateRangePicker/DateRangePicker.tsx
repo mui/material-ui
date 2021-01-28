@@ -8,6 +8,10 @@ import { makeDateRangePicker } from './makeDateRangePicker';
 /* @typescript-to-proptypes-generate */
 const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', ResponsiveTooltipWrapper);
 
+if (process.env.NODE_ENV !== 'production') {
+  (DateRangePicker as any).displayName = 'DateRangePicker';
+}
+
 (DateRangePicker as any).propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

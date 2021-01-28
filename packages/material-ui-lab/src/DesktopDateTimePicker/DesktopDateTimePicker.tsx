@@ -19,6 +19,10 @@ const DesktopDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPr
   },
 ) as DateTimePickerGenericComponent<typeof DesktopWrapper>;
 
+if (process.env.NODE_ENV !== 'production') {
+  (DesktopDateTimePicker as any).displayName = 'DesktopDateTimePicker';
+}
+
 (DesktopDateTimePicker as any).propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
