@@ -30,6 +30,10 @@ describe('<TableCell />', () => {
       );
       return wrapper.find('tr').childAt(0);
     },
+    render: (node) => {
+      const { container, ...rest } = render(<table>{node}</table>);
+      return { container: container.firstChild, ...rest };
+    },
     muiName: 'MuiTableCell',
     testVariantProps: { variant: 'body' },
     refInstanceof: window.HTMLTableCellElement,
