@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
 import useFormControl from './useFormControl';
+import classes from './formControlClasses';
 
 describe('<FormControl />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
   function TestComponent(props) {
     const context = useFormControl();
@@ -20,16 +20,15 @@ describe('<FormControl />', () => {
     return null;
   }
 
-  before(() => {
-    classes = getClasses(<FormControl />);
-  });
-
-  describeConformance(<FormControl />, () => ({
+  describeConformanceV5(<FormControl />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'fieldset',
+    muiName: 'MuiFormControl',
+    testVariantProps: { margin: 'dense' },
+    skip: ['componentsProp'],
   }));
 
   describe('initial state', () => {
