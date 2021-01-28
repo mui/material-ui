@@ -1,52 +1,76 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { deepmerge } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import withStyles from '../styles/withStyles';
+import experimentalStyled from '../styles/experimentalStyled';
+import capitalize from '../utils/capitalize';
+import { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
+import useThemeProps from '../styles/useThemeProps';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    color: theme.palette.text.secondary,
-    ...theme.typography.caption,
-    textAlign: 'left',
-    marginTop: 3,
-    margin: 0,
-    '&$disabled': {
-      color: theme.palette.text.disabled,
-    },
-    '&$error': {
-      color: theme.palette.error.main,
-    },
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
+    ...(styleProps.contained && styles.contained),
+    ...(styleProps.filled && styles.filled),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, contained, size, disabled, error, filled, focused, required } = styleProps;
+  const slots = {
+    root: [
+      'root',
+      disabled && 'disabled',
+      error && 'error',
+      size && `size${capitalize(size)}`,
+      contained && 'contained',
+      focused && 'focused',
+      filled && 'filled',
+      required && 'required',
+    ],
+  };
+
+  return composeClasses(slots, getFormHelperTextUtilityClasses, classes);
+};
+
+const FormHelperTextRoot = experimentalStyled(
+  'p',
+  {},
+  { name: 'MuiFormHelperText', slot: 'Root', overridesResolver },
+)(({ theme, styleProps }) => ({
+  color: theme.palette.text.secondary,
+  ...theme.typography.caption,
+  textAlign: 'left',
+  marginTop: 3,
+  marginRight: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  '&.Mui-disabled': {
+    color: theme.palette.text.disabled,
   },
-  /* Pseudo-class applied to the root element if `error={true}`. */
-  error: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
+  '&.Mui-error': {
+    color: theme.palette.error.main,
+  },
+  ...(styleProps.size === 'small' && {
     marginTop: 4,
-  },
-  /* Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
-  contained: {
+  }),
+  ...(styleProps.contained && {
     marginLeft: 14,
     marginRight: 14,
-  },
-  /* Pseudo-class applied to the root element if `focused={true}`. */
-  focused: {},
-  /* Pseudo-class applied to the root element if `filled={true}`. */
-  filled: {},
-  /* Pseudo-class applied to the root element if `required={true}`. */
-  required: {},
-});
+  }),
+}));
 
-const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
+const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiFormHelperText' });
   const {
     children,
-    classes,
     className,
-    component: Component = 'p',
+    component = 'p',
     disabled,
     error,
     filled,
@@ -64,21 +88,26 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
     states: ['variant', 'size', 'disabled', 'error', 'filled', 'focused', 'required'],
   });
 
+  const styleProps = {
+    ...props,
+    component,
+    contained: fcs.variant === 'filled' || fcs.variant === 'outlined',
+    variant: fcs.variant,
+    size: fcs.size,
+    disabled: fcs.disabled,
+    error: fcs.error,
+    filled: fcs.filled,
+    focused: fcs.focused,
+    required: fcs.required,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        {
-          [classes.contained]: fcs.variant === 'filled' || fcs.variant === 'outlined',
-          [classes.sizeSmall]: fcs.size === 'small',
-          [classes.disabled]: fcs.disabled,
-          [classes.error]: fcs.error,
-          [classes.filled]: fcs.filled,
-          [classes.focused]: fcs.focused,
-          [classes.required]: fcs.required,
-        },
-        className,
-      )}
+    <FormHelperTextRoot
+      as={component}
+      styleProps={styleProps}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
@@ -89,7 +118,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
       ) : (
         children
       )}
-    </Component>
+    </FormHelperTextRoot>
   );
 });
 
@@ -143,9 +172,13 @@ FormHelperText.propTypes = {
    */
   required: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The variant to use.
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
-export default withStyles(styles, { name: 'MuiFormHelperText' })(FormHelperText);
+export default FormHelperText;
