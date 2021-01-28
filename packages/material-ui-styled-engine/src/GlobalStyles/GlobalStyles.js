@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Global } from '@emotion/react';
 
 function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
+  return obj === undefined || obj === null || Object.keys(obj).length === 0;
 }
 
 export default function GlobalStyles(props) {
-  const { styles, defaultTheme } = props;
+  const { styles, defaultTheme = {} } = props;
 
   const globalStyles =
     typeof styles === 'function'

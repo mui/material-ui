@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 
 function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
+  return obj === undefined || obj === null || Object.keys(obj).length === 0;
 }
 
 const GlobalStyles = createGlobalStyle((props) => {
-  const { styles, defaultTheme } = props;
+  const { styles, defaultTheme = {} } = props;
 
   if (typeof styles === 'function') {
     return styles(isEmpty(props.theme) ? defaultTheme : props.theme);
