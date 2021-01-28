@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { PropTypes } from '..';
+import { SxProps } from '@material-ui/system';
+import { PropTypes, Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ChipPropsVariantOverrides {}
@@ -25,6 +26,8 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       root?: string;
       /** Styles applied to the root element if `size="small"`. */
       sizeSmall?: string;
+      /** Styles applied to the root element if `size="medium"`. */
+      sizeMedium?: string;
       /** Styles applied to the root element if `color="primary"`. */
       colorPrimary?: string;
       /** Styles applied to the root element if `color="secondary"`. */
@@ -55,6 +58,8 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       avatar?: string;
       /** Styles applied to the avatar element if `size="small"`. */
       avatarSmall?: string;
+      /** Styles applied to the avatar element if `size="medium"`. */
+      avatarMedium?: string;
       /** Styles applied to the avatar element if `color="primary"`. */
       avatarColorPrimary?: string;
       /** Styles applied to the avatar element if `color="secondary"`. */
@@ -63,6 +68,8 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       icon?: string;
       /** Styles applied to the icon element if `size="small"`. */
       iconSmall?: string;
+      /** Styles applied to the icon element if `size="medium"`. */
+      iconMedium?: string;
       /** Styles applied to the icon element if `color="primary"`. */
       iconColorPrimary?: string;
       /** Styles applied to the icon element if `color="secondary"`. */
@@ -71,10 +78,14 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       label?: string;
       /** Styles applied to the label `span` element if `size="small"`. */
       labelSmall?: string;
+      /** Styles applied to the label `span` element if `size="medium"`. */
+      labelMedium?: string;
       /** Styles applied to the deleteIcon element. */
       deleteIcon?: string;
       /** Styles applied to the deleteIcon element if `size="small"`. */
       deleteIconSmall?: string;
+      /** Styles applied to the deleteIcon element if `size="medium"`. */
+      deleteIconMedium?: string;
       /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
       deleteIconColorPrimary?: string;
       /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
@@ -127,6 +138,10 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default 'medium'
      */
     size?: 'small' | 'medium';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The variant to use.
      * @default 'filled'
