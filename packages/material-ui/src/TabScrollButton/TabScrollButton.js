@@ -68,7 +68,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   return (
     <TabScrollButtonRoot
       component="div"
-      className={clsx(classes.root, classNameProp)}
+      className={clsx(classes.root, className)}
       ref={ref}
       role={null}
       styleProps={styleProps}
