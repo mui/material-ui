@@ -9,6 +9,7 @@ const formHelperTextClasses = generateUtilityClasses('MuiFormHelperText', [
   'error',
   'disabled',
   'sizeSmall',
+  'sizeMedium',
   'contained',
   'focused',
   'filled',
