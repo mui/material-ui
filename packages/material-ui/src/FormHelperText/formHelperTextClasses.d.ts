@@ -3,6 +3,7 @@ export interface FormHelperTextClasses {
   error: string;
   disabled: string;
   sizeSmall: string;
+  sizeMedium: string;
   contained: string;
   focused: string;
   filled: string;
