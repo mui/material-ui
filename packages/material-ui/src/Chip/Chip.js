@@ -72,7 +72,7 @@ const useUtilityClasses = (styleProps) => {
       'deleteIcon',
       `deleteIcon${capitalize(size)}`,
       `deleteIconColor${capitalize(color)}`,
-      `deleteIconOutlinedColor${capitalize(color)})`,
+      `deleteIconOutlinedColor${capitalize(color)}`,
     ],
   };
 
