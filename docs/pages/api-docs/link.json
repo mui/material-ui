@@ -2,13 +2,7 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "color": {
-      "type": {
-        "name": "enum",
-        "description": "'error'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'initial'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'"
-      },
-      "default": "'primary'"
-    },
+    "color": { "type": { "name": "any" }, "default": "'primary'" },
     "component": { "type": { "name": "custom", "description": "element type" } },
     "sx": { "type": { "name": "object" } },
     "TypographyClasses": { "type": { "name": "object" } },

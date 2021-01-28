@@ -134,7 +134,7 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
       <Typography
         variant={avatar ? 'body2' : 'body1'}
         className={classes.subheader}
-        color="textSecondary"
+        color="text.secondary"
         component="span"
         display="block"
         {...subheaderTypographyProps}

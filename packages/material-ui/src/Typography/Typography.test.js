@@ -19,7 +19,7 @@ describe('<Typography />', () => {
     mount,
     refInstanceof: window.HTMLParagraphElement,
     muiName: 'MuiTypography',
-    testVariantProps: { color: 'secondary', variant: 'dot' },
+    testVariantProps: { variant: 'dot' },
     testStateOverrides: { prop: 'variant', value: 'h2', styleKey: 'h2' },
     skip: ['componentsProp'],
   }));
@@ -67,32 +67,6 @@ describe('<Typography />', () => {
 
       // @ts-ignore
       expect(container.firstChild).to.have.class(classes[variant]);
-    });
-  });
-
-  [
-    ['primary', 'colorPrimary'],
-    ['textSecondary', 'colorTextSecondary'],
-    ['secondary', 'colorSecondary'],
-    ['inherit', 'colorInherit'],
-    ['error', 'colorError'],
-  ].forEach(([color, className]) => {
-    it(`should render ${color} color`, () => {
-      // @ts-ignore literal/tuple type widening
-      const { container } = render(<Typography color={color}>Hello</Typography>);
-
-      // @ts-ignore
-      expect(classes[className] != null).to.equal(true);
-      // @ts-ignore
-      expect(container.firstChild).to.have.class(classes[className]);
-    });
-  });
-
-  describe('prop: color', () => {
-    it('should inherit the color', () => {
-      const { container } = render(<Typography color="inherit">Hello</Typography>);
-
-      expect(container.firstChild).to.have.class(classes.colorInherit);
     });
   });
 
@@ -144,29 +118,14 @@ describe('<Typography />', () => {
     });
   });
 
-  describe('prop: display', () => {
-    it('should render with displayInline class in display="inline"', () => {
-      const { container } = render(<Typography display="inline">Hello</Typography>);
+  it('combines system properties with the sx prop', () => {
+    const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
 
-      expect(container.firstChild).to.have.class(classes.root);
-      expect(container.firstChild).to.have.class(classes.displayInline);
-      expect(container.firstChild).not.to.have.class(classes.displayBlock);
-    });
-
-    it('should render with displayInline class in display="block"', () => {
-      const { container } = render(<Typography display="block">Hello</Typography>);
-
-      expect(container.firstChild).to.have.class(classes.root);
-      expect(container.firstChild).to.have.class(classes.displayBlock);
-      expect(container.firstChild).not.to.have.class(classes.displayInline);
-    });
-
-    it('should render with no display classes if display="initial"', () => {
-      const { container } = render(<Typography display="initial">Hello</Typography>);
-
-      expect(container.firstChild).to.have.class(classes.root);
-      expect(container.firstChild).not.to.have.class(classes.displayBlock);
-      expect(container.firstChild).not.to.have.class(classes.displayInline);
+    // @ts-ignore issue with typings on `toHaveComputedStyle`
+    expect(container.firstChild).toHaveComputedStyle({
+      marginTop: '16px',
+      marginRight: '40px',
+      marginBottom: '16px',
     });
   });
 });

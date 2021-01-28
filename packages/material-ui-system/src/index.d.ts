@@ -1,6 +1,11 @@
 import * as React from 'react';
 import * as CSS from 'csstype';
 import { CSSProperties } from './CSSProperties';
+import {
+  OverwriteCSSProperties,
+  AliasesCSSProperties,
+  StandardCSSProperties,
+} from './styleFunctionSx';
 // disable automatic export
 export {};
 
@@ -288,22 +293,36 @@ export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-export type SystemProps = PropsFor<
-  ComposedStyleFunction<
-    [
-      typeof borders,
-      typeof display,
-      typeof flexbox,
-      typeof grid,
-      typeof palette,
-      typeof positions,
-      typeof shadows,
-      typeof sizing,
-      typeof spacing,
-      typeof typography
-    ]
-  >
+export type CustomSystemProps = OverwriteCSSProperties & AliasesCSSProperties;
+
+export type SimpleSystemKeys = keyof Omit<
+  PropsFor<
+    ComposedStyleFunction<
+      [
+        typeof borders,
+        typeof display,
+        typeof flexbox,
+        typeof grid,
+        typeof palette,
+        typeof positions,
+        typeof shadows,
+        typeof sizing,
+        typeof spacing,
+        typeof typography
+      ]
+    >
+  >,
+  keyof CustomSystemProps
 >;
+
+// The SimpleSystemKeys are subset of the StandardCSSProperties, so this should be ok
+// This is needed as these are used as keys inside StandardCSSProperties
+type StandardSystemKeys = Extract<SimpleSystemKeys, keyof StandardCSSProperties>;
+
+export type SystemProps = {
+  [K in StandardSystemKeys]?: ResponsiveStyleValue<StandardCSSProperties[K]>;
+} &
+  CustomSystemProps;
 
 export {
   default as unstable_styleFunctionSx,
