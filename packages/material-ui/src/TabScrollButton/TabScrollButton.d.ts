@@ -1,5 +1,6 @@
+import { SxProps } from '@material-ui/system';
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 
 export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -29,6 +30,10 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
    * The component orientation (layout flow direction).
    */
   orientation: 'horizontal' | 'vertical';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type TabScrollButtonClassKey = keyof NonNullable<TabScrollButtonProps['classes']>;
