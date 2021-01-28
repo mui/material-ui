@@ -103,8 +103,16 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 
   const styleProps = {
     ...props,
-    margin,
+    color,
+    component,
+    disabled,
+    error,
     fullWidth,
+    hiddenLabel,
+    margin,
+    required,
+    size,
+    variant,
   };
 
   const classes = useUtilityClasses(styleProps);
