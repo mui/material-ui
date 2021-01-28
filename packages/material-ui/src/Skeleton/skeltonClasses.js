@@ -16,4 +16,4 @@ const skeltonClasses = generateUtilityClasses('MuiSkelton', [
   'heightAuto',
 ]);
 
-export default skeltonClasses; /** Styles applied to the root element. */
+export default skeltonClasses;
