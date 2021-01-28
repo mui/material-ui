@@ -45,7 +45,7 @@ export const FormLabelRoot = experimentalStyled(
   {},
   { name: 'MuiFormLabel', slot: 'Root', overridesResolver },
 )(({ theme, styleProps }) => ({
-  ...(styleProps.color === 'secondary' && { color: theme.palette.text.secondary }),
+  color: theme.palette.text.secondary,
   ...theme.typography.body1,
   lineHeight: 1,
   padding: 0,
