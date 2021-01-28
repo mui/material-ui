@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Step from '../Step';
+import Step, { stepClasses } from '../Step';
 import StepLabel from '../StepLabel';
 import StepConnector from '../StepConnector';
 import StepContent from '../StepContent';
@@ -9,14 +9,12 @@ import Stepper from './Stepper';
 
 describe('<Stepper />', () => {
   let classes;
-  let stepClasses;
   let stepConnectorClasses;
   const mount = createMount({ strict: true });
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Stepper />);
-    stepClasses = getClasses(<Step />);
     stepConnectorClasses = getClasses(<StepConnector />);
   });
 

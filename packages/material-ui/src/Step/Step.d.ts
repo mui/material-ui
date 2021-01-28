@@ -1,5 +1,6 @@
+import { SxProps } from '@material-ui/system';
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 
 export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -49,6 +50,10 @@ export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivEle
    * The prop defaults to the value inherited from the parent Stepper component.
    */
   last?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type StepClasskey = keyof NonNullable<StepProps['classes']>;
