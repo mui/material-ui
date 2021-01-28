@@ -8,11 +8,11 @@ import {
   alpha,
   unstable_getUnit as getUnit,
   unstable_toUnitless as toUnitless,
-  useThemeVariants,
+  useThemeVariants
 } from '../styles';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import { getSkeltonUtilityClass } from './skeltonClasses';
+import skeltonClasses, { getSkeltonUtilityClass } from './skeltonClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -48,6 +48,7 @@ const pulseKeyframe = keyframes`
   opacity: 1;
 }
 50% {
+  /* +0.5s of delay between each loop */
   opacity: 0.4;
 }
 100% {
@@ -60,7 +61,7 @@ const waveKeyframe = keyframes`
   transform: translateX(-100%);
 }
 50% {
-  // +0.5s of delay between each loop
+  /* +0.5s of delay between each loop */
   transform: translateX(100%);
 }
 100% {
@@ -68,82 +69,79 @@ const waveKeyframe = keyframes`
 }
 `;
 
+// This `styled()` function invokes keyframes. `styled-components` only supports keyframes
+// in string templates. Do not convert these styles in JS object as it will break.
 const SkeltonRoot = experimentalStyled(
   'span',
   {},
   { name: 'MuiSkelton', slot: 'Root' },
   overridesResolver,
-)(({ styleProps, theme }) => {
-  const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
-  const radiusValue = toUnitless(theme.shape.borderRadius);
+)`
+  display: block;
+  background-color: ${({ theme }) =>
+    alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13)};
+  height: 1.2em;
 
-  return {
-    /* Styles applied to the root element. */
-    display: 'block',
-    // Create a "on paper" color with sufficient contrast retaining the color
-    backgroundColor: alpha(
-      theme.palette.text.primary,
-      theme.palette.mode === 'light' ? 0.11 : 0.13,
-    ),
-    height: '1.2em',
-    /* Styles applied to the root element if `variant="text"`. */
-    ...(styleProps.variant === 'text' && {
-      marginTop: 0,
-      marginBottom: 0,
-      height: 'auto',
-      transformOrigin: '0 55%',
-      transform: 'scale(1, 0.60)',
-      borderRadius: `${radiusValue}${radiusUnit}/${
+  & .${skeltonClasses.text} {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: auto;
+    transform-origin: 0 55%;
+    transform: scale(1, 0.60);
+    border-radius: ${({ theme }) => {
+      const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
+      const radiusValue = toUnitless(theme.shape.borderRadius);
+      return `${radiusValue}${radiusUnit}/${
         Math.round((radiusValue / 0.6) * 10) / 10
-      }${radiusUnit}`,
-      '&:empty:before': {
-        content: '"\\00a0"',
-      },
-    }),
-    /* Styles applied to the root element if `variant="circular"`. */
-    ...(styleProps.variant === 'circular' && {
-      borderRadius: '50%',
-    }),
-    /* Styles applied to the root element if `animation="pulse"`. */
-    ...(styleProps.animation === 'pulse' && {
-      animation: `${pulseKeyframe} 1.5s ease-in-out 0.5s infinite`,
-    }),
-    /* Styles applied to the root element if `animation="wave"`. */
-    ...(styleProps.animation === 'wave' && {
-      position: 'relative',
-      overflow: 'hidden',
-      // Fix bug in Safari https://bugs.webkit.org/show_bug.cgi?id=68196
-      WebkitMaskImage: '-webkit-radial-gradient(white, black)',
-      '&::after': {
-        animation: `${waveKeyframe} 1.6s linear 0.5s infinite`,
-        background: `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`,
-        content: '""',
-        position: 'absolute',
-        transform: 'translateX(-100%)', // Avoid flash during server-side hydration
-        bottom: 0,
-        left: 0,
-        right: 0,
-        top: 0,
-      },
-    }),
-    /* Styles applied when the component is passed children. */
-    ...(styleProps.hasChildren && {
-      '& > *': {
-        visibility: 'hidden',
-      },
-    }),
-    /* Styles applied when the component is passed children and no width. */
-    ...(styleProps.hasChildren &&
-      !styleProps.width && {
-        maxWidth: 'fit-content',
-      }),
-    /* Styles applied when the component is passed children and no height. */
-    ...(styleProps.hasChildren &&
-      !styleProps.height && {
-        height: 'auto',
-      }),
-  };
-});
+      }${radiusUnit}`;
+    }};
+    &:empty:before {
+      content: '"\\00a0";
+    }
+  }
+
+  & .${skeltonClasses.circular} {
+    border-radius: 50%;
+  }
+
+  & .${skeltonClasses.pulse} {
+    animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
+  }
+
+  & .${skeltonClasses.wave} {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    position: relative;
+    &::after {
+      animation: ${waveKeyframe} 1.6s linear 0.5s infinite;
+      background: ${({ theme }) =>
+        `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`};
+      content: "";
+      position: absolute;
+      transform: translateX(-100%);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  & .${skeltonClasses.withChildren} {
+    & > * {
+      visibility: hidden;
+    }
+  }
+
+
+  & .${skeltonClasses.fitContent} {
+    max-width: fit-content;
+  }
+
+  & .${skeltonClasses.heightAuto} {
+    height: auto;
+  }
+`;
 
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
   const props = useThemeProps({
