@@ -43,7 +43,8 @@ function testThemeDefaultProps(element, getOptions) {
   describe('theme: default components', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
-      const { muiName, wrapper } = getOptions();
+      const { muiName, wrapRender } = getOptions();
+      const testRender = wrapRender || render;
       const theme = createMuiTheme({
         components: {
           [muiName]: {
@@ -54,17 +55,9 @@ function testThemeDefaultProps(element, getOptions) {
         },
       });
 
-      if (wrapper) {
-        const { container } = render(
-          <ThemeProvider theme={theme}>{wrapper(element)}</ThemeProvider>,
-        );
+      const { container } = testRender(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
-        expect(container.firstChild.firstChild).to.have.attribute(testProp, 'testProp');
-      } else {
-        const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
-
-        expect(container.firstChild).to.have.attribute(testProp, 'testProp');
-      }
+      expect(container.firstChild).to.have.attribute(testProp, 'testProp');
     });
   });
 }
@@ -80,8 +73,9 @@ function testThemeStyleOverrides(element, getOptions) {
 
   describe('theme: style overrides', () => {
     it("respect theme's styleOverrides custom state", () => {
-      const { muiName, testStateOverrides, wrapper } = getOptions();
+      const { muiName, testStateOverrides, wrapRender } = getOptions();
 
+      const testRender = wrapRender || render;
       if (!testStateOverrides) {
         return;
       }
@@ -100,27 +94,21 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      let testElement;
-
-      const { container } = render(
+      const { container } = testRender(
         <ThemeProvider theme={theme}>
-          {React.cloneElement(wrapper ? wrapper(element) : element, {
+          {React.cloneElement(element, {
             [testStateOverrides.prop]: testStateOverrides.value,
           })}
         </ThemeProvider>,
       );
 
-      if (wrapper) {
-        testElement = container.firstChild.firstChild;
-      } else {
-        testElement = container.firstChild;
-      }
-      expect(testElement).to.toHaveComputedStyle(testStyle);
+      expect(container.firstChild).to.toHaveComputedStyle(testStyle);
     });
 
     it("respect theme's styleOverrides slots", () => {
-      const { muiName, testDeepOverrides, wrapper } = getOptions();
+      const { muiName, testDeepOverrides, wrapRender } = getOptions();
 
+      const testRender = wrapRender || render;
       const testStyle = {
         marginTop: '13px',
       };
@@ -147,23 +135,13 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>{wrapper ? wrapper(element) : element}</ThemeProvider>,
-      );
+      const { container } = testRender(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
-      let testElement;
-
-      if (wrapper) {
-        testElement = container.firstChild.firstChild;
-      } else {
-        testElement = container.firstChild;
-      }
-
-      expect(testElement).to.toHaveComputedStyle(testStyle);
+      expect(container.firstChild).to.toHaveComputedStyle(testStyle);
 
       if (testDeepOverrides) {
         expect(
-          testElement.getElementsByClassName(testDeepOverrides.slotClassName)[0],
+          container.firstChild.getElementsByClassName(testDeepOverrides.slotClassName)[0],
         ).to.toHaveComputedStyle({
           marginBottom: '10px',
           marginTop: '10px',
@@ -184,22 +162,13 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      const { container: containerWithoutRootOverrides } = render(
-        <ThemeProvider theme={themeWithoutRootOverrides}>
-          {wrapper ? wrapper(element) : element}
-        </ThemeProvider>,
+      const { container: containerWithoutRootOverrides } = testRender(
+        <ThemeProvider theme={themeWithoutRootOverrides}>{element}</ThemeProvider>,
       );
-
-      let testElementWithoutRootOverrider;
-      if (wrapper) {
-        testElementWithoutRootOverrider = containerWithoutRootOverrides.firstChild.firstChild;
-      } else {
-        testElementWithoutRootOverrider = containerWithoutRootOverrides.firstChild;
-      }
 
       if (testDeepOverrides) {
         expect(
-          testElementWithoutRootOverrider.getElementsByClassName(
+          containerWithoutRootOverrides.firstChild.getElementsByClassName(
             testDeepOverrides.slotClassName,
           )[0],
         ).to.toHaveComputedStyle({
@@ -221,8 +190,9 @@ function testThemeVariants(element, getOptions) {
 
   describe('theme: variants', () => {
     it("respect theme's variants", () => {
-      const { muiName, testVariantProps = {}, wrapper } = getOptions();
+      const { muiName, testVariantProps = {}, wrapRender } = getOptions();
 
+      const testRender = wrapRender || render;
       const testStyle = {
         marginTop: '13px',
       };
@@ -240,13 +210,13 @@ function testThemeVariants(element, getOptions) {
         },
       });
 
-      const { getByTestId } = render(
+      const { getByTestId } = testRender(
         <ThemeProvider theme={theme}>
-          {React.cloneElement(wrapper ? wrapper(element) : element, {
+          {React.cloneElement(element, {
             ...testVariantProps,
             'data-testid': 'with-props',
           })}
-          {React.cloneElement(wrapper ? wrapper(element) : element, {
+          {React.cloneElement(element, {
             'data-testid': 'without-props',
           })}
         </ThemeProvider>,
