@@ -48,6 +48,22 @@ describe('<DesktopDateRangePicker />', () => {
     expect(handleClose.callCount).to.equal(1);
   });
 
+  it('does not close on clickaway when it is not open', () => {
+    const handleClose = spy();
+    render(
+      <DesktopDateRangePicker
+        onChange={() => {}}
+        renderInput={(params) => <TextField {...params} />}
+        value={[null, null]}
+        onClose={handleClose}
+      />,
+    );
+
+    fireEvent.click(document.body);
+
+    expect(handleClose.callCount).to.equal(0);
+  });
+
   it('does not close on click inside', () => {
     const handleClose = spy();
     render(
