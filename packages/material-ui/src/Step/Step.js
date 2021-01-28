@@ -89,6 +89,7 @@ const Step = React.forwardRef(function Step(inProps, ref) {
 
   const styleProps = {
     ...props,
+    active,
     orientation,
     alternativeLabel,
     completed,
