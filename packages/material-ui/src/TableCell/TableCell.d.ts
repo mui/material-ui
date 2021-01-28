@@ -1,5 +1,6 @@
+import { SxProps } from '@material-ui/system';
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { Padding, Size } from '../Table';
 
 export { Padding, Size };
@@ -39,6 +40,8 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
     footer?: string;
     /** Styles applied to the root element if `size="small"`. */
     sizeSmall?: string;
+    /** Styles applied to the root element if `size="medium"`. */
+    sizeMedium?: string;
     /** Styles applied to the root element if `padding="checkbox"`. */
     paddingCheckbox?: string;
     /** Styles applied to the root element if `padding="none"`. */
@@ -51,7 +54,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
     alignRight?: string;
     /** Styles applied to the root element if `align="justify"`. */
     alignJustify?: string;
-    /** Styles applied to the root element if `context.table.stickyHeader={true}`. */
+    /** Styles applied to the root element if `align="inherit"`. */
     stickyHeader?: string;
   };
   /**
@@ -77,6 +80,10 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * Set aria-sort direction.
    */
   sortDirection?: SortDirection;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * Specify the cell type.
    * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
