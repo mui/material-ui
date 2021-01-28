@@ -3,69 +3,88 @@ import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 
+export interface FormLabelBaseProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if the color is secondary. */
+    colorSecondary?: string;
+    /** Pseudo-class applied to the root element if `focused={true}`. */
+    focused?: string;
+    /** Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled?: string;
+    /** Pseudo-class applied to the root element if `error={true}`. */
+    error?: string;
+    /** Pseudo-class applied to the root element if `filled={true}`. */
+    filled?: string;
+    /** Pseudo-class applied to the root element if `required={true}`. */
+    required?: string;
+    /** Styles applied to the asterisk element. */
+    asterisk?: string;
+  };
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color?: 'primary' | 'secondary';
+  /**
+   * If `true`, the label should be displayed in a disabled state.
+   */
+  disabled?: boolean;
+  /**
+   * If `true`, the label is displayed in an error state.
+   */
+  error?: boolean;
+  /**
+   * If `true`, the label should use filled classes key.
+   */
+  filled?: boolean;
+  /**
+   * If `true`, the input of this label is focused (used by `FormGroup` components).
+   */
+  focused?: boolean;
+  /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
   props: P &
     FormLabelBaseProps & {
       /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * Override or extend the styles applied to the component.
-       */
-      classes?: {
-        /** Styles applied to the root element. */
-        root?: string;
-        /** Styles applied to the root element if the color is secondary. */
-        colorSecondary?: string;
-        /** Pseudo-class applied to the root element if `focused={true}`. */
-        focused?: string;
-        /** Pseudo-class applied to the root element if `disabled={true}`. */
-        disabled?: string;
-        /** Pseudo-class applied to the root element if `error={true}`. */
-        error?: string;
-        /** Pseudo-class applied to the root element if `filled={true}`. */
-        filled?: string;
-        /** Pseudo-class applied to the root element if `required={true}`. */
-        required?: string;
-        /** Styles applied to the asterisk element. */
-        asterisk?: string;
-      };
-      /**
-       * The color of the component. It supports those theme colors that make sense for this component.
-       */
-      color?: 'primary' | 'secondary';
-      /**
-       * The props used for the root component when a `component` prop is provided.
+       * The components used for each slot inside the FormLabel.
+       * Either a string to use a HTML element or a component.
        * @default {}
        */
-      componentProps?: {
-        styleProps?: Omit<FormLabelBaseProps, 'component' | 'componentProps'>;
+      components?: {
+        Root?: React.ElementType;
+        Asterisk?: React.ElementType;
       };
       /**
-       * If `true`, the label should be displayed in a disabled state.
+       * The props used for each slot inside the FormLabel.
+       * @default {}
        */
-      disabled?: boolean;
-      /**
-       * If `true`, the label is displayed in an error state.
-       */
-      error?: boolean;
-      /**
-       * If `true`, the label should use filled classes key.
-       */
-      filled?: boolean;
-      /**
-       * If `true`, the input of this label is focused (used by `FormGroup` components).
-       */
-      focused?: boolean;
-      /**
-       * If `true`, the label will indicate that the `input` is required.
-       */
-      required?: boolean;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps<Theme>;
+      componentsProps?: {
+        root?: {
+          as: React.ElementType;
+          styleProps?: P & FormLabelBaseProps;
+        };
+        asterisk?: {
+          as?: React.ElementType;
+          styleProps?: P & FormLabelBaseProps;
+        };
+      };
     };
   defaultComponent: D;
 }
@@ -85,8 +104,6 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
 declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 
 export type FormLabelClassKey = keyof NonNullable<FormLabelTypeMap['props']['classes']>;
-
-export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
 export type FormLabelProps<
   D extends React.ElementType = FormLabelTypeMap['defaultComponent'],

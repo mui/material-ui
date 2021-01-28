@@ -103,14 +103,7 @@ const InputLabelRoot = experimentalStyled(
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
-  const {
-    className,
-    disableAnimation = false,
-    margin,
-    shrink: shrinkProp,
-    variant,
-    ...other
-  } = props;
+  const { disableAnimation = false, margin, shrink: shrinkProp, variant, ...other } = props;
 
   const muiFormControl = useFormControl();
 
@@ -138,8 +131,8 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const classes = useUtilityClasses(styleProps);
   return (
     <FormLabel
-      component={InputLabelRoot}
-      componentProps={{ styleProps }}
+      components={{ Root: InputLabelRoot }}
+      componentsProps={{ root: { styleProps }, asterisk: { styleProps } }}
       data-shrink={shrink}
       ref={ref}
       {...other}
@@ -161,10 +154,6 @@ InputLabel.propTypes = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */

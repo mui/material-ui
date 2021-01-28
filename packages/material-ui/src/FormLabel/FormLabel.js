@@ -13,9 +13,7 @@ import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses
 export const overridesResolver = ({ styleProps }, styles) => {
   return deepmerge(styles.root || {}, {
     ...(styleProps.color === 'secondary' && styles.colorSecondary),
-    ...(styleProps.error && styles.error),
     ...(styleProps.filled && styles.filled),
-    ...(styleProps.required && styles.required),
     [`& .${formLabelClasses.asterisk}`]: {
       ...styles.asterisk,
     },
@@ -34,7 +32,7 @@ const useUtilityClasses = (styleProps) => {
       filled && 'filled',
       required && 'required',
     ],
-    span: ['asterisk', error && 'error'],
+    asterisk: ['asterisk', error && 'error'],
   };
 
   return composeClasses(slots, getFormLabelUtilityClasses, classes);
@@ -63,10 +61,10 @@ export const FormLabelRoot = experimentalStyled(
   },
 }));
 
-const SpanComponent = experimentalStyled(
-  'label',
+const AsteriskComponent = experimentalStyled(
+  'span',
   {},
-  { name: 'MuiFormLabel', slot: 'Span', overridesResolver },
+  { name: 'MuiFormLabel', slot: 'Asterisk', overridesResolver },
 )(({ theme }) => ({
   '&.Mui-error': {
     color: theme.palette.error.main,
@@ -79,7 +77,8 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     children,
     color,
     component = 'label',
-    componentProps = {},
+    components = {},
+    componentsProps = {},
     disabled,
     error,
     filled,
@@ -108,27 +107,40 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     required: fcs.required,
   };
 
-  const componentIsHtmlElement = typeof component === 'string';
-  const Root = componentIsHtmlElement ? FormLabelRoot : component;
-  const classes = useUtilityClasses({ ...styleProps, ...componentProps.styleProps });
+  const Root = components.Root || FormLabelRoot;
+  const inputRootProps = componentsProps.root || {};
+
+  const Asterisk = components.Input || AsteriskComponent;
+  const asteriskProps = componentsProps.asterisk || {};
+
+  const classes = useUtilityClasses({ ...styleProps, ...inputRootProps.styleProps });
+
+  const rootProps = !isHostComponent(Root)
+    ? { ...inputRootProps, styleProps: { ...styleProps, ...inputRootProps.styleProps }, theme }
+    : { ...inputRootProps, styleProps };
 
   return (
     <Root
-      {...(componentIsHtmlElement && { as: component })}
-      styleProps={styleProps}
-      {...(!isHostComponent(FormLabelRoot) && {
-        styleProps: { ...styleProps, ...componentProps.styleProps },
-        theme,
-      })}
-      className={clsx(classes.root, componentProps?.styleProps?.className, className)}
+      as={component}
+      {...rootProps}
+      className={clsx(classes.root, rootProps.className, className)}
       ref={ref}
       {...other}
     >
       {children}
       {fcs.required && (
-        <SpanComponent styleProps={styleProps} aria-hidden className={classes.span}>
+        <Asterisk
+          styleProps={styleProps}
+          aria-hidden
+          {...(!isHostComponent(Asterisk) && {
+            as: AsteriskComponent,
+            styleProps: { ...styleProps, ...asteriskProps.styleProps },
+            theme,
+          })}
+          className={classes.asterisk}
+        >
           &thinsp;{'*'}
-        </SpanComponent>
+        </Asterisk>
       )}
     </Root>
   );
@@ -161,10 +173,19 @@ FormLabel.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for the root component when a `component` prop is provided.
+   * The components used for each slot inside the FormLabel.
+   * Either a string to use a HTML element or a component.
    * @default {}
    */
-  componentProps: PropTypes.object,
+  components: PropTypes.shape({
+    Asterisk: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the FormLabel.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * If `true`, the label should be displayed in a disabled state.
    */
