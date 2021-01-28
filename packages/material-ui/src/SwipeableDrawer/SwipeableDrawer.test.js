@@ -103,7 +103,7 @@ const NullPaper = React.forwardRef(function NullPaper(props, ref) {
 describe('<SwipeableDrawer />', () => {
   // test are mostly asserting on implementation details
   const mount = createMount({ strict: null });
-  const render = createClientRender();
+  const render = createClientRender({ strict: false });
 
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
     classes: {},
@@ -227,7 +227,6 @@ describe('<SwipeableDrawer />', () => {
             >
               <div data-testid="drawer">SwipeableDrawer</div>
             </SwipeableDrawer>,
-            { strict: false },
           );
 
           const swipeArea = document.querySelector('[class*=PrivateSwipeArea-root]');

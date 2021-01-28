@@ -17,7 +17,7 @@ describe('<MobileDateTimePicker />', () => {
     clock.restore();
   });
 
-  const render = createPickerRender();
+  const render = createPickerRender({ strict: false });
 
   it('opens dialog on textField click for Mobile mode', () => {
     render(
@@ -63,8 +63,7 @@ describe('<MobileDateTimePicker />', () => {
       );
     }
 
-    // findDOMNode issue
-    render(<DateTimePickerWithState />, { strict: false });
+    render(<DateTimePickerWithState />);
     fireEvent.click(screen.getByLabelText(/choose date/i));
 
     expect(getByMuiTest('datetimepicker-toolbar-date')).to.have.text('Enter Date');

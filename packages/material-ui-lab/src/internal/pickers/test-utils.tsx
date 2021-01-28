@@ -51,12 +51,11 @@ export function createPickerRender({
 }: PickerRenderOptions & import('test/utils').RenderOptions = {}) {
   const clientRender = createClientRender(renderOptions);
 
-  return (node: React.ReactNode, options?: import('test/utils').RenderOptions) =>
+  return (node: React.ReactNode) =>
     clientRender(
       <LocalizationProvider locale={locale} dateAdapter={AdapterClassToUse}>
         {node}
       </LocalizationProvider>,
-      options,
     );
 }
 

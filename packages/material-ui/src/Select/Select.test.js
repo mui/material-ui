@@ -20,7 +20,7 @@ describe('<Select />', () => {
   let classes;
   const mount = createMount({ strict: true });
   // StrictModeViolation: triggers "not wrapped in act()" warnings from timers.
-  const render = createClientRender();
+  const render = createClientRender({ strict: false });
 
   before(() => {
     classes = getClasses(<Select />);
@@ -111,7 +111,6 @@ describe('<Select />', () => {
         <MenuItem value="">none</MenuItem>
         <MenuItem value={10}>Ten</MenuItem>
       </Select>,
-      { strict: false },
     );
     const trigger = getByRole('button');
 
@@ -145,12 +144,11 @@ describe('<Select />', () => {
   });
 
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
-    it(`should open menu when pressed '${key}' key on select`, () => {
+    it(`should open menu when pressed ${key} key on select`, () => {
       render(
         <Select value="">
           <MenuItem value="">none</MenuItem>
         </Select>,
-        { strict: false },
       );
       const trigger = screen.getByRole('button');
       trigger.focus();
@@ -169,7 +167,6 @@ describe('<Select />', () => {
       <Select onBlur={handleBlur} name="blur-testing" value="">
         <MenuItem value="">none</MenuItem>
       </Select>,
-      { strict: false },
     );
     const button = getByRole('button');
     button.focus();
@@ -247,7 +244,6 @@ describe('<Select />', () => {
           <MenuItem value="1" />
           <MenuItem value="2" />
         </Select>,
-        { strict: false },
       );
       fireEvent.mouseDown(getByRole('button'));
       getAllByRole('option')[1].click();
@@ -266,7 +262,6 @@ describe('<Select />', () => {
           <MenuItem value="0" />
           <MenuItem value="1" />
         </Select>,
-        { strict: false },
       );
 
       fireEvent.mouseDown(getByRole('button'));
@@ -283,7 +278,6 @@ describe('<Select />', () => {
           <MenuItem value="1" />
           <MenuItem value="2" />
         </Select>,
-        { strict: false },
       );
       fireEvent.mouseDown(getByRole('button'));
       getAllByRole('option')[1].click();
@@ -566,7 +560,7 @@ describe('<Select />', () => {
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
         </Select>,
-        { strict: false, baseElement: document.body },
+        { baseElement: document.body },
       );
       const trigger = screen.getByRole('button');
       trigger.focus();
@@ -879,7 +873,6 @@ describe('<Select />', () => {
                 <MenuItem value="30">Thirty</MenuItem>
               </Select>
             </ErrorBoundary>,
-            { strict: false },
           );
         }).toErrorDev([
           'Material-UI: The `value` prop must be an array',

@@ -15,8 +15,9 @@ import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
-  const mount = createMount();
-  const render = createClientRender();
+  // StrictModeViolation: not using act(), prefer test/utils/createClientRender
+  const mount = createMount({ strict: false });
+  const render = createClientRender({ strict: false });
   let classes;
 
   const icon = <Icon>font_icon</Icon>;
@@ -72,7 +73,6 @@ describe('<SpeedDial />', () => {
         {null}
         <SpeedDialAction icon={icon} tooltipTitle="Three" />
       </SpeedDial>,
-      { strict: false },
     );
     expect(getByRole('menu').children).to.have.lengthOf(2);
     expect(getAllByRole('menuitem')).to.have.lengthOf(2);
@@ -85,7 +85,6 @@ describe('<SpeedDial />', () => {
         <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction1" />
         <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction2" />
       </SpeedDial>,
-      { strict: false },
     );
     const actions = getAllByRole('menuitem');
     expect(actions).to.have.lengthOf(2);
@@ -99,7 +98,6 @@ describe('<SpeedDial />', () => {
         <SpeedDial {...defaultProps} onKeyDown={handleKeyDown}>
           <FakeAction />
         </SpeedDial>,
-        { strict: false },
       );
       const buttonWrapper = getByRole('button', { expanded: true });
       act(() => {
@@ -125,7 +123,6 @@ describe('<SpeedDial />', () => {
             <SpeedDialAction icon={icon} tooltipTitle="action1" />
             <SpeedDialAction icon={icon} tooltipTitle="action2" />
           </SpeedDial>,
-          { strict: false },
         );
         expect(getByRole('presentation')).to.have.class(classes[className]);
       });
@@ -150,7 +147,6 @@ describe('<SpeedDial />', () => {
           <SpeedDialAction tooltipTitle="action1" />
           <SpeedDialAction tooltipTitle="action2" />
         </SpeedDial>,
-        { strict: false },
       );
       const fab = getByRole('button');
       fab.focus();
@@ -197,7 +193,6 @@ describe('<SpeedDial />', () => {
             />
           ))}
         </SpeedDial>,
-        { strict: false },
       );
       fabButton.focus();
     };
