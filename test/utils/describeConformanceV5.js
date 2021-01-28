@@ -219,13 +219,8 @@ function testThemeVariants(element, getOptions) {
 
       const { getByTestId } = testRender(
         <ThemeProvider theme={theme}>
-          {React.cloneElement(element, {
-            ...testVariantProps,
-            'data-testid': 'with-props',
-          })}
-          {React.cloneElement(element, {
-            'data-testid': 'without-props',
-          })}
+          {React.cloneElement(element, { ...testVariantProps, 'data-testid': 'with-props' })}
+          {React.cloneElement(element, { 'data-testid': 'without-props' })}
         </ThemeProvider>,
       );
 
