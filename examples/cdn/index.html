@@ -22,7 +22,6 @@ const {
   ThemeProvider,
   Typography,
   Container,
-  makeStyles,
   createMuiTheme,
   Box,
   SvgIcon,
@@ -56,21 +55,10 @@ function LightBulbIcon(props) {
   );
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    margin: theme.spacing(6, 0, 3),
-  },
-  lightBulb: {
-    verticalAlign: 'middle',
-    marginRight: theme.spacing(1),
-  },
-}));
-
 function ProTip() {
-  const classes = useStyles();
   return (
-    <Typography className={classes.root} color="textSecondary">
-      <LightBulbIcon className={classes.lightBulb} />
+    <Typography sx={{ mt: 6, mb: 3 }} color="textSecondary">
+      <LightBulbIcon sx={{ mr: 1, verticalAlign: 'top' }} />
       Pro tip: See more{' '}
       <Link href="https://material-ui.com/getting-started/templates/">
         templates
@@ -108,6 +96,7 @@ function App() {
 }
 
 ReactDOM.render(
+  // TODO v5: remove once migration to emotion is completed
   <StyledEngineProvider injectFirst>
     <ThemeProvider theme={theme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

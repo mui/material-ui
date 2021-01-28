@@ -9,6 +9,7 @@ import Copyright from '../components/Copyright';
 
 export default function Index() {
   return (
+    // TODO v5: remove once migration to emotion is completed
     <StyledEngineProvider injectFirst>
       <Container maxWidth="sm">
         <Box sx={{ my: 4 }}>

@@ -6,14 +6,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-      <CssBaseline />
-      <App />
-    </StyledEngineProvider>
-  </React.StrictMode>,
-
+  // TODO v5: remove once migration to emotion is completed
+  <StyledEngineProvider injectFirst>
+    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+    <CssBaseline />
+    <App />
+  </StyledEngineProvider>,
   document.getElementById('root'),
 );
 
