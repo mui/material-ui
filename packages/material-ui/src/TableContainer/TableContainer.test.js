@@ -1,20 +1,19 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { createMount, describeConformanceV5 } from 'test/utils';
 import TableContainer from './TableContainer';
+import classes from './tableContainerClasses';
 
 describe('<TableContainer />', () => {
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<TableContainer />);
-  });
-
-  describeConformance(<TableContainer />, () => ({
+  describeConformanceV5(<TableContainer />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    muiName: 'MuiTableContainer',
+    testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
+    skip: ['componentsProp'],
   }));
 });

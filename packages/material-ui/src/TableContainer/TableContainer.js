@@ -1,20 +1,57 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import { getTableContainerUtilityClass } from './tableContainerClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    width: '100%',
-    overflowX: 'auto',
-  },
+const overridesResolver = (props, styles) => styles.root || {};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getTableContainerUtilityClass, classes);
 };
 
-const TableContainer = React.forwardRef(function TableContainer(props, ref) {
-  const { classes, className, component: Component = 'div', ...other } = props;
+const TableContainerRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiTableContainer',
+    slot: 'Root',
+    overridesResolver,
+  },
+)({
+  /* Styles applied to the root element. */
+  width: '100%',
+  overflowX: 'auto',
+});
 
-  return <Component ref={ref} className={clsx(classes.root, className)} {...other} />;
+const TableContainer = React.forwardRef(function TableContainer(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTableContainer' });
+  const { className, component = 'div', ...other } = props;
+
+  const styleProps = {
+    ...props,
+    component,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
+  return (
+    <TableContainerRoot
+      ref={ref}
+      as={component}
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
+      {...other}
+    />
+  );
 });
 
 TableContainer.propTypes = {
@@ -39,6 +76,10 @@ TableContainer.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTableContainer' })(TableContainer);
+export default TableContainer;
