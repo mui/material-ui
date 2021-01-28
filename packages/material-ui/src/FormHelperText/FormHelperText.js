@@ -93,7 +93,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     ...props,
     contained: fcs.variant === 'filled' || fcs.variant === 'outlined',
     variant: fcs.variant,
-    small: fcs.size === 'small',
+    size: fcs.size,
     disabled: fcs.disabled,
     error: fcs.error,
     filled: fcs.filled,
