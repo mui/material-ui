@@ -10,7 +10,8 @@
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "disabled": { "type": { "name": "bool" } }
+    "disabled": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "TabScrollButton",
   "styles": {
@@ -23,6 +24,6 @@
   "filename": "/packages/material-ui/src/TabScrollButton/TabScrollButton.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
