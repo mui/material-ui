@@ -18,18 +18,14 @@ const overridesResolver = (props, styles) => {
   const { color, clickable, onDelete, size, variant } = styleProps;
 
   return deepmerge(styles.root || {}, {
-    ...styles[variant],
     ...styles[`size${capitalize(size)}`],
     ...styles[`color${capitalize(color)}`],
     ...(clickable && styles.clickable),
     ...(clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`]),
     ...(onDelete && styles.deletable),
     ...(onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`]),
-    ...(variant === 'outlined' && styles[`outlined${capitalize(variant)}`]),
-    [`& .${chipClasses.label}`]: {
-      ...styles.label,
-      ...styles[`label${capitalize(size)}`],
-    },
+    ...styles[variant],
+    ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
     [`& .${chipClasses.avatar}`]: {
       ...styles.avatar,
       ...styles[`avatar${capitalize(size)}`],
@@ -39,6 +35,10 @@ const overridesResolver = (props, styles) => {
       ...styles.icon,
       ...styles[`icon${capitalize(size)}`],
       ...styles[`iconColor${capitalize(color)}`],
+    },
+    [`& .${chipClasses.label}`]: {
+      ...styles.label,
+      ...styles[`label${capitalize(size)}`],
     },
     [`& .${chipClasses.deleteIcon}`]: {
       ...styles.deleteIcon,
@@ -56,14 +56,14 @@ const useUtilityClasses = (styleProps) => {
     root: [
       'root',
       variant,
-      `${variant}${capitalize(color)}`,
+      disabled && 'disabled',
       `size${capitalize(size)}`,
       `color${capitalize(color)}`,
-      disabled && 'disabled',
       clickable && 'clickable',
       clickable && `clickableColor${capitalize(color)}`,
       onDelete && 'deletable',
       onDelete && `deletableColor${capitalize(color)}`,
+      `${variant}${capitalize(color)}`,
     ],
     label: ['label', `label${capitalize(size)}`],
     avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
