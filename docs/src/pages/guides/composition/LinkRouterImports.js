@@ -5,7 +5,7 @@ import Link from '@material-ui/core/Link';
 
 export default {
   react: React,
-  'react-router': { Router },
-  'react-router-dom': { RouterLink },
+  'react-router': { MemoryRouter: Router },
+  'react-router-dom': { Link: RouterLink },
   '@material-ui/core/Link': Link,
 };

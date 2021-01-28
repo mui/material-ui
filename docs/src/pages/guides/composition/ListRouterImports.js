@@ -27,5 +27,5 @@ export default {
   '@material-ui/icons/Drafts': DraftsIcon,
   '@material-ui/core/Typography': Typography,
   'react-router': { Route, MemoryRouter },
-  'react-router-dom': { RouterLink },
+  'react-router-dom': { Link: RouterLink },
 };

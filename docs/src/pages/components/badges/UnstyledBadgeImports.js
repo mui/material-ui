@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { styled },
+  '@material-ui/core/styles': { experimentalStyled: styled },
   '@material-ui/unstyled/BadgeUnstyled': BadgeUnstyled,
   '@material-ui/core/Box': Box,
 };

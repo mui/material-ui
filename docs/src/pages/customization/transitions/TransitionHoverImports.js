@@ -12,7 +12,7 @@ export default {
   react: React,
   'styled-components': { default: styled, ThemeProvider },
   '@material-ui/core/NoSsr': NoSsr,
-  '@material-ui/core/styles': { createMuiTheme, MuiThemeProvider },
+  '@material-ui/core/styles': { createMuiTheme, ThemeProvider: MuiThemeProvider },
   '@material-ui/core/colors': { deepPurple },
   '@material-ui/core/Avatar': Avatar,
 };

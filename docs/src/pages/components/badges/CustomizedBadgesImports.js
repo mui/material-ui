@@ -7,7 +7,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 export default {
   react: React,
   '@material-ui/core/Badge': Badge,
-  '@material-ui/core/styles': { styled },
+  '@material-ui/core/styles': { experimentalStyled: styled },
   '@material-ui/core/IconButton': IconButton,
   '@material-ui/icons/ShoppingCart': ShoppingCartIcon,
 };

@@ -67,11 +67,18 @@ function MarkdownDocs(props) {
           );
         }
 
+        let imports = {};
+        try {
+          imports = requireImports(demo.module.replace('.js', 'Imports.js')).default;
+        } catch (error) {
+          // No imports
+        }
+
         return (
           <Demo
             key={index}
             demo={{
-              imports: requireImports(demo.module.replace('.js', 'Imports.js')).default,
+              imports,
               raw: demo.raw,
               rawTS: demo.rawTS,
             }}

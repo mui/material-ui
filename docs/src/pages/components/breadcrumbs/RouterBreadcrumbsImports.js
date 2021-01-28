@@ -27,5 +27,5 @@ export default {
   '@material-ui/icons/ExpandMore': ExpandMore,
   '@material-ui/core/Breadcrumbs': Breadcrumbs,
   'react-router': { Route, MemoryRouter },
-  'react-router-dom': { RouterLink },
+  'react-router-dom': { Link: RouterLink },
 };

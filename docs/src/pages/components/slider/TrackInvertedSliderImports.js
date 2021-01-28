@@ -6,7 +6,7 @@ import Slider from '@material-ui/core/Slider';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { styled },
+  '@material-ui/core/styles': { experimentalStyled: styled },
   '@material-ui/core/Box': Box,
   '@material-ui/core/Typography': Typography,
   '@material-ui/core/Slider': Slider,

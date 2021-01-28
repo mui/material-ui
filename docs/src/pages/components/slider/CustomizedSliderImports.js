@@ -9,7 +9,7 @@ export default {
   react: React,
   'prop-types': PropTypes,
   '@material-ui/core/Slider': { default: Slider, SliderThumb },
-  '@material-ui/core/styles': { styled },
+  '@material-ui/core/styles': { experimentalStyled: styled },
   '@material-ui/core/Typography': Typography,
   '@material-ui/core/Tooltip': Tooltip,
 };

@@ -7,7 +7,15 @@
  * List of demos to ignore
  * Example: ['app-bar/BottomAppBar.js']
  */
-const ignoreList = ['landing', 'getting-started', 'discover-more', 'production-error', 'versions', 'premium-themes', 'ResponsiveFontSizesChartImports.js'];
+const ignoreList = [
+  'landing',
+  'getting-started',
+  'discover-more',
+  'production-error',
+  'versions',
+  'premium-themes',
+  'ResponsiveFontSizesChart.js',
+];
 
 const fse = require('fs-extra');
 const path = require('path');
@@ -63,7 +71,7 @@ async function transpileFile(jsPath) {
     const imports = source.match(importsRegex);
 
     const importRegex = /^import (.*) from (.*);$/;
-    const asRegex = /\w+ as\s*/gm;
+    const namedAsRegex = / as(?=.*})/g;
     const firstOrLastRegex = /(^\w+|\w+$)/;
     const inBracesRegex = /({.+})/;
 
@@ -71,8 +79,8 @@ async function transpileFile(jsPath) {
     const transformedImports = imports.reduce((accumulator, currentImport) => {
       const splitImport = currentImport.match(importRegex);
 
-      // Remove '\w+ as': { red as blue } => { red }
-      const module = splitImport[1].replace(asRegex, '');
+      // { red as blue } => { red: blue }
+      const module = splitImport[1].replace(namedAsRegex, ':');
 
       const defaultExport = module.match(firstOrLastRegex);
       const namedExports = module.match(inBracesRegex);

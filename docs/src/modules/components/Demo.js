@@ -293,7 +293,7 @@ export default function Demo(props) {
 }
 
 Demo.propTypes = {
-  demo: PropTypes.string.isRequired,
+  demo: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 export default {
   react: React,
-  'react-router': { Router },
-  'react-router-dom': { RouterLink },
+  'react-router': { MemoryRouter: Router },
+  'react-router-dom': { Link: RouterLink },
   '@material-ui/core/Button': Button,
 };

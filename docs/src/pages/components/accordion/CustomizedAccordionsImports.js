@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { styled },
+  '@material-ui/core/styles': { experimentalStyled: styled },
   '@material-ui/icons/ArrowForwardIosSharp': ArrowForwardIosSharpIcon,
   '@material-ui/core/Accordion': MuiAccordion,
   '@material-ui/core/AccordionSummary': MuiAccordionSummary,

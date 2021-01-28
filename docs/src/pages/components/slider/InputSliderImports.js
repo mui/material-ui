@@ -9,7 +9,7 @@ import VolumeUp from '@material-ui/icons/VolumeUp';
 
 export default {
   react: React,
-  '@material-ui/core/styles': { styled },
+  '@material-ui/core/styles': { experimentalStyled: styled },
   '@material-ui/core/Box': Box,
   '@material-ui/core/Grid': Grid,
   '@material-ui/core/Typography': Typography,
