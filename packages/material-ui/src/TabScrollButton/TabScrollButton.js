@@ -60,10 +60,8 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   const props = useThemeProps({ props: inProps, name: 'MuiTabScrollButton' });
   const { className: classNameProp, direction, orientation, disabled, ...other } = props;
 
-  const styleProps = {
-    ...props,
-    orientation,
-  };
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
 
   const classes = useUtilityClasses(styleProps);
 
