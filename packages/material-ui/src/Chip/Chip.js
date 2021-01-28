@@ -389,7 +389,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const handleKeyDown = (event) => {
     // Ignore events from children of `Chip`.
     if (event.currentTarget === event.target && isDeleteKeyboardEvent(event)) {
-      // will be handled in keyUp, otherwise some browsers
+      // Will be handled in keyUp, otherwise some browsers
       // might init navigation
       event.preventDefault();
     }
