@@ -1,66 +1,99 @@
 // @inheritedComponent ButtonBase
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { alpha, withStyles } from '../styles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import { getToggleButtonUtilityClass } from './toggleButtonClasses';
 
-export const styles = (theme) => ({
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[`size${capitalize(styleProps.size)}`],
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, selected, disabled, size } = styleProps;
+
+  const slots = {
+    root: ['root', selected && 'selected', disabled && 'disabled', `size${capitalize(size)}`],
+    label: ['label'],
+  };
+
+  return composeClasses(slots, getToggleButtonUtilityClass, classes);
+};
+
+const ToggleButtonRoot = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'MuiToggleButton',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    ...theme.typography.button,
-    borderRadius: theme.shape.borderRadius,
-    padding: 11,
-    border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
-    color: alpha(theme.palette.action.active, 0.38),
-    '&$selected': {
-      color: theme.palette.action.active,
-      backgroundColor: alpha(theme.palette.action.active, 0.12),
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.action.active, 0.15),
-      },
-    },
-    '&$disabled': {
-      color: alpha(theme.palette.action.disabled, 0.12),
-    },
+  ...theme.typography.button,
+  borderRadius: theme.shape.borderRadius,
+  padding: 11,
+  border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
+  color: alpha(theme.palette.action.active, 0.38),
+  '&.Mui-selected': {
+    color: theme.palette.action.active,
+    backgroundColor: alpha(theme.palette.action.active, 0.12),
     '&:hover': {
-      textDecoration: 'none',
-      // Reset on mouse devices
-      backgroundColor: alpha(theme.palette.text.primary, 0.05),
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
+      backgroundColor: alpha(theme.palette.action.active, 0.15),
     },
   },
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if `selected={true}`. */
-  selected: {},
-  /* Styles applied to the `label` wrapper element. */
-  label: {
-    width: '100%', // Ensure the correct width for iOS Safari
-    display: 'inherit',
-    alignItems: 'inherit',
-    justifyContent: 'inherit',
+  '&.Mui-disabled': {
+    color: alpha(theme.palette.action.disabled, 0.12),
+  },
+  '&:hover': {
+    textDecoration: 'none',
+    // Reset on mouse devices
+    backgroundColor: alpha(theme.palette.text.primary, 0.05),
+    '@media (hover: none)': {
+      backgroundColor: 'transparent',
+    },
   },
   /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
+  ...(styleProps.size === 'small' && {
     padding: 7,
     fontSize: theme.typography.pxToRem(13),
-  },
+  }),
   /* Styles applied to the root element if `size="large"`. */
-  sizeLarge: {
+  ...(styleProps.size === 'large' && {
     padding: 15,
     fontSize: theme.typography.pxToRem(15),
+  }),
+}));
+
+const ToggleButtonLabel = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiToggleButton',
+    slot: 'Label',
   },
+)({
+  /* Styles applied to the label wrapper element. */
+  width: '100%', // Ensure the correct width for iOS Safari
+  display: 'inherit',
+  alignItems: 'inherit',
+  justifyContent: 'inherit',
 });
 
-const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
+const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiToggleButton' });
   const {
     children,
-    classes,
     className,
     disabled = false,
     disableFocusRipple = false,
@@ -71,6 +104,15 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
     value,
     ...other
   } = props;
+
+  const styleProps = {
+    ...props,
+    disableFocusRipple,
+    selected,
+    size,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   const handleChange = (event) => {
     if (onClick) {
@@ -86,27 +128,22 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
   };
 
   return (
-    <ButtonBase
-      className={clsx(
-        classes.root,
-        {
-          [classes.disabled]: disabled,
-          [classes.selected]: selected,
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
-        },
-        className,
-      )}
+    <ToggleButtonRoot
+      className={clsx(classes.root, className)}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       ref={ref}
       onClick={handleChange}
       onChange={onChange}
       value={value}
+      styleProps={styleProps}
       aria-pressed={selected}
       {...other}
     >
-      <span className={classes.label}>{children}</span>
-    </ButtonBase>
+      <ToggleButtonLabel className={classes.label} styleProps={styleProps}>
+        {children}
+      </ToggleButtonLabel>
+    </ToggleButtonRoot>
   );
 });
 
@@ -170,4 +207,4 @@ ToggleButton.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);
+export default ToggleButton;

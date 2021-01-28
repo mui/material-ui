@@ -1,3 +1,5 @@
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
@@ -24,6 +26,8 @@ export type ToggleButtonTypeMap<
       label?: string;
       /** Styles applied to the root element if `size="small"`. */
       sizeSmall?: string;
+      /** Styles applied to the root element if `size="medium"`. */
+      sizeMedium?: string;
       /** Styles applied to the root element if `size="large"`. */
       sizeLarge?: string;
     };
@@ -47,6 +51,10 @@ export type ToggleButtonTypeMap<
      * @default 'medium'
      */
     size?: 'small' | 'medium' | 'large';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
     /**
      * The value to associate with the button when selected in a
      * ToggleButtonGroup.
