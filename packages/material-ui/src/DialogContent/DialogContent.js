@@ -1,40 +1,70 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import { getDialogContentUtilityClass } from './dialogContentClasses';
 
-export const styles = (theme) => ({
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.dividers && styles.dividers),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, dividers } = styleProps;
+
+  const slots = {
+    root: ['root', dividers && 'dividers'],
+  };
+
+  return composeClasses(slots, getDialogContentUtilityClass, classes);
+};
+
+const DialogContentRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiDialogContent',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    flex: '1 1 auto',
-    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-    overflowY: 'auto',
-    padding: '8px 24px',
-    '&:first-child': {
-      // dialog without title
-      paddingTop: 20,
-    },
+  flex: '1 1 auto',
+  WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  overflowY: 'auto',
+  padding: '8px 24px',
+  '&:first-of-type': {
+    // dialog without title
+    paddingTop: 20,
   },
   /* Styles applied to the root element if `dividers={true}`. */
-  dividers: {
+  ...(styleProps.dividers && {
     padding: '16px 24px',
     borderTop: `1px solid ${theme.palette.divider}`,
     borderBottom: `1px solid ${theme.palette.divider}`,
-  },
-});
+  }),
+}));
 
-const DialogContent = React.forwardRef(function DialogContent(props, ref) {
-  const { classes, className, dividers = false, ...other } = props;
+const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiDialogContent',
+  });
+
+  const { className, dividers = false, ...other } = props;
+  const styleProps = { ...props, dividers };
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <div
-      className={clsx(
-        classes.root,
-        {
-          [classes.dividers]: dividers,
-        },
-        className,
-      )}
+    <DialogContentRoot
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     />
@@ -63,6 +93,10 @@ DialogContent.propTypes = {
    * @default false
    */
   dividers: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiDialogContent' })(DialogContent);
+export default DialogContent;
