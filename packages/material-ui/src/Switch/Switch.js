@@ -185,6 +185,7 @@ const SwitchTrack = experimentalStyled(
   {},
   {
     name: 'MuiSwitch',
+    slot: 'Track',
   },
 )(({ theme }) => ({
   /* Styles applied to the track element. */
