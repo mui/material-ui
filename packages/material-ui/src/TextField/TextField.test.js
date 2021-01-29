@@ -2,10 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
 import FormControl from '../FormControl';
-import OutlinedInput from '../OutlinedInput';
 import TextField from './TextField';
 import MenuItem from '../MenuItem';
 import { inputBaseClasses } from '../InputBase';
+import { outlinedInputClasses } from '../OutlinedInput';
 
 describe('<TextField />', () => {
   let classes;
@@ -126,7 +126,6 @@ describe('<TextField />', () => {
     });
 
     it('should set shrink prop on outline from label', () => {
-      const outlinedInputClasses = getClasses(<OutlinedInput />);
       const { container } = render(<TextField InputLabelProps={{ shrink: true }} classes={{}} />);
 
       expect(container.querySelector('fieldset')).to.have.class(
