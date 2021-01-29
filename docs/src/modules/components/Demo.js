@@ -146,6 +146,9 @@ const useStyles = makeStyles(
       height: theme.spacing(4),
       pointerEvents: 'none',
     },
+    preview: {
+      width: '100%',
+    },
   }),
   { name: 'Demo' },
 );
@@ -249,7 +252,7 @@ export default function Demo(props) {
           tabIndex={-1}
         />
         <Provider code={demoJS} resolveImports={resolveImports}>
-          <Preview key={demoKey} />
+          <Preview key={demoKey} className={classes.preview} />
           <Error />
         </Provider>
       </div>
