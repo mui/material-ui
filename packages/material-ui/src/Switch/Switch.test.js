@@ -1,29 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import FormControl from '../FormControl';
 import Switch from './Switch';
+import classes from './switchClasses';
 
 describe('<Switch />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Switch />);
-  });
-
-  describeConformance(<Switch />, () => ({
+  describeConformanceV5(<Switch />, () => ({
     mount,
+    muiName: 'MuiSwitch',
+    testVariantProps: { variant: 'foo' },
+    testDeepOverrides: { slotName: 'track', slotClassName: classes.track },
     only: ['refForwarding'],
     refInstanceof: window.HTMLSpanElement,
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   /* TODO Switch violates root component
