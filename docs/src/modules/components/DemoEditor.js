@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import Editor from 'react-simple-code-editor';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -18,18 +19,22 @@ const useStyles = makeStyles(
       backgroundColor: '#272c34',
       color: 'white',
       caretColor: 'white',
-      '&:focus': {
-        outline: 'none',
+      '&.Mui-focused': {
+        outline: '2px solid #005ECC',
       },
     },
     editor: {
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
       fontSize: 14,
     },
+    textarea: {
+      '&:focus': {
+        outline: 'none',
+      },
+    },
   },
   { name: 'DemoEditor' },
 );
-
 export default function DemoEditor(props) {
   const { onFocus, onValueChange, value } = props;
   const classes = useStyles();
@@ -56,7 +61,7 @@ export default function DemoEditor(props) {
     }
   };
 
-  const [keyboardFocused, setKeyboardFocused] = React.useState(true);
+  const [keyboardFocused, setKeyboardFocused] = React.useState(false);
   const handleEditorFocus = (event) => {
     if (event.target !== event.currentTarget) return;
     onFocus();
@@ -70,10 +75,8 @@ export default function DemoEditor(props) {
     setIgnoreTabKey(true);
   };
 
-  // const openDemoSource = codeOpen || showPreview;
-
   return (
-    <div className={classes.editorContainer}>
+    <div className={clsx(classes.editorContainer, { 'Mui-focused': keyboardFocused })}>
       <Editor
         value={value}
         onValueChange={onValueChange}
@@ -84,6 +87,7 @@ export default function DemoEditor(props) {
         onMouseDown={handleEditorMouseDown}
         highlight={(code) => prism(code, 'jsx')}
         className={classes.editor}
+        textareaClassName={classes.textarea}
       />
       {(keyboardFocused || !ignoreTabKey) && (
         <Typography sx={visuallyHidden} aria-live="polite">
