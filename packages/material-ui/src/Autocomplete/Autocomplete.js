@@ -524,9 +524,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   if (multiple && value.length > 0) {
     const getCustomizedTagProps = (params) => ({
-      className: clsx(classes.tag, {
-        [classes.tagSizeSmall]: size === 'small',
-      }),
+      className: clsx(classes.tag),
       disabled,
       ...getTagProps(params),
     });
