@@ -1,39 +1,43 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
+import experimentalStyled from '../styles/experimentalStyled';
 
-export const styles = (theme) => {
+const NotchedOutlineRoot = experimentalStyled(
+  'fieldset',
+  {},
+  { name: 'PrivateNotchedOutline', slot: 'Root' },
+)(() => ({
+  textAlign: 'left',
+  position: 'absolute',
+  bottom: 0,
+  right: 0,
+  top: -5,
+  left: 0,
+  margin: 0,
+  padding: '0 8px',
+  pointerEvents: 'none',
+  borderRadius: 'inherit',
+  borderStyle: 'solid',
+  borderWidth: 1,
+  overflow: 'hidden',
+}));
+const Legend = experimentalStyled(
+  'legend',
+  {},
+  { name: 'PrivateNotchedOutline', slot: 'Legend' },
+)(({ styleProps, theme }) => {
   return {
-    /* Styles applied to the root element. */
-    root: {
-      textAlign: 'left',
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      top: -5,
-      left: 0,
-      margin: 0,
-      padding: '0 8px',
-      pointerEvents: 'none',
-      borderRadius: 'inherit',
-      borderStyle: 'solid',
-      borderWidth: 1,
-      overflow: 'hidden',
-    },
-    /* Styles applied to the legend element when `labelWidth` is provided. */
-    legend: {
+    ...(styleProps.label === undefined && {
       padding: 0,
       lineHeight: '11px', // sync with `height` in `legend` styles
       transition: theme.transitions.create('width', {
         duration: 150,
         easing: theme.transitions.easing.easeOut,
       }),
-    },
-    /* Styles applied to the legend element. */
-    legendLabelled: {
+    }),
+    ...(styleProps.label !== undefined && {
       display: 'block',
       width: 'auto',
       padding: 0,
@@ -50,18 +54,17 @@ export const styles = (theme) => {
         paddingRight: 5,
         display: 'inline-block',
       },
-    },
-    /* Styles applied to the legend element is notched. */
-    legendNotched: {
-      maxWidth: 1000,
-      transition: theme.transitions.create('max-width', {
-        duration: 100,
-        easing: theme.transitions.easing.easeOut,
-        delay: 50,
+      ...(styleProps.notched && {
+        maxWidth: 1000,
+        transition: theme.transitions.create('max-width', {
+          duration: 100,
+          easing: theme.transitions.easing.easeOut,
+          delay: 50,
+        }),
       }),
-    },
+    }),
   };
-};
+});
 
 /**
  * @ignore - internal component.
@@ -82,18 +85,8 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
 
   if (label !== undefined) {
     return (
-      <fieldset
-        aria-hidden
-        className={clsx(classes.root, className)}
-        ref={ref}
-        style={style}
-        {...other}
-      >
-        <legend
-          className={clsx(classes.legendLabelled, {
-            [classes.legendNotched]: notched,
-          })}
-        >
+      <NotchedOutlineRoot aria-hidden className={className} ref={ref} style={style} {...other}>
+        <Legend styleProps={{ notched, label }}>
           {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
           {label ? (
             <span>{label}</span>
@@ -102,8 +95,8 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
             // eslint-disable-next-line react/no-danger
             <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
           )}
-        </legend>
-      </fieldset>
+        </Legend>
+      </NotchedOutlineRoot>
     );
   }
 
@@ -111,18 +104,18 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
 
   // TODO remove this branch
   return (
-    <fieldset
+    <NotchedOutlineRoot
       aria-hidden
       style={{
         [`padding${capitalize(align)}`]: 8,
         ...style,
       }}
-      className={clsx(classes.root, className)}
+      className={className}
       ref={ref}
       {...other}
     >
-      <legend
-        className={classes.legend}
+      <Legend
+        styleProps={{ label }}
         style={{
           // IE11: fieldset with legend does not render
           // a border radius. This maintains consistency
@@ -134,8 +127,8 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
         {/* notranslate needed while Google Translate will not fix zero-width space issue */}
         {/* eslint-disable-next-line react/no-danger */}
         <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
-      </legend>
-    </fieldset>
+      </Legend>
+    </NotchedOutlineRoot>
   );
 });
 
@@ -171,4 +164,4 @@ NotchedOutline.propTypes = {
   style: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'PrivateNotchedOutline' })(NotchedOutline);
+export default NotchedOutline;
