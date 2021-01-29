@@ -72,6 +72,7 @@
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "default": "'medium'"
     },
+    "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "custom", "description": "any" } }
   },
   "name": "Autocomplete",
@@ -82,6 +83,7 @@
       "focused",
       "tag",
       "tagSizeSmall",
+      "tagSizeMedium",
       "hasPopupIcon",
       "hasClearIcon",
       "inputRoot",
@@ -109,6 +111,6 @@
   "filename": "/packages/material-ui/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }
