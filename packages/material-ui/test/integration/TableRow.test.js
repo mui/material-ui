@@ -1,17 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender } from 'test/utils';
+import { createClientRender } from 'test/utils';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import TableRow, { tableRowClasses as classes } from '@material-ui/core/TableRow';
 
 describe('<TableRow> integration', () => {
-  let classes;
   const render = createClientRender();
-
-  before(() => {
-    classes = getClasses(<TableRow />);
-  });
 
   it('should render with the head class when in the context of a table head', () => {
     const { getByRole } = render(
