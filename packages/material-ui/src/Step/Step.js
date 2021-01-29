@@ -1,34 +1,60 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from './StepContext';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import { getStepUtilityClass } from './stepClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {},
-  /* Styles applied to the root element if `orientation="horizontal"`. */
-  horizontal: {
-    paddingLeft: 8,
-    paddingRight: 8,
-  },
-  /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {},
-  /* Styles applied to the root element if `alternativeLabel={true}`. */
-  alternativeLabel: {
-    flex: 1,
-    position: 'relative',
-  },
-  /* Pseudo-class applied to the root element if `completed={true}`. */
-  completed: {},
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[styleProps.orientation],
+    ...(styleProps.alternativeLabel && styles.alternativeLabel),
+    ...(styleProps.completed && styles.completed),
+  });
 };
 
-const Step = React.forwardRef(function Step(props, ref) {
+const useUtilityClasses = (styleProps) => {
+  const { classes, orientation, alternativeLabel, completed } = styleProps;
+
+  const slots = {
+    root: ['root', orientation, alternativeLabel && 'alternativeLabel', completed && 'completed'],
+  };
+
+  return composeClasses(slots, getStepUtilityClass, classes);
+};
+
+const StepRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiStep',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps }) => ({
+  /* Styles applied to the root element if `orientation="horizontal"`. */
+  ...(styleProps.orientation === 'horizontal' && {
+    paddingLeft: 8,
+    paddingRight: 8,
+  }),
+  /* Styles applied to the root element if `alternativeLabel={true}`. */
+  ...(styleProps.alternativeLabel && {
+    flex: 1,
+    position: 'relative',
+  }),
+}));
+
+const Step = React.forwardRef(function Step(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiStep' });
   const {
     active: activeProp,
     children,
-    classes,
     className,
     completed: completedProp,
     disabled: disabledProp,
@@ -61,23 +87,28 @@ const Step = React.forwardRef(function Step(props, ref) {
     [index, last, expanded, active, completed, disabled],
   );
 
+  const styleProps = {
+    ...props,
+    active,
+    orientation,
+    alternativeLabel,
+    completed,
+    disabled,
+    expanded,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   const newChildren = (
-    <div
-      className={clsx(
-        classes.root,
-        classes[orientation],
-        {
-          [classes.alternativeLabel]: alternativeLabel,
-          [classes.completed]: completed,
-        },
-        className,
-      )}
+    <StepRoot
+      className={clsx(classes.root, className)}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     >
       {connector && alternativeLabel && index !== 0 ? connector : null}
       {children}
-    </div>
+    </StepRoot>
   );
 
   return (
@@ -139,6 +170,10 @@ Step.propTypes = {
    * The prop defaults to the value inherited from the parent Stepper component.
    */
   last: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiStep' })(Step);
+export default Step;
