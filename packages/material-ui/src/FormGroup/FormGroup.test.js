@@ -1,23 +1,21 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import FormGroup from './FormGroup';
+import classes from './formGroupClasses';
 
 describe('<FormGroup />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<FormGroup />);
-  });
-
-  describeConformance(<FormGroup />, () => ({
+  describeConformanceV5(<FormGroup />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    muiName: 'MuiFormGroup',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    testVariantProps: { row: true },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render a div with a div child', () => {
