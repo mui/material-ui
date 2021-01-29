@@ -159,7 +159,7 @@ const AutocompleteRoot = experimentalStyled(
         padding: '2px 4px 3px 0',
       },
     },
-    '&[class*="MuiOutlinedInput-root"]': {
+    '&.MuiOutlinedInput-root': {
       padding: 9,
       [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
         paddingRight: 26 + 4 + 9,
@@ -167,17 +167,20 @@ const AutocompleteRoot = experimentalStyled(
       [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
         paddingRight: 52 + 4 + 9,
       },
-      [`& .${autocompleteClasses.input}`]: {
-        padding: '7.5px 4px 7.5px 6px',
+      '& .MuiOutlinedInput-input': {
+        padding: '7.5px 4px',
       },
-      [`& .${autocompleteClasses.endAdornment}`]: {
+      '& .MuiOutlinedInput-input:first-child': {
+        paddingLeft: 6,
+      },
+      '& $endAdornment': {
         right: 9,
       },
     },
-    '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-sizeSmall"]': {
+    '&.MuiOutlinedInput-root.MuiInputBase-sizeSmall': {
       padding: 6,
-      [`& .${autocompleteClasses.input}`]: {
-        padding: '2.5px 4px 2.5px 6px',
+      '& .MuiOutlinedInput-input': {
+        padding: '2.5px 4px',
       },
     },
     '&.MuiFilledInput-root': {

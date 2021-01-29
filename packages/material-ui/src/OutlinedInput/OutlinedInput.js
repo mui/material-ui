@@ -80,7 +80,7 @@ const OutlinedInputRoot = experimentalStyled(
     ...(styleProps.startAdornment && {
       paddingLeft: 14,
     }),
-    ...(styleProps.startAdornment && {
+    ...(styleProps.endAdornment && {
       paddingRight: 14,
     }),
     ...(styleProps.multiline && {
