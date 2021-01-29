@@ -4,7 +4,7 @@ import { Theme } from '@material-ui/core/styles';
 import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-interface ListItemBaseProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ListItemBaseProps {
   /**
    * Defines the `align-items` style property.
    * @default 'center'
