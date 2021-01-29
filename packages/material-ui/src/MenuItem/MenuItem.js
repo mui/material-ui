@@ -60,7 +60,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     role = 'menuitem',
     selected,
     tabIndex: tabIndexProp,
-    dense,
+    dense = false,
     ...other
   } = props;
 
@@ -82,7 +82,6 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     <ListItem
       components={{ Root: MenuItemRoot }}
       componentsProps={{ root: { styleProps } }}
-      styleProps={styleProps}
       button
       role={role}
       tabIndex={tabIndex}
@@ -157,7 +156,7 @@ MenuItem.propTypes = {
   /**
    * @ignore
    */
-  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  tabIndex: PropTypes.number,
 };
 
 export default MenuItem;
