@@ -110,6 +110,10 @@ const theme = createMuiTheme({
 
 In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
 
+## System props
+
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
+
 ## Accessibility
 
 A few key factors to follow for an accessible typography:

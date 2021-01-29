@@ -3,7 +3,7 @@ import * as React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link, { LinkProps } from '@material-ui/core/Link';
-import ListItem from '@material-ui/core/ListItem';
+import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
 import Collapse from '@material-ui/core/Collapse';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
@@ -12,9 +12,8 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Route, MemoryRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
-import { Omit } from '@material-ui/types';
 
-interface ListItemLinkProps extends LinkProps {
+interface ListItemLinkProps extends ListItemProps {
   to: string;
   open?: boolean;
 }
@@ -27,13 +26,13 @@ const breadcrumbNameMap: { [key: string]: string } = {
   '/drafts': 'Drafts',
 };
 
-function ListItemLink(props: Omit<ListItemLinkProps, 'ref'>) {
+function ListItemLink(props: ListItemLinkProps) {
   const { to, open, ...other } = props;
   const primary = breadcrumbNameMap[to];
 
   return (
     <li>
-      <ListItem button component={RouterLink} to={to} {...other}>
+      <ListItem button component={RouterLink as any} to={to} {...other}>
         <ListItemText primary={primary} />
         {open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
       </ListItem>

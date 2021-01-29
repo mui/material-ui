@@ -59,7 +59,7 @@ interface DescribeablePropDescriptor {
   type: PropTypeDescriptor;
 }
 
-const cssComponents = ['Box', 'Grid'];
+const cssComponents = ['Box', 'Grid', 'Typography'];
 
 const generateClassName = createGenerateClassName();
 

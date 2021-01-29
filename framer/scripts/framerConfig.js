@@ -127,6 +127,7 @@ export const componentSettings = {
       'children',
       'onDelete',
       // FIXME: `Union`
+      'sx',
       'variant',
     ],
     propValues: {

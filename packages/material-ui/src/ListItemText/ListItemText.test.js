@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Typography, { typographyClasses } from '../Typography';
-import ListItemText from './ListItemText';
+import Typography, { typographyClasses } from '@material-ui/core/Typography';
+import ListItemText from '@material-ui/core/ListItemText';
 import classes from './listItemTextClasses';
 
 describe('<ListItemText />', () => {
@@ -72,7 +72,7 @@ describe('<ListItemText />', () => {
       );
       expect(container.querySelectorAll('p.MuiTypography-root')).to.have.length(1);
       expect(container.querySelector('p.MuiTypography-root')).to.have.class(
-        typographyClasses.colorTextSecondary,
+        typographyClasses.body2,
       );
       expect(text()).to.equal('This is the secondary text');
     });
@@ -104,7 +104,7 @@ describe('<ListItemText />', () => {
       expect(primaryText).to.have.text('This is the primary text');
 
       const secondaryText = texts[1];
-      expect(secondaryText).to.have.class(typographyClasses.colorTextSecondary);
+      expect(secondaryText).to.have.class(typographyClasses.body2);
       expect(secondaryText).to.have.text('This is the secondary text');
     });
 
@@ -162,10 +162,10 @@ describe('<ListItemText />', () => {
     const { container } = render(
       <ListItemText
         primary="This is the primary text"
-        primaryTypographyProps={{ color: 'inherit' }}
+        primaryTypographyProps={{ 'data-test': 'foo' }}
       />,
     );
-    expect(container.querySelector('span')).to.have.class(typographyClasses.colorInherit);
+    expect(container.querySelector('span')).to.have.attribute('data-test');
   });
 
   it('should pass secondaryTypographyProps to secondary Typography component', () => {
@@ -173,9 +173,9 @@ describe('<ListItemText />', () => {
       <ListItemText
         primary="This is the primary text"
         secondary="This is the secondary text"
-        secondaryTypographyProps={{ color: 'inherit' }}
+        secondaryTypographyProps={{ 'data-test': 'foo' }}
       />,
     );
-    expect(container.querySelector('p')).to.have.class(typographyClasses.colorInherit);
+    expect(container.querySelector('p')).to.have.attribute('data-test');
   });
 });

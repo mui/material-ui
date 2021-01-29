@@ -18,9 +18,7 @@ export default function ResponsiveDatePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => (
-            <TextField {...params} margin="normal" variant="standard" />
-          )}
+          renderInput={(params) => <TextField {...params} margin="normal" />}
         />
         <DesktopDatePicker
           label="For desktop"
@@ -29,9 +27,7 @@ export default function ResponsiveDatePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => (
-            <TextField {...params} margin="normal" variant="standard" />
-          )}
+          renderInput={(params) => <TextField {...params} margin="normal" />}
         />
         <DatePicker
           disableFuture
@@ -42,9 +38,7 @@ export default function ResponsiveDatePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => (
-            <TextField {...params} margin="normal" variant="standard" />
-          )}
+          renderInput={(params) => <TextField {...params} margin="normal" />}
         />
       </div>
     </LocalizationProvider>

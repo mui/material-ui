@@ -72,6 +72,7 @@ function TestViewer(props) {
   }, []);
 
   return (
+    // TODO v5: remove once migration to emotion is completed
     <StyledEngineProvider injectFirst>
       <div aria-busy={!ready} data-testid="testcase" className={classes.root}>
         {children}

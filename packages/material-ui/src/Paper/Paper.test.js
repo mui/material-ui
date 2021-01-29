@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import * as PropTypes from 'prop-types';
 import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Paper from './Paper';
 import classes from './paperClasses';
@@ -82,11 +83,30 @@ describe('<Paper />', () => {
     expect(getByTestId('root')).to.have.class('custom-elevation');
   });
 
-  it('warns if the given `elevation` is not implemented in the theme', () => {
-    expect(() => {
-      render(<Paper elevation={25} />);
-    }).toErrorDev(
-      'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
-    );
+  describe('warnings', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
+
+    it('warns if the given `elevation` is not implemented in the theme', () => {
+      expect(() => {
+        render(<Paper elevation={25} />);
+      }).toErrorDev(
+        'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
+      );
+    });
+
+    it('warns if `elevation={numberGreaterThanZero}` is used with `variant="outlined"`', () => {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Paper.propTypes,
+          { elevation: 5, variant: 'outlined' },
+          'prop',
+          'MockedName',
+        );
+      }).toErrorDev([
+        'Material-UI: Combining `elevation={5}` with `variant="outlined"` has no effect. Either use `elevation={0}` or use a different `variant`.',
+      ]);
+    });
   });
 });

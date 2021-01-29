@@ -27,23 +27,19 @@ const todoComponents: string[] = [];
 
 const todoComponentsTs: string[] = [
   'ClockPicker',
-  'DatePicker',
   'DateRangePicker',
   'DateRangePickerDay',
   'DayPicker',
-  'DesktopDatePicker',
   'DesktopDateRangePicker',
   'StaticDateRangePicker',
   'MobileDateRangePicker',
   'DateTimePicker',
   'DesktopDateTimePicker',
   'LocalizationProvider',
-  'MobileDatePicker',
   'MobileDateTimePicker',
   'MonthPicker',
   'PickersCalendarSkeleton',
   'PickersDay',
-  'StaticDatePicker',
   'StaticDateTimePicker',
   'YearPicker',
 ];
