@@ -1,33 +1,35 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import TableBody from './TableBody';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import classes from './tableBodyClasses';
 
 describe('<TableBody />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
   function renderInTable(node) {
     return render(<table>{node}</table>);
   }
 
-  before(() => {
-    classes = getClasses(<TableBody />);
-  });
-
-  describeConformance(<TableBody />, () => ({
+  describeConformanceV5(<TableBody />, () => ({
     classes,
     inheritComponent: 'tbody',
     mount: (node) => {
       const wrapper = mount(<table>{node}</table>);
       return wrapper.find('table').childAt(0);
     },
-
+    render: (node) => {
+      const { container, ...rest } = render(<table>{node}</table>);
+      return { container: container.firstChild, ...rest };
+    },
+    muiName: 'MuiTableBody',
+    testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableSectionElement,
     // can't test with custom `component` with `renderInTable`
     testComponentPropWith: 'tbody',
+    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {
