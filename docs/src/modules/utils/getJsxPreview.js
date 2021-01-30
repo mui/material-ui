@@ -17,15 +17,18 @@ export default function getJsxPreview(code) {
   jsx = jsx ? jsx[1] : code;
 
   // Remove leading spaces from each line
-  return jsx
-    .split(/\n/)
-    .reduce(
-      (acc, line) =>
-        `${acc}${line.slice(
-          // Number of leading spaces on the first line
-          jsx.match(/^ */)[0].length,
-        )}\n`,
-      '',
-    )
-    .trim();
+  return [
+    jsx
+      .split(/\n/)
+      .reduce(
+        (acc, line) =>
+          `${acc}${line.slice(
+            // Number of leading spaces on the first line
+            jsx.match(/^ */)[0].length,
+          )}\n`,
+        '',
+      )
+      .trim(),
+    jsx,
+  ];
 }

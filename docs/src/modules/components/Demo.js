@@ -55,7 +55,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
       codeVariant: CODE_VARIANTS.TS,
       githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
       language: userLanguage,
-      raw: demo.rawTS,
+      raw: demo.rawTS.trim(),
       imports: demo.imports,
       sourceLanguage: 'tsx',
       title,
@@ -65,7 +65,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
     codeVariant: CODE_VARIANTS.JS,
     githubLocation,
     language: userLanguage,
-    raw: demo.raw,
+    raw: demo.raw.trim(),
     imports: demo.imports,
     sourceLanguage: 'jsx',
     title,
@@ -188,31 +188,35 @@ export default function Demo(props) {
     }
   }, [demoName]);
 
-  const jsx = getJsxPreview(demoData.raw || '');
+  const [jsx, fullJsx] = getJsxPreview(demoData.raw || '');
   const showPreview =
     !demoOptions.hideToolbar &&
     demoOptions.defaultCodeOpen !== false &&
     jsx !== demoData.raw &&
     jsx.split(/\n/).length <= 17;
 
-  const [editorValue, setEditorValue] = React.useState(demoData.raw.trim());
-  const handleEditorValueChange = (value) => {
+  const [renderValue, setRenderValue] = React.useState(demoData.raw);
+  const demoJS = React.useMemo(() => {
+    return TS.transpile(renderValue, {
+      target: 'es6',
+      jsx: true,
+    });
+  }, [renderValue]);
+
+  const [editorValue, setEditorValue] = React.useState(codeOpen ? demoData.raw : jsx);
+  const handleEditorChange = (value) => {
     setEditorValue(value);
+    setRenderValue(codeOpen ? value : demoData.raw.replace(fullJsx, value));
   };
 
   React.useEffect(() => {
-    setEditorValue(demoData.raw.trim());
-  }, [codeVariant, demoData.raw]);
-
-  const handleEditorFocus = () => {
-    setCodeOpen(true);
-  };
+    setEditorValue(codeOpen ? demoData.raw : jsx);
+  }, [codeOpen, codeVariant, demoData.raw, jsx, showPreview]);
 
   const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
-
   const handleResetDemo = () => {
     resetDemo();
-    setEditorValue(demoData.raw);
+    setEditorValue(codeOpen ? demoData.raw : jsx);
   };
 
   const resolveImports = () => demoData.imports;
@@ -224,13 +228,6 @@ export default function Demo(props) {
   const initialFocusRef = React.useRef(null);
 
   const [showAd, setShowAd] = React.useState(false);
-
-  const demoJS = React.useMemo(() => {
-    return TS.transpile(editorValue, {
-      target: 'es6',
-      jsx: true,
-    });
-  }, [editorValue]);
 
   return (
     <div className={classes.root}>
@@ -285,9 +282,9 @@ export default function Demo(props) {
       )}
       <Collapse in={openDemoSource} unmountOnExit>
         <DemoEditor
-          value={showPreview && !codeOpen ? jsx : editorValue}
-          onValueChange={handleEditorValueChange}
-          onFocus={handleEditorFocus}
+          value={editorValue}
+          onChange={handleEditorChange}
+          // onFocus={handleEditorFocus}
         />
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}

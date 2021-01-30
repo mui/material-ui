@@ -20,7 +20,7 @@ const useStyles = makeStyles(
       color: 'white',
       caretColor: 'white',
       '&.Mui-focused': {
-        outline: '2px solid #005ECC',
+        outline: '2px solid cornflowerblue',
       },
     },
     editor: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles(
   { name: 'DemoEditor' },
 );
 export default function DemoEditor(props) {
-  const { onFocus, onValueChange, value } = props;
+  const { onFocus, onChange, value } = props;
   const classes = useStyles();
   const t = useTranslate();
 
@@ -64,7 +64,9 @@ export default function DemoEditor(props) {
   const [keyboardFocused, setKeyboardFocused] = React.useState(false);
   const handleEditorFocus = (event) => {
     if (event.target !== event.currentTarget) return;
-    onFocus();
+    if (onFocus) {
+      onFocus();
+    }
     setKeyboardFocused(!mouseDown.current);
     setIgnoreTabKey(!mouseDown.current);
   };
@@ -79,7 +81,7 @@ export default function DemoEditor(props) {
     <div className={clsx(classes.editorContainer, { 'Mui-focused': keyboardFocused })}>
       <Editor
         value={value}
-        onValueChange={onValueChange}
+        onValueChange={onChange}
         onFocus={handleEditorFocus}
         onBlur={handleEditorBlur}
         ignoreTabKey={ignoreTabKey}
@@ -89,6 +91,7 @@ export default function DemoEditor(props) {
         className={classes.editor}
         textareaClassName={classes.textarea}
       />
+      <div />
       {(keyboardFocused || !ignoreTabKey) && (
         <Typography sx={visuallyHidden} aria-live="polite">
           {ignoreTabKey ? t('demo.pressEnter') : t('demo.pressEscape')}
@@ -99,7 +102,7 @@ export default function DemoEditor(props) {
 }
 
 DemoEditor.propTypes = {
-  onFocus: PropTypes.func.isRequired,
-  onValueChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
   value: PropTypes.string.isRequired,
 };

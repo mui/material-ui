@@ -13,7 +13,7 @@ export default function HalfRating() {
   return <Rating name="half-rating" value={2.5} precision={0.5} />;
 }`,
         true,
-      ),
+      )[0],
     ).to.equal(`<Rating name="half-rating" value={2.5} precision={0.5} />`);
   });
 
@@ -30,7 +30,7 @@ export default function UseWidth() {
 }
 `,
         true,
-      ),
+      )[0],
     ).to.equal(`<ThemeProvider theme={theme}>
   <MyComponent />
 </ThemeProvider>`);
@@ -49,7 +49,7 @@ export default function UseWidth() {
 }
 `,
         true,
-      ),
+      )[0],
     ).to.equal(`<MyComponent />`);
   });
 
@@ -62,7 +62,7 @@ export function UseWidth() {
 }
 `,
         true,
-      ),
+      )[0],
     ).to.equal(`export function UseWidth() {
   return ( <MyComponent />;
 }`);
