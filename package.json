@@ -38,7 +38,7 @@
     "prettier": "node ./scripts/prettier.js",
     "prettier:all": "node ./scripts/prettier.js write",
     "size:snapshot": "node --max-old-space-size=2048 ./scripts/sizeSnapshot/create",
-    "size:why": "node scripts/sizeSnapshot/why",
+    "size:why": "yarn size:snapshot --analyze",
     "start": "yarn && yarn docs:dev",
     "t": "node test/cli.js",
     "test": "yarn lint && yarn typescript && yarn test:coverage",
