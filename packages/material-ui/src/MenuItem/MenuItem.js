@@ -156,7 +156,7 @@ MenuItem.propTypes = {
   /**
    * @ignore
    */
-  tabIndex: PropTypes.number,
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default MenuItem;
