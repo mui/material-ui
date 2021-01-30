@@ -8,7 +8,7 @@ import { alpha } from '../styles/colorManipulator';
 
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
-import { getTableRowUtilityClass } from './tableRowClasses';
+import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -44,7 +44,7 @@ const TableRowRoot = experimentalStyled(
   verticalAlign: 'middle',
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
-  '&.Mui-hover:hover': {
+  [`&.${tableRowClasses.hover}:hover`]: {
     backgroundColor: theme.palette.action.hover,
   },
   '&.Mui-selected, &.Mui-selected:hover': {
