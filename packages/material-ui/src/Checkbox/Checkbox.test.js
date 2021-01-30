@@ -17,7 +17,7 @@ describe('<Checkbox />', () => {
     mount,
     muiName: 'MuiCheckbox',
     testVariantProps: { variant: 'foo' },
-    testStateOverrides: { prop: 'checked', value: true, styleKey: classes.checked },
+    testStateOverrides: { prop: 'color', value: 'secondary', styleKey: classes.colorSecondary },
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp', 'rootClass'],
   }));
