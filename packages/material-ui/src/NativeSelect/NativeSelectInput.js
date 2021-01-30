@@ -7,7 +7,7 @@ import capitalize from '../utils/capitalize';
 import { getNativeSelectUtilitiyClasses } from './nativeSelectClasses';
 import experimentalStyled from '../styles/experimentalStyled';
 
-const overridesResolver = (props, styles) => {
+export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(styles.root, {
     ...styles.select,
@@ -15,10 +15,11 @@ const overridesResolver = (props, styles) => {
   });
 };
 
-const iconOverridesResolver = (props, styles) => {
+export const iconOverridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(styles.icon, {
     ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+    ...(styleProps.open && styles.iconOpen)
   });
 };
 
@@ -33,11 +34,8 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getNativeSelectUtilitiyClasses, classes);
 };
 
-const SelectRoot = experimentalStyled(
-  'select',
-  {},
-  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
-)(({ styleProps, theme }) => ({
+
+export const rootStyles = ({ styleProps, theme }) => ({
   MozAppearance: 'none', // Reset
   WebkitAppearance: 'none', // Reset
   // When interacting quickly, the text can end up selected.
@@ -80,13 +78,16 @@ const SelectRoot = experimentalStyled(
       paddingRight: 32,
     },
   }),
-}));
+  ...(styleProps.selectMenu &&  {
+    height: 'auto', // Resets for multpile select with chips
+    minHeight: '1.4375em', // Required for select\text-field height consistency
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  }),
+})
 
-const IconRoot = experimentalStyled(
-  'svg',
-  {},
-  { name: 'MuiNativeSelect', slot: 'Icon', overridesResolver: iconOverridesResolver },
-)(({ styleProps, theme }) => ({
+export const iconStyles = ({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
   // to the input and to support wrapping tags..
   position: 'absolute',
@@ -97,13 +98,29 @@ const IconRoot = experimentalStyled(
   '&.Mui-disabled': {
     color: theme.palette.action.disabled,
   },
+  ...(styleProps.open && {
+    right: 7,
+  }),
   ...(styleProps.variant === 'filled' && {
     right: 7,
   }),
   ...(styleProps.variant === 'outlined' && {
     right: 7,
   }),
-}));
+
+});
+
+const SelectRoot = experimentalStyled(
+  'select',
+  {},
+  { name: 'MuiNativeSelect', slot: 'Root', overridesResolver },
+)(rootStyles);
+
+const IconRoot = experimentalStyled(
+  'svg',
+  {},
+  { name: 'MuiNativeSelect', slot: 'Icon', overridesResolver: iconOverridesResolver },
+)(iconStyles);
 
 /**
  * @ignore - internal component.
@@ -113,6 +130,7 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
 
   const styleProps = {
     ...props,
+    disabled,
     variant,
   };
 
