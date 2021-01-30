@@ -19,7 +19,7 @@ export const iconOverridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(styles.icon, {
     ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-    ...(styleProps.open && styles.iconOpen)
+    ...(styleProps.open && styles.iconOpen),
   });
 };
 
@@ -33,7 +33,6 @@ const useUtilityClasses = (styleProps) => {
 
   return composeClasses(slots, getNativeSelectUtilitiyClasses, classes);
 };
-
 
 export const rootStyles = ({ styleProps, theme }) => ({
   MozAppearance: 'none', // Reset
@@ -78,14 +77,14 @@ export const rootStyles = ({ styleProps, theme }) => ({
       paddingRight: 32,
     },
   }),
-  ...(styleProps.selectMenu &&  {
+  ...(styleProps.selectMenu && {
     height: 'auto', // Resets for multpile select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   }),
-})
+});
 
 export const iconStyles = ({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
@@ -107,7 +106,6 @@ export const iconStyles = ({ styleProps, theme }) => ({
   ...(styleProps.variant === 'outlined' && {
     right: 7,
   }),
-
 });
 
 const SelectRoot = experimentalStyled(
