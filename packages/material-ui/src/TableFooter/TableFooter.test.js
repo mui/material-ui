@@ -24,7 +24,6 @@ describe('<TableFooter />', () => {
       const { container, ...rest } = render(<table>{node}</table>);
       return { container: container.firstChild, ...rest };
     },
-
     muiName: 'MuiTableFooter',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableSectionElement,
