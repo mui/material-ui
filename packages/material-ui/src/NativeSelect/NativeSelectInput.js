@@ -10,14 +10,15 @@ import experimentalStyled from '../styles/experimentalStyled';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(styles.root, {
-    ...(!styleProps.disableUnderline && styles.underline),
+    ...styles.select,
+    ...styles[styleProps.variant]
   });
 };
 
 const iconOverridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(styles.icon, {
-    ...(!styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
+    ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
   });
 };
 
