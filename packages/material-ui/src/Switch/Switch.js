@@ -103,7 +103,7 @@ const SwitchSwitchBase = experimentalStyled(
     slot: 'SwitchBase',
   },
 )(
-  ({ theme, styleProps }) => ({
+  ({ theme }) => ({
     /* Styles applied to the internal `SwitchBase` component's `root` class. */
     position: 'absolute',
     top: 0,
