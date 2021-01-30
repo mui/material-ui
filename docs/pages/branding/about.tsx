@@ -107,7 +107,7 @@ function BrandingKPI() {
           sx={{
             maxWidth: 470,
             my: 8,
-            mx: { xs: 2, sm: 'auto', md: 7, lg: 18 },
+            mx: { xs: 2, sm: 'auto', md: 7, lg: 10 },
             order: { xs: 1, md: 2 },
           }}
         >
@@ -267,6 +267,7 @@ function BrandingVision() {
             In addition to the guideline-specific implementation,{' '}
             <b>we want Material-UI to be more generally useful for application development.</b>
           </Typography>
+          <br />
           <Typography>
             Material-UI implements not only the Material Design guidelines, but is also a general
             use UI library of components, offering components that are simply not addressed in the
@@ -286,6 +287,7 @@ function BrandingVision() {
               able to take advantage of it for your own business with any style customization
               needed.
             </Typography>
+            <br />
             <Typography>
               We want to see companies succeed using Material-UI in a way that matches their brand,
               close to the Material Design philosophy or not. We don&apos;t want them to feel that
