@@ -22,6 +22,10 @@ const DesktopDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkn
   },
 ) as DatePickerGenericComponent<typeof DesktopWrapper>;
 
+if (process.env.NODE_ENV !== 'production') {
+  (DesktopDatePicker as any).displayName = 'DesktopDatePicker';
+}
+
 DesktopDatePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

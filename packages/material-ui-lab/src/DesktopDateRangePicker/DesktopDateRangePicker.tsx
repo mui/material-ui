@@ -11,6 +11,10 @@ const DesktopDateRangePicker = makeDateRangePicker(
   DesktopTooltipWrapper,
 );
 
+if (process.env.NODE_ENV !== 'production') {
+  (DesktopDateRangePicker as any).displayName = 'DesktopDateRangePicker';
+}
+
 (DesktopDateRangePicker as any).propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

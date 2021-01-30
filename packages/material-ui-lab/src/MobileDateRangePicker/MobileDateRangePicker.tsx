@@ -8,6 +8,10 @@ import MobileWrapper from '../internal/pickers/wrappers/MobileWrapper';
 /* @typescript-to-proptypes-generate */
 const MobileDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', MobileWrapper);
 
+if (process.env.NODE_ENV !== 'production') {
+  (MobileDateRangePicker as any).displayName = 'MobileDateRangePicker';
+}
+
 (MobileDateRangePicker as any).propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

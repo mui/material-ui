@@ -82,6 +82,10 @@ const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(R
   ...datePickerConfig,
 }) as DatePickerGenericComponent<typeof MobileWrapper>;
 
+if (process.env.NODE_ENV !== 'production') {
+  (DatePicker as any).displayName = 'DatePicker';
+}
+
 DatePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

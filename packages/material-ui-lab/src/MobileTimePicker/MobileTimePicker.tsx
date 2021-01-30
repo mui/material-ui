@@ -19,6 +19,10 @@ const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Mobi
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof MobileWrapper>;
 
+if (process.env.NODE_ENV !== 'production') {
+  (MobileTimePicker as any).displayName = 'MobileTimePicker';
+}
+
 MobileTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

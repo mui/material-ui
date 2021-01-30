@@ -19,6 +19,10 @@ const DesktopTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Des
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof DesktopWrapper>;
 
+if (process.env.NODE_ENV !== 'production') {
+  (DesktopTimePicker as any).displayName = 'DesktopTimePicker';
+}
+
 DesktopTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
