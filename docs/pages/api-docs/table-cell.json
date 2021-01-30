@@ -40,12 +40,10 @@
       "sizeMedium",
       "paddingCheckbox",
       "paddingNone",
-      "paddingDefault",
       "alignLeft",
       "alignCenter",
       "alignRight",
       "alignJustify",
-      "alignInherit",
       "stickyHeader"
     ],
     "globalClasses": {},

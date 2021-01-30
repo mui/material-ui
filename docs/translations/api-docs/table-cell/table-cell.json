@@ -49,11 +49,6 @@
       "nodeName": "the root element",
       "conditions": "<code>padding=\"none\"</code>"
     },
-    "paddingDefault": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>padding=\"default\"</code>"
-    },
     "alignLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -74,15 +69,10 @@
       "nodeName": "the root element",
       "conditions": "<code>align=\"justify\"</code>"
     },
-    "alignInherit": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>align=\"inherit\"</code>"
-    },
     "stickyHeader": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>context.table.stickyHeader={true}</code>"
+      "conditions": "<code>align=\"inherit\"</code>"
     }
   }
 }
