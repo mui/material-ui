@@ -121,7 +121,7 @@ const SwitchSwitchBase = experimentalStyled(
       },
       [`& .${switchClasses.switchBase}`]: {
         padding: 4,
-        '&$checked': {
+        '&.Mui-checked': {
           transform: 'translateX(16px)',
         },
       },
