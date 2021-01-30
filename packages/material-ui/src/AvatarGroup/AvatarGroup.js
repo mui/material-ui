@@ -172,13 +172,15 @@ AvatarGroup.propTypes = {
    */
   max: chainPropTypes(PropTypes.number, (props) => {
     if (props.max < 2) {
-      throw new Error(
+      return new Error(
         [
           'Material-UI: The prop `max` should be equal to 2 or above.',
           'A value below is clamped to 2.',
         ].join('\n'),
       );
     }
+
+    return null;
   }),
   /**
    * Spacing between avatars.
