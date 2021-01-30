@@ -8,11 +8,11 @@ import {
   alpha,
   unstable_getUnit as getUnit,
   unstable_toUnitless as toUnitless,
-  useThemeVariants
+  useThemeVariants,
 } from '../styles';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import skeltonClasses, { getSkeltonUtilityClass } from './skeltonClasses';
+import { getSkeltonUtilityClass } from './skeltonClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -82,65 +82,63 @@ const SkeltonRoot = experimentalStyled(
     alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13)};
   height: 1.2em;
 
-  & .${skeltonClasses.text} {
-    margin-top: 0;
-    margin-bottom: 0;
-    height: auto;
-    transform-origin: 0 55%;
-    transform: scale(1, 0.60);
-    border-radius: ${({ theme }) => {
+  margin-top: ${({ styleProps }) => styleProps.variant === 'text' && 0};
+  margin-bottom: ${({ styleProps }) => styleProps.variant === 'text' && 0};
+  height: ${({ styleProps }) => styleProps.variant === 'text' && 'auto'};
+  transform-origin: ${({ styleProps }) => styleProps.variant === 'text' && '0 55%'};
+  transform: ${({ styleProps }) => styleProps.variant === 'text' && 'scale(1, 0.60)'};
+  border-radius: ${({ styleProps, theme }) => {
+    if (styleProps.variant === 'text') {
       const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
       const radiusValue = toUnitless(theme.shape.borderRadius);
       return `${radiusValue}${radiusUnit}/${
         Math.round((radiusValue / 0.6) * 10) / 10
       }${radiusUnit}`;
-    }};
-    &:empty:before {
-      content: '"\\00a0";
     }
-  }
-
-  & .${skeltonClasses.circular} {
-    border-radius: 50%;
-  }
-
-  & .${skeltonClasses.pulse} {
-    animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
-  }
-
-  & .${skeltonClasses.wave} {
-    position: relative;
-    overflow: hidden;
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
-    position: relative;
-    &::after {
-      animation: ${waveKeyframe} 1.6s linear 0.5s infinite;
-      background: ${({ theme }) =>
-        `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`};
-      content: "";
-      position: absolute;
-      transform: translateX(-100%);
-      bottom: 0;
-      left: 0;
-      right: 0;
-      top: 0;
-    }
-  }
-
-  & .${skeltonClasses.withChildren} {
-    & > * {
-      visibility: hidden;
-    }
+    return undefined;
+  }};
+  &:empty:before {
+    content: ${({ styleProps }) => styleProps.variant === 'text' && '"\\00a0"'};
   }
 
 
-  & .${skeltonClasses.fitContent} {
-    max-width: fit-content;
+  border-radius: ${({ styleProps }) => styleProps.variant === 'circular' && '50%'};
+
+  animation-name: ${({ styleProps }) => styleProps.variant === 'pulse' && pulseKeyframe};
+  animation-duration: ${({ styleProps }) => styleProps.variant === 'pulse' && '0.5s'};
+  animation-timing-function: ${({ styleProps }) => styleProps.variant === 'pulse' && 'ease-in-out'};
+  animation-delay: ${({ styleProps }) => styleProps.variant === 'pulse' && '1.5s'};
+  animation-iteration-count: ${({ styleProps }) => styleProps.variant === 'pulse' && 'infinite'};
+  
+  position: ${({ styleProps }) => styleProps.variant === 'wave' && 'relative'};
+  overflow: ${({ styleProps }) => styleProps.variant === 'wave' && 'hidden'};
+  -webkit-mask-image: ${({ styleProps }) =>
+    styleProps.variant === 'wave' && 'webkit-radial-gradient(white, black)'};
+  &::after {
+    animation-name: ${({ styleProps }) => styleProps.variant === 'wave' && waveKeyframe};
+    animation-duration: ${({ styleProps }) => styleProps.variant === 'wave' && '1.6s'};
+    animation-timing-function: ${({ styleProps }) => styleProps.variant === 'wave' && 'linear'};
+    animation-delay: ${({ styleProps }) => styleProps.variant === 'wave' && '0.5s'};
+    animation-iteration-count: ${({ styleProps }) => styleProps.variant === 'wave' && 'infinite'};
+    background: ${({ styleProps, theme }) =>
+      styleProps.variant === 'wave' &&
+      `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`};
+    content: ${({ styleProps }) => styleProps.variant === 'wave' && '""'};
+    position: ${({ styleProps }) => styleProps.variant === 'wave' && 'absolute'};
+    transform: ${({ styleProps }) => styleProps.variant === 'wave' && 'translateX(-100%)'};
+    bottom: ${({ styleProps }) => styleProps.variant === 'wave' && 0};
+    left: ${({ styleProps }) => styleProps.variant === 'wave' && 0};
+    right: ${({ styleProps }) => styleProps.variant === 'wave' && 0};
+    top: ${({ styleProps }) => styleProps.variant === 'wave' && 0};
   }
 
-  & .${skeltonClasses.heightAuto} {
-    height: auto;
+  & > * {
+    visibility: ${({ styleProps }) => styleProps.hasChildren && 'hidden'};
   }
+
+  max-width: ${({ styleProps }) => styleProps.hasChildren && !styleProps.width && 'fit-content'};
+
+  height: ${({ styleProps }) => styleProps.hasChildren && !styleProps.height && 'auto'};
 `;
 
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
