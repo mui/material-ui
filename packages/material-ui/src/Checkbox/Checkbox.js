@@ -1,29 +1,57 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
+import { refType, deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import { alpha } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import capitalize from '../utils/capitalize';
-import withStyles from '../styles/withStyles';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    color: theme.palette.text.secondary,
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
+
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.indeterminate && styles.indeterminate),
+    ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, disabled, checked, indeterminate, color } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      checked && 'checked',
+      disabled && 'disabled',
+      indeterminate && 'indeterminate',
+      `color${capitalize(color)}`,
+    ],
+  };
+
+  return composeClasses(slots, getCheckboxUtilityClass, classes);
+};
+
+const CheckboxRoot = experimentalStyled(
+  SwitchBase,
+  {},
+  {
+    name: 'MuiCheckbox',
+    slot: 'Root',
+    overridesResolver,
   },
-  /* Pseudo-class applied to the root element if `checked={true}`. */
-  checked: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if `indeterminate={true}`. */
-  indeterminate: {},
+)(({ theme, styleProps }) => ({
+  /* Styles applied to the root element. */
+  color: theme.palette.text.secondary,
   /* Styles applied to the root element if `color="primary"`. */
-  colorPrimary: {
-    '&$checked, &$indeterminate': {
+  ...(styleProps.color === 'primary' && {
+    [`&.Mui-checked, &.${checkboxClasses.indeterminate}`]: {
       color: theme.palette.primary.main,
       '&:hover': {
         backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
@@ -33,13 +61,13 @@ export const styles = (theme) => ({
         },
       },
     },
-    '&$disabled': {
+    '&.Mui-disabled': {
       color: theme.palette.action.disabled,
     },
-  },
+  }),
   /* Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: {
-    '&$checked, &$indeterminate': {
+  ...(styleProps.color === 'secondary' && {
+    [`&.Mui-checked, &.${checkboxClasses.indeterminate}`]: {
       color: theme.palette.secondary.main,
       '&:hover': {
         backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
@@ -49,20 +77,20 @@ export const styles = (theme) => ({
         },
       },
     },
-    '&$disabled': {
+    '&.Mui-disabled': {
       color: theme.palette.action.disabled,
     },
-  },
-});
+  }),
+}));
 
 const defaultCheckedIcon = <CheckBoxIcon />;
 const defaultIcon = <CheckBoxOutlineBlankIcon />;
 const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
 
-const Checkbox = React.forwardRef(function Checkbox(props, ref) {
+const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
-    classes,
     color = 'secondary',
     icon: iconProp = defaultIcon,
     indeterminate = false,
@@ -75,16 +103,19 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
   const icon = indeterminate ? indeterminateIconProp : iconProp;
   const indeterminateIcon = indeterminate ? indeterminateIconProp : checkedIcon;
 
+  const styleProps = {
+    ...props,
+    color,
+    indeterminate,
+    size,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <SwitchBase
+    <CheckboxRoot
       type="checkbox"
-      classes={{
-        root: clsx(classes.root, classes[`color${capitalize(color)}`], {
-          [classes.indeterminate]: indeterminate,
-        }),
-        checked: classes.checked,
-        disabled: classes.disabled,
-      }}
+      className={classes.root}
       color={color}
       inputProps={{
         'data-indeterminate': indeterminate,
@@ -100,6 +131,7 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
             ? size
             : indeterminateIcon.props.fontSize,
       })}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     />
@@ -189,10 +221,14 @@ Checkbox.propTypes = {
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The value of the component. The DOM API casts this to a string.
    * The browser uses "on" as the default value.
    */
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);
+export default Checkbox;

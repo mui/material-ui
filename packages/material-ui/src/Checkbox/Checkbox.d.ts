@@ -1,5 +1,6 @@
+import { SxProps } from '@material-ui/system';
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 
 export interface CheckboxProps
@@ -90,6 +91,10 @@ export interface CheckboxProps
    * @default 'medium'
    */
   size?: 'small' | 'medium';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The value of the component. The DOM API casts this to a string.
    * The browser uses "on" as the default value.
