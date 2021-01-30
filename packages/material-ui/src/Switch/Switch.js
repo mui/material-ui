@@ -19,9 +19,9 @@ const overridesResolver = (props, styles) => {
     ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
     ...styles[`size${capitalize(styleProps.size)}`],
     [`& .${switchClasses.switchBase}`]: {
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      ...styles.input,
       ...styles.switchBase,
+      ...styles.input,
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
     },
     [`& .${switchClasses.thumb}`]: styles.thumb,
     [`& .${switchClasses.track}`]: styles.track,
@@ -78,6 +78,21 @@ const SwitchRoot = experimentalStyled(
   ...(styleProps.edge === 'end' && {
     marginRight: -8,
   }),
+  ...(styleProps.size === 'small' && {
+    width: 40,
+    height: 24,
+    padding: 7,
+    [`& .${switchClasses.thumb}`]: {
+      width: 16,
+      height: 16,
+    },
+    [`& .${switchClasses.switchBase}`]: {
+      padding: 4,
+      '&.Mui-checked': {
+        transform: 'translateX(16px)',
+      },
+    },
+  }),
 }));
 
 const SwitchSwitchBase = experimentalStyled(
@@ -110,22 +125,6 @@ const SwitchSwitchBase = experimentalStyled(
     [`&.Mui-disabled + .${switchClasses.track}`]: {
       opacity: theme.palette.mode === 'light' ? 0.12 : 0.2,
     },
-    /* Styles applied to the root element if `size="small"`. */
-    ...(styleProps.size === 'small' && {
-      width: 40,
-      height: 24,
-      padding: 7,
-      [`& .${switchClasses.thumb}`]: {
-        width: 16,
-        height: 16,
-      },
-      [`& .${switchClasses.switchBase}`]: {
-        padding: 4,
-        '&.Mui-checked': {
-          transform: 'translateX(16px)',
-        },
-      },
-    }),
     [`& .${switchClasses.input}`]: {
       /* Styles applied to the internal SwitchBase component's input element. */
       left: '-100%',
