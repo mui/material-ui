@@ -28,8 +28,12 @@ describe('<TableRow />', () => {
       return wrapper.find('tbody').childAt(0);
     },
     render: (node) => {
-      const { container, ...rest } = render(<table>{node}</table>);
-      return { container: container.firstChild, ...rest };
+      const { container, ...rest } = render(
+        <table>
+          <tbody>{node}</tbody>
+        </table>,
+      );
+      return { container: container.firstChild.firstChild, ...rest };
     },
     muiName: 'MuiTableRow',
     testVariantProps: { variant: 'foo' },
