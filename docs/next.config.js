@@ -52,6 +52,7 @@ module.exports = {
         new BundleAnalyzerPlugin({
           analyzerMode: 'server',
           generateStatsFile: true,
+          analyzerPort: options.isServer ? 8888 : 8889,
           // Will be available at `.next/stats.json`
           statsFilename: 'stats.json',
         }),
