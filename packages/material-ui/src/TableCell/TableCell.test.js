@@ -31,8 +31,14 @@ describe('<TableCell />', () => {
       return wrapper.find('tr').childAt(0);
     },
     render: (node) => {
-      const { container, ...rest } = render(<table>{node}</table>);
-      return { container: container.firstChild, ...rest };
+      const { container, ...rest } = render(
+        <table>
+          <tbody>
+            <tr>{node}</tr>
+          </tbody>
+        </table>,
+      );
+      return { container: container.firstChild.firstChild.firstChild, ...rest };
     },
     muiName: 'MuiTableCell',
     testVariantProps: { variant: 'body' },
