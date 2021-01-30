@@ -82,11 +82,11 @@ const SkeltonRoot = experimentalStyled(
     alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13)};
   height: 1.2em;
 
-  margin-top: ${({ styleProps }) => styleProps.variant === 'text' && 0};
-  margin-bottom: ${({ styleProps }) => styleProps.variant === 'text' && 0};
-  height: ${({ styleProps }) => styleProps.variant === 'text' && 'auto'};
-  transform-origin: ${({ styleProps }) => styleProps.variant === 'text' && '0 55%'};
-  transform: ${({ styleProps }) => styleProps.variant === 'text' && 'scale(1, 0.60)'};
+  margin-top: ${({ styleProps }) => (styleProps.variant === 'text' ? 0 : undefined)};
+  margin-bottom: ${({ styleProps }) => (styleProps.variant === 'text' ? 0 : undefined)};
+  height: ${({ styleProps }) => (styleProps.variant === 'text' ? 'auto' : undefined)};
+  transform-origin: ${({ styleProps }) => (styleProps.variant === 'text' ? '0 55%' : undefined)};
+  transform: ${({ styleProps }) => (styleProps.variant === 'text' ? 'scale(1, 0.60)' : undefined)};
   border-radius: ${({ styleProps, theme }) => {
     if (styleProps.variant === 'text') {
       const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
@@ -98,47 +98,57 @@ const SkeltonRoot = experimentalStyled(
     return undefined;
   }};
   &:empty:before {
-    content: ${({ styleProps }) => styleProps.variant === 'text' && '"\\00a0"'};
+    content: ${({ styleProps }) => (styleProps.variant === 'text' ? '"\\00a0"' : undefined)};
   }
 
 
-  border-radius: ${({ styleProps }) => styleProps.variant === 'circular' && '50%'};
+  border-radius: ${({ styleProps }) => (styleProps.variant === 'circular' ? '50%' : undefined)};
 
-  animation-name: ${({ styleProps }) => styleProps.variant === 'pulse' && pulseKeyframe};
-  animation-duration: ${({ styleProps }) => styleProps.variant === 'pulse' && '0.5s'};
-  animation-timing-function: ${({ styleProps }) => styleProps.variant === 'pulse' && 'ease-in-out'};
-  animation-delay: ${({ styleProps }) => styleProps.variant === 'pulse' && '1.5s'};
-  animation-iteration-count: ${({ styleProps }) => styleProps.variant === 'pulse' && 'infinite'};
+  animation-name: ${({ styleProps }) =>
+    styleProps.variant === 'pulse' ? pulseKeyframe : undefined};
+  animation-duration: ${({ styleProps }) => (styleProps.variant === 'pulse' ? '0.5s' : undefined)};
+  animation-timing-function: ${({ styleProps }) =>
+    styleProps.variant === 'pulse' ? 'ease-in-out' : undefined};
+  animation-delay: ${({ styleProps }) => (styleProps.variant === 'pulse' ? '1.5s' : undefined)};
+  animation-iteration-count: ${({ styleProps }) =>
+    styleProps.variant === 'pulse' ? 'infinite' : undefined};
   
-  position: ${({ styleProps }) => styleProps.variant === 'wave' && 'relative'};
-  overflow: ${({ styleProps }) => styleProps.variant === 'wave' && 'hidden'};
+  position: ${({ styleProps }) => (styleProps.variant === 'wave' ? 'relative' : undefined)};
+  overflow: ${({ styleProps }) => (styleProps.variant === 'wave' ? 'hidden' : undefined)};
   -webkit-mask-image: ${({ styleProps }) =>
-    styleProps.variant === 'wave' && 'webkit-radial-gradient(white, black)'};
+    styleProps.variant === 'wave' ? 'webkit-radial-gradient(white, black)' : undefined};
   &::after {
-    animation-name: ${({ styleProps }) => styleProps.variant === 'wave' && waveKeyframe};
-    animation-duration: ${({ styleProps }) => styleProps.variant === 'wave' && '1.6s'};
-    animation-timing-function: ${({ styleProps }) => styleProps.variant === 'wave' && 'linear'};
-    animation-delay: ${({ styleProps }) => styleProps.variant === 'wave' && '0.5s'};
-    animation-iteration-count: ${({ styleProps }) => styleProps.variant === 'wave' && 'infinite'};
+    animation-name: ${({ styleProps }) =>
+      styleProps.variant === 'wave' ? waveKeyframe : undefined};
+    animation-duration: ${({ styleProps }) => (styleProps.variant === 'wave' ? '1.6s' : undefined)};
+    animation-timing-function: ${({ styleProps }) =>
+      styleProps.variant === 'wave' ? 'linear' : undefined};
+    animation-delay: ${({ styleProps }) => (styleProps.variant === 'wave' ? '0.5s' : undefined)};
+    animation-iteration-count: ${({ styleProps }) =>
+      styleProps.variant === 'wave' ? 'infinite' : undefined};
     background: ${({ styleProps, theme }) =>
-      styleProps.variant === 'wave' &&
-      `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`};
-    content: ${({ styleProps }) => styleProps.variant === 'wave' && '""'};
-    position: ${({ styleProps }) => styleProps.variant === 'wave' && 'absolute'};
-    transform: ${({ styleProps }) => styleProps.variant === 'wave' && 'translateX(-100%)'};
-    bottom: ${({ styleProps }) => styleProps.variant === 'wave' && 0};
-    left: ${({ styleProps }) => styleProps.variant === 'wave' && 0};
-    right: ${({ styleProps }) => styleProps.variant === 'wave' && 0};
-    top: ${({ styleProps }) => styleProps.variant === 'wave' && 0};
+      styleProps.variant === 'wave'
+        ? `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`
+        : undefined};
+    content: ${({ styleProps }) => (styleProps.variant === 'wave' ? '""' : undefined)};
+    position: ${({ styleProps }) => (styleProps.variant === 'wave' ? 'absolute' : undefined)};
+    transform: ${({ styleProps }) =>
+      styleProps.variant === 'wave' ? 'translateX(-100%)' : undefined};
+    bottom: ${({ styleProps }) => (styleProps.variant === 'wave' ? 0 : undefined)};
+    left: ${({ styleProps }) => (styleProps.variant === 'wave' ? 0 : undefined)};
+    right: ${({ styleProps }) => (styleProps.variant === 'wave' ? 0 : undefined)};
+    top: ${({ styleProps }) => (styleProps.variant === 'wave' ? 0 : undefined)};
   }
 
   & > * {
-    visibility: ${({ styleProps }) => styleProps.hasChildren && 'hidden'};
+    visibility: ${({ styleProps }) => (styleProps.hasChildren ? 'hidden' : undefined)};
   }
 
-  max-width: ${({ styleProps }) => styleProps.hasChildren && !styleProps.width && 'fit-content'};
+  max-width: ${({ styleProps }) =>
+    styleProps.hasChildren && !styleProps.width ? 'fit-content' : undefined};
 
-  height: ${({ styleProps }) => styleProps.hasChildren && !styleProps.height && 'auto'};
+  height: ${({ styleProps }) =>
+    styleProps.hasChildren && !styleProps.height ? 'auto' : undefined};
 `;
 
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
