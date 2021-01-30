@@ -11,7 +11,7 @@ const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   return deepmerge(styles.root, {
     ...styles.select,
-    ...styles[styleProps.variant]
+    ...styles[styleProps.variant],
   });
 };
 
