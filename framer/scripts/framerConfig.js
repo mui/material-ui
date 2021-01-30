@@ -109,6 +109,7 @@ export const componentSettings = {
       'indeterminateIcon',
       'onChange',
       'required',
+      'sx',
       'type',
       'value',
     ],
