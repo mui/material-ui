@@ -75,8 +75,8 @@ const LinkRoot = experimentalStyled(
       cursor: 'pointer',
       userSelect: 'none',
       verticalAlign: 'middle',
-      '-moz-appearance': 'none', // Reset
-      '-webkit-appearance': 'none', // Reset
+      MozAppearance: 'none', // Reset
+      WebkitAppearance: 'none', // Reset
       '&::-moz-focus-inner': {
         borderStyle: 'none', // Remove Firefox dotted outline.
       },
