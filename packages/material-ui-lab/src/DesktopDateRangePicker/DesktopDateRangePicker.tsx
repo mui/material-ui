@@ -7,7 +7,7 @@ import DesktopTooltipWrapper from '../internal/pickers/wrappers/DesktopTooltipWr
  */
 /* @typescript-to-proptypes-generate */
 const DesktopDateRangePicker = makeDateRangePicker(
-  'MuiPickersDateRangePicker',
+  'MuiDesktopDateRangePicker',
   DesktopTooltipWrapper,
 );
 

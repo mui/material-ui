@@ -6,7 +6,7 @@ import { makeDateRangePicker } from './makeDateRangePicker';
  * @ignore - do not document.
  */
 /* @typescript-to-proptypes-generate */
-const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', ResponsiveTooltipWrapper);
+const DateRangePicker = makeDateRangePicker('MuiDateRangePicker', ResponsiveTooltipWrapper);
 
 if (process.env.NODE_ENV !== 'production') {
   (DateRangePicker as any).displayName = 'DateRangePicker';
