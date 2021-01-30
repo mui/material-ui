@@ -16,7 +16,7 @@ describe('<Checkbox />', () => {
     inheritComponent: IconButton,
     mount,
     muiName: 'MuiCheckbox',
-    testVariantProps: { color: 'secondary' },
+    testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'checked', value: true, styleKey: classes.checked },
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp', 'rootClass'],
