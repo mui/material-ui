@@ -6,7 +6,7 @@ import Paper from '../Paper';
 import { emphasize } from '../styles/colorManipulator';
 
 export const styles = (theme) => {
-  const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
+  const emphasis = theme.palette.mode === 'light' ? 0.02 : 0.2;
   const backgroundColor = emphasize(theme.palette.background.default, emphasis);
 
   return {
