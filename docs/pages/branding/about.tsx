@@ -15,6 +15,7 @@ import FinanceIcon from 'docs/src/modules/branding/icons/Finance';
 import HelpIcon from 'docs/src/modules/branding/icons/Help';
 import OpenCollectiveIcon from 'docs/src/modules/branding/icons/OpenCollective';
 import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
+import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import BrandingPersona from 'docs/src/modules/branding/BrandingPersona';
@@ -814,6 +815,7 @@ function BrandingSupportUs() {
 export default function Page() {
   return (
     <BrandingRoot>
+      <BrandingHeader />
       <BrandingHero />
       <BrandingKPI />
       <BrandingMission />

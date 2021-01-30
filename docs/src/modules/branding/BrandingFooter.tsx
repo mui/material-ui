@@ -55,7 +55,7 @@ export default function BrandingFooter() {
       <Container maxWidth="lg">
         <Grid container>
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <BrandingLogo loading="lazy" sx={{ mb: 5 }} href="/" />
+            <BrandingLogo sx={{ mb: 5 }} />
           </Grid>
           <Grid item xs={6} sm={3} md={4} lg={2} className="BrandingFooter-list">
             <Typography component="h3">{t1('Products')}</Typography>
