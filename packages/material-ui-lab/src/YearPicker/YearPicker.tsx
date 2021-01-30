@@ -234,6 +234,6 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
   shouldDisableYear: PropTypes.func,
 };
 
-export default withStyles(styles, { name: 'MuiPickersYearSelection' })(YearPicker) as <TDate>(
+export default withStyles(styles, { name: 'MuiYearPicker' })(YearPicker) as <TDate>(
   props: YearPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;
