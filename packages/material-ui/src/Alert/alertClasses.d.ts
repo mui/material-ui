@@ -1,6 +1,6 @@
-import { AlertProps } from './Alert';
+import { AlertClassKey } from './Alert';
 
-export type AlertClasses = AlertProps['classes'];
+export type AlertClasses = Record<AlertClassKey, string>;
 
 declare const alertClasses: AlertClasses;
 

@@ -1,6 +1,6 @@
-import { ButtonTypeMap } from './Button';
+import { ButtonClassKey } from './Button';
 
-export type ButtonClasses = ButtonTypeMap['props']['classes'];
+export type ButtonClasses = Record<ButtonClassKey, string>;
 
 declare const buttonClasses: ButtonClasses;
 

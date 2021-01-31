@@ -1,6 +1,6 @@
-import { SliderUnstyledTypeMap } from './SliderUnstyled';
+import { SliderUnstyledClassKey } from './SliderUnstyled';
 
-export type SliderUnstyledClasses = SliderUnstyledTypeMap['props']['classes'];
+export type SliderUnstyledClasses = Record<SliderUnstyledClassKey, string>;
 
 declare const sliderUnstyledClasses: SliderUnstyledClasses;
 
