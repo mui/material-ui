@@ -84,4 +84,6 @@ const DateRangePickerToolbar: React.FC<DateRangePickerToolbarProps & WithStyles<
   );
 };
 
-export default withStyles(styles, { name: 'MuiDateRangePickerToolbar' })(DateRangePickerToolbar);
+export default withStyles(styles, { name: 'MuiPickersDateRangePickerToolbarProps' })(
+  DateRangePickerToolbar,
+);

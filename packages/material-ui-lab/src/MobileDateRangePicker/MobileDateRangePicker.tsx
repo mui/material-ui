@@ -6,7 +6,7 @@ import MobileWrapper from '../internal/pickers/wrappers/MobileWrapper';
  * @ignore - do not document.
  */
 /* @typescript-to-proptypes-generate */
-const MobileDateRangePicker = makeDateRangePicker('MuiMobileDateRangePicker', MobileWrapper);
+const MobileDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', MobileWrapper);
 
 if (process.env.NODE_ENV !== 'production') {
   (MobileDateRangePicker as any).displayName = 'MobileDateRangePicker';
