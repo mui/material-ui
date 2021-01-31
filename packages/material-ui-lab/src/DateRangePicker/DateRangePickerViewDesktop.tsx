@@ -212,6 +212,6 @@ function DateRangePickerViewDesktop<TDate>(
   );
 }
 
-export default withStyles(styles, { name: 'MuiPickersDesktopDateRangeCalendar' })(
+export default withStyles(styles, { name: 'MuiDateRangePickerViewDesktop' })(
   DateRangePickerViewDesktop,
 ) as <TDate>(props: DesktopDateRangeCalendarProps<TDate>) => JSX.Element;
