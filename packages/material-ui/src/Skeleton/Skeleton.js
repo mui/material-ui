@@ -48,7 +48,6 @@ const pulseKeyframe = keyframes`
   opacity: 1;
 }
 50% {
-  /* +0.5s of delay between each loop */
   opacity: 0.4;
 }
 100% {
