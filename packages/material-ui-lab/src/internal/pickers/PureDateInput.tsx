@@ -120,7 +120,7 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     [InputProps],
   );
 
-  const adornmentPosition = other.InputAdornmentProps?.position ?? 'end';
+  const adornmentPosition = other.InputAdornmentProps?.position || 'end';
   const inputValue = getDisplayDate(utils, other.rawValue, other.inputFormat);
 
   return renderInput({
