@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { darken, createMuiTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
+import { darken, lighten, createMuiTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
 // import SearchAppBar from 'docs/src/modules/branding/SearchAppBar';
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
@@ -199,6 +199,9 @@ theme = createMuiTheme(theme, {
       styleOverrides: {
         root: {
           textTransform: 'initial',
+          fontSize: 16,
+          padding: '10px 16px',
+          fontWeight: 600,
         },
         colorInherit: {
           backgroundColor: theme.palette.greyD7,
@@ -213,6 +216,7 @@ theme = createMuiTheme(theme, {
             },
           },
           '&:active': {
+            boxShadow: `0 0 0 0.15rem ${alpha(theme.palette.greyD7, 0.5)}`,
             backgroundColor: darken(theme.palette.greyD7, 0.18),
           },
         },
@@ -232,7 +236,27 @@ theme = createMuiTheme(theme, {
               },
             },
             '&:active': {
+              boxShadow: `0 0 0 0.15rem ${alpha(theme.palette.primary.main, 0.5)}`,
               backgroundColor: darken(theme.palette.primary.main, 0.25),
+            },
+          },
+        },
+        {
+          props: { variant: 'contained', color: 'secondary' },
+          style: {
+            '&.Mui-focusVisible': {
+              boxShadow: `0 0 0 0.25rem ${alpha(theme.palette.secondary.main, 0.5)}`,
+            },
+            '&:hover': {
+              backgroundColor: lighten(theme.palette.secondary.main, 0.09),
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                backgroundColor: theme.palette.secondary.main,
+              },
+            },
+            '&:active': {
+              boxShadow: `0 0 0 0.15rem ${alpha(theme.palette.secondary.main, 0.5)}`,
+              backgroundColor: lighten(theme.palette.secondary.main, 0.12),
             },
           },
         },
@@ -241,6 +265,7 @@ theme = createMuiTheme(theme, {
           style: {
             padding: '8px 16px',
             fontSize: 14,
+            fontWeight: 700,
           },
         },
         {
@@ -249,6 +274,7 @@ theme = createMuiTheme(theme, {
             padding: '14px 22px',
             boxShadow: '0 2px 3px rgba(0, 30, 60, 0.08)',
             fontSize: 18,
+            fontWeight: 700,
           },
         },
       ],
