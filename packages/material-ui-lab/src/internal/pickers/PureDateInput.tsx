@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TextFieldProps as MuiTextFieldPropsType } from '@material-ui/core/TextField';
-import { IconButtonProps } from '@material-ui/core/IconButton';
-import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
+import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
+import InputAdornment, { InputAdornmentProps } from '@material-ui/core/InputAdornment';
 import { onSpaceOrEnter } from './utils';
 import { ParsableDate } from './constants/prop-types';
 import { useUtils, MuiPickersAdapter } from './hooks/useUtils';
@@ -100,17 +100,16 @@ export interface DateInputRefs {
 
 export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
   containerRef,
-  disabled,
   forwardedRef,
+  disableOpenPicker,
   getOpenDialogAriaText = getTextFieldAriaText,
-  inputFormat,
   InputProps,
-  label,
   openPicker: onOpen,
-  rawValue,
+  OpenPickerButtonProps,
+  openPickerIcon = null,
   renderInput,
   TextFieldProps = {},
-  validationError,
+  ...other
 }) => {
   const utils = useUtils();
   const PureDateInputProps = React.useMemo(
@@ -121,20 +120,37 @@ export const PureDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     [InputProps],
   );
 
-  const inputValue = getDisplayDate(utils, rawValue, inputFormat);
+  const adornmentPosition = other.InputAdornmentProps?.position ?? 'end';
+  const inputValue = getDisplayDate(utils, other.rawValue, other.inputFormat);
 
   return renderInput({
-    label,
-    disabled,
+    label: other.label,
+    disabled: other.disabled,
     ref: containerRef,
     inputRef: forwardedRef,
-    error: validationError,
-    InputProps: PureDateInputProps,
+    error: other.validationError,
+    InputProps: {
+      ...PureDateInputProps,
+      [`${adornmentPosition}Adornment`]: disableOpenPicker ? undefined : (
+        <InputAdornment position={adornmentPosition} {...other.InputAdornmentProps}>
+          <IconButton
+            edge={adornmentPosition}
+            data-mui-test="open-picker-from-keyboard"
+            disabled={other.disabled}
+            aria-label={getOpenDialogAriaText(other.rawValue, utils)}
+            {...OpenPickerButtonProps}
+            onClick={onOpen}
+          >
+            {openPickerIcon}
+          </IconButton>
+        </InputAdornment>
+      ),
+    },
     inputProps: {
-      disabled,
+      disabled: other.disabled,
       readOnly: true,
       'aria-readonly': true,
-      'aria-label': getOpenDialogAriaText(rawValue, utils),
+      'aria-label': getOpenDialogAriaText(other.rawValue, utils),
       value: inputValue,
       onClick: onOpen,
       onKeyDown: onSpaceOrEnter(onOpen),
