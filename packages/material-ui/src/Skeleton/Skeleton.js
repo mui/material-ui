@@ -19,7 +19,7 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...styles[styleProps.variant],
-    ...styles[styleProps.animation],
+    ...(styleProps.animation !== false && styles[styleProps.animation]),
     ...(styleProps.hasChildren && styles.withChildren),
     ...(styleProps.hasChildren && !styleProps.width && styles.fitContent),
     ...(styleProps.hasChildren && !styleProps.height && styles.heightAuto),
@@ -104,39 +104,41 @@ const SkeltonRoot = experimentalStyled(
   border-radius: ${({ styleProps }) => (styleProps.variant === 'circular' ? '50%' : undefined)};
 
   animation-name: ${({ styleProps }) =>
-    styleProps.variant === 'pulse' ? pulseKeyframe : undefined};
-  animation-duration: ${({ styleProps }) => (styleProps.variant === 'pulse' ? '0.5s' : undefined)};
+    styleProps.animation === 'pulse' ? pulseKeyframe : undefined};
+  animation-duration: ${({ styleProps }) =>
+    styleProps.animation === 'pulse' ? '0.5s' : undefined};
   animation-timing-function: ${({ styleProps }) =>
-    styleProps.variant === 'pulse' ? 'ease-in-out' : undefined};
-  animation-delay: ${({ styleProps }) => (styleProps.variant === 'pulse' ? '1.5s' : undefined)};
+    styleProps.animation === 'pulse' ? 'ease-in-out' : undefined};
+  animation-delay: ${({ styleProps }) => (styleProps.animation === 'pulse' ? '1.5s' : undefined)};
   animation-iteration-count: ${({ styleProps }) =>
-    styleProps.variant === 'pulse' ? 'infinite' : undefined};
+    styleProps.animation === 'pulse' ? 'infinite' : undefined};
   
-  position: ${({ styleProps }) => (styleProps.variant === 'wave' ? 'relative' : undefined)};
-  overflow: ${({ styleProps }) => (styleProps.variant === 'wave' ? 'hidden' : undefined)};
+  position: ${({ styleProps }) => (styleProps.animation === 'wave' ? 'relative' : undefined)};
+  overflow: ${({ styleProps }) => (styleProps.animation === 'wave' ? 'hidden' : undefined)};
   -webkit-mask-image: ${({ styleProps }) =>
-    styleProps.variant === 'wave' ? 'webkit-radial-gradient(white, black)' : undefined};
+    styleProps.animation === 'wave' ? 'webkit-radial-gradient(white, black)' : undefined};
   &::after {
     animation-name: ${({ styleProps }) =>
-      styleProps.variant === 'wave' ? waveKeyframe : undefined};
-    animation-duration: ${({ styleProps }) => (styleProps.variant === 'wave' ? '1.6s' : undefined)};
+      styleProps.animation === 'wave' ? waveKeyframe : undefined};
+    animation-duration: ${({ styleProps }) =>
+      styleProps.animation === 'wave' ? '1.6s' : undefined};
     animation-timing-function: ${({ styleProps }) =>
-      styleProps.variant === 'wave' ? 'linear' : undefined};
-    animation-delay: ${({ styleProps }) => (styleProps.variant === 'wave' ? '0.5s' : undefined)};
+      styleProps.animation === 'wave' ? 'linear' : undefined};
+    animation-delay: ${({ styleProps }) => (styleProps.animation === 'wave' ? '0.5s' : undefined)};
     animation-iteration-count: ${({ styleProps }) =>
-      styleProps.variant === 'wave' ? 'infinite' : undefined};
+      styleProps.animation === 'wave' ? 'infinite' : undefined};
     background: ${({ styleProps, theme }) =>
-      styleProps.variant === 'wave'
+      styleProps.animation === 'wave'
         ? `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`
         : undefined};
-    content: ${({ styleProps }) => (styleProps.variant === 'wave' ? '""' : undefined)};
-    position: ${({ styleProps }) => (styleProps.variant === 'wave' ? 'absolute' : undefined)};
+    content: ${({ styleProps }) => (styleProps.animation === 'wave' ? '""' : undefined)};
+    position: ${({ styleProps }) => (styleProps.animation === 'wave' ? 'absolute' : undefined)};
     transform: ${({ styleProps }) =>
-      styleProps.variant === 'wave' ? 'translateX(-100%)' : undefined};
-    bottom: ${({ styleProps }) => (styleProps.variant === 'wave' ? 0 : undefined)};
-    left: ${({ styleProps }) => (styleProps.variant === 'wave' ? 0 : undefined)};
-    right: ${({ styleProps }) => (styleProps.variant === 'wave' ? 0 : undefined)};
-    top: ${({ styleProps }) => (styleProps.variant === 'wave' ? 0 : undefined)};
+      styleProps.animation === 'wave' ? 'translateX(-100%)' : undefined};
+    bottom: ${({ styleProps }) => (styleProps.animation === 'wave' ? 0 : undefined)};
+    left: ${({ styleProps }) => (styleProps.animation === 'wave' ? 0 : undefined)};
+    right: ${({ styleProps }) => (styleProps.animation === 'wave' ? 0 : undefined)};
+    top: ${({ styleProps }) => (styleProps.animation === 'wave' ? 0 : undefined)};
   }
 
   & > * {
