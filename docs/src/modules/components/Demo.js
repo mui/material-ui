@@ -209,9 +209,15 @@ export default function Demo(props) {
     setRenderValue(codeOpen ? value : demoData.raw.replace(fullJsx, value));
   };
 
+  // Update editor when variant changes
   React.useEffect(() => {
     setEditorValue(codeOpen ? demoData.raw : jsx);
   }, [codeOpen, codeVariant, demoData.raw, jsx, showPreview]);
+
+  const handleCodeOpenChange = () => {
+    setCodeOpen((open) => !open);
+    setShowAd(true);
+  };
 
   const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
   const handleResetDemo = () => {
@@ -219,14 +225,10 @@ export default function Demo(props) {
     setEditorValue(codeOpen ? demoData.raw : jsx);
   };
 
-  const resolveImports = () => demoData.imports;
-
   const demoId = useUniqueId('demo-');
   const demoSourceId = useUniqueId(`demoSource-`);
   const openDemoSource = codeOpen || showPreview;
-
   const initialFocusRef = React.useRef(null);
-
   const [showAd, setShowAd] = React.useState(false);
 
   return (
@@ -248,7 +250,7 @@ export default function Demo(props) {
           action={initialFocusRef}
           tabIndex={-1}
         />
-        <Provider code={demoJS} resolveImports={resolveImports}>
+        <Provider code={demoJS} resolveImports={() => demoData.imports}>
           <Preview key={demoKey} className={classes.preview} />
           <Error />
         </Provider>
@@ -269,10 +271,7 @@ export default function Demo(props) {
               demoOptions={demoOptions}
               demoSourceId={demoSourceId}
               initialFocusRef={initialFocusRef}
-              onCodeOpenChange={() => {
-                setCodeOpen((open) => !open);
-                setShowAd(true);
-              }}
+              onCodeOpenChange={handleCodeOpenChange}
               onResetDemoClick={handleResetDemo}
               openDemoSource={openDemoSource}
               showPreview={showPreview}
