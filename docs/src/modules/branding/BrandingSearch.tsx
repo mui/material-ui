@@ -126,7 +126,6 @@ export default function BrandingSearch() {
         }}
       />
       <div className={clsx('BrandingSearch-shortcut', { 'Mui-focused': focused })}>
-        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
         {macOS ? '⌘' : 'Ctrl+'}K
       </div>
     </Root>

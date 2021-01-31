@@ -1,9 +1,10 @@
 import * as React from 'react';
 import AppBar, { AppBarProps } from '@material-ui/core/AppBar';
+import * as CSS from 'csstype';
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
+import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
@@ -13,63 +14,124 @@ import BrandingLogo from 'docs/src/modules/branding/BrandingLogo';
 import t1 from 'docs/src/modules/branding/t1';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
-interface StyledAppBarProps extends AppBarProps {
-  mode: 'light' | 'dark';
-}
+const links = (
+  <ul className="BrandingHeader-linksWrapper">
+    <li>
+      <Link variant="body2" color="inherit" underline="none" activeClassName="Mui-active" href="/">
+        {t1('Docs')}
+      </Link>
+    </li>
+    <li>
+      <Link variant="body2" color="inherit" underline="none" activeClassName="Mui-active" href="/x">
+        {t1('Material-UI X')}
+      </Link>
+    </li>
+    <li>
+      <Link
+        variant="body2"
+        color="inherit"
+        underline="none"
+        activeClassName="Mui-active"
+        href="/pricing"
+      >
+        {t1('Pricing')}
+      </Link>
+    </li>
+    <li>
+      <Link
+        variant="body2"
+        color="inherit"
+        underline="none"
+        activeClassName="Mui-active"
+        href="/getting-started/templates"
+      >
+        {t1('Templates')}
+      </Link>
+    </li>
+    <li>
+      <Link
+        variant="body2"
+        color="inherit"
+        underline="none"
+        activeClassName="Mui-active"
+        href="/branding/about"
+      >
+        {t1('About Us')}
+      </Link>
+    </li>
+  </ul>
+);
 
-const StyledAppBar = styled(AppBar)<StyledAppBarProps>(({ theme }) => ({
+const StyledBrandingMobileLinks = styled('div')(({ theme }) => ({
+  overflow: 'auto',
+  padding: theme.spacing(4, 3),
+  [theme.breakpoints.up('sm')]: {
+    paddingTop: theme.spacing(5),
+  },
   '& .BrandingHeader-linksWrapper': {
-    marginLeft: theme.spacing(7),
-    display: 'none',
-    [theme.breakpoints.up('lg')]: {
-      display: 'block',
+    padding: 0,
+    margin: 0,
+  },
+  '& li': {
+    marginTop: theme.spacing(1.5),
+    marginBottom: theme.spacing(1.5),
+    [theme.breakpoints.up('sm')]: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(3),
     },
-    '& > *': {
-      marginRight: theme.spacing(4),
-      marginTop: 4,
-      '&:hover': {
-        color: theme.palette.primary.main,
-      },
-    },
+  },
+  '& .MuiTypography-root': {
+    display: 'block',
+    // TODO withStyles removal
+    ...(theme.typography.h3 as CSS.Properties),
   },
 }));
 
 interface BrandingMobileNavProps {
+  open: boolean;
   toggleDrawer: Function;
 }
 
 const BrandingMobileNav = React.forwardRef<HTMLDivElement, BrandingMobileNavProps>(
   function BrandingMobileNav(props, ref) {
-    const { toggleDrawer, ...other } = props;
+    const { open, toggleDrawer, ...other } = props;
     return (
-      <Box
-        ref={ref}
-        {...other}
-        sx={{
-          zIndex: (theme) => theme.zIndex.appBar + 1,
-          bgcolor: 'secondary.main',
-          position: 'fixed',
-          top: 0,
-          right: 0,
-          left: 0,
-          bottom: 0,
-          color: '#fff',
-        }}
-      >
-        <Toolbar>
-          <BrandingLogo />
-          <Box sx={{ flex: 1 }} />
-          <IconButton
-            edge="end"
-            color="inherit"
-            aria-label={t1('menu')}
-            onClick={toggleDrawer(false)}
-            sx={{ display: { xs: 'block', lg: 'none' } }}
+      <Modal open={open}>
+        <Fade in={open}>
+          <Box
+            ref={ref}
+            {...other}
+            sx={{
+              zIndex: (theme) => theme.zIndex.appBar + 1,
+              outline: 'none',
+              bgcolor: 'secondary.main',
+              position: 'fixed',
+              display: 'flex',
+              flexDirection: 'column',
+              top: 0,
+              right: 0,
+              left: 0,
+              bottom: 0,
+              color: '#fff',
+            }}
           >
-            <CloseIcon />
-          </IconButton>
-        </Toolbar>
-      </Box>
+            <Toolbar>
+              <BrandingLogo />
+              <Box sx={{ flex: 1 }} />
+              <IconButton
+                edge="end"
+                color="inherit"
+                aria-label={t1('menu')}
+                onClick={toggleDrawer(false)}
+                sx={{ display: { xs: 'block', lg: 'none' } }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Toolbar>
+            <StyledBrandingMobileLinks>{links}</StyledBrandingMobileLinks>
+          </Box>
+        </Fade>
+      </Modal>
     );
   },
 );
@@ -93,6 +155,37 @@ function DeferredBrandingSearch() {
     </React.Fragment>
   );
 }
+
+interface StyledAppBarProps extends AppBarProps {
+  trigger: boolean;
+  mode: 'light' | 'dark';
+}
+
+const StyledAppBar = styled(AppBar, {
+  shouldForwardProp: (prop) => prop !== 'mode' && prop !== 'trigger',
+})<StyledAppBarProps>(({ mode, trigger, theme }) => ({
+  borderBottom: trigger ? `1px solid ${theme.palette.divider}` : undefined,
+  boxShadow: trigger ? 'rgb(0 0 0 / 5%) 0px 3px 8px' : undefined,
+  color: mode === 'light' ? theme.palette.text.primary : theme.palette.secondary.contrastText,
+  backgroundColor: mode === 'light' ? '#fff' : theme.palette.secondary.main,
+  '& .BrandingHeader-linksWrapper': {
+    marginLeft: theme.spacing(7),
+    padding: 0,
+    display: 'none',
+    [theme.breakpoints.up('lg')]: {
+      display: 'flex',
+    },
+    '& .MuiTypography-root': {
+      marginRight: theme.spacing(4),
+      '&:hover': {
+        color: theme.palette.primary.main,
+      },
+      '&.Mui-active': {
+        fontWeight: theme.typography.fontWeightBold,
+      },
+    },
+  },
+}));
 
 interface BrandingHeaderProps {
   mode?: 'light' | 'dark';
@@ -120,65 +213,14 @@ export default function BrandingHeader(props: BrandingHeaderProps) {
 
   return (
     <React.Fragment>
-      <StyledAppBar
-        mode={mode}
-        color="inherit"
-        elevation={0}
-        sx={{
-          borderBottom: trigger ? (theme) => `1px solid ${theme.palette.divider}` : null,
-          boxShadow: trigger ? 'rgb(0 0 0 / 5%) 0px 3px 8px' : null,
-        }}
-      >
+      <StyledAppBar mode={mode} trigger={trigger} position="sticky" color="inherit" elevation={0}>
         <Toolbar>
-          <BrandingLogo sx={{ display: { xs: 'none', sm: 'inline-flex' } }} />
+          <BrandingLogo
+            variant={mode === 'light' ? 'lockup' : 'lockup-inverted'}
+            sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+          />
           <BrandingLogo variant="icon" sx={{ display: { xs: 'inline-flex', sm: 'none' } }} />
-          <div className="BrandingHeader-linksWrapper">
-            <Typography
-              variant="body2"
-              color="text.primary"
-              underline="none"
-              component={Link}
-              href="/"
-            >
-              {t1('Docs')}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.primary"
-              underline="none"
-              component={Link}
-              href="/x/"
-            >
-              {t1('Material-UI X')}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.primary"
-              underline="none"
-              component={Link}
-              href="/pricing/"
-            >
-              {t1('Pricing')}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.primary"
-              underline="none"
-              component={Link}
-              href="/getting-started/templates/"
-            >
-              {t1('Templates')}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.primary"
-              underline="none"
-              component={Link}
-              href="/branding/about/"
-            >
-              {t1('About Us')}
-            </Typography>
-          </div>
+          {links}
           <Box sx={{ flex: 1 }} />
           <DeferredBrandingSearch />
           <IconButton
@@ -193,9 +235,7 @@ export default function BrandingHeader(props: BrandingHeaderProps) {
           </IconButton>
         </Toolbar>
       </StyledAppBar>
-      <Fade in={open}>
-        <BrandingMobileNav toggleDrawer={toggleDrawer} />
-      </Fade>
+      <BrandingMobileNav open={open} toggleDrawer={toggleDrawer} />
     </React.Fragment>
   );
 }

@@ -5,7 +5,7 @@ import t1 from 'docs/src/modules/branding/t1';
 
 interface BrandingLogoProps {
   sx?: BoxProps['sx'];
-  variant?: 'lockup' | 'icon';
+  variant?: 'lockup' | 'lockup-inverted' | 'icon';
 }
 
 export default function BrandingLogo(props: BrandingLogoProps) {
@@ -14,7 +14,7 @@ export default function BrandingLogo(props: BrandingLogoProps) {
     <Box component={Link} href="/" sx={{ display: 'inline-flex', pt: '3px', ...sx }}>
       <img
         height="32"
-        width={variant === 'lockup' ? 178 : 36}
+        width={variant.indexOf('lockup') !== -1 ? 178 : 36}
         src={`/static/branding/logo-${variant}.svg`}
         alt={t1('Material-UI Logo')}
       />

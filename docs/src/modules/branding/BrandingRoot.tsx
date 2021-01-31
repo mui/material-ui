@@ -1,6 +1,7 @@
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { lighten, darken, createMuiTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
+import NProgressBar from '@material-ui/docs/NProgressBar';
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
 interface CustomPalette {
@@ -316,7 +317,7 @@ export default function BrandingRoot(props: BrandingRootProps) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {/* <SearchAppBar /> */}
+      <NProgressBar />
       {props.children}
       <BrandingFooter />
     </ThemeProvider>
