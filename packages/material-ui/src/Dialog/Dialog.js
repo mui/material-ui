@@ -206,7 +206,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         appear
         in={open}
         timeout={transitionDuration}
-        role="none presentation"
+        role="presentation"
         {...TransitionProps}
       >
         {/* roles are applied via cloneElement from TransitionComponent */}
