@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import Skeleton from './Skeleton';
-import classes from './skeltonClasses';
+import classes from './skeletonClasses';
 
 describe('<Skeleton />', () => {
   const mount = createMount();
