@@ -59,6 +59,7 @@ export default function Chart() {
             </Label>
           </YAxis>
           <Line
+            isAnimationActive={false}
             type="monotone"
             dataKey="amount"
             stroke={theme.palette.primary.main}
