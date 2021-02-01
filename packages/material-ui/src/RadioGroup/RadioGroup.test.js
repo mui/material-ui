@@ -9,9 +9,8 @@ import RadioGroup from './RadioGroup';
 import useRadioGroup from './useRadioGroup';
 
 describe('<RadioGroup />', () => {
-  // StrictModeViolation: test uses #simulate
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: true });
+  const mount = createMount();
+  const render = createClientRender();
 
   describeConformance(<RadioGroup value="" />, () => ({
     classes: {},

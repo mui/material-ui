@@ -44,7 +44,7 @@ describe('<DesktopDatePicker /> localization', () => {
     ];
 
     tests.forEach(({ valid, invalid, locale, dateFnsLocale }) => {
-      const localizedRender = createPickerRender({ strict: false, locale: dateFnsLocale });
+      const localizedRender = createPickerRender({ locale: dateFnsLocale });
 
       it(`${locale}: should set invalid`, () => {
         localizedRender(

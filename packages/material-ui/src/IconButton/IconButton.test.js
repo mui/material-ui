@@ -9,7 +9,7 @@ import classes from './iconButtonClasses';
 
 describe('<IconButton />', () => {
   const mount = createMount();
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   describeConformanceV5(<IconButton>book</IconButton>, () => ({
     classes,

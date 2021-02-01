@@ -6,7 +6,7 @@ import DatePicker from '@material-ui/lab/DatePicker';
 import { createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<DatePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('ref - should forwardRef to text field', () => {
     const Component = () => {

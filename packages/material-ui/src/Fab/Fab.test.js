@@ -15,7 +15,7 @@ import classes from './fabClasses';
 
 describe('<Fab />', () => {
   const mount = createMount();
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   describeConformanceV5(<Fab>Conformance?</Fab>, () => ({
     classes,

@@ -12,7 +12,7 @@ import {
 } from '../internal/pickers/test-utils';
 
 describe('<DesktopTimePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
   const mount = createPickerMount();
 
   describeConformance(

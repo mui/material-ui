@@ -7,7 +7,7 @@ import FormControl from '../FormControl';
 
 describe('<FormControlLabel />', () => {
   const mount = createMount();
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
   let classes;
 
   before(() => {
