@@ -89,4 +89,4 @@ const FadeTransitionGroup: React.FC<FadeTransitionProps & WithStyles<typeof styl
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersFadeTransition' })(FadeTransitionGroup);
+export default withStyles(styles, { name: 'MuiPickersFadeTransitionGroup' })(FadeTransitionGroup);

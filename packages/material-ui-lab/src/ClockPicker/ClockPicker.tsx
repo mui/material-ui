@@ -430,6 +430,6 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
   view: PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiPickersClockView' })(ClockPicker) as <TDate>(
+export default withStyles(styles, { name: 'MuiClockPicker' })(ClockPicker) as <TDate>(
   props: ClockPickerProps<TDate>,
 ) => JSX.Element;

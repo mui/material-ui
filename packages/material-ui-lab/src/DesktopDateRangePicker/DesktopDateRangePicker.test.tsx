@@ -257,7 +257,7 @@ describe('<DesktopDateRangePicker />', () => {
   it("respect theme's defaultProps", () => {
     const theme = createMuiTheme({
       components: {
-        MuiPickersDateRangePicker: {
+        MuiDesktopDateRangePicker: {
           defaultProps: { startText: 'Início', endText: 'Fim' },
         },
       } as any,
