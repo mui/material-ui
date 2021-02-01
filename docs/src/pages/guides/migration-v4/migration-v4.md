@@ -840,6 +840,8 @@ As the core components use emotion as a styled engine, the props used by emotion
     },
   });
   ```
+  
+  You can use the [`grid-justify-justifycontent` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#grid-justify-justifycontent) for automatic migration.
 
 ### GridList
 
