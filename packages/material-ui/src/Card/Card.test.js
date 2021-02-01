@@ -23,4 +23,9 @@ describe('<Card />', () => {
     const { container } = render(<Card raised />);
     expect(container.firstChild).to.have.class('MuiPaper-elevation8');
   });
+
+  it('should support variant="outlined"', () => {
+    const { container } = render(<Card variant="outlined" />);
+    expect(container.firstChild).to.have.class('MuiPaper-outlined');
+  });
 });
