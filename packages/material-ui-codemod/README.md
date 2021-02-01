@@ -11,11 +11,18 @@ APIs.
 
 ## Setup & Run
 
+<<<<<<< HEAD
 - `npm install -D @material-ui/codemod@next` <!-- #default-branch-switch -->
 - `npx jscodeshift -t <url-to-codemod-script> <path>`
   - Applies the transform script specified in `<url-to-codemod-script>` recursively to `<path>`
   - Use the `-d` option for a dry-run and use `-p` to print the output for comparison
   - use the `--extensions tsx --parser tsx` options to convert TypeScript sources
+=======
+- `npm install -D @material-ui/codemod`
+- `npx jscodeshift -t node_modules/@material-ui/codemod/<version>/<codemod-script> <path>`
+- Use the `-d` option for a dry-run and use `-p` to print the output
+  for comparison
+>>>>>>> [codemod] fade-rename-alpha
 
 ## Included Scripts
 
@@ -25,8 +32,6 @@ APIs.
 
 Updates the Box API from separate system props to `sx`.
 
-The diff should look like this:
-
 ```diff
 -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
 +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
@@ -34,6 +39,35 @@ The diff should look like this:
 
 ```sh
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v5.0.0/box-sx-prop.js ./src
+```
+
+#### `fade-rename-alpha`
+
+Renames `fade` style utility import and calls frpm `fade` to `alpha`.
+
+```diff
+-import { fade, lighten } from '@material-ui/core/styles';
++import { alpha, lighten } from '@material-ui/core/styles';
+
+-const foo = fade('#aaa');
++const foo = alpha('#aaa');
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/fade-rename-alpha.js
+```
+
+#### `grid-justify-justifycontent`
+
+Renames `fade` style utility import and calls frpm `fade` to `alpha`.
+
+```diff
+-<Grid justify="left">Item</Grid>
++<Grid item justifyContent="left">Item</Grid>
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/grid-justify-justifycontent.js
 ```
 
 #### `moved-lab-modules`
@@ -76,7 +110,7 @@ The diff should look like this:
 +<FormControl value="Outlined" />
 ```
 
-This codemod is non-idempotent (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so should only be run once against any particular codebase.
+This codemod is **non-idempotent** (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so should only be run once against any particular codebase.
 
 ```sh
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v5.0.0/variant-prop.js ./src

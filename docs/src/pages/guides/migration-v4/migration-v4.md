@@ -298,15 +298,17 @@ const theme = createTheme({
 - Renamed `fade` to `alpha` to better describe its functionality.
   The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
 
-```diff
-- import { fade } from '@material-ui/core/styles';
-+ import { alpha } from '@material-ui/core/styles';
+  ```diff
+  - import { fade } from '@material-ui/core/styles';
+  + import { alpha } from '@material-ui/core/styles';
 
-const classes = makeStyles(theme => ({
--  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-+  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-}));
+  const classes = makeStyles(theme => ({
+  -  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+  +  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+  }));
 ```
+
+  You can use the [`fade-rename-alpha` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#fade-rename-alpha) for automatic migration.
 
 -The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
 
