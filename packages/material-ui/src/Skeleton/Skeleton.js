@@ -4,12 +4,7 @@ import { deepmerge } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import {
-  alpha,
-  unstable_getUnit as getUnit,
-  unstable_toUnitless as toUnitless,
-  useThemeVariants,
-} from '../styles';
+import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import { getSkeltonUtilityClass } from './skeltonClasses';
@@ -169,16 +164,6 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     ...other
   } = props;
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      animation,
-      component,
-      variant,
-    },
-    'MuiSkeleton',
-  );
-
   const hasChildren = Boolean(other.children);
 
   const styleProps = {
@@ -195,18 +180,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     <SkeltonRoot
       as={component}
       ref={ref}
-      className={clsx(
-        classes.root,
-        classes[variant],
-        {
-          [classes[animation]]: animation !== false,
-          [classes.withChildren]: hasChildren,
-          [classes.fitContent]: hasChildren && !width,
-          [classes.heightAuto]: hasChildren && !height,
-        },
-        themeVariantsClasses,
-        className,
-      )}
+      className={clsx(classes.root, className)}
       styleProps={styleProps}
       {...other}
       style={{
