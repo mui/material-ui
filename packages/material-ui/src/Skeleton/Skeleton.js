@@ -7,7 +7,7 @@ import * as React from 'react';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import { getSkeltonUtilityClass } from './skeltonClasses';
+import { getSkeletonUtilityClass } from './skeletonClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -35,7 +35,7 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  return composeClasses(slots, getSkeltonUtilityClass, classes);
+  return composeClasses(slots, getSkeletonUtilityClass, classes);
 };
 
 const pulseKeyframe = keyframes`
@@ -65,10 +65,10 @@ const waveKeyframe = keyframes`
 
 // This `styled()` function invokes keyframes. `styled-components` only supports keyframes
 // in string templates. Do not convert these styles in JS object as it will break.
-const SkeltonRoot = experimentalStyled(
+const SkeletonRoot = experimentalStyled(
   'span',
   {},
-  { name: 'MuiSkelton', slot: 'Root' },
+  { name: 'MuiSkeleton', slot: 'Root' },
   overridesResolver,
 )`
   display: block;
@@ -150,7 +150,7 @@ const SkeltonRoot = experimentalStyled(
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
-    name: 'MuiSkelton',
+    name: 'MuiSkeleton',
   });
 
   const {
@@ -177,7 +177,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
   const classes = useUtilityClasses(styleProps);
 
   return (
-    <SkeltonRoot
+    <SkeletonRoot
       as={component}
       ref={ref}
       className={clsx(classes.root, className)}

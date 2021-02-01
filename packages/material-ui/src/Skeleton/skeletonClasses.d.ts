@@ -1,4 +1,4 @@
-export interface SkeltonClasses {
+export interface SkeletonClasses {
   root: string;
   text: string;
   rectangular: string;
@@ -10,8 +10,8 @@ export interface SkeltonClasses {
   heightAuto: string;
 }
 
-declare const skeltonClasses: SkeltonClasses;
+declare const skeletonClasses: SkeletonClasses;
 
-export function getSkeltonUtilityClass(slot: string): string;
+export function getSkeletonUtilityClass(slot: string): string;
 
-export default skeltonClasses;
+export default skeletonClasses;

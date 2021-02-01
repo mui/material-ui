@@ -1,10 +1,10 @@
 import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
 
-export function getSkeltonUtilityClass(slot) {
-  return generateUtilityClass('MuiSkelton', slot);
+export function getSkeletonUtilityClass(slot) {
+  return generateUtilityClass('MuiSkeleton', slot);
 }
 
-const skeltonClasses = generateUtilityClasses('MuiSkelton', [
+const skeletonClasses = generateUtilityClasses('MuiSkeleton', [
   'root',
   'text',
   'rectangular',
@@ -16,4 +16,4 @@ const skeltonClasses = generateUtilityClasses('MuiSkelton', [
   'heightAuto',
 ]);
 
-export default skeltonClasses;
+export default skeletonClasses;

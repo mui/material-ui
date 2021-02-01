@@ -1,3 +1,4 @@
 export { default } from './Skeleton';
-export * from './skeltonClasses';
-export { default as skeltonClasses } from './skeltonClasses';
+export * from './skeletonClasses';
+export { default as skeletonClasses } from './skeletonClasses';
+
