@@ -14,11 +14,28 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...(styleProps.variant && styles[styleProps.variant]),
-    ...(styleProps.align && styles[`align${capitalize(styleProps.align)}`]),
+    ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
     ...(styleProps.noWrap && styles.noWrap),
     ...(styleProps.gutterBottom && styles.gutterBottom),
     ...(styleProps.paragraph && styles.paragraph),
   });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { align, gutterBottom, noWrap, paragraph, variant, classes } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      variant,
+      styleProps.align !== 'inherit' && `align${capitalize(align)}`,
+      gutterBottom && 'gutterBottom',
+      noWrap && 'noWrap',
+      paragraph && 'paragraph',
+    ],
+  };
+
+  return composeClasses(slots, getTypographyUtilityClass, classes);
 };
 
 export const TypographyRoot = experimentalStyled(
@@ -56,23 +73,6 @@ const defaultVariantMapping = {
   body1: 'p',
   body2: 'p',
   inherit: 'p',
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { align, gutterBottom, noWrap, paragraph, variant, classes } = styleProps;
-
-  const slots = {
-    root: [
-      'root',
-      variant,
-      `align${capitalize(align)}`,
-      gutterBottom && 'gutterBottom',
-      noWrap && 'noWrap',
-      paragraph && 'paragraph',
-    ],
-  };
-
-  return composeClasses(slots, getTypographyUtilityClass, classes);
 };
 
 // TODO v6: deprecate these color values in v5.x and remove the transformation in v6
