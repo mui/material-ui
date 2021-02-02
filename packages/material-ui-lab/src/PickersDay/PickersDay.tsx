@@ -313,6 +313,10 @@ PickersDay.propTypes = {
    */
   allowSameDateSelection: PropTypes.bool,
   /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * The content of the component.
    */
   children: PropTypes.node,
@@ -341,14 +345,6 @@ PickersDay.propTypes = {
    * If `true`, days are rendering without margin. Useful for displaying linked range of days.
    */
   disableMargin: PropTypes.bool,
-  /**
-   * If `true`, allows to focus by tabbing.
-   */
-  focusable: PropTypes.bool,
-  /**
-   * If `true`, the day element will be focused during the first mount.
-   */
-  focused: PropTypes.bool,
   /**
    * @ignore
    */
