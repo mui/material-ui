@@ -35,13 +35,14 @@ function App() {
 
 ## Basic usage
 
-The time picker will automatically adjust to the locale's time setting, i.e. the 12-hour or 24-hour format. This can be controlled with `ampm` prop.
+The date picker is rendered as a modal dialog on mobile, and a textbox with a popup on desktop.
 
 {{"demo": "pages/components/time-picker/BasicTimePicker.js"}}
 
 ## Localization
 
-Use `LocalizationProvider` to change the date-engine locale that is used to render the time picker. Note that `am/pm` setting is switched automatically:
+Use `LocalizationProvider` to change the date-engine locale that is used to render the time picker.
+The time picker will automatically adjust to the locale's time setting, i.e. the 12-hour or 24-hour format. This can be controlled with `ampm` prop.
 
 {{"demo": "pages/components/time-picker/LocalizedTimePicker.js"}}
 
