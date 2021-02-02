@@ -46,7 +46,7 @@ describe('<YearPicker />', () => {
     }),
   );
 
-  it('allows to pick year standalone', () => {
+  it('allows to pick year standalone by click, `Enter` and `Space`', () => {
     const onChangeMock = spy();
     render(
       <YearPicker
@@ -57,8 +57,17 @@ describe('<YearPicker />', () => {
         onChange={onChangeMock}
       />,
     );
+    const targetYear = screen.getByRole('button', { name: '2025' });
 
-    fireEvent.click(screen.getByText('2025', { selector: 'button' }));
+    // A native button implies Enter and Space keydown behavior
+    // These keydown events only trigger click behavior if they're trusted (programmatically dispatched events aren't trusted).
+    // If this breaks, make sure to add tests for
+    // - fireEvent.keyDown(targetDay, { key: 'Enter' })
+    // - fireEvent.keyUp(targetDay, { key: 'Space' })
+    expect(targetYear.tagName).to.equal('BUTTON');
+
+    fireEvent.click(targetYear);
+
     expect(onChangeMock.callCount).to.equal(1);
     expect(onChangeMock.args[0][0]).toEqualDateTime(adapterToUse.date('2025-02-02T00:00:00.000'));
   });
