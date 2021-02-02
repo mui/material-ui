@@ -3,7 +3,6 @@ import * as babelTypes from '@babel/types';
 import { v4 as uuid } from 'uuid';
 import * as t from './types';
 import { generate, GenerateOptions } from './generator';
-import { isConstructorTypeNode } from 'typescript';
 
 export interface InjectOptions
   extends Pick<
