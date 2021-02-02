@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from 'docs/src/modules/components/Link';
 import Button from '@material-ui/core/Button';
+import Head from 'docs/src/modules/components/Head';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -15,6 +16,7 @@ import FinanceIcon from 'docs/src/modules/branding/icons/Finance';
 import HelpIcon from 'docs/src/modules/branding/icons/Help';
 import OpenCollectiveIcon from 'docs/src/modules/branding/icons/OpenCollective';
 import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
+import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
 import BrandingPersona from 'docs/src/modules/branding/BrandingPersona';
@@ -216,21 +218,23 @@ function BrandingMission() {
               <Typography variant="h2" sx={{ mb: 3 }}>
                 Our values
               </Typography>
-              <BrandingBulletItem variant="dark">
-                Transparency, most of our work is public
-              </BrandingBulletItem>
-              <BrandingBulletItem variant="dark">
-                Creating a safe, high-trust team
-              </BrandingBulletItem>
-              <BrandingBulletItem variant="dark">
-                Building incredible developer experiences
-              </BrandingBulletItem>
-              <BrandingBulletItem variant="dark">
-                Maintaining a healthy working environment
-              </BrandingBulletItem>
-              <BrandingBulletItem variant="dark">
-                Deliver web experiences that feel amazing
-              </BrandingBulletItem>
+              <Box component="ul" sx={{ margin: 0, padding: 0 }}>
+                <BrandingBulletItem variant="dark">
+                  Transparency, most of our work is public
+                </BrandingBulletItem>
+                <BrandingBulletItem variant="dark">
+                  Creating a safe, high-trust team
+                </BrandingBulletItem>
+                <BrandingBulletItem variant="dark">
+                  Building incredible developer experiences
+                </BrandingBulletItem>
+                <BrandingBulletItem variant="dark">
+                  Maintaining a healthy working environment
+                </BrandingBulletItem>
+                <BrandingBulletItem variant="dark">
+                  Deliver web experiences that feel amazing
+                </BrandingBulletItem>
+              </Box>
             </Box>
           </Grid>
         </Grid>
@@ -814,6 +818,8 @@ function BrandingSupportUs() {
 export default function Page() {
   return (
     <BrandingRoot>
+      <Head title="About Us - Material-UI" />
+      <BrandingHeader />
       <BrandingHero />
       <BrandingKPI />
       <BrandingMission />
@@ -829,211 +835,3 @@ export default function Page() {
     </BrandingRoot>
   );
 }
-
-// import Box from '@material-ui/core/Box';
-// import Typography from '@material-ui/core/Typography';
-// import Grid from '@material-ui/core/Grid';
-// import Button from '@material-ui/core/Button';
-// import Link from '@material-ui/core/Link';
-// import Card from '@material-ui/core/Card';
-// import CardHeader from '@material-ui/core/CardHeader';
-// import CardContent from '@material-ui/core/CardContent';
-// import Avatar from '@material-ui/core/Avatar';
-// import { experimentalStyled as styled } from '@material-ui/core/styles';
-// import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-// import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
-// import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
-// import Persona from 'docs/src/modules/branding/Persona';
-// import ArrowCirleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
-
-// const AboutUsRoot = styled(Box)<{}>(({ theme }) => ({
-//   '& .MuiGrid-relative': {
-//     position: 'relative',
-//   },
-//   '& .MuiGrid-bottomGutter': {
-//     marginBottom: theme.spacing(10),
-//   },
-//   '& .MuiGrid-centered': {
-//     width: '100%',
-//     marginLeft: 'auto',
-//     marginRight: 'auto',
-//     [theme.breakpoints.up('lg')]: {
-//       paddingLeft: theme.spacing(30),
-//       paddingRight: theme.spacing(30),
-//     },
-//   },
-//   '& .MuiGrid-centered-content': {
-//     [theme.breakpoints.up('lg')]: {
-//       paddingLeft: theme.spacing(25),
-//       paddingRight: theme.spacing(25),
-//     },
-//   },
-//   '& .MuiGrid-imageWrapper': {
-//     width: '100%',
-//   },
-//   '& .MuiGrid-statistics': {
-//     [theme.breakpoints.up('xs')]: {
-//       marginTop: theme.spacing(4),
-//       marginLeft: theme.spacing(2),
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       marginTop: theme.spacing(6),
-//       marginLeft: theme.spacing(12),
-//     },
-//     width: 370,
-//   },
-//   '& .MuiGrid-panel': {
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-panel': {
-//         padding: `${theme.spacing(3)} ${theme.spacing(1)}`,
-//       },
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       '&.MuiGrid-panel': {
-//         padding: `${theme.spacing(10)} ${theme.spacing(12)}`,
-//       },
-//     },
-//   },
-//   '& .MuiGrid-panelSmallPadding': {
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-panelSmallPadding': {
-//         padding: `${theme.spacing(6)} ${theme.spacing(2)}`,
-//       },
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       '&.MuiGrid-panelSmallPadding': {
-//         padding: `${theme.spacing(5)} ${theme.spacing(6)}`,
-//       },
-//     },
-//   },
-//   '& .MuiGrid-panelInverted': {
-//     backgroundColor: theme.palette.secondary.main,
-//     color: 'white',
-//   },
-//   '& .MuiGrid-smallLeftSpacing': {
-//     [theme.breakpoints.up('md')]: {
-//       '&.MuiGrid-smallLeftSpacing': {
-//         paddingLeft: theme.spacing(8),
-//       },
-//     },
-//   },
-//   '& .MuiGrid-team': {
-//     background: theme.palette.greyF3,
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-team': {
-//         paddingBottom: theme.spacing(15),
-//       },
-//     },
-//   },
-//   '& .MuiGrid-company': {
-//     background: theme.palette.greyEA,
-//     padding: '100px',
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-company': {
-//         paddingBottom: theme.spacing(17),
-//       },
-//     },
-//   },
-//   '& .MuiGrid-contributors': {
-//     background: theme.palette.greyF3,
-//     padding: '100px',
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-contributors': {
-//         paddingBottom: theme.spacing(12),
-//       },
-//     },
-//   },
-//   '& .MuiGrid-emeriti': {
-//     background: theme.palette.greyEA,
-//     padding: '100px',
-//   },
-//   '& .MuiGrid-joinOurTeam': {
-//     [theme.breakpoints.up('xs')]: {
-//       padding: `${theme.spacing(10)} ${theme.spacing(5)}`,
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       padding: `${theme.spacing(20)} ${theme.spacing(15)}`,
-//     },
-//     [theme.breakpoints.up('lg')]: {
-//       padding: `${theme.spacing(30)} ${theme.spacing(35)}`,
-//     },
-//     position: 'relative',
-//     overflow: 'hidden',
-//     '& [class*="MuiButton-root"]': {
-//       background: 'white',
-//       color: theme.palette.secondary.main,
-//       '&:hover': {
-//         background: '#D2D2D2',
-//       },
-//       '&:active': {
-//         background: 'white',
-//       },
-//     },
-//   },
-//   '& .MuiGrid-supportCardsWrapper': {
-//     [theme.breakpoints.up('lg')]: {
-//       padding: theme.spacing(6),
-//     },
-//   },
-//   '& .MuiGrid-ourValues': {
-//     '&.MuiGrid-ourValues': {
-//       paddingTop: theme.spacing(8),
-//       paddingBottom: theme.spacing(8),
-//       [theme.breakpoints.up('xs')]: {
-//         '&.MuiGrid-ourValues': {
-//           paddingLeft: theme.spacing(5),
-//           paddingRight: theme.spacing(5),
-//         },
-//       },
-//       [theme.breakpoints.up('md')]: {
-//         '&.MuiGrid-ourValues': {
-//           paddingLeft: theme.spacing(10),
-//           paddingRight: theme.spacing(10),
-//         },
-//       },
-//     },
-//   },
-//   '& .MuiGrid-panel-horizontalSpacing-xs': {
-//     [theme.breakpoints.up('xs')]: {
-//       '&.MuiGrid-panel-horizontalSpacing-xs': {
-//         paddingLeft: theme.spacing(5),
-//         paddingRight: theme.spacing(5),
-//       },
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       '&.MuiGrid-panel-horizontalSpacing-xs': {
-//         padding: `${theme.spacing(10)} ${theme.spacing(12)}`,
-//       },
-//     },
-//   },
-//   '& .MuiGrid-beginWithMUIToday': {
-//     [theme.breakpoints.up('xs')]: {
-//       padding: `${theme.spacing(10)} ${theme.spacing(5)} ${theme.spacing(15)} ${theme.spacing(5)}`,
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       padding: `${theme.spacing(20)} ${theme.spacing(15)}`,
-//     },
-//     [theme.breakpoints.up('lg')]: {
-//       padding: `${theme.spacing(30)} ${theme.spacing(35)}`,
-//     },
-//     overflow: 'hidden',
-//   },
-//   '& .MuiGrid-personasContainer': {
-//     '& > *': {
-//       marginTop: theme.spacing(1),
-//     },
-//   },
-//   '& .MuiGrid-discoverMore': {
-//     '& h2': {
-//       [theme.breakpoints.up('lg')]: {
-//         textAlign: 'left',
-//       },
-//     },
-//   },
-// }));
-
-// function About() {
-//   // export default function About() {
-//   return (
-//     <BrandingRoot>
-//       <AboutUsRoot>

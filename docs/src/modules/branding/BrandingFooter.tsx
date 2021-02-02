@@ -55,7 +55,7 @@ export default function BrandingFooter() {
       <Container maxWidth="lg">
         <Grid container>
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <BrandingLogo loading="lazy" sx={{ mb: 5 }} href="/" />
+            <BrandingLogo sx={{ mb: 5 }} />
           </Grid>
           <Grid item xs={6} sm={3} md={4} lg={2} className="BrandingFooter-list">
             <Typography component="h3">{t1('Products')}</Typography>
@@ -66,12 +66,12 @@ export default function BrandingFooter() {
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/x/">
+                <Link color="inherit" variant="body2" href="/x">
                   Material-UI X
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/pricing/">
+                <Link color="inherit" variant="body2" href="/pricing">
                   {t1('Pricing')}
                 </Link>
               </li>
@@ -108,37 +108,37 @@ export default function BrandingFooter() {
             <Typography component="h3">{t1('Library')}</Typography>
             <ul>
               <li>
-                <Link color="inherit" variant="body2" href="/getting-started/templates/">
+                <Link color="inherit" variant="body2" href="/getting-started/templates">
                   {t1('Free templates')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/components/material-icons/">
+                <Link color="inherit" variant="body2" href="/components/material-icons">
                   {t1('Material Icons')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/components/box/">
+                <Link color="inherit" variant="body2" href="/components/box">
                   {t1('Components')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/api/accordion/">
+                <Link color="inherit" variant="body2" href="/api/accordion">
                   {t1('Components API')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/system/basics/">
+                <Link color="inherit" variant="body2" href="/system/basics">
                   {t1('System')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/customization/theming/">
+                <Link color="inherit" variant="body2" href="/customization/theming">
                   {t1('Customization')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/guides/api/">
+                <Link color="inherit" variant="body2" href="/guides/api">
                   {t1('How To Guides')}
                 </Link>
               </li>
@@ -149,7 +149,7 @@ export default function BrandingFooter() {
             <Typography component="h3">{t1('Explore')}</Typography>
             <ul>
               <li>
-                <Link color="inherit" variant="body2" href="/getting-started/installation/">
+                <Link color="inherit" variant="body2" href="/getting-started/installation">
                   {t1('Docs')}
                 </Link>
               </li>
@@ -159,22 +159,22 @@ export default function BrandingFooter() {
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/discover-more/showcase/">
+                <Link color="inherit" variant="body2" href="/discover-more/showcase">
                   {t1('Showcase')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/discover-more/related-projects/">
+                <Link color="inherit" variant="body2" href="/discover-more/related-projects">
                   {t1('Related Projects')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/discover-more/roadmap/">
+                <Link color="inherit" variant="body2" href="/discover-more/roadmap">
                   {t1('Roadmap')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/discover-more/languages/">
+                <Link color="inherit" variant="body2" href="/discover-more/languages">
                   {t1('Languages')}
                 </Link>
               </li>
@@ -182,17 +182,17 @@ export default function BrandingFooter() {
             <Typography component="h3">{t('footerCompany')}</Typography>
             <ul>
               <li>
-                <Link color="inherit" variant="body2" href="/company/about/">
+                <Link color="inherit" variant="body2" href="/company/about">
                   {t1('About')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/company/contact/">
+                <Link color="inherit" variant="body2" href="/company/contact">
                   {t1('Contact Us')}
                 </Link>
               </li>
               <li>
-                <Link color="inherit" variant="body2" href="/company/jobs/">
+                <Link color="inherit" variant="body2" href="/company/jobs">
                   {t1('Jobs')}
                 </Link>
               </li>

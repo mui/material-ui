@@ -1,7 +1,7 @@
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { darken, lighten, createMuiTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
-// import SearchAppBar from 'docs/src/modules/branding/SearchAppBar';
+import { lighten, darken, createMuiTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
+import NProgressBar from '@material-ui/docs/NProgressBar';
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
 interface CustomPalette {
@@ -286,6 +286,26 @@ theme = createMuiTheme(theme, {
         },
       },
     },
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+          minHeight: 64,
+          maxWidth: 1440,
+          width: '100%',
+          marginRight: 'auto',
+          marginLeft: 'auto',
+          paddingRight: theme.spacing(3),
+          paddingLeft: theme.spacing(3),
+          [theme.breakpoints.up('sm')]: {
+            paddingRight: theme.spacing(5),
+            paddingLeft: theme.spacing(5),
+          },
+          [theme.breakpoints.up('lg')]: {
+            minHeight: 80,
+          },
+        },
+      },
+    },
   },
 });
 
@@ -297,7 +317,7 @@ export default function BrandingRoot(props: BrandingRootProps) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {/* <SearchAppBar /> */}
+      <NProgressBar />
       {props.children}
       <BrandingFooter />
     </ThemeProvider>
