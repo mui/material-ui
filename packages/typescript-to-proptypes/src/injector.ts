@@ -3,6 +3,7 @@ import * as babelTypes from '@babel/types';
 import { v4 as uuid } from 'uuid';
 import * as t from './types';
 import { generate, GenerateOptions } from './generator';
+import { isConstructorTypeNode } from 'typescript';
 
 export interface InjectOptions
   extends Pick<
@@ -240,10 +241,21 @@ function plugin(
             ) {
               originalPropTypesPath = nodePath as babel.NodePath;
 
-              if (babelTypes.isObjectExpression(node.expression.right)) {
+              let maybeObjectExpression = node.expression.right;
+              // Component.propTypes = {} as any;
+              //                       ^^^^^^^^^ expression.right
+              //                       ^^^^^^^^^ TSAsExpression
+              //                       ^^ ObjectExpression
+              // TODO: Not covered by a unit test but by e2e usage with the docs.
+              // Testing infra not setup to handle input=output.
+              if (babelTypes.isTSAsExpression(node.expression.right)) {
+                maybeObjectExpression = node.expression.right.expression;
+              }
+
+              if (babelTypes.isObjectExpression(maybeObjectExpression)) {
                 const { code } = state.file;
 
-                node.expression.right.properties.forEach((property) => {
+                maybeObjectExpression.properties.forEach((property) => {
                   if (babelTypes.isObjectProperty(property)) {
                     const validatorSource = code.slice(property.value.start, property.value.end);
                     if (babelTypes.isIdentifier(property.key)) {
