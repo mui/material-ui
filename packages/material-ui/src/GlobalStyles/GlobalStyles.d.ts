@@ -1,5 +1,4 @@
 import { GlobalStylesProps } from '@material-ui/styled-engine';
-import { Omit } from '@material-ui/types';
 /**
  *
  * API:

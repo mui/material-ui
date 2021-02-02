@@ -3,7 +3,6 @@ import * as React from 'react';
 import { MemoryRouter as Router } from 'react-router';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
-import { Omit } from '@material-ui/types';
 
 const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
   (props, ref) => (

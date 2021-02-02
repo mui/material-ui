@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Instance, VirtualElement, Options, OptionsGeneric } from '@popperjs/core';
-import { Omit } from '..';
 import { PortalProps } from '../Portal';
 
 export type PopperPlacementType = Options['placement'];

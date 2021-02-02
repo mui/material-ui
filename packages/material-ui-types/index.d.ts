@@ -18,6 +18,15 @@ export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
 };
 
 /**
+ * PropInjector relies on the distributive effect of the legacy Omit implementation,
+ * which, unlike the stock implementation includes T extends any ? : never
+ * Explained here: https://stackoverflow.com/a/57103940/1009797
+ *
+ * @internal
+ */
+type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
+
+/**
  * a function that takes {component} and returns a component that passes along
  * all the props to {component} except the {InjectedProps} and will accept
  * additional {AdditionalProps}
@@ -27,16 +36,9 @@ export type PropInjector<InjectedProps, AdditionalProps = {}> = <
 >(
   component: C
 ) => React.ComponentType<
-  Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
+  DistributiveOmit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
     AdditionalProps
 >;
-
-/**
- * Remove properties `K` from `T`.
- *
- * @internal
- */
-export type Omit<T, K extends keyof any> = T extends any ? Pick<T, Exclude<keyof T, K>> : never;
 
 /**
  * Generate a set of string literal types with the given default record `T` and

@@ -1,4 +1,4 @@
-import { Omit, Overwrite } from '@material-ui/types';
+import { Overwrite } from '@material-ui/types';
 import {
   CreateCSSProperties,
   StyledComponentProps,

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
 
 /**
  * A component whose root component can be controlled via a `component` prop.

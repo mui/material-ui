@@ -1,16 +1,7 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
 import { StyledComponentProps } from './styles';
 
 export { StyledComponentProps };
-
-/**
- * @deprecated
- * Import from `@material-ui/types` instead
- *
- * TODO: to remove in v5
- */
-export { Omit };
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
