@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
   (DesktopDateRangePicker as any).displayName = 'DesktopDateRangePicker';
 }
 
-(DesktopDateRangePicker as any).propTypes = {
+DesktopDateRangePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -336,7 +336,7 @@ if (process.env.NODE_ENV !== 'production') {
       PropTypes.string,
     ]),
   ).isRequired,
-};
+} as any;
 
 export type DesktopDateRangePickerProps = React.ComponentProps<typeof DesktopDateRangePicker>;
 

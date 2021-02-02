@@ -306,7 +306,7 @@ DatePicker.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-};
+} as any;
 
 export type DatePickerProps = React.ComponentProps<typeof DatePicker>;
 

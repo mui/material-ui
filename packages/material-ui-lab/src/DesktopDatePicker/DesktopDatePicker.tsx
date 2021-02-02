@@ -220,7 +220,7 @@ DesktopDatePicker.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-};
+} as any;
 
 export type DesktopDatePickerProps = React.ComponentProps<typeof DesktopDatePicker>;
 

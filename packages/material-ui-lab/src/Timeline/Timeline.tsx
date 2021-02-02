@@ -92,7 +92,7 @@ Timeline.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-};
+} as any;
 
 /**
  *

@@ -246,7 +246,7 @@ MobileDatePicker.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-};
+} as any;
 
 export type MobileDatePickerProps = React.ComponentProps<typeof MobileDatePicker>;
 

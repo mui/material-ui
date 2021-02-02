@@ -34,12 +34,12 @@ export interface BaseDateRangePickerProps<TDate>
   endText?: React.ReactNode;
 }
 
-export type DateRangePickerComponent<TWrapper extends SomeWrapper> = <TDate>(
+export type DateRangePickerComponent<TWrapper extends SomeWrapper> = (<TDate>(
   props: BaseDateRangePickerProps<TDate> &
     PublicWrapperProps<TWrapper> &
     AllSharedDateRangePickerProps<TDate> &
     React.RefAttributes<HTMLDivElement>,
-) => JSX.Element;
+) => JSX.Element) & { propTypes: unknown };
 
 export const useDateRangeValidation = makeValidationHook<
   DateRangeValidationError,

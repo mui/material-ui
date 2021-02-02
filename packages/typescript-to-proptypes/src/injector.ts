@@ -4,15 +4,15 @@ import { v4 as uuid } from 'uuid';
 import * as t from './types';
 import { generate, GenerateOptions } from './generator';
 
-export type InjectOptions = {
-  /**
-   * If source itself written in typescript prop-types disable prop-types validation
-   * by injecting propTypes as
-   * ```jsx
-   * .propTypes = { ... } as any
-   * ```
-   */
-  disableTypescriptPropTypesValidation?: boolean;
+export interface InjectOptions
+  extends Pick<
+    GenerateOptions,
+    | 'sortProptypes'
+    | 'includeJSDoc'
+    | 'comment'
+    | 'disablePropTypesTypeChecking'
+    | 'reconcilePropTypes'
+  > {
   /**
    * By default all unused props are omitted from the result.
    * Set this to true to include them instead.
@@ -52,7 +52,7 @@ export type InjectOptions = {
    * Options passed to babel.transformSync
    */
   babelOptions?: babel.TransformOptions;
-} & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc' | 'comment' | 'reconcilePropTypes'>;
+}
 
 /**
  * Gets used props from path

@@ -25,25 +25,6 @@ enum GenerateResult {
  */
 const todoComponents: string[] = [];
 
-const todoComponentsTs: string[] = [
-  'ClockPicker',
-  'DateRangePicker',
-  'DateRangePickerDay',
-  'DayPicker',
-  'DesktopDateRangePicker',
-  'StaticDateRangePicker',
-  'MobileDateRangePicker',
-  'DateTimePicker',
-  'DesktopDateTimePicker',
-  'LocalizationProvider',
-  'MobileDateTimePicker',
-  'MonthPicker',
-  'PickersCalendarSkeleton',
-  'PickersDay',
-  'StaticDateTimePicker',
-  'YearPicker',
-];
-
 const useExternalPropsFromInputBase = [
   'autoComplete',
   'autoFocus',
@@ -193,7 +174,6 @@ async function generateProptypes(
   program: ttp.ts.Program,
   sourceFile: string,
   tsFile: string = sourceFile,
-  tsTodo: boolean = false,
 ): Promise<GenerateResult> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
@@ -227,8 +207,9 @@ async function generateProptypes(
 
   const unstyledFile = getUnstyledFilename(tsFile, true);
 
+  const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = ttp.inject(proptypes, sourceContent, {
-    disableTypescriptPropTypesValidation: tsTodo,
+    disablePropTypesTypeChecking: generatedForTypeScriptFile,
     removeExistingPropTypes: true,
     babelOptions: {
       filename: sourceFile,
@@ -357,10 +338,8 @@ async function run(argv: HandlerArgv) {
       return GenerateResult.TODO;
     }
 
-    const tsTodo = todoComponentsTs.includes(componentName);
-
     const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
-    return generateProptypes(program, sourceFile, tsFile, tsTodo);
+    return generateProptypes(program, sourceFile, tsFile);
   });
 
   const results = await Promise.all(promises);

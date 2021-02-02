@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
   (MobileDateRangePicker as any).displayName = 'MobileDateRangePicker';
 }
 
-(MobileDateRangePicker as any).propTypes = {
+MobileDateRangePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -359,7 +359,7 @@ if (process.env.NODE_ENV !== 'production') {
       PropTypes.string,
     ]),
   ).isRequired,
-};
+} as any;
 
 export type MobileDateRangePickerProps = React.ComponentProps<typeof MobileDateRangePicker>;
 

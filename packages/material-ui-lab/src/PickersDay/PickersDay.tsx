@@ -266,7 +266,7 @@ export const areDayPropsEqual = (
   );
 };
 
-(PickersDay as any).propTypes = {
+PickersDay.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -362,7 +362,7 @@ export const areDayPropsEqual = (
    * If `true`, renders as today date.
    */
   today: PropTypes.bool,
-};
+} as any;
 
 export default withStyles(styles, { name: 'MuiPickersDay' })(
   React.memo(PickersDay, areDayPropsEqual),
