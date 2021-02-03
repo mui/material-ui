@@ -10,6 +10,7 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
+    "sx": { "type": { "name": "object" } },
     "textAlign": {
       "type": {
         "name": "enum",
@@ -51,5 +52,6 @@
   "filename": "/packages/material-ui/src/Divider/Divider.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/dividers/\">Dividers</a></li>\n<li><a href=\"/components/lists/\">Lists</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

@@ -1,20 +1,18 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { createMount, describeConformanceV5 } from 'test/utils';
 import AccordionActions from './AccordionActions';
+import classes from './accordionActionsClasses';
 
 describe('<AccordionActions />', () => {
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<AccordionActions>foo</AccordionActions>);
-  });
-
-  describeConformance(<AccordionActions>Conformance</AccordionActions>, () => ({
+  describeConformanceV5(<AccordionActions>Conformance</AccordionActions>, () => ({
     classes,
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    muiName: 'MuiAccordionActions',
+    testVariantProps: { disableSpacing: true },
+    skip: ['componentProp', 'componentsProp'],
   }));
 });

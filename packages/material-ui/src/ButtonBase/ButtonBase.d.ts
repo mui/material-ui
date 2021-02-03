@@ -112,6 +112,7 @@ export type ExtendButtonBase<M extends OverridableTypeMap> = ((
  * `ButtonBase` contains as few styles as possible.
  * It aims to be a simple building block for creating a button.
  * It contains a load of style reset and some focus/ripple logic.
+ *
  * Demos:
  *
  * - [Buttons](https://material-ui.com/components/buttons/)

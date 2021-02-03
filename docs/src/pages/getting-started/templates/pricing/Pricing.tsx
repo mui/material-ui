@@ -13,11 +13,10 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 
-function Copyright() {
+function Copyright(props: any) {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="textSecondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -286,9 +285,7 @@ export default function Pricing() {
             </Grid>
           ))}
         </Grid>
-        <Box sx={{ mt: 5 }}>
-          <Copyright />
-        </Box>
+        <Copyright sx={{ mt: 5 }} />
       </Container>
       {/* End footer */}
     </React.Fragment>

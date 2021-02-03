@@ -87,7 +87,7 @@ const Container = React.forwardRef(function Container(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiContainer' });
   const {
     className,
-    component: Component = 'div',
+    component = 'div',
     disableGutters = false,
     fixed = false,
     maxWidth = 'lg',
@@ -96,6 +96,7 @@ const Container = React.forwardRef(function Container(inProps, ref) {
 
   const styleProps = {
     ...props,
+    component,
     disableGutters,
     fixed,
     maxWidth,
@@ -105,7 +106,7 @@ const Container = React.forwardRef(function Container(inProps, ref) {
 
   return (
     <ContainerRoot
-      as={Component}
+      as={component}
       styleProps={styleProps}
       className={clsx(classes.root, className)}
       ref={ref}

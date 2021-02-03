@@ -7,16 +7,23 @@ import {
 } from '../TimePicker/TimePicker';
 import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
 
+// @typescript-to-proptypes-generate
 /**
- * @ignore - do not document.
+ *
+ * API:
+ *
+ * - [StaticTimePicker API](https://material-ui.com/api/static-time-picker/)
  */
-/* @typescript-to-proptypes-generate */
 const StaticTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(StaticWrapper, {
   name: 'MuiStaticTimePicker',
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof StaticWrapper>;
 
-(StaticTimePicker as any).propTypes = {
+if (process.env.NODE_ENV !== 'production') {
+  (StaticTimePicker as any).displayName = 'StaticTimePicker';
+}
+
+StaticTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -250,7 +257,7 @@ const StaticTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Stat
    * Array of views to show.
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
-};
+} as any;
 
 export type StaticTimePickerProps = React.ComponentProps<typeof StaticTimePicker>;
 

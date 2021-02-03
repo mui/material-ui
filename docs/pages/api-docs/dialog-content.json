@@ -2,7 +2,8 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "dividers": { "type": { "name": "bool" } }
+    "dividers": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "DialogContent",
   "styles": { "classes": ["root", "dividers"], "globalClasses": {}, "name": "MuiDialogContent" },
@@ -11,5 +12,6 @@
   "filename": "/packages/material-ui/src/DialogContent/DialogContent.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

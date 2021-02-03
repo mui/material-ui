@@ -8,9 +8,12 @@ import {
 import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
 
 /**
- * @ignore - do not document.
+ *
+ * API:
+ *
+ * - [MobileDatePicker API](https://material-ui.com/api/mobile-date-picker/)
  */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
   MobileWrapper,
   {
@@ -19,7 +22,11 @@ const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
   },
 ) as DatePickerGenericComponent<typeof MobileWrapper>;
 
-(MobileDatePicker as any).propTypes = {
+if (process.env.NODE_ENV !== 'production') {
+  (MobileDatePicker as any).displayName = 'MobileDatePicker';
+}
+
+MobileDatePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -239,7 +246,7 @@ const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
     PropTypes.number,
     PropTypes.string,
   ]),
-};
+} as any;
 
 export type MobileDatePickerProps = React.ComponentProps<typeof MobileDatePicker>;
 

@@ -8,9 +8,12 @@ import {
 import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
 
 /**
- * @ignore - do not document.
+ *
+ * API:
+ *
+ * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
  */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
   StaticWrapper,
   {
@@ -19,7 +22,11 @@ const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
   },
 ) as DatePickerGenericComponent<typeof StaticWrapper>;
 
-(StaticDatePicker as any).propTypes = {
+if (process.env.NODE_ENV !== 'production') {
+  (StaticDatePicker as any).displayName = 'StaticDatePicker';
+}
+
+StaticDatePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -210,7 +217,7 @@ const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unkno
     PropTypes.number,
     PropTypes.string,
   ]),
-};
+} as any;
 
 export type StaticDatePickerProps = React.ComponentProps<typeof StaticDatePicker>;
 

@@ -19,7 +19,11 @@ const StaticDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPro
   },
 ) as DateTimePickerGenericComponent<typeof StaticWrapper>;
 
-(StaticDateTimePicker as any).propTypes = {
+if (process.env.NODE_ENV !== 'production') {
+  (StaticDateTimePicker as any).displayName = 'StaticDateTimePicker';
+}
+
+StaticDateTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -404,7 +408,7 @@ const StaticDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPro
   views: PropTypes.arrayOf(
     PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
-};
+} as any;
 
 export type StaticDateTimePickerProps = React.ComponentProps<typeof StaticDateTimePicker>;
 

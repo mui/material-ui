@@ -184,4 +184,4 @@ const DateRangePickerInput: React.FC<DateRangeInputProps & WithStyles<typeof sty
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersDateRangePickerInput' })(DateRangePickerInput);
+export default withStyles(styles, { name: 'MuiDateRangePickerInput' })(DateRangePickerInput);

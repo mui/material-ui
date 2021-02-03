@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 
 export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -13,6 +14,10 @@ export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTM
     /** Styles applied to the root element. */
     root?: string;
   };
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, this can be useful to render an h4 instead of the default h2.

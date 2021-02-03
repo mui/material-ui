@@ -8,7 +8,11 @@ import StaticWrapper from '../internal/pickers/wrappers/StaticWrapper';
 /* @typescript-to-proptypes-generate */
 const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', StaticWrapper);
 
-(StaticDateRangePicker as any).propTypes = {
+if (process.env.NODE_ENV !== 'production') {
+  (StaticDateRangePicker as any).displayName = 'StaticDateRangePicker';
+}
+
+StaticDateRangePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -239,7 +243,7 @@ const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', S
   reduceAnimations: PropTypes.bool,
   /**
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
-   * @example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />
+   * @example (date, DateRangePickerDayProps) => <DateRangePickerDay {...DateRangePickerDayProps} />
    */
   renderDay: PropTypes.func,
   /**
@@ -326,7 +330,7 @@ const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', S
       PropTypes.string,
     ]),
   ).isRequired,
-};
+} as any;
 
 export type StaticDateRangePickerProps = React.ComponentProps<typeof StaticDateRangePicker>;
 

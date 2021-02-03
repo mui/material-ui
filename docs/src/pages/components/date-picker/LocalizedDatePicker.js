@@ -35,14 +35,6 @@ export default function LocalizedDatePicker() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[locale]}>
       <div style={{ width: 300 }}>
-        <DatePicker
-          mask={maskMap[locale]}
-          value={selectedDate}
-          onChange={(date) => handleDateChange(date)}
-          renderInput={(params) => (
-            <TextField {...params} margin="normal" variant="standard" />
-          )}
-        />
         <ToggleButtonGroup value={locale} exclusive>
           {Object.keys(localeMap).map((localeItem) => (
             <ToggleButton
@@ -54,6 +46,12 @@ export default function LocalizedDatePicker() {
             </ToggleButton>
           ))}
         </ToggleButtonGroup>
+        <DatePicker
+          mask={maskMap[locale]}
+          value={selectedDate}
+          onChange={(date) => handleDateChange(date)}
+          renderInput={(params) => <TextField {...params} />}
+        />
       </div>
     </LocalizationProvider>
   );

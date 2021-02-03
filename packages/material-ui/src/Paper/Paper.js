@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
+import { chainPropTypes, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -67,18 +67,19 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
 
   const {
     className,
-    component: Component = 'div',
-    square = false,
+    component = 'div',
     elevation = 1,
+    square = false,
     variant = 'elevation',
     ...other
   } = props;
 
   const styleProps = {
     ...props,
-    variant,
+    component,
     elevation,
     square,
+    variant,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -98,7 +99,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
 
   return (
     <PaperRoot
-      as={Component}
+      as={component}
       styleProps={styleProps}
       className={clsx(classes.root, className)}
       ref={ref}
@@ -134,7 +135,16 @@ Paper.propTypes = {
    * It accepts values between 0 and 24 inclusive.
    * @default 1
    */
-  elevation: PropTypes.number,
+  elevation: chainPropTypes(PropTypes.number, (props) => {
+    const { elevation, variant } = props;
+    if (elevation > 0 && variant === 'outlined') {
+      return new Error(
+        `Material-UI: Combining \`elevation={${elevation}}\` with \`variant="${variant}"\` has no effect. Either use \`elevation={0}\` or use a different \`variant\`.`,
+      );
+    }
+
+    return null;
+  }),
   /**
    * If `true`, rounded corners are disabled.
    * @default false

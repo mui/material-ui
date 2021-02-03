@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 
 export interface AccordionDetailsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -13,6 +14,10 @@ export interface AccordionDetailsProps extends StandardProps<React.HTMLAttribute
     /** Styles applied to the root element. */
     root?: string;
   };
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type AccordionDetailsClassKey = keyof NonNullable<AccordionDetailsProps['classes']>;

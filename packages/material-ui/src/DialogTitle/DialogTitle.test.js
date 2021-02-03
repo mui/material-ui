@@ -1,22 +1,20 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
 import DialogTitle from './DialogTitle';
+import classes from './dialogTitleClasses';
 
 describe('<DialogTitle />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<DialogTitle>foo</DialogTitle>);
-  });
-
-  describeConformance(<DialogTitle>foo</DialogTitle>, () => ({
+  describeConformanceV5(<DialogTitle>foo</DialogTitle>, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    muiName: 'MuiDialogTitle',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    testVariantProps: { disableTypography: true },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render JSX children', () => {

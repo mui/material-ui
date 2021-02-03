@@ -4,45 +4,36 @@
 
 A typical release goes like this:
 
-1. **Changelog**. Generate the changelog:
+### Prepare
 
-- Compare the last version with `next`. For instance: https://github.com/mui-org/material-ui/compare/v5.0.0-alpha.17...next
-- Generate the changelog with this script: https://trello.com/c/uspnIWkh/1566-release-note
-- Clean the generated changelog, to match the format of https://github.com/mui-org/material-ui/releases.
-- Open a pull request with the generated change on `next`.
+The following steps must be proposed as a pull request.
 
-1. **Build**. Prepare the release:
+1. Generate the changelog with `yarn relase:changelog`
 
-```
-git checkout next
-git pull
-git checkout -b v5.0.0-alpha.18
-yarn
-yarn release:version
-yarn release:build
-```
+   The output must be prepended to the top level `CHANGELOG.md`
+   `yarn release:changelog --help` for more information.
 
-1. **Version**. Update the root `/package.json`'s version and commit all the changes
+1. Clean the generated changelog, to match the format of https://github.com/mui-org/material-ui/releases.
 
-```
-git commit -am "v5.0.0-alpha.18"
-git tag v5.0.0-alpha.18
-```
+1. Update the root `/package.json`'s version
 
-1. **npm**. Release the packages to npm. You need your 2FA device:
+1. `yarn relase:version`
 
-```
-yarn release:publish
-```
+1. Open PR with changes and wait for review and green CI
 
-1. **git**. Push the release git commit and git tag to master (e.g. "v5.0.0-alpha.17"):
+1. Merge PR once CI is green and it has been approved
 
-```
-git push
-git push --tag
-```
+### Release
 
-1. **Docs**. Push the next branch on the release branch to deploy the documentation with the latest changes. It lives at https://material-ui.netlify.app/. Force push if necessary.
+1. checkout merge commit of the merged PR
+1. `yarn relase:build`
+1. `yarn relase:publish`
+   You need your 2FA device.
+1. `yarn release:tag`
+
+### Documentation
+
+Push the next branch on the release branch to deploy the documentation with the latest changes. It lives at https://material-ui.netlify.app/. Force push if necessary.
 
 Note: if you don't have the `material-ui-docs` remote already, you should add it with
 
@@ -53,6 +44,8 @@ git remote add material-ui-docs https://github.com/mui-org/material-ui-docs.git
 ```
 yarn docs:deploy
 ```
+
+### Announce
 
 1. **GitHub**. Make a new release on GitHub (for people subscribing to updates). https://github.com/mui-org/material-ui/releases
 1. **Twitter**. It's even better to synchronize with the release of Material-UI X: https://trello.com/c/kYF9OLLi/105-release-steps, to have a single announcement/version covering the two.

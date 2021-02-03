@@ -70,7 +70,7 @@ export const componentSettings = {
     template: 'badge.txt',
   },
   BottomNavigation: {
-    ignoredProps: ['children', 'onChange', 'ScrollButtonComponent', 'value'],
+    ignoredProps: ['children', 'onChange', 'ScrollButtonComponent', 'value', 'sx'],
     propValues: {
       icons: "['restore', 'favorite', 'location_on', 'folder']",
       labels: "['Recents', 'Favorites', 'Nearby', 'Saved']",
@@ -127,6 +127,7 @@ export const componentSettings = {
       'children',
       'onDelete',
       // FIXME: `Union`
+      'sx',
       'variant',
     ],
     propValues: {
@@ -144,7 +145,7 @@ export const componentSettings = {
     template: 'chip.txt',
   },
   CircularProgress: {
-    ignoredProps: ['disableShrink', 'size'],
+    ignoredProps: ['disableShrink', 'size', 'sx'],
     propValues: {
       width: 44,
       height: 44,
@@ -165,6 +166,7 @@ export const componentSettings = {
       'disableFocusRipple',
       // FIXME: `Union`
       'variant',
+      'sx',
     ],
     propValues: {
       icon: "'add'",
@@ -176,7 +178,7 @@ export const componentSettings = {
     template: 'fab.txt',
   },
   Icon: {
-    ignoredProps: ['children', 'fontSize'],
+    ignoredProps: ['children', 'fontSize', 'sx'],
     propValues: {
       icon: "'add'",
       theme: 'Filled',
@@ -186,7 +188,7 @@ export const componentSettings = {
     template: 'icon.txt',
   },
   IconButton: {
-    ignoredProps: ['children', 'edge', 'disableRipple', 'disableFocusRipple'],
+    ignoredProps: ['children', 'edge', 'disableRipple', 'disableFocusRipple', 'sx'],
     propValues: {
       icon: "'favorite'",
       iconTheme: 'Filled',
@@ -198,7 +200,7 @@ export const componentSettings = {
     template: 'icon_button.txt',
   },
   ListItem: {
-    ignoredProps: ['children', 'ContainerComponent', 'ContainerProps'],
+    ignoredProps: ['children', 'ContainerComponent', 'ContainerProps', 'sx'],
     propValues: {
       width: 568,
       height: 48,

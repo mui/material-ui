@@ -1,5 +1,6 @@
+import { SxProps } from '@material-ui/system';
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 
 export interface CircularProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
@@ -47,6 +48,10 @@ export interface CircularProgressProps
    */
   size?: number | string;
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The thickness of the circle.
    * @default 3.6
    */
@@ -73,6 +78,7 @@ export type CircularProgressClassKey = keyof NonNullable<CircularProgressProps['
  * If the progress bar is describing the loading progress of a particular region of a page,
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
+ *
  * Demos:
  *
  * - [Progress](https://material-ui.com/components/progress/)

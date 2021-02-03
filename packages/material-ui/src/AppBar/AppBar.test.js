@@ -1,23 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import AppBar from './AppBar';
+import classes from './appBarClasses';
 import Paper from '../Paper';
 
 describe('<AppBar />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
-  before(() => {
-    classes = getClasses(<AppBar>Hello World</AppBar>);
-  });
 
-  describeConformance(<AppBar>Conformance?</AppBar>, () => ({
+  describeConformanceV5(<AppBar>Conformance?</AppBar>, () => ({
     classes,
     inheritComponent: Paper,
     mount,
+    muiName: 'MuiAppBar',
     refInstanceof: window.HTMLElement,
-    skip: ['componentProp'],
+    testVariantProps: { position: 'relative' },
+    testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
+    skip: ['componentsProp'],
   }));
 
   it('should render with the root class and primary', () => {

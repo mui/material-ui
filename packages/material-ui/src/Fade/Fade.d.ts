@@ -32,6 +32,7 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
 /**
  * The Fade transition is used by the [Modal](https://material-ui.com/components/modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ *
  * Demos:
  *
  * - [Transitions](https://material-ui.com/components/transitions/)

@@ -140,7 +140,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     alt,
     children: childrenProp,
     className,
-    component: Component = 'div',
+    component = 'div',
     imgProps,
     sizes,
     src,
@@ -158,8 +158,9 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   const styleProps = {
     ...props,
-    variant,
     colorDefault: !hasImgNotFailing,
+    component,
+    variant,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -171,6 +172,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
         src={src}
         srcSet={srcSet}
         sizes={sizes}
+        styleProps={styleProps}
         className={classes.img}
         {...imgProps}
       />
@@ -185,7 +187,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   return (
     <AvatarRoot
-      as={Component}
+      as={component}
       styleProps={styleProps}
       className={clsx(classes.root, className)}
       ref={ref}

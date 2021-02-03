@@ -1,23 +1,21 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Icon from './Icon';
+import classes from './iconClasses';
 
 describe('<Icon />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<Icon />);
-  });
-
-  describeConformance(<Icon>account_circle</Icon>, () => ({
+  describeConformanceV5(<Icon>account_circle</Icon>, () => ({
     classes,
     inheritComponent: 'span',
     mount,
+    muiName: 'MuiIcon',
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'div',
+    skip: ['themeVariants', 'componentsProp'],
   }));
 
   it('renders children by default', () => {

@@ -7,11 +7,15 @@ import DesktopTooltipWrapper from '../internal/pickers/wrappers/DesktopTooltipWr
  */
 /* @typescript-to-proptypes-generate */
 const DesktopDateRangePicker = makeDateRangePicker(
-  'MuiPickersDateRangePicker',
+  'MuiDesktopDateRangePicker',
   DesktopTooltipWrapper,
 );
 
-(DesktopDateRangePicker as any).propTypes = {
+if (process.env.NODE_ENV !== 'production') {
+  (DesktopDateRangePicker as any).displayName = 'DesktopDateRangePicker';
+}
+
+DesktopDateRangePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -241,7 +245,7 @@ const DesktopDateRangePicker = makeDateRangePicker(
   reduceAnimations: PropTypes.bool,
   /**
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
-   * @example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />
+   * @example (date, DateRangePickerDayProps) => <DateRangePickerDay {...DateRangePickerDayProps} />
    */
   renderDay: PropTypes.func,
   /**
@@ -332,7 +336,7 @@ const DesktopDateRangePicker = makeDateRangePicker(
       PropTypes.string,
     ]),
   ).isRequired,
-};
+} as any;
 
 export type DesktopDateRangePickerProps = React.ComponentProps<typeof DesktopDateRangePicker>;
 

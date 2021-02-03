@@ -1,9 +1,5 @@
 import * as React from 'react';
-import Grid, {
-  GridItemsAlignment,
-  GridJustification,
-  GridDirection,
-} from '@material-ui/core/Grid';
+import Grid, { GridDirection } from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -12,6 +8,21 @@ import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+
+type GridItemsAlignment =
+  | 'flex-start'
+  | 'center'
+  | 'flex-end'
+  | 'stretch'
+  | 'baseline';
+
+type GridJustification =
+  | 'flex-start'
+  | 'center'
+  | 'flex-end'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

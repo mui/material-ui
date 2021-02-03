@@ -244,7 +244,7 @@ const DayPicker = React.forwardRef(function DayPicker<
   );
 });
 
-(DayPicker as any).propTypes = {
+DayPicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -340,7 +340,7 @@ const DayPicker = React.forwardRef(function DayPicker<
    * Views for day picker.
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['date', 'month', 'year']).isRequired),
-};
+} as any;
 
 export default withStyles(styles, { name: 'MuiDayPicker' })(DayPicker) as <TDate>(
   props: DayPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,

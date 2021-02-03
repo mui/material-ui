@@ -14,6 +14,7 @@
       "default": "'bottom'"
     },
     "subtitle": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } },
     "title": { "type": { "name": "node" } }
   },
   "name": "ImageListItemBar",
@@ -40,5 +41,6 @@
   "filename": "/packages/material-ui/src/ImageListItemBar/ImageListItemBar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/image-list/\">Image List</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

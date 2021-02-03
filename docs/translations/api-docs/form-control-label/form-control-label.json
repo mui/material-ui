@@ -1,5 +1,5 @@
 {
-  "componentDescription": "Drop-in replacement of the <code>Radio</code>, <code>Switch</code> and <code>Checkbox</code> component.\nUse this component if you want to display an extra label.",
+  "componentDescription": "Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.\nUse this component if you want to display an extra label.",
   "propDescriptions": {
     "checked": "If <code>true</code>, the component appears selected.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",

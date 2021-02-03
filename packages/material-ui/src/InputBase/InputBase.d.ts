@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 
 export interface InputBaseProps
@@ -70,6 +72,36 @@ export interface InputBaseProps
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color?: 'primary' | 'secondary';
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: {
+    Root?: React.ElementType;
+    Input?: React.ElementType;
+  };
+
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps?: {
+    root?: {
+      as: React.ElementType;
+      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
+        hiddenLabel?: boolean;
+        focused?: boolean;
+      };
+    };
+    input?: {
+      as?: React.ElementType;
+      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
+        hiddenLabel?: boolean;
+        focused?: boolean;
+      };
+    };
+  };
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -187,6 +219,10 @@ export interface InputBaseProps
    */
   startAdornment?: React.ReactNode;
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
@@ -209,6 +245,7 @@ export type InputBaseClassKey = keyof NonNullable<InputBaseProps['classes']>;
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
  * It contains a load of style reset and some state logic.
+ *
  * Demos:
  *
  * - [Text Fields](https://material-ui.com/components/text-fields/)

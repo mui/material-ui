@@ -6,9 +6,13 @@ import MobileWrapper from '../internal/pickers/wrappers/MobileWrapper';
  * @ignore - do not document.
  */
 /* @typescript-to-proptypes-generate */
-const MobileDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', MobileWrapper);
+const MobileDateRangePicker = makeDateRangePicker('MuiMobileDateRangePicker', MobileWrapper);
 
-(MobileDateRangePicker as any).propTypes = {
+if (process.env.NODE_ENV !== 'production') {
+  (MobileDateRangePicker as any).displayName = 'MobileDateRangePicker';
+}
+
+MobileDateRangePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -258,7 +262,7 @@ const MobileDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', M
   reduceAnimations: PropTypes.bool,
   /**
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
-   * @example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />
+   * @example (date, DateRangePickerDayProps) => <DateRangePickerDay {...DateRangePickerDayProps} />
    */
   renderDay: PropTypes.func,
   /**
@@ -355,7 +359,7 @@ const MobileDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', M
       PropTypes.string,
     ]),
   ).isRequired,
-};
+} as any;
 
 export type MobileDateRangePickerProps = React.ComponentProps<typeof MobileDateRangePicker>;
 

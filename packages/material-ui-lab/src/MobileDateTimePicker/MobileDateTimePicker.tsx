@@ -19,7 +19,11 @@ const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPro
   },
 ) as DateTimePickerGenericComponent<typeof MobileWrapper>;
 
-(MobileDateTimePicker as any).propTypes = {
+if (process.env.NODE_ENV !== 'production') {
+  (MobileDateTimePicker as any).displayName = 'MobileDateTimePicker';
+}
+
+MobileDateTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -433,7 +437,7 @@ const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPro
   views: PropTypes.arrayOf(
     PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
-};
+} as any;
 
 export type MobileDateTimePickerProps = React.ComponentProps<typeof MobileDateTimePicker>;
 

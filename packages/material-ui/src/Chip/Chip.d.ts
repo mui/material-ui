@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { PropTypes } from '..';
+import { SxProps } from '@material-ui/system';
+import { PropTypes, Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ChipPropsVariantOverrides {}
@@ -25,6 +26,8 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       root?: string;
       /** Styles applied to the root element if `size="small"`. */
       sizeSmall?: string;
+      /** Styles applied to the root element if `size="medium"`. */
+      sizeMedium?: string;
       /** Styles applied to the root element if `color="primary"`. */
       colorPrimary?: string;
       /** Styles applied to the root element if `color="secondary"`. */
@@ -55,6 +58,8 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       avatar?: string;
       /** Styles applied to the avatar element if `size="small"`. */
       avatarSmall?: string;
+      /** Styles applied to the avatar element if `size="medium"`. */
+      avatarMedium?: string;
       /** Styles applied to the avatar element if `color="primary"`. */
       avatarColorPrimary?: string;
       /** Styles applied to the avatar element if `color="secondary"`. */
@@ -63,6 +68,8 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       icon?: string;
       /** Styles applied to the icon element if `size="small"`. */
       iconSmall?: string;
+      /** Styles applied to the icon element if `size="medium"`. */
+      iconMedium?: string;
       /** Styles applied to the icon element if `color="primary"`. */
       iconColorPrimary?: string;
       /** Styles applied to the icon element if `color="secondary"`. */
@@ -71,10 +78,14 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       label?: string;
       /** Styles applied to the label `span` element if `size="small"`. */
       labelSmall?: string;
+      /** Styles applied to the label `span` element if `size="medium"`. */
+      labelMedium?: string;
       /** Styles applied to the deleteIcon element. */
       deleteIcon?: string;
       /** Styles applied to the deleteIcon element if `size="small"`. */
       deleteIconSmall?: string;
+      /** Styles applied to the deleteIcon element if `size="medium"`. */
+      deleteIconMedium?: string;
       /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
       deleteIconColorPrimary?: string;
       /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
@@ -89,9 +100,10 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * If `true`, the chip will appear clickable, and will raise when pressed,
      * even if the onClick prop is not defined.
-     * If false, the chip will not be clickable, even if onClick prop is defined.
+     * If `false`, the chip will not appear clickable, even if onClick prop is defined.
      * This can be used, for example,
      * along with the component prop to indicate an anchor Chip is clickable.
+     * Note: this controls the UI and does not affect the onClick event.
      */
     clickable?: boolean;
     /**
@@ -127,6 +139,10 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     size?: 'small' | 'medium';
     /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
+    /**
      * The variant to use.
      * @default 'filled'
      */
@@ -137,6 +153,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
+ *
  * Demos:
  *
  * - [Chips](https://material-ui.com/components/chips/)

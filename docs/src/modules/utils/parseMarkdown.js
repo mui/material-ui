@@ -88,30 +88,10 @@ export function getDescription(markdown) {
 }
 
 /**
- * Render markdown used in the Material-UI docs
  * @param {string} markdown
- * @param {object} [options]
- * @param {function} [options.highlight] - https://marked.js.org/#/USING_ADVANCED.md#highlight
- * @param {object} [options.rest] - properties from https://marked.js.org/#/USING_PRO.md#renderer
  */
-export function render(markdown, options = {}) {
-  const { highlight, ...rendererOptions } = options;
-
-  const renderer = Object.assign(new marked.Renderer(), rendererOptions);
-
-  const markedOptions = {
-    gfm: true,
-    tables: true,
-    breaks: false,
-    pedantic: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false,
-    highlight,
-    renderer,
-  };
-
-  return marked(markdown, markedOptions);
+export function renderInline(markdown) {
+  return marked.parseInline(markdown);
 }
 
 const externs = [
@@ -123,6 +103,134 @@ const externs = [
   'https://devexpress.github.io/',
   'https://ui-kit.co/',
 ];
+
+/**
+ * Creates a function that MUST be used to render non-inline markdown.
+ * It keeps track of a table of contents and hashes of its items.
+ * This is important to create anchors that are invariant between languages.
+ *
+ * @typedef {object} TableOfContentsEntry
+ * @property {TableOfContentsEntry[]} children
+ * @property {string} hash
+ * @property {number} level
+ * @property {string} text
+ *
+ * @param {object} context
+ * @param {Record<string, string>} context.headingHashes - WILL BE MUTATED
+ * @param {TableOfContentsEntry[]} context.toc - WILL BE MUTATED
+ * @param {string} context.userLanguage
+ */
+export function createRender(context) {
+  const { headingHashes, toc, userLanguage } = context;
+  const headingHashesFallbackTranslated = {};
+  let headingIndex = -1;
+
+  /**
+   * @param {string} markdown
+   */
+  function render(markdown) {
+    const renderer = new marked.Renderer();
+    renderer.heading = (headingHtml, level) => {
+      // Main title, no need for an anchor.
+      // It adds noises to the URL.
+      //
+      // Small title, no need for an anchor.
+      // It reduces the risk of duplicated id and it's fewer elements in the DOM.
+      if (level === 1 || level >= 4) {
+        return `<h${level}>${headingHtml}</h${level}>`;
+      }
+
+      const headingText = headingHtml
+        .replace(
+          /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])\uFE0F?/g,
+          '',
+        ) // remove emojis
+        .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
+        .trim();
+
+      // Standardizes the hash from the default location (en) to different locations
+      // Need english.md file parsed first
+      let hash;
+      if (userLanguage === 'en') {
+        hash = textToHash(headingText, headingHashes);
+      } else {
+        headingIndex += 1;
+        hash = Object.keys(headingHashes)[headingIndex];
+        if (!hash) {
+          hash = textToHash(headingText, headingHashesFallbackTranslated);
+        }
+      }
+
+      // enable splitting of long words from function name + first arg name
+      // Closing parens are less interesting since this would only allow breaking one character earlier.
+      // Applying the same mechanism would also allow breaking of non-function signatures like "Community help (free)".
+      // To detect that we enabled breaking of open/closing parens we'd need a context-sensitive parser.
+      const displayText = headingText.replace(/([^\s]\()/g, '$1&#8203;');
+
+      // create a nested structure with 2 levels starting with level 2 e.g.
+      // [{...level2, children: [level3, level3, level3]}, level2]
+      if (level === 2) {
+        toc.push({
+          text: displayText,
+          level,
+          hash,
+          children: [],
+        });
+      } else if (level === 3) {
+        if (!toc[toc.length - 1]) {
+          throw new Error(`Missing parent level for: ${headingText}`);
+        }
+
+        toc[toc.length - 1].children.push({
+          text: displayText,
+          level,
+          hash,
+        });
+      }
+
+      return [
+        `<h${level}>`,
+        `<a class="anchor-link" id="${hash}"></a>`,
+        headingHtml,
+        `<a class="anchor-link-style" aria-hidden="true" href="#${hash}">`,
+        '<svg><use xlink:href="#anchor-link-icon" /></svg>',
+        '</a>',
+        `</h${level}>`,
+      ].join('');
+    };
+    renderer.link = (href, linkTitle, linkText) => {
+      let more = '';
+
+      if (externs.some((domain) => href.indexOf(domain) !== -1)) {
+        more = ' target="_blank" rel="noopener nofollow"';
+      }
+
+      let finalHref = href;
+
+      if (userLanguage !== 'en' && finalHref.indexOf('/') === 0 && finalHref !== '/size-snapshot') {
+        finalHref = `/${userLanguage}${finalHref}`;
+      }
+
+      return `<a href="${finalHref}"${more}>${linkText}</a>`;
+    };
+
+    const markedOptions = {
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false,
+      highlight: prism,
+      renderer,
+    };
+
+    return marked(markdown, markedOptions);
+  }
+
+  return render;
+}
 
 /**
  * @param {object} config
@@ -137,6 +245,7 @@ export function prepareMarkdown(config) {
   const headingHashes = {};
 
   // Process the English markdown before the other locales.
+  // English ToC anchor links are used in all languages
   let filenames = [];
   requireRaw.keys().forEach((filename) => {
     if (filename.match(notEnglishMarkdownRegExp)) {
@@ -172,8 +281,7 @@ ${headers.components
       }
 
       const toc = [];
-      const headingHashesFallbackTranslated = {};
-      let headingIndex = -1;
+      const render = createRender({ headingHashes, toc, userLanguage });
 
       const rendered = contents.map((content) => {
         if (/^"(demo|component)": "(.*)"/.test(content)) {
@@ -186,96 +294,7 @@ ${headers.components
           }
         }
 
-        return render(content, {
-          highlight: prism,
-          heading: (headingHtml, level) => {
-            // Main title, no need for an anchor.
-            // It adds noises to the URL.
-            //
-            // Small title, no need for an anchor.
-            // It reduces the risk of duplicated id and it's fewer elements in the DOM.
-            if (level === 1 || level >= 4) {
-              return `<h${level}>${headingHtml}</h${level}>`;
-            }
-
-            const headingText = headingHtml
-              .replace(
-                /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])\uFE0F?/g,
-                '',
-              ) // remove emojis
-              .replace(/<\/?[^>]+(>|$)/g, '') // remove HTML
-              .trim();
-
-            // Standardizes the hash from the default location (en) to different locations
-            // Need english.md file parsed first
-            let hash;
-            if (userLanguage === 'en') {
-              hash = textToHash(headingText, headingHashes);
-            } else {
-              headingIndex += 1;
-              hash = Object.keys(headingHashes)[headingIndex];
-              if (!hash) {
-                hash = textToHash(headingText, headingHashesFallbackTranslated);
-              }
-            }
-
-            // enable splitting of long words from function name + first arg name
-            // Closing parens are less interesting since this would only allow breaking one character earlier.
-            // Applying the same mechanism would also allow breaking of non-function signatures like "Community help (free)".
-            // To detect that we enabled breaking of open/closing parens we'd need a context-sensitive parser.
-            const displayText = headingText.replace(/([^\s]\()/g, '$1&#8203;');
-
-            // create a nested structure with 2 levels starting with level 2 e.g.
-            // [{...level2, children: [level3, level3, level3]}, level2]
-            if (level === 2) {
-              toc.push({
-                text: displayText,
-                level,
-                hash,
-                children: [],
-              });
-            } else if (level === 3) {
-              if (!toc[toc.length - 1]) {
-                throw new Error(`Missing parent level for: ${headingText}`);
-              }
-
-              toc[toc.length - 1].children.push({
-                text: displayText,
-                level,
-                hash,
-              });
-            }
-
-            return [
-              `<h${level}>`,
-              `<a class="anchor-link" id="${hash}"></a>`,
-              headingHtml,
-              `<a class="anchor-link-style" aria-hidden="true" href="#${hash}">`,
-              '<svg><use xlink:href="#anchor-link-icon" /></svg>',
-              '</a>',
-              `</h${level}>`,
-            ].join('');
-          },
-          link: (href, linkTitle, linkText) => {
-            let more = '';
-
-            if (externs.some((domain) => href.indexOf(domain) !== -1)) {
-              more = ' target="_blank" rel="noopener nofollow"';
-            }
-
-            let finalHref = href;
-
-            if (
-              userLanguage !== 'en' &&
-              finalHref.indexOf('/') === 0 &&
-              finalHref !== '/size-snapshot'
-            ) {
-              finalHref = `/${userLanguage}${finalHref}`;
-            }
-
-            return `<a href="${finalHref}"${more}>${linkText}</a>`;
-          },
-        });
+        return render(content);
       });
 
       // fragment link symbol

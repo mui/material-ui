@@ -3,6 +3,7 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
+    "@babel/helper-builder-react-jsx": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@material-ui/core": "next",
@@ -10,8 +11,7 @@
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
     "preact": "latest",
-    "preact-compat": "latest",
-    "react-scripts": "latest"
+    "react-scripts": "^3.4.3"
   },
   "scripts": {
     "start": "react-app-rewired start",

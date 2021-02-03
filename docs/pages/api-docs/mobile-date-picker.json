@@ -1,0 +1,55 @@
+{
+  "props": {
+    "onChange": { "type": { "name": "func" }, "required": true },
+    "renderInput": { "type": { "name": "func" }, "required": true },
+    "acceptRegex": { "type": { "name": "instanceOf", "description": "RegExp" } },
+    "cancelText": { "type": { "name": "node" } },
+    "className": { "type": { "name": "string" } },
+    "clearable": { "type": { "name": "bool" } },
+    "clearText": { "type": { "name": "node" } },
+    "dateAdapter": { "type": { "name": "object" } },
+    "DialogProps": { "type": { "name": "object" } },
+    "disableCloseOnSelect": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableMaskedInput": { "type": { "name": "bool" } },
+    "disableOpenPicker": { "type": { "name": "bool" } },
+    "getOpenDialogAriaText": { "type": { "name": "func" } },
+    "InputAdornmentProps": { "type": { "name": "object" } },
+    "inputFormat": { "type": { "name": "string" } },
+    "mask": { "type": { "name": "string" } },
+    "okText": { "type": { "name": "node" } },
+    "onAccept": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "onError": { "type": { "name": "func" } },
+    "onOpen": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "OpenPickerButtonProps": { "type": { "name": "object" } },
+    "openPickerIcon": { "type": { "name": "node" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'landscape'<br>&#124;&nbsp;'portrait'" }
+    },
+    "readOnly": { "type": { "name": "bool" } },
+    "rifmFormatter": { "type": { "name": "func" } },
+    "showTodayButton": { "type": { "name": "bool" } },
+    "showToolbar": { "type": { "name": "bool" } },
+    "todayText": { "type": { "name": "node" } },
+    "ToolbarComponent": { "type": { "name": "elementType" } },
+    "toolbarFormat": { "type": { "name": "string" } },
+    "toolbarPlaceholder": { "type": { "name": "node" } },
+    "toolbarTitle": { "type": { "name": "node" } },
+    "value": {
+      "type": {
+        "name": "union",
+        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
+      }
+    }
+  },
+  "name": "MobileDatePicker",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "filename": "/packages/material-ui-lab/src/MobileDatePicker/MobileDatePicker.tsx",
+  "inheritance": null,
+  "demos": "",
+  "styledComponent": true,
+  "cssComponent": false
+}

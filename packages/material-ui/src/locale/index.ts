@@ -969,29 +969,29 @@ export const frFR: Localization = {
 
 export const heIL: Localization = {
   components: {
-    // MuiBreadcrumbs: {
-    //   defaultProps: {
-    //     expandText: 'Show path',
-    //   },
-    // },
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'הצג נתיב',
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'לעמוד הראשון';
+          }
+          if (type === 'last') {
+            return 'לעמוד האחרון';
+          }
+          if (type === 'next') {
+            return 'לעמוד הבא';
+          }
+          // if (type === 'previous') {
+          return 'לעמוד הקודם';
+        },
         labelRowsPerPage: 'שורות בעמוד:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} מתוך ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} מתוך ${count !== -1 ? count : `יותר מ ${to}`}`,
       },
     },
     MuiRating: {
@@ -1014,27 +1014,27 @@ export const heIL: Localization = {
         closeText: 'סגור',
       },
     },
-    // MuiPagination: {
-    //   defaultProps: {
-    //     'aria-label': 'Pagination navigation',
-    //     getItemAriaLabel: (type, page, selected) => {
-    //       if (type === 'page') {
-    //         return `${selected ? '' : 'Go to '}page ${page}`;
-    //       }
-    //       if (type === 'first') {
-    //         return 'Go to first page';
-    //       }
-    //       if (type === 'last') {
-    //         return 'Go to last page';
-    //       }
-    //       if (type === 'next') {
-    //         return 'Go to next page';
-    //       }
-    //       // if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     },
-    //   },
-    // },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'ניווט בעמודים',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'ל '}עמוד ${page}`;
+          }
+          if (type === 'first') {
+            return 'לעמוד הראשון';
+          }
+          if (type === 'last') {
+            return 'לעמוד האחרון';
+          }
+          if (type === 'next') {
+            return 'לעמוד הבא';
+          }
+          // if (type === 'previous') {
+          return 'לעמוד הקודם';
+        },
+      },
+    },
   },
 };
 

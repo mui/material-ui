@@ -672,6 +672,28 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<Grid justifyContent="center">
   ```
 
+- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. For example
+
+  ```diff
+  const theme = createMuiTheme({
+    components: {
+      MuiGrid: {
+  -     styleOverrides: {
+  -       "align-items-xs-flex-end": {
+  -         marginTop: '20px',
+  -       },
+  -     },
+  +     variants: {
+  +       props: { alignItems: "flex-end" },
+  +       style: {
+  +         marginTop: '20px',
+  +       },
+  +     }],
+      },
+    },
+  });
+  ```
+
 ### GridList
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
@@ -1056,6 +1078,15 @@ As the core components use emotion as a styled engine, the props used by emotion
   + onPageChange={()=>{}}
   ```
 
+- Separate classes for different table pagination labels. This allows simpler customizations.
+
+  ```diff
+  <TablePagination
+  - classes={{ caption: 'foo' }}
+  + classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
+  />
+  ```
+
 ### Tabs
 
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
@@ -1189,17 +1220,35 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Typography
 
-- Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
+- Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
 
   ```diff
-  -import Typography from '@material-ui/core/Typography';
-  +import { visuallyHidden } from '@material-ui/system';
-  +import styled from 'styled-component';
-
-  +const Span = styled('span')(visuallyHidden);
+  +import { visuallyHidden } from '@material-ui/utils';
 
   -<Typography variant="srOnly">Create a user</Typography>
-  +<Span>Create a user</Span>
+  +<span style={visuallyHidden}>Create a user</span>
+  ```
+
+- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example
+
+  ```diff
+  const theme = createMuiTheme({
+    components: {
+      MuiTypography: {
+  -     styleOverrides: {
+  -       colorSecondary: {
+  -         marginTop: '20px',
+  -       },
+  -     },
+  +     variants: {
+  +       props: { color: "secondary" },
+  +       style: {
+  +         marginTop: '20px',
+  +       },
+  +     }],
+      },
+    },
+  });
   ```
 
 ### System

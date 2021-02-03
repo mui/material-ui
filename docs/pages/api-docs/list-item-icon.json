@@ -1,7 +1,8 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } }
+    "classes": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "ListItemIcon",
   "styles": {
@@ -14,5 +15,6 @@
   "filename": "/packages/material-ui/src/ListItemIcon/ListItemIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

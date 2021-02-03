@@ -303,7 +303,7 @@ function AppWrapper(props) {
 
   let fonts = [
     'https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap',
-    'https://fonts.googleapis.com/css?family=Inter:400,700&display=swap',
+    'https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap',
   ];
   if (router.pathname.match(/onepirate/)) {
     fonts = [
@@ -320,6 +320,7 @@ function AppWrapper(props) {
       </NextHead>
       <ReduxProvider store={redux}>
         <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
+          {/* TODO v5: remove once migration to emotion is completed */}
           <StyledEngineProvider injectFirst>
             <StylesProvider jss={jss}>
               <ThemeProvider>

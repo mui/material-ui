@@ -48,7 +48,14 @@ describe('<TouchRipple />', () => {
     inheritComponent: 'span',
     mount,
     refInstanceof: Object,
-    skip: ['componentsProp', 'refForwarding', 'themeComponents'],
+    muiName: 'MuiTouchRipple',
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'refForwarding',
+      'themeStyleOverrides',
+      'themeVariants',
+    ],
   }));
 
   describe('prop: center', () => {

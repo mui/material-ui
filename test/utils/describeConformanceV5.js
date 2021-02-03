@@ -4,12 +4,13 @@ import * as React from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { createClientRender } from './createClientRender';
 import {
+  testComponentProp,
   testClassName,
   testPropsSpread,
   describeRef,
-  testRootClass,
   findRootComponent,
   testReactTestRenderer,
+  testRootClass,
 } from './describeConformance';
 
 /**
@@ -31,17 +32,18 @@ function testComponentsProp(element, getOptions) {
 }
 
 /**
- * Material-UI theme has a components section that allows specifying default props, overrides and variants
+ * Material-UI theme has a components section that allows specifying default props.
  * Components from @inheritComponent
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-function testThemeComponents(element, getOptions) {
+function testThemeDefaultProps(element, getOptions) {
   const render = createClientRender();
 
-  describe('theme: components', () => {
+  describe('theme: default components', () => {
     it("respect theme's defaultProps", () => {
-      const { muiName, testThemeComponentsDefaultPropName: testProp = 'id' } = getOptions();
+      const testProp = 'data-id';
+      const { muiName, render: testRender = render } = getOptions();
       const theme = createMuiTheme({
         components: {
           [muiName]: {
@@ -52,13 +54,28 @@ function testThemeComponents(element, getOptions) {
         },
       });
 
-      const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+      const { container } = testRender(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
       expect(container.firstChild).to.have.attribute(testProp, 'testProp');
     });
+  });
+}
 
-    it("respect theme's styleOverrides custom state", () => {
-      const { muiName, testStateOverrides } = getOptions();
+/**
+ * Material-UI theme has a components section that allows specifying style overrides.
+ * Components from @inheritComponent
+ * @param {React.ReactElement} element
+ * @param {() => ConformanceOptions} getOptions
+ */
+function testThemeStyleOverrides(element, getOptions) {
+  const render = createClientRender();
+
+  describe('theme: style overrides', () => {
+    it("respect theme's styleOverrides custom state", function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { muiName, testStateOverrides, render: testRender = render } = getOptions();
 
       if (!testStateOverrides) {
         return;
@@ -78,18 +95,23 @@ function testThemeComponents(element, getOptions) {
         },
       });
 
-      const { container } = render(
+      const { container } = testRender(
         <ThemeProvider theme={theme}>
           {React.cloneElement(element, {
             [testStateOverrides.prop]: testStateOverrides.value,
           })}
         </ThemeProvider>,
       );
+
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
     });
 
-    it("respect theme's styleOverrides slots", () => {
-      const { muiName, testDeepOverrides } = getOptions();
+    it("respect theme's styleOverrides slots", function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { muiName, testDeepOverrides, render: testRender = render } = getOptions();
 
       const testStyle = {
         marginTop: '13px',
@@ -117,7 +139,7 @@ function testThemeComponents(element, getOptions) {
         },
       });
 
-      const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+      const { container } = testRender(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
 
@@ -144,7 +166,7 @@ function testThemeComponents(element, getOptions) {
         },
       });
 
-      const { container: containerWithoutRootOverrides } = render(
+      const { container: containerWithoutRootOverrides } = testRender(
         <ThemeProvider theme={themeWithoutRootOverrides}>{element}</ThemeProvider>,
       );
 
@@ -158,9 +180,25 @@ function testThemeComponents(element, getOptions) {
         });
       }
     });
+  });
+}
 
-    it("respect theme's variants", () => {
-      const { muiName, testVariantProps = {} } = getOptions();
+/**
+ * Material-UI theme has a components section that allows specifying custom variants.
+ * Components from @inheritComponent
+ * @param {React.ReactElement} element
+ * @param {() => ConformanceOptions} getOptions
+ */
+function testThemeVariants(element, getOptions) {
+  const render = createClientRender();
+
+  describe('theme: variants', () => {
+    it("respect theme's variants", function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { muiName, testVariantProps = {}, render: testRender = render } = getOptions();
 
       const testStyle = {
         marginTop: '13px',
@@ -179,7 +217,7 @@ function testThemeComponents(element, getOptions) {
         },
       });
 
-      const { getByTestId } = render(
+      const { getByTestId } = testRender(
         <ThemeProvider theme={theme}>
           {React.cloneElement(element, { ...testVariantProps, 'data-testid': 'with-props' })}
           {React.cloneElement(element, { 'data-testid': 'without-props' })}
@@ -193,13 +231,16 @@ function testThemeComponents(element, getOptions) {
 }
 
 const fullSuite = {
+  componentProp: testComponentProp,
   componentsProp: testComponentsProp,
   mergeClassName: testClassName,
   propsSpread: testPropsSpread,
   refForwarding: describeRef,
   rootClass: testRootClass,
   reactTestRenderer: testReactTestRenderer,
-  themeComponents: testThemeComponents,
+  themeDefaultProps: testThemeDefaultProps,
+  themeStyleOverrides: testThemeStyleOverrides,
+  themeVariants: testThemeVariants,
 };
 
 /**

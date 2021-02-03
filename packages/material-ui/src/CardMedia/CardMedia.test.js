@@ -1,23 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import CardMedia from './CardMedia';
+import classes from './cardMediaClasses';
 
 describe('<CardMedia />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
-  before(() => {
-    classes = getClasses(<CardMedia image="/fake.png" />);
-  });
 
-  describeConformance(<CardMedia image="/fake.png" />, () => ({
+  describeConformanceV5(<CardMedia image="/fake.png" />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    muiName: 'MuiCardMedia',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
+    testVariantProps: { variant: 'foo' },
+    skip: ['componentsProp'],
   }));
 
   it('should have the backgroundImage specified', () => {
@@ -79,7 +79,7 @@ describe('<CardMedia />', () => {
 
     it('warns when neither `children`, nor `image`, nor `src`, nor `component` are provided', () => {
       expect(() => {
-        PropTypes.checkPropTypes(CardMedia.Naked.propTypes, { classes: {} }, 'prop', 'MockedName');
+        PropTypes.checkPropTypes(CardMedia.propTypes, { classes: {} }, 'prop', 'MockedName');
       }).toErrorDev(
         'Material-UI: Either `children`, `image`, `src` or `component` prop must be specified.',
       );

@@ -38,8 +38,8 @@ export function useGlobalKeyDown(active: boolean, keyHandlers: KeyHandlers) {
 
   useIsomorphicEffect(() => {
     if (active) {
-      const handleKeyDown = (event: KeyboardEvent) => {
-        runKeyHandler(event, keyHandlersRef.current);
+      const handleKeyDown = (nativeEvent: KeyboardEvent) => {
+        runKeyHandler(nativeEvent, keyHandlersRef.current);
       };
       document.addEventListener('keydown', handleKeyDown);
       return () => {

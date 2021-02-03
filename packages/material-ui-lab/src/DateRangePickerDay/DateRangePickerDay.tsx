@@ -148,6 +148,7 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
       })}
     >
       <div
+        role="cell"
         data-mui-test={shouldRenderPreview ? 'DateRangePreview' : undefined}
         className={clsx(classes.rangeIntervalPreview, {
           [classes.rangeIntervalDayPreview]: shouldRenderPreview,
@@ -164,7 +165,7 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
           day={day}
           selected={selected}
           outsideCurrentMonth={outsideCurrentMonth}
-          data-mui-test="DateRangeDay"
+          data-mui-test="DateRangePickerDay"
           className={clsx(classes.day, {
             [classes.notSelectedDate]: !selected,
             [classes.dayOutsideRangeInterval]: !isHighlighting,
@@ -176,7 +177,7 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
   );
 });
 
-(DateRangePickerDay as any).propTypes = {
+DateRangePickerDay.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -229,7 +230,7 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
    * If `true`, renders as selected.
    */
   selected: PropTypes.bool,
-};
+} as any;
 
 /**
  *

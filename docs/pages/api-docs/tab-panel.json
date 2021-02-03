@@ -1,8 +1,8 @@
 {
   "props": {
+    "value": { "type": { "name": "string" }, "required": true },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "value": { "type": { "name": "string" }, "required": true }
+    "classes": { "type": { "name": "object" } }
   },
   "name": "TabPanel",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTabPanel" },
@@ -11,5 +11,6 @@
   "filename": "/packages/material-ui-lab/src/TabPanel/TabPanel.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": false,
+  "cssComponent": false
 }

@@ -25,33 +25,6 @@ enum GenerateResult {
  */
 const todoComponents: string[] = [];
 
-const todoComponentsTs: string[] = [
-  'ClockPicker',
-  'DatePicker',
-  'DateRangePicker',
-  'DateRangePickerDay',
-  'DayPicker',
-  'DesktopDatePicker',
-  'DesktopDateRangePicker',
-  'StaticDateRangePicker',
-  'MobileDateRangePicker',
-  'DateTimePicker',
-  'DesktopDateTimePicker',
-  'DesktopTimePicker',
-  'LocalizationProvider',
-  'MobileDatePicker',
-  'MobileDateTimePicker',
-  'MobileTimePicker',
-  'MonthPicker',
-  'PickersCalendarSkeleton',
-  'PickersDay',
-  'StaticDatePicker',
-  'StaticDateTimePicker',
-  'StaticTimePicker',
-  'TimePicker',
-  'YearPicker',
-];
-
 const useExternalPropsFromInputBase = [
   'autoComplete',
   'autoFocus',
@@ -112,6 +85,7 @@ const useExternalDocumentation: Record<string, '*' | string[]> = {
   MenuItem: ['dense'],
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
+  Checkbox: ['defaultChecked'],
   Switch: [
     'checked',
     'defaultChecked',
@@ -200,7 +174,6 @@ async function generateProptypes(
   program: ttp.ts.Program,
   sourceFile: string,
   tsFile: string = sourceFile,
-  tsTodo: boolean = false,
 ): Promise<GenerateResult> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
@@ -234,8 +207,9 @@ async function generateProptypes(
 
   const unstyledFile = getUnstyledFilename(tsFile, true);
 
+  const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = ttp.inject(proptypes, sourceContent, {
-    disableTypescriptPropTypesValidation: tsTodo,
+    disablePropTypesTypeChecking: generatedForTypeScriptFile,
     removeExistingPropTypes: true,
     babelOptions: {
       filename: sourceFile,
@@ -353,6 +327,8 @@ async function run(argv: HandlerArgv) {
     .filter((filePath) => {
       return filePattern.test(filePath);
     });
+  // May not be able to understand all files due to mismatch in TS versions.
+  // Check `programm.getSyntacticDiagnostics()` if referenced files could not be compiled.
   const program = ttp.createTSProgram(files, tsconfig);
 
   const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {
@@ -362,10 +338,8 @@ async function run(argv: HandlerArgv) {
       return GenerateResult.TODO;
     }
 
-    const tsTodo = todoComponentsTs.includes(componentName);
-
     const sourceFile = tsFile.includes('.d.ts') ? tsFile.replace('.d.ts', '.js') : tsFile;
-    return generateProptypes(program, sourceFile, tsFile, tsTodo);
+    return generateProptypes(program, sourceFile, tsFile);
   });
 
   const results = await Promise.all(promises);

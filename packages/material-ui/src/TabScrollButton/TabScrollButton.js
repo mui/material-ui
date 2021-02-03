@@ -2,49 +2,76 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 
-export const styles = {
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
+
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.orientation && styles[styleProps.orientation]),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, orientation, disabled } = styleProps;
+
+  const slots = {
+    root: ['root', orientation, disabled && 'disabled'],
+  };
+
+  return composeClasses(slots, getTabScrollButtonUtilityClass, classes);
+};
+
+const TabScrollButtonRoot = experimentalStyled(
+  ButtonBase,
+  {},
+  {
+    name: 'MuiTabScrollButton',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    width: 40,
-    flexShrink: 0,
-    opacity: 0.8,
-    '&$disabled': {
-      opacity: 0,
-    },
+  width: 40,
+  flexShrink: 0,
+  opacity: 0.8,
+  '&.Mui-disabled': {
+    opacity: 0,
   },
   /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
+  ...(styleProps.orientation === 'vertical' && {
     width: '100%',
     height: 40,
     '& svg': {
       transform: 'rotate(90deg)',
     },
-  },
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-};
+  }),
+}));
 
-const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
-  const { classes, className: classNameProp, direction, orientation, disabled, ...other } = props;
+const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTabScrollButton' });
+  const { className, direction, orientation, disabled, ...other } = props;
+
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <ButtonBase
+    <TabScrollButtonRoot
       component="div"
-      className={clsx(
-        classes.root,
-        {
-          [classes.vertical]: orientation === 'vertical',
-          [classes.disabled]: disabled,
-        },
-        classNameProp,
-      )}
+      className={clsx(classes.root, className)}
       ref={ref}
       role={null}
+      styleProps={styleProps}
       tabIndex={null}
       {...other}
     >
@@ -53,7 +80,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
       ) : (
         <KeyboardArrowRight fontSize="small" />
       )}
-    </ButtonBase>
+    </TabScrollButtonRoot>
   );
 });
 
@@ -86,6 +113,10 @@ TabScrollButton.propTypes = {
    * The component orientation (layout flow direction).
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTabScrollButton' })(TabScrollButton);
+export default TabScrollButton;

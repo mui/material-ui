@@ -16,11 +16,11 @@ const DialogContentTextTest = () => {
       <DialogContentText align="inherit" color="textPrimary" />
       <DialogContentText align="inherit" color="textSecondary" />
       <DialogContentText align="inherit" color="error" />
-      {/* @ts-expect-error */}
+      {/* TODO: system props did not catch this error. Add @ts-expect-error after it is fixed. */}
       <DialogContentText display="incorrectValue" />
       <DialogContentText component="a" href="url" display="block" />
       <DialogContentText component="label" htmlFor="html" display="block" />
-      {/* @ts-expect-error */}
+      {/* TODO: system props did not catch this error. Add @ts-expect-error after it is fixed. */}
       <DialogContentText component="a" href="url" display="incorrectValue" />
       {/* @ts-expect-error */}
       <DialogContentText component="a" incorrectAttribute="url" />

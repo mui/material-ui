@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 
 export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
@@ -52,6 +53,10 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    * @default duration.standard
    */
   timeout?: TransitionProps['timeout'] | 'auto';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type CollapseClassKey = keyof NonNullable<CollapseProps['classes']>;
@@ -60,6 +65,7 @@ export type CollapseClassKey = keyof NonNullable<CollapseProps['classes']>;
  * The Collapse transition is used by the
  * [Vertical Stepper](https://material-ui.com/components/steppers/#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ *
  * Demos:
  *
  * - [Cards](https://material-ui.com/components/cards/)

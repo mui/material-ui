@@ -8,7 +8,7 @@ import StepConnector from './StepConnector';
 describe('<StepConnector />', () => {
   let classes;
   const mount = createMount();
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<StepConnector />);

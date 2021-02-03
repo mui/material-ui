@@ -18,6 +18,12 @@ module.exports = function setKarmaConfig(config) {
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 300000, // default 10000
     colors: true,
+    client: {
+      mocha: {
+        // Some BrowserStack browsers can be slow.
+        timeout: (process.env.CIRCLECI === 'true' ? 4 : 2) * 1000,
+      },
+    },
     frameworks: ['mocha'],
     files: [
       {

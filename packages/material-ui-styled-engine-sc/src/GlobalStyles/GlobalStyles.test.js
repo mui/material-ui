@@ -53,6 +53,17 @@ describe('GlobalStyles', () => {
     });
   });
 
+  it('should not throw if no theme is available', () => {
+    expect(() =>
+      render(
+        <GlobalStyles
+          defaultTheme={{ color: 'rgb(0, 0, 255)' }}
+          styles={(theme) => ({ span: { color: theme.color } })}
+        />,
+      ),
+    ).not.to.throw();
+  });
+
   it('should give presedence to styled()', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) this.skip();
 

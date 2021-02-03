@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 
 export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -15,6 +16,10 @@ export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<H
     /** Styles applied to the root element unless `disableSpacing={true}`. */
     spacing?: string;
   };
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * If `true`, the actions do not have additional margin.
    * @default false

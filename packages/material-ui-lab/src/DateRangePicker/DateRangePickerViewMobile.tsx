@@ -3,7 +3,7 @@ import PickersCalendarHeader, {
   ExportedCalendarHeaderProps,
 } from '../DayPicker/PickersCalendarHeader';
 import { DateRange } from './RangeTypes';
-import DateRangeDay from '../DateRangePickerDay/DateRangePickerDay';
+import DateRangePickerDay from '../DateRangePickerDay';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import PickersCalendar, { PickersCalendarProps } from '../DayPicker/PickersCalendar';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
@@ -43,7 +43,7 @@ export function DateRangePickerViewMobile<TDate>(props: DesktopDateRangeCalendar
     maxDate: maxDateProp,
     minDate: minDateProp,
     onChange,
-    renderDay = (_, dayProps) => <DateRangeDay<TDate> {...dayProps} />,
+    renderDay = (_, dayProps) => <DateRangePickerDay<TDate> {...dayProps} />,
     rightArrowButtonText,
     ...other
   } = props;

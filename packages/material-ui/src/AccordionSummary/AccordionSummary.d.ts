@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+import { Theme } from '..';
 
 export type AccordionSummaryTypeMap<
   P = {},
@@ -23,6 +25,10 @@ export type AccordionSummaryTypeMap<
       focusVisible?: string;
       /** Pseudo-class applied to the root element if `disabled={true}`. */
       disabled?: string;
+      /** Styles applied to the root element unless `disableGutters={true}`. */
+      gutters?: string;
+      /** Styles applied to the children wrapper element unless `disableGutters={true}`. */
+      contentGutters?: string;
       /** Styles applied to the children wrapper element. */
       content?: string;
       /** Styles applied to the `expandIcon`'s wrapper element. */
@@ -32,6 +38,10 @@ export type AccordionSummaryTypeMap<
      * The icon to display as the expand indicator.
      */
     expandIcon?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;

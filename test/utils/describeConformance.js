@@ -77,7 +77,7 @@ export function testClassName(element, getOptions) {
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
-function testComponentProp(element, getOptions) {
+export function testComponentProp(element, getOptions) {
   describe('prop: component', () => {
     it('can render another root component with the `component` prop', () => {
       const { mount, testComponentPropWith: component = 'em' } = getOptions();
@@ -91,7 +91,7 @@ function testComponentProp(element, getOptions) {
 
 /**
  * Material-UI components can spread additional props to a documented component.
- * It's set via @inheritComponent in the source.
+ *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
@@ -126,7 +126,7 @@ export function describeRef(element, getOptions) {
       testRef(element, mount, (instance, wrapper) => {
         expect(instance).to.be.instanceof(refInstanceof);
 
-        if (inheritComponent && instance.nodeType === 1) {
+        if (inheritComponent !== undefined && instance.nodeType === 1) {
           const rootHost = findOutermostIntrinsic(wrapper);
           expect(instance).to.equal(rootHost.instance());
         }
@@ -148,7 +148,7 @@ export function testRootClass(element, getOptions) {
     }
 
     const className = randomStringValue();
-    const wrapper = mount(React.cloneElement(element, { className }));
+    let wrapper = mount(React.cloneElement(element, { className }));
 
     // we established that the root component renders the outermost host previously. We immediately
     // jump to the host component because some components pass the `root` class
@@ -156,6 +156,14 @@ export function testRootClass(element, getOptions) {
     // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
     expect(findOutermostIntrinsic(wrapper).hasClass(classes.root)).to.equal(true);
     expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(true);
+
+    // Test that classes prop works
+    const classesProp = { ...classes };
+    classesProp.root = `${classesProp.root} ${className}`;
+
+    wrapper = mount(React.cloneElement(element, { classes: classesProp }));
+    expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(true);
+    expect(findOutermostIntrinsic(wrapper).getDOMNode().getAttribute('classes')).to.equal(null);
   });
 }
 
@@ -188,7 +196,7 @@ const fullSuite = {
 /**
  * @typedef {Object} ConformanceOptions
  * @property {Record<string, string>} classes - `classes` of the component provided by `@material-ui/styles`
- * @property {import('react').ElementType} inheritComponent - The element type that receives spread props.
+ * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
  * @property {(node: React.ReactNode) => void} mount - Should be a return value from createMount
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.

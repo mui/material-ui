@@ -7,16 +7,23 @@ import {
 } from '../TimePicker/TimePicker';
 import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
 
+// @typescript-to-proptypes-generate
 /**
- * @ignore - do not document.
+ *
+ * API:
+ *
+ * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
  */
-/* @typescript-to-proptypes-generate */
 const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(MobileWrapper, {
   name: 'MuiMobileTimePicker',
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof MobileWrapper>;
 
-(MobileTimePicker as any).propTypes = {
+if (process.env.NODE_ENV !== 'production') {
+  (MobileTimePicker as any).displayName = 'MobileTimePicker';
+}
+
+MobileTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -279,7 +286,7 @@ const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(Mobi
    * Array of views to show.
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
-};
+} as any;
 
 export type MobileTimePickerProps = React.ComponentProps<typeof MobileTimePicker>;
 

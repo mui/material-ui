@@ -1,61 +1,76 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { deepmerge } from '@material-ui/utils';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
+import { getIconUtilityClass } from './iconClasses';
 
-export const styles = (theme) => ({
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
+    ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { color, fontSize, classes } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      color !== 'inherit' && `color${capitalize(color)}`,
+      `fontSize${capitalize(fontSize)}`,
+    ],
+  };
+
+  return composeClasses(slots, getIconUtilityClass, classes);
+};
+
+const IconRoot = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiIcon',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    userSelect: 'none',
-    fontSize: theme.typography.pxToRem(24),
-    width: '1em',
-    height: '1em',
-    // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
-    // To remove at some point.
-    overflow: 'hidden',
-    display: 'inline-block', // allow overflow hidden to take action
-    textAlign: 'center', // support non-square icon
-    flexShrink: 0,
-  },
-  /* Styles applied to the root element if `color="primary"`. */
-  colorPrimary: {
-    color: theme.palette.primary.main,
-  },
-  /* Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: {
-    color: theme.palette.secondary.main,
-  },
-  /* Styles applied to the root element if `color="action"`. */
-  colorAction: {
-    color: theme.palette.action.active,
-  },
-  /* Styles applied to the root element if `color="error"`. */
-  colorError: {
-    color: theme.palette.error.main,
-  },
-  /* Styles applied to the root element if `color="disabled"`. */
-  colorDisabled: {
-    color: theme.palette.action.disabled,
-  },
-  /* Styles applied to the root element if `fontSize="inherit"`. */
-  fontSizeInherit: {
-    fontSize: 'inherit',
-  },
-  /* Styles applied to the root element if `fontSize="small"`. */
-  fontSizeSmall: {
-    fontSize: theme.typography.pxToRem(20),
-  },
-  /* Styles applied to the root element if `fontSize="large"`. */
-  fontSizeLarge: {
-    fontSize: theme.typography.pxToRem(36),
-  },
-});
+  userSelect: 'none',
+  width: '1em',
+  height: '1em',
+  // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
+  // To remove at some point.
+  overflow: 'hidden',
+  display: 'inline-block', // allow overflow hidden to take action
+  textAlign: 'center', // support non-square icon
+  flexShrink: 0,
+  fontSize: {
+    inherit: 'inherit',
+    small: theme.typography.pxToRem(20),
+    medium: theme.typography.pxToRem(24),
+    large: theme.typography.pxToRem(36),
+  }[styleProps.fontSize],
+  // TODO v5 deprecate, v6 remove for sx
+  color: {
+    primary: theme.palette.primary.main,
+    secondary: theme.palette.secondary.main,
+    action: theme.palette.action.active,
+    error: theme.palette.error.main,
+    disabled: theme.palette.action.disabled,
+    inherit: undefined,
+  }[styleProps.color],
+}));
 
-const Icon = React.forwardRef(function Icon(props, ref) {
+const Icon = React.forwardRef(function Icon(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiIcon' });
   const {
     baseClassName = 'material-icons',
-    classes,
     className,
     color = 'inherit',
     component: Component = 'span',
@@ -63,20 +78,28 @@ const Icon = React.forwardRef(function Icon(props, ref) {
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    baseClassName,
+    color,
+    component: Component,
+    fontSize,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
+    <IconRoot
+      as={Component}
       className={clsx(
         baseClassName,
         // Prevent the translation of the text content.
         // The font relies on the exact text content to render the icon.
         'notranslate',
         classes.root,
-        {
-          [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'medium',
-        },
         className,
       )}
+      styleProps={styleProps}
       aria-hidden
       ref={ref}
       {...other}
@@ -122,8 +145,12 @@ Icon.propTypes = {
    * @default 'medium'
    */
   fontSize: PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
 Icon.muiName = 'Icon';
 
-export default withStyles(styles, { name: 'MuiIcon' })(Icon);
+export default Icon;

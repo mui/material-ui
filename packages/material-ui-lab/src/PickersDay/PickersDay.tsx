@@ -17,7 +17,6 @@ export type PickersDayClassKey =
   | 'dayOutsideMonth'
   | 'hiddenDaySpacingFiller'
   | 'today'
-  | 'dayLabel'
   | 'selected'
   | 'disabled';
 
@@ -70,9 +69,6 @@ export const styles: MuiStyles<PickersDayClassKey> = (theme): StyleRules<Pickers
     '&:not($selected)': {
       border: `1px solid ${theme.palette.text.secondary}`,
     },
-  },
-  dayLabel: {
-    // need for overrides
   },
   selected: {},
   disabled: {},
@@ -243,7 +239,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
       onClick={handleClick}
       {...other}
     >
-      <span className={classes.dayLabel}>{utils.format(day, 'dayOfMonth')}</span>
+      {utils.format(day, 'dayOfMonth')}
     </ButtonBase>
   );
 });
@@ -270,7 +266,7 @@ export const areDayPropsEqual = (
   );
 };
 
-(PickersDay as any).propTypes = {
+PickersDay.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -366,7 +362,7 @@ export const areDayPropsEqual = (
    * If `true`, renders as today date.
    */
   today: PropTypes.bool,
-};
+} as any;
 
 export default withStyles(styles, { name: 'MuiPickersDay' })(
   React.memo(PickersDay, areDayPropsEqual),

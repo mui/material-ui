@@ -162,11 +162,11 @@ async function getNextPagesSize() {
 }
 
 async function run(argv) {
-  const { analyze } = argv;
+  const { analyze, accurateBundles } = argv;
 
   const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/size-snapshot.json')];
   const bundleSizes = lodash.fromPairs([
-    ...(await getWebpackSizes({ analyze })),
+    ...(await getWebpackSizes({ analyze, accurateBundles })),
     ...lodash.flatten(await Promise.all(rollupBundles.map(getRollupSize))),
     ...(await getNextPagesSize()),
   ]);
@@ -187,7 +187,7 @@ yargs
         })
         .option('accurateBundles', {
           default: false,
-          describe: 'Displays used bundles accurately at the cost of accurate bundle size.',
+          describe: 'Displays used bundles accurately at the cost of more CPU cycles.',
           type: 'boolean',
         });
     },

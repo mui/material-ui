@@ -1,4 +1,5 @@
-import { PropTypes, InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { PropTypes, InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 
 export interface AppBarProps extends StandardProps<PaperProps> {
@@ -41,6 +42,10 @@ export interface AppBarProps extends StandardProps<PaperProps> {
    * @default 'fixed'
    */
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type AppBarClassKey = keyof NonNullable<AppBarProps['classes']>;

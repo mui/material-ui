@@ -1,71 +1,112 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
+import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 
-export const styles = (theme) => ({
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
+    ...(!styleProps.disableGutters && styles.gutters),
+    ...(styleProps.inset && styles.inset),
+    ...(!styleProps.disableSticky && styles.sticky),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, color, disableGutters, inset, disableSticky } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      color !== 'default' && `color${capitalize(color)}`,
+      !disableGutters && 'gutters',
+      inset && 'inset',
+      !disableSticky && 'sticky',
+    ],
+  };
+
+  return composeClasses(slots, getListSubheaderUtilityClass, classes);
+};
+
+const ListSubheaderRoot = experimentalStyled(
+  'li',
+  {},
+  {
+    name: 'MuiListSubheader',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    boxSizing: 'border-box',
-    lineHeight: '48px',
-    listStyle: 'none',
-    color: theme.palette.text.secondary,
-    fontFamily: theme.typography.fontFamily,
-    fontWeight: theme.typography.fontWeightMedium,
-    fontSize: theme.typography.pxToRem(14),
-  },
+  boxSizing: 'border-box',
+  lineHeight: '48px',
+  listStyle: 'none',
+  color: theme.palette.text.secondary,
+  fontFamily: theme.typography.fontFamily,
+  fontWeight: theme.typography.fontWeightMedium,
+  fontSize: theme.typography.pxToRem(14),
   /* Styles applied to the root element if `color="primary"`. */
-  colorPrimary: {
+  ...(styleProps.color === 'primary' && {
     color: theme.palette.primary.main,
-  },
+  }),
   /* Styles applied to the root element if `color="inherit"`. */
-  colorInherit: {
+  ...(styleProps.color === 'inherit' && {
     color: 'inherit',
-  },
-  /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
-  gutters: {
+  }),
+  /* Styles applied to the root element unless `disableGutters={true}`. */
+  ...(!styleProps.disableGutters && {
     paddingLeft: 16,
     paddingRight: 16,
-  },
+  }),
   /* Styles applied to the root element if `inset={true}`. */
-  inset: {
+  ...(styleProps.inset && {
     paddingLeft: 72,
-  },
+  }),
   /* Styles applied to the root element unless `disableSticky={true}`. */
-  sticky: {
+  ...(!styleProps.disableSticky && {
     position: 'sticky',
     top: 0,
     zIndex: 1,
     backgroundColor: 'inherit',
-  },
-});
+  }),
+}));
 
-const ListSubheader = React.forwardRef(function ListSubheader(props, ref) {
+const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiListSubheader' });
   const {
-    classes,
     className,
     color = 'default',
-    component: Component = 'li',
+    component = 'li',
     disableGutters = false,
     disableSticky = false,
     inset = false,
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    color,
+    component,
+    disableGutters,
+    disableSticky,
+    inset,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        {
-          [classes[`color${capitalize(color)}`]]: color !== 'default',
-          [classes.inset]: inset,
-          [classes.sticky]: !disableSticky,
-          [classes.gutters]: !disableGutters,
-        },
-        className,
-      )}
+    <ListSubheaderRoot
+      as={component}
+      className={clsx(classes.root, className)}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     />
   );
@@ -113,6 +154,10 @@ ListSubheader.propTypes = {
    * @default false
    */
   inset: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiListSubheader' })(ListSubheader);
+export default ListSubheader;

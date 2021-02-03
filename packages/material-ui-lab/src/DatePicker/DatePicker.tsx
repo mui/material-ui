@@ -62,20 +62,31 @@ export const datePickerConfig = {
   },
 };
 
-export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = <TDate>(
+export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
   props: BaseDatePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
-) => JSX.Element;
+) => JSX.Element) & { propTypes?: any };
 
 /**
- * @ignore - do not document.
+ *
+ * Demos:
+ *
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
+ *
+ * API:
+ *
+ * - [DatePicker API](https://material-ui.com/api/date-picker/)
  */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(ResponsiveWrapper, {
   name: 'MuiDatePicker',
   ...datePickerConfig,
 }) as DatePickerGenericComponent<typeof MobileWrapper>;
 
-(DatePicker as any).propTypes = {
+if (process.env.NODE_ENV !== 'production') {
+  (DatePicker as any).displayName = 'DatePicker';
+}
+
+DatePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -295,7 +306,7 @@ const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(R
     PropTypes.number,
     PropTypes.string,
   ]),
-};
+} as any;
 
 export type DatePickerProps = React.ComponentProps<typeof DatePicker>;
 

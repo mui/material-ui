@@ -13,9 +13,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-function Copyright() {
+function Copyright(props: any) {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="textSecondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -117,9 +117,7 @@ export default function SignInSide() {
                 </Link>
               </Grid>
             </Grid>
-            <Box sx={{ mt: 5 }}>
-              <Copyright />
-            </Box>
+            <Copyright sx={{ mt: 5 }} />
           </Box>
         </Box>
       </Grid>

@@ -1,20 +1,12 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { createMount, describeConformanceV5 } from 'test/utils';
 import ListItemAvatar from './ListItemAvatar';
+import classes from './listItemAvatarClasses';
 
 describe('<ListItemAvatar />', () => {
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(
-      <ListItemAvatar>
-        <div />
-      </ListItemAvatar>,
-    );
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <ListItemAvatar>
       <div />
     </ListItemAvatar>,
@@ -22,8 +14,9 @@ describe('<ListItemAvatar />', () => {
       classes,
       inheritComponent: 'div',
       mount,
+      muiName: 'MuiListItemAvatar',
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp'],
+      skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
 });
