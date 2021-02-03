@@ -103,7 +103,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   );
 });
 
-(MonthPicker as any).propTypes = {
+MonthPicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -144,7 +144,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
    * @ignore
    */
   onMonthChange: PropTypes.func,
-};
+} as any;
 
 export default withStyles(styles, { name: 'MuiMonthPicker' })(MonthPicker) as <TDate>(
   props: MonthPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,

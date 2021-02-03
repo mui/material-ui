@@ -260,7 +260,7 @@ DesktopTimePicker.propTypes = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
-};
+} as any;
 
 export type DesktopTimePickerProps = React.ComponentProps<typeof DesktopTimePicker>;
 

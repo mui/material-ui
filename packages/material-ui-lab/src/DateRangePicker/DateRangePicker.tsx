@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
   (DateRangePicker as any).displayName = 'DateRangePicker';
 }
 
-(DateRangePicker as any).propTypes = {
+DateRangePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -373,7 +373,7 @@ if (process.env.NODE_ENV !== 'production') {
       PropTypes.string,
     ]),
   ).isRequired,
-};
+} as any;
 
 export type DateRangePickerProps = React.ComponentProps<typeof DateRangePicker>;
 

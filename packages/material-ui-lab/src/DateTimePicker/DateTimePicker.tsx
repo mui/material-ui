@@ -125,9 +125,9 @@ export const dateTimePickerConfig = {
   DefaultToolbarComponent: DateTimePickerToolbar,
 };
 
-export type DateTimePickerGenericComponent<TWrapper extends SomeWrapper> = <TDate>(
+export type DateTimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
   props: BaseDateTimePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
-) => JSX.Element;
+) => JSX.Element) & { propTypes?: unknown };
 
 /**
  * @ignore - do not document.
@@ -145,7 +145,7 @@ if (process.env.NODE_ENV !== 'production') {
   (DateTimePicker as any).displayName = 'DateTimePicker';
 }
 
-(DateTimePicker as any).propTypes = {
+DateTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -573,7 +573,7 @@ if (process.env.NODE_ENV !== 'production') {
   views: PropTypes.arrayOf(
     PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
-};
+} as any;
 
 export type DateTimePickerProps = React.ComponentProps<typeof DateTimePicker>;
 

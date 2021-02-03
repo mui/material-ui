@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   (StaticDateTimePicker as any).displayName = 'StaticDateTimePicker';
 }
 
-(StaticDateTimePicker as any).propTypes = {
+StaticDateTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -408,7 +408,7 @@ if (process.env.NODE_ENV !== 'production') {
   views: PropTypes.arrayOf(
     PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
-};
+} as any;
 
 export type StaticDateTimePickerProps = React.ComponentProps<typeof StaticDateTimePicker>;
 

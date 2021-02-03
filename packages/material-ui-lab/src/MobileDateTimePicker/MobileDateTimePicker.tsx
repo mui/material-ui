@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   (MobileDateTimePicker as any).displayName = 'MobileDateTimePicker';
 }
 
-(MobileDateTimePicker as any).propTypes = {
+MobileDateTimePicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -437,7 +437,7 @@ if (process.env.NODE_ENV !== 'production') {
   views: PropTypes.arrayOf(
     PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
-};
+} as any;
 
 export type MobileDateTimePickerProps = React.ComponentProps<typeof MobileDateTimePicker>;
 

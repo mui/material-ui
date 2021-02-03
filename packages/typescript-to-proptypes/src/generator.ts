@@ -9,7 +9,7 @@ export interface GenerateOptions {
    * .propTypes = { ... } as any
    * ```
    */
-  disableTypescriptPropTypesValidation?: boolean;
+  disablePropTypesTypeChecking?: boolean;
   /**
    * Enable/disable the default sorting (ascending) or provide your own sort function
    * @default true
@@ -94,7 +94,7 @@ function defaultSortLiteralUnions(a: t.LiteralType, b: t.LiteralType) {
  */
 export function generate(component: t.Component, options: GenerateOptions = {}): string {
   const {
-    disableTypescriptPropTypesValidation = false,
+    disablePropTypesTypeChecking = false,
     importedName = 'PropTypes',
     includeJSDoc = true,
     sortProptypes = true,
@@ -316,11 +316,7 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     options.comment &&
     `// ${options.comment.split(/\r?\n/gm).reduce((prev, curr) => `${prev}\n// ${curr}`)}\n`;
 
-  const componentNameNode = disableTypescriptPropTypesValidation
-    ? `(${component.name} as any)`
-    : component.name;
-
-  return `${componentNameNode}.propTypes = {\n${
-    comment !== undefined ? comment : ''
-  }${generated}\n}`;
+  return `${component.name}.propTypes = {\n${comment !== undefined ? comment : ''}${generated}\n}${
+    disablePropTypesTypeChecking ? ' as any' : ''
+  }`;
 }

@@ -306,7 +306,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
   );
 }
 
-(ClockPicker as any).propTypes = {
+ClockPicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -428,7 +428,7 @@ function ClockPicker<TDate>(props: ClockPickerProps<TDate> & WithStyles<typeof s
    * @ignore
    */
   view: PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired,
-};
+} as any;
 
 export default withStyles(styles, { name: 'MuiClockPicker' })(ClockPicker) as <TDate>(
   props: ClockPickerProps<TDate>,

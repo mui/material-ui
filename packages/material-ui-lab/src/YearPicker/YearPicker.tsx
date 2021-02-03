@@ -174,7 +174,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
   );
 });
 
-(YearPicker as any).propTypes = {
+YearPicker.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -232,7 +232,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
    * Works like `shouldDisableDate` but for year selection view. @DateIOType.
    */
   shouldDisableYear: PropTypes.func,
-};
+} as any;
 
 export default withStyles(styles, { name: 'MuiYearPicker' })(YearPicker) as <TDate>(
   props: YearPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,

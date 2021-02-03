@@ -217,7 +217,7 @@ StaticDatePicker.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-};
+} as any;
 
 export type StaticDatePickerProps = React.ComponentProps<typeof StaticDatePicker>;
 

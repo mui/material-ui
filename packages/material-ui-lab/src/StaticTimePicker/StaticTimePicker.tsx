@@ -257,7 +257,7 @@ StaticTimePicker.propTypes = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
-};
+} as any;
 
 export type StaticTimePickerProps = React.ComponentProps<typeof StaticTimePicker>;
 
