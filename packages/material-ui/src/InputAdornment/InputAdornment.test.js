@@ -184,9 +184,9 @@ describe('<InputAdornment />', () => {
       );
       const adornment = container.firstChild;
 
-      expect(adornment.firstChild).to.have.property('nodeName', 'SPAN');
-      expect(adornment.firstChild).to.have.property('className', 'notranslate');
-      expect(adornment.childNodes[1]).to.have.property('nodeName', 'DIV');
+      expect(adornment.firstChild).to.have.tagName('span');
+      expect(adornment.firstChild).to.have.class('notranslate');
+      expect(adornment.childNodes[1]).to.have.tagName('div');
     });
   });
 
