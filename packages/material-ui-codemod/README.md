@@ -121,7 +121,30 @@ Updates breakpoint values to match new logic.
 ```
 
 ```sh
-find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/theme-breakpointst.js
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/theme-breakpoints.js
+```
+
+#### `theme-spacing`
+
+Removes the 'px' suffix from some template strings. 
+
+```diff
+`${theme.spacing(2)}px`
+`${theme.spacing(2)}px ${theme.spacing(4)}px`
+`${theme.spacing(2)}`
+`${theme.spacing(2)} ${theme.spacing(4)}`
+
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/theme-spacing.js
+```
+
+Note that if there are calculations using `theme.spacing()`, these will need to be resolved manually. Consider using CSS calc:
+
+```
+-`${theme.spacing(2) - 1}px`
++`calc(${theme.spacing(2)} - 1px)`
 ```
 
 ### v4.0.0
