@@ -2,11 +2,11 @@
 
 <p class="description">Yeah, v5 has been released!</p>
 
-Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
+If you're looking for the v4 docs, you can [find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress.
-> Have you upgraded your site and run into something that's not covered here?
-> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md).
+> If you have upgraded your site and run into something that's not covered here, please
+> [add your changes on GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md).
 
 ## Introduction
 
@@ -200,9 +200,9 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 +}));
 ```
 
-The following changes are supported by the adapter.
+##### Supported changes
 
-#### Changes
+The following changes are supported by the adapter:
 
 - The "gutters" abstraction hasn't proven to be used frequently enough to be valuable.
 
@@ -253,7 +253,7 @@ The following changes are supported by the adapter.
   +});
   ```
 
-- The components' definitions inside the theme were restructured under the `components` key, to allow people easier discoverability about the definitions regarding one component.
+- The components' definitions in the theme were restructure under the `components` key, to allow for easier discoverability of the definitions related to any one component.
 
 1. `props`
 
@@ -345,9 +345,11 @@ const theme = createTheme({
 +<Box sx={{ color: 'primary.main' }} />
 ```
 
+(Note that the system grid function isn't documented in v4.)
+
 ### Core components
 
-As the core components use emotion as a styled engine, the props used by emotion are not intercepted. The prop `as` in the following codesnippet will not be propagated to the `SomeOtherComponent`.
+As the core components use emotion as their style engine, the props used by emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
 
 `<MuiComponent component={SomeOtherComponent} as="button" />`
 
@@ -513,6 +515,8 @@ As the core components use emotion as a styled engine, the props used by emotion
 -<Box gridGap="10px">
 +<Box sx={{ gap: '10px' }}>
 ```
+
+(Note that the system grid function isn't documented in v4.)
 
 ```diff
 -<Box gridColumnGap="10px" gridRowGap="20px">
