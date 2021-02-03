@@ -375,7 +375,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+   You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
 - `renderOption` should now return the full DOM structure of the option.
@@ -476,7 +476,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Box
 
-- The system props have been deprecated in v5, and replaced with the `sx` prop.
+- The system props have been deprecated in v5, and replaced with the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the why behind the change of API.
 
   ```diff
   -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
@@ -484,7 +484,8 @@ As the core components use emotion as a styled engine, the props used by emotion
   ```
 
   [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
-  You can [read this section](/system/basics/#api-tradeoff) for the why behind the change of API.
+
+  You can use the [`box-sx-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) for automatic migration.
 
 - The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit value, in `px`.
 
@@ -1012,7 +1013,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import usePagination from '@material-ui/core/usePagination';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
 
@@ -1098,7 +1099,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import Rating from '@material-ui/core/Rating';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Change the default empty icon to improve accessibility.
   If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
@@ -1170,7 +1171,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import Skeleton from '@material-ui/core/Skeleton';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
 
@@ -1251,7 +1252,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+   You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Stepper
 
@@ -1411,7 +1412,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +<TextField value="Outlined" />
   ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+  You can use the [`variant-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) for automatic migration.
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
@@ -1498,7 +1499,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
-  You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+   You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Tooltip
 

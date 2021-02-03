@@ -11,18 +11,11 @@ APIs.
 
 ## Setup & Run
 
-<<<<<<< HEAD
 - `npm install -D @material-ui/codemod@next` <!-- #default-branch-switch -->
 - `npx jscodeshift -t <url-to-codemod-script> <path>`
   - Applies the transform script specified in `<url-to-codemod-script>` recursively to `<path>`
   - Use the `-d` option for a dry-run and use `-p` to print the output for comparison
   - use the `--extensions tsx --parser tsx` options to convert TypeScript sources
-=======
-- `npm install -D @material-ui/codemod`
-- `npx jscodeshift -t node_modules/@material-ui/codemod/<version>/<codemod-script> <path>`
-- Use the `-d` option for a dry-run and use `-p` to print the output
-  for comparison
->>>>>>> [codemod] fade-rename-alpha
 
 ## Included Scripts
 
