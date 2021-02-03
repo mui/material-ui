@@ -1,6 +1,10 @@
 version: 2.1
 
 parameters:
+  react-dist-tag:
+    description: The dist-tag of react to be used
+    type: string
+    default: stable
   workflow:
     description: The name of the workflow to run
     type: string
@@ -11,7 +15,7 @@ defaults: &defaults
     react-dist-tag:
       description: The dist-tag of react to be used
       type: string
-      default: stable
+      default: << pipeline.parameters.react-dist-tag >>
     test-gate:
       description: A particular type of tests that should be run
       type: string
