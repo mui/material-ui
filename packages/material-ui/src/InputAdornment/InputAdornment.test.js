@@ -166,13 +166,28 @@ describe('<InputAdornment />', () => {
 
   it('should render children', () => {
     const { container } = render(
-      <InputAdornment position="start">
+      <InputAdornment position="end">
         <div>foo</div>
       </InputAdornment>,
     );
     const adornment = container.firstChild;
 
     expect(adornment.firstChild).to.have.property('nodeName', 'DIV');
+  });
+
+  describe('prop: position', () => {
+    it('should render span for vertical baseline alignment', () => {
+      const { container } = render(
+        <InputAdornment position="start">
+          <div>foo</div>
+        </InputAdornment>,
+      );
+      const adornment = container.firstChild;
+
+      expect(adornment.firstChild).to.have.tagName('span');
+      expect(adornment.firstChild).to.have.class('notranslate');
+      expect(adornment.childNodes[1]).to.have.tagName('div');
+    });
   });
 
   it('applies a size small class inside <FormControl size="small" />', () => {
