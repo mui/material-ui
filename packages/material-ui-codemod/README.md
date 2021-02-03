@@ -109,6 +109,21 @@ This codemod is **non-idempotent** (`variant="standard"` would be added on a sub
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v5.0.0/variant-prop.js ./src
 ```
 
+#### `theme-breakpoints`
+
+Updates breakpoint values to match new logic.
+
+```diff
+-theme.breakpoints.down('sm')
+-theme.breakpoints.between('sm', 'md')
++theme.breakpoints.down('md')
++theme.breakpoints.between('sm', 'lg')
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/theme-breakpointst.js
+```
+
 ### v4.0.0
 
 #### `theme-spacing-api`

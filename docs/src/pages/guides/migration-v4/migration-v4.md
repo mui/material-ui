@@ -156,6 +156,8 @@ export default function PlainCssPriority() {
   +theme.breakpoints.up('sm') // '@media (min-width:600px)'
   ```
 
+  You can use the [`theme-breakpoints` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#theme-breakpoints) for automatic migration of `theme.breakpoints`.
+
   ```diff
   -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
   +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
@@ -375,7 +377,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
 
-   You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 - Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
 - `renderOption` should now return the full DOM structure of the option.
@@ -841,7 +843,7 @@ As the core components use emotion as a styled engine, the props used by emotion
     },
   });
   ```
-  
+
   You can use the [`grid-justify-justifycontent` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#grid-justify-justifycontent) for automatic migration.
 
 ### GridList
@@ -1252,7 +1254,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
 
-   You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Stepper
 
@@ -1499,7 +1501,7 @@ As the core components use emotion as a styled engine, the props used by emotion
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
-   You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Tooltip
 
