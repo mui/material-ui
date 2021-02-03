@@ -10,7 +10,6 @@ describe('<StaticDatePicker /> keyboard interactions', () => {
 
   describe('Calendar keyboard navigation', () => {
     it('autofocus selected day on mount', () => {
-      // Important: Use <StaticDatePicker /> here in order to avoid async waiting for focus because of packages/material-ui-lab/src/internal/pickers/hooks/useCanAutoFocus.tsx logic
       render(
         <StaticDatePicker
           allowKeyboardControl // required to enable focus management in static mode
@@ -33,7 +32,6 @@ describe('<StaticDatePicker /> keyboard interactions', () => {
       { keyCode: 40, key: 'ArrowDown', expectFocusedDay: 'Aug 20, 2020' },
     ].forEach(({ key, keyCode, expectFocusedDay }) => {
       it(key, () => {
-        // Important: Use <StaticDatePicker /> here in order to avoid async waiting for focus because of packages/material-ui-lab/src/internal/pickers/hooks/useCanAutoFocus.tsx logic
         render(
           <StaticDatePicker
             allowKeyboardControl // required to enable focus management in static mode
