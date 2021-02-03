@@ -433,7 +433,7 @@ const synonyms = {
   Maximize: 'line shape',
   MeetingRoom: 'door logout signout',
   Memory: 'chip',
-  Menu: 'hamburger',
+  Menu: 'hamburger playlist',
   MenuBook: 'page',
   MenuOpen: 'chevron hamburger left',
   MergeType: 'arrow',
