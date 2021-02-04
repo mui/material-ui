@@ -116,6 +116,13 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
+## Image tooltips
+
+You can also include images within tooltips in cases where you wish to show an enlarged 
+version.
+
+{{"demo": "pages/components/tooltips/ImageTooltips.js"}}
+
 ## Virtual element
 
 In the event you need to implement a custom placement, you can use the `anchorEl` prop:
