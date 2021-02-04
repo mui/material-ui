@@ -76,6 +76,7 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 
 The documentation site is built with Material-UI and contains examples of all the components.
 This is a great place to experiment with your changes.
+It's the local development environment used by the maintainers.
 
 To get started:
 
