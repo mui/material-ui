@@ -72,10 +72,7 @@ git push -u origin HEAD
 
 The core team is monitoring for Pull Requests. We will review your Pull Request and either merge it, request changes to it, or close it with an explanation.
 
-### Trying changes on the documentation site
-
-The documentation site is built with Material-UI and contains examples of all the components.
-This is a great place to experiment with your changes.
+### Local dev environment
 
 To get started:
 
@@ -83,8 +80,8 @@ To get started:
 yarn start
 ```
 
-You can now access the documentation site [locally](http://localhost:3000).
-Changes to the docs will hot reload the site.
+This starts the documentation site at [http://localhost:3000](http://localhost:3000). The documentation site is built with Material-UI and contains examples of all the components. This is also used for development of Core MUI components locally.
+Changes to the docs as well as core components will hot reload the site. 
 
 ### How to increase the chance of being accepted?
 
