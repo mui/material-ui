@@ -4,6 +4,7 @@ import { createPopper } from '@popperjs/core';
 import { chainPropTypes, refType, HTMLElementType } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';
+import ownerDocument from '../utils/ownerDocument';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -42,7 +43,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   const {
     anchorEl,
     children,
-    container,
+    container: containerProp,
     disablePortal = false,
     keepMounted = false,
     modifiers,
@@ -210,6 +211,12 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       onExited: handleExited,
     };
   }
+
+  // If the container prop is provided, use that
+  // If the anchorEl prop is provided, use its parent body element as the container
+  // If neither are provided let the Modal take care of choosing the container
+  const container =
+    containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
   return (
     <Portal disablePortal={disablePortal} container={container}>
