@@ -118,7 +118,7 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 ## Image tooltips
 
-You can also include images within tooltips in cases where you wish to show an enlarged 
+You can also include images within tooltips in cases where you wish to show an enlarged
 version.
 
 {{"demo": "pages/components/tooltips/ImageTooltips.js"}}
