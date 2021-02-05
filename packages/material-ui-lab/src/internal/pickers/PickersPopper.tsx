@@ -146,8 +146,8 @@ function useClickAwayListener(
 
   React.useEffect(() => {
     // TODO This behavior is not tested automatically.
-    // It's unclear whether this is due to different update semantics in test (batched in act() vs discrete on click).
-    // Or if this is a timing related issues due to different Transition components.
+    // It's unclear whether this is due to different update semantics in test (batched in act() vs discrete on click),
+    // or if this is a timing related issues due to different Transition components.
     // Once we get rid of all the manual scheduling (e.g. setTimeout(update, 0)) we can revisit this code+test.
     if (active) {
       const doc = ownerDocument(nodeRef.current);
