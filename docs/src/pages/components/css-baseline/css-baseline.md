@@ -67,7 +67,23 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ### Scrollbars
 
-In dark mode, the colors of the scrollbars are customized to provide a better contrast.
+The colors of the scrollbars can be customized to provide a better contrast. Add this code to your theme (for dark mode).
+
+```jsx
+import { darkScrollbar } from '@material-ui/system';
+
+...
+
+createMuiTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: theme.palette.mode === 'dark' ? darkScrollbar() : {},
+      },
+    },
+  },
+})
+```
 
 ### Typography
 

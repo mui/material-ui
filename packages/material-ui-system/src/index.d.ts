@@ -329,3 +329,5 @@ export {
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
+
+export function darkScrollbar(): object;
