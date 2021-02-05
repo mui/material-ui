@@ -77,120 +77,100 @@ const ButtonGroupRoot = experimentalStyled(
   }),
   [`& .${buttonGroupClasses.grouped}`]: {
     minWidth: 40,
-    ...(styleProps.orientation === 'horizontal' && {
-      '&:not(:first-of-type)': {
+    '&:not(:first-of-type)': {
+      ...(styleProps.orientation === 'horizontal' && {
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
-      },
-      '&:not(:last-of-type)': {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-      },
-    }),
-    ...(styleProps.orientation === 'vertical' && {
-      '&:not(:first-of-type)': {
+      }),
+      ...(styleProps.orientation === 'vertical' && {
         borderTopRightRadius: 0,
         borderTopLeftRadius: 0,
-      },
-      '&:not(:last-of-type)': {
+      }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.orientation === 'horizontal' && {
+          marginLeft: -1,
+        }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.orientation === 'vertical' && {
+          marginTop: -1,
+        }),
+    },
+    '&:not(:last-of-type)': {
+      ...(styleProps.orientation === 'horizontal' && {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+      }),
+      ...(styleProps.orientation === 'vertical' && {
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0,
-      },
-    }),
-    ...(styleProps.variant === 'text' &&
-      styleProps.orientation === 'horiztonal' && {
-        '&:not(:last-of-type)': {
+      }),
+      ...(styleProps.variant === 'text' &&
+        styleProps.orientation === 'horizontal' && {
           borderRight: `1px solid ${
             theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
           }`,
-        },
-      }),
-    ...(styleProps.variant === 'text' &&
-      styleProps.orientation === 'vertical' && {
-        '&:not(:last-of-type)': {
+        }),
+      ...(styleProps.variant === 'text' &&
+        styleProps.orientation === 'vertical' && {
           borderBottom: `1px solid ${
             theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
           }`,
-        },
-      }),
-    ...(styleProps.variant === 'text' &&
-      styleProps.color === 'primary' && {
-        '&:not(:last-of-type)': {
+        }),
+      ...(styleProps.variant === 'text' &&
+        styleProps.color === 'primary' && {
           borderColor: alpha(theme.palette.primary.main, 0.5),
-        },
-      }),
-    ...(styleProps.variant === 'text' &&
-      styleProps.color === 'secondary' && {
-        '&:not(:last-of-type)': {
+        }),
+      ...(styleProps.variant === 'text' &&
+        styleProps.color === 'secondary' && {
           borderColor: alpha(theme.palette.secondary.main, 0.5),
-        },
-      }),
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.orientation === 'horizontal' && {
-        '&:not(:first-of-type)': {
-          marginLeft: -1,
-        },
-        '&:not(:last-of-type)': {
+        }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.orientation === 'horizontal' && {
           borderRightColor: 'transparent',
-        },
-      }),
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.orientation === 'vertical' && {
-        '&:not(:first-of-type)': {
-          marginTop: -1,
-        },
-        '&:not(:last-of-type)': {
+        }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.orientation === 'vertical' && {
           borderBottomColor: 'transparent',
-        },
-      }),
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.color === 'primary' && {
-        '&:hover': {
-          borderColor: theme.palette.primary.main,
-        },
-      }),
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.color === 'secondary' && {
-        '&:hover': {
-          borderColor: theme.palette.secondary.main,
-        },
-      }),
-    ...(styleProps.variant === 'contained' && {
-      boxShadow: 'none',
-      '&:hover': {
-        boxShadow: 'none',
-      },
-    }),
-    ...(styleProps.variant === 'contained' &&
-      styleProps.orientation === 'horizontal' && {
-        '&:not(:last-of-type)': {
+        }),
+      ...(styleProps.variant === 'contained' &&
+        styleProps.orientation === 'horizontal' && {
           borderRight: `1px solid ${theme.palette.grey[400]}`,
           '&.Mui-disabled': {
             borderRight: `1px solid ${theme.palette.action.disabled}`,
           },
-        },
-      }),
-    ...(styleProps.variant === 'contained' &&
-      styleProps.orientation === 'vertical' && {
-        '&:not(:last-of-type)': {
+        }),
+      ...(styleProps.variant === 'contained' &&
+        styleProps.orientation === 'vertical' && {
           borderBottom: `1px solid ${theme.palette.grey[400]}`,
           '&.Mui-disabled': {
             borderBottom: `1px solid ${theme.palette.action.disabled}`,
           },
-        },
-      }),
-    ...(styleProps.variant === 'contained' &&
-      styleProps.color === 'primary' && {
-        '&:not(:last-of-type)': {
+        }),
+      ...(styleProps.variant === 'contained' &&
+        styleProps.color === 'primary' && {
           borderColor: theme.palette.primary.dark,
-        },
-      }),
-    ...(styleProps.variant === 'contained' &&
-      styleProps.color === 'secondary' && {
-        '&:not(:last-of-type)': {
+        }),
+      ...(styleProps.variant === 'contained' &&
+        styleProps.color === 'secondary' && {
           borderColor: theme.palette.secondary.dark,
-        },
+        }),
+    },
+    '&:hover': {
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.color === 'primary' && {
+          borderColor: theme.palette.primary.main,
+        }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.color === 'secondary' && {
+          borderColor: theme.palette.secondary.main,
+        }),
+      ...(styleProps.variant === 'contained' && {
+        boxShadow: 'none',
       }),
+    },
+    ...(styleProps.variant === 'contained' && {
+      boxShadow: 'none',
+    }),
   },
 }));
 
