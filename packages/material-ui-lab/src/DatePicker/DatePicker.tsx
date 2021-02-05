@@ -70,11 +70,11 @@ export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/).
+ * - [Date picker](https://material-ui.com/components/date-picker/).
  *
  * API:
  *
- * - [DatePicker API](https://material-ui.com/api/date-picker/).
+ * - [Date picker API](https://material-ui.com/api/date-picker/).
  */
 // @typescript-to-proptypes-generate
 const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(ResponsiveWrapper, {
