@@ -106,7 +106,7 @@ function useClickAwayListener(
 
     let insideDOM;
 
-    // If not enough, can use https://github.com/DieterHolvoet/event-propagation-path/blob/master/propagationPath.js. 
+    // If not enough, can use https://github.com/DieterHolvoet/event-propagation-path/blob/master/propagationPath.js.
     if (event.composedPath) {
       insideDOM = event.composedPath().indexOf(nodeRef.current) > -1;
     } else {
