@@ -83,7 +83,7 @@ function handleContainer(containerInfo, props) {
     // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
     const parent = container.parentElement;
     const scrollContainer =
-      parent.nodeName === 'HTML' && window.getComputedStyle(parent)['overflow-y'] === 'scroll'
+      parent?.nodeName === 'HTML' && window.getComputedStyle(parent)['overflow-y'] === 'scroll'
         ? parent
         : container;
 
