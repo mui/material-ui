@@ -14,17 +14,17 @@ export interface ExportedPickerModalProps {
    */
   okText?: React.ReactNode;
   /**
-   * Cancel text message
+   * Cancel text message.
    * @default "CANCEL"
    */
   cancelText?: React.ReactNode;
   /**
-   * Clear text message
+   * Clear text message.
    * @default "CLEAR"
    */
   clearText?: React.ReactNode;
   /**
-   * Today text message
+   * Today text message.
    * @default "TODAY"
    */
   todayText?: React.ReactNode;
@@ -74,8 +74,8 @@ export const styles: MuiStyles<PickersModalDialogClassKey> = {
   },
   action: {},
   withAdditionalAction: {
-    // set justifyContent to default value to fix IE11 layout bug
-    // see https://github.com/mui-org/material-ui-pickers/pull/267
+    // set justifyContent to default value to fix IE11 layout bug.
+    // see https://github.com/mui-org/material-ui-pickers/pull/267.
     justifyContent: 'flex-start',
     '& > *:first-child': {
       marginRight: 'auto',

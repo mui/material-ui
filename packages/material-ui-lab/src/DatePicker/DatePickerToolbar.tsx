@@ -57,8 +57,8 @@ const DatePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
     }
 
     // Little localization hack (Google is doing the same for android native pickers):
-    // For english localization it is convenient to include weekday into the date "Mon, Jun 1"
-    // For other locales using strings like "June 1", without weekday
+    // For english localization it is convenient to include weekday into the date "Mon, Jun 1".
+    // For other locales using strings like "June 1", without weekday.
     return /en/.test(utils.getCurrentLocaleCode())
       ? utils.format(date, 'normalDateWithWeekday')
       : utils.format(date, 'normalDate');

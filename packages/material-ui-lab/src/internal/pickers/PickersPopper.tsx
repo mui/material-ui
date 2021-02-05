@@ -87,7 +87,7 @@ function useClickAwayListener(
 
     const doc = ownerDocument(nodeRef.current);
 
-    // 1. IE11 support, which trigger the handleClickAway even after the unbind
+    // 1. IE11 support, which trigger the handleClickAway even after the unbind.
     // 2. The child might render null.
     // 3. Behave like a blur listener.
     if (
@@ -98,7 +98,7 @@ function useClickAwayListener(
       return;
     }
 
-    // Do not act if user performed touchmove
+    // Do not act if user performed touchmove.
     if (movedRef.current) {
       movedRef.current = false;
       return;
@@ -106,7 +106,7 @@ function useClickAwayListener(
 
     let insideDOM;
 
-    // If not enough, can use https://github.com/DieterHolvoet/event-propagation-path/blob/master/propagationPath.js
+    // If not enough, can use https://github.com/DieterHolvoet/event-propagation-path/blob/master/propagationPath.js. 
     if (event.composedPath) {
       insideDOM = event.composedPath().indexOf(nodeRef.current) > -1;
     } else {
@@ -145,9 +145,9 @@ function useClickAwayListener(
   }, [active, handleClickAway]);
 
   React.useEffect(() => {
-    // TODO This behavior is not tested automatically
+    // TODO This behavior is not tested automatically.
     // It's unclear whether this is due to different update semantics in test (batched in act() vs discrete on click).
-    // Or if this is a timing related issues due to different Transition components
+    // Or if this is a timing related issues due to different Transition components.
     // Once we get rid of all the manual scheduling (e.g. setTimeout(update, 0)) we can revisit this code+test.
     if (active) {
       const doc = ownerDocument(nodeRef.current);
