@@ -107,6 +107,7 @@ const overridesResolver = (props, styles) => {
     container,
     direction,
     item,
+    justifyContent,
     lg,
     md,
     sm,
@@ -123,6 +124,7 @@ const overridesResolver = (props, styles) => {
     ...(zeroMinWidth && styles.zeroMinWidth),
     ...(container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`]),
     ...(direction !== 'row' && styles[`direction-xs-${String(direction)}`]),
+    ...(justifyContent !== 'flex-start' && styles[`justify-content-xs-${String(justifyContent)}`]),
     ...(wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`]),
     ...(xs !== false && styles[`grid-xs-${String(xs)}`]),
     ...(sm !== false && styles[`grid-sm-${String(sm)}`]),
@@ -193,6 +195,7 @@ const useUtilityClasses = (styleProps) => {
     container,
     direction,
     item,
+    justifyContent,
     lg,
     md,
     sm,
@@ -211,6 +214,7 @@ const useUtilityClasses = (styleProps) => {
       zeroMinWidth && 'zeroMinWidth',
       container && spacing !== 0 && `spacing-xs-${String(spacing)}`,
       direction !== 'row' && `direction-xs-${String(direction)}`,
+      justifyContent !== 'flex-start' && `justify-content-xs-${String(justifyContent)}`,
       wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
       xs !== false && `grid-xs-${String(xs)}`,
       sm !== false && `grid-sm-${String(sm)}`,
@@ -232,6 +236,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     container = false,
     direction = 'row',
     item = false,
+    justifyContent = 'flex-start',
     lg = false,
     md = false,
     sm = false,
@@ -248,6 +253,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     container,
     direction,
     item,
+    justifyContent,
     lg,
     md,
     sm,
@@ -311,6 +317,19 @@ Grid.propTypes = {
    * @default false
    */
   item: PropTypes.bool,
+  /**
+   * Defines the the 'justify-content' style property.
+   * It is applied for all screen sizes.
+   * @default 'flex-start'
+   *  */
+  justifyContent: PropTypes.oneOf([
+    'flex-start',
+    'center',
+    'flex-end',
+    'space-between',
+    'space-around',
+    'space-evenly',
+  ]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
@@ -387,6 +406,7 @@ if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react/forbid-foreign-prop-types
     ...Grid.propTypes,
     direction: requireProp('container'),
+    justifyContent: requireProp('container'),
     lg: requireProp('item'),
     md: requireProp('item'),
     sm: requireProp('item'),
