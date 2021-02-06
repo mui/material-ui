@@ -11,8 +11,8 @@ If you're looking for the v4 docs, you can [find them here](https://material-ui.
 ## Introduction
 
 This is a reference for upgrading your site from Material-UI v4 to v5.
-While there's a lot covered here, you probably won't need to do everything for your site.
-We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v5!
+While there's a lot covered here, you probably won't need to do everything.
+We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
 
 ## Why you should migrate
 
@@ -83,9 +83,9 @@ We try to align with types released from [DefinitelyTyped](https://github.com/De
 We will not change the minimum supported version in a major version of Material-UI.
 However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
 
-### Styled engine
+### Style engine
 
-The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
+The style engine used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StylesProvider` with the `injectFirst` option at the top of your component tree. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -100,7 +100,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using emotion and have a custom cache in your app, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -355,7 +355,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### AppBar
 
-- [AppBar] Remove z-index when position static and relative
+- [AppBar] Remove z-index when position static and relative (WUT?)
 
 ### Alert
 
