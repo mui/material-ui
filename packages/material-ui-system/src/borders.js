@@ -48,12 +48,6 @@ export const borderColor = style({
 });
 
 function resolveCssProperty(props, prop, transformer) {
-  // Using a hash computation over an array iteration could be faster, but with only 28 items,
-  // it isn't worth the bundle size.
-  if (prop !== 'borderRadius') {
-    return null;
-  }
-
   const cssProperties = ['borderRadius'];
   const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
 
@@ -62,9 +56,12 @@ function resolveCssProperty(props, prop, transformer) {
 }
 
 export const borderRadius = (props) => {
-  const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
+  if (props.borderRadius) {
+    const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
+    return resolveCssProperty(props, 'borderRadius', transformer);
+  }
 
-  return props.borderRadius ? resolveCssProperty(props, 'borderRadius', transformer) : {};
+  return {};
 };
 
 borderRadius.propTypes =

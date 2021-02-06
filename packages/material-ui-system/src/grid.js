@@ -1,9 +1,30 @@
 import style from './style';
 import compose from './compose';
+import { createUnaryUnit, getStyleFromPropValue } from './spacing';
+import { handleBreakpoints } from './breakpoints';
+import responsivePropType from './responsivePropType';
 
-export const gap = style({
-  prop: 'gap',
-});
+function resolveCssProperty(props, prop, transformer) {
+  const cssProperties = ['gap'];
+  const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
+
+  const propValue = props[prop];
+  return handleBreakpoints(props, propValue, styleFromPropValue);
+}
+
+export const gap = (props) => {
+  if (props.gap) {
+    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'gap');
+    return resolveCssProperty(props, 'gap', transformer);
+  }
+
+  return {};
+};
+
+gap.propTypes =
+  process.env.NODE_ENV !== 'production' ? { gap: responsivePropType } : {};
+
+gap.filterProps = ['gap'];
 
 export const columnGap = style({
   prop: 'columnGap',
