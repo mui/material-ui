@@ -665,11 +665,12 @@ const appList = [
   },
   {
     title: 'TCES PAL',
-    description: 'Roster and guild management tool for Tom Clancy\'s Elite Squad game.',
+    description:
+      "Roster and guild management tool for Tom Clancy's Elite Squad game.",
     image: 'tcespal.jpg',
     link: 'https://tcespal.com',
     dateAdded: '2021-02-06',
-  }
+  },
 ];
 
 export default appList;
