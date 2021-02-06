@@ -12,7 +12,7 @@ import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * API:
  *
- * - [StaticTimePicker API](https://material-ui.com/api/static-time-picker/)
+ * - [Static Time Picker API](https://material-ui.com/api/static-time-picker/).
  */
 const StaticTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(StaticWrapper, {
   name: 'MuiStaticTimePicker',
@@ -57,7 +57,7 @@ StaticTimePicker.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
+   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
    * ```
@@ -88,7 +88,7 @@ StaticTimePicker.propTypes = {
    */
   disableOpenPicker: PropTypes.bool,
   /**
-   * Force static wrapper inner components to be rendered in mobile or desktop mode
+   * Force static wrapper inner components to be rendered in mobile or desktop mode.
    * @default "static"
    */
   displayStaticWrapperAs: PropTypes.oneOf(['desktop', 'mobile']),

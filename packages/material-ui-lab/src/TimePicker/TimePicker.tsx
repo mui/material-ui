@@ -82,11 +82,11 @@ export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
  *
  * Demos:
  *
- * - [Time Picker](https://material-ui.com/components/time-picker/)
+ * - [Time Picker](https://material-ui.com/components/time-picker/).
  *
  * API:
  *
- * - [TimePicker API](https://material-ui.com/api/time-picker/)
+ * - [Time Picker API](https://material-ui.com/api/time-picker/).
  */
 // @typescript-to-proptypes-generate
 const TimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(ResponsiveWrapper, {
@@ -143,7 +143,7 @@ TimePicker.propTypes = {
    */
   clearText: PropTypes.node,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
+   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
    * ```
@@ -152,7 +152,7 @@ TimePicker.propTypes = {
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
    * @default "@media (pointer: fine)"
-   * @example "@media (min-width: 720px)" or theme.breakpoints.up("sm")
+   * @example "@media (min-width: 720px)" or theme.breakpoints.up("sm").
    */
   desktopModeMediaQuery: PropTypes.string,
   /**

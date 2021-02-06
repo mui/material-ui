@@ -11,7 +11,7 @@ import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePi
  *
  * API:
  *
- * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)
+ * - [Desktop Date Picker API](https://material-ui.com/api/desktop-date-picker/).
  */
 // @typescript-to-proptypes-generate
 const DesktopDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
@@ -45,7 +45,7 @@ DesktopDatePicker.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
+   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
    * ```

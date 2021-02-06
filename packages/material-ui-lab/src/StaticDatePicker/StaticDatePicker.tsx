@@ -11,9 +11,9 @@ import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * API:
  *
- * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
+ * - [Static Date Picker API](https://material-ui.com/api/static-date-picker/).
  */
-// @typescript-to-proptypes-generate
+// @typescript-to-proptypes-generate.
 const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
   StaticWrapper,
   {
@@ -45,7 +45,7 @@ StaticDatePicker.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
+   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
    * ```
@@ -71,7 +71,7 @@ StaticDatePicker.propTypes = {
    */
   disableOpenPicker: PropTypes.bool,
   /**
-   * Force static wrapper inner components to be rendered in mobile or desktop mode
+   * Force static wrapper inner components to be rendered in mobile or desktop mode.
    * @default "static"
    */
   displayStaticWrapperAs: PropTypes.oneOf(['desktop', 'mobile']),

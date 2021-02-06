@@ -11,7 +11,7 @@ import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * API:
  *
- * - [MobileDatePicker API](https://material-ui.com/api/mobile-date-picker/)
+ * - [Mobile Date Picker API](https://material-ui.com/api/mobile-date-picker/).
  */
 // @typescript-to-proptypes-generate
 const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
@@ -60,7 +60,7 @@ MobileDatePicker.propTypes = {
    */
   clearText: PropTypes.node,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
+   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
    * ```
