@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TabsTypeMap } from '@material-ui/core/Tabs';
-import { Omit } from '@material-ui/types';
+import { DistributiveOmit } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 
 export interface TabListTypeMap<
@@ -12,7 +12,7 @@ export interface TabListTypeMap<
      * A list of `<Tab />` elements.
      */
     children?: React.ReactElement[];
-  } & Omit<TabsTypeMap['props'], 'children' | 'value'>;
+  } & DistributiveOmit<TabsTypeMap['props'], 'children' | 'value'>;
   defaultComponent: D;
 }
 /**

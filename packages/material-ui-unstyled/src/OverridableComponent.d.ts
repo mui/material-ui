@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
+import { DistributiveOmit } from '@material-ui/types';
 
 /**
  * A component whose root component can be controlled via a `component` prop.
@@ -28,7 +28,7 @@ export type OverrideProps<
   C extends React.ElementType
 > = (
   & BaseProps<M>
-  & Omit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>
+  & DistributiveOmit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>
 );
 
 /**
@@ -37,7 +37,7 @@ export type OverrideProps<
 // prettier-ignore
 export type DefaultComponentProps<M extends OverridableTypeMap> =
   & BaseProps<M>
-  & Omit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>;
+  & DistributiveOmit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>;
 
 /**
  * Props defined on the component (+ common material-ui props).

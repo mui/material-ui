@@ -1,4 +1,4 @@
-import { Omit } from '@material-ui/types';
+import { DistributiveOmit } from '@material-ui/types';
 import { ListItemTypeMap, ListItemProps } from '../ListItem';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendButtonBase } from '../ButtonBase';
@@ -7,7 +7,7 @@ export type MenuItemClassKey = keyof NonNullable<MenuItemTypeMap['props']['class
 
 export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P &
-    Omit<ListItemTypeMap<P, D>['props'], 'children'> & {
+    DistributiveOmit<ListItemTypeMap<P, D>['props'], 'children'> & {
       /**
        * The content of the component.
        */

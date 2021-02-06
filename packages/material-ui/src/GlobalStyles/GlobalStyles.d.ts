@@ -1,5 +1,5 @@
 import { GlobalStylesProps } from '@material-ui/styled-engine';
-import { Omit } from '@material-ui/types';
+import { DistributiveOmit } from '@material-ui/types';
 /**
  *
  * API:
@@ -7,5 +7,5 @@ import { Omit } from '@material-ui/types';
  * - [Global API](https://material-ui.com/api/global/)
  */
 export default function GlobalStyles(
-  props: Omit<GlobalStylesProps, 'defaultTheme'>
+  props: DistributiveOmit<GlobalStylesProps, 'defaultTheme'>
 ): React.ReactElement;

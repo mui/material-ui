@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { DistributiveOmit } from '@material-ui/types';
 import PropTypes from 'prop-types';
 import { TextFieldProps as MuiTextFieldPropsType } from '@material-ui/core/TextField';
 import { IconButtonProps } from '@material-ui/core/IconButton';
@@ -9,7 +10,9 @@ import { useUtils, MuiPickersAdapter } from './hooks/useUtils';
 import { getDisplayDate, getTextFieldAriaText } from './text-field-helper';
 
 // make `variant` optional.
-export type MuiTextFieldProps = MuiTextFieldPropsType | Omit<MuiTextFieldPropsType, 'variant'>;
+export type MuiTextFieldProps =
+  | MuiTextFieldPropsType
+  | DistributiveOmit<MuiTextFieldPropsType, 'variant'>;
 
 export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown> {
   open: boolean;

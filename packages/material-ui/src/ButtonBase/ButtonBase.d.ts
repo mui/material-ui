@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { DistributiveOmit } from '@material-ui/types';
 import { Theme } from '../styles';
 import { TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
@@ -99,7 +100,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
  * can make extension quite tricky
  */
 export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & Omit<ButtonBaseTypeMap['props'], 'classes'>;
+  props: M['props'] & DistributiveOmit<ButtonBaseTypeMap['props'], 'classes'>;
   defaultComponent: M['defaultComponent'];
 }
 

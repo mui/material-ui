@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { DistributiveOmit } from '@material-ui/types';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
@@ -15,7 +16,10 @@ export interface StyledComponentProps<ClassKey extends string = string> {
  * However, we don't declare classes on this type.
  * It is recommended to declare them manually with an interface so that each class can have a separate JSDOC.
  */
-export type StandardProps<C, Removals extends keyof C = never> = Omit<C, 'classes' | Removals> &
+export type StandardProps<C, Removals extends keyof C = never> = DistributiveOmit<
+  C,
+  'classes' | Removals
+> &
   // each component declares it's classes in a separate interface for proper JSDOC
   StyledComponentProps<never> & {
     ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;

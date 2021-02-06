@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
-import { Omit, InternalStandardProps as StandardProps, Theme } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { FadeProps } from '../Fade';
 import { TransitionProps } from '../transitions/transition';
 

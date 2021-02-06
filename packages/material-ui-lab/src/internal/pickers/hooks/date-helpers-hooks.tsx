@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { DistributiveOmit } from '@material-ui/types';
 import { useUtils } from './useUtils';
 import { ParsableDate } from '../constants/prop-types';
 import { PickerOnChangeFn } from './useViews';
 import { getMeridiem, convertToMeridiem } from '../time-utils';
 
-export type OverrideParsableDateProps<TDate, TProps, TKey extends keyof TProps> = Omit<
+export type OverrideParsableDateProps<TDate, TProps, TKey extends keyof TProps> = DistributiveOmit<
   TProps,
   TKey
 > &
