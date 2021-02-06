@@ -34,6 +34,23 @@ Updates the Box API from separate system props to `sx`.
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v5.0.0/box-sx-prop.js ./src
 ```
 
+#### `box-rename-gap`
+
+Renames the Box `grid*Gap` props.
+
+```diff
+-<Box gridGap={2}>Item 3</Box>
+-<Box gridColumnGap={3}>Item 4</Box>
+-<Box gridRowGap={4}>Item 5</Box>
++<Box gap={2}>Item 3</Box>
++<Box columnGap={3}>Item 4</Box>
++<Box rowGap={4}>Item 5</Box>
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/box-rename-gap.js
+```
+
 #### `fade-rename-alpha`
 
 Renames `fade` style utility import and calls frpm `fade` to `alpha`.

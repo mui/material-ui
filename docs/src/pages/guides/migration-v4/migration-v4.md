@@ -505,23 +505,24 @@ As the core components use emotion as their style engine, the props used by emot
   +<Box sx={{ borderRadius: '16px' }}>
   ```
 
-- The following properties were renamed, because they are considered deprecated CSS proeprties:
+- The following properties have been renamed, because they are considered deprecated CSS proeprties:
 
-1. `gridGap` to `gap`
-2. `gridColumnGap` to `columnGap`
-3. `gridRowGap` to `rowGap`
+  1. `gridGap` to `gap`
+  2. `gridColumnGap` to `columnGap`
+  3. `gridRowGap` to `rowGap`
 
-```diff
--<Box gridGap="10px">
-+<Box sx={{ gap: '10px' }}>
-```
+  ```diff
+  -<Box gridGap={1}>
+  -<Box gridColumnGap={2}>
+  -<Box gridRowGap={3}>
+  +<Box gap={1}>
+  +<Box columnGap={2}>
+  +<Box rowGap={3}>
+  ```
 
-(Note that the system grid function isn't documented in v4.)
+  You can use the [`box-rename-gap` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-rename-gap) for automatic migration.
 
-```diff
--<Box gridColumnGap="10px" gridRowGap="20px">
-+<Box sx={{ columnGap: '10px', rowGap: '20px' }}>
-```
+  (Note that the system grid function isn't documented in v4.)
 
 - The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
 
