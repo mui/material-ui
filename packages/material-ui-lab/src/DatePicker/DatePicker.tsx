@@ -70,11 +70,11 @@ export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
  *
  * Demos:
  *
- * - [Date picker](https://material-ui.com/components/date-picker/).
+ * - [Date Picker](https://material-ui.com/components/date-picker/)
  *
  * API:
  *
- * - [Date picker API](https://material-ui.com/api/date-picker/).
+ * - [DatePicker API](https://material-ui.com/api/date-picker/)
  */
 // @typescript-to-proptypes-generate
 const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(ResponsiveWrapper, {
@@ -120,7 +120,7 @@ DatePicker.propTypes = {
    */
   clearText: PropTypes.node,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
+   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
    * ```
