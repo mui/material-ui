@@ -39,3 +39,22 @@ The ButtonGroup can be displayed veritcally using the `orientation` prop.
 You can remove the elevation with the `disableElevation` prop.
 
 {{"demo": "pages/components/button-group/DisableElevation.js"}}
+
+## Limitations
+
+### IconButton
+
+The `ButtonGroup` passes `ButtonProps` down to its children. `IconButton` does not accept `fullWidth` and `disabledElevation` props and will trigger a warning.
+
+If you wish to only have an icon button, you can implement something like this:
+
+  ```jsx
+  <ButtonGroup size="small" aria-label="Small outlined button group">
+    <Button>
+      <ArrowLeft />
+    </Button>
+    <Button>
+      <ArrowRight />
+    </Button>
+  </ButtonGroup>
+  ```
