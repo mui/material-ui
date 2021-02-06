@@ -13,7 +13,7 @@ function LightBulbIcon(props) {
 
 export default function ProTip() {
   return (
-    <Typography sx={{ mt: 6, mb: 3 }} color="textSecondary">
+    <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary">
       <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
       Pro tip: See more{' '}
       <Link href="https://material-ui.com/getting-started/templates/">templates</Link> on the
