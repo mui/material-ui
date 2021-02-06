@@ -23,7 +23,7 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown
   label?: MuiTextFieldProps['label'];
   InputProps?: MuiTextFieldProps['InputProps'];
   TextFieldProps?: Partial<MuiTextFieldProps>;
-  // lib/src/wrappers/DesktopPopperWrapper.tsx:87.
+  // lib/src/wrappers/DesktopPopperWrapper.tsx:87
   onBlur?: () => void;
   // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs.
   ignoreInvalidInputs?: boolean;
