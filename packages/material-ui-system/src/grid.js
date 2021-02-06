@@ -21,8 +21,7 @@ export const gap = (props) => {
   return {};
 };
 
-gap.propTypes =
-  process.env.NODE_ENV !== 'production' ? { gap: responsivePropType } : {};
+gap.propTypes = process.env.NODE_ENV !== 'production' ? { gap: responsivePropType } : {};
 
 gap.filterProps = ['gap'];
 
