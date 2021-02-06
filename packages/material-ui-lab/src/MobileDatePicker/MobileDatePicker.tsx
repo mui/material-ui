@@ -11,7 +11,7 @@ import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * API:
  *
- * - [Mobile Date Picker API](https://material-ui.com/api/mobile-date-picker/).
+ * - [MobileDatePicker API](https://material-ui.com/api/mobile-date-picker/)
  */
 // @typescript-to-proptypes-generate
 const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(

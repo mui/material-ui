@@ -12,7 +12,7 @@ import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * API:
  *
- * - [Mobile Time Picker API](https://material-ui.com/api/mobile-time-picker/).
+ * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
  */
 const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(MobileWrapper, {
   name: 'MuiMobileTimePicker',

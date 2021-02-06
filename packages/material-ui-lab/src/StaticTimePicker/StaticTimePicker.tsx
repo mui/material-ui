@@ -12,7 +12,7 @@ import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * API:
  *
- * - [Static Time Picker API](https://material-ui.com/api/static-time-picker/).
+ * - [StaticTimePicker API](https://material-ui.com/api/static-time-picker/)
  */
 const StaticTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(StaticWrapper, {
   name: 'MuiStaticTimePicker',

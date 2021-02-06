@@ -82,11 +82,11 @@ export type TimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
  *
  * Demos:
  *
- * - [Time Picker](https://material-ui.com/components/time-picker/).
+ * - [Time Picker](https://material-ui.com/components/time-picker/)
  *
  * API:
  *
- * - [Time Picker API](https://material-ui.com/api/time-picker/).
+ * - [TimePicker API](https://material-ui.com/api/time-picker/)
  */
 // @typescript-to-proptypes-generate
 const TimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(ResponsiveWrapper, {

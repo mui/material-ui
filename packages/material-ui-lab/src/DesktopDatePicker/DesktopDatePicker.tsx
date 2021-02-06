@@ -11,7 +11,7 @@ import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePi
  *
  * API:
  *
- * - [Desktop Date Picker API](https://material-ui.com/api/desktop-date-picker/).
+ * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)
  */
 // @typescript-to-proptypes-generate
 const DesktopDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
