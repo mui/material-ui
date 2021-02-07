@@ -146,5 +146,6 @@ module.exports = [
   { pathname: '/api-docs/tree-view' },
   { pathname: '/api-docs/typography' },
   { pathname: '/api-docs/unstable-trap-focus' },
+  { pathname: '/api-docs/year-picker' },
   { pathname: '/api-docs/zoom' },
 ];
