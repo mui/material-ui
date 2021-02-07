@@ -305,7 +305,14 @@ Grid.propTypes = {
    * @deprecated Use `justifyContent` instead, the prop was renamed
    */
   justify: deprecatedPropType(
-    PropTypes.oneOf(['center', 'flex-end', 'space-between', 'space-around', 'space-evenly']),
+    PropTypes.oneOf([
+      'flex-start',
+      'center',
+      'flex-end',
+      'space-between',
+      'space-around',
+      'space-evenly',
+    ]),
     'Use `justifyContent` instead, the prop was renamed.',
   ),
   /**
@@ -313,6 +320,7 @@ Grid.propTypes = {
    * It is applied for all screen sizes.
    */
   justifyContent: PropTypes.oneOf([
+    'flex-start',
     'center',
     'flex-end',
     'space-between',
