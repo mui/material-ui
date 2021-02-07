@@ -230,7 +230,7 @@ export default function createPalette(palette) {
       // The colors used to present information to the user that is neutral and not necessarily important.
       info: augmentColor({ color: info, name: 'info' }),
       // The colors used to indicate the successful completion of an action that user triggered.
-      success: augmentColor({ color: success, name: 'succes' }),
+      success: augmentColor({ color: success, name: 'success' }),
       // The grey colors.
       grey,
       // Used by `getContrastText()` to maximize the contrast between
