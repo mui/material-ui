@@ -36,6 +36,21 @@ Updates the Avatar `variant` value and classes key from 'circle' to 'circular'.
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/avatar-circle-circular.js
 ```
 
+#### `box-borderradius-values`
+
+Updates the Box API from separate system props to `sx`.
+
+```diff
+-<Box borderRadius="borderRadius">
+-<Box borderRadius={16}>
+-<Box borderRadius={1}>
+-<Box borderRadius="16px">
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/box-borderradius-values.js
+```
+
 #### `box-sx-prop`
 
 Updates the Box API from separate system props to `sx`.

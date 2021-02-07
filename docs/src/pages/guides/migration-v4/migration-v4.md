@@ -140,7 +140,7 @@ export default function PlainCssPriority() {
 - Breakpoints are now treated as values instead of [ranges](https://v4.material-ui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above.
   `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive).
   When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up.
-  
+
   Here are some examples of the changes required:
 
   ```diff
@@ -316,7 +316,7 @@ const theme = createTheme({
   -  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
   +  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
   }));
-```
+  ```
 
   You can use the [`fade-rename-alpha` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#fade-rename-alpha) for automatic migration.
 
@@ -374,7 +374,7 @@ As the core components use emotion as their style engine, the props used by emot
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
 ### Autocomplete
 
@@ -507,6 +507,8 @@ As the core components use emotion as their style engine, the props used by emot
   -<Box borderRadius={16}>
   +<Box borderRadius="16px">
   ```
+
+  You can use the [`box-borderradius-values` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-borderradius-values) for automatic migration.
 
 - The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the why behind this new API.
 
