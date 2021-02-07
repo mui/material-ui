@@ -35,12 +35,6 @@ The button group can be displayed vertically using the `orientation` prop.
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
-## Icon button
-
-The `IconButton` component isn't supported. You can wrap an icon with a regular button instead.
-
-{{"demo": "pages/components/button-group/IconButtonGroup.js"}}
-
 ## Split button
 
 `ButtonGroup` can also be used to create a split button. The dropdown can change the button action (as in this example) or be used to immediately trigger a related action.
