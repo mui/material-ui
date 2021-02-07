@@ -93,7 +93,7 @@ DateRangePicker.propTypes = {
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
    * @default "@media (pointer: fine)"
-   * @example "@media (min-width: 720px)" or theme.breakpoints.up("sm").
+   * @example "@media (min-width: 720px)" or theme.breakpoints.up("sm")
    */
   desktopModeMediaQuery: PropTypes.string,
   /**
@@ -101,7 +101,7 @@ DateRangePicker.propTypes = {
    */
   DialogProps: PropTypes.object,
   /**
-   * if `true` after selecting `start` date  calendar will not automatically switch to the month of `end` date.
+   * if `true` after selecting `start` date calendar will not automatically switch to the month of `end` date.
    * @default false
    */
   disableAutoMonthSwitching: PropTypes.bool,
