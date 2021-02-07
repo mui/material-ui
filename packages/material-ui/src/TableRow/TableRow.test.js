@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import TableRow from './TableRow';
+import classes from './tableRowClasses';
 
 describe('<TableRow />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
   function renderInTable(node) {
@@ -16,11 +16,7 @@ describe('<TableRow />', () => {
     );
   }
 
-  before(() => {
-    classes = getClasses(<TableRow />);
-  });
-
-  describeConformance(<TableRow />, () => ({
+  describeConformanceV5(<TableRow />, () => ({
     classes,
     inheritComponent: 'tr',
     mount: (node) => {
@@ -31,9 +27,19 @@ describe('<TableRow />', () => {
       );
       return wrapper.find('tbody').childAt(0);
     },
-
+    render: (node) => {
+      const { container, ...rest } = render(
+        <table>
+          <tbody>{node}</tbody>
+        </table>,
+      );
+      return { container: container.firstChild.firstChild, ...rest };
+    },
+    muiName: 'MuiTableRow',
+    testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableRowElement,
     testComponentPropWith: 'tr',
+    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {
