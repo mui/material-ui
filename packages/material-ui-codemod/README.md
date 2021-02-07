@@ -35,6 +35,7 @@ Updates the Avatar `variant` value and classes key from 'circle' to 'circular'.
 ```sh
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/avatar-circle-circular.js
 ```
+
 #### `box-sx-prop`
 
 Updates the Box API from separate system props to `sx`.
@@ -59,6 +60,37 @@ Renames the Box `grid*Gap` props.
 +<Box gap={2}>Item 3</Box>
 +<Box columnGap={3}>Item 4</Box>
 +<Box rowGap={4}>Item 5</Box>
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/box-rename-gap.js
+```
+
+#### `badge-overlap-value`
+
+Renames the Box `grid*Gap` props.
+
+```diff
+-<Badge overlap="circle">
+-<Badge overlap="rectangle">
++<Badge overlap="circular">
++<Badge overlap="rectangular">
+<Badge classes={{
+- anchorOriginTopRightRectangle: 'className',
+- anchorOriginBottomRightRectangle: 'className',
+- anchorOriginTopLeftRectangle: 'className',
+- anchorOriginBottomLeftRectangle: 'className',
+- anchorOriginTopRightCircle: 'className',
+- anchorOriginBottomRightCircle: 'className',
+- anchorOriginTopLeftCircle: 'className',
++ anchorOriginTopRightRectangular: 'className',
++ anchorOriginBottomRightRectangular: 'className',
++ anchorOriginTopLeftRectangular: 'className',
++ anchorOriginBottomLeftRectangular: 'className',
++ anchorOriginTopRightCircular: 'className',
++ anchorOriginBottomRightCircular: 'className',
++ anchorOriginTopLeftCircular: 'className',
+}}>
 ```
 
 ```sh

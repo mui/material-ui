@@ -458,22 +458,24 @@ As the core components use emotion as their style engine, the props used by emot
   +<Badge overlap="circular">
   +<Badge overlap="rectangular">
   <Badge classes={{
-  - anchorOriginTopRightRectangle: 'className'
-  - anchorOriginBottomRightRectangle: 'className'
-  - anchorOriginTopLeftRectangle: 'className'
-  - anchorOriginBottomLeftRectangle: 'className'
-  - anchorOriginTopRightCircle: 'className'
-  - anchorOriginBottomRightCircle: 'className'
-  - anchorOriginTopLeftCircle: 'className'
-  + anchorOriginTopRightRectangular: 'className'
-  + anchorOriginBottomRightRectangular: 'className'
-  + anchorOriginTopLeftRectangular: 'className'
-  + anchorOriginBottomLeftRectangular: 'className'
-  + anchorOriginTopRightCircular: 'className'
-  + anchorOriginBottomRightCircular: 'className'
-  + anchorOriginTopLeftCircular: 'className'
+  - anchorOriginTopRightRectangle: 'className',
+  - anchorOriginBottomRightRectangle: 'className',
+  - anchorOriginTopLeftRectangle: 'className',
+  - anchorOriginBottomLeftRectangle: 'className',
+  - anchorOriginTopRightCircle: 'className',
+  - anchorOriginBottomRightCircle: 'className',
+  - anchorOriginTopLeftCircle: 'className',
+  + anchorOriginTopRightRectangular: 'className',
+  + anchorOriginBottomRightRectangular: 'className',
+  + anchorOriginTopLeftRectangular: 'className',
+  + anchorOriginBottomLeftRectangular: 'className',
+  + anchorOriginTopRightCircular: 'className',
+  + anchorOriginBottomRightCircular: 'className',
+  + anchorOriginTopLeftCircular: 'className',
   }}>
   ```
+
+  You can use the [`badge-overlap-value` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#badge-overlap-value) for automatic migration.
 
 ### BottomNavigation
 
