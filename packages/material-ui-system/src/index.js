@@ -25,4 +25,3 @@ export {
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export { default as unstable_getThemeValue } from './getThemeValue';
-export { default as darkScrollbar } from './scrollbar';

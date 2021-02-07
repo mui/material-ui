@@ -67,23 +67,24 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ### Scrollbars
 
-The colors of the scrollbars can be customized to provide a better contrast. Add this code to your theme (for dark mode).
+The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
-import { darkScrollbar } from '@material-ui/system';
+import darkScrollbar from '@material-ui/core/darkScrollbar';
 
-...
-
-createMuiTheme({
+const theme = createMuiTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        body: theme.palette.mode === 'dark' ? darkScrollbar() : {},
+        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
       },
     },
   },
-})
+});
 ```
+
+The documentation website you are on uses `darkScrollbar` when the dark mode is enabled.
+However, be aware that using this help (and customizing `-webkit-scrollbar`) forces macOS to always show the scrollbar.
 
 ### Typography
 

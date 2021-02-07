@@ -5,31 +5,29 @@ const scrollBar = {
   active: '#959595',
 };
 
-function darkScrollbar() {
+export default function darkScrollbar(options = scrollBar) {
   return {
-    scrollbarColor: `${scrollBar.thumb} ${scrollBar.track}`,
+    scrollbarColor: `${options.thumb} ${options.track}`,
     '&::-webkit-scrollbar, & *::-webkit-scrollbar': {
-      backgroundColor: scrollBar.track,
+      backgroundColor: options.track,
     },
     '&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb': {
       borderRadius: 8,
-      backgroundColor: scrollBar.thumb,
+      backgroundColor: options.thumb,
       minHeight: 24,
-      border: `3px solid ${scrollBar.track}`,
+      border: `3px solid ${options.track}`,
     },
     '&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus': {
-      backgroundColor: scrollBar.active,
+      backgroundColor: options.active,
     },
     '&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active': {
-      backgroundColor: scrollBar.active,
+      backgroundColor: options.active,
     },
     '&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover': {
-      backgroundColor: scrollBar.active,
+      backgroundColor: options.active,
     },
     '&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner': {
-      backgroundColor: scrollBar.track,
+      backgroundColor: options.track,
     },
   };
 }
-
-export default darkScrollbar;

@@ -9,6 +9,7 @@ import {
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import { blue, pink } from '@material-ui/core/colors';
+import darkScrollbar from '@material-ui/core/darkScrollbar';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/core/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
@@ -224,6 +225,15 @@ export function ThemeProvider(props) {
         spacing,
       },
       dense ? highDensity : null,
+      {
+        components: {
+          MuiCssBaseline: {
+            styleOverrides: {
+              body: paletteMode === 'dark' ? darkScrollbar() : null,
+            },
+          },
+        },
+      },
       languageMap[userLanguage],
     );
 
