@@ -73,7 +73,7 @@ In dark mode, the colors of the scrollbars are customized to provide a better co
 
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default).
   You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/typography/#typography-html-font-size) page.
-- Set the `theme.typography.body2` style on the `<body>` element.
+- Set the `theme.typography.body1` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
 - Custom font-smoothing is enabled for better display of the Roboto font.
 
