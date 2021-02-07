@@ -1,17 +1,63 @@
 import style from './style';
 import compose from './compose';
+import { createUnaryUnit, getValue } from './spacing';
+import { handleBreakpoints } from './breakpoints';
+import responsivePropType from './responsivePropType';
 
-export const gap = style({
-  prop: 'gap',
-});
+export const gap = (props) => {
+  const propValue = props.gap;
 
-export const columnGap = style({
-  prop: 'columnGap',
-});
+  if (propValue) {
+    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'gap');
+    const styleFromPropValue = () => ({
+      gap: getValue(transformer, propValue),
+    });
+    return handleBreakpoints(props, propValue, styleFromPropValue);
+  }
 
-export const rowGap = style({
-  prop: 'rowGap',
-});
+  return null;
+};
+
+gap.propTypes = process.env.NODE_ENV !== 'production' ? { gap: responsivePropType } : {};
+
+gap.filterProps = ['gap'];
+
+export const columnGap = (props) => {
+  const propValue = props.columnGap;
+
+  if (propValue) {
+    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'columnGap');
+    const styleFromPropValue = () => ({
+      columnGap: getValue(transformer, propValue),
+    });
+    return handleBreakpoints(props, propValue, styleFromPropValue);
+  }
+
+  return null;
+};
+
+columnGap.propTypes =
+  process.env.NODE_ENV !== 'production' ? { columnGap: responsivePropType } : {};
+
+columnGap.filterProps = ['columnGap'];
+
+export const rowGap = (props) => {
+  const propValue = props.rowGap;
+
+  if (propValue) {
+    const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'rowGap');
+    const styleFromPropValue = () => ({
+      rowGap: getValue(transformer, propValue),
+    });
+    return handleBreakpoints(props, propValue, styleFromPropValue);
+  }
+
+  return null;
+};
+
+rowGap.propTypes = process.env.NODE_ENV !== 'production' ? { rowGap: responsivePropType } : {};
+
+rowGap.filterProps = ['rowGap'];
 
 export const gridColumn = style({
   prop: 'gridColumn',
