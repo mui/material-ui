@@ -139,7 +139,9 @@ export default function PlainCssPriority() {
   This matches the Material Design guidelines.
 - Breakpoints are now treated as values instead of [ranges](https://v4.material-ui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above.
   `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive).
-  When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. Here are some examples of the changes required:
+  When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up.
+  
+  Here are some examples of the changes required:
 
   ```diff
   -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
@@ -349,7 +351,7 @@ const theme = createTheme({
 +<Box sx={{ color: 'primary.main' }} />
 ```
 
-(Note that the system grid function isn't documented in v4.)
+> Note that the system grid function wasn't documented in v4.
 
 ### Core components
 
@@ -410,7 +412,7 @@ As the core components use emotion as their style engine, the props used by emot
   />
   ```
 
-- Rename `closeIcon` prop with `clearIcon` to avoid confusion.
+- Rename `closeIcon` prop to `clearIcon` to avoid confusion.
 
   ```diff
   -<Autocomplete closeIcon={defaultClearIcon} />
@@ -452,6 +454,8 @@ As the core components use emotion as their style engine, the props used by emot
   +import AvatarGroup from '@material-ui/core/AvatarGroup';
   ```
 
+  You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
 ### Badge
 
 - Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
@@ -492,28 +496,26 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Box
 
-- The system props have been deprecated in v5, and replaced with the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the why behind the change of API.
+- The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit `px` value.
+
+  ```diff
+  -<Box borderRadius="borderRadius">
+  +<Box borderRadius={1}>
+  ```
+
+  ```diff
+  -<Box borderRadius={16}>
+  +<Box borderRadius="16px">
+  ```
+
+- The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the why behind this new API.
 
   ```diff
   -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
   +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
   ```
 
-  [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) will automatically update your code to the new syntax.
-
-  You can use the [`box-sx-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) for automatic migration.
-
-- The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit value, in `px`.
-
-  ```diff
-  -<Box sx={{ borderRadius: 'borderRadius' }}>
-  +<Box sx={{ borderRadius: 1 }}>
-  ```
-
-  ```diff
-  -<Box sx={{ borderRadius: 16 }}>
-  +<Box sx={{ borderRadius: '16px' }}>
-  ```
+  If you prefer the new syntax, you can use the [`box-sx-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) for automatic migration.
 
 - The following properties have been renamed, because they are considered deprecated CSS proeprties:
 
