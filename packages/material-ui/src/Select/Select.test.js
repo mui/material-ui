@@ -12,7 +12,7 @@ import {
   screen,
 } from 'test/utils';
 import MenuItem from '../MenuItem';
-import Input from '../Input';
+import OutlinedInput from '../OutlinedInput';
 import InputLabel from '../InputLabel';
 import Select from './Select';
 
@@ -28,7 +28,7 @@ describe('<Select />', () => {
 
   describeConformance(<Select value="" />, () => ({
     classes,
-    inheritComponent: Input,
+    inheritComponent: OutlinedInput,
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'rootClass'],

@@ -158,7 +158,7 @@ export interface SelectProps<T = unknown>
   value?: T;
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant?: 'standard' | 'outlined' | 'filled';
 }
@@ -174,6 +174,6 @@ export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
  * API:
  *
  * - [Select API](https://material-ui.com/api/select/)
- * - inherits [Input API](https://material-ui.com/api/input/)
+ * - inherits [OutlinedInput API](https://material-ui.com/api/outlined-input/)
  */
 export default function Select<T>(props: SelectProps<T>): JSX.Element;

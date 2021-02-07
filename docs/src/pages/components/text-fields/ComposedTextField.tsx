@@ -27,11 +27,11 @@ export default function ComposedTextField() {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <FormControl>
+      <FormControl variant="standard">
         <InputLabel htmlFor="component-simple">Name</InputLabel>
         <Input id="component-simple" value={name} onChange={handleChange} />
       </FormControl>
-      <FormControl>
+      <FormControl variant="standard">
         <InputLabel htmlFor="component-helper">Name</InputLabel>
         <Input
           id="component-helper"
@@ -43,12 +43,12 @@ export default function ComposedTextField() {
           Some important helper text
         </FormHelperText>
       </FormControl>
-      <FormControl disabled>
+      <FormControl disabled variant="standard">
         <InputLabel htmlFor="component-disabled">Name</InputLabel>
         <Input id="component-disabled" value={name} onChange={handleChange} />
         <FormHelperText>Disabled</FormHelperText>
       </FormControl>
-      <FormControl error>
+      <FormControl error variant="standard">
         <InputLabel htmlFor="component-error">Name</InputLabel>
         <Input
           id="component-error"
@@ -58,7 +58,7 @@ export default function ComposedTextField() {
         />
         <FormHelperText id="component-error-text">Error</FormHelperText>
       </FormControl>
-      <FormControl variant="outlined">
+      <FormControl>
         <InputLabel htmlFor="component-outlined">Name</InputLabel>
         <OutlinedInput
           id="component-outlined"
