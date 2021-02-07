@@ -100,7 +100,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -121,7 +121,7 @@ export default function PlainCssPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
 
 ### Theme
 
@@ -136,10 +136,10 @@ export default function PlainCssPriority() {
   ```
 
 - The default background color is now `#fff` in light mode and `#121212` in dark mode.
-  This matches the material design guidelines.
-- Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive).
-  The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive).
-  When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
+  This matches the Material Design guidelines.
+- Breakpoints are now treated as values instead of [ranges](https://v4.material-ui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above.
+  `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive).
+  When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. Here are some examples of the changes required:
 
   ```diff
   -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
@@ -157,6 +157,8 @@ export default function PlainCssPriority() {
   ```
 
   You can use the [`theme-breakpoints` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#theme-breakpoints) for automatic migration of `theme.breakpoints`.
+
+  The same should be done when using the `Hidden` component:
 
   ```diff
   -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
