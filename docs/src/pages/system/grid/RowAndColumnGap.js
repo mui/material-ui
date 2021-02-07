@@ -31,8 +31,8 @@ export default function RowAndColumnGap() {
       <Box
         sx={{
           display: 'grid',
-          columnGap: '16px',
-          rowGap: '8px',
+          columnGap: 2,
+          rowGap: 1,
           gridTemplateColumns: 'repeat(2, 0.5fr)',
         }}
       >

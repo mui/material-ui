@@ -29,7 +29,7 @@ export default function GridAutoFlow() {
           gridAutoFlow: 'row',
           gridTemplateColumns: 'repeat(5, 0.2fr)',
           gridTemplateRows: 'repeat(2, 50px)',
-          gap: '8px',
+          gap: 1,
         }}
       >
         <GridItem sx={{ gridColumn: '1', gridRow: '1 / 3', border: 1 }}>1</GridItem>
