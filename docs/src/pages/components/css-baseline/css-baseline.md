@@ -83,8 +83,8 @@ const theme = createMuiTheme({
 });
 ```
 
-The documentation website you are on uses `darkScrollbar` when the dark mode is enabled.
-However, be aware that using this help (and customizing `-webkit-scrollbar`) forces macOS to always show the scrollbar.
+This website uses `darkScrollbar` when dark mode is enabled.
+Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
 
 ### Typography
 
