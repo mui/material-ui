@@ -437,6 +437,10 @@ As the core components use emotion as their style engine, the props used by emot
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
+  You can use the [`avatar-circle-circular` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#avatar-circle-circular) for automatic migration.
+
+  > Note that since 'circlular' is the default value, it can altertatively be removed.
+
 - Move the AvatarGroup from the lab to the core.
 
   ```diff

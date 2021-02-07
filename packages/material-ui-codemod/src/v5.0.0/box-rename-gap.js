@@ -9,7 +9,7 @@ export default function transformer(file, api) {
     .findJSXElements('Box')
     .forEach((path) => {
       path.node.openingElement.attributes.forEach((node) => {
-        if (node.type === 'JSXAttribute'){
+        if (node.type === 'JSXAttribute') {
           if (node.name.name === 'gridGap') {
             node.name.name = 'gap';
           } else if (node.name.name === 'gridColumnGap') {

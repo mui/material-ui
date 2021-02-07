@@ -21,6 +21,20 @@ APIs.
 
 ### v5.0.0
 
+#### `avatar-circle-circular`
+
+Updates the Avatar `variant` value and classes key from 'circle' to 'circular'.
+
+```diff
+-<Avatar variant="circle" />
+-<Avatar classes={{ circle: 'className' }} />
++<Avatar variant="circular" />
++<Avatar classes={{ circular: 'className' }} />
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/avatar-circle-circular.js
+```
 #### `box-sx-prop`
 
 Updates the Box API from separate system props to `sx`.
@@ -143,7 +157,7 @@ find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-u
 
 #### `theme-spacing`
 
-Removes the 'px' suffix from some template strings. 
+Removes the 'px' suffix from some template strings.
 
 ```diff
 `${theme.spacing(2)}px`
