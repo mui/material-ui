@@ -67,7 +67,7 @@ DesktopDateRangePicker.propTypes = {
    */
   componentsProps: PropTypes.object,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
+   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
    * ```
@@ -79,7 +79,7 @@ DesktopDateRangePicker.propTypes = {
    */
   defaultCalendarMonth: PropTypes.any,
   /**
-   * if `true` after selecting `start` date  calendar will not automatically switch to the month of `end` date
+   * If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
    * @default false
    */
   disableAutoMonthSwitching: PropTypes.bool,
@@ -166,7 +166,7 @@ DesktopDateRangePicker.propTypes = {
    */
   loading: PropTypes.bool,
   /**
-   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)
+   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M).
    */
   mask: PropTypes.string,
   /**

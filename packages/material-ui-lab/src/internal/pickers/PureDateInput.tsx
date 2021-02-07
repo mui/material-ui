@@ -8,7 +8,7 @@ import { ParsableDate } from './constants/prop-types';
 import { useUtils, MuiPickersAdapter } from './hooks/useUtils';
 import { getDisplayDate, getTextFieldAriaText } from './text-field-helper';
 
-// make `variant` optional
+// make `variant` optional.
 export type MuiTextFieldProps = MuiTextFieldPropsType | Omit<MuiTextFieldPropsType, 'variant'>;
 
 export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown> {
@@ -25,7 +25,7 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown
   TextFieldProps?: Partial<MuiTextFieldProps>;
   // lib/src/wrappers/DesktopPopperWrapper.tsx:87
   onBlur?: () => void;
-  // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs
+  // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs.
   ignoreInvalidInputs?: boolean;
   /**
    * The `renderInput` prop allows you to customize the rendered input.
@@ -41,7 +41,7 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = unknown
    */
   openPickerIcon?: React.ReactNode;
   /**
-   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)
+   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M).
    */
   mask?: string;
   /**

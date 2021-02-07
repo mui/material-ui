@@ -38,7 +38,7 @@ MobileDateRangePicker.propTypes = {
    */
   calendars: PropTypes.oneOf([1, 2, 3]),
   /**
-   * Cancel text message
+   * Cancel text message.
    * @default "CANCEL"
    */
   cancelText: PropTypes.node,
@@ -56,7 +56,7 @@ MobileDateRangePicker.propTypes = {
    */
   clearable: PropTypes.bool,
   /**
-   * Clear text message
+   * Clear text message.
    * @default "CLEAR"
    */
   clearText: PropTypes.node,
@@ -79,7 +79,7 @@ MobileDateRangePicker.propTypes = {
    */
   componentsProps: PropTypes.object,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
+   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
    * ```
@@ -95,7 +95,7 @@ MobileDateRangePicker.propTypes = {
    */
   DialogProps: PropTypes.object,
   /**
-   * if `true` after selecting `start` date  calendar will not automatically switch to the month of `end` date
+   * If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
    * @default false
    */
   disableAutoMonthSwitching: PropTypes.bool,
@@ -182,7 +182,7 @@ MobileDateRangePicker.propTypes = {
    */
   loading: PropTypes.bool,
   /**
-   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)
+   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M).
    */
   mask: PropTypes.string,
   /**
@@ -326,7 +326,7 @@ MobileDateRangePicker.propTypes = {
    */
   startText: PropTypes.node,
   /**
-   * Today text message
+   * Today text message.
    * @default "TODAY"
    */
   todayText: PropTypes.node,

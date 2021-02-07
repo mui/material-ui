@@ -14,17 +14,17 @@ export interface ExportedPickerModalProps {
    */
   okText?: React.ReactNode;
   /**
-   * Cancel text message
+   * Cancel text message.
    * @default "CANCEL"
    */
   cancelText?: React.ReactNode;
   /**
-   * Clear text message
+   * Clear text message.
    * @default "CLEAR"
    */
   clearText?: React.ReactNode;
   /**
-   * Today text message
+   * Today text message.
    * @default "TODAY"
    */
   todayText?: React.ReactNode;

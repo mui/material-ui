@@ -57,7 +57,7 @@ DesktopTimePicker.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
+   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
    * ```
@@ -122,7 +122,7 @@ DesktopTimePicker.propTypes = {
    */
   label: PropTypes.node,
   /**
-   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)
+   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M).
    */
   mask: PropTypes.string,
   /**
