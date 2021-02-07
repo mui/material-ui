@@ -51,17 +51,23 @@ Updates the Box API from separate system props to `sx`.
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/box-borderradius-values.js
 ```
 
-#### `box-sx-prop`
+#### `button-color-prop`
 
-Updates the Box API from separate system props to `sx`.
+Removes the Chip `variant` prop if the value is `"default"`.
 
 ```diff
--<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
-+<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+-<Button color="primary">
+-<Button color="default">
++<Button>
++<Button>
 ```
 
 ```sh
+<<<<<<< HEAD
 npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/v5.0.0/box-sx-prop.js ./src
+=======
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/button-color-prop.js
+>>>>>>> [codemod] button-color-prop, chip-variant-prop
 ```
 
 #### `box-rename-gap`
@@ -110,6 +116,19 @@ Renames the Box `grid*Gap` props.
 
 ```sh
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/box-rename-gap.js
+```
+
+#### `chip-variant-prop`
+
+Removes the Chip `variant` prop if the value is `"default"`.
+
+```diff
+-<Chip variant="default">
++<Chip>
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/chip-variant-prop.js
 ```
 
 #### `fade-rename-alpha`

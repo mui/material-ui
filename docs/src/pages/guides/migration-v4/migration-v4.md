@@ -570,37 +570,13 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 - The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
 
   ```diff
-  -<Button color="primary" />
-  -<Button color="default" />
-  +<Button />
-  +<Button />
+  -<Button color="primary">
+  -<Button color="default">
+  +<Button>
+  +<Button>
   ```
 
-### ButtonBase
-
-- Remove the deprecated `buttonRef` prop. The `ref` prop should be used in place.
-
-### Checkbox
-
-- Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
-
-  ```diff
-  function MyCheckbox() {
-  - const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
-  + const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  +   const checked = event.target.checked;
-    };
-
-    return <Checkbox onChange={handleChange} />;
-  }
-  ```
-
-- The checkbox color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the checkbox closer to the Material Design specification.
-
-  ```diff
-  - <Checkbox />
-  + <Checkbox color="secondary />
-  ```
+  You can use the [`button-color-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#button-color-prop) for automatic migration.
 
 ### Chip
 
@@ -610,6 +586,14 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
   +<Chip variant="filled">
   ```
 
+  Since `filled` is the default value, the variant prop can be deleted:
+
+  ```diff
+  -<Chip variant="default">
+  +<Chip>
+  ```
+
+  You can use the [`chip-variant-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#chip-variant-prop) for automatic migration.
 ### CircularProgress
 
 - The `static` variant has been merged into the `determinate` variant, with the latter assuming the appearance of the former.

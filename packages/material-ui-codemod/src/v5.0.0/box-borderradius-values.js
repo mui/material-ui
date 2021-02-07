@@ -13,7 +13,7 @@ export default function transformer(file, api) {
           // borderRadius={16} => borderRadius="16px"
           if (node.value.type === 'JSXExpressionContainer') {
             node.value = j.stringLiteral(`${node.value.expression.value}px`);
-          // borderRadius="borderRadius" => borderRadius={1}
+            // borderRadius="borderRadius" => borderRadius={1}
           } else if (node.value.value === 'borderRadius') {
             node.value = j.jsxExpressionContainer(j.numericLiteral(1));
           }
