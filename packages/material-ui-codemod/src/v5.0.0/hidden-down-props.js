@@ -1,10 +1,4 @@
-const map = {
-  xsDown: 'smDown',
-  smDown: 'mdDown',
-  mdDown: 'lgDown',
-  lgDown: 'xlDown',
-  xlDown: 'xlDown',
-};
+import renameProps from '../util/renameProps';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -12,15 +6,17 @@ const map = {
  */
 export default function transformer(file, api) {
   const j = api.jscodeshift;
+  const root = j(file.source);
 
-  return j(file.source)
-    .findJSXElements('Hidden')
-    .forEach((path) => {
-      path.node.openingElement.attributes.forEach((node, index) => {
-        if (node.type === 'JSXAttribute' && Object.keys(map).includes(node.name.name)) {
-          node.name.name = map[node.name.name];
-        }
-      });
-    })
-    .toSource();
+  return renameProps({
+    root,
+    componentName: 'Hidden',
+    props: {
+      xsDown: 'smDown',
+      smDown: 'mdDown',
+      mdDown: 'lgDown',
+      lgDown: 'xlDown',
+      xlDown: 'xlDown',
+    },
+  }).toSource();
 }

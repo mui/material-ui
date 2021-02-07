@@ -603,9 +603,9 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 ```diff
   -<CircularProgress variant="static" classes={{ static: 'className' }} />
   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
-  ```
+```
 
-  You can use the [`circularprogress-variant` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#circularprogress-variant) for automatic migration.
+You can use the [`circularprogress-variant` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#circularprogress-variant) for automatic migration.
 
 > NB: If you had previously customized determinate, your customizations are probably no longer valid. Please remove them.
 
