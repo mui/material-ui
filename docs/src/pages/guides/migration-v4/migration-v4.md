@@ -272,11 +272,27 @@ const classes = makeStyles(theme => ({
 
 ### System
 
-- The following system functions (and properties) were renamed, because they are considered deprecated CSS:
+- The following system functions (and properties) were renamed because they are considered deprecated CSS:
 
-1. `gridGap` to `gap`
-2. `gridColumnGap` to `columnGap`
-3. `gridRowGap` to `rowGap`
+  1. `gridGap` to `gap`
+  1. `gridRowGap` to `rowGap`
+  1. `gridColumnGap` to `columnGap`
+
+- Use spacing unit in `gap`, `rowGap`, and `columnGap`. If you were using a number previously, you need to mention the px to bypass the new transformation with `theme.spacing`.
+
+  ```diff
+  <Box
+  - gap={2}
+  + gap="2px"
+  >
+  ```
+
+- Replace `css` prop with `sx` to avoid collision with styled-components & emotion CSS props.
+
+```diff
+-<Box css={{ color: 'primary.main' }} />
++<Box sx={{ color: 'primary.main' }} />
+```
 
 ### Core components
 
@@ -1250,12 +1266,3 @@ As the core components use emotion as a styled engine, the props used by emotion
     },
   });
   ```
-
-### System
-
-- Replace `css` prop with `sx` to avoid collision with styled-components & emotion CSS props.
-
-```diff
--<Box css={{ color: 'primary.main' }} />
-+<Box sx={{ color: 'primary.main' }} />
-```
