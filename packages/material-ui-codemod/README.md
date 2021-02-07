@@ -131,6 +131,19 @@ Removes the Chip `variant` prop if the value is `"default"`.
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/chip-variant-prop.js
 ```
 
+#### `circularprogress-variant`
+
+Rename the CircularPress `static` variant to `determinate`.
+
+```diff
+-<CircularProgress variant="static" classes={{ static: 'className' }} />
++<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/circularprogress-variant.js
+```
+
 #### `fade-rename-alpha`
 
 Renames `fade` style utility import and calls frpm `fade` to `alpha`.

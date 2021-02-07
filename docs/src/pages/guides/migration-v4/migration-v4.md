@@ -581,6 +581,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 ### Chip
 
 - Rename `default` variant to `filled` for consistency.
+
   ```diff
   -<Chip variant="default">
   +<Chip variant="filled">
@@ -594,19 +595,17 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
   ```
 
   You can use the [`chip-variant-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#chip-variant-prop) for automatic migration.
+
 ### CircularProgress
 
-- The `static` variant has been merged into the `determinate` variant, with the latter assuming the appearance of the former.
-  The removed variant was rarely useful. It was an exception to Material Design, and was removed from the specification.
+- The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`. It was an exception to Material Design, and was removed from the specification.
 
-  ```diff
-  -<CircularProgress variant="determinate" />
-  ```
-
-  ```diff
+```diff
   -<CircularProgress variant="static" classes={{ static: 'className' }} />
   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
   ```
+
+  You can use the [`circularprogress-variant` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#circularprogress-variant) for automatic migration.
 
 > NB: If you had previously customized determinate, your customizations are probably no longer valid. Please remove them.
 
