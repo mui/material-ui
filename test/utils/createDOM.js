@@ -6,6 +6,7 @@ const whitelist = [
   'CSSStyleDeclaration',
   'Element',
   'Event',
+  'TouchEvent',
   'Image',
   'HTMLElement',
   'HTMLInputElement',

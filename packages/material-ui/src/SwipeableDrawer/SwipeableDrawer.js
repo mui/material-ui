@@ -224,7 +224,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     [anchor, disableBackdropTransition, hideBackdrop, theme, transitionDuration],
   );
 
-  const handleBodyTouchEnd = useEventCallback((event) => {
+  const handleBodyTouchEnd = useEventCallback((nativeEvent) => {
     if (!touchDetected.current) {
       return;
     }
@@ -246,14 +246,14 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     if (horizontal) {
       current = calculateCurrentX(
         anchorRtl,
-        event.changedTouches,
-        ownerDocument(event.currentTarget),
+        nativeEvent.changedTouches,
+        ownerDocument(nativeEvent.currentTarget),
       );
     } else {
       current = calculateCurrentY(
         anchorRtl,
-        event.changedTouches,
-        ownerWindow(event.currentTarget),
+        nativeEvent.changedTouches,
+        ownerWindow(nativeEvent.currentTarget),
       );
     }
 
@@ -291,7 +291,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
   });
 
-  const handleBodyTouchMove = useEventCallback((event) => {
+  const handleBodyTouchMove = useEventCallback((nativeEvent) => {
     // the ref may be null when a parent component updates while swiping
     if (!paperRef.current || !touchDetected.current) {
       return;
@@ -307,14 +307,18 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
 
     const currentX = calculateCurrentX(
       anchorRtl,
-      event.touches,
-      ownerDocument(event.currentTarget),
+      nativeEvent.touches,
+      ownerDocument(nativeEvent.currentTarget),
     );
 
-    const currentY = calculateCurrentY(anchorRtl, event.touches, ownerWindow(event.currentTarget));
+    const currentY = calculateCurrentY(
+      anchorRtl,
+      nativeEvent.touches,
+      ownerWindow(nativeEvent.currentTarget),
+    );
 
-    if (open && paperRef.current.contains(event.target) && claimedSwipeInstance === null) {
-      const domTreeShapes = getDomTreeShapes(event.target, paperRef.current);
+    if (open && paperRef.current.contains(nativeEvent.target) && claimedSwipeInstance === null) {
+      const domTreeShapes = getDomTreeShapes(nativeEvent.target, paperRef.current);
       const hasNativeHandler = computeHasNativeHandler({
         domTreeShapes,
         start: horizontalSwipe ? swipeInstance.current.startX : swipeInstance.current.startY,
@@ -338,8 +342,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         ? dx > dy && dx > UNCERTAINTY_THRESHOLD
         : dy > dx && dy > UNCERTAINTY_THRESHOLD;
 
-      if (definitelySwiping && event.cancelable) {
-        event.preventDefault();
+      if (definitelySwiping && nativeEvent.cancelable) {
+        nativeEvent.preventDefault();
       }
 
       if (
@@ -348,7 +352,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       ) {
         swipeInstance.current.isSwiping = definitelySwiping;
         if (!definitelySwiping) {
-          handleBodyTouchEnd(event);
+          handleBodyTouchEnd(nativeEvent);
           return;
         }
 
@@ -419,30 +423,30 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     swipeInstance.current.lastTime = performance.now();
 
     // We are swiping, let's prevent the scroll event on iOS.
-    if (event.cancelable) {
-      event.preventDefault();
+    if (nativeEvent.cancelable) {
+      nativeEvent.preventDefault();
     }
 
     setPosition(translate);
   });
 
-  const handleBodyTouchStart = useEventCallback((event) => {
+  const handleBodyTouchStart = useEventCallback((nativeEvent) => {
     // We are not supposed to handle this touch move.
     // Example of use case: ignore the event if there is a Slider.
-    if (event.defaultPrevented) {
+    if (nativeEvent.defaultPrevented) {
       return;
     }
 
     // We can only have one node at the time claiming ownership for handling the swipe.
-    if (event.defaultMuiPrevented) {
+    if (nativeEvent.defaultMuiPrevented) {
       return;
     }
 
     // At least one element clogs the drawer interaction zone.
     if (
       open &&
-      !backdropRef.current.contains(event.target) &&
-      !paperRef.current.contains(event.target)
+      !backdropRef.current.contains(nativeEvent.target) &&
+      !paperRef.current.contains(nativeEvent.target)
     ) {
       return;
     }
@@ -452,14 +456,18 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
 
     const currentX = calculateCurrentX(
       anchorRtl,
-      event.touches,
-      ownerDocument(event.currentTarget),
+      nativeEvent.touches,
+      ownerDocument(nativeEvent.currentTarget),
     );
 
-    const currentY = calculateCurrentY(anchorRtl, event.touches, ownerWindow(event.currentTarget));
+    const currentY = calculateCurrentY(
+      anchorRtl,
+      nativeEvent.touches,
+      ownerWindow(nativeEvent.currentTarget),
+    );
 
     if (!open) {
-      if (disableSwipeToOpen || event.target !== swipeAreaRef.current) {
+      if (disableSwipeToOpen || nativeEvent.target !== swipeAreaRef.current) {
         return;
       }
       if (horizontalSwipe) {
@@ -471,7 +479,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       }
     }
 
-    event.defaultMuiPrevented = true;
+    nativeEvent.defaultMuiPrevented = true;
     claimedSwipeInstance = null;
     swipeInstance.current.startX = currentX;
     swipeInstance.current.startY = currentY;

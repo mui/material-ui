@@ -236,9 +236,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       // This allows seamless integration with the most popular form libraries.
       // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
       let clonedEvent;
-      // Clone the event if a native event to avoid leaks.
+      // Clone the event if a native touch event to avoid leaks.
       // No need to worry about it for SyntheticEvent as they are systematically cloned.
-      if (event instanceof Event) {
+      if (event instanceof TouchEvent) {
         clonedEvent = new event.constructor(event.type, event);
       } else {
         clonedEvent = event;
@@ -246,7 +246,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
       Object.defineProperty(clonedEvent, 'target', {
         writable: true,
-        value: { value, name },
+        value: { value, name, target: event.target },
       });
 
       onChange(clonedEvent, value);

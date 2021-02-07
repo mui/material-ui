@@ -5,8 +5,7 @@ import { expect } from 'chai';
 import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { SliderUnstyled } from '@material-ui/unstyled';
-import clsx from 'clsx';
-import Slider, { sliderClasses as classes } from './Slider';
+import Slider, { sliderClasses as classes } from '@material-ui/core/Slider';
 
 function createTouches(touches) {
   return {
@@ -103,7 +102,7 @@ describe('<Slider />', () => {
     expect(handleChangeCommitted.callCount).to.equal(1);
   });
 
-  it('should edge against a dropped mouseup event', () => {
+  it('should hedge against a dropped mouseup event', () => {
     const handleChange = spy();
     const { container } = render(<Slider onChange={handleChange} value={0} />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -702,7 +701,7 @@ describe('<Slider />', () => {
       function ValueLabelComponent(props) {
         const { value, open } = props;
         return (
-          <span data-testid="value-label" className={clsx({ open })}>
+          <span data-testid="value-label" className={open ? 'open' : ''}>
             {value}
           </span>
         );
@@ -946,6 +945,7 @@ describe('<Slider />', () => {
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.firstCall.returnValue).to.deep.equal({
       name: 'change-testing',
+      target: slider,
       value: 4,
     });
   });
@@ -969,5 +969,23 @@ describe('<Slider />', () => {
 
       expect(getByTestId('value-label')).to.have.text('1010');
     });
+  });
+
+  it('should not leak the event.target on touch events', () => {
+    const touchStart = spy();
+    function Test() {
+      React.useEffect(() => {
+        document.addEventListener('touchstart', touchStart);
+        return () => {
+          document.removeEventListener('touchstart', touchStart);
+        };
+      });
+
+      return <Slider value={0} onChange={() => {}} />;
+    }
+
+    const { container } = render(<Test />);
+    fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1 }]));
+    expect(touchStart.args[0][0].target.nodeType).to.equal(1);
   });
 });
