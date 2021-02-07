@@ -126,6 +126,27 @@ Renames `fade` style utility import and calls frpm `fade` to `alpha`.
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/grid-justify-justifycontent.js
 ```
 
+#### `hidden-down-props`
+
+Renames Hidden `*Down*` props to align to unit breakpoint.
+
+```diff
+-<Hidden xsDown />
+-<Hidden smDown />
+-<Hidden mdDown />
+-<Hidden lgDown />
+-<Hidden xlDown />
++<Hidden smDown />
++<Hidden mdDown />
++<Hidden lgDown />
++<Hidden xlDown />
++<Hidden xlDown />
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/hidden-down-props.js
+```
+
 #### `moved-lab-modules`
 
 Updates all imports for `@material-ui/lab` components that have moved to `@material-ui/core`.

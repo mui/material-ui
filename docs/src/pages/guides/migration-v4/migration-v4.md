@@ -156,7 +156,7 @@ export default function PlainCssPriority() {
   +theme.breakpoints.up('sm') // '@media (min-width:600px)'
   ```
 
-  You can use the [`theme-breakpoints` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#theme-breakpoints) for automatic migration of `theme.breakpoints`.
+  You can use the [`theme-breakpoints` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#theme-breakpoints) for automatic migration.
 
   The same should be done when using the `Hidden` component:
 
@@ -171,6 +171,8 @@ export default function PlainCssPriority() {
   -theme.breakpoints.width('md')
   +theme.breakpoints.values.md
   ```
+  
+  You can use the [`hidden-down-props` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#hidden-down-props) for automatic migration.
 
 - The signature of `theme.palette.augmentColor` helper has changed:
 
