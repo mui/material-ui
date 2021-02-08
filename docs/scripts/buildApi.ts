@@ -650,7 +650,7 @@ async function updateStylesDefinition(context: {
       TSPropertySignature(babelPath) {
         const { node } = babelPath;
         const possiblyPropName = (node.key as babel.types.Identifier).name;
-        if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
+        if (possiblyPropName === 'classes' && node.typeAnnotation != null) {
           const members = (node.typeAnnotation.typeAnnotation as babel.types.TSTypeLiteral).members;
 
           if (members) {
@@ -682,7 +682,7 @@ async function updateStylesDefinition(context: {
       TSPropertySignature(babelPath) {
         const { node } = babelPath;
         const possiblyPropName = (node.key as babel.types.Identifier).name;
-        if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
+        if (possiblyPropName === 'classes' && node.typeAnnotation != null) {
           let classesDeclarationNode = null;
           const types = (node.typeAnnotation.typeAnnotation as babel.types.TSIntersectionType)
             .types;
@@ -734,7 +734,7 @@ async function updateStylesDefinition(context: {
         TSPropertySignature(babelPath) {
           const { node } = babelPath;
           const possiblyPropName = (node.key as babel.types.Identifier).name;
-          if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
+          if (possiblyPropName === 'classes' && node.typeAnnotation != null) {
             const members = (node.typeAnnotation.typeAnnotation as babel.types.TSTypeLiteral)
               .members;
 
@@ -798,7 +798,7 @@ async function annotateClassesDefinition(context: {
     TSPropertySignature(babelPath) {
       const { node } = babelPath;
       const possiblyPropName = (node.key as babel.types.Identifier).name;
-      if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
+      if (possiblyPropName === 'classes' && node.typeAnnotation != null) {
         if (end !== null) {
           throw new Error('Found multiple possible locations for the `classes` definition.');
         }
