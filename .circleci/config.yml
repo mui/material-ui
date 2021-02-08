@@ -52,13 +52,13 @@ commands:
             git --no-pager diff HEAD
       - restore_cache:
           keys:
-            - v3-yarn-sha-{{ checksum "yarn.lock" }}
-            - v3-yarn-sha-
+            - v2-yarn-sha-{{ checksum "yarn.lock" }}
+            - v2-yarn-sha-
       - restore_cache:
           keys:
-            - v2-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
-            - v2-playwright-{{ arch }}-
-            - v2-playwright-
+            - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+            - v1-playwright-{{ arch }}-
+            - v1-playwright-
       - run:
           name: Install js dependencies
           command: yarn
@@ -76,11 +76,11 @@ jobs:
           name: Check for duplicated packages
           command: yarn deduplicate
       - save_cache:
-          key: v2-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+          key: v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/ms-playwright
       - save_cache:
-          key: v3-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn/v4
   test_unit:
