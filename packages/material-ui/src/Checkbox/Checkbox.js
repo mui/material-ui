@@ -49,28 +49,15 @@ const CheckboxRoot = experimentalStyled(
 )(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   color: theme.palette.text.secondary,
-  /* Styles applied to the root element if `color="primary"`. */
-  ...(styleProps.color === 'primary' && {
+  /* Styles applied to the root element unless `color="default"`. */
+  ...(styleProps.color !== 'default' && {
     [`&.Mui-checked, &.${checkboxClasses.indeterminate}`]: {
-      color: theme.palette.primary.main,
+      color: theme.palette[styleProps.color].main,
       '&:hover': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
-    },
-    '&.Mui-disabled': {
-      color: theme.palette.action.disabled,
-    },
-  }),
-  /* Styles applied to the root element if `color="secondary"`. */
-  ...(styleProps.color === 'secondary' && {
-    [`&.Mui-checked, &.${checkboxClasses.indeterminate}`]: {
-      color: theme.palette.secondary.main,
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: alpha(
+          theme.palette[styleProps.color].main,
+          theme.palette.action.hoverOpacity,
+        ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent',
