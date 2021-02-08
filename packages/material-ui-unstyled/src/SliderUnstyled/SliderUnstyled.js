@@ -230,23 +230,16 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const handleChange =
     onChange &&
     ((event, value) => {
-      if (!(event instanceof Event)) event.persist();
-
       // Redefine target to allow name and value to be read.
       // This allows seamless integration with the most popular form libraries.
       // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
-      let clonedEvent;
-      // Clone the event to not override `target` of the native event.
-      // No need to worry about it for SyntheticEvent as they are systematically cloned.
-      if (event instanceof Event) {
-        clonedEvent = new event.constructor(event.type, event);
-      } else {
-        clonedEvent = event;
-      }
+      // Clone the event to not override `target` of the original event.
+      const nativeEvent = event.nativeEvent || event;
+      const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
 
       Object.defineProperty(clonedEvent, 'target', {
         writable: true,
-        value: { value, name, target: event.target },
+        value: { value, name, event },
       });
 
       onChange(clonedEvent, value);
@@ -901,7 +894,9 @@ SliderUnstyled.propTypes = {
   /**
    * Callback function that is fired when the slider's value changed.
    *
-   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (any).
+   * **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
    */
   onChange: PropTypes.func,

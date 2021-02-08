@@ -950,11 +950,10 @@ describe('<Slider />', () => {
     });
 
     expect(handleChange.callCount).to.equal(1);
-    expect(handleChange.firstCall.returnValue).to.deep.equal({
-      name: 'change-testing',
-      target: slider,
-      value: 4,
-    });
+    const returnValue = handleChange.firstCall.returnValue;
+    expect(returnValue.name).to.equal('change-testing');
+    expect(returnValue.value).to.equal(4);
+    expect(returnValue.event).to.not.equal(undefined);
   });
 
   describe('prop: ValueLabelComponent', () => {
@@ -1004,8 +1003,7 @@ describe('<Slider />', () => {
     expect(handleEvent.returnValues).to.have.members([slider]);
   });
 
-  // eslint-disable-next-line mocha/no-skipped-tests -- FIXME
-  it.skip('should not override the event.target on mouse events', () => {
+  it('should not override the event.target on mouse events', () => {
     const handleNativeEvent = spy((event) => event.target);
     const handleEvent = spy((event) => event.target);
     function Test() {
