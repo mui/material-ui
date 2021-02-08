@@ -236,9 +236,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       // This allows seamless integration with the most popular form libraries.
       // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
       let clonedEvent;
-      // Clone the event if a native touch event to avoid leaks.
+      // Clone the event to not override `target` of the native event.
       // No need to worry about it for SyntheticEvent as they are systematically cloned.
-      if (event instanceof TouchEvent) {
+      if (event instanceof Event) {
         clonedEvent = new event.constructor(event.type, event);
       } else {
         clonedEvent = event;
@@ -468,25 +468,25 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     stopListening();
   });
 
-  const handleTouchStart = useEventCallback((event) => {
+  const handleTouchStart = useEventCallback((nativeEvent) => {
     // If touch-action: none; is not supported we need to prevent the scroll manually.
     if (!doesSupportTouchActionNone()) {
-      event.preventDefault();
+      nativeEvent.preventDefault();
     }
 
-    const touch = event.changedTouches[0];
+    const touch = nativeEvent.changedTouches[0];
     if (touch != null) {
       // A number that uniquely identifies the current finger in the touch session.
       touchId.current = touch.identifier;
     }
-    const finger = trackFinger(event, touchId);
+    const finger = trackFinger(nativeEvent, touchId);
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);
 
     if (handleChange) {
-      handleChange(event, newValue);
+      handleChange(nativeEvent, newValue);
     }
 
     const doc = ownerDocument(sliderRef.current);

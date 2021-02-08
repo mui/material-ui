@@ -2,7 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import {
+  createMount,
+  describeConformanceV5,
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { SliderUnstyled } from '@material-ui/unstyled';
 import Slider, { sliderClasses as classes } from '@material-ui/core/Slider';
@@ -708,7 +715,7 @@ describe('<Slider />', () => {
       }
       ValueLabelComponent.propTypes = { value: PropTypes.number };
 
-      const screen = render(
+      const { setProps } = render(
         <Slider
           components={{ ValueLabel: ValueLabelComponent }}
           valueLabelDisplay="on"
@@ -718,7 +725,7 @@ describe('<Slider />', () => {
 
       expect(screen.queryByTestId('value-label')).to.have.class('open');
 
-      screen.setProps({
+      setProps({
         valueLabelDisplay: 'off',
       });
 
@@ -971,21 +978,56 @@ describe('<Slider />', () => {
     });
   });
 
-  it('should not leak the event.target on touch events', () => {
-    const touchStart = spy();
+  it('should not override the event.target on touch events', () => {
+    const handleNativeEvent = spy((event) => event.target);
+    const handleEvent = spy((event) => event.target);
     function Test() {
       React.useEffect(() => {
-        document.addEventListener('touchstart', touchStart);
+        document.addEventListener('touchstart', handleNativeEvent);
         return () => {
-          document.removeEventListener('touchstart', touchStart);
+          document.removeEventListener('touchstart', handleNativeEvent);
         };
       });
 
-      return <Slider value={0} onChange={() => {}} />;
+      return (
+        <div onTouchStart={handleEvent}>
+          <Slider data-testid="slider" value={0} onChange={() => {}} />
+        </div>
+      );
     }
+    render(<Test />);
+    const slider = screen.getByTestId('slider');
 
-    const { container } = render(<Test />);
-    fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1 }]));
-    expect(touchStart.args[0][0].target.nodeType).to.equal(1);
+    fireEvent.touchStart(slider, createTouches([{ identifier: 1 }]));
+
+    expect(handleNativeEvent.returnValues).to.have.members([slider]);
+    expect(handleEvent.returnValues).to.have.members([slider]);
+  });
+
+  // eslint-disable-next-line mocha/no-skipped-tests -- FIXME
+  it.skip('should not override the event.target on mouse events', () => {
+    const handleNativeEvent = spy((event) => event.target);
+    const handleEvent = spy((event) => event.target);
+    function Test() {
+      React.useEffect(() => {
+        document.addEventListener('mousedown', handleNativeEvent);
+        return () => {
+          document.removeEventListener('mousedown', handleNativeEvent);
+        };
+      });
+
+      return (
+        <div onMouseDown={handleEvent}>
+          <Slider data-testid="slider" value={0} onChange={() => {}} />
+        </div>
+      );
+    }
+    render(<Test />);
+    const slider = screen.getByTestId('slider');
+
+    fireEvent.mouseDown(slider);
+
+    expect(handleNativeEvent.returnValues).to.have.members([slider]);
+    expect(handleEvent.returnValues).to.have.members([slider]);
   });
 });
