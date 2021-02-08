@@ -1,0 +1,15 @@
+{
+  "props": {
+    "onYearChange": { "type": { "name": "func" } },
+    "shouldDisableYear": { "type": { "name": "func" } }
+  },
+  "name": "YearPicker",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiYearPicker" },
+  "spread": false,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/YearPicker/YearPicker.tsx",
+  "inheritance": null,
+  "demos": "",
+  "styledComponent": false,
+  "cssComponent": false
+}

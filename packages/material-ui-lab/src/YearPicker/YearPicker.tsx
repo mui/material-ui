@@ -48,9 +48,6 @@ export const styles: MuiStyles<YearPickerClassKey> = {
   },
 };
 
-/**
- * @ignore - do not document.
- */
 const YearPicker = React.forwardRef(function YearPicker<TDate>(
   props: YearPickerProps<TDate> & WithStyles<typeof styles>,
   ref: React.Ref<HTMLDivElement>,
@@ -234,6 +231,12 @@ YearPicker.propTypes = {
   shouldDisableYear: PropTypes.func,
 } as any;
 
+/**
+ *
+ * API:
+ *
+ * - [YearPicker API](https://material-ui.com/api/year-picker/)
+ */
 export default withStyles(styles, { name: 'MuiYearPicker' })(YearPicker) as <TDate>(
   props: YearPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element;
