@@ -15,7 +15,6 @@ import {
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
-import Input from '../Input';
 
 async function raf() {
   return new Promise((resolve) => {
@@ -459,11 +458,12 @@ describe('<Tooltip />', () => {
     });
 
     it('should handle autoFocus + onFocus forwarding', () => {
+      const handleFocus = spy();
       const AutoFocus = (props) => (
         <div>
           {props.open ? (
             <Tooltip enterDelay={100} title="Title">
-              <Input value="value" autoFocus />
+              <input autoFocus onFocus={handleFocus} />
             </Tooltip>
           ) : null}
         </div>
@@ -477,6 +477,7 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
+      expect(handleFocus.callCount).to.equal(1);
     });
   });
 
