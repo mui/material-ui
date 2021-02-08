@@ -8,7 +8,6 @@ import capitalize from '../utils/capitalize';
 import { alpha } from '../styles/colorManipulator';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import Button from '../Button';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 
 const overridesResolver = (props, styles) => {
@@ -30,7 +29,15 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { color, disableElevation, fullWidth, orientation, variant, classes } = styleProps;
+  const {
+    color,
+    disabled,
+    disableElevation,
+    fullWidth,
+    orientation,
+    variant,
+    classes,
+  } = styleProps;
 
   const slots = {
     root: [
@@ -46,6 +53,7 @@ const useUtilityClasses = (styleProps) => {
       `grouped${capitalize(variant)}`,
       `grouped${capitalize(variant)}${capitalize(orientation)}`,
       color !== 'default' && `grouped${capitalize(variant)}${capitalize(color)}`,
+      disabled && 'disabled',
     ],
   };
 
@@ -173,10 +181,6 @@ const ButtonGroupRoot = experimentalStyled(
     }),
   },
 }));
-
-// Force a side effect so we don't have any override priority issue.
-// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-Button.styles;
 
 const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButtonGroup' });
