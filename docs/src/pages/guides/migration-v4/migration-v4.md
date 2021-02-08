@@ -419,6 +419,8 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
   +<Autocomplete clearIcon={defaultClearIcon} />
   ```
 
+  You can use the [`autocomplete-rename-closeicon` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#autocomplete-rename-closeicon) for automatic migration.
+
 - The following values of the reason argument in `onChange` and `onClose` were renamed for consistency:
 
   1. `create-option` to `createOption`

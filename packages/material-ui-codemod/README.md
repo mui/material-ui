@@ -21,6 +21,19 @@ APIs.
 
 ### v5.0.0
 
+#### `autocomplete-rename-closeicon`
+
+Renames `fade` style utility import and calls frpm `fade` to `alpha`.
+
+```diff
+-<Grid justify="left">Item</Grid>
++<Grid item justifyContent="left">Item</Grid>
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/autocomplete-rename-closeicon.js
+```
+
 #### `avatar-circle-circular`
 
 Updates the Avatar `variant` value and classes key from 'circle' to 'circular'.
