@@ -5,7 +5,7 @@ on:
     branches-ignore:
       # Dependabot branches are always Pull Requests.
       # We don't need to run CI twice (push+pull_request)
-      - 'dependabot/*'
+      - 'dependabot/**'
   pull_request:
 
 jobs:
