@@ -72,6 +72,10 @@ Support for non-ref-forwarding class components in the `component` prop or as im
 Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Supported TypeScript version
+
+The minimum support version of TypeScript was increased from v3.2 to v3.5.
+
 ### Styled engine
 
 The styled engine used in v5 by default is [`emotion`](https://github.com/emotion-js/emotion). While migration from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you need to take care of the CSS injection order. In order to do this, you need to have on the top of your application the `StylesProvider` with the `injectFirst` option. Here is an example of it:
