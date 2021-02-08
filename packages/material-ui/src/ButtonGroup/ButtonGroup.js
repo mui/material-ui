@@ -43,9 +43,9 @@ const useUtilityClasses = (styleProps) => {
     root: [
       'root',
       variant,
-      disableElevation && 'disableElevation',
-      fullWidth && 'fullWidth',
       orientation === 'vertical' && 'vertical',
+      fullWidth && 'fullWidth',
+      disableElevation && 'disableElevation',
     ],
     grouped: [
       'grouped',
