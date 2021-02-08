@@ -157,6 +157,21 @@ Rename the CircularPress `static` variant to `determinate`.
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/circularprogress-variant.js
 ```
 
+#### `collapse-rename-collapsedheight`
+
+Rename the CircularPress `static` variant to `determinate`.
+
+```diff
+-<Collapse collapsedHeight={40} />
+-<Collapse classes={{ container: 'collapse' }} />
++<Collapse collapsedSize={40} />
++<Collapse classes={{ root: 'collapse' }} />
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/collapse-rename-collapsedheight.js
+```
+
 #### `fade-rename-alpha`
 
 Renames `fade` style utility import and calls frpm `fade` to `alpha`.

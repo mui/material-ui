@@ -627,7 +627,9 @@ You can use the [`circularprogress-variant` codemod](https://github.com/mui-org/
   +<Collapse classes={{ root: 'collapse' }}>
   ```
 
-### CssBaseline
+You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#collapse-rename-collapsedheight) for automatic migration of both the prop and the classes key.
+
+### CssBaseline
 
 - The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
 
