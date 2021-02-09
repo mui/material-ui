@@ -24,7 +24,6 @@ defaults: &defaults
     # expose it globally otherwise we have to thread it from each job to the install command
     REACT_DIST_TAG: << parameters.react-dist-tag >>
     TEST_GATE: << parameters.test-gate >>
-    YARN_CACHE_FOLDER: ~/.cache/yarn
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:10
@@ -53,12 +52,13 @@ commands:
             git --no-pager diff HEAD
       - restore_cache:
           keys:
-            - v5-yarn-sha-{{ checksum "yarn.lock" }}
-            - v5-yarn-sha-
+            - v6-yarn-sha-{{ checksum "yarn.lock" }}
+            - v6-yarn-sha-
       - run:
           name: Set yarn cache folder
           command: |
-            yarn config set cache-folder $YARN_CACHE_FOLDER
+            # Keep path in sync with `save_cache` for key "v6-yarn-sha-"
+            yarn config set cache-folder ~/.cache/yarn
             # Debug information
             yarn cache dir
             yarn cache list
@@ -88,9 +88,11 @@ jobs:
           paths:
             - ~/.cache/ms-playwright
       - save_cache:
-          key: v5-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v6-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
-            - $YARN_CACHE_FOLDER
+          # Keep path in sync with "Set yarn cache folder"
+          # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
+            - ~/.cache/yarn
   test_unit:
     <<: *defaults
     steps:
