@@ -5,15 +5,17 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateTimePicker from '@material-ui/lab/DateTimePicker';
 
 export default function BasicDateTimePicker() {
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
+  const [value, setValue] = React.useState<Date | null>(new Date());
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateTimePicker
         renderInput={(props) => <TextField {...props} />}
         label="DateTimePicker"
-        value={selectedDate}
-        onChange={handleDateChange}
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue);
+        }}
       />
     </LocalizationProvider>
   );
