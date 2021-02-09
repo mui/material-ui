@@ -11,7 +11,7 @@
     "getOpenDialogAriaText": "Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType",
     "InputAdornmentProps": "Props to pass to keyboard input adornment.",
     "inputFormat": "Format string.",
-    "mask": "Custom mask. Can be used to override generate from format. (e.g. <strong>/</strong>/<strong>__ __:</strong> or <strong>/</strong>/<strong>__ __:</strong> _M).",
+    "mask": "Custom mask. Can be used to override generate from format. (e.g. <code>__/__/____ __:__</code> or <code>__/__/____ __:__ _M</code>).",
     "onAccept": "Callback fired when date is accepted @DateIOType.",
     "onChange": "Callback fired when the value (the selected date) changes. @DateIOType.",
     "onClose": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).",
