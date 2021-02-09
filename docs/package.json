@@ -83,7 +83,7 @@
     "lodash": "^4.17.15",
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^7.0.0",
-    "marked": "^1.0.0",
+    "marked": "^2.0.0",
     "material-ui-popup-state": "^1.4.1",
     "next": "^10.0.0",
     "notistack": "^1.0.0",
