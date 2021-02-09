@@ -823,12 +823,14 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Grid
 
-- Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
+- Rename `justify` prop to `justifyContent` to align with the CSS property name.
 
   ```diff
   -<Grid justify="center">
   +<Grid justifyContent="center">
   ```
+
+  You can use the [`component-rename-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#component-rename-prop) for automatic migration.
 
 - The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. For example
 
