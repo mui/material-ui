@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '..';
 
 export interface ButtonGroupPropsVariantOverrides {}
 export type ButtonGroupVariantDefaults = Record<'text' | 'outlined' | 'contained', true>;
@@ -114,6 +116,10 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default 'outlined'
      */
     variant?: OverridableStringUnion<ButtonGroupVariantDefaults, ButtonGroupPropsVariantOverrides>;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }

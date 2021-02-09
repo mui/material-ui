@@ -1,23 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import Button from '../Button';
 import ButtonGroup from './ButtonGroup';
+import classes from './buttonGroupClasses';
 
 describe('<ButtonGroup />', () => {
   const render = createClientRender();
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(
-      <ButtonGroup>
-        <Button>Hello World</Button>
-      </ButtonGroup>,
-    );
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <ButtonGroup>
       <Button>Conformance?</Button>
     </ButtonGroup>,
@@ -27,6 +19,10 @@ describe('<ButtonGroup />', () => {
       mount,
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
+      muiName: 'MuiButtonGroup',
+      testVariantProps: { variant: 'contained' },
+      testDeepOverrides: { slotName: 'grouped', slotClassName: classes.grouped },
+      skip: ['componentsProp'],
     }),
   );
 
