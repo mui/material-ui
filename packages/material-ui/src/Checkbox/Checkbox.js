@@ -28,7 +28,12 @@ const useUtilityClasses = (styleProps) => {
     root: ['root', indeterminate && 'indeterminate', `color${capitalize(color)}`],
   };
 
-  return composeClasses(slots, getCheckboxUtilityClass, classes);
+  const finalClasses = composeClasses(slots, getCheckboxUtilityClass, classes);
+
+  return {
+    ...classes, // forward the disabled and checked classes to the SwitchBase
+    ...finalClasses,
+  };
 };
 
 const CheckboxRoot = experimentalStyled(
@@ -71,7 +76,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
-    classes: classesProp = {},
     color = 'secondary',
     icon: iconProp = defaultIcon,
     indeterminate = false,
@@ -86,7 +90,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const styleProps = {
     ...props,
-    classes: classesProp,
     color,
     indeterminate,
     size,
@@ -114,12 +117,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       })}
       styleProps={styleProps}
       ref={ref}
-      classes={{
-        root: classes.root,
-        checked: classesProp.checked,
-        disabled: classesProp.disabled,
-      }}
       {...other}
+      classes={classes}
     />
   );
 });
