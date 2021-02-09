@@ -1,9 +1,6 @@
-export interface ListClasses {
-  root: string;
-  padding: string;
-  dense: string;
-  subheader: string;
-}
+import { ListClassKey } from './List';
+
+export type ListClasses = Record<ListClassKey, string>;
 
 declare const listClasses: ListClasses;
 
