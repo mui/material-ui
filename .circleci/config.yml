@@ -53,12 +53,12 @@ commands:
             git --no-pager diff HEAD
       - restore_cache:
           keys:
-            - v4-yarn-sha-{{ checksum "yarn.lock" }}
-            - v4-yarn-sha-
+            - v5-yarn-sha-{{ checksum "yarn.lock" }}
+            - v5-yarn-sha-
       - run:
           name: Set yarn cache folder
           command: |
-            yarn config set cache-folder ~/.cache/yarn
+            yarn config set cache-folder $YARN_CACHE_FOLDER
             # Debug information
             yarn cache dir
             yarn cache list
@@ -88,9 +88,9 @@ jobs:
           paths:
             - ~/.cache/ms-playwright
       - save_cache:
-          key: v4-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v5-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
+            - $YARN_CACHE_FOLDER
   test_unit:
     <<: *defaults
     steps:
