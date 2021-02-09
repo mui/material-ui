@@ -62,7 +62,7 @@ commands:
             - v1-playwright-
       - run:
           name: Install js dependencies
-          command: yarn install --cache-folder ${YARN_CACHE_FOLDER} --verbose
+          command: yarn install --cache-folder ~/.cache/yarn --verbose
 
 jobs:
   checkout:
@@ -83,7 +83,7 @@ jobs:
       - save_cache:
           key: v3-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
-            - ${YARN_CACHE_FOLDER}
+            - ~/.cache/yarn
   test_unit:
     <<: *defaults
     steps:
