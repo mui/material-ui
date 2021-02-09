@@ -25,11 +25,7 @@ const useUtilityClasses = (styleProps) => {
   const { classes, indeterminate, color } = styleProps;
 
   const slots = {
-    root: [
-      'root',
-      indeterminate && 'indeterminate',
-      `color${capitalize(color)}`,
-    ],
+    root: ['root', indeterminate && 'indeterminate', `color${capitalize(color)}`],
   };
 
   return composeClasses(slots, getCheckboxUtilityClass, classes);
