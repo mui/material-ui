@@ -950,10 +950,10 @@ describe('<Slider />', () => {
     });
 
     expect(handleChange.callCount).to.equal(1);
-    const returnValue = handleChange.firstCall.returnValue;
-    expect(returnValue.name).to.equal('change-testing');
-    expect(returnValue.value).to.equal(4);
-    expect(returnValue.event).to.not.equal(undefined);
+    const target = handleChange.firstCall.returnValue;
+    expect(target.name).to.equal('change-testing');
+    expect(target.value).to.equal(4);
+    expect(target.event).not.to.equal(undefined);
   });
 
   describe('prop: ValueLabelComponent', () => {
