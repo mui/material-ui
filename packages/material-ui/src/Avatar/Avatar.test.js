@@ -74,21 +74,17 @@ describe('<Avatar />', () => {
   });
 
   describe('font icon avatar', () => {
-    let container;
-    let avatar;
-    let icon;
-
-    before(() => {
-      container = render(
-        <Avatar className="my-avatar" data-my-prop="woofAvatar">
-          <span className="my-icon-font">icon</span>
-        </Avatar>,
-      ).container;
-      avatar = container.firstChild;
-      icon = avatar.firstChild;
-    });
-
     it('should render a div containing an font icon', () => {
+      const { container } = render(
+        <Avatar>
+          <span className="my-icon-font" data-testid="icon">
+            icon
+          </span>
+        </Avatar>,
+      );
+      const avatar = container.firstChild;
+      const icon = avatar.firstChild;
+
       expect(avatar).to.have.tagName('div');
       expect(icon).to.have.tagName('span');
       expect(icon).to.have.class('my-icon-font');
@@ -96,100 +92,125 @@ describe('<Avatar />', () => {
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
+      const { container } = render(
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
+          <span>icon</span>
+        </Avatar>,
+      );
+      const avatar = container.firstChild;
+
       expect(avatar).to.have.class(classes.root);
       expect(avatar).to.have.class('my-avatar');
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
+      const { container } = render(
+        <Avatar data-testid="avatar">
+          <span>icon</span>
+        </Avatar>,
+      );
+      const avatar = container.firstChild;
+
       expect(avatar).to.have.class(classes.colorDefault);
     });
   });
 
   describe('svg icon avatar', () => {
-    let container;
-    let avatar;
-
-    before(() => {
-      container = render(
-        <Avatar className="my-avatar" data-my-prop="woofAvatar">
+    it('should render a div containing an svg icon', () => {
+      const container = render(
+        <Avatar>
           <CancelIcon />
         </Avatar>,
       ).container;
-      avatar = container.firstChild;
-    });
+      const avatar = container.firstChild;
 
-    it('should render a div containing an svg icon', () => {
       expect(avatar).to.have.tagName('div');
       const cancelIcon = avatar.firstChild;
       expect(cancelIcon).to.have.attribute('data-testid', 'CancelIcon');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
+      const container = render(
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
+          <CancelIcon />
+        </Avatar>,
+      ).container;
+      const avatar = container.firstChild;
+
       expect(avatar).to.have.class(classes.root);
       expect(avatar).to.have.class('my-avatar');
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
+      const container = render(
+        <Avatar>
+          <CancelIcon />
+        </Avatar>,
+      ).container;
+      const avatar = container.firstChild;
+
       expect(avatar).to.have.class(classes.colorDefault);
     });
   });
 
   describe('text avatar', () => {
-    let container;
-    let avatar;
-
-    before(() => {
-      container = render(
-        <Avatar className="my-avatar" data-my-prop="woofAvatar">
-          OT
-        </Avatar>,
-      ).container;
-      avatar = container.firstChild;
-    });
-
     it('should render a div containing a string', () => {
+      const container = render(<Avatar>OT</Avatar>).container;
+      const avatar = container.firstChild;
+
       expect(avatar).to.have.tagName('div');
       expect(avatar.firstChild).to.text('OT');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
+      const container = render(
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
+          OT
+        </Avatar>,
+      ).container;
+      const avatar = container.firstChild;
+
       expect(avatar).to.have.class(classes.root);
       expect(avatar).to.have.class('my-avatar');
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
+      const container = render(<Avatar>OT</Avatar>).container;
+      const avatar = container.firstChild;
+
       expect(avatar).to.have.class(classes.colorDefault);
     });
   });
 
   describe('falsey avatar', () => {
-    let container;
-    let avatar;
-
-    before(() => {
-      container = render(
-        <Avatar className="my-avatar" data-my-prop="woofAvatar">
-          {0}
-        </Avatar>,
-      ).container;
-      avatar = container.firstChild;
-    });
-
     it('should render with defaultColor class when supplied with a child with falsey value', () => {
+      const container = render(<Avatar>{0}</Avatar>).container;
+      const avatar = container.firstChild;
+
       expect(avatar).to.have.tagName('div');
       expect(avatar.firstChild).to.text('0');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
+      const container = render(
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
+          {0}
+        </Avatar>,
+      ).container;
+      const avatar = container.firstChild;
+
       expect(avatar).to.have.class(classes.root);
       expect(avatar).to.have.class('my-avatar');
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
+      const container = render(<Avatar>{0}</Avatar>).container;
+      const avatar = container.firstChild;
+
       expect(avatar).to.have.class(classes.colorDefault);
     });
   });

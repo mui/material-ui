@@ -1,6 +1,8 @@
 /* eslint-env mocha */
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import createEmotionCache from '@emotion/cache';
+import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import {
   act as rtlAct,
   buildQueries,
@@ -175,49 +177,46 @@ const customQueries = {
 };
 
 /**
- * @typedef {object} RenderOptions
- * @property {HTMLElement} [options.baseElement] - https://testing-library.com/docs/react-testing-library/api#baseelement-1
- * @property {HTMLElement} [options.container] - https://testing-library.com/docs/react-testing-library/api#container
- * @property {boolean} [options.disableUnnmount] - if true does not cleanup before mount
- * @property {boolean} [options.hydrate] - https://testing-library.com/docs/react-testing-library/api#hydrate
- * @property {boolean} [options.strict] - wrap in React.StrictMode?
+ * @typedef {object} RenderConfiguration
+ * @property {HTMLElement} [baseElement] - https://testing-library.com/docs/react-testing-library/api#baseelement-1
+ * @property {HTMLElement} [container] - https://testing-library.com/docs/react-testing-library/api#container
+ * @property {boolean} [disableUnnmount] - if true does not cleanup before mount
+ * @property {import('@emotion/cache').EmotionCache} emotionCache - Value for the CacheProvider of emotion
+ * @property {boolean} [hydrate] - https://testing-library.com/docs/react-testing-library/api#hydrate
+ * @property {typeof Profiler} profiler
+ * @property {boolean} [strict] - wrap in React.StrictMode?
+ */
+
+/**
+ * @typedef {Omit<RenderConfiguration, 'emotionCache' | 'profiler'>} RenderOptions
  */
 
 /**
  * @param {React.ReactElement} element
- * @param {RenderOptions} [options]
+ * @param {RenderConfiguration} configuration
  * @returns {import('@testing-library/react').RenderResult<typeof queries & typeof customQueries> & { setProps(props: object): void}}
  * TODO: type return RenderResult in setProps
  */
-function clientRender(element, options = {}) {
+function clientRender(element, configuration) {
   const {
     baseElement,
     container,
+    emotionCache,
     hydrate,
     strict = true,
     profiler,
     wrapper: InnerWrapper = React.Fragment,
-  } = options;
-
-  if (profiler === null) {
-    // TODO: remove tests rendering in mocha hooks
-    // throw new Error('Rendered outside of a test. Use the test renderer only in tests.');
-  }
+  } = configuration;
 
   const Mode = strict ? React.StrictMode : React.Fragment;
   function Wrapper({ children }) {
-    if (profiler !== null) {
-      return (
-        <Mode>
+    return (
+      <Mode>
+        <EmotionCacheProvider value={emotionCache}>
           <React.Profiler id={profiler.id} onRender={profiler.onRender}>
             <InnerWrapper>{children}</InnerWrapper>
           </React.Profiler>
-        </Mode>
-      );
-    }
-    return (
-      <Mode>
-        <InnerWrapper>{children}</InnerWrapper>
+        </EmotionCacheProvider>
       </Mode>
     );
   }
@@ -256,8 +255,8 @@ function clientRender(element, options = {}) {
 }
 
 /**
- * @param {RenderOptions} globalOptions
- * @returns {clientRender}
+ * @param {RenderOptions} [globalOptions]
+ * @returns {(element: React.ReactElement, options?: RenderOptions) => import('@testing-library/react').RenderResult<typeof queries & typeof customQueries> & { setProps(props: object): void}}
  */
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
@@ -290,6 +289,15 @@ export function createClientRender(globalOptions = {}) {
     }
   });
 
+  /**
+   * @type {import('@emotion/cache').EmotionCache}
+   */
+  let emotionCache = null;
+  /**
+   * Flag whether all setup for `configuredClientRender` was completed.
+   * For legacy reasons `configuredClientRender` might accidentally be called in a before(Each) hook.
+   */
+  let prepared = false;
   let profiler = null;
   beforeEach(function beforeEachHook() {
     if (!wasCalledInSuite) {
@@ -307,6 +315,10 @@ export function createClientRender(globalOptions = {}) {
       );
     }
     profiler = new Profiler(this.currentTest);
+
+    emotionCache = createEmotionCache({ key: 'emotion-client-render' });
+
+    prepared = true;
   });
 
   afterEach(() => {
@@ -325,12 +337,25 @@ export function createClientRender(globalOptions = {}) {
     cleanup();
     profiler.report();
     profiler = null;
+
+    emotionCache.sheet.tags.forEach((styleTag) => {
+      styleTag.remove();
+    });
+    emotionCache = null;
   });
 
   return function configuredClientRender(element, options = {}) {
+    if (!prepared) {
+      throw new Error(
+        'Unable to finish setup before `render()` was called. ' +
+          'This usually indicates that `render()` was called in a `before()` or `beforeEach` hook. ' +
+          'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
+      );
+    }
+
     const { strict = globalStrict, ...localOptions } = options;
 
-    return clientRender(element, { ...localOptions, strict, profiler });
+    return clientRender(element, { ...localOptions, strict, profiler, emotionCache });
   };
 }
 
