@@ -62,8 +62,7 @@ commands:
             - v1-playwright-
       - run:
           name: Install js dependencies
-          # Sync with `v3-yarn-sha-` save_cache
-          command: yarn install --cache-folder ${YARN_CACHE_FOLDER}
+          command: yarn install --cache-folder ${YARN_CACHE_FOLDER} --verbose
 
 jobs:
   checkout:
