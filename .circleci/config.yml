@@ -24,6 +24,7 @@ defaults: &defaults
     # expose it globally otherwise we have to thread it from each job to the install command
     REACT_DIST_TAG: << parameters.react-dist-tag >>
     TEST_GATE: << parameters.test-gate >>
+    YARN_CACHE_FOLDER: ~/.cache/yarn
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:10
@@ -52,8 +53,8 @@ commands:
             git --no-pager diff HEAD
       - restore_cache:
           keys:
-            - v2-yarn-sha-{{ checksum "yarn.lock" }}
-            - v2-yarn-sha-
+            - v3-yarn-sha-{{ checksum "yarn.lock" }}
+            - v3-yarn-sha-
       - restore_cache:
           keys:
             - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
@@ -61,7 +62,8 @@ commands:
             - v1-playwright-
       - run:
           name: Install js dependencies
-          command: yarn
+          # Sync with `v3-yarn-sha-` save_cache
+          command: yarn install --cache-folder ${YARN_CACHE_FOLDER}
 
 jobs:
   checkout:
@@ -80,9 +82,9 @@ jobs:
           paths:
             - ~/.cache/ms-playwright
       - save_cache:
-          key: v2-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v3-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn/v4
+            - ${YARN_CACHE_FOLDER}
   test_unit:
     <<: *defaults
     steps:
@@ -247,7 +249,7 @@ jobs:
             # without --no-bail we only see at most a single failing package
             yarn typescript --no-bail
             exit 0
-      
+
       - restore_cache:
           name: Restore generated declaration files
           keys:
