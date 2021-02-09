@@ -53,8 +53,15 @@ commands:
             git --no-pager diff HEAD
       - restore_cache:
           keys:
-            - v3-yarn-sha-{{ checksum "yarn.lock" }}
-            - v3-yarn-sha-
+            - v4-yarn-sha-{{ checksum "yarn.lock" }}
+            - v4-yarn-sha-
+      - run:
+          name: Set yarn cache folder
+          command: |
+            yarn config set cache-folder ~/.cache/yarn
+            # Debug information
+            yarn cache dir
+            yarn cache list
       - restore_cache:
           keys:
             - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
@@ -62,7 +69,7 @@ commands:
             - v1-playwright-
       - run:
           name: Install js dependencies
-          command: yarn install --cache-folder ~/.cache/yarn --verbose
+          command: yarn install --verbose
 
 jobs:
   checkout:
@@ -81,7 +88,7 @@ jobs:
           paths:
             - ~/.cache/ms-playwright
       - save_cache:
-          key: v3-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v4-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
   test_unit:
