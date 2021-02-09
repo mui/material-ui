@@ -47,18 +47,18 @@ describe('text-field-helper', () => {
   [
     { mask: '__.__.____', format: adapterToUse.formats.keyboardDate, isValid: false },
     { mask: '__/__/____', format: adapterToUse.formats.keyboardDate, isValid: true },
-    { mask: '__:__ _M', format: adapterToUse.formats.fullTime, isValid: false },
-    { mask: '__/__/____ __:__ _M', format: adapterToUse.formats.keyboardDateTime, isValid: false },
+    { mask: '__:__ _m', format: adapterToUse.formats.fullTime, isValid: false },
+    { mask: '__/__/____ __:__ _m', format: adapterToUse.formats.keyboardDateTime, isValid: false },
     { mask: '__/__/____ __:__', format: adapterToUse.formats.keyboardDateTime24h, isValid: true },
     { mask: '__/__/____', format: 'MM/dd/yyyy', isValid: true },
     { mask: '__/__/____', format: 'MMMM yyyy', isValid: false },
     {
-      mask: '__/__/____ __:__ _M',
+      mask: '__/__/____ __:__ _m',
       format: adapterToUse.formats.keyboardDateTime12h,
       isValid: true,
     },
-  ].forEach(({ mask, format, isValid }) => {
-    it(`checkMaskIsValidFormat returns ${isValid} for mask ${mask} and format ${format}`, () => {
+  ].forEach(({ mask, format, isValid }, index) => {
+    it(`checkMaskIsValidFormat returns ${isValid} for mask #${index} '${mask}' and format ${format}`, () => {
       const runMaskValidation = () =>
         checkMaskIsValidForCurrentFormat(mask, format, /[\dap]/gi, adapterToUse);
 
