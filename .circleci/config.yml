@@ -59,9 +59,15 @@ commands:
             - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
             - v1-playwright-{{ arch }}-
             - v1-playwright-
+      - restore_cache:
+          keys:
+            # Just restore n_m from the `checkout` job of this pipeline so no fallback keys.
+            - v1-node-modules-sha-{{ checksum "yarn.lock" }}-{{ .Branch }}
       - run:
           name: Install js dependencies
-          command: yarn
+          # Even if we do have a cache hit for n_m we need to run `yarn` to install nested n_m.
+          # The top level n_m will have almost all packages so caching that should already speed up a lot.
+          command: yarn install --verbose
 
 jobs:
   checkout:
@@ -79,10 +85,17 @@ jobs:
           key: v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/ms-playwright
+      - run:
+          name: Verify yarn cache dir
+          command: yarn cache dir
       - save_cache:
           key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn/v4
+      - save_cache:
+          key: v1-node-modules-sha-{{ checksum "yarn.lock" }}-{{ .Branch }}
+          paths:
+            - node_modules
   test_unit:
     <<: *defaults
     steps:
@@ -247,7 +260,7 @@ jobs:
             # without --no-bail we only see at most a single failing package
             yarn typescript --no-bail
             exit 0
-      
+
       - restore_cache:
           name: Restore generated declaration files
           keys:
