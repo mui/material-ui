@@ -8,9 +8,8 @@ import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import { alpha } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import capitalize from '../utils/capitalize';
-
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 
 const overridesResolver = (props, styles) => {
@@ -23,13 +22,11 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, disabled, checked, indeterminate, color } = styleProps;
+  const { classes, indeterminate, color } = styleProps;
 
   const slots = {
     root: [
       'root',
-      checked && 'checked',
-      disabled && 'disabled',
       indeterminate && 'indeterminate',
       `color${capitalize(color)}`,
     ],
@@ -40,7 +37,7 @@ const useUtilityClasses = (styleProps) => {
 
 const CheckboxRoot = experimentalStyled(
   SwitchBase,
-  {},
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   {
     name: 'MuiCheckbox',
     slot: 'Root',
@@ -78,6 +75,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
+    classes: classesProp = {},
     color = 'secondary',
     icon: iconProp = defaultIcon,
     indeterminate = false,
@@ -92,6 +90,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const styleProps = {
     ...props,
+    classes: classesProp,
     color,
     indeterminate,
     size,
@@ -102,7 +101,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   return (
     <CheckboxRoot
       type="checkbox"
-      className={classes.root}
       color={color}
       inputProps={{
         'data-indeterminate': indeterminate,
@@ -120,6 +118,11 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       })}
       styleProps={styleProps}
       ref={ref}
+      classes={{
+        root: classes.root,
+        checked: classesProp.checked,
+        disabled: classesProp.disabled,
+      }}
       {...other}
     />
   );
