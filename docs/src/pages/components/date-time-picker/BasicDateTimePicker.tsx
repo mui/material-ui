@@ -14,7 +14,7 @@ export default function BasicDateTimePicker() {
         label="DateTimePicker"
         value={value}
         onChange={(newValue) => {
-          setValue(newValue)
+          setValue(newValue);
         }}
       />
     </LocalizationProvider>
