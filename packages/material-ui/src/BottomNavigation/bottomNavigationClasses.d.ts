@@ -1,6 +1,6 @@
-export interface BottomNavigationClasses {
-  root: string;
-}
+import { BottomNavigationClassKey } from './BottomNavigation';
+
+export type BottomNavigationClasses = Record<BottomNavigationClassKey, string>;
 
 declare const bottomNavigationClasses: BottomNavigationClasses;
 

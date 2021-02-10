@@ -1,8 +1,6 @@
-export interface CardMediaClasses {
-  root: string;
-  media: string;
-  img: string;
-}
+import { CardMediaClassKey } from './CardMedia';
+
+export type CardMediaClasses = Record<CardMediaClassKey, string>;
 
 declare const cardMediaClasses: CardMediaClasses;
 

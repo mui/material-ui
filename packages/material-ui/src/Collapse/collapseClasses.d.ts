@@ -1,12 +1,6 @@
-export interface CollapseClasses {
-  root: string;
-  horizontal: string;
-  vertical: string;
-  entered: string;
-  hidden: string;
-  wrapper: string;
-  wrapperInner: string;
-}
+import { CollapseClassKey } from './Collapse';
+
+export type CollapseClasses = Record<CollapseClassKey, string>;
 
 declare const collapseClasses: CollapseClasses;
 

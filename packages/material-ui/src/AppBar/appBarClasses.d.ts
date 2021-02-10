@@ -1,16 +1,6 @@
-export interface AppBarClasses {
-  root: string;
-  positionFixed: string;
-  positionAbsolute: string;
-  positionSticky: string;
-  positionStatic: string;
-  positionRelative: string;
-  colorDefault: string;
-  colorPrimary: string;
-  colorSecondary: string;
-  colorInherit: string;
-  colorTransparent: string;
-}
+import { AppBarClassKey } from './AppBar';
+
+export type AppBarClasses = Record<AppBarClassKey, string>;
 
 declare const appBarClasses: AppBarClasses;
 

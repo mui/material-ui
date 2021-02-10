@@ -3,7 +3,6 @@ import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
-  SliderUnstyledClasses,
 } from '@material-ui/unstyled';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '../styles';
@@ -77,12 +76,7 @@ export type SliderProps<
   P = {}
 > = OverrideProps<SliderTypeMap<D, P>, D>;
 
-export interface SliderClasses extends SliderUnstyledClasses {
-  colorPrimary: string;
-  colorSecondary: string;
-  thumbPrimary: string;
-  thumbSecondary: string;
-}
+export type SliderClasses = Record<SliderClassKey, string>;
 
 export const sliderClasses: SliderClasses;
 

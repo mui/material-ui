@@ -1,7 +1,6 @@
-export interface BackdropClasses {
-  root: string;
-  invisible: string;
-}
+import { BackdropClassKey } from './Backdrop';
+
+export type BackdropClasses = Record<BackdropClassKey, string>;
 
 declare const backdropClasses: BackdropClasses;
 

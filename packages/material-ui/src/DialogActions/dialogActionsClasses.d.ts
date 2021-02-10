@@ -1,7 +1,6 @@
-export interface DialogActionsClasses {
-  root: string;
-  spacing: string;
-}
+import { DialogActionsClassKey } from './DialogActions';
+
+export type DialogActionsClasses = Record<DialogActionsClassKey, string>;
 
 declare const dialogActionsClasses: DialogActionsClasses;
 

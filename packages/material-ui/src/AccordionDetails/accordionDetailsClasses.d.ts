@@ -1,6 +1,6 @@
-export interface AccordionDetailsClasses {
-  root: string;
-}
+import { AccordionDetailsClassKey } from './AccordionDetails';
+
+export type AccordionDetailsClasses = Record<AccordionDetailsClassKey, string>;
 
 declare const accordionDetailsClasses: AccordionDetailsClasses;
 

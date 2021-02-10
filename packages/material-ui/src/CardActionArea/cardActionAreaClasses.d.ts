@@ -1,8 +1,6 @@
-export interface CardActionAreaClasses {
-  root: string;
-  focusVisible: string;
-  focusHighlight: string;
-}
+import { CardActionAreaClassKey } from './CardActionArea';
+
+export type CardActionAreaClasses = Record<CardActionAreaClassKey, string>;
 
 declare const cardActionAreaClasses: CardActionAreaClasses;
 
