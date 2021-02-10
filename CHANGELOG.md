@@ -3,7 +3,7 @@
 ## 5.0.0-alpha.25
 
 <!-- generated comparing v5.0.0-alpha.24..next -->
-_Feb 10, 2021_
+###### _Feb 10, 2021_
 
 Big thanks to the 30 contributors who made this release possible. Here are some highlights ✨:
 
@@ -144,7 +144,7 @@ All contributors of this release in alphabetical order: @anthonyraymond, @Arnaul
 
 <!-- generated comparing v5.0.0-alpha.23..next -->
 
-_Jan 26, 2021_
+###### _Jan 26, 2021_
 
 Big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
 
