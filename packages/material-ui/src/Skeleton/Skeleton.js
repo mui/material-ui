@@ -152,11 +152,7 @@ const SkeletonRoot = experimentalStyled(
 `;
 
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
-  const props = useThemeProps({
-    props: inProps,
-    name: 'MuiSkeleton',
-  });
-
+  const props = useThemeProps({ props: inProps, name: 'MuiSkeleton' });
   const {
     animation = 'pulse',
     className,
