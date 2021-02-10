@@ -7,8 +7,8 @@
 
 Big thanks to the 30 contributors who made this release possible. Here are some highlights ✨:
 
-- 👩‍🎤 Convert 32 components to emotion. Around 64% of the components have been migrated so far thanks to the help of the community. We aim to migrate them all before the end of Q1 2021.
-- 📐 Add a subset of the system as flatten props on the CSS utility components on `Typography` (#24496) @mnajdova.
+- 👩‍🎤 Convert 32 components to emotion. Around 64% of the components have been migrated so far, thanks to the help of the community. We aim to migrate them all before the end of Q1 2021.
+- 📐 Add a subset of the system as flattened props on `Typography` (#24496) @mnajdova.
   Now, you can do:
 
   ```jsx
@@ -69,7 +69,7 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
 #### Breaking changes
 
 - <!-- 78 --> [system] Use spacing unit in `gap`, `rowGap`, and `columnGap` (#24794) @ruppysuppy
-  If you were using a number previously, you need to mention the px to bypass the new transformation with `theme.spacing`. The change was done for consistency with the spacing prop of the Grid and the other spacing properties of the system, e.g. `<Box padding={2}>`.
+  If you were using a number previously, you need to provide the value in `px` to bypass the new transformation with `theme.spacing`. The change was done for consistency with the Grid spacing prop and the other system spacing properties, e.g. `<Box padding={2}>`.
 
   ```diff
   <Box
