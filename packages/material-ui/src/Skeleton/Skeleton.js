@@ -164,14 +164,12 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     ...other
   } = props;
 
-  const hasChildren = Boolean(other.children);
-
   const styleProps = {
     ...props,
     animation,
     component,
     variant,
-    hasChildren,
+    hasChildren: Boolean(other.children),
   };
 
   const classes = useUtilityClasses(styleProps);
