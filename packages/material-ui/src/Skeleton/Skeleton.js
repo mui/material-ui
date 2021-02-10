@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { keyframes } from '@material-ui/styled-engine';
+import { keyframes, css } from '@material-ui/styled-engine';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { deepmerge } from '@material-ui/utils';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
@@ -67,89 +67,90 @@ const waveKeyframe = keyframes`
   }
 `;
 
-// This `styled()` function invokes keyframes. `styled-components` only supports keyframes
-// in string templates. Do not convert these styles in JS object as it will break.
 const SkeletonRoot = experimentalStyled(
   'span',
   {},
   { name: 'MuiSkeleton', slot: 'Root' },
   overridesResolver,
-)`
-  display: block;
-  background-color: ${({ theme }) =>
-    alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13)};
-  height: 1.2em;
+)(
+  ({ theme, styleProps }) => {
+    const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
+    const radiusValue = toUnitless(theme.shape.borderRadius);
 
-  margin-top: ${({ styleProps }) => (styleProps.variant === 'text' ? 0 : undefined)};
-  margin-bottom: ${({ styleProps }) => (styleProps.variant === 'text' ? 0 : undefined)};
-  height: ${({ styleProps }) => (styleProps.variant === 'text' ? 'auto' : undefined)};
-  transform-origin: ${({ styleProps }) => (styleProps.variant === 'text' ? '0 55%' : undefined)};
-  transform: ${({ styleProps }) => (styleProps.variant === 'text' ? 'scale(1, 0.60)' : undefined)};
-  border-radius: ${({ styleProps, theme }) => {
-    if (styleProps.variant === 'text') {
-      const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
-      const radiusValue = toUnitless(theme.shape.borderRadius);
-      return `${radiusValue}${radiusUnit}/${
-        Math.round((radiusValue / 0.6) * 10) / 10
-      }${radiusUnit}`;
-    }
-    return undefined;
-  }};
-  &:empty:before {
-    content: ${({ styleProps }) => (styleProps.variant === 'text' ? '"\\00a0"' : undefined)};
-  }
+    return {
+      /* Styles applied to the root element. */
+      display: 'block',
+      // Create a "on paper" color with sufficient contrast retaining the color
+      backgroundColor: alpha(
+        theme.palette.text.primary,
+        theme.palette.mode === 'light' ? 0.11 : 0.13,
+      ),
+      height: '1.2em',
+      /* Styles applied to the root element if `variant="text"`. */
+      ...(styleProps.variant === 'text' && {
+        marginTop: 0,
+        marginBottom: 0,
+        height: 'auto',
+        transformOrigin: '0 55%',
+        transform: 'scale(1, 0.60)',
+        borderRadius: `${radiusValue}${radiusUnit}/${
+          Math.round((radiusValue / 0.6) * 10) / 10
+        }${radiusUnit}`,
+        '&:empty:before': {
+          content: '"\\00a0"',
+        },
+      }),
+      /* Styles applied to the root element if `variant="circular"`. */
+      ...(styleProps.variant === 'circular' && {
+        borderRadius: '50%',
+      }),
+      /* Styles applied when the component is passed children. */
+      ...(styleProps.hasChildren && {
+        '& > *': {
+          visibility: 'hidden',
+        },
+      }),
+      /* Styles applied when the component is passed children and no width. */
+      ...(styleProps.hasChildren &&
+        !styleProps.width && {
+          maxWidth: 'fit-content',
+        }),
+      /* Styles applied when the component is passed children and no height. */
+      ...(styleProps.hasChildren &&
+        !styleProps.height && {
+          height: 'auto',
+        }),
+    };
+  },
+  /* Styles applied to the root element if `animation="pulse"`. */
+  ({ styleProps }) =>
+    styleProps.animation === 'pulse' &&
+    css`
+      animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
+    `,
+  /* Styles applied to the root element if `animation="wave"`. */
+  ({ styleProps, theme }) =>
+    styleProps.animation === 'wave' &&
+    css`
+      position: relative;
+      overflow: hidden;
 
+      /* Fix bug in Safari https://bugs.webkit.org/show_bug.cgi?id=68196 */
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
 
-  border-radius: ${({ styleProps }) => (styleProps.variant === 'circular' ? '50%' : undefined)};
-
-  animation-name: ${({ styleProps }) =>
-    styleProps.animation === 'pulse' ? pulseKeyframe : undefined};
-  animation-duration: ${({ styleProps }) =>
-    styleProps.animation === 'pulse' ? '0.5s' : undefined};
-  animation-timing-function: ${({ styleProps }) =>
-    styleProps.animation === 'pulse' ? 'ease-in-out' : undefined};
-  animation-delay: ${({ styleProps }) => (styleProps.animation === 'pulse' ? '1.5s' : undefined)};
-  animation-iteration-count: ${({ styleProps }) =>
-    styleProps.animation === 'pulse' ? 'infinite' : undefined};
-  
-  position: ${({ styleProps }) => (styleProps.animation === 'wave' ? 'relative' : undefined)};
-  overflow: ${({ styleProps }) => (styleProps.animation === 'wave' ? 'hidden' : undefined)};
-  -webkit-mask-image: ${({ styleProps }) =>
-    styleProps.animation === 'wave' ? 'webkit-radial-gradient(white, black)' : undefined};
-  &::after {
-    animation-name: ${({ styleProps }) =>
-      styleProps.animation === 'wave' ? waveKeyframe : undefined};
-    animation-duration: ${({ styleProps }) =>
-      styleProps.animation === 'wave' ? '1.6s' : undefined};
-    animation-timing-function: ${({ styleProps }) =>
-      styleProps.animation === 'wave' ? 'linear' : undefined};
-    animation-delay: ${({ styleProps }) => (styleProps.animation === 'wave' ? '0.5s' : undefined)};
-    animation-iteration-count: ${({ styleProps }) =>
-      styleProps.animation === 'wave' ? 'infinite' : undefined};
-    background: ${({ styleProps, theme }) =>
-      styleProps.animation === 'wave'
-        ? `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`
-        : undefined};
-    content: ${({ styleProps }) => (styleProps.animation === 'wave' ? '""' : undefined)};
-    position: ${({ styleProps }) => (styleProps.animation === 'wave' ? 'absolute' : undefined)};
-    transform: ${({ styleProps }) =>
-      styleProps.animation === 'wave' ? 'translateX(-100%)' : undefined};
-    bottom: ${({ styleProps }) => (styleProps.animation === 'wave' ? 0 : undefined)};
-    left: ${({ styleProps }) => (styleProps.animation === 'wave' ? 0 : undefined)};
-    right: ${({ styleProps }) => (styleProps.animation === 'wave' ? 0 : undefined)};
-    top: ${({ styleProps }) => (styleProps.animation === 'wave' ? 0 : undefined)};
-  }
-
-  & > * {
-    visibility: ${({ styleProps }) => (styleProps.hasChildren ? 'hidden' : undefined)};
-  }
-
-  max-width: ${({ styleProps }) =>
-    styleProps.hasChildren && !styleProps.width ? 'fit-content' : undefined};
-
-  height: ${({ styleProps }) =>
-    styleProps.hasChildren && !styleProps.height ? 'auto' : undefined};
-`;
+      &::after {
+        animation: ${waveKeyframe} 1.6s linear 0.5s infinite;
+        background: linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent);
+        content: '';
+        position: absolute;
+        transform: translateX(-100%); /* Avoid flash during server-side hydration */
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+      }
+    `,
+);
 
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSkeleton' });
