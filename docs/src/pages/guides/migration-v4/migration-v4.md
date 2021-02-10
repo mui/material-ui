@@ -692,6 +692,8 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
+  You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
+  
 - Remove the `disableBackdropClick` prop because redundant.
   Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 
@@ -928,11 +930,11 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   <Menu
   -  onEnter={onEnter}
-  -  onEntered={onEntered},
-  -  onEntering={onEntered},
-  -  onExit={onEntered},
-  -  onExited={onEntered},
-  -  onExiting={onEntered}
+  -  onEntered={onEntered}
+  -  onEntering={onEntering}
+  -  onExit={onExit}
+  -  onExited={onExited}
+  -  onExiting={onExiting}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -944,7 +946,9 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   >
   ```
 
-- The `selectedMenu` variant will not vertically align the selected item with the anchor anymore.
+ > Note: The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
+
+  You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
 ### Modal
 
@@ -1043,11 +1047,11 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   <Popover
   -  onEnter={onEnter}
-  -  onEntered={onEntered},
-  -  onEntering={onEntered},
-  -  onExit={onEntered},
-  -  onExited={onEntered},
-  -  onExiting={onEntered}
+  -  onEntered={onEntered}
+  -  onEntering={onEntering}
+  -  onExit={onExit}
+  -  onExited={onExited}
+  -  onExiting={onExiting}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -1059,7 +1063,11 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
+<<<<<<< HEAD
 - The `getContentAnchorEl` prop was removed to simplify the positioning logic.
+=======
+  You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
+>>>>>>> [codemod] use-transitionprops
 
 ### Popper
 
@@ -1235,11 +1243,11 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   <Snackbar
   -  onEnter={onEnter}
-  -  onEntered={onEntered},
-  -  onEntering={onEntered},
-  -  onExit={onEntered},
-  -  onExited={onEntered},
-  -  onExiting={onEntered}
+  -  onEntered={onEntered}
+  -  onEntering={onEntering}
+  -  onExit={onExit}
+  -  onExited={onExited}
+  -  onExiting={onExiting}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -1250,6 +1258,8 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +  }}
   />
   ```
+
+  You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
 ### SpeedDial
 

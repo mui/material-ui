@@ -298,6 +298,33 @@ Updates breakpoint values to match new logic.
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/theme-breakpoints.js
 ```
 
+#### `use-transitionprops`
+
+Updates Dialog, Menu, Popover and Snackbar to use the `TransitionProps` prop to replace the `onEnter*` and `onExit*` props.
+
+```diff
+<Dialog
+-  onEnter={onEnter}
+-  onEntered={onEntered}
+-  onEntering={onEntering}
+-  onExit={onExit}
+-  onExited={onExited}
+-  onExiting={onExiting}
++  TransitionProps={{
++    onEnter,
++    onEntered,
++    onEntering,
++    onExit,
++    onExited,
++    onExiting,
++  }}
+/>
+```
+
+```sh
+find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/v5.0.0/use-transitionprops.js
+```
+
 #### `theme-spacing`
 
 Removes the 'px' suffix from some template strings.
