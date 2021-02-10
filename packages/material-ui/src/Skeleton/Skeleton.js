@@ -39,28 +39,32 @@ const useUtilityClasses = (styleProps) => {
 };
 
 const pulseKeyframe = keyframes`
-0% {
-  opacity: 1;
-}
-50% {
-  opacity: 0.4;
-}
-100% {
-  opacity: 1;
-}
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
 `;
 
 const waveKeyframe = keyframes`
-0% {
-  transform: translateX(-100%);
-}
-50% {
-  /* +0.5s of delay between each loop */
-  transform: translateX(100%);
-}
-100% {
-  transform: translateX(100%);
-}
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    /* +0.5s of delay between each loop */
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 `;
 
 // This `styled()` function invokes keyframes. `styled-components` only supports keyframes
