@@ -35,6 +35,7 @@ A generic codemod to rename any component prop.
 ```sh
 find src -name '*.js' -print | xargs npx jscodeshift -t ../../material-ui/packages/material-ui-codemod/src/v5.0.0/component-rename-prop.js --component=Grid --from=prop --to=newProp
 ```
+
 #### `autocomplete-rename-closeicon`
 
 Renames `fade` style utility import and calls frpm `fade` to `alpha`.

@@ -676,11 +676,11 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   <Dialog
   -  onEnter={onEnter}
-  -  onEntered={onEntered},
-  -  onEntering={onEntered},
-  -  onExit={onEntered},
-  -  onExited={onEntered},
-  -  onExiting={onEntered}
+  -  onEntered={onEntered}
+  -  onEntering={onEntering}
+  -  onExit={onExit}
+  -  onExited={onExited}
+  -  onExiting={onExiting}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
