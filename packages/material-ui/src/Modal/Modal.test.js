@@ -48,6 +48,7 @@ describe('<Modal />', () => {
         'componentsProp',
         // Can not test this because everything is applied to second element
         'themeDefaultProps',
+        'themeStyleOverrides',
         // https://github.com/facebook/react/issues/11565
         'reactTestRenderer',
       ],
