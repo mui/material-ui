@@ -2229,9 +2229,9 @@
     write-file-atomic "^2.3.0"
 
 "@material-ui/data-grid@^4.0.0-alpha.18":
-  version "4.0.0-alpha.18"
-  resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.18.tgz#d078a518dd5671f0d1d3fe2de8449b94b8547e9f"
-  integrity sha512-t4wikroS2s3Aj+zM/mDfG5+8gfF2okUffKRppIqZQVIn+n3K4pAexWC10wqc8ohNFzBEgGzwQjTXEt+Hy2PX0A==
+  version "4.0.0-alpha.19"
+  resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.19.tgz#333b500b0f8bd9216db759520aff6bfc5be4df19"
+  integrity sha512-DqBbRZPAREti4XM/AbaUy8hLaNMAvZLUbwQ82UWGkwkv5zF6fhtSEl51W/q+bkvpLwok6SuJyJvoUE5zrlmaUw==
   dependencies:
     "@material-ui/utils" "^5.0.0-alpha.14"
     prop-types "^15.7.2"
