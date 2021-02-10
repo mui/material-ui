@@ -1,16 +1,6 @@
-export interface SkeletonClasses {
-  root: string;
-  text: string;
-  rectangular: string;
-  circular: string;
-  pulse: string;
-  wave: string;
-  withChildren: string;
-  fitContent: string;
-  heightAuto: string;
-}
+import { SkeletonClassKey } from './Skeleton';
 
-declare const skeletonClasses: SkeletonClasses;
+declare const skeletonClasses: Record<SkeletonClassKey, string>;
 
 export function getSkeletonUtilityClass(slot: string): string;
 
