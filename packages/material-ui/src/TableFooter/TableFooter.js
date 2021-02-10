@@ -1,15 +1,36 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import { getTableFooterUtilityClass } from './tableFooterClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    display: 'table-footer-group',
-  },
+const overridesResolver = (props, styles) => styles.root || {};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getTableFooterUtilityClass, classes);
 };
+
+const TableFooterRoot = experimentalStyled(
+  'tfoot',
+  {},
+  {
+    name: 'MuiTableFooter',
+    slot: 'Root',
+    overridesResolver,
+  },
+)({
+  /* Styles applied to the root element. */
+  display: 'table-footer-group',
+});
 
 const tablelvl2 = {
   variant: 'footer',
@@ -17,15 +38,25 @@ const tablelvl2 = {
 
 const defaultComponent = 'tfoot';
 
-const TableFooter = React.forwardRef(function TableFooter(props, ref) {
-  const { classes, className, component: Component = defaultComponent, ...other } = props;
+const TableFooter = React.forwardRef(function TableFooter(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTableFooter' });
+  const { className, component = defaultComponent, ...other } = props;
+
+  const styleProps = {
+    ...props,
+    component,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
-      <Component
+      <TableFooterRoot
+        as={component}
         className={clsx(classes.root, className)}
         ref={ref}
-        role={Component === defaultComponent ? null : 'rowgroup'}
+        role={component === defaultComponent ? null : 'rowgroup'}
+        styleProps={styleProps}
         {...other}
       />
     </Tablelvl2Context.Provider>
@@ -54,6 +85,10 @@ TableFooter.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTableFooter' })(TableFooter);
+export default TableFooter;
