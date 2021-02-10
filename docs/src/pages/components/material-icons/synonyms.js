@@ -206,7 +206,7 @@ const synonyms = {
   DonutLarge: 'chart circle complete graph inprogress,',
   DonutSmall: 'chart circle',
   DoubleArrow: 'chevron right',
-  Drafts: 'email envelope letter',
+  Drafts: 'email envelope letter read',
   DragHandle: 'lines',
   DragIndicator: 'circle dots drop move shape shift',
   DriveEta: 'car transport vehicle',
