@@ -9,13 +9,14 @@ import {
   fireEvent,
   within,
   createMount,
-  describeConformance,
+  describeConformanceV5,
 } from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Fade from '../Fade';
 import Backdrop from '../Backdrop';
 import Modal from './Modal';
+import classes from './modalClasses';
 
 describe('<Modal />', () => {
   const mount = createMount({ strict: true });
@@ -30,17 +31,23 @@ describe('<Modal />', () => {
     document.body.setAttribute('style', savedBodyStyle);
   });
 
-  describeConformance(
+  describeConformanceV5(
     <Modal open>
       <div />
     </Modal>,
     () => ({
+      classes,
       inheritComponent: 'div',
       mount,
+      muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
+      testVariantProps: { hideBackdrop: true },
       skip: [
         'rootClass',
         'componentProp',
+        'componentsProp',
+        // Can not test this because everything is applied to second element
+        'themeDefaultProps',
         // https://github.com/facebook/react/issues/11565
         'reactTestRenderer',
       ],

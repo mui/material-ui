@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { BackdropProps } from '../Backdrop';
 import { PortalProps } from '../Portal';
 
@@ -18,6 +19,15 @@ export interface ModalProps
    * A single child content element.
    */
   children: React.ReactElement;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if the `Modal` has exited. */
+    hidden?: string;
+  };
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
@@ -100,6 +110,10 @@ export interface ModalProps
    * If `true`, the component is shown.
    */
   open: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 /**

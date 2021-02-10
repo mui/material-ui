@@ -1,16 +1,62 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { getThemeProps, useTheme } from '@material-ui/styles';
-import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
+import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { deepmerge, elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
+import experimentalStyled from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
 import createChainedFunction from '../utils/createChainedFunction';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
-import zIndex from '../styles/zIndex';
 import ModalManager, { ariaHidden } from './ModalManager';
 import TrapFocus from '../Unstable_TrapFocus';
 import SimpleBackdrop from './SimpleBackdrop';
+import { getModalUtilityClass } from './modalClasses';
+
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(!styleProps.open && styleProps.exited && styles.hidden),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { open, exited, classes } = styleProps;
+
+  const slots = {
+    root: ['root', !open && exited && 'hidden'],
+  };
+
+  return composeClasses(slots, getModalUtilityClass, classes);
+};
+
+const ModalRoot = experimentalStyled(
+  'div',
+  {},
+  {
+    name: 'MuiModal',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => {
+  return {
+    /* Styles applied to the root element. */
+    position: 'fixed',
+    zIndex: theme.zIndex.modal,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    left: 0,
+    /* Styles applied to the root element if the `Modal` has exited. */
+    ...(!styleProps.open &&
+      styleProps.exited && {
+        visibility: 'hidden',
+      }),
+  };
+});
 
 function getContainer(container) {
   return typeof container === 'function' ? container() : container;
@@ -23,22 +69,6 @@ function getHasTransition(props) {
 // A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const defaultManager = new ModalManager();
-
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    position: 'fixed',
-    zIndex: theme.zIndex.modal,
-    right: 0,
-    bottom: 0,
-    top: 0,
-    left: 0,
-  },
-  /* Styles applied to the root element if the `Modal` has exited. */
-  hidden: {
-    visibility: 'hidden',
-  },
-});
 
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
@@ -54,8 +84,7 @@ export const styles = (theme) => ({
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 const Modal = React.forwardRef(function Modal(inProps, ref) {
-  const theme = useTheme();
-  const props = getThemeProps({ name: 'MuiModal', props: inProps, theme });
+  const props = useThemeProps({ name: 'MuiModal', props: inProps });
   const {
     BackdropComponent = SimpleBackdrop,
     BackdropProps,
@@ -77,6 +106,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     onClose,
     onKeyDown,
     open,
+    className,
     ...other
   } = props;
 
@@ -146,6 +176,22 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     }
   }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
 
+  const styleProps = {
+    ...props,
+    closeAfterTransition,
+    disableAutoFocus,
+    disableEnforceFocus,
+    disableEscapeKeyDown,
+    disablePortal,
+    disableRestoreFocus,
+    disableScrollLock,
+    hideBackdrop,
+    keepMounted,
+    exited,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
   }
@@ -201,7 +247,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     }
   };
 
-  const inlineStyle = styles(theme || { zIndex });
   const childProps = {};
   if (children.props.tabIndex === undefined) {
     childProps.tabIndex = children.props.tabIndex || '-1';
@@ -221,16 +266,13 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
        * is not meant for humans to interact with directly.
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
-      <div
+      <ModalRoot
         ref={handleRef}
         onKeyDown={handleKeyDown}
         role="presentation"
+        className={clsx(classes.root, className)}
+        styleProps={styleProps}
         {...other}
-        style={{
-          ...inlineStyle.root,
-          ...(!open && exited ? inlineStyle.hidden : {}),
-          ...other.style,
-        }}
       >
         {hideBackdrop ? null : (
           <BackdropComponent open={open} onClick={handleBackdropClick} {...BackdropProps} />
@@ -246,7 +288,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         >
           {React.cloneElement(children, childProps)}
         </TrapFocus>
-      </div>
+      </ModalRoot>
     </Portal>
   );
 });
@@ -269,6 +311,14 @@ Modal.propTypes = {
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
@@ -357,9 +407,9 @@ Modal.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * @ignore
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  style: PropTypes.object,
+  sx: PropTypes.object,
 };
 
 export default Modal;
