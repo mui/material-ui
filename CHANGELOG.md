@@ -3,6 +3,7 @@
 ## 5.0.0-alpha.25
 
 <!-- generated comparing v5.0.0-alpha.24..next -->
+
 _Feb 11, 2021_
 
 Big thanks to the 30 contributors who made this release possible. Here are some highlights ✨:
@@ -11,7 +12,7 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
 
   1. @natac13 x17
   2. @vicasas x5
-  3. @duganbrett tie with @kodai3 x3
+  3. @kodai3 x4
 
 - 📐 Add a subset of the system as flattened props on `Typography` (#24496) @mnajdova.
   Now, you can do:
@@ -24,6 +25,16 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
 - 💅 Provide a new [`darkScrollbar()`](https://next.material-ui.com/components/css-baseline/#scrollbars) CSS utility to improve the native scrollbar in dark mode. The documentation uses it.
 
 ### `@material-ui/core@5.0.0-alpha.25`
+
+#### Breaking changes
+
+- Increase the minimum version of TypeScript supported from v3.2 to v3.5. (#24795) @petyosi
+
+  We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+  We will not change the minimum supported version in a major version of Material-UI.
+  However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier).
+
+#### Changes
 
 - <!-- 03 --> [ImageList] Migrate to emotion (#24615) @kodai3
 - <!-- 04 --> [Dialog] Migrate DialogTitle to emotion (#24623) @vicasas
@@ -68,6 +79,7 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
 - <!-- 87 --> [Checkbox] Migrate to emotion (#24702) @natac13
 - <!-- 89 --> [Table] Migrate TableHead to emotion (#24686) @natac13
 - <!-- 90 --> [Table] Migrate TableFooter to emotion (#24684) @natac13
+- <!-- 92 --> [Skeleton] Migrate to emotion (#24652) @kodai3
 
 ### `@material-ui/system@5.0.0-alpha.25`
 
@@ -89,6 +101,18 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
 - <!-- 34 --> [styled-engine] Fix GlobalStyles not to throw when no theme is available (#24671) @mnajdova
 
 ### `@material-ui/types@5.0.0-alpha.25`
+
+#### Breaking changes
+
+- <!-- 91 --> [@material-ui/types] Rename the exported `Omit` type in `@material-ui/types`. (#24795) @petyosi
+  The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+
+```diff
+-import { Omit } from '@material-ui/types';
++import { DistributiveOmit } from '@material-ui/types';
+```
+
+#### Changes
 
 - <!-- 61 --> [types] Remove implicit children from PropInjector (#24746) @eps1lon
 
