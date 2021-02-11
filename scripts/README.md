@@ -8,7 +8,7 @@ A typical release goes like this:
 
 The following steps must be proposed as a pull request.
 
-1. Generate the changelog with `yarn relase:changelog`
+1. Generate the changelog with `yarn release:changelog`
 
    The output must be prepended to the top level `CHANGELOG.md`
    `yarn release:changelog --help` for more information.
@@ -17,7 +17,7 @@ The following steps must be proposed as a pull request.
 
 1. Update the root `/package.json`'s version
 
-1. `yarn relase:version`
+1. `yarn release:version`
 
 1. Open PR with changes and wait for review and green CI
 
@@ -26,8 +26,8 @@ The following steps must be proposed as a pull request.
 ### Release
 
 1. checkout merge commit of the merged PR
-1. `yarn relase:build`
-1. `yarn relase:publish`
+1. `yarn release:build`
+1. `yarn release:publish`
    You need your 2FA device.
 1. `yarn release:tag`
 

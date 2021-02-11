@@ -1,5 +1,176 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.25
+
+<!-- generated comparing v5.0.0-alpha.24..next -->
+
+_Feb 11, 2021_
+
+Big thanks to the 30 contributors who made this release possible. Here are some highlights ✨:
+
+- 👩‍🎤 Convert 32 components to emotion. Around 64% of the components have been migrated so far, thanks to the help of the community. We aim to migrate them all before the end of Q1 2021.
+  The podium of the most active community members in the migration 🏆:
+
+  1. @natac13 x17
+  2. @vicasas x5
+  3. @kodai3 x4
+
+- 📐 Add a subset of the system as flattened props on `Typography` (#24496) @mnajdova.
+  Now, you can do:
+
+  ```jsx
+  <Typography padding={2} color="text.secondary" />
+  ```
+
+- 📅 Focus on the date pickers, 5 fixes and 3 docs improvements.
+- 💅 Provide a new [`darkScrollbar()`](https://next.material-ui.com/components/css-baseline/#scrollbars) CSS utility to improve the native scrollbar in dark mode. The documentation uses it.
+
+### `@material-ui/core@5.0.0-alpha.25`
+
+#### Breaking changes
+
+- Increase the minimum version of TypeScript supported from v3.2 to v3.5. (#24795) @petyosi
+
+  We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+  We will not change the minimum supported version in a major version of Material-UI.
+  However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier).
+
+#### Changes
+
+- <!-- 03 --> [ImageList] Migrate to emotion (#24615) @kodai3
+- <!-- 04 --> [Dialog] Migrate DialogTitle to emotion (#24623) @vicasas
+- <!-- 05 --> [TextField] Prepare removal of labelWidth prop (#24595) @oliviertassinari
+- <!-- 08 --> [ImageList] Migrate ImageListItem to emotion (#24619) @kodai3
+- <!-- 09 --> [Card] Migrate CardMedia to emotion (#24625) @natac13
+- <!-- 10 --> [Card] Migrate CardHeader to emotion (#24626) @natac13
+- <!-- 11 --> [TextField] Migrate FilledInput to emotion (#24634) @mnajdova
+- <!-- 12 --> [Fab] Migrate to emotion (#24618) @natac13
+- <!-- 14 --> [ClickAwayListener] Fix `children` and `onClickAway` types (#24565) @eps1lon
+- <!-- 15 --> [List] Migrate ListItemIcon to emotion (#24630) @vicasas
+- <!-- 17 --> [Card] Migrate CardActionArea to emotion (#24636) @natac13
+- <!-- 18 --> [DataTable] Add example in docs for data table (#24428) @DanailH
+- <!-- 19 --> [CircularProgress] Migrate to emotion (#24622) @natac13
+- <!-- 20 --> [ImageList] Migrate ImageListItemBar to emotion (#24632) @kodai3
+- <!-- 21 --> [TextField] Migrate Input component to emotion (#24638) @duganbrett
+- <!-- 22 --> [Tab] Migrate to emotion (#24651) @natac13
+- <!-- 24 --> [Table] Migrate to emotion (#24657) @natac13
+- <!-- 25 --> [List] Migrate ListItemAvatar to emotion (#24656) @vicasas
+- <!-- 26 --> [TextField] Migrate FormControl to emotion (#24659) @duganbrett
+- <!-- 27 --> [Table] Migrate TableContainer to emotion (#24666) @natac13
+- <!-- 28 --> [Tab] Migrate TabScrollButton to emotion (#24654) @natac13
+- <!-- 29 --> [Card] Warn on raised + outlined (#24648) @sumarlidason
+- <!-- 32 --> [TextField] Migrate FormHelperText to emotion (#24661) @duganbrett
+- <!-- 33 --> [Dialog] Migrate DialogContent to emotion (#24670) @vicasas
+- <!-- 36 --> [Typography] Add system props (#24496) @mnajdova
+- <!-- 38 --> [Paper] Improve warning on invalid combinations of variant and elevation (#24667) @eps1lon
+- <!-- 39 --> [Chip] Migrate to emotion (#24649) @natac13
+- <!-- 41 --> [ToggleButton] Migrate to emotion (#24674) @natac13
+- <!-- 42 --> [Step] Migrate to emotion (#24678) @natac13
+- <!-- 45 --> [Link] Fix CSS prefix property casing with emotion (#24701) @idanrozin
+- <!-- 50 --> [Card] Use the default elevation (#24733) @oliviertassinari
+- <!-- 53 --> [Typography] Remove align inherit noise (#24717) @oliviertassinari
+- <!-- 56 --> [Dialog] Convert role `none presentation` to `presentation` (#24500) @hallzac2
+- <!-- 64 --> [TextField] Improve baseline alignment with start adornment (#24742) @praveenkumar-kalidass
+- <!-- 65 --> [Popper] Fix usage of ownerDocument with anchorEl (#24753) @ruppysuppy
+- <!-- 75 --> [Table] Migrate TableBody to emotion (#24703) @natac13
+- <!-- 76 --> [Table] Migrate TableRow to emotion (#24687) @natac13
+- <!-- 77 --> [TextField] Migrate FormGroup to emotion (#24685) @vicasas
+- <!-- 82 --> [CssBaseline] Make dark mode scrollbar overrides an optional function (#24780) @dborstelmann
+- <!-- 83 --> [ButtonGroup] Migrate ButtonGroup to emotion (#24775) @mirefly
+- <!-- 87 --> [Checkbox] Migrate to emotion (#24702) @natac13
+- <!-- 89 --> [Table] Migrate TableHead to emotion (#24686) @natac13
+- <!-- 90 --> [Table] Migrate TableFooter to emotion (#24684) @natac13
+- <!-- 92 --> [Skeleton] Migrate to emotion (#24652) @kodai3
+
+### `@material-ui/system@5.0.0-alpha.25`
+
+#### Breaking changes
+
+- <!-- 78 --> [system] Use spacing unit in `gap`, `rowGap`, and `columnGap` (#24794) @ruppysuppy
+
+  If you were using a number previously, you need to provide the value in `px` to bypass the new transformation with `theme.spacing`. The change was done for consistency with the Grid spacing prop and the other system spacing properties, e.g. `<Box padding={2}>`.
+
+  ```diff
+  <Box
+  - gap={2}
+  + gap="2px"
+  >
+  ```
+
+### `@material-ui/styled-engine@5.0.0-alpha.25`
+
+- <!-- 34 --> [styled-engine] Fix GlobalStyles not to throw when no theme is available (#24671) @mnajdova
+
+### `@material-ui/types@5.0.0-alpha.25`
+
+#### Breaking changes
+
+- <!-- 91 --> [types] Rename the exported `Omit` type in `@material-ui/types`. (#24795) @petyosi
+  The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+
+```diff
+-import { Omit } from '@material-ui/types';
++import { DistributiveOmit } from '@material-ui/types';
+```
+
+#### Changes
+
+- <!-- 61 --> [types] Remove implicit children from PropInjector (#24746) @eps1lon
+
+### `@material-ui/lab@5.0.0-alpha.25`
+
+- <!-- 02 --> [Pickers] Fix role attribute (#24621) @EkaterinaMozheiko
+- <!-- 35 --> [Pickers] Fix `showTodayButton` not returning the current time (#24650) @anthonyraymond
+- <!-- 44 --> [Pickers] Ensure components have a display name in DEV (#24676) @eps1lon
+- <!-- 49 --> [Pickers] Fix more name inconsistencies (#24734) @oliviertassinari
+- <!-- 54 --> [Pickers] Dismiss on clickaway when using the desktop variant (#24653) @eps1lon
+- <!-- 69 --> [Pickers] Add missing periods at end of some descriptions (#24791) @fulin426
+- <!-- 81 --> [Pickers] Enable YearPicker documentation (#24830) @oliviertassinari
+- <!-- 88 --> [Pickers] Fix useState related console warnings in examples (#24848) @ydubinskyi
+
+### Docs
+
+- <!-- 06 --> [docs] Add sorting section (#24637) @dtassone
+- <!-- 13 --> [docs] Include in docs directive to silence `eslint` erroneous warning (#24644) @silviot
+- <!-- 23 --> [docs] Clarifying the documentation about Chip behavior (#24645) @KarimOurrai
+- <!-- 30 --> [docs] Update Typography in migration guide (#24662) @mbrookes
+- <!-- 37 --> [examples] Update examples to use StyledEngineProvider (#24489) @mnajdova
+- <!-- 40 --> [docs] Add API documentation for *DatePicker components (#24655) @eps1lon
+- <!-- 47 --> [docs] Add HoodieBees to sponsors (#24735) @mbrookes
+- <!-- 48 --> [docs] Fix indent @oliviertassinari
+- <!-- 55 --> [docs] Make <main> responsive to font size (#24531) @eps1lon
+- <!-- 59 --> [docs] Follow similar demo pattern for date and time pickers (#24739) @eps1lon
+- <!-- 66 --> [docs] Add information about local dev environment (#24771) @plug-n-play
+- <!-- 67 --> [docs] Add tcespal to Showcase (#24793) @ArnaultNouvel
+- <!-- 68 --> [docs] Fix CssBaseline typography description (#24802) @xiaoyu-tamu
+- <!-- 70 --> [docs] Add 'playlist' synonym to 'menu' (#24754) @Lagicrus
+- <!-- 71 --> [docs] Add more similar icons (#24799) @oliviertassinari
+- <!-- 72 --> [docs] Fix typo in the error message generated by createMuiTheme (#24827) @mbrookes
+- <!-- 73 --> [examples] Align more with the v5 recommended approach (#24798) @Tejaswiangotu123
+- <!-- 74 --> [docs] Update ButtonGroup demos to match v5 (#24797) @SCollinA
+- <!-- 84 --> [docs] Fix formatting of `mask` prop description (#24842) @eps1lon
+- <!-- 92 --> [docs] Add read synonym to drafts (#24854) @Lagicrus
+
+### Core
+
+- <!-- 01 --> [core] Fix release:tag pushing to material-ui-docs (#24633) @eps1lon
+- <!-- 16 --> [core] Fix `next` using stale pages (#24635) @eps1lon
+- <!-- 31 --> [test] Skip JSDOM in style related conformance tests (#24668) @mnajdova
+- <!-- 43 --> [test] Conformance to handle wrapped elements (#24679) @natac13
+- <!-- 51 --> [core] Batch small changes (#24705) @oliviertassinari
+- <!-- 52 --> [test] Run more tests in Strict Mode (#24646) @oliviertassinari
+- <!-- 57 --> [test] Avoid visual flakiness (#24737) @oliviertassinari
+- <!-- 60 --> [core] Remove deprecated SimplifiedPropsOf/Simplify types (#24750) @petyosi
+- <!-- 62 --> [core] Disable type-checking of .propTypes (#24747) @eps1lon
+- <!-- 63 --> [test] Allow setting react-dist-tag via pipeline parameter (#24755) @eps1lon
+- <!-- 79 --> [test] Don't run dev CI for dependabot pushes (#24833) @eps1lon
+- <!-- 80 --> [test] Isolate Tooltip tests more (#24834) @eps1lon
+- <!-- 85 --> [test] Clear emotion cache between tests (#24837) @eps1lon
+- <!-- 86 --> [core] Save/restore actual yarn cache folder (#24844) @eps1lon
+- <!-- 91 --> [test] Increase timeout to 4000ms for screenshots (#24850) @oliviertassinari
+
+All contributors of this release in alphabetical order: @anthonyraymond, @ArnaultNouvel, @DanailH, @dborstelmann, @dtassone, @duganbrett, @EkaterinaMozheiko, @eps1lon, @fulin426, @hallzac2, @idanrozin, @KarimOurrai, @kodai3, @Lagicrus, @mbrookes, @mirefly, @mnajdova, @natac13, @oliviertassinari, @petyosi, @plug-n-play, @praveenkumar-kalidass, @ruppysuppy, @SCollinA, @silviot, @sumarlidason, @Tejaswiangotu123, @vicasas, @xiaoyu-tamu, @ydubinskyi
+
 ## 5.0.0-alpha.24
 
 <!-- generated comparing v5.0.0-alpha.23..next -->
@@ -87,7 +258,7 @@ Big thanks to the 23 contributors who made this release possible. Here are some 
 - <!-- 60 --> [utils] `useEventCallback` `args` defaults to `unknown[]` (#24564) @eps1lon
 - <!-- 11 --> [utils] Fix requirePropFactory to merge validators (#24423) @mnajdova
 
-### docs
+### Docs
 
 - <!-- 86 --> [examples] Patch preact example not working (#24616)
 - <!-- 78 --> [docs] Add missing newline in component JSDOC (#24610) @eps1lon
@@ -108,7 +279,7 @@ Big thanks to the 23 contributors who made this release possible. Here are some 
 - <!-- 09 --> [docs] Document default values of external props (#24417) @eps1lon
 - <!-- 02 --> [docs] Update in-house ads (#24410) @mbrookes @ewldev
 
-### core
+### Core
 
 - <!-- 87 --> [core] Skip downloading browser binaries in codesandbox/ci (#24628) @eps1lon
 - <!-- 81 --> [core] Batch small changes (#24599) @oliviertassinari
