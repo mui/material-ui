@@ -10,6 +10,7 @@ import Zoom from '@material-ui/core/Zoom';
 import Popper from '@material-ui/core/Popper';
 
 describe('<Popper />', () => {
+  let isSafari;
   const render = createClientRender();
 
   before(function beforeHook() {
@@ -17,6 +18,8 @@ describe('<Popper />', () => {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
+
+    isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   });
 
   let originalScrollX;
@@ -115,8 +118,12 @@ describe('<Popper />', () => {
       setProps({ open: true });
 
       expect(handleFocus.callCount).to.equal(1);
-      // FIXME: should equal
-      expect(window.scrollY, 'focus caused scroll').not.to.equal(scrollYBeforeOpen);
+      if (isSafari) {
+        expect(window.scrollY, 'focus caused scroll').to.equal(scrollYBeforeOpen);
+      } else {
+        // FIXME: should equal
+        expect(window.scrollY, 'focus caused scroll').not.to.equal(scrollYBeforeOpen);
+      }
     });
 
     [
@@ -214,8 +221,12 @@ describe('<Popper />', () => {
           setProps({ open: true });
 
           expect(handleFocus.callCount).to.equal(1);
-          // FIXME: should equal
-          expect(window.scrollY, 'focus caused scroll').not.to.equal(scrollYBeforeOpen);
+          if (isSafari) {
+            expect(window.scrollY, 'focus caused scroll').to.equal(scrollYBeforeOpen);
+          } else {
+            // FIXME: should equal
+            expect(window.scrollY, 'focus caused scroll').not.to.equal(scrollYBeforeOpen);
+          }
         });
       });
     });
