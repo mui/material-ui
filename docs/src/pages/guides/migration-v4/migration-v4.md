@@ -74,7 +74,10 @@ This change affects almost all components where you're using the `component` pro
 
 ### Supported TypeScript version
 
-The minimum support version of TypeScript was increased from v3.2 to v3.5.
+The minimum supported version of TypeScript was increased from v3.2 to v3.5.
+We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+We will not change the minimum supported version in a major version of Material-UI.
+However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
 
 ### Styled engine
 
