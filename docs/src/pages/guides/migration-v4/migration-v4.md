@@ -436,7 +436,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
 ### Avatar
 
-- Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Rename `circle` to `circular` for consistency:
 
   ```diff
   -<Avatar variant="circle">
@@ -445,9 +445,14 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
-  You can use the [`avatar-circle-circular` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#avatar-circle-circular) for automatic migration.
+  Since `circular` is the default value, the variant prop can be deleted:
 
-  > Note that since 'circlular' is the default value, it can altertatively be removed.
+  ```diff
+  -<Avatar variant="circle">
+  +<Avatar>
+  ```
+
+  You can use the [`avatar-circle-circular` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#avatar-circle-circular) for automatic migration.
 
 - Move the AvatarGroup from the lab to the core.
 
@@ -460,7 +465,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
 ### Badge
 
-- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency.
 
   ```diff
   -<Badge overlap="circle">
@@ -512,7 +517,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   You can use the [`box-borderradius-values` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-borderradius-values) for automatic migration.
 
-- The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the why behind this new API.
+- The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API.
 
   ```diff
   -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
@@ -521,7 +526,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   If you prefer the new syntax, you can use the [`box-sx-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) for automatic migration.
 
-- The following properties have been renamed, because they are considered deprecated CSS proeprties:
+- The following properties have been renamed, because they are considered deprecated CSS properties:
 
   1. `gridGap` to `gap`
   2. `gridColumnGap` to `columnGap`
@@ -536,9 +541,9 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
   +<Box rowGap={3}>
   ```
 
-  You can use the [`box-rename-gap` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-rename-gap) for automatic migration.
+  (Note that the system grid function wasn't documented in v4.)
 
-  (Note that the system grid function isn't documented in v4.)
+  You can use the [`box-rename-gap` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-rename-gap) for automatic migration.
 
 - The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
 
@@ -584,11 +589,6 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
 - Rename `default` variant to `filled` for consistency.
 
-  ```diff
-  -<Chip variant="default">
-  +<Chip variant="filled">
-  ```
-
   Since `filled` is the default value, the variant prop can be deleted:
 
   ```diff
@@ -602,10 +602,10 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
 - The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`. It was an exception to Material Design, and was removed from the specification.
 
-```diff
-  -<CircularProgress variant="static" classes={{ static: 'className' }} />
+  ```diff
+  <CircularProgress variant="static" classes={{ static: 'className' }} />
   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
-```
+  ```
 
 You can use the [`circularprogress-variant` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#circularprogress-variant) for automatic migration.
 
@@ -694,7 +694,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
   
-- Remove the `disableBackdropClick` prop because redundant.
+- Remove the `disableBackdropClick` prop because it is redundant.
   Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 
   ```diff
@@ -709,7 +709,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-- [withMobileDialog] Remove this higher-order component. The hook API allows a simpler and more flexible solution:
+- Remove the `withMobileDialog` higher-order component. The hook API allows a simpler and more flexible solution:
 
   ```diff
   -import withMobileDialog from '@material-ui/core/withMobileDialog';
@@ -729,7 +729,8 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Divider
 
-- Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
+- Use border instead of background color. It prevents inconsistent height on scaled screens.
+  If you have customized the color of the border, you will need to update the CSS property override:
 
   ```diff
   .MuiDivider-root {
@@ -803,7 +804,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Fab
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Rename `round` to `circular` for consistency:
 
   ```diff
   -<Fab variant="round">
@@ -952,8 +953,8 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Modal
 
-- Remove the `disableBackdropClick` prop because redundant.
-  Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
+- Remove the `disableBackdropClick` prop because it is redundant.
+  Use `onClose` with `reason === 'backdropClick'` instead.
 
   ```diff
   <Modal
@@ -967,7 +968,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-- Remove the `onEscapeKeyDown` prop because redundant.
+- Remove the `onEscapeKeyDown` prop because it is redundant.
   Use `onClose` with `reason === "escapeKeyDown"` instead.
 
   ```diff
@@ -1031,7 +1032,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Rename `round` to `circular` for consistency:
 
   ```diff
   -<Pagination shape="round">
@@ -1082,7 +1083,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
     - '&[x-placement*="bottom"] $arrow': {
     + '&[data-popper-placement*="bottom"] $arrow': {
     ```
-  - Method names have changed.
+  - Method names have changed:
 
     ```diff
     -popperRef.current.scheduleUpdate()
@@ -1193,7 +1194,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
-- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- Rename `circle` to `circular` and `rect` to `rectangular` for consistency:
 
   ```diff
   -<Skeleton variant="circle" />
@@ -1351,7 +1352,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   <TablePagination
   - backIconButtonText="Avant"
-  - nextIconButtonText="Après
+  - nextIconButtonText="Après"
   + getItemAriaLabel={…}
   ```
 
