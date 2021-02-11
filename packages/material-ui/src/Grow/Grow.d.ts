@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
 import { TransitionProps } from '../transitions/transition';
 
 export interface GrowProps extends Omit<TransitionProps, 'timeout'> {

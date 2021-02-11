@@ -11,7 +11,6 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import Typography from '@material-ui/core/Typography';
 import { Route, MemoryRouter } from 'react-router';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
-import { Omit } from '@material-ui/types';
 
 interface ListItemLinkProps {
   icon?: React.ReactElement;

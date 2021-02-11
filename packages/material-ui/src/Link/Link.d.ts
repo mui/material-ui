@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
+import { DistributiveOmit } from '@material-ui/types';
 import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
@@ -73,7 +73,7 @@ declare const Link: OverridableComponent<LinkTypeMap>;
 export type LinkClassKey = keyof NonNullable<LinkTypeMap['props']['classes']>;
 
 export type LinkBaseProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> &
-  Omit<TypographyProps, 'children' | 'component' | 'color' | 'variant'>;
+  DistributiveOmit<TypographyProps, 'children' | 'component' | 'color' | 'variant'>;
 
 export type LinkProps<
   D extends React.ElementType = LinkTypeMap['defaultComponent'],
