@@ -82,6 +82,11 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     }
   });
 
+  const [isPopperPositioned, setIsPopperPositioned] = React.useState(false);
+  if (isPopperPositioned && !open) {
+    setIsPopperPositioned(false);
+  }
+
   const handleOpen = React.useCallback(() => {
     if (!tooltipRef.current || !anchorEl || !open) {
       return;
@@ -154,6 +159,10 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: popperModifiers,
+      onFirstUpdate: (...args) => {
+        popperOptions.onFirstUpdate?.(...args);
+        setIsPopperPositioned(true);
+      },
     });
 
     handlePopperRefRef.current(popper);
@@ -206,7 +215,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
   if (transition) {
     childProps.TransitionProps = {
-      in: open,
+      in: open && isPopperPositioned,
       onEnter: handleEnter,
       onExited: handleExited,
     };
