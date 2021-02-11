@@ -1,4 +1,3 @@
-import { DistributiveOmit } from '@material-ui/types';
 import StaticWrapper from './StaticWrapper';
 import MobileWrapper from './MobileWrapper';
 import DesktopWrapper from './DesktopWrapper';
@@ -13,7 +12,7 @@ export type SomeWrapper =
   | typeof DesktopWrapper
   | typeof DesktopTooltipWrapper;
 
-export type PublicWrapperProps<TWrapper extends SomeWrapper> = DistributiveOmit<
+export type PublicWrapperProps<TWrapper extends SomeWrapper> = Omit<
   React.ComponentProps<TWrapper>,
   keyof PrivateWrapperProps
 >;
