@@ -1,7 +1,6 @@
-export interface ListItemIconClasses {
-  root: string;
-  alignItemsFlexStart: string;
-}
+import { ListItemIconClassKey } from './ListItemIcon';
+
+export type ListItemIconClasses = Record<ListItemIconClassKey, string>;
 
 declare const listItemIconClasses: ListItemIconClasses;
 

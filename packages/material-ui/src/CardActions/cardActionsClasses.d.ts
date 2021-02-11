@@ -1,7 +1,6 @@
-export interface CardActionsClasses {
-  root: string;
-  spacing: string;
-}
+import { CardActionsClassKey } from './CardActions';
+
+export type CardActionsClasses = Record<CardActionsClassKey, string>;
 
 declare const cardActionsClasses: CardActionsClasses;
 

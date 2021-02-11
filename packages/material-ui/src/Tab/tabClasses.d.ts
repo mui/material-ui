@@ -1,15 +1,6 @@
-export interface TabClasses {
-  root: string;
-  labelIcon: string;
-  textColorInherit: string;
-  textColorPrimary: string;
-  textColorSecondary: string;
-  selected: string;
-  disabled: string;
-  fullWidth: string;
-  wrapped: string;
-  wrapper: string;
-}
+import { TabClassKey } from './Tab';
+
+export type TabClasses = Record<TabClassKey, string>;
 
 declare const tabClasses: TabClasses;
 

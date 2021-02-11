@@ -1,15 +1,6 @@
-export interface IconButtonClasses {
-  root: string;
-  disabled: string;
-  colorInherit: string;
-  colorPrimary: string;
-  colorSecondary: string;
-  edgeStart: string;
-  edgeEnd: string;
-  sizeSmall: string;
-  sizeMedium: string;
-  label: string;
-}
+import { IconButtonClassKey } from './IconButton';
+
+export type IconButtonClasses = Record<IconButtonClassKey, string>;
 
 declare const iconButtonClasses: IconButtonClasses;
 

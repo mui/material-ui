@@ -22,7 +22,6 @@ const sliderUnstyledClasses = generateUtilityClasses('MuiSlider', [
   'markLabelActive',
   'thumb',
   'valueLabel',
-  'valueLabelOffset',
   'valueLabelOpen',
   'valueLabelCircle',
   'valueLabelLabel',

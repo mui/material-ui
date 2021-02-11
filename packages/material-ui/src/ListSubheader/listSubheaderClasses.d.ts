@@ -1,11 +1,6 @@
-export interface ListSubheaderClasses {
-  root: string;
-  colorPrimary: string;
-  colorInherit: string;
-  gutters: string;
-  inset: string;
-  sticky: string;
-}
+import { ListSubheaderClassKey } from './ListSubheader';
+
+export type ListSubheaderClasses = Record<ListSubheaderClassKey, string>;
 
 declare const listSubheaderClasses: ListSubheaderClasses;
 

@@ -1,7 +1,6 @@
-export interface ListItemAvatarClasses {
-  root: string;
-  alignItemsFlexStart: string;
-}
+import { ListItemAvatarClassKey } from './ListItemAvatar';
+
+export type ListItemAvatarClasses = Record<ListItemAvatarClassKey, string>;
 
 declare const listItemAvatarClasses: ListItemAvatarClasses;
 

@@ -1,14 +1,6 @@
-export interface FormHelperTextClasses {
-  root: string;
-  error: string;
-  disabled: string;
-  sizeSmall: string;
-  sizeMedium: string;
-  contained: string;
-  focused: string;
-  filled: string;
-  required: string;
-}
+import { FormHelperTextClassKey } from './FormHelperText';
+
+export type FormHelperTextClasses = Record<FormHelperTextClassKey, string>;
 
 declare const formHelperTextClasses: FormHelperTextClasses;
 

@@ -1,6 +1,6 @@
-export interface CardContentClasses {
-  root: string;
-}
+import { CardContentClassKey } from './CardContent';
+
+export type CardContentClasses = Record<CardContentClassKey, string>;
 
 declare const cardContentClasses: CardContentClasses;
 
