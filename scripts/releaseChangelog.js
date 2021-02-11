@@ -143,7 +143,7 @@ async function main(argv) {
   const changelog = `
 ## TODO RELEASE NAME
 <!-- generated comparing ${lastRelease}..${release} -->
-###### _${nowFormated}_
+_${nowFormated}_
 
 Big thanks to the ${
     authors.length
