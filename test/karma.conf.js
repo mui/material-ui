@@ -16,7 +16,7 @@ module.exports = function setKarmaConfig(config) {
     browsers: ['chromeHeadless'],
     browserDisconnectTimeout: 120000, // default 2000
     browserDisconnectTolerance: 1, // default 0
-    browserNoActivityTimeout: 300000, // default 10000
+    browserNoActivityTimeout: 6 * 60 * 1000, // default 10000
     colors: true,
     client: {
       mocha: {
