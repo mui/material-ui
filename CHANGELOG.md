@@ -8,7 +8,8 @@ _Feb 11, 2021_
 
 Big thanks to the 30 contributors who made this release possible. Here are some highlights ✨:
 
-- 👩‍🎤 Convert 32 components to emotion. Around 64% of the components have been migrated so far, thanks to the help of the community. We aim to migrate them all before the end of Q1 2021. The podium of the most active community members in the migration 🏆:
+- 👩‍🎤 Convert 32 components to emotion. Around 64% of the components have been migrated so far, thanks to the help of the community. We aim to migrate them all before the end of Q1 2021.
+  The podium of the most active community members in the migration 🏆:
 
   1. @natac13 x17
   2. @vicasas x5
@@ -104,7 +105,7 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
 
 #### Breaking changes
 
-- <!-- 91 --> [@material-ui/types] Rename the exported `Omit` type in `@material-ui/types`. (#24795) @petyosi
+- <!-- 91 --> [types] Rename the exported `Omit` type in `@material-ui/types`. (#24795) @petyosi
   The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
 ```diff
