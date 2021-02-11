@@ -26,6 +26,7 @@ The following steps must be proposed as a pull request.
 ### Release
 
 1. checkout merge commit of the merged PR
+1. `yarn`
 1. `yarn release:build`
 1. `yarn release:publish`
    You need your 2FA device.
