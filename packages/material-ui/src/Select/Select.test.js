@@ -1113,7 +1113,7 @@ describe('<Select />', () => {
     expect(document.activeElement).to.equal(getByRole('button'));
   });
 
-  it('should not override the event.target on mouse events', () => {
+  it('should not override the event.target on click events', () => {
     const handleChange = spy();
     const handleEvent = spy((event) => event.target);
     render(
