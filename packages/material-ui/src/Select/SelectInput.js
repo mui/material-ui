@@ -198,7 +198,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
         Object.defineProperty(clonedEvent, 'target', {
           writable: true,
-          value: { value: newValue, name, event },
+          value: { value: newValue, name },
         });
         onChange(clonedEvent, child);
       }

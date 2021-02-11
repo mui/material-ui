@@ -239,7 +239,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
       Object.defineProperty(clonedEvent, 'target', {
         writable: true,
-        value: { value, name, event },
+        value: { value, name },
       });
 
       onChange(clonedEvent, value);

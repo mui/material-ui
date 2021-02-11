@@ -951,9 +951,10 @@ describe('<Slider />', () => {
 
     expect(handleChange.callCount).to.equal(1);
     const target = handleChange.firstCall.returnValue;
-    expect(target.name).to.equal('change-testing');
-    expect(target.value).to.equal(4);
-    expect(target.event).not.to.equal(undefined);
+    expect(target).to.deep.equal({
+      name: 'change-testing',
+      value: 4,
+    });
   });
 
   describe('prop: ValueLabelComponent', () => {
