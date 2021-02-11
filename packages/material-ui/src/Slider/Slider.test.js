@@ -979,6 +979,7 @@ describe('<Slider />', () => {
   });
 
   it('should not override the event.target on touch events', () => {
+    const handleChange = spy();
     const handleNativeEvent = spy((event) => event.target);
     const handleEvent = spy((event) => event.target);
     function Test() {
@@ -991,7 +992,7 @@ describe('<Slider />', () => {
 
       return (
         <div onTouchStart={handleEvent}>
-          <Slider data-testid="slider" value={0} onChange={() => {}} />
+          <Slider data-testid="slider" value={0} onChange={handleChange} />
         </div>
       );
     }
@@ -1000,11 +1001,13 @@ describe('<Slider />', () => {
 
     fireEvent.touchStart(slider, createTouches([{ identifier: 1 }]));
 
+    expect(handleChange.callCount).to.equal(1);
     expect(handleNativeEvent.returnValues).to.have.members([slider]);
     expect(handleEvent.returnValues).to.have.members([slider]);
   });
 
   it('should not override the event.target on mouse events', () => {
+    const handleChange = spy();
     const handleNativeEvent = spy((event) => event.target);
     const handleEvent = spy((event) => event.target);
     function Test() {
@@ -1017,7 +1020,7 @@ describe('<Slider />', () => {
 
       return (
         <div onMouseDown={handleEvent}>
-          <Slider data-testid="slider" value={0} onChange={() => {}} />
+          <Slider data-testid="slider" value={0} onChange={handleChange} />
         </div>
       );
     }
@@ -1026,6 +1029,7 @@ describe('<Slider />', () => {
 
     fireEvent.mouseDown(slider);
 
+    expect(handleChange.callCount).to.equal(1);
     expect(handleNativeEvent.returnValues).to.have.members([slider]);
     expect(handleEvent.returnValues).to.have.members([slider]);
   });
