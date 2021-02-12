@@ -882,7 +882,7 @@ Autocomplete.propTypes = {
    */
   value: chainPropTypes(PropTypes.any, (props) => {
     if (props.multiple && props.value !== undefined && !Array.isArray(props.value)) {
-      throw new Error(
+      return new Error(
         [
           'Material-UI: The Autocomplete expects the `value` prop to be an array or undefined.',
           `However, ${props.value} was provided.`,
