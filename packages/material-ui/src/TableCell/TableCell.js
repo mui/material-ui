@@ -162,16 +162,15 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
   if (!scope && isHeadCell) {
     scope = 'col';
   }
-  const padding = paddingProp || (table && table.padding ? table.padding : 'default');
-  const size = sizeProp || (table && table.size ? table.size : 'medium');
+
   const variant = variantProp || (tablelvl2 && tablelvl2.variant);
 
   const styleProps = {
     ...props,
     align,
     component,
-    padding,
-    size,
+    padding: paddingProp || (table && table.padding ? table.padding : 'default'),
+    size: sizeProp || (table && table.size ? table.size : 'medium'),
     sortDirection,
     stickyHeader: variant === 'head' && table && table.stickyHeader,
     variant,
