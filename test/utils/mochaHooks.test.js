@@ -28,13 +28,16 @@ describe('mochaHooks', () => {
         mochaHooks.afterEach.forEach((afterEachMochaHook) => {
           afterEachMochaHook.call(this);
         });
+        mochaHooks.afterAll.forEach((afterAllMochaHook) => {
+          afterAllMochaHook.call(this);
+        });
 
         expect(errorStub.callCount).to.equal(2);
         expect(String(errorStub.firstCall.args[0])).to.include(
-          'console.warn message:\n  unexpected warning\n\nStack:',
+          'console.warn message #1:\n  unexpected warning\n\nStack:',
         );
         expect(String(errorStub.secondCall.args[0])).to.include(
-          'console.error message:\n  unexpected error\n\nStack:',
+          'console.error message #1:\n  unexpected error\n\nStack:',
         );
 
         mochaHooks.afterAll.forEach((afterAllMochaHook) => {

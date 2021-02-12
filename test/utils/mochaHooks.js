@@ -87,9 +87,10 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
   });
 
   mochaHooks.afterEach.push(function flushUnexpectedCalls() {
-    const hadUnexpectedCalls = unexpectedCalls.length > 0;
+    const unexpectedCallCount = unexpectedCalls.length;
     const formattedCalls = unexpectedCalls.map(
-      ([stack, message]) => `console.${methodName} message:\n  ${message}\n\nStack:\n${stack}`,
+      ([stack, message], index) =>
+        `console.${methodName} message #${index + 1}:\n  ${message}\n\nStack:\n${stack}`,
     );
     unexpectedCalls.length = 0;
 
@@ -97,13 +98,13 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
     if (console[methodName] !== logUnexpectedConsoleCalls) {
       throw new Error(`Did not tear down spy or stub of console.${methodName} in your test.`);
     }
-    if (hadUnexpectedCalls) {
+    if (unexpectedCallCount > 0) {
       // In karma `file` is `null`.
       // We still have the stacktrace though
       // @ts-expect-error -- this.currentTest being undefined would be a bug
       const location = this.currentTest.file ?? '(unknown file)';
       const message =
-        `Expected test not to call console.${methodName}()\n\n` +
+        `Expected test not to call console.${methodName}() but instead received ${unexpectedCallCount} calls.\n\n` +
         'If the warning is expected, test for it explicitly by ' +
         // Don't add any punctuation after the location.
         // Otherwise it's not clickable in IDEs
