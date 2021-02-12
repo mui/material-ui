@@ -83,9 +83,9 @@ We try to align with types released from [DefinitelyTyped](https://github.com/De
 We will not change the minimum supported version in a major version of Material-UI.
 However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
 
-### Style engine
+### Style library
 
-The style engine used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StylesProvider` with the `injectFirst` option at the top of your component tree. Here is an example:
+The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StylesProvider` with the `injectFirst` option at the top of your component tree. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -1064,11 +1064,9 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-<<<<<<< HEAD
-- The `getContentAnchorEl` prop was removed to simplify the positioning logic.
-=======
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
->>>>>>> [codemod] use-transitionprops
+  
+- The `getContentAnchorEl` prop was removed to simplify the positioning logic.
 
 ### Popper
 
