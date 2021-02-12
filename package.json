@@ -34,7 +34,7 @@
     "jsonlint": "node ./scripts/jsonlint.js",
     "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
     "lint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
-    "stylelint": "stylelint 'docs/**/*.js' 'docs/**/*.ts' 'docs/**/*.tsx'",
+    "stylelint": "stylelint 'docs/**/*.{js,ts,tsx}'",
     "prettier": "node ./scripts/prettier.js",
     "prettier:all": "node ./scripts/prettier.js write",
     "size:snapshot": "node --max-old-space-size=2048 ./scripts/sizeSnapshot/create",

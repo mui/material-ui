@@ -15,27 +15,30 @@ import circularProgressClasses, {
 const SIZE = 44;
 
 const circularRotateKeyframe = keyframes`
-0% {
-  transform: rotate(0deg);
-}
-100% {
-  transform: rotate(360deg);
-}
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 `;
 
 const circularDashKeyframe = keyframes`
-0% {
-  stroke-dasharray: 1px, 200px;
-  stroke-dashoffset: 0px;
-}
-50% {
-  stroke-dasharray: 100px, 200px;
-  stroke-dashoffset: -15px;
-}
-100% {
-  stroke-dasharray: 100px, 200px;
-  stroke-dashoffset: -125px;
-}
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -125px;
+  }
 `;
 
 const overridesResolver = (props, styles) => {

@@ -12,35 +12,39 @@ const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
 const enterKeyframe = keyframes`
-0% {
-  transform: scale(0);
-  opacity: 0.1;
-}
-100% {
-  transform: scale(1);
-  opacity: 0.3;
-}
+  0% {
+    transform: scale(0);
+    opacity: 0.1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
 `;
 
 const exitKeyframe = keyframes`
-0% {
-  opacity: 1;
-}
-100% {
-  opacity: 0;
-}
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 `;
 
 const pulsateKeyframe = keyframes`
-0% {
-  transform: scale(1);
-}
-50% {
-  transform: scale(0.92);
-}
-100% {
-  transform: scale(1);
-}
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.92);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 `;
 
 export const TouchRippleRoot = experimentalStyled(
