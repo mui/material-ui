@@ -93,14 +93,12 @@ describe('mochaHooks', () => {
         expect(
           error.match(/An update to Parent inside a test was not wrapped in act/g),
         ).to.have.lengthOf(1);
-        // StrictMode renders twice
         expect(
           error.match(/An update to Parent ran an effect, but was not wrapped in act/g),
-        ).to.have.lengthOf(4);
-        // StrictMode renders twice
+        ).to.have.lengthOf(1);
         expect(
           error.match(/An update to Child ran an effect, but was not wrapped in act/g),
-        ).to.have.lengthOf(4);
+        ).to.have.lengthOf(1);
       });
     });
   });

@@ -17,6 +17,38 @@ const formatUtil = require('format-util');
 const isKarma = Boolean(process.env.KARMA);
 
 /**
+ * Polyfills for https://github.com/facebook/react/issues/19416.
+ * @param {[stack: string, message: string][]} consoleCalls
+ * @returns {[stack: string, message: string][]}
+ */
+function dedupeActWarningsByComponent(consoleCalls) {
+  /**
+   * @type {[stack: string, message: string][]}
+   */
+  const dedupedCalls = [];
+
+  /**
+   * @type {string | undefined}
+   */
+  let updatingComponentOutsideAct;
+
+  consoleCalls.forEach(([stack, message]) => {
+    const componentName = message.match(
+      /An update to (\w+) ran an effect, but was not wrapped in act/,
+    )?.[1];
+
+    const duplicateMissingActWarning =
+      componentName !== undefined && componentName === updatingComponentOutsideAct;
+    if (!duplicateMissingActWarning) {
+      dedupedCalls.push([stack, message]);
+    }
+    updatingComponentOutsideAct = componentName;
+  });
+
+  return dedupedCalls;
+}
+
+/**
  * @param {Mocha} Mocha
  * @param {'warn' | 'error'} methodName
  * @param {string} expectedMatcher
@@ -87,24 +119,25 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
   });
 
   mochaHooks.afterEach.push(function flushUnexpectedCalls() {
-    const unexpectedCallCount = unexpectedCalls.length;
-    const formattedCalls = unexpectedCalls.map(
+    const actionableCalls = dedupeActWarningsByComponent(unexpectedCalls);
+    unexpectedCalls.length = 0;
+    const actionableCallCount = actionableCalls.length;
+    const formattedCalls = actionableCalls.map(
       ([stack, message], index) =>
         `console.${methodName} message #${index + 1}:\n  ${message}\n\nStack:\n${stack}`,
     );
-    unexpectedCalls.length = 0;
 
     // eslint-disable-next-line no-console
     if (console[methodName] !== logUnexpectedConsoleCalls) {
       throw new Error(`Did not tear down spy or stub of console.${methodName} in your test.`);
     }
-    if (unexpectedCallCount > 0) {
+    if (actionableCallCount > 0) {
       // In karma `file` is `null`.
       // We still have the stacktrace though
       // @ts-expect-error -- this.currentTest being undefined would be a bug
       const location = this.currentTest.file ?? '(unknown file)';
       const message =
-        `Expected test not to call console.${methodName}() but instead received ${unexpectedCallCount} calls.\n\n` +
+        `Expected test not to call console.${methodName}() but instead received ${actionableCallCount} calls.\n\n` +
         'If the warning is expected, test for it explicitly by ' +
         // Don't add any punctuation after the location.
         // Otherwise it's not clickable in IDEs
