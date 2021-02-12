@@ -64,7 +64,7 @@ export const FormLabelRoot = experimentalStyled(
 const AsteriskComponent = experimentalStyled(
   'span',
   {},
-  { name: 'MuiFormLabel', slot: 'Asterisk', overridesResolver },
+  { name: 'MuiFormLabel', slot: 'Asterisk' },
 )(({ theme }) => ({
   '&.Mui-error': {
     color: theme.palette.error.main,
