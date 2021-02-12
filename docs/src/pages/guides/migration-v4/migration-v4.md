@@ -693,7 +693,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
-  
+
 - Remove the `disableBackdropClick` prop because it is redundant.
   Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 

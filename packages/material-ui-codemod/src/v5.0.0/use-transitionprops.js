@@ -1,20 +1,8 @@
 import propsToObject from '../util/propsToObject';
 
-const components = [
-  'Dialog',
-  'Menu',
-  'Popover',
-  'Snackbar'
-];
+const components = ['Dialog', 'Menu', 'Popover', 'Snackbar'];
 
-const props = [
-  'onEnter',
-  'onEntered',
-  'onEntering',
-  'onExit',
-  'onExited',
-  'onExiting',
-];
+const props = ['onEnter', 'onEntered', 'onEntering', 'onExit', 'onExited', 'onExiting'];
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -24,8 +12,8 @@ export default function transformer(file, api) {
   const j = api.jscodeshift;
   const root = j(file.source);
 
-  components.forEach(component => {
+  components.forEach((component) => {
     propsToObject({ j, root, componentName: component, propName: 'TransitionProps', props });
-  })
+  });
   return root.toSource();
-};
+}
