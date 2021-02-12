@@ -1,20 +1,6 @@
-export interface TableCellClasses {
-  root: string;
-  head: string;
-  body: string;
-  footer: string;
-  sizeSmall: string;
-  sizeMedium: string;
-  paddingCheckbox: string;
-  paddingNone: string;
-  alignLeft: string;
-  alignCenter: string;
-  alignRight: string;
-  alignJustify: string;
-  stickyHeader: string;
-}
+import { TableCellClassKey } from './TableCell';
 
-declare const tableCellClasses: TableCellClasses;
+declare const tableCellClasses: TableCellClassKey;
 
 export function getTableCellUtilityClass(slot: string): string;
 
