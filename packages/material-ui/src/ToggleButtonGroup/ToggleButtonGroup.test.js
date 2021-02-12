@@ -1,29 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
 import ToggleButtonGroup from './ToggleButtonGroup';
 import ToggleButton from '../ToggleButton';
+import classes from './toggleButtonGroupClasses';
 
 describe('<ToggleButtonGroup />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(
-      <ToggleButtonGroup>
-        <ToggleButton value="hello" />
-      </ToggleButtonGroup>,
-    );
-  });
-
-  describeConformance(<ToggleButtonGroup />, () => ({
+  describeConformanceV5(<ToggleButtonGroup />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    muiName: 'MuiToggleButtonGroup',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
+    testVariantProps: { size: 'small' },
+    testStateOverrides: { prop: 'orientation', value: 'vertical', styleKey: 'vertical' },
   }));
 
   it('renders a `group`', () => {
