@@ -1,3 +1,1 @@
-describe('<Portal />', () => {
-  this.skip();
-});
+describe('<Portal />', () => {});
