@@ -7,26 +7,18 @@ import capitalize from '../utils/capitalize';
 import { darken, alpha, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
 
-// classes[variant],
-// {
-//   [classes.stickyHeader]: variant === 'head' && table && table.stickyHeader,
-//   [classes[`align${capitalize(align)}`]]: align !== 'inherit',
-//   [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
-//   [classes[`size${capitalize(size)}`]]: size !== 'medium',
-// },
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
     ...styles[styleProps.variant],
-    ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-    ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
     ...styles[`size${capitalize(styleProps.size)}`],
+    ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
+    ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
     ...(styleProps.stickyHeader && styles.stickyHeader),
   });
 };
@@ -38,10 +30,10 @@ const useUtilityClasses = (styleProps) => {
     root: [
       'root',
       variant,
+      stickyHeader && 'stickyHeader',
       align !== 'inherit' && `align${capitalize(align)}`,
       padding !== 'default' && `padding${capitalize(padding)}`,
       `size${capitalize(size)}`,
-      stickyHeader && 'stickyHeader',
     ],
   };
 
