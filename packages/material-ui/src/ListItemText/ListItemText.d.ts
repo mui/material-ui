@@ -1,5 +1,5 @@
-import { SxProps } from '@material-ui/system';
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TypographyProps } from '../Typography';
 
