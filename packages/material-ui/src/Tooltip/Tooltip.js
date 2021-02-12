@@ -455,7 +455,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const nameOrDescProps = {};
   const titleIsString = typeof title === 'string';
   if (describeChild) {
-    nameOrDescProps['title'] = !open && titleIsString && !disableHoverListener ? title : null;
+    nameOrDescProps.title = !open && titleIsString && !disableHoverListener ? title : null;
     nameOrDescProps['aria-describedby'] = open ? id : null;
   } else {
     nameOrDescProps['aria-label'] = titleIsString ? title : null;

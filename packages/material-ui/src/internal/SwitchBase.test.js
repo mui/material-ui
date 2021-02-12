@@ -376,7 +376,7 @@ describe('<SwitchBase />', () => {
 
   describe('check transitioning between controlled states throws errors', () => {
     it('should error when uncontrolled and changed to controlled', function test() {
-      if (global['didWarnControlledToUncontrolled']) {
+      if (global.didWarnControlledToUncontrolled) {
         this.skip();
       }
 
@@ -389,7 +389,7 @@ describe('<SwitchBase />', () => {
 
       expect(() => {
         setProps({ checked: true });
-        global['didWarnControlledToUncontrolled'] = true;
+        global.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
         'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
         'Material-UI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
@@ -397,7 +397,7 @@ describe('<SwitchBase />', () => {
     });
 
     it('should error when controlled and changed to uncontrolled', function test() {
-      if (global['didWarnControlledToUncontrolled']) {
+      if (global.didWarnControlledToUncontrolled) {
         this.skip();
       }
 
@@ -410,7 +410,7 @@ describe('<SwitchBase />', () => {
 
       expect(() => {
         setProps({ checked: undefined });
-        global['didWarnControlledToUncontrolled'] = true;
+        global.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
         'Warning: A component is changing a controlled input of type checkbox to be uncontrolled.',
         'Material-UI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',

@@ -89,12 +89,15 @@ module.exports = {
     // Destructuring harm grep potential.
     'prefer-destructuring': 'off',
 
-    // TODO performance consideration
+    // disabled type-aware linting due to performance considerations
     '@typescript-eslint/dot-notation': 'off',
-    // TODO performance consideration
+    'dot-notation': 'error',
+    // disabled type-aware linting due to performance considerations
     '@typescript-eslint/no-implied-eval': 'off',
-    // TODO performance consideration
+    'no-implied-eval': 'error',
+    // disabled type-aware linting due to performance considerations
     '@typescript-eslint/no-throw-literal': 'off',
+    'no-throw-literal': 'error',
 
     // Not sure why it doesn't work
     'import/named': 'off',

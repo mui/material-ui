@@ -708,8 +708,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 onMouseLeave={handleMouseLeave}
                 {...thumbProps}
                 className={clsx(utilityClasses.thumb, thumbProps.className, {
-                  [utilityClasses['active']]: active === index,
-                  [utilityClasses['focusVisible']]: focusVisible === index,
+                  [utilityClasses.active]: active === index,
+                  [utilityClasses.focusVisible]: focusVisible === index,
                 })}
                 {...(!isHostComponent(Thumb) && {
                   styleProps: { ...styleProps, ...thumbProps.styleProps },
