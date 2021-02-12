@@ -2,11 +2,17 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import {
+  createMount,
+  describeConformanceV5,
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { SliderUnstyled } from '@material-ui/unstyled';
-import clsx from 'clsx';
-import Slider, { sliderClasses as classes } from './Slider';
+import Slider, { sliderClasses as classes } from '@material-ui/core/Slider';
 
 function createTouches(touches) {
   return {
@@ -103,7 +109,7 @@ describe('<Slider />', () => {
     expect(handleChangeCommitted.callCount).to.equal(1);
   });
 
-  it('should edge against a dropped mouseup event', () => {
+  it('should hedge against a dropped mouseup event', () => {
     const handleChange = spy();
     const { container } = render(<Slider onChange={handleChange} value={0} />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -702,14 +708,14 @@ describe('<Slider />', () => {
       function ValueLabelComponent(props) {
         const { value, open } = props;
         return (
-          <span data-testid="value-label" className={clsx({ open })}>
+          <span data-testid="value-label" className={open ? 'open' : ''}>
             {value}
           </span>
         );
       }
       ValueLabelComponent.propTypes = { value: PropTypes.number };
 
-      const screen = render(
+      const { setProps } = render(
         <Slider
           components={{ ValueLabel: ValueLabelComponent }}
           valueLabelDisplay="on"
@@ -719,7 +725,7 @@ describe('<Slider />', () => {
 
       expect(screen.queryByTestId('value-label')).to.have.class('open');
 
-      screen.setProps({
+      setProps({
         valueLabelDisplay: 'off',
       });
 
@@ -944,7 +950,8 @@ describe('<Slider />', () => {
     });
 
     expect(handleChange.callCount).to.equal(1);
-    expect(handleChange.firstCall.returnValue).to.deep.equal({
+    const target = handleChange.firstCall.returnValue;
+    expect(target).to.deep.equal({
       name: 'change-testing',
       value: 4,
     });
@@ -969,5 +976,61 @@ describe('<Slider />', () => {
 
       expect(getByTestId('value-label')).to.have.text('1010');
     });
+  });
+
+  it('should not override the event.target on touch events', () => {
+    const handleChange = spy();
+    const handleNativeEvent = spy((event) => event.target);
+    const handleEvent = spy((event) => event.target);
+    function Test() {
+      React.useEffect(() => {
+        document.addEventListener('touchstart', handleNativeEvent);
+        return () => {
+          document.removeEventListener('touchstart', handleNativeEvent);
+        };
+      });
+
+      return (
+        <div onTouchStart={handleEvent}>
+          <Slider data-testid="slider" value={0} onChange={handleChange} />
+        </div>
+      );
+    }
+    render(<Test />);
+    const slider = screen.getByTestId('slider');
+
+    fireEvent.touchStart(slider, createTouches([{ identifier: 1 }]));
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleNativeEvent.returnValues).to.have.members([slider]);
+    expect(handleEvent.returnValues).to.have.members([slider]);
+  });
+
+  it('should not override the event.target on mouse events', () => {
+    const handleChange = spy();
+    const handleNativeEvent = spy((event) => event.target);
+    const handleEvent = spy((event) => event.target);
+    function Test() {
+      React.useEffect(() => {
+        document.addEventListener('mousedown', handleNativeEvent);
+        return () => {
+          document.removeEventListener('mousedown', handleNativeEvent);
+        };
+      });
+
+      return (
+        <div onMouseDown={handleEvent}>
+          <Slider data-testid="slider" value={0} onChange={handleChange} />
+        </div>
+      );
+    }
+    render(<Test />);
+    const slider = screen.getByTestId('slider');
+
+    fireEvent.mouseDown(slider);
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleNativeEvent.returnValues).to.have.members([slider]);
+    expect(handleEvent.returnValues).to.have.members([slider]);
   });
 });

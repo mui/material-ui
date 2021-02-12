@@ -230,17 +230,19 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const handleChange =
     onChange &&
     ((event, value) => {
-      if (!(event instanceof Event)) event.persist();
-
       // Redefine target to allow name and value to be read.
       // This allows seamless integration with the most popular form libraries.
       // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
-      Object.defineProperty(event, 'target', {
+      // Clone the event to not override `target` of the original event.
+      const nativeEvent = event.nativeEvent || event;
+      const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+
+      Object.defineProperty(clonedEvent, 'target', {
         writable: true,
         value: { value, name },
       });
 
-      onChange(event, value);
+      onChange(clonedEvent, value);
     });
 
   const range = Array.isArray(valueDerived);
@@ -459,25 +461,25 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     stopListening();
   });
 
-  const handleTouchStart = useEventCallback((event) => {
+  const handleTouchStart = useEventCallback((nativeEvent) => {
     // If touch-action: none; is not supported we need to prevent the scroll manually.
     if (!doesSupportTouchActionNone()) {
-      event.preventDefault();
+      nativeEvent.preventDefault();
     }
 
-    const touch = event.changedTouches[0];
+    const touch = nativeEvent.changedTouches[0];
     if (touch != null) {
       // A number that uniquely identifies the current finger in the touch session.
       touchId.current = touch.identifier;
     }
-    const finger = trackFinger(event, touchId);
+    const finger = trackFinger(nativeEvent, touchId);
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);
 
     if (handleChange) {
-      handleChange(event, newValue);
+      handleChange(nativeEvent, newValue);
     }
 
     const doc = ownerDocument(sliderRef.current);
@@ -892,7 +894,9 @@ SliderUnstyled.propTypes = {
   /**
    * Callback function that is fired when the slider's value changed.
    *
-   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (any).
+   * **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
    */
   onChange: PropTypes.func,

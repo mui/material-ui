@@ -179,17 +179,19 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     /**
      * Callback function that is fired when the slider's value changed.
      *
-     * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+     * @param {object} event The event source of the callback.
+     * You can pull out the new value by accessing `event.target.value` (any).
+     * **Warning**: This is a generic event not a change event.
      * @param {number | number[]} value The new value.
      */
-    onChange?: (event: React.SyntheticEvent, value: number | number[]) => void;
+    onChange?: (event: Event, value: number | number[]) => void;
     /**
      * Callback function that is fired when the `mouseup` is triggered.
      *
      * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
      * @param {number | number[]} value The new value.
      */
-    onChangeCommitted?: (event: React.SyntheticEvent, value: number | number[]) => void;
+    onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
     /**
      * The component orientation.
      * @default 'horizontal'

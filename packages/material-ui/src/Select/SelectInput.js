@@ -189,13 +189,18 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       setValueState(newValue);
 
       if (onChange) {
-        event.persist();
-        // Preact support, target is read only property on a native event.
-        Object.defineProperty(event, 'target', {
+        // Redefine target to allow name and value to be read.
+        // This allows seamless integration with the most popular form libraries.
+        // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
+        // Clone the event to not override `target` of the original event.
+        const nativeEvent = event.nativeEvent || event;
+        const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+
+        Object.defineProperty(clonedEvent, 'target', {
           writable: true,
           value: { value: newValue, name },
         });
-        onChange(event, child);
+        onChange(clonedEvent, child);
       }
     }
 

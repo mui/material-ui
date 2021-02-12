@@ -16,10 +16,7 @@ export default function InputSlider() {
     30,
   );
 
-  const handleSliderChange = (
-    event: React.SyntheticEvent,
-    newValue: number | number[],
-  ) => {
+  const handleSliderChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue);
   };
 
