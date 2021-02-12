@@ -16,7 +16,11 @@ function execFile(command, args) {
 
 async function execGitCmd(args) {
   const gitResults = await execFile('git', args);
-  return gitResults.stdout.trim().toString().split('\n');
+  const stdout = gitResults.stdout.trim();
+  if (stdout === '') {
+    return [];
+  }
+  return stdout.split('\n');
 }
 
 async function listChangedFiles({ branch }) {

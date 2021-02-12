@@ -9,13 +9,14 @@ const rimrafAsync = promisify(rimraf);
 
 describe('listChangedFiles', () => {
   it('should detect changes', async () => {
-    const changesBefore = await listChangedFiles({ branch: 'next' });
-    const testFile = 'someTestFile.js';
+    const changesBeforeAdd = await listChangedFiles({ branch: 'next' });
+    const testFile = 'someTestFile.yml';
     try {
       await writeFileAsync(testFile, 'console.log("hello");');
       const changesAfterAdd = await listChangedFiles({ branch: 'next' });
-      const addedFiles = Array.from(changesAfterAdd).filter((file) => !changesBefore.has(file));
-      expect(addedFiles).to.deep.equal([testFile]);
+      expect(changesBeforeAdd).not.to.contain(testFile);
+      expect(changesAfterAdd).to.contain(testFile);
+      expect(changesAfterAdd.size - changesBeforeAdd.size).to.equal(1);
     } finally {
       await rimrafAsync(testFile);
     }
