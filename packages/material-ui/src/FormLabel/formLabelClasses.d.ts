@@ -1,13 +1,6 @@
-export interface FormLabelClasses {
-  root: string;
-  colorSecondary: string;
-  focused: string;
-  disabled: string;
-  error: string;
-  filled: string;
-  required: string;
-  asterisk: string;
-}
+import { FormLabelClassKey } from './FormLabel';
+
+export type FormLabelClasses = Record<FormLabelClassKey, string>;
 
 declare const formLabelClasses: FormLabelClasses;
 
