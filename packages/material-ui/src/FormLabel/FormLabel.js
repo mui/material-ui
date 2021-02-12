@@ -25,11 +25,11 @@ const useUtilityClasses = (styleProps) => {
   const slots = {
     root: [
       'root',
-      `color${capitalize(color || 'primary')}`,
-      error && 'error',
-      focused && 'focused',
+      `color${capitalize(color)}`,
       disabled && 'disabled',
+      error && 'error',
       filled && 'filled',
+      focused && 'focused',
       required && 'required',
     ],
     asterisk: ['asterisk', error && 'error'],
@@ -100,7 +100,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const styleProps = {
     ...props,
     component,
-    color: fcs.color,
+    color: fcs.color = 'primary',
     disabled: fcs.disabled,
     error: fcs.error,
     filled: fcs.filled,
