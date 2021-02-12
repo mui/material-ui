@@ -1,4 +1,3 @@
-/* Only used to enable the language server */
 {
   "extends": "../tsconfig.json",
   "include": ["regressions/**/*", "utils/**/*"],

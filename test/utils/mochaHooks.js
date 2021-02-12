@@ -1,22 +1,58 @@
+// @ts-check
 const formatUtil = require('format-util');
+
+/**
+ * @typedef {(this: import('mocha').Context) => void} MochaHook
+ *
+ * @typedef {object} MochaHooks
+ * @property {MochaHook[]} beforeAll
+ * @property {MochaHook[]} afterAll
+ * @property {MochaHook[]} beforeEach
+ * @property {MochaHook[]} afterEach
+ *
+ * @typedef {object} Mocha -- custom definition for `const mocha = require('mocha')`
+ * @property {import('mocha').utils} utils
+ */
 
 const isKarma = Boolean(process.env.KARMA);
 
+/**
+ * @param {Mocha} Mocha
+ * @param {'warn' | 'error'} methodName
+ * @param {string} expectedMatcher
+ * @returns MochaHooks
+ */
 function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher) {
+  /**
+   * @type {MochaHooks}
+   */
   const mochaHooks = {
     beforeAll: [],
     afterAll: [],
     beforeEach: [],
     afterEach: [],
   };
+  /**
+   * @type {[stack: string, message: string][]}
+   */
   const unexpectedCalls = [];
   const stackTraceFilter = Mocha.utils.stackTraceFilter();
 
+  /**
+   * @param {string} format
+   * @param  {...unknown} args
+   * @returns {void}
+   */
   function logUnexpectedConsoleCalls(format, ...args) {
     const message = formatUtil(format, ...args);
 
     // Safe stack so that test dev can track where the unexpected console message was created.
     const { stack } = new Error();
+    if (stack === undefined) {
+      throw new TypeError(
+        `Unable to get stack. Logging unexpected console calls is only supported in environments where Error.prototype.stack is implemented.`,
+      );
+    }
 
     if (process.env.NODE_ENV === 'production') {
       // TODO: mock scheduler
@@ -34,6 +70,9 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
     ]);
   }
 
+  /**
+   * @type {Console['warn' | 'error']}
+   */
   let originalConsoleMethod;
   mochaHooks.beforeAll.push(function registerConsoleStub() {
     // eslint-disable-next-line no-console
@@ -61,6 +100,7 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
     if (hadUnexpectedCalls) {
       // In karma `file` is `null`.
       // We still have the stacktrace though
+      // @ts-expect-error -- this.currentTest being undefined would be a bug
       const location = this.currentTest.file ?? '(unknown file)';
       const message =
         `Expected test not to call console.${methodName}()\n\n` +
@@ -75,14 +115,13 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
       error.stack = '';
 
       if (isKarma) {
-        const testPath = `"${this.currentTest.parent
-          .titlePath()
-          .concat(this.currentTest.title)
-          .join('" -> "')}"`;
+        // @ts-expect-error -- this.currentTest being undefined would be a bug
+        const testPath = `"${this.currentTest.fullTitle()}"`;
 
         error.message += `\n\nin ${testPath}`;
         throw error;
       } else {
+        // @ts-expect-error -- this.test being undefined would be a bug
         this.test.error(error);
       }
     }
@@ -91,6 +130,10 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
   return mochaHooks;
 }
 
+/**
+ * @param {Mocha} Mocha
+ * @returns MochaHooks
+ */
 function createMochaHooks(Mocha) {
   const warnHooks = createUnexpectedConsoleMessagesHooks(Mocha, 'warn', 'toWarnDev');
   const errorHooks = createUnexpectedConsoleMessagesHooks(Mocha, 'error', 'toErrorDev');
