@@ -98,7 +98,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const styleProps = {
     ...props,
     component,
-    color: fcs.color = 'primary',
+    color: fcs.color || 'primary',
     disabled: fcs.disabled,
     error: fcs.error,
     filled: fcs.filled,
@@ -118,11 +118,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     >
       {children}
       {fcs.required && (
-        <AsteriskComponent
-          styleProps={styleProps}
-          aria-hidden
-          className={classes.asterisk}
-        >
+        <AsteriskComponent styleProps={styleProps} aria-hidden className={classes.asterisk}>
           &thinsp;{'*'}
         </AsteriskComponent>
       )}

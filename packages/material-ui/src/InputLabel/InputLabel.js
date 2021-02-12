@@ -4,14 +4,14 @@ import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import FormLabel, { formLabelClasses } from '../FormLabel/FormLabel';
+import FormLabel, { formLabelClasses } from '../FormLabel';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  return deepmerge(props.root, {
+  return deepmerge(styles.root, {
     ...(!styleProps.formControl && styles.formControl),
     ...(styleProps.size === 'small' && styles.sizeSmall),
     ...(styleProps.shrink && styles.shrink),
@@ -34,7 +34,12 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  return composeClasses(slots, getInputLabelUtilityClasses, classes);
+  const finalClasses = composeClasses(slots, getInputLabelUtilityClasses, classes);
+
+  return {
+    ...classes, // forward the focused, disabled, etc. classes to the FormLabel
+    ...finalClasses,
+  };
 };
 
 const InputLabelRoot = experimentalStyled(
