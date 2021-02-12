@@ -186,7 +186,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
     className,
-    component: Component = 'span',
+    component = 'span',
     classes: classesProp = {},
     defaultValue,
     disabled = false,
@@ -550,7 +550,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     ...axisProps[axis].leap(trackLeap),
   };
 
-  const Root = components.Root || 'span';
+  const Root = components.Root || component;
   const rootProps = componentsProps.root || {};
 
   const Rail = components.Rail || 'span';
@@ -597,7 +597,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       onMouseDown={handleMouseDown}
       {...rootProps}
       {...(!isHostComponent(Root) && {
-        as: Component,
+        as: component,
         styleProps: { ...styleProps, ...rootProps.styleProps },
         theme,
       })}

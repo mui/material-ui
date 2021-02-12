@@ -4,37 +4,33 @@ import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import FormLabel, {
-  FormLabelRoot,
-  overridesResolver as formLabelOverridesResolver,
-} from '../FormLabel/FormLabel';
+import FormLabel, { formLabelClasses } from '../FormLabel/FormLabel';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
-  return deepmerge(formLabelOverridesResolver(props, styles), {
+  return deepmerge(props.root, {
     ...(!styleProps.formControl && styles.formControl),
     ...(styleProps.size === 'small' && styles.sizeSmall),
     ...(styleProps.shrink && styles.shrink),
     ...(!styleProps.disableAnimation && styles.animated),
-    ...(styleProps.filled && styles.filled),
-    ...(styleProps.outlined && styles.outlined),
+    ...styles[styleProps.variant],
+    [`& .${formLabelClasses.asterisk}`]: styles.asterisk,
   });
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, formControl, size, shrink, disableAnimation, filled, outlined } = styleProps;
+  const { classes, formControl, size, shrink, disableAnimation, variant } = styleProps;
   const slots = {
     root: [
       'root',
       formControl && 'formControl',
-      size === 'small' && 'sizeSmall',
-      shrink && 'shrink',
       !disableAnimation && 'animated',
-      filled && 'filled',
-      outlined && 'outlined',
+      shrink && 'shrink',
+      size === 'small' && 'sizeSmall',
+      variant,
     ],
   };
 
@@ -42,7 +38,7 @@ const useUtilityClasses = (styleProps) => {
 };
 
 const InputLabelRoot = experimentalStyled(
-  FormLabelRoot,
+  FormLabel,
   { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   { name: 'MuiInputLabel', slot: 'Root', overridesResolver },
 )(({ theme, styleProps }) => ({
@@ -69,7 +65,7 @@ const InputLabelRoot = experimentalStyled(
       easing: theme.transitions.easing.easeOut,
     }),
   }),
-  ...(styleProps.filled && {
+  ...(styleProps.variant === 'filled' && {
     // Chrome's autofill feature gives the input field a yellow background.
     // Since the input field is behind the label in the HTML tree,
     // the input field is drawn last and hides the label with an opaque background color.
@@ -87,7 +83,7 @@ const InputLabelRoot = experimentalStyled(
       }),
     }),
   }),
-  ...(styleProps.outlined && {
+  ...(styleProps.variant === 'outlined' && {
     // see comment above on filled.zIndex
     zIndex: 1,
     pointerEvents: 'none',
@@ -120,20 +116,18 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
 
   const styleProps = {
     ...props,
-    formControl: muiFormControl,
     disableAnimation,
+    formControl: muiFormControl,
     shrink,
     size: fcs.size,
-    filled: fcs.variant === 'filled',
-    outlined: fcs.variant === 'outlined',
+    variant: fcs.variant,
   };
 
   const classes = useUtilityClasses(styleProps);
   return (
-    <FormLabel
-      components={{ Root: InputLabelRoot }}
-      componentsProps={{ root: { styleProps }, asterisk: { styleProps } }}
+    <InputLabelRoot
       data-shrink={shrink}
+      styleProps={styleProps}
       ref={ref}
       {...other}
       classes={classes}

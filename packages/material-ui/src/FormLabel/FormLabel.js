@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
@@ -77,8 +77,6 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     children,
     color,
     component = 'label',
-    components = {},
-    componentsProps = {},
     disabled,
     error,
     filled,
@@ -108,42 +106,27 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     required: fcs.required,
   };
 
-  const Root = components.Root || FormLabelRoot;
-  const inputRootProps = componentsProps.root || {};
-
-  const Asterisk = components.Input || AsteriskComponent;
-  const asteriskProps = componentsProps.asterisk || {};
-
-  const classes = useUtilityClasses({ ...styleProps, ...inputRootProps.styleProps });
-
-  const rootProps = !isHostComponent(Root)
-    ? { ...inputRootProps, styleProps: { ...styleProps, ...inputRootProps.styleProps }, theme }
-    : { ...inputRootProps, styleProps };
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <Root
+    <FormLabelRoot
       as={component}
-      {...rootProps}
-      className={clsx(classes.root, rootProps.className, className)}
+      styleProps={styleProps}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
       {children}
       {fcs.required && (
-        <Asterisk
+        <AsteriskComponent
           styleProps={styleProps}
           aria-hidden
-          {...(!isHostComponent(Asterisk) && {
-            as: AsteriskComponent,
-            styleProps: { ...styleProps, ...asteriskProps.styleProps },
-            theme,
-          })}
           className={classes.asterisk}
         >
           &thinsp;{'*'}
-        </Asterisk>
+        </AsteriskComponent>
       )}
-    </Root>
+    </FormLabelRoot>
   );
 });
 
