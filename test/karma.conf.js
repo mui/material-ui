@@ -108,7 +108,7 @@ module.exports = function setKarmaConfig(config) {
     newConfig = {
       ...baseConfig,
       browserStack,
-      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safar', 'edge']),
+      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safari', 'edge']),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: {
         ...baseConfig.customLaunchers,
@@ -126,7 +126,7 @@ module.exports = function setKarmaConfig(config) {
           browser: 'firefox',
           browser_version: '78.0',
         },
-        safar: {
+        safari: {
           base: 'BrowserStack',
           os: 'OS X',
           os_version: 'Catalina',
