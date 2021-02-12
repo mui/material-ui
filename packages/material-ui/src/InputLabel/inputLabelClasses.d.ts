@@ -1,17 +1,6 @@
-export interface InputLabelClasses {
-  root: string;
-  focused: string;
-  disabled: string;
-  error: string;
-  required: string;
-  asterisk: string;
-  formControl: string;
-  sizeSmall: string;
-  shrink: string;
-  animated: string;
-  filled: string;
-  outlined: string;
-}
+import { InputLabelClassKey } from './InputLabel';
+
+export type InputLabelClasses = Record<InputLabelClassKey, string>;
 
 declare const inputLabelClasses: InputLabelClasses;
 
