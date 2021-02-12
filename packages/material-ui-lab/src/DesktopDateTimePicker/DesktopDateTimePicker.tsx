@@ -254,7 +254,7 @@ DesktopDateTimePicker.propTypes = {
    */
   onAccept: PropTypes.func,
   /**
-   * Callback fired when the value (the selected date) changes. @DateIOType.
+   * Callback fired when the value (the selected date) changes @DateIOType.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -322,7 +322,7 @@ DesktopDateTimePicker.propTypes = {
    */
   reduceAnimations: PropTypes.bool,
   /**
-   * Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day) @DateIOType.
+   * Custom renderer for day. Check the [PickersDay](https://material-ui.com/api/pickers-day/) component.
    */
   renderDay: PropTypes.func,
   /**
@@ -358,7 +358,7 @@ DesktopDateTimePicker.propTypes = {
   shouldDisableTime: PropTypes.func,
   /**
    * Disable specific years dynamically.
-   * Works like `shouldDisableDate` but for year selection view. @DateIOType.
+   * Works like `shouldDisableDate` but for year selection view @DateIOType.
    */
   shouldDisableYear: PropTypes.func,
   /**
