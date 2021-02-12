@@ -87,6 +87,7 @@ module.exports = [
   { pathname: '/api-docs/popover' },
   { pathname: '/api-docs/popper' },
   { pathname: '/api-docs/portal' },
+  { pathname: '/api-docs/portal-unstyled' },
   { pathname: '/api-docs/radio' },
   { pathname: '/api-docs/radio-group' },
   { pathname: '/api-docs/rating' },

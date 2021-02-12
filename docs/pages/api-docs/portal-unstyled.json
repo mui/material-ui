@@ -4,12 +4,12 @@
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disablePortal": { "type": { "name": "bool" } }
   },
-  "name": "Portal",
-  "styles": { "classes": [], "globalClasses": {}, "name": "MuiPortal" },
+  "name": "PortalUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
-  "filename": "/packages/material-ui/src/Portal/Portal.js",
+  "filename": "/packages/material-ui-unstyled/src/PortalUnstyled/PortalUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/components/portal/\">Portal</a></li></ul>",
+  "demos": "",
   "styledComponent": true,
   "cssComponent": false
 }

@@ -1,0 +1,3 @@
+describe('<Portal />', () => {
+  this.skip();
+});

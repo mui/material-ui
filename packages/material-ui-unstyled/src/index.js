@@ -5,7 +5,6 @@ export { default as SliderUnstyled } from './SliderUnstyled';
 export * from './SliderUnstyled';
 
 export { default as PortalUnstyled } from './PortalUnstyled';
-export * from "./PortalUnstyled";
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 

@@ -1,4 +1,4 @@
-import { PortalUnstyled, PortalUnstyledProps } from '@material-ui/unstyled';
+import { PortalUnstyledProps } from '@material-ui/unstyled';
 
 export type PortalProps = PortalUnstyledProps;
 
@@ -13,6 +13,5 @@ export type PortalProps = PortalUnstyledProps;
  * API:
  *
  * - [Portal API](https://material-ui.com/api/portal/)
- * - inherits [PortalUnstyled API](https://material-ui.com/api/portal-unstyled/)
  */
-export default function Portal(props: PortalProps): ReturnType<typeof PortalUnstyled>;
+export default function Portal(props: PortalProps): JSX.Element;
