@@ -135,7 +135,7 @@ const transitionDurationDefault = { enter: duration.enteringScreen, exit: durati
 
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) {
   const theme = useTheme();
-  const props = getThemeProps({ name: 'MuiSwipeableDrawer', props: { ...inProps }, theme });
+  const props = getThemeProps({ name: 'MuiSwipeableDrawer', props: inProps, theme });
   const {
     anchor = 'left',
     disableBackdropTransition = false,

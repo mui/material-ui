@@ -55,7 +55,7 @@ export const styles = (theme) => ({
  */
 const Modal = React.forwardRef(function Modal(inProps, ref) {
   const theme = useTheme();
-  const props = getThemeProps({ name: 'MuiModal', props: { ...inProps }, theme });
+  const props = getThemeProps({ name: 'MuiModal', props: inProps, theme });
   const {
     BackdropComponent = SimpleBackdrop,
     BackdropProps,
