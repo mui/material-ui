@@ -474,7 +474,7 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select value="" />);
 
       // TODO what is the accessible name actually?
-      expect(getByRole('button')).to.not.have.attribute('aria-labelledby');
+      expect(getByRole('button')).not.to.have.attribute('aria-labelledby');
     });
 
     it('is labelled by itself when it has a name', () => {

@@ -257,7 +257,7 @@ describe('<Popper />', () => {
         <Popper {...defaultProps} disablePortal popperRef={popperRef} />,
       );
       // renders
-      expect(getByRole('tooltip')).to.not.equal(null);
+      expect(getByRole('tooltip')).not.to.equal(null);
       // correctly sets modifiers
       expect(popperRef.current.state.options.modifiers[0].options.altBoundary).to.equal(true);
     });
@@ -266,7 +266,7 @@ describe('<Popper />', () => {
       const popperRef = React.createRef();
       const { getByRole } = render(<Popper {...defaultProps} popperRef={popperRef} />);
       // renders
-      expect(getByRole('tooltip')).to.not.equal(null);
+      expect(getByRole('tooltip')).not.to.equal(null);
       // correctly sets modifiers
       expect(popperRef.current.state.options.modifiers[0].options.altBoundary).to.equal(false);
     });

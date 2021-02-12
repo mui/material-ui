@@ -269,7 +269,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      expect(container).to.not.include.text('Rows per page');
+      expect(container).not.to.include.text('Rows per page');
       expect(queryByRole('listbox')).to.equal(null);
     });
   });

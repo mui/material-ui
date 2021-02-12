@@ -158,7 +158,7 @@ describe('<Menu />', () => {
     const popover = wrapper.find(Popover);
     expect(popover.props().open).to.equal(true);
     const menuEl = document.querySelector('[role="menu"]');
-    expect(document.activeElement).to.not.equal(menuEl);
+    expect(document.activeElement).not.to.equal(menuEl);
     expect(false).to.equal(menuEl.contains(document.activeElement));
   });
 

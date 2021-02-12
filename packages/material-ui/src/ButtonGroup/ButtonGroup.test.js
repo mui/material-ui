@@ -34,8 +34,8 @@ describe('<ButtonGroup />', () => {
     );
     const buttonGroup = container.firstChild;
     expect(buttonGroup).to.have.class(classes.root);
-    expect(buttonGroup).to.not.have.class(classes.contained);
-    expect(buttonGroup).to.not.have.class(classes.fullWidth);
+    expect(buttonGroup).not.to.have.class(classes.contained);
+    expect(buttonGroup).not.to.have.class(classes.fullWidth);
   });
 
   it('should render an outlined button', () => {
@@ -49,7 +49,7 @@ describe('<ButtonGroup />', () => {
     expect(button).to.have.class(classes.grouped);
     expect(button).to.have.class(classes.groupedOutlined);
     expect(button).to.have.class(classes.groupedOutlinedPrimary);
-    expect(button).to.not.have.class(classes.groupedOutlinedSecondary);
+    expect(button).not.to.have.class(classes.groupedOutlinedSecondary);
   });
 
   it('can render an outlined primary button', () => {
@@ -63,7 +63,7 @@ describe('<ButtonGroup />', () => {
     expect(button).to.have.class(classes.grouped);
     expect(button).to.have.class(classes.groupedOutlined);
     expect(button).to.have.class(classes.groupedOutlinedPrimary);
-    expect(button).to.not.have.class(classes.groupedOutlinedSecondary);
+    expect(button).not.to.have.class(classes.groupedOutlinedSecondary);
   });
 
   it('can render a contained button', () => {
@@ -77,7 +77,7 @@ describe('<ButtonGroup />', () => {
     expect(button).to.have.class(classes.grouped);
     expect(button).to.have.class(classes.groupedContained);
     expect(button).to.have.class(classes.groupedContainedPrimary);
-    expect(button).to.not.have.class(classes.groupedContainedSecondary);
+    expect(button).not.to.have.class(classes.groupedContainedSecondary);
   });
 
   it('can render a small button', () => {
@@ -106,7 +106,7 @@ describe('<ButtonGroup />', () => {
         <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
       </ButtonGroup>,
     );
-    expect(container.querySelector('.touchRipple')).to.not.equal(null);
+    expect(container.querySelector('.touchRipple')).not.to.equal(null);
   });
 
   it('can disable the elevation', () => {
@@ -136,8 +136,8 @@ describe('<ButtonGroup />', () => {
     );
     const button = getByRole('button');
     const buttonGroup = container.firstChild;
-    expect(buttonGroup).to.not.have.class(classes.fullWidth);
-    expect(button).to.not.have.class('MuiButton-fullWidth');
+    expect(buttonGroup).not.to.have.class(classes.fullWidth);
+    expect(button).not.to.have.class('MuiButton-fullWidth');
   });
 
   it('can pass fullWidth to Button', () => {

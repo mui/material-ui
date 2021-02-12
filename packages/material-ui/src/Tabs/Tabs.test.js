@@ -182,7 +182,7 @@ describe('<Tabs />', () => {
     it('should accept any value as selected tab value', () => {
       const tab0 = {};
       const tab1 = {};
-      expect(tab0).to.not.equal(tab1);
+      expect(tab0).not.to.equal(tab1);
 
       const { getAllByRole } = render(
         <Tabs value={tab0}>

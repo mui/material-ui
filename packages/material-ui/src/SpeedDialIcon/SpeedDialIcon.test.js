@@ -40,15 +40,15 @@ describe('<SpeedDialIcon />', () => {
   it('should render the icon with the icon class', () => {
     const { container } = render(<SpeedDialIcon />);
     expect(container.querySelector('svg')).to.have.class(classes.icon);
-    expect(container.querySelector('svg')).to.not.have.class(classes.iconOpen);
-    expect(container.querySelector('svg')).to.not.have.class(classes.iconWithOpenIconOpen);
+    expect(container.querySelector('svg')).not.to.have.class(classes.iconOpen);
+    expect(container.querySelector('svg')).not.to.have.class(classes.iconWithOpenIconOpen);
   });
 
   it('should render the icon with the icon and iconOpen classes', () => {
     const { container } = render(<SpeedDialIcon open />);
     expect(container.querySelector('svg')).to.have.class(classes.icon);
     expect(container.querySelector('svg')).to.have.class(classes.iconOpen);
-    expect(container.querySelector('svg')).to.not.have.class(classes.iconWithOpenIconOpen);
+    expect(container.querySelector('svg')).not.to.have.class(classes.iconWithOpenIconOpen);
   });
 
   it('should render the icon with the icon, iconOpen iconWithOpenIconOpen classes', () => {
@@ -61,7 +61,7 @@ describe('<SpeedDialIcon />', () => {
   it('should render the openIcon with the openIcon class', () => {
     const { container } = render(<SpeedDialIcon openIcon={icon} />);
     expect(container.firstChild.querySelector('span')).to.have.class(classes.openIcon);
-    expect(container.firstChild.querySelector('span')).to.not.have.class(classes.openIconOpen);
+    expect(container.firstChild.querySelector('span')).not.to.have.class(classes.openIconOpen);
   });
 
   it('should render the openIcon with the openIcon, openIconOpen classes', () => {

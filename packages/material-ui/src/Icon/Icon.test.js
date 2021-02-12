@@ -72,7 +72,7 @@ describe('<Icon />', () => {
         </Icon>,
       );
 
-      expect(getByTestId('root')).to.not.have.class('material-icons');
+      expect(getByTestId('root')).not.to.have.class('material-icons');
     });
 
     it('should render with the supplied base class', () => {

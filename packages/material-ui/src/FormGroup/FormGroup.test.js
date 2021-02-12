@@ -25,6 +25,6 @@ describe('<FormGroup />', () => {
       </FormGroup>,
     );
 
-    expect(queryByTestId('test-children')).to.not.equal(null);
+    expect(queryByTestId('test-children')).not.to.equal(null);
   });
 });

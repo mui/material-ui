@@ -68,15 +68,15 @@ describe('<MobileStepper />', () => {
   it('should render the back button', () => {
     const { queryByTestId, getByRole } = render(<MobileStepper {...defaultProps} />);
     const backButton = getByRole('button', { name: 'back' });
-    expect(backButton).to.not.equal(null);
-    expect(queryByTestId('KeyboardArrowLeftIcon')).to.not.equal(null);
+    expect(backButton).not.to.equal(null);
+    expect(queryByTestId('KeyboardArrowLeftIcon')).not.to.equal(null);
   });
 
   it('should render next button', () => {
     const { getByRole, queryByTestId } = render(<MobileStepper {...defaultProps} />);
     const nextButton = getByRole('button', { name: 'next' });
-    expect(nextButton).to.not.equal(null);
-    expect(queryByTestId('KeyboardArrowRightIcon')).to.not.equal(null);
+    expect(nextButton).not.to.equal(null);
+    expect(queryByTestId('KeyboardArrowRightIcon')).not.to.equal(null);
   });
 
   it('should render two buttons and text displaying progress when supplied with variant text', () => {
@@ -108,7 +108,7 @@ describe('<MobileStepper />', () => {
 
   it('should render a <LinearProgress /> when supplied with variant progress', () => {
     render(<MobileStepper {...defaultProps} variant="progress" />);
-    expect(screen.queryByRole('progressbar')).to.not.equal(null);
+    expect(screen.queryByRole('progressbar')).not.to.equal(null);
   });
 
   it('should calculate the <LinearProgress /> value correctly', () => {

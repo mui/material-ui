@@ -43,7 +43,7 @@ describe('<TableCell />', () => {
   describe('prop: padding', () => {
     it('doesn not have a class for padding by default', () => {
       const { container } = renderInTable(<TableCell padding="default" />);
-      expect(container.querySelector('td')).to.not.have.class(classes.paddingDefault);
+      expect(container.querySelector('td')).not.to.have.class(classes.paddingDefault);
     });
 
     it('has a class when `none`', () => {
@@ -65,7 +65,7 @@ describe('<TableCell />', () => {
   it('should render children', () => {
     const children = <p data-testid="hello">Hello</p>;
     const { getByTestId } = renderInTable(<TableCell>{children}</TableCell>);
-    expect(getByTestId('hello')).to.not.equal(null);
+    expect(getByTestId('hello')).not.to.equal(null);
   });
 
   it('should render aria-sort="ascending" when prop sortDirection="asc" provided', () => {

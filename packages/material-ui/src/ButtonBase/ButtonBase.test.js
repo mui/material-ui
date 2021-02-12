@@ -66,7 +66,7 @@ describe('<ButtonBase />', () => {
 
     it('should not apply role="button" if type="button"', () => {
       const { getByText } = render(<ButtonBase type="button">Hello</ButtonBase>);
-      expect(getByText('Hello')).to.not.have.attribute('role');
+      expect(getByText('Hello')).not.to.have.attribute('role');
     });
 
     it('should change the button type to span and set role="button"', () => {
@@ -74,7 +74,7 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
 
       expect(button).to.have.property('nodeName', 'SPAN');
-      expect(button).to.not.have.attribute('type');
+      expect(button).not.to.have.attribute('type');
     });
 
     it('should automatically change the button to an anchor element when href is provided', () => {
@@ -444,7 +444,7 @@ describe('<ButtonBase />', () => {
       }));
       fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
-      expect(rippleRipple).to.not.equal(null);
+      expect(rippleRipple).not.to.equal(null);
       // @ts-ignore
       const rippleSyle = window.getComputedStyle(rippleRipple);
       expect(rippleSyle).to.have.property('height', '101px');
@@ -469,11 +469,11 @@ describe('<ButtonBase />', () => {
       }));
       fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
-      expect(rippleRipple).to.not.equal(null);
+      expect(rippleRipple).not.to.equal(null);
       // @ts-ignore
       const rippleSyle = window.getComputedStyle(rippleRipple);
-      expect(rippleSyle).to.not.have.property('height', '101px');
-      expect(rippleSyle).to.not.have.property('width', '101px');
+      expect(rippleSyle).not.to.have.property('height', '101px');
+      expect(rippleSyle).not.to.have.property('width', '101px');
     });
   });
 

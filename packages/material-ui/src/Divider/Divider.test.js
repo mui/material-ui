@@ -89,8 +89,8 @@ describe('<Divider />', () => {
   describe('prop: variant', () => {
     it('should default to variant="fullWidth"', () => {
       const { container } = render(<Divider />);
-      expect(container.firstChild).to.not.have.class(classes.inset);
-      expect(container.firstChild).to.not.have.class(classes.middle);
+      expect(container.firstChild).not.to.have.class(classes.inset);
+      expect(container.firstChild).not.to.have.class(classes.middle);
     });
 
     describe('prop: variant="fullWidth" ', () => {
@@ -118,7 +118,7 @@ describe('<Divider />', () => {
   describe('role', () => {
     it('avoids adding implicit aria semantics', () => {
       const { container } = render(<Divider />);
-      expect(container.firstChild).to.not.have.attribute('role');
+      expect(container.firstChild).not.to.have.attribute('role');
     });
 
     it('adds a proper role if none is specified', () => {

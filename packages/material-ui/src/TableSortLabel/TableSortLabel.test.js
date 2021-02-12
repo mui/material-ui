@@ -31,7 +31,7 @@ describe('<TableSortLabel />', () => {
   it('should not set the active class when not active', () => {
     const activeFlag = false;
     const { container } = render(<TableSortLabel active={activeFlag} />);
-    expect(container.firstChild).to.not.have.class(classes.active);
+    expect(container.firstChild).not.to.have.class(classes.active);
   });
 
   describe('has an icon', () => {
@@ -44,20 +44,20 @@ describe('<TableSortLabel />', () => {
     it('when given direction desc should have desc direction class', () => {
       const { container } = render(<TableSortLabel direction="desc" />);
       const icon = container.querySelector(`.${classes.icon}`);
-      expect(icon).to.not.have.class(classes.iconDirectionAsc);
+      expect(icon).not.to.have.class(classes.iconDirectionAsc);
       expect(icon).to.have.class(classes.iconDirectionDesc);
     });
 
     it('when given direction asc should have asc direction class', () => {
       const { container } = render(<TableSortLabel direction="asc" />);
       const icon = container.querySelector(`.${classes.icon}`);
-      expect(icon).to.not.have.class(classes.iconDirectionDesc);
+      expect(icon).not.to.have.class(classes.iconDirectionDesc);
       expect(icon).to.have.class(classes.iconDirectionAsc);
     });
 
     it('should accept a custom icon for the sort icon', () => {
       const { getAllByTestId } = render(<TableSortLabel IconComponent={SortIcon} />);
-      expect(getAllByTestId('SortIcon')).to.not.equal(null);
+      expect(getAllByTestId('SortIcon')).not.to.equal(null);
     });
   });
 

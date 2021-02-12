@@ -62,8 +62,8 @@ describe('<StepLabel />', () => {
       const label = container.querySelector(`.${classes.label}`);
 
       getByTestId('custom-icon');
-      expect(icon).to.not.equal(null);
-      expect(icon).to.not.have.attribute('data-testid').equal('CheckCircleIcon');
+      expect(icon).not.to.equal(null);
+      expect(icon).not.to.have.attribute('data-testid').equal('CheckCircleIcon');
       expect(label).to.have.class(classes.active);
       expect(label).to.have.class(classes.completed);
     });
@@ -113,7 +113,7 @@ describe('<StepLabel />', () => {
       );
 
       const typography = container.querySelector(`.${typographyClasses.root}`);
-      expect(typography).to.not.have.class(classes.active);
+      expect(typography).not.to.have.class(classes.active);
     });
   });
 

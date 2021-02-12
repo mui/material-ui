@@ -105,7 +105,7 @@ describe('<ImageListItem />', () => {
         </ImageListItem>,
       );
 
-      expect(getByTestId('test-children')).to.not.have.class(classes.img);
+      expect(getByTestId('test-children')).not.to.have.class(classes.img);
     });
   });
 });

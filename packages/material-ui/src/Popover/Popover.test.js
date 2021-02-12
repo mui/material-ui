@@ -610,7 +610,7 @@ describe('<Popover />', () => {
         left: element.style.left,
         transformOrigin: element.style.transformOrigin,
       };
-      expect(JSON.stringify(beforeStyle)).to.not.equal(JSON.stringify(afterStyle));
+      expect(JSON.stringify(beforeStyle)).not.to.equal(JSON.stringify(afterStyle));
     });
 
     it('should not recalculate position if the popover is closed', () => {
@@ -653,7 +653,7 @@ describe('<Popover />', () => {
         left: element.style.left,
         transformOrigin: element.style.transformOrigin,
       };
-      expect(JSON.stringify(beforeStyle)).to.not.equal(JSON.stringify(afterStyle));
+      expect(JSON.stringify(beforeStyle)).not.to.equal(JSON.stringify(afterStyle));
     });
   });
 
