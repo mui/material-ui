@@ -120,12 +120,12 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
 
   mochaHooks.afterEach.push(function flushUnexpectedCalls() {
     const actionableCalls = dedupeActWarningsByComponent(unexpectedCalls);
-    unexpectedCalls.length = 0;
     const actionableCallCount = actionableCalls.length;
     const formattedCalls = actionableCalls.map(
       ([stack, message], index) =>
         `console.${methodName} message #${index + 1}:\n  ${message}\n\nStack:\n${stack}`,
     );
+    unexpectedCalls.length = 0;
 
     // eslint-disable-next-line no-console
     if (console[methodName] !== logUnexpectedConsoleCalls) {
