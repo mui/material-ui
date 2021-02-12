@@ -98,6 +98,9 @@ module.exports = {
     // disabled type-aware linting due to performance considerations
     '@typescript-eslint/no-throw-literal': 'off',
     'no-throw-literal': 'error',
+    // disabled type-aware linting due to performance considerations
+    '@typescript-eslint/return-await': 'off',
+    'no-return-await': 'error',
 
     // Not sure why it doesn't work
     'import/named': 'off',
