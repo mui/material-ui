@@ -308,7 +308,7 @@ async function run(argv: HandlerArgv) {
       path.resolve(__dirname, '../packages/material-ui/src'),
       path.resolve(__dirname, '../packages/material-ui-lab/src'),
     ].map((folderPath) =>
-      glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
+      glob('+([A-Z])*/+([A-Z])*.*@(d.ts|tsx|ts)', {
         absolute: true,
         cwd: folderPath,
       }),
