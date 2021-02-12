@@ -1,22 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+// import { experimentalStyled as styled } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 
 const createComponent = (defaultComponent) => {
-  const MyComponent = React.forwardRef(function MyComponent(props, ref) {
-    const { component: Component = defaultComponent, ...other } = props;
+  const Root = styled('div')`
+    background: pink;
+  `;
 
-    return <Component ref={ref} {...other} />;
+  const MyComponent = React.forwardRef(function MyComponent(props, ref) {
+    const { component = defaultComponent, ...other } = props;
+
+    return <Root as={component} ref={ref} {...other} />;
   });
 
   MyComponent.propTypes = {
     component: PropTypes.elementType,
   };
 
-  return styled(MyComponent)`
-    background: pink;
-  `;
+  return MyComponent;
 };
 
 const Table = createComponent('table');

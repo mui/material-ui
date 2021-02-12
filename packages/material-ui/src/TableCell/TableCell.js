@@ -70,7 +70,6 @@ const TableCellRoot = experimentalStyled(
     fontWeight: theme.typography.fontWeightMedium,
   }),
   /* Styles applied to the root element if `variant="body"` or `context.table.body`. */
-
   ...(styleProps.variant === 'body' && {
     color: theme.palette.text.primary,
   }),
