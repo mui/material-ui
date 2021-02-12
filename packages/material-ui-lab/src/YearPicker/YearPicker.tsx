@@ -17,7 +17,7 @@ export interface ExportedYearPickerProps<TDate> {
   onYearChange?: (date: TDate) => void;
   /**
    * Disable specific years dynamically.
-   * Works like `shouldDisableDate` but for year selection view. @DateIOType.
+   * Works like `shouldDisableDate` but for year selection view @DateIOType.
    */
   shouldDisableYear?: (day: TDate) => boolean;
 }
@@ -226,7 +226,7 @@ YearPicker.propTypes = {
   onYearChange: PropTypes.func,
   /**
    * Disable specific years dynamically.
-   * Works like `shouldDisableDate` but for year selection view. @DateIOType.
+   * Works like `shouldDisableDate` but for year selection view @DateIOType.
    */
   shouldDisableYear: PropTypes.func,
 } as any;
