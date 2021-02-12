@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender } from 'test/utils';
-import TableCell from '@material-ui/core/TableCell';
+import { createClientRender } from 'test/utils';
+import TableCell, { tableCellClasses as classes } from '@material-ui/core/TableCell';
 import Table from '@material-ui/core/Table';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
@@ -9,7 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 
 describe('<TableRow> integration', () => {
-  let classes;
   const render = createClientRender();
   function renderInTable(node, Variant) {
     return render(
@@ -20,10 +19,6 @@ describe('<TableRow> integration', () => {
       </Table>,
     );
   }
-
-  before(() => {
-    classes = getClasses(<TableCell />);
-  });
 
   it('should render a th with the head class when in the context of a table head', () => {
     const { getByTestId } = renderInTable(<TableCell data-testid="cell" />, TableHead);

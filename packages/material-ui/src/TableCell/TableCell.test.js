@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import TableCell from './TableCell';
+import classes from './tableCellClasses';
 
 describe('<TableCell />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
   function renderInTable(node) {
     return render(
@@ -17,11 +17,7 @@ describe('<TableCell />', () => {
     );
   }
 
-  before(() => {
-    classes = getClasses(<TableCell />);
-  });
-
-  describeConformance(<TableCell />, () => ({
+  describeConformanceV5(<TableCell />, () => ({
     classes,
     inheritComponent: 'td',
     mount: (node) => {
@@ -34,14 +30,26 @@ describe('<TableCell />', () => {
       );
       return wrapper.find('tr').childAt(0);
     },
-
+    render: (node) => {
+      const { container, ...rest } = render(
+        <table>
+          <tbody>
+            <tr>{node}</tr>
+          </tbody>
+        </table>,
+      );
+      return { container: container.firstChild.firstChild.firstChild, ...rest };
+    },
+    muiName: 'MuiTableCell',
+    testVariantProps: { variant: 'body' },
     refInstanceof: window.HTMLTableCellElement,
     // invalid nesting otherwise
     testComponentPropWith: 'td',
+    skip: ['componentsProp'],
   }));
 
   describe('prop: padding', () => {
-    it('doesn not have a class for padding by default', () => {
+    it("doesn't not have a class for padding by default", () => {
       const { container } = renderInTable(<TableCell padding="default" />);
       expect(container.querySelector('td')).to.not.have.class(classes.paddingDefault);
     });

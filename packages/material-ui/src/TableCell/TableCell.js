@@ -1,102 +1,141 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import { darken, alpha, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
 
-export const styles = (theme) => ({
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...styles[styleProps.variant],
+    ...styles[`size${capitalize(styleProps.size)}`],
+    ...(styleProps.padding !== 'default' && styles[`padding${capitalize(styleProps.padding)}`]),
+    ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
+    ...(styleProps.stickyHeader && styles.stickyHeader),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, variant, align, padding, size, stickyHeader } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      variant,
+      stickyHeader && 'stickyHeader',
+      align !== 'inherit' && `align${capitalize(align)}`,
+      padding !== 'default' && `padding${capitalize(padding)}`,
+      `size${capitalize(size)}`,
+    ],
+  };
+
+  return composeClasses(slots, getTableCellUtilityClass, classes);
+};
+
+const TableCellRoot = experimentalStyled(
+  'td',
+  {},
+  {
+    name: 'MuiTableCell',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    ...theme.typography.body2,
-    display: 'table-cell',
-    verticalAlign: 'inherit',
-    // Workaround for a rendering bug with spanned columns in Chrome 62.0.
-    // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
-    borderBottom: `1px solid
+  ...theme.typography.body2,
+  display: 'table-cell',
+  verticalAlign: 'inherit',
+  // Workaround for a rendering bug with spanned columns in Chrome 62.0.
+  // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
+  borderBottom: `1px solid
     ${
       theme.palette.mode === 'light'
         ? lighten(alpha(theme.palette.divider, 1), 0.88)
         : darken(alpha(theme.palette.divider, 1), 0.68)
     }`,
-    textAlign: 'left',
-    padding: 16,
-  },
+  textAlign: 'left',
+  padding: 16,
   /* Styles applied to the root element if `variant="head"` or `context.table.head`. */
-  head: {
+  ...(styleProps.variant === 'head' && {
     color: theme.palette.text.primary,
     lineHeight: theme.typography.pxToRem(24),
     fontWeight: theme.typography.fontWeightMedium,
-  },
+  }),
   /* Styles applied to the root element if `variant="body"` or `context.table.body`. */
-  body: {
+  ...(styleProps.variant === 'body' && {
     color: theme.palette.text.primary,
-  },
+  }),
   /* Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
-  footer: {
+  ...(styleProps.variant === 'footer' && {
     color: theme.palette.text.secondary,
     lineHeight: theme.typography.pxToRem(21),
     fontSize: theme.typography.pxToRem(12),
-  },
+  }),
   /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
+  ...(styleProps.size === 'small' && {
     padding: '6px 16px',
-    '&$paddingCheckbox': {
+    [`&.${tableCellClasses.paddingCheckbox}`]: {
       width: 24, // prevent the checkbox column from growing
       padding: '0 12px 0 16px',
       '& > *': {
         padding: 0,
       },
     },
-  },
+  }),
   /* Styles applied to the root element if `padding="checkbox"`. */
-  paddingCheckbox: {
+  ...(styleProps.padding === 'checkbox' && {
     width: 48, // prevent the checkbox column from growing
     padding: '0 0 0 4px',
-  },
+  }),
   /* Styles applied to the root element if `padding="none"`. */
-  paddingNone: {
+  ...(styleProps.padding === 'none' && {
     padding: 0,
-  },
+  }),
   /* Styles applied to the root element if `align="left"`. */
-  alignLeft: {
+  ...(styleProps.align === 'left' && {
     textAlign: 'left',
-  },
+  }),
   /* Styles applied to the root element if `align="center"`. */
-  alignCenter: {
+  ...(styleProps.align === 'center' && {
     textAlign: 'center',
-  },
+  }),
   /* Styles applied to the root element if `align="right"`. */
-  alignRight: {
+  ...(styleProps.align === 'right' && {
     textAlign: 'right',
     flexDirection: 'row-reverse',
-  },
+  }),
   /* Styles applied to the root element if `align="justify"`. */
-  alignJustify: {
+  ...(styleProps.align === 'justify' && {
     textAlign: 'justify',
-  },
+  }),
   /* Styles applied to the root element if `context.table.stickyHeader={true}`. */
-  stickyHeader: {
+  ...(styleProps.stickyHeader && {
     position: 'sticky',
     top: 0,
     left: 0,
     zIndex: 2,
     backgroundColor: theme.palette.background.default,
-  },
-});
+  }),
+}));
 
 /**
  * The component renders a `<th>` element when the parent context is a header
  * or otherwise a `<td>` element.
  */
-const TableCell = React.forwardRef(function TableCell(props, ref) {
+const TableCell = React.forwardRef(function TableCell(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTableCell' });
   const {
     align = 'inherit',
-    classes,
     className,
-    component,
+    component: componentProp,
     padding: paddingProp,
     scope: scopeProp,
     size: sizeProp,
@@ -110,21 +149,33 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
 
   const isHeadCell = tablelvl2 && tablelvl2.variant === 'head';
   let role;
-  let Component;
-  if (component) {
-    Component = component;
+  let component;
+  if (componentProp) {
+    component = componentProp;
     role = isHeadCell ? 'columnheader' : 'cell';
   } else {
-    Component = isHeadCell ? 'th' : 'td';
+    component = isHeadCell ? 'th' : 'td';
   }
 
   let scope = scopeProp;
   if (!scope && isHeadCell) {
     scope = 'col';
   }
-  const padding = paddingProp || (table && table.padding ? table.padding : 'default');
-  const size = sizeProp || (table && table.size ? table.size : 'medium');
+
   const variant = variantProp || (tablelvl2 && tablelvl2.variant);
+
+  const styleProps = {
+    ...props,
+    align,
+    component,
+    padding: paddingProp || (table && table.padding ? table.padding : 'default'),
+    size: sizeProp || (table && table.size ? table.size : 'medium'),
+    sortDirection,
+    stickyHeader: variant === 'head' && table && table.stickyHeader,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   let ariaSort = null;
   if (sortDirection) {
@@ -132,22 +183,14 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
   }
 
   return (
-    <Component
+    <TableCellRoot
+      as={component}
       ref={ref}
-      className={clsx(
-        classes.root,
-        classes[variant],
-        {
-          [classes.stickyHeader]: variant === 'head' && table && table.stickyHeader,
-          [classes[`align${capitalize(align)}`]]: align !== 'inherit',
-          [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
-        },
-        className,
-      )}
+      className={clsx(classes.root, className)}
       aria-sort={ariaSort}
       role={role}
       scope={scope}
+      styleProps={styleProps}
       {...other}
     />
   );
@@ -202,10 +245,14 @@ TableCell.propTypes = {
    */
   sortDirection: PropTypes.oneOf(['asc', 'desc', false]),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * Specify the cell type.
    * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
    */
   variant: PropTypes.oneOf(['body', 'footer', 'head']),
 };
 
-export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);
+export default TableCell;
