@@ -72,7 +72,7 @@
     "stickyHeader": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>align=\"inherit\"</code>"
+      "conditions": "<code>context.table.stickyHeader={true}</code>"
     }
   }
 }
