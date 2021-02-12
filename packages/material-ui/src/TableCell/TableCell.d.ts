@@ -54,7 +54,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
     alignRight?: string;
     /** Styles applied to the root element if `align="justify"`. */
     alignJustify?: string;
-    /** Styles applied to the root element if `align="inherit"`. */
+    /** Styles applied to the root element if `context.table.stickyHeader={true}`. */
     stickyHeader?: string;
   };
   /**
