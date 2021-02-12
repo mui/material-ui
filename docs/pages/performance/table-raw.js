@@ -4,7 +4,7 @@ import NoSsr from '@material-ui/core/NoSsr';
 const data = { name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24, protein: 4.0 };
 const rows = Array.from(new Array(100)).map(() => data);
 
-function TableRaw() {
+export default function TableRaw() {
   return (
     <NoSsr defer>
       <table>
@@ -32,5 +32,3 @@ function TableRaw() {
     </NoSsr>
   );
 }
-
-export default TableRaw;

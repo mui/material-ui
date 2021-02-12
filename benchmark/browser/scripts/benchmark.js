@@ -154,6 +154,11 @@ async function run() {
         name: 'noop (baseline)',
         path: './noop/index.js',
       },
+      // Test that there no significant offset
+      {
+        name: 'Table',
+        path: './table-cell/index.js',
+      },
       // Test the cost of React primitives
       {
         name: 'React primitives',
