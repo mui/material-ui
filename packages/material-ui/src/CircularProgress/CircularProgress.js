@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { keyframes } from '@material-ui/styled-engine';
+import { keyframes, css } from '@material-ui/styled-engine';
 import capitalize from '../utils/capitalize';
-
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import circularProgressClasses, {
@@ -68,8 +67,6 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCircularProgressUtilityClass, classes);
 };
 
-// This `styled()` function invokes keyframes. `styled-components` only supports keyframes
-// in string templates. Do not convert these styles in JS object as it will break.
 const CircularProgressRoot = experimentalStyled(
   'span',
   {},
@@ -78,25 +75,26 @@ const CircularProgressRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)`
-  display: inline-block;
-
-  transition: ${({ styleProps, theme }) =>
-    styleProps.variant === 'determinate' ? theme.transitions.create('transform') : undefined};
-
-  animation-name: ${({ styleProps }) =>
-    styleProps.variant === 'indeterminate' && circularRotateKeyframe};
-  animation-duration: ${({ styleProps }) => styleProps.variant === 'indeterminate' && '1.4s'};
-  animation-timing-function: ${({ styleProps }) =>
-    styleProps.variant === 'indeterminate' && 'linear'};
-  animation-iteration-count: ${({ styleProps }) =>
-    styleProps.variant === 'indeterminate' && 'infinite'};
-    
-  color: ${({ styleProps, theme }) =>
-    styleProps.color === 'primary' || styleProps.color === 'secondary'
-      ? theme.palette[styleProps.color].main
-      : undefined};
-`;
+)(
+  ({ styleProps, theme }) => ({
+    /* Styles applied to the root element. */
+    display: 'inline-block',
+    /* Styles applied to the root element if `variant="determinate"`. */
+    ...(styleProps.variant === 'determinate' && {
+      transition: theme.transitions.create('transform'),
+    }),
+    /* Styles applied to the root element unless `color="inherit"`. */
+    ...(styleProps.color !== 'inherit' && {
+      color: theme.palette[styleProps.color].main,
+    }),
+  }),
+  /* Styles applied to the root element if `variant="indeterminate"`. */
+  ({ styleProps }) =>
+    styleProps.variant === 'indeterminate' &&
+    css`
+      animation: ${circularRotateKeyframe} 1.4s linear infinite;
+    `,
+);
 
 const CircularProgressSVG = experimentalStyled(
   'svg',
@@ -110,8 +108,6 @@ const CircularProgressSVG = experimentalStyled(
   display: 'block', // Keeps the progress centered
 });
 
-// This `styled()` function invokes keyframes. `styled-components` only supports keyframes
-// in string templates. Do not convert these styles in JS object as it will break.
 const CircularProgressCircle = experimentalStyled(
   'circle',
   {},
@@ -119,28 +115,28 @@ const CircularProgressCircle = experimentalStyled(
     name: 'MuiCircularProgress',
     slot: 'Circle',
   },
-)`
-  stroke: currentColor;
+)(
+  ({ styleProps, theme }) => ({
+    /* Styles applied to the `circle` svg path. */
+    stroke: 'currentColor',
+    // Use butt to follow the specification, by chance, it's already the default CSS value.
+    // strokeLinecap: 'butt',
+    /* Styles applied to the `circle` svg path if `variant="determinate"`. */
+    ...(styleProps.variant === 'determinate' && {
+      transition: theme.transitions.create('stroke-dashoffset'),
+    }),
+  }),
+  /* Styles applied to the `circle` svg path if `variant="indeterminate"`. */
+  ({ styleProps }) =>
+    styleProps.variant === 'indeterminate' &&
+    css`
+      animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
 
-  transition: ${({ styleProps, theme }) =>
-    styleProps.variant === 'determinate'
-      ? theme.transitions.create('stroke-dashoffset')
-      : undefined};
-
-  animation-name: ${({ styleProps }) => {
-    if (styleProps.disableShrink) {
-      return 'none';
-    }
-    return styleProps.variant === 'indeterminate' ? circularDashKeyframe : undefined;
-  }};
-  animation-duration: ${({ styleProps }) => styleProps.variant === 'indeterminate' && '1.4s'};
-  animation-timing-function: ${({ styleProps }) =>
-    styleProps.variant === 'indeterminate' && 'ease-in-out'};
-  animation-iteration-count: ${({ styleProps }) =>
-    styleProps.variant === 'indeterminate' && 'infinite'};
-  stroke-dasharray: ${({ styleProps }) => styleProps.variant === 'indeterminate' && '80px, 200px'};
-  stroke-dashoffset: ${({ styleProps }) => styleProps.variant === 'indeterminate' && '0px'};
-`;
+      /* Some default value that looks fine waiting for the animation to kicks in. */
+      stroke-dasharray: 80px, 200px;
+      stroke-dashoffset: 0; /* Add the unit to fix a Edge 16 and below bug. */
+    `,
+);
 
 /**
  * ## ARIA
