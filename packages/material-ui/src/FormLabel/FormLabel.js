@@ -75,6 +75,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiFormLabel' });
   const {
     children,
+    className,
     color,
     component = 'label',
     disabled,
@@ -82,7 +83,6 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     filled,
     focused,
     required,
-    className,
     ...other
   } = props;
 
@@ -95,8 +95,8 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
 
   const styleProps = {
     ...props,
-    component,
     color: fcs.color || 'primary',
+    component,
     disabled: fcs.disabled,
     error: fcs.error,
     filled: fcs.filled,
