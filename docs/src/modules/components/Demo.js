@@ -219,6 +219,7 @@ export default function Demo(props) {
     setEditorValue(codeOpen ? demoData.raw : jsx);
   }, [codeOpen, codeVariant, demoData.raw, jsx, showPreview]);
 
+  const [showAd, setShowAd] = React.useState(false);
   const handleCodeOpenChange = () => {
     setCodeOpen((open) => !open);
     setShowAd(true);
@@ -234,7 +235,6 @@ export default function Demo(props) {
   const demoSourceId = useUniqueId(`demoSource-`);
   const openDemoSource = codeOpen || showPreview;
   const initialFocusRef = React.useRef(null);
-  const [showAd, setShowAd] = React.useState(false);
 
   return (
     <div className={classes.root}>
