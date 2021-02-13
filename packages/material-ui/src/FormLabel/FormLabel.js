@@ -153,20 +153,6 @@ FormLabel.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the FormLabel.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Asterisk: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the FormLabel.
-   * @default {}
-   */
-  componentsProps: PropTypes.object,
-  /**
    * If `true`, the label should be displayed in a disabled state.
    */
   disabled: PropTypes.bool,

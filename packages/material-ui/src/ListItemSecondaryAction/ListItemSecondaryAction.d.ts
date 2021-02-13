@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 

@@ -4,11 +4,6 @@
     "classes": { "type": { "name": "object" } },
     "color": { "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" } },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": { "name": "shape", "description": "{ Asterisk?: elementType, Root?: elementType }" },
-      "default": "{}"
-    },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
     "filled": { "type": { "name": "bool" } },
