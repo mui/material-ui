@@ -2,11 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
-import FormControl from '../FormControl';
-import Input from '../Input';
-import InputLabel from './InputLabel';
-import FormLabel from '../FormLabel';
-import classes from './inputLabelClasses';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel, { inputLabelClasses as classes } from '@material-ui/core/InputLabel';
 
 describe('<InputLabel />', () => {
   const mount = createMount();

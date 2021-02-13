@@ -2,9 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
-import FormLabel from './FormLabel';
-import FormControl, { useFormControl } from '../FormControl';
-import classes from './formLabelClasses';
+import FormLabel, { formLabelClasses as classes } from '@material-ui/core/FormLabel';
+import FormControl, { useFormControl } from '@material-ui/core/FormControl';
 
 describe('<FormLabel />', () => {
   const mount = createMount();
