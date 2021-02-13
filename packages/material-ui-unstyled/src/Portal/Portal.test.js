@@ -2,9 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createServerRender, createClientRender } from 'test/utils';
-import PortalUnstyled from './PortalUnstyled';
+import Portal from './Portal';
 
-describe('<PortalUnstyled />', () => {
+describe('<Portal />', () => {
   const serverRender = createServerRender();
   const render = createClientRender();
 
@@ -23,9 +23,9 @@ describe('<PortalUnstyled />', () => {
       let markup2;
       expect(() => {
         markup2 = serverRender(
-          <PortalUnstyled>
+          <Portal>
             <div>Bar</div>
-          </PortalUnstyled>,
+          </Portal>,
         );
       }).toErrorDev(
         // Known issue due to using SSR APIs in a browser environment.
@@ -43,9 +43,9 @@ describe('<PortalUnstyled />', () => {
     it('should have access to the mountNode when disabledPortal={false}', () => {
       const refSpy = spy();
       const { unmount } = render(
-        <PortalUnstyled ref={refSpy}>
+        <Portal ref={refSpy}>
           <h1>Foo</h1>
-        </PortalUnstyled>,
+        </Portal>,
       );
       expect(refSpy.args).to.deep.equal([[document.body]]);
       unmount();
@@ -55,9 +55,9 @@ describe('<PortalUnstyled />', () => {
     it('should have access to the mountNode when disabledPortal={true}', () => {
       const refSpy = spy();
       const { unmount } = render(
-        <PortalUnstyled disablePortal ref={refSpy}>
+        <Portal disablePortal ref={refSpy}>
           <h1 className="woofPortal">Foo</h1>
-        </PortalUnstyled>,
+        </Portal>,
       );
       const mountNode = document.querySelector('.woofPortal');
       expect(refSpy.args).to.deep.equal([[mountNode]]);
@@ -68,9 +68,9 @@ describe('<PortalUnstyled />', () => {
     it('should have access to the mountNode when switching disabledPortal', () => {
       const refSpy = spy();
       const { setProps, unmount } = render(
-        <PortalUnstyled disablePortal ref={refSpy}>
+        <Portal disablePortal ref={refSpy}>
           <h1 className="woofPortal">Foo</h1>
-        </PortalUnstyled>,
+        </Portal>,
       );
       const mountNode = document.querySelector('.woofPortal');
       expect(refSpy.args).to.deep.equal([[mountNode]]);
@@ -88,9 +88,9 @@ describe('<PortalUnstyled />', () => {
     render(
       <div id="test1">
         <h1 className="woofPortal1">Foo</h1>
-        <PortalUnstyled>
+        <Portal>
           <h1 className="woofPortal2">Foo</h1>
-        </PortalUnstyled>
+        </Portal>
       </div>,
     );
     const rootElement = document.querySelector('#test1');
@@ -104,9 +104,9 @@ describe('<PortalUnstyled />', () => {
       return (
         <div>
           <div ref={containerRef} />
-          <PortalUnstyled container={() => containerRef.current}>
+          <Portal container={() => containerRef.current}>
             <div id="test1" />
-          </PortalUnstyled>
+          </Portal>
         </div>
       );
     }
@@ -124,10 +124,10 @@ describe('<PortalUnstyled />', () => {
 
   it('should render overlay into container (document)', () => {
     render(
-      <PortalUnstyled>
+      <Portal>
         <div className="test2" />
         <div className="test2" />
-      </PortalUnstyled>,
+      </Portal>,
     );
     expect(document.querySelectorAll('.test2').length).to.equal(2);
   });
@@ -135,9 +135,9 @@ describe('<PortalUnstyled />', () => {
   it('should render overlay into container (DOMNode)', () => {
     const container = document.createElement('div');
     render(
-      <PortalUnstyled container={container}>
+      <Portal container={container}>
         <div id="test2" />
-      </PortalUnstyled>,
+      </Portal>,
     );
     expect(container.querySelectorAll('#test2').length).to.equal(1);
   });
@@ -153,9 +153,9 @@ describe('<PortalUnstyled />', () => {
       return (
         <span>
           <strong ref={containerRef} />
-          <PortalUnstyled disablePortal={disablePortal} container={container}>
+          <Portal disablePortal={disablePortal} container={container}>
             <div id="test3" />
-          </PortalUnstyled>
+          </Portal>
         </span>
       );
     }
@@ -198,9 +198,9 @@ describe('<PortalUnstyled />', () => {
       }, [container]);
 
       return (
-        <PortalUnstyled ref={handleRef} container={container}>
+        <Portal ref={handleRef} container={container}>
           <div />
-        </PortalUnstyled>
+        </Portal>
       );
     }
 

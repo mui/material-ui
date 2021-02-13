@@ -1,2 +1,5 @@
-export { default } from './Portal';
-export * from './Portal';
+import { Portal } from '@material-ui/unstyled';
+
+export { PortalProps } from '@material-ui/unstyled';
+
+export default Portal;

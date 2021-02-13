@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type PortalUnstyledProps<P = {}> = P & {
+export interface PortalProps {
   /**
    * The children to render into the `container`.
    */
@@ -18,7 +18,7 @@ export type PortalUnstyledProps<P = {}> = P & {
    * @default false
    */
   disablePortal?: boolean;
-};
+}
 
 /**
  * Portals provide a first-class way to render children into a DOM node
@@ -30,6 +30,6 @@ export type PortalUnstyledProps<P = {}> = P & {
  *
  * API:
  *
- * - [PortalUnstyled API](https://material-ui.com/api/portal-unstyled/)
+ * - [Portal API](https://material-ui.com/api/portal/)
  */
-export default function PortalUnstyled(props: PortalUnstyledProps): JSX.Element;
+export default function Portal(props: PortalProps): JSX.Element;

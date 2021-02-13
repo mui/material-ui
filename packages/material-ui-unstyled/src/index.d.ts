@@ -4,8 +4,8 @@ export * from './BadgeUnstyled';
 export { default as SliderUnstyled } from './SliderUnstyled';
 export * from './SliderUnstyled';
 
-export { default as PortalUnstyled } from './PortalUnstyled';
-export * from './PortalUnstyled';
+export { default as Portal } from './Portal';
+export * from './Portal';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';

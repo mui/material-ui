@@ -17,7 +17,7 @@ function getContainer(container) {
  * Portals provide a first-class way to render children into a DOM node
  * that exists outside the DOM hierarchy of the parent component.
  */
-const PortalUnstyled = React.forwardRef(function PortalUnstyled(props, ref) {
+const Portal = React.forwardRef(function Portal(props, ref) {
   const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState(null);
   const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, ref);
@@ -51,7 +51,7 @@ const PortalUnstyled = React.forwardRef(function PortalUnstyled(props, ref) {
   return mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode;
 });
 
-PortalUnstyled.propTypes = {
+Portal.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -80,7 +80,7 @@ PortalUnstyled.propTypes = {
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
-  PortalUnstyled['propTypes' + ''] = exactProp(PortalUnstyled.propTypes);
+  Portal['propTypes' + ''] = exactProp(Portal.propTypes);
 }
 
-export default PortalUnstyled;
+export default Portal;
