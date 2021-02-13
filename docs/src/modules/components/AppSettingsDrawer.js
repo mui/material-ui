@@ -59,15 +59,15 @@ function AppSettingsDrawer(props) {
 
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {
-      paletteMode = mode;
+      return;
     }
 
+    setMode(paletteMode);
+
     if (paletteMode === 'system') {
-      setMode('system');
-      document.cookie = 'paletteMode=; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+      document.cookie = `paletteMode=;path=/;max-age=31536000`;
       changeTheme({ paletteMode: preferredMode });
     } else {
-      setMode(paletteMode);
       document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
       changeTheme({ paletteMode });
     }
