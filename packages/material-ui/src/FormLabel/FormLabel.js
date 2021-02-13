@@ -83,8 +83,6 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     focused,
     required,
     className,
-    /* eslint-disable-next-line react/prop-types */
-    theme,
     ...other
   } = props;
 
