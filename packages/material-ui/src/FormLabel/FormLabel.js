@@ -1,63 +1,83 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
-import withStyles from '../styles/withStyles';
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    color: theme.palette.text.secondary,
-    ...theme.typography.body1,
-    lineHeight: 1,
-    padding: 0,
-    '&$focused': {
-      color: theme.palette.primary.main,
+export const overridesResolver = ({ styleProps }, styles) => {
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.color === 'secondary' && styles.colorSecondary),
+    ...(styleProps.filled && styles.filled),
+    [`& .${formLabelClasses.asterisk}`]: {
+      ...styles.asterisk,
     },
-    '&$disabled': {
-      color: theme.palette.text.disabled,
-    },
-    '&$error': {
-      color: theme.palette.error.main,
-    },
-  },
-  /* Styles applied to the root element if the color is secondary. */
-  colorSecondary: {
-    '&$focused': {
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, color, focused, disabled, error, filled, required } = styleProps;
+  const slots = {
+    root: [
+      'root',
+      `color${capitalize(color)}`,
+      disabled && 'disabled',
+      error && 'error',
+      filled && 'filled',
+      focused && 'focused',
+      required && 'required',
+    ],
+    asterisk: ['asterisk', error && 'error'],
+  };
+
+  return composeClasses(slots, getFormLabelUtilityClasses, classes);
+};
+
+export const FormLabelRoot = experimentalStyled(
+  'label',
+  {},
+  { name: 'MuiFormLabel', slot: 'Root', overridesResolver },
+)(({ theme, styleProps }) => ({
+  color: theme.palette.text.secondary,
+  ...theme.typography.body1,
+  lineHeight: 1,
+  padding: 0,
+  '&.Mui-focused': {
+    color: theme.palette.primary.main,
+    ...(styleProps.color === 'secondary' && {
       color: theme.palette.secondary.main,
-    },
-    '&$error': {
-      // To remove once we migrate to emotion
-      color: theme.palette.error.main,
-    },
+    }),
   },
-  /* Pseudo-class applied to the root element if `focused={true}`. */
-  focused: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if `error={true}`. */
-  error: {},
-  /* Pseudo-class applied to the root element if `filled={true}`. */
-  filled: {},
-  /* Pseudo-class applied to the root element if `required={true}`. */
-  required: {},
-  /* Styles applied to the asterisk element. */
-  asterisk: {
-    '&$error': {
-      color: theme.palette.error.main,
-    },
+  '&.Mui-disabled': {
+    color: theme.palette.text.disabled,
   },
-});
+  '&.Mui-error': {
+    color: theme.palette.error.main,
+  },
+}));
 
-const FormLabel = React.forwardRef(function FormLabel(props, ref) {
+const AsteriskComponent = experimentalStyled(
+  'span',
+  {},
+  { name: 'MuiFormLabel', slot: 'Asterisk' },
+)(({ theme }) => ({
+  '&.Mui-error': {
+    color: theme.palette.error.main,
+  },
+}));
+
+const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiFormLabel' });
   const {
     children,
-    classes,
     className,
     color,
-    component: Component = 'label',
+    component = 'label',
     disabled,
     error,
     filled,
@@ -73,35 +93,34 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     states: ['color', 'required', 'focused', 'disabled', 'error', 'filled'],
   });
 
+  const styleProps = {
+    ...props,
+    color: fcs.color || 'primary',
+    component,
+    disabled: fcs.disabled,
+    error: fcs.error,
+    filled: fcs.filled,
+    focused: fcs.focused,
+    required: fcs.required,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        classes[`color${capitalize(fcs.color || 'primary')}`],
-        {
-          [classes.disabled]: fcs.disabled,
-          [classes.error]: fcs.error,
-          [classes.filled]: fcs.filled,
-          [classes.focused]: fcs.focused,
-          [classes.required]: fcs.required,
-        },
-        className,
-      )}
+    <FormLabelRoot
+      as={component}
+      styleProps={styleProps}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
       {children}
       {fcs.required && (
-        <span
-          aria-hidden
-          className={clsx(classes.asterisk, {
-            [classes.error]: fcs.error,
-          })}
-        >
+        <AsteriskComponent styleProps={styleProps} aria-hidden className={classes.asterisk}>
           &thinsp;{'*'}
-        </span>
+        </AsteriskComponent>
       )}
-    </Component>
+    </FormLabelRoot>
   );
 });
 
@@ -151,6 +170,10 @@ FormLabel.propTypes = {
    * If `true`, the label will indicate that the `input` is required.
    */
   required: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);
+export default FormLabel;

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
@@ -53,6 +55,10 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
        * If `true`, the label will indicate that the `input` is required.
        */
       required?: boolean;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme>;
     };
   defaultComponent: D;
 }

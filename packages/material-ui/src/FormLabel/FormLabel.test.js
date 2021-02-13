@@ -1,25 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
-import FormLabel from './FormLabel';
-import FormControl, { useFormControl } from '../FormControl';
+import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
+import FormLabel, { formLabelClasses as classes } from '@material-ui/core/FormLabel';
+import FormControl, { useFormControl } from '@material-ui/core/FormControl';
 
 describe('<FormLabel />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<FormLabel />);
-  });
-
-  describeConformance(<FormLabel />, () => ({
+  describeConformanceV5(<FormLabel />, () => ({
     classes,
     inheritComponent: 'label',
     mount,
     refInstanceof: window.HTMLLabelElement,
     testComponentPropWith: 'div',
+    muiName: 'MuiFormLabel',
+    testVariantProps: { color: 'secondary' },
+    skip: ['componentsProp'],
   }));
 
   describe('prop: required', () => {
@@ -158,8 +156,7 @@ describe('<FormLabel />', () => {
   describe('prop: color', () => {
     it('should have color secondary class', () => {
       const { container } = render(<FormLabel color="secondary" />);
-      expect(container.querySelectorAll(`.${classes.colorSecondary}`)).to.have.lengthOf(1);
-      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.colorSecondary);
+      expect(container.firstChild).to.have.class(classes.colorSecondary);
     });
 
     it('should have the focused class and style', () => {

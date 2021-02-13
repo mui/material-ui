@@ -8,7 +8,8 @@
     "error": { "type": { "name": "bool" } },
     "filled": { "type": { "name": "bool" } },
     "focused": { "type": { "name": "bool" } },
-    "required": { "type": { "name": "bool" } }
+    "required": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "FormLabel",
   "styles": {
@@ -35,6 +36,6 @@
   "filename": "/packages/material-ui/src/FormLabel/FormLabel.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li>\n<li><a href=\"/components/switches/\">Switches</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

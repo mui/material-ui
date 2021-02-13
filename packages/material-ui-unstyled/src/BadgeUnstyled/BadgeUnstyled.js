@@ -32,7 +32,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     },
     classes: classesProp = {},
     badgeContent: badgeContentProp,
-    component: Component = 'span',
+    component = 'span',
     children,
     className,
     components = {},
@@ -90,7 +90,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
 
   const classes = useUtilityClasses({ ...styleProps, classes: classesProp });
 
-  const Root = components.Root || Component;
+  const Root = components.Root || component;
   const rootProps = componentsProps.root || {};
 
   const Badge = components.Badge || 'span';
@@ -100,7 +100,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     <Root
       {...rootProps}
       {...(!isHostComponent(Root) && {
-        as: Component,
+        as: component,
         styleProps: { ...styleProps, ...rootProps.styleProps },
         theme,
       })}
