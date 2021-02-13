@@ -360,6 +360,9 @@ export * from './SpeedDialAction';
 export { default as SpeedDialIcon } from './SpeedDialIcon';
 export * from './SpeedDialIcon';
 
+export { default as Stack } from './Stack';
+export * from './Stack';
+
 export { default as Step } from './Step';
 export * from './Step';
 

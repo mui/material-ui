@@ -1,0 +1,12 @@
+{
+  "props": { "component": { "type": { "name": "elementType" } } },
+  "name": "Stack",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui/src/Stack/Stack.js",
+  "inheritance": null,
+  "demos": "",
+  "styledComponent": true,
+  "cssComponent": false
+}
