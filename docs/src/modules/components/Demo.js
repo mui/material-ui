@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import * as TS from 'typescript';
+// import * as TS from 'typescript';
 import { Error, Preview, Provider } from 'jarle';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -196,10 +196,15 @@ export default function Demo(props) {
     jsx.split(/\n/).length <= 17;
 
   const [renderValue, setRenderValue] = React.useState(demoData.raw);
-  const demoJS = React.useMemo(() => {
-    return TS.transpile(renderValue, {
-      target: 'es6',
-      jsx: true,
+  const [demoJS, setDemoJS] = React.useState('');
+  React.useEffect(() => {
+    import('typescript').then((typescript) => {
+      setDemoJS(
+        typescript.transpile(renderValue, {
+          target: 'es6',
+          jsx: true,
+        }),
+      );
     });
   }, [renderValue]);
 
@@ -280,11 +285,7 @@ export default function Demo(props) {
         </NoSsr>
       )}
       <Collapse in={openDemoSource} unmountOnExit>
-        <DemoEditor
-          value={editorValue}
-          onChange={handleEditorChange}
-          // onFocus={handleEditorFocus}
-        />
+        <DemoEditor value={editorValue} onChange={handleEditorChange} />
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
     </div>
