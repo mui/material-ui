@@ -98,20 +98,6 @@ jobs:
           artifactName: 'canaries'
           targetPath: 'material-ui-core.tgz'
 
-      - task: Cache@2
-        inputs:
-          key: 'nextjs-build | yarn.lock'
-          path: $(DOCS_NEXT_CACHE_FOLDER)
-        displayName: Cache nextjs build
-
-      - script: |
-          set -o pipefail
-          mkdir -p scripts/sizeSnapshot/build	
-          yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
-        displayName: 'build docs for size snapshot'
-        env:
-          NODE_OPTIONS: '--max_old_space_size=4096'
-
       - script: |
           yarn size:snapshot
         displayName: 'create a size snapshot'
