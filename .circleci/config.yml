@@ -206,7 +206,7 @@ jobs:
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Tests TypeScript definitions
-          command: yarn typescript
+          command: yarn typescript:ci
       - run:
           name: Test module augmenation
           command: yarn workspace @material-ui/core typescript:module-augmentation
