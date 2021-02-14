@@ -33,6 +33,10 @@ const overridesResolver = (props, styles) => {
     ...(fullWidth && styles.fullWidth),
     ...(hasPopupIcon && styles.hasPopupIcon),
     ...(hasClearIcon && styles.hasClearIcon),
+    [`& .${autocompleteClasses.tag}`]: {
+      ...styles.tag,
+      ...styles[`tagSize${capitalize(size)}`],
+    },
     [`& .${autocompleteClasses.inputRoot}`]: {
       ...styles.inputRoot,
       ...(hasPopupIcon && styles.hasPopupIcon),
@@ -41,10 +45,6 @@ const overridesResolver = (props, styles) => {
     [`& .${autocompleteClasses.input}`]: {
       ...styles.input,
       ...(inputFocused && styles.inputFocused),
-    },
-    [`& .${autocompleteClasses.tag}`]: {
-      ...styles.tag,
-      ...styles[`tagSize${capitalize(size)}`],
     },
     [`& .${autocompleteClasses.endAdornment}`]: styles.endAdornment,
     [`& .${autocompleteClasses.clearIndicator}`]: styles.clearIndicator,
