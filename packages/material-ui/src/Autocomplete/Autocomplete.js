@@ -138,10 +138,10 @@ const AutocompleteRoot = experimentalStyled(
   /* Styles applied to the Input element. */
   [`& .${autocompleteClasses.inputRoot}`]: {
     flexWrap: 'wrap',
-    [`.${autocompleteClasses.hasPopupIcon} &, .${autocompleteClasses.hasClearIcon} &`]: {
+    [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 26 + 4,
     },
-    [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} &`]: {
+    [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 52 + 4,
     },
     [`& .${autocompleteClasses.input}`]: {
@@ -167,10 +167,10 @@ const AutocompleteRoot = experimentalStyled(
     },
     '&[class*="MuiOutlinedInput-root"]': {
       padding: 9,
-      [`.${autocompleteClasses.hasPopupIcon} &, .${autocompleteClasses.hasClearIcon} &`]: {
+      [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
         paddingRight: 26 + 4 + 9,
       },
-      [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} &`]: {
+      [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
         paddingRight: 52 + 4 + 9,
       },
       [`& .${autocompleteClasses.input}`]: {
@@ -192,10 +192,10 @@ const AutocompleteRoot = experimentalStyled(
     '&.MuiFilledInput-root': {
       paddingTop: 19,
       paddingLeft: 8,
-      [`.${autocompleteClasses.hasPopupIcon} &, .${autocompleteClasses.hasClearIcon} &`]: {
+      [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
         paddingRight: 26 + 4 + 9,
       },
-      [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} &`]: {
+      [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
         paddingRight: 52 + 4 + 9,
       },
       '& .MuiFilledInput-input': {
