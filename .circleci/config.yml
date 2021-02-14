@@ -376,11 +376,7 @@ workflows:
             - checkout
       - test_regressions:
           requires:
-            - test_unit
-            - test_lint
-            - test_static
-            - test_types
-            - test_browser
+            - checkout
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
@@ -401,9 +397,6 @@ workflows:
       - test_browser:
           react-dist-tag: next
       - test_regressions:
-          requires:
-            - test_unit
-            - test_browser
           react-dist-tag: next
   typescript-next:
     triggers:
