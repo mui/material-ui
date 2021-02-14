@@ -560,7 +560,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       >
         {params.group}
       </AutocompleteGroupLabel>
-      <AutocompleteGroupUl className={classes.groupUl} styleProps={styleProps}>
+      <AutocompleteGroupUl
+        as={ListboxComponent}
+        className={classes.groupUl}
+        styleProps={styleProps}
+      >
         {params.children}
       </AutocompleteGroupUl>
     </li>
@@ -646,7 +650,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           anchorEl={anchorEl}
           open
         >
-          <AutocompletePaper className={classes.paper} styleProps={styleProps}>
+          <AutocompletePaper as={PaperComponent} className={classes.paper} styleProps={styleProps}>
             {loading && groupedOptions.length === 0 ? (
               <AutocompleteLoading className={classes.loading} styleProps={styleProps}>
                 {loadingText}
