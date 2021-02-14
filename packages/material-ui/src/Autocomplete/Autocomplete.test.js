@@ -12,8 +12,10 @@ import {
 import { spy } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
-import Autocomplete, { createFilterOptions } from '@material-ui/core/Autocomplete';
-import classes from './autocompleteClasses';
+import Autocomplete, {
+  autocompleteClasses as classes,
+  createFilterOptions,
+} from '@material-ui/core/Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector('[role="option"][data-focus]');
