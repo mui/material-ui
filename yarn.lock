@@ -7008,9 +7008,9 @@ dts-critic@latest:
     yargs "^15.3.1"
 
 dtslint@^4.0.0:
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-4.0.6.tgz#47a939365ff1fbbff2345b3858fb81c42e10fddd"
-  integrity sha512-bj5EaTeAqVXDHo/ut8oTRN/hZNTVKTAsNkavyH/T7XeDU/bqrctlYJmQo2HWJzPDoNCjq6NdVgvOnmQBGmSHsg==
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-4.0.7.tgz#dad7c0de4b2f48bcc5ee79432248cadc7a5a1a38"
+  integrity sha512-gwpBnxky+vUfCL74U5ao+wQf4sw9jD+cZ9ukiTFrkwkhNibqfyOZyg4cnFf1lB0Hm5ZFSQdi09DdjarDQLgofA==
   dependencies:
     "@definitelytyped/header-parser" latest
     "@definitelytyped/typescript-versions" latest
@@ -7020,6 +7020,7 @@ dtslint@^4.0.0:
     json-stable-stringify "^1.0.1"
     strip-json-comments "^2.0.1"
     tslint "5.14.0"
+    tsutils "^2.29.0"
     yargs "^15.1.0"
 
 duplexer2@^0.1.2, duplexer2@~0.1.4:
