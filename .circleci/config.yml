@@ -362,6 +362,7 @@ workflows:
       - test_unit:
           requires:
             - checkout
+          react-dist-tag: next
       - test_lint:
           requires:
             - checkout
@@ -374,6 +375,7 @@ workflows:
       - test_browser:
           requires:
             - checkout
+          react-dist-tag: next
       - test_regressions:
           requires:
             - test_unit
@@ -381,6 +383,7 @@ workflows:
             - test_static
             - test_types
             - test_browser
+          react-dist-tag: next
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
