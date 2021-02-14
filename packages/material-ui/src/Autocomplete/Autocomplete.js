@@ -188,6 +188,9 @@ const AutocompleteRoot = experimentalStyled(
       [`& .${autocompleteClasses.input}`]: {
         padding: '2.5px 4px',
       },
+      [`& .${autocompleteClasses.input}:first-child`]: {
+        paddingLeft: 6,
+      },
     },
     '&.MuiFilledInput-root': {
       paddingTop: 19,
