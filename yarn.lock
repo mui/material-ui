@@ -1051,10 +1051,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@chakra-ui/color-mode@1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/color-mode/-/color-mode-1.0.7.tgz#1b7524f667074735b4cde87079d0bb7354294bd8"
-  integrity sha512-WJV+aK6GB9nUhMbeYN6cJv+5nQzpWNNyZfxUs+B+gFv/NHMh3/ZwWW+bSSvk57m4v23Icj3ZPyhY4RCiWcBw2Q==
+"@chakra-ui/color-mode@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/color-mode/-/color-mode-1.1.0.tgz#fdb6f44790897754d2c2c444855be5af228ecb43"
+  integrity sha512-c9BdU/B3/WbYOJlAI6z02IzGBzWX1+icqWf9M+5psgTqCv5jqxOsqUKs39Zw6H+rpYqQqR20/i0hyDmN1eptpw==
   dependencies:
     "@chakra-ui/hooks" "1.1.4"
     "@chakra-ui/utils" "1.2.0"
@@ -1068,22 +1068,22 @@
     compute-scroll-into-view "1.0.14"
     copy-to-clipboard "3.3.1"
 
-"@chakra-ui/styled-system@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-1.7.0.tgz#d71edfe9ab997d47452d23c28fb2c8411db590e7"
-  integrity sha512-IupaDUkAC2Y6/bJxYssiYbRYjKcEK9dIroPS1RJPa24slY7CkID7QND6F8HZMDLcOYfGa1Vek8lGOPlKa+FBgg==
+"@chakra-ui/styled-system@1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-1.7.1.tgz#1483006a8cb123ce1c6f67f2ef4346c8b8fa6a4b"
+  integrity sha512-mhSakTWdh7ZEkqwRdoVW1seumIFq6Yu/Glal4VVcyhxS34V/VPLX0GtRfjC8cSpsYiwGZHX/7WJYWN2cldx+Gg==
   dependencies:
     "@chakra-ui/utils" "1.2.0"
     css-get-unit "1.0.1"
     csstype "^3.0.6"
 
 "@chakra-ui/system@^1.0.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-1.3.0.tgz#6d0a27b75dd838f00b1f139147a561562f1eb766"
-  integrity sha512-A/yJ8xcrMr2OiyX2J9OS732t7pq+ye7rT0FQDl4H+YObOMsq7B+0JJEBpTP5P174ZKCTOjBGy4muwa8o6GCNAQ==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-1.3.1.tgz#65d5d6af288d4b04df088cf3e7c94c4c15b40dad"
+  integrity sha512-NMC0ajaCUIYnVxYBS3jRrgRmqK1p39MX1yB9J3BRgfVlKbDizkUOAJaqe+FX//3NVJ++QPJOjUu0azmlR6HYZw==
   dependencies:
-    "@chakra-ui/color-mode" "1.0.7"
-    "@chakra-ui/styled-system" "1.7.0"
+    "@chakra-ui/color-mode" "1.1.0"
+    "@chakra-ui/styled-system" "1.7.1"
     "@chakra-ui/utils" "1.2.0"
     react-fast-compare "3.2.0"
 
