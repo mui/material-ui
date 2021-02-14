@@ -34,7 +34,7 @@ Modal is a lower-level construct that is leveraged by the following components:
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
-## Simple modal
+## Basic modal
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
