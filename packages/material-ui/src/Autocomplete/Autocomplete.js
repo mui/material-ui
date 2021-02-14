@@ -20,13 +20,13 @@ import { capitalize } from '../utils';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
   const {
+    disablePortal,
     fullWidth,
-    size,
-    hasPopupIcon,
     hasClearIcon,
+    hasPopupIcon,
     inputFocused,
     popupOpen,
-    disablePortal,
+    size,
   } = styleProps;
 
   return deepmerge(styles.root || {}, {
@@ -65,14 +65,14 @@ const overridesResolver = (props, styles) => {
 const useUtilityClasses = (styleProps) => {
   const {
     classes,
-    fullWidth,
+    disablePortal,
     focused,
-    size,
-    hasPopupIcon,
+    fullWidth,
     hasClearIcon,
+    hasPopupIcon,
     inputFocused,
     popupOpen,
-    disablePortal,
+    size,
   } = styleProps;
 
   const slots = {
@@ -504,13 +504,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const styleProps = {
     ...props,
+    disablePortal,
     focused,
     fullWidth,
     hasClearIcon,
     hasPopupIcon,
-    popupOpen,
     inputFocused: focusedTag === -1,
-    disablePortal,
+    popupOpen,
     size,
   };
 
