@@ -151,18 +151,12 @@ const AutocompleteRoot = experimentalStyled(
     '&.MuiInput-root': {
       paddingBottom: 1,
       '& .MuiInput-input': {
-        padding: 4,
-      },
-      '& .MuiInput-input:first-child': {
-        padding: '6px 0',
+        padding: '6px 4px 6px 0px',
       },
     },
     '&.MuiInput-root.MuiInputBase-sizeSmall': {
       '& .MuiInput-input': {
-        padding: '2px 4px 3px',
-      },
-      '& .MuiInput-input:first-child': {
-        padding: '1px 0 4px',
+        padding: '2px 4px 3px 0',
       },
     },
     '&[class*="MuiOutlinedInput-root"]': {
@@ -174,10 +168,7 @@ const AutocompleteRoot = experimentalStyled(
         paddingRight: 52 + 4 + 9,
       },
       [`& .${autocompleteClasses.input}`]: {
-        padding: '7.5px 4px',
-      },
-      [`& .${autocompleteClasses.input}:first-child`]: {
-        paddingLeft: 6,
+        padding: '7.5px 4px 7.5px 6px',
       },
       [`& .${autocompleteClasses.endAdornment}`]: {
         right: 9,
@@ -186,10 +177,7 @@ const AutocompleteRoot = experimentalStyled(
     '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-sizeSmall"]': {
       padding: 6,
       [`& .${autocompleteClasses.input}`]: {
-        padding: '2.5px 4px',
-      },
-      [`& .${autocompleteClasses.input}:first-child`]: {
-        paddingLeft: 6,
+        padding: '2.5px 4px 2.5px 6px',
       },
     },
     '&.MuiFilledInput-root': {
