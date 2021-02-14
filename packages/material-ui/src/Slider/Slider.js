@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, deepmerge } from '@material-ui/utils';
 import { generateUtilityClasses, isHostComponent } from '@material-ui/unstyled';
-import {
-  SliderUnstyled,
+import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
   getSliderUtilityClass,

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePreviousProps, deepmerge } from '@material-ui/utils';
 import { generateUtilityClasses, isHostComponent } from '@material-ui/unstyled';
-import {
-  BadgeUnstyled,
+import BadgeUnstyled, {
   badgeUnstyledClasses,
   getBadgeUtilityClass,
 } from '@material-ui/unstyled/BadgeUnstyled';
