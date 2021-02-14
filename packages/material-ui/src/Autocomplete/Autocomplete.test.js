@@ -36,18 +36,21 @@ describe('<Autocomplete />', () => {
   const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<Autocomplete options={[]} renderInput={() => null} />, () => ({
-    classes,
-    inheritComponent: 'div',
-    mount,
-    muiName: 'MuiAutocomplete',
-    testVariantProps: { variant: 'foo' },
-    testDeepOverrides: { slotName: 'inputRoot', slotClassName: classes.inputRoot },
-    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'tagSizeSmall' },
-    refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'div',
-    skip: ['componentProp', 'componentsProp'],
-  }));
+  describeConformanceV5(
+    <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      mount,
+      muiName: 'MuiAutocomplete',
+      testVariantProps: { variant: 'foo' },
+      testDeepOverrides: { slotName: 'inputRoot', slotClassName: classes.inputRoot },
+      testStateOverrides: { prop: 'fullWidth', value: true, styleKey: 'fullWidth' },
+      refInstanceof: window.HTMLDivElement,
+      testComponentPropWith: 'div',
+      skip: ['componentProp', 'componentsProp'],
+    }),
+  );
 
   describe('combobox', () => {
     it('should clear the input when blur', () => {

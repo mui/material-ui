@@ -19,8 +19,8 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
 
 interface PopperComponentProps {
-  anchorEl: any;
-  disablePortal: boolean;
+  anchorEl?: any;
+  disablePortal?: boolean;
   open: boolean;
 }
 

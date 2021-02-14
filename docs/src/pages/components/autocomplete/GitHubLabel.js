@@ -17,8 +17,8 @@ function PopperComponent(props) {
 }
 
 PopperComponent.propTypes = {
-  anchorEl: PropTypes.any.isRequired,
-  disablePortal: PropTypes.bool.isRequired,
+  anchorEl: PropTypes.any,
+  disablePortal: PropTypes.bool,
   open: PropTypes.bool.isRequired,
 };
 
