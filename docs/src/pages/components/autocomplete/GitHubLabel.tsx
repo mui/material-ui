@@ -18,7 +18,13 @@ import Autocomplete, {
 import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
 
-function PopperComponent(props: any) {
+interface PopperComponentProps {
+  anchorEl: any;
+  disablePortal: boolean;
+  open: boolean;
+}
+
+function PopperComponent(props: PopperComponentProps) {
   const { disablePortal, anchorEl, open, ...other } = props;
   return <div {...other} />;
 }

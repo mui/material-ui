@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { useTheme, alpha, makeStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -14,6 +15,12 @@ function PopperComponent(props) {
   const { disablePortal, anchorEl, open, ...other } = props;
   return <div {...other} />;
 }
+
+PopperComponent.propTypes = {
+  anchorEl: PropTypes.any.isRequired,
+  disablePortal: PropTypes.bool.isRequired,
+  open: PropTypes.bool.isRequired,
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
