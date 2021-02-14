@@ -4,11 +4,7 @@
 
 ## About Us
 
-Material-UI is a community and developer-focused team that makes it easy to build amazing user interfaces, for any device, with React.
-
-Our core values include transparency (our work is public most of the time); creating a safe, high-trust team; building incredible developer experiences; maintaining a healthy working environment; and helping to deliver web experiences that feel amazing to use on every device and connection type.
-
-Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React UI libraries, backed by a vibrant community of more than 1M developers in over 180 countries.
+See the [careers](/company/careers/) and [about us](https://next.material-ui.com/branding/about/) pages.
 
 ## Details of the Role
 
@@ -83,11 +79,9 @@ The commercial products:
   The work you would be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
 - **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition of when to ignore something and when to dig in further.
 
-## Benefits for you
+## Compensation
 
-- Competitive compensation of up to \$140k/year, depending on the profile. Could go higher in the case of a perfect match.
-- Flexible workplace & hours.
-- Cover a new equipment if necessary of up to $2,500.
+A Competitive compensation of up to \$140k/year, depending on the profile. It can go higher in the case of a perfect match. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
 
 ## Apply
 

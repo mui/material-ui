@@ -2,10 +2,10 @@ import React from 'react';
 import TopLayoutCompany from 'docs/src/modules/components/TopLayoutCompany';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'company/jobs';
-const requireDemo = require.context('docs/src/pages/company/jobs', false, /\.(js|tsx)$/);
+const pageFilename = 'company/careers';
+const requireDemo = require.context('docs/src/pages/company/careers', false, /\.(js|tsx)$/);
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/company/jobs',
+  '!raw-loader!../../src/pages/company/careers',
   false,
   /\.(js|md|tsx)$/,
 );
