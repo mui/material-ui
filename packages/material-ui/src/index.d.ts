@@ -73,6 +73,8 @@ export * from './styles';
 
 export * from './utils';
 
+export * from '@material-ui/unstyled';
+
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
 
@@ -318,9 +320,6 @@ export * from './Popover';
 
 export { default as Popper } from './Popper';
 export * from './Popper';
-
-export { default as Portal } from './Portal';
-export * from './Portal';
 
 export { default as Radio } from './Radio';
 export * from './Radio';

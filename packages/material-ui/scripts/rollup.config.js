@@ -7,6 +7,23 @@ import nodeGlobals from 'rollup-plugin-node-globals';
 import { terser } from 'rollup-plugin-terser';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
+// Resolve imports like:
+// import Portal from '@material-ui/unstyled/Portal';
+const nestedFolder = {
+  resolveId: (importee) => {
+    if (importee.indexOf('@material-ui/unstyled/') === 0) {
+      const folder = importee.split('/')[2];
+      const resolved = path.resolve(
+        __dirname,
+        `../../../packages/material-ui-unstyled/src/${folder}/index.js`,
+      );
+      return resolved;
+    }
+
+    return undefined;
+  },
+};
+
 const input = './src/index.js';
 const globals = {
   react: 'React',
@@ -77,6 +94,7 @@ export default [
     external: Object.keys(globals),
     plugins: [
       nodeResolve(nodeOptions),
+      nestedFolder,
       babel(babelOptions),
       commonjs(commonjsOptions),
       nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
@@ -95,6 +113,7 @@ export default [
     external: Object.keys(globals),
     plugins: [
       nodeResolve(nodeOptions),
+      nestedFolder,
       babel(babelOptions),
       commonjs(commonjsOptions),
       nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
