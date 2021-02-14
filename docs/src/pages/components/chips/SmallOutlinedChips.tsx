@@ -67,7 +67,7 @@ export default function SmallOutlinedChips() {
         size="small"
         label="Clickable link"
         component="a"
-        href="#chip"
+        href="#outlined-chips"
         clickable
       />
       <Chip
