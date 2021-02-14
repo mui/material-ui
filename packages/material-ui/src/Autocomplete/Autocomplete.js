@@ -37,11 +37,7 @@ const overridesResolver = (props, styles) => {
       ...styles.tag,
       ...styles[`tagSize${capitalize(size)}`],
     },
-    [`& .${autocompleteClasses.inputRoot}`]: {
-      ...styles.inputRoot,
-      ...(hasPopupIcon && styles.hasPopupIcon),
-      ...(hasClearIcon && styles.hasClearIcon),
-    },
+    [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot,
     [`& .${autocompleteClasses.input}`]: {
       ...styles.input,
       ...(inputFocused && styles.inputFocused),
