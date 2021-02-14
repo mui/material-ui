@@ -90,8 +90,8 @@ jobs:
       - save_cache:
           key: v6-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
-          # Keep path in sync with "Set yarn cache folder"
-          # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
+            # Keep path in sync with "Set yarn cache folder"
+            # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
             - ~/.cache/yarn
   test_unit:
     <<: *defaults
@@ -142,6 +142,20 @@ jobs:
       - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash) -Z -C $CIRCLE_SHA1
+  test_lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Eslint
+          command: yarn lint:ci
+      - run:
+          name: Stylelint
+          command: yarn stylelint
+      - run:
+          name: Lint JSON
+          command: yarn jsonlint
   test_static:
     <<: *defaults
     steps:
@@ -174,15 +188,6 @@ jobs:
       - run:
           name: '`yarn workspace framer build` changes committed?'
           command: git diff --exit-code
-      - run:
-          name: Eslint
-          command: yarn lint:ci
-      - run:
-          name: Stylelint
-          command: yarn stylelint
-      - run:
-          name: Lint JSON
-          command: yarn jsonlint
       - run:
           name: '`yarn extract-error-codes` changes committed?'
           command: |
@@ -357,6 +362,9 @@ workflows:
       - test_unit:
           requires:
             - checkout
+      - test_lint:
+          requires:
+            - checkout
       - test_static:
           requires:
             - checkout
@@ -369,6 +377,7 @@ workflows:
       - test_regressions:
           requires:
             - test_unit
+            - test_lint
             - test_static
             - test_types
             - test_browser
