@@ -9,9 +9,10 @@ const browserStack = {
 
 process.env.CHROME_BIN = playwright.chromium.executablePath();
 
-// per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
+// BrowserStack rate limit after 1600 calls every 5 minutes.
+// Per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
 const MAX_REQUEST_BROWSERSTACK = 1600 / (60 * 5);
-// estimate the max number of concurrent karma builds
+// Estimate the max number of concurrent karma builds.
 // CircleCI accepts up to 80 concurrent builds, for each PR, 6 concurrent builds are used.
 const MAX_KARMA_CONCURRENT_BUILD = 80 / 6;
 
