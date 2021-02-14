@@ -9,6 +9,10 @@ const browserStack = {
 
 process.env.CHROME_BIN = playwright.chromium.executablePath();
 
+// per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
+const MAX_REQUEST_BROWSERSTACK = 1600 / (60 * 5);
+const MAX_KARMA_CONCURRENT_BUILD = 80 / 6;
+
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
@@ -17,7 +21,6 @@ module.exports = function setKarmaConfig(config) {
     browserDisconnectTimeout: 120000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 6 * 60 * 1000, // default 10000
-    pollingTimeout: (((80 / 5) * 4) / (1600 / (60 * 5))) * 1000,
     colors: true,
     client: {
       mocha: {
@@ -145,6 +148,11 @@ module.exports = function setKarmaConfig(config) {
         },
       },
     };
+
+    // default 1000, Avoid Rate Limit Exceeded
+    newConfig.pollingTimeout =
+      ((MAX_KARMA_CONCURRENT_BUILD * (newConfig.browsers.length - 1)) / MAX_REQUEST_BROWSERSTACK) *
+      1000;
   }
 
   config.set(newConfig);
