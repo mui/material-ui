@@ -78,12 +78,12 @@ const useUtilityClasses = (styleProps) => {
   const slots = {
     root: [
       'root',
-      fullWidth && 'fullWidth',
       focused && 'focused',
-      hasPopupIcon && 'hasPopupIcon',
+      fullWidth && 'fullWidth',
       hasClearIcon && 'hasClearIcon',
+      hasPopupIcon && 'hasPopupIcon',
     ],
-    inputRoot: ['inputRoot', hasPopupIcon && 'hasPopupIcon', hasClearIcon && 'hasClearIcon'],
+    inputRoot: ['inputRoot'],
     input: ['input', inputFocused && 'inputFocused'],
     tag: ['tag', `tagSize${capitalize(size)})`],
     endAdornment: ['endAdornment'],
