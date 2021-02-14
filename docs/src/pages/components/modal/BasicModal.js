@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal() {
+export default function BasicModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -36,12 +36,12 @@ export default function SimpleModal() {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
         <div className={classes.paper}>
-          <h2 id="simple-modal-title">Text in a modal</h2>
-          <p id="simple-modal-description">
+          <h2 id="modal-modal-title">Text in a modal</h2>
+          <p id="modal-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
         </div>
