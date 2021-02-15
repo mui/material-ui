@@ -10,18 +10,18 @@ function read(fileName) {
 
 describe('@material-ui/codemod', () => {
   describe('v5.0.0', () => {
-    describe('textfield-variant-prop', () => {
+    describe('select-variant-prop', () => {
       it('transforms props as needed', () => {
         const actual = transform(
           {
-            source: read('./textfield-variant-prop.test/actual.js'),
-            path: require.resolve('./textfield-variant-prop.test/actual.js'),
+            source: read('./select-variant-prop.test/actual.js'),
+            path: require.resolve('./select-variant-prop.test/actual.js'),
           },
           { jscodeshift },
           {},
         );
 
-        const expected = read('./textfield-variant-prop.test/expected.js');
+        const expected = read('./select-variant-prop.test/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
