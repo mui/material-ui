@@ -358,14 +358,19 @@ describe('<Tooltip />', () => {
   });
 
   it('is dismissable by pressing Escape', () => {
+    const handleClose = spy();
     const transitionTimeout = 0;
     render(
-      <Tooltip enterDelay={0} TransitionProps={{ timeout: transitionTimeout }} title="Movie quote">
-        <button autoFocus>Hello, Dave!</button>
+      <Tooltip
+        enterDelay={0}
+        onClose={handleClose}
+        open
+        TransitionProps={{ timeout: transitionTimeout }}
+        title="Movie quote"
+      >
+        <button />
       </Tooltip>,
     );
-
-    expect(screen.getByRole('tooltip')).not.toBeInaccessible();
 
     act(() => {
       fireEvent.keyDown(
@@ -379,7 +384,7 @@ describe('<Tooltip />', () => {
       clock.tick(transitionTimeout);
     });
 
-    expect(screen.queryByRole('tooltip')).to.equal(null);
+    expect(handleClose.callCount).to.equal(1);
   });
 
   describe('touch screen', () => {
