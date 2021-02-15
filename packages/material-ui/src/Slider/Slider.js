@@ -477,7 +477,9 @@ Slider.propTypes = {
     Rail: PropTypes.elementType,
     Root: PropTypes.elementType,
     Thumb: PropTypes.elementType,
+    ThumbPositioner: PropTypes.elementType,
     Track: PropTypes.elementType,
+    TrackPositioner: PropTypes.elementType,
     ValueLabel: PropTypes.elementType,
   }),
   /**
