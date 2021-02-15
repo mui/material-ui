@@ -42,11 +42,15 @@ commands:
       chrome:
         type: boolean
         default: false
-        description: 'Set to true if you intend to use chrome (e.g. with playwright)'
+        description: 'Set to true if you intend to use chrome (e.g. with playwright).'
       firefox:
         type: boolean
         default: false
-        description: 'Set to true if you intend to use firefox (e.g. with playwright)'
+        description: 'Set to true if you intend to use firefox (e.g. with playwright).'
+      video:
+        type: boolean
+        default: false
+        description: 'Set to true if you need video playback support in any browser.'
 
     steps:
       - run:
@@ -112,7 +116,10 @@ commands:
                     libharfbuzz-icu0
             - run:
                 name: Install gstreamer and plugins to support video playback in WebKit.
-                if: << parameters.chrome >>
+                if:
+                  and:
+                    - << parameters.chrome >>
+                    - << parameters.video >>
                 command: |
                   sudo apt-get install -y --no-install-recommends \
                     libgstreamer-plugins-bad1.0-0 \
@@ -137,7 +144,10 @@ commands:
                     libxt6
             - run:
                 name: Install ffmpeg to bring in audio and video codecs necessary for playing videos in Firefox.
-                if: << parameters.firefox >>
+                if:
+                  and:
+                    - << parameters.firefox >>
+                    - << parameters.video >>
                 command: |
                   sudo apt-get install -y --no-install-recommends \
                     ffmpeg
