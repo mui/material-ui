@@ -167,7 +167,7 @@ describe('<Slide />', () => {
       });
 
       const transition2 = child.style.transform;
-      expect(transition1).to.not.equal(transition2);
+      expect(transition1).not.to.equal(transition2);
     });
   });
 
@@ -429,7 +429,7 @@ describe('<Slide />', () => {
       const transition = childRef.current;
 
       expect(transition.style.visibility).to.equal('hidden');
-      expect(transition.style.transform).to.not.equal(undefined);
+      expect(transition.style.transform).not.to.equal(undefined);
     });
   });
 
@@ -455,7 +455,7 @@ describe('<Slide />', () => {
       clock.tick(166);
       const child = container.querySelector('#testChild');
 
-      expect(child.style.transform).to.not.equal(undefined);
+      expect(child.style.transform).not.to.equal(undefined);
     });
 
     it('should take existing transform into account', () => {

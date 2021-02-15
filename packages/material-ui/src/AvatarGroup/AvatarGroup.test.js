@@ -64,8 +64,8 @@ describe('<AvatarGroup />', () => {
       avatarGroup.childNodes.length,
     );
     expect(avatar).to.have.class('MuiAvatar-circular');
-    expect(avatar).to.not.have.class('MuiAvatar-rounded');
-    expect(avatar).to.not.have.class('MuiAvatar-square');
+    expect(avatar).not.to.have.class('MuiAvatar-rounded');
+    expect(avatar).not.to.have.class('MuiAvatar-square');
   });
 
   it('should display all avatars with the specified variant', () => {
@@ -80,8 +80,8 @@ describe('<AvatarGroup />', () => {
       avatarGroup.childNodes.length,
     );
     expect(avatar).to.have.class('MuiAvatar-square');
-    expect(avatar).to.not.have.class('MuiAvatar-circular');
-    expect(avatar).to.not.have.class('MuiAvatar-rounded');
+    expect(avatar).not.to.have.class('MuiAvatar-circular');
+    expect(avatar).not.to.have.class('MuiAvatar-rounded');
   });
 
   it("should respect child's avatar variant prop if specified", () => {
@@ -93,7 +93,7 @@ describe('<AvatarGroup />', () => {
     const avatarGroup = container.firstChild;
     const roundedAvatar = avatarGroup.firstChild;
     expect(roundedAvatar).to.have.class('MuiAvatar-rounded');
-    expect(roundedAvatar).to.not.have.class('MuiAvatar-circular');
-    expect(roundedAvatar).to.not.have.class('MuiAvatar-square');
+    expect(roundedAvatar).not.to.have.class('MuiAvatar-circular');
+    expect(roundedAvatar).not.to.have.class('MuiAvatar-square');
   });
 });

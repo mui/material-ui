@@ -28,8 +28,8 @@ describe('<StepConnector />', () => {
 
       const stepConnector = container.querySelector(`.${classes.root}`);
       const span = stepConnector.querySelector('span');
-      expect(stepConnector).to.not.equal(null);
-      expect(span).to.not.equal(null);
+      expect(stepConnector).not.to.equal(null);
+      expect(span).not.to.equal(null);
     });
 
     it('has the class when horizontal', () => {

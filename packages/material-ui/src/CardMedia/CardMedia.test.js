@@ -56,7 +56,7 @@ describe('<CardMedia />', () => {
         </CardMedia>,
       );
       const cardMedia = container.firstChild;
-      expect(cardMedia).to.not.have.attribute('src');
+      expect(cardMedia).not.to.have.attribute('src');
     });
 
     it('should not have default inline style when media component specified', () => {
@@ -68,7 +68,7 @@ describe('<CardMedia />', () => {
     it('should not have `src` prop if not media component specified', () => {
       const { container } = render(<CardMedia image="/fake.png" component="table" />);
       const cardMedia = container.firstChild;
-      expect(cardMedia).to.not.have.attribute('src');
+      expect(cardMedia).not.to.have.attribute('src');
     });
   });
 

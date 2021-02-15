@@ -25,7 +25,7 @@ describe('<AppBar />', () => {
     const appBar = container.firstChild;
     expect(appBar).to.have.class(classes.root);
     expect(appBar).to.have.class(classes.colorPrimary);
-    expect(appBar).to.not.have.class(classes.colorSecondary);
+    expect(appBar).not.to.have.class(classes.colorSecondary);
   });
 
   it('should render a primary app bar', () => {
@@ -33,14 +33,14 @@ describe('<AppBar />', () => {
     const appBar = container.firstChild;
     expect(appBar).to.have.class(classes.root);
     expect(appBar).to.have.class(classes.colorPrimary);
-    expect(appBar).to.not.have.class(classes.colorSecondary);
+    expect(appBar).not.to.have.class(classes.colorSecondary);
   });
 
   it('should render an secondary app bar', () => {
     const { container } = render(<AppBar color="secondary">Hello World</AppBar>);
     const appBar = container.firstChild;
     expect(appBar).to.have.class(classes.root);
-    expect(appBar).to.not.have.class(classes.colorPrimary);
+    expect(appBar).not.to.have.class(classes.colorPrimary);
     expect(appBar).to.have.class(classes.colorSecondary);
   });
 

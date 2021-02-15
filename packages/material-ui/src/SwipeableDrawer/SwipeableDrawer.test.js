@@ -351,7 +351,7 @@ describe('<SwipeableDrawer />', () => {
             touches: [new Touch({ identifier: 0, target: swipeArea, ...params.edgeTouch })],
           });
           const drawer = screen.getByTestId('drawer');
-          expect(drawer).to.not.equal(null);
+          expect(drawer).not.to.equal(null);
 
           fireEvent.touchEnd(swipeArea, {
             changedTouches: [new Touch({ identifier: 0, target: swipeArea, ...params.edgeTouch })],
@@ -462,11 +462,11 @@ describe('<SwipeableDrawer />', () => {
       );
 
       // variant is 'temporary' by default
-      expect(document.querySelector('[class*=PrivateSwipeArea-root]')).to.not.equal(null);
+      expect(document.querySelector('[class*=PrivateSwipeArea-root]')).not.to.equal(null);
       setProps({ variant: 'persistent' });
       expect(document.querySelector('[class*=PrivateSwipeArea-root]')).to.equal(null);
       setProps({ variant: 'temporary' });
-      expect(document.querySelector('[class*=PrivateSwipeArea-root]')).to.not.equal(null);
+      expect(document.querySelector('[class*=PrivateSwipeArea-root]')).not.to.equal(null);
     });
   });
 

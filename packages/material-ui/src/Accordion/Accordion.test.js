@@ -26,7 +26,7 @@ describe('<Accordion />', () => {
 
   it('should render and not be controlled', () => {
     const { container } = render(<Accordion>{minimalChildren}</Accordion>);
-    expect(container.firstChild).to.not.have.class(classes.expanded);
+    expect(container.firstChild).not.to.have.class(classes.expanded);
   });
 
   it('should handle defaultExpanded prop', () => {
@@ -50,7 +50,7 @@ describe('<Accordion />', () => {
     const panel = container.firstChild;
     expect(panel).to.have.class(classes.expanded);
     setProps({ expanded: false });
-    expect(panel).to.not.have.class(classes.expanded);
+    expect(panel).not.to.have.class(classes.expanded);
   });
 
   it('should call onChange when clicking the summary element', () => {

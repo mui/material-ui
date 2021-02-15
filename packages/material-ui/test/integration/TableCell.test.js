@@ -52,7 +52,7 @@ describe('<TableRow> integration', () => {
       TableFooter,
     );
     expect(getByTestId('cell')).to.have.class(classes.head);
-    expect(getByTestId('cell')).to.not.have.attribute('scope');
+    expect(getByTestId('cell')).not.to.have.attribute('scope');
   });
 
   it('should render without head class when variant is body, overriding context', () => {

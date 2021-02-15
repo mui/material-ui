@@ -132,7 +132,7 @@ describe('<TreeItem />', () => {
     expect(getByTestId('1')).to.have.attribute('aria-expanded', 'true');
     expect(getByTestId('2')).not.to.equal(null);
     fireEvent.click(getByTestId('button'));
-    expect(getByTestId('1')).to.not.have.attribute('aria-expanded');
+    expect(getByTestId('1')).not.to.have.attribute('aria-expanded');
     expect(queryByTestId('2')).to.equal(null);
   });
 
@@ -147,7 +147,7 @@ describe('<TreeItem />', () => {
       </TreeView>,
     );
 
-    expect(getByTestId('2')).to.not.have.attribute('aria-expanded');
+    expect(getByTestId('2')).not.to.have.attribute('aria-expanded');
   });
 
   it('should not call onClick when children are clicked', () => {
@@ -235,7 +235,7 @@ describe('<TreeItem />', () => {
           </TreeView>,
         );
 
-        expect(getByTestId('test')).to.not.have.attribute('aria-expanded');
+        expect(getByTestId('test')).not.to.have.attribute('aria-expanded');
       });
     });
 
@@ -270,7 +270,7 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
-          expect(getByTestId('test')).to.not.have.attribute('aria-selected');
+          expect(getByTestId('test')).not.to.have.attribute('aria-selected');
         });
 
         it('should have the attribute `aria-selected={true}` if selected', () => {
@@ -1071,7 +1071,7 @@ describe('<TreeItem />', () => {
             getByRole('tree').focus();
           });
 
-          expect(getByTestId('one')).to.not.have.attribute('aria-selected');
+          expect(getByTestId('one')).not.to.have.attribute('aria-selected');
 
           fireEvent.keyDown(getByRole('tree'), { key: ' ' });
 
@@ -1121,7 +1121,7 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
-          expect(getByTestId('one')).to.not.have.attribute('aria-selected');
+          expect(getByTestId('one')).not.to.have.attribute('aria-selected');
           fireEvent.click(getByText('one'));
           expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
         });

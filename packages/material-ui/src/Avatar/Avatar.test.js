@@ -40,7 +40,7 @@ describe('<Avatar />', () => {
       expect(avatar).to.have.class(classes.root);
       expect(avatar).to.have.class('my-avatar');
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
-      expect(avatar).to.not.have.class(classes.colorDefault);
+      expect(avatar).not.to.have.class(classes.colorDefault);
       expect(img).to.have.class(classes.img);
       expect(img).to.have.attribute('alt', 'Hello World!');
       expect(img).to.have.attribute('src', '/fake.png');

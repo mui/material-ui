@@ -137,8 +137,8 @@ describe('createPalette()', () => {
   it('should create a palette with unique object references', () => {
     const redPalette = createPalette({ background: { paper: 'red' } });
     const bluePalette = createPalette({ background: { paper: 'blue' } });
-    expect(redPalette).to.not.equal(bluePalette);
-    expect(redPalette.background).to.not.equal(bluePalette.background);
+    expect(redPalette).not.to.equal(bluePalette);
+    expect(redPalette.background).not.to.equal(bluePalette.background);
   });
 
   describe('warnings', () => {

@@ -479,7 +479,7 @@ describe('<Slider />', () => {
     it('should render the disabled classes', () => {
       const { container, getByRole } = render(<Slider disabled value={0} />);
       expect(container.firstChild).to.have.class(classes.disabled);
-      expect(getByRole('slider')).to.not.have.attribute('tabIndex');
+      expect(getByRole('slider')).not.to.have.attribute('tabIndex');
     });
 
     it('should not respond to drag events after becoming disabled', function test() {
@@ -509,7 +509,7 @@ describe('<Slider />', () => {
 
       setProps({ disabled: true });
       expect(thumb).not.toHaveFocus();
-      expect(thumb).to.not.have.class(classes.active);
+      expect(thumb).not.to.have.class(classes.active);
 
       fireEvent.touchMove(
         container.firstChild,
@@ -533,7 +533,7 @@ describe('<Slider />', () => {
       });
       setProps({ disabled: true });
       expect(thumb).not.toHaveFocus();
-      expect(thumb).to.not.have.class(classes.focusVisible);
+      expect(thumb).not.to.have.class(classes.focusVisible);
     });
   });
 

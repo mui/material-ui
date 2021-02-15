@@ -135,7 +135,7 @@ describe('<DesktopDateTimePicker />', () => {
     );
 
     expect(screen.getByLabelText('25 minutes')).to.have.class('Mui-disabled');
-    expect(screen.getByLabelText('35 minutes')).to.not.have.class('Mui-disabled');
+    expect(screen.getByLabelText('35 minutes')).not.to.have.class('Mui-disabled');
   });
 
   it('prop: minDateTime – hours is disabled by date part', () => {

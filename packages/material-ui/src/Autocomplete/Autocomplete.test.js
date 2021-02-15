@@ -1379,8 +1379,8 @@ describe('<Autocomplete />', () => {
       const combobox = getByRole('combobox');
       const textbox = getByRole('textbox');
       expect(combobox).to.have.attribute('aria-expanded', 'false');
-      expect(combobox).to.not.have.attribute('aria-owns');
-      expect(textbox).to.not.have.attribute('aria-controls');
+      expect(combobox).not.to.have.attribute('aria-owns');
+      expect(textbox).not.to.have.attribute('aria-controls');
       expect(document.querySelector(`.${classes.paper}`)).to.have.text('No options');
     });
   });
@@ -2047,13 +2047,13 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(3);
-      expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[2][0]).not.to.equal(undefined);
       expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
       expect(handleHighlightChange.args[2][2]).to.equal('keyboard');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(4);
-      expect(handleHighlightChange.args[3][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[3][0]).not.to.equal(undefined);
       expect(handleHighlightChange.args[3][1]).to.equal(options[1]);
       expect(handleHighlightChange.args[3][2]).to.equal('keyboard');
     });
@@ -2072,7 +2072,7 @@ describe('<Autocomplete />', () => {
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseOver(firstOption);
       expect(handleHighlightChange.callCount).to.equal(3);
-      expect(handleHighlightChange.args[2][0]).to.not.equal(undefined);
+      expect(handleHighlightChange.args[2][0]).not.to.equal(undefined);
       expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
       expect(handleHighlightChange.args[2][2]).to.equal('mouse');
     });

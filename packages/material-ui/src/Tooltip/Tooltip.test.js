@@ -92,7 +92,7 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
 
-      expect(getByRole('button')).to.not.have.attribute('title', 'Hello World');
+      expect(getByRole('button')).not.to.have.attribute('title', 'Hello World');
     });
   });
 

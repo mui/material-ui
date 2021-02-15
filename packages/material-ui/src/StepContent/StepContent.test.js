@@ -44,8 +44,8 @@ describe('<StepContent />', () => {
     const collapse = container.querySelector(`.${collapseClasses.root}`);
     const innerDiv = container.querySelector(`.test-content`);
 
-    expect(collapse).to.not.equal(null);
-    expect(innerDiv).to.not.equal(null);
+    expect(collapse).not.to.equal(null);
+    expect(innerDiv).not.to.equal(null);
     getByText('This is my content!');
   });
 
@@ -62,7 +62,7 @@ describe('<StepContent />', () => {
       );
 
       const collapse = container.querySelector(`.${collapseClasses.root}`);
-      expect(collapse).to.not.equal(null);
+      expect(collapse).not.to.equal(null);
     });
 
     it('should use custom TransitionComponent', () => {
