@@ -127,7 +127,6 @@ commands:
                     libnss3 \
                     libxss1 \
                     libasound2 \
-                    fonts-noto-color-emoji \
                     libxtst6
             - run:
                 name: Install Firefox dependencies
