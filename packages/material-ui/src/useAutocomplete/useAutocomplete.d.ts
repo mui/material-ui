@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { AutocompleteGetTagProps } from '@material-ui/core/Autocomplete';
 
 export interface CreateFilterOptionsConfig<T> {
   ignoreAccents?: boolean;
@@ -301,7 +302,7 @@ export default function useAutocomplete<
   getInputLabelProps: () => Omit<React.HTMLAttributes<HTMLLabelElement>, 'color'>;
   getClearProps: () => React.HTMLAttributes<HTMLDivElement>;
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLDivElement>;
-  getTagProps: ({ index }: { index: number }) => React.HTMLAttributes<HTMLDivElement>;
+  getTagProps: AutocompleteGetTagProps;
   getListboxProps: () => React.HTMLAttributes<HTMLUListElement>;
   getOptionProps: ({
     option,
