@@ -90,11 +90,11 @@ commands:
     steps:
       - run:
           name: Update apt
-          command: apt-get update
+          command: sudo apt-get update
       - run:
           name: Install WebKit dependencies
           command: |
-            apt-get install -y --no-install-recommends \
+            sudo apt-get install -y --no-install-recommends \
               libwoff1 \
               libopus0 \
               libwebp6 \
@@ -119,7 +119,7 @@ commands:
       - run:
           name: Install gstreamer and plugins to support video playback in WebKit.
           command: |
-            apt-get install -y --no-install-recommends \
+            sudo apt-get install -y --no-install-recommends \
               libgstreamer-gl1.0-0 \
               libgstreamer-plugins-bad1.0-0 \
               gstreamer1.0-plugins-good \
@@ -128,7 +128,7 @@ commands:
       - run:
           name: Install Chromium dependencies
           command: |
-            apt-get install -y --no-install-recommends \
+            sudo apt-get install -y --no-install-recommends \
               fonts-liberation \
               libnss3 \
               libxss1 \
@@ -138,14 +138,14 @@ commands:
       - run:
           name: Install Firefox dependencies
           command: |
-            apt-get install -y --no-install-recommends \
+            sudo apt-get install -y --no-install-recommends \
               libdbus-glib-1-2 \
               libxt6
           if: << parameters.firefox >>
       - run:
           name: Install ffmpeg to bring in audio and video codecs necessary for playing videos in Firefox.
           command: |
-            apt-get install -y --no-install-recommends \
+            sudo apt-get install -y --no-install-recommends \
               ffmpeg
           if:
             and:
@@ -154,7 +154,7 @@ commands:
       - run:
           name: (Optional) Install XVFB if there's a need to run browsers in headful mode
           command: |
-            apt-get install -y --no-install-recommends \
+            sudo apt-get install -y --no-install-recommends \
               xvfb
           if: << parameters.headful >>
 
