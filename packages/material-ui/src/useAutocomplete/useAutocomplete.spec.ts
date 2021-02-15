@@ -1,4 +1,4 @@
-import { useAutocomplete, FilterOptionsState } from '@material-ui/lab';
+import useAutocomplete, { FilterOptionsState } from '@material-ui/core/useAutocomplete';
 import { expectType } from '@material-ui/types';
 
 interface Person {

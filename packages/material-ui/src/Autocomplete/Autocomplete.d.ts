@@ -17,6 +17,7 @@ export {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
+  AutocompleteGetTagProps,
   AutocompleteInputChangeReason,
   createFilterOptions,
 };

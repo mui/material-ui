@@ -292,7 +292,7 @@ export type AutocompleteGetTagProps = ({
 }: {
   index: number;
 }) => React.HTMLAttributes<HTMLDivElement> & {
-  onDelete: Function;
+  onDelete: (event: any) => void;
 };
 
 export default function useAutocomplete<
