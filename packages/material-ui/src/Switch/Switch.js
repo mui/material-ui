@@ -40,7 +40,7 @@ export const styles = (theme) => ({
     top: 0,
     left: 0,
     zIndex: 1, // Render above the focus ripple.
-    color: theme.palette.mode === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
+    color: theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300],
     transition: theme.transitions.create(['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
