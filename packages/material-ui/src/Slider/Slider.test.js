@@ -823,7 +823,6 @@ describe('<Slider />', () => {
         </ThemeProvider>,
       );
       const thumb = getByTestId('thumb');
-      expect(thumb.style.right).to.equal('30%');
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
@@ -842,6 +841,7 @@ describe('<Slider />', () => {
         createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
       );
 
+      expect(thumb.style.transform).to.equal('translateX(-30px)');
       expect(handleChange.callCount).to.equal(2);
       expect(handleChange.args[0][1]).to.equal(80);
       expect(handleChange.args[1][1]).to.equal(78);
