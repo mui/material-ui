@@ -72,12 +72,18 @@ commands:
       - when:
           condition: << parameters.browsers >>
           steps:
+            - run:
+                name: Prepare playwright hash
+                command: yarn --json list --pattern playwright > /tmp/playwright_info.json
+            - store_artifacts:
+                name: Debug playwright hash
+                path: /tmp/playwright_info.json
             - restore_cache:
                 name: Restore playwright cache
                 keys:
-                  - v3-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
-                  - v3-playwright-{{ arch }}-
-                  - v3-playwright-
+                  - v4-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
+                  - v4-playwright-{{ arch }}-
+                  - v4-playwright-
       - run:
           name: Install js dependencies
           command: yarn install --verbose
@@ -93,7 +99,7 @@ commands:
           steps:
             - save_cache:
                 name: Save playwright cache
-                key: v3-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+                key: v4-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
                 paths:
                   - ~/.cache/ms-playwright
 
