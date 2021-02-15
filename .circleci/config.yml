@@ -39,18 +39,10 @@ defaults: &defaults
 commands:
   install_js:
     parameters:
-      chrome:
+      browsers:
         type: boolean
         default: false
-        description: 'Set to true if you intend to use chrome (e.g. with playwright).'
-      firefox:
-        type: boolean
-        default: false
-        description: 'Set to true if you intend to use firefox (e.g. with playwright).'
-      video:
-        type: boolean
-        default: false
-        description: 'Set to true if you need video playback support in any browser.'
+        description: 'Set to true if you intend to any browser (e.g. with playwright).'
 
     steps:
       - run:
@@ -78,107 +70,45 @@ commands:
             yarn cache dir
             yarn cache list
       - when:
-          condition:
-            or:
-              - << parameters.chrome >>
-              - << parameters.firefox >>
+          condition: << parameters.browsers >>
           steps:
             - restore_cache:
                 name: Restore playwright cache
                 keys:
-                  - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
-                  - v1-playwright-{{ arch }}-
-                  - v1-playwright-
-            - run:
-                name: Update apt
-                command: sudo apt-get update
-            - run:
-                name: Install WebKit dependencies
-                if: << parameters.chrome >>
-                command: |
-                  sudo apt-get install -y --no-install-recommends \
-                    libopus0 \
-                    libwebp6 \
-                    libwebpdemux2 \
-                    libenchant1c2a \
-                    libgudev-1.0-0 \
-                    libsecret-1-0 \
-                    libhyphen0 \
-                    libgdk-pixbuf2.0-0 \
-                    libnotify4 \
-                    libxslt1.1 \
-                    libgles2 \
-                    libxcomposite1 \
-                    libatk1.0-0 \
-                    libatk-bridge2.0-0 \
-                    libepoxy0 \
-                    libgtk-3-0 \
-                    libharfbuzz-icu0
-            - run:
-                name: Install gstreamer and plugins to support video playback in WebKit.
-                if:
-                  and:
-                    - << parameters.chrome >>
-                    - << parameters.video >>
-                command: |
-                  sudo apt-get install -y --no-install-recommends \
-                    libgstreamer-plugins-bad1.0-0 \
-                    gstreamer1.0-plugins-good \
-                    gstreamer1.0-libav
-            - run:
-                name: Install Chromium dependencies
-                if: << parameters.chrome >>
-                command: |
-                  sudo apt-get install -y --no-install-recommends \
-                    fonts-liberation \
-                    libnss3 \
-                    libxss1 \
-                    libasound2 \
-                    libxtst6
-            - run:
-                name: Install Firefox dependencies
-                if: << parameters.firefox >>
-                command: |
-                  sudo apt-get install -y --no-install-recommends \
-                    libdbus-glib-1-2 \
-                    libxt6
-            - run:
-                name: Install ffmpeg to bring in audio and video codecs necessary for playing videos in Firefox.
-                if:
-                  and:
-                    - << parameters.firefox >>
-                    - << parameters.video >>
-                command: |
-                  sudo apt-get install -y --no-install-recommends \
-                    ffmpeg
+                  - v2-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+                  - v2-playwright-{{ arch }}-
+                  - v2-playwright-
       - run:
           name: Install js dependencies
           command: yarn install --verbose
+      - save_cache:
+          name: Save yarn cache
+          key: v6-yarn-sha-{{ checksum "yarn.lock" }}
+          paths:
+            # Keep path in sync with "Set yarn cache folder"
+            # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
+            - ~/.cache/yarn
+      - when:
+          condition: << parameters.browsers >>
+          steps:
+            - save_cache:
+                name: Save playwright cache
+                key: v2-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+                paths:
+                  - ~/.cache/ms-playwright
 
 jobs:
   checkout:
     <<: *defaults
     steps:
       - checkout
-      - install_js:
-          # To prepare the cache for subsequent jobs
-          chrome: true
+      - install_js
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
       - run:
           name: Check for duplicated packages
           command: yarn deduplicate
-      - save_cache:
-          key: v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/ms-playwright
-      - save_cache:
-          key: v6-yarn-sha-{{ checksum "yarn.lock" }}
-          paths:
-            # Keep path in sync with "Set yarn cache folder"
-            # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
-            - ~/.cache/yarn
   test_unit:
     <<: *defaults
     steps:
@@ -376,10 +306,14 @@ jobs:
             exit 0
   test_browser:
     <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright:bionic
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
-          chrome: true
+          browsers: true
       - run:
           name: Tests real browsers
           command: yarn test:karma
@@ -395,10 +329,14 @@ jobs:
           command: yarn test:umd
   test_profile:
     <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright:bionic
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
-          chrome: true
+          browsers: true
       - run:
           name: Tests real browsers
           # Run a couple of times for a better sample.
@@ -418,10 +356,14 @@ jobs:
           destination: react-profiler-report/karma
   test_regressions:
     <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright:bionic
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
       - install_js:
-          chrome: true
+          browsers: true
       - run:
           name: Run visual regression tests
           command: xvfb-run yarn test:regressions
