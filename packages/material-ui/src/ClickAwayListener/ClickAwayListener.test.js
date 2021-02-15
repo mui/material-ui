@@ -32,7 +32,7 @@ describe('<ClickAwayListener />', () => {
    */
   function render(...args) {
     const result = clientRender(...args);
-    clock.next();
+    clock.tick(0);
     return result;
   }
 
