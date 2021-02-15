@@ -18,7 +18,7 @@ index 658f4724f9..338d8c46a9 100644
    ];
  
 diff --git a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
-index cab486d9db..3107739555 100644
+index 332d7eb0c7..24ffc904d3 100644
 --- a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
 +++ b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
 @@ -122,11 +122,7 @@ describe('ThemeProvider', () => {
@@ -48,7 +48,7 @@ index cab486d9db..3107739555 100644
    });
  });
 diff --git a/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js b/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js
-index 2ab151c6c8..6db6326d77 100644
+index 1360442ce6..462c67a27f 100644
 --- a/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js
 +++ b/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js
 @@ -135,11 +135,6 @@ describe('useThemeVariants', () => {
@@ -64,10 +64,10 @@ index 2ab151c6c8..6db6326d77 100644
          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
 diff --git a/packages/material-ui/src/Autocomplete/Autocomplete.test.js b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
-index cd02208b63..f3beebd4bc 100644
+index 2556f4d94d..787fc72d3b 100644
 --- a/packages/material-ui/src/Autocomplete/Autocomplete.test.js
 +++ b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
-@@ -1181,10 +1181,6 @@ describe('<Autocomplete />', () => {
+@@ -1192,10 +1192,6 @@ describe('<Autocomplete />', () => {
          fireEvent.change(textbox, { target: { value: 'a' } });
          fireEvent.keyDown(textbox, { key: 'Enter' });
        }).toErrorDev([
@@ -78,7 +78,7 @@ index cd02208b63..f3beebd4bc 100644
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-@@ -1238,9 +1234,6 @@ describe('<Autocomplete />', () => {
+@@ -1249,9 +1245,6 @@ describe('<Autocomplete />', () => {
            />,
          );
        }).toWarnDev([
@@ -88,7 +88,7 @@ index cd02208b63..f3beebd4bc 100644
          'None of the options match with `"not a good value"`',
          'None of the options match with `"not a good value"`',
        ]);
-@@ -1266,11 +1259,7 @@ describe('<Autocomplete />', () => {
+@@ -1277,11 +1270,7 @@ describe('<Autocomplete />', () => {
              groupBy={(option) => option.group}
            />,
          );
@@ -102,10 +102,10 @@ index cd02208b63..f3beebd4bc 100644
        expect(options).to.have.length(7);
        expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
 diff --git a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
-index d5c5735ecf..86a4ebdece 100644
+index acf662d0d9..4f5b503653 100644
 --- a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 +++ b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
-@@ -100,7 +100,6 @@ describe('<Breadcrumbs />', () => {
+@@ -88,7 +88,6 @@ describe('<Breadcrumbs />', () => {
        );
      }).toErrorDev([
        'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
@@ -160,21 +160,21 @@ index cca7f0ee6c..5a878b6462 100644
      });
    });
 diff --git a/packages/material-ui/src/internal/SwitchBase.test.js b/packages/material-ui/src/internal/SwitchBase.test.js
-index 3f26a11e1b..3732eb2e9a 100644
+index 2753fb3257..011a312021 100644
 --- a/packages/material-ui/src/internal/SwitchBase.test.js
 +++ b/packages/material-ui/src/internal/SwitchBase.test.js
-@@ -393,7 +393,7 @@ describe('<SwitchBase />', () => {
+@@ -391,7 +391,7 @@ describe('<SwitchBase />', () => {
          setProps({ checked: true });
-         global['didWarnControlledToUncontrolled'] = true;
+         global.didWarnControlledToUncontrolled = true;
        }).toErrorDev([
 -        'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
 +        'Warning: A component is changing an uncontrolled input to be controlled.',
          'Material-UI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
        ]);
      });
-@@ -414,7 +414,7 @@ describe('<SwitchBase />', () => {
+@@ -412,7 +412,7 @@ describe('<SwitchBase />', () => {
          setProps({ checked: undefined });
-         global['didWarnControlledToUncontrolled'] = true;
+         global.didWarnControlledToUncontrolled = true;
        }).toErrorDev([
 -        'Warning: A component is changing a controlled input of type checkbox to be uncontrolled.',
 +        'Warning: A component is changing a controlled input to be uncontrolled',
