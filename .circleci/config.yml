@@ -37,14 +37,6 @@ defaults: &defaults
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
 
 commands:
-  # Always call before install_*
-  restore_browser_binaries:
-    steps:
-      - restore_cache:
-          keys:
-            - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
-            - v1-playwright-{{ arch }}-
-            - v1-playwright-
   install_js:
     parameters:
       browsers:
@@ -64,6 +56,7 @@ commands:
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
       - restore_cache:
+          name: Restore yarn cache
           keys:
             - v6-yarn-sha-{{ checksum "yarn.lock" }}
             - v6-yarn-sha-
@@ -79,6 +72,7 @@ commands:
           condition: << parameters.browsers >>
           steps:
             - restore_cache:
+                name: Restore playwright cache
                 keys:
                   - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
                   - v1-playwright-{{ arch }}-
@@ -94,8 +88,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_browser_binaries
-      - install_js
+      - install_js:
+          # To prepare the cache for subsequent jobs
+          browsers: true
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
@@ -313,7 +308,6 @@ jobs:
       - image: circleci/node:10-browsers
     steps:
       - checkout
-      - restore_browser_binaries
       - install_js
       - run:
           name: Tests real browsers
@@ -334,7 +328,6 @@ jobs:
       - image: circleci/node:10-browsers
     steps:
       - checkout
-      - restore_browser_binaries
       - install_js
       - run:
           name: Tests real browsers
@@ -359,8 +352,11 @@ jobs:
       - image: circleci/node:10-browsers
     steps:
       - checkout
-      - restore_browser_binaries
       - install_js
+      - run:
+          name: Install headful dependencies
+          command: sudo apt-get update && sudo apt-get install -y --no-install-recommends \
+            xvfb
       - run:
           name: Run visual regression tests
           command: xvfb-run yarn test:regressions
