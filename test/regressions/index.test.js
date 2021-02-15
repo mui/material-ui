@@ -7,7 +7,7 @@ async function main() {
   const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
 
   const browser = await playwright.chromium.launch({
-    args: ['--disable-dev-shm-usage', '--font-render-hinting=none'],
+    args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
