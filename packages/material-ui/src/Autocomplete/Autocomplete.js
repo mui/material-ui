@@ -170,7 +170,7 @@ const AutocompleteRoot = experimentalStyled(
       '& .MuiOutlinedInput-input': {
         padding: '7.5px 4px 7.5px 6px',
       },
-      [`& .${autocompleteClasses.input}`]: {
+      [`& .${autocompleteClasses.endAdornment}`]: {
         right: 9,
       },
     },
