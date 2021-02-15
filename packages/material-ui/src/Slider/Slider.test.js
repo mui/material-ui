@@ -818,12 +818,12 @@ describe('<Slider />', () => {
           <Slider
             value={30}
             onChange={handleChange}
-            componentsProps={{ thumb: { 'data-testid': 'thumb' } }}
+            componentsProps={{ thumbPositioner: { 'data-testid': 'thumbPositioner' } }}
           />
         </ThemeProvider>,
       );
-      const thumb = getByTestId('thumb');
-      expect(thumb.style.transform).to.equal('translateX(30%)');
+      const thumb = getByTestId('thumbPositioner');
+      expect(thumb.style.transform).to.equal('translateX(70%)');
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
