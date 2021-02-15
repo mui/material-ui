@@ -117,16 +117,45 @@ function focusThumb({ sliderRef, activeIndex, setActive }) {
 
 const axisProps = {
   horizontal: {
-    offset: (percent) => ({ left: `${percent}%` }),
-    leap: (percent) => ({ width: `${percent}%` }),
+    offset: (percent, slider) => {
+      const sliderWidth = (slider && slider.getBoundingClientRect().width) || 0;
+      return {
+        transform: `translateX(${(percent * sliderWidth) / 100}px)`,
+      };
+    },
+    leap: (percent) => ({
+      width: '100%',
+      transformOrigin: 'left',
+      transform: `scaleX(${percent / 100})`,
+    }),
   },
   'horizontal-reverse': {
-    offset: (percent) => ({ right: `${percent}%` }),
-    leap: (percent) => ({ width: `${percent}%` }),
+    offset: (percent, slider) => {
+      const sliderWidth = (slider && slider.getBoundingClientRect().width) || 0;
+      return {
+        transform: `translateX(-${(percent * sliderWidth) / 100}px)`,
+        right: 0,
+      };
+    },
+    leap: (percent) => ({
+      width: '100%',
+      transformOrigin: 'right',
+      transform: `scaleX(${percent / 100})`,
+    }),
   },
   vertical: {
-    offset: (percent) => ({ bottom: `${percent}%` }),
-    leap: (percent) => ({ height: `${percent}%` }),
+    offset: (percent, slider) => {
+      const sliderHeight = (slider && slider.getBoundingClientRect().height) || 0;
+      return {
+        transform: `translateY(-${(percent * sliderHeight) / 100}px)`,
+        bottom: 0,
+      };
+    },
+    leap: (percent) => ({
+      height: '100%',
+      transformOrigin: 'bottom',
+      transform: `scaleY(${percent / 100})`,
+    }),
   },
 };
 
@@ -213,6 +242,15 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     theme,
     ...other
   } = props;
+
+  const [, rerender] = React.useState();
+  React.useEffect(() => {
+    if ([valueProp, defaultValue].some((value) => typeof value !== 'undefined')) {
+      // position thumb (it can only be positioned after first render as it relies on getBoundingClientRect)
+      rerender('rerender');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
@@ -545,9 +583,14 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
   const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
+  const offsetStyles = axisProps[axis].offset(trackOffset, sliderRef.current);
+  const leapStyles = axisProps[axis].leap(trackLeap);
   const trackStyle = {
-    ...axisProps[axis].offset(trackOffset),
-    ...axisProps[axis].leap(trackLeap),
+    ...offsetStyles,
+    ...{
+      ...leapStyles,
+      transform: `${offsetStyles.transform || ''} ${leapStyles.transform || ''}`,
+    },
   };
 
   const Root = components.Root || component;
@@ -623,7 +666,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       />
       {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
-        const style = axisProps[axis].offset(percent);
+        const style = axisProps[axis].offset(percent, sliderRef.current);
 
         let markActive;
         if (track === false) {
@@ -680,7 +723,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       })}
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
-        const style = axisProps[axis].offset(percent);
+        const style = axisProps[axis].offset(percent, sliderRef.current);
 
         const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabel;
 
