@@ -78,8 +78,10 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     components?: {
       Root?: React.ElementType;
       Track?: React.ElementType;
+      TrackPositioner?: React.ElementType;
       Rail?: React.ElementType;
       Thumb?: React.ElementType;
+      ThumbPositioner?: React.ElementType;
       Mark?: React.ElementType;
       MarkLabel?: React.ElementType;
       ValueLabel?: React.ElementType;
@@ -97,11 +99,19 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
         as?: React.ElementType;
         styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
+      trackPositioner?: {
+        as?: React.ElementType;
+        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+      };
       rail?: {
         as?: React.ElementType;
         styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
       thumb?: {
+        as?: React.ElementType;
+        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+      };
+      thumbPositioner?: {
         as?: React.ElementType;
         styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };

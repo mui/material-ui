@@ -214,12 +214,14 @@ const useUtilityClasses = (styleProps) => {
     ],
     rail: ['rail'],
     track: ['track'],
+    trackPositioner: ['trackPositioner'],
     mark: ['mark'],
     markActive: ['markActive'],
     markLabel: ['markLabel'],
     markLabelActive: ['markLabelActive'],
     valueLabel: ['valueLabel'],
     thumb: ['thumb', disabled && 'disabled'],
+    thumbPositioner: ['thumbPositioner'],
     active: ['active'],
     disabled: ['disabled'],
     focusVisible: ['focusVisible'],
@@ -610,8 +612,14 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const Track = components.Track || 'span';
   const trackProps = componentsProps.track || {};
 
+  const TrackPositioner = components.TrackPositioner || 'span';
+  const trackPositionerProps = componentsProps.trackPositioner || {};
+
   const Thumb = components.Thumb || 'span';
   const thumbProps = componentsProps.thumb || {};
+
+  const ThumbPositioner = components.ThumbPositioner || 'span';
+  const thumbPositionerProps = componentsProps.thumbPositioner || {};
 
   const ValueLabel = components.ValueLabel || SliderValueLabelUnstyled;
   const valueLabelProps = componentsProps.valueLabel || {};
@@ -663,7 +671,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         })}
         className={clsx(utilityClasses.rail, railProps.className)}
       />
-      <span style={trackContainerStyle}>
+      <TrackPositioner {...trackPositionerProps} className={clsx(utilityClasses.trackPositioner, trackPositionerProps.className)} style={trackContainerStyle}>
+
         <Track
           {...trackProps}
           {...(!isHostComponent(Track) && {
@@ -673,7 +682,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
           className={clsx(utilityClasses.track, trackProps.className)}
           style={{ ...baseTrackStyle, ...trackProps.style }}
         />
-      </span>
+      </TrackPositioner>
       {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
         const style = markAxisProps[axis].offset(percent);
@@ -738,7 +747,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabel;
 
         return (
-          <span key={index} style={containerStyle}>
+          <ThumbPositioner {...thumbPositionerProps} className={clsx(utilityClasses.thumbPositioner, thumbPositionerProps.className)} key={index} style={containerStyle}>
               <ValueLabelComponent
                 valueLabelFormat={valueLabelFormat}
                 valueLabelDisplay={valueLabelDisplay}
@@ -803,7 +812,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   />
                 </Thumb>
               </ValueLabelComponent>
-            </span>
+            </ThumbPositioner>
         );
       })}
     </Root>
@@ -876,7 +885,9 @@ SliderUnstyled.propTypes = {
     Rail: PropTypes.elementType,
     Root: PropTypes.elementType,
     Thumb: PropTypes.elementType,
+    ThumbPositioner: PropTypes.elementType,
     Track: PropTypes.elementType,
+    TrackPositioner: PropTypes.elementType,
     ValueLabel: PropTypes.elementType,
   }),
   /**
