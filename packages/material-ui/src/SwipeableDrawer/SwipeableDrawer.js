@@ -115,7 +115,7 @@ function computeHasNativeHandler({ domTreeShapes, start, current, anchor }) {
       goingForward = !goingForward;
     }
     const axis = anchor === 'left' || anchor === 'right' ? 'x' : 'y';
-    const scrollPosition = shape[axisProperties.scrollPosition[axis]];
+    const scrollPosition = Math.round(shape[axisProperties.scrollPosition[axis]]);
 
     const areNotAtStart = scrollPosition > 0;
     const areNotAtEnd =
