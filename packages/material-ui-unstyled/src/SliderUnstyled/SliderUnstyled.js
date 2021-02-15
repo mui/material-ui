@@ -141,9 +141,7 @@ const axisProps = {
       position: 'absolute',
       width: '100%',
       transformOrigin: 'left',
-      transform: `translateX(${offset}%) scaleX(${
-        percent / 100
-      })`,
+      transform: `translateX(${offset}%) scaleX(${percent / 100})`,
     }),
   },
   'horizontal-reverse': {
@@ -157,9 +155,7 @@ const axisProps = {
       position: 'absolute',
       width: '100%',
       transformOrigin: 'right',
-      transform: `translateX(-${offset}%) scaleX(${
-        percent / 100
-      })`,
+      transform: `translateX(-${offset}%) scaleX(${percent / 100})`,
     }),
   },
   vertical: {
@@ -173,9 +169,7 @@ const axisProps = {
       position: 'absolute',
       height: '100%',
       transformOrigin: 'bottom',
-      transform: `translateY(-${offset}%) scaleY(${
-        percent / 100
-      })`,
+      transform: `translateY(-${offset}%) scaleY(${percent / 100})`,
     }),
   },
 };
@@ -600,7 +594,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const trackContainerStyle = axisProps[axis].track(trackLeap, trackOffset);
   const baseTrackStyle = {
-    [orientation === 'vertical' ? 'height' : 'width']: '100%'
+    [orientation === 'vertical' ? 'height' : 'width']: '100%',
   };
 
   const Root = components.Root || component;
@@ -671,8 +665,11 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         })}
         className={clsx(utilityClasses.rail, railProps.className)}
       />
-      <TrackPositioner {...trackPositionerProps} className={clsx(utilityClasses.trackPositioner, trackPositionerProps.className)} style={trackContainerStyle}>
-
+      <TrackPositioner
+        {...trackPositionerProps}
+        className={clsx(utilityClasses.trackPositioner, trackPositionerProps.className)}
+        style={trackContainerStyle}
+      >
         <Track
           {...trackProps}
           {...(!isHostComponent(Track) && {
@@ -747,72 +744,77 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabel;
 
         return (
-          <ThumbPositioner {...thumbPositionerProps} className={clsx(utilityClasses.thumbPositioner, thumbPositionerProps.className)} key={index} style={containerStyle}>
-              <ValueLabelComponent
-                valueLabelFormat={valueLabelFormat}
-                valueLabelDisplay={valueLabelDisplay}
-                value={
-                  typeof valueLabelFormat === 'function'
-                    ? valueLabelFormat(scale(value), index)
-                    : valueLabelFormat
-                }
-                index={index}
-                open={open === index || active === index || valueLabelDisplay === 'on'}
-                disabled={disabled}
-                {...valueLabelProps}
-                className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
-                {...(!isHostComponent(ValueLabel) && {
-                  styleProps: { ...styleProps, ...valueLabelProps.styleProps },
+          <ThumbPositioner
+            {...thumbPositionerProps}
+            className={clsx(utilityClasses.thumbPositioner, thumbPositionerProps.className)}
+            key={index}
+            style={containerStyle}
+          >
+            <ValueLabelComponent
+              valueLabelFormat={valueLabelFormat}
+              valueLabelDisplay={valueLabelDisplay}
+              value={
+                typeof valueLabelFormat === 'function'
+                  ? valueLabelFormat(scale(value), index)
+                  : valueLabelFormat
+              }
+              index={index}
+              open={open === index || active === index || valueLabelDisplay === 'on'}
+              disabled={disabled}
+              {...valueLabelProps}
+              className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
+              {...(!isHostComponent(ValueLabel) && {
+                styleProps: { ...styleProps, ...valueLabelProps.styleProps },
+                theme,
+              })}
+            >
+              <Thumb
+                data-index={index}
+                onMouseOver={handleMouseOver}
+                onMouseLeave={handleMouseLeave}
+                {...thumbProps}
+                className={clsx(utilityClasses.thumb, thumbProps.className, {
+                  [utilityClasses.active]: active === index,
+                  [utilityClasses.focusVisible]: focusVisible === index,
+                })}
+                {...(!isHostComponent(Thumb) && {
+                  styleProps: { ...styleProps, ...thumbProps.styleProps },
                   theme,
                 })}
+                style={thumbProps.style}
               >
-                <Thumb
+                <input
                   data-index={index}
-                  onMouseOver={handleMouseOver}
-                  onMouseLeave={handleMouseLeave}
-                  {...thumbProps}
-                  className={clsx(utilityClasses.thumb, thumbProps.className, {
-                    [utilityClasses.active]: active === index,
-                    [utilityClasses.focusVisible]: focusVisible === index,
-                  })}
-                  {...(!isHostComponent(Thumb) && {
-                    styleProps: { ...styleProps, ...thumbProps.styleProps },
-                    theme,
-                  })}
-                  style={thumbProps.style}
-                >
-                  <input
-                    data-index={index}
-                    aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
-                    aria-labelledby={ariaLabelledby}
-                    aria-orientation={orientation}
-                    aria-valuemax={scale(max)}
-                    aria-valuemin={scale(min)}
-                    aria-valuenow={scale(value)}
-                    aria-valuetext={
-                      getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
-                    }
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                    name={name}
-                    type="range"
-                    min={props.min}
-                    max={props.max}
-                    step={props.step}
-                    disabled={disabled}
-                    value={values[index]}
-                    onChange={handleHiddenInputChange}
-                    style={{
-                      ...visuallyHidden,
-                      direction: isRtl ? 'rtl' : 'ltr',
-                      // So that VoiceOver's focus indicator matches the thumb's dimensions
-                      width: '100%',
-                      height: '100%',
-                    }}
-                  />
-                </Thumb>
-              </ValueLabelComponent>
-            </ThumbPositioner>
+                  aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+                  aria-labelledby={ariaLabelledby}
+                  aria-orientation={orientation}
+                  aria-valuemax={scale(max)}
+                  aria-valuemin={scale(min)}
+                  aria-valuenow={scale(value)}
+                  aria-valuetext={
+                    getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+                  }
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  name={name}
+                  type="range"
+                  min={props.min}
+                  max={props.max}
+                  step={props.step}
+                  disabled={disabled}
+                  value={values[index]}
+                  onChange={handleHiddenInputChange}
+                  style={{
+                    ...visuallyHidden,
+                    direction: isRtl ? 'rtl' : 'ltr',
+                    // So that VoiceOver's focus indicator matches the thumb's dimensions
+                    width: '100%',
+                    height: '100%',
+                  }}
+                />
+              </Thumb>
+            </ValueLabelComponent>
+          </ThumbPositioner>
         );
       })}
     </Root>
