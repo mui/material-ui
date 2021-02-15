@@ -231,7 +231,7 @@
     "/components/data-grid/selection": "Selection",
     "/components/data-grid/editing": "🚧 Editing",
     "/components/data-grid/rendering": "Rendering",
-    "/components/data-grid/export": "🚧 Export & Import",
+    "/components/data-grid/export": "Export & Import",
     "/components/data-grid/localization": "🚧 Localization",
     "/components/data-grid/group-pivot": "🚧 Group & Pivot",
     "/components/data-grid/accessibility": "Accessibility",
