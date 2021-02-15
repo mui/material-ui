@@ -356,7 +356,7 @@ jobs:
       - run:
           name: Install headful dependencies
           command: sudo apt-get update && sudo apt-get install -y --no-install-recommends \
-            xvfb
+            xvfb-run
       - run:
           name: Run visual regression tests
           command: xvfb-run yarn test:regressions
