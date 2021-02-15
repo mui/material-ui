@@ -7,6 +7,7 @@ import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
+  AutocompleteGetTagProps,
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
@@ -24,19 +25,6 @@ export interface AutocompleteRenderOptionState {
   inputValue: string;
   selected: boolean;
 }
-
-export type AutocompleteGetTagProps = ({
-  index,
-}: {
-  index: number;
-}) => {
-  key: number;
-  'data-tag-index': number;
-  tabIndex: -1;
-  onDelete: <T = HTMLDivElement>(
-    index: number
-  ) => (event: React.SyntheticEvent<T, PointerEvent | KeyboardEvent>) => void;
-};
 
 export interface AutocompleteRenderGroupParams {
   key: string;

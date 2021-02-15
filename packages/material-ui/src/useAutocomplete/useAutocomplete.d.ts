@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { AutocompleteGetTagProps } from '@material-ui/core/Autocomplete';
 
 export interface CreateFilterOptionsConfig<T> {
   ignoreAccents?: boolean;
@@ -287,6 +286,14 @@ export type AutocompleteCloseReason =
   | 'remove-option'
   | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
+
+export type AutocompleteGetTagProps = ({
+  index,
+}: {
+  index: number;
+}) => React.HTMLAttributes<HTMLDivElement> & {
+  onDelete: Function;
+};
 
 export default function useAutocomplete<
   T,
