@@ -39,10 +39,15 @@ defaults: &defaults
 commands:
   install_js:
     parameters:
-      browsers:
+      chrome:
         type: boolean
-        description: 'Set to true if you intend to use actual browsers.'
         default: false
+        description: 'Set to true if you intend to use chrome (e.g. with playwright)'
+      firefox:
+        type: boolean
+        default: false
+        description: 'Set to true if you intend to use firefox (e.g. with playwright)'
+
     steps:
       - run:
           name: View install environment
@@ -69,7 +74,10 @@ commands:
             yarn cache dir
             yarn cache list
       - when:
-          condition: << parameters.browsers >>
+          condition:
+            or:
+              - << parameters.chrome >>
+              - << parameters.firefox >>
           steps:
             - restore_cache:
                 name: Restore playwright cache
@@ -77,11 +85,67 @@ commands:
                   - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
                   - v1-playwright-{{ arch }}-
                   - v1-playwright-
+            - run:
+                name: Update apt
+                command: sudo apt-get update
+            - run:
+                name: Install WebKit dependencies
+                if: << parameters.chrome >>
+                command: |
+                  sudo apt-get install -y --no-install-recommends \
+                    libopus0 \
+                    libwebp6 \
+                    libwebpdemux2 \
+                    libenchant1c2a \
+                    libgudev-1.0-0 \
+                    libsecret-1-0 \
+                    libhyphen0 \
+                    libgdk-pixbuf2.0-0 \
+                    libnotify4 \
+                    libxslt1.1 \
+                    libgles2 \
+                    libxcomposite1 \
+                    libatk1.0-0 \
+                    libatk-bridge2.0-0 \
+                    libepoxy0 \
+                    libgtk-3-0 \
+                    libharfbuzz-icu0
+            - run:
+                name: Install gstreamer and plugins to support video playback in WebKit.
+                if: << parameters.chrome >>
+                command: |
+                  sudo apt-get install -y --no-install-recommends \
+                    libgstreamer-gl1.0-0 \
+                    libgstreamer-plugins-bad1.0-0 \
+                    gstreamer1.0-plugins-good \
+                    gstreamer1.0-libav
+            - run:
+                name: Install Chromium dependencies
+                if: << parameters.chrome >>
+                command: |
+                  sudo apt-get install -y --no-install-recommends \
+                    fonts-liberation \
+                    libnss3 \
+                    libxss1 \
+                    libasound2 \
+                    fonts-noto-color-emoji \
+                    libxtst6
+            - run:
+                name: Install Firefox dependencies
+                if: << parameters.firefox >>
+                command: |
+                  sudo apt-get install -y --no-install-recommends \
+                    libdbus-glib-1-2 \
+                    libxt6
+            - run:
+                name: Install ffmpeg to bring in audio and video codecs necessary for playing videos in Firefox.
+                if: << parameters.firefox >>
+                command: |
+                  sudo apt-get install -y --no-install-recommends \
+                    ffmpeg
       - run:
           name: Install js dependencies
           command: yarn install --verbose
-          environment:
-            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<# parameters.browsers >>0<</ parameters.browsers >><<^ parameters.browsers >>1<</ parameters.browsers >>
 
 jobs:
   checkout:
@@ -90,7 +154,7 @@ jobs:
       - checkout
       - install_js:
           # To prepare the cache for subsequent jobs
-          browsers: true
+          chrome: true
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
@@ -304,12 +368,10 @@ jobs:
             exit 0
   test_browser:
     <<: *defaults
-    docker:
-      - image: circleci/node:10-browsers
     steps:
       - checkout
       - install_js:
-          browsers: true
+          chrome: true
       - run:
           name: Tests real browsers
           command: yarn test:karma
@@ -325,12 +387,10 @@ jobs:
           command: yarn test:umd
   test_profile:
     <<: *defaults
-    docker:
-      - image: circleci/node:10-browsers
     steps:
       - checkout
       - install_js:
-          browsers: true
+          chrome: true
       - run:
           name: Tests real browsers
           # Run a couple of times for a better sample.
@@ -350,15 +410,13 @@ jobs:
           destination: react-profiler-report/karma
   test_regressions:
     <<: *defaults
-    docker:
-      - image: circleci/node:10-browsers
     steps:
       - checkout
       - install_js:
-          browsers: true
+          chrome: true
       - run:
           name: Run visual regression tests
-          command: yarn test:regressions
+          command: xfvb-run yarn test:regressions
       - run:
           name: Upload screenshots to Argos CI
           command: yarn test:argos
