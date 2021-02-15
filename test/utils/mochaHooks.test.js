@@ -58,11 +58,11 @@ describe('mochaHooks', () => {
       });
 
       it('', () => {
-        function Child() {
+        const Child = React.forwardRef(function Child() {
           React.useEffect(() => {});
           React.useEffect(() => {});
           return null;
-        }
+        });
 
         let setState;
         function Parent() {
@@ -97,7 +97,9 @@ describe('mochaHooks', () => {
           error.match(/An update to Parent ran an effect, but was not wrapped in act/g),
         ).to.have.lengthOf(1);
         expect(
-          error.match(/An update to Child ran an effect, but was not wrapped in act/g),
+          error.match(
+            /An update to ForwardRef\(Child\) ran an effect, but was not wrapped in act/g,
+          ),
         ).to.have.lengthOf(1);
       });
     });
