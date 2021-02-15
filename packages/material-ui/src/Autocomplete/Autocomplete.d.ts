@@ -7,7 +7,6 @@ import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
-  AutocompleteGetTagProps,
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
@@ -17,9 +16,21 @@ export {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
-  AutocompleteGetTagProps,
   AutocompleteInputChangeReason,
   createFilterOptions,
+};
+
+export type AutocompleteGetTagProps = ({
+  index,
+}: {
+  index: number;
+}) => {
+  key: number;
+  className: string;
+  disabled: boolean;
+  'data-tag-index': number;
+  tabIndex: -1;
+  onDelete: (event: any) => void;
 };
 
 export interface AutocompleteRenderOptionState {

@@ -291,7 +291,10 @@ export type AutocompleteGetTagProps = ({
   index,
 }: {
   index: number;
-}) => React.HTMLAttributes<HTMLDivElement> & {
+}) => {
+  key: number;
+  'data-tag-index': number;
+  tabIndex: -1;
   onDelete: (event: any) => void;
 };
 
