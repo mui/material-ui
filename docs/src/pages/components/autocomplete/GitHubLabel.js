@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { useTheme, alpha, makeStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -9,6 +10,17 @@ import DoneIcon from '@material-ui/icons/Done';
 import Autocomplete from '@material-ui/core/Autocomplete';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
+
+function PopperComponent(props) {
+  const { disablePortal, anchorEl, open, ...other } = props;
+  return <div {...other} />;
+}
+
+PopperComponent.propTypes = {
+  anchorEl: PropTypes.any,
+  disablePortal: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,17 +91,20 @@ const useStyles = makeStyles((theme) => ({
     color: '#586069',
     fontSize: 13,
   },
-  option: {
-    minHeight: 'auto',
-    alignItems: 'flex-start',
-    padding: 8,
-    '&[aria-selected="true"]': {
-      backgroundColor: 'transparent',
-    },
-    '&[data-focus="true"]': {
-      backgroundColor: theme.palette.action.hover,
+  listbox: {
+    '& $option': {
+      minHeight: 'auto',
+      alignItems: 'flex-start',
+      padding: 8,
+      '&[aria-selected="true"]': {
+        backgroundColor: 'transparent',
+      },
+      '&[data-focus="true"], &[data-focus="true"][aria-selected="true"]': {
+        backgroundColor: theme.palette.action.hover,
+      },
     },
   },
+  option: {},
   popperDisablePortal: {
     position: 'relative',
   },
@@ -185,6 +200,7 @@ export default function GitHubLabel() {
               }}
               classes={{
                 paper: classes.paper,
+                listbox: classes.listbox,
                 option: classes.option,
                 popperDisablePortal: classes.popperDisablePortal,
               }}
@@ -200,7 +216,7 @@ export default function GitHubLabel() {
                 setPendingValue(newValue);
               }}
               disableCloseOnSelect
-              disablePortal
+              PopperComponent={PopperComponent}
               renderTags={() => null}
               noOptionsText="No labels"
               renderOption={(props, option, { selected }) => (

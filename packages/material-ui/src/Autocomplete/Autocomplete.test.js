@@ -2,9 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -13,7 +12,10 @@ import {
 import { spy } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
-import Autocomplete, { createFilterOptions } from '@material-ui/core/Autocomplete';
+import Autocomplete, {
+  autocompleteClasses as classes,
+  createFilterOptions,
+} from '@material-ui/core/Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector('[role="option"][data-focus]');
@@ -32,20 +34,23 @@ function checkHighlightIs(listbox, expected) {
 
 describe('<Autocomplete />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Autocomplete options={[]} renderInput={() => null} />);
-  });
-
-  describeConformance(<Autocomplete options={[]} renderInput={() => null} />, () => ({
-    classes,
-    inheritComponent: 'div',
-    mount,
-    refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'div',
-  }));
+  describeConformanceV5(
+    <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      mount,
+      muiName: 'MuiAutocomplete',
+      testVariantProps: { variant: 'foo' },
+      testDeepOverrides: { slotName: 'inputRoot', slotClassName: classes.inputRoot },
+      testStateOverrides: { prop: 'fullWidth', value: true, styleKey: 'fullWidth' },
+      refInstanceof: window.HTMLDivElement,
+      testComponentPropWith: 'div',
+      skip: ['componentProp', 'componentsProp'],
+    }),
+  );
 
   describe('combobox', () => {
     it('should clear the input when blur', () => {
@@ -1290,7 +1295,7 @@ describe('<Autocomplete />', () => {
     it('warn if the type of the value is wrong', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          Autocomplete.Naked.propTypes,
+          Autocomplete.propTypes,
           { multiple: true, value: null, options: [], renderInput: () => null },
           'prop',
           'Autocomplete',
@@ -1509,7 +1514,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it('should mantain list box open clicking on input when it is not empty', () => {
+    it('should maintain list box open clicking on input when it is not empty', () => {
       const { getByRole, getAllByRole } = render(
         <Autocomplete options={['one']} renderInput={(params) => <TextField {...params} />} />,
       );
