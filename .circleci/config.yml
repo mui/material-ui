@@ -357,12 +357,8 @@ jobs:
       - install_js:
           browsers: true
       - run:
-          name: Install headful dependencies
-          command: sudo apt-get update && sudo apt-get install -y --no-install-recommends \
-            xvfb-run
-      - run:
           name: Run visual regression tests
-          command: xvfb-run yarn test:regressions
+          command: yarn test:regressions
       - run:
           name: Upload screenshots to Argos CI
           command: yarn test:argos
