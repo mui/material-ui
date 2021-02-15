@@ -117,44 +117,41 @@ function focusThumb({ sliderRef, activeIndex, setActive }) {
 
 const axisProps = {
   horizontal: {
-    offset: (percent, slider) => {
-      const sliderWidth = (slider && slider.getBoundingClientRect().width) || 0;
-      return {
-        transform: `translateX(${(percent * sliderWidth) / 100}px)`,
-      };
-    },
-    leap: (percent) => ({
+    offset: (percent, sliderDimensions) => ({
+      transform: `translateX(${(percent * sliderDimensions.width) / 100}px)`,
+    }),
+    track: (percent, offset, sliderDimensions) => ({
       width: '100%',
       transformOrigin: 'left',
-      transform: `scaleX(${percent / 100})`,
+      transform: `translateX(${(offset * sliderDimensions.width) / 100}px) scaleX(${
+        percent / 100
+      })`,
     }),
   },
   'horizontal-reverse': {
-    offset: (percent, slider) => {
-      const sliderWidth = (slider && slider.getBoundingClientRect().width) || 0;
-      return {
-        transform: `translateX(-${(percent * sliderWidth) / 100}px)`,
-        right: 0,
-      };
-    },
-    leap: (percent) => ({
+    offset: (percent, sliderDimensions) => ({
+      transform: `translateX(-${(percent * sliderDimensions.width) / 100}px)`,
+      right: 0,
+    }),
+    track: (percent, offset, sliderDimensions) => ({
       width: '100%',
       transformOrigin: 'right',
-      transform: `scaleX(${percent / 100})`,
+      transform: `translateX(-${(offset * sliderDimensions.width) / 100}px) scaleX(${
+        percent / 100
+      })`,
     }),
   },
   vertical: {
-    offset: (percent, slider) => {
-      const sliderHeight = (slider && slider.getBoundingClientRect().height) || 0;
-      return {
-        transform: `translateY(-${(percent * sliderHeight) / 100}px)`,
-        bottom: 0,
-      };
-    },
-    leap: (percent) => ({
+    offset: (percent, sliderDimensions) => ({
+      transform: `translateY(-${(percent * sliderDimensions.height) / 100}px)`,
+      bottom: 0,
+    }),
+    track: (percent, offset, sliderDimensions) => ({
       height: '100%',
       transformOrigin: 'bottom',
-      transform: `scaleY(${percent / 100})`,
+      transform: `translateY(-${(offset * sliderDimensions.height) / 100}px) scaleY(${
+        percent / 100
+      })`,
     }),
   },
 };
@@ -583,15 +580,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
   const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
-  const offsetStyles = axisProps[axis].offset(trackOffset, sliderRef.current);
-  const leapStyles = axisProps[axis].leap(trackLeap);
-  const trackStyle = {
-    ...offsetStyles,
-    ...{
-      ...leapStyles,
-      transform: `${offsetStyles.transform || ''} ${leapStyles.transform || ''}`,
-    },
-  };
+
+  const sliderDimensions = sliderRef.current
+    ? sliderRef.current.getBoundingClientRect()
+    : { width: 0, height: 0 };
+
+  const trackStyle = axisProps[axis].track(trackLeap, trackOffset, sliderDimensions);
 
   const Root = components.Root || component;
   const rootProps = componentsProps.root || {};
@@ -666,7 +660,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       />
       {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
-        const style = axisProps[axis].offset(percent, sliderRef.current);
+        const style = axisProps[axis].offset(percent, sliderDimensions);
 
         let markActive;
         if (track === false) {
@@ -723,7 +717,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       })}
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
-        const style = axisProps[axis].offset(percent, sliderRef.current);
+        const style = axisProps[axis].offset(percent, sliderDimensions);
 
         const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabel;
 
