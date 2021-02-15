@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
-import { alpha } from '../styles/colorManipulator';
+import { alpha, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 
@@ -48,7 +48,7 @@ export const styles = (theme) => ({
       transform: 'translateX(20px)',
     },
     '&$disabled': {
-      color: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+      color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[500],
     },
     '&$checked + $track': {
       opacity: 0.5,
@@ -67,9 +67,9 @@ export const styles = (theme) => ({
           backgroundColor: 'transparent',
         },
       },
-    },
-    '&$disabled': {
-      color: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+      '&$disabled': {
+        color: lighten(theme.palette.primary.main, 0.62),
+      }
     },
     '&$checked + $track': {
       backgroundColor: theme.palette.primary.main,
@@ -85,9 +85,9 @@ export const styles = (theme) => ({
           backgroundColor: 'transparent',
         },
       },
-    },
-    '&$disabled': {
-      color: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+      '&$disabled': {
+        color: lighten(theme.palette.secondary.main, 0.62),
+      }
     },
     '&$checked + $track': {
       backgroundColor: theme.palette.secondary.main,
