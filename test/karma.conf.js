@@ -12,9 +12,11 @@ process.env.CHROME_BIN = playwright.chromium.executablePath();
 // BrowserStack rate limit after 1600 calls every 5 minutes.
 // Per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
 const MAX_REQUEST_PER_SECOND_BROWSERSTACK = 1600 / (60 * 5);
-// Estimate the max number of concurrent karma builds.
-// CircleCI accepts up to 80 concurrent builds, for each PR, 6 concurrent builds are used.
-const MAX_KARMA_CONCURRENT_BUILD = 80 / 6;
+// Estimate the max number of concurrent karma builds
+// For each PR, 6 concurrent builds are used, only one is usng BrowserStack.
+const AVERAGE_KARMA_BUILD = 1 / 6;
+// CircleCI accepts up to 83 concurrent builds.
+const MAX_CIRCLE_CI_CONCURRENCY = 83;
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
@@ -157,7 +159,7 @@ module.exports = function setKarmaConfig(config) {
 
     // default 1000, Avoid Rate Limit Exceeded
     newConfig.pollingTimeout =
-      ((MAX_KARMA_CONCURRENT_BUILD * browserstackBrowsersUsed) /
+      ((MAX_CIRCLE_CI_CONCURRENCY * AVERAGE_KARMA_BUILD * browserstackBrowsersUsed) /
         MAX_REQUEST_PER_SECOND_BROWSERSTACK) *
       1000;
   }
