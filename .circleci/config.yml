@@ -47,10 +47,6 @@ commands:
         type: boolean
         default: false
         description: 'Set to true if you intend to use firefox (e.g. with playwright).'
-      headful:
-        type: boolean
-        default: false
-        description: 'Set to true if you intend run any browsers in headful mode.'
       video:
         type: boolean
         default: false
@@ -155,12 +151,6 @@ commands:
                 command: |
                   sudo apt-get install -y --no-install-recommends \
                     ffmpeg
-            - run:
-                name: Install XVFB
-                if: << parameters.headful >>
-                command: |
-                  sudo apt-get install -y --no-install-recommends \
-                    xvfb
       - run:
           name: Install js dependencies
           command: yarn install --verbose
@@ -432,10 +422,9 @@ jobs:
       - checkout
       - install_js:
           chrome: true
-          headful: true
       - run:
           name: Run visual regression tests
-          command: xfvb-run yarn test:regressions
+          command: xvfb-run yarn test:regressions
       - run:
           name: Upload screenshots to Argos CI
           command: yarn test:argos
