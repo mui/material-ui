@@ -152,10 +152,12 @@ module.exports = function setKarmaConfig(config) {
       },
     };
 
+    // -1 because chrome headless runs in the local machine
+    const browserstackBrowsersUsed = newConfig.browsers.length - 1;
+
     // default 1000, Avoid Rate Limit Exceeded
     newConfig.pollingTimeout =
-      ((MAX_KARMA_CONCURRENT_BUILD * (newConfig.browsers.length - 1)) / MAX_REQUEST_BROWSERSTACK) *
-      1000;
+      ((MAX_KARMA_CONCURRENT_BUILD * browserstackBrowsersUsed) / MAX_REQUEST_BROWSERSTACK) * 1000;
   }
 
   config.set(newConfig);
