@@ -34,13 +34,17 @@ Modal is a lower-level construct that is leveraged by the following components:
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
-## Simple modal
+## Basic modal
 
-This demo stacks Modals, but it is strongly discouraged to do so in practice.
-
-{{"demo": "pages/components/modal/SimpleModal.js"}}
+{{"demo": "pages/components/modal/BasicModal.js"}}
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
+
+## Nested modal
+
+Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged.
+
+{{"demo": "pages/components/modal/NestedModal.js"}}
 
 ## Transitions
 
