@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Autocomplete, {
   AutocompleteProps,
-  AutocompleteGetTagProps,
+  AutocompleteRenderGetTagProps,
 } from '@material-ui/core/Autocomplete';
 import { expectType } from '@material-ui/types';
 
@@ -33,16 +33,19 @@ function MyAutocomplete<
   multiple
 />;
 
-type Tag = { color: string; label: string };
+interface Tag {
+  color: string;
+  label: string;
+}
 type TagComponentProps = Tag & React.HTMLAttributes<HTMLDivElement>;
 const TagComponent = ({ color, label, ...other }: TagComponentProps) => (
   <div {...other}>{label}</div>
 );
 
-function renderTags(value: Tag[], getTagProps: AutocompleteGetTagProps) {
+function renderTags(value: Tag[], getTagProps: AutocompleteRenderGetTagProps) {
   return value.map((tag: Tag, index) => {
     const { onDelete, ...tagProps } = getTagProps({ index });
 
-    return <TagComponent key={tag.label} {...tagProps} {...tag} />;
+    return <TagComponent {...tagProps} {...tag} />;
   });
 }

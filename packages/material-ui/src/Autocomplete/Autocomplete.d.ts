@@ -20,7 +20,7 @@ export {
   createFilterOptions,
 };
 
-export type AutocompleteGetTagProps = ({
+export type AutocompleteRenderGetTagProps = ({
   index,
 }: {
   index: number;
@@ -261,7 +261,7 @@ export interface AutocompleteProps<
    * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */
-  renderTags?: (value: T[], getTagProps: AutocompleteGetTagProps) => React.ReactNode;
+  renderTags?: (value: T[], getTagProps: AutocompleteRenderGetTagProps) => React.ReactNode;
   /**
    * The size of the component.
    * @default 'medium'
