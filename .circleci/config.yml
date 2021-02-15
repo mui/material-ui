@@ -294,6 +294,7 @@ jobs:
       - image: mcr.microsoft.com/playwright:bionic
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
+      - image: circleci/node:10
     steps:
       - checkout
       - install_js
