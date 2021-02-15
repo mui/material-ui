@@ -308,7 +308,8 @@ jobs:
       - image: circleci/node:10-browsers
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Tests real browsers
           command: yarn test:karma
@@ -328,7 +329,8 @@ jobs:
       - image: circleci/node:10-browsers
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Tests real browsers
           # Run a couple of times for a better sample.
@@ -352,7 +354,8 @@ jobs:
       - image: circleci/node:10-browsers
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Install headful dependencies
           command: sudo apt-get update && sudo apt-get install -y --no-install-recommends \
