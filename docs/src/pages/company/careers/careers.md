@@ -11,7 +11,7 @@ The company is self-bootstrapped (so far). It was incorporated in late 2019 and 
 - **Customer obsessed**. We put our customers front & center. We focus on delivering web experiences that feel amazing. We ask questions. We experiment with new ideas.
 - **Transparency**. Most of our work is public. We share what we work on regularly in the open. We collect feedback as soon and as frequently as possible. We learn from each other and
 grow from it.
-- **Freedom**. We work from anywhere in the world. We meet the developers wherever they are. We keep meetings to a minimum, preferring asynchronous and written communication.
+- **Freedom**. We work from anywhere in the world. We keep meetings to a minimum, preferring asynchronous and written communication.
 - **Autonomy**. We want to create a safe, high-trust team. We want you to be able to feel invested in your work and proud of it.
 - **Excellence**. We're aiming high, and we know it. Even the smallest details are important to us. We only want the best for each other and our customers.
 
@@ -31,9 +31,11 @@ We're currently looking for help in the following areas:
 
 We are looking for a lead designer to own most of our design work.
 
-### [Senior Software Engineer](/company/software-engineer/) x2
+### [Senior Software Engineer](/company/software-engineer/)
 
-We are looking for senior software engineers to help support our open-source team, assist the Material-UI community, and grow our premium products. Join us in our mission to make React application development fun and simple.
+<span style="font-size: 14px;">x2 positions (1 design system team, 1 advanced components team)</span>
+
+We are looking for senior software engineers to help support our open-source components, assist the Material-UI community, and grow our enterprise edition.
 
 ## FAQs
 
