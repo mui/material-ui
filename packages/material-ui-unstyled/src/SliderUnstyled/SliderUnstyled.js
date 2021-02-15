@@ -115,6 +115,21 @@ function focusThumb({ sliderRef, activeIndex, setActive }) {
   }
 }
 
+const markAxisProps = {
+  horizontal: {
+    offset: (percent) => ({ left: `${percent}%` }),
+    leap: (percent) => ({ width: `${percent}%` }),
+  },
+  'horizontal-reverse': {
+    offset: (percent) => ({ right: `${percent}%` }),
+    leap: (percent) => ({ width: `${percent}%` }),
+  },
+  vertical: {
+    offset: (percent) => ({ bottom: `${percent}%` }),
+    leap: (percent) => ({ height: `${percent}%` }),
+  },
+}
+
 const axisProps = {
   horizontal: {
     offset: (percent, sliderDimensions) => ({
@@ -660,7 +675,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       />
       {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
-        const style = axisProps[axis].offset(percent, sliderDimensions);
+        const style = markAxisProps[axis].offset(percent);
 
         let markActive;
         if (track === false) {
