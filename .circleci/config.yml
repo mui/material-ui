@@ -115,7 +115,6 @@ commands:
                 if: << parameters.chrome >>
                 command: |
                   sudo apt-get install -y --no-install-recommends \
-                    libgstreamer-gl1.0-0 \
                     libgstreamer-plugins-bad1.0-0 \
                     gstreamer1.0-plugins-good \
                     gstreamer1.0-libav
