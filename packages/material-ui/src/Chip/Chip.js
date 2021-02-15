@@ -417,7 +417,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
   const small = size === 'small';
 
-  const component = ComponentProp || (clickable || onDelete ? ButtonBase : 'div');
+  const component = clickable || onDelete ? ButtonBase : ComponentProp || 'div';
 
   const styleProps = {
     ...props,
@@ -435,7 +435,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const moreProps =
     component === ButtonBase
       ? {
-          component: 'div',
+          component: ComponentProp || 'div',
           focusVisibleClassName: classes.focusVisible,
           disableRipple: Boolean(onDelete),
         }

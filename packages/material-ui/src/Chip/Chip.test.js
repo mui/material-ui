@@ -84,6 +84,13 @@ describe('<Chip />', () => {
       expect(button).toHaveAccessibleName('My Chip');
     });
 
+    it('should render link with the button base', () => {
+      const { container } = render(<Chip component="a" clickable label="My text Chip" />);
+
+      expect(container.firstChild).to.have.class('MuiButtonBase-root');
+      expect(container.firstChild).to.have.tagName('a');
+    });
+
     it('should apply user value of tabIndex', () => {
       const { getByRole } = render(<Chip label="My Chip" onClick={() => {}} tabIndex={5} />);
 
