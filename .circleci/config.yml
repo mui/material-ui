@@ -75,9 +75,9 @@ commands:
             - restore_cache:
                 name: Restore playwright cache
                 keys:
-                  - v2-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
-                  - v2-playwright-{{ arch }}-
-                  - v2-playwright-
+                  - v3-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+                  - v3-playwright-{{ arch }}-
+                  - v3-playwright-
       - run:
           name: Install js dependencies
           command: yarn install --verbose
@@ -93,7 +93,7 @@ commands:
           steps:
             - save_cache:
                 name: Save playwright cache
-                key: v2-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+                key: v3-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
                 paths:
                   - ~/.cache/ms-playwright
 
