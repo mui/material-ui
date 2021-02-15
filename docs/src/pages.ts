@@ -134,7 +134,7 @@ const pages: MuiPage[] = [
           { pathname: '/components/data-grid/selection' },
           { pathname: '/components/data-grid/editing', title: '🚧 Editing' },
           { pathname: '/components/data-grid/rendering' },
-          { pathname: '/components/data-grid/export', title: '🚧 Export & Import' },
+          { pathname: '/components/data-grid/export', title: 'Export & Import' },
           { pathname: '/components/data-grid/localization', title: '🚧 Localization' },
           { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
           { pathname: '/components/data-grid/accessibility' },
