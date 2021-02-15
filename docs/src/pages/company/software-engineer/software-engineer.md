@@ -8,7 +8,7 @@ See the [careers](/company/careers/) and [about us](https://next.material-ui.com
 
 ## Details of the Role
 
-- Type of work: Contractor (long mission, full-time, convertible to an employee position in the future).
+- Type of work: Contractor (full-time, convertible to an employee position in the future).
 - Start date: Immediately.
 - Location: Remote (preference for UTC-5 to UTC+4).
 - Level: [Senior Engineer or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
@@ -17,12 +17,12 @@ See the [careers](/company/careers/) and [about us](https://next.material-ui.com
 
 ## Why we're hiring
 
-Both our open-source community, and our premium products are [growing fast](https://www.similarweb.com/website/material-ui.com). We need talented engineers to keep that going!
+Both our open-source community, and our premium products are [growing fast](https://www.similarweb.com/website/material-ui.com) (x2-3 YoY). We need talented engineers to keep that going!
 
 We need help to continue to improve the health of Material-UI open-source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, and make it easier to customize to support [in-house design systems](https://medium.com/google-design/state-of-design-systems-2019-ff5f26ada71). We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
 
-We also need to develop our premium content. We have a store, and soon an enterprise offering, starting with the data grid.
-Enterprise features will build on the open-source version of the components.
+We also need to develop our premium content. We have a store, and an enterprise version of the library, starting with the data grid.
+The enterprise features are built on the open-source version of the components.
 
 ## Why this is interesting
 
