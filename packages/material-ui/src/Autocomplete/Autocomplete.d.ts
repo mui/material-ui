@@ -20,12 +20,23 @@ export {
   createFilterOptions,
 };
 
+export type AutocompleteRenderGetTagProps = ({
+  index,
+}: {
+  index: number;
+}) => {
+  key: number;
+  className: string;
+  disabled: boolean;
+  'data-tag-index': number;
+  tabIndex: -1;
+  onDelete: (event: any) => void;
+};
+
 export interface AutocompleteRenderOptionState {
   inputValue: string;
   selected: boolean;
 }
-
-export type AutocompleteGetTagProps = ({ index }: { index: number }) => {};
 
 export interface AutocompleteRenderGroupParams {
   key: string;
@@ -250,7 +261,7 @@ export interface AutocompleteProps<
    * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */
-  renderTags?: (value: T[], getTagProps: AutocompleteGetTagProps) => React.ReactNode;
+  renderTags?: (value: T[], getTagProps: AutocompleteRenderGetTagProps) => React.ReactNode;
   /**
    * The size of the component.
    * @default 'medium'

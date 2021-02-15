@@ -287,6 +287,17 @@ export type AutocompleteCloseReason =
   | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
+export type AutocompleteGetTagProps = ({
+  index,
+}: {
+  index: number;
+}) => {
+  key: number;
+  'data-tag-index': number;
+  tabIndex: -1;
+  onDelete: (event: any) => void;
+};
+
 export default function useAutocomplete<
   T,
   Multiple extends boolean | undefined = undefined,
@@ -301,7 +312,7 @@ export default function useAutocomplete<
   getInputLabelProps: () => Omit<React.HTMLAttributes<HTMLLabelElement>, 'color'>;
   getClearProps: () => React.HTMLAttributes<HTMLDivElement>;
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLDivElement>;
-  getTagProps: ({ index }: { index: number }) => React.HTMLAttributes<HTMLDivElement>;
+  getTagProps: AutocompleteGetTagProps;
   getListboxProps: () => React.HTMLAttributes<HTMLUListElement>;
   getOptionProps: ({
     option,
