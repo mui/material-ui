@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
-import { ExtendBadgeUnstyledTypeMap, BadgeUnstyledTypeMap } from '@material-ui/unstyled';
+import {
+  ExtendBadgeUnstyledTypeMap,
+  BadgeUnstyledTypeMap,
+} from '@material-ui/unstyled/BadgeUnstyled';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 

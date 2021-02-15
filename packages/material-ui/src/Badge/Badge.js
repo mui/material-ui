@@ -2,13 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePreviousProps, deepmerge } from '@material-ui/utils';
-import {
-  BadgeUnstyled,
+import { generateUtilityClasses, isHostComponent } from '@material-ui/unstyled';
+import BadgeUnstyled, {
   badgeUnstyledClasses,
   getBadgeUtilityClass,
-  generateUtilityClasses,
-  isHostComponent,
-} from '@material-ui/unstyled';
+} from '@material-ui/unstyled/BadgeUnstyled';
 import styled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';

@@ -2,14 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, deepmerge } from '@material-ui/utils';
-import {
-  SliderUnstyled,
+import { generateUtilityClasses, isHostComponent } from '@material-ui/unstyled';
+import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
   getSliderUtilityClass,
-  generateUtilityClasses,
-  isHostComponent,
-} from '@material-ui/unstyled';
+} from '@material-ui/unstyled/SliderUnstyled';
 import useThemeProps from '../styles/useThemeProps';
 import experimentalStyled from '../styles/experimentalStyled';
 import { alpha, lighten, darken } from '../styles/colorManipulator';
