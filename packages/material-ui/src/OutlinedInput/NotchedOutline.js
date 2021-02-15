@@ -123,10 +123,11 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
       }}
       className={className}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     >
-      <Legend
-        styleProps={{ label }}
+      <NotchedOutlineLegend
+        styleProps={styleProps}
         style={{
           // IE11: fieldset with legend does not render
           // a border radius. This maintains consistency
@@ -138,7 +139,7 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
         {/* notranslate needed while Google Translate will not fix zero-width space issue */}
         {/* eslint-disable-next-line react/no-danger */}
         <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
-      </Legend>
+      </NotchedOutlineLegend>
     </NotchedOutlineRoot>
   );
 });
