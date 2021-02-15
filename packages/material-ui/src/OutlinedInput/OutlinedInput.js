@@ -35,41 +35,58 @@ const OutlinedInputRoot = experimentalStyled(
   InputBaseRoot,
   { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
   { name: 'MuiOutlinedInput', slot: 'Root', overridesResolver },
-)(({ theme, styleProps }) => {
-  const borderColor =
-    theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
-  return {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    '&:hover': {
-      [`& .${outlinedInputClasses.notchedOutline}`]: {
-        borderColor: theme.palette.text.primary,
-      },
-    },
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
+)(
+  ({ theme, styleProps }) => {
+    const borderColor =
+      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+    return {
+      position: 'relative',
+      borderRadius: theme.shape.borderRadius,
       '&:hover': {
         [`& .${outlinedInputClasses.notchedOutline}`]: {
-          borderColor,
+          borderColor: theme.palette.text.primary,
         },
       },
-    },
-    [`&.Mui-focused`]: {
-      [`& .${outlinedInputClasses.notchedOutline}`]: {
-        borderColor: theme.palette.primary.main,
-        borderWidth: 2,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        '&:hover': {
+          [`& .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor,
+          },
+        },
       },
-    },
-    '&.Mui-error': {
-      [`& .${outlinedInputClasses.notchedOutline}`]: {
-        borderColor: theme.palette.error.main,
+      [`&.Mui-focused`]: {
+        [`& .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor: theme.palette.primary.main,
+          borderWidth: 2,
+        },
       },
-    },
-    '&.Mui-disabled': {
-      [`& .${outlinedInputClasses.notchedOutline}`]: {
-        borderColor: theme.palette.action.disabled,
+      '&.Mui-error': {
+        [`& .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor: theme.palette.error.main,
+        },
       },
-    },
+      '&.Mui-disabled': {
+        [`& .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor: theme.palette.action.disabled,
+        },
+      },
+      ...(styleProps.startAdornment && {
+        paddingLeft: 14,
+      }),
+      ...(styleProps.endAdornment && {
+        paddingRight: 14,
+      }),
+      ...(styleProps.multiline && {
+        padding: '16.5px 14px',
+        ...(styleProps.size === 'small' && {
+          paddingTop: 10.5,
+          paddingBottom: 10.5,
+        }),
+      }),
+    };
+  },
+  ({ styleProps, theme }) => ({
     ...(styleProps.color === 'secondary' && {
       '&.Mui-focused': {
         [`& .${outlinedInputClasses.notchedOutline}`]: {
@@ -77,21 +94,8 @@ const OutlinedInputRoot = experimentalStyled(
         },
       },
     }),
-    ...(styleProps.startAdornment && {
-      paddingLeft: 14,
-    }),
-    ...(styleProps.endAdornment && {
-      paddingRight: 14,
-    }),
-    ...(styleProps.multiline && {
-      padding: '16.5px 14px',
-      ...(styleProps.size === 'small' && {
-        paddingTop: 10.5,
-        paddingBottom: 10.5,
-      }),
-    }),
-  };
-});
+  }),
+);
 
 const NotchedOutlineRoot = experimentalStyled(
   NotchedOutline,
@@ -148,10 +152,8 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     ...props,
     fullWidth,
     inputComponent,
-    label,
     labelWidth,
     multiline,
-    notched,
     type,
   };
 

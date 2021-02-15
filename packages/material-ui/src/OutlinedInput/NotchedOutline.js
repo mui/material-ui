@@ -23,7 +23,7 @@ const NotchedOutlineRoot = experimentalStyled(
   borderWidth: 1,
   overflow: 'hidden',
 }));
-const Legend = experimentalStyled(
+const NotchedOutlineLegend = experimentalStyled(
   'legend',
   {},
   { name: 'PrivateNotchedOutline', slot: 'Legend' },
@@ -82,11 +82,22 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
   } = props;
   const theme = useTheme();
   const align = theme.direction === 'rtl' ? 'right' : 'left';
-
+  const styleProps = {
+    ...props,
+    notched,
+    label,
+  };
   if (label !== undefined) {
     return (
-      <NotchedOutlineRoot aria-hidden className={className} ref={ref} style={style} {...other}>
-        <Legend styleProps={{ notched, label }}>
+      <NotchedOutlineRoot
+        aria-hidden
+        className={className}
+        ref={ref}
+        style={style}
+        styleProps={styleProps}
+        {...other}
+      >
+        <NotchedOutlineLegend styleProps={styleProps}>
           {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
           {label ? (
             <span>{label}</span>
@@ -95,7 +106,7 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
             // eslint-disable-next-line react/no-danger
             <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
           )}
-        </Legend>
+        </NotchedOutlineLegend>
       </NotchedOutlineRoot>
     );
   }
