@@ -128,43 +128,52 @@ const markAxisProps = {
     offset: (percent) => ({ bottom: `${percent}%` }),
     leap: (percent) => ({ height: `${percent}%` }),
   },
-}
+};
 
 const axisProps = {
   horizontal: {
-    offset: (percent, sliderDimensions) => ({
-      transform: `translateX(${(percent * sliderDimensions.width) / 100}px)`,
+    offset: (percent) => ({
+      position: 'absolute',
+      width: '100%',
+      transform: `translateX(${percent}%)`,
     }),
-    track: (percent, offset, sliderDimensions) => ({
+    track: (percent, offset) => ({
+      position: 'absolute',
       width: '100%',
       transformOrigin: 'left',
-      transform: `translateX(${(offset * sliderDimensions.width) / 100}px) scaleX(${
+      transform: `translateX(${offset}%) scaleX(${
         percent / 100
       })`,
     }),
   },
   'horizontal-reverse': {
-    offset: (percent, sliderDimensions) => ({
-      transform: `translateX(-${(percent * sliderDimensions.width) / 100}px)`,
+    offset: (percent) => ({
+      position: 'absolute',
+      width: '100%',
+      transform: `translateX(${100 - percent}%)`,
       right: 0,
     }),
-    track: (percent, offset, sliderDimensions) => ({
+    track: (percent, offset) => ({
+      position: 'absolute',
       width: '100%',
       transformOrigin: 'right',
-      transform: `translateX(-${(offset * sliderDimensions.width) / 100}px) scaleX(${
+      transform: `translateX(-${offset}%) scaleX(${
         percent / 100
       })`,
     }),
   },
   vertical: {
-    offset: (percent, sliderDimensions) => ({
-      transform: `translateY(-${(percent * sliderDimensions.height) / 100}px)`,
+    offset: (percent) => ({
+      position: 'absolute',
+      height: '100%',
+      transform: `translateY(${100 - percent}%)`,
       bottom: 0,
     }),
-    track: (percent, offset, sliderDimensions) => ({
+    track: (percent, offset) => ({
+      position: 'absolute',
       height: '100%',
       transformOrigin: 'bottom',
-      transform: `translateY(-${(offset * sliderDimensions.height) / 100}px) scaleY(${
+      transform: `translateY(-${offset}%) scaleY(${
         percent / 100
       })`,
     }),
@@ -254,15 +263,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     theme,
     ...other
   } = props;
-
-  const [, rerender] = React.useState();
-  React.useEffect(() => {
-    if ([valueProp, defaultValue].some((value) => typeof value !== 'undefined')) {
-      // position thumb (it can only be positioned after first render as it relies on getBoundingClientRect)
-      rerender('rerender');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
@@ -596,11 +596,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
   const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
 
-  const sliderDimensions = sliderRef.current
-    ? sliderRef.current.getBoundingClientRect()
-    : { width: 0, height: 0 };
-
-  const trackStyle = axisProps[axis].track(trackLeap, trackOffset, sliderDimensions);
+  const trackContainerStyle = axisProps[axis].track(trackLeap, trackOffset);
+  const baseTrackStyle = {
+    [orientation === 'vertical' ? 'height' : 'width']: '100%'
+  };
 
   const Root = components.Root || component;
   const rootProps = componentsProps.root || {};
@@ -664,15 +663,17 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         })}
         className={clsx(utilityClasses.rail, railProps.className)}
       />
-      <Track
-        {...trackProps}
-        {...(!isHostComponent(Track) && {
-          styleProps: { ...styleProps, ...trackProps.styleProps },
-          theme,
-        })}
-        className={clsx(utilityClasses.track, trackProps.className)}
-        style={{ ...trackStyle, ...trackProps.style }}
-      />
+      <span style={trackContainerStyle}>
+        <Track
+          {...trackProps}
+          {...(!isHostComponent(Track) && {
+            styleProps: { ...styleProps, ...trackProps.styleProps },
+            theme,
+          })}
+          className={clsx(utilityClasses.track, trackProps.className)}
+          style={{ ...baseTrackStyle, ...trackProps.style }}
+        />
+      </span>
       {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
         const style = markAxisProps[axis].offset(percent);
@@ -732,77 +733,77 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       })}
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
-        const style = axisProps[axis].offset(percent, sliderDimensions);
+        const containerStyle = axisProps[axis].offset(percent);
 
         const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabel;
 
         return (
-          <React.Fragment key={index}>
-            <ValueLabelComponent
-              valueLabelFormat={valueLabelFormat}
-              valueLabelDisplay={valueLabelDisplay}
-              value={
-                typeof valueLabelFormat === 'function'
-                  ? valueLabelFormat(scale(value), index)
-                  : valueLabelFormat
-              }
-              index={index}
-              open={open === index || active === index || valueLabelDisplay === 'on'}
-              disabled={disabled}
-              {...valueLabelProps}
-              className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
-              {...(!isHostComponent(ValueLabel) && {
-                styleProps: { ...styleProps, ...valueLabelProps.styleProps },
-                theme,
-              })}
-            >
-              <Thumb
-                data-index={index}
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
-                {...thumbProps}
-                className={clsx(utilityClasses.thumb, thumbProps.className, {
-                  [utilityClasses.active]: active === index,
-                  [utilityClasses.focusVisible]: focusVisible === index,
-                })}
-                {...(!isHostComponent(Thumb) && {
-                  styleProps: { ...styleProps, ...thumbProps.styleProps },
+          <span key={index} style={containerStyle}>
+              <ValueLabelComponent
+                valueLabelFormat={valueLabelFormat}
+                valueLabelDisplay={valueLabelDisplay}
+                value={
+                  typeof valueLabelFormat === 'function'
+                    ? valueLabelFormat(scale(value), index)
+                    : valueLabelFormat
+                }
+                index={index}
+                open={open === index || active === index || valueLabelDisplay === 'on'}
+                disabled={disabled}
+                {...valueLabelProps}
+                className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
+                {...(!isHostComponent(ValueLabel) && {
+                  styleProps: { ...styleProps, ...valueLabelProps.styleProps },
                   theme,
                 })}
-                style={{ ...style, ...thumbProps.style }}
               >
-                <input
+                <Thumb
                   data-index={index}
-                  aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
-                  aria-labelledby={ariaLabelledby}
-                  aria-orientation={orientation}
-                  aria-valuemax={scale(max)}
-                  aria-valuemin={scale(min)}
-                  aria-valuenow={scale(value)}
-                  aria-valuetext={
-                    getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
-                  }
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  name={name}
-                  type="range"
-                  min={props.min}
-                  max={props.max}
-                  step={props.step}
-                  disabled={disabled}
-                  value={values[index]}
-                  onChange={handleHiddenInputChange}
-                  style={{
-                    ...visuallyHidden,
-                    direction: isRtl ? 'rtl' : 'ltr',
-                    // So that VoiceOver's focus indicator matches the thumb's dimensions
-                    width: '100%',
-                    height: '100%',
-                  }}
-                />
-              </Thumb>
-            </ValueLabelComponent>
-          </React.Fragment>
+                  onMouseOver={handleMouseOver}
+                  onMouseLeave={handleMouseLeave}
+                  {...thumbProps}
+                  className={clsx(utilityClasses.thumb, thumbProps.className, {
+                    [utilityClasses.active]: active === index,
+                    [utilityClasses.focusVisible]: focusVisible === index,
+                  })}
+                  {...(!isHostComponent(Thumb) && {
+                    styleProps: { ...styleProps, ...thumbProps.styleProps },
+                    theme,
+                  })}
+                  style={thumbProps.style}
+                >
+                  <input
+                    data-index={index}
+                    aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+                    aria-labelledby={ariaLabelledby}
+                    aria-orientation={orientation}
+                    aria-valuemax={scale(max)}
+                    aria-valuemin={scale(min)}
+                    aria-valuenow={scale(value)}
+                    aria-valuetext={
+                      getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+                    }
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    name={name}
+                    type="range"
+                    min={props.min}
+                    max={props.max}
+                    step={props.step}
+                    disabled={disabled}
+                    value={values[index]}
+                    onChange={handleHiddenInputChange}
+                    style={{
+                      ...visuallyHidden,
+                      direction: isRtl ? 'rtl' : 'ltr',
+                      // So that VoiceOver's focus indicator matches the thumb's dimensions
+                      width: '100%',
+                      height: '100%',
+                    }}
+                  />
+                </Thumb>
+              </ValueLabelComponent>
+            </span>
         );
       })}
     </Root>
