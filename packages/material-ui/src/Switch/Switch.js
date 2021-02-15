@@ -74,10 +74,6 @@ export const styles = (theme) => ({
     '&$checked + $track': {
       backgroundColor: theme.palette.primary.main,
     },
-    '&$disabled + $track': {
-      backgroundColor:
-        theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
-    },
   },
   /* Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
   colorSecondary: {
@@ -95,10 +91,6 @@ export const styles = (theme) => ({
     },
     '&$checked + $track': {
       backgroundColor: theme.palette.secondary.main,
-    },
-    '&$disabled + $track': {
-      backgroundColor:
-        theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
   /* Styles applied to the root element if `size="small"`. */
