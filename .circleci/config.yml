@@ -37,6 +37,14 @@ defaults: &defaults
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
 
 commands:
+  # Always call before install_*
+  restore_browser_binaries:
+    steps:
+      - restore_cache:
+          keys:
+            - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
+            - v1-playwright-{{ arch }}-
+            - v1-playwright-
   install_js:
     steps:
       - run:
@@ -62,20 +70,102 @@ commands:
             # Debug information
             yarn cache dir
             yarn cache list
-      - restore_cache:
-          keys:
-            - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
-            - v1-playwright-{{ arch }}-
-            - v1-playwright-
       - run:
           name: Install js dependencies
           command: yarn install --verbose
+  install_browsers:
+    parameters:
+      # Set to true if you intend to use firefox in playwright
+      firefox:
+        type: boolean
+        default: false
+      # Set to true if you intend to run playwright in headful mode
+      headful:
+        type: boolean
+        default: false
+      # Set to true if you need to support video playback
+      video:
+        type: boolean
+        default: false
+    steps:
+      - run:
+          name: Update apt
+          command: apt-get update
+      - run:
+          name: Install WebKit dependencies
+          command: |
+            apt-get install -y --no-install-recommends \
+              libwoff1 \
+              libopus0 \
+              libwebp6 \
+              libwebpdemux2 \
+              libenchant1c2a \
+              libgudev-1.0-0 \
+              libsecret-1-0 \
+              libhyphen0 \
+              libgdk-pixbuf2.0-0 \
+              libegl1 \
+              libnotify4 \
+              libxslt1.1 \
+              libevent-2.1-6 \
+              libgles2 \
+              libvpx5 \
+              libxcomposite1 \
+              libatk1.0-0 \
+              libatk-bridge2.0-0 \
+              libepoxy0 \
+              libgtk-3-0 \
+              libharfbuzz-icu0
+      - run:
+          name: Install gstreamer and plugins to support video playback in WebKit.
+          command: |
+            apt-get install -y --no-install-recommends \
+              libgstreamer-gl1.0-0 \
+              libgstreamer-plugins-bad1.0-0 \
+              gstreamer1.0-plugins-good \
+              gstreamer1.0-libav
+          if: << parameters.video >>
+      - run:
+          name: Install Chromium dependencies
+          command: |
+            apt-get install -y --no-install-recommends \
+              fonts-liberation \
+              libnss3 \
+              libxss1 \
+              libasound2 \
+              fonts-noto-color-emoji \
+              libxtst6
+      - run:
+          name: Install Firefox dependencies
+          command: |
+            apt-get install -y --no-install-recommends \
+              libdbus-glib-1-2 \
+              libxt6
+          if: << parameters.firefox >>
+      - run:
+          name: Install ffmpeg to bring in audio and video codecs necessary for playing videos in Firefox.
+          command: |
+            apt-get install -y --no-install-recommends \
+              ffmpeg
+          if:
+            and:
+              - << parameters.firefox >>
+              - << parameters.video >>
+      - run:
+          name: (Optional) Install XVFB if there's a need to run browsers in headful mode
+          command: |
+            apt-get install -y --no-install-recommends \
+              xvfb
+          if: << parameters.headful >>
+
+      - restore_browser_binaries
 
 jobs:
   checkout:
     <<: *defaults
     steps:
       - checkout
+      - restore_browser_binaries
       - install_js
       - run:
           name: Should not have any git not staged
@@ -290,13 +380,9 @@ jobs:
             exit 0
   test_browser:
     <<: *defaults
-    docker:
-      - image: mcr.microsoft.com/playwright:bionic
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-      - image: circleci/node:10
     steps:
       - checkout
+      - install_browsers
       - install_js
       - run:
           name: Tests real browsers
@@ -313,13 +399,9 @@ jobs:
           command: yarn test:umd
   test_profile:
     <<: *defaults
-    docker:
-      - image: mcr.microsoft.com/playwright:bionic
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-
     steps:
       - checkout
+      - install_browsers
       - install_js
       - run:
           name: Tests real browsers
@@ -340,12 +422,10 @@ jobs:
           destination: react-profiler-report/karma
   test_regressions:
     <<: *defaults
-    docker:
-      - image: mcr.microsoft.com/playwright:bionic
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
+      - install_browsers:
+          headful: true
       - install_js
       - run:
           name: Run visual regression tests
