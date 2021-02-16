@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const TEMP_WHITELIST_STORIES = ['lists', 'menus', 'switches', 'text-fields', 'pickers', 'tooltips'];
 const IGNORE_STORIES = ['no-ssr', 'material-icons'];
 
 const docsComponentsFolderPath = path.resolve(__dirname, '../docs/src/pages/components');
@@ -13,9 +12,7 @@ const JS_FILE_REGEXP = /(.*?)\.js$/;
 const allTopLevelFiles = fs.readdirSync(docsComponentsFolderPath);
 const allComponents = allTopLevelFiles
   .filter(item => fs.lstatSync(path.resolve(docsComponentsFolderPath, item)).isDirectory())
-  .filter(item => !IGNORE_STORIES.includes(item))
-  .filter(item => TEMP_WHITELIST_STORIES.includes(item));
-
+  .filter(item => !IGNORE_STORIES.includes(item));
   
 // Delete and create the generated stories path
 if (!fs.existsSync(storiesPath)) {
@@ -31,13 +28,14 @@ allComponents
   .map(componentName => {
     const componentFolderPath = path.resolve(docsComponentsFolderPath, componentName);
     const allExampleFiles = fs.readdirSync(componentFolderPath);
-    return [componentName, allExampleFiles];
+    const jsExampleFiles = allExampleFiles.filter(fileName => JS_FILE_REGEXP.test(fileName));
+    return [componentName, jsExampleFiles];
   })
-  .filter(([,allExampleFiles]) => allExampleFiles.length > 0)
-  .forEach(([componentName, allExampleFiles]) =>{
+  .filter(([,exampleFiles]) => exampleFiles.length > 0)
+  .forEach(([componentName, exampleFiles]) =>{
     
     // Only get js files
-    const jsFiles = allExampleFiles.filter(fileName => JS_FILE_REGEXP.test(fileName));
+    const jsFiles = exampleFiles.filter(fileName => JS_FILE_REGEXP.test(fileName));
     
     const exportStatements = jsFiles
       // Remove extension

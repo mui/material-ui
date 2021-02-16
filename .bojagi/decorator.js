@@ -14,11 +14,16 @@ const jss = create({
 
 const theme = createMuiTheme({});
 
-var fontCssLink = document.createElement('link');
-fontCssLink.setAttribute('rel', 'stylesheet');
-fontCssLink.setAttribute('type', 'text/css');
-fontCssLink.setAttribute('href', 'https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap');
-document.head.appendChild(fontCssLink);
+function addFontCssTag(url) {
+  var fontCssLink = document.createElement('link');
+  fontCssLink.setAttribute('rel', 'stylesheet');
+  fontCssLink.setAttribute('type', 'text/css');
+  fontCssLink.setAttribute('href', url);
+  document.head.appendChild(fontCssLink);
+}
+
+addFontCssTag('https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap');
+addFontCssTag('https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Two+Tone');
 
 export default (Story) => (
   <StyledEngineProvider injectFirst>
