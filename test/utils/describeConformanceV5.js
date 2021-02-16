@@ -244,11 +244,7 @@ const fullSuite = {
  * @param {() => ConformanceOptions} getOptions
  */
 export default function describeConformanceV5(minimalElement, getOptions) {
-  const {
-    after: runAfterHook = () => {},
-    only = Object.keys(fullSuite),
-    skip = [],
-  } = getOptions();
+  const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
 
   const render = createClientRender();
   const getOptionsWithDefault = () => ({ render, ...getOptions() });
