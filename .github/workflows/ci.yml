@@ -35,6 +35,7 @@ jobs:
       - run: yarn release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: |
+      - name: yarn release:tag
+        run: |
           git remote -v
           yarn release:tag --dryRun
