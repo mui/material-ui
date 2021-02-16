@@ -151,12 +151,13 @@ function doesSupportTouchActionNone() {
 }
 
 const useUtilityClasses = (styleProps) => {
-  const { disabled, marked, orientation, track, classes } = styleProps;
+  const { disabled, dragging, marked, orientation, track, classes } = styleProps;
 
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
+      dragging && 'dragging',
       marked && 'marked',
       orientation === 'vertical' && 'vertical',
       track === 'inverted' && 'trackInverted',
@@ -220,6 +221,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // - The active state isn't transferred when inversing a range slider.
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
+  const draggingTimer = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
 
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
@@ -432,6 +435,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
+    if (draggingTimer.current === null) {
+      draggingTimer.current = setTimeout(() => {
+        setDragging(true);
+      }, 100);
+    }
+
     if (handleChange) {
       handleChange(nativeEvent, newValue);
     }
@@ -439,6 +448,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const handleTouchEnd = useEventCallback((nativeEvent) => {
     const finger = trackFinger(nativeEvent, touchId);
+    clearTimeout(draggingTimer.current);
+    draggingTimer.current = null;
+    setDragging(false);
 
     if (!finger) {
       return;
@@ -577,6 +589,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     ...props,
     classes: {},
     disabled,
+    dragging,
     max,
     min,
     orientation,
