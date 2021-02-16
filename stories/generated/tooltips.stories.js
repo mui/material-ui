@@ -1,0 +1,16 @@
+export default { title: 'tooltips' };
+
+export { default as AccessibilityTooltips } from '../../docs/src/pages/components/tooltips/AccessibilityTooltips'
+export { default as AnchorElTooltips } from '../../docs/src/pages/components/tooltips/AnchorElTooltips'
+export { default as ArrowTooltips } from '../../docs/src/pages/components/tooltips/ArrowTooltips'
+export { default as BasicTooltip } from '../../docs/src/pages/components/tooltips/BasicTooltip'
+export { default as ControlledTooltips } from '../../docs/src/pages/components/tooltips/ControlledTooltips'
+export { default as CustomizedTooltips } from '../../docs/src/pages/components/tooltips/CustomizedTooltips'
+export { default as DelayTooltips } from '../../docs/src/pages/components/tooltips/DelayTooltips'
+export { default as DisabledTooltips } from '../../docs/src/pages/components/tooltips/DisabledTooltips'
+export { default as FollowCursorTooltips } from '../../docs/src/pages/components/tooltips/FollowCursorTooltips'
+export { default as NonInteractiveTooltips } from '../../docs/src/pages/components/tooltips/NonInteractiveTooltips'
+export { default as PositionedTooltips } from '../../docs/src/pages/components/tooltips/PositionedTooltips'
+export { default as TransitionsTooltips } from '../../docs/src/pages/components/tooltips/TransitionsTooltips'
+export { default as TriggersTooltips } from '../../docs/src/pages/components/tooltips/TriggersTooltips'
+export { default as VariableWidth } from '../../docs/src/pages/components/tooltips/VariableWidth'
