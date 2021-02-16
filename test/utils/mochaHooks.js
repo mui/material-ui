@@ -34,7 +34,7 @@ function dedupeActWarningsByComponent(consoleCalls) {
 
   consoleCalls.forEach(([stack, message]) => {
     const componentName = message.match(
-      /An update to (\w+) ran an effect, but was not wrapped in act/,
+      /An update to (.+?) ran an effect, but was not wrapped in act/,
     )?.[1];
 
     const duplicateMissingActWarning =
