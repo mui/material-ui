@@ -120,12 +120,15 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('focused', true);
     });
 
-    it('should not go in an infinite loop', () => {
+    it('should give disabled more priority of focused', () => {
+      const readContext = spy();
       render(
         <FormControl focused disabled>
           <Input />
+          <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
+      expect(readContext.args[0][0]).to.have.property('focused', false);
     });
   });
 
