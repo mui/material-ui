@@ -21,7 +21,7 @@ grow from it.
 - **Gatherings**: We meet up two times a year for a short week of meetings, events, and fun!
 - **Equipment**: Material-UI will let you choose new hardware of your choice (up to $2,500 USD).
 - **Flexible hours**: We work from different timezones. When the work is done doesn't really matter.
-- **Time off**: We provide 5 weeks if paid time off.
+- **Time off**: We provide 5 weeks of paid time off.
 
 ## Open roles
 
