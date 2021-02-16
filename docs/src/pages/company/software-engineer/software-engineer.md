@@ -52,7 +52,7 @@ The commercial products:
 
 ### The best parts of this job
 
-- **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI frameworks on the market.
+- **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
 - **You'll be part of an active, open, friendly community** of developers that are really excited about building awesome applications.
 - **Your role will be key to making Material-UI the go-to UI framework** for building applications, websites and design systems with React.
 
@@ -61,8 +61,8 @@ The commercial products:
 - **Shifting context.** You will necessarily have to shift context and dive into a different feature before the current one is done. It may even be in an area of the code base you're unfamiliar with or don't have a ton of understanding about. It's fun, rewarding work, but it can be very challenging.
 - **We move quickly, but don't sacrifice quality**. We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
 - **Material-UI is a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
-  The work you would be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
-- **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition of when to ignore something and when to dig in further.
+  The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
+- **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
 
 ## About you
 
@@ -79,9 +79,9 @@ We're looking for someone with strong front-end skills. More important than spec
 - **Avoid monolithic deliverables**. You scope and stage your work into well-defined milestones to ship.
 - **Past work with frontend infrastructure**. Perhaps you've created your company's design system, written a Babel plugin, or written complex React components. It would be great if you could address this in your cover letter!
 
-### What would be nice if you had, but isn't required
+### What it would be nice if you had, but isn't required
 
-- **You've contributed to a design system before**. You have worked on enterprise components in the past, maybe for internal usage in your company. You have built complex and advanced features while making sure the accessibility was fully functional.
+- **You've contributed to a design system before**. You have worked on enterprise components in the past, maybe for internal use in your company. You have built complex and advanced features while making sure the accessibility was fully functional.
 - **You've maintained an active repository before**. Maybe you've helped maintain a popular open-source repo, or perhaps you've worked on internal repos that saw contributions from multiple teams. Previous experience with highly active repo workflows is a definite plus for this role.
 - **You have contributed code to Material-UI before**. A history of contributing to Material-UI would be a definite plus.
 

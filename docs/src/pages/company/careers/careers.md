@@ -4,7 +4,7 @@
 
 The open-source project started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React UI libraries, backed by a vibrant community of more than 2M developers in over 180 countries.
 
-The company is self-bootstrapped (so far). It was incorporated in late 2019 and yet growing fast (x2-3 YoY). We have doubled the team in 2020 and are on track to do the same in 2021 (planning to onboard six new members).
+The company is bootstrapped (so far). It was incorporated in mid 2019 and yet growing fast (x2-3 YoY). We doubled the team in 2020 and are on track to do the same in 2021.
 
 ## Our values
 
@@ -18,10 +18,10 @@ grow from it.
 ## Perks & benefits
 
 - **Remote**: Our entire company is distributed.
-- **Gatherings**: We meet up two times a year for a short week of meetings, events, and fun!
+- **Gatherings**: We meet up once or twice a year for a short week of meetings, events, and fun!
 - **Equipment**: Material-UI will let you choose new hardware of your choice (up to $2,500 USD).
 - **Flexible hours**: We work from different timezones. When the work is done doesn't really matter.
-- **Time off**: We provide 5 weeks of paid time off.
+- **Time off**: We provide five weeks of paid time off.
 
 ## Open roles
 
@@ -33,7 +33,7 @@ We are looking for a lead designer to own most of our design work.
 
 ### [Senior Software Engineer](/company/software-engineer/)
 
-<span style="font-size: 14px;">x2 positions (1 design system team, 1 advanced components team)</span>
+<span style="font-size: 14px;">Two positions (one open-source team, one advanced components team).</span>
 
 We are looking for senior software engineers to help support our open-source components, assist the Material-UI community, and grow our enterprise edition.
 
@@ -49,4 +49,4 @@ No. We ask applicants to complete challenges that are close to their future day-
 
 ### Does Material-UI offer contractor job opportunities?
 
-Yes. People outside of France will be hired as full-time contractors.
+Yes. People outside of France will be hired as full-time contractors. (Benefits may vary.)
