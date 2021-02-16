@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention, consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp, elementAcceptingRef } from '@material-ui/utils';
-import ownerDocument from '../utils/ownerDocument';
-import useForkRef from '../utils/useForkRef';
+import {
+  exactProp,
+  elementAcceptingRef,
+  unstable_useForkRef as useForkRef,
+  unstable_ownerDocument as ownerDocument,
+} from '@material-ui/utils';
 
 // Inspired by https://github.com/focus-trap/tabbable
 const candidatesSelector = [
