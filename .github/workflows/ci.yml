@@ -35,3 +35,4 @@ jobs:
       - run: yarn release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: yarn release:tag --dryRun
