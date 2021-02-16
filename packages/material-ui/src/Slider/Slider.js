@@ -160,7 +160,7 @@ export const SliderTrack = experimentalStyled(
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
-  transition: theme.transitions.create(['width'], {
+  transition: theme.transitions.create(['left', 'width'], {
     duration: theme.transitions.duration.shortest,
   }),
   ...(styleProps.orientation === 'vertical' && {

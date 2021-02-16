@@ -438,7 +438,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     if (draggingTimer.current === null) {
       draggingTimer.current = setTimeout(() => {
         setDragging(true);
-      }, 100);
+      }, 0);
     }
 
     if (handleChange) {
