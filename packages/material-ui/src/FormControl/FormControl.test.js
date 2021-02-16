@@ -119,6 +119,14 @@ describe('<FormControl />', () => {
       container.querySelector('input').blur();
       expect(readContext.args[0][0]).to.have.property('focused', true);
     });
+
+    it('should not go in an infinite loop', () => {
+      render(
+        <FormControl focused disabled>
+          <Input />
+        </FormControl>,
+      );
+    });
   });
 
   describe('input', () => {
