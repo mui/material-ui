@@ -33,7 +33,7 @@ async function findMuiOrgRemote() {
       return { name, url, method };
     })
     .find((remote) => {
-      return remote.url.indexOf('mui-org/material-ui.git') && remote.method === '(push)';
+      return remote.url.indexOf('mui-org/material-ui.git') !== -1 && remote.method === '(push)';
     });
 }
 
