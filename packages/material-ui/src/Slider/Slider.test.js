@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { spy, stub } from 'sinon';
+import { spy, useFakeTimers, stub } from 'sinon';
 import { expect } from 'chai';
 import {
   createMount,
@@ -34,6 +34,20 @@ describe('<Slider />', () => {
     }
   });
 
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    act(() => {
+      clock.restore();
+    });
+  });
+
   const mount = createMount();
   const render = createClientRender();
 
@@ -41,6 +55,7 @@ describe('<Slider />', () => {
     classes,
     inheritComponent: SliderUnstyled,
     mount,
+    render,
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSlider',
     testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },

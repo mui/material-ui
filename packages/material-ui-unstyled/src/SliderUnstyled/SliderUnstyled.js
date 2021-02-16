@@ -500,6 +500,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   });
 
   const stopListening = React.useCallback(() => {
+    clearTimeout(draggingTimer.current);
     const doc = ownerDocument(sliderRef.current);
     doc.removeEventListener('mousemove', handleTouchMove);
     doc.removeEventListener('mouseup', handleTouchEnd);
