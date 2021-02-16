@@ -74,7 +74,7 @@ yargs
     builder: (command) => {
       return command.option('dryRun', {
         default: false,
-        describe: "If true, tags won't be pushed.",
+        describe: 'If true, the script will not have any permanent side-effects.',
         type: 'boolean',
       });
     },
