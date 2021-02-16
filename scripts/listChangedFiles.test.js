@@ -7,8 +7,9 @@ const listChangedFiles = require('./listChangedFiles');
 const writeFileAsync = promisify(fs.writeFile);
 const rimrafAsync = promisify(rimraf);
 
-describe('listChangedFiles', () => {
+describe('listChangedFiles', function listChangedFilesSuite() {
   // This test oftentimes times out after 4s but it's unclear why considering `listChangedFiles` is used in CI tasks that only take <1s.
+  this.timeout(10000);
   const noop = () => {};
   // eslint-disable-next-line no-console
   const time = process.env.CI ? console.time : noop;
