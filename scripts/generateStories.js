@@ -5,7 +5,8 @@ const TEMP_WHITELIST_STORIES = ['lists', 'menus', 'switches', 'text-fields', 'pi
 const IGNORE_STORIES = ['no-ssr', 'material-icons'];
 
 const docsComponentsFolderPath = path.resolve(__dirname, '../docs/src/pages/components');
-const generatedStoriesPath = path.resolve(__dirname, '../stories/generated');
+const storiesPath = path.resolve(__dirname, '../stories');
+const generatedStoriesPath = path.resolve(storiesPath, 'generated');
 
 const JS_FILE_REGEXP = /(.*?)\.js$/;
 
@@ -15,7 +16,11 @@ const allComponents = allTopLevelFiles
   .filter(item => !IGNORE_STORIES.includes(item))
   .filter(item => TEMP_WHITELIST_STORIES.includes(item));
 
+  
 // Delete and create the generated stories path
+if (!fs.existsSync(storiesPath)) {
+  fs.mkdirSync(storiesPath);
+}
 if (fs.existsSync(generatedStoriesPath)) {
   fs.rmdirSync(generatedStoriesPath, { recursive: true });
 }
@@ -41,7 +46,12 @@ allComponents
       .map(fileName => [fileName, `../../docs/src/pages/components/${componentName}/${fileName}`])
       .map(([fileName, filePath]) => `export { default as ${fileName} } from '${filePath}'`);
       
-    const defaultExport  = `export default { title: '${componentName}' };\n`;
+    const readableTitle = componentName
+      .split('-')
+      .map(word => word.substr(0,1).toUpperCase() + word.substr(1))
+      .join(' ');
+
+    const defaultExport  = `export default { title: '${readableTitle}' };\n`;
 
     const storyPath = path.resolve(generatedStoriesPath, `${componentName}.stories.js`);
     const storyFile = [defaultExport, ...exportStatements].join('\n');
