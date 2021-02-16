@@ -18,22 +18,22 @@ describe('listChangedFiles', function listChangedFilesSuite() {
   // eslint-disable-next-line no-console
   const timeEnd = process.env.CI ? console.timeEnd : noop;
   it('should detect changes', async () => {
-    time();
+    time('should detect changes');
     const changesBeforeAdd = await listChangedFiles({ branch: 'next' });
-    timeLog();
+    timeLog('should detect changes');
     const testFile = 'someTestFile.yml';
     try {
       await writeFileAsync(testFile, 'console.log("hello");');
-      timeLog();
+      timeLog('should detect changes');
       const changesAfterAdd = await listChangedFiles({ branch: 'next' });
-      timeLog();
+      timeLog('should detect changes');
       expect(changesBeforeAdd).not.to.contain(testFile);
       expect(changesAfterAdd).to.contain(testFile);
       expect(changesAfterAdd.size - changesBeforeAdd.size).to.equal(1);
-      timeLog();
+      timeLog('should detect changes');
     } finally {
       await rimrafAsync(testFile);
-      timeEnd();
+      timeEnd('should detect changes');
     }
   });
 });
