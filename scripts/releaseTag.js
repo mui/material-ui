@@ -33,7 +33,13 @@ async function findMuiOrgRemote() {
       return { name, url, method };
     })
     .find((remote) => {
-      return remote.url.includes('mui-org/material-ui.git') && remote.method === '(push)';
+      // test: https://regex101.com/r/fBVJUX/1
+      // matching:
+      // - https://github.com/mui-org/material-ui
+      // - git@github.com:mui-org/material-ui.git
+      // but not:
+      // - git@github.com:mui-org/material-ui-docs.git
+      return /mui-org\/material-ui(\.git)?$/.test(remote.url) && remote.method === '(push)';
     });
 }
 
