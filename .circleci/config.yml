@@ -38,6 +38,12 @@ defaults: &defaults
 
 commands:
   install_js:
+    parameters:
+      browsers:
+        type: boolean
+        default: false
+        description: 'Set to true if you intend to any browser (e.g. with playwright).'
+
     steps:
       - run:
           name: View install environment
@@ -51,25 +57,56 @@ commands:
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
       - restore_cache:
+          name: Restore yarn cache
           keys:
-            - v6-yarn-sha-{{ checksum "yarn.lock" }}
-            - v6-yarn-sha-
+            - v7-yarn-{{ checksum "yarn.lock" }}
+            - v7-yarn-
       - run:
           name: Set yarn cache folder
           command: |
-            # Keep path in sync with `save_cache` for key "v6-yarn-sha-"
-            yarn config set cache-folder ~/.cache/yarn
+            # Keep path in sync with `save_cache` for key "v7-yarn-"
+            yarn config set cache-folder /tmp/yarn-cache
             # Debug information
             yarn cache dir
             yarn cache list
-      - restore_cache:
-          keys:
-            - v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
-            - v1-playwright-{{ arch }}-
-            - v1-playwright-
+      - when:
+          condition: << parameters.browsers >>
+          steps:
+            - run:
+                name: Prepare playwright hash
+                command: yarn --json list --pattern playwright > /tmp/playwright_info.json
+            - store_artifacts:
+                name: Debug playwright hash
+                path: /tmp/playwright_info.json
+            - restore_cache:
+                name: Restore playwright cache
+                keys:
+                  - v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
+                  - v5-playwright-{{ arch }}-
+                  - v5-playwright-
       - run:
           name: Install js dependencies
           command: yarn install --verbose
+          environment:
+            PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
+            PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<# parameters.browsers >>0<</ parameters.browsers >><<^ parameters.browsers >>1<</ parameters.browsers >>
+      - save_cache:
+          name: Save yarn cache
+          key: v7-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            # Keep path in sync with "Set yarn cache folder"
+            # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
+            - /tmp/yarn-cache
+      - when:
+          condition: << parameters.browsers >>
+          steps:
+            - save_cache:
+                name: Save playwright cache
+                key: v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
+                paths:
+            # Keep path in sync with "Install js dependencies"
+            # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
+                  - /tmp/pw-browsers
 
 jobs:
   checkout:
@@ -83,16 +120,6 @@ jobs:
       - run:
           name: Check for duplicated packages
           command: yarn deduplicate
-      - save_cache:
-          key: v1-playwright-{{ arch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/ms-playwright
-      - save_cache:
-          key: v6-yarn-sha-{{ checksum "yarn.lock" }}
-          paths:
-            # Keep path in sync with "Set yarn cache folder"
-            # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
-            - ~/.cache/yarn
   test_unit:
     <<: *defaults
     steps:
@@ -296,7 +323,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Tests real browsers
           command: yarn test:karma
@@ -316,10 +344,10 @@ jobs:
       - image: mcr.microsoft.com/playwright:bionic
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
-
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Tests real browsers
           # Run a couple of times for a better sample.
@@ -345,7 +373,8 @@ jobs:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout
-      - install_js
+      - install_js:
+          browsers: true
       - run:
           name: Run visual regression tests
           command: xvfb-run yarn test:regressions
