@@ -69,7 +69,7 @@ export const styles = (theme) => ({
       },
       '&$disabled': {
         color: lighten(theme.palette.primary.main, 0.62),
-      }
+      },
     },
     '&$checked + $track': {
       backgroundColor: theme.palette.primary.main,
@@ -87,7 +87,7 @@ export const styles = (theme) => ({
       },
       '&$disabled': {
         color: lighten(theme.palette.secondary.main, 0.62),
-      }
+      },
     },
     '&$checked + $track': {
       backgroundColor: theme.palette.secondary.main,
