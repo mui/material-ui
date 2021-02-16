@@ -198,7 +198,7 @@ function BrandingMission() {
                 maxWidth: 420,
                 mx: 'auto',
                 position: 'relative',
-                mb: 15,
+                mb: 10,
                 color: 'secondary.contrastText',
               }}
             >
@@ -212,7 +212,7 @@ function BrandingMission() {
                   height: 120,
                   position: 'absolute',
                   right: -30,
-                  bottom: -240,
+                  bottom: -200,
                 }}
               />
               <Typography variant="h2" sx={{ mb: 3 }}>
@@ -220,19 +220,19 @@ function BrandingMission() {
               </Typography>
               <Box component="ul" sx={{ margin: 0, padding: 0 }}>
                 <BrandingBulletItem variant="dark">
-                  Transparency, most of our work is public
+                  Customer obsessed. We put our customers front & center.
                 </BrandingBulletItem>
                 <BrandingBulletItem variant="dark">
-                  Creating a safe, high-trust team
+                  Transparency. Most of our work is public.
                 </BrandingBulletItem>
                 <BrandingBulletItem variant="dark">
-                  Building incredible developer experiences
+                  Freedom. We work from anywhere in the world.
                 </BrandingBulletItem>
                 <BrandingBulletItem variant="dark">
-                  Maintaining a healthy working environment
+                  Autonomy. We want to create a safe, high-trust team.
                 </BrandingBulletItem>
                 <BrandingBulletItem variant="dark">
-                  Deliver web experiences that feel amazing
+                  Excellence. We're aiming high, and we know it.
                 </BrandingBulletItem>
               </Box>
             </Box>
