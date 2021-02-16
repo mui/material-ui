@@ -14,7 +14,11 @@ const jss = create({
 
 const theme = createMuiTheme({});
 
-console.log('test');
+var fontCssLink = document.createElement('link');
+fontCssLink.setAttribute('rel', 'stylesheet');
+fontCssLink.setAttribute('type', 'text/css');
+fontCssLink.setAttribute('href', 'https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap');
+document.head.appendChild(fontCssLink);
 
 export default (Story) => (
   <StyledEngineProvider injectFirst>
