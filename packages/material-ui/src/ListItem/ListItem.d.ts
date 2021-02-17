@@ -101,7 +101,6 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
       components?: {
         Root?: React.ElementType;
       };
-
       /**
        * The props used for each slot inside the Input.
        * @default {}
