@@ -4,11 +4,7 @@ import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 import experimentalStyled from '../styles/experimentalStyled';
 
-const NotchedOutlineRoot = experimentalStyled(
-  'fieldset',
-  {},
-  { name: 'PrivateNotchedOutline', slot: 'Root' },
-)(() => ({
+const NotchedOutlineRoot = experimentalStyled('fieldset')({
   textAlign: 'left',
   position: 'absolute',
   bottom: 0,
@@ -22,54 +18,49 @@ const NotchedOutlineRoot = experimentalStyled(
   borderStyle: 'solid',
   borderWidth: 1,
   overflow: 'hidden',
-}));
-const NotchedOutlineLegend = experimentalStyled(
-  'legend',
-  {},
-  { name: 'PrivateNotchedOutline', slot: 'Legend' },
-)(({ styleProps, theme }) => {
-  return {
-    ...(styleProps.label === undefined && {
-      padding: 0,
-      lineHeight: '11px', // sync with `height` in `legend` styles
-      transition: theme.transitions.create('width', {
-        duration: 150,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    }),
-    ...(styleProps.label !== undefined && {
-      display: 'block',
-      width: 'auto',
-      padding: 0,
-      height: 11, // sync with `lineHeight` in `legend` styles
-      fontSize: '0.75em',
-      visibility: 'hidden',
-      maxWidth: 0.01,
-      transition: theme.transitions.create('max-width', {
-        duration: 50,
-        easing: theme.transitions.easing.easeOut,
-      }),
-      '& > span': {
-        paddingLeft: 5,
-        paddingRight: 5,
-        display: 'inline-block',
-      },
-      ...(styleProps.notched && {
-        maxWidth: 1000,
-        transition: theme.transitions.create('max-width', {
-          duration: 100,
-          easing: theme.transitions.easing.easeOut,
-          delay: 50,
-        }),
-      }),
-    }),
-  };
 });
+
+const NotchedOutlineLegend = experimentalStyled('legend')(({ styleProps, theme }) => ({
+  ...(styleProps.label === undefined && {
+    padding: 0,
+    lineHeight: '11px', // sync with `height` in `legend` styles
+    transition: theme.transitions.create('width', {
+      duration: 150,
+      easing: theme.transitions.easing.easeOut,
+    }),
+  }),
+  ...(styleProps.label !== undefined && {
+    display: 'block',
+    width: 'auto',
+    padding: 0,
+    height: 11, // sync with `lineHeight` in `legend` styles
+    fontSize: '0.75em',
+    visibility: 'hidden',
+    maxWidth: 0.01,
+    transition: theme.transitions.create('max-width', {
+      duration: 50,
+      easing: theme.transitions.easing.easeOut,
+    }),
+    '& > span': {
+      paddingLeft: 5,
+      paddingRight: 5,
+      display: 'inline-block',
+    },
+    ...(styleProps.notched && {
+      maxWidth: 1000,
+      transition: theme.transitions.create('max-width', {
+        duration: 100,
+        easing: theme.transitions.easing.easeOut,
+        delay: 50,
+      }),
+    }),
+  }),
+}));
 
 /**
  * @ignore - internal component.
  */
-const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
+function NotchedOutline(props) {
   const {
     children,
     classes,
@@ -92,7 +83,6 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
       <NotchedOutlineRoot
         aria-hidden
         className={className}
-        ref={ref}
         style={style}
         styleProps={styleProps}
         {...other}
@@ -122,7 +112,6 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
         ...style,
       }}
       className={className}
-      ref={ref}
       styleProps={styleProps}
       {...other}
     >
@@ -142,7 +131,7 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
       </NotchedOutlineLegend>
     </NotchedOutlineRoot>
   );
-});
+}
 
 NotchedOutline.propTypes = {
   /**
