@@ -232,7 +232,7 @@ function BrandingMission() {
                   Autonomy. We want to create a safe, high-trust team.
                 </BrandingBulletItem>
                 <BrandingBulletItem variant="dark">
-                  Excellence. We're aiming high, and we know it.
+                  {"Excellence. We're aiming high, and we know it."}
                 </BrandingBulletItem>
               </Box>
             </Box>
