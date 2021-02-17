@@ -13452,14 +13452,13 @@ react-docgen@^5.0.0-beta.1:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@0.0.0-e2fd460cc, react-dom@^16.14.0:
-  version "0.0.0-e2fd460cc"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-e2fd460cc.tgz#07d0a452f5aa3b1e6669eb4f9895a278b3e73f1d"
-  integrity sha512-knNnIu6vsYsD/uRiDi7mm8qK7OBdbfzxQMfsuxmDpuxNsGKCjeVnEDohWcrtPhWagdC7C+M+LjmSTMJ6taUmKQ==
+react-dom@^16.14.0, "react-dom@https://pkg.csb.dev/eps1lon/react/commit/d379f34e/react-dom":
+  version "17.0.2"
+  resolved "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/react-dom#b642a8674bcc01af2417c52cda61777897e467df"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "0.0.0-e2fd460cc"
+    scheduler "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/scheduler"
 
 react-draggable@^4.0.3:
   version "4.4.3"
@@ -13693,10 +13692,9 @@ react-window@^1.8.5:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react@0.0.0-e2fd460cc, react@^16.14.0:
-  version "0.0.0-e2fd460cc"
-  resolved "https://registry.yarnpkg.com/react/-/react-0.0.0-e2fd460cc.tgz#a5ba66b0b536144e5861b824837709d15c89377b"
-  integrity sha512-se4N5U5rGC1BzB0KMgkZkJAzNo01Y5riOwHxGRsgd7Xs2Mk/rIEJhwiPXtxA3aknMKuX8PlY8pLXTiwTeii6YQ==
+react@^16.14.0, "react@https://pkg.csb.dev/eps1lon/react/commit/d379f34e/react":
+  version "17.0.2"
+  resolved "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/react#38e0fc89826d6b8d028ad5789d9197abe086cd4c"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -14512,10 +14510,9 @@ saxes@^5.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.0.0-e2fd460cc, scheduler@^0.19.1:
-  version "0.0.0-e2fd460cc"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-e2fd460cc.tgz#88a9553a2f501a04c16ea3bef867407891a11f28"
-  integrity sha512-sldfKBMXBZazBvK73BlBN/MGsWFhvwJhO3l0vyKhyOp069Qy/TEuThoEpV70O2le9iwvbxQiYpncsjl8VxiXqQ==
+scheduler@0.0.0-e2fd460cc, scheduler@^0.19.1, "scheduler@https://pkg.csb.dev/eps1lon/react/commit/d379f34e/scheduler":
+  version "0.20.1"
+  resolved "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/scheduler#bdbc22e3c1e0018a5756a72f30ca052f219c4d25"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
