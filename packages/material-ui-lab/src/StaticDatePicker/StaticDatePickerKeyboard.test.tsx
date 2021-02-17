@@ -1,11 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { useFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<StaticDatePicker /> keyboard interactions', () => {
+  let clock: ReturnType<typeof useFakeTimers>;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
+  });
   const render = createPickerRender();
 
   describe('Calendar keyboard navigation', () => {

@@ -166,19 +166,30 @@ describe('<SpeedDial />', () => {
     let actionButtons;
     let fabButton;
 
+    function NoTransition(props) {
+      const { children, in: inProp } = props;
+
+      if (!inProp) {
+        return null;
+      }
+      return children;
+    }
+
     const renderSpeedDial = (direction = 'up', actionCount = 4) => {
       actionButtons = [];
       fabButton = undefined;
 
       render(
         <SpeedDial
-          {...defaultProps}
+          ariaLabel={`${direction}-actions-${actionCount}`}
           FabProps={{
             ref: (element) => {
               fabButton = element;
             },
           }}
+          open
           direction={direction}
+          TransitionComponent={NoTransition}
         >
           {Array.from({ length: actionCount }, (_, index) => (
             <SpeedDialAction

@@ -6,7 +6,7 @@ import MonthPicker from '../MonthPicker/MonthPicker';
 import { useCalendarState } from './useCalendarState';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import FadeTransitionGroup from './PickersFadeTransitionGroup';
-import Calendar, { ExportedCalendarProps } from './PickersCalendar';
+import PickersCalendar, { ExportedCalendarProps } from './PickersCalendar';
 import { PickerOnChangeFn, useViews } from '../internal/pickers/hooks/useViews';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import PickersCalendarHeader, { ExportedCalendarHeaderProps } from './PickersCalendarHeader';
@@ -224,7 +224,7 @@ const DayPicker = React.forwardRef(function DayPicker<
           )}
 
           {openView === 'date' && (
-            <Calendar
+            <PickersCalendar
               {...other}
               {...calendarState}
               onMonthSwitchingAnimationEnd={onMonthSwitchingAnimationEnd}
