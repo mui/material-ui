@@ -120,7 +120,7 @@ describe('<FormControl />', () => {
       expect(readContext.args[0][0]).to.have.property('focused', true);
     });
 
-    it('should give disabled more priority of focused', () => {
+    it('ignores focused when disabled', () => {
       const readContext = spy();
       render(
         <FormControl focused disabled>
@@ -128,7 +128,7 @@ describe('<FormControl />', () => {
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
-      expect(readContext.args[0][0]).to.have.property('focused', false);
+      expect(readContext.args[0][0]).to.include({ disabled: true, focused: false });
     });
   });
 
@@ -141,6 +141,7 @@ describe('<FormControl />', () => {
           <TestComponent contextCallback={readContext} />
         </FormControl>,
       );
+
       expect(readContext.args[0][0]).to.have.property('filled', true);
     });
 
