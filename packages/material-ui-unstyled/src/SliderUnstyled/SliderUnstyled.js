@@ -16,6 +16,8 @@ import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
+const INTENTIONAL_MOVE_COUNT_THRESHOLD = 2;
+
 function asc(a, b) {
   return a - b;
 }
@@ -221,8 +223,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // - The active state isn't transferred when inversing a range slider.
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
-  const draggingTimer = React.useRef(null);
   const [dragging, setDragging] = React.useState(false);
+  const [moveCount, setMoveCount] = React.useState(0);
 
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
@@ -303,7 +305,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   }, [disabled]);
 
   if (disabled && active !== -1) {
-    clearTimeout(draggingTimer.current);
     setActive(-1);
   }
   if (disabled && focusVisible !== -1) {
@@ -414,6 +415,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const handleTouchMove = useEventCallback((nativeEvent) => {
     const finger = trackFinger(nativeEvent, touchId);
+    setMoveCount(moveCount + 1);
 
     if (!finger) {
       return;
@@ -436,10 +438,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
-    if (draggingTimer.current === null) {
-      draggingTimer.current = setTimeout(() => {
-        setDragging(true);
-      }, 40);
+    if (moveCount > INTENTIONAL_MOVE_COUNT_THRESHOLD && !dragging) {
+      setDragging(true);
     }
 
     if (handleChange) {
@@ -449,9 +449,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const handleTouchEnd = useEventCallback((nativeEvent) => {
     const finger = trackFinger(nativeEvent, touchId);
-    clearTimeout(draggingTimer.current);
-    draggingTimer.current = null;
     setDragging(false);
+    setMoveCount(0);
 
     if (!finger) {
       return;
