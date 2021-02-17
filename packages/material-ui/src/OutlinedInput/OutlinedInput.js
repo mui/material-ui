@@ -174,7 +174,10 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
       ref={ref}
       type={type}
       {...other}
-      classes={classes}
+      classes={{
+        ...classes,
+        notchedOutline: null,
+      }}
     />
   );
 });
