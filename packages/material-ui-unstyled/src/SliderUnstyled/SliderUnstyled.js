@@ -303,6 +303,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   }, [disabled]);
 
   if (disabled && active !== -1) {
+    clearTimeout(draggingTimer.current);
     setActive(-1);
   }
   if (disabled && focusVisible !== -1) {
@@ -438,7 +439,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     if (draggingTimer.current === null) {
       draggingTimer.current = setTimeout(() => {
         setDragging(true);
-      }, 0);
+      }, 40);
     }
 
     if (handleChange) {
@@ -500,7 +501,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   });
 
   const stopListening = React.useCallback(() => {
-    clearTimeout(draggingTimer.current);
     const doc = ownerDocument(sliderRef.current);
     doc.removeEventListener('mousemove', handleTouchMove);
     doc.removeEventListener('mouseup', handleTouchEnd);

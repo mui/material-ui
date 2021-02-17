@@ -1079,7 +1079,7 @@ describe('<Slider />', () => {
       );
       expect(container.firstChild).not.to.have.class(classes.dragging);
       act(() => {
-        clock.tick(0);
+        clock.tick(40);
       });
       expect(container.firstChild).to.have.class(classes.dragging);
       fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
