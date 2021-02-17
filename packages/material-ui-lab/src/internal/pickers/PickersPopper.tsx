@@ -73,6 +73,24 @@ function useClickAwayListener(
 
   const nodeRef = React.useRef<Element>(null);
 
+  const activatedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!active) {
+      return undefined;
+    }
+
+    function handleClickCapture() {
+      activatedRef.current = true;
+    }
+
+    document.addEventListener('click', handleClickCapture, { capture: true, once: true });
+
+    return () => {
+      activatedRef.current = false;
+      document.removeEventListener('click', handleClickCapture, { capture: true });
+    };
+  }, [active]);
+
   // The handler doesn't take event.defaultPrevented into account:
   //
   // event.preventDefault() is meant to stop default behaviors like
@@ -80,6 +98,10 @@ function useClickAwayListener(
   // and hitting left arrow to move the cursor in a text input etc.
   // Only special HTML elements have these default behaviors.
   const handleClickAway = useEventCallback((event: MouseEvent | TouchEvent) => {
+    if (!activatedRef.current) {
+      return;
+    }
+
     // Given developers can stop the propagation of the synthetic event,
     // we can only be confident with a positive value.
     const insideReactTree = syntheticEventRef.current;
