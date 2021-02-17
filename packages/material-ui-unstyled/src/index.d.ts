@@ -7,6 +7,9 @@ export * from './SliderUnstyled';
 export { default as Portal } from './Portal';
 export * from './Portal';
 
+export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
+export * from './Unstable_TrapFocus';
+
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
 
