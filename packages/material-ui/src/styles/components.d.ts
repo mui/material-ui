@@ -316,6 +316,10 @@ export interface Components {
     defaultProps?: ComponentsProps['MuiSelect'];
     styleOverrides?: ComponentsOverrides['MuiSelect'];
   };
+  MuiSkeleton?: {
+    defaultProps?: ComponentsProps['MuiSkeleton'];
+    styleOverrides?: ComponentsOverrides['MuiSkeleton'];
+  };
   MuiSlider?: {
     defaultProps?: ComponentsProps['MuiSlider'];
     styleOverrides?: ComponentsOverrides['MuiSlider'];
