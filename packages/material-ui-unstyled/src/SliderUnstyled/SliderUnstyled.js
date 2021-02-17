@@ -221,7 +221,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // - The active state isn't transferred when inversing a range slider.
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
-  const draggingTimer = React.useRef(null);
   const [dragging, setDragging] = React.useState(false);
 
   const [valueDerived, setValueState] = useControlled({
@@ -304,6 +303,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   if (disabled && active !== -1) {
     setActive(-1);
+    setDragging(false);
   }
   if (disabled && focusVisible !== -1) {
     setFocusVisible(-1);
@@ -435,11 +435,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
-    if (draggingTimer.current === null) {
-      draggingTimer.current = setTimeout(() => {
-        setDragging(true);
-      }, 0);
-    }
+    setDragging(true);
 
     if (handleChange) {
       handleChange(nativeEvent, newValue);
@@ -448,8 +444,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const handleTouchEnd = useEventCallback((nativeEvent) => {
     const finger = trackFinger(nativeEvent, touchId);
-    clearTimeout(draggingTimer.current);
-    draggingTimer.current = null;
     setDragging(false);
 
     if (!finger) {
@@ -500,7 +494,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   });
 
   const stopListening = React.useCallback(() => {
-    clearTimeout(draggingTimer.current);
     const doc = ownerDocument(sliderRef.current);
     doc.removeEventListener('mousemove', handleTouchMove);
     doc.removeEventListener('mouseup', handleTouchEnd);
