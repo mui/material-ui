@@ -2,7 +2,8 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, fireEvent, screen } from 'test/utils';
+import { describeConformance, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
+import { TransitionProps } from '@material-ui/core/transitions';
 import { TimePickerProps } from '@material-ui/lab/TimePicker';
 import DesktopTimePicker from '@material-ui/lab/DesktopTimePicker';
 import {
@@ -29,6 +30,36 @@ describe('<DesktopTimePicker />', () => {
       skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
     }),
   );
+
+  function NoTransition(props: TransitionProps & { children?: React.ReactNode }) {
+    const { children, in: inProp } = props;
+
+    if (!inProp) {
+      return null;
+    }
+    return children;
+  }
+
+  it('opens on click', () => {
+    const handleClose = spy();
+    const handleOpen = spy();
+    render(
+      <DesktopTimePicker
+        value={null}
+        onChange={() => {}}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        renderInput={(params) => <TextField {...params} />}
+        // @ts-expect-error TODO make this pass
+        TransitionComponent={NoTransition}
+      />,
+    );
+
+    fireDiscreteEvent.click(screen.getByLabelText(/choose time/i));
+
+    expect(handleClose.callCount).to.equal(0);
+    expect(handleOpen.callCount).to.equal(1);
+  });
 
   it('closes on clickaway', () => {
     const handleClose = spy();
