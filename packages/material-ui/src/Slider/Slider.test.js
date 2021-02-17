@@ -1048,4 +1048,42 @@ describe('<Slider />', () => {
     expect(handleNativeEvent.returnValues).to.have.members([slider]);
     expect(handleEvent.returnValues).to.have.members([slider]);
   });
+
+  describe('dragging class name', () => {
+    it('should no apply the class name for quick interaction', () => {
+      const { container } = render(<Slider defaultValue={90} />);
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      // First interaction
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
+      );
+      expect(container.firstChild).not.to.have.class(classes.dragging);
+      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
+
+      // Second interaction
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
+      );
+      expect(container.firstChild).not.to.have.class(classes.dragging);
+      act(() => {
+        clock.tick(0);
+      });
+      expect(container.firstChild).to.have.class(classes.dragging);
+      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
+      expect(container.firstChild).not.to.have.class(classes.dragging);
+    });
+  });
 });
