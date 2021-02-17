@@ -28,15 +28,15 @@ export const overridesResolver = (props, styles) => {
 
 const useUtilityClasses = (styleProps) => {
   const {
-    dense,
     alignItems,
-    divider,
-    disableGutters,
-    hasSecondaryAction,
-    selected,
-    disabled,
     button,
     classes,
+    dense,
+    disabled,
+    disableGutters,
+    divider,
+    hasSecondaryAction,
+    selected,
   } = styleProps;
 
   const slots = {
