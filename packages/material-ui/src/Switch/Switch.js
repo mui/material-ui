@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
-import { alpha } from '../styles/colorManipulator';
+import { alpha, darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 
@@ -40,7 +40,7 @@ export const styles = (theme) => ({
     top: 0,
     left: 0,
     zIndex: 1, // Render above the focus ripple.
-    color: theme.palette.mode === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
+    color: theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300],
     transition: theme.transitions.create(['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
@@ -48,13 +48,13 @@ export const styles = (theme) => ({
       transform: 'translateX(20px)',
     },
     '&$disabled': {
-      color: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+      color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
     },
     '&$checked + $track': {
       opacity: 0.5,
     },
     '&$disabled + $track': {
-      opacity: theme.palette.mode === 'light' ? 0.12 : 0.1,
+      opacity: theme.palette.mode === 'light' ? 0.12 : 0.2,
     },
   },
   /* Styles applied to the internal SwitchBase component's root element if `color="primary"`. */
@@ -67,16 +67,15 @@ export const styles = (theme) => ({
           backgroundColor: 'transparent',
         },
       },
-    },
-    '&$disabled': {
-      color: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+      '&$disabled': {
+        color:
+          theme.palette.mode === 'light'
+            ? lighten(theme.palette.primary.main, 0.62)
+            : darken(theme.palette.primary.main, 0.55),
+      },
     },
     '&$checked + $track': {
       backgroundColor: theme.palette.primary.main,
-    },
-    '&$disabled + $track': {
-      backgroundColor:
-        theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
   /* Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
@@ -89,16 +88,15 @@ export const styles = (theme) => ({
           backgroundColor: 'transparent',
         },
       },
-    },
-    '&$disabled': {
-      color: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+      '&$disabled': {
+        color:
+          theme.palette.mode === 'light'
+            ? lighten(theme.palette.secondary.main, 0.62)
+            : darken(theme.palette.secondary.main, 0.55),
+      },
     },
     '&$checked + $track': {
       backgroundColor: theme.palette.secondary.main,
-    },
-    '&$disabled + $track': {
-      backgroundColor:
-        theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
   /* Styles applied to the root element if `size="small"`. */
