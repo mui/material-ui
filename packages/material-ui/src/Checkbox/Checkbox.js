@@ -28,11 +28,11 @@ const useUtilityClasses = (styleProps) => {
     root: ['root', indeterminate && 'indeterminate', `color${capitalize(color)}`],
   };
 
-  const finalClasses = composeClasses(slots, getCheckboxUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getCheckboxUtilityClass, classes);
 
   return {
     ...classes, // forward the disabled and checked classes to the SwitchBase
-    ...finalClasses,
+    ...composedClasses,
   };
 };
 

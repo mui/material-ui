@@ -34,11 +34,11 @@ const useUtilityClasses = (styleProps) => {
     ],
   };
 
-  const finalClasses = composeClasses(slots, getInputLabelUtilityClasses, classes);
+  const composedClasses = composeClasses(slots, getInputLabelUtilityClasses, classes);
 
   return {
     ...classes, // forward the focused, disabled, etc. classes to the FormLabel
-    ...finalClasses,
+    ...composedClasses,
   };
 };
 

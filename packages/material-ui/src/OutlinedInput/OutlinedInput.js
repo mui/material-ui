@@ -27,7 +27,12 @@ const useUtilityClasses = (styleProps) => {
     input: ['input'],
   };
 
-  return composeClasses(slots, getOutlinedInputUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getOutlinedInputUtilityClass, classes);
+
+  return {
+    ...classes, // forward classes to the InputBase
+    ...composedClasses,
+  };
 };
 
 const OutlinedInputRoot = experimentalStyled(
@@ -164,13 +169,13 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
           }
         />
       )}
-      classes={classes}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
       ref={ref}
       type={type}
       {...other}
+      classes={classes}
     />
   );
 });
