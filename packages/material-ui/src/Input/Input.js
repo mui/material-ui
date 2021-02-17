@@ -114,9 +114,12 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const classes = useUtilityClasses(props);
 
+  const styleProps = { disableUnderline };
+
   return (
     <InputBase
       components={{ Root: InputRoot }}
+      componentsProps={{ root: { styleProps } }}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
