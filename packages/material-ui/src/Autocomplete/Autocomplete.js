@@ -167,7 +167,7 @@ const AutocompleteRoot = experimentalStyled(
       [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
         paddingRight: 52 + 4 + 9,
       },
-      '& .MuiOutlinedInput-input': {
+      [`& .${autocompleteClasses.input}`]: {
         padding: '7.5px 4px 7.5px 6px',
       },
       [`& .${autocompleteClasses.endAdornment}`]: {
@@ -176,7 +176,7 @@ const AutocompleteRoot = experimentalStyled(
     },
     '&.MuiOutlinedInput-root.MuiInputBase-sizeSmall': {
       padding: 6,
-      '& .MuiOutlinedInput-input': {
+      [`& .${autocompleteClasses.input}`]: {
         padding: '2.5px 4px 2.5px 6px',
       },
     },
