@@ -69,6 +69,7 @@
       "marked",
       "vertical",
       "disabled",
+      "dragging",
       "rail",
       "track",
       "trackFalse",

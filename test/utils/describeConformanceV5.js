@@ -162,7 +162,7 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      const { container: containerWithoutRootOverrides } = testRender(
+      const { container: containerWithoutRootOverrides } = render(
         <ThemeProvider theme={themeWithoutRootOverrides}>{element}</ThemeProvider>,
       );
 
