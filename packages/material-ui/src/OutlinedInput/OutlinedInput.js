@@ -46,29 +46,21 @@ const OutlinedInputRoot = experimentalStyled(
     return {
       position: 'relative',
       borderRadius: theme.shape.borderRadius,
-      '&:hover': {
-        [`& .${outlinedInputClasses.notchedOutline}`]: {
-          borderColor: theme.palette.text.primary,
-        },
+      [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+        borderColor: theme.palette.text.primary,
       },
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        '&:hover': {
-          [`& .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor,
-          },
+        [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor,
         },
       },
-      [`&.Mui-focused`]: {
-        [`& .${outlinedInputClasses.notchedOutline}`]: {
-          borderColor: theme.palette.primary.main,
-          borderWidth: 2,
-        },
+      [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+        borderColor: theme.palette.primary.main,
+        borderWidth: 2,
       },
-      '&.Mui-error': {
-        [`& .${outlinedInputClasses.notchedOutline}`]: {
-          borderColor: theme.palette.error.main,
-        },
+      [`&.Mui-error .${outlinedInputClasses.notchedOutline}`]: {
+        borderColor: theme.palette.error.main,
       },
       '&.Mui-disabled': {
         [`& .${outlinedInputClasses.notchedOutline}`]: {
