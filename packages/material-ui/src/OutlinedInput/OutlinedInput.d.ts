@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputBaseProps } from '../InputBase';
 
 export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
@@ -53,6 +54,10 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
    * If `true`, the outline is notched to accommodate the label.
    */
   notched?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type OutlinedInputClassKey = keyof NonNullable<OutlinedInputProps['classes']>;

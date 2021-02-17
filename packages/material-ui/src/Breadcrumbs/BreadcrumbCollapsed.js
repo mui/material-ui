@@ -5,14 +5,7 @@ import { emphasize } from '../styles/colorManipulator';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const BreadcrumbCollapsedButton = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'PrivateBreadcrumbCollapsed',
-    slot: 'Button',
-  },
-)(({ theme }) => ({
+const BreadcrumbCollapsedButton = experimentalStyled(ButtonBase)(({ theme }) => ({
   display: 'flex',
   marginLeft: theme.spacing(0.5),
   marginRight: theme.spacing(0.5),
@@ -33,14 +26,7 @@ const BreadcrumbCollapsedButton = experimentalStyled(
   },
 }));
 
-const BreadcrumbCollapsedIcon = experimentalStyled(
-  MoreHorizIcon,
-  {},
-  {
-    name: 'PrivateBreadcrumbCollapsed',
-    slot: 'Icon',
-  },
-)({
+const BreadcrumbCollapsedIcon = experimentalStyled(MoreHorizIcon)({
   width: 24,
   height: 16,
 });

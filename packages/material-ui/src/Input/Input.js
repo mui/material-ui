@@ -26,7 +26,12 @@ const useUtilityClasses = (styleProps) => {
     input: ['input'],
   };
 
-  return composeClasses(slots, getInputUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getInputUtilityClass, classes);
+
+  return {
+    ...classes, // forward classes to the InputBase
+    ...composedClasses,
+  };
 };
 
 const InputRoot = experimentalStyled(
@@ -107,15 +112,9 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
-    ...props,
-    fullWidth,
-    inputComponent,
-    multiline,
-    type,
-  };
-
   const classes = useUtilityClasses(props);
+
+  const styleProps = { disableUnderline };
 
   return (
     <InputBase
