@@ -42,7 +42,13 @@ module.exports = function getBabelConfig(api) {
         shippedProposals: api.env('modern'),
       },
     ],
-    '@babel/preset-react',
+    [
+      '@babel/preset-react',
+      {
+        // default in Babel 8
+        runtime: 'automatic',
+      },
+    ],
     '@babel/preset-typescript',
   ];
 

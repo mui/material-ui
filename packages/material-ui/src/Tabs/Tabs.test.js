@@ -92,9 +92,6 @@ describe('<Tabs />', () => {
         render(<Tabs value={0} centered variant="scrollable" />);
       }).toErrorDev([
         'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
-        // StrictMode renders twice
-        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
-        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
         'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
       ]);
     });

@@ -122,11 +122,7 @@ describe('ThemeProvider', () => {
             <div />
           </ThemeProvider>,
         );
-      }).toErrorDev([
-        'However, no outer theme is present.',
-        // strict mode renders twice
-        'However, no outer theme is present.',
-      ]);
+      }).toErrorDev(['However, no outer theme is present.']);
     });
 
     it('should warn about wrong theme function', () => {
@@ -139,11 +135,7 @@ describe('ThemeProvider', () => {
             ,
           </ThemeProvider>,
         );
-      }).toErrorDev([
-        'Material-UI: You should return an object from your theme function',
-        // strict mode renders twice
-        'Material-UI: You should return an object from your theme function',
-      ]);
+      }).toErrorDev(['Material-UI: You should return an object from your theme function']);
     });
   });
 });
