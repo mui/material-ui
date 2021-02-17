@@ -70,8 +70,7 @@ const waveKeyframe = keyframes`
 const SkeletonRoot = experimentalStyled(
   'span',
   {},
-  { name: 'MuiSkeleton', slot: 'Root' },
-  overridesResolver,
+  { name: 'MuiSkeleton', slot: 'Root', overridesResolver },
 )(
   ({ theme, styleProps }) => {
     const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
