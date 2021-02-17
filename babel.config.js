@@ -46,7 +46,7 @@ module.exports = function getBabelConfig(api) {
       '@babel/preset-react',
       {
         // default in Babel 8
-        runtime: 'automatic',
+        runtime: 'classic',
       },
     ],
     '@babel/preset-typescript',
