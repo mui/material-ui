@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { spy, stub } from 'sinon';
+import { spy, useFakeTimers, stub } from 'sinon';
 import { expect } from 'chai';
 import {
   createMount,
@@ -32,6 +32,20 @@ describe('<Slider />', () => {
     if (typeof Touch === 'undefined') {
       this.skip();
     }
+  });
+
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    act(() => {
+      clock.restore();
+    });
   });
 
   const mount = createMount();
@@ -1063,6 +1077,10 @@ describe('<Slider />', () => {
         document.body,
         createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
       );
+      expect(container.firstChild).not.to.have.class(classes.dragging);
+      act(() => {
+        clock.tick(0);
+      });
       expect(container.firstChild).to.have.class(classes.dragging);
       fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
       expect(container.firstChild).not.to.have.class(classes.dragging);
