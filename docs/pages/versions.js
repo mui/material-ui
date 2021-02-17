@@ -27,8 +27,13 @@ async function getBranches() {
       Authorization: `Basic ${Buffer.from(githubAuthorizationToken).toString('base64')}`,
     },
   });
-  const branches = await result.json();
-  return branches;
+  const text = await result.text();
+
+  if (result.status !== 200) {
+    throw new Error(text);
+  }
+
+  return JSON.parse(text);
 }
 
 Page.getInitialProps = async () => {
