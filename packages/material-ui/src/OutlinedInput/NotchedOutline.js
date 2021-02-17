@@ -60,7 +60,7 @@ const NotchedOutlineLegend = experimentalStyled('legend')(({ styleProps, theme }
 /**
  * @ignore - internal component.
  */
-function NotchedOutline(props) {
+export default function NotchedOutline(props) {
   const {
     children,
     classes,
@@ -164,5 +164,3 @@ NotchedOutline.propTypes = {
    */
   style: PropTypes.object,
 };
-
-export default NotchedOutline;
