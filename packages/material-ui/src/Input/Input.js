@@ -107,20 +107,11 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
-    ...props,
-    fullWidth,
-    inputComponent,
-    multiline,
-    type,
-  };
-
   const classes = useUtilityClasses(props);
 
   return (
     <InputBase
       components={{ Root: InputRoot }}
-      componentsProps={{ root: { styleProps } }}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}

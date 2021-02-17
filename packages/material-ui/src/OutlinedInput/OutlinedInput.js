@@ -147,21 +147,11 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
-    ...props,
-    fullWidth,
-    inputComponent,
-    labelWidth,
-    multiline,
-    type,
-  };
-
   const classes = useUtilityClasses(props);
 
   return (
     <InputBase
       components={{ Root: OutlinedInputRoot, Input: OutlinedInputInput }}
-      componentsProps={{ root: { styleProps }, input: { styleProps } }}
       renderSuffix={(state) => (
         <NotchedOutlineRoot
           className={classes.notchedOutline}
