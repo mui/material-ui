@@ -140,7 +140,6 @@ const OutlinedInputInput = experimentalStyled(
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiOutlinedInput' });
-
   const {
     fullWidth = false,
     inputComponent = 'input',
