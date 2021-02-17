@@ -214,7 +214,10 @@ const demos = requireDemos.keys().reduce((res, path) => {
   return res;
 }, []);
 
-const tests = regressions.concat(demos);
+const tests = regressions.concat(demos).filter(({ name }) => {
+  console.log(name);
+  return true;
+});
 
 if (unusedBlacklistPatterns.size > 0) {
   console.warn(

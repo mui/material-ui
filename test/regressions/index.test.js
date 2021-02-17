@@ -77,6 +77,16 @@ async function main() {
         await fse.ensureDir(path.dirname(screenshotPath));
         // Testcase.screenshot would resize the viewport to the element bbox.
         await page.screenshot({ clip, path: screenshotPath, type: 'png' });
+
+        console.log(
+          await page.evaluate(() => {
+            const clockNumber = document.querySelector('.MuiClockNumber-root');
+            if (clockNumber === null) {
+              return null;
+            }
+            return window.getComputedStyle(clockNumber).fontFamily;
+          }),
+        );
       });
     });
   });
