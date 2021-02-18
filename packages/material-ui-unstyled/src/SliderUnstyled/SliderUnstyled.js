@@ -224,7 +224,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
   const [dragging, setDragging] = React.useState(false);
-  const [moveCount, setMoveCount] = React.useState(0);
+  const moveCount = React.useRef(0);
 
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
@@ -415,11 +415,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const handleTouchMove = useEventCallback((nativeEvent) => {
     const finger = trackFinger(nativeEvent, touchId);
-    setMoveCount(moveCount + 1);
 
     if (!finger) {
       return;
     }
+
+    moveCount.current += 1;
 
     // Cancel move in case some other element consumed a mouseup event and it was not fired.
     if (nativeEvent.type === 'mousemove' && nativeEvent.buttons === 0) {
@@ -438,7 +439,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
-    if (moveCount > INTENTIONAL_MOVE_COUNT_THRESHOLD && !dragging) {
+    if (moveCount.current > INTENTIONAL_MOVE_COUNT_THRESHOLD && !dragging) {
       setDragging(true);
     }
 
@@ -450,7 +451,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const handleTouchEnd = useEventCallback((nativeEvent) => {
     const finger = trackFinger(nativeEvent, touchId);
     setDragging(false);
-    setMoveCount(0);
 
     if (!finger) {
       return;
@@ -494,6 +494,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       handleChange(nativeEvent, newValue);
     }
 
+    moveCount.current = 0;
     const doc = ownerDocument(sliderRef.current);
     doc.addEventListener('touchmove', handleTouchMove);
     doc.addEventListener('touchend', handleTouchEnd);

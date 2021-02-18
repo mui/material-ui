@@ -1035,8 +1035,8 @@ describe('<Slider />', () => {
     expect(handleEvent.returnValues).to.have.members([slider]);
   });
 
-  describe('dragging class name', () => {
-    it('should not apply the class name for quick interaction', () => {
+  describe('dragging state', () => {
+    it('should not apply class name for click modality', () => {
       const { container } = render(<Slider defaultValue={90} />);
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -1046,22 +1046,31 @@ describe('<Slider />', () => {
         left: 0,
       }));
 
-      // First interaction
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
-      );
-      expect(container.firstChild).not.to.have.class(classes.dragging);
-      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
-
-      // Second interaction
       fireEvent.touchStart(
         container.firstChild,
         createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
       );
       fireEvent.touchMove(
         document.body,
-        createTouches([{ identifier: 1, clientX: 200, clientY: 0 }]),
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+      );
+      expect(container.firstChild).not.to.have.class(classes.dragging);
+      fireEvent.touchEnd(document.body, createTouches([{ identifier: 1 }]));
+    });
+
+    it('should apply class name for dragging modality', () => {
+      const { container } = render(<Slider defaultValue={90} />);
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
       );
       fireEvent.touchMove(
         document.body,
