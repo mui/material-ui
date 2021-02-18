@@ -18,8 +18,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '8px 0',
     '&:hover': {
       backgroundColor: 'white',
-      color:"#001e3c"
-
+      color: '#001e3c',
     },
   },
   label: {
@@ -37,7 +36,7 @@ function PriorityButton(props: PriorityButtonProps) {
         mixBlendMode: 'normal',
         borderRadius: '4px',
         padding: '2px',
-        maxWidth:"310px"
+        maxWidth: '310px',
       }}
     >
       <MuiButton

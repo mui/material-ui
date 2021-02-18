@@ -53,7 +53,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
       sx={{
         p: 5,
         pt: 8,
-        pb: { xs: 2.5, md: 8},
+        pb: { xs: 2.5, md: 8 },
         position: 'relative',
         color: variant === 'dark' ? 'secondary.contrastText' : 'info',
         borderRadius: 1,
@@ -74,12 +74,8 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         alt=""
         sx={{ height: 60, position: 'absolute', left: 40, top: -30 }}
       />
-      <Typography variant="h4" component="h3">
-        {title}
-      </Typography>
-      <Typography sx={{ mt: 2, mb: 4, maxWidth: 700, minHeight: { lg: 88 } }} variant="body2">
-        {content}
-      </Typography>
+      <Typography variant="h4" component="h3">{title}</Typography>
+      <Typography sx={{ mt: 2, mb: 4, maxWidth: 700, minHeight: { lg: 88 } }} variant="body2">{content}</Typography>
       <Typography variant="h3" component="h3" sx={{ minHeight: { lg: 43 } }}>
         {actualPrice != 0 && (
           <Box
@@ -119,7 +115,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         </Box>
       </Typography>
       <Typography
-        sx={{ mt: 0, mb:0 , maxWidth: 700, color: 'grey5A', minHeight: { lg: 21 } }}
+        sx={{ mt: 0, mb: 0, maxWidth: 700, color: 'grey5A', minHeight: { lg: 21 } }}
         variant="body3"
       >
         {priceDescription}
@@ -129,15 +125,13 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         component={MaterialLink}
         size="large"
         variant="contained"
-        sx={{ mt: 3, mb: 4, my:{xs:4}, maxWidth: 310 }}
+        sx={{ mt: 3, mb: 4, my: { xs: 4 }, maxWidth: 310 }}
         endIcon={<NavigateNextIcon />}
-        classes={{
-          endIcon: classes.endIcon,
-        }}
+        classes={{ endIcon: classes.endIcon }}
       >
         {buttonTitle}
       </Button>
-      <Typography variant="h4" sx={{ fontSize: '16px', lineHeight: '24px',  mb: id === 3 ? 2 : 0 }}>
+      <Typography variant="h4" sx={{ fontSize: '16px', lineHeight: '24px', mb: id === 3 ? 2 : 0 }}>
         {featureTitle}:
       </Typography>
       {isPriorityButton && <PriorityButton priority="Priority" premium="Premium" />}
@@ -153,10 +147,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
             {feature.isLink ? (
               <Box
                 component={Link}
-                sx={{
-                  textDecoration: 'underline',
-                  color: variant === 'light' ? 'text.primary' : 'white',
-                }}
+                sx={{ textDecoration: 'underline', color: variant === 'light' ? 'text.primary' : 'white' }}
                 href={feature.href}
               >
                 {feature.detail}
