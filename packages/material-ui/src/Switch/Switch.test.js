@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
-import FormControl from '../FormControl';
-import Switch from './Switch';
-import classes from './switchClasses';
+import Switch, { switchClasses as classes } from '@material-ui/core/Switch';
+import FormControl from '@material-ui/core/FormControl';
 
 describe('<Switch />', () => {
   const mount = createMount();
