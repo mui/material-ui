@@ -1,41 +1,115 @@
 // @inheritedComponent IconButton
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
+import { refType, deepmerge } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha, darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    display: 'inline-flex',
-    width: 34 + 12 * 2,
-    height: 14 + 12 * 2,
-    overflow: 'hidden',
-    padding: 12,
-    boxSizing: 'border-box',
-    position: 'relative',
-    flexShrink: 0,
-    zIndex: 0, // Reset the stacking context.
-    verticalAlign: 'middle', // For correct alignment with the text.
-    '@media print': {
-      colorAdjust: 'exact',
+import useThemeProps from '../styles/useThemeProps';
+import experimentalStyled from '../styles/experimentalStyled';
+import switchClasses, { getSwitchUtilityClass } from './switchClasses';
+
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+
+  return deepmerge(styles.root || {}, {
+    ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
+    ...styles[`size${capitalize(styleProps.size)}`],
+    [`& .${switchClasses.switchBase}`]: {
+      ...styles.switchBase,
+      ...styles.input,
+      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
     },
+    [`& .${switchClasses.thumb}`]: styles.thumb,
+    [`& .${switchClasses.track}`]: styles.track,
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, edge, size, color, checked, disabled } = styleProps;
+
+  const slots = {
+    root: ['root', edge && `edge${capitalize(edge)}`, `size${capitalize(size)}`],
+    switchBase: [
+      'switchBase',
+      `color${capitalize(color)}`,
+      checked && 'checked',
+      disabled && 'disabled',
+      'input',
+    ],
+    thumb: ['thumb'],
+    track: ['track'],
+  };
+
+  const composedClasses = composeClasses(slots, getSwitchUtilityClass, classes);
+
+  return {
+    ...classes, // forward the disabled and checked classes to the SwitchBase
+    ...composedClasses,
+  };
+};
+
+const SwitchRoot = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiSwitch',
+    slot: 'Root',
+    overridesResolver,
+  },
+)(({ styleProps }) => ({
+  /* Styles applied to the root element. */
+  display: 'inline-flex',
+  width: 34 + 12 * 2,
+  height: 14 + 12 * 2,
+  overflow: 'hidden',
+  padding: 12,
+  boxSizing: 'border-box',
+  position: 'relative',
+  flexShrink: 0,
+  zIndex: 0, // Reset the stacking context.
+  verticalAlign: 'middle', // For correct alignment with the text.
+  '@media print': {
+    colorAdjust: 'exact',
   },
   /* Styles applied to the root element if `edge="start"`. */
-  edgeStart: {
+  ...(styleProps.edge === 'start' && {
     marginLeft: -8,
-  },
+  }),
   /* Styles applied to the root element if `edge="end"`. */
-  edgeEnd: {
+  ...(styleProps.edge === 'end' && {
     marginRight: -8,
+  }),
+  ...(styleProps.size === 'small' && {
+    width: 40,
+    height: 24,
+    padding: 7,
+    [`& .${switchClasses.thumb}`]: {
+      width: 16,
+      height: 16,
+    },
+    [`& .${switchClasses.switchBase}`]: {
+      padding: 4,
+      '&.Mui-checked': {
+        transform: 'translateX(16px)',
+      },
+    },
+  }),
+}));
+
+const SwitchSwitchBase = experimentalStyled(
+  SwitchBase,
+  {},
+  {
+    name: 'MuiSwitch',
+    slot: 'SwitchBase',
   },
-  /* Styles applied to the internal `SwitchBase` component's `root` class. */
-  switchBase: {
+)(
+  ({ theme }) => ({
+    /* Styles applied to the internal `SwitchBase` component's `root` class. */
     position: 'absolute',
     top: 0,
     left: 0,
@@ -44,148 +118,118 @@ export const styles = (theme) => ({
     transition: theme.transitions.create(['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
-    '&$checked': {
+    '&.Mui-checked': {
       transform: 'translateX(20px)',
     },
-    '&$disabled': {
+    '&.Mui-disabled': {
       color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
     },
-    '&$checked + $track': {
+    [`&.Mui-checked + .${switchClasses.track}`]: {
       opacity: 0.5,
     },
-    '&$disabled + $track': {
+    [`&.Mui-disabled + .${switchClasses.track}`]: {
       opacity: theme.palette.mode === 'light' ? 0.12 : 0.2,
     },
-  },
-  /* Styles applied to the internal SwitchBase component's root element if `color="primary"`. */
-  colorPrimary: {
-    '&$checked': {
-      color: theme.palette.primary.main,
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
+    [`& .${switchClasses.input}`]: {
+      /* Styles applied to the internal SwitchBase component's input element. */
+      left: '-100%',
+      width: '300%',
+    },
+  }),
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the internal SwitchBase component element unless `color="default"`. */
+    ...(styleProps.color !== 'default' && {
+      '&.Mui-checked': {
+        color: theme.palette[styleProps.color].main,
+        '&:hover': {
+          backgroundColor: alpha(
+            theme.palette[styleProps.color].main,
+            theme.palette.action.hoverOpacity,
+          ),
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
+        },
+        '&.Mui-disabled': {
+          color:
+            theme.palette.mode === 'light'
+              ? lighten(theme.palette[styleProps.color].main, 0.62)
+              : darken(theme.palette[styleProps.color].main, 0.55),
         },
       },
-      '&$disabled': {
-        color:
-          theme.palette.mode === 'light'
-            ? lighten(theme.palette.primary.main, 0.62)
-            : darken(theme.palette.primary.main, 0.55),
+      [`&.Mui-checked + .${switchClasses.track}`]: {
+        backgroundColor: theme.palette[styleProps.color].main,
       },
-    },
-    '&$checked + $track': {
-      backgroundColor: theme.palette.primary.main,
-    },
-  },
-  /* Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
-  colorSecondary: {
-    '&$checked': {
-      color: theme.palette.secondary.main,
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
-      '&$disabled': {
-        color:
-          theme.palette.mode === 'light'
-            ? lighten(theme.palette.secondary.main, 0.62)
-            : darken(theme.palette.secondary.main, 0.55),
-      },
-    },
-    '&$checked + $track': {
-      backgroundColor: theme.palette.secondary.main,
-    },
-  },
-  /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
-    width: 40,
-    height: 24,
-    padding: 7,
-    '& $thumb': {
-      width: 16,
-      height: 16,
-    },
-    '& $switchBase': {
-      padding: 4,
-      '&$checked': {
-        transform: 'translateX(16px)',
-      },
-    },
-  },
-  /* Pseudo-class applied to the internal `SwitchBase` component's `checked` class. */
-  checked: {},
-  /* Pseudo-class applied to the internal SwitchBase component's disabled class. */
-  disabled: {},
-  /* Styles applied to the internal SwitchBase component's input element. */
-  input: {
-    left: '-100%',
-    width: '300%',
-  },
-  /* Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
-  thumb: {
-    boxShadow: theme.shadows[1],
-    backgroundColor: 'currentColor',
-    width: 20,
-    height: 20,
-    borderRadius: '50%',
-  },
-  /* Styles applied to the track element. */
-  track: {
-    height: '100%',
-    width: '100%',
-    borderRadius: 14 / 2,
-    zIndex: -1,
-    transition: theme.transitions.create(['opacity', 'background-color'], {
-      duration: theme.transitions.duration.shortest,
     }),
-    backgroundColor:
-      theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
-    opacity: theme.palette.mode === 'light' ? 0.38 : 0.3,
+  }),
+);
+
+const SwitchTrack = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiSwitch',
+    slot: 'Track',
   },
-});
+)(({ theme }) => ({
+  /* Styles applied to the track element. */
+  height: '100%',
+  width: '100%',
+  borderRadius: 14 / 2,
+  zIndex: -1,
+  transition: theme.transitions.create(['opacity', 'background-color'], {
+    duration: theme.transitions.duration.shortest,
+  }),
+  backgroundColor:
+    theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
+  opacity: theme.palette.mode === 'light' ? 0.38 : 0.3,
+}));
 
-const Switch = React.forwardRef(function Switch(props, ref) {
-  const {
-    classes,
-    className,
-    color = 'secondary',
-    edge = false,
-    size = 'medium',
-    ...other
-  } = props;
+const SwitchThumb = experimentalStyled(
+  'span',
+  {},
+  {
+    name: 'MuiSwitch',
+    slot: 'Thumb',
+  },
+)(({ theme }) => ({
+  /* Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
+  boxShadow: theme.shadows[1],
+  backgroundColor: 'currentColor',
+  width: 20,
+  height: 20,
+  borderRadius: '50%',
+}));
 
-  const icon = <span className={classes.thumb} />;
+const Switch = React.forwardRef(function Switch(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
+  const { className, color = 'secondary', edge = false, size = 'medium', ...other } = props;
+
+  const styleProps = {
+    ...props,
+    color,
+    edge,
+    size,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
+  const icon = <SwitchThumb className={classes.thumb} styleProps={styleProps} />;
 
   return (
-    <span
-      className={clsx(
-        classes.root,
-        {
-          [classes.edgeStart]: edge === 'start',
-          [classes.edgeEnd]: edge === 'end',
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
-        },
-        className,
-      )}
-    >
-      <SwitchBase
+    <SwitchRoot className={clsx(classes.root, className)} styleProps={styleProps}>
+      <SwitchSwitchBase
+        className={classes.switchBase}
         type="checkbox"
         icon={icon}
         checkedIcon={icon}
-        classes={{
-          root: clsx(classes.switchBase, classes[`color${capitalize(color)}`]),
-          input: classes.input,
-          checked: classes.checked,
-          disabled: classes.disabled,
-        }}
         ref={ref}
+        styleProps={styleProps}
         {...other}
+        classes={classes}
       />
-      <span className={classes.track} />
-    </span>
+      <SwitchTrack className={classes.track} styleProps={styleProps} />
+    </SwitchRoot>
   );
 });
 
@@ -270,10 +314,14 @@ Switch.propTypes = {
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The value of the component. The DOM API casts this to a string.
    * The browser uses "on" as the default value.
    */
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiSwitch' })(Switch);
+export default Switch;

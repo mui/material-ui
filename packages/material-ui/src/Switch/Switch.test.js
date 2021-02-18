@@ -1,39 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
-import FormControl from '../FormControl';
-import Switch from './Switch';
+import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import Switch, { switchClasses as classes } from '@material-ui/core/Switch';
+import FormControl from '@material-ui/core/FormControl';
 
 describe('<Switch />', () => {
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Switch />);
-  });
-
-  describeConformance(<Switch />, () => ({
+  describeConformanceV5(<Switch />, () => ({
     mount,
+    muiName: 'MuiSwitch',
+    testVariantProps: { variant: 'foo' },
+    testDeepOverrides: { slotName: 'track', slotClassName: classes.track },
+    // TODO Switch violates root component
     only: ['refForwarding'],
     refInstanceof: window.HTMLSpanElement,
+    skip: ['componentProp', 'componentsProp'],
   }));
-
-  /* TODO Switch violates root component
-  describeConformance(<Switch />, () => ({
-    classes,
-    inheritComponent: IconButton,
-    mount,
-    refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
-  })); */
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
