@@ -17,9 +17,9 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { selected, disableGutters, dense, classes } = styleProps;
+  const { selected, dense, classes } = styleProps;
   const slots = {
-    root: ['root', selected && 'selected', !disableGutters && 'gutters', dense && 'dense'],
+    root: ['root', selected && 'selected', dense && 'dense'],
   };
 
   return composeClasses(slots, getMenuItemUtilityClass, classes);
