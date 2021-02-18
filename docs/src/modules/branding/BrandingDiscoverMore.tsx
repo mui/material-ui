@@ -16,6 +16,7 @@ interface DiscoverMoreCardProps {
 
 function DiscoverMoreCard(props: DiscoverMoreCardProps) {
   const { imagePosition, src, title, href, children } = props;
+
   return (
     <Box
       sx={{

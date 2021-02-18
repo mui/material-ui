@@ -6,18 +6,27 @@ import CheckIcon from 'docs/src/modules/branding/icons/Check';
 interface BrandingBulletItemProps {
   children?: React.ReactNode;
   variant?: 'dark' | 'light';
+  BoxSx: object;
+  spanSx: object;
+  spanVariant: string;
 }
 
 export default function BrandingBulletItem(props: BrandingBulletItemProps) {
-  const { children, variant = 'light', ...other } = props;
+  const { children, variant = 'light', spanSx, BoxSx, spanVariant, ...other } = props;
+
   return (
-    <Box component="li" {...other} sx={{ display: 'flex', my: variant === 'light' ? 2 : '20px' }}>
+    <Box
+      component="li"
+      {...other}
+      sx={{ display: 'flex', my: variant === 'light' ? 2 : '10px', ...BoxSx }}
+    >
       <CheckIcon
         sx={{
           display: 'inline-block',
           width: 24,
           height: 24,
-          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          backgroundColor: variant === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgb(204, 229, 255)',
+          // backgroundColor: 'rgba(255, 255, 255, 0.2)',
           color: variant === 'light' ? 'primary.main' : 'vividBlue',
           borderRadius: '50%',
           padding: '4px',
@@ -26,7 +35,9 @@ export default function BrandingBulletItem(props: BrandingBulletItemProps) {
           mt: '-2px',
         }}
       />
-      <Typography component="span">{children}</Typography>
+      <Typography component="span" variant={spanVariant} sx={{ ...spanSx }}>
+        {children}
+      </Typography>
     </Box>
   );
 }
