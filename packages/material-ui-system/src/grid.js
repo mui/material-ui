@@ -40,7 +40,7 @@ columnGap.filterProps = ['columnGap'];
 export const rowGap = (props) => {
   if (props.rowGap) {
     const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'rowGap');
-    const styleFromPropValue = () => ({
+    const styleFromPropValue = (propValue) => ({
       rowGap: getValue(transformer, propValue),
     });
     return handleBreakpoints(props, props.rowGap, styleFromPropValue);
