@@ -35,7 +35,7 @@ export default function Index() {
     setdailyBreadTypes({ ...dailyBreadTypes, [_event.target.name]: _event.target.checked });
   };
 
-  const handleSubmit = (_event) => {
+  const handleSubmit = () => {
     const { customerName: names, loavesType: loaves, breadType: breads } = formValues;
     setCustomerList(names.split(', '));
     setLoavesList(() => {
@@ -141,7 +141,7 @@ export default function Index() {
               />
             </FormGroup>
             <FormHelperText>
-              Select the breads you intend on making for today's operations.
+              Select the breads you intend on making for today&apos;s operations.
             </FormHelperText>
           </FormControl>
         </Grid>
