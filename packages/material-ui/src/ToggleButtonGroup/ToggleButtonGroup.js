@@ -92,11 +92,7 @@ const ToggleButtonGroupRoot = experimentalStyled(
 }));
 
 const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, ref) {
-  const props = useThemeProps({
-    props: inProps,
-    name: 'MuiToggleButtonGroup',
-  });
-
+  const props = useThemeProps({ props: inProps, name: 'MuiToggleButtonGroup' });
   const {
     children,
     className,
@@ -107,13 +103,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     value,
     ...other
   } = props;
-
-  const styleProps = {
-    ...props,
-    orientation,
-    size,
-  };
-
+  const styleProps = { ...props, orientation, size };
   const classes = useUtilityClasses(styleProps);
 
   const handleChange = (event, buttonValue) => {
