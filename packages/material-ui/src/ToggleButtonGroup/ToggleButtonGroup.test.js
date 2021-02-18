@@ -2,9 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
-import ToggleButtonGroup from './ToggleButtonGroup';
-import ToggleButton from '../ToggleButton';
-import classes from './toggleButtonGroupClasses';
+import ToggleButtonGroup, {
+  toggleButtonGroupClasses as classes,
+} from '@material-ui/core/ToggleButtonGroup';
+import ToggleButton from '@material-ui/core/ToggleButton';
 
 describe('<ToggleButtonGroup />', () => {
   const mount = createMount();
