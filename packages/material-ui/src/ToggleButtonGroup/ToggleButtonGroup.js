@@ -43,54 +43,53 @@ const ToggleButtonGroupRoot = experimentalStyled(
     slot: 'Root',
     overridesResolver,
   },
-)(({ styleProps, theme }) => {
-  return {
-    /* Styles applied to the root element. */
-    display: 'inline-flex',
-    borderRadius: theme.shape.borderRadius,
-    /* Styles applied to the root element if `orientation="vertical"`. */
-    ...(styleProps.orientation === 'vertical' && {
-      flexDirection: 'column',
-    }),
-    /* Styles applied to the children. */
-    [`& .${toggleButtonGroupClasses.grouped}`]: {
-      /* Styles applied to the children if `orientation="horizontal"`. */
-      ...(styleProps.orientation === 'horizontal' && {
-        '&:not(:first-of-type)': {
-          marginLeft: -1,
-          borderLeft: '1px solid transparent',
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
-        },
-        '&:not(:last-of-type)': {
-          borderTopRightRadius: 0,
-          borderBottomRightRadius: 0,
-        },
-        '&.Mui-selected + &.Mui-selected': {
-          borderLeft: 0,
-          marginLeft: 0,
-        },
-      }),
-      /* Styles applied to the children if `orientation="vertical"`. */
-      ...(styleProps.orientation === 'vertical' && {
-        '&:not(:first-of-type)': {
-          marginTop: -1,
-          borderTop: '1px solid transparent',
-          borderTopLeftRadius: 0,
-          borderTopRightRadius: 0,
-        },
-        '&:not(:last-of-type)': {
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-        },
-        '&.Mui-selected + &.Mui-selected': {
-          borderTop: 0,
-          marginTop: 0,
-        },
-      }),
-    },
-  };
-});
+)(({ styleProps, theme }) => ({
+  /* Styles applied to the root element. */
+  display: 'inline-flex',
+  borderRadius: theme.shape.borderRadius,
+  /* Styles applied to the root element if `orientation="vertical"`. */
+  ...(styleProps.orientation === 'vertical' && {
+    flexDirection: 'column',
+  }),
+  /* Styles applied to the children. */
+  [`& .${toggleButtonGroupClasses.grouped}`]: {
+    /* Styles applied to the children if `orientation="horizontal"`. */
+    ...(styleProps.orientation === 'horizontal'
+      ? {
+          '&:not(:first-of-type)': {
+            marginLeft: -1,
+            borderLeft: '1px solid transparent',
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          },
+          '&:not(:last-of-type)': {
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+          '&.Mui-selected + &.Mui-selected': {
+            borderLeft: 0,
+            marginLeft: 0,
+          },
+        }
+      : {
+          /* Styles applied to the children if `orientation="vertical"`. */
+          '&:not(:first-of-type)': {
+            marginTop: -1,
+            borderTop: '1px solid transparent',
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+          },
+          '&:not(:last-of-type)': {
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+          '&.Mui-selected + &.Mui-selected': {
+            borderTop: 0,
+            marginTop: 0,
+          },
+        }),
+  },
+}));
 
 const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, ref) {
   const props = useThemeProps({
