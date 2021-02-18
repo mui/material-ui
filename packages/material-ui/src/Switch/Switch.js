@@ -144,14 +144,13 @@ const SwitchSwitchBase = experimentalStyled(
         },
       },
       '&.Mui-disabled': {
-        color: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+        color:
+          theme.palette.mode === 'light'
+            ? lighten(theme.palette.secondary.main, 0.62)
+            : darken(theme.palette.secondary.main, 0.55),
       },
       [`&.Mui-checked + .${switchClasses.track}`]: {
         backgroundColor: theme.palette.primary.main,
-      },
-      [`&.Mui-disabled + .${switchClasses.track}`]: {
-        backgroundColor:
-          theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
       },
     }),
     /* Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
@@ -166,14 +165,13 @@ const SwitchSwitchBase = experimentalStyled(
         },
       },
       '&.Mui-disabled': {
-        color: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+        color:
+          theme.palette.mode === 'light'
+            ? lighten(theme.palette.secondary.main, 0.62)
+            : darken(theme.palette.secondary.main, 0.55),
       },
       [`&.Mui-checked + .${switchClasses.track}`]: {
         backgroundColor: theme.palette.secondary.main,
-      },
-      [`&.Mui-disabled + .${switchClasses.track}`]: {
-        backgroundColor:
-          theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white,
       },
     }),
   }),
