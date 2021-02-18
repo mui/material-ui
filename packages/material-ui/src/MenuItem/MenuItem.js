@@ -64,12 +64,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
-    ...props,
-    dense,
-    disableGutters,
-    selected,
-  };
+  const styleProps = { dense };
 
   const classes = useUtilityClasses(styleProps);
 
