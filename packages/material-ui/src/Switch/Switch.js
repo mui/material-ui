@@ -44,7 +44,12 @@ const useUtilityClasses = (styleProps) => {
     track: ['track'],
   };
 
-  return composeClasses(slots, getSwitchUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getSwitchUtilityClass, classes);
+
+  return {
+    ...classes, // forward the disabled and checked classes to the SwitchBase
+    ...composedClasses,
+  };
 };
 
 const SwitchRoot = experimentalStyled(
@@ -239,6 +244,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
         ref={ref}
         styleProps={styleProps}
         {...other}
+        classes={classes}
       />
       <SwitchTrack className={classes.track} styleProps={styleProps} />
     </SwitchRoot>
