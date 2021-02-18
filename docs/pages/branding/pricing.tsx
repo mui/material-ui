@@ -14,6 +14,8 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Dropdown from 'docs/src/modules/branding/icons/Dropdown';
+import BrandingCard from 'docs/src/modules/branding/BrandingCard';
+import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
 
 const startMaterialUi = [
   {
@@ -54,8 +56,7 @@ const startMaterialUi = [
         detail: (
           <React.Fragment>
             Material-UI X package (grid and date picker included){' '}
-            <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} /> with 1 year of
-            updates
+            <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} /> with 1 year of updates
           </React.Fragment>
         ),
         isLink: true,
@@ -143,12 +144,8 @@ const benefits = [
 
 function Benefits() {
   return (
-    <Container>
-      <Typography
-        variant="h3"
-        component="div"
-        sx={{ textAlign: 'center', mt: { md: 10, xs: 0 }, mb: 6 }}
-      >
+    <Container sx={{ mt: [10, 18], mb: [12, 20] }}>
+      <Typography variant="h3" component="div" sx={{ textAlign: 'center', mt: 8, mb: 6 }}>
         Benefits included with <Box sx={{ display: { xs: 'none', md: 'block' } }} />
         all the plans
       </Typography>
@@ -183,6 +180,7 @@ function Benefits() {
     </Container>
   );
 }
+
 function ComparePlans() {
   return (
     <React.Fragment>
@@ -198,31 +196,132 @@ function ComparePlans() {
     </React.Fragment>
   );
 }
+function WhatToExpect() {
+  return (
+    <Container sx={{ mt: [10, 18], mb: [12, 20] }}>
+      <Typography variant="h2" sx={{ mb: 10 }}>
+        Here's <UnderlinedText>what to expect</UnderlinedText>
+        <br />
+        from Material-UI
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <BrandingCard
+            color="emerald"
+            image="/static/branding/pricing/fast.svg"
+            title="Volume Discount"
+          >
+            <Typography sx={{ mt: 2 }}>
+              The licenses are on a per-developer basis. We offer the following tiered discounts
+              from list prices when purchasing more than one license for your development team:
+              <ul>
+                <li>
+                  – 2-5 Licenses: <strong>10% discount</strong>
+                </li>
+                <li>
+                  – 6-10 Licenses: <strong>15% discount</strong>
+                </li>
+              </ul>
+              If you require more than 10 licenses, contact us by email at{' '}
+              <Link href="mailto:sales@material-ui.com">sales@material-ui.com</Link>.
+            </Typography>
+          </BrandingCard>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <BrandingCard
+            color="vividBlue"
+            image="/static/branding/pricing/customizable.svg"
+            title="Perpetual License"
+          >
+            <Typography sx={{ mt: 2 }}>
+              When you purchase,{' '}
+              <strong>
+                you are granted a license to use a version of the product in perpetuity
+              </strong>
+              . There are no further charges until you choose to extend your license to cover newer
+              versions.
+              <br />
+              <br />
+              Please note that while the use of the software is perpetual, support and corrective
+              maintenance are not. We do not provide issue resolution to versions older than 12
+              months. We roll bug fixes, performance enhancements, and other improvements into new
+              releases; we don't patch, fix or in any way alter older versions.
+            </Typography>
+          </BrandingCard>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <BrandingCard
+            image="/static/branding/pricing/community.svg"
+            title="One year subscription to new versions"
+          >
+            <Typography sx={{ mt: 2 }}>
+              When you make a purchase{' '}
+              <strong>you get a subscription to license new versions for 365 days</strong>. Check
+              the{' '}
+              <Link href="https://github.com/mui-org/material-ui-x/blob/next/CHANGELOG.md">
+                change log
+              </Link>
+              . After 1 year (or up to 5 years if you choose an extension package) you will no
+              longer be allowed to use the latest versions without renewing your subscription. You
+              can continue to use your licensed versions in perpetuity.
+              <br />
+              <br />
+              Please note that while the use of the software is perpetual, support and corrective
+              maintenance are not. We roll bug fixes, performance enhancements, and other
+              improvements into new releases; we don't patch, fix or in any way alter older
+              versions.
+            </Typography>
+          </BrandingCard>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <BrandingCard
+            color="emerald"
+            image="/static/branding/pricing/documentation.svg"
+            title="Subscription Renewal"
+          >
+            <Typography sx={{ mt: 2 }}>
+              At the end of your subscription period, you will no longer be able to license the
+              latest versions or access support without renewing. This could range from 366 days up
+              to a 5-year term.{' '}
+              <strong>
+                Renewal pricing is substantially lower than first-year subscription costs
+              </strong>
+              .
+              <br />
+              <br />
+              Please note that while the use of the software is perpetual, access to new features,
+              support and corrective maintenance are not. We do not provide issue resolution to
+              versions older than 12 months. We roll bug fixes, performance enhancements, and other
+              improvements into new releases; we don't patch, fix or in any way alter older
+              versions.
+            </Typography>
+          </BrandingCard>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+}
+
 const faqData = [
   {
     summary: 'Why are you calling it early access?',
-    detail:
-      "We think you’ll love the components we've built so far, but we're planning to release more. We opened it up as soon as we had something useful, so that you can start getting value from it right away, and we'll be adding new features and components based on our own ideas, and on suggestions from early access customers.",
+    detail: "We think you’ll love the components we've built so far, but we're planning to release more. We opened it up as soon as we had something useful, so that you can start getting value from it right away, and we'll be adding new features and components based on our own ideas, and on suggestions from early access customers.",
   },
   {
     summary: 'How many licenses do I need?',
-    detail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
     summary: 'Am I allowed to use the product after 1-year subscription expires?',
-    detail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
     summary: 'What is the policy on redistributing the software?',
-    detail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
     summary: 'Do you offer discounts to educational and non-profit organizations?',
-    detail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
 ];
 
@@ -259,13 +358,7 @@ function FAQ() {
       >
         Frequently asked questions
       </Typography>
-      <Box
-        sx={{
-          mt: 10,
-          maxWidth: '770px',
-          margin: ' 0 auto',
-        }}
-      >
+      <Box sx={{ mt: 10, maxWidth: '770px', margin: ' 0 auto', }}>
         {faqData.map((faq) => (
           <Accordion
             key={faq.summary}
@@ -281,9 +374,11 @@ function FAQ() {
               aria-controls="panel1a-content"
               id="panel1a-header"
               sx={{ padding: '0px', minHeight: 'auto !important' }}
-              classes={{ content: classes.content, expandIcon: classes.expandIcon}}
+              classes={{ content: classes.content, expandIcon: classes.expandIcon }}
             >
-              <Typography variant="h4" component="p">{faq.summary}</Typography>
+              <Typography variant="h4" component="p">
+                {faq.summary}
+              </Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ padding: '20px 0 0 0' }}>
               <Typography sx={{ fontSize: '18px' }}>{faq.detail}</Typography>
@@ -307,8 +402,10 @@ export default function Pricing() {
       <StartMaterialUi />
       <Benefits />
       <ComparePlans />
+      <WhatToExpect />
       <FAQ />
       {/* <Support /> */}
+      <BrandingBeginToday />
     </BrandingRoot>
   );
 }
