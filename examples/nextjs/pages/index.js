@@ -21,8 +21,6 @@ export default function Index() {
   const [loavesList, setLoavesList] = useState([]);
   const [breadsList, setBreadsList] = useState([]);
 
-  console.log(customerList, loavesList, breadsList);
-
   const [pans, setPans] = useState(0);
   const [rounds, setRounds] = useState(0);
 
@@ -213,6 +211,7 @@ export default function Index() {
         >
           Clear Orders
         </Button>
+        <div style={{ display: 'none' }}>{customerList && loavesList && breadsList}</div>
       </Grid>
     </Container>
   );
