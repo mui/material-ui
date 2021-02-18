@@ -1,11 +1,6 @@
-export interface MenuItemClasses {
-  root: string;
-  gutters: string;
-  selected: string;
-  dense: string;
-}
+import { MenuItemClassKey } from './MenuItem';
 
-declare const menuItemClasses: MenuItemClasses;
+declare const menuItemClasses: Record<MenuItemClassKey, string>;
 
 export function getMenuItemUtilityClass(slot: string): string;
 

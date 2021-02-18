@@ -9,10 +9,9 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import ListItem from '../ListItem';
-import ListItemSecondaryAction from '../ListItemSecondaryAction';
-import MenuItem from './MenuItem';
-import classes from './menuItemClasses';
+import MenuItem, { menuItemClasses as classes } from '@material-ui/core/MenuItem';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 describe('<MenuItem />', () => {
   const mount = createMount();
