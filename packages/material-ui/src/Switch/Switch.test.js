@@ -13,19 +13,11 @@ describe('<Switch />', () => {
     muiName: 'MuiSwitch',
     testVariantProps: { variant: 'foo' },
     testDeepOverrides: { slotName: 'track', slotClassName: classes.track },
+    // TODO Switch violates root component
     only: ['refForwarding'],
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp'],
   }));
-
-  /* TODO Switch violates root component
-  describeConformance(<Switch />, () => ({
-    classes,
-    inheritComponent: IconButton,
-    mount,
-    refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
-  })); */
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
