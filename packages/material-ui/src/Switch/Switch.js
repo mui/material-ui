@@ -137,46 +137,28 @@ const SwitchSwitchBase = experimentalStyled(
     },
   }),
   ({ theme, styleProps }) => ({
-    /* Styles applied to the internal SwitchBase component's root element if `color="primary"`. */
-    ...(styleProps.color === 'primary' && {
+    /* Styles applied to the internal SwitchBase component element unless `color="default"`. */
+    ...(styleProps.color !== 'default' && {
       '&.Mui-checked': {
-        color: theme.palette.primary.main,
+        color: theme.palette[styleProps.color].main,
         '&:hover': {
-          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+          backgroundColor: alpha(
+            theme.palette[styleProps.color].main,
+            theme.palette.action.hoverOpacity,
+          ),
           '@media (hover: none)': {
             backgroundColor: 'transparent',
           },
         },
-      },
-      '&.Mui-disabled': {
-        color:
-          theme.palette.mode === 'light'
-            ? lighten(theme.palette.secondary.main, 0.62)
-            : darken(theme.palette.secondary.main, 0.55),
-      },
-      [`&.Mui-checked + .${switchClasses.track}`]: {
-        backgroundColor: theme.palette.primary.main,
-      },
-    }),
-    /* Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
-    ...(styleProps.color === 'secondary' && {
-      '&.Mui-checked': {
-        color: theme.palette.secondary.main,
-        '&:hover': {
-          backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
-          },
+        '&.Mui-disabled': {
+          color:
+            theme.palette.mode === 'light'
+              ? lighten(theme.palette[styleProps.color].main, 0.62)
+              : darken(theme.palette[styleProps.color].main, 0.55),
         },
       },
-      '&.Mui-disabled': {
-        color:
-          theme.palette.mode === 'light'
-            ? lighten(theme.palette.secondary.main, 0.62)
-            : darken(theme.palette.secondary.main, 0.55),
-      },
       [`&.Mui-checked + .${switchClasses.track}`]: {
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette[styleProps.color].main,
       },
     }),
   }),
