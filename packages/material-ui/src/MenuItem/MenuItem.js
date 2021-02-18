@@ -83,10 +83,10 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
       component={component}
       selected={selected}
       disableGutters={disableGutters}
-      classes={ListItemClasses}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      classes={ListItemClasses}
     />
   );
 });
