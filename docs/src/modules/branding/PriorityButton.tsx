@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
     border: '0',
     borderRadius: '4px',
     padding: '8px 0',
+    '&:hover': {
+      backgroundColor: 'white',
+      color:"#001e3c"
+
+    },
   },
   label: {
     textTransform: 'capitalize',
@@ -32,6 +37,7 @@ function PriorityButton(props: PriorityButtonProps) {
         mixBlendMode: 'normal',
         borderRadius: '4px',
         padding: '2px',
+        maxWidth:"310px"
       }}
     >
       <MuiButton

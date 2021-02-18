@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import PriorityButton from './PriorityButton';
 
 interface StartMaterialCardProps {
+  id: number;
   src: string;
   title: string;
   content: string;
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StartMaterialCard(props: StartMaterialCardProps) {
   const {
+    id,
     variant,
     actualPrice,
     price,
@@ -51,16 +53,14 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
       sx={{
         p: 5,
         pt: 8,
-        pb: 8,
+        pb: { xs: 2.5, md: 8},
         position: 'relative',
         color: variant === 'dark' ? 'secondary.contrastText' : 'info',
         borderRadius: 1,
         overflow: 'visible',
         minHeight: { xs: 420, md: 460, lg: 660 },
-        marginBottom: { xs: 8, md: 8, lg: 0 },
-        paddingLeft: { xs: 2.5, md: 5 },
-        paddingRight: { xs: 2.5, md: 5 },
-        paddingBottom: { xs: 2.5, md: 8 },
+        mb: { xs: 8, md: 8, lg: 0 },
+        px: { xs: 2.5, md: 5 },
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
@@ -101,7 +101,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
             ${actualPrice}
           </Box>
         )}
-        {price}
+        ${price}
         <Box
           component="span"
           sx={{
@@ -119,7 +119,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         </Box>
       </Typography>
       <Typography
-        sx={{ mt: 0, mb: 0, maxWidth: 700, color: 'grey5A', minHeight: { lg: 21 } }}
+        sx={{ mt: 0, mb:0 , maxWidth: 700, color: 'grey5A', minHeight: { lg: 21 } }}
         variant="body3"
       >
         {priceDescription}
@@ -129,7 +129,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         component={MaterialLink}
         size="large"
         variant="contained"
-        sx={{ mt: 3, mb: 4, maxWidth: 310 }}
+        sx={{ mt: 3, mb: 4, my:{xs:4}, maxWidth: 310 }}
         endIcon={<NavigateNextIcon />}
         classes={{
           endIcon: classes.endIcon,
@@ -137,7 +137,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
       >
         {buttonTitle}
       </Button>
-      <Typography variant="h4" sx={{ fontSize: '16px', lineHeight: '24px', mb: 2 }}>
+      <Typography variant="h4" sx={{ fontSize: '16px', lineHeight: '24px',  mb: id === 3 ? 2 : 0 }}>
         {featureTitle}:
       </Typography>
       {isPriorityButton && <PriorityButton priority="Priority" premium="Premium" />}
