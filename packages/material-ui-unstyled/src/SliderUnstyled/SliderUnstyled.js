@@ -551,6 +551,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       handleChange(event, newValue);
     }
 
+    moveCount.current = 0;
     const doc = ownerDocument(sliderRef.current);
     doc.addEventListener('mousemove', handleTouchMove);
     doc.addEventListener('mouseup', handleTouchEnd);
