@@ -13,7 +13,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Dropdown from 'docs/src/modules/branding/icons/Dropdown';
+
 
 const startMaterialUi = [
   {
@@ -95,7 +97,7 @@ function StartMaterialUi() {
         <Link href="/getting-started/usage/">Material-UI X</Link> to get more components & premium
         support.
       </Typography>
-      <Container>
+      <Container sx={{ px: { xs: 0 } }}>
         <Grid container>
           {startMaterialUi.map((data) => (
             <Grid item xs={12} md={12} lg={4} key={data.id}>
@@ -144,7 +146,7 @@ const benefits = [
 function Benefits() {
   return (
     <Container>
-      <Typography variant="h3" component="div" sx={{ textAlign: 'center', mt: 10, mb: 6 }}>
+      <Typography variant="h3" component="div" sx={{ textAlign: 'center', mt: { md: 10, xs: 0 }, mb: 6 }}>
         Benefits included with <Box sx={{ display: { xs: 'none', md: 'block' } }} />
         all the plans
       </Typography>
@@ -196,25 +198,25 @@ function ComparePlans() {
 }
 const faqData = [
   {
-    summary: 'Accordion 1',
-    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    summary: 'Why are you calling it early access?',
+    detail: 'We think you’ll love the components we\'ve built so far, but we\'re planning to release more. We opened it up as soon as we had something useful, so that you can start getting value from it right away, and we\'ll be adding new features and components based on our own ideas, and on suggestions from early access customers.',
   },
   {
-    summary: 'Accordion 2',
+    summary: 'How many licenses do I need?',
     detail:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
-    summary: 'Accordion 3',
+    summary: 'Am I allowed to use the product after 1-year subscription expires?',
     detail:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
-    summary: 'Accordion 4',
+    summary: 'What is the policy on redistributing the software?',
     detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
-    summary: 'Accordion 5',
+    summary: 'Do you offer discounts to educational and non-profit organizations?',
     detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
@@ -241,22 +243,19 @@ function FAQ() {
   return (
     <Container>
       <Typography variant="h2" align="center" sx={{ mt: 8 }}>
-        Frequently Asked Questions
+        Frequently asked questions
       </Typography>
-      <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}>
-        Compare Material-UI plans, see which one might fit you or your team. If you need further
-        help deciding contact support or visit{' '}
-        <Link href="/getting-started/usage/">community hub</Link>.
-      </Typography>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%', mt: 10 }}>
         {faqData.map((faq) => (
           <Accordion key={faq.summary}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={<Dropdown />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography className={classes.heading}>{faq.summary}</Typography>
+              <Typography variant="h4" component="p" >
+                {faq.summary}
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>{faq.detail}</Typography>
@@ -267,10 +266,10 @@ function FAQ() {
     </Container>
   );
 }
-const Customers = () => {
+const Support = () => {
   return (
     <Container>
-      <Box>Customers</Box>
+      <Box>Support</Box>
     </Container>
   );
 };
@@ -281,7 +280,7 @@ export default function Pricing() {
       <Benefits />
       <ComparePlans />
       <FAQ />
-      <Customers />
+      <Support />
     </BrandingRoot>
   );
 }
