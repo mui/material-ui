@@ -66,7 +66,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const styleProps = { dense };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(props);
 
   let tabIndex;
   if (!props.disabled) {
