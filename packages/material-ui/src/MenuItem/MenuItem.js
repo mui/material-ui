@@ -55,20 +55,20 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const {
     className,
     component = 'li',
+    dense = false,
     disableGutters = false,
     ListItemClasses,
     role = 'menuitem',
     selected,
     tabIndex: tabIndexProp,
-    dense = false,
     ...other
   } = props;
 
   const styleProps = {
     ...props,
-    selected,
-    disableGutters,
     dense,
+    disableGutters,
+    selected,
   };
 
   const classes = useUtilityClasses(styleProps);
