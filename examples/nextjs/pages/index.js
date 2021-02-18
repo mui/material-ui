@@ -21,7 +21,7 @@ export default function Index() {
   const [loavesList, setLoavesList] = useState([]);
   const [breadsList, setBreadsList] = useState([]);
 
-  console.log(customerList, loavesList, breadList);
+  console.log(customerList, loavesList, breadsList);
 
   const [pans, setPans] = useState(0);
   const [rounds, setRounds] = useState(0);
