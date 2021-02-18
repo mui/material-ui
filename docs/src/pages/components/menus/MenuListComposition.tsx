@@ -40,7 +40,7 @@ export default function MenuListComposition() {
   };
 
   function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab') {
+    if (event.key === 'Tab' || event.key === 'Escape') {
       event.preventDefault();
       setOpen(false);
     }
