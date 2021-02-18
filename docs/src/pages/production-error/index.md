@@ -4,6 +4,6 @@
 
 We recommend using the development build when debugging this error.
 It will include additional warnings about potential problems.
-If you encounter an exception while using the production build, this page will reassemble the orrigianl text of the error.
+If you encounter an exception while using the production build, this page will reassemble the original text of the error.
 
 {{"demo": "pages/production-error/ErrorDecoder.js", "hideToolbar": true, "bg": "inline"}}
