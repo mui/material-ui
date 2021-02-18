@@ -6,7 +6,7 @@ import { Theme } from '../styles/createMuiTheme';
 export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     SystemProps & {
-      children?: React.ReactNode | ((props: React.ComponentPropsWithRef<D>) => React.ReactNode);
+      children?: React.ReactNode;
       component?: React.ElementType;
       ref?: React.Ref<unknown>;
       direction?: 'row' | 'column';
