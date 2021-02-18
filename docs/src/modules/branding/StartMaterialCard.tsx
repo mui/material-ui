@@ -74,8 +74,12 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         alt=""
         sx={{ height: 60, position: 'absolute', left: 40, top: -30 }}
       />
-      <Typography variant="h4" component="h3">{title}</Typography>
-      <Typography sx={{ mt: 2, mb: 4, maxWidth: 700, minHeight: { lg: 88 } }} variant="body2">{content}</Typography>
+      <Typography variant="h4" component="h3">
+        {title}
+      </Typography>
+      <Typography sx={{ mt: 2, mb: 4, maxWidth: 700, minHeight: { lg: 88 } }} variant="body2">
+        {content}
+      </Typography>
       <Typography variant="h3" component="h3" sx={{ minHeight: { lg: 43 } }}>
         {actualPrice != 0 && (
           <Box
@@ -147,7 +151,10 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
             {feature.isLink ? (
               <Box
                 component={Link}
-                sx={{ textDecoration: 'underline', color: variant === 'light' ? 'text.primary' : 'white' }}
+                sx={{
+                  textDecoration: 'underline',
+                  color: variant === 'light' ? 'text.primary' : 'white',
+                }}
                 href={feature.href}
               >
                 {feature.detail}
