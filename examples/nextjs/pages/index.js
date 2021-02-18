@@ -17,10 +17,6 @@ import { useState } from 'react';
 export default function Index() {
   const [formValues, setFormValues] = useState({ customerName: '', loavesType: '', breadType: '' });
 
-  const [customerList, setCustomerList] = useState([]);
-  const [loavesList, setLoavesList] = useState([]);
-  const [breadsList, setBreadsList] = useState([]);
-
   const [pans, setPans] = useState(0);
   const [rounds, setRounds] = useState(0);
 
@@ -31,35 +27,30 @@ export default function Index() {
   });
   const [optimizationReportError, setOptimizationReportError] = useState(false);
 
+  const { loavesType: loaves, breadType: breads } = formValues;
+
   const handleCheckboxChange = (_event) => {
     setdailyBreadTypes({ ...dailyBreadTypes, [_event.target.name]: _event.target.checked });
   };
 
   const handleSubmit = () => {
-    const { customerName: names, loavesType: loaves, breadType: breads } = formValues;
-    setCustomerList(names.split(', '));
-    setLoavesList(() => {
-      loaves.split(',').forEach((loaf) => {
-        if (loaf.replace(' ', '').includes('pan')) {
-          setPans((p) => p + 1);
-          loaves.split(',');
-        } else if (loaf.replace(' ', '').includes('round')) {
-          setRounds((r) => r + 1);
-        }
-      });
-      return loaves.split(',');
+    loaves.split(',').forEach((loaf) => {
+      if (loaf.replace(' ', '').includes('pan')) {
+        setPans((p) => p + 1);
+        loaves.split(',');
+      } else if (loaf.replace(' ', '').includes('round')) {
+        setRounds((r) => r + 1);
+      }
     });
-    setBreadsList(() => {
-      breads.split(', ').forEach((bread) => {
-        if (bread === 'whole grain' && !dailyBreadTypes.wholeGrain) {
-          setOptimizationReportError(true);
-        } else if (bread === 'sourdough' && !dailyBreadTypes.sourdough) {
-          setOptimizationReportError(true);
-        } else if (bread === 'banana' && !dailyBreadTypes.banana) {
-          setOptimizationReportError(true);
-        }
-      });
-      return breads.split(',');
+
+    breads.split(', ').forEach((bread) => {
+      if (bread === 'whole grain' && !dailyBreadTypes.wholeGrain) {
+        setOptimizationReportError(true);
+      } else if (bread === 'sourdough' && !dailyBreadTypes.sourdough) {
+        setOptimizationReportError(true);
+      } else if (bread === 'banana' && !dailyBreadTypes.banana) {
+        setOptimizationReportError(true);
+      }
     });
   };
 
@@ -211,7 +202,6 @@ export default function Index() {
         >
           Clear Orders
         </Button>
-        <div style={{ display: 'none' }}>{customerList && loavesList && breadsList}</div>
       </Grid>
     </Container>
   );
