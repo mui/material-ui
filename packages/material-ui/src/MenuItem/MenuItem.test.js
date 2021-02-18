@@ -3,35 +3,29 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   createClientRender,
   fireEvent,
   screen,
 } from 'test/utils';
-import ListItem from '../ListItem';
-import ListItemSecondaryAction from '../ListItemSecondaryAction';
-import MenuItem from './MenuItem';
+import MenuItem, { menuItemClasses as classes } from '@material-ui/core/MenuItem';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 describe('<MenuItem />', () => {
-  /**
-   * @type {Record<string, string>}
-   */
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<MenuItem />);
-  });
-
-  describeConformance(<MenuItem />, () => ({
+  describeConformanceV5(<MenuItem />, () => ({
     classes,
     inheritComponent: ListItem,
     mount,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'a',
+    muiName: 'MuiMenuItem',
+    testVariantProps: { disableGutters: true },
+    skip: ['componentsProp'],
   }));
 
   it('should render a focusable menuitem', () => {

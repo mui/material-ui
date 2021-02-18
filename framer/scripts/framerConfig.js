@@ -201,7 +201,14 @@ export const componentSettings = {
     template: 'icon_button.txt',
   },
   ListItem: {
-    ignoredProps: ['children', 'ContainerComponent', 'ContainerProps', 'sx'],
+    ignoredProps: [
+      'children',
+      'ContainerComponent',
+      'ContainerProps',
+      'components',
+      'componentsProps',
+      'sx',
+    ],
     propValues: {
       width: 568,
       height: 48,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import { deepmerge, chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
@@ -13,7 +13,7 @@ import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 
-const overridesResolver = (props, styles) => {
+export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
@@ -28,15 +28,15 @@ const overridesResolver = (props, styles) => {
 
 const useUtilityClasses = (styleProps) => {
   const {
-    dense,
     alignItems,
-    divider,
-    disableGutters,
-    hasSecondaryAction,
-    selected,
-    disabled,
     button,
     classes,
+    dense,
+    disabled,
+    disableGutters,
+    divider,
+    hasSecondaryAction,
+    selected,
   } = styleProps;
 
   const slots = {
@@ -57,7 +57,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemUtilityClass, classes);
 };
 
-const ListItemRoot = experimentalStyled(
+export const ListItemRoot = experimentalStyled(
   'div',
   {},
   {
@@ -166,6 +166,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     children: childrenProp,
     className,
     component: componentProp,
+    components = {},
+    componentsProps = {},
     ContainerComponent = 'li',
     ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
     dense = false,
@@ -218,8 +220,11 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const handleRef = useForkRef(listItemRef, ref);
 
+  const Root = components.Root || ListItemRoot;
+  const rootProps = componentsProps.root || {};
+
   const componentProps = {
-    className: clsx(classes.root, className),
+    className: clsx(classes.root, rootProps.className, className),
     disabled,
     ...other,
   };
@@ -257,9 +262,17 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           ref={handleRef}
           {...ContainerProps}
         >
-          <ListItemRoot as={Component} styleProps={styleProps} {...componentProps}>
+          <Root
+            {...rootProps}
+            as={Component}
+            styleProps={styleProps}
+            {...(!isHostComponent(Root) && {
+              styleProps: { ...styleProps, ...rootProps.styleProps },
+            })}
+            {...componentProps}
+          >
             {children}
-          </ListItemRoot>
+          </Root>
           {children.pop()}
         </ListItemContainer>
       </ListContext.Provider>
@@ -268,9 +281,18 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   return (
     <ListContext.Provider value={childContext}>
-      <ListItemRoot as={Component} ref={handleRef} styleProps={styleProps} {...componentProps}>
+      <Root
+        {...rootProps}
+        as={Component}
+        ref={handleRef}
+        styleProps={styleProps}
+        {...(!isHostComponent(Root) && {
+          styleProps: { ...styleProps, ...rootProps.styleProps },
+        })}
+        {...componentProps}
+      >
         {children}
-      </ListItemRoot>
+      </Root>
     </ListContext.Provider>
   );
 });
@@ -338,6 +360,19 @@ ListItem.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'

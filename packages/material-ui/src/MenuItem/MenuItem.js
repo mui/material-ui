@@ -1,40 +1,61 @@
 import * as React from 'react';
+import { deepmerge } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import useThemeProps from '../styles/useThemeProps';
+import { getMenuItemUtilityClass } from './menuItemClasses';
 import ListItem from '../ListItem';
+import { overridesResolver as listItemOverridesResolver, ListItemRoot } from '../ListItem/ListItem';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    ...theme.typography.body1,
-    minHeight: 48,
-    paddingTop: 6,
-    paddingBottom: 6,
-    boxSizing: 'border-box',
-    width: 'auto',
-    whiteSpace: 'nowrap',
-    [theme.breakpoints.up('sm')]: {
-      minHeight: 'auto',
-    },
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
+  return deepmerge(listItemOverridesResolver(props, styles), {
+    ...(styleProps.dense && styles.dense),
+  });
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { selected, dense, classes } = styleProps;
+  const slots = {
+    root: ['root', selected && 'selected', dense && 'dense'],
+  };
+
+  return composeClasses(slots, getMenuItemUtilityClass, classes);
+};
+
+const MenuItemRoot = experimentalStyled(
+  ListItemRoot,
+  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
+  {
+    name: 'MuiMenuItem',
+    slot: 'Root',
+    overridesResolver,
   },
-  // TODO v5: remove
-  /* Styles applied to the root element unless `disableGutters={true}`. */
-  gutters: {},
-  /* Styles applied to the root element if `selected={true}`. */
-  selected: {},
-  /* Styles applied to the root element if dense. */
-  dense: {
-    ...theme.typography.body2,
+)(({ theme, styleProps }) => ({
+  ...theme.typography.body1,
+  minHeight: 48,
+  paddingTop: 6,
+  paddingBottom: 6,
+  boxSizing: 'border-box',
+  width: 'auto',
+  whiteSpace: 'nowrap',
+  [theme.breakpoints.up('sm')]: {
     minHeight: 'auto',
   },
-});
+  ...(styleProps.dense && {
+    ...theme.typography.body2,
+    minHeight: 'auto',
+  }),
+}));
 
-const MenuItem = React.forwardRef(function MenuItem(props, ref) {
+const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
   const {
-    classes,
     className,
     component = 'li',
+    dense = false,
     disableGutters = false,
     ListItemClasses,
     role = 'menuitem',
@@ -43,6 +64,10 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
     ...other
   } = props;
 
+  const styleProps = { dense };
+
+  const classes = useUtilityClasses(props);
+
   let tabIndex;
   if (!props.disabled) {
     tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
@@ -50,23 +75,18 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
 
   return (
     <ListItem
+      components={{ Root: MenuItemRoot }}
+      componentsProps={{ root: { styleProps } }}
       button
       role={role}
       tabIndex={tabIndex}
       component={component}
       selected={selected}
       disableGutters={disableGutters}
-      classes={{ dense: classes.dense, ...ListItemClasses }}
-      className={clsx(
-        classes.root,
-        {
-          [classes.selected]: selected,
-          [classes.gutters]: !disableGutters,
-        },
-        className,
-      )}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      classes={ListItemClasses}
     />
   );
 });
@@ -125,9 +145,13 @@ MenuItem.propTypes = {
    */
   selected: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);
+export default MenuItem;
