@@ -13,9 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Dropdown from 'docs/src/modules/branding/icons/Dropdown';
-
 
 const startMaterialUi = [
   {
@@ -146,7 +144,11 @@ const benefits = [
 function Benefits() {
   return (
     <Container>
-      <Typography variant="h3" component="div" sx={{ textAlign: 'center', mt: { md: 10, xs: 0 }, mb: 6 }}>
+      <Typography
+        variant="h3"
+        component="div"
+        sx={{ textAlign: 'center', mt: { md: 10, xs: 0 }, mb: 6 }}
+      >
         Benefits included with <Box sx={{ display: { xs: 'none', md: 'block' } }} />
         all the plans
       </Typography>
@@ -189,7 +191,7 @@ function ComparePlans() {
       </Typography>
       <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}>
         Compare Material-UI plans, see which one might fit you or your team. If you need further
-        help deciding contact support or visit{' '}
+        help deciding contact support or visit
         <Link href="/getting-started/usage/">community hub</Link>.
       </Typography>
       <ComparisonTable />
@@ -199,7 +201,8 @@ function ComparePlans() {
 const faqData = [
   {
     summary: 'Why are you calling it early access?',
-    detail: 'We think you’ll love the components we\'ve built so far, but we\'re planning to release more. We opened it up as soon as we had something useful, so that you can start getting value from it right away, and we\'ll be adding new features and components based on our own ideas, and on suggestions from early access customers.',
+    detail:
+      "We think you’ll love the components we've built so far, but we're planning to release more. We opened it up as soon as we had something useful, so that you can start getting value from it right away, and we'll be adding new features and components based on our own ideas, and on suggestions from early access customers.",
   },
   {
     summary: 'How many licenses do I need?',
@@ -213,52 +216,77 @@ const faqData = [
   },
   {
     summary: 'What is the policy on redistributing the software?',
-    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
     summary: 'Do you offer discounts to educational and non-profit organizations?',
-    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
-  },
-  {
-    summary: 'Accordion 6',
-    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
-  },
-  {
-    summary: 'Accordion 7',
-    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
 ];
 
 function FAQ() {
   const useStyles = makeStyles((theme) => ({
     root: {
-      width: '100%',
+      minHeight: 'auto !important',
+      borderRadius: '0px',
+      borderBottom: '1px solid rgba(0, 0, 0, .125)',
+      '&:not(:first-child)': {
+        borderTop: 0,
+      },
+      '&:after': {
+        display: 'none',
+      },
     },
-    heading: {
-      fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular,
+    content: {
+      margin: '0 !important',
+      minHeight: 'auto !important',
+    },
+    expanded: {},
+    expandIcon: {
+      margin: '0 !important',
+      minHeight: 'auto !important',
     },
   }));
   const classes = useStyles();
   return (
     <Container>
-      <Typography variant="h2" align="center" sx={{ mt: 8 }}>
+      <Typography
+        variant="h2"
+        align="center"
+        sx={{ mt: { xs: 10, md: 12, lg: 14 }, mb: { xs: 4, lg: 10 } }}
+      >
         Frequently asked questions
       </Typography>
-      <Box sx={{ width: '100%', mt: 10 }}>
+      <Box
+        sx={{
+          mt: 10,
+          maxWidth: '770px',
+          margin: ' 0 auto',
+        }}
+      >
         {faqData.map((faq) => (
-          <Accordion key={faq.summary}>
+          <Accordion
+            key={faq.summary}
+            sx={{
+              boxShadow: 'none',
+              padding: '30px 0',
+              margin: '0px !important',
+            }}
+            classes={{ root: classes.root }}
+          >
             <AccordionSummary
               expandIcon={<Dropdown />}
               aria-controls="panel1a-content"
               id="panel1a-header"
+              sx={{ padding: '0px', minHeight: 'auto !important' }}
+              classes={{ content: classes.content, expandIcon: classes.expandIcon}}
             >
-              <Typography variant="h4" component="p" >
-                {faq.summary}
-              </Typography>
+              <Typography variant="h4" component="p">{faq.summary}</Typography>
             </AccordionSummary>
-            <AccordionDetails>
-              <Typography>{faq.detail}</Typography>
+            <AccordionDetails sx={{ padding: '20px 0 0 0' }}>
+              <Typography sx={{ fontSize: '18px' }}>{faq.detail}</Typography>
             </AccordionDetails>
           </Accordion>
         ))}
@@ -280,7 +308,7 @@ export default function Pricing() {
       <Benefits />
       <ComparePlans />
       <FAQ />
-      <Support />
+      {/* <Support /> */}
     </BrandingRoot>
   );
 }
