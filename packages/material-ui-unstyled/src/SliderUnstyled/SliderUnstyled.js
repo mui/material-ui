@@ -439,7 +439,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
-    if (moveCount.current > INTENTIONAL_MOVE_COUNT_THRESHOLD && !dragging) {
+    if (!dragging && moveCount.current > INTENTIONAL_MOVE_COUNT_THRESHOLD) {
       setDragging(true);
     }
 
