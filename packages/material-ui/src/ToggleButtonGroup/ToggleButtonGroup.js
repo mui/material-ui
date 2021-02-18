@@ -66,7 +66,7 @@ const ToggleButtonGroupRoot = experimentalStyled(
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
           },
-          '&.Mui-selected + &.Mui-selected': {
+          [`&.Mui-selected + .${toggleButtonGroupClasses.grouped}.Mui-selected`]: {
             borderLeft: 0,
             marginLeft: 0,
           },
@@ -83,7 +83,7 @@ const ToggleButtonGroupRoot = experimentalStyled(
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
           },
-          '&.Mui-selected + &.Mui-selected': {
+          [`&.Mui-selected + .${toggleButtonGroupClasses.grouped}.Mui-selected`]: {
             borderTop: 0,
             marginTop: 0,
           },
