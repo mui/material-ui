@@ -48,14 +48,12 @@ export const borderColor = style({
 });
 
 export const borderRadius = (props) => {
-  const propValue = props.borderRadius;
-
-  if (propValue) {
+  if (props.borderRadius) {
     const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
-    const styleFromPropValue = () => ({
+    const styleFromPropValue = (propValue) => ({
       borderRadius: getValue(transformer, propValue),
     });
-    return handleBreakpoints(props, propValue, styleFromPropValue);
+    return handleBreakpoints(props, props.borderRadius, styleFromPropValue);
   }
 
   return null;
