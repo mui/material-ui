@@ -103,6 +103,8 @@ function RTL(props) {
 }
 ```
 
+For `styled-component` v5 make sure to install `stylis-plugin-rtl@^1.1.0` and not v2. [more info](https://github.com/styled-components/stylis-plugin-rtl)
+
 ## Demo
 
 _Use the direction toggle button on the top right corner to flip the whole documentation_
