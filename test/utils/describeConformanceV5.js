@@ -38,10 +38,12 @@ function testComponentsProp(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testThemeDefaultProps(element, getOptions) {
+  const render = createClientRender();
+
   describe('theme: default components', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
-      const { muiName, render } = getOptions();
+      const { muiName, render: testRender = render } = getOptions();
       const theme = createMuiTheme({
         components: {
           [muiName]: {
@@ -52,7 +54,7 @@ function testThemeDefaultProps(element, getOptions) {
         },
       });
 
-      const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+      const { container } = testRender(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
       expect(container.firstChild).to.have.attribute(testProp, 'testProp');
     });
@@ -66,12 +68,14 @@ function testThemeDefaultProps(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testThemeStyleOverrides(element, getOptions) {
+  const render = createClientRender();
+
   describe('theme: style overrides', () => {
     it("respect theme's styleOverrides custom state", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { muiName, testStateOverrides, render } = getOptions();
+      const { muiName, testStateOverrides, render: testRender = render } = getOptions();
 
       if (!testStateOverrides) {
         return;
@@ -91,7 +95,7 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      const { container } = render(
+      const { container } = testRender(
         <ThemeProvider theme={theme}>
           {React.cloneElement(element, {
             [testStateOverrides.prop]: testStateOverrides.value,
@@ -107,7 +111,7 @@ function testThemeStyleOverrides(element, getOptions) {
         this.skip();
       }
 
-      const { muiName, testDeepOverrides, render } = getOptions();
+      const { muiName, testDeepOverrides, render: testRender = render } = getOptions();
 
       const testStyle = {
         marginTop: '13px',
@@ -135,7 +139,7 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      const { container } = render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
+      const { container } = testRender(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
       expect(container.firstChild).to.toHaveComputedStyle(testStyle);
 
@@ -162,7 +166,7 @@ function testThemeStyleOverrides(element, getOptions) {
         },
       });
 
-      const { container: containerWithoutRootOverrides } = render(
+      const { container: containerWithoutRootOverrides } = testRender(
         <ThemeProvider theme={themeWithoutRootOverrides}>{element}</ThemeProvider>,
       );
 
@@ -186,13 +190,15 @@ function testThemeStyleOverrides(element, getOptions) {
  * @param {() => ConformanceOptions} getOptions
  */
 function testThemeVariants(element, getOptions) {
+  const render = createClientRender();
+
   describe('theme: variants', () => {
     it("respect theme's variants", function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
 
-      const { muiName, testVariantProps = {}, render } = getOptions();
+      const { muiName, testVariantProps = {}, render: testRender = render } = getOptions();
 
       const testStyle = {
         marginTop: '13px',
@@ -211,7 +217,7 @@ function testThemeVariants(element, getOptions) {
         },
       });
 
-      const { getByTestId } = render(
+      const { getByTestId } = testRender(
         <ThemeProvider theme={theme}>
           {React.cloneElement(element, { ...testVariantProps, 'data-testid': 'with-props' })}
           {React.cloneElement(element, { 'data-testid': 'without-props' })}
@@ -245,10 +251,6 @@ const fullSuite = {
  */
 export default function describeConformanceV5(minimalElement, getOptions) {
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
-
-  const render = createClientRender();
-  const getOptionsWithDefault = () => ({ render, ...getOptions() });
-
   describe('Material-UI component API', () => {
     after(runAfterHook);
 
@@ -256,7 +258,7 @@ export default function describeConformanceV5(minimalElement, getOptions) {
       .filter((testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1)
       .forEach((testKey) => {
         const test = fullSuite[testKey];
-        test(minimalElement, getOptionsWithDefault);
+        test(minimalElement, getOptions);
       });
   });
 }
