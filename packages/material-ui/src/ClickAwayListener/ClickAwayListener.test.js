@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
-import { act, createClientRender, fireEvent, screen } from 'test/utils';
+import { spy, useFakeTimers } from 'sinon';
+import { act, createClientRender, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
 import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
@@ -184,26 +184,9 @@ describe('<ClickAwayListener />', () => {
       }
       render(<Test />);
 
-      const consoleSpy = stub(console, 'error');
-      try {
-        // can't wrap in `act()` since that changes update semantics.
-        // We want to simulate a discrete update.
-        // `act()` currently triggers a batched update: https://github.com/facebook/react/blob/3fbd47b86285b6b7bdeab66d29c85951a84d4525/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L1061-L1064
-        screen.getByTestId('trigger').click();
+      fireDiscreteEvent.click(screen.getByTestId('trigger'));
 
-        const missingActWarningsEnabled = typeof jest !== 'undefined';
-        if (missingActWarningsEnabled) {
-          expect(
-            consoleSpy.alwaysCalledWithMatch('not wrapped in act(...)'),
-            consoleSpy.args,
-          ).to.equal(true);
-        } else {
-          expect(consoleSpy.callCount).to.equal(0);
-        }
-        expect(screen.getByTestId('child')).not.to.equal(null);
-      } finally {
-        consoleSpy.restore();
-      }
+      expect(screen.getByTestId('child')).not.to.equal(null);
     });
   });
 
