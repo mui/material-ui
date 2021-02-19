@@ -254,7 +254,7 @@ describe('<DesktopDatePicker />', () => {
     });
   });
 
-  describe.only('scroll', () => {
+  describe('scroll', () => {
     const NoTransition = React.forwardRef(function NoTransition(
       props: TransitionProps & { children?: React.ReactNode },
       ref: React.Ref<HTMLDivElement>,
