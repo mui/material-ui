@@ -1,6 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
+import {
+  createUnaryUnit,
+  handleBreakpoints,
+  unstable_extendSxProp as extendSxProp,
+} from '@material-ui/system';
+import { getValue } from '@material-ui/system/spacing';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 
@@ -10,13 +15,25 @@ const StackRoot = experimentalStyled(
   'div',
   {},
   { name: 'Stack' },
-)(({ styleProps: { direction, spacing } }) => ({
-  display: 'flex',
-  flexDirection: direction,
-  '& > * + *': {
-    [`margin${getSideFromDirection(direction)}`]: spacing,
-  },
-}));
+)(({ styleProps: { direction, spacing }, theme }) => {
+  let styles = {
+    display: 'flex',
+    flexDirection: direction,
+  };
+  if (spacing) {
+    const transformer = createUnaryUnit(theme, 'spacing', 8, 'spacing');
+    const styleFromPropValue = (propValue) => ({
+      '& > * + *': {
+        [`margin${getSideFromDirection(direction)}`]: getValue(transformer, propValue),
+      },
+    });
+    styles = {
+      ...styles,
+      ...handleBreakpoints({ theme }, spacing, styleFromPropValue),
+    };
+  }
+  return styles;
+});
 
 const Stack = React.forwardRef((inProps, ref) => {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiStack' });
