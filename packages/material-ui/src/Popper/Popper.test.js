@@ -14,21 +14,24 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Grow from '../Grow';
 import Popper from './Popper';
 
+/**
+ * Await this call whenever you scheduled an update to the @popperjs/core instance.
+ * @param {React.RefObject<import('@popperjs/core').Instance>} popperRef
+ */
+async function flushPopperUpdate(popperRef) {
+  await act(async () => {
+    await popperRef.current.update();
+  });
+}
+
 describe('<Popper />', () => {
   const mount = createMount({ strict: true });
-  let rtlTheme;
   const render = createClientRender();
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
     children: <span>Hello World</span>,
     open: true,
   };
-
-  before(() => {
-    rtlTheme = createMuiTheme({
-      direction: 'rtl',
-    });
-  });
 
   describeConformance(<Popper {...defaultProps} />, () => ({
     classes: {},
@@ -79,12 +82,17 @@ describe('<Popper />', () => {
         out: 'top',
       },
     ].forEach((test) => {
-      it(`should ${test.in === test.out ? 'not' : ''}flip ${
+      it.only(`should ${test.in === test.out ? 'not' : ''}flip ${
         test.in
-      } when direction=rtl is used`, () => {
+      } when direction=rtl is used`, async () => {
+        const rtlTheme = createMuiTheme({
+          direction: 'rtl',
+        });
+
+        const popperRef = React.createRef();
         render(
           <ThemeProvider theme={rtlTheme}>
-            <Popper {...defaultProps} placement={test.in}>
+            <Popper {...defaultProps} placement={test.in} popperRef={popperRef}>
               {({ placement }) => {
                 return <div data-testid="placement">{placement}</div>;
               }}
@@ -92,6 +100,8 @@ describe('<Popper />', () => {
             ,
           </ThemeProvider>,
         );
+        await flushPopperUpdate(popperRef);
+
         expect(screen.getByTestId('placement')).to.have.text(test.out);
       });
     });
@@ -120,12 +130,16 @@ describe('<Popper />', () => {
   });
 
   describe('prop: open', () => {
-    it('should open without any issue', () => {
+    it.only('should open without any issue', async () => {
+      const popperRef = React.createRef();
       const { queryByRole, getByRole, setProps } = render(
-        <Popper {...defaultProps} open={false} />,
+        <Popper {...defaultProps} open={false} popperRef={popperRef} />,
       );
       expect(queryByRole('tooltip')).to.equal(null);
+
       setProps({ open: true });
+      await flushPopperUpdate(popperRef);
+
       expect(getByRole('tooltip')).to.have.text('Hello World');
     });
 
@@ -205,15 +219,6 @@ describe('<Popper />', () => {
   });
 
   describe('prop: transition', () => {
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should work', () => {
       const { queryByRole, getByRole, setProps } = render(
         <Popper {...defaultProps} transition>
