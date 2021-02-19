@@ -60,7 +60,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     componentsProps = {},
     children,
     className,
-    invisible: invisibleProp = false,
+    invisible = false,
     open,
     transitionDuration,
     // eslint-disable-next-line react/prop-types
@@ -70,7 +70,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 
   const styleProps = {
     ...props,
-    invisible: invisibleProp,
+    invisible,
   };
 
   const classes = extendUtilityClasses(styleProps);
@@ -79,7 +79,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     <TransitionComponent in={open} timeout={transitionDuration} {...other}>
       <BackdropUnstyled
         className={className}
-        invisible={invisibleProp}
+        invisible={invisible}
         components={{
           Root: BackdropRoot,
           ...components,
