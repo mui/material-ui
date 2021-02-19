@@ -164,29 +164,31 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(1);
     });
 
-    it('should not be called during the same event that mounted the ClickAwayListener', () => {
-      function Test() {
-        const [open, setOpen] = React.useState(false);
+    ['onClick', 'onClickCapture'].forEach((eventListenerName) => {
+      it(`should not be called when ${eventListenerName} mounted the listener`, () => {
+        function Test() {
+          const [open, setOpen] = React.useState(false);
 
-        return (
-          <React.Fragment>
-            <button data-testid="trigger" onClick={() => setOpen(true)} />
-            {open &&
-              ReactDOM.createPortal(
-                <ClickAwayListener onClickAway={() => setOpen(false)}>
-                  <div data-testid="child" />
-                </ClickAwayListener>,
-                // Needs to be an element between the react root we render into and the element where CAL attaches its native listener (now: `document`).
-                document.body,
-              )}
-          </React.Fragment>
-        );
-      }
-      render(<Test />);
+          return (
+            <React.Fragment>
+              <button data-testid="trigger" {...{ [eventListenerName]: () => setOpen(true) }} />
+              {open &&
+                ReactDOM.createPortal(
+                  <ClickAwayListener onClickAway={() => setOpen(false)}>
+                    <div data-testid="child" />
+                  </ClickAwayListener>,
+                  // Needs to be an element between the react root we render into and the element where CAL attaches its native listener (now: `document`).
+                  document.body,
+                )}
+            </React.Fragment>
+          );
+        }
+        render(<Test />);
 
-      fireDiscreteEvent.click(screen.getByTestId('trigger'));
+        fireDiscreteEvent.click(screen.getByTestId('trigger'));
 
-      expect(screen.getByTestId('child')).not.to.equal(null);
+        expect(screen.getByTestId('child')).not.to.equal(null);
+      });
     });
   });
 
