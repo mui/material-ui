@@ -173,7 +173,7 @@ jobs:
             fi
       - run:
           name: Coverage
-          command: bash <(curl -s https://codecov.io/bash) -Z
+          command: bash <(curl -s https://codecov.io/bash) -Z -F $REACT_DIST_TAG
   test_lint:
     <<: *defaults
     steps:
