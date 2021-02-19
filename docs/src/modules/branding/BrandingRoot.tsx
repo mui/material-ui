@@ -6,7 +6,7 @@ import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
 interface CustomPalette {
   vividBlue: string;
-  emeral: string;
+  emerald: string;
   sizzlingRed: string;
   sunglow: string;
   grey5A: string;
@@ -20,7 +20,7 @@ interface CustomPalette {
 
 interface CustomPaletteOptions {
   vividBlue?: string;
-  emeral?: string;
+  emerald?: string;
   sizzlingRed?: string;
   sunglow?: string;
   grey5A?: string;
@@ -65,7 +65,7 @@ let theme = createMuiTheme({
       default: '#FFF',
     },
     vividBlue: '#00C8FF',
-    emeral: '#21CC66',
+    emerald: '#21CC66',
     sizzlingRed: '#FF505F',
     sunglow: '#FFC846',
     grey5A: '#5A6978',
