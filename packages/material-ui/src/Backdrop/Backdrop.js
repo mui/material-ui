@@ -1,12 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { isHostComponent } from '@material-ui/unstyled';
+import BackdropUnstyled, { backdropUnstyledClasses } from '@material-ui/unstyled/BackdropUnstyled';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Fade from '../Fade';
-import { getBackdropUtilityClass } from './backdropClasses';
+
+const backdropClasses = {
+  ...backdropUnstyledClasses,
+};
+
+export { backdropClasses };
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -16,14 +21,9 @@ const overridesResolver = (props, styles) => {
   });
 };
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, invisible } = styleProps;
-
-  const slots = {
-    root: ['root', invisible && 'invisible'],
-  };
-
-  return composeClasses(slots, getBackdropUtilityClass, classes);
+const extendUtilityClasses = (styleProps) => {
+  const { classes = {} } = styleProps;
+  return classes;
 };
 
 const BackdropRoot = experimentalStyled(
@@ -56,6 +56,8 @@ const BackdropRoot = experimentalStyled(
 const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
   const {
+    components = {},
+    componentsProps = {},
     children,
     className,
     invisible = false,
@@ -71,18 +73,30 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     invisible,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = extendUtilityClasses(styleProps);
 
   return (
     <TransitionComponent in={open} timeout={transitionDuration} {...other}>
-      <BackdropRoot
-        className={clsx(classes.root, className)}
-        aria-hidden
+      <BackdropUnstyled
+        className={className}
+        invisible={invisible}
+        components={{
+          Root: BackdropRoot,
+          ...components,
+        }}
+        componentsProps={{
+          root: {
+            ...componentsProps.root,
+            ...((!components.Root || !isHostComponent(components.Root)) && {
+              styleProps: { ...componentsProps.root?.styleProps },
+            }),
+          },
+        }}
+        classes={classes}
         ref={ref}
-        styleProps={styleProps}
       >
         {children}
-      </BackdropRoot>
+      </BackdropUnstyled>
     </TransitionComponent>
   );
 });
@@ -98,12 +112,26 @@ Backdrop.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The components used for each slot inside the Backdrop.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Backdrop.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * If `true`, the backdrop is invisible.
    * It can be used when rendering a popover or a custom select component.

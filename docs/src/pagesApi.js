@@ -10,6 +10,7 @@ module.exports = [
   { pathname: '/api-docs/avatar' },
   { pathname: '/api-docs/avatar-group' },
   { pathname: '/api-docs/backdrop' },
+  { pathname: '/api-docs/backdrop-unstyled' },
   { pathname: '/api-docs/badge' },
   { pathname: '/api-docs/badge-unstyled' },
   { pathname: '/api-docs/bottom-navigation' },
