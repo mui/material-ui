@@ -201,3 +201,27 @@ You then have to search in the [CircleCI UI](https://app.circleci.com/pipelines/
 The job number can be extracted from the URL of a particular CircleCI job.
 
 For example, in https://app.circleci.com/pipelines/github/mui-org/material-ui/32796/workflows/23f946de-328e-49b7-9c94-bfe0a0248a12/jobs/211258 `jobs/211258` points to the job number which is in this case `211258` which means you want to visit https://mui-dashboard.netlify.app/test-profile/211258 to analyze the profile.
+
+### Testing multiple versions of React
+
+You can check integration of different versions of React (e.g. different [release channels](https://reactjs.org/docs/release-channels.html) or PRs to React) by running `node scripts/use-react-dist-tag <dist-tag>`.
+
+Possible values for `dist-tag`:
+
+- default: `stable` (minimum supported React version)
+- a tag on npm e.g. `next`, `experimental` or `latest`
+
+#### CI
+
+You can pass the same `dist-tag` to our CircleCI pipeline as well:
+
+With the following API request we're triggering a run of the default workflow in
+PR #24289 for `react@next`
+
+```bash
+curl --request POST \
+  --url https://circleci.com/api/v2/project/gh/mui-org/material-ui/pipeline \
+  --header 'content-type: application/json' \
+  --header 'Circle-Token: $CIRCLE_TOKEN' \
+  --data-raw '{"branch":"pull/24289/head","parameters":{"react-dist-tag":"next"}}'
+```
