@@ -13452,13 +13452,13 @@ react-docgen@^5.0.0-beta.1:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@^16.14.0, "react-dom@https://pkg.csb.dev/eps1lon/react/commit/d379f34e/react-dom":
+react-dom@^16.14.0, "react-dom@https://pkg.csb.dev/eps1lon/react/commit/28aa026f/react-dom":
   version "17.0.2"
-  resolved "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/react-dom#b642a8674bcc01af2417c52cda61777897e467df"
+  resolved "https://pkg.csb.dev/eps1lon/react/commit/28aa026f/react-dom#7855908d71665bab873bd8808ffa48e2e4b3743f"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/scheduler"
+    scheduler "https://pkg.csb.dev/eps1lon/react/commit/28aa026f/scheduler"
 
 react-draggable@^4.0.3:
   version "4.4.3"
@@ -13692,9 +13692,9 @@ react-window@^1.8.5:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react@^16.14.0, "react@https://pkg.csb.dev/eps1lon/react/commit/d379f34e/react":
+react@^16.14.0, "react@https://pkg.csb.dev/eps1lon/react/commit/28aa026f/react":
   version "17.0.2"
-  resolved "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/react#38e0fc89826d6b8d028ad5789d9197abe086cd4c"
+  resolved "https://pkg.csb.dev/eps1lon/react/commit/28aa026f/react#38e0fc89826d6b8d028ad5789d9197abe086cd4c"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -14510,9 +14510,9 @@ saxes@^5.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.0.0-e2fd460cc, scheduler@^0.19.1, "scheduler@https://pkg.csb.dev/eps1lon/react/commit/d379f34e/scheduler":
+scheduler@0.0.0-e2fd460cc, scheduler@^0.19.1, "scheduler@https://pkg.csb.dev/eps1lon/react/commit/28aa026f/scheduler":
   version "0.20.1"
-  resolved "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/scheduler#bdbc22e3c1e0018a5756a72f30ca052f219c4d25"
+  resolved "https://pkg.csb.dev/eps1lon/react/commit/28aa026f/scheduler#86d0cff6c7c9f49e44b2fb0bce049b1841d4b1f7"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

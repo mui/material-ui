@@ -196,9 +196,9 @@
     "**/dot-prop": "^5.2.0",
     "**/react-is": "^16.13.1",
     "**/webpack": "^4.44.1",
-    "scheduler": "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/scheduler",
-    "react": "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/react",
-    "react-dom": "https://pkg.csb.dev/eps1lon/react/commit/d379f34e/react-dom",
+    "scheduler": "https://pkg.csb.dev/eps1lon/react/commit/28aa026f/scheduler",
+    "react": "https://pkg.csb.dev/eps1lon/react/commit/28aa026f/react",
+    "react-dom": "https://pkg.csb.dev/eps1lon/react/commit/28aa026f/react-dom",
     "react-test-renderer": "0.0.0-e2fd460cc",
     "react-is": "0.0.0-e2fd460cc"
   },
