@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
-import { act, createClientRender, fireEvent, screen } from 'test/utils';
+import { spy, useFakeTimers } from 'sinon';
+import { act, createClientRender, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
 import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
@@ -164,46 +164,31 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(1);
     });
 
-    it('should not be called during the same event that mounted the ClickAwayListener', () => {
-      function Test() {
-        const [open, setOpen] = React.useState(false);
+    ['onClick', 'onClickCapture'].forEach((eventListenerName) => {
+      it(`should not be called when ${eventListenerName} mounted the listener`, () => {
+        function Test() {
+          const [open, setOpen] = React.useState(false);
 
-        return (
-          <React.Fragment>
-            <button data-testid="trigger" onClick={() => setOpen(true)} />
-            {open &&
-              ReactDOM.createPortal(
-                <ClickAwayListener onClickAway={() => setOpen(false)}>
-                  <div data-testid="child" />
-                </ClickAwayListener>,
-                // Needs to be an element between the react root we render into and the element where CAL attaches its native listener (now: `document`).
-                document.body,
-              )}
-          </React.Fragment>
-        );
-      }
-      render(<Test />);
-
-      const consoleSpy = stub(console, 'error');
-      try {
-        // can't wrap in `act()` since that changes update semantics.
-        // We want to simulate a discrete update.
-        // `act()` currently triggers a batched update: https://github.com/facebook/react/blob/3fbd47b86285b6b7bdeab66d29c85951a84d4525/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L1061-L1064
-        screen.getByTestId('trigger').click();
-
-        const missingActWarningsEnabled = typeof jest !== 'undefined';
-        if (missingActWarningsEnabled) {
-          expect(
-            consoleSpy.alwaysCalledWithMatch('not wrapped in act(...)'),
-            consoleSpy.args,
-          ).to.equal(true);
-        } else {
-          expect(consoleSpy.callCount).to.equal(0);
+          return (
+            <React.Fragment>
+              <button data-testid="trigger" {...{ [eventListenerName]: () => setOpen(true) }} />
+              {open &&
+                ReactDOM.createPortal(
+                  <ClickAwayListener onClickAway={() => setOpen(false)}>
+                    <div data-testid="child" />
+                  </ClickAwayListener>,
+                  // Needs to be an element between the react root we render into and the element where CAL attaches its native listener (now: `document`).
+                  document.body,
+                )}
+            </React.Fragment>
+          );
         }
+        render(<Test />);
+
+        fireDiscreteEvent.click(screen.getByTestId('trigger'));
+
         expect(screen.getByTestId('child')).not.to.equal(null);
-      } finally {
-        consoleSpy.restore();
-      }
+      });
     });
   });
 

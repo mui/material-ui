@@ -13,3 +13,4 @@ export {
 } from './focusVisible';
 export { default as getClasses } from './getClasses';
 export {} from './initMatchers';
+export * as fireDiscreteEvent from './fireDiscreteEvent';

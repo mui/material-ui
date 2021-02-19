@@ -64,10 +64,10 @@ index 1360442ce6..462c67a27f 100644
          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
 diff --git a/packages/material-ui/src/Autocomplete/Autocomplete.test.js b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
-index 2556f4d94d..787fc72d3b 100644
+index 450f50b9ce..e260a93e81 100644
 --- a/packages/material-ui/src/Autocomplete/Autocomplete.test.js
 +++ b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
-@@ -1192,10 +1192,6 @@ describe('<Autocomplete />', () => {
+@@ -1197,10 +1197,6 @@ describe('<Autocomplete />', () => {
          fireEvent.change(textbox, { target: { value: 'a' } });
          fireEvent.keyDown(textbox, { key: 'Enter' });
        }).toErrorDev([
@@ -78,7 +78,7 @@ index 2556f4d94d..787fc72d3b 100644
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-@@ -1249,9 +1245,6 @@ describe('<Autocomplete />', () => {
+@@ -1254,9 +1250,6 @@ describe('<Autocomplete />', () => {
            />,
          );
        }).toWarnDev([
@@ -88,7 +88,7 @@ index 2556f4d94d..787fc72d3b 100644
          'None of the options match with `"not a good value"`',
          'None of the options match with `"not a good value"`',
        ]);
-@@ -1277,11 +1270,7 @@ describe('<Autocomplete />', () => {
+@@ -1282,11 +1275,7 @@ describe('<Autocomplete />', () => {
              groupBy={(option) => option.group}
            />,
          );
@@ -114,7 +114,7 @@ index acf662d0d9..4f5b503653 100644
      expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
      expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');
 diff --git a/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js b/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
-index fe9020d480..52d53b4bea 100644
+index ac5be8c7df..e5ffdd0260 100644
 --- a/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
 +++ b/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
 @@ -160,8 +160,7 @@ describe('<ClickAwayListener />', () => {
@@ -126,9 +126,9 @@ index fe9020d480..52d53b4bea 100644
 +      expect(handleClickAway.callCount).to.equal(0);
      });
  
-     it('should not be called during the same event that mounted the ClickAwayListener', () => {
+     ['onClick', 'onClickCapture'].forEach((eventListenerName) => {
 diff --git a/packages/material-ui/src/Tabs/Tabs.test.js b/packages/material-ui/src/Tabs/Tabs.test.js
-index 50e4f67d73..70e07d3da7 100644
+index f42bc20110..7ac9b86566 100644
 --- a/packages/material-ui/src/Tabs/Tabs.test.js
 +++ b/packages/material-ui/src/Tabs/Tabs.test.js
 @@ -91,9 +91,6 @@ describe('<Tabs />', () => {
