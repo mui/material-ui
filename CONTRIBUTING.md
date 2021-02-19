@@ -184,18 +184,6 @@ it's always appreciated if it can be improved.
 There are various other checks done by Netlify to check the integrity of our docs. Click
 on _Details_ to find out more about them.
 
-#### Caveats
-
-##### Accessibility tree exclusion
-
-Our tests also explicitly document which parts of the queried element are included in
-the accessibility (a11y) tree and which are excluded. This check is fairly expensive which
-is why it is disabled when tests are run locally by default. The rationale being
-that in almost all cases including or excluding elements from a query-set depending
-on their a11y-tree membership makes no difference. The queries where this does
-make a difference explicitly include this check e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
-To see if your test (`test:browser` or `test:unit`) behaves the same between CI and local environment, set the environment variable `CI` to `'true'`.
-
 ### Updating the component API documentation
 
 The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the JSDOC in the TypeScript declarations.
