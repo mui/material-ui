@@ -44,6 +44,10 @@ export const createCalendarStateReducer = <TDate extends unknown>(
       };
 
     case 'changeFocusedDay': {
+      if (state.focusedDay !== null && utils.isSameDay(action.focusedDay, state.focusedDay)) {
+        return state;
+      }
+
       const needMonthSwitch =
         Boolean(action.focusedDay) &&
         !disableSwitchToMonthOnDayFocus &&
@@ -99,7 +103,7 @@ export function useCalendarState<TDate>({
 
   const [calendarState, dispatch] = React.useReducer(reducerFn, {
     isMonthSwitchingAnimating: false,
-    focusedDay: date,
+    focusedDay: date || now,
     currentMonth: utils.startOfMonth(date ?? defaultCalendarMonth ?? now),
     slideDirection: 'left',
   });

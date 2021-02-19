@@ -2,13 +2,18 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
-import { StyleRules, MuiStyles, WithStyles, withStyles, alpha } from '@material-ui/core/styles';
+import {
+  StyleRules,
+  MuiStyles,
+  useTheme,
+  WithStyles,
+  withStyles,
+  alpha,
+} from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
-import { onSpaceOrEnter } from '../internal/pickers/utils';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
-import { useCanAutoFocus } from '../internal/pickers/hooks/useCanAutoFocus';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 
 export type PickersDayClassKey =
@@ -80,14 +85,6 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
    */
   day: TDate;
   /**
-   * If `true`, the day element will be focused during the first mount.
-   */
-  focused?: boolean;
-  /**
-   * If `true`, allows to focus by tabbing.
-   */
-  focusable?: boolean;
-  /**
    * If `true`, day is outside of month and will be hidden.
    */
   outsideCurrentMonth: boolean;
@@ -131,6 +128,8 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
   onDaySelect: (day: TDate, isFinish: PickerSelectionState) => void;
 }
 
+const noop = () => {};
+
 /**
  * @ignore - do not document.
  */
@@ -141,18 +140,17 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   const {
     allowKeyboardControl,
     allowSameDateSelection = false,
+    autoFocus = false,
     classes,
     className,
     day,
     disabled = false,
     disableHighlightToday = false,
     disableMargin = false,
-    focusable = false,
-    focused = false,
     hidden,
     isAnimating,
     onClick,
-    onDayFocus,
+    onDayFocus = noop,
     onDaySelect,
     onFocus,
     onKeyDown,
@@ -163,27 +161,19 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     ...other
   } = props;
 
-  const utils = useUtils();
-  const canAutoFocus = useCanAutoFocus();
+  const utils = useUtils<TDate>();
   const ref = React.useRef<HTMLButtonElement>(null);
   const handleRef = useForkRef(ref, forwardedRef);
 
   React.useEffect(() => {
-    if (
-      focused &&
-      !disabled &&
-      !isAnimating &&
-      !outsideCurrentMonth &&
-      ref.current &&
-      allowKeyboardControl &&
-      canAutoFocus
-    ) {
-      ref.current.focus();
+    if (autoFocus && !disabled && !isAnimating && !outsideCurrentMonth) {
+      // ref.current being null would be a bug in Material-UI
+      ref.current!.focus();
     }
-  }, [allowKeyboardControl, canAutoFocus, disabled, focused, isAnimating, outsideCurrentMonth]);
+  }, [autoFocus, disabled, isAnimating, outsideCurrentMonth]);
 
   const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
-    if (!focused && onDayFocus) {
+    if (onDayFocus) {
       onDayFocus(day);
     }
 
@@ -204,11 +194,54 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     }
   };
 
-  const handleKeyDown = onSpaceOrEnter(() => {
-    if (!disabled) {
-      onDaySelect(day, 'finish');
+  const theme = useTheme();
+
+  function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
+    if (onKeyDown !== undefined) {
+      onKeyDown(event);
     }
-  }, onKeyDown);
+
+    if (!allowKeyboardControl) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowUp':
+        onDayFocus(utils.addDays(day, -7));
+        event.preventDefault();
+        break;
+      case 'ArrowDown':
+        onDayFocus(utils.addDays(day, 7));
+        event.preventDefault();
+        break;
+      case 'ArrowLeft':
+        onDayFocus(utils.addDays(day, theme.direction === 'ltr' ? -1 : 1));
+        event.preventDefault();
+        break;
+      case 'ArrowRight':
+        onDayFocus(utils.addDays(day, theme.direction === 'ltr' ? 1 : -1));
+        event.preventDefault();
+        break;
+      case 'Home':
+        onDayFocus(utils.startOfWeek(day));
+        event.preventDefault();
+        break;
+      case 'End':
+        onDayFocus(utils.endOfWeek(day));
+        event.preventDefault();
+        break;
+      case 'PageUp':
+        onDayFocus(utils.getNextMonth(day));
+        event.preventDefault();
+        break;
+      case 'PageDown':
+        onDayFocus(utils.getPreviousMonth(day));
+        event.preventDefault();
+        break;
+      default:
+        break;
+    }
+  }
 
   const dayClassName = clsx(
     classes.root,
@@ -232,7 +265,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
       data-mui-test="day"
       disabled={disabled}
       aria-label={utils.format(day, 'fullDate')}
-      tabIndex={focused || focusable ? 0 : -1}
+      tabIndex={selected ? 0 : -1}
       className={dayClassName}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
@@ -249,8 +282,7 @@ export const areDayPropsEqual = (
   nextProps: PickersDayProps<any>,
 ) => {
   return (
-    prevProps.focused === nextProps.focused &&
-    prevProps.focusable === nextProps.focusable &&
+    prevProps.autoFocus === nextProps.autoFocus &&
     prevProps.isAnimating === nextProps.isAnimating &&
     prevProps.today === nextProps.today &&
     prevProps.disabled === nextProps.disabled &&
@@ -281,6 +313,10 @@ PickersDay.propTypes = {
    */
   allowSameDateSelection: PropTypes.bool,
   /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * The content of the component.
    */
   children: PropTypes.node,
@@ -309,14 +345,6 @@ PickersDay.propTypes = {
    * If `true`, days are rendering without margin. Useful for displaying linked range of days.
    */
   disableMargin: PropTypes.bool,
-  /**
-   * If `true`, allows to focus by tabbing.
-   */
-  focusable: PropTypes.bool,
-  /**
-   * If `true`, the day element will be focused during the first mount.
-   */
-  focused: PropTypes.bool,
   /**
    * @ignore
    */
