@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import {
   createMount,
@@ -27,20 +27,6 @@ function createTouches(touches) {
 }
 
 describe('<Slider />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    act(() => {
-      clock.restore();
-    });
-  });
-
   before(function beforeHook() {
     // only run in supported browsers
     if (typeof Touch === 'undefined') {
