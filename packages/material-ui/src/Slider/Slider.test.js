@@ -41,7 +41,6 @@ describe('<Slider />', () => {
     classes,
     inheritComponent: SliderUnstyled,
     mount,
-    render,
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSlider',
     testDeepOverrides: { slotName: 'thumb', slotClassName: classes.thumb },
