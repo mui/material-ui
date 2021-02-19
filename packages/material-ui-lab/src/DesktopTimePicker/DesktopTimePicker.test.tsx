@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
 import { TransitionProps } from '@material-ui/core/transitions';
@@ -13,6 +13,15 @@ import {
 } from '../internal/pickers/test-utils';
 
 describe('<DesktopTimePicker />', () => {
+  let clock: ReturnType<typeof useFakeTimers>;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
+  });
+
   const render = createPickerRender();
   const mount = createPickerMount();
 
@@ -31,14 +40,21 @@ describe('<DesktopTimePicker />', () => {
     }),
   );
 
-  function NoTransition(props: TransitionProps & { children?: React.ReactNode }) {
+  const NoTransition = React.forwardRef(function NoTransition(
+    props: TransitionProps & { children?: React.ReactNode },
+    ref: React.Ref<HTMLDivElement>,
+  ) {
     const { children, in: inProp } = props;
 
     if (!inProp) {
       return null;
     }
-    return children;
-  }
+    return (
+      <div ref={ref} tabIndex={-1}>
+        {children}
+      </div>
+    );
+  });
 
   it('opens on click', () => {
     const handleClose = spy();
@@ -50,7 +66,6 @@ describe('<DesktopTimePicker />', () => {
         onClose={handleClose}
         onOpen={handleOpen}
         renderInput={(params) => <TextField {...params} />}
-        // @ts-expect-error TODO make this pass
         TransitionComponent={NoTransition}
       />,
     );
