@@ -139,13 +139,15 @@ how to fix the issues.
 ##### ci/circleci: test_unit-1
 
 Runs the unit tests in a `jsdom` environment. If this fails then `yarn test:unit`
-should<sup>[1](#accessiblity-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
+should<sup>[1](test/README.md#accessiblity-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
+If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessiblity-tree-exclusion).
 
 ##### ci/circleci: test_browser-1
 
 Runs the unit tests in multiple browsers (via Browserstack). The log of the failed
 build should list which browsers failed. If Chrome failed then `yarn test:karma`
-should<sup>[1](#accessiblity-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
+should<sup>[1](test/README.md#accessiblity-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
+If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessiblity-tree-exclusion).
 
 ##### ci/circleci: test_regression-1
 
@@ -183,18 +185,6 @@ it's always appreciated if it can be improved.
 
 There are various other checks done by Netlify to check the integrity of our docs. Click
 on _Details_ to find out more about them.
-
-#### Caveats
-
-##### Accessibility tree exclusion
-
-Our tests also explicitly document which parts of the queried element are included in
-the accessibility (a11y) tree and which are excluded. This check is fairly expensive which
-is why it is disabled when tests are run locally by default. The rationale being
-that in almost all cases including or excluding elements from a query-set depending
-on their a11y-tree membership makes no difference. The queries where this does
-make a difference explicitly include this check e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
-To see if your test (`test:browser` or `test:unit`) behaves the same between CI and local environment, set the environment variable `CI` to `'true'`.
 
 ### Updating the component API documentation
 

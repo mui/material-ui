@@ -176,6 +176,20 @@ You can view the screenshots in `test/regressions/screenshots/chrome`.
 
 Alternatively, you might want to open `http://localhost:5000` (while `yarn test:regressions:dev` is running) to view individual views separately.
 
+### Caveats
+
+#### Accessibility tree exclusion
+
+Our tests also explicitly document which parts of the queried element are included in
+the accessibility (a11y) tree and which are excluded.
+This check is fairly expensive which is why it is disabled when tests are run locally by default.
+The rationale being that in almost all cases including or excluding elements from a query-set depending on their a11y-tree membership makes no difference.
+
+The queries where this does make a difference explicitly include checking for a11y tree inclusion e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
+To see if your test (`test:karma` or `test:unit`) behaves the same between CI and local environment, set the environment variable `CI` to `'true'`.
+
+Not considering a11y tree exclusion is a common cause of "Unable to find an accessible element with the role" or "Found multiple elements with the role".
+
 ### Performance monitoring
 
 We have a dedicated CI task that profiles our core test suite.
