@@ -114,12 +114,17 @@ jobs:
     steps:
       - checkout
       - install_js
-      - run:
-          name: Should not have any git not staged
-          command: git diff --exit-code
-      - run:
-          name: Check for duplicated packages
-          command: yarn deduplicate
+      - when:
+          # Install can be "dirty" when running with non-default versions of React
+          condition:
+            equal: [<< parameters.react-dist-tag >>, stable]
+          steps:
+            - run:
+                name: Should not have any git not staged
+                command: git diff --exit-code
+            - run:
+                name: Check for duplicated packages
+                command: yarn deduplicate
   test_unit:
     <<: *defaults
     steps:
@@ -168,7 +173,7 @@ jobs:
             fi
       - run:
           name: Coverage
-          command: bash <(curl -s https://codecov.io/bash) -Z
+          command: bash <(curl -s https://codecov.io/bash) -Z -F $REACT_DIST_TAG
   test_lint:
     <<: *defaults
     steps:

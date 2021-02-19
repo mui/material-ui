@@ -437,19 +437,21 @@ chai.use((chaiAPI, utils) => {
     /**
      * @param {string[]} expectedMessages
      */
-    function matcher(this: Chai.AssertionStatic, expectedMessages = []) {
+    function matcher(this: Chai.AssertionStatic, expectedMessagesInput = []) {
       // documented pattern to get the actual value of the assertion
       // eslint-disable-next-line no-underscore-dangle
       const callback = this._obj;
 
       if (process.env.NODE_ENV !== 'production') {
-        const remainingMessages =
-          typeof expectedMessages === 'string' ? [expectedMessages] : expectedMessages.slice();
+        const expectedMessages =
+          typeof expectedMessagesInput === 'string'
+            ? [expectedMessagesInput]
+            : expectedMessagesInput.slice();
         const unexpectedMessages: Error[] = [];
         let caughtError = null;
 
         this.assert(
-          remainingMessages.length > 0,
+          expectedMessages.length > 0,
           `Expected to call console.${methodName} but didn't provide messages. ` +
             `If you don't expect any messages prefer \`expect().not.${matcherName}();\`.`,
           `Expected no call to console.${methodName} while also expecting messages.` +
@@ -459,6 +461,11 @@ chai.use((chaiAPI, utils) => {
           // Not interested in a diff but the typings require the 4th parameter.
           undefined,
         );
+
+        // Ignore skipped messages in e.g. `[condition && 'foo']`
+        const remainingMessages = expectedMessages.filter((messageOrFalse) => {
+          return messageOrFalse !== false;
+        });
 
         // eslint-disable-next-line no-console
         const originalMethod = console[methodName];

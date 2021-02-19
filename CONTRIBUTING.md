@@ -153,15 +153,15 @@ Renders tests in `test/regressions/tests` and makes screenshots. This step shoul
 fail if the others pass. Otherwise, a maintainer will take a look. The screenshots
 are evaluated in another step.
 
+##### ci/circleci: test_types
+
+Typechecks the repository. The log of the failed build should list all issues.
+
 ##### argos
 
 Evaluates the screenshots taken in `test/regressions/tests` and fails if it detects
 differences. This doesn't necessarily mean your Pull Request will be rejected as a failure
 might be intended. Clicking on _Details_ will show you the differences.
-
-#### ci/circleci: test_types
-
-Typechecks the repository. The log of the failed build should list all issues.
 
 ##### deploy/netlify
 

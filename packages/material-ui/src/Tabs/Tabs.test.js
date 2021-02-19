@@ -92,10 +92,13 @@ describe('<Tabs />', () => {
         render(<Tabs value={0} centered variant="scrollable" />);
       }).toErrorDev([
         'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
-        // StrictMode renders twice
+        React.version.startsWith('16') &&
+          // StrictMode renders twice
+          'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
         'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
-        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
-        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
+        React.version.startsWith('16') &&
+          // StrictMode renders twice
+          'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
       ]);
     });
   });
