@@ -116,5 +116,12 @@ describe('custom matchers', () => {
           'By expecting certain messages you automatically expect that no other messages are logged',
       );
     });
+
+    it('ignores `false` messages', () => {
+      const isReact16 = false;
+      expect(() => {
+        expect(() => {}).toErrorDev([isReact16 && 'some legacy error message']);
+      }).not.to.throw();
+    });
   });
 });

@@ -88,7 +88,9 @@ describe('<Breadcrumbs />', () => {
       );
     }).toErrorDev([
       'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
-      'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
+      // strict mode renders twice
+      React.version.startsWith('16') &&
+        'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
     ]);
     expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
     expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');

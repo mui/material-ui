@@ -53,8 +53,6 @@ async function main(options) {
 
   // add newline for clean diff
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
-
-  await exec(`git apply ${path.resolve(__dirname, `./react-${distTag}.diff`)}`);
 }
 
 const [distTag = process.env.REACT_DIST_TAG] = process.argv.slice(2);
