@@ -89,6 +89,11 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * Props applied to the `TouchRipple` element.
      */
     TouchRippleProps?: Partial<TouchRippleProps>;
+
+    /**
+     * Event callback for `contextmenu` event.
+     */
+    onContextMenu?: (event: Event) => void;
   };
   defaultComponent: D;
 }
