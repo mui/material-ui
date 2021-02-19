@@ -16,7 +16,7 @@ import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
-const INTENTIONAL_MOVE_COUNT_THRESHOLD = 2;
+const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
 function asc(a, b) {
   return a - b;
@@ -439,7 +439,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
-    if (!dragging && moveCount.current > INTENTIONAL_MOVE_COUNT_THRESHOLD) {
+    if (!dragging && moveCount.current > INTENTIONAL_DRAG_COUNT_THRESHOLD) {
       setDragging(true);
     }
 
