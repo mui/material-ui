@@ -190,6 +190,7 @@
     "**/@babel/preset-react": "^7.10.1",
     "**/@babel/preset-typescript": "^7.10.4",
     "**/@babel/runtime": "^7.10.2",
+    "**/@testing-library/dom": "https://pkg.csb.dev/testing-library/dom-testing-library/commit/f6a6eda8/@testing-library/dom",
     "**/@types/react": "^17.0.0",
     "**/@types/react-dom": "^17.0.0",
     "**/cross-fetch": "^3.0.5",
