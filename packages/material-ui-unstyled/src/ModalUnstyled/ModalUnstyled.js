@@ -294,7 +294,7 @@ ModalUnstyled.propTypes = {
    */
   BackdropComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Backdrop`](/api/backdrop-unstyled/) element.
+   * Props applied to the [`BackdropUnstyled`](/api/backdrop-unstyled/) element.
    */
   BackdropProps: PropTypes.object,
   /**
