@@ -49,6 +49,10 @@ const InputLabelRoot = experimentalStyled(
 )(({ theme, styleProps }) => ({
   display: 'block',
   transformOrigin: 'top left',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  maxWidth: '100%',
   ...(styleProps.formControl && {
     position: 'absolute',
     left: 0,
@@ -63,9 +67,10 @@ const InputLabelRoot = experimentalStyled(
   ...(styleProps.shrink && {
     transform: 'translate(0, 1.5px) scale(0.75)',
     transformOrigin: 'top left',
+    maxWidth: '133%',
   }),
   ...(!styleProps.disableAnimation && {
-    transition: theme.transitions.create(['color', 'transform'], {
+    transition: theme.transitions.create(['color', 'transform', 'max-width'], {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.easeOut,
     }),
@@ -78,11 +83,13 @@ const InputLabelRoot = experimentalStyled(
     zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(12px, 20px) scale(1)',
+    maxWidth: 'calc(100% - 24px)',
     ...(styleProps.size === 'small' && {
       transform: 'translate(12px, 17px) scale(1)',
     }),
     ...(styleProps.shrink && {
       transform: 'translate(12px, 10px) scale(0.75)',
+      maxWidth: 'calc(133% - 24px)',
       ...(styleProps.size === 'small' && {
         transform: 'translate(12px, 7px) scale(0.75)',
       }),
@@ -93,10 +100,12 @@ const InputLabelRoot = experimentalStyled(
     zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(14px, 20px) scale(1)',
+    maxWidth: 'calc(100% - 24px)',
     ...(styleProps.size === 'small' && {
       transform: 'translate(14px, 12px) scale(1)',
     }),
     ...(styleProps.shrink && {
+      maxWidth: 'calc(133% - 24px)',
       transform: 'translate(14px, -6px) scale(0.75)',
     }),
   }),
