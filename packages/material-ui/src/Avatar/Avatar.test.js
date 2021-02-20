@@ -7,12 +7,13 @@ import Avatar from './Avatar';
 import classes from './avatarClasses';
 
 describe('<Avatar />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Avatar />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',

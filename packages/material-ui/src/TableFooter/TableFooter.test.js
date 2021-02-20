@@ -6,8 +6,8 @@ import Tablelvl2Context from '../Table/Tablelvl2Context';
 import classes from './tableFooterClasses';
 
 describe('<TableFooter />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   function renderInTable(node) {
     return render(<table>{node}</table>);
@@ -16,13 +16,13 @@ describe('<TableFooter />', () => {
   describeConformanceV5(<TableFooter />, () => ({
     classes,
     inheritComponent: 'tfoot',
-    mount: (node) => {
-      const wrapper = mount(<table>{node}</table>);
-      return wrapper.find('table').childAt(0);
-    },
     render: (node) => {
       const { container, ...rest } = render(<table>{node}</table>);
       return { container: container.firstChild, ...rest };
+    },
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
     },
     muiName: 'MuiTableFooter',
     testVariantProps: { variant: 'foo' },

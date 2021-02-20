@@ -20,12 +20,13 @@ const NoContent = React.forwardRef(() => {
 });
 
 describe('<ListItem />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
+  const mount = createMount({ strict: true });
 
   describeConformanceV5(<ListItem />, () => ({
     classes,
     inheritComponent: 'li',
+    render,
     mount,
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',

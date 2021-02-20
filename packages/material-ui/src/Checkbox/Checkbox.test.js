@@ -14,6 +14,7 @@ describe('<Checkbox />', () => {
   describeConformanceV5(<Checkbox checked />, () => ({
     classes,
     inheritComponent: IconButton,
+    render,
     mount,
     muiName: 'MuiCheckbox',
     testVariantProps: { variant: 'foo' },

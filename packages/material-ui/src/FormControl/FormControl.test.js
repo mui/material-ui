@@ -9,8 +9,8 @@ import useFormControl from './useFormControl';
 import classes from './formControlClasses';
 
 describe('<FormControl />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   function TestComponent(props) {
     const context = useFormControl();
@@ -23,6 +23,7 @@ describe('<FormControl />', () => {
   describeConformanceV5(<FormControl />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'fieldset',

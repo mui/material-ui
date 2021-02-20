@@ -5,12 +5,13 @@ import Breadcrumbs from './Breadcrumbs';
 import classes from './breadcrumbsClasses';
 
 describe('<Breadcrumbs />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
     classes,
     inheritComponent: 'nav',
+    render,
     mount,
     muiName: 'MuiBreadcrumbs',
     refInstanceof: window.HTMLElement,

@@ -13,12 +13,13 @@ import ButtonBase from '../ButtonBase';
 import classes from './buttonClasses';
 
 describe('<Button />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Button>Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',

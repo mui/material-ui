@@ -5,8 +5,8 @@ import TableRow from './TableRow';
 import classes from './tableRowClasses';
 
 describe('<TableRow />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   function renderInTable(node) {
     return render(
@@ -19,14 +19,6 @@ describe('<TableRow />', () => {
   describeConformanceV5(<TableRow />, () => ({
     classes,
     inheritComponent: 'tr',
-    mount: (node) => {
-      const wrapper = mount(
-        <table>
-          <tbody>{node}</tbody>
-        </table>,
-      );
-      return wrapper.find('tbody').childAt(0);
-    },
     render: (node) => {
       const { container, ...rest } = render(
         <table>
@@ -34,6 +26,14 @@ describe('<TableRow />', () => {
         </table>,
       );
       return { container: container.firstChild.firstChild, ...rest };
+    },
+    mount: (node) => {
+      const wrapper = mount(
+        <table>
+          <tbody>{node}</tbody>
+        </table>,
+      );
+      return wrapper.find('tbody').childAt(0);
     },
     muiName: 'MuiTableRow',
     testVariantProps: { variant: 'foo' },

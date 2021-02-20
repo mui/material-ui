@@ -16,6 +16,7 @@ describe('<Accordion />', () => {
   describeConformanceV5(<Accordion>{minimalChildren}</Accordion>, () => ({
     classes,
     inheritComponent: Paper,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordion',

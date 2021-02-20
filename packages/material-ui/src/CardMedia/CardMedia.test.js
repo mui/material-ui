@@ -6,12 +6,13 @@ import CardMedia from './CardMedia';
 import classes from './cardMediaClasses';
 
 describe('<CardMedia />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<CardMedia image="/fake.png" />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiCardMedia',
     refInstanceof: window.HTMLDivElement,

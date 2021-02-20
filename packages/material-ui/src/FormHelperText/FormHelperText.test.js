@@ -6,12 +6,13 @@ import FormControl from '../FormControl';
 import classes from './formHelperTextClasses';
 
 describe('<FormHelperText />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<FormHelperText />, () => ({
     classes,
     inheritComponent: 'p',
+    render,
     mount,
     refInstanceof: window.HTMLParagraphElement,
     testComponentPropWith: 'div',

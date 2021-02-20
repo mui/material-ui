@@ -17,12 +17,13 @@ import Chip from './Chip';
 import classes from './chipClasses';
 
 describe('<Chip />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Chip />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiChip',
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },

@@ -6,13 +6,14 @@ import ListItem from '../ListItem';
 import classes from './listItemSecondaryActionClasses';
 
 describe('<ListItemSecondaryAction />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<ListItemSecondaryAction />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiListItemSecondaryAction',
     skip: ['componentProp', 'componentsProp', 'themeVariants'],

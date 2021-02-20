@@ -14,12 +14,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 describe('<MenuItem />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<MenuItem />, () => ({
     classes,
     inheritComponent: ListItem,
+    render,
     mount,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'a',

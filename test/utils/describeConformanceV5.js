@@ -2,7 +2,6 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { createClientRender } from './createClientRender';
 import {
   testComponentProp,
   testClassName,
@@ -246,9 +245,6 @@ const fullSuite = {
 export default function describeConformanceV5(minimalElement, getOptions) {
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
 
-  const render = createClientRender();
-  const getOptionsWithDefault = () => ({ render, ...getOptions() });
-
   describe('Material-UI component API', () => {
     after(runAfterHook);
 
@@ -256,7 +252,7 @@ export default function describeConformanceV5(minimalElement, getOptions) {
       .filter((testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1)
       .forEach((testKey) => {
         const test = fullSuite[testKey];
-        test(minimalElement, getOptionsWithDefault);
+        test(minimalElement, getOptions);
       });
   });
 }

@@ -1,15 +1,17 @@
 import * as React from 'react';
-import { createMount, describeConformanceV5 } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
 import Input from './Input';
 import InputBase from '../InputBase';
 import classes from './inputClasses';
 
 describe('<Input />', () => {
+  const render = createClientRender();
   const mount = createMount();
 
   describeConformanceV5(<Input />, () => ({
     classes,
     inheritComponent: InputBase,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInput',

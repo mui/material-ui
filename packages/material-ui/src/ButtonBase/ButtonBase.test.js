@@ -41,6 +41,7 @@ describe('<ButtonBase />', () => {
   describeConformanceV5(<ButtonBase />, () => ({
     classes,
     inheritComponent: 'button',
+    render,
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'a',

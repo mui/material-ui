@@ -5,10 +5,11 @@ import Switch, { switchClasses as classes } from '@material-ui/core/Switch';
 import FormControl from '@material-ui/core/FormControl';
 
 describe('<Switch />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Switch />, () => ({
+    render,
     mount,
     muiName: 'MuiSwitch',
     testVariantProps: { variant: 'foo' },

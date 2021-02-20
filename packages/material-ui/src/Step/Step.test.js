@@ -10,9 +10,8 @@ import classes from './stepClasses';
 describe('<Step />', () => {
   let stepButtonClasses;
   let stepLabelClasses;
-  const mount = createMount();
-
   const render = createClientRender();
+  const mount = createMount();
 
   before(() => {
     stepButtonClasses = getClasses(<StepButton />);
@@ -22,6 +21,7 @@ describe('<Step />', () => {
   describeConformanceV5(<Step />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiStep',
     testVariantProps: { variant: 'foo' },

@@ -14,12 +14,13 @@ import Icon from '../Icon';
 import classes from './fabClasses';
 
 describe('<Fab />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Fab>Conformance?</Fab>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     muiName: 'MuiFab',
     testVariantProps: { variant: 'extended' },

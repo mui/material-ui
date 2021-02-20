@@ -6,8 +6,8 @@ import Tablelvl2Context from '../Table/Tablelvl2Context';
 import classes from './tableBodyClasses';
 
 describe('<TableBody />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   function renderInTable(node) {
     return render(<table>{node}</table>);

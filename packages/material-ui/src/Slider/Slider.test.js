@@ -34,12 +34,13 @@ describe('<Slider />', () => {
     }
   });
 
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Slider value={0} />, () => ({
     classes,
     inheritComponent: SliderUnstyled,
+    render,
     mount,
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSlider',

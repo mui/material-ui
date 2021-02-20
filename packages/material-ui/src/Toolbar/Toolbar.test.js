@@ -5,12 +5,13 @@ import Toolbar from './Toolbar';
 import classes from './toolbarClasses';
 
 describe('<Toolbar />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Toolbar />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     muiName: 'MuiToolbar',
     refInstanceof: window.HTMLDivElement,

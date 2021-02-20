@@ -8,16 +8,17 @@ import Collapse from './Collapse';
 import classes from './collapseClasses';
 
 describe('<Collapse />', () => {
+  const render = createClientRender();
   const mount = createMount({ strict: true });
   const defaultProps = {
     in: true,
     children: <div />,
   };
-  const render = createClientRender();
 
   describeConformanceV5(<Collapse {...defaultProps} />, () => ({
     classes,
     inheritComponent: Transition,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiCollapse',

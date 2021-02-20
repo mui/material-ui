@@ -6,12 +6,13 @@ import Fade from '../Fade';
 import classes from './backdropClasses';
 
 describe('<Backdrop />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
+  const mount = createMount({ strict: true });
 
   describeConformanceV5(<Backdrop open />, () => ({
     classes,
     inheritComponent: Fade,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiBackdrop',

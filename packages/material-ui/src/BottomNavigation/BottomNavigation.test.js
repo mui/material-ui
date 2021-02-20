@@ -9,8 +9,8 @@ import classes from './bottomNavigationClasses';
 import actionClasses from '../BottomNavigationAction/bottomNavigationActionClasses';
 
 describe('<BottomNavigation />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
   const icon = <Icon>restore</Icon>;
   const getBottomNavigation = (container) => container.firstChild;
 
@@ -21,6 +21,7 @@ describe('<BottomNavigation />', () => {
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
       muiName: 'MuiBottomNavigation',
       refInstanceof: window.HTMLDivElement,
