@@ -106,10 +106,10 @@ export function useMaskedInput({
     disabled,
     error: validationError,
     helperText: formatHelperText,
-    placeholder: formatHelperText,
     inputProps: {
       ...inputStateArgs,
-      disabled, // make spreading in custom input easier
+      disabled,
+      placeholder: formatHelperText,
       readOnly,
       type: shouldUseMaskedInput ? 'tel' : 'text',
       ...inputProps,
