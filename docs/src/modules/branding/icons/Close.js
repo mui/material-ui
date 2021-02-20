@@ -2,12 +2,11 @@ import * as React from 'react';
 import { createSvgIcon } from '@material-ui/core/utils';
 
 export default createSvgIcon(
-  <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="m1.7070312.2929688-1.4140624 1.4140624 6.2929692 6.2929688-6.2929692 6.292969 1.4140624 1.414062 6.2929688-6.292969 6.292969 6.292969 1.414062-1.414062-6.292969-6.292969 6.292969-6.2929688-1.414062-1.4140624-6.292969 6.2929692z"
-      fillRule="evenodd"
-      transform="translate(4 4)"
-    />
-  </svg>,
+  <path
+    fillRule="evenodd"
+    clipRule="evenodd"
+    d="M8.50207 7L7 8.50207L10.4979 12L7 15.4979L8.50207 17L12 13.5021L15.4979 17L17 15.4979L13.5021 12L17 8.50207L15.4979 7L12 10.4979L8.50207 7Z"
+    fill="#AAB4BE"
+  />,
   'Close',
 );
