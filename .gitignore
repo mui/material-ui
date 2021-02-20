@@ -17,7 +17,6 @@
 /packages/material-ui-envinfo/*.tgz
 /packages/material-ui-icons/material-icons/*
 /test/regressions/screenshots
-/test/selenium-output
 /tmp
 build
 node_modules
