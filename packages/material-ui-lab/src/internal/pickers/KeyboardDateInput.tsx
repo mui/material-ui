@@ -12,7 +12,7 @@ import { getTextFieldAriaText } from './text-field-helper';
 export function KeyboardDateInput(props: DateInputProps & DateInputRefs) {
   const {
     containerRef,
-    disableOpenPicker: hideOpenPickerButton,
+    disableOpenPicker,
     forwardedRef = null,
     getOpenDialogAriaText = getTextFieldAriaText,
     InputAdornmentProps,
@@ -35,7 +35,7 @@ export function KeyboardDateInput(props: DateInputProps & DateInputRefs) {
     ...textFieldProps,
     InputProps: {
       ...InputProps,
-      [`${adornmentPosition}Adornment`]: hideOpenPickerButton ? undefined : (
+      [`${adornmentPosition}Adornment`]: disableOpenPicker ? undefined : (
         <InputAdornment position={adornmentPosition} {...InputAdornmentProps}>
           <IconButton
             edge={adornmentPosition}
