@@ -18,7 +18,7 @@ export function KeyboardDateInput(props: DateInputProps & DateInputRefs) {
     InputAdornmentProps,
     InputProps,
     inputRef = null,
-    openPicker: onOpen,
+    openPicker,
     OpenPickerButtonProps,
     openPickerIcon = <CalendarIcon />,
     renderInput,
@@ -43,7 +43,7 @@ export function KeyboardDateInput(props: DateInputProps & DateInputRefs) {
             disabled={other.disabled}
             aria-label={getOpenDialogAriaText(other.rawValue, utils)}
             {...OpenPickerButtonProps}
-            onClick={onOpen}
+            onClick={openPicker}
           >
             {openPickerIcon}
           </IconButton>
