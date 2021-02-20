@@ -56,7 +56,8 @@ const startMaterialUi = [
         detail: (
           <React.Fragment>
             Material-UI X package (grid and date picker included){' '}
-            <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} /> with 1 year of updates
+            <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} /> with 1 year of
+            updates
           </React.Fragment>
         ),
         isLink: true,
@@ -184,12 +185,12 @@ function Benefits() {
 function ComparePlans() {
   return (
     <React.Fragment>
-      <Typography variant="h2" align="center" sx={{ mt: 8 }}>
-        Compare Plans
+      <Typography variant="h2" align="center" sx={{ mt: 0 }}>
+        <UnderlinedText>Compare</UnderlinedText> Plans
       </Typography>
-      <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}>
+      <Typography sx={{ mt: 3, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}>
         Compare Material-UI plans, see which one might fit you or your team. If you need further
-        help deciding contact support or visit
+        help deciding <Link href="/getting-started/support/">contact support</Link> or visit{' '}
         <Link href="/getting-started/usage/">community hub</Link>.
       </Typography>
       <ComparisonTable />
@@ -305,23 +306,28 @@ function WhatToExpect() {
 const faqData = [
   {
     summary: 'Why are you calling it early access?',
-    detail: "We think you’ll love the components we've built so far, but we're planning to release more. We opened it up as soon as we had something useful, so that you can start getting value from it right away, and we'll be adding new features and components based on our own ideas, and on suggestions from early access customers.",
+    detail:
+      "We think you’ll love the components we've built so far, but we're planning to release more. We opened it up as soon as we had something useful, so that you can start getting value from it right away, and we'll be adding new features and components based on our own ideas, and on suggestions from early access customers.",
   },
   {
     summary: 'How many licenses do I need?',
-    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
     summary: 'Am I allowed to use the product after 1-year subscription expires?',
-    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
     summary: 'What is the policy on redistributing the software?',
-    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
   {
     summary: 'Do you offer discounts to educational and non-profit organizations?',
-    detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
+    detail:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.',
   },
 ];
 
@@ -358,7 +364,7 @@ function FAQ() {
       >
         Frequently asked questions
       </Typography>
-      <Box sx={{ mt: 10, maxWidth: '770px', margin: ' 0 auto', }}>
+      <Box sx={{ mt: 10, maxWidth: '770px', margin: ' 0 auto' }}>
         {faqData.map((faq) => (
           <Accordion
             key={faq.summary}
