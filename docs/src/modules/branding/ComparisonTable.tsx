@@ -17,14 +17,14 @@ import Popover from '@material-ui/core/Popover';
 
 //PlanFeatuer Component start
 interface PlanFeatuerProps {
-  text: string;
-  // sx?: object;
+  text: any;
+  sx?: object;
   variant: string;
   isBorder: boolean;
   isBold: boolean;
 }
 function PlanFeatuer(props: PlanFeatuerProps) {
-  const { text, variant = 'h4', isBorder = false, isBold = false } = props;
+  const { text, sx, variant = 'h4', isBorder = false, isBold = false } = props;
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       // typography: {
@@ -74,19 +74,19 @@ function PlanFeatuer(props: PlanFeatuerProps) {
 
   const open = Boolean(anchorEl);
 
-  let sx = isBold
+  let sxTemp = isBold
     ? {
-        fontWeight: 600,
-        fontSize: { lg: '20px', sm: '20px', xs: '16px' },
-        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-        paddingTop: '4px',
-        paddingBottom: '4px',
-      }
+      fontWeight: 600,
+      fontSize: { lg: '20px', sm: '20px', xs: '16px' },
+      lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+      paddingTop: '4px',
+      paddingBottom: '4px',
+    }
     : {
-        fontWeight: 'normal',
-        fontSize: '16px',
-        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-      };
+      fontWeight: 'normal',
+      fontSize: '16px',
+      lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+    };
 
   return (
     <React.Fragment>
@@ -94,6 +94,7 @@ function PlanFeatuer(props: PlanFeatuerProps) {
         variant={variant}
         sx={{
           ...sx,
+          ...sxTemp,
           borderBottom: isBorder ? '1px dashed #132F4C' : '',
           display: 'inline-block',
         }}
@@ -316,7 +317,7 @@ const rows = [
       size="medium"
       variant="contained"
       endIcon={<NavigateNextIcon />}
-      sx={{ display: { xs: 'none' } }}
+      // sx={ lg: 'block', sm: 'none',xs: 'none' } }}
     >
       Get started
     </Button>,

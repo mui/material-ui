@@ -33,11 +33,16 @@ function PlanStatus(props: PlanStatusProps) {
       ) : isPendingIcon ? (
         <PendingIcon />
       ) : (
-        mainText
-      )}
+              <Typography
+                variant="h5"
+                sx={{ fontSize: { lg: '16px', sm: '16px', xs: '12px' }, lineHeight: { lg: '24px', sm: '24px', xs: '20px' }, fontWeight: 'normal' }}
+              >
+                {mainText}
+              </Typography>
+            )}
       <Typography
         variant="h5"
-        sx={{ color: '#8796A5', fontSize: '14px', lineHeight: '20px', fontWeight: 'normal' }}
+        sx={{ color: '#8796A5', fontSize: { lg: '14px', sm: '14px', xs: '12px' }, lineHeight: '20px', fontWeight: 'normal' }}
       >
         {bottonText}
       </Typography>
