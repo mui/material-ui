@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { MuiStyles, useTheme, WithStyles, withStyles } from '@material-ui/core/styles';
 import PickersToolbarText from '../internal/pickers/PickersToolbarText';
-import ToolbarButton from '../internal/pickers/PickersToolbarButton';
+import PickersToolbarButton from '../internal/pickers/PickersToolbarButton';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { arrayIncludes } from '../internal/pickers/utils';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
@@ -112,7 +112,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
         })}
       >
         {arrayIncludes(views, 'hours') && (
-          <ToolbarButton
+          <PickersToolbarButton
             data-mui-test="hours"
             tabIndex={-1}
             variant={clockTypographyVariant}
@@ -123,7 +123,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
         )}
         {arrayIncludes(views, ['hours', 'minutes']) && separator}
         {arrayIncludes(views, 'minutes') && (
-          <ToolbarButton
+          <PickersToolbarButton
             data-mui-test="minutes"
             tabIndex={-1}
             variant={clockTypographyVariant}
@@ -134,7 +134,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
         )}
         {arrayIncludes(views, ['minutes', 'seconds']) && separator}
         {arrayIncludes(views, 'seconds') && (
-          <ToolbarButton
+          <PickersToolbarButton
             data-mui-test="seconds"
             variant={clockTypographyVariant}
             onClick={() => setOpenView('seconds')}
@@ -149,7 +149,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
             [classes.ampmLandscape]: isLandscape,
           })}
         >
-          <ToolbarButton
+          <PickersToolbarButton
             disableRipple
             variant="subtitle2"
             data-mui-test="toolbar-am-btn"
@@ -158,7 +158,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
             value={utils.getMeridiemText('am')}
             onClick={() => handleMeridiemChange('am')}
           />
-          <ToolbarButton
+          <PickersToolbarButton
             disableRipple
             variant="subtitle2"
             data-mui-test="toolbar-pm-btn"
