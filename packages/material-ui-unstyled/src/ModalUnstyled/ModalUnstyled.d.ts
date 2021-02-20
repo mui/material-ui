@@ -9,7 +9,7 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
     /**
      * A backdrop component. This prop enables custom backdrop rendering.
      */
-    BackdropComponent?: React.ComponentType<BackdropUnstyledProps>;
+    BackdropComponent?: React.ElementType;
     /**
      * Props applied to the [`BackdropUnstyled`](/api/backdrop-unstyled/) element.
      */

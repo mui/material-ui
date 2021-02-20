@@ -14,7 +14,7 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
      * A backdrop component. This prop enables custom backdrop rendering.
      * @default Backdrop
      */
-    BackdropComponent?: React.ComponentType<BackdropProps>;
+    BackdropComponent?: React.ElementType<BackdropProps>;
     /**
      * Props applied to the [`Backdrop`](/api/backdrop/) element.
      */
