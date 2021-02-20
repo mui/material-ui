@@ -1,5 +1,4 @@
-export { default } from './Modal';
-export { default as ModalManager } from './ModalManager';
+export * from '@material-ui/unstyled/ModalUnstyled';
 
-export { default as modalClasses } from './modalClasses';
-export * from './modalClasses';
+export { default } from './Modal';
+export * from './Modal';

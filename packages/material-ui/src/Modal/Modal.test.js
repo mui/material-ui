@@ -13,10 +13,9 @@ import {
 } from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import Fade from '../Fade';
-import Backdrop from '../Backdrop';
-import Modal from './Modal';
-import classes from './modalClasses';
+import Fade from '@material-ui/core/Fade';
+import Backdrop from '@material-ui/core/Backdrop';
+import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
 
 describe('<Modal />', () => {
   const mount = createMount({ strict: true });

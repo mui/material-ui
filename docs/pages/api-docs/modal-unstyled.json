@@ -2,7 +2,7 @@
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
-    "BackdropComponent": { "type": { "name": "elementType" }, "default": "Backdrop" },
+    "BackdropComponent": { "type": { "name": "elementType" } },
     "BackdropProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" }, "default": "{}" },
     "closeAfterTransition": { "type": { "name": "bool" } },
@@ -22,16 +22,19 @@
     "hideBackdrop": { "type": { "name": "bool" } },
     "keepMounted": { "type": { "name": "bool" } },
     "onBackdropClick": { "type": { "name": "func" } },
-    "onClose": { "type": { "name": "func" } },
-    "sx": { "type": { "name": "object" } }
+    "onClose": { "type": { "name": "func" } }
   },
-  "name": "Modal",
-  "styles": { "classes": ["root", "hidden"], "globalClasses": {}, "name": "MuiModal" },
+  "name": "ModalUnstyled",
+  "styles": {
+    "classes": ["root", "hidden"],
+    "globalClasses": { "root": "MuiModal-root", "hidden": "MuiModal-hidden" },
+    "name": null
+  },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Modal/Modal.js",
+  "filename": "/packages/material-ui-unstyled/src/ModalUnstyled/ModalUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/components/modal/\">Modal</a></li></ul>",
+  "demos": "",
   "styledComponent": true,
   "cssComponent": false
 }
