@@ -45,7 +45,7 @@ export const FormLabelRoot = experimentalStyled(
 )(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,
   ...theme.typography.body1,
-  lineHeight: 1,
+  lineHeight: '1.4375em',
   padding: 0,
   '&.Mui-focused': {
     color: theme.palette.primary.main,

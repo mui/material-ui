@@ -18,6 +18,7 @@ const NotchedOutlineRoot = experimentalStyled('fieldset')({
   borderStyle: 'solid',
   borderWidth: 1,
   overflow: 'hidden',
+  minWidth: '0%',
 });
 
 const NotchedOutlineLegend = experimentalStyled('legend')(({ styleProps, theme }) => ({
@@ -47,7 +48,7 @@ const NotchedOutlineLegend = experimentalStyled('legend')(({ styleProps, theme }
       display: 'inline-block',
     },
     ...(styleProps.notched && {
-      maxWidth: 1000,
+      maxWidth: '100%',
       transition: theme.transitions.create('max-width', {
         duration: 100,
         easing: theme.transitions.easing.easeOut,
