@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
+import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
 import {
   BaseTimePickerProps,
   timePickerConfig,
@@ -14,7 +14,7 @@ import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * - [StaticTimePicker API](https://material-ui.com/api/static-time-picker/)
  */
-const StaticTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(StaticWrapper, {
+const StaticTimePicker = makePickerWithState<BaseTimePickerProps>(StaticWrapper, {
   name: 'MuiStaticTimePicker',
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof StaticWrapper>;

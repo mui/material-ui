@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
+import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
 import {
   BaseTimePickerProps,
   timePickerConfig,
@@ -14,7 +14,7 @@ import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * - [DesktopTimePicker API](https://material-ui.com/api/desktop-time-picker/)
  */
-const DesktopTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(DesktopWrapper, {
+const DesktopTimePicker = makePickerWithState<BaseTimePickerProps>(DesktopWrapper, {
   name: 'MuiDesktopTimePicker',
   ...timePickerConfig,
 }) as TimePickerGenericComponent<typeof DesktopWrapper>;

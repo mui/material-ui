@@ -11,7 +11,7 @@ import {
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedDayPickerProps } from '../DayPicker/DayPicker';
 import {
-  makePickerWithStateAndWrapper,
+  makePickerWithState,
   SharedPickerProps,
 } from '../internal/pickers/Picker/makePickerWithState';
 import { SomeWrapper } from '../internal/pickers/wrappers/Wrapper';
@@ -133,13 +133,10 @@ export type DateTimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDa
  * @ignore - do not document.
  */
 /* @typescript-to-proptypes-generate */
-const DateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unknown>>(
-  ResponsiveWrapper,
-  {
-    name: 'MuiDateTimePicker',
-    ...dateTimePickerConfig,
-  },
-) as DateTimePickerGenericComponent<typeof ResponsiveWrapper>;
+const DateTimePicker = makePickerWithState<BaseDateTimePickerProps<unknown>>(ResponsiveWrapper, {
+  name: 'MuiDateTimePicker',
+  ...dateTimePickerConfig,
+}) as DateTimePickerGenericComponent<typeof ResponsiveWrapper>;
 
 if (process.env.NODE_ENV !== 'production') {
   (DateTimePicker as any).displayName = 'DateTimePicker';
