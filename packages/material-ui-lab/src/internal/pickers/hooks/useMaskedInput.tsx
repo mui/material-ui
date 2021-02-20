@@ -109,7 +109,6 @@ export function useMaskedInput({
     inputProps: {
       ...inputStateArgs,
       disabled, // make spreading in custom input easier
-      placeholder: formatHelperText,
       readOnly,
       type: shouldUseMaskedInput ? 'tel' : 'text',
       ...inputProps,
@@ -120,6 +119,7 @@ export function useMaskedInput({
         isFocusedRef.current = false;
       }, inputProps?.onBlur),
     },
+    placeholder: formatHelperText,
     ...TextFieldProps,
   };
 }
