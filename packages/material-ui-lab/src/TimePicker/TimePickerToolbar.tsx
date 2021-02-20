@@ -56,8 +56,6 @@ export const styles: MuiStyles<TimePickerToolbarClassKey> = {
   },
 };
 
-const clockTypographyVariant = 'h3';
-
 /**
  * @ignore - internal component.
  */
@@ -89,7 +87,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
     <PickersToolbarText
       tabIndex={-1}
       value=":"
-      variant={clockTypographyVariant}
+      variant="h3"
       selected={false}
       className={classes.separator}
     />
@@ -115,7 +113,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
           <PickersToolbarButton
             data-mui-test="hours"
             tabIndex={-1}
-            variant={clockTypographyVariant}
+            variant="h3"
             onClick={() => setOpenView('hours')}
             selected={openView === 'hours'}
             value={date ? formatHours(date) : '--'}
@@ -126,7 +124,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
           <PickersToolbarButton
             data-mui-test="minutes"
             tabIndex={-1}
-            variant={clockTypographyVariant}
+            variant="h3"
             onClick={() => setOpenView('minutes')}
             selected={openView === 'minutes'}
             value={date ? utils.format(date, 'minutes') : '--'}
@@ -136,7 +134,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
         {arrayIncludes(views, 'seconds') && (
           <PickersToolbarButton
             data-mui-test="seconds"
-            variant={clockTypographyVariant}
+            variant="h3"
             onClick={() => setOpenView('seconds')}
             selected={openView === 'seconds'}
             value={date ? utils.format(date, 'seconds') : '--'}
