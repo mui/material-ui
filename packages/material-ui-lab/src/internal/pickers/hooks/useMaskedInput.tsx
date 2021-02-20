@@ -106,6 +106,7 @@ export function useMaskedInput({
     disabled,
     error: validationError,
     helperText: formatHelperText,
+    placeholder: formatHelperText,
     inputProps: {
       ...inputStateArgs,
       disabled, // make spreading in custom input easier
@@ -119,7 +120,6 @@ export function useMaskedInput({
         isFocusedRef.current = false;
       }, inputProps?.onBlur),
     },
-    placeholder: formatHelperText,
     ...TextFieldProps,
   };
 }
