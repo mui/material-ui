@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
+import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
 import {
   BaseDateTimePickerProps,
   dateTimePickerConfig,
@@ -11,13 +11,10 @@ import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
  * @ignore - do not document.
  */
 /* @typescript-to-proptypes-generate */
-const StaticDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unknown>>(
-  StaticWrapper,
-  {
-    name: 'MuiStaticDateTimePicker',
-    ...dateTimePickerConfig,
-  },
-) as DateTimePickerGenericComponent<typeof StaticWrapper>;
+const StaticDateTimePicker = makePickerWithState<BaseDateTimePickerProps<unknown>>(StaticWrapper, {
+  name: 'MuiStaticDateTimePicker',
+  ...dateTimePickerConfig,
+}) as DateTimePickerGenericComponent<typeof StaticWrapper>;
 
 if (process.env.NODE_ENV !== 'production') {
   (StaticDateTimePicker as any).displayName = 'StaticDateTimePicker';

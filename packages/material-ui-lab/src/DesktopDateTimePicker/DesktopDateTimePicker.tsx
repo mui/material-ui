@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
+import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
 import {
   BaseDateTimePickerProps,
   dateTimePickerConfig,
@@ -11,7 +11,7 @@ import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
  * @ignore - do not document.
  */
 /* @typescript-to-proptypes-generate */
-const DesktopDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unknown>>(
+const DesktopDateTimePicker = makePickerWithState<BaseDateTimePickerProps<unknown>>(
   DesktopWrapper,
   {
     name: 'MuiDesktopDateTimePicker',

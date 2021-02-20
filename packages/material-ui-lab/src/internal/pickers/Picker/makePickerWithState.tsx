@@ -49,7 +49,7 @@ type PickerComponent<
   TWrapper extends SomeWrapper
 > = (props: TViewProps & SharedPickerProps<unknown, TWrapper>) => JSX.Element;
 
-export function makePickerWithStateAndWrapper<
+export function makePickerWithState<
   T extends AllAvailableForOverrideProps,
   TWrapper extends SomeWrapper = typeof ResponsiveWrapper
 >(

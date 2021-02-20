@@ -5,7 +5,7 @@ import {
   BaseDatePickerProps,
 } from '../DatePicker/DatePicker';
 import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
+import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
 
 /**
  *
@@ -14,13 +14,10 @@ import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePi
  * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)
  */
 // @typescript-to-proptypes-generate
-const DesktopDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
-  DesktopWrapper,
-  {
-    name: 'MuiDesktopDatePicker',
-    ...datePickerConfig,
-  },
-) as DatePickerGenericComponent<typeof DesktopWrapper>;
+const DesktopDatePicker = makePickerWithState<BaseDatePickerProps<unknown>>(DesktopWrapper, {
+  name: 'MuiDesktopDatePicker',
+  ...datePickerConfig,
+}) as DatePickerGenericComponent<typeof DesktopWrapper>;
 
 if (process.env.NODE_ENV !== 'production') {
   (DesktopDatePicker as any).displayName = 'DesktopDatePicker';

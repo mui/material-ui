@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
+import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
 import {
   BaseDatePickerProps,
   datePickerConfig,
@@ -14,13 +14,10 @@ import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
  * - [MobileDatePicker API](https://material-ui.com/api/mobile-date-picker/)
  */
 // @typescript-to-proptypes-generate
-const MobileDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
-  MobileWrapper,
-  {
-    name: 'MuiMobileDatePicker',
-    ...datePickerConfig,
-  },
-) as DatePickerGenericComponent<typeof MobileWrapper>;
+const MobileDatePicker = makePickerWithState<BaseDatePickerProps<unknown>>(MobileWrapper, {
+  name: 'MuiMobileDatePicker',
+  ...datePickerConfig,
+}) as DatePickerGenericComponent<typeof MobileWrapper>;
 
 if (process.env.NODE_ENV !== 'production') {
   (MobileDatePicker as any).displayName = 'MobileDatePicker';

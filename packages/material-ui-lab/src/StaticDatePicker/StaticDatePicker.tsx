@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
+import { makePickerWithState } from '../internal/pickers/Picker/makePickerWithState';
 import {
   BaseDatePickerProps,
   datePickerConfig,
@@ -14,13 +14,10 @@ import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
  * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
  */
 // @typescript-to-proptypes-generate
-const StaticDatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(
-  StaticWrapper,
-  {
-    name: 'MuiStaticDatePicker',
-    ...datePickerConfig,
-  },
-) as DatePickerGenericComponent<typeof StaticWrapper>;
+const StaticDatePicker = makePickerWithState<BaseDatePickerProps<unknown>>(StaticWrapper, {
+  name: 'MuiStaticDatePicker',
+  ...datePickerConfig,
+}) as DatePickerGenericComponent<typeof StaticWrapper>;
 
 if (process.env.NODE_ENV !== 'production') {
   (StaticDatePicker as any).displayName = 'StaticDatePicker';

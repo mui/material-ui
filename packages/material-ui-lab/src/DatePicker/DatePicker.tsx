@@ -16,7 +16,7 @@ import {
   defaultMaxDate,
 } from '../internal/pickers/constants/prop-types';
 import {
-  makePickerWithStateAndWrapper,
+  makePickerWithState,
   AllPickerProps,
   SharedPickerProps,
 } from '../internal/pickers/Picker/makePickerWithState';
@@ -77,7 +77,7 @@ export type DatePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDate>(
  * - [DatePicker API](https://material-ui.com/api/date-picker/)
  */
 // @typescript-to-proptypes-generate
-const DatePicker = makePickerWithStateAndWrapper<BaseDatePickerProps<unknown>>(ResponsiveWrapper, {
+const DatePicker = makePickerWithState<BaseDatePickerProps<unknown>>(ResponsiveWrapper, {
   name: 'MuiDatePicker',
   ...datePickerConfig,
 }) as DatePickerGenericComponent<typeof MobileWrapper>;
