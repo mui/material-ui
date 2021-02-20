@@ -46,6 +46,11 @@
       "nodeName": "the root and thumb element",
       "conditions": "<code>disabled={true}</code>"
     },
+    "dragging": {
+      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root",
+      "conditions": "a thumb is being dragged"
+    },
     "rail": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the rail element"

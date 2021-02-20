@@ -10,6 +10,7 @@ const sliderUnstyledClasses = generateUtilityClasses('MuiSlider', [
   'active',
   'focusVisible',
   'disabled',
+  'dragging',
   'marked',
   'vertical',
   'trackInverted',

@@ -122,6 +122,11 @@ export const SliderRoot = experimentalStyled(
     transform: 'rotate(45deg)',
     textAlign: 'center',
   },
+  [`&.${sliderClasses.dragging}`]: {
+    [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
+      transition: 'none',
+    },
+  },
 }));
 
 export const SliderRail = experimentalStyled(
@@ -155,6 +160,9 @@ export const SliderTrack = experimentalStyled(
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
+  transition: theme.transitions.create(['left', 'width'], {
+    duration: theme.transitions.duration.shortest,
+  }),
   ...(styleProps.orientation === 'vertical' && {
     width: 2,
   }),
@@ -187,7 +195,7 @@ export const SliderThumb = experimentalStyled(
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: theme.transitions.create(['box-shadow'], {
+  transition: theme.transitions.create(['box-shadow', 'left'], {
     duration: theme.transitions.duration.shortest,
   }),
   '&::after': {
