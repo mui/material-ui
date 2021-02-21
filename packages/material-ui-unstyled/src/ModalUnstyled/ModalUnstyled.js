@@ -161,9 +161,9 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     disablePortal,
     disableRestoreFocus,
     disableScrollLock,
+    exited,
     hideBackdrop,
     keepMounted,
-    exited,
   };
 
   const classes = useUtilityClasses(styleProps);

@@ -592,6 +592,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     classes: classesProp,
     disabled,
     dragging,
+    isRtl,
+    marked: marks.length > 0 && marks.some((mark) => mark.label),
     max,
     min,
     orientation,
@@ -600,8 +602,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     track,
     valueLabelDisplay,
     valueLabelFormat,
-    isRtl,
-    marked: marks.length > 0 && marks.some((mark) => mark.label),
   };
 
   const classes = useUtilityClasses(styleProps);

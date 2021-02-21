@@ -74,9 +74,9 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
 
   const styleProps = {
     ...props,
-    classes: classesProp,
     anchorOrigin,
     badgeContent,
+    classes: classesProp,
     invisible,
     max,
     overlap,
