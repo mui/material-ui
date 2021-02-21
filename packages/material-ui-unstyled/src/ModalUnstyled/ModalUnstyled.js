@@ -269,7 +269,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
         {!hideBackdrop && BackdropComponent ? (
           <BackdropComponent open={open} onClick={handleBackdropClick} {...BackdropProps} />
         ) : null}
-
         <TrapFocus
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
