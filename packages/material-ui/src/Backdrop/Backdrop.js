@@ -58,7 +58,6 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   const {
     components = {},
     componentsProps = {},
-    children,
     className,
     invisible = false,
     open,
@@ -94,9 +93,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
         }}
         classes={classes}
         ref={ref}
-      >
-        {children}
-      </BackdropUnstyled>
+      />
     </TransitionComponent>
   );
 });

@@ -17,7 +17,6 @@ const useUtilityClasses = (styleProps) => {
 
 const BackdropUnstyled = React.forwardRef(function BackdropUnstyled(props, ref) {
   const {
-    children,
     classes: classesProp = {},
     className,
     invisible = false,
@@ -51,9 +50,7 @@ const BackdropUnstyled = React.forwardRef(function BackdropUnstyled(props, ref) 
       ref={ref}
       {...other}
       className={clsx(classes.root, rootProps.className, className)}
-    >
-      {children}
-    </Root>
+    />
   );
 });
 
