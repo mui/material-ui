@@ -52,6 +52,7 @@ const BackdropRoot = experimentalStyled(
 const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
   const {
+    children,
     components = {},
     componentsProps = {},
     className,
@@ -89,7 +90,9 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
         }}
         classes={classes}
         ref={ref}
-      />
+      >
+        {children}
+      </BackdropUnstyled>
     </TransitionComponent>
   );
 });
