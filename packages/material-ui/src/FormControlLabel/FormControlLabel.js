@@ -8,14 +8,16 @@ import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
 import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
-import { getFormControlLabelUtilityClasses } from './formControlLabelClasses';
+import formControlLabelClasses, {
+  getFormControlLabelUtilityClasses,
+} from './formControlLabelClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
   return deepmerge(styles.root || {}, {
     ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
-    ...(styleProps.label && styles.label),
+    [`& .${formControlLabelClasses.label}`]: styles.label,
   });
 };
 
