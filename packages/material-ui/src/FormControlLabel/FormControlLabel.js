@@ -181,6 +181,10 @@ FormControlLabel.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The value of the component.
    */
   value: PropTypes.any,
