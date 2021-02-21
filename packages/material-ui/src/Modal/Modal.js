@@ -22,7 +22,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const extendUtilityClasses = (styleProps) => {
-  const { classes = {} } = styleProps;
+  const { classes } = styleProps;
   return classes;
 };
 
@@ -70,7 +70,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     BackdropComponent = Backdrop,
     closeAfterTransition = false,
     children,
-    classes: classesProp = {},
     components = {},
     componentsProps = {},
     disableAutoFocus = false,
@@ -108,7 +107,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     exited,
   };
 
-  const classes = extendUtilityClasses({ ...styleProps, classes: classesProp });
+  const classes = extendUtilityClasses(styleProps);
 
   return (
     <ModalUnstyled
@@ -124,9 +123,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
           }),
         },
       }}
-      classes={classes}
       ref={ref}
       {...other}
+      classes={classes}
       {...commonProps}
     >
       {children}

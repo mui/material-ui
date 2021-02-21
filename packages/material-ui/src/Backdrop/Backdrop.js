@@ -22,7 +22,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const extendUtilityClasses = (styleProps) => {
-  const { classes = {} } = styleProps;
+  const { classes } = styleProps;
   return classes;
 };
 
