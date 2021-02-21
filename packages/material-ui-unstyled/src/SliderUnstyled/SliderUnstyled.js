@@ -589,7 +589,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // consider extracting to hook an reusing the lint rule for the varints
   const styleProps = {
     ...props,
-    classes: {},
+    classes: classesProp,
     disabled,
     dragging,
     max,
@@ -604,7 +604,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     marked: marks.length > 0 && marks.some((mark) => mark.label),
   };
 
-  const classes = useUtilityClasses({ ...styleProps, classes: classesProp });
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <Root

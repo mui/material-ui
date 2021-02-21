@@ -74,6 +74,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
 
   const styleProps = {
     ...props,
+    classes: classesProp,
     anchorOrigin,
     badgeContent,
     invisible,
@@ -88,7 +89,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     displayValue = badgeContent > max ? `${max}+` : badgeContent;
   }
 
-  const classes = useUtilityClasses({ ...styleProps, classes: classesProp });
+  const classes = useUtilityClasses(styleProps);
 
   const Root = components.Root || component;
   const rootProps = componentsProps.root || {};

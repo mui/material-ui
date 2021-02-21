@@ -153,6 +153,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
 
   const styleProps = {
     ...props,
+    classes: classesProp,
     closeAfterTransition,
     disableAutoFocus,
     disableEnforceFocus,
@@ -165,7 +166,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     exited,
   };
 
-  const classes = useUtilityClasses({ ...styleProps, classes: classesProp });
+  const classes = useUtilityClasses(styleProps);
 
   if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
