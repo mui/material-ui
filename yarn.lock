@@ -5322,9 +5322,9 @@ clean-css@^4.2.3:
     source-map "~0.6.0"
 
 clean-css@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-5.0.1.tgz#f84c6ad82c5a8246a680206da8bceef483ccc0b6"
-  integrity sha512-F1zAGOowUCg8yxT0O4UR+nmbMauf3YwbiUS60CPxpzJU7ulpamGzQomFrJSK4w/HqHtMmQKSHJUNue+dQQYQdg==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-5.1.0.tgz#f3cc8ba900ab23b316e753330d15425149be36f1"
+  integrity sha512-98ALLW4NOhZpvUEoSc2dJO23xE4S4SXc4mLieCVFGo8DNLTFQ3gzi7msW1lqSYJeGZSF5r5+W3KF6cEnkILnFQ==
   dependencies:
     source-map "~0.6.0"
 
