@@ -17,6 +17,7 @@ describe('<FormControlLabel />', () => {
     render,
     mount,
     muiName: 'MuiFormControlLabel',
+    testVariantProps: { disabled: true },
     refInstanceof: window.HTMLLabelElement,
     skip: ['componentProp', 'componentsProp'],
   }));
