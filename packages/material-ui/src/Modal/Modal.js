@@ -22,8 +22,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const extendUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
-  return classes;
+  return styleProps.classes;
 };
 
 const ModalRoot = experimentalStyled(
