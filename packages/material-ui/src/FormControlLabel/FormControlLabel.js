@@ -59,7 +59,6 @@ export const FormControlLabelRoot = experimentalStyled(
     flexDirection: 'column',
     marginLeft: 16,
   }),
-  ...(styleProps.disabled !== 'inherit' && {}),
   [`& .${formControlLabelClasses.label}`]: {
     '&.Mui-disabled': {
       color: theme.palette.text.disabled,
