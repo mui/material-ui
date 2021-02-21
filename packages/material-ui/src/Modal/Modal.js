@@ -146,7 +146,6 @@ Modal.propTypes = {
   children: elementAcceptingRef.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**

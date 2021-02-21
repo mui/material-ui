@@ -282,7 +282,6 @@ Badge.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**

@@ -4,7 +4,7 @@
     "open": { "type": { "name": "bool" }, "required": true },
     "BackdropComponent": { "type": { "name": "elementType" } },
     "BackdropProps": { "type": { "name": "object" } },
-    "classes": { "type": { "name": "object" }, "default": "{}" },
+    "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
@@ -34,7 +34,7 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-unstyled/src/ModalUnstyled/ModalUnstyled.js",
   "inheritance": null,
-  "demos": "",
+  "demos": "<ul><li><a href=\"/components/modal/\">Modal</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }

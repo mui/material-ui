@@ -4,7 +4,7 @@
     "open": { "type": { "name": "bool" }, "required": true },
     "BackdropComponent": { "type": { "name": "elementType" }, "default": "Backdrop" },
     "BackdropProps": { "type": { "name": "object" } },
-    "classes": { "type": { "name": "object" }, "default": "{}" },
+    "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
