@@ -60,11 +60,11 @@ export const FormControlLabelRoot = experimentalStyled(
     marginLeft: 16,
   }),
   ...(styleProps.disabled !== 'inherit' && {}),
-  ...(styleProps.label && {
+  [`& .${formControlLabelClasses.label}`]: {
     '&.Mui-disabled': {
       color: theme.palette.text.disabled,
     },
-  }),
+  },
 }));
 
 /**
