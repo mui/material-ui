@@ -7,11 +7,7 @@ import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
 
-const modalClasses = {
-  ...modalUnstyledClasses,
-};
-
-export { modalClasses };
+export const modalClasses = modalUnstyledClasses;
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;

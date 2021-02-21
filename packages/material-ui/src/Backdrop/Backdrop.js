@@ -7,11 +7,7 @@ import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Fade from '../Fade';
 
-const backdropClasses = {
-  ...backdropUnstyledClasses,
-};
-
-export { backdropClasses };
+export const backdropClasses = backdropUnstyledClasses;
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
