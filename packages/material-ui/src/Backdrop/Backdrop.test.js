@@ -5,12 +5,13 @@ import Backdrop, { backdropClasses as classes } from '@material-ui/core/Backdrop
 import Fade from '../Fade';
 
 describe('<Backdrop />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
+  const mount = createMount({ strict: true });
 
   describeConformanceV5(<Backdrop open />, () => ({
     classes,
     inheritComponent: Fade,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiBackdrop',

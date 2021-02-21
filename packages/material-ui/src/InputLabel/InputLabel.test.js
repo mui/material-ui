@@ -8,12 +8,13 @@ import FormLabel from '@material-ui/core/FormLabel';
 import InputLabel, { inputLabelClasses as classes } from '@material-ui/core/InputLabel';
 
 describe('<InputLabel />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<InputLabel>Foo</InputLabel>, () => ({
     classes,
     inheritComponent: FormLabel,
+    render,
     mount,
     refInstanceof: window.HTMLLabelElement,
     muiName: 'MuiInputLabel',

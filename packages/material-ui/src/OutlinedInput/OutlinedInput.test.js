@@ -6,12 +6,13 @@ import InputBase from '../InputBase';
 import classes from './outlinedInputClasses';
 
 describe('<OutlinedInput />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<OutlinedInput labelWidth={0} />, () => ({
     classes,
     inheritComponent: InputBase,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiOutlinedInput',

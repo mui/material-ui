@@ -5,12 +5,13 @@ import CircularProgress from './CircularProgress';
 import classes from './circularProgressClasses';
 
 describe('<CircularProgress />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<CircularProgress />, () => ({
     classes,
     inheritComponent: 'span',
+    render,
     mount,
     muiName: 'MuiCircularProgress',
     testDeepOverrides: { slotName: 'circle', slotClassName: classes.circle },

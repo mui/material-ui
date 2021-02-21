@@ -6,12 +6,13 @@ import Grid from './Grid';
 import classes from './gridClasses';
 
 describe('<Grid />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Grid />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiGrid',

@@ -8,12 +8,13 @@ import IconButton from './IconButton';
 import classes from './iconButtonClasses';
 
 describe('<IconButton />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<IconButton>book</IconButton>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiIconButton',

@@ -16,6 +16,7 @@ describe('<SwitchBase />', () => {
     () => ({
       classes,
       inheritComponent: IconButton,
+      render,
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',

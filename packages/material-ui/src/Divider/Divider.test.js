@@ -5,12 +5,13 @@ import Divider from './Divider';
 import classes from './dividerClasses';
 
 describe('<Divider />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<Divider />, () => ({
     classes,
     inheritComponent: 'hr',
+    render,
     mount,
     muiName: 'MuiDivider',
     refInstanceof: window.HTMLHRElement,

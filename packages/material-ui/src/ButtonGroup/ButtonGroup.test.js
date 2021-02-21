@@ -16,6 +16,7 @@ describe('<ButtonGroup />', () => {
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',

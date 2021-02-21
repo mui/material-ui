@@ -5,8 +5,8 @@ import TableCell from './TableCell';
 import classes from './tableCellClasses';
 
 describe('<TableCell />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
   function renderInTable(node) {
     return render(
       <table>
@@ -20,16 +20,6 @@ describe('<TableCell />', () => {
   describeConformanceV5(<TableCell />, () => ({
     classes,
     inheritComponent: 'td',
-    mount: (node) => {
-      const wrapper = mount(
-        <table>
-          <tbody>
-            <tr>{node}</tr>
-          </tbody>
-        </table>,
-      );
-      return wrapper.find('tr').childAt(0);
-    },
     render: (node) => {
       const { container, ...rest } = render(
         <table>
@@ -39,6 +29,16 @@ describe('<TableCell />', () => {
         </table>,
       );
       return { container: container.firstChild.firstChild.firstChild, ...rest };
+    },
+    mount: (node) => {
+      const wrapper = mount(
+        <table>
+          <tbody>
+            <tr>{node}</tr>
+          </tbody>
+        </table>,
+      );
+      return wrapper.find('tr').childAt(0);
     },
     muiName: 'MuiTableCell',
     testVariantProps: { variant: 'body' },

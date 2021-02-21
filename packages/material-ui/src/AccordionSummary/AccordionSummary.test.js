@@ -8,12 +8,13 @@ import ButtonBase from '../ButtonBase';
 import classes from './accordionSummaryClasses';
 
 describe('<AccordionSummary />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   describeConformanceV5(<AccordionSummary />, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordionSummary',
