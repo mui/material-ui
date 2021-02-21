@@ -56,7 +56,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     BackdropComponent,
     BackdropProps,
     children,
-    classes: classesProp = {},
+    classes: classesProp,
     className,
     closeAfterTransition = false,
     component = 'div',

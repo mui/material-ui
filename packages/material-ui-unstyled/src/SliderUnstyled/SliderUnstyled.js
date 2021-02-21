@@ -190,7 +190,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     'aria-valuetext': ariaValuetext,
     className,
     component = 'span',
-    classes: classesProp = {},
+    classes: classesProp,
     defaultValue,
     disabled = false,
     getAriaLabel,

@@ -30,7 +30,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
       vertical: 'top',
       horizontal: 'right',
     },
-    classes: classesProp = {},
+    classes: classesProp,
     badgeContent: badgeContentProp,
     component = 'span',
     children,
