@@ -460,6 +460,10 @@ ButtonBase.propTypes = {
   /**
    * @ignore
    */
+  onContextMenu: PropTypes.func,
+  /**
+   * @ignore
+   */
   onDragLeave: PropTypes.func,
   /**
    * @ignore
