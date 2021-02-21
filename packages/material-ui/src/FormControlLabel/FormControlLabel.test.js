@@ -1,18 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { createMount, createClientRender, describeConformance } from 'test/utils';
+import FormControlLabel, {
+  formControlLabelClasses as classes,
+} from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
 
 describe('<FormControlLabel />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
-
-  before(() => {
-    classes = getClasses(<FormControlLabel label="Pizza" control={<div />} />);
-  });
 
   describeConformance(<FormControlLabel label="Pizza" control={<Checkbox />} />, () => ({
     classes,
