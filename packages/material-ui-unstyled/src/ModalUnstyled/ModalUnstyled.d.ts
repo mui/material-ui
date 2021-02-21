@@ -19,7 +19,6 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
     children: React.ReactElement;
     /**
      * Override or extend the styles applied to the component.
-     * @default {}
      */
     classes?: {
       /** Styles applied to the root element. */
