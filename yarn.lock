@@ -4277,7 +4277,7 @@ autosuggest-highlight@^3.1.1:
   dependencies:
     diacritic "0.0.2"
 
-aws-sdk@^2.599.0, aws-sdk@^2.766.0:
+aws-sdk@^2.607.0, aws-sdk@^2.766.0:
   version "2.848.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.848.0.tgz#5e7706ddd30a55a2d5a5b64c29682a757607ee64"
   integrity sha512-c/e5kaEFl+9aYkrYDkmu5mSZlL+EfP6DnBOMD06fH12gIsaFSMBGtbsDTHABhvSu++LxeI1dJAD148O17MuZvg==
@@ -5296,16 +5296,16 @@ claudia-api-builder@^4.1.2:
   integrity sha512-xXS9ew32KRJSMQGHMTEsvSkd1FTs9GK3JjiBIuxk9EJz2hubryrWiTzsJQvcVcfBYE0fb7bO+ZhH2/fqqG7Acg==
 
 claudia@^5.12.0:
-  version "5.12.0"
-  resolved "https://registry.yarnpkg.com/claudia/-/claudia-5.12.0.tgz#774e05d00d29cb6064d19da1c0d4a4713f2836e0"
-  integrity sha512-ukgOGUNeIaU23xQB5r41AqGPAcq8bBd5LGz4Q880aRgGSW6VGHVMD/srsZcWM6mP4XKSmaofHzmJfoIXSmlJFg==
+  version "5.13.0"
+  resolved "https://registry.yarnpkg.com/claudia/-/claudia-5.13.0.tgz#7a69b29259e96b661591958a48a7e8ee05957d4b"
+  integrity sha512-d5MKxTqBFsYG+t9YUEVk6uwCZ78VKvInutsZVrIlRrr7Q/U4YwXebZV+SgiuwQcQWJWl8vSr7wMd+2/KbofKZQ==
   dependencies:
     archiver "^3.0.0"
-    aws-sdk "^2.599.0"
+    aws-sdk "^2.607.0"
     fs-extra "^6.0.1"
     glob "^7.1.2"
     gunzip-maybe "^1.4.0"
-    https-proxy-agent "^3.0.0"
+    https-proxy-agent "^5.0.0"
     minimal-request-promise "^1.1.0"
     minimist "^1.2.0"
     oh-no-i-insist "^1.1.1"
@@ -9117,14 +9117,6 @@ https-proxy-agent@^2.2.1:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.2.4.tgz#4ee7a737abd92678a293d9b34a1af4d0d08c787b"
   integrity sha512-OmvfoQ53WLjtA9HeYP9RNrWMJzzAz1JGaSFr1nijg0PVR1JaD/xbJq1mdEIIlxGpXp9eSe/O2LgU9DJmTPd0Eg==
-  dependencies:
-    agent-base "^4.3.0"
-    debug "^3.1.0"
-
-https-proxy-agent@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-3.0.1.tgz#b8c286433e87602311b01c8ea34413d856a4af81"
-  integrity sha512-+ML2Rbh6DAuee7d07tYGEKOEi2voWPUGan+ExdPbPW6Z3svq+JCqr0v8WmKPOkz1vOVykPCBSuobe7G8GJUtVg==
   dependencies:
     agent-base "^4.3.0"
     debug "^3.1.0"
