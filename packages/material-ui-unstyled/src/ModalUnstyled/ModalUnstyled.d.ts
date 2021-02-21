@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { BackdropUnstyledProps } from '../BackdropUnstyled';
 import { PortalProps } from '../Portal';
-
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
 
 export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
