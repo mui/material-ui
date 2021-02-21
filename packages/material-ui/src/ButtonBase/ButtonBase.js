@@ -88,6 +88,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     focusVisibleClassName,
     onBlur,
     onClick,
+    onContextMenu,
     onFocus,
     onFocusVisible,
     onKeyDown,
@@ -99,7 +100,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     onTouchMove,
     onTouchStart,
     onDragLeave,
-    onContextMenu,
     tabIndex = 0,
     TouchRippleProps,
     ...other
@@ -155,19 +155,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     });
   }
 
-  const handleContextMenu = useRippleHandler('stop', onContextMenu);
-
-  React.useEffect(() => {
-    if (buttonRef.current) {
-      buttonRef.current.addEventListener('contextmenu', handleContextMenu);
-    }
-
-    return () => {
-      buttonRef.current.removeEventListener('contextmenu', handleContextMenu);
-    };
-  });
-
   const handleMouseDown = useRippleHandler('start', onMouseDown);
+  const handleContextMenu = useRippleHandler('stop', onContextMenu);
   const handleDragLeave = useRippleHandler('stop', onDragLeave);
   const handleMouseUp = useRippleHandler('stop', onMouseUp);
   const handleMouseLeave = useRippleHandler('stop', (event) => {
@@ -359,6 +348,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       styleProps={styleProps}
       onBlur={handleBlur}
       onClick={onClick}
+      onContextMenu={handleContextMenu}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
@@ -467,10 +457,6 @@ ButtonBase.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
-  /**
-   * Event callback for `contextmenu` event.
-   */
-  onContextMenu: PropTypes.func,
   /**
    * @ignore
    */
