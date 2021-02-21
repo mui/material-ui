@@ -15,7 +15,6 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
-    ...(styleProps.noWrap && styles.noWrap),
     ...(styleProps.label && styles.label),
   });
 };
@@ -59,11 +58,6 @@ export const FormControlLabelRoot = experimentalStyled(
     marginLeft: 16,
   }),
   ...(styleProps.disabled !== 'inherit' && {}),
-  ...(styleProps.noWrap && {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  }),
   ...(styleProps.label && {
     '&$disabled': {
       color: theme.palette.text.disabled,
