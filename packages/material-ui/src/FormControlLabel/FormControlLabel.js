@@ -15,7 +15,6 @@ const overridesResolver = (props, styles) => {
 
   return deepmerge(styles.root || {}, {
     ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
-    ...(styleProps.disabled && styles.disabled),
     ...(styleProps.noWrap && styles.noWrap),
     ...(styleProps.label && styles.label),
   });
