@@ -87,13 +87,6 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     ...other
   } = props;
 
-  const styleProps = {
-    ...props,
-    disabled: disabledProp,
-    label,
-    labelPlacement,
-  };
-
   const muiFormControl = useFormControl();
 
   let disabled = disabledProp;
@@ -113,6 +106,13 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       controlProps[key] = props[key];
     }
   });
+
+  const styleProps = {
+    ...props,
+    disabled,
+    label,
+    labelPlacement,
+  };
 
   const classes = useUtilityClasses(styleProps);
 
