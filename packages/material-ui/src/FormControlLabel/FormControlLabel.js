@@ -25,6 +25,7 @@ const useUtilityClasses = (styleProps) => {
   const { classes, disabled, labelPlacement } = styleProps;
   const slots = {
     root: ['root', disabled && 'disabled', `labelPlacement${capitalize(labelPlacement)}`],
+    label: ['label', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getFormControlLabelUtilityClasses, classes);
@@ -123,10 +124,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       {...other}
     >
       {React.cloneElement(control, controlProps)}
-      <Typography
-        component="span"
-        className={clsx(classes.label, { [classes.disabled]: disabled })}
-      >
+      <Typography component="span" className={classes.label}>
         {label}
       </Typography>
     </FormControlLabelRoot>
