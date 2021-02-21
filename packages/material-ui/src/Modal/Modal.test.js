@@ -18,8 +18,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
 
 describe('<Modal />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
+  const mount = createMount({ strict: true });
   let savedBodyStyle;
 
   before(() => {
@@ -37,6 +37,7 @@ describe('<Modal />', () => {
     () => ({
       classes,
       inheritComponent: 'div',
+      render,
       mount,
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
