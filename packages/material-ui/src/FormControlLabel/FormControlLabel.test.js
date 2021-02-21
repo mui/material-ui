@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformance } from 'test/utils';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
 import FormControlLabel, {
   formControlLabelClasses as classes,
 } from '@material-ui/core/FormControlLabel';
@@ -8,15 +8,17 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
 
 describe('<FormControlLabel />', () => {
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
-  describeConformance(<FormControlLabel label="Pizza" control={<Checkbox />} />, () => ({
+  describeConformanceV5(<FormControlLabel label="Pizza" control={<Checkbox />} />, () => ({
     classes,
     inheritComponent: 'label',
+    render,
     mount,
+    muiName: 'MuiFormControlLabel',
     refInstanceof: window.HTMLLabelElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render the label text inside an additional element', () => {
