@@ -88,9 +88,9 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
 
   const styleProps = {
     ...props,
-    labelPlacement,
     disabled: disabledProp,
     label,
+    labelPlacement,
   };
 
   const muiFormControl = useFormControl();
