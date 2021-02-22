@@ -82,15 +82,6 @@ export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
   defaultComponent: D;
 }
 
-declare const Paper: OverridableComponent<PaperTypeMap>;
-
-export type PaperProps<
-  D extends React.ElementType = PaperTypeMap['defaultComponent'],
-  P = {}
-> = OverrideProps<PaperTypeMap<P, D>, D>;
-
-export type PaperClassKey = keyof NonNullable<PaperProps['classes']>;
-
 /**
  *
  * Demos:
@@ -102,4 +93,13 @@ export type PaperClassKey = keyof NonNullable<PaperProps['classes']>;
  *
  * - [Paper API](https://material-ui.com/api/paper/)
  */
+declare const Paper: OverridableComponent<PaperTypeMap>;
+
+export type PaperProps<
+  D extends React.ElementType = PaperTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<PaperTypeMap<P, D>, D>;
+
+export type PaperClassKey = keyof NonNullable<PaperProps['classes']>;
+
 export default Paper;
