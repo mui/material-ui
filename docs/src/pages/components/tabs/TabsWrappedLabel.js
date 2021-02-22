@@ -62,6 +62,8 @@ export default function TabsWrappedLabel() {
           value={value}
           onChange={handleChange}
           aria-label="wrapped label tabs example"
+          indicatorColor="secondary"
+          textColor="inherit"
         >
           <Tab
             value="one"

@@ -49,6 +49,8 @@ function DemoTabs(props: DemoTabsProps) {
         onChange={onChange}
         selectionFollowsFocus={selectionFollowsFocus}
         value={value}
+        indicatorColor="secondary"
+        textColor="inherit"
       >
         <Tab label="Item One" aria-controls="a11y-tabpanel-0" id="a11y-tab-0" />
         <Tab label="Item Two" aria-controls="a11y-tabpanel-1" id="a11y-tab-1" />

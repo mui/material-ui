@@ -79,6 +79,8 @@ export default function NavTabs() {
           value={value}
           onChange={handleChange}
           aria-label="nav tabs example"
+          indicatorColor="secondary"
+          textColor="inherit"
         >
           <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
           <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
