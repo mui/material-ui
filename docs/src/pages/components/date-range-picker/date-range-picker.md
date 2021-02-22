@@ -40,7 +40,7 @@ function App() {
 
 ## Basic usage
 
-Note that you can pass almost any prop from [DatePicker]('/api/date-picker/').
+Note that you can pass almost any prop from [DatePicker](/api/date-picker/).
 
 {{"demo": "pages/components/date-range-picker/BasicDateRangePicker.js"}}
 

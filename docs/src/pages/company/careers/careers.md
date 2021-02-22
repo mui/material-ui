@@ -1,16 +1,16 @@
-# We build the next generation of tools for UI development
+# Careers at Material-UI
 
-<p class="description">Material-UI is focused on making React UI development faster, simpler, and accessible to more people.</p>
+<p class="description">We build the next generation of tools for UI development. Material-UI is focused on making React UI development faster, simpler, and accessible to more people.</p>
 
 The open-source project started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React UI libraries, backed by a vibrant community of more than 2M developers in over 180 countries.
 
-The company is bootstrapped (so far). It was incorporated in mid 2019 and yet growing fast (x2-3 YoY). We doubled the team in 2020 and are on track to do the same in 2021.
+The company is bootstrapped (so far). It was incorporated in mid-2019 and yet growing fast (x2-3 YoY). We doubled the team in 2020 and are on track to do the same in 2021.
 
 ## Our values
 
 - **Customer obsessed**. We put our customers front & center. We focus on delivering web experiences that feel amazing. We ask questions. We experiment with new ideas.
 - **Transparency**. Most of our work is public. We share what we work on regularly in the open. We collect feedback as soon and as frequently as possible. We learn from each other and
-grow from it.
+  grow from it.
 - **Freedom**. We work from anywhere in the world. We keep meetings to a minimum, preferring asynchronous and written communication.
 - **Autonomy**. We want to create a safe, high-trust team. We want you to be able to feel invested in your work and proud of it.
 - **Excellence**. We're aiming high, and we know it. Even the smallest details are important to us. We only want the best for each other and our customers.
