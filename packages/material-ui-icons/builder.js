@@ -215,9 +215,9 @@ async function worker({ svgPath, options, renameFilter, template }) {
 }
 
 export async function main(options) {
-  try {
-    let originalWrite;
+  const originalWrite = process.stdout.write;
 
+  try {
     options.glob = options.glob || '/**/*.svg';
     options.innerPath = options.innerPath || '';
     options.renameFilter = options.renameFilter || RENAME_FILTER_DEFAULT;
@@ -225,7 +225,6 @@ export async function main(options) {
 
     // Disable console.log opt, used for tests
     if (options.disableLog) {
-      originalWrite = process.stdout.write;
       process.stdout.write = () => {};
     }
 
@@ -284,13 +283,11 @@ export async function main(options) {
     await fse.copy(path.join(__dirname, '/custom'), options.outputDir);
 
     await generateIndex(options);
-
-    if (options.disableLog) {
-      // bring back stdout
-      process.stdout.write = originalWrite;
-    }
   } catch (err) {
     console.log(err);
+  } finally {
+    // bring back stdout
+    process.stdout.write = originalWrite;
   }
 }
 
