@@ -12,7 +12,7 @@ import SVGO from 'svgo';
 export const RENAME_FILTER_DEFAULT = './renameFilters/default';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
 
-let blacklistedIcons = [
+const blacklistedIcons = [
   'AddChart', // Leads to inconsistent casing with `Addchart`
   '6FtApart', // Arbitrary covid related distance
   'MotionPhotosOn', // Google product
@@ -26,64 +26,15 @@ let blacklistedIcons = [
   'ExposureZero', // Google product
   'VerticalDistribute', // Advanced text editor
   'HorizontalDistribute', // Advanced text editor
-];
-
-blacklistedIcons = blacklistedIcons.reduce((acc, item) => {
-  acc = acc.concat([item, `${item}Outlined`, `${item}Rounded`, `${item}Sharp`, `${item}TwoTone`]);
-
-  return acc;
+].reduce((iconsWithVariants, icon) => {
+  return iconsWithVariants.concat([
+    icon,
+    `${icon}Outlined`,
+    `${icon}Rounded`,
+    `${icon}Sharp`,
+    `${icon}TwoTone`,
+  ]);
 }, []);
-
-const svgo = new SVGO({
-  floatPrecision: 4,
-  plugins: [
-    { cleanupAttrs: true },
-    { removeDoctype: true },
-    { removeXMLProcInst: true },
-    { removeComments: true },
-    { removeMetadata: true },
-    { removeTitle: true },
-    { removeDesc: true },
-    { removeUselessDefs: true },
-    { removeXMLNS: true },
-    { removeEditorsNSData: true },
-    { removeEmptyAttrs: true },
-    { removeHiddenElems: true },
-    { removeEmptyText: true },
-    { removeEmptyContainers: true },
-    { removeViewBox: true },
-    { cleanupEnableBackground: true },
-    { minifyStyles: true },
-    { convertStyleToAttrs: true },
-    { convertColors: true },
-    { convertPathData: true },
-    { convertTransform: true },
-    { removeUnknownsAndDefaults: true },
-    { removeNonInheritableGroupAttrs: true },
-    {
-      removeUselessStrokeAndFill: {
-        // https://github.com/svg/svgo/issues/727#issuecomment-303115276
-        removeNone: true,
-      },
-    },
-    { removeUnusedNS: true },
-    { cleanupIDs: true },
-    { cleanupNumericValues: true },
-    { cleanupListOfValues: true },
-    { moveElemsAttrsToGroup: true },
-    { moveGroupAttrsToElems: true },
-    { collapseGroups: true },
-    { removeRasterImages: true },
-    { mergePaths: true },
-    { convertShapeToPath: true },
-    { sortAttrs: true },
-    { removeDimensions: true },
-    { removeAttrs: true },
-    { removeElementsByAttr: true },
-    { removeStyleElement: true },
-    { removeScriptElement: true },
-  ],
-});
 
 /**
  * Return Pascal-Cased component name.
@@ -142,6 +93,56 @@ export async function cleanPaths({ svgPath, data }) {
     .replace(/<rect fill="none" width="24" height="24"\/>/g, '')
     .replace(/<rect id="SVGID_1_" width="24" height="24"\/>/g, '');
 
+  const svgo = new SVGO({
+    floatPrecision: 4,
+    plugins: [
+      { cleanupAttrs: true },
+      { removeDoctype: true },
+      { removeXMLProcInst: true },
+      { removeComments: true },
+      { removeMetadata: true },
+      { removeTitle: true },
+      { removeDesc: true },
+      { removeUselessDefs: true },
+      { removeXMLNS: true },
+      { removeEditorsNSData: true },
+      { removeEmptyAttrs: true },
+      { removeHiddenElems: true },
+      { removeEmptyText: true },
+      { removeEmptyContainers: true },
+      { removeViewBox: true },
+      { cleanupEnableBackground: true },
+      { minifyStyles: true },
+      { convertStyleToAttrs: true },
+      { convertColors: true },
+      { convertPathData: true },
+      { convertTransform: true },
+      { removeUnknownsAndDefaults: true },
+      { removeNonInheritableGroupAttrs: true },
+      {
+        removeUselessStrokeAndFill: {
+          // https://github.com/svg/svgo/issues/727#issuecomment-303115276
+          removeNone: true,
+        },
+      },
+      { removeUnusedNS: true },
+      { cleanupIDs: true },
+      { cleanupNumericValues: true },
+      { cleanupListOfValues: true },
+      { moveElemsAttrsToGroup: true },
+      { moveGroupAttrsToElems: true },
+      { collapseGroups: true },
+      { removeRasterImages: true },
+      { mergePaths: true },
+      { convertShapeToPath: true },
+      { sortAttrs: true },
+      { removeDimensions: true },
+      { removeAttrs: true },
+      { removeElementsByAttr: true },
+      { removeStyleElement: true },
+      { removeScriptElement: true },
+    ],
+  });
   const result = await svgo.optimize(input);
 
   // Extract the paths from the svg string
