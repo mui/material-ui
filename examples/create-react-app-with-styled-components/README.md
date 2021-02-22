@@ -24,7 +24,6 @@ The following link leverages this demo: https://next.material-ui.com/guides/inte
 
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-interoperability-w9z9d)
 
-
 ## The idea behind the example
 
 This example demonstrates how you can setup [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application.
