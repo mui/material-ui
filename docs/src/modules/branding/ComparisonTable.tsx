@@ -12,9 +12,12 @@ import Button from '@material-ui/core/Button';
 import Link from 'docs/src/modules/components/Link';
 import Typography from '@material-ui/core/Typography';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import PlanStatus from './PlanStatus';
 import Popover from '@material-ui/core/Popover';
-
+import Hidden from '@material-ui/core/Hidden';
+import Grid from '@material-ui/core/Grid';
+import CheckIcon from 'docs/src/modules/branding/icons/Check';
+import CloseIcon from 'docs/src/modules/branding/icons/Close';
+import PendingIcon from 'docs/src/modules/branding/icons/Pending';
 //PlanFeatuer Component start
 interface PlanFeatuerProps {
   text: any;
@@ -27,34 +30,30 @@ function PlanFeatuer(props: PlanFeatuerProps) {
   const { text, sx, variant = 'h4', isBorder = false, isBold = false } = props;
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-      // typography: {
-      //   padding: theme.spacing(2),
-      // },
       popover: {
         pointerEvents: 'none',
       },
-      root: {
-        //  position: 'relative',
-      },
       paper: {
-        left: '136px !important',
-        // marginBottom:'10px',
+        left: '135px !important',
+        [theme.breakpoints.down('md')]: {
+          left: '60px !important',
+        },
+        [theme.breakpoints.down('sm')]: {
+          left: '15px !important',
+        },
         overflowX: 'unset',
         overflowY: 'unset',
 
         '&::before': {
+          left: '46px',
+          right: 'auto',
+          width: '16px',
+          height: '16px',
           content: '""',
           position: 'absolute',
-          // marginRight: "-0.71em",
-          bottom: 0,
-          width: 10,
-          height: 10,
-          right: 'auto',
-          left: '50px',
-          backgroundColor: '#001e3c',
-          boxShadow: theme.shadows[1],
-          transform: 'translate(-50%, 50%) rotate(135deg)',
-          clipPath: 'polygon(-5px -5px, calc(100% + 5px) -5px, calc(100% + 5px) calc(100% + 5px))',
+          backgroundSize: 'cover',
+          bottom: '-6px',
+          background: `url(${'/static/branding/pricing/rectangle.svg'})`,
         },
       },
     }),
@@ -74,19 +73,17 @@ function PlanFeatuer(props: PlanFeatuerProps) {
 
   const open = Boolean(anchorEl);
 
-  let sxTemp = isBold
+  let DynamicTypoSx = isBold
     ? {
-      fontWeight: 600,
-      fontSize: { lg: '20px', sm: '20px', xs: '16px' },
-      lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-      paddingTop: '4px',
-      paddingBottom: '4px',
-    }
+        fontWeight: 600,
+        fontSize: { lg: '20px', sm: '20px', xs: '16px' },
+        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+      }
     : {
-      fontWeight: 'normal',
-      fontSize: '16px',
-      lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
-    };
+        fontWeight: 'normal',
+        fontSize: '16px',
+        lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+      };
 
   return (
     <React.Fragment>
@@ -94,9 +91,10 @@ function PlanFeatuer(props: PlanFeatuerProps) {
         variant={variant}
         sx={{
           ...sx,
-          ...sxTemp,
+          ...DynamicTypoSx,
           borderBottom: isBorder ? '1px dashed #132F4C' : '',
           display: 'inline-block',
+          whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
         }}
         aria-owns={open ? 'mouse-over-popover' : undefined}
         aria-haspopup="true"
@@ -145,18 +143,84 @@ function PlanFeatuer(props: PlanFeatuerProps) {
 }
 //PlanFeatuer Component end
 
+//PlanStatus Component start
+interface PlanStatusProps {
+  isCheckIcon: boolean;
+  isCloseIcon: boolean;
+  isPendingIcon: boolean;
+  mainText: string;
+  bottonText?: string;
+}
+
+function PlanStatus(props: PlanStatusProps) {
+  const {
+    isCheckIcon = false,
+    isCloseIcon = false,
+    isPendingIcon = false,
+    mainText = '',
+    bottonText = '',
+  } = props;
+  return (
+    <Box>
+      {isCheckIcon ? (
+        <CheckIcon
+          sx={{ backgroundColor: 'rgb(204, 229, 255)', color: 'primary.main', borderRadius: '50%' }}
+        />
+      ) : isCloseIcon ? (
+        <CloseIcon />
+      ) : isPendingIcon ? (
+        <PendingIcon />
+      ) : (
+        <Typography
+          variant="h5"
+          sx={{
+            fontSize: { lg: '16px', sm: '16px', xs: '12px' },
+            lineHeight: { lg: '24px', sm: '24px', xs: '20px' },
+            fontWeight: 'normal',
+          }}
+        >
+          {mainText}
+        </Typography>
+      )}
+      <Typography
+        variant="h5"
+        sx={{
+          color: 'grey87',
+          fontSize: { lg: '14px', sm: '14px', xs: '12px' },
+          lineHeight: '20px',
+          fontWeight: 'normal',
+        }}
+      >
+        {bottonText}
+      </Typography>
+    </Box>
+  );
+}
+
+//PlanStatus Component end
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     fontWeight: 'bold',
     fontSize: '24px',
     lineHeight: '30px',
+
+    [theme.breakpoints.down('md')]: {
+      fontSize: '18px',
+    },
     [theme.breakpoints.down('sm')]: {
+      verticalAlign: 'middle',
+      lineHeight: 'normal',
       fontSize: '0px',
+      minWidth: '60px',
+    },
+    [theme.breakpoints.down('lg')]: {
+      padding: '15px 1px',
     },
     '&:nth-of-type(4)': {
       paddingRight: '135px',
 
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('lg')]: {
         paddingRight: '60px',
       },
       [theme.breakpoints.down('sm')]: {
@@ -166,22 +230,32 @@ const StyledTableCell = withStyles((theme) => ({
     border: 0,
   },
   body: {
+    verticalAlign: 'top',
     fontWeight: 'normal',
     fontSize: '16px',
     lineHeight: '24px',
     padding: '20px',
-
-    [theme.breakpoints.down('sm')]: {
-      padding: '15px',
+    [theme.breakpoints.down('lg')]: {
+      padding: '15px 1px',
     },
     '&:nth-of-type(1)': {
       paddingLeft: '135px',
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('lg')]: {
         paddingLeft: '60px',
+        padding: '15px 1px',
       },
       [theme.breakpoints.down('sm')]: {
         padding: '15px',
+        paddingRight: '1px',
       },
+    },
+    '&:nth-of-type(4)': {
+      [theme.breakpoints.down('sm')]: {
+        paddingRight: '15px',
+      },
+    },
+    [theme.breakpoints.down('sm')]: {
+      padding: '15px 1px',
     },
     border: 0,
   },
@@ -308,53 +382,93 @@ const rows = [
         </React.Fragment>
       }
       variant="h5"
-      sx={{ color: '#8796A5', fontSize: '14px', lineHeight: '20px', fontWeight: 'normal' }}
+      sx={{ color: 'grey87', fontSize: '14px', lineHeight: '20px', fontWeight: 'normal' }}
     />,
-    <Button
-      component={Link}
-      noLinkStyle
-      href="/getting-started/usage/"
-      size="medium"
-      variant="contained"
-      endIcon={<NavigateNextIcon />}
-      // sx={ lg: 'block', sm: 'none',xs: 'none' } }}
-    >
-      Get started
-    </Button>,
-    <Button
-      component={Link}
-      noLinkStyle
-      href="/getting-started/usage/"
-      size="medium"
-      variant="contained"
-      endIcon={<NavigateNextIcon />}
-      sx={{ display: { xs: 'none' } }}
-    >
-      Get started
-    </Button>,
-    <Button
-      component={Link}
-      noLinkStyle
-      href="/getting-started/usage/"
-      size="medium"
-      variant="contained"
-      endIcon={<NavigateNextIcon />}
-      sx={{ display: { xs: 'none' } }}
-    >
-      Get started
-    </Button>,
+    <Hidden smDown>
+      <Button
+        component={Link}
+        noLinkStyle
+        sx={{
+          textAlign: 'left',
+          lineHeight: 'normal',
+          width: { xs: '135px', md: '135px', lg: 'auto' },
+        }}
+        href="/getting-started/usage/"
+        size="medium"
+        variant="contained"
+        endIcon={<NavigateNextIcon />}
+      >
+        Get started
+      </Button>
+    </Hidden>,
+    <Hidden smDown>
+      <Button
+        component={Link}
+        noLinkStyle
+        sx={{
+          textAlign: 'left',
+          lineHeight: 'normal',
+          width: { xs: '135px', md: '135px', lg: 'auto' },
+        }}
+        href="/getting-started/usage/"
+        size="medium"
+        variant="contained"
+        endIcon={<NavigateNextIcon />}
+      >
+        Get started
+      </Button>
+    </Hidden>,
+    <Hidden smDown>
+      <Button
+        component={Link}
+        noLinkStyle
+        sx={{
+          textAlign: 'left',
+          lineHeight: 'normal',
+          width: { xs: '135px', md: '135px', lg: 'auto' },
+        }}
+        href="/getting-started/usage/"
+        size="medium"
+        variant="contained"
+        endIcon={<NavigateNextIcon />}
+        color="inherit"
+      >
+        Get started
+      </Button>
+    </Hidden>,
   ),
 ];
 
 const tableHeader = [
-  { id: 1, heading: 'Community', src: '/static/branding/pricing/essential.svg' },
+  { id: 1, heading: 'Essential', src: '/static/branding/pricing/essential.svg' },
   { id: 2, heading: 'Pro', src: '/static/branding/pricing/pro.svg' },
   { id: 3, heading: 'Premium', src: '/static/branding/pricing/premium.svg' },
 ];
 
 export default function ComparisonTable() {
   return (
-    <TableContainer component={Paper} sx={{ boxShadow: 'none' }}>
+    <TableContainer component={Paper} sx={{ boxShadow: 'none', overflowX: 'initial !important' }}>
+      <Hidden smUp>
+        <Grid container spacing={6} sx={{ textAlign: 'center', px: 1.9, mb: 0, mt: 0 }}>
+          {tableHeader.map((header) => (
+            <Grid item xs={4} key={header.id} sx={{ pt: 5, pb: 3 }}>
+              <Box
+                component="img"
+                src={header.src}
+                loading="lazy"
+                alt={header.heading}
+                sx={{
+                  height: 24,
+                  mr: 2,
+                }}
+              />
+              <Typography sx={{ fontWeight: 'bold', fontSize: '19px', lineHeight: '30px' }}>
+                {header.heading}
+              </Typography>
+            </Grid>
+          ))}
+        </Grid>
+      </Hidden>
       <Table aria-label="spanning table">
         <TableHead>
           <TableRow>
@@ -366,11 +480,9 @@ export default function ComparisonTable() {
                   src={header.src}
                   loading="lazy"
                   alt={header.heading}
-                  sx={{
-                    height: 24,
-                    mr: 2,
-                  }}
+                  sx={{ height: 24, mr: 2 }}
                 />
+                <Box component="span" sx={{ display: { xs: 'block', md: 'block', lg: 'none' } }} />
                 {header.heading}
               </StyledTableCell>
             ))}

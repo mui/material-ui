@@ -9,7 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
 import StartMaterialCard from 'docs/src/modules/branding/StartMaterialCard';
 import ComparisonTable from 'docs/src/modules/branding/ComparisonTable';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -92,7 +92,9 @@ function StartMaterialUi() {
       <Typography variant="h2" align="center" sx={{ mt: 8 }}>
         Start using Material-UI <UnderlinedText>for free!</UnderlinedText>
       </Typography>
-      <Typography sx={{ mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}>
+      <Typography
+        sx={{ fontSize: '18px', mt: 4, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}
+      >
         Our free plan let's you get going right away. Switch to{' '}
         <Link href="/getting-started/usage/">Material-UI X</Link> to get more components & premium
         support.
@@ -188,7 +190,17 @@ function ComparePlans() {
       <Typography variant="h2" align="center" sx={{ mt: 0 }}>
         <UnderlinedText>Compare</UnderlinedText> Plans
       </Typography>
-      <Typography sx={{ mt: 3, maxWidth: 670, mx: 'auto', textAlign: 'center', mb: 7.5 }}>
+      <Typography
+        sx={{
+          mt: 3,
+          maxWidth: 670,
+          mx: 'auto',
+          textAlign: 'center',
+          padding: { xs: '0 15px', md: 0, lg: 0 },
+          mb: { sm: 6, xs: 0, lg: 10 },
+          fontSize: '18px',
+        }}
+      >
         Compare Material-UI plans, see which one might fit you or your team. If you need further
         help deciding <Link href="/getting-started/support/">contact support</Link> or visit{' '}
         <Link href="/getting-started/usage/">community hub</Link>.
@@ -347,12 +359,17 @@ function FAQ() {
     content: {
       margin: '0 !important',
       minHeight: 'auto !important',
+      paddingTop: '0px',
+      paddingBottom: '0px',
     },
-    expanded: {},
-    expandIcon: {
-      margin: '0 !important',
-      minHeight: 'auto !important',
-    },
+    // expanded: {
+    //   paddingTop: '30px',
+    //   paddingBottom: '20px',
+    // },
+    // expandIcon: {
+    //   margin: '0 !important',
+    //   minHeight: 'auto !important',
+    // },
   }));
   const classes = useStyles();
   return (
@@ -370,7 +387,6 @@ function FAQ() {
             key={faq.summary}
             sx={{
               boxShadow: 'none',
-              padding: '30px 0',
               margin: '0px !important',
             }}
             classes={{ root: classes.root }}
@@ -379,14 +395,13 @@ function FAQ() {
               expandIcon={<Dropdown />}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              sx={{ padding: '0px', minHeight: 'auto !important' }}
-              classes={{ content: classes.content, expandIcon: classes.expandIcon }}
+              sx={{ minHeight: 'auto !important', padding: '30px 0' }}
             >
               <Typography variant="h4" component="p">
                 {faq.summary}
               </Typography>
             </AccordionSummary>
-            <AccordionDetails sx={{ padding: '20px 0 0 0' }}>
+            <AccordionDetails sx={{ padding: '0px 0 30px 0' }}>
               <Typography sx={{ fontSize: '18px' }}>{faq.detail}</Typography>
             </AccordionDetails>
           </Accordion>
