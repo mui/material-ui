@@ -10,12 +10,10 @@ import Paper from '../Paper';
 import snackbarContentClasses, { getSnackbarContentUtilityClass } from './snackbarContentClasses';
 
 const overridesResolver = (props, styles) => {
-  return deepmerge(
-    styles.root || {
-      [`& .${snackbarContentClasses.action}`]: styles.action,
-      [`& .${snackbarContentClasses.message}`]: styles.message,
-    },
-  );
+  return deepmerge(styles.root || {}, {
+    [`& .${snackbarContentClasses.action}`]: styles.action,
+    [`& .${snackbarContentClasses.message}`]: styles.message,
+  });
 };
 
 const useUtilityClasses = (styleProps) => {
