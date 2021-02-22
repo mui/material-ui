@@ -46,6 +46,10 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 {{"demo": "pages/components/modal/NestedModal.js"}}
 
+## Unstyled modal
+
+{{"demo": "pages/components/modal/ModalUnstyled.js"}}
+
 ## Transitions
 
 The open/close state of the modal can be animated with a transition component.

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Modal from '@material-ui/core/Modal';
 
 function rand() {
@@ -17,19 +17,7 @@ function getModalStyle() {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-
 export default function KeepMountedModal() {
-  const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -54,12 +42,24 @@ export default function KeepMountedModal() {
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
       >
-        <div style={modalStyle} className={classes.paper}>
+        <Box
+          style={modalStyle}
+          sx={{
+            position: 'absolute',
+            width: 400,
+            bgcolor: 'background.paper',
+            border: '2px solid #000',
+            boxShadow: (theme) => theme.shadows[5],
+            pt: 2,
+            px: 4,
+            pb: 3,
+          }}
+        >
           <h2 id="keep-mounted-modal-title">Text in a modal</h2>
           <p id="keep-mounted-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
-        </div>
+        </Box>
       </Modal>
     </div>
   );
