@@ -14,9 +14,9 @@ describe('<SnackbarContent />', () => {
     inheritComponent: Paper,
     render,
     mount,
-    muiName: 'SnackbarContent',
+    muiName: 'MuiSnackbarContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   describe('prop: action', () => {

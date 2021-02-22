@@ -84,7 +84,7 @@ const SnackbarContentAction = experimentalStyled(
 });
 
 const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'SnackbarContent' });
+  const props = useThemeProps({ props: inProps, name: 'MuiSnackbarContent' });
 
   const { action, className, message, role = 'alert', ...other } = props;
 

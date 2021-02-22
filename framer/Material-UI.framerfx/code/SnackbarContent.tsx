@@ -5,7 +5,6 @@ import MuiButton from '@material-ui/core/Button';
 
 interface Props {
   message: string;
-  sx?: object;
   width: number | string;
   height: number;
   label: string;
@@ -34,10 +33,6 @@ addPropertyControls(SnackbarContent, {
   message: {
     type: ControlType.String,
     title: 'Message',
-  },
-  sx: {
-    type: ControlType.Object,
-    title: 'Sx',
   },
   label: {
     type: ControlType.String,
