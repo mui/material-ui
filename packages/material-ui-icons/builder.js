@@ -214,15 +214,10 @@ async function worker({ svgPath, options, renameFilter, template }) {
   await fse.writeFile(absDestPath, fileString);
 }
 
-export async function main(options) {
+export async function handler(options) {
   const originalWrite = process.stdout.write;
 
   try {
-    options.glob = options.glob || '/**/*.svg';
-    options.innerPath = options.innerPath || '';
-    options.renameFilter = options.renameFilter || RENAME_FILTER_DEFAULT;
-    options.disableLog = options.disableLog || false;
-
     // Disable console.log opt, used for tests
     if (options.disableLog) {
       process.stdout.write = () => {};
@@ -232,16 +227,14 @@ export async function main(options) {
 
     let renameFilter = options.renameFilter;
     if (typeof renameFilter === 'string') {
+      // TODO: use `await import(...)`
       // eslint-disable-next-line global-require, import/no-dynamic-require
       renameFilter = require(renameFilter).default;
     }
     if (typeof renameFilter !== 'function') {
       throw Error('renameFilter must be a function');
     }
-    const pathExists = await fse.pathExists(options.outputDir);
-    if (!pathExists) {
-      await fse.mkdir(options.outputDir);
-    }
+    await fse.ensureDir(options.outputDir);
 
     const [svgPaths, template] = await Promise.all([
       globAsync(path.join(options.svgDir, options.glob)),
@@ -290,27 +283,55 @@ export async function main(options) {
 }
 
 if (require.main === module) {
-  const argv = yargs
-    .usage("Build JSX components from SVG's.\nUsage: $0")
-    .demand('output-dir')
-    .describe('output-dir', 'Directory to output jsx components')
-    .demand('svg-dir')
-    .describe('svg-dir', 'SVG directory')
-    .describe('glob', 'Glob to match inside of --svg-dir. Default **/*.svg')
-    .describe(
-      'inner-path',
-      '"Reach into" subdirs, since libraries like material-design-icons' +
-        ' use arbitrary build directories to organize icons' +
-        ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"',
-    )
-    .describe(
-      'file-suffix',
-      'Filter only files ending with a suffix (pretty much only for @material-ui/icons)',
-    )
-    .describe(
-      'rename-filter',
-      `Path to JS module used to rename destination filename and path.
-        Default: ${RENAME_FILTER_DEFAULT}`,
-    ).argv;
-  main(argv);
+  yargs
+    .command({
+      command: '$0>',
+      description: "Build JSX components from SVG's.",
+      handler,
+      builder: (command) => {
+        command
+          .option('output-dir', {
+            required: true,
+            type: 'string',
+            describe: 'Directory to output jsx components',
+          })
+          .option('svg-dir', {
+            required: true,
+            type: 'string',
+            describe: 'Directory to output jsx components',
+          })
+          .option('glob', {
+            type: 'string',
+            describe: 'Glob to match inside of --svg-dir',
+            default: '**/*.svg',
+          })
+          .option('inner-path', {
+            type: 'string',
+            describe:
+              '"Reach into" subdirs, since libraries like material-design-icons' +
+              ' use arbitrary build directories to organize icons' +
+              ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"',
+            default: '',
+          })
+          .option('file-suffix', {
+            type: 'string',
+            describe:
+              'Filter only files ending with a suffix (pretty much only for @material-ui/icons)',
+          })
+          .option('rename-filter', {
+            type: 'string',
+            describe: 'Path to JS module used to rename destination filename and path.',
+            default: RENAME_FILTER_DEFAULT,
+          })
+          .option('disable-log', {
+            type: 'boolean',
+            describe: 'If true, does not produce any output in STDOUT.',
+            default: false,
+          });
+      },
+    })
+    .help()
+    .strict(true)
+    .version(false)
+    .parse();
 }
