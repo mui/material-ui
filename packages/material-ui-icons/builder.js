@@ -283,8 +283,6 @@ export async function main(options) {
     await fse.copy(path.join(__dirname, '/custom'), options.outputDir);
 
     await generateIndex(options);
-  } catch (err) {
-    console.log(err);
   } finally {
     // bring back stdout
     process.stdout.write = originalWrite;
