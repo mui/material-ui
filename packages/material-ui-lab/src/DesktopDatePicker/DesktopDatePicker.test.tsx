@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import TextField from '@material-ui/core/TextField';
+import { TransitionProps } from '@material-ui/core/transitions';
 import { act, fireEvent, screen } from 'test/utils';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 import {
@@ -250,6 +251,78 @@ describe('<DesktopDatePicker />', () => {
 
       expect(handleClick.callCount).to.equal(1);
       expect(handleTouchStart.callCount).to.equal(1);
+    });
+  });
+
+  describe('scroll', () => {
+    const NoTransition = React.forwardRef(function NoTransition(
+      props: TransitionProps & { children?: React.ReactNode },
+      ref: React.Ref<HTMLDivElement>,
+    ) {
+      const { children, in: inProp } = props;
+
+      if (!inProp) {
+        return null;
+      }
+      return (
+        <div ref={ref} tabIndex={-1}>
+          {children}
+        </div>
+      );
+    });
+
+    before(function beforeHook() {
+      // JSDOM has neither layout nor window.scrollTo
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
+
+    let originalScrollX: number;
+    let originalScrollY: number;
+    beforeEach(() => {
+      originalScrollX = window.screenX;
+      originalScrollY = window.scrollY;
+    });
+    afterEach(() => {
+      window.scrollTo(originalScrollX, originalScrollY);
+    });
+
+    it('does not scroll when opened', () => {
+      const handleClose = spy();
+      const handleOpen = spy();
+      function BottomAnchoredDesktopTimePicker() {
+        const [anchorEl, anchorElRef] = React.useState<HTMLElement | null>(null);
+
+        React.useEffect(() => {
+          if (anchorEl !== null) {
+            window.scrollTo(0, anchorEl.getBoundingClientRect().top);
+          }
+        }, [anchorEl]);
+
+        return (
+          <React.Fragment>
+            <div style={{ height: '200vh' }}>Spacer</div>
+            <DesktopDatePicker
+              value={adapterToUse.date('2018-01-01T00:00:00.000')}
+              OpenPickerButtonProps={{ ref: anchorElRef }}
+              onChange={() => {}}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              renderInput={(params) => <TextField {...params} />}
+              TransitionComponent={NoTransition}
+            />
+          </React.Fragment>
+        );
+      }
+      render(<BottomAnchoredDesktopTimePicker />);
+      const scrollYBeforeOpen = window.scrollY;
+
+      fireEvent.click(screen.getByLabelText(/choose date/i));
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(handleOpen.callCount).to.equal(1);
+      expect(window.scrollY, 'focus caused scroll').to.equal(scrollYBeforeOpen);
     });
   });
 });

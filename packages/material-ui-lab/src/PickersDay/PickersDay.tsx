@@ -128,6 +128,8 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
   onDaySelect: (day: TDate, isFinish: PickerSelectionState) => void;
 }
 
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 const noop = () => {};
 
 /**
@@ -165,7 +167,9 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   const ref = React.useRef<HTMLButtonElement>(null);
   const handleRef = useForkRef(ref, forwardedRef);
 
-  React.useEffect(() => {
+  // Since this is rendered when a Popper is opened we can't use passive effects.
+  // Focusing in passive effects in Popper causes scroll jump.
+  useEnhancedEffect(() => {
     if (autoFocus && !disabled && !isAnimating && !outsideCurrentMonth) {
       // ref.current being null would be a bug in Material-UI
       ref.current!.focus();
