@@ -25,7 +25,6 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 ## Frameworks de aplicação
 
 - [react-admin](https://github.com/marmelab/react-admin): Uma estrutura frontend para a construção de aplicativos B2B executando no navegador com base em APIs REST/GraphQL.
-- [graphql-starter](https://github.com/kriasoft/graphql-starter): Yarn v2 based monorepo template (seed project) pre-configured with GraphQL API, React, Relay, and Material UI.
 
 ## Ferramentas de IDE
 
