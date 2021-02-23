@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { snakeCase } = require('lodash');
 const path = require('path');
+const yargs = require('yargs');
 
 // https://stackoverflow.com/a/49428486/3406963
 function streamToString(stream) {
@@ -31,12 +32,8 @@ function iconsToString(icons) {
   }).join('\n');
 }
 
-/**
- * Parses a patch containing changes to icons in `@material-ui/icons` and creates a markdown file for human review.
- * @param {string[]} args
- */
-async function main(args) {
-  const [patchFile] = args;
+async function main(options) {
+  const { patchFile } = options;
   const patchStream = patchFile !== undefined ? fs.createReadStream(patchFile) : process.stdin;
   const patch = await streamToString(patchStream);
 
@@ -131,7 +128,24 @@ ${iconsToString(modifiedIcons)}
   console.log(formattedPatch);
 }
 
-main(process.argv.slice(2)).catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+yargs
+  .command({
+    command: '$0 [patchFile]',
+    description:
+      'Parses a patch containing changes to icons in `@material-ui/icons` and creates a markdown file for human review.',
+    handler: main,
+    builder: (command) => {
+      return command
+        .positional('patchFile', {
+          type: 'string',
+          describe:
+            'If you have put the output of `git diff --name-status next` in a file. By default the script uses stdin.',
+        })
+        .example('git diff --name-status next | $0 > icons-patch.md')
+        .example('$0 icons-patch.diff > icons-patch.md');
+    },
+  })
+  .help()
+  .strict(true)
+  .version(false)
+  .parse();
