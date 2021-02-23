@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Modal from '@material-ui/core/Modal';
+import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 export default function ServerModal() {
@@ -41,15 +42,15 @@ export default function ServerModal() {
             bgcolor: 'background.paper',
             border: '2px solid #000',
             boxShadow: (theme) => theme.shadows[5],
-            pt: 2,
-            px: 4,
-            pb: 3,
+            p: 4,
           }}
         >
-          <h2 id="server-modal-title">Server-side modal</h2>
-          <p id="server-modal-description">
+          <Typography id="server-modal-title" variant="h6" component="h2">
+            Server-side modal
+          </Typography>
+          <Typography id="server-modal-description" sx={{ pt: 2 }}>
             If you disable JavaScript, you will still see me.
-          </p>
+          </Typography>
         </Box>
       </Modal>
     </Box>

@@ -37,14 +37,8 @@ const style = {
 
 export default function ModalUnstyledDemo() {
   const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div>
@@ -59,7 +53,7 @@ export default function ModalUnstyledDemo() {
         BackdropComponent={Backdrop}
       >
         <Box sx={style}>
-          <h2 id="unstyled-modal-title">Unstyled modal</h2>
+          <h2 id="unstyled-modal-title">Open modal</h2>
           <p id="unstyled-modal-description">
             Aliquid amet deserunt earum eos nihil officia porro, quasi quibusdam!
           </p>
