@@ -379,4 +379,11 @@ describe('<Button />', () => {
     expect(button).not.to.have.attribute('type');
     expect(button).to.have.attribute('href', 'https://google.com');
   });
+
+  it('should forward classes to ButtonBase', () => {
+    const disabledClassName = 'testDisabledClassName';
+    const { container } = render(<Button disabled classes={{ disabled: disabledClassName }} />);
+
+    expect(container.querySelector('button')).to.have.class(disabledClassName);
+  });
 });
