@@ -16,7 +16,7 @@ export const light = {
     // The most important text.
     primary: 'rgba(0, 0, 0, 0.87)',
     // Secondary text.
-    secondary: 'rgba(0, 0, 0, 0.6)',
+    secondary: 'rgba(0, 0, 0, 0.54)',
     // Disabled text have even lower visual prominence.
     disabled: 'rgba(0, 0, 0, 0.38)',
   },
