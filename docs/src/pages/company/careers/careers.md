@@ -10,7 +10,7 @@ The company is bootstrapped (so far). It was incorporated in mid 2019 and yet gr
 
 - **Customer obsessed**. We put our customers front & center. We focus on delivering web experiences that feel amazing. We ask questions. We experiment with new ideas.
 - **Transparency**. Most of our work is public. We share what we work on regularly in the open. We collect feedback as soon and as frequently as possible. We learn from each other and
-grow from it.
+  grow from it.
 - **Freedom**. We work from anywhere in the world. We keep meetings to a minimum, preferring asynchronous and written communication.
 - **Autonomy**. We want to create a safe, high-trust team. We want you to be able to feel invested in your work and proud of it.
 - **Excellence**. We're aiming high, and we know it. Even the smallest details are important to us. We only want the best for each other and our customers.
