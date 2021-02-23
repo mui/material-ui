@@ -30,8 +30,8 @@ export default function ModalUnstyledDemo() {
         modal unstyled
       </button>
       <StyledModal
-        aria-labelledby="modal-title"
-        aria-describedby="modal-description"
+        aria-labelledby="unstyled-modal-title"
+        aria-describedby="unstyled-modal-description"
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -52,8 +52,8 @@ export default function ModalUnstyledDemo() {
             pb: 3,
           }}
         >
-          <h2 id="modal-title">Unstyled modal</h2>
-          <p id="modal-description">
+          <h2 id="unstyled-modal-title">Unstyled modal</h2>
+          <p id="unstyled-modal-description">
             Aliquid amet deserunt earum eos nihil officia porro, quasi quibusdam!
           </p>
         </Box>
