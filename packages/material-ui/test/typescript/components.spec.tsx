@@ -625,20 +625,6 @@ const MenuTest = () => {
   );
 };
 
-const PaperTest = () => (
-  <div>
-    <Paper elevation={4}>
-      <Typography variant="h5" component="h3">
-        This is a sheet of paper.
-      </Typography>
-      <Typography variant="body1" component="p">
-        Paper can be used to build surface or other elements for your application.
-      </Typography>
-    </Paper>
-    <Paper component="a" href="test" />
-  </div>
-);
-
 const CircularProgressTest = () => (
   <div>
     <CircularProgress />
