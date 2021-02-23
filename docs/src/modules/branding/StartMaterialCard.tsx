@@ -8,6 +8,7 @@ import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
 import Link from 'docs/src/modules/components/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import PriorityButton from './PriorityButton';
+import WatchIcon from 'docs/src/modules/branding/icons/Watch';
 
 interface StartMaterialCardProps {
   id: number;
@@ -72,7 +73,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
         src={src}
         loading="lazy"
         alt=""
-        sx={{ height: 60, position: 'absolute', left: 40, top: -30 }}
+        sx={{ height: 60, position: 'absolute', left: 40, top: -30, zIndex: 1 }}
       />
       <Typography variant="h4" component="h3">
         {title}
@@ -90,7 +91,7 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
               fontSize: '16px',
               lineHeight: '24px',
               textDecorationLine: 'line-through',
-              background: 'rgb(255 80 95 / 20%)',
+              bgcolor: 'rgb(255 80 95 / 20%)',
               fontWeight: '600',
               minWidth: '47px',
               display: 'inline-block',
@@ -165,6 +166,28 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
           </BrandingBulletItem>
         ))}
       </Box>
+      {id === 3 && (
+        <Box
+          sx={{
+            display: 'flex',
+            position: 'absolute',
+            top: '0',
+            bottom: '0',
+            left: '0',
+            right: '0',
+            bgcolor: 'rgb(19 47 76 / 60%)',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+            padding: '30px',
+            flexWrap: 'wrap',
+          }}
+        >
+          <Box sx={{ textAlign: 'center' }}>
+            <WatchIcon />
+            <Typography sx={{ mt: 1.5 }}>Available later this year</Typography>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 }

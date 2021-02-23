@@ -21,13 +21,23 @@ import PendingIcon from 'docs/src/modules/branding/icons/Pending';
 //PlanFeatuer Component start
 interface PlanFeatuerProps {
   text: any;
+  firstText: any;
+  secondText: any;
   sx?: object;
   variant: string;
   isBorder: boolean;
   isBold: boolean;
 }
 function PlanFeatuer(props: PlanFeatuerProps) {
-  const { text, sx, variant = 'h4', isBorder = false, isBold = false } = props;
+  const {
+    text = '',
+    firstText = '',
+    secondText = '',
+    sx,
+    variant = 'h4',
+    isBorder = false,
+    isBold = false,
+  } = props;
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       popover: {
@@ -61,9 +71,10 @@ function PlanFeatuer(props: PlanFeatuerProps) {
 
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
-  const handlePopoverOpen = (event) => {
+  const handlePopoverOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -87,22 +98,55 @@ function PlanFeatuer(props: PlanFeatuerProps) {
 
   return (
     <React.Fragment>
-      <Typography
-        variant={variant}
-        sx={{
-          ...sx,
-          ...DynamicTypoSx,
-          borderBottom: isBorder ? '1px dashed #132F4C' : '',
-          display: 'inline-block',
-          whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
-        }}
-        aria-owns={open ? 'mouse-over-popover' : undefined}
-        aria-haspopup="true"
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
-      >
-        {text}
-      </Typography>
+      {text ? (
+        <Typography
+          variant={variant}
+          sx={{
+            ...sx,
+            ...DynamicTypoSx,
+            borderBottom: isBorder ? '1px dashed #132F4C' : '',
+            display: 'inline-block',
+            whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+          }}
+          aria-owns={open ? 'mouse-over-popover' : undefined}
+          aria-haspopup="true"
+          onMouseEnter={handlePopoverOpen}
+          onMouseLeave={handlePopoverClose}
+        >
+          {text}
+        </Typography>
+      ) : (
+        <>
+          <Typography
+            variant={variant}
+            sx={{
+              ...sx,
+              ...DynamicTypoSx,
+              borderBottom: isBorder ? '1px dashed #132F4C' : '',
+              display: 'inline-block',
+              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+            }}
+            aria-owns={open ? 'mouse-over-popover' : undefined}
+            aria-haspopup="true"
+            onMouseEnter={handlePopoverOpen}
+            onMouseLeave={handlePopoverClose}
+          >
+            {firstText}
+          </Typography>
+          <Typography
+            variant={variant}
+            sx={{
+              ...sx,
+              ...DynamicTypoSx,
+              borderBottom: isBorder ? '1px dashed #132F4C' : '',
+              display: 'inline-block',
+              whiteSpace: { sm: 'normal', xs: 'normal', md: 'nowrap', lg: 'nowrap' },
+            }}
+          >
+            {secondText}
+          </Typography>
+        </>
+      )}
       <Popover
         anchorOrigin={{
           vertical: 'top',
@@ -164,7 +208,7 @@ function PlanStatus(props: PlanStatusProps) {
     <Box>
       {isCheckIcon ? (
         <CheckIcon
-          sx={{ backgroundColor: 'rgb(204, 229, 255)', color: 'primary.main', borderRadius: '50%' }}
+          sx={{ bgcolor: 'rgb(204, 229, 255)', color: 'primary.main', borderRadius: '50%' }}
         />
       ) : isCloseIcon ? (
         <CloseIcon />
@@ -250,6 +294,10 @@ const StyledTableCell = withStyles((theme) => ({
       },
     },
     '&:nth-of-type(4)': {
+      paddingRight: '135px',
+      [theme.breakpoints.down('lg')]: {
+        paddingRight: '60px',
+      },
       [theme.breakpoints.down('sm')]: {
         paddingRight: '15px',
       },
@@ -338,13 +386,13 @@ const rows = [
     <PlanStatus isCheckIcon={true} />,
   ),
   createRow(
-    <PlanFeatuer text={'Bugs reports & feature requests'} isBorder={true} />,
+    <PlanFeatuer firstText={'Bugs reports &'} secondText={'feature requests'} isBorder={true} />,
     <PlanStatus isCheckIcon={true} />,
     <PlanStatus isCheckIcon={true} bottonText={'priority over Community'} />,
     <PlanStatus isCheckIcon={true} bottonText={'priority over Pro'} />,
   ),
   createRow(
-    <PlanFeatuer text={'Tehnical advisory*'} isBorder={true} />,
+    <PlanFeatuer firstText={'Tehnical'} secondText={' advisory*'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus isPendingIcon={true} />,
@@ -356,7 +404,7 @@ const rows = [
     <PlanStatus mainText={'1 year'} />,
   ),
   createRow(
-    <PlanFeatuer text={'Support duration hide text'} isBorder={true} />,
+    <PlanFeatuer firstText={'Support duration'} secondText={' hide text'} isBorder={true} />,
     <PlanStatus isCloseIcon={true} />,
     <PlanStatus mainText={'2 business days'} />,
     <PlanStatus mainText={'1 business day'} />,
@@ -446,8 +494,15 @@ const tableHeader = [
 ];
 
 export default function ComparisonTable() {
+  const useStyles = makeStyles({
+    root: {
+      boxShadow: 'none',
+      overflowX: 'initial !important',
+    },
+  });
+  const classes = useStyles();
   return (
-    <TableContainer component={Paper} sx={{ boxShadow: 'none', overflowX: 'initial !important' }}>
+    <TableContainer component={Paper} classes={{ root: classes.root }}>
       <Hidden smUp>
         <Grid container spacing={6} sx={{ textAlign: 'center', px: 1.9, mb: 0, mt: 0 }}>
           {tableHeader.map((header) => (

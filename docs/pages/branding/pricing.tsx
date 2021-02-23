@@ -11,11 +11,14 @@ import StartMaterialCard from 'docs/src/modules/branding/StartMaterialCard';
 import ComparisonTable from 'docs/src/modules/branding/ComparisonTable';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Dropdown from 'docs/src/modules/branding/icons/Dropdown';
 import BrandingCard from 'docs/src/modules/branding/BrandingCard';
 import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
+import HelpIcon from 'docs/src/modules/branding/icons/Help';
+import Button from '@material-ui/core/Button';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 const startMaterialUi = [
   {
@@ -355,23 +358,22 @@ function FAQ() {
       '&:after': {
         display: 'none',
       },
+      boxShadow: 'none',
+      padding: '0px',
+      margin: '0px !important',
+    },
+  }));
+  const classes = useStyles();
+  const AccordionSummary = withStyles({
+    root: {
+      minHeight: 'auto !important',
+      padding: '30px 0',
     },
     content: {
       margin: '0 !important',
       minHeight: 'auto !important',
-      paddingTop: '0px',
-      paddingBottom: '0px',
     },
-    // expanded: {
-    //   paddingTop: '30px',
-    //   paddingBottom: '20px',
-    // },
-    // expandIcon: {
-    //   margin: '0 !important',
-    //   minHeight: 'auto !important',
-    // },
-  }));
-  const classes = useStyles();
+  })(MuiAccordionSummary);
   return (
     <Container>
       <Typography
@@ -383,19 +385,11 @@ function FAQ() {
       </Typography>
       <Box sx={{ mt: 10, maxWidth: '770px', margin: ' 0 auto' }}>
         {faqData.map((faq) => (
-          <Accordion
-            key={faq.summary}
-            sx={{
-              boxShadow: 'none',
-              margin: '0px !important',
-            }}
-            classes={{ root: classes.root }}
-          >
+          <Accordion key={faq.summary} classes={{ root: classes.root }}>
             <AccordionSummary
               expandIcon={<Dropdown />}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              sx={{ minHeight: 'auto !important', padding: '30px 0' }}
             >
               <Typography variant="h4" component="p">
                 {faq.summary}
@@ -410,11 +404,89 @@ function FAQ() {
     </Container>
   );
 }
+
+const customerIcons = [
+  { image: '/static/branding/pricing/coursera.svg'},
+  { image: '/static/branding/pricing/amazon.svg'},
+  { image: '/static/branding/pricing/nasa.svg'},
+  { image: '/static/branding/pricing/netflix.svg'},
+  { image: '/static/branding/pricing/unity.svg'},
+  { image: '/static/branding/pricing/shutterstock.svg'},
+];
+
 const Support = () => {
   return (
-    <Container>
-      <Box>Support</Box>
-    </Container>
+    <React.Fragment>
+      <Container sx={{ textAlign: 'center' }}>
+        <HelpIcon
+          sx={{
+            bgcolor: 'primary.main',
+            color: 'white',
+            width: '64px',
+            height: '64px',
+            borderRadius: '50%',
+            mt: 6,
+            mb: 2,
+            mx: 'auto',
+            display: 'block',
+          }}
+        />
+        <Typography
+          align="center"
+          variant="h4"
+          sx={{
+            fontWeight: 600,
+            fontSize: '20px',
+            lineHeight: '26px',
+            mb: 1.5
+          }}
+        >
+          Need help?
+        </Typography>
+
+        <Typography align="center" sx={{ fontSize: '18px', lineHeight: '24px', mb: 4 }}>
+          From community help to premium
+          <Box component="span" sx={{ display: { xs: 'block', md: 'none' } }} /> business support,
+          <Box component="span" sx={{ display: { xs: 'block', md: 'block' } }} />
+          we’re here to help.
+        </Typography>
+        <Button
+          component={Link}
+          href="/getting-started/usage/"
+          size="medium"
+          variant="contained"
+          endIcon={<NavigateNextIcon />}
+          color="secondary"
+        >
+          View Support
+        </Button>
+      </Container>
+      <Container>
+        <Grid container sx={{ mt: { xs: 8, sm: 11, lg: 15 }, alignItems: 'center' }}>
+          {customerIcons.map((customer) => (
+            <Grid
+              item
+              container
+              xs={6}
+              sm={4}
+              lg={2}
+              key={customer.image}
+              sx={{ justifyContent: 'center', my: { xs: 4, sm: 4, lg: 0 } }}
+            >
+              <img loading="lazy" src={customer.image} alt="" />
+            </Grid>
+          ))}
+        </Grid>
+        <Typography
+          align="center"
+          sx={{ color: 'grey5A', mt: { sm: 3, lg: 7 }, mb: { xs: 10, sm: 10, lg: 15 } }}
+        >
+          From startups to Fortune 500s, the world's
+          <Box component="span" sx={{ display: { xs: 'block', md: 'block', sm: 'block' } }} />
+          best product teams use Material-UI.
+        </Typography>
+      </Container>
+    </React.Fragment>
   );
 };
 export default function Pricing() {
@@ -425,7 +497,7 @@ export default function Pricing() {
       <ComparePlans />
       <WhatToExpect />
       <FAQ />
-      {/* <Support /> */}
+      <Support />
       <BrandingBeginToday />
     </BrandingRoot>
   );
