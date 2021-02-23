@@ -602,7 +602,7 @@ Tabs.propTypes = {
   component: PropTypes.elementType,
   /**
    * Determines the color of the indicator.
-   * @default 'secondary'
+   * @default 'primary'
    */
   indicatorColor: PropTypes.oneOf(['primary', 'secondary']),
   /**
@@ -650,7 +650,7 @@ Tabs.propTypes = {
   TabScrollButtonProps: PropTypes.object,
   /**
    * Determines the color of the `Tab`.
-   * @default 'inherit'
+   * @default 'primary'
    */
   textColor: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   /**
