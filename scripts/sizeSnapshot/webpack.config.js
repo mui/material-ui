@@ -28,6 +28,18 @@ async function getWebpackEntries() {
     },
   );
 
+  const unstyledPackagePath = path.join(workspaceRoot, 'packages/material-ui-unstyled/build');
+  const unstyledComponents = (await glob(path.join(unstyledPackagePath, '([A-Z])*/index.js'))).map(
+    (componentPath) => {
+      const componentName = path.basename(path.dirname(componentPath));
+
+      return {
+        name: componentName,
+        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+      };
+    },
+  );
+
   const labPackagePath = path.join(workspaceRoot, 'packages/material-ui-lab/build');
   const labComponents = (await glob(path.join(labPackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
@@ -45,10 +57,12 @@ async function getWebpackEntries() {
       name: '@material-ui/core',
       path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
     },
+    ...coreComponents,
     {
       name: '@material-ui/lab',
       path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
     },
+    ...labComponents,
     {
       name: '@material-ui/styles',
       path: 'packages/material-ui-styles/build/index.js',
@@ -57,7 +71,6 @@ async function getWebpackEntries() {
       name: '@material-ui/system',
       path: 'packages/material-ui-system/build/esm/index.js',
     },
-    ...coreComponents,
     {
       name: '@material-ui/core/styles/createMuiTheme',
       path: 'packages/material-ui/build/styles/createMuiTheme.js',
@@ -66,7 +79,6 @@ async function getWebpackEntries() {
       name: 'colorManipulator',
       path: 'packages/material-ui/build/styles/colorManipulator.js',
     },
-    ...labComponents,
     {
       name: 'useAutocomplete',
       path: 'packages/material-ui-lab/build/useAutocomplete/index.js',
@@ -81,8 +93,9 @@ async function getWebpackEntries() {
     },
     {
       name: '@material-ui/unstyled',
-      path: 'packages/material-ui-unstyled/build/index.js',
+      path: path.join(path.relative(workspaceRoot, unstyledPackagePath), 'index.js'),
     },
+    ...unstyledComponents,
     {
       name: '@material-ui/utils',
       path: 'packages/material-ui-utils/build/esm/index.js',
