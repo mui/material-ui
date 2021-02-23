@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '8px 0',
     '&:hover': {
       backgroundColor: 'white',
-      color: '#001e3c',
+      color: theme.palette.text.primary
     },
   },
   label: {
