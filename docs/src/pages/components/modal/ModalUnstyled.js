@@ -43,7 +43,7 @@ export default function ModalUnstyledDemo() {
   return (
     <div>
       <button type="button" onClick={handleOpen}>
-        modal unstyled
+        Open modal
       </button>
       <StyledModal
         aria-labelledby="unstyled-modal-title"
@@ -53,7 +53,7 @@ export default function ModalUnstyledDemo() {
         BackdropComponent={Backdrop}
       >
         <Box sx={style}>
-          <h2 id="unstyled-modal-title">Open modal</h2>
+          <h2 id="unstyled-modal-title">Text in a modal</h2>
           <p id="unstyled-modal-description">
             Aliquid amet deserunt earum eos nihil officia porro, quasi quibusdam!
           </p>
