@@ -29,11 +29,14 @@ If you want to start with a more complete and real-world example, you could take
 
 ### Free
 
-- [graphql-starter](https://github.com/kriasoft/graphql-starter):
+- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/graphql-starter):
 
   - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
-  - Yarn v2 based monorepo template (seed project)
-  - pre-configured with GraphQL API, React, Relay, and Material UI.
+  - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)
+  - Web application project pre-configured with Webpack v5, TypeScript, React, Relay, Material UI
+  - Serverless deployment: `api` -> Cloud Functions, `web` -> Cloudflare Workers
+  - Client-side page routing/rendering at CDN edge locations, lazy loading
+  - Optimized for fast CI/CD builds and deployments using Yarn v2 monorepo design
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted):
 
