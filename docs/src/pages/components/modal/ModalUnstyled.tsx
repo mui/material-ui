@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Backdrop from '@material-ui/core/Backdrop';
 import Box from '@material-ui/core/Box';
 import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
 
@@ -11,7 +10,30 @@ const StyledModal = styled(ModalUnstyled)`
   bottom: 0;
   top: 0;
   left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
+
+const Backdrop = styled('div')`
+  z-index: -1;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-tap-highlight-color: transparent;
+`;
+
+const style = {
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  p: 2,
+  px: 4,
+  pb: 3,
+};
 
 export default function ModalUnstyledDemo() {
   const [open, setOpen] = React.useState(false);
@@ -25,39 +47,24 @@ export default function ModalUnstyledDemo() {
   };
 
   return (
-    <Box>
+    <div>
       <button type="button" onClick={handleOpen}>
         modal unstyled
       </button>
       <StyledModal
         aria-labelledby="unstyled-modal-title"
         aria-describedby="unstyled-modal-description"
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
         open={open}
         onClose={handleClose}
         BackdropComponent={Backdrop}
       >
-        <Box
-          sx={{
-            width: 400,
-            bgcolor: 'background.paper',
-            border: '2px solid #000',
-            boxShadow: (theme) => theme.shadows[5],
-            pt: 2,
-            px: 4,
-            pb: 3,
-          }}
-        >
+        <Box sx={style}>
           <h2 id="unstyled-modal-title">Unstyled modal</h2>
           <p id="unstyled-modal-description">
             Aliquid amet deserunt earum eos nihil officia porro, quasi quibusdam!
           </p>
         </Box>
       </StyledModal>
-    </Box>
+    </div>
   );
 }
