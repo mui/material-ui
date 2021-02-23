@@ -40,15 +40,16 @@ Modal is a lower-level construct that is leveraged by the following components:
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
+## Unstyled modal
+
+{{"demo": "pages/components/modal/ModalUnstyled.js"}}
+
+
 ## Nested modal
 
 Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged.
 
 {{"demo": "pages/components/modal/NestedModal.js"}}
-
-## Unstyled modal
-
-{{"demo": "pages/components/modal/ModalUnstyled.js"}}
 
 ## Transitions
 
