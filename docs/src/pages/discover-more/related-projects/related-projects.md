@@ -27,6 +27,7 @@ A set of reusable components for design tools is available, designed to match th
 ## Application frameworks
 
 - [react-admin](https://github.com/marmelab/react-admin): A frontend Framework for building B2B applications running in the browser on top of REST/GraphQL APIs.
+- [graphql-starter](https://github.com/kriasoft/graphql-starter): Yarn v2 based monorepo template (seed project) pre-configured with GraphQL API, React, Relay, and Material UI.
 
 ## IDE tools
 

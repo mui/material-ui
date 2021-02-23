@@ -25,6 +25,7 @@
 ## 应用程序框架
 
 - [react-admin](https://github.com/marmelab/react-admin): 一个前端框架，用于在浏览器中构建运行与  REST/GraphQL APIs 之上的 B2B 应用程序。
+- [graphql-starter](https://github.com/kriasoft/graphql-starter): Yarn v2 based monorepo template (seed project) pre-configured with GraphQL API, React, Relay, and Material UI.
 
 ## IDE 工具
 
