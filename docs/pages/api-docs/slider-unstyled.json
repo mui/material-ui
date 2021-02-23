@@ -3,7 +3,7 @@
     "aria-label": { "type": { "name": "custom", "description": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
     "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
-    "classes": { "type": { "name": "object" }, "default": "{}" },
+    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {

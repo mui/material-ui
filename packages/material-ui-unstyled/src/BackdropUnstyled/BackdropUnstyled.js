@@ -17,8 +17,7 @@ const useUtilityClasses = (styleProps) => {
 
 const BackdropUnstyled = React.forwardRef(function BackdropUnstyled(props, ref) {
   const {
-    children,
-    classes: classesProp = {},
+    classes: classesProp,
     className,
     invisible = false,
     component = 'div',
@@ -31,10 +30,11 @@ const BackdropUnstyled = React.forwardRef(function BackdropUnstyled(props, ref) 
 
   const styleProps = {
     ...props,
+    classes: classesProp,
     invisible,
   };
 
-  const classes = useUtilityClasses({ ...styleProps, classes: classesProp });
+  const classes = useUtilityClasses(styleProps);
 
   const Root = components.Root || component;
   const rootProps = componentsProps.root || {};
@@ -51,9 +51,7 @@ const BackdropUnstyled = React.forwardRef(function BackdropUnstyled(props, ref) 
       ref={ref}
       {...other}
       className={clsx(classes.root, rootProps.className, className)}
-    >
-      {children}
-    </Root>
+    />
   );
 });
 
@@ -68,7 +66,6 @@ BackdropUnstyled.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**

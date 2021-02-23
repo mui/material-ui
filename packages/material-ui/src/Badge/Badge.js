@@ -11,12 +11,10 @@ import styled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 
-const badgeClasses = {
+export const badgeClasses = {
   ...badgeUnstyledClasses,
   ...generateUtilityClasses('MuiBadge', ['colorError', 'colorPrimary', 'colorSecondary']),
 };
-
-export { badgeClasses };
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
@@ -284,7 +282,6 @@ Badge.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**

@@ -79,6 +79,7 @@ module.exports = [
   { pathname: '/api-docs/mobile-stepper' },
   { pathname: '/api-docs/mobile-time-picker' },
   { pathname: '/api-docs/modal' },
+  { pathname: '/api-docs/modal-unstyled' },
   { pathname: '/api-docs/native-select' },
   { pathname: '/api-docs/no-ssr' },
   { pathname: '/api-docs/outlined-input' },

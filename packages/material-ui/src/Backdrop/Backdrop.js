@@ -7,11 +7,7 @@ import experimentalStyled from '../styles/experimentalStyled';
 import useThemeProps from '../styles/useThemeProps';
 import Fade from '../Fade';
 
-const backdropClasses = {
-  ...backdropUnstyledClasses,
-};
-
-export { backdropClasses };
+export const backdropClasses = backdropUnstyledClasses;
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
@@ -22,7 +18,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const extendUtilityClasses = (styleProps) => {
-  const { classes = {} } = styleProps;
+  const { classes } = styleProps;
   return classes;
 };
 
@@ -56,9 +52,9 @@ const BackdropRoot = experimentalStyled(
 const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBackdrop' });
   const {
+    children,
     components = {},
     componentsProps = {},
-    children,
     className,
     invisible = false,
     open,
@@ -112,7 +108,6 @@ Backdrop.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**

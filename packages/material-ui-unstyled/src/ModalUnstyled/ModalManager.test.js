@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import getScrollbarSize from '../utils/getScrollbarSize';
+import { unstable_getScrollbarSize as getScrollbarSize } from '@material-ui/utils';
 import ModalManager from './ModalManager';
 
 describe('ModalManager', () => {

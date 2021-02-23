@@ -28,7 +28,6 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     'aria-valuetext'?: string;
     /**
      * Override or extend the styles applied to the component.
-     * @default {}
      */
     classes?: {
       /** Class name applied to the root element. */
