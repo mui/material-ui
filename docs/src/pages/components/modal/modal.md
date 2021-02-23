@@ -42,8 +42,14 @@ Notice that you can disable the outline (often blue or gold) with the `outline: 
 
 ## Unstyled modal
 
-{{"demo": "pages/components/modal/ModalUnstyled.js"}}
+The modal also comes with an unstyled version.
+It's ideal for doing heavy customizations and minimizing bundle size.
 
+```js
+import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
+```
+
+{{"demo": "pages/components/modal/ModalUnstyled.js"}}
 
 ## Nested modal
 
