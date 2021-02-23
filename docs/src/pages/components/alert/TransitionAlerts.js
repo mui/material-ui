@@ -13,7 +13,6 @@ export default function TransitionAlerts() {
     <Box sx={{ width: '100%' }}>
       <Collapse in={open}>
         <Alert
-          sx={{ marginBottom: (theme) => theme.spacing(2) }}
           action={
             <IconButton
               aria-label="close"
@@ -26,6 +25,7 @@ export default function TransitionAlerts() {
               <CloseIcon fontSize="inherit" />
             </IconButton>
           }
+          sx={{ mb: 2 }}
         >
           Close me!
         </Alert>

@@ -8,7 +8,7 @@ export default function BasicAlerts() {
       sx={{
         width: '100%',
         '& > * + *': {
-          marginTop: (theme) => theme.spacing(2),
+          mt: 2,
         },
       }}
     >
