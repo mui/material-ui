@@ -52,30 +52,30 @@ Switch.defaultProps = {
 };
 
 addPropertyControls(Switch, {
-  checked: {
-    type: ControlType.Boolean,
-    title: 'Checked',
-  },
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['default', 'primary', 'secondary'],
-  },
-  defaultChecked: {
-    type: ControlType.Boolean,
-    title: 'Default checked',
-  },
-  disabled: {
-    type: ControlType.Boolean,
-    title: 'Disabled',
-  },
-  size: {
-    type: ControlType.Enum,
-    title: 'Size',
-    options: ['medium', 'small'],
-  },
-  label: {
-    type: ControlType.String,
-    title: 'Label',
-  },
+checked: {
+  type: ControlType.Boolean,
+  title: 'Checked',
+},
+color: {
+  type: ControlType.Enum,
+  title: 'Color',
+  options: ['default', 'primary', 'secondary'],
+},
+defaultChecked: {
+  type: ControlType.Boolean,
+  title: 'Default checked',
+},
+disabled: {
+  type: ControlType.Boolean,
+  title: 'Disabled',
+},
+size: {
+  type: ControlType.Enum,
+  title: 'Size',
+  options: ['medium', 'small'],
+},
+label: {
+  type: ControlType.String,
+  title: 'Label',
+},
 });

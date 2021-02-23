@@ -48,31 +48,31 @@ Avatar.defaultProps = {
 };
 
 addPropertyControls(Avatar, {
-  backgroundColor: {
-    type: ControlType.Color,
-    title: 'Background color',
-  },
-  textColor: {
-    type: ControlType.Color,
-    title: 'Text color',
-  },
-  icon: {
-    type: ControlType.String,
-    title: 'Icon',
-  },
-  avatarImageFile: {
-    type: ControlType.Image,
-    title: 'Avatar Image File',
-  },
-  avatarImageUrl: {
-    type: ControlType.String,
-    title: 'Avatar Image URL',
-    hidden(props) {
-      return props.avatarImageFile !== '';
-    },
-  },
-  label: {
-    type: ControlType.String,
-    title: 'Label',
-  },
+backgroundColor: {
+  type: ControlType.Color,
+  title: 'Background color',
+},
+textColor: {
+  type: ControlType.Color,
+  title: 'Text color',
+},
+icon: {
+  type: ControlType.String,
+  title: 'Icon',
+},
+avatarImageFile: {
+  type: ControlType.Image,
+  title: 'Avatar Image File',
+},
+avatarImageUrl: {
+  type: ControlType.String,
+  title: 'Avatar Image URL',
+  hidden(props) {
+          return props.avatarImageFile !== '';
+        },
+},
+label: {
+  type: ControlType.String,
+  title: 'Label',
+},
 });

@@ -31,8 +31,8 @@ export function Button(props: Props): JSX.Element {
     ...other
   } = props;
 
-  const StartIcon = startIcon === '' ? undefined : <Icon icon={startIcon} theme={startIconTheme} />;
-  const EndIcon = endIcon === '' ? undefined : <Icon icon={endIcon} theme={endIconTheme} />;
+  const StartIcon = startIcon === '' ? undefined : <Icon icon={startIcon} theme={startIconTheme} />
+  const EndIcon = endIcon === '' ? undefined : <Icon icon={endIcon} theme={endIconTheme} />
 
   return (
     <div>
@@ -58,44 +58,44 @@ Button.defaultProps = {
 };
 
 addPropertyControls(Button, {
-  disabled: {
-    type: ControlType.Boolean,
-    title: 'Disabled',
-  },
-  disableElevation: {
-    type: ControlType.Boolean,
-    title: 'Disable elevation',
-  },
-  endIcon: {
-    type: ControlType.String,
-    title: 'End icon',
-  },
-  fullWidth: {
-    type: ControlType.Boolean,
-    title: 'Full width',
-  },
-  href: {
-    type: ControlType.String,
-    title: 'Href',
-  },
-  startIcon: {
-    type: ControlType.String,
-    title: 'Start icon',
-  },
-  startIconTheme: {
-    type: ControlType.Enum,
-    title: 'Start icon theme',
-    options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
-  },
-  endIconTheme: {
-    type: ControlType.Enum,
-    title: 'End icon theme',
-    options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
-  },
-  label: {
-    type: ControlType.String,
-    title: 'Label',
-  },
+disabled: {
+  type: ControlType.Boolean,
+  title: 'Disabled',
+},
+disableElevation: {
+  type: ControlType.Boolean,
+  title: 'Disable elevation',
+},
+endIcon: {
+  type: ControlType.String,
+  title: 'End icon',
+},
+fullWidth: {
+  type: ControlType.Boolean,
+  title: 'Full width',
+},
+href: {
+  type: ControlType.String,
+  title: 'Href',
+},
+startIcon: {
+  type: ControlType.String,
+  title: 'Start icon',
+},
+startIconTheme: {
+  type: ControlType.Enum,
+  title: 'Start icon theme',
+  options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
+},
+endIconTheme: {
+  type: ControlType.Enum,
+  title: 'End icon theme',
+  options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
+},
+label: {
+  type: ControlType.String,
+  title: 'Label',
+},
   variant: {
     type: ControlType.Enum,
     title: 'Variant',

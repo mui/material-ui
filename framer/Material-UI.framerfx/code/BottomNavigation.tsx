@@ -15,7 +15,7 @@ interface Props {
 export function BottomNavigation(props: Props): JSX.Element {
   const { labels, icons, ...other } = props;
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] =React.useState(0)
 
   const handleChange = (event: React.SyntheticEvent, newValue: any) => {
     setValue(newValue);
@@ -49,18 +49,19 @@ BottomNavigation.defaultProps = {
 };
 
 addPropertyControls(BottomNavigation, {
-  showLabels: {
-    type: ControlType.Boolean,
-    title: 'Show labels',
-  },
-  icons: {
-    type: ControlType.Array,
-    title: 'Icons',
-    propertyControl: { type: ControlType.String },
-  },
-  labels: {
-    type: ControlType.Array,
-    title: 'Labels',
-    propertyControl: { type: ControlType.String },
-  },
+showLabels: {
+  type: ControlType.Boolean,
+  title: 'Show labels',
+},
+icons: {
+  type: ControlType.Array,
+  title: 'Icons',
+      propertyControl: { type: ControlType.String },
+},
+labels: {
+  type: ControlType.Array,
+  title: 'Labels',
+      propertyControl: { type: ControlType.String },
+},
 });
+

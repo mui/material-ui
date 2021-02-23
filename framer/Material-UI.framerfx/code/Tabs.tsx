@@ -22,7 +22,7 @@ interface Props {
 }
 
 export function Tabs(props: Props): JSX.Element {
-  const { appBarColor, labels, icons, width, height, ...other } = props;
+const { appBarColor, labels, icons, width, height, ...other } = props
 
   const [value, setValue] = React.useState(0);
 
@@ -51,14 +51,14 @@ export function Tabs(props: Props): JSX.Element {
       </MuiAppBar>
     </div>
   );
-}
+};
 
 Tabs.defaultProps = {
   allowScrollButtonsMobile: false,
   centered: false,
-  indicatorColor: 'secondary' as 'secondary',
+  indicatorColor: 'primary' as 'primary',
   scrollButtons: 'auto' as 'auto',
-  textColor: 'inherit' as 'inherit',
+  textColor: 'primary' as 'primary',
   variant: 'standard' as 'standard',
   visibleScrollbar: false,
   icons: ['phone', 'favorite', 'person_pin'],
@@ -68,55 +68,55 @@ Tabs.defaultProps = {
 };
 
 addPropertyControls(Tabs, {
-  allowScrollButtonsMobile: {
-    type: ControlType.Boolean,
-    title: 'Allow scroll buttons mobile',
-  },
-  centered: {
-    type: ControlType.Boolean,
-    title: 'Centered',
-  },
-  indicatorColor: {
-    type: ControlType.Enum,
-    title: 'Indicator color',
-    options: ['primary', 'secondary'],
-  },
-  scrollButtons: {
-    type: ControlType.Enum,
-    title: 'Scroll buttons',
-    options: ['auto', false, true],
-  },
-  selectionFollowsFocus: {
-    type: ControlType.Boolean,
-    title: 'Selection follows focus',
-  },
-  textColor: {
-    type: ControlType.Enum,
-    title: 'Text color',
-    options: ['inherit', 'primary', 'secondary'],
-  },
-  variant: {
-    type: ControlType.Enum,
-    title: 'Variant',
-    options: ['fullWidth', 'scrollable', 'standard'],
-  },
-  visibleScrollbar: {
-    type: ControlType.Boolean,
-    title: 'Visible scrollbar',
-  },
-  appBarColor: {
-    type: ControlType.Enum,
-    title: 'App bar color',
-    options: ['default', 'primary', 'secondary', 'inherit'],
-  },
-  icons: {
-    type: ControlType.Array,
-    title: 'Icons',
-    propertyControl: { type: ControlType.String },
-  },
-  labels: {
-    type: ControlType.Array,
-    title: 'Labels',
-    propertyControl: { type: ControlType.String },
-  },
+allowScrollButtonsMobile: {
+  type: ControlType.Boolean,
+  title: 'Allow scroll buttons mobile',
+},
+centered: {
+  type: ControlType.Boolean,
+  title: 'Centered',
+},
+indicatorColor: {
+  type: ControlType.Enum,
+  title: 'Indicator color',
+  options: ['primary', 'secondary'],
+},
+scrollButtons: {
+  type: ControlType.Enum,
+  title: 'Scroll buttons',
+  options: ['auto', false, true],
+},
+selectionFollowsFocus: {
+  type: ControlType.Boolean,
+  title: 'Selection follows focus',
+},
+textColor: {
+  type: ControlType.Enum,
+  title: 'Text color',
+  options: ['inherit', 'primary', 'secondary'],
+},
+variant: {
+  type: ControlType.Enum,
+  title: 'Variant',
+  options: ['fullWidth', 'scrollable', 'standard'],
+},
+visibleScrollbar: {
+  type: ControlType.Boolean,
+  title: 'Visible scrollbar',
+},
+appBarColor: {
+  type: ControlType.Enum,
+  title: 'App bar color',
+  options: ['default', 'primary', 'secondary', 'inherit'],
+},
+icons: {
+  type: ControlType.Array,
+  title: 'Icons',
+      propertyControl: { type: ControlType.String },
+},
+labels: {
+  type: ControlType.Array,
+  title: 'Labels',
+      propertyControl: { type: ControlType.String },
+},
 });
