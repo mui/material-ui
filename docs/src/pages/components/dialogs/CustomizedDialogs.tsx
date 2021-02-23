@@ -72,7 +72,7 @@ export default function CustomizedDialogs() {
         Open dialog
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <DialogTitle id="customized-dialog-title">
           Modal title
         </DialogTitle>
         <DialogContent dividers>
