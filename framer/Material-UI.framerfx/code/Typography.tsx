@@ -24,17 +24,17 @@ Typography.defaultProps = {
 };
 
 addPropertyControls(Typography, {
-align: {
-  type: ControlType.Enum,
-  title: 'Align',
-  options: ['center', 'inherit', 'justify', 'left', 'right'],
-},
-noWrap: {
-  type: ControlType.Boolean,
-  title: 'No wrap',
-},
-label: {
-  type: ControlType.String,
-  title: 'Label',
-},
+  align: {
+    type: ControlType.Enum,
+    title: 'Align',
+    options: ['center', 'inherit', 'justify', 'left', 'right'],
+  },
+  noWrap: {
+    type: ControlType.Boolean,
+    title: 'No wrap',
+  },
+  label: {
+    type: ControlType.String,
+    title: 'Label',
+  },
 });

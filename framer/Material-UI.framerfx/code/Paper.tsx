@@ -12,7 +12,7 @@ interface Props {
 export function Paper(props: Props): JSX.Element {
   const { width, height, ...other } = props;
 
-  return (<MuiPaper style={{ width, height }} {...other} />);
+  return <MuiPaper style={{ width, height }} {...other} />;
 }
 
 Paper.defaultProps = {
@@ -23,14 +23,14 @@ Paper.defaultProps = {
 };
 
 addPropertyControls(Paper, {
-elevation: {
-  type: ControlType.Number,
-  title: 'Elevation',
-      min: 0,
-      max: 24,
-},
-square: {
-  type: ControlType.Boolean,
-  title: 'Square',
-},
+  elevation: {
+    type: ControlType.Number,
+    title: 'Elevation',
+    min: 0,
+    max: 24,
+  },
+  square: {
+    type: ControlType.Boolean,
+    title: 'Square',
+  },
 });

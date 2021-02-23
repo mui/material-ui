@@ -14,9 +14,7 @@ interface Props {
 export function CircularProgress(props: Props): JSX.Element {
   const { width, height, ...other } = props;
 
-  return (
-    <MuiCircularProgress size={width} style={{ width, height }} {...other} />
-  )
+  return <MuiCircularProgress size={width} style={{ width, height }} {...other} />;
 }
 
 CircularProgress.defaultProps = {
@@ -29,27 +27,27 @@ CircularProgress.defaultProps = {
 };
 
 addPropertyControls(CircularProgress, {
-color: {
-  type: ControlType.Enum,
-  title: 'Color',
-  options: ['inherit', 'primary', 'secondary'],
-},
-thickness: {
-  type: ControlType.Number,
-  title: 'Thickness',
-      min: 0,
-      max: 22,
-},
-value: {
-  type: ControlType.Number,
-  title: 'Value',
-  hidden(props) {
-          return props.variant === 'indeterminate';
-        },
-},
-variant: {
-  type: ControlType.Enum,
-  title: 'Variant',
-  options: ['determinate', 'indeterminate'],
-},
+  color: {
+    type: ControlType.Enum,
+    title: 'Color',
+    options: ['inherit', 'primary', 'secondary'],
+  },
+  thickness: {
+    type: ControlType.Number,
+    title: 'Thickness',
+    min: 0,
+    max: 22,
+  },
+  value: {
+    type: ControlType.Number,
+    title: 'Value',
+    hidden(props) {
+      return props.variant === 'indeterminate';
+    },
+  },
+  variant: {
+    type: ControlType.Enum,
+    title: 'Variant',
+    options: ['determinate', 'indeterminate'],
+  },
 });

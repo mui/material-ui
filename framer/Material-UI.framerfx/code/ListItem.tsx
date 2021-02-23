@@ -109,7 +109,7 @@ export function ListItem(props: Props): JSX.Element {
       {/* </MuiListItemSecondaryAction> */}
     </MuiListItem>
   );
-};
+}
 
 ListItem.defaultProps = {
   alignItems: 'center' as 'center',
@@ -133,87 +133,94 @@ ListItem.defaultProps = {
 };
 
 addPropertyControls(ListItem, {
-alignItems: {
-  type: ControlType.Enum,
-  title: 'Align items',
-  options: ['center', 'flex-start'],
-},
-autoFocus: {
-  type: ControlType.Boolean,
-  title: 'Auto focus',
-},
-button: {
-  type: ControlType.Boolean,
-  title: 'Button',
-},
-dense: {
-  type: ControlType.Boolean,
-  title: 'Dense',
-},
-disabled: {
-  type: ControlType.Boolean,
-  title: 'Disabled',
-},
-disableGutters: {
-  type: ControlType.Boolean,
-  title: 'Disable gutters',
-},
-divider: {
-  type: ControlType.Boolean,
-  title: 'Divider',
-},
-selected: {
-  type: ControlType.Boolean,
-  title: 'Selected',
-},
-inset: {
-  type: ControlType.Boolean,
-  title: 'Inset',
-},
-label: {
-  type: ControlType.String,
-  title: 'Label',
-},
-secondaryLabel: {
-  type: ControlType.String,
-  title: 'Secondary label',
-},
-primaryAction: {
-  type: ControlType.Enum,
-  title: 'Primary action',
-  options: ['none', 'icon', 'avatar', 'checkbox'],
-},
-primaryIcon: {
-  type: ControlType.String,
-  title: 'Primary icon',
-  hidden(props) {
-          return props.primaryAction !== 'icon' && props.primaryAction !== 'avatar' || props.imageFile !== '' || props.imageUrl !== '';
-        },
-},
-imageFile: {
-  type: ControlType.Image,
-  title: 'Image File',
-  hidden(props) {
-          return props.primaryAction !== undefined && props.primaryAction !== 'avatar';
-        },
-},
-imageUrl: {
-  type: ControlType.String,
-  title: 'Image URL',
-  hidden(props) {
-          return props.imageFile !== '' || props.primaryAction !== undefined && props.primaryAction !== 'avatar';
-        },
-},
-secondaryAction: {
-  type: ControlType.Enum,
-  title: 'Secondary action',
-  options: ['none', 'iconButton', 'checkbox', 'switch'],
-},
-secondaryIcon: {
-  type: ControlType.String,
-  title: 'Secondary icon',
-  hidden(props) {
-          return props.secondaryAction !== 'iconButton';
-        },
-},
+  alignItems: {
+    type: ControlType.Enum,
+    title: 'Align items',
+    options: ['center', 'flex-start'],
+  },
+  autoFocus: {
+    type: ControlType.Boolean,
+    title: 'Auto focus',
+  },
+  button: {
+    type: ControlType.Boolean,
+    title: 'Button',
+  },
+  dense: {
+    type: ControlType.Boolean,
+    title: 'Dense',
+  },
+  disabled: {
+    type: ControlType.Boolean,
+    title: 'Disabled',
+  },
+  disableGutters: {
+    type: ControlType.Boolean,
+    title: 'Disable gutters',
+  },
+  divider: {
+    type: ControlType.Boolean,
+    title: 'Divider',
+  },
+  selected: {
+    type: ControlType.Boolean,
+    title: 'Selected',
+  },
+  inset: {
+    type: ControlType.Boolean,
+    title: 'Inset',
+  },
+  label: {
+    type: ControlType.String,
+    title: 'Label',
+  },
+  secondaryLabel: {
+    type: ControlType.String,
+    title: 'Secondary label',
+  },
+  primaryAction: {
+    type: ControlType.Enum,
+    title: 'Primary action',
+    options: ['none', 'icon', 'avatar', 'checkbox'],
+  },
+  primaryIcon: {
+    type: ControlType.String,
+    title: 'Primary icon',
+    hidden(props) {
+      return (
+        (props.primaryAction !== 'icon' && props.primaryAction !== 'avatar') ||
+        props.imageFile !== '' ||
+        props.imageUrl !== ''
+      );
+    },
+  },
+  imageFile: {
+    type: ControlType.Image,
+    title: 'Image File',
+    hidden(props) {
+      return props.primaryAction !== undefined && props.primaryAction !== 'avatar';
+    },
+  },
+  imageUrl: {
+    type: ControlType.String,
+    title: 'Image URL',
+    hidden(props) {
+      return (
+        props.imageFile !== '' ||
+        (props.primaryAction !== undefined && props.primaryAction !== 'avatar')
+      );
+    },
+  },
+  secondaryAction: {
+    type: ControlType.Enum,
+    title: 'Secondary action',
+    options: ['none', 'iconButton', 'checkbox', 'switch'],
+  },
+  secondaryIcon: {
+    type: ControlType.String,
+    title: 'Secondary icon',
+    hidden(props) {
+      return props.secondaryAction !== 'iconButton';
+    },
+  },
 });

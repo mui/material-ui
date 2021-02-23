@@ -12,7 +12,12 @@ interface Props {
 
 export function SnackbarContent(props: Props): JSX.Element {
   const { height, label, width, ...other } = props;
-  const action = label !== '' ? <MuiButton color="secondary" size="small">{label}</MuiButton> : undefined;
+  const action =
+    label !== '' ? (
+      <MuiButton color="secondary" size="small">
+        {label}
+      </MuiButton>
+    ) : undefined;
 
   return <MuiSnackbarContent action={action} {...other} />;
 }
@@ -25,12 +30,12 @@ SnackbarContent.defaultProps = {
 };
 
 addPropertyControls(SnackbarContent, {
-message: {
-  type: ControlType.String,
-  title: 'Message',
-},
-label: {
-  type: ControlType.String,
-  title: 'Label',
-},
+  message: {
+    type: ControlType.String,
+    title: 'Message',
+  },
+  label: {
+    type: ControlType.String,
+    title: 'Label',
+  },
 });

@@ -30,7 +30,7 @@ export function Badge(props: Props): JSX.Element {
     );
 
   return <MuiBadge badgeContent={content} color={color} style={style} {...other} />;
-};
+}
 
 Badge.defaultProps = {
   badgeContent: '8',
@@ -43,30 +43,30 @@ Badge.defaultProps = {
 };
 
 addPropertyControls(Badge, {
-badgeContent: {
-  type: ControlType.String,
-  title: 'Badge content',
-},
-max: {
-  type: ControlType.Number,
-  title: 'Max',
-},
-showZero: {
-  type: ControlType.Boolean,
-  title: 'Show zero',
-},
-icon: {
-  type: ControlType.String,
-  title: 'Icon',
-},
-theme: {
-  type: ControlType.Enum,
-  title: 'Theme',
-  options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
-},
-badgeColor: {
-  type: ControlType.Enum,
-  title: 'Badge color',
-  options: ['default', 'primary', 'secondary', 'error'],
-},
+  badgeContent: {
+    type: ControlType.String,
+    title: 'Badge content',
+  },
+  max: {
+    type: ControlType.Number,
+    title: 'Max',
+  },
+  showZero: {
+    type: ControlType.Boolean,
+    title: 'Show zero',
+  },
+  icon: {
+    type: ControlType.String,
+    title: 'Icon',
+  },
+  theme: {
+    type: ControlType.Enum,
+    title: 'Theme',
+    options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
+  },
+  badgeColor: {
+    type: ControlType.Enum,
+    title: 'Badge color',
+    options: ['default', 'primary', 'secondary', 'error'],
+  },
 });

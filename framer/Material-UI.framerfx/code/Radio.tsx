@@ -15,9 +15,7 @@ interface Props extends Omit<FormControlLabelProps, 'control'> {
 export function Radio(props: Props): JSX.Element {
   const { label, size, ...other } = props;
 
-  return (
-    <FormControlLabel control={<MuiRadio size={size} />} label={label} {...other} />
-  );
+  return <FormControlLabel control={<MuiRadio size={size} />} label={label} {...other} />;
 }
 
 Radio.defaultProps = {
@@ -30,22 +28,22 @@ Radio.defaultProps = {
 };
 
 addPropertyControls(Radio, {
-color: {
-  type: ControlType.Enum,
-  title: 'Color',
-  options: ['default', 'primary', 'secondary'],
-},
-disabled: {
-  type: ControlType.Boolean,
-  title: 'Disabled',
-},
-size: {
-  type: ControlType.Enum,
-  title: 'Size',
-  options: ['medium', 'small'],
-},
-label: {
-  type: ControlType.String,
-  title: 'Label',
-},
+  color: {
+    type: ControlType.Enum,
+    title: 'Color',
+    options: ['default', 'primary', 'secondary'],
+  },
+  disabled: {
+    type: ControlType.Boolean,
+    title: 'Disabled',
+  },
+  size: {
+    type: ControlType.Enum,
+    title: 'Size',
+    options: ['medium', 'small'],
+  },
+  label: {
+    type: ControlType.String,
+    title: 'Label',
+  },
 });

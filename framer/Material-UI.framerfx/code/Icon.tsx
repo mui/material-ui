@@ -20,8 +20,8 @@ export function Icon(props: Props): JSX.Element | null {
   }` as keyof typeof Icons;
   const MuiIcon = Object.keys(Icons).indexOf(iconName) !== -1 ? Icons[iconName] : undefined;
 
-  return MuiIcon ? <MuiIcon style={{ width, height}} {...other} /> : null;
-};
+  return MuiIcon ? <MuiIcon style={{ width, height }} {...other} /> : null;
+}
 
 Icon.defaultProps = {
   baseClassName: 'material-icons',
@@ -33,22 +33,22 @@ Icon.defaultProps = {
 };
 
 addPropertyControls(Icon, {
-baseClassName: {
-  type: ControlType.String,
-  title: 'Base class name',
-},
-color: {
-  type: ControlType.Enum,
-  title: 'Color',
-  options: ['action', 'disabled', 'error', 'inherit', 'primary', 'secondary'],
-},
-icon: {
-  type: ControlType.String,
-  title: 'Icon',
-},
-theme: {
-  type: ControlType.Enum,
-  title: 'Theme',
-  options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
-},
+  baseClassName: {
+    type: ControlType.String,
+    title: 'Base class name',
+  },
+  color: {
+    type: ControlType.Enum,
+    title: 'Color',
+    options: ['action', 'disabled', 'error', 'inherit', 'primary', 'secondary'],
+  },
+  icon: {
+    type: ControlType.String,
+    title: 'Icon',
+  },
+  theme: {
+    type: ControlType.Enum,
+    title: 'Theme',
+    options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
+  },
 });

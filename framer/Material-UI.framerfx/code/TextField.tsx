@@ -21,9 +21,7 @@ interface Props {
 
 export function TextField(props: Props): JSX.Element {
   const { width, height, ...other } = props;
-  const style: React.CSSProperties = {
-
-  };
+  const style: React.CSSProperties = {};
 
   return <MuiTextField style={style} {...other} />;
 }
@@ -44,55 +42,55 @@ TextField.defaultProps = {
 };
 
 addPropertyControls(TextField, {
-autoFocus: {
-  type: ControlType.Boolean,
-  title: 'Auto focus',
-},
-color: {
-  type: ControlType.Enum,
-  title: 'Color',
-  options: ['primary', 'secondary'],
-},
-disabled: {
-  type: ControlType.Boolean,
-  title: 'Disabled',
-},
-error: {
-  type: ControlType.Boolean,
-  title: 'Error',
-},
-fullWidth: {
-  type: ControlType.Boolean,
-  title: 'Full width',
-},
-helperText: {
-  type: ControlType.String,
-  title: 'Helper text',
-},
-label: {
-  type: ControlType.String,
-  title: 'Label',
-},
-multiline: {
-  type: ControlType.Boolean,
-  title: 'Multiline',
-},
-placeholder: {
-  type: ControlType.String,
-  title: 'Placeholder',
-},
-required: {
-  type: ControlType.Boolean,
-  title: 'Required',
-},
-size: {
-  type: ControlType.Enum,
-  title: 'Size',
-  options: ['medium', 'small'],
-},
-variant: {
-  type: ControlType.Enum,
-  title: 'Variant',
-  options: ['filled', 'outlined', 'standard'],
-},
+  autoFocus: {
+    type: ControlType.Boolean,
+    title: 'Auto focus',
+  },
+  color: {
+    type: ControlType.Enum,
+    title: 'Color',
+    options: ['primary', 'secondary'],
+  },
+  disabled: {
+    type: ControlType.Boolean,
+    title: 'Disabled',
+  },
+  error: {
+    type: ControlType.Boolean,
+    title: 'Error',
+  },
+  fullWidth: {
+    type: ControlType.Boolean,
+    title: 'Full width',
+  },
+  helperText: {
+    type: ControlType.String,
+    title: 'Helper text',
+  },
+  label: {
+    type: ControlType.String,
+    title: 'Label',
+  },
+  multiline: {
+    type: ControlType.Boolean,
+    title: 'Multiline',
+  },
+  placeholder: {
+    type: ControlType.String,
+    title: 'Placeholder',
+  },
+  required: {
+    type: ControlType.Boolean,
+    title: 'Required',
+  },
+  size: {
+    type: ControlType.Enum,
+    title: 'Size',
+    options: ['medium', 'small'],
+  },
+  variant: {
+    type: ControlType.Enum,
+    title: 'Variant',
+    options: ['filled', 'outlined', 'standard'],
+  },
 });

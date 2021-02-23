@@ -18,7 +18,7 @@ export function RadioGroup(props: Props): JSX.Element {
     <div style={{ margin: 16 }}>
       <MuiFormLabel component="legend">{label}</MuiFormLabel>
       <MuiRadioGroup defaultValue={labels[0]} style={{ marginTop: '8px' }} {...other}>
-        {labels.map(radioLabel => {
+        {labels.map((radioLabel) => {
           return <Radio key={radioLabel} value={radioLabel} label={radioLabel} />;
         })}
       </MuiRadioGroup>
@@ -34,13 +34,13 @@ RadioGroup.defaultProps = {
 };
 
 addPropertyControls(RadioGroup, {
-labels: {
-  type: ControlType.Array,
-  title: 'Labels',
-      propertyControl: { type: ControlType.String },
-},
-label: {
-  type: ControlType.String,
-  title: 'Label',
-},
+  labels: {
+    type: ControlType.Array,
+    title: 'Labels',
+    propertyControl: { type: ControlType.String },
+  },
+  label: {
+    type: ControlType.String,
+    title: 'Label',
+  },
 });

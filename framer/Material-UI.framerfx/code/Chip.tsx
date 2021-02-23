@@ -38,12 +38,10 @@ export function Chip(props: Props): JSX.Element {
       avatar={
         avatarImageFile || avatarImageUrl ? (
           <Avatar avatarImageFile={avatarImageFile} avatarImageUrl={avatarImageUrl} />
-        ) : (
-          undefined
-        )
+        ) : undefined
       }
       icon={<Icon icon={icon} theme={iconTheme} />}
-      onDelete = {deletable ? () => {} : undefined}
+      onDelete={deletable ? () => {} : undefined}
       deleteIcon={deleteIcon === '' ? undefined : <Icon icon={deleteIcon} />}
       {...other}
     />
@@ -67,54 +65,54 @@ Chip.defaultProps = {
 };
 
 addPropertyControls(Chip, {
-clickable: {
-  type: ControlType.Boolean,
-  title: 'Clickable',
-},
-color: {
-  type: ControlType.Enum,
-  title: 'Color',
-  options: ['default', 'primary', 'secondary'],
-},
-deleteIcon: {
-  type: ControlType.String,
-  title: 'Delete icon',
-},
-disabled: {
-  type: ControlType.Boolean,
-  title: 'Disabled',
-},
-icon: {
-  type: ControlType.String,
-  title: 'Icon',
-},
-label: {
-  type: ControlType.String,
-  title: 'Label',
-},
-size: {
-  type: ControlType.Enum,
-  title: 'Size',
-  options: ['medium', 'small'],
-},
-avatarImageFile: {
-  type: ControlType.Image,
-  title: 'Avatar Image File',
-},
-avatarImageUrl: {
-  type: ControlType.String,
-  title: 'Avatar Image URL',
-  hidden(props) {
-          return props.avatarImageFile !== '';
-        },
-},
-deletable: {
-  type: ControlType.Boolean,
-  title: 'Deletable',
-},
-iconTheme: {
-  type: ControlType.Enum,
-  title: 'Icon theme',
-  options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
-},
+  clickable: {
+    type: ControlType.Boolean,
+    title: 'Clickable',
+  },
+  color: {
+    type: ControlType.Enum,
+    title: 'Color',
+    options: ['default', 'primary', 'secondary'],
+  },
+  deleteIcon: {
+    type: ControlType.String,
+    title: 'Delete icon',
+  },
+  disabled: {
+    type: ControlType.Boolean,
+    title: 'Disabled',
+  },
+  icon: {
+    type: ControlType.String,
+    title: 'Icon',
+  },
+  label: {
+    type: ControlType.String,
+    title: 'Label',
+  },
+  size: {
+    type: ControlType.Enum,
+    title: 'Size',
+    options: ['medium', 'small'],
+  },
+  avatarImageFile: {
+    type: ControlType.Image,
+    title: 'Avatar Image File',
+  },
+  avatarImageUrl: {
+    type: ControlType.String,
+    title: 'Avatar Image URL',
+    hidden(props) {
+      return props.avatarImageFile !== '';
+    },
+  },
+  deletable: {
+    type: ControlType.Boolean,
+    title: 'Deletable',
+  },
+  iconTheme: {
+    type: ControlType.Enum,
+    title: 'Icon theme',
+    options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
+  },
 });

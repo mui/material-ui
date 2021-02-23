@@ -19,17 +19,15 @@ interface Props extends MuiIconButtonProps {
 export function IconButton(props: Props): JSX.Element {
   const { badgeColor, badgeContent, height, icon, iconTheme, width, ...other } = props;
   const IconBadge =
-  badgeContent === '' ? (
-    <Icon icon={icon} theme={iconTheme} />
-  ) : (
-    <MuiBadge badgeContent={badgeContent} color={badgeColor}>
+    badgeContent === '' ? (
       <Icon icon={icon} theme={iconTheme} />
-    </MuiBadge>
-  );
+    ) : (
+      <MuiBadge badgeContent={badgeContent} color={badgeColor}>
+        <Icon icon={icon} theme={iconTheme} />
+      </MuiBadge>
+    );
 
-  return (
-    <MuiIconButton {...other}>{IconBadge}</MuiIconButton>
-  );
+  return <MuiIconButton {...other}>{IconBadge}</MuiIconButton>;
 }
 
 IconButton.defaultProps = {
@@ -45,36 +43,36 @@ IconButton.defaultProps = {
 };
 
 addPropertyControls(IconButton, {
-color: {
-  type: ControlType.Enum,
-  title: 'Color',
-  options: ['default', 'inherit', 'primary', 'secondary'],
-},
-disabled: {
-  type: ControlType.Boolean,
-  title: 'Disabled',
-},
-size: {
-  type: ControlType.Enum,
-  title: 'Size',
-  options: ['medium', 'small'],
-},
-icon: {
-  type: ControlType.String,
-  title: 'Icon',
-},
-iconTheme: {
-  type: ControlType.Enum,
-  title: 'Icon theme',
-  options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
-},
-badgeContent: {
-  type: ControlType.String,
-  title: 'Badge content',
-},
-badgeColor: {
-  type: ControlType.Enum,
-  title: 'Badge color',
-  options: ['default', 'primary', 'secondary', 'error'],
-},
+  color: {
+    type: ControlType.Enum,
+    title: 'Color',
+    options: ['default', 'inherit', 'primary', 'secondary'],
+  },
+  disabled: {
+    type: ControlType.Boolean,
+    title: 'Disabled',
+  },
+  size: {
+    type: ControlType.Enum,
+    title: 'Size',
+    options: ['medium', 'small'],
+  },
+  icon: {
+    type: ControlType.String,
+    title: 'Icon',
+  },
+  iconTheme: {
+    type: ControlType.Enum,
+    title: 'Icon theme',
+    options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
+  },
+  badgeContent: {
+    type: ControlType.String,
+    title: 'Badge content',
+  },
+  badgeColor: {
+    type: ControlType.Enum,
+    title: 'Badge color',
+    options: ['default', 'primary', 'secondary', 'error'],
+  },
 });

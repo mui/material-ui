@@ -13,9 +13,7 @@ interface Props {
 
 export function LinearProgress(props: Props): JSX.Element {
   const { width, height, ...other } = props;
-  const style: React.CSSProperties = {
-
-  };
+  const style: React.CSSProperties = {};
 
   return <MuiLinearProgress style={style} {...other} />;
 }
@@ -30,28 +28,28 @@ LinearProgress.defaultProps = {
 };
 
 addPropertyControls(LinearProgress, {
-color: {
-  type: ControlType.Enum,
-  title: 'Color',
-  options: ['primary', 'secondary'],
-},
-value: {
-  type: ControlType.Number,
-  title: 'Value',
-  hidden(props) {
-          return props.variant === 'indeterminate';
-        },
-},
-valueBuffer: {
-  type: ControlType.Number,
-  title: 'Value buffer',
-  hidden(props) {
-          return props.variant !== 'buffer';
-        },
-},
-variant: {
-  type: ControlType.Enum,
-  title: 'Variant',
-  options: ['buffer', 'determinate', 'indeterminate', 'query'],
-},
+  color: {
+    type: ControlType.Enum,
+    title: 'Color',
+    options: ['primary', 'secondary'],
+  },
+  value: {
+    type: ControlType.Number,
+    title: 'Value',
+    hidden(props) {
+      return props.variant === 'indeterminate';
+    },
+  },
+  valueBuffer: {
+    type: ControlType.Number,
+    title: 'Value buffer',
+    hidden(props) {
+      return props.variant !== 'buffer';
+    },
+  },
+  variant: {
+    type: ControlType.Enum,
+    title: 'Variant',
+    options: ['buffer', 'determinate', 'indeterminate', 'query'],
+  },
 });
