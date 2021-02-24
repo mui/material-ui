@@ -190,7 +190,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     'aria-valuetext': ariaValuetext,
     className,
     component = 'span',
-    classes: classesProp = {},
+    classes: classesProp,
     defaultValue,
     disabled = false,
     getAriaLabel,
@@ -589,9 +589,11 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // consider extracting to hook an reusing the lint rule for the varints
   const styleProps = {
     ...props,
-    classes: {},
+    classes: classesProp,
     disabled,
     dragging,
+    isRtl,
+    marked: marks.length > 0 && marks.some((mark) => mark.label),
     max,
     min,
     orientation,
@@ -600,11 +602,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     track,
     valueLabelDisplay,
     valueLabelFormat,
-    isRtl,
-    marked: marks.length > 0 && marks.some((mark) => mark.label),
   };
 
-  const utilityClasses = useUtilityClasses({ ...styleProps, classes: classesProp });
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <Root
@@ -617,7 +617,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         theme,
       })}
       {...other}
-      className={clsx(utilityClasses.root, rootProps.className, className)}
+      className={clsx(classes.root, rootProps.className, className)}
     >
       <Rail
         {...railProps}
@@ -625,7 +625,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
           styleProps: { ...styleProps, ...railProps.styleProps },
           theme,
         })}
-        className={clsx(utilityClasses.rail, railProps.className)}
+        className={clsx(classes.rail, railProps.className)}
       />
       <Track
         {...trackProps}
@@ -633,7 +633,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
           styleProps: { ...styleProps, ...trackProps.styleProps },
           theme,
         })}
-        className={clsx(utilityClasses.track, trackProps.className)}
+        className={clsx(classes.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
       />
       {marks.map((mark, index) => {
@@ -665,8 +665,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 theme,
               })}
               style={{ ...style, ...markProps.style }}
-              className={clsx(utilityClasses.mark, markProps.className, {
-                [utilityClasses.markActive]: markActive,
+              className={clsx(classes.mark, markProps.className, {
+                [classes.markActive]: markActive,
               })}
             />
             {mark.label != null ? (
@@ -683,8 +683,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   theme,
                 })}
                 style={{ ...style, ...markLabelProps.style }}
-                className={clsx(utilityClasses.markLabel, markLabelProps.className, {
-                  [utilityClasses.markLabelActive]: markActive,
+                className={clsx(classes.markLabel, markLabelProps.className, {
+                  [classes.markLabelActive]: markActive,
                 })}
               >
                 {mark.label}
@@ -713,7 +713,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               open={open === index || active === index || valueLabelDisplay === 'on'}
               disabled={disabled}
               {...valueLabelProps}
-              className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
+              className={clsx(classes.valueLabel, valueLabelProps.className)}
               {...(!isHostComponent(ValueLabel) && {
                 styleProps: { ...styleProps, ...valueLabelProps.styleProps },
                 theme,
@@ -724,9 +724,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 onMouseOver={handleMouseOver}
                 onMouseLeave={handleMouseLeave}
                 {...thumbProps}
-                className={clsx(utilityClasses.thumb, thumbProps.className, {
-                  [utilityClasses.active]: active === index,
-                  [utilityClasses.focusVisible]: focusVisible === index,
+                className={clsx(classes.thumb, thumbProps.className, {
+                  [classes.active]: active === index,
+                  [classes.focusVisible]: focusVisible === index,
                 })}
                 {...(!isHostComponent(Thumb) && {
                   styleProps: { ...styleProps, ...thumbProps.styleProps },
@@ -815,7 +815,6 @@ SliderUnstyled.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**

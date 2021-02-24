@@ -279,6 +279,10 @@ export interface Components {
     defaultProps?: ComponentsProps['MuiMobileStepper'];
     styleOverrides?: ComponentsOverrides['MuiMobileStepper'];
   };
+  MuiModal?: {
+    defaultProps?: ComponentsProps['MuiModal'];
+    styleOverrides?: ComponentsOverrides['MuiModal'];
+  };
   MuiNativeSelect?: {
     defaultProps?: ComponentsProps['MuiNativeSelect'];
     styleOverrides?: ComponentsOverrides['MuiNativeSelect'];

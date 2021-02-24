@@ -37,7 +37,7 @@ const FilledInputRoot = experimentalStyled(
 )(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
-  const backgroundColor = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)';
+  const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
   return {
     /* Styles applied to the root element. */
     position: 'relative',
@@ -49,14 +49,14 @@ const FilledInputRoot = experimentalStyled(
       easing: theme.transitions.easing.easeOut,
     }),
     '&:hover': {
-      backgroundColor: light ? 'rgba(0, 0, 0, 0.13)' : 'rgba(255, 255, 255, 0.13)',
+      backgroundColor: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.13)',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor,
       },
     },
     '&.Mui-focused': {
-      backgroundColor: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)',
+      backgroundColor,
     },
     '&.Mui-disabled': {
       backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',

@@ -7,6 +7,9 @@ export * from './BadgeUnstyled';
 export { default as SliderUnstyled } from './SliderUnstyled';
 export * from './SliderUnstyled';
 
+export { default as ModalUnstyled } from './ModalUnstyled';
+export * from './ModalUnstyled';
+
 export { default as Portal } from './Portal';
 
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
