@@ -214,104 +214,222 @@ function ComparePlans() {
 }
 function WhatToExpect() {
   return (
-    <Container sx={{ mt: [10, 18], mb: [12, 20] }}>
-      <Typography variant="h2" sx={{ mb: 10 }}>
-        Here's <UnderlinedText>what to expect</UnderlinedText>
-        <br />
-        from Material-UI
+    <Box
+      component="div"
+      sx={{
+        bgcolor: 'greyF3',
+        position: 'relative',
+        pt: 15,
+        pb: 23,
+        mt: { xs: 20, sm: 25, lg: 25 },
+        mb: { xs: 12, sm: 15, lg: 15 },
+      }}
+    >
+      <Box
+        component="img"
+        src="/static/branding/block1-white.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          right: '20px',
+          top: '-78px',
+        }}
+      />
+      <Box
+        component="img"
+        src="/static/branding/block2-white.svg"
+        loading="lazy"
+        alt=""
+        sx={{
+          position: 'absolute',
+          bottom: '-40px',
+          left: '60px',
+        }}
+      />
+      <Container>
+        {/* <Container sx={{ mt: [10, 18], mb: [12, 20] }}> */}
+        <Typography variant="h2" sx={{ mb: 10 }}>
+          Here's <UnderlinedText>what to expect</UnderlinedText>
+          <br />
+          from Material-UI
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <BrandingCard
+              color="emerald"
+              image="/static/branding/pricing/fast.svg"
+              title="Volume Discount"
+            >
+              <Typography sx={{ mt: 2 }}>
+                The licenses are on a per-developer basis. We offer the following tiered discounts
+                from list prices when purchasing more than one license for your development team:
+                <ul>
+                  <li>
+                    – 2-5 Licenses: <strong>10% discount</strong>
+                  </li>
+                  <li>
+                    – 6-10 Licenses: <strong>15% discount</strong>
+                  </li>
+                </ul>
+                If you require more than 10 licenses, contact us by email at{' '}
+                <Link href="mailto:sales@material-ui.com">sales@material-ui.com</Link>.
+              </Typography>
+            </BrandingCard>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <BrandingCard
+              color="vividBlue"
+              image="/static/branding/pricing/customizable.svg"
+              title="Perpetual License"
+            >
+              <Typography sx={{ mt: 2 }}>
+                When you purchase,{' '}
+                <strong>
+                  you are granted a license to use a version of the product in perpetuity
+                </strong>
+                . There are no further charges until you choose to extend your license to cover
+                newer versions.
+                <br />
+                <br />
+                Please note that while the use of the software is perpetual, support and corrective
+                maintenance are not. We do not provide issue resolution to versions older than 12
+                months. We roll bug fixes, performance enhancements, and other improvements into new
+                releases; we don't patch, fix or in any way alter older versions.
+              </Typography>
+            </BrandingCard>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <BrandingCard
+              image="/static/branding/pricing/community.svg"
+              title="One year subscription to new versions"
+            >
+              <Typography sx={{ mt: 2 }}>
+                When you make a purchase{' '}
+                <strong>you get a subscription to license new versions for 365 days</strong>. Check
+                the{' '}
+                <Link href="https://github.com/mui-org/material-ui-x/blob/next/CHANGELOG.md">
+                  change log
+                </Link>
+                . After 1 year (or up to 5 years if you choose an extension package) you will no
+                longer be allowed to use the latest versions without renewing your subscription. You
+                can continue to use your licensed versions in perpetuity.
+                <br />
+                <br />
+                Please note that while the use of the software is perpetual, support and corrective
+                maintenance are not. We roll bug fixes, performance enhancements, and other
+                improvements into new releases; we don't patch, fix or in any way alter older
+                versions.
+              </Typography>
+            </BrandingCard>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <BrandingCard
+              color="emerald"
+              image="/static/branding/pricing/documentation.svg"
+              title="Subscription Renewal"
+            >
+              <Typography sx={{ mt: 2 }}>
+                At the end of your subscription period, you will no longer be able to license the
+                latest versions or access support without renewing. This could range from 366 days
+                up to a 5-year term.{' '}
+                <strong>
+                  Renewal pricing is substantially lower than first-year subscription costs
+                </strong>
+                .
+                <br />
+                <br />
+                Please note that while the use of the software is perpetual, access to new features,
+                support and corrective maintenance are not. We do not provide issue resolution to
+                versions older than 12 months. We roll bug fixes, performance enhancements, and
+                other improvements into new releases; we don't patch, fix or in any way alter older
+                versions.
+              </Typography>
+            </BrandingCard>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
+}
+
+function WhyEnterprises() {
+  return (
+    <Container sx={{ mt: 2.5, textAlign: 'center' }}>
+      <Typography
+        variant="h2"
+        align="center"
+        sx={{
+          fontSize: { xs: '40px', sm: '48px', lg: '52px' },
+          lineHeight: { xs: '48px', sm: '56px', lg: '60px' },
+          mb: { xs: 8, sm: 10, lg: 10 },
+          px: { xs: 0, sm: 8 },
+        }}
+      >
+        Here’s why enterprises{' '}
+        <Box
+          component="span"
+          sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}
+        />
+        also use Material-UI
       </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <BrandingCard
-            color="emerald"
-            image="/static/branding/pricing/fast.svg"
-            title="Volume Discount"
+
+      <Grid container alignItems="center" sx={{ px: { xs: 0, sm: 4 } }}>
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              maxWidth: '470px',
+              height: '470px',
+              bgcolor: 'greyAA',
+              display: { xs: 'none', sm: 'block', lg: 'block' },
+            }}
           >
-            <Typography sx={{ mt: 2 }}>
-              The licenses are on a per-developer basis. We offer the following tiered discounts
-              from list prices when purchasing more than one license for your development team:
-              <ul>
-                <li>
-                  – 2-5 Licenses: <strong>10% discount</strong>
-                </li>
-                <li>
-                  – 6-10 Licenses: <strong>15% discount</strong>
-                </li>
-              </ul>
-              If you require more than 10 licenses, contact us by email at{' '}
-              <Link href="mailto:sales@material-ui.com">sales@material-ui.com</Link>.
-            </Typography>
-          </BrandingCard>
+            <img alt="" src={'/static/branding/pricing/rectangle.jpg'} loading="lazy" />
+          </Box>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <BrandingCard
-            color="vividBlue"
-            image="/static/branding/pricing/customizable.svg"
-            title="Perpetual License"
+        <Grid textAlign="left" item xs={12} sm={6} sx={{ pl: { lg: 6, sm: 3.5 } }}>
+          <Box
+            component="img"
+            src="/static/branding/pricing/netflix-enterprise.svg"
+            loading="lazy"
+            alt=""
+            sx={{ mb: 3 }}
+          />
+
+          <Typography
+            component="p"
+            variant="h4"
+            sx={{
+              maxWidth: '470px',
+              fontSize: { xs: '24px', sm: '28px', lg: '36px' },
+              lineHeight: { xs: '32px', sm: '36px', lg: '44px' },
+            }}
           >
-            <Typography sx={{ mt: 2 }}>
-              When you purchase,{' '}
-              <strong>
-                you are granted a license to use a version of the product in perpetuity
-              </strong>
-              . There are no further charges until you choose to extend your license to cover newer
-              versions.
-              <br />
-              <br />
-              Please note that while the use of the software is perpetual, support and corrective
-              maintenance are not. We do not provide issue resolution to versions older than 12
-              months. We roll bug fixes, performance enhancements, and other improvements into new
-              releases; we don't patch, fix or in any way alter older versions.
-            </Typography>
-          </BrandingCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <BrandingCard
-            image="/static/branding/pricing/community.svg"
-            title="One year subscription to new versions"
+            “With Material-UI we can roll out MVP’s much faster. This makes our product development
+            team more agile in testing and releasing new updates.”
+          </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              mt: 3,
+              '& img': {
+                mr: 2,
+                borderRadius: '50%',
+              },
+            }}
           >
-            <Typography sx={{ mt: 2 }}>
-              When you make a purchase{' '}
-              <strong>you get a subscription to license new versions for 365 days</strong>. Check
-              the{' '}
-              <Link href="https://github.com/mui-org/material-ui-x/blob/next/CHANGELOG.md">
-                change log
-              </Link>
-              . After 1 year (or up to 5 years if you choose an extension package) you will no
-              longer be allowed to use the latest versions without renewing your subscription. You
-              can continue to use your licensed versions in perpetuity.
-              <br />
-              <br />
-              Please note that while the use of the software is perpetual, support and corrective
-              maintenance are not. We roll bug fixes, performance enhancements, and other
-              improvements into new releases; we don't patch, fix or in any way alter older
-              versions.
+            <img
+              width="48"
+              height="48"
+              loading="lazy"
+              src={'/static/branding/pricing/avatar.svg'}
+              alt=""
+            />
+            <Typography variant="body2" fontSize="16px" lineHeight="24px">
+              <b>Joshua Smith</b>, CTO at Netflix
             </Typography>
-          </BrandingCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <BrandingCard
-            color="emerald"
-            image="/static/branding/pricing/documentation.svg"
-            title="Subscription Renewal"
-          >
-            <Typography sx={{ mt: 2 }}>
-              At the end of your subscription period, you will no longer be able to license the
-              latest versions or access support without renewing. This could range from 366 days up
-              to a 5-year term.{' '}
-              <strong>
-                Renewal pricing is substantially lower than first-year subscription costs
-              </strong>
-              .
-              <br />
-              <br />
-              Please note that while the use of the software is perpetual, access to new features,
-              support and corrective maintenance are not. We do not provide issue resolution to
-              versions older than 12 months. We roll bug fixes, performance enhancements, and other
-              improvements into new releases; we don't patch, fix or in any way alter older
-              versions.
-            </Typography>
-          </BrandingCard>
+          </Box>
         </Grid>
       </Grid>
     </Container>
@@ -379,7 +497,7 @@ function FAQ() {
       <Typography
         variant="h2"
         align="center"
-        sx={{ mt: { xs: 10, md: 12, lg: 14 }, mb: { xs: 4, lg: 10 } }}
+        sx={{ mt: { xs: 12, sm: 20, lg: 15 }, mb: { xs: 4, sm: 5, lg: 11 } }}
       >
         Frequently asked questions
       </Typography>
@@ -406,12 +524,12 @@ function FAQ() {
 }
 
 const customerIcons = [
-  { image: '/static/branding/pricing/coursera.svg'},
-  { image: '/static/branding/pricing/amazon.svg'},
-  { image: '/static/branding/pricing/nasa.svg'},
-  { image: '/static/branding/pricing/netflix.svg'},
-  { image: '/static/branding/pricing/unity.svg'},
-  { image: '/static/branding/pricing/shutterstock.svg'},
+  { image: '/static/branding/pricing/coursera.svg' },
+  { image: '/static/branding/pricing/amazon.svg' },
+  { image: '/static/branding/pricing/nasa.svg' },
+  { image: '/static/branding/pricing/netflix.svg' },
+  { image: '/static/branding/pricing/unity.svg' },
+  { image: '/static/branding/pricing/shutterstock.svg' },
 ];
 
 const Support = () => {
@@ -438,7 +556,7 @@ const Support = () => {
             fontWeight: 600,
             fontSize: '20px',
             lineHeight: '26px',
-            mb: 1.5
+            mb: 1.5,
           }}
         >
           Need help?
@@ -496,6 +614,7 @@ export default function Pricing() {
       <Benefits />
       <ComparePlans />
       <WhatToExpect />
+      <WhyEnterprises />
       <FAQ />
       <Support />
       <BrandingBeginToday />

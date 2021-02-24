@@ -7,8 +7,61 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
 import Link from 'docs/src/modules/components/Link';
 import { makeStyles } from '@material-ui/core/styles';
-import PriorityButton from './PriorityButton';
+
 import WatchIcon from 'docs/src/modules/branding/icons/Watch';
+
+//PriorityButton start
+interface IsPriorityButtonProps {
+  title: string;
+  premiumOn: number;
+  priorityOn: number;
+  clickPriorityOn: any;
+  clickPremiumOn: any;
+}
+function IsPriorityButton(props: IsPriorityButtonProps) {
+  const { title ="Premium", priorityOn, premiumOn = 1, clickPremiumOn, clickPriorityOn } = props;
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      textAlign: 'center',
+      width: '50%',
+      fontSize: '14px',
+      lineHeight: '20px',
+      border: '0',
+      borderRadius: '4px',
+      padding: '8px 0',
+      '&:hover': {
+        backgroundColor: 'white',
+        color: theme.palette.text.primary,
+      },
+    },
+    label: {
+      textTransform: 'capitalize',
+    },
+  }));
+  const classes = useStyles();
+
+  return (
+    <Button
+      color="inherit"
+      variant="contained"
+      size="small"
+      sx={
+        (premiumOn === 1 && title === "Premium") || (priorityOn === 1 && title === "Priority")
+          ? { background: 'white', color: 'text.primary' }
+          : {
+              background: 'transparent',
+              color: 'greyAA',
+            }
+      }
+      onClick={() => { title === "Priority" ? clickPriorityOn() : clickPremiumOn()}}
+      classes={{ root: classes.root, label: classes.label }}
+    >
+      {title}
+    </Button>
+  );
+}
+//PriorityButton end
 
 interface StartMaterialCardProps {
   id: number;
@@ -25,11 +78,6 @@ interface StartMaterialCardProps {
   features: array;
   variant: string;
 }
-const useStyles = makeStyles((theme) => ({
-  endIcon: {
-    marginLeft: 'auto',
-  },
-}));
 
 export default function StartMaterialCard(props: StartMaterialCardProps) {
   const {
@@ -47,6 +95,15 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
     isPriorityButton = false,
     features,
   } = props;
+
+  const [premiumOn, setPremiumOn] = React.useState(1);
+  const [priorityOn, setPriorityOn] = React.useState(0);
+
+  const useStyles = makeStyles((theme) => ({
+    endIcon: {
+      marginLeft: 'auto',
+    },
+  }));
   const classes = useStyles();
 
   return (
@@ -139,7 +196,21 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
       <Typography variant="h4" sx={{ fontSize: '16px', lineHeight: '24px', mb: id === 3 ? 2 : 0 }}>
         {featureTitle}:
       </Typography>
-      {isPriorityButton && <PriorityButton priority="Priority" premium="Premium" />}
+      {isPriorityButton && (
+        <Box
+          sx={{
+            background: 'rgba(255, 255, 255, .2)',
+            mixBlendMode: 'normal',
+            borderRadius: '4px',
+            padding: '2px',
+            maxWidth: '310px',
+          }}
+        >
+          <IsPriorityButton title="Premium" premiumOn={premiumOn}
+            clickPremiumOn={() => { setPremiumOn(1); setPriorityOn(0) }} />
+          <IsPriorityButton title="Priority" priorityOn={priorityOn} clickPriorityOn={() => {setPriorityOn(1);setPremiumOn(0)}}/>
+          </Box>
+      )}
       <Box component="ul" sx={{ m: 0, p: 0 }}>
         {features.map((feature) => (
           <BrandingBulletItem
