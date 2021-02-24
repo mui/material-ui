@@ -19,7 +19,7 @@ interface IsPriorityButtonProps {
   clickPremiumOn: any;
 }
 function IsPriorityButton(props: IsPriorityButtonProps) {
-  const { title ="Premium", priorityOn, premiumOn = 1, clickPremiumOn, clickPriorityOn } = props;
+  const { title = 'Premium', priorityOn, premiumOn = 1, clickPremiumOn, clickPriorityOn } = props;
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,14 +47,16 @@ function IsPriorityButton(props: IsPriorityButtonProps) {
       variant="contained"
       size="small"
       sx={
-        (premiumOn === 1 && title === "Premium") || (priorityOn === 1 && title === "Priority")
+        (premiumOn === 1 && title === 'Premium') || (priorityOn === 1 && title === 'Priority')
           ? { background: 'white', color: 'text.primary' }
           : {
               background: 'transparent',
               color: 'greyAA',
             }
       }
-      onClick={() => { title === "Priority" ? clickPriorityOn() : clickPremiumOn()}}
+      onClick={() => {
+        title === 'Priority' ? clickPriorityOn() : clickPremiumOn();
+      }}
       classes={{ root: classes.root, label: classes.label }}
     >
       {title}
@@ -206,10 +208,23 @@ export default function StartMaterialCard(props: StartMaterialCardProps) {
             maxWidth: '310px',
           }}
         >
-          <IsPriorityButton title="Premium" premiumOn={premiumOn}
-            clickPremiumOn={() => { setPremiumOn(1); setPriorityOn(0) }} />
-          <IsPriorityButton title="Priority" priorityOn={priorityOn} clickPriorityOn={() => {setPriorityOn(1);setPremiumOn(0)}}/>
-          </Box>
+          <IsPriorityButton
+            title="Premium"
+            premiumOn={premiumOn}
+            clickPremiumOn={() => {
+              setPremiumOn(1);
+              setPriorityOn(0);
+            }}
+          />
+          <IsPriorityButton
+            title="Priority"
+            priorityOn={priorityOn}
+            clickPriorityOn={() => {
+              setPriorityOn(1);
+              setPremiumOn(0);
+            }}
+          />
+        </Box>
       )}
       <Box component="ul" sx={{ m: 0, p: 0 }}>
         {features.map((feature) => (
