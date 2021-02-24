@@ -24,7 +24,11 @@ A basic example with no frills.
 
 Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
 
-{{"demo": "pages/components/tabs/TabsWrappedLabel.js", "bg": true}}
+{{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
+
+## Colored tab
+
+{{"demo": "pages/components/tabs/ColorTabs.js"}}
 
 ## Disabled tab
 
