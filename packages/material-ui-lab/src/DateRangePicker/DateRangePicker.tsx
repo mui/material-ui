@@ -2,6 +2,16 @@ import PropTypes from 'prop-types';
 import { ResponsiveTooltipWrapper } from '../internal/pickers/wrappers/ResponsiveWrapper';
 import { makeDateRangePicker } from './makeDateRangePicker';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ *
+ * API:
+ *
+ * - [DateRangePicker API](https://material-ui.com/api/date-range-picker/)
+ */
 // @typescript-to-proptypes-generate
 const DateRangePicker = makeDateRangePicker('MuiDateRangePicker', ResponsiveTooltipWrapper);
 

@@ -2,6 +2,16 @@ import PropTypes from 'prop-types';
 import { makeDateRangePicker } from '../DateRangePicker/makeDateRangePicker';
 import DesktopTooltipWrapper from '../internal/pickers/wrappers/DesktopTooltipWrapper';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ *
+ * API:
+ *
+ * - [DesktopDateRangePicker API](https://material-ui.com/api/desktop-date-range-picker/)
+ */
 // @typescript-to-proptypes-generate
 const DesktopDateRangePicker = makeDateRangePicker(
   'MuiDesktopDateRangePicker',

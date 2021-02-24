@@ -2,6 +2,16 @@ import PropTypes from 'prop-types';
 import { makeDateRangePicker } from '../DateRangePicker/makeDateRangePicker';
 import StaticWrapper from '../internal/pickers/wrappers/StaticWrapper';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ *
+ * API:
+ *
+ * - [StaticDateRangePicker API](https://material-ui.com/api/static-date-range-picker/)
+ */
 // @typescript-to-proptypes-generate
 const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', StaticWrapper);
 
