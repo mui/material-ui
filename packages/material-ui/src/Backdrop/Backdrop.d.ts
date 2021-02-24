@@ -17,7 +17,6 @@ export type BackdropTypeMap<
     Partial<Omit<FadeProps, 'children'>> & {
       /**
        * Override or extend the styles applied to the component.
-       * @default {}
        */
       classes?: BackdropUnstyledTypeMap['props']['classes'];
       /**

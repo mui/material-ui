@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
-import Backdrop from '../Backdrop';
 import Fade from '../Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
@@ -189,7 +188,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
   return (
     <Modal
       className={clsx(classes.root, className)}
-      BackdropComponent={Backdrop}
       BackdropProps={{
         transitionDuration,
         ...BackdropProps,

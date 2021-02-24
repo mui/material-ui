@@ -1,5 +1,7 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 
 const style = {
@@ -11,27 +13,17 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  pt: 2,
-  px: 4,
-  pb: 3,
+  p: 4,
 };
 
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
+      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -39,10 +31,12 @@ export default function BasicModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <h2 id="modal-modal-title">Text in a modal</h2>
-          <p id="modal-modal-description">
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
+          </Typography>
         </Box>
       </Modal>
     </div>

@@ -1,28 +1,16 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Alert from '@material-ui/core/Alert';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }),
-);
-
 export default function TransitionAlerts() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <Collapse in={open}>
         <Alert
           action={
@@ -37,6 +25,7 @@ export default function TransitionAlerts() {
               <CloseIcon fontSize="inherit" />
             </IconButton>
           }
+          sx={{ mb: 2 }}
         >
           Close me!
         </Alert>
@@ -50,6 +39,6 @@ export default function TransitionAlerts() {
       >
         Re-open
       </Button>
-    </div>
+    </Box>
   );
 }

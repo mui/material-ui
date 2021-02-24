@@ -4,6 +4,9 @@ export * from './BackdropUnstyled';
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';
 
+export { default as ModalUnstyled } from './ModalUnstyled';
+export * from './ModalUnstyled';
+
 export { default as SliderUnstyled } from './SliderUnstyled';
 export * from './SliderUnstyled';
 

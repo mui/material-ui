@@ -1,7 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" }, "default": "{}" },
+    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },

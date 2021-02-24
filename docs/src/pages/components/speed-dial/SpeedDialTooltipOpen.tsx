@@ -34,14 +34,8 @@ const actions = [
 export default function SpeedDialTooltipOpen() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div className={classes.root}>
