@@ -56,9 +56,9 @@ export function Tabs(props: Props): JSX.Element {
 Tabs.defaultProps = {
   allowScrollButtonsMobile: false,
   centered: false,
-  indicatorColor: 'secondary' as 'secondary',
+  indicatorColor: 'primary' as 'primary',
   scrollButtons: 'auto' as 'auto',
-  textColor: 'inherit' as 'inherit',
+  textColor: 'primary' as 'primary',
   variant: 'standard' as 'standard',
   visibleScrollbar: false,
   icons: ['phone', 'favorite', 'person_pin'],

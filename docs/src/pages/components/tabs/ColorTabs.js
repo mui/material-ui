@@ -3,7 +3,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 
-export default function TabsWrappedLabel() {
+export default function ColorTabs() {
   const [value, setValue] = React.useState('one');
 
   const handleChange = (event, newValue) => {
@@ -15,13 +15,11 @@ export default function TabsWrappedLabel() {
       <Tabs
         value={value}
         onChange={handleChange}
-        aria-label="wrapped label tabs example"
+        textColor="secondary"
+        indicatorColor="secondary"
+        aria-label="secondary tabs example"
       >
-        <Tab
-          value="one"
-          label="New Arrivals in the Longest Text of Nonfiction"
-          wrapped
-        />
+        <Tab value="one" label="Item One" />
         <Tab value="two" label="Item Two" />
         <Tab value="three" label="Item Three" />
       </Tabs>
