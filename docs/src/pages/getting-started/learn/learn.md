@@ -56,4 +56,7 @@ Here are some recommended resources, some of which are free.
 [![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
 
 - **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI.
+  - 📘 [The book](https://builderbook.org/)
+
+- **SaaS Boilerplate**: Learn how to build a production-ready, feature-rich SaaS web application from scratch.
   - 📘 [The book](https://builderbook.org/book)
