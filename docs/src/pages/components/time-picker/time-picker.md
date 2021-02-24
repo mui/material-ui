@@ -64,7 +64,7 @@ This can be customized with the `desktopModeMediaQuery` prop.
 
 ## Static mode
 
-It's possible to render any picker inline. This will enable building custom popover/modal containers.
+It's possible to render any time picker inline. This will enable building custom popover/modal containers.
 
 {{"demo": "pages/components/time-picker/StaticTimePickerDemo.js", "bg": true}}
 

@@ -8,9 +8,16 @@ import {
 import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
 
 /**
- * @ignore - do not document.
+ *
+ * Demos:
+ *
+ * - [Date Time Picker](https://material-ui.com/components/date-time-picker/)
+ *
+ * API:
+ *
+ * - [MobileDateTimePicker API](https://material-ui.com/api/mobile-date-time-picker/)
  */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const MobileDateTimePicker = makePickerWithState<BaseDateTimePickerProps<unknown>>(MobileWrapper, {
   name: 'MuiMobileDateTimePicker',
   ...dateTimePickerConfig,
