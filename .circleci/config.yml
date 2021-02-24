@@ -290,9 +290,7 @@ jobs:
             # it's expected that typescript@next fails since the lines of the errors
             # change frequently. This build is monitored regardless of its status
             set +e
-            # we want to see errors in all packages.
-            # without --no-bail we only see at most a single failing package
-            yarn typescript:ci --no-bail
+            yarn typescript:ci
             exit 0
 
       - restore_cache:
