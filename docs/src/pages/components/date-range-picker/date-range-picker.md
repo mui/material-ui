@@ -79,4 +79,4 @@ If you need to render custom inputs make sure to spread `ref` and `inputProps` c
 
 It's possible to render any picker inline. This will enable building custom popover/modal containers.
 
-{{"demo": "pages/components/time-picker/StaticDateRangePickerDemo.js", "bg": true}}
+{{"demo": "pages/components/date-range-picker/StaticDateRangePickerDemo.js", "bg": true}}
