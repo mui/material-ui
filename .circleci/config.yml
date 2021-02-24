@@ -21,6 +21,8 @@ defaults: &defaults
       type: string
       default: undefined
   environment:
+    # Keep in sync with "Save playwright cache"
+    PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
     # expose it globally otherwise we have to thread it from each job to the install command
     REACT_DIST_TAG: << parameters.react-dist-tag >>
     TEST_GATE: << parameters.test-gate >>
@@ -88,7 +90,6 @@ commands:
           name: Install js dependencies
           command: yarn install --verbose
           environment:
-            PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
             PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: <<# parameters.browsers >>0<</ parameters.browsers >><<^ parameters.browsers >>1<</ parameters.browsers >>
       - save_cache:
           name: Save yarn cache
@@ -104,7 +105,7 @@ commands:
                 name: Save playwright cache
                 key: v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
                 paths:
-                  # Keep path in sync with "Install js dependencies"
+                  # Keep path in sync with "PLAYWRIGHT_BROWSERS_PATH"
                   # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
                   - /tmp/pw-browsers
 
@@ -323,7 +324,7 @@ jobs:
   test_browser:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:bionic
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -346,7 +347,7 @@ jobs:
   test_profile:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:bionic
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -373,7 +374,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:bionic
+      - image: mcr.microsoft.com/playwright@sha256:1700531ce01a3d974cc440bb8efcf43d31d58ee5f1d354fc21563ea5fe4291e6
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
