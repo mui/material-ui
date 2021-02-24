@@ -16,7 +16,7 @@ Tabs organize and allow navigation between groups of content that are related an
 
 ## Basic tabs
 
-A basic example with no frills.
+A basic example with tab panels.
 
 {{"demo": "pages/components/tabs/BasicTabs.js"}}
 
@@ -25,7 +25,7 @@ A basic example with no frills.
 `@material-ui/lab` offers utility components that inject props to implement accessible tabs
 following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
-{{"demo": "pages/components/tabs/LabTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/LabTabs.js"}}
 
 ## Wrapped labels
 
