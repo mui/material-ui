@@ -18,23 +18,23 @@ Tabs organize and allow navigation between groups of content that are related an
 
 A basic example with no frills.
 
-{{"demo": "pages/components/tabs/BasicTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/BasicTabs.js"}}
 
-### Wrapped labels
+## Wrapped labels
 
 Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js", "bg": true}}
 
-### Disabled tab
+## Disabled tab
 
-A Tab can be disabled by setting `disabled` prop.
+A tab can be disabled by setting the `disabled` prop.
 
-{{"demo": "pages/components/tabs/DisabledTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/DisabledTabs.js"}}
 
 ## Fixed tabs
 
-Fixed tabs should be used with a limited number of tabs and when consistent placement will aid muscle memory.
+Fixed tabs should be used with a limited number of tabs, and when consistent placement will aid muscle memory.
 
 ### Full width
 
@@ -85,7 +85,7 @@ All scrolling must be initiated through user agent scrolling mechanisms (e.g. le
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).
 
-{{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
 
@@ -99,7 +99,7 @@ Note that you can restore the scrollbar with `visibleScrollbar`.
 
 ## Nav Tabs
 
-By default tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:
+By default, tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:
 
 {{"demo": "pages/components/tabs/NavTabs.js", "bg": true}}
 
