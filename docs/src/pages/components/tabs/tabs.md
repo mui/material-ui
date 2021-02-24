@@ -20,6 +20,13 @@ A basic example with no frills.
 
 {{"demo": "pages/components/tabs/BasicTabs.js"}}
 
+## Experimental API
+
+`@material-ui/lab` offers utility components that inject props to implement accessible tabs
+following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+
+{{"demo": "pages/components/tabs/LabTabs.js", "bg": true}}
+
 ## Wrapped labels
 
 Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
@@ -111,9 +118,9 @@ By default, tabs use a `button` element, but you can provide your own custom tag
 
 Tab labels may be either all icons or all text.
 
-{{"demo": "pages/components/tabs/IconTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/IconTabs.js"}}
 
-{{"demo": "pages/components/tabs/IconLabelTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/IconLabelTabs.js"}}
 
 ## Accessibility
 
@@ -146,10 +153,3 @@ Focus a tab and navigate with arrow keys to notice the difference.
 ```
 
 {{"demo": "pages/components/tabs/AccessibleTabs.js", "bg": true}}
-
-## Experimental API
-
-`@material-ui/lab` offers utility components that inject props to implement accessible tabs
-following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
-
-{{"demo": "pages/components/tabs/LabTabs.js", "bg": true}}
