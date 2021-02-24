@@ -1112,6 +1112,14 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### Tabs
 
+- Change the default `indicatorColor` and `textColor ` prop values to "primary".
+  This is done to match the most common use cases with Material Design.
+
+  ```diff
+  -<Tabs />
+  +<Tabs indicatorColor="primary" textColor="inherit" />
+  ```
+
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
