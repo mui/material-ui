@@ -9,6 +9,10 @@ import { DesktopWrapper } from '../internal/pickers/wrappers/Wrapper';
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Time Picker](https://material-ui.com/components/date-time-picker/)
+ *
  * API:
  *
  * - [DesktopDateTimePicker API](https://material-ui.com/api/desktop-date-time-picker/)

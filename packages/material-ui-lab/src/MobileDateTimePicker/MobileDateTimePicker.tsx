@@ -9,6 +9,10 @@ import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
 
 /**
  *
+ * Demos:
+ *
+ * - [Date Time Picker](https://material-ui.com/components/date-time-picker/)
+ *
  * API:
  *
  * - [MobileDateTimePicker API](https://material-ui.com/api/mobile-date-time-picker/)

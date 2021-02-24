@@ -67,7 +67,7 @@ It's possible to combine `year`, `month`, and `date` selection views. Views will
 
 ## Static mode
 
-It's possible to render any picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.
+It's possible to render any date picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.
 
 {{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
 

@@ -108,7 +108,7 @@
   "spread": true,
   "filename": "/packages/material-ui-lab/src/MobileDateTimePicker/MobileDateTimePicker.tsx",
   "inheritance": null,
-  "demos": "",
+  "demos": "<ul><li><a href=\"/components/date-time-picker/\">Date Time Picker</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }
