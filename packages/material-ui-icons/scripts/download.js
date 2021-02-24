@@ -48,21 +48,14 @@ async function run() {
   try {
     const argv = yargs
       .usage('Download the SVG from material.io/resources/icons')
-      .describe('start-after', 'Resume at the following index')
-      .option('popularity', {
-        type: 'number',
-        default: 1,
-        describe:
-          'Only downloads icons with a popularity greater than or equal to the given value.',
-      }).argv;
+      .describe('start-after', 'Resume at the following index').argv;
     console.log('run', argv);
-    await fse.emptyDir(path.join(__dirname, '../material-icons'));
+    await fse.ensureDir(path.join(__dirname, '../material-icons'));
     const response = await fetch('https://fonts.google.com/metadata/icons');
     const text = await response.text();
     const data = JSON.parse(text.replace(")]}'", ''));
     let icons = data.icons;
     icons = icons.map((icon, index) => ({ index, ...icon }));
-    icons = icons.filter((icon) => icon.popularity >= argv.popularity);
     icons = icons.splice(argv.startAfter || 0);
     console.log(`${icons.length} icons to download`);
 
