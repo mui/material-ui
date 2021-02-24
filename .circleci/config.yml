@@ -324,7 +324,7 @@ jobs:
   test_browser:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:bionic
+      - image: mcr.microsoft.com/playwright:focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -347,7 +347,7 @@ jobs:
   test_profile:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:bionic
+      - image: mcr.microsoft.com/playwright:focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -374,7 +374,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright:bionic
+      - image: mcr.microsoft.com/playwright:focal
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
