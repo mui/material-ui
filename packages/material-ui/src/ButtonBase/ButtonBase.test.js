@@ -392,9 +392,16 @@ describe('<ButtonBase />', () => {
           />,
         );
         const button = getByRole('button');
-        fireEvent.contextMenu(button);
+        fireEvent.mouseDown(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(0);
+        expect(
+          button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
+        ).to.have.lengthOf(1);
+
+        fireEvent.contextMenu(button);
+
+        expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
         expect(
           button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
         ).to.have.lengthOf(0);
