@@ -13,6 +13,7 @@ export const RENAME_FILTER_DEFAULT = './renameFilters/default';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
 
 let blacklistedIcons = [
+  'AddChart', // Leads to inconsistent casing with `Addchart`
   '6FtApart', // Arbitrary covid related distance
   'MotionPhotosOn', // Google product
   'MotionPhotosPause', // Google product
@@ -268,9 +269,14 @@ export async function main(options) {
     let generatedFiles = await globAsync(path.join(options.outputDir, '*.js'));
     generatedFiles = generatedFiles.map((file) => path.basename(file));
 
-    if (intersection(legacyFiles, generatedFiles).length > 0) {
-      console.warn(intersection(legacyFiles, generatedFiles));
-      throw new Error('Duplicated icons in legacy folder');
+    const duplicatedIconsLegacy = intersection(legacyFiles, generatedFiles);
+    if (duplicatedIconsLegacy.length > 0) {
+      throw new Error(
+        `Duplicated icons in legacy folder. Either \n` +
+          `1. Remove these from the /legacy folder\n` +
+          `2. Add them to the blacklist to keep the legacy version\n` +
+          `The following icons are duplicated: \n${duplicatedIconsLegacy.join('\n')}`,
+      );
     }
 
     await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);

@@ -44,12 +44,14 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    before(() => {
-      options.outputDir = fs.mkdtempSync(path.join(os.tmpdir(), 'material-ui-icons-builder-test'));
-    });
-
-    after(() => {
-      fse.removeSync(options.outputDir);
+    beforeEach(async function beforeEachHook() {
+      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+      options.outputDir = path.join(
+        os.tmpdir(),
+        'material-ui-icons-builder-test',
+        this.currentTest.fullTitle(),
+      );
+      await fse.emptyDir(options.outputDir);
     });
 
     it('script outputs to directory', async () => {
@@ -65,16 +67,18 @@ describe('builder', () => {
       glob: '**/*.svg',
       innerPath: '/dice/svg/000000/transparent/',
       renameFilter: RENAME_FILTER_DEFAULT,
-      disableLog: DISABLE_LOG,
+      disableLog: false,
       outputDir: null,
     };
 
-    before(() => {
-      options.outputDir = fs.mkdtempSync(path.join(os.tmpdir(), 'material-ui-icons-builder-test'));
-    });
-
-    after(() => {
-      fse.removeSync(options.outputDir);
+    beforeEach(async function beforeEachHook() {
+      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+      options.outputDir = path.join(
+        os.tmpdir(),
+        'material-ui-icons-builder-test',
+        this.currentTest.fullTitle(),
+      );
+      await fse.emptyDir(options.outputDir);
     });
 
     it('script outputs to directory', async () => {
@@ -108,12 +112,14 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    before(() => {
-      options.outputDir = fs.mkdtempSync(path.join(os.tmpdir(), 'material-ui-icons-builder-test'));
-    });
-
-    after(() => {
-      fse.removeSync(options.outputDir);
+    beforeEach(async function beforeEachHook() {
+      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+      options.outputDir = path.join(
+        os.tmpdir(),
+        'material-ui-icons-builder-test',
+        this.currentTest.fullTitle(),
+      );
+      await fse.emptyDir(options.outputDir);
     });
 
     it('should produce the expected output', async () => {
@@ -125,6 +131,12 @@ describe('builder', () => {
         'StarRounded.js',
         'QueueMusicOutlined.js',
         'AccessAlarms.js',
+        'TimesOneMobiledata.js',
+        'ThirtyFps.js',
+        'SixtyFps.js',
+        'FiveMp.js',
+        'ElevenMp.js',
+        'TwentyFourMp.js',
       ];
 
       cases.forEach((name) => {

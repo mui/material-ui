@@ -2,5 +2,5 @@ import * as React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <React.Fragment><path d="M20 4v4H4V4h16zm0 6v4H4v-4h16zM4 20v-4h16v4H4z" opacity=".3" /><path d="M2 2v20h20V2H2zm18 2v4H4V4h16zm0 6v4H4v-4h16zM4 20v-4h16v4H4z" /></React.Fragment>
+  <React.Fragment><path d="M19 5v3H5V5h14zm0 5v4H5v-4h14zM5 19v-3h14v3H5z" opacity=".3" /><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H5V5h14zm0 5v4H5v-4h14zM5 19v-3h14v3H5z" /></React.Fragment>
 , 'TableRowsTwoTone');
