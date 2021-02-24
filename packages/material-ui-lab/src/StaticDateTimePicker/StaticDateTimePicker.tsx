@@ -13,6 +13,7 @@ import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * - [StaticDateTimePicker API](https://material-ui.com/api/static-date-time-picker/)
  */
+// @typescript-to-proptypes-generate
 const StaticDateTimePicker = makePickerWithState<BaseDateTimePickerProps<unknown>>(StaticWrapper, {
   name: 'MuiStaticDateTimePicker',
   ...dateTimePickerConfig,

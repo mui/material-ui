@@ -129,7 +129,17 @@ export type DateTimePickerGenericComponent<TWrapper extends SomeWrapper> = (<TDa
   props: BaseDateTimePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>,
 ) => JSX.Element) & { propTypes?: unknown };
 
-/* @typescript-to-proptypes-generate */
+/**
+ *
+ * Demos:
+ *
+ * - [Date Time Picker](https://material-ui.com/components/date-time-picker/)
+ *
+ * API:
+ *
+ * - [DateTimePicker API](https://material-ui.com/api/date-time-picker/)
+ */
+// @typescript-to-proptypes-generate
 const DateTimePicker = makePickerWithState<BaseDateTimePickerProps<unknown>>(ResponsiveWrapper, {
   name: 'MuiDateTimePicker',
   ...dateTimePickerConfig,

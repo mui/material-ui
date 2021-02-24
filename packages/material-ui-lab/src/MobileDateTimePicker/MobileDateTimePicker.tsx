@@ -13,6 +13,7 @@ import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
  *
  * - [MobileDateTimePicker API](https://material-ui.com/api/mobile-date-time-picker/)
  */
+// @typescript-to-proptypes-generate
 const MobileDateTimePicker = makePickerWithState<BaseDateTimePickerProps<unknown>>(MobileWrapper, {
   name: 'MuiMobileDateTimePicker',
   ...dateTimePickerConfig,
