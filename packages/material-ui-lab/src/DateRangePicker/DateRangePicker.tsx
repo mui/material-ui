@@ -2,10 +2,7 @@ import PropTypes from 'prop-types';
 import { ResponsiveTooltipWrapper } from '../internal/pickers/wrappers/ResponsiveWrapper';
 import { makeDateRangePicker } from './makeDateRangePicker';
 
-/**
- * @ignore - do not document.
- */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const DateRangePicker = makeDateRangePicker('MuiDateRangePicker', ResponsiveTooltipWrapper);
 
 if (process.env.NODE_ENV !== 'production') {

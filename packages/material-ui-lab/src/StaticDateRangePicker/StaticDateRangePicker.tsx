@@ -2,10 +2,7 @@ import PropTypes from 'prop-types';
 import { makeDateRangePicker } from '../DateRangePicker/makeDateRangePicker';
 import StaticWrapper from '../internal/pickers/wrappers/StaticWrapper';
 
-/**
- * @ignore - do not document.
- */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const StaticDateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', StaticWrapper);
 
 if (process.env.NODE_ENV !== 'production') {

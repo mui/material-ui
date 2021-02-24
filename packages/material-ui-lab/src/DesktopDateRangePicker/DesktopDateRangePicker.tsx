@@ -2,10 +2,7 @@ import PropTypes from 'prop-types';
 import { makeDateRangePicker } from '../DateRangePicker/makeDateRangePicker';
 import DesktopTooltipWrapper from '../internal/pickers/wrappers/DesktopTooltipWrapper';
 
-/**
- * @ignore - do not document.
- */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const DesktopDateRangePicker = makeDateRangePicker(
   'MuiDesktopDateRangePicker',
   DesktopTooltipWrapper,
