@@ -8,9 +8,11 @@ import {
 import { StaticWrapper } from '../internal/pickers/wrappers/Wrapper';
 
 /**
- * @ignore - do not document.
+ *
+ * API:
+ *
+ * - [StaticDateTimePicker API](https://material-ui.com/api/static-date-time-picker/)
  */
-/* @typescript-to-proptypes-generate */
 const StaticDateTimePicker = makePickerWithState<BaseDateTimePickerProps<unknown>>(StaticWrapper, {
   name: 'MuiStaticDateTimePicker',
   ...dateTimePickerConfig,
