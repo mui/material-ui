@@ -108,13 +108,13 @@ To make vertical tabs instead of default horizontal ones, there is `orientation=
 
 Note that you can restore the scrollbar with `visibleScrollbar`.
 
-## Nav Tabs
+## Nav tabs
 
-By default, tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:
+By default, tabs use a `button` element, but you can provide your custom tag or component. Here's an example of implementing tabbed navigation:
 
-{{"demo": "pages/components/tabs/NavTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/NavTabs.js"}}
 
-## Icon Tabs
+## Icon tabs
 
 Tab labels may be either all icons or all text.
 
@@ -143,13 +143,18 @@ The components implement keyboard navigation using the "manual activation" behav
 #### Demo
 
 The following two demos only differ in their keyboard navigation behavior.
-Focus a tab and navigate with arrow keys to notice the difference.
+Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
 /* Tabs where selection follows focus */
 <Tabs selectionFollowsFocus />
+```
+
+{{"demo": "pages/components/tabs/AccessibleTabs1.js", "defaultCodeOpen": false}}
+
+```jsx
 /* Tabs where each tab needs to be selected manually */
 <Tabs />
 ```
 
-{{"demo": "pages/components/tabs/AccessibleTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/AccessibleTabs2.js", "defaultCodeOpen": false}}
