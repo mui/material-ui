@@ -55,6 +55,7 @@ describe('<Tooltip />', () => {
     () => ({
       classes,
       inheritComponent: 'button',
+      render,
       mount,
       muiName: 'MuiTooltip',
       refInstanceof: window.HTMLButtonElement,
