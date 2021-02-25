@@ -1,6 +1,6 @@
 ---
 title: React Date Range Picker component
-components: DateRangePicker
+components: DateRangePicker,DesktopDateRangePicker,MobileDateRangePicker,StaticDateRangePicker
 githubLabel: 'component: DateRangePicker'
 packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
@@ -77,6 +77,6 @@ If you need to render custom inputs make sure to spread `ref` and `inputProps` c
 
 ## Static mode
 
-It is possible to render any picker without a modal or popper. For this use `StaticDateRangePicker`.
+It's possible to render any picker inline. This will enable building custom popover/modal containers.
 
-{{"demo": "pages/components/date-range-picker/StaticDateRangePicker.js"}}
+{{"demo": "pages/components/date-range-picker/StaticDateRangePickerDemo.js", "bg": true}}

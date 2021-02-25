@@ -3,9 +3,16 @@ import { makeDateRangePicker } from '../DateRangePicker/makeDateRangePicker';
 import DesktopTooltipWrapper from '../internal/pickers/wrappers/DesktopTooltipWrapper';
 
 /**
- * @ignore - do not document.
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ *
+ * API:
+ *
+ * - [DesktopDateRangePicker API](https://material-ui.com/api/desktop-date-range-picker/)
  */
-/* @typescript-to-proptypes-generate */
+// @typescript-to-proptypes-generate
 const DesktopDateRangePicker = makeDateRangePicker(
   'MuiDesktopDateRangePicker',
   DesktopTooltipWrapper,

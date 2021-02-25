@@ -6,7 +6,7 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import Box from '@material-ui/core/Box';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
 
-export default function StaticDateRangePickerExample() {
+export default function StaticDateRangePickerDemo() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
 
   return (
