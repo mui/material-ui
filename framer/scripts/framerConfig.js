@@ -343,6 +343,8 @@ export const componentSettings = {
       'select',
       'type',
       'value',
+      'size',
+      'color',
     ],
     propValues: {
       helperText: "''",
