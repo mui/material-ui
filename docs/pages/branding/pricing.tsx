@@ -27,7 +27,7 @@ const startMaterialUi = [
     src: '/static/branding/pricing/essential.svg',
     title: 'Essential',
     content:
-      'Get started with the most popular and industry-standard UI libraries to build interfaces with React. Licensed MIT.',
+      'Get started with the most popular and industry-standard UI library to build interfaces with React. MIT licensed.',
     actualPrice: 0,
     price: 0,
     priceFor: 'Free forever!',
@@ -36,8 +36,8 @@ const startMaterialUi = [
     isPriorityButton: false,
     featureTitle: 'Includes',
     features: [
-      { id: 1, detail: 'Material-UI lifetime access and  lifetime updates', isLink: false },
-      { id: 2, detail: 'Community/StackOverflow', isLink: false },
+      { id: 1, detail: 'Material-UI lifetime access and lifetime updates', isLink: false },
+      { id: 2, detail: 'Access to the contributions of the community', isLink: false },
     ],
   },
   {
@@ -49,13 +49,14 @@ const startMaterialUi = [
     actualPrice: 249,
     price: 129,
     priceFor: 'per developer',
-    priceDescription: 'Capped after 10 developer/project',
+    priceDescription: 'Capped at 10 developers',
     buttonTitle: 'Learn More',
-    featureTitle: 'Everything in Essentials, plus',
+    featureTitle: 'Includes',
     isPriorityButton: false,
     features: [
+      { id: 1, detail: 'Everything in Community edition', isLink: false },
       {
-        id: 1,
+        id: 2,
         detail: (
           <React.Fragment>
             Material-UI X package (grid and date picker included){' '}
@@ -66,7 +67,7 @@ const startMaterialUi = [
         isLink: true,
         href: 'https://material-ui.com',
       },
-      { id: 2, detail: 'Perpetual license', isLink: true, href: 'https://material-ui.com' },
+      { id: 3, detail: 'Perpetual license', isLink: true, href: 'https://material-ui.com' },
     ],
   },
   {
@@ -78,7 +79,7 @@ const startMaterialUi = [
     actualPrice: 0,
     price: 599,
     priceFor: 'per developer',
-    priceDescription: 'Capped after 10 developer/project',
+    priceDescription: 'Capped at 10 developers per project',
     buttonTitle: 'Learn More',
     featureTitle: 'Everything in Pro, plus Advanced support options',
     isPriorityButton: true,
@@ -120,31 +121,22 @@ const benefits = [
     image: '/static/branding/pricing/fast.svg',
     color: undefined,
     description: 'Faster development process with pre-built elements.',
-    order: { xs: 1, sm: 2, lg: 1 },
-  },
-  {
-    image: '/static/branding/pricing/customizable.svg',
-    color: 'info',
-    description: 'Highly customisable components.',
-    order: { xs: 2, sm: 1, lg: 2 },
-  },
-  {
-    image: '/static/branding/pricing/community.svg',
-    color: undefined,
-    description: 'Strong community numbering 1M developers.',
-    order: { xs: 3 },
   },
   {
     image: '/static/branding/pricing/documentation.svg',
     color: 'info',
-    description: (
-      <React.Fragment>
-        Structured support documentation to help you{' '}
-        <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} />
-        <Link href="/getting-started/usage/">Get started.</Link>
-      </React.Fragment>
-    ),
-    order: { xs: 4 },
+    description: 'Outstanding documentation and support.',
+  },
+  {
+    image: '/static/branding/pricing/customizable.svg',
+    color: undefined,
+    description: 'Highly customisable components.',
+    order: { xs: 0, sm: 1, md: 0 },
+  },
+  {
+    image: '/static/branding/pricing/community.svg',
+    color: 'info',
+    description: 'Strong community numbering 2m developers.',
   },
 ];
 
