@@ -5,28 +5,20 @@ import {
   getClasses,
   createMount,
   createClientRender,
-  describeConformance,
+  describeConformanceV5,
 } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import Modal from '../Modal';
 import Drawer, { getAnchor, isHorizontal } from './Drawer';
+import classes from './drawerClasses';
 
 describe('<Drawer />', () => {
   const mount = createMount({ strict: true });
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(
-      <Drawer>
-        <div />
-      </Drawer>,
-    );
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <Drawer open>
       <div />
     </Drawer>,
@@ -34,9 +26,13 @@ describe('<Drawer />', () => {
       classes,
       inheritComponent: 'div',
       mount,
+      muiName: 'MuiDrawer',
+      testVariantProps: { variant: 'persistent' },
+      testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
+        'componentsProp',
         // react-transition-group issue
         'reactTestRenderer',
       ],
