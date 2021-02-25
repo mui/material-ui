@@ -240,7 +240,7 @@ function createDescribeableProp(
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
     if (!external) {
       throw new Error(
-        `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
+        `Declared a @default annotation in JSDOC for prop '${propName}' with value '${jsdocDefaultValue.value}' but could not find a default value in the implementation.`,
       );
     }
   } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
