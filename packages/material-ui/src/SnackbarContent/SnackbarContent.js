@@ -17,7 +17,7 @@ const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { classes = {} } = styleProps;
+  const { classes } = styleProps;
 
   const slots = {
     root: ['root'],
