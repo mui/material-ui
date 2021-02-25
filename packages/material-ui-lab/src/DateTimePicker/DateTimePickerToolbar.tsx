@@ -60,6 +60,7 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
     toolbarFormat,
     toolbarPlaceholder = '––',
     toolbarTitle = 'SELECT DATE & TIME',
+    views,
     ...other
   } = props;
   const utils = useUtils();
@@ -97,41 +98,60 @@ const DateTimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof 
           isLandscape={false}
         >
           <div className={classes.dateContainer}>
-            <PickersToolbarButton
-              tabIndex={-1}
-              variant="subtitle1"
-              data-mui-test="datetimepicker-toolbar-year"
-              onClick={() => setOpenView('year')}
-              selected={openView === 'year'}
-              value={date ? utils.format(date, 'year') : '–'}
-            />
-            <PickersToolbarButton
-              tabIndex={-1}
-              variant="h4"
-              data-mui-test="datetimepicker-toolbar-date"
-              onClick={() => setOpenView('date')}
-              selected={openView === 'date'}
-              value={dateText}
-            />
+            {views.includes('year') && <PickersToolbarButton
+                tabIndex={-1}
+                variant="subtitle1"
+                data-mui-test="datetimepicker-toolbar-year"
+                onClick={() => setOpenView('year')}
+                selected={openView === 'year'}
+                value={date ? utils.format(date, 'year') : '–'}
+              />
+            }
+            {views.includes('date') && <PickersToolbarButton
+                tabIndex={-1}
+                variant="h4"
+                data-mui-test="datetimepicker-toolbar-date"
+                onClick={() => setOpenView('date')}
+                selected={openView === 'date'}
+                value={dateText}
+              />
+            }
           </div>
           <div className={classes.timeContainer}>
-            <PickersToolbarButton
-              variant="h3"
-              data-mui-test="hours"
-              onClick={() => setOpenView('hours')}
-              selected={openView === 'hours'}
-              value={date ? formatHours(date) : '--'}
-              typographyClassName={classes.timeTypography}
-            />
-            <PickersToolbarText variant="h3" value=":" className={classes.separator} />
-            <PickersToolbarButton
-              variant="h3"
-              data-mui-test="minutes"
-              onClick={() => setOpenView('minutes')}
-              selected={openView === 'minutes'}
-              value={date ? utils.format(date, 'minutes') : '--'}
-              typographyClassName={classes.timeTypography}
-            />
+            {views.includes('hours') && <PickersToolbarButton
+                variant="h3"
+                data-mui-test="hours"
+                onClick={() => setOpenView('hours')}
+                selected={openView === 'hours'}
+                value={date ? formatHours(date) : '--'}
+                typographyClassName={classes.timeTypography}
+              />
+            }
+            {
+              views.includes('minutes') && <React.Fragment>
+                <PickersToolbarText variant="h3" value=":" className={classes.separator} />
+                <PickersToolbarButton
+                  variant="h3"
+                  data-mui-test="minutes"
+                  onClick={() => setOpenView('minutes')}
+                  selected={openView === 'minutes'}
+                  value={date ? utils.format(date, 'minutes') : '--'}
+                  typographyClassName={classes.timeTypography}
+                />
+              </React.Fragment>
+            }
+            {views.includes('seconds') && <React.Fragment>
+                <PickersToolbarText variant="h3" value=":" className={classes.separator} />
+                <PickersToolbarButton
+                  variant="h3"
+                  data-mui-test="seconds"
+                  onClick={() => setOpenView('seconds')}
+                  selected={openView === 'seconds'}
+                  value={date ? utils.format(date, 'seconds') : '--'}
+                  typographyClassName={classes.timeTypography}
+                />
+              </React.Fragment>
+            }
           </div>
         </PickersToolbar>
       )}

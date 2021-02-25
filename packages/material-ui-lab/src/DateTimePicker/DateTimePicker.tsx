@@ -31,7 +31,7 @@ type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
 >;
 
 export interface BaseDateTimePickerProps<TDate>
-  extends WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes'>,
+  extends WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes' | 'seconds'>,
     ValidationProps<DateAndTimeValidationError, ParsableDate>,
     DateTimePickerViewsProps<TDate> {
   /**
@@ -575,7 +575,7 @@ DateTimePicker.propTypes = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(
-    PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
+    PropTypes.oneOf(['date', 'hours', 'minutes', 'seconds', 'month', 'year']).isRequired,
   ),
 } as any;
 
