@@ -27,13 +27,15 @@ const overridesResolver = (props, styles) => {
   return deepmerge(styles.popper || {}, {
     ...(!styleProps.disableInteractive && styles.popperInteractive),
     ...(styleProps.arrow && styles.popperArrow),
-    [`& .${tooltipClasses.tooltip}`]: styles.tooltip,
-    ...(styleProps.arrow && { [`& .${tooltipClasses.tooltip}`]: styles.tooltipArrow }),
+    [`& .${tooltipClasses.tooltip}`]: {
+      ...styles.tooltip,
+      ...styleProps.touch && styles.touch,
+      ...styleProps.arrow && styles.tooltipArrow,
+      ...styles[
+        `tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`
+      ],
+    },
     [`& .${tooltipClasses.arrow}`]: styles.arrow,
-    ...(styleProps.touch && { [`& .${tooltipClasses.tooltip}`]: styles.touch }),
-    [`& .${tooltipClasses.tooltip}`]: styles[
-      `tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`
-    ],
   });
 };
 
