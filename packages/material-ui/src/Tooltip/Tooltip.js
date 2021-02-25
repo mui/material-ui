@@ -185,22 +185,20 @@ const TooltipArrow = experimentalStyled(
   },
 )(({ theme }) => ({
   /* Styles applied to the arrow element. */
-  arrow: {
-    overflow: 'hidden',
-    position: 'absolute',
-    width: '1em',
-    height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
-    boxSizing: 'border-box',
-    color: alpha(theme.palette.grey[700], 0.9),
-    '&::before': {
-      content: '""',
-      margin: 'auto',
-      display: 'block',
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'currentColor',
-      transform: 'rotate(45deg)',
-    },
+  overflow: 'hidden',
+  position: 'absolute',
+  width: '1em',
+  height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
+  boxSizing: 'border-box',
+  color: alpha(theme.palette.grey[700], 0.9),
+  '&::before': {
+    content: '""',
+    margin: 'auto',
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'currentColor',
+    transform: 'rotate(45deg)',
   },
 }));
 
