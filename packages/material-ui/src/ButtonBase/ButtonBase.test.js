@@ -119,6 +119,7 @@ describe('<ButtonBase />', () => {
       const onMouseDown = spy();
       const onMouseLeave = spy();
       const onMouseUp = spy();
+      const onContextMenu = spy();
       const onDragEnd = spy();
       const onTouchStart = spy();
       const onTouchEnd = spy();
@@ -133,6 +134,7 @@ describe('<ButtonBase />', () => {
           onMouseDown={onMouseDown}
           onMouseLeave={onMouseLeave}
           onMouseUp={onMouseUp}
+          onContextMenu={onContextMenu}
           onDragEnd={onDragEnd}
           onTouchEnd={onTouchEnd}
           onTouchStart={onTouchStart}
@@ -163,6 +165,9 @@ describe('<ButtonBase />', () => {
 
       fireEvent.mouseUp(button);
       expect(onMouseUp.callCount).to.equal(1);
+
+      fireEvent.contextMenu(button);
+      expect(onContextMenu.callCount).to.equal(1);
 
       fireEvent.click(button);
       expect(onClick.callCount).to.equal(1);
@@ -368,6 +373,34 @@ describe('<ButtonBase />', () => {
         fireEvent.mouseDown(button);
 
         fireEvent.dragLeave(button);
+
+        expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
+        expect(
+          button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
+        ).to.have.lengthOf(0);
+      });
+
+      it('should stop the ripple when the context menu opens', () => {
+        const { getByRole } = render(
+          <ButtonBase
+            TouchRippleProps={{
+              classes: {
+                rippleVisible: 'ripple-visible',
+                child: 'child',
+                childLeaving: 'child-leaving',
+              },
+            }}
+          />,
+        );
+        const button = getByRole('button');
+        fireEvent.mouseDown(button);
+
+        expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(0);
+        expect(
+          button.querySelectorAll('.ripple-visible .child:not(.child-leaving)'),
+        ).to.have.lengthOf(1);
+
+        fireEvent.contextMenu(button);
 
         expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
         expect(
