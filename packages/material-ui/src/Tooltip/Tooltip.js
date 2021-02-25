@@ -217,7 +217,7 @@ function composeEventHandler(handler, eventHandler) {
 }
 
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
-  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiTooltip' });
+  const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children,
@@ -242,6 +242,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     title,
     TransitionComponent = Grow,
     TransitionProps,
+    /* eslint-disable-next-line react/prop-types */
+    isRtl,
+    /* eslint-disable-next-line react/prop-types */
+    theme,
     ...other
   } = props;
 
@@ -678,6 +682,10 @@ Tooltip.propTypes = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.

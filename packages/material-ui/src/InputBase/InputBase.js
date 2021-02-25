@@ -212,14 +212,13 @@ export const InputBaseComponent = experimentalStyled(
     }),
   };
 });
-
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
  * It contains a load of style reset and some state logic.
  */
 const InputBase = React.forwardRef(function InputBase(inProps, ref) {
-  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiInputBase' });
+  const props = useThemeProps({ props: inProps, name: 'MuiInputBase' });
   const {
     'aria-describedby': ariaDescribedby,
     autoComplete,
@@ -256,6 +255,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     startAdornment,
     type = 'text',
     value: valueProp,
+    /* eslint-disable-next-line react/prop-types */
+    isRtl,
+    /* eslint-disable-next-line react/prop-types */
+    theme,
     ...other
   } = props;
 
@@ -569,6 +572,10 @@ InputBase.propTypes = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
@@ -665,6 +672,10 @@ InputBase.propTypes = {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * @ignore
    */
