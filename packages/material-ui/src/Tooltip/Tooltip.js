@@ -608,8 +608,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ...props,
     arrow,
     disableInteractive,
-    PopperComponent,
     placement,
+    PopperComponent,
     touch: ignoreNonTouchEvents.current,
   };
 
