@@ -62,6 +62,7 @@ describe('<Tooltip />', () => {
       testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
       skip: [
         'componentProp',
+        'componentsProp',
         // react-transition-group issue
         'reactTestRenderer',
       ],
