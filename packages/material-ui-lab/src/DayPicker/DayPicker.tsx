@@ -86,9 +86,6 @@ export const styles: MuiStyles<DayPickerClassKey> = {
 export const defaultReduceAnimations =
   typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent);
 
-/**
- * @ignore - do not document.
- */
 const DayPicker = React.forwardRef(function DayPicker<
   TDate extends any,
   TView extends DatePickerView = DatePickerView
